@@ -44,4 +44,8 @@ class ItemName {
             throw new IllegalArgumentException(NULL_MESSAGE);
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

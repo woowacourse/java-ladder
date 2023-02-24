@@ -1,5 +1,6 @@
 package ladder.domain.item;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -40,5 +41,12 @@ class ItemNameTest {
         assertThatThrownBy(() -> new ItemName("   "))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 공백으로 입력할 수 없습니다.");
+    }
+
+    @Test
+    void 이름을_반환한다() {
+        ItemName itemName = new ItemName("pobi");
+        assertThat(itemName.getName())
+                .isEqualTo("pobi");
     }
 }
