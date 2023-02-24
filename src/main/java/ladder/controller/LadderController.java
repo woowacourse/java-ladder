@@ -3,8 +3,8 @@ package ladder.controller;
 import java.util.List;
 
 import ladder.domain.Ladder;
-import ladder.domain.LadderHeight;
 import ladder.domain.LadderFactory;
+import ladder.domain.LadderHeight;
 import ladder.domain.MatchResults;
 import ladder.domain.Matcher;
 import ladder.domain.Names;
@@ -25,67 +25,56 @@ public class LadderController {
     }
 
     public void execute() {
-        Names names = createNames();
-        Results results = createResults(names.size());
-        LadderHeight ladderHeight = createLadderHeight();
-
-        Ladder ladder = makeLadder(names, results, ladderHeight);
-
-        match(names, results, ladder);
+        Names names = readNames();
+        Results results = readResults(names.size());
+        LadderHeight ladderHeight = readLadderHeight();
+        Ladder ladder = createLadder(names, ladderHeight);
+        outputView.printLadderShape(names, results, ladder);
+        MatchResults matchResults = matchNamesWithResults(names, results, ladder);
+        searchResult(matchResults);
     }
 
-    private Names createNames() {
+    private Names readNames() {
         try {
-            return new Names(readNames());
+            return new Names(requestNames());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return createNames();
+            return readNames();
         }
     }
 
-    private List<String> readNames() {
+    private List<String> requestNames() {
         return inputView.requestNames();
     }
 
-    private Results createResults(int numberOfResults) {
+    private Results readResults(int numberOfResults) {
         try {
-            return new Results(readResults(), numberOfResults);
+            return new Results(requestResults(), numberOfResults);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return createResults(numberOfResults);
+            return readResults(numberOfResults);
         }
     }
 
-    private List<String> readResults() {
+    private List<String> requestResults() {
         return inputView.requestResults();
     }
 
-    private LadderHeight createLadderHeight() {
+    private LadderHeight readLadderHeight() {
         try {
-            return new LadderHeight(readLadderHeight());
+            return new LadderHeight(requestLadderHeight());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return createLadderHeight();
+            return readLadderHeight();
         }
     }
 
-    private Ladder makeLadder(Names names, Results results, LadderHeight ladderHeight) {
-        Ladder ladder = createLadder(names, ladderHeight);
-        outputView.printLadderShape(names, results, ladder);
-        return ladder;
-    }
-
-    private int readLadderHeight() {
+    private int requestLadderHeight() {
         return inputView.requestLadderHeight();
     }
 
     private Ladder createLadder(Names names, LadderHeight ladderHeight) {
         return LadderFactory.newLadder(names.size(), ladderHeight.getLadderHeight(), generator);
-    }
-
-    private void match(Names names, Results results, Ladder ladder) {
-        MatchResults matchResults = matchNamesWithResults(names, results, ladder);
-        searchResult(matchResults);
     }
 
     private MatchResults matchNamesWithResults(Names names, Results results, Ladder ladder) {
