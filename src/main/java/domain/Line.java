@@ -39,32 +39,22 @@ public class Line {
         connection.add(isExisting);
     }
 
-    public int moveToNext(final int presentPosition) {
-        int nextPosition = presentPosition;
-
-        nextPosition = moveGenerally(presentPosition, nextPosition);
-
-        return nextPosition;
-    }
-
-    private int moveGenerally(final int presentPosition, int nextPosition) {
-        nextPosition = moveLeftWhenConnectionExist(presentPosition, nextPosition);
-        nextPosition = moveRightWhenConnectionExist(presentPosition, nextPosition);
-        return nextPosition;
-    }
-
-    private int moveLeftWhenConnectionExist(final int presentPosition, int nextPosition) {
-        if (presentPosition != 0 && connections.get(presentPosition - 1)) {
-            nextPosition--;
+    public int move(final int presentPosition) {
+        if (isLeftConnectionExist(presentPosition)) {
+            return presentPosition - 1;
         }
-        return nextPosition;
+        if (isRightConnectionExist(presentPosition)) {
+            return presentPosition + 1;
+        }
+        return presentPosition;
     }
 
-    private int moveRightWhenConnectionExist(final int presentPosition, int nextPosition) {
-        if (presentPosition != connections.size() && connections.get(presentPosition)) {
-            nextPosition++;
-        }
-        return nextPosition;
+    private boolean isLeftConnectionExist(final int presentPosition) {
+        return (presentPosition != 0) && connections.get(presentPosition - 1);
+    }
+
+    private boolean isRightConnectionExist(final int presentPosition) {
+        return (presentPosition != connections.size()) && connections.get(presentPosition);
     }
 
     public List<Boolean> getConnections() {

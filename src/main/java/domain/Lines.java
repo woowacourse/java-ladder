@@ -29,7 +29,7 @@ public class Lines {
         int presentPosition = namePosition;
 
         for (Line line : this.lines) {
-            presentPosition = line.moveToNext(presentPosition);
+            presentPosition = line.move(presentPosition);
         }
 
         return presentPosition;
