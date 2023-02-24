@@ -17,7 +17,7 @@ class GameResultTest {
         gameResultSetting.put("crong", "당첨3");
         gameResultSetting.put("honux", "당첨4");
 
-        GameResult gameResult = new GameResult(gameResultSetting);
-        Assertions.assertThat(gameResult.getTargetResult("pobi")).isEqualTo("당첨1");
+        LinkedHashMap<String, String> results = new GameResult(gameResultSetting).getGameResult();
+        Assertions.assertThat(results.get("pobi")).isEqualTo("당첨1");
     }
 }

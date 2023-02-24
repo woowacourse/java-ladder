@@ -10,10 +10,6 @@ public class GameResult {
         this.gameResult = gameResult;
     }
 
-    public String getTargetResult(String target) {
-        return gameResult.get(target);
-    }
-
     public LinkedHashMap<String, String> getGameResult() {
         return gameResult;
     }

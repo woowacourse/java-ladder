@@ -41,7 +41,8 @@ public class OutputView {
 
     public void showTargetResult(String target, GameResult gameResult) {
         System.out.println(GAME_RESULT_SHOW_MESSAGE);
-        printTargetResult(target, gameResult.getTargetResult(target));
+        LinkedHashMap<String, String> results = gameResult.getGameResult();
+        printTargetResult(target, results.get(target));
     }
 
     private void showInitResultMessage() {
