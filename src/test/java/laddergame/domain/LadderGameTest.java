@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.util.RandomPointGenerator;
+import laddergame.util.RandomBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +19,7 @@ class LadderGameTest {
 
         assertDoesNotThrow(() -> {
             Players players = new Players(playerNames);
-            Ladder ladder = new Ladder(players.size(), height, new RandomPointGenerator());
+            Ladder ladder = new Ladder(players.size(), height, new RandomBooleanGenerator());
             Prizes prizes = new Prizes(prizeNames, players.size());
             LadderGame ladderGame = new LadderGame(players, ladder, prizes);
         });

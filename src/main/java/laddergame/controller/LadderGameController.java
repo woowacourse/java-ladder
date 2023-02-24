@@ -1,7 +1,7 @@
 package laddergame.controller;
 
 import laddergame.domain.*;
-import laddergame.util.RandomPointGenerator;
+import laddergame.util.RandomBooleanGenerator;
 import laddergame.util.RepeatValidator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
@@ -14,7 +14,7 @@ public class LadderGameController {
         final Players players = initPlayers();
         final Prizes prizes = initPrizes(players.size());
         final int ladderHeight = initLadderHeight();
-        final Ladder ladder = new Ladder(players.size(), ladderHeight, new RandomPointGenerator());
+        final Ladder ladder = new Ladder(players.size(), ladderHeight, new RandomBooleanGenerator());
 
         final LadderGame ladderGame = new LadderGame(players, ladder, prizes);
         printLadderGame(ladderGame);
@@ -61,18 +61,18 @@ public class LadderGameController {
         });
     }
 
-    private String readPlayerNameForResult() {
-        return RepeatValidator.retryUntilValidate(() -> {
-            OutputView.printPlayerNameForResult();
-            return InputView.inputPlayerNameForResult();
-        });
-    }
-
     private void repeatPrintPlayerResult(Result result) {
         String playerName = readPlayerNameForResult();
         while (!playerName.equals("all")) {
             OutputView.printLadderGameResult(result.getResult(playerName));
             playerName = readPlayerNameForResult();
         }
+    }
+
+    private String readPlayerNameForResult() {
+        return RepeatValidator.retryUntilValidate(() -> {
+            OutputView.printPlayerNameForResult();
+            return InputView.inputPlayerNameForResult();
+        });
     }
 }
