@@ -57,18 +57,17 @@ public class LayerTest {
     }
 
     @ParameterizedTest(name = "{0} 사다리에서 현위치가 들어왔을 때 위치를 움직이는 경우")
-    @CsvSource(value = {"0:0:1", "1:1:0", "2:2:3", "3:3:2"}, delimiter = ':')
-    public void moveSuccessCase(int horizon, int vertical, int result) {
+    @CsvSource(value = {"0:1", "1:0", "2:3", "3:2"}, delimiter = ':')
+    public void moveSuccessCase(int horizon, int result) {
         //given
         Layer layer = new Layer(new ArrayList<>(), () -> true);
         IntStream.range(0, 10).forEach(i -> layer.makeLine());
-        Location location = new Location(horizon, vertical);
+        Location location = new Location(horizon);
 
         //when
         layer.move(location);
 
         //then
         assertThat(location.getHorizon()).isEqualTo(result);
-        assertThat(location.getVertical()).isEqualTo(horizon + 1);
     }
 }

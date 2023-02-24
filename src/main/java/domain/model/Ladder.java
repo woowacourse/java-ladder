@@ -36,7 +36,7 @@ public class Ladder {
     public int ride(final Location location) {
         checkStartLocation(location);
         IntStream.range(0, height.getValue())
-            .forEach(i -> layers.get(location.getVertical()).move(location));
+            .forEach(index -> layers.get(index).move(location));
         return location.getHorizon();
     }
 

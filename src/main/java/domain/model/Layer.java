@@ -26,7 +26,6 @@ public class Layer {
 
     public void move(final Location location) {
         checkLocation(location);
-        location.goDown();
         if (moveInEnds(location)) {
             return;
         }

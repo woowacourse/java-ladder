@@ -19,7 +19,6 @@ import java.util.stream.IntStream;
 
 public class LadderGame {
 
-    public static final int INITIAL_VERTICAL = 0;
     private final BooleanGenerator booleanGenerator;
 
     public LadderGame(BooleanGenerator booleanGenerator) {
@@ -35,11 +34,10 @@ public class LadderGame {
         return ladder;
     }
 
-    public Map<Player, Result> makeResultBoard(final Ladder ladder, final Players players,
-        final Results results) {
+    public Map<Player, Result> makeResultBoard(final Ladder ladder, final Players players, final Results results) {
         final Map<Player, Result> resultBoard = new HashMap<>();
         IntStream.range(0, players.size()).forEach(index -> {
-            final int resultIndex = ladder.ride(new Location(index, INITIAL_VERTICAL));
+            final int resultIndex = ladder.ride(new Location(index));
             final Result result = results.getResults().get(resultIndex);
             resultBoard.put(players.getPlayers().get(index), result);
         });

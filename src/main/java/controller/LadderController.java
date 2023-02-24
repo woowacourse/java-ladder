@@ -22,8 +22,7 @@ public class LadderController {
     private final OutputView outputView;
     private final LadderGame ladderGame;
 
-    public LadderController(final InputView inputView, final OutputView outputView,
-        final LadderGame ladderGame) {
+    public LadderController(final InputView inputView, final OutputView outputView, final LadderGame ladderGame) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.ladderGame = ladderGame;

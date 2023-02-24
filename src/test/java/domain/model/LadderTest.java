@@ -40,7 +40,7 @@ public class LadderTest {
         List<Layer> layers = makeEmptyLayers(height, () -> true);
         Ladder ladder = new Ladder(height, width, layers);
         ladder.makeLineInLayers();
-        Location location = new Location(0, 0);
+        Location location = new Location(0);
 
         //when
         int result = ladder.ride(location);
@@ -58,7 +58,7 @@ public class LadderTest {
         List<Layer> layers = makeEmptyLayers(height, () -> false);
         Ladder ladder = new Ladder(height, width, layers);
         ladder.makeLineInLayers();
-        Location location = new Location(1, 0);
+        Location location = new Location(1);
 
         //when
         int result = ladder.ride(location);
@@ -76,7 +76,7 @@ public class LadderTest {
         List<Layer> layers = makeEmptyLayers(height, () -> true);
         Ladder ladder = new Ladder(height, width, layers);
         ladder.makeLineInLayers();
-        Location location = new Location(3, 0);
+        Location location = new Location(3);
 
         //when
         //then

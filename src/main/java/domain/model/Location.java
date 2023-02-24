@@ -2,31 +2,21 @@ package domain.model;
 
 public class Location {
 
-    private int horizon;
-    private int vertical;
+    private int location;
 
-    public Location(final int horizon, final int vertical) {
-        this.horizon = horizon;
-        this.vertical = vertical;
+    public Location(final int location) {
+        this.location = location;
     }
 
     public void goLeft() {
-        horizon--;
+        location--;
     }
 
     public void goRight() {
-        horizon++;
-    }
-
-    public void goDown() {
-        vertical++;
+        location++;
     }
 
     public int getHorizon() {
-        return horizon;
-    }
-
-    public int getVertical() {
-        return vertical;
+        return location;
     }
 }
