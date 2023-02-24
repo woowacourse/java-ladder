@@ -3,8 +3,7 @@ package domain;
 import ui.output.LadderShape;
 import util.RandomValueGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static ui.output.LadderShape.*;
 
@@ -18,6 +17,10 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return points;
+    }
+
+    public int getSize() {
+        return points.size();
     }
 
     private void calculatePoints(int personCount) {
@@ -72,4 +75,7 @@ public class Line {
         return NONE.getShape();
     }
 
+    public boolean canGoThisPoint(int pointNumber) {
+        return points.get(pointNumber);
+    }
 }

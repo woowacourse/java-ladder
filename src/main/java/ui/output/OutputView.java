@@ -46,7 +46,7 @@ public class OutputView {
 
     private static void printResults(Results results) {
         for (Result result : results.getResults()) {
-            System.out.print(" ".repeat(5 - result.getResult().length()) + result.getResult() + " ");
+            System.out.print(" ".repeat(5 - result.getResult().length()) + result.getResult() + SPACE);
         }
         System.out.println();
     }
@@ -62,7 +62,7 @@ public class OutputView {
 
     private static void printAll(Players players, Results results) {
         for (Player player : players.getPlayers()) {
-            System.out.println(player.getName() + COLON + results.getResults().get(player.getPosition()).getResult());
+            System.out.println(player.getName() + COLON + results.getResults().get(getResultIndex(players, player.getName())).getResult());
         }
     }
 
@@ -70,7 +70,14 @@ public class OutputView {
         players.getPlayers().stream()
                 .filter(player -> player.getName().equals(playerName))
                 .forEach(player -> {
-                    System.out.println(results.getResults().get(player.getPosition()).getResult());
+                    System.out.println(results.getResults().get(getResultIndex(players, playerName)).getResult());
                 });
+    }
+
+    private static int getResultIndex(Players players, String playerName) {
+        for (int i = 0; i < players.getPlayers().size(); i++) {
+            if (players.getPlayers().get(i).getName().equals(playerName)) return i;
+        }
+        return -1;
     }
 }

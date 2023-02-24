@@ -11,4 +11,5 @@ public class Result {
     public String getResult() {
         return result;
     }
+
 }

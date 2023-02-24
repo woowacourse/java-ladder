@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lines {
-    
+
     private final List<Line> lines;
 
     public Lines(int personCount, int height) {
@@ -36,7 +36,8 @@ public class Lines {
 
     public void calculateResults(Players players) {
         for (Line line : lines) {
-            players.calculateResult(line);
+            players.switchingPlayers(line);
         }
     }
+
 }

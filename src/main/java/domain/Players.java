@@ -1,7 +1,8 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Players {
 
@@ -9,7 +10,7 @@ public class Players {
 
     public Players(List<String> names) {
         validatePlayerCount(names);
-        this.players = createPlayer(names);
+        this.players = createPlayers(names);
     }
 
     public List<Player> getPlayers() {
@@ -26,28 +27,26 @@ public class Players {
         }
     }
 
-    private List<Player> createPlayer(List<String> names) {
-        List<Player> playerList = new ArrayList<>();
-        for (int position = 0; position < names.size(); position++) {
-            playerList.add(new Player(names.get(position), position));
-        }
-        return playerList;
+    private List<Player> createPlayers(List<String> names) {
+        return names.stream()
+                .map(name -> new Player(name))
+                .collect(Collectors.toList());
     }
 
     public boolean isIncludePlayerName(String playerName) {
-        int matchPlayerNameCount = (int) players.stream()
-                .filter(player -> player.getName().equals(playerName))
-                .count();
-        if (matchPlayerNameCount == 0 && !playerName.equals("all")) {
-            return false;
-        }
-        return true;
+        return players.stream()
+                .anyMatch(player -> player.getName().equals(playerName) || playerName.equals("all"));
     }
 
-    public void calculateResult(Line line) {
-        for (Player player : players) {
-            String ladderPosition = line.isRightLadder(player.getPosition(), line.getPoints());
-            player.calculatePosition(ladderPosition);
+    public void switchingPlayers(Line line) {
+        for (int pointNumber = 0; pointNumber < line.getSize(); pointNumber++) {
+            calculatePoints(line, pointNumber);
+        }
+    }
+
+    private void calculatePoints(Line line, int pointNumber) {
+        if (line.canGoThisPoint(pointNumber)) {
+            Collections.swap(players, pointNumber, pointNumber + 1);
         }
     }
 }

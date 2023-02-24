@@ -1,7 +1,4 @@
-import domain.Lines;
-import domain.Players;
-import domain.Results;
-import ui.input.InputView;
+import domain.*;
 import ui.output.OutputView;
 
 import java.util.Arrays;
@@ -15,6 +12,7 @@ public class Application {
         Lines lines = getLinesResult(players);
 
         OutputView.printLadderResult(players, lines, results);
+        lines.calculateResults(players);
         showPlayerLadderResult(players, results);
     }
 
@@ -29,9 +27,7 @@ public class Application {
     }
 
     private static Lines getLinesResult(Players players) {
-        Lines lines = new Lines(players.getPlayersCount(), getLadderHeight());
-        lines.calculateResults(players);
-        return lines;
+        return new Lines(players.getPlayersCount(), getLadderHeight());
     }
 
     private static void showPlayerLadderResult(Players players, Results results) {
