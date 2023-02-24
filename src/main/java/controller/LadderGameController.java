@@ -7,6 +7,8 @@ import view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static exception.ErrorMessage.USER_NAME_NOT_EXISTS_IN_USERS_EXCEPTION;
+
 public class LadderGameController {
 
     private Users users;
@@ -23,14 +25,12 @@ public class LadderGameController {
     }
 
     public void printResult() {
-        try {
-            String name = InputView.readTargetUserName();
+        String name = InputView.readTargetUserName();
+        while(!"all".equals(name)) {
             printResultWhenTargetIsNotAll(name);
-            printAllResult();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            printResult();
+            name = InputView.readTargetUserName();
         }
+        printAllResult();
     }
 
     private void generateUsers() {
@@ -89,15 +89,19 @@ public class LadderGameController {
         lastUserPositions = calculator.passLadder(ladder.getLadder(), users.getUserNames());
     }
 
-    private void printResultWhenTargetIsNotAll(String name) {
-        while (!"all".equals(name)) {
+    private void printResultWhenTargetIsNotAll(final String name) {
+        try {
             printTargetUserResult(name);
-            name = InputView.readTargetUserName();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
 
     private void printTargetUserResult(final String userName) {
-        users.isExist(userName);
+        if (!users.isExist(userName)) {
+            throw new IllegalArgumentException(USER_NAME_NOT_EXISTS_IN_USERS_EXCEPTION.getMessage());
+
+        }
         int index = lastUserPositions.indexOf(userName);
         String result = results.getResultNames().get(index);
         OutputView.printUserResult(result);
