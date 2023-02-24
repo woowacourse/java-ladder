@@ -11,7 +11,9 @@ import util.LadderGameStrategy;
 import util.LineGenerator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GameTest {
     private static Names names;
@@ -25,11 +27,11 @@ public class GameTest {
     void beforeEach() {
         names = new Names("pobi,honux,crong");
         goal = new LadderGoal("꽝,10000,꽝", names.getNamesSize());
-        height = new LadderHeight(1);
-        randomLine = new ArrayList<>(List.of(false, true));
+        height = new LadderHeight(2);
+        randomLine = new ArrayList<>(List.of(false, true, false, false));
         ladder = new Ladder(names.getNamesSize(), height,
                 new LineTest.TestLineGenerator(randomLine));
-        gameStrategy = new LadderGameStrategy();
+        gameStrategy = new TestLadderGameStrategy(ladder);
     }
 
     @Test
@@ -43,10 +45,10 @@ public class GameTest {
     }
 
     @ParameterizedTest(name = "Game 결과 호출 성공 테스트 name = {0}")
-    @CsvSource(value = {"pobi:꽝", "honux:꽝", "crong:10000"}, delimiter = ':')
+    @CsvSource(value = {"pobi:꽝", "honux:10000", "crong:꽝"}, delimiter = ':')
     void getGamePrizeTest(String input, String prize) {
         Game game = new Game(names, goal, ladder, gameStrategy);
-        Names names = new Names("pobi,honux,crong");
+
         Assertions.assertThat(game.getPrizeIndividualWinner(new Winner(names, input))).isEqualTo(prize);
     }
 
@@ -56,5 +58,22 @@ public class GameTest {
         Game game = new Game(names, goal, ladder, gameStrategy);
 
         Assertions.assertThatNoException().isThrownBy(() -> game.getPrizeWinners());
+    }
+
+    static class TestLadderGameStrategy implements GameStrategy {
+        private Map<Integer, Integer> prizeResult = new HashMap<>();
+
+        public TestLadderGameStrategy(Ladder ladder) {
+            this.prizeResult = playGame(ladder);
+        }
+
+        @Override
+        public Map<Integer, Integer> playGame(Ladder ladder) {
+            int personCount = ladder.getLadderLineSize(0)+1;
+            for(int index=0; index<personCount; index++){
+                prizeResult.put(index,index);
+            }
+            return prizeResult;
+        }
     }
 }
