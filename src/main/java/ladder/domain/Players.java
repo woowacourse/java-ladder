@@ -3,7 +3,9 @@ package ladder.domain;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -47,8 +49,12 @@ public class Players {
         }
     }
 
-    public int count() {
-        return players.size();
+    public Map<Player, Position> play(final Ladder ladder) {
+        final Map<Player, Position> result = new LinkedHashMap<>();
+        for (Player player : players) {
+            result.put(player, player.play(ladder));
+        }
+        return result;
     }
 
     public Player findByPosition(final Position position) {
@@ -56,6 +62,10 @@ public class Players {
                 .filter(player -> player.isSamePosition(position))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_PLAYER_MESSAGE));
+    }
+
+    public int count() {
+        return players.size();
     }
 
     public List<String> getNames() {
