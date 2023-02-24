@@ -204,7 +204,10 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void clear() {
-
+        final Object[] es = elementData;
+        for (int i = 0; i < size; i++) {
+            es[i] = null;
+        }
     }
 
     public String[] getElementData() {
