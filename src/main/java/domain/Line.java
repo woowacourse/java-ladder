@@ -31,8 +31,36 @@ public class Line {
         return scaffold;
     }
 
-    private static boolean isScaffoldExistContinually(final Scaffold scaffold, final Deque<Scaffold> scaffolds) {
+    private boolean isScaffoldExistContinually(final Scaffold scaffold, final Deque<Scaffold> scaffolds) {
         return scaffold == Scaffold.EXIST && scaffolds.peekLast() == Scaffold.EXIST;
+    }
+
+    private void validateScaffolds(final List<Scaffold> scaffolds) {
+        validateScaffoldSizeEmpty(scaffolds);
+        validateConsistExistScaffolds(scaffolds);
+    }
+
+    private void validateScaffoldSizeEmpty(final List<Scaffold> scaffolds) {
+        if (scaffolds.isEmpty()) {
+            throw new IllegalArgumentException(ERROR_SCAFFOLD_EMPTY);
+        }
+    }
+
+    private void validateConsistExistScaffolds(final List<Scaffold> scaffolds) {
+        int lineSize = scaffolds.size() - 1;
+        for (int i = 0; i < lineSize; i++) {
+            validateConsistExistScaffold(scaffolds, i);
+        }
+    }
+
+    private void validateConsistExistScaffold(final List<Scaffold> scaffolds, final int index) {
+        if (scaffolds.get(index) != scaffolds.get(index + 1)) {
+            return;
+        }
+        if (scaffolds.get(index) == Scaffold.NONE) {
+            return;
+        }
+        throw new IllegalArgumentException(ERROR_SCAFFOLD_SEQUENT);
     }
 
     public int move(final int position) {
@@ -45,40 +73,12 @@ public class Line {
         return position;
     }
 
-    private boolean isRightMovable(final int position) {
-        return position != scaffolds.size() && scaffolds.get(position).equals(Scaffold.EXIST);
-    }
-
     private boolean isLeftMovable(final int position) {
         return position != 0 && scaffolds.get(position - 1).equals(Scaffold.EXIST);
     }
 
-    private static void validateScaffolds(final List<Scaffold> scaffolds) {
-        validateScaffoldSizeEmpty(scaffolds);
-        validateConsistExistScaffolds(scaffolds);
-    }
-
-    private static void validateScaffoldSizeEmpty(final List<Scaffold> scaffolds) {
-        if (scaffolds.isEmpty()) {
-            throw new IllegalArgumentException(ERROR_SCAFFOLD_EMPTY);
-        }
-    }
-
-    private static void validateConsistExistScaffolds(final List<Scaffold> scaffolds) {
-        int lineSize = scaffolds.size() - 1;
-        for (int i = 0; i < lineSize; i++) {
-            validateConsistExistScaffold(scaffolds, i);
-        }
-    }
-
-    private static void validateConsistExistScaffold(final List<Scaffold> scaffolds, final int index) {
-        if (scaffolds.get(index) != scaffolds.get(index + 1)) {
-            return;
-        }
-        if (scaffolds.get(index) == Scaffold.NONE) {
-            return;
-        }
-        throw new IllegalArgumentException(ERROR_SCAFFOLD_SEQUENT);
+    private boolean isRightMovable(final int position) {
+        return position != scaffolds.size() && scaffolds.get(position).equals(Scaffold.EXIST);
     }
 
     public int size() {
