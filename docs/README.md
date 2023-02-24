@@ -4,17 +4,21 @@
 - [x] 사람 이름
   - [x] 입력받기 LadderGameController#requestPlayerName
   - [x] ,(쉼표)로 구분
-  - [x] 1글자 이상 5글자 이하 Person#validate
-  - [x] 중복 불가 Persons#validate
+  - [x] 검증
+    - [x] 1글자 이상 5글자 이하 Person#validate
+    - [x] 중복 불가 Persons#validate
 
-- [x] 실행 결과 LadderGameController#requestLadderResult
-  - [x] 입력받기
+- [x] 실행 결과 
+  - [x] 입력받기 LadderGameController#requestLadderResult
   - [x] ,(쉼표)로 구분
+  - [ ] 검증
+    - [ ] 입력받은 사람 이름 수와 같아야 함
 
 - [x] 사다리 높이
   - [x] 입력받기 LadderGameController#requestLadderHeight
-  - [x] 정수만 LadderGameController#validateNumber
-  - [x] 2이상 Height#validate
+  - [x] 검증
+    - [x] 정수 Height#validateIntegerNumber
+    - [x] 2이상 100이하 Height#validateNumberRange
 
 - [x] 사다리 생성
   - [x] 입력 받은 높이의 사다리 생성 Ladder
@@ -35,7 +39,7 @@
 - [x] 사다리 결과 출력
   - [x] 사다리 폭 : "가장 이름이 긴 사람" 의 이름 크기로 고정
   - [x] 사람 이름 오른쪽 정렬
-  - [ ] 실행 결과 왼쪽 정렬
+  - [x] 실행 결과 왼쪽 정렬
 
 - [x] 실행 결과 출력
   - [x] 결과 보고 싶은 사람 입력

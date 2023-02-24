@@ -7,17 +7,31 @@ public class Height {
     private static final int MAX_HEIGHT = 100;
     private final int height;
 
-    public Height(int height) {
-        validate(height);
+    private Height(int height) {
         this.height = height;
     }
 
-    private void validate(int height) {
-        if (height < MIN_HEIGHT) {
-            throw new IllegalArgumentException(ErrorCode.NUMBER_UNDER_2.getMessage());
+    public static Height from(String height) {
+        return new Height(validate(height));
+    }
+
+    private static int validate(String height) {
+        int integerNumber = validateIntegerNumber(height);
+        validateNumberRange(integerNumber);
+        return integerNumber;
+    }
+
+    private static int validateIntegerNumber(String height) {
+        try {
+            return Integer.parseInt(height);
+        } catch (IllegalArgumentException exception) {
+            throw new IllegalArgumentException(ErrorCode.NUMBER_NOT_INTEGER.getMessage());
         }
-        if (height > MAX_HEIGHT) {
-            throw new IllegalArgumentException(ErrorCode.NUMBER_OVER_100.getMessage());
+    }
+
+    private static void validateNumberRange(int integerNumber) {
+        if (integerNumber < MIN_HEIGHT || MAX_HEIGHT < integerNumber) {
+            throw new IllegalArgumentException(ErrorCode.NUMBER_NOT_RANGE.getMessage());
         }
     }
 

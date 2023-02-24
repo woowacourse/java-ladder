@@ -10,13 +10,14 @@ import util.RandomBooleanGenerator;
 public class LadderGame {
     private final Persons persons;
     private final Ladder ladder;
-    private Map<String, String> mappingResult = new HashMap<>();
+    private Map<String, String> mappingResult;
 
     private final BooleanGenerator booleanGenerator;
 
-    public LadderGame(List<String> names, Height height) {
-        this.persons = Persons.from(names);
+    public LadderGame(Persons persons, Height height) {
+        this.persons = persons;
         this.ladder = Ladder.of(height, persons.getTotalPersonCount());
+        this.mappingResult = new HashMap<>();
         this.booleanGenerator = new RandomBooleanGenerator();
     }
 

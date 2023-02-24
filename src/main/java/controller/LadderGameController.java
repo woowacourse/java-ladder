@@ -2,7 +2,7 @@ package controller;
 
 import domain.Height;
 import domain.LadderGame;
-import exception.ErrorCode;
+import domain.Persons;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,11 +21,11 @@ public class LadderGameController {
     }
 
     public void play() {
-        List<String> names = requestPlayerName();
+        Persons persons = requestPlayerName();
         List<String> prizes = requestLadderPrize();
         Height height = requestLadderHeight();
 
-        ladderGame = new LadderGame(names, height);
+        ladderGame = new LadderGame(persons, height);
         ladderGame.run();
         ladderGame.makeGameResult(prizes);
 
@@ -33,12 +33,13 @@ public class LadderGameController {
         showResult();
     }
 
-    private List<String> requestPlayerName() {
+    private Persons requestPlayerName() {
         try {
             String inputNames = inputView.requestNames();
             List<String> playerNames = Arrays.stream(inputNames.split(DELIMITER))
                     .collect(Collectors.toList());
-            return playerNames;
+            Persons persons = Persons.from(playerNames);
+            return persons;
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             return requestPlayerName();
@@ -47,18 +48,10 @@ public class LadderGameController {
 
     private Height requestLadderHeight() {
         try {
-            return new Height(validateIntegerNumber(inputView.requestHeight()));
+            return Height.from(inputView.requestHeight());
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             return requestLadderHeight();
-        }
-    }
-
-    private int validateIntegerNumber(String height) {
-        try {
-            return Integer.parseInt(height);
-        } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ErrorCode.NUMBER_NOT_INTEGER.getMessage());
         }
     }
 
@@ -80,7 +73,7 @@ public class LadderGameController {
 
     private void showResult() {
         String inputName = inputView.requestShowingName();
-        if (inputName.equals("all")) {
+        if ("all".equals("inputName")) {
             outputView.printAllResult(ladderGame.getAllResult());
             return;
         }
