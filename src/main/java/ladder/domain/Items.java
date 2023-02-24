@@ -2,26 +2,25 @@ package ladder.domain;
 
 import static java.util.stream.Collectors.toUnmodifiableList;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Items {
     private static final String INVALID_ITEM_COUNT_MESSAGE = "참가인원과 동일한 개수의 실행결과를 입력해야 합니다.";
+    private static final String INVALID_ITEM_MESSAGE = "해당 위치에 있는 아이템이 존재하지 않습니다.";
 
-    private final Map<Position, Item> items;
+    private final List<Item> items;
 
-    private Items(final Map<Position, Item> items) {
+    private Items(final List<Item> items) {
         this.items = items;
     }
 
     public static Items from(final List<String> names, int playerCount) {
         validateItemCount(names, playerCount);
-        final Map<Position, Item> items = new LinkedHashMap<>();
-        for (int index = 0; index < names.size(); index++) {
-            items.put(Position.valueOf(index), new Item(names.get(index)));
-        }
-        return new Items(items);
+        return IntStream.range(0, names.size())
+                .mapToObj(index -> new Item(names.get(index), Position.valueOf(index)))
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Items::new));
     }
 
     private static void validateItemCount(final List<String> items, final int playerCount) {
@@ -30,12 +29,15 @@ public class Items {
         }
     }
 
-    public Item get(final Position position) {
-        return items.get(position);
+    public Item findByPosition(final Position position) {
+        return items.stream()
+                .filter(item -> item.isSamePosition(position))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_ITEM_MESSAGE));
     }
 
     public List<String> getNames() {
-        return items.values().stream()
+        return items.stream()
                 .map(Item::getName)
                 .collect(toUnmodifiableList());
     }

@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import static ladder.domain.Position.valueOf;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -20,10 +21,19 @@ public class ItemsTest {
     }
 
     @Test
+    void 입력받은_위치에_해당하는_실행결과가_없다면_예외를_던진다() {
+        final Items items = Items.from(List.of("item1", "item2", "item3"), 3);
+
+        assertThatThrownBy(() -> items.findByPosition(valueOf(10)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("해당 위치에 있는 아이템이 존재하지 않습니다.");
+    }
+
+    @Test
     void 입력받은_위치에_해당하는_실행결과를_반환한다() {
         final Items items = Items.from(List.of("item1", "item2", "item3"), 3);
 
-        final Item item = items.get(Position.valueOf(1));
+        final Item item = items.findByPosition(valueOf(1));
 
         assertThat(item.getName()).isEqualTo("item2");
     }

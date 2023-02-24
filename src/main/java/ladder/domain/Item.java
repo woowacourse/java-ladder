@@ -1,28 +1,24 @@
 package ladder.domain;
 
 class Item {
-    private static final int NAME_LENGTH_UPPER_BOUND = 5;
-    private static final String INVALID_NAME_LENGTH_MESSAGE =
-            "실행 결과명은 1자 이상, " + NAME_LENGTH_UPPER_BOUND + "자 이하여야 합니다.";
+    private final ItemName name;
+    private final Position position;
 
-    private final String name;
+    public Item(final String name, final Position position) {
+        this.name = new ItemName(name);
+        this.position = position;
+    }
 
     public Item(final String name) {
-        validate(name);
-        this.name = name;
+        this.name = new ItemName(name);
+        this.position = Position.valueOf(0);
     }
-
-    private void validate(final String name) {
-        if (isInvalidNameLength(name)) {
-            throw new IllegalArgumentException(INVALID_NAME_LENGTH_MESSAGE);
-        }
-    }
-
-    private boolean isInvalidNameLength(final String name) {
-        return name == null || name.isBlank() || NAME_LENGTH_UPPER_BOUND < name.length();
+    
+    public boolean isSamePosition(final Position position) {
+        return this.position == position;
     }
 
     public String getName() {
-        return name;
+        return name.getValue();
     }
 }

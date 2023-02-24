@@ -32,7 +32,7 @@ public class LadderGame {
         final Map<Player, Item> result = new LinkedHashMap<>();
         for (Position position : Position.range(players.count())) {
             final Position resultPosition = ladder.play(position);
-            result.put(players.get(position), items.get(resultPosition));
+            result.put(players.get(position), items.findByPosition(resultPosition));
         }
         return new LadderGameResult(result);
     }
