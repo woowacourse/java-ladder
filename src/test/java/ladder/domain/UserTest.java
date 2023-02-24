@@ -20,14 +20,6 @@ public class UserTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "aaaaaa"})
-    @DisplayName("유저 생성 예외 테스트")
-    void makeInvalidUserTest(String value) {
-        assertThatThrownBy(() -> new User(value))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"", " ", "aaaaaa"})
     @DisplayName("유저 생성 예외 메시지 테스트")
     void makeInvalidUserNameLengthMessageTest(String value) {
         assertThatThrownBy(() -> new User(value))
