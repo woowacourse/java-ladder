@@ -4,7 +4,7 @@ import java.util.List;
 
 import ladder.domain.Ladder;
 import ladder.domain.LadderHeight;
-import ladder.domain.LadderMaker;
+import ladder.domain.LadderFactory;
 import ladder.domain.MatchResults;
 import ladder.domain.Matcher;
 import ladder.domain.Names;
@@ -80,7 +80,7 @@ public class LadderController {
     }
 
     private Ladder createLadder(Names names, LadderHeight ladderHeight) {
-        return LadderMaker.makeLadder(names.size(), ladderHeight.getLadderHeight(), generator);
+        return LadderFactory.newLadder(names.size(), ladderHeight.getLadderHeight(), generator);
     }
 
     private void match(Names names, Results results, Ladder ladder) {

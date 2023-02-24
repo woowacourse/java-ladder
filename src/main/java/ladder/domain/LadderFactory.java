@@ -5,8 +5,8 @@ import java.util.List;
 
 import ladder.util.BooleanGenerator;
 
-public class LadderMaker {
-    public static Ladder makeLadder(int numberOfPeople, int ladderHeight, BooleanGenerator generator) {
+public class LadderFactory {
+    public static Ladder newLadder(int numberOfPeople, int ladderHeight, BooleanGenerator generator) {
         List<FootBars> ladder = Arrays.asList(new FootBars[ladderHeight]);
         do {
             addLine(ladder, numberOfPeople, ladderHeight, generator);
@@ -18,12 +18,12 @@ public class LadderMaker {
     private static void addLine(List<FootBars> ladder, int numberOfPeople, int ladderHeight,
         BooleanGenerator generator) {
         for (int i = 0; i < ladderHeight; i++) {
-            ladder.set(i, FootBarsMaker.makeFootBars(generator, numberOfPeople));
+            ladder.set(i, FootBarsFactory.newFootBars(generator, numberOfPeople));
         }
     }
 
     private static boolean hasNoLine(List<FootBars> ladder) {
-        return ladder.stream().noneMatch(LadderMaker::hasLine);
+        return ladder.stream().noneMatch(LadderFactory::hasLine);
     }
 
     private static boolean hasLine(FootBars footBars) {
