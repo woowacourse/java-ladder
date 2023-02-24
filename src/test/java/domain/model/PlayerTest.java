@@ -12,14 +12,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class PlayerTest {
 
-    @ParameterizedTest(name = "Player의 유효성 검증 실패를 테스트")
+    @ParameterizedTest(name = "이름 길이의 유효성 검증 실패를 테스트")
     @ValueSource(strings = {"", "123456"})
     public void validateFailureTest(final String name) {
         assertThatThrownBy(() -> new Player(name))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest(name = "Player의 유효성 검증 성공을 테스트")
+    @ParameterizedTest(name = "이름 길이의 유효성 검증 성공을 테스트")
     @ValueSource(strings = {"1", "12345"})
     public void validateSuccessTest(final String name) {
         assertDoesNotThrow(() -> new Player(name));
