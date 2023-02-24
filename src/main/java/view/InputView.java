@@ -8,15 +8,14 @@ import java.util.stream.Collectors;
 public class InputView {
 
     private static final String SPLIT_STANDARD = ",";
-    private static final InputView instance = new InputView();
-    private static final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
 
-
-    public static InputView getInstance() {
-        return instance;
+    private InputView(Scanner scanner) {
+        this.scanner = scanner;
     }
 
-    private InputView() {
+    public static InputView getInstance(Scanner scanner) {
+        return new InputView(scanner);
     }
 
     public List<String> readNames() {
@@ -36,7 +35,7 @@ public class InputView {
         return readInput(Message.INPUT_PLAYER_FOR_RESULT.message);
     }
 
-    private static String readInput(String message) {
+    private String readInput(String message) {
         System.out.println(message);
         return scanner.nextLine();
     }
