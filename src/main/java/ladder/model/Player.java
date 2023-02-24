@@ -8,6 +8,13 @@ public class Player {
         this.playerName = new PlayerName(playerName);
     }
 
+    public boolean isSameName(String name) {
+        if (playerName.getPlayerName().equals(name)) {
+            return true;
+        }
+        return false;
+    }
+
     public String getPlayerName() {
         return playerName.getPlayerName();
     }

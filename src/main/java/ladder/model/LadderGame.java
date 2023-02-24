@@ -13,7 +13,7 @@ public class LadderGame {
     private final List<Reward> rewards;
     private final Height height;
     private Ladder ladder;
-    private Map<Player, Reward> result;
+    private Result result;
 
     public LadderGame(List<Player> players, List<Reward> rewards, Height height) {
         validatePlayerCount(players);
@@ -48,12 +48,14 @@ public class LadderGame {
     }
 
     public void playLadderGame() {
-        this.result = new HashMap<>();
+        Map<Player, Reward> result = new HashMap<>();
 
         for (int i = 0; i < players.size(); i++) {
             int rewardIndex = ladder.getResult(i);
             result.put(players.get(i), rewards.get(rewardIndex));
         }
+
+        this.result = new Result(result);
     }
 
     public List<Player> getPlayers() {
@@ -68,8 +70,8 @@ public class LadderGame {
         return ladder;
     }
 
-    public Map<Player, Reward> getResult() {
-        return Collections.unmodifiableMap(result);
+    public Result getResult() {
+        return result;
     }
 
 }
