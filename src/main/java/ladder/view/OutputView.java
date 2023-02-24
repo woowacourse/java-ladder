@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.dto.ResultDto;
+import ladder.dto.ResultDtos;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,15 +21,15 @@ public class OutputView {
         printNames(resultNames);
     }
 
-    public static void printInquireResult(List<ResultDto> results) {
+    public static void printInquireResult(ResultDtos results) {
         StringBuilder sb = new StringBuilder();
         System.out.println();
         System.out.println("실행 결과");
         if (results.size() == INQUIRE_ONE_NAME) {
-            System.out.println(results.get(0).getResult());
+            System.out.println(results.getResult(0));
             return;
         }
-        for (ResultDto result : results) {
+        for (ResultDto result : results.getResultDtos()) {
             System.out.println(sb.append(result.getName()).append(RESULT_DELIMITER).append(result.getResult()));
             sb.setLength(0);
         }

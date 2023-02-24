@@ -3,6 +3,7 @@ package ladder;
 import ladder.domain.Command;
 import ladder.domain.LadderGame;
 import ladder.dto.ResultDto;
+import ladder.dto.ResultDtos;
 import ladder.utils.LineStrategy;
 import ladder.utils.RandomDiscreteStrategy;
 import ladder.view.InputView;
@@ -37,7 +38,7 @@ public class Application {
 
     private static String inquireResult(final LadderGame game) {
         String queryName = InputView.readResultInquireName();
-        List<ResultDto> results = game.calculatePlayerResult(queryName, QUERY_ALL);
+        ResultDtos results = new ResultDtos(game.calculatePlayerResult(queryName, QUERY_ALL));
         OutputView.printInquireResult(results);
         return queryName;
     }
