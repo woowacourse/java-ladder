@@ -2,7 +2,7 @@ package ladder.domain;
 
 public class Height {
     private static final int MAX_HEIGHT_RATIO = 2;
-    private static final int MIN_HEIGHT = 0;
+    private static final int MIN_HEIGHT = 1;
     private static final int MAX_HEIGHT = 26;
 
     private final int height;
@@ -15,12 +15,13 @@ public class Height {
 
     private void validatePositive(int height) {
         if (isProperHeight(height)) {
-            throw new IllegalArgumentException("[ERROR] 사다리의 높이는 1~26 사이여야 합니다.");
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] 사다리의 높이는 %d~%d 사이여야 합니다.", MIN_HEIGHT, MAX_HEIGHT));
         }
     }
 
     private boolean isProperHeight(int height) {
-        return height <= MIN_HEIGHT || height > MAX_HEIGHT;
+        return height < MIN_HEIGHT || height > MAX_HEIGHT;
     }
 
     private void validatePlayersCount(int height, int playersCount) {
