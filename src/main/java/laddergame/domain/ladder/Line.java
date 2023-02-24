@@ -25,6 +25,10 @@ public class Line {
         return rung.exists();
     }
 
+    public int size() {
+        return rungs.size();
+    }
+
     private List<Rung> makeRungs(final int rungCount) {
         List<Rung> rungs = new ArrayList<>();
         Rung firstRung = Rung.create(rungBooleanGenerator.generate());

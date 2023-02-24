@@ -1,5 +1,6 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.participant.Participant;
 import laddergame.util.BooleanGenerator;
 
 import java.util.List;
@@ -32,5 +33,30 @@ public class Ladder {
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public void moveToDestination(final Participant participant) {
+        for (Line line : lines) {
+            int position = participant.getParticipantPosition();
+            if (position == 0) {
+                if (line.hasRung(position)) {
+                    participant.moveToTheRight();
+                    continue;
+                }
+            }
+            if (position == line.size()) {
+                if (line.hasRung(position - 1)) {
+                    participant.moveToTheLeft();
+                    continue;
+                }
+            }
+            if (line.hasRung(position)) {
+                participant.moveToTheRight();
+                continue;
+            }
+            if (line.hasRung(position - 1)) {
+                participant.moveToTheLeft();
+            }
+        }
     }
 }
