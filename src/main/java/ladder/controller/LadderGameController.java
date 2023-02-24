@@ -1,6 +1,5 @@
 package ladder.controller;
 
-import ladder.exceptionMessage.ExceptionMessage;
 import ladder.model.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -8,6 +7,7 @@ import ladder.view.OutputView;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class LadderGameController {
@@ -32,7 +32,7 @@ public class LadderGameController {
         showResultBoard(new ResultBoard(players, ladder, rewards));
     }
 
-    private Players generatePlayers() {
+/*    private Players generatePlayers() {
         try {
             List<Player> names = inputView.readNames().stream()
                     .map(Player::new)
@@ -42,9 +42,29 @@ public class LadderGameController {
             outputView.printExceptionMessage(exception.getMessage());
             return generatePlayers();
         }
+    }*/
+
+    private Players generatePlayers() {
+        Optional<Players> players;
+        do {
+            players = checkPlayers();
+        } while (players.isEmpty());
+        return players.get();
     }
 
-    private Rewards generateRewards(int playerCount) {
+    private Optional<Players> checkPlayers() {
+        try {
+            List<Player> names = inputView.readNames().stream()
+                    .map(Player::new)
+                    .collect(Collectors.toList());
+            return Optional.of(new Players(names));
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception.getMessage());
+            return Optional.empty();
+        }
+    }
+
+/*    private Rewards generateRewards(int playerCount) {
         try {
             List<Reward> rewards = inputView.readRewards().stream()
                     .map(Reward::new)
@@ -54,15 +74,53 @@ public class LadderGameController {
             outputView.printExceptionMessage(exception.getMessage());
             return generateRewards(playerCount);
         }
+    }*/
+
+    private Rewards generateRewards(int playerCount) {
+        Optional<Rewards> rewards;
+        do {
+            rewards = checkRewards(playerCount);
+        } while (rewards.isEmpty());
+        return rewards.get();
     }
 
-    private Height generateHeight() {
+    private Optional<Rewards> checkRewards(int playerCount) {
+        try {
+            List<Reward> rewards = inputView.readRewards().stream()
+                    .map(Reward::new)
+                    .collect(Collectors.toList());
+            return Optional.of(Rewards.of(rewards, playerCount));
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception.getMessage());
+            return Optional.empty();
+        }
+    }
+
+/*    private Height generateHeight() {
         try {
             int height = inputView.readHeight();
             return new Height(height);
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
             return generateHeight();
+        }
+    }*/
+
+    private Height generateHeight() {
+        Optional<Height> height;
+        do {
+            height = checkHeight();
+        } while (height.isEmpty());
+        return height.get();
+    }
+
+    private Optional<Height> checkHeight() {
+        try {
+            int height = inputView.readHeight();
+            return Optional.of(new Height(height));
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception.getMessage());
+            return Optional.empty();
         }
     }
 
