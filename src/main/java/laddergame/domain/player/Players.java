@@ -12,7 +12,7 @@ public class Players {
         this.players = createPlayers(names);
     }
 
-    private static List<Player> createPlayers(final Names names) {
+    private List<Player> createPlayers(final Names names) {
         List<Player> players = new ArrayList<>();
 
         final List<String> playerNames = names.getNames();

@@ -73,13 +73,13 @@ public class GameController {
         }
     }
 
-    private static void printCreatedLadderAndPrizes(final Names names, final Prizes prizes, final Ladder ladder) {
+    private void printCreatedLadderAndPrizes(final Names names, final Prizes prizes, final Ladder ladder) {
         OutputView.printPlayerAll(names);
         OutputView.printLadder(names, ladder);
         OutputView.printPrizesAll(prizes, names.findMaxNameLength());
     }
 
-    private static Results startLadderGame(final Names names, final Prizes prizes, final Ladder ladder) {
+    private Results startLadderGame(final Names names, final Prizes prizes, final Ladder ladder) {
         final LadderGame ladderGame = new LadderGame(ladder, new Players(names), prizes);
         ladderGame.startGame();
         return ladderGame.createResults();

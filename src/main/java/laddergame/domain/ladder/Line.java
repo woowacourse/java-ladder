@@ -15,6 +15,13 @@ public class Line {
         this.connections = createConnections(connectionCount, connectionStrategy);
     }
 
+    private void validateConnectionCount(final int connectionCount) {
+        if (connectionCount < MIN_CONNECTIONS) {
+            final String connectionCountMessage = String.format("연결상태는 %s보다 작을 수 없습니다.", connectionCount);
+            throw new IllegalStateException(connectionCountMessage);
+        }
+    }
+
     public static Line of(final int playerCount, final ConnectionStrategy connectionStrategy) {
         return new Line(playerCount, connectionStrategy);
     }
@@ -49,13 +56,6 @@ public class Line {
         final Connection lastConnection = connections.get(lastIndex);
 
         return lastConnection.isOverlap(pick);
-    }
-
-    private void validateConnectionCount(final int connectionCount) {
-        if (connectionCount < MIN_CONNECTIONS) {
-            final String connectionCountMessage = String.format("연결상태는 %s보다 작을 수 없습니다.", connectionCount);
-            throw new IllegalStateException(connectionCountMessage);
-        }
     }
 
     public boolean canMoveLeft(final int playerPosition) {

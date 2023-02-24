@@ -21,7 +21,7 @@ public class Prizes {
         }
     }
 
-    private static boolean isDifferentSize(final List<String> prizeNames, final int size) {
+    private boolean isDifferentSize(final List<String> prizeNames, final int size) {
         return prizeNames.size() != size;
     }
 

@@ -18,7 +18,7 @@ public class Results {
         this.results = createResults(players, prizes);
     }
 
-    private static List<Result> createResults(final Players players, final Prizes prizes) {
+    private List<Result> createResults(final Players players, final Prizes prizes) {
         final List<Result> results = new ArrayList<>();
 
         for (int i = 0; i < players.getPlayerSize(); i++) {
@@ -38,7 +38,7 @@ public class Results {
         return List.of(findIndividualResultByName(name));
     }
 
-    private static boolean isSearchAllResults(final Name name) {
+    private boolean isSearchAllResults(final Name name) {
         return FIND_ALL_KEYWORD.equals(name.getName());
     }
 

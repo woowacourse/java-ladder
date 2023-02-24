@@ -17,23 +17,23 @@ public class Names {
         this.names = new ArrayList<>(createNames(names));
     }
 
-    public int findMaxNameLength() {
-        return names.stream()
-                .mapToInt(Name::getNameLength)
-                .max()
-                .orElseThrow(() -> new IllegalStateException("가장 긴 이름을 찾을 수 없습니다."));
+    private void validateNumberOfNames(final List<String> names) {
+        if (names.size() < MIN_NUMBER_OF_PLAYERS) {
+            throw new IllegalArgumentException("최소 2명 이상의 플레이어가 필요합니다.");
+        }
     }
 
-    private static List<Name> createNames(final List<String> names) {
+    private List<Name> createNames(final List<String> names) {
         return names.stream()
                 .map(Name::new)
                 .collect(toList());
     }
 
-    private void validateNumberOfNames(final List<String> names) {
-        if (names.size() < MIN_NUMBER_OF_PLAYERS) {
-            throw new IllegalArgumentException("최소 2명 이상의 플레이어가 필요합니다.");
-        }
+    public int findMaxNameLength() {
+        return names.stream()
+                .mapToInt(Name::getNameLength)
+                .max()
+                .orElseThrow(() -> new IllegalStateException("가장 긴 이름을 찾을 수 없습니다."));
     }
 
     public List<String> getNames() {
