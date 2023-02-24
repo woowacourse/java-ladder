@@ -1,5 +1,6 @@
 package controller;
 
+import domain.GameElementsManager;
 import domain.LadderGame;
 import domain.Result;
 import domain.SearchCommand;
@@ -27,7 +28,7 @@ public class MainController {
 
     public void start() {
         Names names = receiveNames();
-        Missions missions = receiveMissions(names.size());
+        Missions missions = receiveMissions(names);
 
         Ladder ladder = makeLadder(names.getPersonNumber());
         printLadder(names, missions, ladder);
@@ -90,12 +91,14 @@ public class MainController {
         }
     }
 
-    private Missions receiveMissions(int size) {
+    private Missions receiveMissions(Names names) {
         try {
-            return new Missions(inputView.readMissions(), size);
+            Missions missions = new Missions(inputView.readMissions());
+            GameElementsManager manager = GameElementsManager.of(names, missions);
+            return manager.receiveMissions();
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception);
-            return receiveMissions(size);
+            return receiveMissions(names);
         }
     }
 
@@ -107,5 +110,4 @@ public class MainController {
             return receiveHeight();
         }
     }
-
 }

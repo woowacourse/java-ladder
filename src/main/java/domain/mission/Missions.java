@@ -7,15 +7,8 @@ import java.util.stream.Collectors;
 public class Missions {
     private final List<Mission> missions;
 
-    public Missions(List<String> missions, int size) {
+    public Missions(List<String> missions) {
         this.missions = formatMissions(missions);
-        validateMissionsSize(size);
-    }
-
-    private void validateMissionsSize(int size) {
-        if (size != this.missions.size()) {
-            throw new IllegalArgumentException("참여자의 수와 미션의 수가 다릅니다!");
-        }
     }
 
     private List<Mission> formatMissions(List<String> missions) {
