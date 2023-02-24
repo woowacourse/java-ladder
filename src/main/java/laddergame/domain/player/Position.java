@@ -22,10 +22,6 @@ public class Position {
         position--;
     }
 
-    public boolean canMoveLeft() {
-        return this.position != 0;
-    }
-
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
