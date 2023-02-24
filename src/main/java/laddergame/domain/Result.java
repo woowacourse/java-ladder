@@ -12,7 +12,7 @@ public class Result {
         this.result = makeResult(players, ladder, prizes);
     }
 
-    public Map<String, String> makeResult(Players players, Ladder ladder, Prizes prizes) {
+    private Map<String, String> makeResult(Players players, Ladder ladder, Prizes prizes) {
         final Map<String, String> result = new HashMap<>();
         final List<String> playerNames = players.getPlayerNames();
         for (int playerPosition = 0; playerPosition < players.size(); playerPosition++) {
@@ -20,5 +20,13 @@ public class Result {
             result.put(playerNames.get(playerPosition), prizes.get(prizePosition));
         }
         return result;
+    }
+
+    public Map<String, String> getAllResults() {
+        return result;
+    }
+
+    public String getResult(String playerName) {
+        return result.get(playerName);
     }
 }
