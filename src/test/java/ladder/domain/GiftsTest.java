@@ -3,33 +3,35 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
 
 class GiftsTest {
+    private static final String COMMA = ",";
 
     @ParameterizedTest
-    @MethodSource("generateInvalidSize")
+    @ValueSource(strings = {"1,2,3", "1,2,3,4,5,6,7,8,9"})
     @DisplayName("상품의 수와 플레이어의 수가 다르면 예외를 던진다")
-    void invalidGiftSize(final List<String> playerNames, final List<String> giftNames) {
-        final Players players = new Players(playerNames);
+    void invalidGiftSize(final String giftNamesRawData) {
+        final List<String> giftNames = List.of(giftNamesRawData.split(COMMA));
 
-        assertThatThrownBy(() -> new Gifts(giftNames, players.numberOfPlayers()))
+        assertThatThrownBy(() -> new Gifts(giftNames, 5))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("상품의 수는 참여한 플레이어의 수와 같아야 합니다.");
     }
 
     @ParameterizedTest
-    @MethodSource("generateValidSize")
+    @CsvSource(value = {"2:1,2:1,2", "10:1,2,3,4,5,6,7,8,9,10:1,2,3,4,5,6,7,8,9,10"}, delimiter = ':')
     @DisplayName("상품의 수는 플레이어의 수와 같다")
-    void validGiftSize(final List<String> playerNames, final List<String> giftNames, final String[] expected) {
-        final Players players = new Players(playerNames);
-        final Gifts gifts = new Gifts(giftNames, players.numberOfPlayers());
+    void validGiftSize(final int numberOfPlayers, final String giftNamesRawData, final String expectedRawData) {
+        final List<String> giftNames = List.of(giftNamesRawData.split(COMMA));
+        final String[] expected = expectedRawData.split(COMMA);
+
+        final Gifts gifts = new Gifts(giftNames, numberOfPlayers);
 
         assertThat(gifts.getNames())
                 .containsExactly(expected);
@@ -48,33 +50,5 @@ class GiftsTest {
 
         // then
         assertThat(actual).isEqualTo(expected);
-    }
-
-    private static Stream<Arguments> generateInvalidSize() {
-        return Stream.of(
-                Arguments.of(
-                        List.of("a", "b"),
-                        List.of("1", "2", "3")
-                ),
-                Arguments.of(
-                        List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
-                        List.of("1", "2", "3", "4", "5", "6", "7", "8", "9")
-                )
-        );
-    }
-
-    private static Stream<Arguments> generateValidSize() {
-        return Stream.of(
-                Arguments.of(
-                        List.of("a", "b"),
-                        List.of("1", "2"),
-                        new String[]{"1", "2"}
-                ),
-                Arguments.of(
-                        List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
-                        List.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "10"),
-                        new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}
-                )
-        );
     }
 }
