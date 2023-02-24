@@ -1,8 +1,7 @@
 package ladder;
 
-import ladder.domain.Command;
 import ladder.domain.LadderGame;
-import ladder.dto.ResultDto;
+import ladder.domain.LadderGameFactory;
 import ladder.dto.ResultDtos;
 import ladder.utils.LineStrategy;
 import ladder.utils.RandomDiscreteStrategy;
@@ -17,9 +16,10 @@ import static ladder.view.InputView.QUERY_ALL;
 public class Application {
 
     public static void main(String[] args) {
-        final var lineStrategy = new RandomDiscreteStrategy();
+        final LineStrategy lineStrategy = new RandomDiscreteStrategy();
+        final LadderGameFactory gameFactory = new LadderGameFactory(lineStrategy);
 
-        final LadderGame game = repeatUntilValid(() -> initGame(lineStrategy));
+        final LadderGame game = repeatUntilValid(() -> initGame(gameFactory));
         OutputView.printLadder(game.getPlayerNames(), game.getLadder(), game.getResults());
         inquireGameResult(game);
     }
@@ -31,9 +31,11 @@ public class Application {
         }
     }
 
-    private static LadderGame initGame(LineStrategy lineStrategy) {
-        Command command = readCommand();
-        return new LadderGame(command, lineStrategy);
+    private static LadderGame initGame(LadderGameFactory factory) {
+        List<String> names = InputView.readNames();
+        List<String> results = InputView.readResults();
+        int height = InputView.readLadderHeight();
+        return factory.generateGame(names, results, height);
     }
 
     private static String inquireResult(final LadderGame game) {
@@ -41,13 +43,6 @@ public class Application {
         ResultDtos results = new ResultDtos(game.calculatePlayerResult(queryName, QUERY_ALL));
         OutputView.printInquireResult(results);
         return queryName;
-    }
-
-    private static Command readCommand() {
-        List<String> names = InputView.readNames();
-        List<String> results = InputView.readResults();
-        int height = InputView.readLadderHeight();
-        return new Command(names, results, height);
     }
 
     private static <T>T repeatUntilValid(Supplier<T> reader) {

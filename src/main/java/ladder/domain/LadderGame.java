@@ -4,7 +4,6 @@ import ladder.domain.ladderNode.Players;
 import ladder.domain.ladderNode.Position;
 import ladder.domain.ladderNode.Results;
 import ladder.dto.ResultDto;
-import ladder.utils.LineStrategy;
 
 import java.util.List;
 import java.util.Map;
@@ -14,10 +13,14 @@ public class LadderGame {
     private final Players players;
     private final Results results;
 
-    public LadderGame(Command command, LineStrategy lineStrategy) {
-        this.players = new Players(command.getNames());
-        this.ladder = new Ladder(command.getWidth(), command.getHeight(), lineStrategy);
-        this.results = new Results(command.getResults());
+    private LadderGame(Ladder ladder, Players players, Results results) {
+        this.ladder = ladder;
+        this.players = players;
+        this.results = results;
+    }
+
+    public static LadderGame of(Ladder ladder, Players players, Results results) {
+        return new LadderGame(ladder, players, results);
     }
 
     public List<ResultDto> calculatePlayerResult(String playerName, String queryAll) {

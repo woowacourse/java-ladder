@@ -1,6 +1,8 @@
 package ladder.domain;
 
 import ladder.FixedLineStrategy;
+import ladder.domain.ladderNode.Players;
+import ladder.domain.ladderNode.Results;
 import ladder.dto.ResultDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,11 +23,11 @@ class LadderGameTest {
         List<String> names = List.of("dochi", "ad", "www", "qwe");
         List<String> results = List.of("00", "01", "02", "last");
         int height = 2;
-        Command command = new Command(names, results, height);
         List<List<Boolean>> lines = List.of(List.of(true, false, true), List.of(false, false, true));
         // |-----|     |-----|
         // |     |     |-----|
-        LadderGame game = new LadderGame(command, new FixedLineStrategy(lines));
+        Ladder ladder = new Ladder(names.size(), height, new FixedLineStrategy(lines));
+        LadderGame game = LadderGame.of(ladder, new Players(names), new Results(results, names.size()));
 
         // when
         List<ResultDto> resultDtos = game.calculatePlayerResult(input, "all");
@@ -41,11 +43,11 @@ class LadderGameTest {
         List<String> names = List.of("dochi", "ad", "www", "qwe");
         List<String> results = List.of("00", "01", "02", "last");
         int height = 2;
-        Command command = new Command(names, results, height);
         List<List<Boolean>> lines = List.of(List.of(true, false, true), List.of(false, false, true));
         // |-----|     |-----|
         // |     |     |-----|
-        LadderGame game = new LadderGame(command, new FixedLineStrategy(lines));
+        Ladder ladder = new Ladder(names.size(), height, new FixedLineStrategy(lines));
+        LadderGame game = LadderGame.of(ladder, new Players(names), new Results(results, names.size()));
 
         //then
         assertThatThrownBy(() -> game.calculatePlayerResult("못찾겠지", "all"))
