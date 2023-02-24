@@ -38,10 +38,10 @@ public class Ladder {
     }
 
     private int move(int position, Direction direction) {
-        if (direction == Direction.LEFT) {
+        if (direction.isLeft()) {
             position--;
         }
-        if (direction == Direction.RIGHT){
+        if (direction.isRight()){
             position++;
         }
         return position;
