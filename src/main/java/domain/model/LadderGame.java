@@ -1,13 +1,5 @@
-package domain.service;
+package domain.model;
 
-import domain.model.BooleanGenerator;
-import domain.model.Ladder;
-import domain.model.Layer;
-import domain.model.Location;
-import domain.model.Player;
-import domain.model.Players;
-import domain.model.Result;
-import domain.model.Results;
 import domain.vo.Height;
 import domain.vo.Width;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 import controller.LadderController;
 import domain.model.RandomBooleanGenerator;
-import domain.service.LadderGame;
+import domain.model.LadderGame;
 import validator.EmptyInputValidatorChain;
 import validator.InputValidatorChain;
 import validator.NotIntegerValidatorChain;

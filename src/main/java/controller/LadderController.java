@@ -6,7 +6,7 @@ import domain.model.Player;
 import domain.model.Players;
 import domain.model.Result;
 import domain.model.Results;
-import domain.service.LadderGame;
+import domain.model.LadderGame;
 import domain.vo.Height;
 import domain.vo.Width;
 import java.util.Map;
