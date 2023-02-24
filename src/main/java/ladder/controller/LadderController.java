@@ -1,6 +1,6 @@
 package ladder.controller;
 
-import ladder.domain.GameResult;
+import ladder.domain.GameResults;
 import ladder.domain.Ladder;
 import ladder.domain.PlayerNames;
 import ladder.domain.RandomBasedBarGenerator;
@@ -12,20 +12,20 @@ import java.util.List;
 public class LadderController {
     public void run() {
         PlayerNames playerNames = getCorrectPlayerNames();
-        GameResult gameResult = getGameResult(playerNames);
+        GameResults gameResults = getGameResult(playerNames);
     
         Ladder ladder = getLadder(playerNames);
     
-        printLadderStructure(playerNames, ladder, gameResult);
-        viewResult(playerNames, ladder, gameResult);
+        printLadderStructure(playerNames, ladder, gameResults);
+        viewResult(playerNames, ladder, gameResults);
     }
     
     private PlayerNames getCorrectPlayerNames() {
         return InputView.repeat(() -> new PlayerNames(InputView.inputPeopleNames()));
     }
     
-    private GameResult getGameResult(PlayerNames playerNames) {
-        return InputView.repeat(() -> new GameResult(getExecutionResults(), playerNames));
+    private GameResults getGameResult(PlayerNames playerNames) {
+        return InputView.repeat(() -> new GameResults(getExecutionResults(), playerNames));
     }
     
     private String getExecutionResults() {
@@ -44,23 +44,23 @@ public class LadderController {
         return new Ladder(new RandomBasedBarGenerator(), ladderHeight, playerNames.playerSize());
     }
     
-    private void printLadderStructure(PlayerNames playerNames, Ladder ladder, GameResult gameResult) {
+    private void printLadderStructure(PlayerNames playerNames, Ladder ladder, GameResults gameResults) {
         OutputView.printNames(playerNames);
         OutputView.printLadder(ladder, playerNames.getFirstPlayerNameLength());
-        OutputView.printExecutionResults(gameResult);
+        OutputView.printExecutionResults(gameResults);
     }
     
-    private void viewResult(PlayerNames playerNames, Ladder ladder, GameResult gameResult) {
+    private void viewResult(PlayerNames playerNames, Ladder ladder, GameResults gameResults) {
         String existedPlayer = getExistedPlayer(playerNames);
         List<Integer> movedPositions = getMovedPositions(playerNames, ladder);
     
-        if (existedPlayer.equals("all")) {
-            OutputView.printAllPlayerResult(playerNames, movedPositions, gameResult);
+        if ("all".equals(existedPlayer)) {
+            OutputView.printAllPlayerResult(playerNames, movedPositions, gameResults);
             return;
         }
         
-        OutputView.printOnePlayerResult(getPlayerIndex(playerNames, existedPlayer), movedPositions, gameResult);
-        viewResult(playerNames, ladder, gameResult);
+        OutputView.printOnePlayerResult(getPlayerIndex(playerNames, existedPlayer), movedPositions, gameResults);
+        viewResult(playerNames, ladder, gameResults);
     }
     
     private String getExistedPlayer(PlayerNames playerNames) {
