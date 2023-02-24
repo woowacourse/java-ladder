@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import java.util.function.Supplier;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.PlayerResult;
@@ -12,6 +13,7 @@ import ladder.dto.PlayersResponse;
 import ladder.dto.PrizesResponse;
 import ladder.service.LadderService;
 import ladder.view.LadderView;
+import ladder.view.OutputView;
 
 public class LadderController {
     private static final String EXIT_COMMAND = "all";
@@ -31,9 +33,9 @@ public class LadderController {
     }
 
     private PlayerResults createPlayerResults() {
-        Players players = ladderService.createPlayers(ladderView.readPlayerNames());
-        Height height = new Height(ladderView.readLadderHeight());
-        Prizes prizes = ladderService.createPrizes(ladderView.readPrizes(), players);
+        Players players = repeat(() -> ladderService.createPlayers(ladderView.readPlayerNames()));
+        Height height = repeat(() -> new Height(ladderView.readLadderHeight(), players));
+        Prizes prizes = repeat(() -> ladderService.createPrizes(ladderView.readPrizes(), players));
         Ladder ladder = ladderService.createLadder(height, players);
         ladderView.printLadderResult(PlayersResponse.ofPlayers(players), LadderResponse.ofLadder(ladder),
                 PrizesResponse.ofPrizes(prizes));
@@ -41,12 +43,28 @@ public class LadderController {
     }
 
     private void printPlayerResult(PlayerResults playerResults) {
-        String playerName = ladderView.readPlayerName();
-        if (playerName.equals(EXIT_COMMAND)) {
+        PlayerResult playerResult = repeat(() -> getPlayerResult(playerResults));
+        if (playerResult == null) {
             return;
         }
-        PlayerResult playerResult = playerResults.findByPlayerName(playerName);
         ladderView.printResult(playerResult.getPrize());
         printPlayerResult(playerResults);
+    }
+
+    private PlayerResult getPlayerResult(PlayerResults playerResults) {
+        String playerName = ladderView.readPlayerName();
+        if (playerName.equals(EXIT_COMMAND)) {
+            return null;
+        }
+        return playerResults.findByPlayerName(playerName);
+    }
+
+    private <T> T repeat(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return repeat(supplier);
+        }
     }
 }

@@ -45,4 +45,8 @@ public class OutputView {
         System.out.println("실행 결과");
         System.out.println(result);
     }
+
+    public static void printError(String message) {
+        System.out.println(message);
+    }
 }
