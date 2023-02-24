@@ -35,8 +35,10 @@ public class LadderGameController {
     public void run() {
         printGameSet();
         Map<String, String> resultMap = playGame();
-        String findUser = findUserResult();
-        outputView.printResultByUser(resultMap, findUser, users.getUserNames());
+        while (true) {
+            String findUser = findUserResult();
+            outputView.printResultByUser(resultMap, findUser, users.getUserNames());
+        }
     }
 
     private Map<String, String> playGame() {
