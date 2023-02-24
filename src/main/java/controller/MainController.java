@@ -1,11 +1,11 @@
 package controller;
 
+import domain.game.LadderGame;
+import domain.game.Results;
+import domain.info.Names;
+import domain.info.Rewards;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
-import domain.game.LadderGame;
-import domain.info.Names;
-import domain.game.Results;
-import domain.info.Rewards;
 import utils.BooleanGenerator;
 import view.InputView;
 import view.OutputView;
@@ -13,36 +13,34 @@ import view.OutputView;
 public class MainController {
     private static final String END_COMMEND = "all";
 
-    private final InputView inputView;
-    private final OutputView outputView;
+    private final Names names;
+    private final Rewards rewards;
+    private final Ladder ladder;
 
-    public MainController(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public MainController(final BooleanGenerator booleanGenerator) {
+        names = InputView.readNames();
+        rewards = InputView.readRewards(names);
+        ladder = generateLadder(booleanGenerator);
     }
 
-    public void start(BooleanGenerator booleanGenerator) {
-        Names names = inputView.readNames();
-        Rewards rewards = inputView.readRewards(names);
-        Ladder ladder = generateLadder(names, booleanGenerator);
-
-        outputView.printLadderBoard(names, ladder, rewards);
+    public void start() {
+        OutputView.printLadderBoard(names, ladder, rewards);
         LadderGame ladderGame = new LadderGame(names, ladder);
         Results results = new Results(names, ladderGame, rewards);
 
-        showResult(results, names);
+        showResult(results);
     }
 
-    private Ladder generateLadder(Names names, BooleanGenerator booleanGenerator) {
-        Height height = inputView.readHeight();
+    private Ladder generateLadder(final BooleanGenerator booleanGenerator) {
+        Height height = InputView.readHeight();
         return new Ladder(names, height, booleanGenerator);
     }
 
-    private void showResult(Results results, Names names) {
+    private void showResult(Results results) {
         boolean isEnd = false;
         while (!isEnd) {
-            String name = inputView.readShowName();
-            outputView.printResult(name, names, results);
+            String name = InputView.readShowName();
+            OutputView.printResult(name, names, results);
             isEnd = name.equals(END_COMMEND);
         }
     }
