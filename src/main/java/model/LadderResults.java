@@ -1,6 +1,5 @@
 package model;
 
-import dto.LadderResultDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -47,10 +46,6 @@ public class LadderResults {
                 .collect(Collectors.toUnmodifiableList());
 
         return new LadderResults(gameResults);
-    }
-
-    public int getResultSize() {
-        return results.size();
     }
 
     public List<String> getResults() {

@@ -47,11 +47,6 @@ public class OutputView {
         notice("결과를 보고 싶은 사람은?");
     }
 
-    public void noticeGameResult() {
-        print(System.lineSeparator());
-        notice("실행결과");
-    }
-
     private void notice(String message) {
         print(message);
         print(System.lineSeparator());
