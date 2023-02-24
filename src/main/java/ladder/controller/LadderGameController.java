@@ -3,6 +3,7 @@ package ladder.controller;
 import java.util.List;
 import java.util.Map;
 
+import ladder.exception.NotFoundPlayerException;
 import ladder.service.LadderGame;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -100,7 +101,7 @@ public class LadderGameController {
     private String findOneResult(String playerName) {
         try {
             return ladderGame.findResultByPlayerName(playerName);
-        } catch (IllegalArgumentException e) {
+        } catch (NotFoundPlayerException e) {
             throw new IllegalArgumentException(WRONG_PLAYER_NAME_ERROR_MESSAGE);
         }
     }

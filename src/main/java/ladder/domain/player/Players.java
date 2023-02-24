@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ladder.domain.player.Player;
+import ladder.exception.NotFoundPlayerException;
 
 public class Players {
 
@@ -17,7 +18,7 @@ public class Players {
         return players.stream()
                 .filter(player -> player.isSameName(playerName))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(NotFoundPlayerException::new);
     }
 
     public int getSize() {
