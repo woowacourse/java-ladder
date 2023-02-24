@@ -10,11 +10,13 @@ import java.util.Map;
 public class Results {
     private final Map<Name, Reward> results;
 
-    public Results(Names names, LadderGame ladderGame, Rewards rewards) {
+    public Results(final Names names, final LadderGame ladderGame, final Rewards rewards) {
         this.results = generateResults(names, ladderGame, rewards);
     }
 
-    private Map<Name, Reward> generateResults(Names names, LadderGame ladderGame, Rewards rewards) {
+    private static Map<Name, Reward> generateResults(final Names names,
+                                                     final LadderGame ladderGame,
+                                                     final Rewards rewards) {
         Map<Name, Reward> results = new HashMap<>();
 
         for (int i = 0; i < names.getNamesSize(); i++) {
@@ -27,7 +29,7 @@ public class Results {
         return results;
     }
 
-    public Reward getReward(Name name) {
+    public Reward getReward(final Name name) {
         return results.get(name);
     }
 }

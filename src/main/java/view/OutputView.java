@@ -1,32 +1,32 @@
 package view;
 
-import domain.ladder.Floor;
-import domain.ladder.Ladder;
+import domain.game.Results;
 import domain.info.Name;
 import domain.info.Names;
-import domain.game.Results;
 import domain.info.Reward;
 import domain.info.Rewards;
+import domain.ladder.Floor;
+import domain.ladder.Ladder;
 import java.util.List;
 
 public class OutputView {
     private static final String PRINT_ALL_COMMEND = "all";
 
-    public void printLadderBoard(Names names, Ladder ladder, Rewards rewards) {
+    public static void printLadderBoard(final Names names, final Ladder ladder, final Rewards rewards) {
         System.out.println(Message.OUTPUT_LINES_MESSAGE.message);
         printNames(names);
         printLadder(ladder.getFloors());
         printRewards(rewards.getRewards());
     }
 
-    private void printNames(Names names) {
+    private static void printNames(final Names names) {
         for (Name name : names.getNames()) {
             System.out.printf(Message.STRING_FORMAT.message, name.getName());
         }
         System.out.println();
     }
 
-    private void printLadder(List<Floor> floors) {
+    private static void printLadder(final List<Floor> floors) {
         floors.forEach(floor -> {
             StringBuilder result = new StringBuilder();
             floor.getPoints()
@@ -35,28 +35,28 @@ public class OutputView {
         });
     }
 
-    private void printRewards(List<Reward> rewards) {
+    private static void printRewards(final List<Reward> rewards) {
         for (Reward reward : rewards) {
             System.out.printf(Message.STRING_FORMAT.message, reward.getReward());
         }
         System.out.println();
     }
 
-    private String getPointString(boolean isPoint) {
+    private static String getPointString(final boolean isPoint) {
         if (isPoint) {
             return Message.ROW_LADDER.message;
         }
         return Message.EMPTY_ROW_LADDER.message;
     }
 
-    public void printResult(String name, Names names, Results results) {
+    public static void printResult(final String name, final Names names, final Results results) {
         System.out.println(Message.OUTPUT_RESULT_MESSAGE.message);
         for (Name nameObj : names.getNames()) {
             printOrPass(name, results, nameObj);
         }
     }
 
-    private void printOrPass(String name, Results results, Name nameObj) {
+    private static void printOrPass(final String name, final Results results, final Name nameObj) {
         if (isPrint(name, nameObj)) {
             System.out.printf(Message.REWARD_MESSAGE_FORMAT.message, nameObj.getName(),
                     results.getReward(nameObj).getReward());
@@ -64,7 +64,7 @@ public class OutputView {
         }
     }
 
-    private boolean isPrint(String name, Name nameObj) {
+    private static boolean isPrint(final String name, final Name nameObj) {
         return name.equals(nameObj.getName()) || name.equals(PRINT_ALL_COMMEND);
     }
 

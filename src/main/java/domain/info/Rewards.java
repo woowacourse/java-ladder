@@ -8,18 +8,18 @@ public class Rewards {
 
     private final List<Reward> rewards;
 
-    public Rewards(List<String> rewards, Names names) {
+    public Rewards(final List<String> rewards, final Names names) {
         validate(rewards.size(), names.getNamesSize());
         this.rewards = generateRewards(rewards);
     }
 
-    private static void validate(int rewardsSize, int namesSize) {
+    private static void validate(final int rewardsSize, final int namesSize) {
         if (rewardsSize != namesSize) {
             throw new IllegalArgumentException(EXCEPTION_COUNT_MESSAGE);
         }
     }
 
-    private List<Reward> generateRewards(List<String> rewards) {
+    private static List<Reward> generateRewards(final List<String> rewards) {
         List<Reward> result = new ArrayList<>();
 
         for (String reward : rewards) {
@@ -33,7 +33,7 @@ public class Rewards {
         return List.copyOf(rewards);
     }
 
-    public Reward getReward(int index) {
+    public Reward getReward(final int index) {
         return rewards.get(index);
     }
 }

@@ -7,21 +7,25 @@ public class Name {
 
     private final String name;
 
-    public Name(String name) {
+    public Name(final String name) {
         validate(name);
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    private void validate(String name) {
+    private static void validate(final String name) {
         validateBlank(name);
         validateLength(name);
     }
 
-    private void validateLength(String name) {
+    private static void validateBlank(final String name) {
+        if (name.isBlank()) {
+            throw new IllegalArgumentException(
+                    "[ERROR] 빈 이름(공백)은 입력이 불가능합니다."
+            );
+        }
+    }
+
+    private static void validateLength(final String name) {
         if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(
                     String.format("[ERROR] %d글자 이상 %d글자 이하의 이름만 입력해주세요.", MIN_LENGTH, MAX_LENGTH)
@@ -29,11 +33,8 @@ public class Name {
         }
     }
 
-    private void validateBlank(String name) {
-        if (name.isBlank()) {
-            throw new IllegalArgumentException(
-                    "[ERROR] 빈 이름(공백)은 입력이 불가능합니다."
-            );
-        }
+    public String getName() {
+        return name;
     }
+
 }

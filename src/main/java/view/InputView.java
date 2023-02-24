@@ -12,7 +12,7 @@ public class InputView {
     private static final String SPLIT_DELIMITER = ",";
     private static final Scanner scanner = new Scanner(System.in);
 
-    private static int parseInt(String input) {
+    private static int parseInt(final String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
@@ -20,34 +20,34 @@ public class InputView {
         }
     }
 
-    private static String readInput(String message) {
+    private static String readInput(final String message) {
         System.out.println(message);
         return scanner.nextLine();
     }
 
-    public Names readNames() {
+    public static Names readNames() {
         String input = readInput(Message.INPUT_NAMES.message);
         return new Names(splitAsList(input));
     }
 
-    public Rewards readRewards(Names names) {
+    public static Rewards readRewards(final Names names) {
         String input = readInput(Message.INPUT_REWARDS.message);
         return new Rewards(splitAsList(input), names);
     }
 
-    private List<String> splitAsList(String input) {
+    private static List<String> splitAsList(final String input) {
         return Arrays.stream(input.split(SPLIT_DELIMITER))
                 .map(String::trim)
                 .collect(Collectors.toList());
     }
 
-    public Height readHeight() {
+    public static Height readHeight() {
         String input = readInput(Message.INPUT_LADDER_SIZE.message);
         return new Height(parseInt(input));
     }
 
 
-    public String readShowName() {
+    public static String readShowName() {
         return readInput(Message.INPUT_SHOW_NAME.message);
     }
 
