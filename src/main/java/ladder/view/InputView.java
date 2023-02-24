@@ -15,11 +15,15 @@ public class InputView {
 
     public int inputHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
+        return inputNumericHeight();
+    }
+
+    private int inputNumericHeight() {
         int height;
         try {
             height = scanner.nextInt();
         } catch (InputMismatchException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("사다리 높이는 자연수만 입력할 수 있습니다.");
         }
         scanner.nextLine();
         return height;
@@ -33,7 +37,6 @@ public class InputView {
 
     public String inputPlayerForResult() {
         System.out.println("결과를 보고 싶은 사람은?");
-        String name = scanner.nextLine();
-        return name;
+        return scanner.nextLine();
     }
 }

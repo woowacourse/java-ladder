@@ -46,7 +46,7 @@ public class LadderGame {
             printResult(players);
         }
         if (resultCommand.equals(ResultCommand.ALL)) {
-            resultView.printPrizeOfPlayers(getAllResult(players));
+            resultView.printPrizeOfPlayers(getPrizeResult(players));
             printResult(players);
         }
         if (resultCommand.equals(ResultCommand.END)) {
@@ -54,7 +54,7 @@ public class LadderGame {
         }
     }
 
-    private Map<String, String> getAllResult(Players players) {
+    private Map<String, String> getPrizeResult(Players players) {
         return players.getPrizes();
     }
 
@@ -94,6 +94,7 @@ public class LadderGame {
     }
 
     private void printLadder(Players players, Ladder ladder, Prizes prizes) {
+        resultView.printLadderResultHeader();
         resultView.printNames(players.getNames());
         resultView.printLadder(ladder.getLadder());
         resultView.printNames(prizes.getNames());

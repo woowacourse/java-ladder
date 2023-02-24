@@ -41,7 +41,6 @@ public class LadderGenerator {
         }
     }
 
-
     private void addStepBetweenAllColumn(List<Row> rows) {
         int widthSize = width.getWidth();
         for (int widthIndex = 0; widthIndex < widthSize; widthIndex++) {
