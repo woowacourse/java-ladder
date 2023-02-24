@@ -61,18 +61,17 @@ public class OutputView {
         builder.append(BLANK_LINE);
         builder.append(LADDER);
         for (boolean connected : line) {
-            renderLink(builder, connected);
+            builder.append(renderLink(connected));
             builder.append(LADDER);
         }
         return builder.toString();
     }
 
-    private static void renderLink(final StringBuilder builder, final boolean connected) {
+    private static String renderLink(final boolean connected) {
         if (connected) {
-            builder.append(CONNECTED_LINE);
-            return;
+            return CONNECTED_LINE;
         }
-        builder.append(BLANK_LINE);
+        return BLANK_LINE;
     }
 
     private static String formatResultNames(final List<String> resultNames) {
