@@ -16,8 +16,8 @@ public class LadderTest {
     private final LineSource I_____I = LineSource.MAKE_LINE;
     private final LineSource IxxxxxI = LineSource.MAKE_BLANK;
 
-    private static List<Line> getFloorLines(int pos, Ladder ladder) {
-        return ladder.getFloors().get(pos - 1).getLines();
+    private static List<Line> getFloorLines(int position, Ladder ladder) {
+        return ladder.getFloors().get(position).getLines();
     }
 
     @Test
@@ -54,7 +54,7 @@ public class LadderTest {
         Ladder ladder = new Ladder(1, 4);
         ladder.makeFloors(testLineSourceGenerator);
 
-        List<Line> firstFloorLines = getFloorLines(1, ladder);
+        List<Line> firstFloorLines = getFloorLines(0, ladder);
 
         assertThat(firstFloorLines.get(0).isExist()).isEqualTo(true);
         assertThat(firstFloorLines.get(1).isExist()).isEqualTo(false);
@@ -69,8 +69,8 @@ public class LadderTest {
         Ladder ladder = new Ladder(2, 4);
         ladder.makeFloors(testLineSourceGenerator);
 
-        List<Line> firstFloorLines = getFloorLines(1, ladder);
-        List<Line> secondFloorLines = getFloorLines(2, ladder);
+        List<Line> firstFloorLines = getFloorLines(0, ladder);
+        List<Line> secondFloorLines = getFloorLines(1, ladder);
 
         assertThat(firstFloorLines.get(0).isExist()).isEqualTo(true);
         assertThat(firstFloorLines.get(1).isExist()).isEqualTo(false);
