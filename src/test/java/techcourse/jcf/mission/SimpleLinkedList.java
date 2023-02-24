@@ -120,7 +120,8 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public void clear() {
-
+        this.head = new Node();
+        this.tail = this.head;
     }
 
     @Override
