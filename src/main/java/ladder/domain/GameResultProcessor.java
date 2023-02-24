@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.util.NullChecker;
+
 import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -28,5 +30,12 @@ public class GameResultProcessor {
 
     public Map<String, String> fetchAllResults() {
         return Collections.unmodifiableMap(result);
+    }
+
+    public String fetchResultByName(String name) {
+        String found = result.getOrDefault(name, null);
+        NullChecker.checkNull(found, "잘못된 이름입니다.");
+
+        return found;
     }
 }
