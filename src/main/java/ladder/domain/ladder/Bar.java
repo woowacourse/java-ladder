@@ -22,10 +22,7 @@ public enum Bar {
     }
 
     private boolean isMatch(boolean existBar) {
-        if (this.existBar == existBar) {
-            return true;
-        }
-        return false;
+        return this.existBar == existBar;
     }
 
     public String getBarDisplay() {
