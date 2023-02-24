@@ -16,7 +16,7 @@ public class LadderGameResultTest {
     @Test
     void 사다리게임에_참가하지_않은_사람을_입력하면_예외를_던진다() {
         final LadderGameResult ladderGameResult = new LadderGameResult(Map.of(
-                new Player("name"), new Item("1000")
+                "name", "1000"
         ));
 
         assertThatThrownBy(() -> ladderGameResult.get("whois"))
@@ -27,7 +27,7 @@ public class LadderGameResultTest {
     @Test
     void 한_사람에_대한_게임_결과를_반환한다() {
         final LadderGameResult ladderGameResult = new LadderGameResult(Map.of(
-                new Player("name"), new Item("1000")
+                "name", "1000"
         ));
 
         final Map<String, String> result = ladderGameResult.get("name");
@@ -38,13 +38,12 @@ public class LadderGameResultTest {
     @Test
     void 모든_사람에_대한_게임_결과를_반환한다() {
         final LadderGameResult ladderGameResult = new LadderGameResult(Map.of(
-                new Player("name"), new Item("0"),
-                new Player("name2"), new Item("1000")
+                "name", "0",
+                "name2", "1000"
         ));
 
         final Map<String, String> result = ladderGameResult.get("all");
 
         assertThat(result).contains(entry("name", "0"), entry("name2", "1000"));
     }
-
 }
