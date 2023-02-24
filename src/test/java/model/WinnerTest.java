@@ -8,26 +8,26 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 public class WinnerTest {
-    @ParameterizedTest(name = "Player 객체 name ={0} 생성 성공 테스트")
+    @ParameterizedTest(name = "Winner 객체 name ={0} 생성 성공 테스트")
     @CsvSource(value = {"pobi:pobi", "honux:honux", "crong:crong"}, delimiter = ':')
-    void createPlayerTest(String input, String result) {
+    void createWinnerTest(String input, String result) {
         Assertions.assertThatNoException().isThrownBy(() -> new Winner(new Names(input), result));
     }
 
-    @ParameterizedTest(name = "Player 객체 name ={0} 생성 실패 테스트")
+    @ParameterizedTest(name = "Winner 객체 name ={0} 생성 실패 테스트")
     @CsvSource(value = {"pobi:po", "honux:h", "crong:crongcrong"}, delimiter = ':')
-    void createPlayerFailTest(String input, String result) {
+    void createWinnerFailTest(String input, String result) {
         Assertions.assertThatThrownBy(() -> new Winner(new Names(input), result)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest(name = "Player 객체 name ={0} 생성 실패 테스트")
+    @ParameterizedTest(name = "Winner 객체 name ={0} 생성 실패 테스트")
     @NullAndEmptySource
-    void createPlayerNullEmptyFailTest(String result) {
+    void createWinnerNullEmptyFailTest(String result) {
         Assertions.assertThatThrownBy(() -> new Winner(new Names("ocean"), result)).isInstanceOf(Exception.class);
     }
 
     @Test
-    @DisplayName("결과 대상자 all 입력 성공 테스트")
+    @DisplayName("Winner 결과 대상자 all 입력 성공 테스트")
     void checkAllEndWinnerTest(){
         Winner winner = new Winner(new Names("pobi"), "all");
         Assertions.assertThat(winner.isAllEndWinner()).isTrue();
