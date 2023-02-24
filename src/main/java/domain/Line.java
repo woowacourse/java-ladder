@@ -12,6 +12,10 @@ public class Line {
         this.movements = movements;
     }
 
+    public Line(Line line) {
+        this.movements = line.getMovements();
+    }
+
     private void validate(List<Boolean> movements) {
         int initialIndex = 0;
         Boolean previousMovement = movements.get(initialIndex);

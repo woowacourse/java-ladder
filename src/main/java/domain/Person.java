@@ -16,6 +16,10 @@ public class Person {
         this.name = name;
     }
 
+    public Person(Person person) {
+        this.name = person.getName();
+    }
+
     private void validateNameLength(String name) {
         if (name.isBlank() || name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(

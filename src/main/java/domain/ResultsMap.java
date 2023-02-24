@@ -1,9 +1,9 @@
 package domain;
 
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ResultsMap {
     private final Map<Person, Result> resultMap;
@@ -24,7 +24,9 @@ public class ResultsMap {
     }
 
     public Set<Map.Entry<Person, Result>> entrySet() {
-        return Collections.unmodifiableSet(resultMap.entrySet());
+        return resultMap.entrySet().stream()
+                .map(m -> Map.entry(m.getKey(), m.getValue()))
+                .collect(Collectors.toUnmodifiableSet());
     }
 
     @Override

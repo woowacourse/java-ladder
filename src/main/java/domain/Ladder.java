@@ -1,7 +1,7 @@
 package domain;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
 
@@ -22,7 +22,6 @@ public class Ladder {
         }
     }
 
-
     public Column startFromColumnAndGetResultColumn(Column column) {
         for (Line line : lines) {
             line.move(column);
@@ -39,6 +38,8 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+        return lines.stream()
+                .map(Line::new)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

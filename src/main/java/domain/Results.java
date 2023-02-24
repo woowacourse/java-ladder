@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +32,8 @@ public class Results {
     }
 
     public List<Result> getResults() {
-        return Collections.unmodifiableList(results);
+        return results.stream()
+                .map(Result::new)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

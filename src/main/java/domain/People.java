@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -37,13 +36,6 @@ public class People {
         }
     }
 
-    public Person getByIndex(int index) {
-        if (index < 0 || index >= people.size()) {
-            throw new IndexOutOfBoundsException("인덱스의 범위를 벗어났습니다.");
-        }
-        return people.get(index);
-    }
-
     public Column findColumnByPerson(Person person) {
         int column = IntStream.range(0, people.size())
                 .filter(index -> people.get(index).equals(person))
@@ -53,7 +45,9 @@ public class People {
     }
 
     public List<Person> getPeople() {
-        return Collections.unmodifiableList(people);
+        return people.stream()
+                .map(Person::new)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public int getCount() {

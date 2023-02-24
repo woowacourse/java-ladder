@@ -26,7 +26,7 @@ public class LadderGame {
 
     public ResultsMap getTotalResults() {
         Map<Person, Result> resultMap = new LinkedHashMap<>();
-        for (Person person : people.getPeople()) {
+        for (Person person : people.getPeople()) { // 이 부분에서 getter를 사용한 것이 아쉽다...
             resultMap.put(person, calculateResult(person));
         }
         return new ResultsMap(resultMap);

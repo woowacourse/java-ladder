@@ -14,6 +14,10 @@ public class Result {
         this.result = result;
     }
 
+    public Result(Result result) {
+        this.result = result.getResult();
+    }
+
     private void validateResultLength(String result) {
         if (result.isBlank() || result.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(
