@@ -20,7 +20,7 @@ public class CalculateLadderGameResult {
         }
     }
 
-    private static void swapUserPositions(final List<Link> links, final int index, List<String> userPositions) {
+    private void swapUserPositions(final List<Link> links, final int index, List<String> userPositions) {
         if (links.get(index).isLink()) {
             String swapUserName = userPositions.get(index);
             userPositions.set(index, userPositions.get(index + 1));
