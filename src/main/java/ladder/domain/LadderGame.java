@@ -29,12 +29,17 @@ public class LadderGame {
     }
 
     public LadderGameResult play() {
-        final Map<Player, Item> result = new LinkedHashMap<>();
-        for (Position position : Position.range(players.count())) {
-            final Position resultPosition = ladder.play(position);
-            result.put(players.findByPosition(position), items.findByPosition(resultPosition));
+        final Map<Player, Position> playResult = players.play(ladder);
+
+        final Map<String, String> result = new LinkedHashMap<>();
+        for (Player player : playResult.keySet()) {
+            result.put(player.getName(), toItemName(playResult.get(player)));
         }
         return new LadderGameResult(result);
+    }
+
+    private String toItemName(final Position position) {
+        return items.findByPosition(position).getName();
     }
 
     public List<String> getPlayers() {
