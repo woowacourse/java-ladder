@@ -50,19 +50,11 @@ public class PlayersTest {
     }
 
     @Test
-    @DisplayName("입력받은 이름의 플레이어 반환")
-    void findPlayerByName() {
-        Players resultPlayers = getPlayers();
-
-        assertThat(resultPlayers.findPlayerByName("b")).isEqualTo(new Player("b"));
-    }
-
-    @Test
     @DisplayName("입력받은 플레이어가 존재하지 않으면 예외 발생")
     void doesNotFindPlayerByName() {
         Players resultPlayers = getPlayers();
 
-        assertThatThrownBy(() -> resultPlayers.findPlayerByName("e"))
+        assertThatThrownBy(() -> resultPlayers.validateExistPlayer("e"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 존재하지 않는 사람입니다.");
     }
