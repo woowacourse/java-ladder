@@ -10,7 +10,6 @@ public class OutputView {
     private static final String LADDER_UNIT = "|";
     private static final String BRIDGE_UNIT = "-";
     private static final String ALL_RESULT = "%s : %s";
-    private static final int RESULT_ONLY_COUNT = 1;
 
     public OutputView() {
     }
@@ -23,12 +22,13 @@ public class OutputView {
         printTextWithBridgeSize(winningResults, bridgeSize);
     }
 
-    public void printResult(Map<String, String> result) {
+    public void printSingleResult(String result) {
         System.out.println("\n" + RESULT_HEAD);
-        if (result.size() == RESULT_ONLY_COUNT) {
-            result.values().forEach(System.out::println);
-            return;
-        }
+        System.out.println(result);
+    }
+
+    public void printTotalResult(Map<String, String> result) {
+        System.out.println("\n" + RESULT_HEAD);
         result.forEach((name, prize) -> System.out.printf(ALL_RESULT + "\n", name, prize));
     }
 

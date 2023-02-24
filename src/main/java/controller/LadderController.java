@@ -6,6 +6,7 @@ import domain.Person;
 import domain.Persons;
 import domain.WinningEntry;
 import domain.WinningResult;
+import exception.ErrorCode;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -16,6 +17,7 @@ import view.OutputView;
 
 public class LadderController {
     private static final String DELIMITER = ",";
+    private static final String ALL_RESULT = "all";
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private LadderGame ladderGame;
@@ -65,17 +67,22 @@ public class LadderController {
 
     private boolean isAllPrinted(Map<String, String> result) {
         try {
-            int printedSize = printRequestedResult(inputView.requestResultTarget(), result);
-            return result.size() == printedSize;
+            return printRequestedResult(inputView.requestResultTarget(), result);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
         return false;
     }
 
-    private int printRequestedResult(String target, Map<String, String> result) {
-        Map<String, String> requestedResult = ladderGame.pickResultForTarget(result, target);
-        outputView.printResult(requestedResult);
-        return requestedResult.size();
+    private boolean printRequestedResult(String target, Map<String, String> results) {
+        if (target.equals(ALL_RESULT)) {
+            outputView.printTotalResult(results);
+            return true;
+        }
+        if (results.containsKey(target)) {
+            outputView.printSingleResult(results.get(target));
+            return false;
+        }
+        throw new IllegalArgumentException(ErrorCode.WRONG_RESULT_TARGET.getMessage());
     }
 }
