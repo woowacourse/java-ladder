@@ -91,11 +91,21 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return this.head.next == null;
     }
 
     @Override
     public boolean remove(String value) {
+        Node previousPointer = this.head;
+        Node nextPointer = this.head.next;
+        while (nextPointer != null) {
+            if (nextPointer.value.equals(value)) {
+                previousPointer.next = nextPointer.next;
+                return true;
+            }
+            previousPointer = nextPointer;
+            nextPointer = nextPointer.next;
+        }
         return false;
     }
 
