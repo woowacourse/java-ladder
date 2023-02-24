@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 public class Point {
 
@@ -14,6 +14,10 @@ public class Point {
 
     public void changeDirection(Direction direction) {
         this.direction = direction;
+    }
+
+    public int getLineMovement() {
+        return this.direction.getLineMovement();
     }
 
 }

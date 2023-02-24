@@ -1,5 +1,7 @@
-package domain;
+package domain.player;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,8 +19,8 @@ public class PlayerNames {
         this.playerNames = playerNames;
     }
 
-    public static PlayerNames from(List<String> names) {
-        List<PlayerName> playerNames = names.stream()
+    public static PlayerNames from(List<String> playerNamesValue) {
+        List<PlayerName> playerNames = playerNamesValue.stream()
                 .map(PlayerName::new)
                 .collect(Collectors.toList());
 
@@ -53,7 +55,7 @@ public class PlayerNames {
     }
 
     public List<PlayerName> getPlayerNames() {
-        return this.playerNames;
+        return Collections.unmodifiableList(this.playerNames);
     }
 
 }

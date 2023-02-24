@@ -1,10 +1,5 @@
 package domain.ladder;
 
-import domain.Direction;
-import domain.Height;
-import domain.Line;
-import domain.PlayerNames;
-import domain.Point;
 import domain.ladder.strategy.GenerateBridgeStrategy;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +17,11 @@ public class Ladder {
         this.generateBridgeStrategy = generateBridgeStrategy;
     }
 
-    public static Ladder of(PlayerNames playerNames, Height height, GenerateBridgeStrategy generateBridgeStrategy) {
+    public static Ladder of(int width, Height height, GenerateBridgeStrategy generateBridgeStrategy) {
         List<Line> lines = new ArrayList<>();
-        IntStream.range(0, playerNames.getPlayerNames().size())
-                .forEach(it -> lines.add(Line.fromHeight(height)));
+        for (int i = 0; i < width; i++) {
+            lines.add(Line.fromHeight(height));
+        }
 
         return new Ladder(lines, height, generateBridgeStrategy);
     }
@@ -66,18 +62,26 @@ public class Ladder {
                 && endPoint.matchDirection(Direction.STRAIGHT_DOWN);
     }
 
+    public int findResultAtByStartLineAt(int lineAt) {
+        for (int i = 0; i < height.getHeight(); i++) {
+            Point point = getPoint(i, lineAt);
+            lineAt += point.getLineMovement();
+        }
+
+        return lineAt;
+    }
+
     public Point getPoint(int pointAt, int lineAt) {
         return this.lines.get(lineAt)
                 .getPoints()
                 .get(pointAt);
     }
 
-    public List<Line> getLines() {
-        return this.lines;
+    public int getLineSize() {
+        return this.lines.size();
     }
 
     public int getHeightSize() {
         return this.height.getHeight();
     }
-
 }

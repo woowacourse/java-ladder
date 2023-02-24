@@ -1,4 +1,4 @@
-package domain;
+package domain.player;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -23,32 +23,32 @@ public class PlayerNamesTest {
     @Test
     @DisplayName("모든 게임 참여자들의 이름은 중복될 수 없다")
     void createPlayerNamesFail() {
-        List<String> playerNamesInput = List.of("pobi", "pooh", "pooh", "jk");
+        List<String> playerNamesInput = List.of("pobi", "honux", "crong", "pobi");
 
         assertThatThrownBy(() -> PlayerNames.from(playerNamesInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("이름은 중복될 수 없습니다.");
     }
 
-    @DisplayName("한명만 참여 할 수 없다")
     @Test
+    @DisplayName("한명만 참여 할 수 없다")
     void createPlayerNumberUnderNumberFail() {
-        List<String> input = List.of("pobi");
-        assertThatThrownBy(() -> PlayerNames.from(input))
+        List<String> playerNamesInput = List.of("pobi");
+
+        assertThatThrownBy(() -> PlayerNames.from(playerNamesInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PLAYER_NUMBER_UPPER_BOUND_INCLUSIVE);
     }
 
-    @DisplayName("20명 이상은 참여 할 수 없다")
     @Test
+    @DisplayName("20명 이상은 참여 할 수 없다")
     void createPlayerNumberOverNumberFail() {
-        List<String> input = new ArrayList<>();
-        char toCharacter = 'a';
+        List<String> playerNamesInput = new ArrayList<>();
         for (int asciiNumber = 0; asciiNumber < 21; asciiNumber++) {
-            input.add(String.valueOf(asciiNumber + toCharacter));
+            playerNamesInput.add(String.valueOf(asciiNumber + 'a'));
         }
 
-        assertThatThrownBy(() -> PlayerNames.from(input))
+        assertThatThrownBy(() -> PlayerNames.from(playerNamesInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PLAYER_NUMBER_UPPER_BOUND_INCLUSIVE);
     }

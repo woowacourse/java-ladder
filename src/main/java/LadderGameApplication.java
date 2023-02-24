@@ -1,4 +1,5 @@
 import controller.LadderGameController;
+import domain.LadderGame;
 import domain.ladder.strategy.GenerateBridgeStrategy;
 import domain.ladder.strategy.RandomGenerateBridgeStrategy;
 import view.InputView;
@@ -14,7 +15,8 @@ public class LadderGameApplication {
                 randomBridgeStrategy);
 
         try {
-            ladderGameController.run();
+            LadderGame ladderGame = ladderGameController.initGame();
+            ladderGameController.run(ladderGame);
         } catch (Exception exception) {
             ladderGameController.printError(exception);
         }

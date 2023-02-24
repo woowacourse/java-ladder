@@ -1,9 +1,17 @@
 package controller;
 
-import domain.Height;
-import domain.PlayerNames;
+import domain.LadderGame;
+import domain.ResultContents;
+import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.strategy.GenerateBridgeStrategy;
+import domain.player.Player;
+import domain.player.PlayerNames;
+import domain.player.Players;
+import java.util.List;
+import view.util.formatter.LadderConsoleViewFormatter;
+import view.util.formatter.PlayersConsoleViewFormatter;
+import view.util.formatter.ResultContentsConsoleViewFormatter;
 import view.InputView;
 import view.OutputView;
 
@@ -19,20 +27,70 @@ public class LadderGameController {
         this.bridgeStrategy = bridgeStrategy;
     }
 
-    public void run() {
-        PlayerNames playerNames = inputView.requestPlayerNames();
-        Height height = inputView.requestLadderHeight();
+    public LadderGame initGame() {
+        Players players = getPlayers();
+        ResultContents resultContents = getResultContents();
+        Ladder ladder = buildLadderByPlayerAmount(players.playerAmount());
 
-        Ladder ladder = Ladder.of(playerNames, height, bridgeStrategy);
-        ladder.buildBridges();
-
-        printLadderGameResult(playerNames, ladder);
+        return new LadderGame(ladder, players, resultContents);
     }
 
-    private void printLadderGameResult(PlayerNames playerNames, Ladder ladder) {
-        outputView.printResultPrefix();
-        outputView.printPlayerNames(playerNames);
-        outputView.printResult(ladder);
+    public void run(LadderGame ladderGame) {
+        ladderGame.buildBridges();
+        ladderGame.runGame();
+        printLadderGameResult(ladderGame);
+
+        requestSpecificPlayerResult(ladderGame.getPlayers());
+    }
+
+    private Players getPlayers() {
+        List<String> playerNamesInput = inputView.requestPlayerNames();
+        PlayerNames playerNames = PlayerNames.from(playerNamesInput);
+        return Players.from(playerNames);
+    }
+
+    private ResultContents getResultContents() {
+        List<String> resultContents = inputView.requestResultContents();
+        return ResultContents.from(resultContents);
+    }
+
+    private Ladder buildLadderByPlayerAmount(int playerAmount) {
+        int heightInput = inputView.requestLadderHeight();
+        Height height = new Height(heightInput);
+        return Ladder.of(playerAmount, height, bridgeStrategy);
+    }
+
+    private void printLadderGameResult(LadderGame ladderGame) {
+        outputView.printLadderResultPrefix();
+        String playersFormat = PlayersConsoleViewFormatter.formatPlayers(ladderGame.getPlayers());
+        outputView.printFormat(playersFormat);
+
+        String ladderFormat = LadderConsoleViewFormatter.formatLadder(ladderGame.getLadder());
+        outputView.printFormat(ladderFormat);
+
+        String resultContentsFormat = ResultContentsConsoleViewFormatter.formatResultContents(
+                ladderGame.getResultContents());
+        outputView.printFormat(resultContentsFormat);
+    }
+
+    private void requestSpecificPlayerResult(Players players) {
+        String userRequest = new String();
+        while (!userRequest.equals(inputView.getResultEndCommand())) {
+            userRequest = inputView.requestResultPlayer();
+            printPlayerResult(userRequest, players);
+        }
+    }
+
+    private void printPlayerResult(String userRequest, Players players) {
+        if (userRequest.equals(inputView.getResultEndCommand())) {
+            String playersResultFormat = PlayersConsoleViewFormatter.formatResultPlayers(players);
+            outputView.printAllResultPrefix();
+            outputView.printFormat(playersResultFormat);
+            return;
+        }
+
+        Player playerByName = players.findByName(userRequest);
+        outputView.printPlayerResult(playerByName.getResultContent());
     }
 
     public void printError(Exception exception) {
