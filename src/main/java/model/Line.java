@@ -78,10 +78,4 @@ public class Line {
     public List<Path> getPaths() {
         return paths;
     }
-
-    public List<Boolean> getLine() {
-        return paths.stream()
-                .map(Path::isPassable)
-                .collect(Collectors.toUnmodifiableList());
-    }
 }
