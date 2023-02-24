@@ -48,8 +48,10 @@ public class LadderTest {
 
     @Test
     @DisplayName("Ladder 1층 생성 테스트")
-    void I_____IFirstFloorTest() {
-        TestLineSourceGenerator testLineSourceGenerator = new TestLineSourceGenerator(List.of(I_____I, IxxxxxI, IxxxxxI));
+    void makeFirstFloorTest() {
+        TestLineSourceGenerator testLineSourceGenerator = new TestLineSourceGenerator(List.of(
+                I_____I, IxxxxxI, IxxxxxI
+        ));
 
         Ladder ladder = new Ladder(1, 4);
         ladder.makeFloors(testLineSourceGenerator);
@@ -63,8 +65,11 @@ public class LadderTest {
 
     @Test
     @DisplayName("Ladder 생성 테스트")
-    void I_____IFloorTest() {
-        TestLineSourceGenerator testLineSourceGenerator = new TestLineSourceGenerator(List.of(I_____I, IxxxxxI, IxxxxxI, I_____I, I_____I, I_____I));
+    void makeFloorTest() {
+        TestLineSourceGenerator testLineSourceGenerator = new TestLineSourceGenerator(List.of(
+                I_____I, IxxxxxI, IxxxxxI,
+                I_____I, I_____I, I_____I)
+        );
 
         Ladder ladder = new Ladder(2, 4);
         ladder.makeFloors(testLineSourceGenerator);
