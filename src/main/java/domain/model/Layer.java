@@ -13,15 +13,15 @@ public class Layer {
     }
 
     public void makeLine(final boolean condition) {
-        if (condition && lines.isEmpty()) {
-            lines.add(true);
-            return;
-        }
-        if (condition && !lines.get(lines.size() - 1)) {
+        if (isLinesEmpeyOrLastLine(condition)) {
             lines.add(true);
             return;
         }
         lines.add(false);
+    }
+
+    private boolean isLinesEmpeyOrLastLine(boolean condition) {
+        return condition && (lines.isEmpty() || !lines.get(lines.size() - 1));
     }
 
     public List<Boolean> getLines() {
