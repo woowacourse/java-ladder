@@ -22,8 +22,8 @@ public class GameController {
 
     public GameController(final ConnectionStrategy connectionStrategy) {
         this.names = readNamesWithRetry();
-        this.prizes = readResultWithRetry(names.getSize());
-        this.ladder = readHeightWithRetry(names, connectionStrategy);
+        this.prizes = readPrizesWithRetry(names.getSize());
+        this.ladder = createdLadder(connectionStrategy);
     }
 
     private Names readNamesWithRetry() {
@@ -35,21 +35,31 @@ public class GameController {
         }
     }
 
-    private Ladder readHeightWithRetry(final Names names, final ConnectionStrategy connectionStrategy) {
-        try {
-            return new Ladder(InputView.readHeight(), names.getSize(), connectionStrategy);
-        } catch (final IllegalStateException | IllegalArgumentException e) {
-            OutputView.printMessage(e.getMessage());
-            return readHeightWithRetry(names, connectionStrategy);
-        }
-    }
-
-    private Prizes readResultWithRetry(final int size) {
+    private Prizes readPrizesWithRetry(final int size) {
         try {
             return new Prizes(InputView.readResults(), size);
         } catch (final IllegalStateException | IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
-            return readResultWithRetry(size);
+            return readPrizesWithRetry(size);
+        }
+    }
+
+    private Ladder createdLadder(final ConnectionStrategy connectionStrategy) {
+        try {
+            final int height = InputView.readHeight();
+            return new Ladder(height, names.getSize(), connectionStrategy);
+        } catch (final IllegalStateException | IllegalArgumentException e) {
+            OutputView.printMessage(e.getMessage());
+            return readLadderHeightWithRetry(names, connectionStrategy);
+        }
+    }
+
+    private Ladder readLadderHeightWithRetry(final Names names, final ConnectionStrategy connectionStrategy) {
+        try {
+            return new Ladder(InputView.readHeight(), names.getSize(), connectionStrategy);
+        } catch (final IllegalStateException | IllegalArgumentException e) {
+            OutputView.printMessage(e.getMessage());
+            return readLadderHeightWithRetry(names, connectionStrategy);
         }
     }
 
@@ -77,20 +87,11 @@ public class GameController {
 
     private void findResultWithRetry(final Results results) {
         try {
-            final Name resultName = readResultPlayerNameWithRetry();
+            final Name resultName = new Name(InputView.readResultPlayerName());
             final List<Result> result = results.findResults(resultName);
             OutputView.printResult(result);
         } catch (final IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
-        }
-    }
-
-    private Name readResultPlayerNameWithRetry() {
-        try {
-            return new Name(InputView.readResultPlayerName());
-        } catch (final IllegalStateException | IllegalArgumentException e) {
-            OutputView.printMessage(e.getMessage());
-            return readResultPlayerNameWithRetry();
         }
     }
 }
