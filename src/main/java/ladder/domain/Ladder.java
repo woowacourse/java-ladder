@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
@@ -11,6 +12,14 @@ public class Ladder {
 
     public static Ladder from(LadderGenerator ladderGenerator) {
         return new Ladder(ladderGenerator.generateLadder());
+    }
+
+    public List<Integer> getAllEndPosition(){
+        List<Integer> endPositions = new ArrayList<>();
+        for(int startPosition = 0; startPosition <= getLadderWidth(); startPosition++){
+            endPositions.add(getEndPosition(startPosition));
+        }
+        return endPositions;
     }
 
     public int getEndPosition(int startPosition) {

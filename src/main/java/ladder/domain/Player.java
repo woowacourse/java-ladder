@@ -7,6 +7,7 @@ public class Player {
     private static final String NAME_LENGTH_ERROR_MESSAGE = "플레이어 이름 길이는 1이상 5이하여야합니다.";
     private static final String NAME_FORMAT_ERROR_MESSAGE = "플레이어 이름에는 공백이 포함될 수 없습니다.";
     private final String name;
+    private Prize prize;
 
     public Player(String name) {
         validateLength(name);
@@ -26,7 +27,19 @@ public class Player {
         }
     }
 
+    public boolean isSameName(String name){
+        return this.name.equals(name);
+    }
+
+    public void setPrize(Prize prize){
+        this.prize = prize;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public String getPrizeName() {
+        return prize.getName();
     }
 }

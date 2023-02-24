@@ -17,4 +17,8 @@ public class Prize {
             throw new IllegalArgumentException("상품명은 공백으로만 이루어질 수 없습니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

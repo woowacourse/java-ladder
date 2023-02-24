@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import static java.util.stream.Collectors.toUnmodifiableList;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,5 +27,23 @@ public class Prizes {
         if(prizes.size() != expectedSize){
             throw new IllegalArgumentException(String.format("상품의 개수는 %d이어야합니다.", expectedSize));
         }
+    }
+
+    public Prize get(int index){
+        return prizes.get(index);
+    }
+
+    public Prizes getOrderedPrizes(List<Integer> orders){
+        List<Prize> orderedPrize = new ArrayList<>();
+        for(int order : orders){
+            orderedPrize.add(get(order));
+        }
+        return new Prizes(orderedPrize);
+    }
+
+    public List<String> getNames() {
+        return prizes.stream()
+                .map(Prize::getName)
+                .collect(toUnmodifiableList());
     }
 }
