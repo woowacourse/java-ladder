@@ -32,18 +32,6 @@ public class LadderGameController {
         showResultBoard(new ResultBoard(players, ladder, rewards));
     }
 
-/*    private Players generatePlayers() {
-        try {
-            List<Player> names = inputView.readNames().stream()
-                    .map(Player::new)
-                    .collect(Collectors.toList());
-            return new Players(names);
-        } catch (IllegalArgumentException exception) {
-            outputView.printExceptionMessage(exception.getMessage());
-            return generatePlayers();
-        }
-    }*/
-
     private Players generatePlayers() {
         Optional<Players> players;
         do {
@@ -64,18 +52,6 @@ public class LadderGameController {
         }
     }
 
-/*    private Rewards generateRewards(int playerCount) {
-        try {
-            List<Reward> rewards = inputView.readRewards().stream()
-                    .map(Reward::new)
-                    .collect(Collectors.toList());
-            return Rewards.of(rewards, playerCount);
-        } catch (IllegalArgumentException exception) {
-            outputView.printExceptionMessage(exception.getMessage());
-            return generateRewards(playerCount);
-        }
-    }*/
-
     private Rewards generateRewards(int playerCount) {
         Optional<Rewards> rewards;
         do {
@@ -95,16 +71,6 @@ public class LadderGameController {
             return Optional.empty();
         }
     }
-
-/*    private Height generateHeight() {
-        try {
-            int height = inputView.readHeight();
-            return new Height(height);
-        } catch (IllegalArgumentException exception) {
-            outputView.printExceptionMessage(exception.getMessage());
-            return generateHeight();
-        }
-    }*/
 
     private Height generateHeight() {
         Optional<Height> height;
