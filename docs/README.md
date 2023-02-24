@@ -11,8 +11,8 @@
 - [x] 실행 결과 
   - [x] 입력받기 LadderGameController#requestLadderResult
   - [x] ,(쉼표)로 구분
-  - [ ] 검증
-    - [ ] 입력받은 사람 이름 수와 같아야 함
+  - [x] 검증
+    - [x] 입력받은 사람 이름 수와 같아야 함 LadderGameController#validatePrizeCount
 
 - [x] 사다리 높이
   - [x] 입력받기 LadderGameController#requestLadderHeight

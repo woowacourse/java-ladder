@@ -3,6 +3,7 @@ package controller;
 import domain.Height;
 import domain.LadderGame;
 import domain.Persons;
+import exception.ErrorCode;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +23,7 @@ public class LadderGameController {
 
     public void play() {
         Persons persons = requestPlayerName();
-        List<String> prizes = requestLadderPrize();
+        List<String> prizes = requestLadderPrize(persons.getTotalPersonCount());
         Height height = requestLadderHeight();
 
         ladderGame = new LadderGame(persons, height);
@@ -55,15 +56,22 @@ public class LadderGameController {
         }
     }
 
-    private List<String> requestLadderPrize() {
+    private List<String> requestLadderPrize(int personCount) {
         try {
             String inputPrizes = inputView.requestPrize();
             List<String> prizes = Arrays.stream(inputPrizes.split(DELIMITER))
                     .collect(Collectors.toList());
+            validatePrizeCount(prizes.size(), personCount);
             return prizes;
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
-            return requestLadderPrize();
+            return requestLadderPrize(personCount);
+        }
+    }
+
+    private static void validatePrizeCount(int prizeCount, int personCount) {
+        if (prizeCount != personCount) {
+            throw new IllegalArgumentException(ErrorCode.COUNT_OR_PRIZE_IS_NOT_MATCH_WITH_PERSON_COUNT.getMessage());
         }
     }
 
