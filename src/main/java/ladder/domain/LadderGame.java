@@ -5,6 +5,8 @@ import java.util.List;
 
 public class LadderGame {
 
+    private static final int LADDER_WIDTH_CRITERIA = 1;
+
     private final RandomGenerator<Boolean> randomGenerator;
     private final Players players;
     private Lines lines;
@@ -22,7 +24,7 @@ public class LadderGame {
     }
 
     private void initializeLines(final int height) {
-        int width = players.size() - 1;
+        int width = players.size() - LADDER_WIDTH_CRITERIA;
         this.lines = new Lines(randomGenerator, height, width);
     }
 

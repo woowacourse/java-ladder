@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 public class OutputView {
 
     private static final String VERTICAL = "|";
-    private static final String HORIZON = "-----";
-    private static final String NONE = "     ";
+    private static final String HORIZON = "-";
+    private static final String NONE = " ";
 
     public void showLadderGame(final Players players, final List<Line> lines, final Products products) {
         System.out.println("사다리 결과");
@@ -53,20 +53,20 @@ public class OutputView {
 
     private String extractLine(final Line line) {
         List<Point> points = line.toUnmodifiableLine();
-        StringJoiner result = new StringJoiner(VERTICAL, NONE + VERTICAL, VERTICAL);
+        StringJoiner result = new StringJoiner(VERTICAL, NONE.repeat(line.size()) + VERTICAL, VERTICAL);
 
         for (Point point : points) {
-            String pointFormat = toPointFormat(point);
+            String pointFormat = toPointFormat(point, line.size());
             result.add(pointFormat);
         }
         return result.toString();
     }
 
-    private String toPointFormat(final Point point) {
+    private String toPointFormat(final Point point, final int size) {
         if (point == Point.AVAILABLE) {
-            return HORIZON;
+            return HORIZON.repeat(size);
         }
-        return NONE;
+        return NONE.repeat(size);
     }
 
     public void showResult(final Map<Player, Product> result) {

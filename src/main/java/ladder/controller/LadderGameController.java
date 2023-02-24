@@ -18,6 +18,8 @@ import java.util.stream.Collectors;
 
 public class LadderGameController {
 
+    private static final int SINGLE_RESULT_NUMBER = 1;
+
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -76,7 +78,7 @@ public class LadderGameController {
             });
 
             outputView.showResult(result);
-            if (result.size() > 1) {
+            if (result.size() > SINGLE_RESULT_NUMBER) {
                 return;
             }
         }

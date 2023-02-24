@@ -44,7 +44,8 @@ public class Line {
             return true;
         }
 
-        return !points.get(index - 1).isAvailable();
+        final int before = index - 1;
+        return !points.get(before).isAvailable();
     }
 
     public Direction decideDirection(final int position) {
@@ -53,7 +54,8 @@ public class Line {
             return Direction.RIGHT;
         }
 
-        Point left = decidePoint(position - 1);
+        final int before = position - 1;
+        Point left = decidePoint(before);
         if (left.isAvailable()) {
             return Direction.LEFT;
         }
@@ -69,10 +71,14 @@ public class Line {
     }
 
     private boolean isOutOfBound(final int position) {
-        return position < 0 || points.size() <= position;
+        return (position < 0) || (points.size() <= position);
     }
-    
+
     public List<Point> toUnmodifiableLine() {
         return Collections.unmodifiableList(points);
+    }
+
+    public int size() {
+        return width;
     }
 }
