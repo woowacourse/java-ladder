@@ -8,12 +8,12 @@ public class Height {
 
     private final int value;
 
-    public Height(int value) {
+    public Height(final int value) {
         validateHeightSize(value);
         this.value = value;
     }
 
-    private void validateHeightSize(int value) {
+    private void validateHeightSize(final int value) {
         if (value < MIN_HEIGHT_INCLUSIVE || value > MAX_HEIGHT_INCLUSIVE) {
             throw new IllegalArgumentException(ERROR_HEIGHT_RANGE);
         }

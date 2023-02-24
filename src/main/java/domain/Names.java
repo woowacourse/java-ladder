@@ -47,7 +47,7 @@ public class Names {
         return new ArrayList<>(names);
     }
 
-    public Name getNameByIndex(int index) {
+    public Name getNameByIndex(final int index) {
         return names.get(index);
     }
 }

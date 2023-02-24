@@ -16,18 +16,18 @@ public class Name {
         this.value = name;
     }
 
-    private void validateName(String name) {
+    private void validateName(final String name) {
         validateBannedName(name);
         validateNameSize(name);
     }
 
-    private void validateBannedName(String name) {
+    private void validateBannedName(final String name) {
         if (name.equals(BANNED_NAME)) {
             throw new IllegalArgumentException(ERROR_NAME_IN_BAN_LIST);
         }
     }
 
-    private void validateNameSize(String name) {
+    private void validateNameSize(final String name) {
         if (name.length() < NAME_MIN_LENGTH_INCLUSIVE || name.length() > NAME_MAX_LENGTH_INCLUSIVE) {
             throw new IllegalArgumentException(ERROR_NAME_LENGTH);
         }

@@ -24,7 +24,7 @@ public class Prizes {
         return new ArrayList<>(prizes);
     }
 
-    public Prize getPrizeByIndex(int index){
+    public Prize getPrizeByIndex(final int index){
         return prizes.get(index);
     }
 }
