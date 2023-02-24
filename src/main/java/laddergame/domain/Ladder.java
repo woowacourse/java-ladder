@@ -26,4 +26,11 @@ public class Ladder {
     public List<Line> getLadder() {
         return lines;
     }
+
+    public int climb(int position) {
+        for (Line line : lines) {
+            position = line.move(position);
+        }
+        return position;
+    }
 }
