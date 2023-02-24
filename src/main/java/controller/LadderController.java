@@ -29,20 +29,20 @@ public class LadderController {
                 .map(Prize::new)
                 .collect(Collectors.toList()), names);
         final Ladder ladder = new Ladder( names.toWidth(), new Height(InputView.inputHeight()), scaffoldGenerator);
-        OutputView.printResult(ladder, names, prizes);
-        calculateResult(ladder, names, prizes);
+        OutputView.printLadderResult(ladder, names, prizes);
+        calculateWinResult(ladder, names, prizes);
     }
 
-    private void calculateResult(final Ladder ladder, final Names names, final Prizes prizes) {
+    private void calculateWinResult(final Ladder ladder, final Names names, final Prizes prizes) {
         Map<String, String> ladderResult = ladder.calculateResult(names, prizes);
         String targetName = BLANK;
         while (!targetName.equals(SHOW_NAMES_COMMAND)) {
             targetName = InputView.inputTargetName();
-            checkCases(ladderResult, names, targetName);
+            checkResultByTargetName(ladderResult, names, targetName);
         }
     }
 
-    private void checkCases(final Map<String, String> ladderResult, final Names names, String targetName) {
+    private void checkResultByTargetName(final Map<String, String> ladderResult, final Names names, String targetName) {
         if (targetName.equals(SHOW_NAMES_COMMAND)) {
             OutputView.printTotalMatching(ladderResult);
             return;

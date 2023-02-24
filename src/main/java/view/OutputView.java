@@ -29,7 +29,7 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printResult(final Ladder ladder, final Names playerNames, final Prizes prizes) {
+    public static void printLadderResult(final Ladder ladder, final Names playerNames, final Prizes prizes) {
         printNames(playerNames);
         printLadder(ladder);
         printPrizes(prizes);
