@@ -47,7 +47,7 @@ public class LadderController {
     private void printLadderStructure(PlayerNames playerNames, Ladder ladder, GameResults gameResults) {
         OutputView.printNames(playerNames);
         OutputView.printLadder(ladder, playerNames.getFirstPlayerNameLength());
-        OutputView.printExecutionResults(gameResults);
+        OutputView.printGameResults(gameResults);
     }
     
     private void viewResult(PlayerNames playerNames, Ladder ladder, GameResults gameResults) {

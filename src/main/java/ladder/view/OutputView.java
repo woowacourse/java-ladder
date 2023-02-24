@@ -55,31 +55,38 @@ public class OutputView {
         return BarDisplayMatcher.valueOfBarMatcher(bar);
     }
     
-    public static void printExecutionResults(GameResult gameResult) {
-        println(parseDisplayElements(gameResult.getExecutionResults()));
+    public static void printGameResults(GameResults gameResults) {
+        println(parseDisplayElements(parseGameResultsDisplay(gameResults)));
     }
     
-    public static void printAllPlayerResult(PlayerNames playerNames, List<Integer> movedPositions, GameResult gameResult) {
+    private static List<String> parseGameResultsDisplay(GameResults gameResults) {
+        return gameResults.getGameResults().stream().map(GameResult::getGameResult).collect(Collectors.toUnmodifiableList());
+    }
+    
+    public static void printAllPlayerResult(PlayerNames playerNames, List<Integer> movedPositions, GameResults gameResults) {
         List<String> names = playerNames.getNames();
-        List<String> allExecutionResult = gameResult.getAllExecutionResult(movedPositions);
+        List<GameResult> sortedGameResults = gameResults.getSortedGameResults(movedPositions);
         
         println("\n실행 결과");
-        println(parseAllPlayerResult(names, allExecutionResult));
+        println(parseAllPlayerResult(names, sortedGameResults));
     }
     
-    private static String parseAllPlayerResult(List<String> names, List<String> allExecutionResult) {
+    private static String parseAllPlayerResult(List<String> names, List<GameResult> gameResults) {
         return IntStream.range(0, names.size())
-                .mapToObj(playerIndex -> parsePlayerResult(playerIndex, names, allExecutionResult))
+                .mapToObj(playerIndex -> parsePlayerResult(playerIndex, names, gameResults))
                 .collect(Collectors.joining("\n"));
     }
     
-    private static String parsePlayerResult(int playerIndex, List<String> names, List<String> allExecutionResult) {
-        return names.get(playerIndex) + " : " + allExecutionResult.get(playerIndex);
+    private static String parsePlayerResult(int playerIndex, List<String> names, List<GameResult> gameResults) {
+        GameResult gameResult = gameResults.get(playerIndex);
+        return names.get(playerIndex) + " : " + gameResult.getGameResult();
     }
     
-    public static void printOnePlayerResult(int playerIndex, List<Integer> movedPositions, GameResult gameResult) {
+    public static void printOnePlayerResult(int playerIndex, List<Integer> movedPositions, GameResults gameResults) {
         println("\n실행 결과");
-        println(gameResult.getOneExecutionResult(playerIndex, movedPositions));
+        
+        GameResult gameResult = gameResults.getGameResult(playerIndex, movedPositions);
+        println(gameResult.getGameResult());
     }
     
     public static void printExceptionMessage(IllegalArgumentException illegalArgumentException) {
