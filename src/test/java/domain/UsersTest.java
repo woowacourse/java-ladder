@@ -45,6 +45,6 @@ public class UsersTest {
     @DisplayName("입력된 유저가 참여하는 유저가 아니라면 예외 처리한다.")
     void ixExistFailTest() {
         String notExistUserName = "honux";
-        Assertions.assertThrows(IllegalArgumentException.class, () -> users.isExist(notExistUserName));
+        assertThat(users.isExist(notExistUserName)).isEqualTo(false);
     }
 }
