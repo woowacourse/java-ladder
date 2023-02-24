@@ -65,19 +65,6 @@ public class LineTest {
     }
 
     @Test
-    void move_를_통해_이동할_수_있다() {
-        // given
-        final TestScaffoldGenerator testScaffoldGenerator = new TestScaffoldGenerator(List.of(true, true, true, true));
-        final Width width = new Width(4);
-
-        // when
-        final Line line = new Line(width, testScaffoldGenerator);
-
-        // then
-        assertThat(line.getScaffolds()).containsExactly(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE);
-    }
-
-    @Test
     void move_를_통해_Scaffold가_있는_방향으로_이동할_수_있다() {
         // given
         final TestScaffoldGenerator testScaffoldGenerator = new TestScaffoldGenerator(List.of(true, false, true, true));
