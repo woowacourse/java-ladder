@@ -7,7 +7,7 @@ import java.util.List;
 public class Player {
 
     private final Name name;
-    private Position position;
+    private final Position position;
 
     public Player(Name name, Position position) {
         this.name = name;

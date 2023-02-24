@@ -70,8 +70,7 @@ public class OutputView {
     public void printAllPlayerResult(List<GameResultDto> gameResultDtos) {
         System.out.println("실행 결과");
         for (GameResultDto result : gameResultDtos) {
-            System.out.println(String.format("%s : %s",
-                    result.getPlayerName(), result.getPrize()));
+            System.out.println(String.format("%s : %s%n", result.getPlayerName(), result.getPrize()));
         }
     }
 

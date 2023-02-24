@@ -37,8 +37,11 @@ class PlayerTest {
     }
 
     /**
-     * pobi  neo   me    ohs   hello |-----|     |-----|     | |     |-----|     |-----| |     |-----|     |-----| |
-     * |-----|     |-----|
+     * pobi  neo   me    ohs   hello
+     * |-----|     |-----|     |
+     * |     |-----|     |-----|
+     * |     |-----|     |-----|
+     * |     |-----|     |-----|
      */
     @DisplayName("move()를 통해 게임 결과에 맞는 positon을 반환한다.")
     @ParameterizedTest
