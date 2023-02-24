@@ -3,6 +3,7 @@ package ladder.domain;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -22,8 +23,8 @@ class ResultsTest {
 
         Results results = new Results(players, dummy);
 
-        String result = results.toResultByPlayerName("주노");
-        assertThat(result).isEqualTo("1");
+        Map<String, String> result = results.toResultByPlayerName("주노");
+        assertThat(result.get("주노")).isEqualTo("1");
     }
 
     @Test
