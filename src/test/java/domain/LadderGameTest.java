@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
+import java.util.Map;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
@@ -40,19 +41,20 @@ public class LadderGameTest {
             "jk,5000",
     })
     void single_result_test(String name, String result) {
-        assertThat(ladderGame.getSingleResult(new Person(name))).isEqualTo(new Result(result));
+        assertThat(ladderGame.calculateSingleResult(new Person(name)))
+                .isEqualTo(new Result(result));
     }
 
     @DisplayName("모든 사용자의 결과 출력")
     @Test
     void all_result_test() {
-        assertThat(ladderGame.getTotalResults())
-                .isEqualTo(new Results(
-                        List.of(
-                                new Result("꽝"),
-                                new Result("3000"),
-                                new Result("꽝"),
-                                new Result("5000")
-                        )));
+        Map<Person, Result> resultMap = ladderGame.calculateTotalResults();
+        assertThat(resultMap)
+                .isEqualTo(Map.of(
+                        new Person("pobi"), new Result("꽝"),
+                        new Person("honux"), new Result("3000"),
+                        new Person("crong"), new Result("꽝"),
+                        new Person("jk"), new Result("5000")
+                ));
     }
 }

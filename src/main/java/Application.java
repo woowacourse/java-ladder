@@ -1,11 +1,8 @@
-import domain.Ladder;
-import domain.LadderGame;
-import domain.People;
-import domain.RandomLadderGenerator;
-import domain.Results;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class Application {
@@ -41,14 +38,14 @@ public class Application {
     }
 
     private void run() {
-        Results results;
+        Map<Person, Result> results;
         do {
             results = repeat(() -> {
                 String input = inputView.readResult();
-                return ladderGame.calculateAndGetResults(input);
+                return ladderGame.getResults(input);
             });
-            outputView.printGameResults(ladderGame.getPeople(), results);
-        } while (results.canTryAgain());
+            outputView.printGameResults(results);
+        } while (results.size() == 1);
     }
 
 

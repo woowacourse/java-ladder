@@ -32,16 +32,23 @@ public class Results {
         }
     }
 
-    public boolean canTryAgain() {
-        return this.results.size() == 1;
+    public Result getResultByColumn(Column column) {
+        validateColumn(column);
+        return results.get(column.get());
     }
 
-    public Result getResultByColumn(Column column) {
-        return results.get(column.get());
+    private void validateColumn(Column column) {
+        if (column.get() >= results.size()) {
+            throw new IllegalArgumentException("유효 범위를 초과한 Column입니다.");
+        }
     }
 
     public Result getSingleResult() {
         return results.get(0);
+    }
+
+    public boolean canTryAgain() {
+        return this.results.size() == 1;
     }
 
     public List<Result> getResults() {

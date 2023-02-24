@@ -1,7 +1,8 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class LadderGame {
 
@@ -17,24 +18,27 @@ public class LadderGame {
         this.results = results;
     }
 
-    public Results calculateAndGetResults(String input) {
+    public Map<Person, Result> getResults(String input) {
         if (input.equals(ALL)) {
-            return getTotalResults();
+            return calculateTotalResults();
         }
-        Result singleResult = getSingleResult(new Person(input));
-        return new Results(singleResult);
+        Map<Person, Result> resultMap = new LinkedHashMap<>();
+        Person targetPerson = new Person(input);
+        resultMap.put(targetPerson, calculateSingleResult(targetPerson));
+        return resultMap;
     }
 
-    public Results getTotalResults() {
-        List<Result> results = new ArrayList<>();
+    public Map<Person, Result> calculateTotalResults() {
+        Map<Person, Result> resultMap = new LinkedHashMap<>();
+
         for (Person person : people.getPeople()) {
-            results.add(getSingleResult(person));
+            resultMap.put(person, calculateSingleResult(person));
         }
-        return new Results(results);
+        return resultMap;
     }
 
-    public Result getSingleResult(Person name) {
-        Column startColumn = people.findColumnByPerson(name);
+    public Result calculateSingleResult(Person person) {
+        Column startColumn = people.findColumnByPerson(person);
         Column resultColumn = ladder.startFromColumnAndGetResultColumn(startColumn);
         return results.getResultByColumn(resultColumn);
     }

@@ -1,6 +1,5 @@
 package view;
 
-import domain.Column;
 import domain.Ladder;
 import domain.Line;
 import domain.People;
@@ -10,6 +9,7 @@ import domain.Results;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -39,7 +39,7 @@ public class OutputView {
 
     private void printResults(Results results) {
         for (Result result : results.getResults()) {
-            System.out.printf("%5s ", result.getResult());
+            System.out.printf("%5s ", result.get());
         }
         System.out.println();
     }
@@ -52,25 +52,21 @@ public class OutputView {
         return collect;
     }
 
-    public void printGameResults(People people, Results results) {
-        if (!results.canTryAgain()) {
-            printAllResults(people, results);
+    public void printGameResults(Map<Person, Result> resultMap) {
+        if (resultMap.size() > 1) {
+            System.out.println("\n실행 결과");
+            for (Map.Entry<Person, Result> entry : resultMap.entrySet()) {
+                System.out.printf(FORMAT, entry.getKey().getName(), entry.getValue().get());
+            }
+            System.out.println();
             return;
         }
-        printSingleResult(results);
-    }
-
-    public void printAllResults(People people, Results results) {
         System.out.println("\n실행 결과");
-        for (int i = 0; i < people.getCount(); i++) {
-            System.out.printf(FORMAT, people.getByIndex(i).getName(), results.getResultByColumn(Column.of(i)).getResult());
-        }
-        System.out.println();
-    }
-
-    public void printSingleResult(Results results) {
-        System.out.println("\n실행 결과");
-        System.out.println(results.getSingleResult().getResult());
+        String singleResult = resultMap.values().stream()
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("결과가 존재하지 않습니다."))
+                .get();
+        System.out.println(singleResult);
     }
 
     public void printError(Exception exception) {
