@@ -14,13 +14,13 @@ public class LadderGenerator {
         this.height = height;
     }
 
-    public List<Row> generateLadder() {
+    public Ladder generateLadder() {
         List<Row> rows = generateNoStepRows();
         addStepBetweenAllColumn(rows);
         for (Row row : rows) {
             addRandomSteps(row);
         }
-        return rows;
+        return new Ladder(rows);
     }
 
     private List<Row> generateNoStepRows() {

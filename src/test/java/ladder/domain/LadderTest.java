@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class LadderTest {
     @Test
     public void 도착점_구하기_success() {
-        Ladder ladder = Ladder.from(new LadderGenerator(new Width(5), new Height(4)));
+        Ladder ladder = new LadderGenerator(new Width(5), new Height(4)).generateLadder();
         int startPosition = 0;
         assertThatNoException()
                 .isThrownBy(() -> ladder.getEndPosition(startPosition));
@@ -16,7 +16,7 @@ class LadderTest {
 
     @Test
     public void 도착점_구하기_fail() {
-        Ladder ladder = Ladder.from(new LadderGenerator(new Width(5), new Height(4)));
+        Ladder ladder = new LadderGenerator(new Width(5), new Height(4)).generateLadder();
         int startPoint = 6;
         assertThatThrownBy(() -> ladder.getEndPosition(startPoint))
                 .isInstanceOf(IllegalArgumentException.class)

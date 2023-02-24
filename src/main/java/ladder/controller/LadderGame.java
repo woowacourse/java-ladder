@@ -86,7 +86,7 @@ public class LadderGame {
         Height height = new Height(inputView.inputHeight());
         Width width = new Width(getWidthSize(playersSize));
         LadderGenerator ladderGenerator = new LadderGenerator(width, height);
-        return Ladder.from(ladderGenerator);
+        return ladderGenerator.generateLadder();
     }
 
     private int getWidthSize(int playersSize) {
