@@ -18,9 +18,8 @@ public class LadderGame {
         return new Ladder(names.getNames().size(), height, new RandomConnectionGenerator());
     }
 
-    public GameResult createResult(final Ladder ladder) {
-        Map<String, String> gameResult = ladder.matchResult(names.getNames(), results.getResults());
-        return new GameResult(gameResult);
+    public Map<String, String> createResult(final Ladder ladder) {
+        return ladder.matchResult(names.getNames(), results.getResults());
     }
 
     public Names getNames() {

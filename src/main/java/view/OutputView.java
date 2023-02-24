@@ -128,14 +128,21 @@ public class OutputView {
         return resultOutput;
     }
 
-    public static void printResult(final String inputName, final String result, final Map<String, String> gameResult) {
+    public static void printResult(final String inputName, final Map<String, String> gameResult) {
         System.out.println(NEW_LINE + "실행 결과");
+        validateExistingName(inputName, gameResult);
 
         if (inputName.equals("all")) {
             makeAllNameAndResult(gameResult);
             return;
         }
-        System.out.println(result);
+        System.out.println(gameResult.get(inputName));
+    }
+
+    private static void validateExistingName(final String name, final Map<String, String> gameResult) {
+        if (!(name.equals("all") || gameResult.containsKey(name))) {
+            throw new IllegalArgumentException("해당 되는 이름을 가진 사람은 참여하지 않았습니다.");
+        }
     }
 
     private static void makeAllNameAndResult(final Map<String, String> gameResult) {
