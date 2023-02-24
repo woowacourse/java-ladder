@@ -104,7 +104,9 @@ public class LadderController {
         int numberOfLine = numberOfWalls - 1;
 
         for (int i = 0; i < height.getHeight(); i++) {
-            lines.add(new Line(numberOfLine, lineGenerator));
+            Line line = new Line(new ArrayList<>(), lineGenerator);
+            line.addStatus(numberOfLine);
+            lines.add(line);
         }
 
         return new Lines(lines);
