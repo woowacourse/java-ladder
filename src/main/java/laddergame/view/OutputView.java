@@ -4,6 +4,7 @@ import laddergame.domain.Line;
 import laddergame.domain.Point;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -19,6 +20,8 @@ public class OutputView {
     private static final String RESULT_INFO_MSG = "실행 결과";
     private static final String PLAYER_NAME_FORMAT = "%" + NAME_SPACING + "s";
     private static final String LADDER_FORMAT = "%s|";
+    private static final String RESULT_FORMAT = "%s : %s";
+
 
     private OutputView() {
     }
@@ -36,11 +39,8 @@ public class OutputView {
     }
 
     public static void printLadderResultMsg() {
+        System.out.println();
         System.out.println(LADDER_RESULT_MSG);
-    }
-
-    public static void printResultInfoMsg() {
-        System.out.println(RESULT_INFO_MSG);
     }
 
     public static void printPlayerNames(List<String> playerNames) {
@@ -71,7 +71,21 @@ public class OutputView {
     }
 
     public static void printPlayerNameForResult() {
+        System.out.println();
+        System.out.println(RESULT_INFO_MSG);
         System.out.println(PLAYER_NAME_FOR_RESULT_REQUEST_MSG);
+    }
+
+    public static void printLadderGameAllResult(Map<String, String> result) {
+        System.out.println();
+        System.out.println(RESULT_INFO_MSG);
+        result.keySet().forEach((key) ->
+                System.out.println(String.format(RESULT_FORMAT, key, result.get(key)))
+        );
+    }
+
+    public static void printLadderGameResult(String result) {
+        System.out.println(result);
     }
 
     public static void printErrorMsg(String errorMessage) {

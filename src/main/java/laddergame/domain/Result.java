@@ -22,11 +22,18 @@ public class Result {
         return result;
     }
 
-    public Map<String, String> getAllResults() {
-        return result;
+    public String getResult(String playerName) {
+        hasPlayerName(playerName);
+        return result.get(playerName);
     }
 
-    public String getResult(String playerName) {
-        return result.get(playerName);
+    private void hasPlayerName(String playerName) {
+        if (!result.containsKey(playerName)) {
+            throw new IllegalArgumentException("[ERROR] 해당하는 플레이어 이름이 없습니다. 재입력해주세요.");
+        }
+    }
+
+    public Map<String, String> getAllResults() {
+        return result;
     }
 }
