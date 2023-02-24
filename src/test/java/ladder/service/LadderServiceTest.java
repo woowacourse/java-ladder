@@ -42,11 +42,12 @@ class LadderServiceTest {
     @DisplayName("사다리가 정상적으로 생성되어야 한다.")
     void createLadder_success() {
         // given
-        Height height = new Height(26);
+        Players players = createPlayers(13);
+        Height height = new Height(26, players);
         ladderService = new LadderService(new RandomLineStrategy());
 
         // when
-        Ladder ladder = ladderService.createLadder(height, createPlayers(13));
+        Ladder ladder = ladderService.createLadder(height, players);
 
         // then
         assertThat(ladder.getLines())
@@ -72,7 +73,8 @@ class LadderServiceTest {
     void createPlayerResults_success() {
         // given
         Players players = createPlayers("glen", "pobi", "bero");
-        Ladder ladder = ladderService.createLadder(new Height(5), players);
+        Height height = new Height(5, players);
+        Ladder ladder = ladderService.createLadder(height, players);
         Prizes prizes = new Prizes(createPrizes("1000", "꽝", "5000"), players);
 
         // when

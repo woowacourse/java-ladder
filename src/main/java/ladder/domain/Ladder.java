@@ -4,13 +4,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private static final int MAX_HEIGHT_RATIO = 2;
-
     private final List<Line> lines;
 
     public Ladder(List<Line> lines, Players players) {
         validateLinesWidth(lines, players.getPlayersCount());
-        validatePlayersCount(lines.size(), players.getPlayersCount());
         this.lines = lines;
     }
 
@@ -24,16 +21,6 @@ public class Ladder {
         if (line.getWidth() != playerCount) {
             throw new IllegalArgumentException("[ERROR] 사다리의 너비는 사람의 수와 같아야 합니다.");
         }
-    }
-
-    private void validatePlayersCount(int height, int playersCount) {
-        if (isProperRange(height, playersCount)) {
-            throw new IllegalArgumentException("[ERROR] 사다리의 높이는 사람 수보다 크거나, 사람 수의 두 배 보다 작아야 합니다.");
-        }
-    }
-
-    private boolean isProperRange(int height, int playersCount) {
-        return playersCount * MAX_HEIGHT_RATIO < height || height < playersCount;
     }
 
     public int getLadderIndexResult(int index) {

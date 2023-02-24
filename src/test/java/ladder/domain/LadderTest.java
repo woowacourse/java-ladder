@@ -13,30 +13,6 @@ import org.junit.jupiter.api.Test;
 class LadderTest {
 
     @Test
-    @DisplayName("입력된 사다리의 높이가 인원 수보다 작으면 예외가 발생한다.")
-    void create_heightMinPlayersCount() {
-        // given
-        int height = 3;
-
-        // expect
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Ladder(createLines(height,12), createPlayers(12));
-        }).withMessage("[ERROR] 사다리의 높이는 사람 수보다 크거나, 사람 수의 두 배 보다 작아야 합니다.");
-    }
-
-    @Test
-    @DisplayName("입력된 사다리의 높이가 인원 수의 2배보다 크면 예외가 발생한다.")
-    void create_heightMaxPlayersCount() {
-        // given
-        int height = 10;
-
-        // expect
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Ladder(createLines(height, 3), createPlayers(3));
-        }).withMessage("[ERROR] 사다리의 높이는 사람 수보다 크거나, 사람 수의 두 배 보다 작아야 합니다.");
-    }
-
-    @Test
     @DisplayName("사다리가 정상적으로 생성되어야 한다.")
     void create_success() {
         // expect
