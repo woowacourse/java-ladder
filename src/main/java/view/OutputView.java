@@ -75,7 +75,7 @@ public class OutputView {
     }
 
     private static void printScaffold(final Scaffold scaffold) {
-        if (scaffold.getStatus()) {
+        if (scaffold.isExist()) {
             System.out.print(EXIST_SCAFFOLD_MATERIAL.repeat(BLOCK_SIZE_EXCEPT_DELIMITER));
             System.out.print(BAR);
             return;

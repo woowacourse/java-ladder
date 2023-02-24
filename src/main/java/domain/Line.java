@@ -73,11 +73,11 @@ public class Line {
     }
 
     private boolean isLeftMovable(final int position) {
-        return position > 0 && scaffolds.get(position - 1).equals(Scaffold.EXIST);
+        return position > 0 && scaffolds.get(position - 1).isExist();
     }
 
     private boolean isRightMovable(final int position) {
-        return position > scaffolds.size() && scaffolds.get(position).equals(Scaffold.EXIST);
+        return position < scaffolds.size() && scaffolds.get(position).isExist();
     }
 
     public int size() {
