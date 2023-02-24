@@ -47,7 +47,7 @@ public class GameTest {
     void getGamePrizeTest(String input, String prize) {
         Game game = new Game(names, goal, ladder, gameStrategy);
         Names names = new Names("pobi,honux,crong");
-        Assertions.assertThat(game.getPrizeIndividualPlayer(new Player(names, input))).isEqualTo(prize);
+        Assertions.assertThat(game.getPrizeIndividualWinner(new Winner(names, input))).isEqualTo(prize);
     }
 
     @Test
@@ -55,6 +55,6 @@ public class GameTest {
     void getGamePrizeAllTest() {
         Game game = new Game(names, goal, ladder, gameStrategy);
 
-        Assertions.assertThatNoException().isThrownBy(() -> game.getPrizePlayers());
+        Assertions.assertThatNoException().isThrownBy(() -> game.getPrizeWinners());
     }
 }

@@ -27,7 +27,7 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public String readPlayerResult() {
+    public String readWinnerResult() {
         return scanner.nextLine();
     }
 }

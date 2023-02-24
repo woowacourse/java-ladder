@@ -12,7 +12,7 @@ public class OutputView {
     private static final String PLAYER_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String EXECUTION_GOAL_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
-    private static final String PLAYER_RESULT_MESSAGE = "결과를 보고 싶은 사람은?";
+    private static final String WINNER_RESULT_MESSAGE = "결과를 보고 싶은 사람은?";
     private static final String LADDER_RESULT = "사다리 결과";
     private static final String EXECUTION_RESULT = "실행 결과";
     private static final int MAXIMUM_PLAYER_NAME_SPACE = 5;
@@ -31,11 +31,11 @@ public class OutputView {
         System.out.println(System.lineSeparator() + LADDER_HEIGHT_MESSAGE);
     }
 
-    public void printPlayerResultMessage() {
-        System.out.println(System.lineSeparator() + PLAYER_RESULT_MESSAGE);
+    public void printWinnerResultMessage() {
+        System.out.println(System.lineSeparator() + WINNER_RESULT_MESSAGE);
     }
 
-    public void printPlayerExecutionResultMessage() {
+    public void printWinnerExecutionResultMessage() {
         System.out.println(System.lineSeparator() + EXECUTION_RESULT);
     }
 
@@ -83,11 +83,11 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printPlayerGameResult(String player) {
+    public void printWinnerGameResult(String player) {
         System.out.println(player);
     }
 
-    public void printPlayerGameEndResult(Map<Name, Goal> prizeResult) {
+    public void printWinnerGameAllResult(Map<Name, Goal> prizeResult) {
         stringBuilder = new StringBuilder();
         for (Name name : prizeResult.keySet()) {
             stringBuilder.append(name.getName())

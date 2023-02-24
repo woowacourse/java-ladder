@@ -22,11 +22,11 @@ public class Game {
         return prizeResult;
     }
 
-    public String getPrizeIndividualPlayer(Player name) {
-        return prizeResult.get(new Name(name.getPlayer())).getGoal();
+    public String getPrizeIndividualWinner(Winner name) {
+        return prizeResult.get(new Name(name.getWinner())).getGoal();
     }
 
-    public Map<Name, Goal> getPrizePlayers() {
+    public Map<Name, Goal> getPrizeWinners() {
         return Collections.unmodifiableMap(prizeResult);
     }
 }

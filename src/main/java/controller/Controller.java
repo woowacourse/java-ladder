@@ -2,7 +2,7 @@ package controller;
 
 import model.*;
 import model.LadderHeight;
-import model.Player;
+import model.Winner;
 import util.GameStrategy;
 import util.LadderGameStrategy;
 import util.LineGenerator;
@@ -68,30 +68,30 @@ public class Controller {
     }
 
     private void playLadderGame(Game game, Names names) {
-        Player playerName;
+        Winner winnerName;
         do {
-            playerName = setPlayer(names);
-            outputView.printPlayerExecutionResultMessage();
-            printPlayerResult(playerName, game);
+            winnerName = setWinner(names);
+            outputView.printWinnerExecutionResultMessage();
+            printWinnerResult(winnerName, game);
         }
-        while (!playerName.isEqualEndMessage(playerName));
+        while (!winnerName.isAllEndWinner());
     }
 
-    private Player setPlayer(Names names) {
-        outputView.printPlayerResultMessage();
+    private Winner setWinner(Names names) {
+        outputView.printWinnerResultMessage();
         try {
-            return new Player(names, inputView.readPlayerResult());
+            return new Winner(names, inputView.readWinnerResult());
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return setPlayer(names);
+            return setWinner(names);
         }
     }
 
-    private void printPlayerResult(Player player, Game game) {
-        if (player.isExistPlayer(player)) {
-            outputView.printPlayerGameResult(game.getPrizeIndividualPlayer(player));
+    private void printWinnerResult(Winner winner, Game game) {
+        if (winner.isAllEndWinner()) {
+            outputView.printWinnerGameAllResult(game.getPrizeWinners());
             return;
         }
-        outputView.printPlayerGameEndResult(game.getPrizePlayers());
+        outputView.printWinnerGameResult(game.getPrizeIndividualWinner(winner));
     }
 }
