@@ -41,11 +41,11 @@ public class LadderGame {
         moveLeft(line, position);
     }
 
-    public int getResultIndex(String name){
+    public int getResultIndex(String name) {
         int playerIndex = players.getOrder(name);
         Position position = new Position(playerIndex);
-        for(Line line: ladder.getLines()){
-            move(line,position);
+        for (Line line : ladder.getLines()) {
+            move(line, position);
         }
         return position.getIndex();
     }
@@ -54,4 +54,5 @@ public class LadderGame {
         return players.getNames().stream()
                 .map(this::getResultIndex).collect(Collectors.toList());
     }
+
 }

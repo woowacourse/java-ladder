@@ -35,4 +35,5 @@ public class Ladder {
     public boolean isExist(int heightIndex, int widthIndex) {
         return lines.get(heightIndex).getPoints().get(widthIndex);
     }
+
 }

@@ -19,7 +19,7 @@ public class InputView {
         return readCsv();
     }
 
-    public String readCheckPlayer(){
+    public String readCheckPlayer() {
         System.out.println(RESULT_OF_PLAYER_CHECK_NOTICE);
         return readInput();
     }
@@ -48,6 +48,5 @@ public class InputView {
             throw new IllegalArgumentException(NOT_INTEGER_MESSAGE);
         }
     }
-
 
 }

@@ -18,4 +18,5 @@ public class Position {
     public int getIndex() {
         return index;
     }
+
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import domain.Line;
 import domain.Name;
 import domain.Players;
-import domain.Prizes;
 
 public class OutputView {
     private static final String BRIDGE = "-----";
@@ -24,10 +23,10 @@ public class OutputView {
         System.out.println(prize);
     }
 
-    public void printAllPlayerResult(Players players, List<String> resultPrizes) {
+    public void printAllPlayerResult(Players players, List<Integer> resultPrizes) {
         System.out.println(LADDER_RESULT);
         for (int i = 0; i < players.getCount(); i++) {
-            System.out.println("" + players.getNames().get(i) + " : " +  resultPrizes.get(i));
+            System.out.println("" + players.getNames().get(i) + " : " + resultPrizes.get(i));
         }
     }
 
