@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Participant {
 
     private final ParticipantName participantName;
-    private final ParticipantPosition participantPosition;
+    private ParticipantPosition participantPosition;
 
     private Participant(final String name, final int position) {
         this.participantName = ParticipantName.create(name);
@@ -18,6 +18,14 @@ public class Participant {
 
     public boolean isSameName(final String name) {
         return participantName.isSameName(name);
+    }
+
+    public void moveToTheRight() {
+        participantPosition = participantPosition.increase();
+    }
+
+    public void moveToTheLeft() {
+        participantPosition = participantPosition.decrease();
     }
 
     @Override
@@ -42,5 +50,9 @@ public class Participant {
 
     public String getName() {
         return participantName.getName();
+    }
+
+    public int getParticipantPosition() {
+        return participantPosition.getPosition();
     }
 }
