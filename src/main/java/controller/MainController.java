@@ -38,7 +38,7 @@ public class MainController {
     }
 
     private void displayResult(LadderGame ladderGame) {
-        boolean isRepeatable = Boolean.TRUE;
+        boolean isRepeatable = true;
         while (isRepeatable) {
             isRepeatable = printResult(ladderGame);
         }
