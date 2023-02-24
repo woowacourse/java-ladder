@@ -37,7 +37,7 @@ public class OutputView {
 
         for (User user : users.getUsers()) {
             System.out.print(BLANK_SPACE.repeat(ONE_BLOCK_SIZE - calculateBlank(user)));
-            System.out.printf("%s", user.getName());
+            System.out.printf("%s", user.getName().getValue());
         }
     }
 
@@ -94,7 +94,7 @@ public class OutputView {
             System.out.println("없는 유저 이름입니다.");
             return;
         }
-        System.out.println(prizeName);
+        System.out.println(prizeName.getValue());
         System.out.println();
     }
 
