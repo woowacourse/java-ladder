@@ -1,7 +1,5 @@
 package ladder.view.util;
 
-import ladder.validator.CommonValidator;
-
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,10 +11,6 @@ public class InputValidator {
         if (!namesList.contains(inputWantGameResults) && !inputWantGameResults.equals("all")) {
             throw new IllegalArgumentException("해당하는 이름이 존재하지 않습니다.");
         }
-    }
-
-    public static void validateBlank(String input) {
-        CommonValidator.validateBlank(input);
     }
 
     public static void validateNonNumber(String ladderHeight) {
