@@ -5,25 +5,18 @@ import domain.generator.BooleanGenerator;
 public enum LadderStep {
     EXISTS, NONE;
 
-    public static LadderStep from(boolean isExist) {
-        if (isExist) {
-            return EXISTS;
-        }
-        return NONE;
-    }
-
-    public static LadderStep by(BooleanGenerator ladderGenerator) {
+    public static LadderStep of(BooleanGenerator ladderGenerator) {
         if (ladderGenerator.generate()) {
             return EXISTS;
         }
         return NONE;
     }
 
-    public static LadderStep of(LadderStep previousStep, BooleanGenerator generator) {
+    public static LadderStep of(BooleanGenerator generator, LadderStep previousStep) {
         if (previousStep.equals(EXISTS)) {
             return NONE;
         }
-        return LadderStep.by(generator);
+        return LadderStep.of(generator);
     }
 
     public boolean exists() {
