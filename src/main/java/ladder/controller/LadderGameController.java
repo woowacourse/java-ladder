@@ -27,7 +27,7 @@ public class LadderGameController {
         this.booleanGenerator = booleanGenerator;
     }
 
-    public void play() {
+    public void run() {
         Players players = inputPlayers();
         Items items = inputItems(players);
         Ladder ladder = inputLadder(players);
@@ -46,9 +46,8 @@ public class LadderGameController {
 
     private void play(LadderGame ladderGame, Players players) {
         GameResult gameResult = ladderGame.play();
-        String name = "";
         while (command.isPlay()) {
-            name = inputView.readName();
+            String name = inputView.readName();
             command = GameCommand.of(name);
             printResult(players, gameResult, name);
         }

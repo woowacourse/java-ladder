@@ -11,6 +11,6 @@ public class Application {
                 new InputView(),
                 new OutputView(),
                 new RandomBooleanGenerator());
-        ladderGameController.play();
+        ladderGameController.run();
     }
 }
