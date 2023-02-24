@@ -7,7 +7,7 @@ import org.junit.jupiter.api.RepeatedTest;
 
 import ladder.util.RandomBooleanGenerator;
 
-class LadderTest {
+class LadderMakerTest {
     @RepeatedTest(100)
     @DisplayName("사다리에 가로 줄이 하나도 없는 경우는 없다.")
     void ladderTest() {
