@@ -58,6 +58,18 @@ public class LineTest {
         assertThat(actualRungs).isEqualTo(expectedRungs);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3, 4})
+    @DisplayName("사다리 가로대 존재 여부를 반환하는지 확인한다.")
+    void returns_true_if_rung_exists_input_index(int inputIndex) {
+        int rungCount = 5;
+        Line line = Line.create(rungCount, rungBooleanGenerator);
+        List<Rung> rungs = line.getRungs();
+        Rung rung = rungs.get(inputIndex);
+
+        assertThat(line.hasRung(inputIndex)).isEqualTo(rung.exists());
+    }
+
     private static Stream<Arguments> getTestRungsWithBooleanGenerator() {
         final BooleanGenerator sufficientMaterialGenerator = () -> true;
         final BooleanGenerator insufficientMaterialGenerator = () -> false;

@@ -20,6 +20,11 @@ public class Line {
         return new Line(rungCount, rungBooleanGenerator);
     }
 
+    public boolean hasRung(final int index) {
+        Rung rung = rungs.get(index);
+        return rung.exists();
+    }
+
     private List<Rung> makeRungs(final int rungCount) {
         List<Rung> rungs = new ArrayList<>();
         Rung firstRung = Rung.create(rungBooleanGenerator.generate());
