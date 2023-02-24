@@ -28,14 +28,22 @@ public class Line {
     }
 
     public boolean canMoveLeft(Position position) {
-        return position.getValue() > 0;
+        return position.getValue() > 0 && leftStepExists(position);
     }
 
     public boolean canMoveRight(Position position) {
-        return position.getValue() < line.size();
+        return position.getValue() < line.size() && rightStepExists(position);
     }
 
-    public boolean isExists(int index) {
+    private boolean leftStepExists(Position position) {
+        return isExists(position.getValue() - 1);
+    }
+
+    private boolean rightStepExists(Position position) {
+        return isExists(position.getValue());
+    }
+
+    private boolean isExists(int index) {
         return line.get(index).exists();
     }
 }

@@ -1,6 +1,7 @@
 package domain.ladder;
 
 import domain.generator.BooleanGenerator;
+import domain.player.Position;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,11 +20,11 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public int getExitPosition(int entranceIndex) {
-        int index = entranceIndex;
+    public Position findFinalPosition(Position initialPosition) {
+        Position position = initialPosition;
         for (Line line : lines) {
-            index = line.getNextStepIndex(index);
+            position = position.findNextPosition(position, line);
         }
-        return index;
+        return position;
     }
 }

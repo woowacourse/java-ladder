@@ -12,10 +12,10 @@ public class Position {
     }
 
     public Position findNextPosition(Position position, Line line) {
-        if (line.canMoveLeft(position) && line.isExists(position.value - 1)) {
+        if (line.canMoveLeft(position)) {
             return Movement.GO_LEFT.move(position);
         }
-        if (line.canMoveRight(position) && line.isExists(position.value)) {
+        if (line.canMoveRight(position)) {
             return Movement.GO_RIGHT.move(position);
         }
         return Movement.STAY.move(position);
