@@ -16,7 +16,7 @@ public class InputValidator {
     }
 
     public static void validateBlank(String input) {
-        CommonValidator.validate(input);
+        CommonValidator.validateBlank(input);
     }
 
     public static void validateNonNumber(String ladderHeight) {
