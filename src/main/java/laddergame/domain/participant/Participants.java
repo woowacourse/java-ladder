@@ -59,9 +59,12 @@ public class Participants {
     }
 
     private List<Participant> makeParticipants(final List<String> participantNames) {
-        return participantNames.stream()
-                .map(Participant::create)
-                .collect(Collectors.toUnmodifiableList());
+        List<Participant> participants = new ArrayList<>();
+        for (int index = 0; index < participantNames.size(); index++) {
+            String participantName = participantNames.get(index);
+            participants.add(Participant.create(participantName, index));
+        }
+        return List.copyOf(participants);
     }
 
     public List<Participant> getParticipants() {

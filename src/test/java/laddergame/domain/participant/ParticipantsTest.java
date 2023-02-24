@@ -53,11 +53,12 @@ public class ParticipantsTest {
     @DisplayName("참여자 찾기 테스트")
     class FindParticipantsTest {
 
+        private String participantNames;
         private Participants participants;
 
         @BeforeEach
         void setUp() {
-            final String participantNames = "pobi,honux,crong,jk";
+            participantNames = "pobi,honux,crong,jk";
             participants = Participants.create(participantNames);
         }
 
@@ -65,7 +66,8 @@ public class ParticipantsTest {
         @ValueSource(strings = {"pobi", "honux", "crong", "jk"})
         @DisplayName("요청된 내용이 참여자에 포함되면, 참여자가 담긴 컬렉션을 얻는다.")
         void gets_some_participants_if_request_content_is_included_in_participants(String requestContent) {
-            Participant expectedParticipant = Participant.create(requestContent);
+            int participantPosition = participantNames.indexOf("requestContent");
+            Participant expectedParticipant = Participant.create(requestContent, participantPosition);
 
             List<Participant> actualParticipant = participants.findParticipants(requestContent);
 

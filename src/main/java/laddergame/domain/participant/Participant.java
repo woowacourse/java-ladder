@@ -5,13 +5,15 @@ import java.util.Objects;
 public class Participant {
 
     private final ParticipantName participantName;
+    private final ParticipantPosition participantPosition;
 
-    private Participant(final String name) {
+    private Participant(final String name, final int position) {
         this.participantName = ParticipantName.create(name);
+        this.participantPosition = new ParticipantPosition(position);
     }
 
-    public static Participant create(final String name) {
-        return new Participant(name);
+    public static Participant create(final String name, final int position) {
+        return new Participant(name, position);
     }
 
     public boolean isSameName(final String name) {
