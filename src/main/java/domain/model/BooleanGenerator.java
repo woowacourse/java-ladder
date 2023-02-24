@@ -1,7 +1,7 @@
 package domain.model;
 
 @FunctionalInterface
-public interface PassGenerator {
+public interface BooleanGenerator {
 
     boolean generate();
 }
