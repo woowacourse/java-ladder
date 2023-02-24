@@ -18,7 +18,7 @@ public class Winner {
         }
     }
 
-    public boolean isAllEndWinner(){
+    public boolean isAllEndWinner() {
         return this.winner.equals(END_MESSAGE);
     }
 

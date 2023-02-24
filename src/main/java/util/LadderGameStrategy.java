@@ -5,19 +5,19 @@ import model.Ladder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LadderGameStrategy implements GameStrategy{
+public class LadderGameStrategy implements GameStrategy {
     private static final int MOVE_LADDER = 1;
     private final Map<Integer, Integer> prizeResult = new HashMap<>();
 
     @Override
-    public Map<Integer,Integer> playGame(Ladder ladder) {
-        int personCount = ladder.getLadderLineSize(0)+1;
-        for(int i=0; i<personCount; i++){
+    public Map<Integer, Integer> playGame(Ladder ladder) {
+        int personCount = ladder.getLadderLineSize(0) + 1;
+        for (int i = 0; i < personCount; i++) {
             int startPlayerIndex = i;
             int resultIndex = moveLadder(personCount, ladder.getLadderSize(),
                     ladder,
                     startPlayerIndex);
-            prizeResult.put(startPlayerIndex,resultIndex);
+            prizeResult.put(startPlayerIndex, resultIndex);
         }
         return prizeResult;
     }
@@ -40,11 +40,11 @@ public class LadderGameStrategy implements GameStrategy{
 
     private boolean checkMoveLeftLadder(int column, int row, Ladder ladder) {
         int leftLadderLine = column - 1;
-        return column >= 1 && ladder.getLadderLine(leftLadderLine, row);
+        return column >= 1 && ladder.existLadderLine(leftLadderLine, row);
     }
 
     private boolean checkMoveRightLadder(int column, int row, Ladder ladder, int personCount) {
-        int ladderLineNum = personCount -1;
-        return column < ladderLineNum && ladder.getLadderLine(column,row);
+        int ladderLineNum = personCount - 1;
+        return column < ladderLineNum && ladder.existLadderLine(column, row);
     }
 }

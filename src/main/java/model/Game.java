@@ -14,11 +14,9 @@ public class Game {
                 names, goal);
     }
 
-    private Map<Name, Goal> convertPrize(Map<Integer,Integer> prize, Names names, LadderGoal goal){
-        prize.forEach((key,value) -> {
-            prizeResult.put(names.getNames().get(key),
-                    goal.getLadderGoal().get(value));
-        });
+    private Map<Name, Goal> convertPrize(Map<Integer, Integer> prize, Names names, LadderGoal goal) {
+        prize.forEach((key, value) -> prizeResult.put(names.getNames().get(key),
+                goal.getLadderGoal().get(value)));
         return prizeResult;
     }
 

@@ -1,10 +1,7 @@
 package view;
 
-import model.*;
 import message.LadderPrintMessage;
-import model.LadderHeight;
-import model.Name;
-import model.Goal;
+import model.*;
 
 import java.util.Map;
 
@@ -71,7 +68,7 @@ public class OutputView {
     }
 
     private void printLineBetweenLadder(Ladder ladder, int row, int column) {
-        if (ladder.getLadderLine(column, row)) {
+        if (ladder.existLadderLine(column, row)) {
             stringBuilder.append(LadderPrintMessage.CONNECT_LADDER.getMessage());
         } else
             stringBuilder.append(LadderPrintMessage.NO_CONNECT_LADDER.getMessage());

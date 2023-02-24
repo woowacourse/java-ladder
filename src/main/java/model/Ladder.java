@@ -18,15 +18,15 @@ public class Ladder {
         return new Line(personCount, generator);
     }
 
-    public boolean getLadderLine(int column, int row) {
+    public boolean existLadderLine(int column, int row) {
         return ladder.get(row).getLine(column);
     }
 
-    public int getLadderSize(){
+    public int getLadderSize() {
         return ladder.size();
     }
 
-    public int getLadderLineSize(int row){
+    public int getLadderLineSize(int row) {
         return ladder.get(row).getLineSize();
     }
 }

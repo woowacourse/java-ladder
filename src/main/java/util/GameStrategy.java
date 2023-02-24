@@ -1,9 +1,9 @@
 package util;
 
-import model.*;
+import model.Ladder;
 
 import java.util.Map;
 
 public interface GameStrategy {
-    Map<Integer,Integer> playGame(Ladder ladder);
+    Map<Integer, Integer> playGame(Ladder ladder);
 }

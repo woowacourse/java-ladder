@@ -1,7 +1,7 @@
 package model;
 
-import util.Generator;
 import model.type.Status;
+import util.Generator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +15,9 @@ public class Line {
             makeLine(column, generator);
         }
     }
-    private void makeLine(int column, Generator generator){
-        if(points.size() >= MINIMUM_LINE_SIZE && validateContinuousLine(column)){
+
+    private void makeLine(int column, Generator generator) {
+        if (points.size() >= MINIMUM_LINE_SIZE && validateContinuousLine(column)) {
             points.add(Status.BRIDGE_DOES_NOT_EXIST);
             return;
         }
@@ -24,7 +25,7 @@ public class Line {
     }
 
     private boolean validateContinuousLine(int index) {
-        return points.get(index-1).getStatus();
+        return points.get(index - 1).getStatus();
     }
 
     public boolean getLine(int column) {

@@ -1,7 +1,10 @@
 package controller;
 
-import model.*;
+import model.Game;
+import model.LadderGoal;
 import model.LadderHeight;
+import model.Names;
+import model.Ladder;
 import model.Winner;
 import util.GameStrategy;
 import util.LadderGameStrategy;
@@ -10,9 +13,9 @@ import view.InputView;
 import view.OutputView;
 
 public class Controller {
-    private InputView inputView;
-    private OutputView outputView;
-    private GameStrategy gameStrategy = new LadderGameStrategy();
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final GameStrategy gameStrategy = new LadderGameStrategy();
 
     public Controller(InputView inputView, OutputView outputView) {
         this.inputView = inputView;

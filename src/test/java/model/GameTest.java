@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import util.GameStrategy;
-import util.LadderGameStrategy;
 import util.LineGenerator;
 
 import java.util.ArrayList;
@@ -27,8 +26,8 @@ public class GameTest {
     void beforeEach() {
         names = new Names("pobi,honux,crong");
         goal = new LadderGoal("꽝,10000,꽝", names.getNamesSize());
-        height = new LadderHeight(2);
-        randomLine = new ArrayList<>(List.of(false, true, false, false));
+        height = new LadderHeight(1);
+        randomLine = new ArrayList<>(List.of(false, false));
         ladder = new Ladder(names.getNamesSize(), height,
                 new LineTest.TestLineGenerator(randomLine));
         gameStrategy = new TestLadderGameStrategy(ladder);
@@ -69,9 +68,9 @@ public class GameTest {
 
         @Override
         public Map<Integer, Integer> playGame(Ladder ladder) {
-            int personCount = ladder.getLadderLineSize(0)+1;
-            for(int index=0; index<personCount; index++){
-                prizeResult.put(index,index);
+            int personCount = ladder.getLadderLineSize(0) + 1;
+            for (int index = 0; index < personCount; index++) {
+                prizeResult.put(index, index);
             }
             return prizeResult;
         }

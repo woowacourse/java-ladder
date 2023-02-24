@@ -27,7 +27,7 @@ public class WinnerTest {
     }
 
     @Test
-    @DisplayName("결과 대상자 all 입력 테스트")
+    @DisplayName("결과 대상자 all 입력 성공 테스트")
     void checkAllEndWinnerTest(){
         Winner winner = new Winner(new Names("pobi"), "all");
         Assertions.assertThat(winner.isAllEndWinner()).isTrue();
