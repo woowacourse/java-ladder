@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class PlayerNameTest {
@@ -32,7 +33,13 @@ class PlayerNameTest {
     @CsvSource(value = {"abel, 4", "a, 1"})
     @DisplayName("해당 플레이어 이름의 길이를 반환한다.")
     void getLength(String inputPlayerName, int playerNameLength) {
+        // given
         PlayerName playerName = new PlayerName(inputPlayerName);
-        Assertions.assertThat(playerName.getLength()).isEqualTo(playerNameLength);
+        
+        // when
+        int actualPlayerNameLength = playerName.getLength();
+        
+        // then
+        assertThat(actualPlayerNameLength).isEqualTo(playerNameLength);
     }
 }

@@ -22,26 +22,42 @@ class PlayerNamesTest {
     @Test
     @DisplayName("입력받은 이름들을 ,를 기준으로 나눈다.")
     void test_1() {
-        assertThat(playerNames.getNames())
+        // given, when
+        List<PlayerName> names = playerNames.getNames();
+        
+        // then
+        assertThat(names)
                 .containsExactly( new PlayerName("abel"), new PlayerName("chech"), new PlayerName("pobi"));
     }
     
     @Test
     @DisplayName("플레이어 명수를 가져온다.")
     void playerSize() {
-        assertThat(playerNames.playerSize()).isEqualTo(3);
+        // given, when
+        int playerSize = playerNames.playerSize();
+        
+        // then
+        assertThat(playerSize).isEqualTo(3);
     }
     
     @Test
     @DisplayName("해당 플레이어 인덱스를 가져온다.")
     void getPlayerIndex() {
-        assertThat(playerNames.getPlayerIndex("pobi")).isEqualTo(2);
+        // given, when
+        int playerIndex = playerNames.getPlayerIndex("pobi");
+        
+        // then
+        assertThat(playerIndex).isEqualTo(2);
     }
     
     @Test
     @DisplayName("첫번째 플레이어의 글자 길이를 가져온다.")
     void getFirstPlayerNameLength() {
-        assertThat(playerNames.getFirstPlayerNameLength()).isEqualTo(4);
+        // given, when
+        int firstPlayerNameLength = playerNames.getFirstPlayerNameLength();
+        
+        // then
+        assertThat(firstPlayerNameLength).isEqualTo(4);
     }
     
     @ParameterizedTest
@@ -64,8 +80,10 @@ class PlayerNamesTest {
     @Test
     @DisplayName("플레이어 이름 개수가 2미만일 시 예외가 발생한다.")
     void test_3() {
+        // given
         List<PlayerName> playerNames = List.of(new PlayerName("abel"));
         
+        // when, then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new PlayerNames(playerNames))
                 .withMessage("이름의 수가 2이상 100이하여야 합니다.");
@@ -74,8 +92,10 @@ class PlayerNamesTest {
     @Test
     @DisplayName("플레이어 이름이 중복될 시 예외가 발생한다.")
     void test_4() {
+        // given
         List<PlayerName> playerNames = List.of(new PlayerName("abel"), new PlayerName("abel"));
         
+        // when, then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new PlayerNames(playerNames))
                 .withMessage("중복된 이름은 입력할 수 없습니다.");

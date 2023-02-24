@@ -33,16 +33,22 @@ class GameResultsTest {
     @CsvSource(value = {"0, 5000", "1, 꽝", "2, 3000", "3, 꽝"})
     @DisplayName("한 플레이어의 인덱스에 해당하는 실행 결과 가져오기")
     void getOneExecutionResult(int resultPosition, String executionResult) {
+        // given, when
         GameResult gameResult = gameResults.getGameResult(resultPosition, movedPositions);
+        
+        // then
         assertThat(gameResult.getGameResult()).isEqualTo(executionResult);
     }
     
     @Test
     @DisplayName("모든 플레이어의 인덱스에 해당하는 실행 결과 가져오기")
     void getAllExecutionResult() {
+        // given, when
         List<String> sortedGameResults = gameResults.getSortedGameResults(movedPositions).stream()
                 .map(GameResult::getGameResult)
                 .collect(Collectors.toUnmodifiableList());
+        
+        // then
         assertThat(sortedGameResults).isEqualTo(List.of("5000", "꽝", "3000", "꽝"));
     }
     
