@@ -13,7 +13,7 @@ public class LadderGameController {
 
     private List<String> firstUserPositions;
     private List<String> lastUserPositions;
-    private List<String> resultsPositions;
+    private List<String> resultPositions;
 
     public void run() {
         Users users = generateUsers();
@@ -95,7 +95,7 @@ public class LadderGameController {
     private void storeLadderGameResult(final Users users, final Results results, final Ladder ladder) {
         firstUserPositions = users.getUserNames();
         lastUserPositions = calculateLadderGameResult(users, ladder);
-        resultsPositions = results.getResultNames();
+        resultPositions = results.getResultNames();
     }
 
     private List<String> calculateLadderGameResult(final Users users, final Ladder ladder) {
@@ -116,11 +116,23 @@ public class LadderGameController {
             throw new IllegalArgumentException(USER_NAME_NOT_EXISTS_IN_USERS_EXCEPTION.getMessage());
         }
         int index = lastUserPositions.indexOf(name);
-        String result = resultsPositions.get(index);
+        String result = resultPositions.get(index);
         OutputView.printUserResult(result);
     }
 
     private void printAllResult() {
-        OutputView.printAllResult(lastUserPositions, resultsPositions);
+        List<String> swapResultPositions = swapResultPositionsByFirstUserPosition();
+        OutputView.printAllResult(firstUserPositions, swapResultPositions);
+    }
+
+    // 초기 참여자 순서대로 결과를 재배열
+    private List<String> swapResultPositionsByFirstUserPosition() {
+        List<String> swapResultPositions = new ArrayList<>();
+        for (String userName : firstUserPositions) {
+            int firstUserIndex = lastUserPositions.indexOf(userName);
+            String firstUserResultName = resultPositions.get(firstUserIndex);
+            swapResultPositions.add(firstUserResultName);
+        }
+        return swapResultPositions;
     }
 }
