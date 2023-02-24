@@ -51,7 +51,7 @@ public class Ladder {
 
     public int getResult(int index) {
         return floors.stream()
-                .reduce(index, (movedIndex, floors) -> floors.moveUserByPath(movedIndex), (T, R) -> T);
+                .reduce(index, (movedIndex, floor) -> floor.moveUserByPath(movedIndex), (T, U) -> T);
     }
 
     public List<Floor> getFloors() {

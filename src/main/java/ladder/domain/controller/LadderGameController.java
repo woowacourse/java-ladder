@@ -28,7 +28,6 @@ public class LadderGameController {
         Map<String, String> results = calculateAllResult(users, ladder, prizes);
 
         readResults(results);
-
     }
 
     private void readResults(Map<String, String> results) {
