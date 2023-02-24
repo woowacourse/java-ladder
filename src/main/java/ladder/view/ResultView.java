@@ -1,9 +1,10 @@
 package ladder.view;
 
-import ladder.domain.ConnectionStatus;
-import ladder.domain.Line;
+import ladder.domain.ladder.ConnectionStatus;
+import ladder.domain.ladder.Line;
 
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
 
 public class ResultView {
@@ -11,15 +12,18 @@ public class ResultView {
     private static final String SPACE = " ";
     private static final String NAME_DELIMITER = " ";
     private static final String LADDER_DELIMITER = "|";
+    private static final String RESULT_DELIMITER = " ";
+    private static final String RESULT_BY_PLAYER_NAME_DELIMITER = " : ";
     private static final String LINE_START_WITH = "    ";
     private static final String LINE_END_WITH = "|";
     private static final String CONNECTED_MARKER = "-----";
     private static final String DISCONNECTED_MARKER = "     ";
 
-    private static final String EXECUTION_MESSAGE = System.lineSeparator() + "실행결과" + System.lineSeparator();
+    private static final String LADDER_RESULT_MESSAGE = System.lineSeparator() + "사다리 결과" + System.lineSeparator();
+    private static final String EXECUTION_MESSAGE = System.lineSeparator() + "실행 결과";
 
-    public static void printExecutionMessage() {
-        System.out.println(EXECUTION_MESSAGE);
+    public static void printLadderResultMessage() {
+        System.out.println(LADDER_RESULT_MESSAGE);
     }
 
     public static void printPlayerNames(List<String> names) {
@@ -30,11 +34,11 @@ public class ResultView {
         System.out.println(playerNames);
     }
 
-    private static String formatWithSpace(String name) {
-        int nameLength = name.length();
+    private static String formatWithSpace(String target) {
+        int nameLength = target.length();
         int spaceAddCount = 5 - nameLength;
 
-        return SPACE.repeat(spaceAddCount) + name;
+        return SPACE.repeat(spaceAddCount) + target;
     }
 
     public static void printLadder(List<Line> lines) {
@@ -59,6 +63,25 @@ public class ResultView {
         }
         if (connectionStatus.equals(ConnectionStatus.DISCONNECTED)) {
             stringJoiner.add(DISCONNECTED_MARKER);
+        }
+    }
+
+    public static void printRunResults(List<String> results) {
+        StringJoiner resultsForPrint = new StringJoiner(RESULT_DELIMITER);
+        for (String result : results) {
+            resultsForPrint.add(formatWithSpace(result));
+        }
+        System.out.println(resultsForPrint);
+    }
+
+    public static void printOneResult(String result) {
+        System.out.println(EXECUTION_MESSAGE);
+        System.out.println(result);
+    }
+
+    public static void printAllResult(Map<String, String> resultsByPlayerName) {
+        for (String playerName : resultsByPlayerName.keySet()) {
+            System.out.println(playerName + RESULT_BY_PLAYER_NAME_DELIMITER + resultsByPlayerName.get(playerName));
         }
     }
 }

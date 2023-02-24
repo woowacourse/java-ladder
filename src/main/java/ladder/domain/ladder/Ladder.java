@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,14 @@ public class Ladder {
 
     public Ladder(final List<Line> lines) {
         this.lines = new ArrayList<>(lines);
+    }
+
+    public int moveToEnd(int startIndex) {
+        int resultIndex = 0;
+        for (Line line : lines) {
+            resultIndex = line.indicateNextIndex(startIndex);
+        }
+        return resultIndex;
     }
 
     public List<Line> getLines() {

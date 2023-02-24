@@ -12,7 +12,8 @@ public class InputView {
 
     public static List<String> readNames() {
         String rawNames = SCANNER.nextLine();
-        List<String> names = List.of(rawNames.split(DELIMITER));
+        InputViewValidator.validateReadPlayerNames(rawNames);
+        List<String> names = List.of(rawNames.split(DELIMITER, -1));
         InputViewValidator.validateNamesCount(names.size());
         return names;
     }
@@ -21,5 +22,15 @@ public class InputView {
         String rawHeight = SCANNER.nextLine();
         InputViewValidator.validateNumeric(rawHeight);
         return Integer.parseInt(rawHeight);
+    }
+
+    public static List<String> readResults() {
+        String rawResult = SCANNER.nextLine();
+        InputViewValidator.validateReadResults(rawResult);
+        return List.of(rawResult.split(DELIMITER, -1));
+    }
+
+    public static String readPlayerNameToShowResult() {
+        return SCANNER.nextLine();
     }
 }
