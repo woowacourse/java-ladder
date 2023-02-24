@@ -1,7 +1,11 @@
 package ladder.view;
 
 import ladder.domain.Line;
+import ladder.domain.Player;
+import ladder.domain.Players;
 import ladder.domain.Point;
+import ladder.domain.Product;
+import ladder.domain.Products;
 
 import java.util.List;
 import java.util.Map;
@@ -14,11 +18,23 @@ public class OutputView {
     private static final String HORIZON = "-----";
     private static final String NONE = "     ";
 
-    public void showLadderGame(final List<String> players, final List<Line> lines, final List<String> results) {
+    public void showLadderGame(final Players players, final List<Line> lines, final Products products) {
         System.out.println("사다리 결과");
-        printEndLines(players);
+        printEndLines(getPlayersView(players));
         printLadder(lines);
-        printEndLines(results);
+        printEndLines(getProductsView(products));
+    }
+
+    private List<String> getPlayersView(final Players players) {
+        return players.toUnmodifiablePlayers().stream()
+                .map(Player::getName)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private List<String> getProductsView(final Products products) {
+        return products.toUnmodifiableProducts().stream()
+                .map(Product::getName)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private void printLadder(final List<Line> lines) {
@@ -53,9 +69,10 @@ public class OutputView {
         return NONE;
     }
 
-    public void showResult(final Map<String, String> result) {
-        for (String name : result.keySet()) {
-            System.out.println(name + " : " + result.get(name));
+    public void showResult(final Map<Player, Product> result) {
+        for (Player player : result.keySet()) {
+            Product product = result.get(player);
+            System.out.println(player.getName() + " : " + product.getName());
         }
     }
 }
