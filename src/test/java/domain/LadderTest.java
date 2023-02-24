@@ -15,7 +15,6 @@ import java.util.List;
 public class LadderTest {
     private final RandomDigitsGenerator randomDigitsGenerator = new RandomDigitsGenerator();
 
-
     @DisplayName("사다리를 생성한다.")
     @Test
     void create_ladder() {

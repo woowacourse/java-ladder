@@ -45,7 +45,7 @@ public class PlayersTest {
     @DisplayName("플레이어의 인덱스 가져오기")
     @Test
     void getOrder() {
-        Players players = new Players(List.of("a","b","c","d"));
+        Players players = new Players(List.of("a", "b", "c", "d"));
         assertThat(players.getOrder("c")).isEqualTo(2);
 
     }
@@ -58,6 +58,5 @@ public class PlayersTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
-
 
 }

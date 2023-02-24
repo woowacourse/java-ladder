@@ -1,18 +1,14 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import helper.StubTestDigitsGenerator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGameTest {
@@ -28,19 +24,6 @@ public class LadderGameTest {
         );
         ladder = new Ladder(4, players.getCount() - 1, randomDigitsGenerator);
         ladderGame = new LadderGame(players, ladder);
-    }
-    
-    
-    @DisplayName("플레이어의 위치를 가져와서 사다리를 탄다.")
-    @Test
-    void move() {
-            // 오른쪽확인 (현재 인덱스확인)
-            // 있으면 오른쪽으로 이동
-            // 없으면 왼쪽확인 -1
-            // 있으면 왼쪽으로 이동
-            // 없으면 패스
-
-    
     }
 
     @DisplayName("참여자의 위치를 받아 오른쪽에 다리가 있으면 건넌다.")
@@ -71,7 +54,7 @@ public class LadderGameTest {
         Position position = new Position(1);
         Line line = ladder.getLines().get(2);
 
-        ladderGame.move(line,position);
+        ladderGame.move(line, position);
 
         assertThat(position.getIndex()).isEqualTo(1);
     }
@@ -98,13 +81,14 @@ public class LadderGameTest {
 
         assertThat(result).isEqualTo(expected);
     }
-    
+
     @DisplayName("모든 플레이어들의 사다리 최종 위치를 반환한다.")
     @Test
     void get_result_of_All() {
         List<Integer> result = ladderGame.getResultAllIndex();
 
-        assertThat(result).isEqualTo(List.of(0,2,3,1));
+        assertThat(result).isEqualTo(List.of(0, 2, 3, 1));
     }
 
 }
+
