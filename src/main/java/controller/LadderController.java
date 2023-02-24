@@ -7,9 +7,9 @@ import domain.Persons;
 import domain.WinningEntry;
 import domain.WinningResult;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import util.ExceptionTemplate;
 import util.RandomBooleanGenerator;
 import view.InputView;
 import view.OutputView;
@@ -35,59 +35,25 @@ public class LadderController {
     }
 
     private Persons requestPlayerName() {
-        Persons personNames = null;
-        while (personNames == null) {
-            personNames = readPersonNames();
-        }
-        return personNames;
-    }
-
-    private Persons readPersonNames() {
-        try {
-            List<Person> personNames = Arrays.stream(inputView.requestNames().split(DELIMITER))
-                    .map(Person::new)
-                    .collect(Collectors.toList());
-            return new Persons(personNames);
-        } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception.getMessage());
-        }
-        return null;
+        return ExceptionTemplate.reInputIfException(
+                () -> new Persons(Arrays.stream(inputView.requestNames().split(DELIMITER))
+                        .map(Person::new)
+                        .collect(Collectors.toList()))
+        );
     }
 
     private Height requestLadderHeight() {
-        Height height = null;
-        while (height == null) {
-            height = readHeight();
-        }
-        return height;
-    }
-
-    private Height readHeight() {
-        try {
-            return new Height(inputView.requestLadderHeight());
-        } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception.getMessage());
-        }
-        return null;
+        return ExceptionTemplate.reInputIfException(
+                () -> new Height(inputView.requestLadderHeight())
+        );
     }
 
     private WinningEntry requestGameResult(int personCount) {
-        WinningEntry winningEntry = null;
-        while (winningEntry == null) {
-            winningEntry = readWinningEntry(personCount);
-        }
-        return winningEntry;
-    }
-
-    private WinningEntry readWinningEntry(int personCount) {
-        try {
-            return new WinningEntry(Arrays.stream(inputView.requestGameResult().split(DELIMITER))
-                    .map(WinningResult::new)
-                    .collect(Collectors.toList()), personCount);
-        } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception.getMessage());
-        }
-        return null;
+        return ExceptionTemplate.reInputIfException(
+                () -> new WinningEntry(Arrays.stream(inputView.requestGameResult().split(DELIMITER))
+                        .map(WinningResult::new)
+                        .collect(Collectors.toList()), personCount)
+        );
     }
 
     private void printGameResult(Map<String, String> result) {
@@ -102,7 +68,7 @@ public class LadderController {
             int printedSize = printRequestedResult(inputView.requestResultTarget(), result);
             return result.size() == printedSize;
         } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception.getMessage());
+            System.out.println(exception.getMessage());
         }
         return false;
     }

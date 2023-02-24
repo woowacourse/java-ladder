@@ -1,6 +1,5 @@
 package view;
 
-import exception.ErrorCode;
 import java.util.List;
 import java.util.Map;
 
@@ -54,10 +53,6 @@ public class OutputView {
         }
         System.out.print(BLANK.repeat(bridgeSize));
         System.out.print(LADDER_UNIT);
-    }
-
-    public void printErrorMessage(String errorMessage) {
-        System.out.println(ErrorCode.HEAD.getMessage() + errorMessage);
     }
 
     private int printPersons(List<String> names, int bridgeSize) {
