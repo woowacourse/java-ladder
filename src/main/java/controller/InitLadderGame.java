@@ -3,6 +3,7 @@ package controller;
 import domain.item.Items;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
+import domain.ladder.LadderMaker;
 import domain.ladderGame.GameInit;
 import domain.player.Players;
 import utils.Log;
@@ -35,8 +36,8 @@ public class InitLadderGame {
 
     private Ladder inputLadder(int count) {
         Height ladderHeight = getLadderHeight();
-        return new Ladder(count, ladderHeight);
-
+        LadderMaker ladderMaker = new LadderMaker(count, ladderHeight);
+        return new Ladder(ladderMaker.getLines());
     }
 
     private Height getLadderHeight() {
