@@ -14,6 +14,10 @@ public class Names {
         this.names = names;
     }
 
+    public boolean contains(Name name) {
+        return names.contains(name);
+    }
+
     public int size() {
         return names.size();
     }

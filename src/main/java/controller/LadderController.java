@@ -12,7 +12,10 @@ import domain.vo.Width;
 import view.InputView;
 import view.OutputView;
 
+import java.util.function.Consumer;
+
 public class LadderController {
+
     private final InputView inputView;
     private final OutputView outputView;
     private final LadderMaker ladderMaker;
@@ -26,25 +29,45 @@ public class LadderController {
     public void play() {
         LadderGame ladderGame = initLadderGame();
         ladderGame.play();
-        viewResult(ladderGame);
+        repeat(this::viewResult, ladderGame);
+    }
+
+    private  void repeat(Consumer<LadderGame> consumer, LadderGame ladderGame) {
+        try {
+            consumer.accept(ladderGame);
+            repeat(this::viewResult, ladderGame);
+        } catch (IllegalArgumentException e){
+            e.printStackTrace();
+        }
     }
 
     private void viewResult(LadderGame ladderGame) {
-        Names viewers = inputView.inputResultViewerName();
+        Names viewers = inputViewers(ladderGame);
         Results viewResult = ladderGame.resultsByNames(viewers);
         outputView.printGameResult(viewers, viewResult);
+    }
+
+    private Names inputViewers(LadderGame ladderGame) {
+        Names viewers = inputView.inputResultViewerName();
+        if (viewers.contains(inputView.getAllMessage())) {
+            viewers = ladderGame.getPlayers().mapToNames();
+        }
+        return viewers;
     }
 
     private LadderGame initLadderGame() {
         Names inputNames = inputView.inputNames();
         Results inputResult = inputView.inputResults();
-
-        Height height = inputView.inputLadderHeight();
-        Width width = new Width(inputNames.size() - 1);
-        Ladder ladder = ladderMaker.make(height, width);
+        Ladder ladder = getLadder(inputNames.size());
         outputView.printLadder(inputNames, ladder, inputResult);
         Players players = new PlayerMaker().make(inputNames);
         return new LadderGame(ladder, players, inputResult);
+    }
+
+    private Ladder getLadder(int inputNameSize) {
+        Height height = inputView.inputLadderHeight();
+        Width width = new Width(inputNameSize - 1);
+        return ladderMaker.make(height, width);
     }
 
 }
