@@ -1,6 +1,7 @@
 import domain.LadderGame;
 import domain.Lines;
 import domain.People;
+import domain.Person;
 import domain.Rewards;
 import java.util.List;
 import ui.input.InputView;
@@ -17,8 +18,8 @@ public class Application {
         People people = inputPeople(ladderGame);
         Rewards rewards = inputRewards(ladderGame, people.getPeople().size());
         int ladderHeight = InputView.inputLadderHeight();
-
         Lines lines = ladderGame.createLines(people.getPeople().size(), ladderHeight);
+        ladderGame.processResult(people, lines);
         OutputView.printResult(people, lines, people.calculateMaxNameLength());
     }
 
