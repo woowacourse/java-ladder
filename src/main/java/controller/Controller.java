@@ -50,6 +50,7 @@ public class Controller {
     }
 
     private void printLadder(Players players, Ladder ladder, Prizes prizes) {
+        outputView.printResult();
         outputView.printNames(players);
         outputView.printLadders(ladder, players.getPlayersName());
         outputView.printPrize(prizes, players);
