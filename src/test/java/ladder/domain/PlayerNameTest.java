@@ -7,10 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerNameTest {
     
@@ -23,8 +20,17 @@ class PlayerNameTest {
                 .withMessage("각 이름 길이의 범위는 1~5 글자 입니다.");
     }
     
+    @Test
+    @DisplayName("참여자 이름으로 all이 들어오는 경우 예외가 발생한다.")
+    void validateImpossiblePlayerName() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new PlayerName("all"))
+                .withMessage("참여자 이름으로 all은 입력할 수 없습니다.");
+    }
+    
     @ParameterizedTest
     @CsvSource(value = {"abel, 4", "a, 1"})
+    @DisplayName("해당 플레이어 이름의 길이를 반환한다.")
     void getLength(String inputPlayerName, int playerNameLength) {
         PlayerName playerName = new PlayerName(inputPlayerName);
         Assertions.assertThat(playerName.getLength()).isEqualTo(playerNameLength);

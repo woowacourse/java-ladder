@@ -9,14 +9,25 @@ public class PlayerName {
     private final String name;
     
     public PlayerName(String name) {
-        validateNameLength(name);
+        validatePlayerName(name);
         this.name = name;
+    }
+    
+    private void validatePlayerName(String name) {
+        validateImpossibleName(name);
+        validateNameLength(name);
+    }
+    
+    private void validateImpossibleName(String name) {
+        if ("all".equals(name)) {
+            throw new IllegalArgumentException("참여자 이름으로 all은 입력할 수 없습니다.");
+        }
     }
     
     private void validateNameLength(String name) {
         if (isOutOfNameLength(name)) {
             throw new IllegalArgumentException("각 이름 길이의 범위는 1~5 글자 입니다.");
-        };
+        }
     }
     
     private boolean isOutOfNameLength(String name) {
