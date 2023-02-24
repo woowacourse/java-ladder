@@ -51,7 +51,7 @@ public class LadderGame {
             resultView.printPrizeOfPlayer(prizeName);
         }
         if (resultCommand.equals(ResultCommand.ALL)) {
-            resultView.printPrizeOfPlayers(players.getPrizes());
+            resultView.printPrizeOfPlayers(players.getPrizesWithPlayers());
         }
     }
 

@@ -45,7 +45,8 @@ public class Players {
     }
 
     public void setPrizes(Prizes prizes) {
-        for (int i = 0; i < size(); i++) {
+        int playerSize = size();
+        for (int i = 0; i < playerSize; i++) {
             Player player = players.get(i);
             Prize prize = prizes.get(i);
             player.setPrize(prize);
@@ -59,7 +60,7 @@ public class Players {
                 .orElseThrow(() -> new IllegalArgumentException(String.format(NOT_EXIST_NAME_ERROR_MESSAGE, name)));
     }
 
-    public Map<String, String> getPrizes() {
+    public Map<String, String> getPrizesWithPlayers() {
         Map<String, String> prizes = new HashMap<>();
         for (Player player : players) {
             prizes.put(player.getName(), player.getPrizeName());

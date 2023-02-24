@@ -8,11 +8,11 @@ public class Prize {
     private final String name;
 
     public Prize(String name) {
-        validateBlank(name);
+        validateOnlyBlank(name);
         this.name = name;
     }
 
-    private void validateBlank(String name) {
+    private void validateOnlyBlank(String name) {
         Set<Character> chars = name.chars().mapToObj(e -> (char) e).collect(Collectors.toSet());
         if (chars.size() == 1 && chars.contains(' ')) {
             throw new IllegalArgumentException(NAME_BLANK_ERROR_MESSAGE);
