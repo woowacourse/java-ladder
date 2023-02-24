@@ -2,6 +2,7 @@ package domain;
 
 import exception.ErrorCode;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Persons {
@@ -23,14 +24,12 @@ public class Persons {
     }
 
     private static boolean isNameDuplicate(List<String> names) {
-        return names.size() != names.stream()
-                .distinct()
-                .count();
+        return names.size() != Set.copyOf(names).size();
     }
 
     private static Persons initializePerson(List<String> names) {
         List<Person> persons = names.stream()
-                .map((name) -> new Person(name, names.indexOf(name)))
+                .map(name -> new Person(name, names.indexOf(name)))
                 .collect(Collectors.toList());
         return new Persons(persons);
     }
@@ -58,11 +57,8 @@ public class Persons {
     }
 
     public String findPersonNameInPosition(int position) {
-        for (Person person : persons) {
-            if (position == person.getPosition()) {
-                return person.getName();
-            }
-        }
-        return null;
+        return persons.stream()
+                .filter(person -> person.getPosition() == position)
+                .findAny().get().getName();
     }
 }
