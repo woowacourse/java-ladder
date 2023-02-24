@@ -5,6 +5,8 @@ import ladder.domain.generator.LineGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import java.util.function.Supplier;
+
 public class LadderController {
 
     private final InputView inputView;
@@ -18,55 +20,24 @@ public class LadderController {
     }
 
     public void run() {
-        final Players players = makePlayers();
-        final Gifts gifts = makeGifts(players.numberOfPlayers());
-        final Height height = makeHeight();
+        final Players players = retry(() -> new Players(inputView.readGiftNames()));
+        final Gifts gifts = retry(() -> new Gifts(inputView.readGiftNames(), players.numberOfPlayers()));
+        final Height height = retry(() -> new Height(inputView.readHeight()));
 
         final Ladder ladder = new Ladder(lineGenerator, players, height);
         outputView.printLadderResult(players, ladder, gifts);
 
         final Players resultPlayer = ladder.movePlayers(players);
-        final Result result = makeResult(resultPlayer);
+        final Result result = retry(() -> new Result(inputView.readResultCommand(), players));
         outputView.printGameResult(resultPlayer, gifts, result);
     }
 
-    private Players makePlayers() {
+    private <T> T retry(final Supplier<T> supplier) {
         try {
-            return new Players(inputView.readPlayerNames());
+            return supplier.get();
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
+            return retry(supplier);
         }
-
-        return makePlayers();
-    }
-
-    private Height makeHeight() {
-        try {
-            return new Height(inputView.readHeight());
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
-        }
-
-        return makeHeight();
-    }
-
-    private Gifts makeGifts(final int playerSize) {
-        try {
-            return new Gifts(inputView.readGiftNames(), playerSize);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
-        }
-
-        return makeGifts(playerSize);
-    }
-
-    public Result makeResult(final Players players) {
-        try {
-            return new Result(inputView.readResultCommand(), players);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
-        }
-
-        return makeResult(players);
     }
 }
