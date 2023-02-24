@@ -1,6 +1,8 @@
-package ladder.domain;
+package ladder.domain.item;
 
-class Item {
+import ladder.domain.ladder.Position;
+
+public class Item {
     private final ItemName name;
     private final Position position;
 

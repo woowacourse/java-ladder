@@ -1,7 +1,7 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
-import static ladder.domain.LineStatus.CONNECTED;
-import static ladder.domain.LineStatus.DISCONNECTED;
+import static ladder.domain.ladder.LineStatus.CONNECTED;
+import static ladder.domain.ladder.LineStatus.DISCONNECTED;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;

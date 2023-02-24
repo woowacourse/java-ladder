@@ -1,10 +1,11 @@
-package ladder.domain;
+package ladder.domain.item;
 
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import ladder.domain.ladder.Position;
 
 public class Items {
     private static final String INVALID_ITEM_COUNT_MESSAGE = "참가인원과 동일한 개수의 실행결과를 입력해야 합니다.";

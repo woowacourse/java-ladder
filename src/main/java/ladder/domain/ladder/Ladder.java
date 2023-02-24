@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;

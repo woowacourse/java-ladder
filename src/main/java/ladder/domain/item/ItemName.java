@@ -1,6 +1,6 @@
-package ladder.domain;
+package ladder.domain.item;
 
-class ItemName {
+public class ItemName {
     private static final int NAME_LENGTH_UPPER_BOUND = 5;
     private static final String INVALID_NAME_LENGTH_MESSAGE =
             "실행 결과명은 1자 이상, " + NAME_LENGTH_UPPER_BOUND + "자 이하여야 합니다.";

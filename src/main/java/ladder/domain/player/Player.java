@@ -1,4 +1,7 @@
-package ladder.domain;
+package ladder.domain.player;
+
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Position;
 
 public class Player {
     private final PlayerName name;

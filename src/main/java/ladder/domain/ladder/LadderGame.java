@@ -1,8 +1,11 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import ladder.domain.item.Items;
+import ladder.domain.player.Player;
+import ladder.domain.player.Players;
 
 public class LadderGame {
     private static final int SUBTRACT_LADDER_WIDTH_VALUE = 1;

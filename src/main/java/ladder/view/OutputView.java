@@ -5,7 +5,7 @@ import static java.util.stream.Collectors.joining;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import ladder.domain.Line;
+import ladder.domain.ladder.Line;
 
 public class OutputView {
     private static final int EMPTY_NAME_LENGTH = 0;
