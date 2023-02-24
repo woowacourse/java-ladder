@@ -9,14 +9,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import ladder.util.TrueGenerator;
 
-class LineTest {
+class FootBarsMakerTest {
     @ParameterizedTest(name = "가로 라인이 겹치는 경우는 생성할 수 없다.")
     @ValueSource(ints = {3, 10, 100})
     void createLineTest(int personCount) {
-        List<Boolean> line = new Line(personCount, new TrueGenerator()).getLine();
-        for (int i = 0; i < line.size() - 1; i++) {
-            if (line.get(i) == Boolean.TRUE) {
-                assertThat(line.get(i + 1)).isEqualTo(Boolean.FALSE);
+        List<Boolean> footBars = FootBarsMaker.makeFootBars(new TrueGenerator(), personCount).getFootBars();
+        for (int i = 0; i < footBars.size() - 1; i++) {
+            if (footBars.get(i) == Boolean.TRUE) {
+                assertThat(footBars.get(i + 1)).isEqualTo(Boolean.FALSE);
             }
         }
     }

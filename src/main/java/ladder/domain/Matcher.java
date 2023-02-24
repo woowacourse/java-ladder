@@ -27,15 +27,14 @@ public class Matcher {
     }
 
     private void climbDown(List<Name> participants) {
-        for (Line line : ladder) {
-            List<Boolean> conditions = line.getLine();
-            swapNames(participants, conditions);
+        for (FootBars footBars : ladder.getLadder()) {
+            swapNames(participants, footBars.getFootBars());
         }
     }
 
-    private void swapNames(List<Name> participants, List<Boolean> conditions) {
-        for (int i = 0; i < conditions.size(); i++) {
-            swap(participants, conditions, i);
+    private void swapNames(List<Name> participants, List<Boolean> footBars) {
+        for (int i = 0; i < footBars.size(); i++) {
+            swap(participants, footBars, i);
         }
     }
 

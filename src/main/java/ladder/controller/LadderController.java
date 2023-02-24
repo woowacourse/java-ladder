@@ -4,8 +4,9 @@ import java.util.List;
 
 import ladder.domain.Ladder;
 import ladder.domain.LadderHeight;
-import ladder.domain.Matcher;
+import ladder.domain.LadderMaker;
 import ladder.domain.MatchResults;
+import ladder.domain.Matcher;
 import ladder.domain.Names;
 import ladder.domain.Results;
 import ladder.util.BooleanGenerator;
@@ -28,11 +29,9 @@ public class LadderController {
         Results results = createResults(names.size());
         LadderHeight ladderHeight = createLadderHeight();
 
-        Ladder ladder = createLadder(names, ladderHeight);
-        outputView.printLadderShape(names, results, ladder);
+        Ladder ladder = makeLadder(names, results, ladderHeight);
 
-        MatchResults matchResults = matchNamesWithResults(names, results, ladder);
-        searchResult(matchResults);
+        match(names, results, ladder);
     }
 
     private Names createNames() {
@@ -70,14 +69,23 @@ public class LadderController {
         }
     }
 
+    private Ladder makeLadder(Names names, Results results, LadderHeight ladderHeight) {
+        Ladder ladder = createLadder(names, ladderHeight);
+        outputView.printLadderShape(names, results, ladder);
+        return ladder;
+    }
+
     private int readLadderHeight() {
         return inputView.requestLadderHeight();
     }
 
     private Ladder createLadder(Names names, LadderHeight ladderHeight) {
-        Ladder ladder = new Ladder();
-        ladder.drawLine(names.size(), ladderHeight.getLadderHeight(), generator);
-        return ladder;
+        return LadderMaker.makeLadder(names.size(), ladderHeight.getLadderHeight(), generator);
+    }
+
+    private void match(Names names, Results results, Ladder ladder) {
+        MatchResults matchResults = matchNamesWithResults(names, results, ladder);
+        searchResult(matchResults);
     }
 
     private MatchResults matchNamesWithResults(Names names, Results results, Ladder ladder) {

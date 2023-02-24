@@ -2,9 +2,9 @@ package ladder.view;
 
 import java.util.stream.Collectors;
 
+import ladder.domain.FootBars;
 import ladder.domain.Ladder;
 import ladder.domain.LadderFormat;
-import ladder.domain.Line;
 import ladder.domain.Names;
 import ladder.domain.Results;
 
@@ -38,16 +38,16 @@ public class OutputView {
     }
 
     private void printLadderShape(Ladder ladder) {
-        for (Line line : ladder) {
+        for (FootBars footBars : ladder.getLadder()) {
             String result = BLANK.repeat(WIDTH - 1);
-            result += shapeOf(line);
+            result += shapeOf(footBars);
             result += LEG;
             System.out.println(result);
         }
     }
 
-    private String shapeOf(Line line) {
-        return line.getLine()
+    private String shapeOf(FootBars footBars) {
+        return footBars.getFootBars()
             .stream()
             .map(LadderFormat::getComponent)
             .map(component -> LEG + component.repeat(WIDTH))

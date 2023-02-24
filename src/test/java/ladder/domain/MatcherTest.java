@@ -22,13 +22,13 @@ class MatcherTest {
 
         names = new Names(Arrays.asList(nameList));
         results = new Results(Arrays.asList(resultList), 4);
-        ladder = new Ladder();
+
     }
 
     @ParameterizedTest(name = "참여자와 실행 결과를 매칭한다. - 사다리 높이 1")
     @CsvSource(value = {"a,2", "b,1", "c,4", "d,3"})
     void matchingCalculatorTest1(String name, String result) {
-        ladder.drawLine(4, 1, new TrueGenerator());
+        ladder = LadderMaker.makeLadder(4, 1, new TrueGenerator());
 
         Matcher matcher = new Matcher(ladder, names, results);
         assertThat(matcher.match().findMatchResult(name)).isEqualTo(result);
@@ -37,7 +37,7 @@ class MatcherTest {
     @ParameterizedTest(name = "참여자와 실행 결과를 매칭한다. - 사다리 높이2")
     @CsvSource(value = {"a,1", "b,2", "c,3", "d,4"})
     void matchingCalculatorTest2(String name, String result) {
-        ladder.drawLine(4, 2, new TrueGenerator());
+        ladder = LadderMaker.makeLadder(4, 2, new TrueGenerator());
 
         Matcher matcher = new Matcher(ladder, names, results);
         assertThat(matcher.match().findMatchResult(name)).isEqualTo(result);
