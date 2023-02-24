@@ -54,6 +54,13 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public boolean contains(String value) {
+        Node pointer = this.head.next;
+        while (pointer != null) {
+            if (pointer.value.equals(value)) {
+                return true;
+            }
+            pointer = pointer.next;
+        }
         return false;
     }
 
