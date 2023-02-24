@@ -3,8 +3,8 @@ package view;
 import static java.util.stream.Collectors.joining;
 
 import domain.ladder.Ladder;
-import domain.ladder.LadderResult;
-import domain.ladder.LadderResults;
+import domain.ladder.LadderPrize;
+import domain.ladder.LadderPrizes;
 import domain.ladder.Line;
 import domain.ladder.LinePoint;
 import domain.player.Players;
@@ -21,11 +21,11 @@ public class OutputView {
 
     public void printLadderMap(Players players,
                                Ladder ladder,
-                               LadderResults ladderResults) {
+                               LadderPrizes ladderPrizes) {
         System.out.println("사다리 결과");
 
         System.out.println(getFormattedNames(players));
-        printLadder(ladder, ladderResults);
+        printLadder(ladder, ladderPrizes);
     }
 
     private String getFormattedNames(Players players) {
@@ -34,12 +34,12 @@ public class OutputView {
                 .collect(joining(" "));
     }
 
-    private void printLadder(Ladder ladder, LadderResults ladderResults) {
+    private void printLadder(Ladder ladder, LadderPrizes ladderPrizes) {
         List<Line> lines = ladder.getLines();
         for (Line line : lines) {
             printLine(line);
         }
-        System.out.println(getFormattedResults(ladderResults));
+        System.out.println(getFormattedResults(ladderPrizes));
     }
 
     private void printLine(Line line) {
@@ -55,23 +55,23 @@ public class OutputView {
         System.out.print(EDGE_OF_POINT + BLOCKED_POINT);
     }
 
-    private String getFormattedResults(LadderResults ladderResults) {
-        return ladderResults.stream()
-                .map(LadderResult::getResult)
+    private String getFormattedResults(LadderPrizes ladderPrizes) {
+        return ladderPrizes.stream()
+                .map(LadderPrize::getPrize)
                 .map(result -> String.format("%-5s", result))
                 .collect(joining(" "));
     }
 
-    public void printSinglePlayerResult(LadderResult result) {
+    public void printSinglePlayerResult(LadderPrize result) {
         System.out.println("실행 결과");
-        System.out.println(result.getResult());
+        System.out.println(result.getPrize());
     }
 
-    public void printAllPlayerResult(List<GameResultDto> everyPlayerResult) {
+    public void printAllPlayerResult(List<GameResultDto> gameResultDtos) {
         System.out.println("실행 결과");
-        for (GameResultDto playerLadderResult : everyPlayerResult) {
+        for (GameResultDto result : gameResultDtos) {
             System.out.println(String.format("%s : %s",
-                    playerLadderResult.getPlayerName(), playerLadderResult.getResult()));
+                    result.getPlayerName(), result.getPrize()));
         }
     }
 

@@ -5,8 +5,8 @@ import static java.util.stream.Collectors.toList;
 import domain.ladder.Ladder;
 import domain.ladder.LadderGenerator;
 import domain.ladder.LadderHeight;
-import domain.ladder.LadderResult;
-import domain.ladder.LadderResults;
+import domain.ladder.LadderPrize;
+import domain.ladder.LadderPrizes;
 import domain.player.Name;
 import domain.player.Player;
 import domain.player.Players;
@@ -35,12 +35,12 @@ public class LadderGameApplication {
     public void run() {
         Players players = retryIfError(this::createPlayers);
         LadderHeight ladderHeight = retryIfError(this::createLadderHeight);
-        LadderResults ladderResults = retryIfError(() -> createLadderResults(players.size()));
+        LadderPrizes ladderPrizes = retryIfError(() -> createLadderPrizes(players.size()));
 
         Ladder ladder = ladderGenerator.generate(players.size(), ladderHeight);
-        LadderGame ladderGame = new LadderGame(ladder, players, ladderResults);
+        LadderGame ladderGame = new LadderGame(ladder, players, ladderPrizes);
 
-        outputView.printLadderMap(players, ladder, ladderResults);
+        outputView.printLadderMap(players, ladder, ladderPrizes);
 
         printResult(ladderGame);
     }
@@ -78,13 +78,13 @@ public class LadderGameApplication {
         return new LadderHeight(height);
     }
 
-    private LadderResults createLadderResults(int size) {
-        List<String> rawLadderResults = inputView.readLadderResults();
-        List<LadderResult> ladderResults = rawLadderResults.stream()
-                .map(LadderResult::new)
+    private LadderPrizes createLadderPrizes(int size) {
+        List<String> rawLadderPrizes = inputView.readLadderPrizes();
+        List<LadderPrize> ladderPrizes = rawLadderPrizes.stream()
+                .map(LadderPrize::new)
                 .collect(toList());
 
-        return LadderResults.createWithSameSize(ladderResults, size);
+        return LadderPrizes.createWithSameSize(ladderPrizes, size);
     }
 
     private void printResult(LadderGame ladderGame) {
@@ -111,7 +111,7 @@ public class LadderGameApplication {
     }
 
     private void printSinglePlayerResult(LadderGame ladderGame, ResultRequestDto request) {
-        LadderResult ladderResult = ladderGame.findSinglePlayerResultByName(request.getMessage());
-        outputView.printSinglePlayerResult(ladderResult);
+        LadderPrize ladderPrize = ladderGame.findSinglePlayerResultByName(request.getMessage());
+        outputView.printSinglePlayerResult(ladderPrize);
     }
 }

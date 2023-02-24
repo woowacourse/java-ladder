@@ -14,27 +14,27 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class LadderResultsTest {
+class LadderPrizesTest {
 
-    @DisplayName("입력받은 크기와 LadderResults의 크기가 다르면 생성시 예외를 반환한다.")
+    @DisplayName("입력받은 크기와 LadderPrizes의 크기가 다르면 생성시 예외를 반환한다.")
     @Test
     void create_success_by_same_size() {
         // given
-        List<LadderResult> ladderResults = List.of(new LadderResult("any"), new LadderResult("any"));
+        List<LadderPrize> ladderPrizes = List.of(new LadderPrize("any"), new LadderPrize("any"));
 
         // then
         assertThatNoException().isThrownBy(
-                () -> LadderResults.createWithSameSize(ladderResults, ladderResults.size()));
+                () -> LadderPrizes.createWithSameSize(ladderPrizes, ladderPrizes.size()));
     }
 
-    @DisplayName("입력받은 크기와 LadderResults의 크기가 다르면 생성시 예외를 반환한다.")
+    @DisplayName("입력받은 크기와 LadderPrizes의 크기가 다르면 생성시 예외를 반환한다.")
     @Test
     void create_fail_by_different_size() {
         // given
-        List<LadderResult> ladderResults = List.of(new LadderResult("any"), new LadderResult("any"));
+        List<LadderPrize> ladderPrizes = List.of(new LadderPrize("any"), new LadderPrize("any"));
 
         // then
-        assertThatThrownBy(() -> LadderResults.createWithSameSize(ladderResults, ladderResults.size() - 1))
+        assertThatThrownBy(() -> LadderPrizes.createWithSameSize(ladderPrizes, ladderPrizes.size() - 1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("크기가 일치하지 않습니다.");
     }
@@ -45,18 +45,18 @@ class LadderResultsTest {
     void find_result_by_position_test(int position,
                                       String expectedResult) {
         // given
-        LadderResults ladderResults = generateLadderResultsByParameter("3000", "1000", "2000", "5000", "꽝");
+        LadderPrizes ladderPrizes = generateLadderPrizesByParameter("3000", "1000", "2000", "5000", "꽝");
 
         // when
-        LadderResult ladderResult = ladderResults.findResultByPosition(new Position(position));
+        LadderPrize ladderPrize = ladderPrizes.findResultByPosition(new Position(position));
 
-        assertThat(ladderResult.getResult()).isEqualTo(expectedResult);
+        assertThat(ladderPrize.getPrize()).isEqualTo(expectedResult);
     }
 
-    private LadderResults generateLadderResultsByParameter(String... results) {
-        List<LadderResult> ladderResults = Arrays.stream(results)
-                .map(LadderResult::new)
+    private LadderPrizes generateLadderPrizesByParameter(String... results) {
+        List<LadderPrize> ladderPrizes = Arrays.stream(results)
+                .map(LadderPrize::new)
                 .collect(toList());
-        return LadderResults.createWithSameSize(ladderResults, results.length);
+        return LadderPrizes.createWithSameSize(ladderPrizes, results.length);
     }
 }

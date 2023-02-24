@@ -3,11 +3,11 @@ package dto;
 public class GameResultDto {
 
     private final String playerName;
-    private final String result;
+    private final String prize;
 
-    public GameResultDto(String playerName, String result) {
+    public GameResultDto(String playerName, String prize) {
         this.playerName = playerName;
-        this.result = result;
+        this.prize = prize;
     }
 
     public String getPlayerName() {
@@ -15,7 +15,7 @@ public class GameResultDto {
     }
 
 
-    public String getResult() {
-        return result;
+    public String getPrize() {
+        return prize;
     }
 }

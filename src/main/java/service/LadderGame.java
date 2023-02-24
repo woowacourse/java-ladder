@@ -1,8 +1,8 @@
 package service;
 
 import domain.ladder.Ladder;
-import domain.ladder.LadderResult;
-import domain.ladder.LadderResults;
+import domain.ladder.LadderPrize;
+import domain.ladder.LadderPrizes;
 import domain.player.Player;
 import domain.player.Players;
 import domain.player.Position;
@@ -14,12 +14,12 @@ public class LadderGame {
 
     private final Ladder ladder;
     private final Players players;
-    private final LadderResults ladderResults;
+    private final LadderPrizes ladderPrizes;
 
-    public LadderGame(Ladder ladder, Players players, LadderResults ladderResults) {
+    public LadderGame(Ladder ladder, Players players, LadderPrizes ladderPrizes) {
         this.ladder = ladder;
         this.players = players;
-        this.ladderResults = ladderResults;
+        this.ladderPrizes = ladderPrizes;
     }
 
     public boolean isPlayerExistByName(String name) {
@@ -31,17 +31,17 @@ public class LadderGame {
 
         for (Player player : players.getPlayers()) {
             Position position = player.move(ladder);
-            LadderResult ladderResult = ladderResults.findResultByPosition(position);
-            gameResultDtos.add(new GameResultDto(player.getName(), ladderResult.getResult()));
+            LadderPrize prize = ladderPrizes.findResultByPosition(position);
+            gameResultDtos.add(new GameResultDto(player.getName(), prize.getPrize()));
         }
 
         return gameResultDtos;
     }
 
-    public LadderResult findSinglePlayerResultByName(String name) {
+    public LadderPrize findSinglePlayerResultByName(String name) {
         Player findPlayer = players.findSpecificNamePlayer(name);
         Position position = findPlayer.move(ladder);
 
-        return ladderResults.findResultByPosition(position);
+        return ladderPrizes.findResultByPosition(position);
     }
 }
