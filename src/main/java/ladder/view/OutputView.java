@@ -14,9 +14,15 @@ public class OutputView {
     }
     
     public static void printNames(PlayerNames playerNames) {
-        println("\n" + parseDisplayElements(playerNames.getNames()));
+        println("\n" + parseDisplayElements(parsePlayerNames(playerNames)));
     }
-
+    
+    private static List<String> parsePlayerNames(PlayerNames playerNames) {
+        return playerNames.getNames().stream()
+                .map(PlayerName::getPlayerName)
+                .collect(Collectors.toUnmodifiableList());
+    }
+    
     private static String parseDisplayElements(List<String> names) {
         return IntStream.range(0, names.size())
                 .mapToObj(nameIndex -> parseDisplayName(names, nameIndex))
@@ -64,7 +70,7 @@ public class OutputView {
     }
     
     public static void printAllPlayerResult(PlayerNames playerNames, List<Integer> movedPositions, GameResults gameResults) {
-        List<String> names = playerNames.getNames();
+        List<String> names = parsePlayerNames(playerNames);
         List<GameResult> sortedGameResults = gameResults.getSortedGameResults(movedPositions);
         
         println("\n실행 결과");

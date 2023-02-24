@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 class PlayerNamesTest {
@@ -13,14 +15,15 @@ class PlayerNamesTest {
     
     @BeforeEach
     void setUp() {
-        playerNames = new PlayerNames("abel,chech,pobi");
+        List<PlayerName> names = List.of(new PlayerName("abel"), new PlayerName("chech"), new PlayerName("pobi"));
+        playerNames = new PlayerNames(names);
     }
     
     @Test
     @DisplayName("입력받은 이름들을 ,를 기준으로 나눈다.")
     void test_1() {
         assertThat(playerNames.getNames())
-                .containsExactly( "abel", "chech", "pobi");
+                .containsExactly( new PlayerName("abel"), new PlayerName("chech"), new PlayerName("pobi"));
     }
     
     @Test
@@ -50,7 +53,7 @@ class PlayerNamesTest {
     }
     
     @ParameterizedTest
-    @ValueSource(strings = {"", "aaa", "abal"})
+    @ValueSource(strings = {"aaa", "abal"})
     @DisplayName("없는 플레이어가 인자로 전달될 경우 예외처리를 한다.")
     void notExistedPlayerException(String playerName) {
         assertThatIllegalArgumentException()
@@ -59,26 +62,22 @@ class PlayerNamesTest {
     }
     
     @Test
-    @DisplayName("플레이어 이름이 5자를 초과할 시 예외가 발생한다.")
-    void test_2() {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new PlayerNames("abel,cheche"))
-                .withMessage("각 이름 길이의 범위는 1~5 글자 입니다.");
-    }
-    
-    @Test
     @DisplayName("플레이어 이름 개수가 2미만일 시 예외가 발생한다.")
     void test_3() {
+        List<PlayerName> playerNames = List.of(new PlayerName("abel"));
+        
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new PlayerNames("abel"))
+                .isThrownBy(() -> new PlayerNames(playerNames))
                 .withMessage("이름의 수가 2이상 100이하여야 합니다.");
     }
     
     @Test
     @DisplayName("플레이어 이름이 중복될 시 예외가 발생한다.")
     void test_4() {
+        List<PlayerName> playerNames = List.of(new PlayerName("abel"), new PlayerName("abel"));
+        
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new PlayerNames("abel,abel"))
+                .isThrownBy(() -> new PlayerNames(playerNames))
                 .withMessage("중복된 이름은 입력할 수 없습니다.");
     }
 }

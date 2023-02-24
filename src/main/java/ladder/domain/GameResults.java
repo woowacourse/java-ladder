@@ -11,7 +11,7 @@ public class GameResults {
         this.gameResults = gameResults;
     }
     
-    private void validateCount(List<GameResult> gameResults, List<String> playerNames) {
+    private void validateCount(List<GameResult> gameResults, List<PlayerName> playerNames) {
         if (gameResults.size() != playerNames.size()) {
             throw new IllegalArgumentException("실행 결과의 개수는 플레이어의 수가 같아야합니다.");
         }

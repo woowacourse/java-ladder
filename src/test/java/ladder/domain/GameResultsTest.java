@@ -22,7 +22,8 @@ class GameResultsTest {
     
     @BeforeEach
     void setUp() {
-        playerNames = new PlayerNames("a,b,c,d");
+        List<PlayerName> names = List.of(new PlayerName("a"), new PlayerName("b"), new PlayerName("c"), new PlayerName("d"));
+        playerNames = new PlayerNames(names);
         movedPositions = List.of(1,0,3,2);
         List<GameResult> parsedGameResults = parseGameResults("꽝,5000,꽝,3000");
         gameResults = new GameResults(parsedGameResults, playerNames);

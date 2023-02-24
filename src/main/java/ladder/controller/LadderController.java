@@ -22,7 +22,13 @@ public class LadderController {
     }
     
     private PlayerNames getCorrectPlayerNames() {
-        return InputView.repeat(() -> new PlayerNames(InputView.inputPeopleNames()));
+        return InputView.repeat(() -> new PlayerNames(parsePlayerNames(InputView.inputPeopleNames())));
+    }
+    
+    private List<PlayerName> parsePlayerNames(String names) {
+        return Arrays.stream(names.split(","))
+                .map(PlayerName::new)
+                .collect(Collectors.toUnmodifiableList());
     }
     
     private GameResults getGameResult(PlayerNames playerNames) {
