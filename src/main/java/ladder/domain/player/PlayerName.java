@@ -50,4 +50,8 @@ class PlayerName {
             throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE + "현재 이름이 null 입니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

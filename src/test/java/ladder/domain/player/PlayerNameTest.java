@@ -1,5 +1,6 @@
 package ladder.domain.player;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -47,5 +48,12 @@ class PlayerNameTest {
         assertThatThrownBy(() -> new PlayerName("all"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("all은 이름으로 사용하실 수 없습니다.");
+    }
+
+    @Test
+    void 이름을_반환한다() {
+        PlayerName playerName = new PlayerName("pobi");
+        assertThat(playerName.getName())
+                .isEqualTo("pobi");
     }
 }
