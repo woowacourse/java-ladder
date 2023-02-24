@@ -7,12 +7,12 @@ import java.util.List;
 
 public class Line {
     private final BooleanGenerator ladderGenerator;
-    List<LadderStep> ladderSteps = new ArrayList<>();
+    private List<LadderStep> ladderSteps = new ArrayList<>();
 
     public Line(int count, BooleanGenerator ladderGenerator) {
         this.ladderGenerator = ladderGenerator;
         for (int index = 0; index < count; index++) {
-            ladderSteps.add(getPoint(index));
+            ladderSteps.add(findLadderStepBy(index));
         }
     }
 
@@ -20,7 +20,8 @@ public class Line {
         return Collections.unmodifiableList(ladderSteps);
     }
 
-    private LadderStep getPoint(int index) {
+    private LadderStep findLadderStepBy(int index) {
+        // TODO: 예외 상황을 처리해 주자
         if (index > 0 && isLadderStepExists(index - 1)) {
             return LadderStep.from(false);
         }
