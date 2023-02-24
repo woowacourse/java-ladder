@@ -1,7 +1,9 @@
 package ladder.domain.item;
 
 /**
- * 결과 상품의 이름을 검증하는 클래스 올바른 이름이 아닐 경우에 IllegalArgumentException 을 발생시킴
+ * 결과의 이름을 검증하는 역할을 가진 클래스
+ * <p>
+ * 1. null 체크 2. 길이 체크 3. 공백 체크 이런 경우에는 IllegalArgumentException 을 발생시킴
  */
 class ItemName {
 

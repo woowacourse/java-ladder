@@ -3,6 +3,11 @@ package ladder.domain.player;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 참가자의 위치와 결과의 위치를 나타내는 클래스 1. 0 이상의 정수만 허용 2. 0 이상의 동일한 정수를 입력하면 동일한 객체를 반환
+ * <p>
+ * 0보다 작은 정수를 입력하면 IllegalArgumentException 발생
+ */
 class Position {
 
     private static final int MIN_POSITION = 0;

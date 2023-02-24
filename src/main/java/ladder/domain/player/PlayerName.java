@@ -1,5 +1,10 @@
 package ladder.domain.player;
 
+/**
+ * 참가자의 이름을 검증하는 역할을 가진 클래스
+ * <p>
+ * 1. null 체크 2. 길이 체크 3. 공백 체크 4. 예약어 체크 이런 경우에는 IllegalArgumentException 을 발생시킴
+ */
 class PlayerName {
 
     private static final int MIN_NAME_LENGTH = 1;
