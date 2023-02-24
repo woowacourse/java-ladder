@@ -18,17 +18,16 @@ public class Line {
     }
 
     private void validateLine(final List<Link> line) {
-        Link state = Link.UNLINKED;
-        for (final Link link : line) {
-            state = comparePastPointAndPresentPoint(state, link);
+        Link leftLink = Link.UNLINKED;
+        for (final Link rightLink : line) {
+            leftLink = compareLeftLinkAndRightLink(leftLink, rightLink);
         }
     }
 
-    private Link comparePastPointAndPresentPoint(Link pastLink, final Link link) {
-        if (link.isLink() && pastLink.isLink()) {
+    private Link compareLeftLinkAndRightLink(final Link leftLink, final Link rightLink) {
+        if (rightLink.isLink() && leftLink.isLink()) {
             throw new IllegalArgumentException(NON_VALID_LINE_EXCEPTION.getMessage());
         }
-        pastLink = link;
-        return pastLink;
+        return rightLink;
     }
 }
