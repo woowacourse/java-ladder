@@ -3,8 +3,6 @@ package ladder.controller;
 import ladder.domain.GameResults;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.RandomBarGenerator;
-import ladder.domain.ladder.Results;
-import ladder.domain.people.Names;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -13,15 +11,8 @@ import java.util.List;
 
 public class LadderController {
 
-    public void run() {
-        Names names = InputView.repeat(() -> new Names(InputView.inputPeopleNames()));
-        List<String> namesList = names.getNames();
-        Results results = InputView.repeat(() -> new Results(InputView.inputResults(), namesList.size()));
-        List<String> resultsList = results.getResults();
-        int ladderHeight = InputView.repeat(InputView::inputLadderHeight);
-
+    public void run(List<String> namesList, List<String> resultsList, int ladderHeight) {
         Ladder ladder = new Ladder(new RandomBarGenerator(), ladderHeight, namesList.size());
-
         GameResults gameResults = new GameResults(namesList, resultsList, ladder);
 
         OutputView.printLadderResultMessage();
