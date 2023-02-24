@@ -4,9 +4,16 @@ import java.util.Objects;
 
 public class Player {
     private final PlayerName name;
+    private final Position position;
+
+    public Player(final String name, final Position position) {
+        this.name = new PlayerName(name);
+        this.position = position;
+    }
 
     public Player(final String name) {
         this.name = new PlayerName(name);
+        this.position = Position.valueOf(0);
     }
 
     @Override
@@ -28,5 +35,9 @@ public class Player {
 
     public String getName() {
         return name.getValue();
+    }
+
+    public Position getPosition() {
+        return position;
     }
 }

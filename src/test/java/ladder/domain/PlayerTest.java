@@ -12,8 +12,15 @@ public class PlayerTest {
 
     @Test
     void 참가자가_정상적으로_생성된다() {
-        final Player player = new Player("name");
+        final Player player = new Player("name", Position.valueOf(0));
 
         assertThat(player.getName()).isEqualTo("name");
+    }
+
+    @Test
+    void 참가자는_위치를_가진다() {
+        final Player player = new Player("name", Position.valueOf(0));
+
+        assertThat(player.getPosition()).isEqualTo(Position.valueOf(0));
     }
 }

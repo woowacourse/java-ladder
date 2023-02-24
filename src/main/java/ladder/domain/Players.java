@@ -3,10 +3,10 @@ package ladder.domain;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
     private static final int PLAYERS_SIZE_LOWER_BOUND = 2;
@@ -15,19 +15,17 @@ public class Players {
             "참가자는 최소 " + PLAYERS_SIZE_LOWER_BOUND + "명, 최대 " + PLAYERS_SIZE_UPPER_BOUND + "명이어야 합니다.";
     private static final String DUPLICATE_NAMES_MESSAGE = "참가자의 이름은 중복되지 않아야 합니다.";
 
-    private final Map<Position, Player> players;
+    private final List<Player> players;
 
-    private Players(final Map<Position, Player> players) {
+    private Players(final List<Player> players) {
         this.players = players;
     }
 
     public static Players from(final List<String> names) {
         validate(names);
-        final Map<Position, Player> players = new LinkedHashMap<>();
-        for (int index = 0; index < names.size(); index++) {
-            players.put(Position.valueOf(index), new Player(names.get(index)));
-        }
-        return new Players(players);
+        return IntStream.range(0, names.size())
+                .mapToObj(index -> new Player(names.get(index), Position.valueOf(index)))
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Players::new));
     }
 
     private static void validate(final List<String> names) {
@@ -53,11 +51,11 @@ public class Players {
     }
 
     public Player get(final Position position) {
-        return players.get(position);
+        return players.get(position.getValue());
     }
 
     public List<String> getNames() {
-        return players.values().stream()
+        return players.stream()
                 .map(Player::getName)
                 .collect(toUnmodifiableList());
     }
