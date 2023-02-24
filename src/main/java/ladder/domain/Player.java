@@ -41,10 +41,6 @@ public class Player {
         return name.equals(RESERVED_NAME);
     }
 
-    public String getName() {
-        return name;
-    }
-
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -60,5 +56,9 @@ public class Player {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public String getName() {
+        return name;
     }
 }
