@@ -44,7 +44,7 @@ public class OutputView {
     private static int calculateBlank(User user) {
 
         double userNameSpan = INIT_SPAN;
-        for (Character name : user.getName().toCharArray()) {
+        for (Character name : user.getName().getValue().toCharArray()) {
             userNameSpan += userNameSpanSize(name);
         }
         return (int) Math.round(userNameSpan);
@@ -88,16 +88,20 @@ public class OutputView {
         System.out.print(DELIMITER);
     }
 
-    public static void printSingleResult(String prizeName) {
+    public static void printSingleResult(PrizeName prizeName) {
         System.out.println("실행 결과");
+        if (prizeName == null) {
+            System.out.println("없는 유저 이름입니다.");
+            return;
+        }
         System.out.println(prizeName);
         System.out.println();
     }
 
-    public static void printAll(Map<String, String> allResult) {
+    public static void printAll(Map<UserName, PrizeName> allResult) {
 
         System.out.println("실행 결과");
-        allResult.forEach((key, value) -> System.out.println(key + " : " + value));
+        allResult.forEach((userName, prizeName) -> System.out.println(userName.getValue() + " : " + prizeName.getValue()));
     }
 
 }
