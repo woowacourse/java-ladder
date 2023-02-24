@@ -9,7 +9,7 @@ public class Line {
     private final List<LadderStep> line;
 
     public Line(int count, BooleanGenerator ladderGenerator) {
-        this.line = createLine(count, ladderGenerator);
+        this.line = createLine2(count, ladderGenerator);
     }
 
     private List<LadderStep> createLine(int count, BooleanGenerator ladderGenerator) {
@@ -21,6 +21,22 @@ public class Line {
             line.add(ladderStep);
         }
         return line;
+    }
+
+    private List<LadderStep> createLine2(int count, BooleanGenerator ladderGenerator) {
+        final List<LadderStep> line = new ArrayList<>();
+        for (int index = 0; index < count; index++) {
+            line.add(generateLadderStep(ladderGenerator, index));
+        }
+        return line;
+    }
+
+    private LadderStep generateLadderStep(BooleanGenerator ladderGenerator, int index) {
+        if (index == 0) {
+            return LadderStep.by(ladderGenerator);
+        }
+        LadderStep previousStep = line.get(index - 1);
+        return LadderStep.of(previousStep, ladderGenerator);
     }
 
     public List<LadderStep> getLadderSteps() {
