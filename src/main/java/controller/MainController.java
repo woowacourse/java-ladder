@@ -9,6 +9,7 @@ import domain.ladder.Ladder;
 import domain.mission.Missions;
 import domain.player.Names;
 import domain.player.Players;
+import java.util.NoSuchElementException;
 import view.InputView;
 import view.OutputView;
 
@@ -34,6 +35,42 @@ public class MainController {
 
         LadderGame ladderGame = LadderGame.of(new Players(names), missions, ladder);
         displayResult(ladderGame);
+    }
+
+    private Names receiveNames() {
+        try {
+            return new Names(inputView.readNames());
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception);
+            return receiveNames();
+        }
+    }
+
+    private Missions receiveMissions(Names names) {
+        try {
+            return Missions.of(inputView.readMissions(), names.size());
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception);
+            return receiveMissions(names);
+        }
+    }
+
+    private Ladder makeLadder(int nameNumber) {
+        int lineNumber = nameNumber - 1;
+        return new Ladder(lineNumber, receiveHeight().getHeight(), ladderGenerator);
+    }
+
+    private void printLadder(Names names, Missions missions, Ladder ladder) {
+        outputView.printResult(names, ladder, missions);
+    }
+
+    private Height receiveHeight() {
+        try {
+            return new Height(inputView.readHeight());
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception);
+            return receiveHeight();
+        }
     }
 
     private void displayResult(LadderGame ladderGame) {
@@ -67,44 +104,8 @@ public class MainController {
         try {
             Result result = ladderGame.findResultByName(searchWord);
             outputView.printSingleResult(result);
-        } catch (IllegalArgumentException exception) {
+        } catch (NoSuchElementException exception) {
             outputView.printExceptionMessage(exception);
-        }
-    }
-
-    private void printLadder(Names names, Missions missions, Ladder ladder) {
-        outputView.printResult(names, ladder, missions);
-    }
-
-    private Ladder makeLadder(int nameNumber) {
-        int lineNumber = nameNumber - 1;
-        return new Ladder(lineNumber, receiveHeight().getHeight(), ladderGenerator);
-    }
-
-    private Names receiveNames() {
-        try {
-            return new Names(inputView.readNames());
-        } catch (IllegalArgumentException exception) {
-            outputView.printExceptionMessage(exception);
-            return receiveNames();
-        }
-    }
-
-    private Missions receiveMissions(Names names) {
-        try {
-            return Missions.of(inputView.readMissions(), names.size());
-        } catch (IllegalArgumentException exception) {
-            outputView.printExceptionMessage(exception);
-            return receiveMissions(names);
-        }
-    }
-
-    private Height receiveHeight() {
-        try {
-            return new Height(inputView.readHeight());
-        } catch (IllegalArgumentException exception) {
-            outputView.printExceptionMessage(exception);
-            return receiveHeight();
         }
     }
 }
