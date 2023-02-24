@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import domain.*;
@@ -22,29 +21,40 @@ public class LadderGameController {
         Players players = getPlayers();
         Prizes prizes = getPrizes(players.getCount());
         Ladder ladder = getLadder(players.getCount() - 1);
-
         LadderGame ladderGame = new LadderGame(players, ladder);
 
+        printLadderInformation(players, prizes, ladder);
+        printPlayerResult(players, prizes, ladderGame);
+    }
+
+    private void printPlayerResult(Players players, Prizes prizes, LadderGame ladderGame) {
+        while (true) {
+            int index = getPlayerIndex(ladderGame);
+            if (index == -10) {
+                outputView.printAllPlayerResult(players, ladderGame.getResultAllIndex());
+                break;
+            }
+            outputView.printPlayerResult(prizes.getName(index));
+        }
+    }
+
+    private void printLadderInformation(Players players, Prizes prizes, Ladder ladder) {
         outputView.printNames(players.getNames());
         outputView.printLadder(ladder.getLines());
         outputView.printNames(prizes.getNames());
+    }
 
-
-        while (true) {
+    private int getPlayerIndex(LadderGame ladderGame) {
+        try {
             String name = inputView.readCheckPlayer();
             if (name.equals("all")) {
-                List<String> resultPrizes = new ArrayList<>();
-                for (Integer index : ladderGame.getResultAllIndex()) {
-                    resultPrizes.add(prizes.getName(index));
-                }
-                outputView.printAllPlayerResult(players, resultPrizes);
-                break;
+                return -10;
             }
-            int resultIndex = ladderGame.getResultIndex(name);
-            outputView.printPlayerResult(prizes.getName(resultIndex));
+            return ladderGame.getResultIndex(name);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return getPlayerIndex(ladderGame);
         }
-
-
     }
 
     private Prizes getPrizes(int count) {
