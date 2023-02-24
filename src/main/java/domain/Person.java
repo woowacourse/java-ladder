@@ -13,10 +13,10 @@ public class Person {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_NAME_LENGTH = 1;
 
-    public Person(String name) {
+    public Person(String name, int initPosition) {
         validateNameLength(name);
         this.name = name;
-        this.position = 0;
+        this.position = initPosition;
     }
 
     private static void validateNameLength(String name) {

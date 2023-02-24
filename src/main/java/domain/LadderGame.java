@@ -14,8 +14,8 @@ public class LadderGame {
 
     public People createPeople(List<String> names) {
         List<Person> people = new ArrayList<>();
-        for (String name : names) {
-            people.add(new Person(name));
+        for (int i = 0; i < names.size(); i++) {
+            people.add(new Person(names.get(i), i));
         }
         return new People(people);
     }
@@ -37,4 +37,40 @@ public class LadderGame {
 
         return new Rewards(rewards, peopleNum);
     }
+
+    public void processResult(People people, Lines lines) {
+        for (Line line : lines.getLines()) {
+            calculateLine(people, line);
+        }
+    }
+
+    private static void calculateLine(People people, Line line) {
+        for (Person person : people.getPeople()) {
+            movePerson(person, line, people.getPeople().size());
+        }
+    }
+
+    private static void movePerson(Person person, Line line, int peopleSize) {
+        MoveCommand command = decisionPersonPosition(person, line, peopleSize);
+        if (command == MoveCommand.LEFT) {
+            person.goLeft();
+            return;
+        }
+        if (command == MoveCommand.RIGHT) {
+            person.goRight();
+            return;
+        }
+    }
+
+    private static MoveCommand decisionPersonPosition(Person person, Line line, int peopleSize) {
+        int i = person.getPosition();
+        if (person.getPosition() != peopleSize - 1 && line.getPoints().get(person.getPosition())) {
+            return MoveCommand.RIGHT;
+        }
+        if (i != 0 && line.getPoints().get(i - 1)) {
+            return MoveCommand.LEFT;
+        }
+        return MoveCommand.NONE;
+    }
+
 }

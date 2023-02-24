@@ -1,13 +1,14 @@
 package domain;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import util.RandomValueGenerator;
 
 /**
  * @author 최원용
@@ -51,5 +52,28 @@ class LadderGameTest {
                     assertEquals(lines.getLines().size(), height);
                 }
         );
+    }
+
+    @DisplayName("Person과 Line을 주고 이동 테스트")
+    @Test
+    void Person_이동_테스트() {
+        People people = new People(Arrays.asList(new Person("aa", 0), new Person("bb", 1)));
+        Lines lines = new Lines(Arrays.asList(Line.newInstanceWithPersonCount(people.getPeople().size(),
+                new TestFlapValueBooleanGenerator())));
+        ladderGame.processResult(people, lines);
+
+        Assertions.assertEquals(1, people.getPeople().get(0).getPosition());
+        Assertions.assertEquals(0, people.getPeople().get(1).getPosition());
+    }
+
+    class TestFlapValueBooleanGenerator implements RandomValueGenerator {
+
+        boolean flag = false;
+
+        @Override
+        public boolean generate() {
+            flag = !flag;
+            return flag;
+        }
     }
 }
