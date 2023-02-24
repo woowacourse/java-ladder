@@ -1,9 +1,9 @@
 package ladder.util;
 
 import java.util.List;
-import ladder.domain.BooleanGenerator;
+import ladder.domain.LadderGameCreateLineBooleanGenerator;
 
-public class TestBooleanGenerator implements BooleanGenerator {
+public class TestBooleanGenerator implements LadderGameCreateLineBooleanGenerator {
 
     private List<Boolean> booleans;
     private int index = 0;

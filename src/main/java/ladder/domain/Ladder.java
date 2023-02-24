@@ -9,11 +9,12 @@ import java.util.stream.Stream;
 class Ladder {
     private final List<Line> lines;
 
-    public Ladder(final BooleanGenerator booleanGenerator, final Height height, final int width) {
+    public Ladder(final LadderGameCreateLineBooleanGenerator booleanGenerator, final Height height, final int width) {
         this.lines = generateLines(booleanGenerator, height, width);
     }
 
-    private List<Line> generateLines(final BooleanGenerator booleanGenerator, final Height height, final int width) {
+    private List<Line> generateLines(final LadderGameCreateLineBooleanGenerator booleanGenerator, final Height height,
+                                     final int width) {
         return Stream.generate(() -> new Line(booleanGenerator, width))
                 .limit(height.getHeight())
                 .collect(toList());

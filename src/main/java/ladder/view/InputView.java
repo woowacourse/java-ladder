@@ -13,6 +13,7 @@ public class InputView {
     private static final String INVALID_NUMBER_MESSAGE = "숫자만 입력 가능합니다.";
     private static final String INVALID_MAX_INTEGER_MESSAGE = "2,147,483,648 이상은 입력할 수 없습니다.";
     private static final int MAXIMUM_NUMBER_DIGIT = 10;
+    private static final String READ_RESULT_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
 
     private final Scanner scanner;
 
@@ -49,5 +50,19 @@ public class InputView {
         if (input.length() > MAXIMUM_NUMBER_DIGIT || Long.parseLong(input) > Integer.MAX_VALUE) {
             throw new IllegalArgumentException(INVALID_MAX_INTEGER_MESSAGE);
         }
+    }
+
+    public List<String> readBottoms() {
+        System.out.println(READ_RESULT_MESSAGE);
+        final String input = scanner.nextLine();
+
+        return Arrays.stream(input.split(DELIMITER))
+                .map(String::trim)
+                .collect(Collectors.toList());
+    }
+
+    public String readSearchName() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
     }
 }

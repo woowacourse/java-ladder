@@ -3,8 +3,13 @@ package ladder.view;
 import static java.util.stream.Collectors.joining;
 
 import java.util.List;
+import java.util.Map;
+import ladder.domain.Bottoms;
+import ladder.domain.LadderGame;
 import ladder.domain.Line;
 import ladder.domain.LineStatus;
+import ladder.domain.Players;
+import ladder.domain.Result;
 
 public class OutputView {
     private static final String GAME_RESULT_MESSAGE = System.lineSeparator() + "실행결과";
@@ -19,15 +24,29 @@ public class OutputView {
     private static final String LINE_STATUS_MESSAGE_FORMAT = "%s|";
     private static final String NEXT_LINE = System.lineSeparator();
     private static final String ERROR_MESSAGE = "[ERROR] ";
+    private static final int ONE_NAME_SEARCH_CONDITION = 1;
 
-    public void printResult(final List<String> playerNames, final List<Line> ladder) {
+    public void printResult(final LadderGame ladderGame, final Bottoms bottom) {
         System.out.println(GAME_RESULT_MESSAGE);
 
-        final int maxNameLength = getMaxNameLength(playerNames);
-        System.out.println(generateNameMessages(playerNames, maxNameLength));
+        final int maxNameLength = getMaxNameLength(ladderGame.getPlayerNames());
+        System.out.println(generateNameMessages(ladderGame.getPlayerNames(), maxNameLength));
 
-        final String initialPlayerName = findInitialPlayerName(playerNames);
-        System.out.println(generateLadderMessage(initialPlayerName.length(), maxNameLength, ladder));
+        final String initialPlayerName = findInitialPlayerName(ladderGame.getPlayerNames());
+        System.out.println(generateLadderMessage(initialPlayerName.length(), maxNameLength, ladderGame.getLadder()));
+        System.out.println(generateResultMessages(bottom, maxNameLength));
+    }
+
+    private String generateResultMessages(final Bottoms bottom, final int maxNameLength) {
+        String resultMessage = bottom.toList().stream()
+                .map(result -> generateResultMessage(result, maxNameLength))
+                .collect(joining());
+        return resultMessage + NEXT_LINE;
+    }
+
+    private String generateResultMessage(final String result, final int maxNameLength) {
+        String maxNameLengthFormat = String.format(NAME_MESSAGE_FORMAT, maxNameLength);
+        return String.format(maxNameLengthFormat, result);
     }
 
     private int getMaxNameLength(final List<String> playerNames) {
@@ -82,5 +101,23 @@ public class OutputView {
 
     public void printError(final String message) {
         System.out.println(ERROR_MESSAGE + message);
+    }
+
+    public void printSearchResult(final Result result,
+                                  final Players earlyPlayers) {
+        System.out.println(GAME_RESULT_MESSAGE);
+        Map<String, String> overallResult = result.getOverallResult();
+        if (overallResult.size() == ONE_NAME_SEARCH_CONDITION) {
+            overallResult.forEach((key, value) -> System.out.println(value + NEXT_LINE));
+            return;
+        }
+
+        printAllResult(overallResult, earlyPlayers);
+    }
+
+    private void printAllResult(final Map<String, String> searchResultPlayerName, final Players earlyPlayers) {
+        for (String initializedName : earlyPlayers.getNames()) {
+            System.out.println(initializedName + " : " + searchResultPlayerName.get(initializedName));
+        }
     }
 }
