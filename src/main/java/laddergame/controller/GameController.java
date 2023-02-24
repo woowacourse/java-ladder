@@ -77,9 +77,13 @@ public class GameController {
             OutputView.printAllResult(gameResult);
             return;
         }
-        if (!command.equals("end")) {
+        if (gameResult.isContain(command)) {
             final String playerPrize = gameResult.findPlayerPrize(command);
             OutputView.printResult(playerPrize);
+            return;
+        }
+        if (!command.equals("end")) {
+            OutputView.printMessage("all 혹은 참여한 사람의 이름만 입력해주세요.");
         }
     }
 }

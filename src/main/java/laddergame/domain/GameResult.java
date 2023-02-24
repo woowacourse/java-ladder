@@ -15,11 +15,20 @@ public class GameResult {
     }
 
     public String findPlayerPrize(final String player) {
-        final int index = gameResult.stream()
-                .map(Player::getName)
-                .collect(toList())
+        final int index = getPlayerNames()
                 .indexOf(player);
         return winningPrizes.getIndexPrize(index).getWinningPrize();
+    }
+
+    public boolean isContain(final String command) {
+        return getPlayerNames().contains(command);
+
+    }
+
+    private List<String> getPlayerNames() {
+        return gameResult.stream()
+                .map(Player::getName)
+                .collect(toList());
     }
 
     public List<Player> getGameResult() {
