@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class LadderGameController {
 
@@ -27,11 +28,11 @@ public class LadderGameController {
 
     public void run() {
         Players players = repeat(() -> initializePlayers(inputView.askPlayerNames()));
-        Products products = repeat(() -> initializeProducts(inputView.askResultProducts()));
+        Products products = repeat(() -> initializeProducts(inputView.askResultProducts(), players.size()));
+        Results results = new Results(players, products);
         int height = repeat(inputView::askLadderHeight);
 
         LadderGame game = new LadderGame(players, height);
-        Results results = new Results(players, products);
 
         List<Line> lines = game.toUnmodifiableLines();
         outputView.showLadderGame(players, lines, products);
@@ -51,16 +52,20 @@ public class LadderGameController {
         return new Players(players);
     }
 
-    private Products initializeProducts(final List<String> names) {
-        int index = 0;
-        List<Product> products = new ArrayList<>();
+    private Products initializeProducts(final List<String> names, final int playersCount) {
+        validateLength(playersCount, names.size());
 
-        for (String name : names) {
-            Product product = new Product(name);
-            products.add(product);
-        }
+        List<Product> products = names.stream()
+                .map(Product::new)
+                .collect(Collectors.toList());
 
         return new Products(products);
+    }
+
+    private void validateLength(final int playerCount, final int productCount) {
+        if (playerCount != productCount) {
+            throw new IllegalArgumentException("참가자와 결과의 개수는 같아야합니다.");
+        }
     }
 
     private void checkResult(final Results results) {
