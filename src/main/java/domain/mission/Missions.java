@@ -1,15 +1,13 @@
 package domain.mission;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Missions {
-    private static final String SPLIT_STANDARD = ",";
     private final List<Mission> missions;
 
-    public Missions(String missions, int size) {
+    public Missions(List<String> missions, int size) {
         this.missions = formatMissions(missions);
         validateMissionsSize(size);
     }
@@ -20,8 +18,8 @@ public class Missions {
         }
     }
 
-    private List<Mission> formatMissions(String missions) {
-        List<Mission> randomMission = Arrays.stream(missions.split(SPLIT_STANDARD))
+    private List<Mission> formatMissions(List<String> missions) {
+        List<Mission> randomMission = missions.stream()
                 .map(String::trim)
                 .map(Mission::new)
                 .collect(Collectors.toList());

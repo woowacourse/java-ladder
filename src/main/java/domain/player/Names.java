@@ -1,26 +1,24 @@
 package domain.player;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Names {
     private static final int MIN_RANGE = 2;
     private static final int MAX_RANGE = 100;
-    private static final String SPLIT_STANDARD = ",";
 
     private final List<Name> names;
 
-    public Names(String names) {
+    public Names(List<String> names) {
         List<Name> formattedNames = formatNames(names);
         validateSize(formattedNames.size());
         validateDuplicatedNames(formattedNames);
         this.names = formattedNames;
     }
 
-    private static List<Name> formatNames(String names) {
-        return Arrays.stream(names.split(SPLIT_STANDARD))
+    private static List<Name> formatNames(List<String> names) {
+        return names.stream()
                 .map(String::trim)
                 .map(Name::new)
                 .collect(Collectors.toList());

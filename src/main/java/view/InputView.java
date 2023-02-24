@@ -1,10 +1,16 @@
 package view;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
+
+    private static final String SPLIT_STANDARD = ",";
     private static final InputView instance = new InputView();
     private static final Scanner scanner = new Scanner(System.in);
+
 
     public static InputView getInstance() {
         return instance;
@@ -13,12 +19,12 @@ public class InputView {
     private InputView() {
     }
 
-    public String readNames() {
-        return readInput(Message.INPUT_NAMES.message);
+    public List<String> readNames() {
+        return splitByComma(readInput(Message.INPUT_NAMES.message));
     }
 
-    public String readMissions() {
-        return readInput(Message.INPUT_MISSIONS.message);
+    public List<String> readMissions() {
+        return splitByComma(readInput(Message.INPUT_MISSIONS.message));
     }
 
     public int readHeight() {
@@ -33,6 +39,10 @@ public class InputView {
     private static String readInput(String message) {
         System.out.println(message);
         return scanner.nextLine();
+    }
+
+    private List<String> splitByComma(String input) {
+        return Arrays.stream(input.split(SPLIT_STANDARD)).collect(Collectors.toList());
     }
 
     private static int parseHeight(String input) {
