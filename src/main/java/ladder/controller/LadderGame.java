@@ -1,7 +1,6 @@
 package ladder.controller;
 
 import java.util.List;
-import java.util.Map;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.LadderGenerator;
@@ -29,26 +28,30 @@ public class LadderGame {
             Ladder ladder = makeLadder(players.size());
             printLadder(players, ladder, prizes);
             runGame(players, prizes, ladder);
-            printResult(players);
+            inputResultCommand(players, ResultCommand.from(inputView.inputPlayerForResult()));
         } catch (IllegalArgumentException e) {
             resultView.printErrorMessage(e.getMessage());
         }
 
     }
 
-    private void printResult(Players players) {
-        ResultCommand resultCommand = ResultCommand.from(inputView.inputPlayerForResult());
+    private void inputResultCommand(Players players, ResultCommand resultCommand) {
+        executeResultCommand(players, resultCommand);
+        if (!resultCommand.equals(ResultCommand.END)) {
+            inputResultCommand(players, ResultCommand.from(inputView.inputPlayerForResult()));
+        }
+    }
+
+    private void executeResultCommand(Players players, ResultCommand resultCommand) {
+        if (resultCommand.equals(ResultCommand.END)) {
+            resultView.printEndMessage();
+        }
         if (resultCommand.equals(ResultCommand.PLAYER)) {
             String prizeName = getPrizeNameByPlayerName(resultCommand.getName(), players);
             resultView.printPrizeOfPlayer(prizeName);
-            printResult(players);
         }
         if (resultCommand.equals(ResultCommand.ALL)) {
             resultView.printPrizeOfPlayers(players.getPrizes());
-            printResult(players);
-        }
-        if (resultCommand.equals(ResultCommand.END)) {
-            resultView.printEndMessage();
         }
     }
 

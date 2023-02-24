@@ -24,7 +24,7 @@ public class Row {
         }
     }
 
-    private void validateConsecutiveStep(List<Step> row, int position){
+    private void validateConsecutiveStep(List<Step> row, int position) {
         if (isConsecutiveStep(row, position)) {
             throw new IllegalArgumentException(CONSECUTIVE_FOOTHOLD_ERROR_MESSAGE);
         }

@@ -33,9 +33,9 @@ public class Players {
         }
     }
 
-    private void validateDuplicate(List<Player> players){
+    private void validateDuplicate(List<Player> players) {
         int distinctCount = (int) players.stream().map(player -> player.getName()).distinct().count();
-        if(players.size() != distinctCount){
+        if (players.size() != distinctCount) {
             throw new IllegalArgumentException(PLAYERS_DUPLICATE_MESSAGE);
         }
     }

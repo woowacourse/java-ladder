@@ -51,4 +51,16 @@ public class Name {
     public String getName() {
         return name;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Name)) {
+            return false;
+        }
+        Name other = (Name) obj;
+        if (name.equals(other.name)) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -12,6 +12,7 @@ public class InputView {
     private static final String HEIGHT_ERROR_MESSAGE = "사다리 높이는 자연수만 입력할 수 있습니다.";
     private static final String PRIZES_INPUT_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String RESULT_COMMAND_INPUT_MESSAGE = "결과를 보고 싶은 사람은?";
+
     public List<String> inputPlayers() {
         System.out.println(PLAYERS_INPUT_MESSAGE);
         String names = scanner.nextLine();

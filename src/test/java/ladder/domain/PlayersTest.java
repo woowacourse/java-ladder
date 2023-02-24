@@ -18,7 +18,7 @@ class PlayersTest {
 
     @Test
     @DisplayName("플레이어 이름이 중복될 경우 예외던지기")
-    public void 이름_중복_예외던지기(){
+    public void 이름_중복_예외던지기() {
         assertThatThrownBy(() -> Players.from(List.of("홍고", "홍고")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("플레이어 이름은 중복될 수 없습니다.");
