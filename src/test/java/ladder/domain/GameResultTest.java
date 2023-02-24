@@ -22,7 +22,7 @@ class GameResultTest {
                 "2",
                 "3",
                 "4"
-        ));
+        ), 5);
         GameResult gameResult = GameResult.of(players.climbDownLadder(ladder), prizes);
 
         // when
@@ -50,7 +50,7 @@ class GameResultTest {
                 "2",
                 "3",
                 "4"
-        ));
+        ), 5);
         GameResult gameResult = GameResult.of(players.climbDownLadder(ladder), prizes);
 
         // when
