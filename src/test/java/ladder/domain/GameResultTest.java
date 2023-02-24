@@ -10,7 +10,7 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
 
-class GameResultProcessorTest {
+class GameResultTest {
     @Test
     void should_전체플레이어_게임결과_반환_when_fetchAllResults호출() {
         // given
@@ -23,10 +23,10 @@ class GameResultProcessorTest {
                 "3",
                 "4"
         ));
-        GameResultProcessor gameResultProcessor = GameResultProcessor.process(players.climbDownLadder(ladder), prizes);
+        GameResult gameResult = GameResult.of(players.climbDownLadder(ladder), prizes);
 
         // when
-        Map<String, String> gameResults = gameResultProcessor.fetchAllResults();
+        Map<String, String> gameResults = gameResult.fetchAllResults();
 
         //then
         assertThat(gameResults).contains(
@@ -51,10 +51,10 @@ class GameResultProcessorTest {
                 "3",
                 "4"
         ));
-        GameResultProcessor gameResultProcessor = GameResultProcessor.process(players.climbDownLadder(ladder), prizes);
+        GameResult gameResult = GameResult.of(players.climbDownLadder(ladder), prizes);
 
         // when
-        String actual = gameResultProcessor.fetchResultByName(name);
+        String actual = gameResult.fetchResultByName(name);
 
         //then
         assertThat(actual).isEqualTo(expected);

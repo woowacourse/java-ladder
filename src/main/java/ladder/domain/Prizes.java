@@ -23,7 +23,8 @@ public class Prizes {
         return new Prizes(prizes);
     }
 
-    public Prize get(Position position) {
-        return prizes.get(position);
+    public String getPrizeName(Position position) {
+        return prizes.get(position)
+                     .getName();
     }
 }

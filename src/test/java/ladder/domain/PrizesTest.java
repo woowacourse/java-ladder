@@ -19,11 +19,11 @@ class PrizesTest {
         Position position = new Position(0);
 
         // when
-        Prize prize = prizes.get(position);
+        String prize = prizes.getPrizeName(position);
 
 
         //then
-        assertThat(prize.getName()).isEqualTo("0");
+        assertThat(prize).isEqualTo("0");
     }
 
 }
