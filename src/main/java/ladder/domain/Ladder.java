@@ -37,4 +37,3 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 }
-
