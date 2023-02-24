@@ -14,16 +14,16 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class LineTest {
-    private final BooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator();
-    private final BooleanGenerator trueBooleanGenerator = new TrueBooleanGenerator();
-    private Line nonRandomLine = new Line(3, trueBooleanGenerator);
+    private final BooleanGenerator randomLadderGenerator = new RandomBooleanGenerator();
+    private final BooleanGenerator nonRandomLadderGenerator = new TrueBooleanGenerator();
+    private final Line nonRandomLine = new Line(3, nonRandomLadderGenerator);
 
     @Nested
     @DisplayName("사다리 발판 생성 테스트")
     class createLadderStepsTest {
         @Test
         void createRandomLadderStepsTest() {
-            assertDoesNotThrow(() -> new Line(3, randomBooleanGenerator));
+            assertDoesNotThrow(() -> new Line(3, randomLadderGenerator));
         }
 
         @Test
