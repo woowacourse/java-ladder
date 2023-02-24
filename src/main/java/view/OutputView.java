@@ -6,14 +6,17 @@ import domain.ladder.Bridge;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
 import domain.ladderGame.GameInit;
+import domain.ladderGame.GameResult;
 import domain.player.Name;
 import domain.player.Players;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class OutputView {
 
-    private static final String INIT_RESULT_SHOW_MESSAGE = "사다리 결과";
+    private static final String INIT_RESULT_SHOW_MESSAGE = "\n사다리 결과";
+    private static final String GAME_RESULT_SHOW_MESSAGE = "\n실행 결과;";
     private static final String BRIDGE_TRUE = "-----";
     private static final String BRIDGE_FALSE = "     ";
     private static final String LINE_BAR_MESSAGE = "|";
@@ -27,6 +30,18 @@ public class OutputView {
         showPlayers(gameInit.getPlayers());
         showLadder(gameInit.getLadder());
         showItems(gameInit.getItems());
+        System.out.println();
+    }
+
+    public void showAllResult(GameResult gameResult) {
+        System.out.println(GAME_RESULT_SHOW_MESSAGE);
+        LinkedHashMap<String, String> results = gameResult.getGameResult();
+        results.forEach((target, result) -> printTargetResult(target, result));
+    }
+
+    public void showTargetResult(String target, GameResult gameResult) {
+        System.out.println(GAME_RESULT_SHOW_MESSAGE);
+        printTargetResult(target, gameResult.getTargetResult(target));
     }
 
     private void showInitResultMessage() {
@@ -71,5 +86,9 @@ public class OutputView {
             return BRIDGE_TRUE;
         }
         return BRIDGE_FALSE;
+    }
+
+    private void printTargetResult(String target, String result) {
+        System.out.println(target + " : " + result);
     }
 }
