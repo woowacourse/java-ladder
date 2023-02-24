@@ -9,101 +9,39 @@ import strategy.PassGenerator;
 
 public class LadderGame {
 
-    private final Names participantsNames;
-    private final LadderResults ladderResults;
-    private final Ladder ladder;
-    private final GameResults gameResults;
+    private Names participantsNames;
+    private LadderResults ladderResults;
+    private Ladder ladder;
+    private GameResults gameResults;
 
-    private LadderGame(Names participantsNames, LadderResults ladderResults, Ladder ladder,
-            GameResults gameResults) {
-        this.participantsNames = participantsNames;
-        this.ladderResults = ladderResults;
-        this.ladder = ladder;
-        this.gameResults = gameResults;
+    public void initParticipantsNames(List<String> namesInfo) {
+        this.participantsNames = Names.of(namesInfo);
     }
 
-    private static LadderGame of(List<String> namesInfo, List<String> ladderResultsInfo, PassGenerator generator,
-            Height height) {
-        int totalParticipantSize = namesInfo.size();
-        Names participantsNames = Names.of(namesInfo);
-        LadderResults ladderResults = LadderResults.of(ladderResultsInfo, totalParticipantSize);
-        Ladder ladder = Ladder.of(generator, height, totalParticipantSize);
-        GameResults gameResults = GameResults.of(participantsNames, ladder, ladderResults);
-
-        return new LadderGame(participantsNames, ladderResults, ladder, gameResults);
+    public void initLadderResults(List<String> ladderResultsInfo) {
+        validateParticipantsNames();
+        this.ladderResults = LadderResults.of(ladderResultsInfo, participantsNames.getTotalParticipantSize());
     }
 
-    private static class Builder {
-        private static final int MINIMUM_PARTICIPANT_SIZE = 2;
-        private static final int MINIMUM_LADDER_RESULT_SIZE = 2;
+    public void initLadder(PassGenerator generator, int heightOfLadder) {
+        validateParticipantsNames();
 
-        private List<String> namesInfo;
-        private List<String> ladderResultsInfo;
-        private PassGenerator generator;
-        private Height height;
+        Height height = new Height(heightOfLadder);
 
-        public static Builder builder() {
-            return new Builder();
-        }
+        this.ladder = Ladder.of(generator, height, participantsNames.getTotalParticipantSize());
+    }
 
-        public Builder namesInfo(List<String> namesInfo) {
-            this.namesInfo = namesInfo;
+    public void play() {
+        validateParticipantsNames();
+        validateLadderResult();
+        validateLadder();
 
-            return this;
-        }
-
-        public Builder ladderResultsInfo(List<String> ladderResultsInfo) {
-            this.ladderResultsInfo = ladderResultsInfo;
-
-            return this;
-        }
-
-        public Builder generator(PassGenerator generator) {
-            this.generator = generator;
-
-            return this;
-        }
-
-        public Builder heightOfLadder(int heightOfLadder) {
-            this.height = new Height(heightOfLadder);
-
-            return this;
-        }
-
-        public LadderGame build() {
-            validateNamesInfo();
-            validateLadderResultsInfo();
-            validateGenerate();
-
-            return LadderGame.of(namesInfo, ladderResultsInfo, generator, height);
-        }
-
-        private void validateNamesInfo() {
-            if (Objects.isNull(namesInfo)) {
-                throw new IllegalStateException();
-            }
-            if (namesInfo.size() < MINIMUM_PARTICIPANT_SIZE) {
-                throw new IllegalArgumentException();
-            }
-        }
-
-        private void validateLadderResultsInfo() {
-            if (Objects.isNull(namesInfo)) {
-                throw new IllegalStateException();
-            }
-            if (namesInfo.size() < MINIMUM_LADDER_RESULT_SIZE) {
-                throw new IllegalArgumentException();
-            }
-        }
-
-        private void validateGenerate() {
-            if (Objects.isNull(generator)) {
-                throw new IllegalStateException();
-            }
-        }
+        this.gameResults = GameResults.of(participantsNames, ladder, ladderResults);
     }
 
     public List<GameResultDto> findGameResult(String name) {
+        validateGameResult();
+
         if (LadderGameCommand.ALL_RESULT_PRINT_AND_EXIT_COMMAND.isPlayable(name)) {
             return findGameResultByName(name);
         }
@@ -118,11 +56,35 @@ public class LadderGame {
     }
 
     private List<GameResultDto> findGameResultAll() {
-        List<GameResult> totalGameResults = gameResults.getGameResults();
+        List<GameResult> gameResults = this.gameResults.getGameResults();
 
-        return totalGameResults.stream()
+        return gameResults.stream()
                 .map(GameResultDto::new)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    private void validateParticipantsNames() {
+        if (Objects.isNull(participantsNames)) {
+            throw new IllegalStateException("참가자가 등록되지 않았습니다.");
+        }
+    }
+
+    private void validateLadder() {
+        if (Objects.isNull(ladder)) {
+            throw new IllegalStateException("사다리가 생성되지 않았습니다.");
+        }
+    }
+
+    private void validateLadderResult() {
+        if (Objects.isNull(ladderResults)) {
+            throw new IllegalStateException("사다리 실행 결과가 등록되지 않았습니다.");
+        }
+    }
+
+    private void validateGameResult() {
+        if (Objects.isNull(gameResults)) {
+            throw new IllegalStateException("사다리 게임을 진행하지 않았습니다.");
+        }
     }
 
     public List<String> getParticipantsNames() {
