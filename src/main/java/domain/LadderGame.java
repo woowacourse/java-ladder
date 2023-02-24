@@ -12,6 +12,7 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
+    // todo : 접근제어자 수정 + 테스트
     public boolean moveRight(Line line, Position position) {
         if (position.getIndex() == line.getPointsSize()) {
             return false;
