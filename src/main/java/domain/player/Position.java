@@ -1,9 +1,14 @@
 package domain.player;
 
 import domain.ladder.Line;
+import domain.ladder.LinePoint;
+import java.util.List;
 import java.util.Objects;
 
 public class Position {
+
+    private static final int LEFT_POINT_CONSTANT = 2;
+    private static final int RIGHT_POINT_CONSTANT = 1;
 
     private int position;
 
@@ -12,7 +17,13 @@ public class Position {
     }
 
     public boolean isLeftSidePassable(Line line) {
-        return !isLeftEnd() && line.isLeftPointPassableBySpecificPosition(position);
+        List<LinePoint> points = line.getPoints();
+        return !isLeftEnd() && isPassable(points, position - LEFT_POINT_CONSTANT);
+    }
+
+    private boolean isPassable(List<LinePoint> points,
+                               int index) {
+        return points.get(index).isPassable();
     }
 
     private boolean isLeftEnd() {
@@ -20,7 +31,12 @@ public class Position {
     }
 
     public boolean isRightSidePassable(Line line) {
-        return !isRightEnd(line.getLastPosition()) && line.isRightPointPassableBySpecificPosition(position);
+        List<LinePoint> points = line.getPoints();
+        return !isRightEnd(getLastPosition(points)) && isPassable(points, position - RIGHT_POINT_CONSTANT);
+    }
+
+    private static int getLastPosition(List<LinePoint> points) {
+        return points.size() + 1;
     }
 
     private boolean isRightEnd(int rightEnd) {
@@ -38,7 +54,6 @@ public class Position {
     public int getPosition() {
         return position;
     }
-
 
     @Override
     public boolean equals(Object other) {
