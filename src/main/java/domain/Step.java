@@ -26,4 +26,8 @@ public enum Step {
 
         return Step.NONE;
     }
+
+    public int move(int currentPosition) {
+        return this.moveDirection + currentPosition;
+    }
 }
