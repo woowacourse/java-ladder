@@ -4,14 +4,11 @@ import domain.Height;
 import domain.LadderGame;
 import domain.Persons;
 import exception.ErrorCode;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
-    private static final String DELIMITER = ",";
     private final InputView inputView;
     private final OutputView outputView;
     private LadderGame ladderGame;
@@ -36,31 +33,16 @@ public class LadderGameController {
 
     private Persons requestPlayerName() {
         try {
-            String inputNames = inputView.requestNames();
-            List<String> playerNames = Arrays.stream(inputNames.split(DELIMITER))
-                    .collect(Collectors.toList());
-            Persons persons = Persons.from(playerNames);
-            return persons;
+            return Persons.from(inputView.requestNames());
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             return requestPlayerName();
         }
     }
 
-    private Height requestLadderHeight() {
-        try {
-            return Height.from(inputView.requestHeight());
-        } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception.getMessage());
-            return requestLadderHeight();
-        }
-    }
-
     private List<String> requestLadderPrize(int personCount) {
         try {
-            String inputPrizes = inputView.requestPrize();
-            List<String> prizes = Arrays.stream(inputPrizes.split(DELIMITER))
-                    .collect(Collectors.toList());
+            List<String> prizes = inputView.requestPrize();
             validatePrizeCount(prizes.size(), personCount);
             return prizes;
         } catch (IllegalArgumentException exception) {
@@ -72,6 +54,15 @@ public class LadderGameController {
     private static void validatePrizeCount(int prizeCount, int personCount) {
         if (prizeCount != personCount) {
             throw new IllegalArgumentException(ErrorCode.COUNT_OR_PRIZE_IS_NOT_MATCH_WITH_PERSON_COUNT.getMessage());
+        }
+    }
+
+    private Height requestLadderHeight() {
+        try {
+            return Height.from(inputView.requestHeight());
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            return requestLadderHeight();
         }
     }
 
