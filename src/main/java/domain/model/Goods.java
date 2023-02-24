@@ -15,7 +15,8 @@ public class Goods {
         this.items = items;
         this.playerCounts = playerCounts;
     }
-    public Goods(Goods goods){
+
+    public Goods(Goods goods) {
         this.items = Collections.unmodifiableList(goods.items);
         this.playerCounts = goods.playerCounts;
     }

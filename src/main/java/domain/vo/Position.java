@@ -1,7 +1,7 @@
 package domain.vo;
 
 public class Position {
-    private int value;
+    private final int value;
 
     public Position(final int value) {
         this.value = value;

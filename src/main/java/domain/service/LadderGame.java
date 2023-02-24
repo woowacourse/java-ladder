@@ -6,27 +6,26 @@ import domain.model.Player;
 import domain.model.Players;
 
 public class LadderGame {
-    private int maxPosition;
-    private Players players;
+    private final Ladder ladder;
+    private final Players players;
 
-    public LadderGame(final int maxPosition) {
-        this.maxPosition = maxPosition;
-    }
-
-    public void playLadderGame(Players players, Ladder ladder) {
+    public LadderGame(final Ladder ladder, final Players players) {
+        this.ladder = ladder;
         this.players = players;
-        this.players.getPlayers().forEach(player -> {
-            movePlayer(ladder, player);
-        });
     }
 
-    private void movePlayer(Ladder ladder, Player player) {
+    public void playLadderGame() {
+        this.players.getPlayers().forEach(this::movePlayer);
+    }
+
+    private void movePlayer(Player player) {
         ladder.getLayers().forEach(layer -> {
             movePlayerOneLayer(player, layer);
         });
     }
 
     private void movePlayerOneLayer(Player player, Layer layer) {
+        int maxPosition = this.ladder.getLineCountInt();
         if (player.getPosition() == 0 && layer.getLines().get(0)) {
             player.moveRight();
             return;
@@ -50,7 +49,4 @@ public class LadderGame {
         }
     }
 
-    public Players getPlayers() {
-        return this.players;
-    }
 }
