@@ -16,10 +16,6 @@ public class InputView {
         return List.of(splitInput(scanner.nextLine()));
     }
 
-    private static String[] splitInput(String inputValue) {
-        return inputValue.split(DELIMITER);
-    }
-
     public static int inputFloorHeight() {
         try {
             System.out.println("최대 사다리 높이는 몇 개인가요?");
@@ -38,4 +34,9 @@ public class InputView {
         System.out.println("결과를 보고 싶은 사람은?");
         return scanner.nextLine();
     }
+
+    private static String[] splitInput(String inputValue) {
+        return inputValue.split(DELIMITER);
+    }
+
 }

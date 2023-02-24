@@ -8,9 +8,10 @@ public class Floor {
     private static final int MOVE_INDEX_VALUE = 1;
     private static final int DONT_CHANGE_IN_INDEX = 0;
     private static final String INVALID_INDEX_ERROR_MESSAGE = "해당 위치는 존재하지 않는 값입니다.";
-    private static final int FLOOR_SIZE_HAVE_ONE_MORE_THAN_LINES = 1;
+    private static final int LINE_EDGE_HAVE_ONE_MORE_THAN_LINE = 1;
     private static final int TO_PREVIOUS_INDEX = 1;
     private static final int MAKE_DECREASE_VALUE = -1;
+
     private final List<Line> lines = new ArrayList<>();
 
     public Floor(int lineSize) {
@@ -57,27 +58,27 @@ public class Floor {
     }
 
     private int getDecreaseOf(final int index) {
-        if(index == START_POINT_OF_LADDER){
+        if (index == START_POINT_OF_LADDER) {
             return DONT_CHANGE_IN_INDEX;
         }
-        if(lines.get(index - TO_PREVIOUS_INDEX).isExist()){
+        if (lines.get(index - TO_PREVIOUS_INDEX).isExist()) {
             return MOVE_INDEX_VALUE * MAKE_DECREASE_VALUE;
         }
         return DONT_CHANGE_IN_INDEX;
     }
 
     private int getIncreaseOf(final int index) {
-        if(index == lines.size()){
+        if (index == lines.size()) {
             return DONT_CHANGE_IN_INDEX;
         }
-        if(lines.get(index).isExist()){
+        if (lines.get(index).isExist()) {
             return MOVE_INDEX_VALUE;
         }
         return DONT_CHANGE_IN_INDEX;
     }
 
-    public int getSize() {
-        return lines.size() + FLOOR_SIZE_HAVE_ONE_MORE_THAN_LINES;
+    public int getSizeOfLineEdge() {
+        return lines.size() + LINE_EDGE_HAVE_ONE_MORE_THAN_LINE;
     }
 
     public List<Line> getLines() {

@@ -10,14 +10,11 @@ public enum PrintCommand {
         this.command = command;
     }
 
-    public static PrintCommand of(String value) {
-        if (value.equals(PRINT_ALL.command)) {
+    public static PrintCommand of(String commandValue) {
+        if (commandValue.equals(PRINT_ALL.command)) {
             return PRINT_ALL;
         }
         return PRINT_ONE;
     }
 
-    public boolean isSame(final PrintCommand command) {
-        return this.equals(command);
-    }
 }

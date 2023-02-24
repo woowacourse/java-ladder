@@ -29,7 +29,7 @@ public class OutputView {
     }
 
     private static void printReward(final Reward rewards) {
-        for (String reward : rewards.getItems()) {
+        for (String reward : rewards.getRewardItemsName()) {
             printFormatted(reward);
         }
         System.out.println();

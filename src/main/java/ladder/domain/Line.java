@@ -1,7 +1,6 @@
 package ladder.domain;
 
 public class Line {
-
     private boolean isExist = false;
 
     public void make(LineSource lineSource) {

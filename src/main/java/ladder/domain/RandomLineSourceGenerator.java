@@ -6,7 +6,6 @@ import java.util.List;
 
 public class RandomLineSourceGenerator implements LineSourceGenerator {
 
-
     @Override
     public LineSource generate() {
         List<LineSource> values = new ArrayList<>(List.of(LineSource.values()));

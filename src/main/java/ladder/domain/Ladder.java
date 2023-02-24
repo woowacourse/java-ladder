@@ -9,6 +9,7 @@ public class Ladder {
     private static final String LADDER_HEIGHT_ERROR_MESSAGE = "사다리의 높이는 1이상 입니다.";
     private static final String LADDER_WIDTH_ERROR_MESSAGE = "사다리 가로 크기는 2 이상입니다.";
     private static final int DIFFERENCE_BETWEEN_WIDTH_AND_LINE = 1;
+
     private final List<Floor> floors = new ArrayList<>();
 
     public Ladder(int height, int width) {
@@ -28,7 +29,7 @@ public class Ladder {
     }
 
     private void validateWidth(final int width) {
-        if(width < MINIMUM_WIDTH) {
+        if (width < MINIMUM_WIDTH) {
             throw new IllegalArgumentException(LADDER_WIDTH_ERROR_MESSAGE);
         }
     }
@@ -55,8 +56,8 @@ public class Ladder {
         return numbers;
     }
 
-    public int resultPositionOf(final int i) {
-        int position = i;
+    public int resultPositionOf(final int startPosition) {
+        int position = startPosition;
         for (Floor floor : floors) {
             position = floor.getResultPosition(position);
         }
@@ -64,7 +65,7 @@ public class Ladder {
     }
 
     public int getWidth() {
-        return floors.get(0).getSize();
+        return floors.get(0).getSizeOfLineEdge();
     }
 
     public List<Floor> getFloors() {

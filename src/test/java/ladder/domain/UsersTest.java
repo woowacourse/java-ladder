@@ -52,7 +52,7 @@ public class UsersTest {
     @DisplayName("유저의 이름을 입력하면 해당 유저가 몇 번째 유저인지 알려준다.")
     void getUsersOrderTest() {
         final Users users = new Users(List.of("a", "b", "c"));
-        assertThat(users.getOrderOf("a")).isEqualTo(0);
+        assertThat(users.getOrderByName("a")).isEqualTo(0);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class UsersTest {
     void getUserOrderExceptionTest() {
         final Users users = new Users(List.of("a", "b", "c"));
         assertThatThrownBy(() -> {
-            users.getOrderOf("없는 이름");
+            users.getOrderByName("없는 이름");
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("해당 유저는 존재하지 않습니다.");
     }

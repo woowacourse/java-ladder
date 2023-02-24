@@ -42,7 +42,7 @@ public class LadderTest {
         List<Floor> floors = ladder.getFloors();
 
         for (Floor floor : floors) {
-            assertThat(floor.getSize()).isEqualTo(2);
+            assertThat(floor.getSizeOfLineEdge()).isEqualTo(2);
         }
     }
 
