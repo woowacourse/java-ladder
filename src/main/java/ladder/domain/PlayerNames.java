@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class PlayerNames {
     private static final int MIN_PLAYER_NUMBER = 2;
@@ -21,7 +20,9 @@ public class PlayerNames {
     }
     
     private void validateRange(List<PlayerName> splitedNames) {
-        if (splitedNames.size() < MIN_PLAYER_NUMBER || splitedNames.size() > MAX_PLAYER_NUMBER) {
+        int splitedNamesSize = splitedNames.size();
+        
+        if (splitedNamesSize < MIN_PLAYER_NUMBER || splitedNamesSize > MAX_PLAYER_NUMBER) {
             throw new IllegalArgumentException("이름의 수가 2이상 100이하여야 합니다.");
         }
     }
