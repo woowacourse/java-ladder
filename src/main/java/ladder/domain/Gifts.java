@@ -11,8 +11,7 @@ public class Gifts {
 
     public Gifts(final List<String> names, final int size) {
         validate(names, size);
-        List<Gift> gifts = generateGifts(names);
-        this.gifts = gifts;
+        this.gifts = generateGifts(names);
     }
 
     private void validate(final List<String> names, final int size) {
