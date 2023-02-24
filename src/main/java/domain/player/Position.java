@@ -35,7 +35,7 @@ public class Position {
         return !isRightEnd(getLastPosition(points)) && isPassable(points, position - RIGHT_POINT_CONSTANT);
     }
 
-    private static int getLastPosition(List<LinePoint> points) {
+    private int getLastPosition(List<LinePoint> points) {
         return points.size() + 1;
     }
 

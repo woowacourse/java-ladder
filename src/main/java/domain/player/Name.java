@@ -31,6 +31,10 @@ public class Name {
         return name.equals(otherName);
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (this == other) {
@@ -48,9 +52,5 @@ public class Name {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    public String getName() {
-        return name;
     }
 }
