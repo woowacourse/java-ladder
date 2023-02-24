@@ -6,7 +6,7 @@ public class Player {
 
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
-    private static final String LENGTH_ERROR_MESSAGE = "이름 길이는 %d ~ %d 사이여야 합니다.";
+    private static final String LENGTH_ERROR_MESSAGE = "이름 길이는 " + MIN_LENGTH + "~" + MAX_LENGTH + " 사이여야 합니다.";
     private final String name;
 
     public Player(final String name) {
@@ -16,8 +16,7 @@ public class Player {
 
     private void validate(final String name) {
         if (isInvalidLength(name)) {
-            throw new IllegalArgumentException(
-                String.format(LENGTH_ERROR_MESSAGE, MIN_LENGTH, MAX_LENGTH));
+            throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE);
         }
     }
 
