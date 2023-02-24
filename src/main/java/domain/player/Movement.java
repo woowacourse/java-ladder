@@ -1,4 +1,4 @@
-package domain.ladder;
+package domain.player;
 
 public enum Movement {
     GO_RIGHT(1),

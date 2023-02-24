@@ -1,6 +1,7 @@
 package domain.ladder;
 
 import domain.generator.BooleanGenerator;
+import domain.player.Movement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
