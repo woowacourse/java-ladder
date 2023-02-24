@@ -13,6 +13,7 @@ import java.util.Map;
 public class OutputView {
 
     private static final int STANDARD_BLANK = 7;
+    private static final int STANDARD_RESULT_BLANK = 3;
     private static final String EXIST_LINE = "-------";
     private static final String NON_EXIST_LINE = "       ";
     private static final String WALL = "|";
@@ -80,7 +81,7 @@ public class OutputView {
 
         for (int i = 0; i < results.getSize(); i++) {
             sb.append(results.getResultByIndex(i));
-            String blank = " ".repeat(STANDARD_BLANK - results.getSize());
+            String blank = " ".repeat(STANDARD_RESULT_BLANK);
             sb.append(blank);
         }
 
