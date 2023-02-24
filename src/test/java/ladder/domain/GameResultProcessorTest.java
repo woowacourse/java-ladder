@@ -21,7 +21,7 @@ class GameResultProcessorTest {
                 "3",
                 "4"
         ));
-        GameResultProcessor gameResultProcessor = new GameResultProcessor(players.climbDownLadder(ladder), prizes);
+        GameResultProcessor gameResultProcessor = GameResultProcessor.process(players.climbDownLadder(ladder), prizes);
 
         // when
         Map<String, String> gameResults = gameResultProcessor.fetchAllResults();
@@ -34,5 +34,14 @@ class GameResultProcessorTest {
                 entry("03", "3"),
                 entry("04", "4")
         );
+    }
+
+    @Test
+    void should__when_() {
+        // given
+
+        // when
+
+        //then
     }
 }
