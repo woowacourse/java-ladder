@@ -29,7 +29,7 @@ public class LadderEngine {
         LadderGame ladderGame = IllegalArgumentExceptionHandler.handleExceptionByRepeating(() -> {
             Participants participants = gatherParticipants();
             Ladder ladder = makeLadder(participants.count(), inputMaxLadderHeight());
-            return new LadderGame(participants, ladder, inputPrizes());
+            return makeGameWith(participants, ladder);
         });
         printLadder(ladderGame);
         repeatQueryPrizes(ladderGame);
@@ -49,6 +49,12 @@ public class LadderEngine {
             lines.add(line);
         }
         return new Ladder(lines);
+    }
+
+    private LadderGame makeGameWith(Participants participants, Ladder ladder) {
+        return IllegalArgumentExceptionHandler.handleExceptionByRepeating(
+                () -> new LadderGame(participants, ladder, inputPrizes())
+        );
     }
 
     private void repeatQueryPrizes(LadderGame ladderGame) {

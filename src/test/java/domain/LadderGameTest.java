@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import org.junit.jupiter.api.DisplayName;
@@ -39,5 +40,19 @@ class LadderGameTest extends AbstractTestFixture {
         LadderGame ladder = new LadderGame(participants, lines, prizes);
 
         assertThat(ladder.findPrizeFor(participantName)).isEqualTo(expectedPrize);
+    }
+
+    @Test
+    void 참가자_수_경품_수가_같아야한다() {
+        Participants participants = new Participants(createParticipantsFrom("a", "b", "c", "d"));
+        final var lines = createLadderWith(
+                new Line(convert(true, false, true)),
+                new Line(convert(false, true, false)),
+                new Line(convert(true, false, true)),
+                new Line(convert(false, true, false)),
+                new Line(convert(true, false, true)));
+        final var prizes = createPrizesFrom("1", "2", "3");
+
+        assertThatIllegalArgumentException().isThrownBy(() -> new LadderGame(participants, lines, prizes));
     }
 }
