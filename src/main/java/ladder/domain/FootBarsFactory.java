@@ -11,17 +11,15 @@ public class FootBarsFactory {
     public static FootBars newFootBars(BooleanGenerator generator, int numberOfPeople) {
         List<Boolean> footBars = new ArrayList<>();
         for (int cell = FIRST_CELL_INDEX; cell < numberOfPeople - 1; cell++) {
-            makeFootBar(generator, footBars, cell);
+            footBars.add(createFootBar(generator, footBars, cell));
         }
         return new FootBars(footBars);
     }
 
-    private static void makeFootBar(BooleanGenerator generator, List<Boolean> footBars, int index) {
+    private static Boolean createFootBar(BooleanGenerator generator, List<Boolean> footBars, int index) {
         if (FootBars.existLineAtLeftCell(footBars, index)) {
-            footBars.add(Boolean.FALSE);
-            return;
+            return Boolean.FALSE;
         }
-
-        footBars.add(generator.generate());
+        return generator.generate();
     }
 }
