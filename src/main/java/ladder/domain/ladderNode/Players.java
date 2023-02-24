@@ -22,7 +22,7 @@ public class Players {
     public Map<Position, String> moveToResult(String playerName, Ladder ladder) {
         Map<Position, String> result = new HashMap<>();
 
-        Player player = getByName(playerName);
+        Player player = getPlayerByName(playerName);
         Position destination = player.moveThroughLadder(ladder);
         result.put(destination, player.getName());
         return Collections.unmodifiableMap(result);
@@ -37,17 +37,10 @@ public class Players {
         return Collections.unmodifiableMap(results);
     }
 
-    private Player getByName(String name) {
+    private Player getPlayerByName(String name) {
         return players.stream()
                 .filter(player -> player.isEqualName(name))
                 .findFirst().orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어 입니다."));
-    }
-
-    public int getNameMaxLength() {
-        return this.players.stream()
-                .map(Player::getNameLength)
-                .max(Integer::compareTo)
-                .orElseThrow(() -> new IllegalStateException("플레이어가 존재하지 않습니다."));
     }
 
     private void validateDuplicateNames(List<String> names) {
