@@ -12,7 +12,12 @@ public class LadderApplication {
 
     public static void main(String[] args) {
         LadderController ladderController = new LadderController(inputView(), outputView(), lineGenerator());
-        ladderController.run();
+
+        try {
+            ladderController.run();
+        } catch (IllegalArgumentException e) {
+            outputView().printErrorMessage(e);
+        }
     }
 
     private static InputView inputView() {
