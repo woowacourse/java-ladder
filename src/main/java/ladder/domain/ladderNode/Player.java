@@ -17,7 +17,7 @@ public class Player {
     }
 
     public boolean isEqualName(String inputName) {
-        return name.equals(inputName);
+        return name.equals(new Name(inputName));
     }
 
     public String getName() {
