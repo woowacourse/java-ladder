@@ -11,6 +11,7 @@ public class Players {
     private static final int PLAYERS_SIZE_LOWER_BOUND_INCLUSIVE = 2;
     private static final String PLAYERS_SIZE_ERROR_MESSAGE = "플레이어 수는 2 이상이어야 합니다.";
     private static final String PLAYERS_DUPLICATE_MESSAGE = "플레이어 이름은 중복될 수 없습니다.";
+    private static final String NOT_EXIST_NAME_ERROR_MESSAGE = "이름이 %s인 플레이어가 없습니다.";
     private final List<Player> players;
 
     private Players(List<Player> players) {
@@ -55,7 +56,7 @@ public class Players {
         return players.stream()
                 .filter(player -> player.isSameName(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(String.format("이름이 %s인 플레이어가 없습니다.", name)));
+                .orElseThrow(() -> new IllegalArgumentException(String.format(NOT_EXIST_NAME_ERROR_MESSAGE, name)));
     }
 
     public Map<String, String> getPrizes() {

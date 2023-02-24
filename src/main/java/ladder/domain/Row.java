@@ -20,9 +20,13 @@ public class Row {
         int initialPosition = 0;
         int lastPosition = row.size() - 2;
         for (int position = initialPosition; position <= lastPosition; position++) {
-            if (isConsecutiveStep(row, position)) {
-                throw new IllegalArgumentException(CONSECUTIVE_FOOTHOLD_ERROR_MESSAGE);
-            }
+            validateConsecutiveStep(row, position);
+        }
+    }
+
+    private void validateConsecutiveStep(List<Step> row, int position){
+        if (isConsecutiveStep(row, position)) {
+            throw new IllegalArgumentException(CONSECUTIVE_FOOTHOLD_ERROR_MESSAGE);
         }
     }
 

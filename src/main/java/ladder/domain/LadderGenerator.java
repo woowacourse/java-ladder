@@ -54,12 +54,16 @@ public class LadderGenerator {
     }
 
     private void addRandomSteps(Row row) {
-        List<Step> steps = row.getRow();
         int widthSize = width.getWidth();
         for (int i = 0; i < widthSize; i++) {
-            if (row.isPossibleInstallStep(i)) {
-                steps.set(i, Step.from(random.nextBoolean()));
-            }
+            addRandomStep(row, i);
+        }
+    }
+
+    private void addRandomStep(Row row, int index) {
+        List<Step> steps = row.getRow();
+        if (row.isPossibleInstallStep(index)) {
+            steps.set(index, Step.from(random.nextBoolean()));
         }
     }
 

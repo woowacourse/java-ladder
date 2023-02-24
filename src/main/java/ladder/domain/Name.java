@@ -10,6 +10,8 @@ public class Name {
     private static final List<String> NOT_ALLOWED = List.of("all", "end");
     private static final String NAME_LENGTH_ERROR_MESSAGE = "플레이어 이름 길이는 1이상 5이하여야합니다.";
     private static final String NAME_BLANK_ERROR_MESSAGE = "플레이어 이름은 공백으로만 이루어질 수 없습니다.";
+    private static final String NOT_ALLOWED_ERROR_MESSAGE = "플레이어 이름은 %s가 될 수 없습니다.";
+    private static final String NAME_DELIMITER = ", ";
     private final String name;
 
     public Name(String name) {
@@ -34,7 +36,9 @@ public class Name {
 
     private void validateNotAllowedWord(String name) {
         if (isNotAllowedWord(name)) {
-            throw new IllegalArgumentException(String.format("플레이어 이름은 %s가 될 수 없습니다.", String.join(", ", NOT_ALLOWED)));
+            throw new IllegalArgumentException(
+                    String.format(NOT_ALLOWED_ERROR_MESSAGE, String.join(NAME_DELIMITER, NOT_ALLOWED))
+            );
         }
     }
 
@@ -46,14 +50,5 @@ public class Name {
 
     public String getName() {
         return name;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Name)) {
-            return false;
-        }
-        Name other = (Name) obj;
-        return name.equals(other.name);
     }
 }

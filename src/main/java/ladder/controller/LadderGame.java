@@ -28,9 +28,7 @@ public class LadderGame {
             Prizes prizes = getPrizes(players.size());
             Ladder ladder = makeLadder(players.size());
             printLadder(players, ladder, prizes);
-
             runGame(players, prizes, ladder);
-
             printResult(players);
         } catch (IllegalArgumentException e) {
             resultView.printErrorMessage(e.getMessage());
@@ -46,7 +44,7 @@ public class LadderGame {
             printResult(players);
         }
         if (resultCommand.equals(ResultCommand.ALL)) {
-            resultView.printPrizeOfPlayers(getPrizeResult(players));
+            resultView.printPrizeOfPlayers(players.getPrizes());
             printResult(players);
         }
         if (resultCommand.equals(ResultCommand.END)) {
@@ -54,15 +52,8 @@ public class LadderGame {
         }
     }
 
-    private Map<String, String> getPrizeResult(Players players) {
-        return players.getPrizes();
-    }
-
     private String getPrizeNameByPlayerName(String playerName, Players players) {
-        return getPrizeNameOfPlayer(players.findByName(playerName));
-    }
-
-    private String getPrizeNameOfPlayer(Player player) {
+        Player player = players.findByName(playerName);
         return player.getPrizeName();
     }
 

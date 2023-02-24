@@ -11,6 +11,11 @@ public class ResultView {
     private static final String ERROR_MESSAGE_HEADER = "[ERROR] ";
     private static final String RESULT_MESSAGE_HEADER = "실행 결과\n";
     private static final String PRIZE_OF_PLAYERS_DELIMITER = " : ";
+    private static final String PROGRAM_END_MESSAGE = "프로그램을 종료합니다.";
+    private static final String NAME_FORMAT = "%6s";
+    private static final String STEP_DELIMITER = "|";
+    private static final String ROW_PREFIX = "     |";
+    private static final String ROW_SUFFIX = "|";
 
     public void printLadderResultHeader() {
         System.out.println(LADDER_RESULT_HEADER);
@@ -18,7 +23,7 @@ public class ResultView {
 
     public void printNames(List<String> names) {
         for (String name : names) {
-            System.out.printf("%6s", name);
+            System.out.printf(NAME_FORMAT, name);
         }
         System.out.println();
     }
@@ -33,7 +38,7 @@ public class ResultView {
     protected String generateRow(List<Step> row) {
         return row.stream()
                 .map(Step::getMark)
-                .collect(Collectors.joining("|", "     |", "|"));
+                .collect(Collectors.joining(STEP_DELIMITER, ROW_PREFIX, ROW_SUFFIX));
     }
 
     public void printErrorMessage(String message) {
@@ -51,6 +56,6 @@ public class ResultView {
     }
 
     public void printEndMessage() {
-        System.out.println("프로그램을 종료합니다.");
+        System.out.println(PROGRAM_END_MESSAGE);
     }
 }

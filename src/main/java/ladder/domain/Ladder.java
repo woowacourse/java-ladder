@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
+    private static final String POSITION_SIZE_ERROR_MESSAGE = "사다리 시작점은 0이상 %d이하이어야합니다.";
     private final List<Row> ladder;
 
     public Ladder(List<Row> ladder) {
@@ -59,7 +60,7 @@ public class Ladder {
 
     private void validatePosition(int position) {
         if (position < 0 || position > getLadderWidth()) {
-            throw new IllegalArgumentException(String.format("사다리 시작점은 0이상 %d이하이어야합니다.", getLadderWidth()));
+            throw new IllegalArgumentException(String.format(POSITION_SIZE_ERROR_MESSAGE, getLadderWidth()));
         }
     }
 
