@@ -62,14 +62,14 @@ public class Players {
         return position;
     }
 
-    public List<Player> getPlayers() {
-        return Collections.unmodifiableList(players);
-    }
-
-    public List<String> getPlayersName() {
+    public List<String> getPlayerNames() {
         return players.stream()
                 .map(Player::getName)
                 .collect(toList());
+    }
+
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
     }
 
     public int getPlayersCount() {
