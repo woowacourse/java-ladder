@@ -38,6 +38,10 @@ public class Results {
         }
     }
 
+    public Result getResult(final int index) {
+        return results.get(index);
+    }
+
     public List<String> getResultNames() {
         return results.stream()
                 .map(Result::getResultName)
