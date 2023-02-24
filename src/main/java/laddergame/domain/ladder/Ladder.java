@@ -41,14 +41,14 @@ public class Ladder {
             if (position == 0) {
                 if (line.hasRung(position)) {
                     participant.moveToTheRight();
-                    continue;
                 }
+                continue;
             }
             if (position == line.size()) {
                 if (line.hasRung(position - 1)) {
                     participant.moveToTheLeft();
-                    continue;
                 }
+                continue;
             }
             if (line.hasRung(position)) {
                 participant.moveToTheRight();
