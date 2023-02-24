@@ -66,7 +66,16 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public int indexOf(String value) {
-        return 0;
+        Node pointer = this.head.next;
+        int index = 0;
+        while (pointer != null) {
+            if (pointer.value.equals(value)) {
+                return index;
+            }
+            pointer = pointer.next;
+            index += 1;
+        }
+        return -1;
     }
 
     @Override
