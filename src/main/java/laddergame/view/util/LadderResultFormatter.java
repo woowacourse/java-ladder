@@ -29,17 +29,16 @@ public class LadderResultFormatter {
         return Math.max(computeWordMaxLength(players), computeWordMaxLength(results));
     }
 
-    private static int computeWordMaxLength(List<String> players) {
-        return players.stream()
+    private static int computeWordMaxLength(List<String> words) {
+        return words.stream()
                 .map(String::length)
                 .max(Integer::compareTo)
-                .orElseThrow(() -> new IllegalArgumentException("게임 참여자 정보가 존재하지 않습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("변환할 단어가 존재하지 않습니다."));
     }
 
-    private static String extractWords(List<String> players, int pointWidth) {
-        String nameFormat = "%" + pointWidth + "s";
-        return players.stream()
-                .map(name -> String.format(nameFormat, name))
+    private static String extractWords(List<String> words, int pointWidth) {
+        return words.stream()
+                .map(name -> String.format("%" + pointWidth + "s", name))
                 .collect(Collectors.joining(" "));
     }
 
