@@ -50,8 +50,8 @@ public class LadderGameController {
 
     private Participants getParticipants() {
         try {
-            String participantsName = inputView.enterParticipantsName();
-            return new Participants(participantsName);
+            String participantNames = inputView.enterParticipantsName();
+            return Participants.of(participantNames);
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception);
             return getParticipants();
@@ -71,7 +71,7 @@ public class LadderGameController {
     private LadderPrizes getLadderResults(int participantsCount) {
         try {
             String ladderResult = inputView.enterLadderResult();
-            return new LadderPrizes(ladderResult, participantsCount);
+            return LadderPrizes.valueOf(ladderResult, participantsCount);
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception);
             return getLadderResults(participantsCount);

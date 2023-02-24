@@ -29,7 +29,7 @@ public class LadderGame {
     }
 
     public List<LadderPrize> getResults() {
-        return ladderPrizes.getResults();
+        return ladderPrizes.getLadderPrizes();
     }
 
     public static Builder builder() {

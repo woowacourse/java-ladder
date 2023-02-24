@@ -24,7 +24,7 @@ class GameResultTest {
         List<String> names = List.of("ash", "split", "ako", "mako", "heero", "bever");
         List<String> prizes = List.of("1000", "2000", "3000", "4000", "5000", "6000");
 
-        LadderPrizes ladderPrizes = new LadderPrizes(String.join(",", prizes), prizes.size());
+        LadderPrizes ladderPrizes = LadderPrizes.valueOf(String.join(",", prizes), prizes.size());
         Participants participants = makeParticipants(names);
         String lineHeight = "1";
         Ladder ladder = makeLadder(names, lineHeight);
@@ -38,7 +38,7 @@ class GameResultTest {
     }
 
     Participants makeParticipants(List<String> names) {
-        return new Participants(String.join(",", names));
+        return Participants.of(String.join(",", names));
     }
 
     LadderSize makeLadderSize(String height, int weight) {

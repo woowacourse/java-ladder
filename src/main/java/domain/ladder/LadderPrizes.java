@@ -11,14 +11,18 @@ public class LadderPrizes {
 
     private static final String DELIMITER = ",";
 
-    private final List<LadderPrize> results;
+    private final List<LadderPrize> ladderPrizes;
 
-    public LadderPrizes(String results, int participantCount) {
-        validate(results, participantCount);
-        this.results = makeAllLadderResult(results);
+    private LadderPrizes(List<LadderPrize> ladderPrizes) {
+        this.ladderPrizes = ladderPrizes;
     }
 
-    private void validate(String results, int participantCount) {
+    public static LadderPrizes valueOf(String results, int participantCount) {
+        validate(results, participantCount);
+        return new LadderPrizes(makeAllLadderResult(results));
+    }
+
+    private static void validate(String results, int participantCount) {
         if (isBlank(results)) {
             throw new EmptyInputException();
         }
@@ -27,27 +31,27 @@ public class LadderPrizes {
         }
     }
 
-    private boolean isBlank(String results) {
+    private static boolean isBlank(String results) {
         return results == null || results.isBlank();
     }
 
-    private boolean isInvalidResultCount(String results, int participantCount) {
+    private static boolean isInvalidResultCount(String results, int participantCount) {
         return makeAllLadderResult(results).size() != participantCount;
     }
 
-    static private List<LadderPrize> makeAllLadderResult(String results) {
+    private static List<LadderPrize> makeAllLadderResult(String results) {
         return Arrays.stream(results.split(DELIMITER))
             .map(LadderPrize::new)
             .collect(Collectors.toList());
     }
 
     public List<String> getResultNames() {
-        return results.stream()
+        return ladderPrizes.stream()
             .map(LadderPrize::getName)
             .collect(Collectors.toList());
     }
 
-    public List<LadderPrize> getResults() {
-        return Collections.unmodifiableList(results);
+    public List<LadderPrize> getLadderPrizes() {
+        return Collections.unmodifiableList(ladderPrizes);
     }
 }

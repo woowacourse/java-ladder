@@ -18,7 +18,7 @@ class LadderPrizesTest {
     @DisplayName("사다리 결과들의 입력값이 요구사항에 충족할 경우")
     @Test
     void createSuccess() {
-        LadderPrizes ladderPrizes = new LadderPrizes("1000,5000", 2);
+        LadderPrizes ladderPrizes = LadderPrizes.valueOf("1000,5000", 2);
         List<String> results = ladderPrizes.getResultNames();
         Assertions.assertThat(results).hasSize(2);
         Assertions.assertThat(results).containsExactly("1000", "5000");
@@ -29,16 +29,16 @@ class LadderPrizesTest {
     Stream<DynamicTest> createFail() {
         return Stream.of(
             dynamicTest("결과가 null인 경우",
-                () -> Assertions.assertThatThrownBy(() -> new LadderPrizes(null, 1))
+                () -> Assertions.assertThatThrownBy(() -> LadderPrizes.valueOf(null, 1))
                     .isExactlyInstanceOf(EmptyInputException.class)),
             dynamicTest("결과가 빈문자열인 경우",
-                () -> Assertions.assertThatThrownBy(() -> new LadderPrizes("", 1))
+                () -> Assertions.assertThatThrownBy(() -> LadderPrizes.valueOf("", 1))
                     .isExactlyInstanceOf(EmptyInputException.class)),
             dynamicTest("결과가 공백으로 이루어져 있는 경우",
-                () -> Assertions.assertThatThrownBy(() -> new LadderPrizes("    ", 1))
+                () -> Assertions.assertThatThrownBy(() -> LadderPrizes.valueOf("    ", 1))
                     .isExactlyInstanceOf(EmptyInputException.class)),
             dynamicTest("결과의 갯수와 참가자의 수가 다른 경우",
-                () -> Assertions.assertThatThrownBy(() -> new LadderPrizes("split,jamie", 3))
+                () -> Assertions.assertThatThrownBy(() -> LadderPrizes.valueOf("split,jamie", 3))
                     .isExactlyInstanceOf(InvalidLadderResultCount.class))
         );
     }
