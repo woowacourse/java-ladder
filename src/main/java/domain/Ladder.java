@@ -27,9 +27,11 @@ public class Ladder {
         }
     }
 
-    public void movePlayer(Player player) {
-        for (Line line : lines) {
-            line.movePlayerInLine(player);
+    public void movePlayer(Players players) {
+        for (Player player : players.getPlayers()) {
+            for (Line line : lines) {
+                line.movePlayerInLine(player);
+            }
         }
     }
 

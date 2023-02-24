@@ -1,12 +1,12 @@
 package domain;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Results {
 
     List<Result> results;
+    Map<Player, Result> matchingResult;
 
     private Results(List<Result> results) {
         this.results = results;
@@ -31,5 +31,15 @@ public class Results {
 
     public List<Result> getResults() {
         return results;
+    }
+
+    public Map<Player,Result> matchResults(Players players) {
+        this.matchingResult = new LinkedHashMap<>();
+        for (Player player : players.getPlayers()) {
+            int playerFinalPosition = player.getPosition();
+            Result matchedResult  = results.get(playerFinalPosition);
+            matchingResult.put(player, matchedResult);
+        }
+        return matchingResult;
     }
 }
