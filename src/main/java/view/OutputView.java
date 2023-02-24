@@ -21,6 +21,7 @@ public class OutputView {
     private static final double KOREAN_SIZE = 1.3;
     private static final int NAME_SIZE = 8;
     private static final String RESULT_MESSAGE = "\n실행 결과";
+    public static final int SECOND_PRIZE = 1;
 
 
     public void printNames(Players players) {
@@ -39,11 +40,11 @@ public class OutputView {
         }
     }
 
-    public void printPrize(Prizes prizes) {
+    public void printPrize(Prizes prizes, Players players) {
         List<String> prizeNames = prizes.getPrizeName();
-        for (String prizeName : prizeNames) {
-            System.out.printf(NAME_FORMAT, prizeName);
-        }
+        List<String> playerNames = players.getPlayersName();
+        printFirstPrize(playerNames, prizeNames.get(0));
+        printOtherPrize(prizeNames, playerNames);
         System.out.println();
     }
 
@@ -95,8 +96,7 @@ public class OutputView {
 
     private void printLine(Line line, List<String> playerNames) {
         List<BlockType> ladderLine = BlockType.getBlockTypes(line);
-        String firstSpace = calculateFirstSpace(playerNames);
-        System.out.print(firstSpace + VERTICAL_BAR);
+        printFirstPrize(playerNames, VERTICAL_BAR);
         for (int i = 0; i < ladderLine.size(); i++) {
             printLadderBlock(playerNames.get(i), playerNames.get(i + 1), ladderLine.get(i).getType());
         }
@@ -132,5 +132,18 @@ public class OutputView {
 
     private void printResultMessage() {
         System.out.println(RESULT_MESSAGE);
+    }
+
+    private void printOtherPrize(List<String> prizeNames, List<String> playerNames) {
+        for(int i = SECOND_PRIZE; i < prizeNames.size(); i++) {
+            int preIndex = i - 1;
+            int spaceSize = calculateNameSpace(playerNames.get(preIndex)) + playerNames.get(i).length();
+            System.out.print(SPACE.repeat(spaceSize) + prizeNames.get(i));
+        }
+    }
+
+    private void printFirstPrize(List<String> playerNames, String prizeNames) {
+        String firstSpace = calculateFirstSpace(playerNames);
+        System.out.print(firstSpace + prizeNames);
     }
 }
