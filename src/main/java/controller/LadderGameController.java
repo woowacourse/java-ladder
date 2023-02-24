@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 
 import domain.*;
+
 import view.InputView;
 import view.OutputView;
 
@@ -86,6 +87,7 @@ public class LadderGameController {
     }
 
     private Ladder getLadder(int width) {
+
         try {
             int height = inputView.readLadderHeight();
             return new Ladder(height, width, generator);

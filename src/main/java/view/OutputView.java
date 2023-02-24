@@ -3,6 +3,7 @@ package view;
 import java.util.List;
 
 import domain.Line;
+
 import domain.Name;
 import domain.Players;
 
@@ -36,6 +37,7 @@ public class OutputView {
         for (Line line : lines) {
             appendLine(builder, line);
         }
+
         builder.deleteCharAt(builder.length() - 1);
         System.out.println(builder);
     }
