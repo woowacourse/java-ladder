@@ -17,23 +17,23 @@ class GameResultsTest {
     private static final String COMMA_DELIMITER = ",";
     
     private PlayerNames playerNames;
-    private GameResults gameResults;
-    private List<Integer> movedPositions;
     
     @BeforeEach
     void setUp() {
         List<PlayerName> names = List.of(new PlayerName("a"), new PlayerName("b"), new PlayerName("c"), new PlayerName("d"));
         playerNames = new PlayerNames(names);
-        movedPositions = List.of(1,0,3,2);
-        List<GameResult> parsedGameResults = parseGameResults("꽝,5000,꽝,3000");
-        gameResults = new GameResults(parsedGameResults, playerNames);
     }
     
     @ParameterizedTest(name = "resultPosition : {0}, executionResult : {1}")
     @CsvSource(value = {"0, 5000", "1, 꽝", "2, 3000", "3, 꽝"})
     @DisplayName("한 플레이어의 인덱스에 해당하는 실행 결과 가져오기")
-    void getOneExecutionResult(int resultPosition, String executionResult) {
-        // given, when
+    void getGameResult(int resultPosition, String executionResult) {
+        // given
+        List<GameResult> parsedGameResults = parseGameResults("꽝,5000,꽝,3000");
+        GameResults gameResults = new GameResults(parsedGameResults, playerNames);
+        List<Integer> movedPositions = List.of(1, 0, 3, 2);
+    
+        // when
         GameResult gameResult = gameResults.getGameResult(resultPosition, movedPositions);
         
         // then
@@ -42,8 +42,13 @@ class GameResultsTest {
     
     @Test
     @DisplayName("모든 플레이어의 인덱스에 해당하는 실행 결과 가져오기")
-    void getAllExecutionResult() {
-        // given, when
+    void getGameResults() {
+        // given
+        List<GameResult> parsedGameResults = parseGameResults("꽝,5000,꽝,3000");
+        GameResults gameResults = new GameResults(parsedGameResults, playerNames);
+        List<Integer> movedPositions = List.of(1, 0, 3, 2);
+        
+        // when
         List<String> sortedGameResults = gameResults.getSortedGameResults(movedPositions).stream()
                 .map(GameResult::getGameResult)
                 .collect(Collectors.toUnmodifiableList());
