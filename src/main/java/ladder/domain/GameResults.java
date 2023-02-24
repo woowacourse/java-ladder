@@ -1,27 +1,14 @@
 package ladder.domain;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameResults {
-    private static final String COMMA_DELIMITER = ",";
-    
     private final List<GameResult> gameResults;
     
-    public GameResults(String gameResults, PlayerNames playerNames) {
-        this(splitGameResults(gameResults), playerNames);
-    }
-    
-    private GameResults(List<GameResult> gameResults, PlayerNames playerNames) {
+    public GameResults(List<GameResult> gameResults, PlayerNames playerNames) {
         validateCount(gameResults, playerNames.getNames());
         this.gameResults = gameResults;
-    }
-    
-    private static List<GameResult> splitGameResults(String gameResults) {
-        return Arrays.stream(gameResults.split(COMMA_DELIMITER))
-                .map(GameResult::new)
-                .collect(Collectors.toUnmodifiableList());
     }
     
     private void validateCount(List<GameResult> gameResults, List<String> playerNames) {

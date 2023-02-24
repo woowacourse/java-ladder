@@ -1,15 +1,16 @@
 package ladder.controller;
 
-import ladder.domain.GameResults;
-import ladder.domain.Ladder;
-import ladder.domain.PlayerNames;
-import ladder.domain.RandomBasedBarGenerator;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderController {
+    private static final String COMMA_DELIMITER = ",";
+    
     public void run() {
         PlayerNames playerNames = getCorrectPlayerNames();
         GameResults gameResults = getGameResult(playerNames);
@@ -25,11 +26,17 @@ public class LadderController {
     }
     
     private GameResults getGameResult(PlayerNames playerNames) {
-        return InputView.repeat(() -> new GameResults(getExecutionResults(), playerNames));
+        return InputView.repeat(() -> new GameResults(splitGameResults(getExecutionResults()), playerNames));
     }
     
     private String getExecutionResults() {
         return InputView.inputExecutionResults();
+    }
+    
+    private List<GameResult> splitGameResults(String gameResults) {
+        return Arrays.stream(gameResults.split(COMMA_DELIMITER))
+                .map(GameResult::new)
+                .collect(Collectors.toUnmodifiableList());
     }
     
     private Ladder getLadder(PlayerNames playerNames) {
