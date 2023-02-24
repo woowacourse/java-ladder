@@ -7,8 +7,19 @@ import java.util.stream.Collectors;
 public class Missions {
     private final List<Mission> missions;
 
-    public Missions(List<String> missions) {
+    private Missions(List<String> missions) {
         this.missions = formatMissions(missions);
+    }
+
+    public static Missions of(List<String> missions, int size) {
+        validateSize(missions, size);
+        return new Missions(missions);
+    }
+
+    private static void validateSize(List<String> missions, int size) {
+        if (missions.size() != size) {
+            throw new IllegalArgumentException("미션의 개수를 다시 확인해 주세요!");
+        }
     }
 
     private List<Mission> formatMissions(List<String> missions) {

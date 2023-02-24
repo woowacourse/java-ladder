@@ -1,6 +1,5 @@
 package controller;
 
-import domain.GameElementsManager;
 import domain.LadderGame;
 import domain.Result;
 import domain.SearchCommand;
@@ -93,9 +92,7 @@ public class MainController {
 
     private Missions receiveMissions(Names names) {
         try {
-            Missions missions = new Missions(inputView.readMissions());
-            GameElementsManager manager = GameElementsManager.of(names, missions);
-            return manager.receiveMissions();
+            return Missions.of(inputView.readMissions(), names.size());
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception);
             return receiveMissions(names);
