@@ -19,13 +19,11 @@ public class GameController {
     private final Names names;
     private final Prizes prizes;
     private final Ladder ladder;
-    private final ConnectionStrategy connectionStrategy;
 
     public GameController(final ConnectionStrategy connectionStrategy) {
         this.names = readNamesWithRetry();
         this.prizes = readResultWithRetry(names.getSize());
         this.ladder = readHeightWithRetry(names, connectionStrategy);
-        this.connectionStrategy = connectionStrategy;
     }
 
     private Names readNamesWithRetry() {
