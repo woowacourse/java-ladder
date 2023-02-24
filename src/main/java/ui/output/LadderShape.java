@@ -4,7 +4,7 @@ import java.util.List;
 
 public enum LadderShape {
 
-    WALL("|"), CONNECT("-"), DISCONNECT(" "), LEFT("L"), RIGHT("R");
+    WALL("|"), CONNECT("-"), DISCONNECT(" "), LEFT("L"), RIGHT("R"), NONE("N");
 
     LadderShape(String shape) {
         this.shape = shape;

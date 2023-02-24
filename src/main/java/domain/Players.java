@@ -34,13 +34,14 @@ public class Players {
         return playerList;
     }
 
-    public void validateInputPlayer(String playerName) {
+    public boolean isIncludePlayerName(String playerName) {
         int matchPlayerNameCount = (int) players.stream()
                 .filter(player -> player.getName().equals(playerName))
                 .count();
         if (matchPlayerNameCount == 0 && !playerName.equals("all")) {
-            throw new IllegalArgumentException("존재하지 않는 플레이어의 이름은 입력할 수 없습니다.");
+            return false;
         }
+        return true;
     }
 
     public void calculateResult(Line line) {

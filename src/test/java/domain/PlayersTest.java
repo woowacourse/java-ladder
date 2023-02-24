@@ -44,9 +44,7 @@ public class PlayersTest {
         Players players = new Players(List.of("베베", "카일"));
 
         // when, then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            players.validateInputPlayer(playerName);
-        });
+        assertEquals(players.isIncludePlayerName(playerName), false);
     }
 
 }
