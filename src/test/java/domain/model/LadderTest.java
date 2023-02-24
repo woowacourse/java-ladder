@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.vo.Height;
-import domain.vo.Location;
 import domain.vo.Width;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,7 @@ public class LadderTest {
         Height height = new Height(10);
         Width width = new Width(5);
         Ladder ladder = new Ladder(height, width,
-            makeEmptyLayers(height, new RandomPassGenerator()));
+            makeEmptyLayers(height, new RandomBooleanGenerator()));
 
         //when
         ladder.makeLineInLayers();
@@ -99,10 +98,9 @@ public class LadderTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    private List<Layer> makeEmptyLayers(final Height height, final PassGenerator passGenerator) {
+    private List<Layer> makeEmptyLayers(final Height height, final BooleanGenerator booleanGenerator) {
         return IntStream.range(0, height.getValue())
-            .mapToObj(index -> new Layer(new ArrayList<>(), passGenerator))
+            .mapToObj(index -> new Layer(new ArrayList<>(), booleanGenerator))
             .collect(Collectors.toList());
     }
-
 }

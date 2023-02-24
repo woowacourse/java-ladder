@@ -3,7 +3,6 @@ package domain.model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.type.Line;
-import domain.vo.Location;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -47,7 +46,7 @@ public class LayerTest {
     @DisplayName("Layer가 Line을 생성한다.")
     public void makeLineSuccessTest() {
         //given
-        Layer layer = new Layer(new ArrayList<>(), new RandomPassGenerator());
+        Layer layer = new Layer(new ArrayList<>(), new RandomBooleanGenerator());
 
         //when
         int size = 10;

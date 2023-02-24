@@ -4,9 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.model.Ladder;
 import domain.model.Layer;
+import domain.model.Player;
+import domain.model.Players;
+import domain.model.Result;
+import domain.model.Results;
 import domain.vo.Height;
-import domain.vo.Name;
-import domain.vo.Result;
 import domain.vo.Width;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,19 +47,19 @@ class LadderGameSupportTest {
             .collect(Collectors.toList());
         Ladder ladder = new Ladder(height, width, layers);
         ladder.makeLineInLayers();
-        List<Name> names = new ArrayList<>();
-        List<Result> results = new ArrayList<>();
+        List<String> mockLetters = new ArrayList<>();
         for (int i = 0; i < width.getValue() + 1; i++) {
-            names.add(new Name(i + "test"));
-            results.add(new Result(i + "test"));
+            mockLetters.add(i + "test");
         }
+        Players players = new Players(mockLetters);
+        Results results = new Results(mockLetters);
 
         //when
-        Map<Name, Result> resultBoard = ladderGameSupport.makeResultBoard(ladder, names, results);
+        Map<Player, Result> resultBoard = ladderGameSupport.makeResultBoard(ladder, players, results);
 
         //then
         for (int i = 0; i < width.getValue(); i++) {
-            assertThat(resultBoard.get(names.get(i))).isEqualTo(results.get(i));
+            assertThat(resultBoard.get(players.getPlayers().get(i))).isEqualTo(results.getResults().get(i));
         }
     }
 }

@@ -1,7 +1,6 @@
 package domain.model;
 
 import domain.vo.Height;
-import domain.vo.Location;
 import domain.vo.Width;
 import java.util.List;
 import java.util.stream.IntStream;

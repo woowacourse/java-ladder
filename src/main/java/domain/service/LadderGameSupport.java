@@ -1,12 +1,14 @@
 package domain.service;
 
+import domain.model.BooleanGenerator;
 import domain.model.Ladder;
 import domain.model.Layer;
-import domain.model.PassGenerator;
+import domain.model.Location;
+import domain.model.Player;
+import domain.model.Players;
+import domain.model.Result;
+import domain.model.Results;
 import domain.vo.Height;
-import domain.vo.Location;
-import domain.vo.Name;
-import domain.vo.Result;
 import domain.vo.Width;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,28 +20,28 @@ import java.util.stream.IntStream;
 public class LadderGameSupport {
 
     public static final int INITIAL_VERTICAL = 0;
-    private final PassGenerator passGenerator;
+    private final BooleanGenerator booleanGenerator;
 
-    public LadderGameSupport(PassGenerator passGenerator) {
-        this.passGenerator = passGenerator;
+    public LadderGameSupport(BooleanGenerator booleanGenerator) {
+        this.booleanGenerator = booleanGenerator;
     }
 
     public Ladder makeLadder(final Height height, final Width width) {
         final List<Layer> layers = IntStream.range(0, height.getValue())
-            .mapToObj(index -> new Layer(new ArrayList<>(), passGenerator))
+            .mapToObj(index -> new Layer(new ArrayList<>(), booleanGenerator))
             .collect(Collectors.toList());
         final Ladder ladder = new Ladder(height, width, layers);
         ladder.makeLineInLayers();
         return ladder;
     }
 
-    public Map<Name, Result> makeResultBoard(final Ladder ladder, final List<Name> names,
-        final List<Result> results) {
-        final Map<Name, Result> resultBoard = new HashMap<>();
-        IntStream.range(0, names.size()).forEach(index -> {
-            int resultIndex = ladder.ride(new Location(index, INITIAL_VERTICAL));
-            Result result = results.get(resultIndex);
-            resultBoard.put(names.get(index), result);
+    public Map<Player, Result> makeResultBoard(final Ladder ladder, final Players players,
+        final Results results) {
+        final Map<Player, Result> resultBoard = new HashMap<>();
+        IntStream.range(0, players.size()).forEach(index -> {
+            final int resultIndex = ladder.ride(new Location(index, INITIAL_VERTICAL));
+            final Result result = results.getResults().get(resultIndex);
+            resultBoard.put(players.getPlayers().get(index), result);
         });
         return resultBoard;
     }

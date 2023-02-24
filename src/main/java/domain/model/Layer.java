@@ -1,7 +1,6 @@
 package domain.model;
 
 import domain.type.Line;
-import domain.vo.Location;
 import java.util.List;
 
 public class Layer {
@@ -9,15 +8,15 @@ public class Layer {
     private static final String LOCATION_NOT_EXIST = "층에 존재하지 않는 위치입니다.";
     private static final int LOCATION_DIFFERENCE = 1;
     private final List<Line> lines;
-    private final PassGenerator passGenerator;
+    private final BooleanGenerator booleanGenerator;
 
-    public Layer(final List<Line> lines, final PassGenerator passGenerator) {
+    public Layer(final List<Line> lines, final BooleanGenerator booleanGenerator) {
         this.lines = lines;
-        this.passGenerator = passGenerator;
+        this.booleanGenerator = booleanGenerator;
     }
 
     public void makeLine() {
-        if (passGenerator.generate()
+        if (booleanGenerator.generate()
             && (lines.isEmpty() || lines.get(lines.size() - LOCATION_DIFFERENCE)
             .equals(Line.UNCONNECTED))) {
             lines.add(Line.CONNECTED);
