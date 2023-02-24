@@ -3,13 +3,14 @@ package controller;
 import domain.*;
 import view.InputView;
 import view.OutputView;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGameController {
 
     private static final String TARGET_PLAYER_BLANK_ERROR = "[ERROR] 빈 문자열 입니다.";
-    private static final String ALL_PLAYER = "all";
+    private static final int SINGLE_SIZE = 1;
+    private static final int FIRST_PLAYER_INDEX = 0;
+    private Command command = Command.CONTINUE;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -26,44 +27,38 @@ public class LadderGameController {
         Results results = new Results(players.getSize(), inputView.readResults());
         Ladder ladder = new Ladder(inputView.readLadderHeight(), players.getSize(), generator);
 
-        showLadder(players, results, ladder);
-        showResult(players, results, ladder);
+        printLadder(players, results, ladder);
+        printResult(players, results, ladder);
     }
 
-    private void showLadder(Players players, Results results, Ladder ladder) {
+    private void printLadder(Players players, Results results, Ladder ladder) {
         outputView.printPlayersName(players.getPlayersName());
         outputView.printLadder(ladder.getLines());
-        outputView.printResults(results.getResults());
+        outputView.printResults(results.getResult());
     }
 
-    private void showResult(Players players, Results results, Ladder ladder) {
-        String targetPlayer = inputView.readTargetPlayer();
-        validateTargetPlayerBlank(targetPlayer);
+    private void printResult(Players players, Results results, Ladder ladder) {
+        while (command.isContinue()) {
+            String targetPlayer = inputView.readTargetPlayer();
+            validateTargetPlayerBlank(targetPlayer);
 
-        if (targetPlayer.equals(ALL_PLAYER)) {
-            printAllPlayerResult(players, results, ladder);
+            print(players, getResults(players, results, ladder, targetPlayer));
+        }
+    }
+
+    private void print(Players players, List<String> finalResults) {
+        if (finalResults.size() != SINGLE_SIZE) {
+            outputView.printAllPlayerResult(players.getPlayersName(), finalResults);
+            command = Command.END;
             return;
         }
-        printPlayerResult(players, results, ladder, targetPlayer);
+        outputView.printPlayerResult(finalResults.get(FIRST_PLAYER_INDEX));
     }
 
-    private void printPlayerResult(Players players, Results results, Ladder ladder, String targetPlayer) {
-        players.validateTargetPlayer(targetPlayer);
-        int position = players.getTargetPlayerPosition(targetPlayer);
-        int lastPosition = ladder.getLastPosition(position);
-
-        outputView.printPlayerResult(results.getResult(lastPosition));
-    }
-
-    private void printAllPlayerResult(Players players, Results results, Ladder ladder) {
-        List<String> playersResult = new ArrayList<>();
-
-        for (int position = 0; position < players.getSize(); position++) {
-            int lastPosition = ladder.getLastPosition(position);
-
-            playersResult.add(results.getResult(lastPosition));
-        }
-        outputView.printAllPlayerResult(players.getPlayersName(), playersResult);
+    private static List<String> getResults(Players players, Results results, Ladder ladder, String targetPlayer) {
+        return results.getFinalResults(players.getPlayersName(),
+                ladder.getLastPositions(players.getSize()),
+                targetPlayer);
     }
 
     private void validateTargetPlayerBlank(String targetPlayer) {
