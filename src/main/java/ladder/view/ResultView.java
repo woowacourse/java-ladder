@@ -11,7 +11,7 @@ public class ResultView {
     private static final String RESULT_MESSAGE_HEADER = "실행 결과\n";
     private static final String PRIZE_OF_PLAYERS_DELIMITER = " : ";
 
-    public void printPlayerNames(List<String> names) {
+    public void printNames(List<String> names) {
         for (String name : names) {
             System.out.print(String.format("%6s", name));
         }

@@ -27,7 +27,7 @@ public class LadderGame {
             Players players = enroll();
             Prizes prizes = getPrizes(players.size());
             Ladder ladder = makeLadder(players.size());
-            printLadder(players, ladder);
+            printLadder(players, ladder, prizes);
 
             runGame(players, prizes, ladder);
 
@@ -93,8 +93,9 @@ public class LadderGame {
         return playersSize - 1;
     }
 
-    private void printLadder(Players players, Ladder ladder) {
-        resultView.printPlayerNames(players.getNames());
+    private void printLadder(Players players, Ladder ladder, Prizes prizes) {
+        resultView.printNames(players.getNames());
         resultView.printLadder(ladder.getLadder());
+        resultView.printNames(prizes.getNames());
     }
 }
