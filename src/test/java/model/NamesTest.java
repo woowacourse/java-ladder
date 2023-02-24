@@ -18,9 +18,9 @@ public class NamesTest {
     }
 
     @ParameterizedTest(name = "Names 객체 생성 실패 테스트 name={0}")
-    @ValueSource(strings = {" ","   ","12345,45678","aaaaaa,bbbbbb"})
+    @ValueSource(strings = {" ", "   ", "12345,45678", "aaaaaa,bbbbbb"})
     void createNamesTest(String input) {
-        Assertions.assertThatThrownBy(()->{
+        Assertions.assertThatThrownBy(() -> {
             new Names(input);
         });
     }

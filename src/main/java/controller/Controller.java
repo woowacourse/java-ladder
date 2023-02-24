@@ -1,15 +1,21 @@
 package controller;
 
-import model.Ladder;
+import model.Game;
+import model.LadderGoal;
 import model.LadderHeight;
 import model.Names;
+import model.Ladder;
+import model.Winner;
+import util.GameStrategy;
+import util.LadderGameStrategy;
+import util.LineGenerator;
 import view.InputView;
 import view.OutputView;
 
 public class Controller {
-
-    public InputView inputView;
-    public OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final GameStrategy gameStrategy = new LadderGameStrategy();
 
     public Controller(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -18,9 +24,12 @@ public class Controller {
 
     public void run() {
         Names names = setNames();
+        LadderGoal ladderGoal = setLadderGoal(names.getNamesSize());
         LadderHeight ladderHeight = setLadderHeight();
-        Ladder ladder = new Ladder(names.getNamesSize(), ladderHeight);
-        printResult(names, ladder, ladderHeight);
+        Ladder ladder = new Ladder(names.getNamesSize(), ladderHeight, new LineGenerator());
+        Game game = new Game(names, ladderGoal, ladder, gameStrategy);
+        printLadder(names, ladder, ladderHeight, ladderGoal);
+        playLadderGame(game, names);
     }
 
     private Names setNames() {
@@ -43,9 +52,49 @@ public class Controller {
         }
     }
 
-    private void printResult(Names names, Ladder ladder, LadderHeight ladderHeight){
-        outputView.printResultMessage();
+    private LadderGoal setLadderGoal(int personCount) {
+        outputView.printExecutionGoalMessage();
+        try {
+            return new LadderGoal(inputView.readLadderGoal(), personCount);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return setLadderGoal(personCount);
+        }
+    }
+
+    private void printLadder(Names names, Ladder ladder, LadderHeight ladderHeight,
+                             LadderGoal goal) {
+        outputView.printLadderResultMessage();
         outputView.printName(names);
         outputView.printLadder(names, ladder, ladderHeight);
+        outputView.printLadderGoal(goal);
+    }
+
+    private void playLadderGame(Game game, Names names) {
+        Winner winnerName;
+        do {
+            winnerName = setWinner(names);
+            outputView.printWinnerExecutionResultMessage();
+            printWinnerResult(winnerName, game);
+        }
+        while (!winnerName.isAllEndWinner());
+    }
+
+    private Winner setWinner(Names names) {
+        outputView.printWinnerResultMessage();
+        try {
+            return new Winner(names, inputView.readWinnerResult());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return setWinner(names);
+        }
+    }
+
+    private void printWinnerResult(Winner winner, Game game) {
+        if (winner.isAllEndWinner()) {
+            outputView.printWinnerGameAllResult(game.getPrizeWinners());
+            return;
+        }
+        outputView.printWinnerGameResult(game.getPrizeIndividualWinner(winner));
     }
 }

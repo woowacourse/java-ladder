@@ -1,34 +1,48 @@
 package view;
 
-import model.Ladder;
-import model.LadderHeight;
-import model.Names;
-import util.LadderPrintMessage;
+import message.LadderPrintMessage;
+import model.*;
 
+import java.util.Map;
 
 public class OutputView {
-
-    private static final String PLAYER_NAME_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String PLAYER_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String EXECUTION_GOAL_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
-    private static final String RESULT_MESSAGE = "실행 결과";
-
+    private static final String WINNER_RESULT_MESSAGE = "결과를 보고 싶은 사람은?";
+    private static final String LADDER_RESULT = "사다리 결과";
+    private static final String EXECUTION_RESULT = "실행 결과";
     private static final int MAXIMUM_PLAYER_NAME_SPACE = 5;
+
     private static StringBuilder stringBuilder;
+
     public void printPlayerNamesMessage() {
-        System.out.println(PLAYER_NAME_MESSAGE);
+        System.out.println(PLAYER_NAMES_MESSAGE);
+    }
+
+    public void printExecutionGoalMessage() {
+        System.out.println(System.lineSeparator() + EXECUTION_GOAL_MESSAGE);
     }
 
     public void printLadderHeightMessage() {
-        System.out.println(LADDER_HEIGHT_MESSAGE);
+        System.out.println(System.lineSeparator() + LADDER_HEIGHT_MESSAGE);
     }
 
-    public void printResultMessage(){
-        System.out.println(System.lineSeparator()+RESULT_MESSAGE);
+    public void printWinnerResultMessage() {
+        System.out.println(System.lineSeparator() + WINNER_RESULT_MESSAGE);
+    }
+
+    public void printWinnerExecutionResultMessage() {
+        System.out.println(System.lineSeparator() + EXECUTION_RESULT);
+    }
+
+    public void printLadderResultMessage() {
+        System.out.println(System.lineSeparator() + LADDER_RESULT);
     }
 
     public void printName(Names names) {
-        System.out.println("  ");
-        names.getNames().forEach(name -> System.out.printf("%" + MAXIMUM_PLAYER_NAME_SPACE + "s ",
+        System.out.println();
+        names.getNames().forEach(name -> System.out.printf("%-" + MAXIMUM_PLAYER_NAME_SPACE + "s ",
                 name.getName()));
         System.out.println();
     }
@@ -37,10 +51,10 @@ public class OutputView {
         stringBuilder = new StringBuilder();
         for (int row = 0; row < ladderHeight.getLadderHeight(); row++) {
             stringBuilder.append(printStartLadder());
-            printConnectLadder(names.getNames().size(), ladder, row);
+            printConnectLadder(names.getNamesSize(), ladder, row);
             stringBuilder.append(System.lineSeparator());
         }
-        System.out.println(stringBuilder);
+        System.out.print(stringBuilder);
     }
 
     private String printStartLadder() {
@@ -49,12 +63,35 @@ public class OutputView {
 
     private void printConnectLadder(int playerSize, Ladder ladder, int row) {
         for (int column = 0; column < playerSize - 1; column++) {
-            if (ladder.getLadder(row).getLine(column)) {
-                stringBuilder.append(LadderPrintMessage.CONNECT_LADDER.getMessage());
-            } else
-                stringBuilder.append(LadderPrintMessage.NO_CONNECT_LADDER.getMessage());
+            printLineBetweenLadder(ladder, row, column);
         }
     }
 
+    private void printLineBetweenLadder(Ladder ladder, int row, int column) {
+        if (ladder.existLadderLine(column, row)) {
+            stringBuilder.append(LadderPrintMessage.CONNECT_LADDER.getMessage());
+        } else
+            stringBuilder.append(LadderPrintMessage.NO_CONNECT_LADDER.getMessage());
+    }
 
+    public void printLadderGoal(LadderGoal ladderGoal) {
+        ladderGoal.getLadderGoal().forEach(name -> System.out.printf("%-" + MAXIMUM_PLAYER_NAME_SPACE + "s ",
+                name.getGoal()));
+        System.out.println();
+    }
+
+    public void printWinnerGameResult(String player) {
+        System.out.println(player);
+    }
+
+    public void printWinnerGameAllResult(Map<Name, Goal> prizeResult) {
+        stringBuilder = new StringBuilder();
+        for (Name name : prizeResult.keySet()) {
+            stringBuilder.append(name.getName())
+                    .append(" : ")
+                    .append(prizeResult.get(name).getGoal())
+                    .append(System.lineSeparator());
+        }
+        System.out.print(stringBuilder.toString());
+    }
 }

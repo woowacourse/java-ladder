@@ -1,10 +1,10 @@
-package util;
+package model.type;
 
 import java.util.Arrays;
 
 public enum Status {
-    YES_BRIDGE(true),
-    NO_BRIDGE(false);
+    BRIDGE_EXIST(true),
+    BRIDGE_DOES_NOT_EXIST(false);
 
     private final boolean status;
 
@@ -12,15 +12,15 @@ public enum Status {
         this.status = status;
     }
 
-    public static Status findStatus(Boolean move){
+    public static Status findStatus(Boolean move) {
         return Arrays.stream(Status.values())
-                .filter(status -> status.getStatus()==move)
+                .filter(status -> status.getStatus() == move)
                 .findAny()
                 .get();
     }
 
 
-    public boolean getStatus(){
+    public boolean getStatus() {
         return status;
     }
 }

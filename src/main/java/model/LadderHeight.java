@@ -1,10 +1,11 @@
 package model;
 
-import util.ExceptionMessage;
+import message.ExceptionMessage;
 
 public class LadderHeight {
-
+    private static final int MAXIMUM_LADDER_HEIGHT = 20;
     private static final int MINIMUM_LADDER_HEIGHT = 1;
+
     private final int height;
 
     public LadderHeight(int height) {
@@ -13,7 +14,7 @@ public class LadderHeight {
     }
 
     private void validateHeight(int height) {
-        if (height < MINIMUM_LADDER_HEIGHT) {
+        if (height < MINIMUM_LADDER_HEIGHT || height > MAXIMUM_LADDER_HEIGHT) {
             throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_LADDER_HEIGHT.getExceptionMessage());
         }
     }

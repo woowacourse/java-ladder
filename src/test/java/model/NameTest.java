@@ -7,7 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class NameTest {
 
@@ -34,5 +34,4 @@ public class NameTest {
     void validateNameHasOnlyCharacters(String inputName) {
         assertThatThrownBy(()-> new Name(inputName)).isInstanceOf(IllegalArgumentException.class);
     }
-
 }

@@ -1,6 +1,6 @@
 package view;
 
-import util.ExceptionMessage;
+import message.ExceptionMessage;
 
 import java.util.Scanner;
 
@@ -21,5 +21,13 @@ public class InputView {
         } catch (Exception e) {
             throw new IllegalStateException(ExceptionMessage.EXCEPTION_LADDER_HEIGHT.getExceptionMessage());
         }
+    }
+
+    public String readLadderGoal() {
+        return scanner.nextLine();
+    }
+
+    public String readWinnerResult() {
+        return scanner.nextLine();
     }
 }

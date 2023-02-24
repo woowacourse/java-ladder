@@ -1,9 +1,9 @@
-package util;
+package message;
 
 
 public enum LadderPrintMessage {
     START_LADDER("   |"),
-    CONNECT_LADDER("-".repeat(5)+"|"),
+    CONNECT_LADDER("-----|"),
     NO_CONNECT_LADDER("     |");
 
     private final String message;
