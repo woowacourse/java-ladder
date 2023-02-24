@@ -44,7 +44,7 @@ public class LadderGameController {
         return LadderGame.initialize(players, booleanGenerator, height, items);
     }
 
-    private <T> T repeatUntilGetValidInput(Supplier<T> inputReader) {
+    private <T> T repeatUntilGetValidInput(final Supplier<T> inputReader) {
         try {
             return inputReader.get();
         } catch (IllegalArgumentException e) {

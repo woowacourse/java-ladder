@@ -27,7 +27,7 @@ public class InputView {
         return splitCsvInput(input);
     }
 
-    private List<String> splitCsvInput(String input) {
+    private List<String> splitCsvInput(final String input) {
         return Arrays.stream(input.split(DELIMITER, SPLIT_LIMIT))
                 .map(String::trim)
                 .collect(Collectors.toList());
