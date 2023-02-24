@@ -3,7 +3,6 @@ package domain;
 import domain.ladder.ExistPointGenerator;
 import domain.ladder.Ladder;
 import domain.players.Player;
-import domain.players.Players;
 import domain.prize.Prize;
 import domain.prize.Prizes;
 import org.junit.jupiter.api.BeforeEach;
@@ -65,13 +64,11 @@ public class LadderGameTest {
     @ParameterizedTest
     void getTotalResult(int playerIndex, int prizeIndex) {
         List<String> playerNames = List.of("a", "b", "c");
-        Players players = Players.valueOf(playerNames);
         List<String> prizes = List.of("10000", "20000", "30000");
         ladderGame = new LadderGame(playerNames, 5, prizes, new ExistPointGenerator());
         LadderGameResult result = this.ladderGame.getResult();
         Map<Player, Prize> totalResult = result.getPlayerToPrize();
-
-        assertThat(totalResult.get(players.getPlayerAt(playerIndex)).getValue())
+        assertThat(totalResult.get(ladderGame.getPlayers().getPlayerAt(playerIndex)).getValue())
                 .isEqualTo(prizes.get(prizeIndex));
     }
 
