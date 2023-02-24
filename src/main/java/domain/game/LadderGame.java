@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
+    private static final int MOVE_FORWARD = 1;
+    private static final int MOVE_BACKWARD = -1;
+    private static final int MOVE_STRAIGHT = 0;
+
     private final List<Integer> results;
 
     public LadderGame(final Names names, final Ladder ladder) {
@@ -32,12 +36,12 @@ public class LadderGame {
 
     private static int calculateWeight(final int index, final Floor floor) {
         if (isAbleForward(index, floor)) {
-            return 1;
+            return MOVE_FORWARD;
         }
         if (isAbleBackward(index, floor)) {
-            return -1;
+            return MOVE_BACKWARD;
         }
-        return 0;
+        return MOVE_STRAIGHT;
     }
 
     private static boolean isAbleForward(final int index, final Floor floor) {
