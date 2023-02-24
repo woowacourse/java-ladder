@@ -41,13 +41,13 @@ public class LadderGameController {
         validateTargetPlayerBlank(targetPlayer);
 
         if (targetPlayer.equals(ALL_PLAYER)) {
-            processAllPlayerResult(players, results, ladder);
+            printAllPlayerResult(players, results, ladder);
             return;
         }
-        processPlayerResult(players, results, ladder, targetPlayer);
+        printPlayerResult(players, results, ladder, targetPlayer);
     }
 
-    private void processPlayerResult(Players players, Results results, Ladder ladder, String targetPlayer) {
+    private void printPlayerResult(Players players, Results results, Ladder ladder, String targetPlayer) {
         players.validateTargetPlayer(targetPlayer);
         int position = players.getTargetPlayerPosition(targetPlayer);
         int lastPosition = ladder.getLastPosition(position);
@@ -55,7 +55,7 @@ public class LadderGameController {
         outputView.printPlayerResult(results.getResult(lastPosition));
     }
 
-    private void processAllPlayerResult(Players players, Results results, Ladder ladder) {
+    private void printAllPlayerResult(Players players, Results results, Ladder ladder) {
         List<String> playersResult = new ArrayList<>();
 
         for (int position = 0; position < players.getSize(); position++) {
