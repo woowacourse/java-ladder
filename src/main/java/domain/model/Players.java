@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Players {
 
+    private static final String NO_PLAYER_ERROR_MESSAGE = "해당 이름의 플레이어는 존재하지 않습니다.";
+
     private final List<Player> players;
 
     public Players(List<Player> players) {
@@ -32,7 +34,7 @@ public class Players {
         return players.stream()
                 .filter(player -> player.getName().equals(name))
                 .findAny()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException(NO_PLAYER_ERROR_MESSAGE));
     }
 
 }
