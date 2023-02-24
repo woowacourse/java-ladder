@@ -14,8 +14,8 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(final Width width, final Height height, final ScaffoldGenerator scaffoldGenerator) {
-        this.lines = IntStream.range(0, height.getValue())
-                .mapToObj(it -> new Line(width, scaffoldGenerator))
+        this.lines = Stream.generate(() -> new Line(width, scaffoldGenerator))
+                .limit(height.getValue())
                 .collect(Collectors.toUnmodifiableList());
     }
 
