@@ -35,4 +35,24 @@ public class Line {
     public List<Point> getLine() {
         return points;
     }
+
+    public int move(int currentPosition) {
+        int position = currentPosition;
+        int playerCount = points.size() + 1;
+        if (canMoveRight(currentPosition, playerCount)) {
+            position++;
+        }
+        if (canMoveLeft(currentPosition, playerCount)) {
+            position--;
+        }
+        return position;
+    }
+
+    private boolean canMoveRight(int position, int playerCount) {
+        return position < playerCount - 1 && points.get(position).isConnected();
+    }
+
+    private boolean canMoveLeft(int position, int playerCount) {
+        return position > 0 && points.get(position - 1).isConnected();
+    }
 }

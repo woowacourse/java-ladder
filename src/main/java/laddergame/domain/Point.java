@@ -26,4 +26,8 @@ public enum Point {
     public String getDisplayFormat(int length) {
         return displayFormat.repeat(length);
     }
+
+    public boolean isConnected() {
+        return this.isConnected;
+    }
 }
