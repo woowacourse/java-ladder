@@ -41,4 +41,10 @@ class InputVerifier {
         }
         return number;
     }
+
+    public static void validateViewTargetPerson(String name) {
+        if (name.length() == 0) {
+            throw new IllegalArgumentException("대상자의 이름은 공백일 수 없습니다.");
+        }
+    }
 }

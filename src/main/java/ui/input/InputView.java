@@ -16,6 +16,7 @@ public class InputView {
     private static final String INPUT_PEOPLES_NAME = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String INPUT_REWARDS = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String INPUT_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
+    private static final String INPUT_WANTS_SEE_PERSON = "결과를 보고 싶은 사람은?";
 
     public static List<String> inputPersonName() {
         System.out.println(INPUT_PEOPLES_NAME);
@@ -52,4 +53,16 @@ public class InputView {
         }
     }
 
+    public static String inputNameSeeResultWantsPerson() {
+        System.out.println("\n" + INPUT_WANTS_SEE_PERSON);
+        while (true) {
+            try {
+                String name = scanner.nextLine().trim();
+                InputVerifier.validateViewTargetPerson(name);
+                return name;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }
