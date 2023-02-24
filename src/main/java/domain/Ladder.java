@@ -8,8 +8,6 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Ladder {
-    private static final String ERROR_SAME_LINE_SIZE = "[ERROR] 다른 길이의 가로줄이 생성되었습니다";
-    private static final String ERROR_LINE_SIZE_EMPTY = "[ERROR] 길이가 0인 가로줄이 생성되었습니다";
 
     private final List<Line> lines;
 
@@ -22,7 +20,7 @@ public class Ladder {
     public Map<String, String> calculateResult(final Names names, final Prizes prizes) {
         Map<String, String> totalResult = new HashMap<>();
         IntStream.range(0, names.size()).forEach(
-            position -> totalResult.put(names.getNameByIndex(position).getValue(), calculateSingleResult(prizes, position))
+                position -> totalResult.put(names.getNameByIndex(position).getValue(), calculateSingleResult(prizes, position))
         );
         return new HashMap<>(totalResult);
     }
