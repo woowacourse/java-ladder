@@ -1,14 +1,10 @@
 package view;
 
-import model.GameResult;
+import dto.GameResultDto;
+import dto.LineDto;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import model.Ladder;
-import model.LadderResults;
-import model.Line;
-import model.Names;
-import model.Path;
 
 public class OutputView {
 
@@ -61,20 +57,53 @@ public class OutputView {
         print(System.lineSeparator());
     }
 
-    public void printNameOfParticipants(Names names) {
-        int totalSize = names.getTotalParticipantSize();
+    public void printNameOfParticipants(List<String> nameInfo) {
+        int totalSize = nameInfo.size();
 
         IntStream.range(0, totalSize)
-                .mapToObj(index -> calculateNameLog(names.findNameByIndex(index), totalSize, index))
+                .mapToObj(index -> calculateNameLog(nameInfo.get(index), totalSize, index))
                 .forEach(this::print);
         print(System.lineSeparator());
     }
 
-    public void printLadderResult(LadderResults ladderResults) {
-        int totalSize = ladderResults.getResultSize();
+    private String calculateNameLog(String name, int totalSize, int index) {
+        if (isLastParticipant(totalSize, index)){
+            return String.format(NORMAL_FORMAT, name);
+        }
+        return String.format(LAST_FORMAT, name);
+    }
+
+    private boolean isLastParticipant(int totalSize, int index) {
+        return totalSize - 1 != index;
+    }
+
+    public void printLadder(List<LineDto> ladder) {
+        ladder.forEach(line -> printLine(line.getPaths()));
+    }
+
+    private void printLine(List<Boolean> paths) {
+        print(LEFT_LEG);
+        paths.forEach(this::printPath);
+        print(System.lineSeparator());
+    }
+
+    private void printPath(boolean passable) {
+        print(mapToPathLog(passable));
+        print(LEG);
+    }
+
+    private String mapToPathLog(boolean passable) {
+        if (passable) {
+            return PASSABLE;
+        }
+        return UN_PASSABLE;
+    }
+
+    public void printLadderResult(List<String> ladderResults) {
+        int totalSize = ladderResults.size();
 
         IntStream.range(0, totalSize)
-                .mapToObj(index -> mapToLadderResultLog(ladderResults.findResultByIndex(index), totalSize, index))
+                .mapToObj(index -> mapToLadderResultLog(ladderResults.get(index), totalSize, index))
                 .forEach(this::print);
         print(System.lineSeparator());
     }
@@ -100,59 +129,29 @@ public class OutputView {
         return String.format(LAST_FORMAT, ladderResult);
     }
 
-    private String calculateNameLog(String name, int totalSize, int index) {
-        if (isLastParticipant(totalSize, index)){
-            return String.format(NORMAL_FORMAT, name);
-        }
-        return String.format(LAST_FORMAT, name);
-    }
-
-    private boolean isLastParticipant(int totalSize, int index) {
-        return totalSize - 1 != index;
-    }
-
-    public void printLadder(Ladder ladder) {
-        List<Line> lines = ladder.getLines();
-
-        lines.forEach(line -> printLine(line.getLine()));
-    }
-
-    private void printLine(List<Path> paths) {
-        print(LEFT_LEG);
-        paths.forEach(this::printPath);
-        print(System.lineSeparator());
-    }
-
-    private void printPath(Path path) {
-        print(mapToPathLog(path));
-        print(LEG);
-    }
-
-    private String mapToPathLog(Path path) {
-        if (path.isPassable()) {
-            return PASSABLE;
-        }
-        return UN_PASSABLE;
-    }
-
-    public void printLadderGameResult(List<GameResult> gameResults) {
-        String totalResultLog = mapToGameResultLog(gameResults);
+    public void printLadderGameResult(List<GameResultDto> gameResults) {
+        String totalResultLog = mapToTotalGameResultLog(gameResults);
 
         print(totalResultLog);
         print(System.lineSeparator());
     }
 
-    private String mapToGameResultLog(List<GameResult> gameResults) {
+    private String mapToTotalGameResultLog(List<GameResultDto> gameResults) {
         if (gameResults.size() == DEFAULT_GAME_RESULT_SIZE) {
             return gameResults.get(ONLY_ONE_GAME_RESULT_INDEX).getLadderResult();
         }
         return gameResults.stream()
-                .map(result -> String.format(TOTAL_RESULT_FORMAT, result.getName(), result.getLadderResult()))
+                .map(this::mapToParticipantResultLog)
                 .collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    private String mapToParticipantResultLog(GameResultDto gameResultDto) {
+        return String.format(TOTAL_RESULT_FORMAT, gameResultDto.getParticipantName(), gameResultDto.getLadderResult());
     }
 
     public void printExceptionMessage(String message) {
         print(String.format(EXCEPTION_FORMAT, message));
+        print(System.lineSeparator());
     }
 
     private void print(String message) {

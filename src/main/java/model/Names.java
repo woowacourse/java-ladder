@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -27,9 +26,6 @@ public class Names {
     }
 
     private void validateNames(List<Name> names) {
-        if (Objects.isNull(names)) {
-            throw new IllegalStateException("참가자 이름이 정상적으로 입력되지 않았습니다.");
-        }
         if (names.size() < MINIMUM_PARTICIPANTS_SIZE) {
             throw new IllegalArgumentException("최소 2명의 이름을 입력해주세요.");
         }
@@ -64,5 +60,9 @@ public class Names {
 
     public int getTotalParticipantSize() {
         return names.size();
+    }
+
+    public List<Name> getNames() {
+        return names;
     }
 }

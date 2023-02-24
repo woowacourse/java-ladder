@@ -1,11 +1,8 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class GameResults {
 
@@ -16,16 +13,20 @@ public class GameResults {
     }
 
     public static GameResults of(Names names, Ladder ladder, LadderResults ladderResults) {
-        List<GameResult> gameResults = IntStream.range(0, names.getTotalParticipantSize())
-                .map(participantPosition -> playLadderGame(participantPosition, ladder))
-                .mapToObj(index -> mapToGameResult(names, ladderResults, index))
-                .collect(Collectors.toUnmodifiableList());
+        List<GameResult> gameResults = new ArrayList<>();
 
+        for (int position = 0; position < names.getTotalParticipantSize(); position++) {
+            String name = names.findNameByIndex(position);
+            int ladderResultPosition = playLadderGame(position, ladder);
+            String participantLadderResult = ladderResults.findResultByIndex(ladderResultPosition);
+
+            gameResults.add(new GameResult(name, participantLadderResult));
+        }
         return new GameResults(gameResults);
     }
 
     private static int playLadderGame(int position, Ladder ladder) {
-        Queue<Line> lines = new LinkedList<>(ladder.getLines());
+        Queue<Line> lines = ladder.mapToLines();
 
         while (!lines.isEmpty()) {
             Line positionLine = lines.poll();
@@ -33,13 +34,6 @@ public class GameResults {
             position = direction.move(position);
         }
         return position;
-    }
-
-    private static GameResult mapToGameResult(Names names, LadderResults ladderResults, int index) {
-        String participantName = names.findNameByIndex(index);
-        String participantResult = ladderResults.findResultByIndex(index);
-
-        return new GameResult(participantName, participantResult);
     }
 
     public GameResult findGameResultByName(String name) {

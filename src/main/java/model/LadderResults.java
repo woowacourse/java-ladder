@@ -1,5 +1,6 @@
 package model;
 
+import dto.LadderResultDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -50,5 +51,11 @@ public class LadderResults {
 
     public int getResultSize() {
         return results.size();
+    }
+
+    public List<String> getResults() {
+        return results.stream()
+                .map(LadderResult::getResult)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

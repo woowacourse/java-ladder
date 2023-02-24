@@ -2,13 +2,11 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import strategy.PassGenerator;
 
 public class Line {
-
-    private static final int MINIMUM_PATH_SIZE = 2;
 
     private final List<Path> paths;
 
@@ -77,7 +75,13 @@ public class Line {
         return position < (paths.size()) && paths.get(position).isPassable();
     }
 
-    public List<Path> getLine() {
-        return List.copyOf(paths);
+    public List<Path> getPaths() {
+        return paths;
+    }
+
+    public List<Boolean> getLine() {
+        return paths.stream()
+                .map(Path::isPassable)
+                .collect(Collectors.toUnmodifiableList());
     }
 }
