@@ -2,6 +2,14 @@
 
 사다리 타기 미션 저장소
 
+## 2단계 피드백 사항
+- [ ] 추상적인 메소드명 수정
+- [ ] 상수화 할 수 있는 부분 상수화 하기
+- [ ] LadderGame, Players 객체 책임 더 생각해보기
+  - [ ] Players.getPlayers.get(i) 로 얻은 클래스에 setter로 결과를 주입하는 것과 현재 코드의 차이
+  - [ ] players.getPlayers 를 필수적인 getter 사용으로 볼 수 있을까요?
+- [ ] 개행 확인(stream)
+
 ## 2단계 요구사항
 
 - [x] 실행 결과 입력 받기 (, 로 구분)
