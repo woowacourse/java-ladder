@@ -1,10 +1,13 @@
 package ladder.domain.ladder;
 
+import static ladder.domain.ladder.Position.valueOf;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.entry;
 
 import java.util.Map;
+import ladder.domain.item.Item;
+import ladder.domain.player.Player;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -16,7 +19,7 @@ public class LadderGameResultTest {
     @Test
     void 사다리게임에_참가하지_않은_사람을_입력하면_예외를_던진다() {
         final LadderGameResult ladderGameResult = new LadderGameResult(Map.of(
-                "name", "1000"
+                new Player("name", valueOf(0)), new Item("1000", valueOf(0))
         ));
 
         assertThatThrownBy(() -> ladderGameResult.get("whois"))
@@ -27,19 +30,19 @@ public class LadderGameResultTest {
     @Test
     void 한_사람에_대한_게임_결과를_반환한다() {
         final LadderGameResult ladderGameResult = new LadderGameResult(Map.of(
-                "name", "1000"
+                new Player("name", valueOf(0)), new Item("1000", valueOf(0))
         ));
 
         final Map<String, String> result = ladderGameResult.get("name");
 
-        assertThat(result).containsExactly(entry("name", "1000"));
+        assertThat(result).containsEntry("name", "1000");
     }
 
     @Test
     void 모든_사람에_대한_게임_결과를_반환한다() {
         final LadderGameResult ladderGameResult = new LadderGameResult(Map.of(
-                "name", "0",
-                "name2", "1000"
+                new Player("name", valueOf(0)), new Item("0", valueOf(0)),
+                new Player("name2", valueOf(1)), new Item("1000", valueOf(1))
         ));
 
         final Map<String, String> result = ladderGameResult.get("all");

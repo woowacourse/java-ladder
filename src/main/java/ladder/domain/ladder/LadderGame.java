@@ -3,6 +3,7 @@ package ladder.domain.ladder;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import ladder.domain.item.Item;
 import ladder.domain.item.Items;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
@@ -34,15 +35,15 @@ public class LadderGame {
     public LadderGameResult play() {
         final Map<Player, Position> playResult = players.play(ladder);
 
-        final Map<String, String> result = new LinkedHashMap<>();
+        final Map<Player, Item> result = new LinkedHashMap<>();
         for (Player player : playResult.keySet()) {
-            result.put(player.getName(), toItemName(playResult.get(player)));
+            result.put(player, toItem(playResult.get(player)));
         }
         return new LadderGameResult(result);
     }
 
-    private String toItemName(final Position position) {
-        return items.findByPosition(position).getName();
+    private Item toItem(final Position position) {
+        return items.findByPosition(position);
     }
 
     public List<String> getPlayers() {
