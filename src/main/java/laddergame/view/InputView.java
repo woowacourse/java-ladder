@@ -43,4 +43,10 @@ public class InputView {
             throw new IllegalArgumentException(ErrorMessage.NOT_NATURAL_NUMBER.getMessage());
         }
     }
+
+    public static String inputPlayerNameForResult() {
+        String playerName = scanner.nextLine();
+        validateBlankInput(playerName);
+        return playerName;
+    }
 }
