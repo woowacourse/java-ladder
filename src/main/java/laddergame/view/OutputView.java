@@ -4,6 +4,7 @@ import laddergame.domain.ladder.Line;
 import laddergame.domain.rung.Rung;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -39,7 +40,21 @@ public class OutputView {
     }
 
     public void printResultGuide() {
-        print(System.lineSeparator() + "실행결과" + System.lineSeparator());
+        print(System.lineSeparator() + "실행결과");
+    }
+
+    public void printResult(final Map<String, String> requestByParticipants, final List<String> participants) {
+        print(makeResultMessage(requestByParticipants, participants));
+    }
+
+    private String makeResultMessage(final Map<String, String> requestByParticipants, final List<String> participants) {
+        if (requestByParticipants.size() == 1) {
+            String participantName = participants.get(0);
+            return requestByParticipants.get(participantName);
+        }
+        return participants.stream()
+                .map(participantName -> String.format("%s : %s", participantName, requestByParticipants.get(participantName)))
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
     private String padAllValues(final List<String> values, final String paddingFormat) {

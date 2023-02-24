@@ -3,12 +3,14 @@ package laddergame.controller;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.participant.Participant;
 import laddergame.domain.participant.Participants;
+import laddergame.domain.request.Request;
 import laddergame.domain.result.Results;
 import laddergame.domain.rung.RandomBooleanGenerator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderGameController {
@@ -34,6 +36,11 @@ public class LadderGameController {
         outputView.printResultNames(resultNames);
 
         String requestContent = makeRequest();
+        Request request = new Request(participants, ladder, results);
+        Map<String, String> resultByParticipants = request.getResultByRequestContent(requestContent);
+
+        outputView.printResultGuide();
+        outputView.printResult(resultByParticipants, participantNames);
     }
 
     private Participants createParticipants() {
