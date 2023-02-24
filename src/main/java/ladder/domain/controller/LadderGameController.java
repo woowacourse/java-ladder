@@ -1,8 +1,6 @@
 package ladder.domain.controller;
 
-import ladder.domain.Ladder;
-import ladder.domain.Prizes;
-import ladder.domain.Users;
+import ladder.domain.*;
 import ladder.domain.generator.RandomPointGenerator;
 
 import java.util.HashMap;
@@ -25,23 +23,23 @@ public class LadderGameController {
         final Prizes prizes = readInput(() -> new Prizes(inputPrizes(), users));
 
         printLadder(users, ladder, prizes);
-        Map<String, String> results = calculateAllResult(users, ladder, prizes);
+        Map<UserName, PrizeName> results = calculateAllResult(users, ladder, prizes);
 
         readResults(results);
     }
 
-    private void readResults(Map<String, String> results) {
+    private void readResults(Map<UserName, PrizeName> results) {
         String userName = inputPrizeWinner();
         while (!userName.equals(COMMAND_ALL)) {
-            String prizeName = results.getOrDefault(userName, "없는 유저입니다.");
+            PrizeName prizeName = results.get(new UserName(userName));
             printSingleResult(prizeName);
             userName = inputPrizeWinner();
         }
         printAll(results);
     }
 
-    private Map<String, String> calculateAllResult(Users users, Ladder ladder, Prizes prizes) {
-        Map<String, String> results = new HashMap<>();
+    private Map<UserName, PrizeName> calculateAllResult(Users users, Ladder ladder, Prizes prizes) {
+        Map<UserName, PrizeName> results = new HashMap<>();
         for (int i = 0; i < users.getSize(); i++) {
             int prizeIndex = ladder.getResult(i);
             results.put(users.getUserNameByIndex(i), prizes.getPrizeNameByIndex(prizeIndex));
