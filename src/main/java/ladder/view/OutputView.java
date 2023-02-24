@@ -25,6 +25,14 @@ public class OutputView {
         printEndLines(getProductsView(products));
     }
 
+    private void printEndLines(final List<String> players) {
+        String names = players.stream()
+                .map(name -> String.format("%5s", name))
+                .collect(Collectors.joining());
+
+        System.out.println(names);
+    }
+
     private List<String> getPlayersView(final Players players) {
         return players.toUnmodifiablePlayers().stream()
                 .map(Player::getName)
@@ -41,14 +49,6 @@ public class OutputView {
         lines.stream()
                 .map(this::extractLine)
                 .forEach(System.out::println);
-    }
-
-    private void printEndLines(final List<String> players) {
-        String names = players.stream()
-                .map(name -> String.format("%5s", name))
-                .collect(Collectors.joining());
-
-        System.out.println(names);
     }
 
     private String extractLine(final Line line) {

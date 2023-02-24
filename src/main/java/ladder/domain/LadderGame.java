@@ -32,10 +32,6 @@ public class LadderGame {
         }
     }
 
-    public List<Player> toUnmodifiablePlayers() {
-        return players.toUnmodifiablePlayers();
-    }
-
     public List<Line> toUnmodifiableLines() {
         return Collections.unmodifiableList(lines.toUnModifiableLines());
     }

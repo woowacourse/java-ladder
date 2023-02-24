@@ -11,12 +11,12 @@ public class Products {
         this.products = products;
     }
 
-    public int size() {
-        return products.size();
-    }
-
     public Product get(int position) {
         return products.get(position);
+    }
+
+    public int size() {
+        return products.size();
     }
 
     public List<Product> toUnmodifiableProducts() {

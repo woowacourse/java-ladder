@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Line {
 
+    private static final int MAX_WIDTH = 1;
+
     private final int width;
     private final List<Point> points = new ArrayList<>();
     private final RandomGenerator<Boolean> pointGenerator;
@@ -18,7 +20,7 @@ public class Line {
     }
 
     private void validateWidth(final int width) {
-        if (width < 1) {
+        if (width < MAX_WIDTH) {
             throw new IllegalArgumentException("라인의 넓이는 1이상이어야 합니다.\n" + "width : " + width);
         }
     }
@@ -36,17 +38,13 @@ public class Line {
         }
         return Point.DISABLE;
     }
-    
+
     private Boolean isPossible(final int index) {
         if (points.isEmpty()) {
             return true;
         }
 
         return !points.get(index - 1).isAvailable();
-    }
-
-    public List<Point> toUnmodifiableLine() {
-        return Collections.unmodifiableList(points);
     }
 
     public Direction decideDirection(final int position) {
@@ -72,5 +70,9 @@ public class Line {
 
     private boolean isOutOfBound(final int position) {
         return position < 0 || points.size() <= position;
+    }
+    
+    public List<Point> toUnmodifiableLine() {
+        return Collections.unmodifiableList(points);
     }
 }

@@ -20,10 +20,6 @@ public class Players {
         }
     }
 
-    public List<Player> toUnmodifiablePlayers() {
-        return Collections.unmodifiableList(players);
-    }
-
     public void moveAll(final Line line) {
         for (final Player player : players) {
             int position = player.getPosition();
@@ -31,16 +27,20 @@ public class Players {
             player.move(direction);
         }
     }
-
-    public int size() {
-        return players.size();
-    }
-
+    
     public Player getPlayerByName(final String name) {
         return players.stream()
                 .filter(player -> name.equals(player.getName()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참가자입니다"));
 
+    }
+
+    public int size() {
+        return players.size();
+    }
+
+    public List<Player> toUnmodifiablePlayers() {
+        return Collections.unmodifiableList(players);
     }
 }

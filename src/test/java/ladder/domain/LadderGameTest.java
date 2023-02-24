@@ -26,14 +26,6 @@ class LadderGameTest {
     }
 
     @Test
-    void 사다리는_주어진_인원_수_만큼의_참가자를_가진다() {
-        int height = 4;
-        LadderGame ladderGame = new LadderGame(new Players(players), height);
-        assertThat(ladderGame.toUnmodifiablePlayers())
-                .hasSize(players.size());
-    }
-
-    @Test
     void 참여자들의_사다리타기를_수행한다() {
 
         Player juno = new Player("주노", 0);
