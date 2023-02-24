@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,29 +16,33 @@ public class Line {
     }
     
     private List<Direction> createLine(BarGenerator barGenerator, int peopleSize) {
-        LinkedList<Direction> line = new LinkedList<>();
+        List<Direction> line = new ArrayList<>();
         addFirstDirection(barGenerator, line);
         addMiddleDirections(barGenerator, peopleSize, line);
         addLastDirection(line);
         return line;
     }
     
-    private void addFirstDirection(BarGenerator barGenerator, LinkedList<Direction> line) {
+    private void addFirstDirection(BarGenerator barGenerator, List<Direction> line) {
         line.add(Direction.createFirst(barGenerator));
     }
     
-    private void addMiddleDirections(BarGenerator barGenerator, int peopleSize, LinkedList<Direction> line) {
+    private void addMiddleDirections(BarGenerator barGenerator, int peopleSize, List<Direction> line) {
         IntStream.range(0, peopleSize - BOTH_ENDS_COUNT)
                 .mapToObj(middleDirectionCount -> getLastDirection(line).createNext(barGenerator))
                 .forEach(line::add);
     }
     
-    private void addLastDirection(LinkedList<Direction> line) {
+    private void addLastDirection(List<Direction> line) {
         line.add(getLastDirection(line).createLast());
     }
     
-    private Direction getLastDirection(LinkedList<Direction> line) {
-        return line.getLast();
+    private Direction getLastDirection(List<Direction> line) {
+        return line.get(getLineLastIndex(line));
+    }
+    
+    private int getLineLastIndex(List<Direction> line) {
+        return line.size() - 1;
     }
     
     public List<Integer> getMovedPositions(List<Integer> positions) {
