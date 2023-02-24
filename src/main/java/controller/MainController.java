@@ -13,20 +13,18 @@ import view.OutputView;
 public class MainController {
     private static final String END_COMMEND = "all";
 
-    private final BooleanGenerator booleanGenerator;
     private final InputView inputView;
     private final OutputView outputView;
 
-    public MainController(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
+    public MainController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.booleanGenerator = booleanGenerator;
     }
 
-    public void start() {
+    public void start(BooleanGenerator booleanGenerator) {
         Names names = inputView.readNames();
         Rewards rewards = inputView.readRewards(names);
-        Ladder ladder = generateLadder(names);
+        Ladder ladder = generateLadder(names, booleanGenerator);
 
         outputView.printLadderBoard(names, ladder, rewards);
         LadderGame ladderGame = new LadderGame(names, ladder);
@@ -35,7 +33,7 @@ public class MainController {
         showResult(results, names);
     }
 
-    private Ladder generateLadder(Names names) {
+    private Ladder generateLadder(Names names, BooleanGenerator booleanGenerator) {
         Height height = inputView.readHeight();
         return new Ladder(names, height, booleanGenerator);
     }

@@ -9,8 +9,8 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
-        MainController mainController = new MainController(inputView, outputView, booleanGenerator);
+        MainController mainController = new MainController(inputView, outputView);
 
-        mainController.start();
+        mainController.start(booleanGenerator);
     }
 }
