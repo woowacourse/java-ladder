@@ -14,7 +14,7 @@ public class Player {
     }
 
     public void move(Ladder ladder) {
-        this.position = new Position(ladder.getExitPosition(this.position.getValue()));
+        this.position = new Position(ladder.getExitPosition(this.position.value()));
     }
 
     public Name getName() {
