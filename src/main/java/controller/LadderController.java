@@ -6,7 +6,6 @@ import java.util.Map;
 import domain.end.End;
 import domain.end.Ends;
 import domain.ladder.Ladder;
-import domain.ladder.LadderBuilder;
 import domain.ladder.LadderHeight;
 import domain.ladder.LadderWidth;
 import domain.user.User;
@@ -51,7 +50,7 @@ public class LadderController {
 	private Ladder buildLadder(Users users) {
 		LadderHeight height = retrieveLadderHeight();
 		LadderWidth width = changeIntoWidth(users.getUsersCount());
-		return new LadderBuilder().build(height, width, new RandomPointGenerator());
+		return new Ladder(height, width, new RandomPointGenerator());
 	}
 
 	private LadderHeight retrieveLadderHeight() {

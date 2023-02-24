@@ -11,15 +11,14 @@ import org.junit.jupiter.api.Test;
 import domain.util.Point;
 import domain.util.PointGenerator;
 
-class LadderBuilderTest {
+class LadderTest {
 
 	@Test
 	@DisplayName("사다리 생성 테스트")
 	void buildLadderTest() {
 		LadderHeight height = new LadderHeight(3);
 		LadderWidth width = new LadderWidth(3);
-		LadderBuilder builder = new LadderBuilder();
-		Ladder ladder = builder.build(height, width, new PresentPointGenerator());
+		Ladder ladder = new Ladder(height, width, new PresentPointGenerator());
 		List<List<Point>> points2D = changeToPoints2D(ladder);
 
 		assertThat(points2D).containsExactly(

@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import domain.ladder.Ladder;
-import domain.ladder.LadderBuilder;
 import domain.ladder.LadderHeight;
 import domain.ladder.LadderWidth;
 
@@ -16,8 +15,7 @@ class IndexMoverTest {
 	private static Ladder makeLadder(final int height, final int width, final PointGenerator generator) {
 		LadderHeight ladderHeight = new LadderHeight(height);
 		LadderWidth ladderWidth = new LadderWidth(width);
-		LadderBuilder builder = new LadderBuilder();
-		return builder.build(ladderHeight, ladderWidth, generator);
+		return new Ladder(ladderHeight, ladderWidth, generator);
 	}
 
 	@Test

@@ -3,13 +3,14 @@ package domain.ladder;
 import java.util.Collections;
 import java.util.List;
 
+import domain.util.LinePointsGenerator;
 import domain.util.Point;
 
 public class Line {
 	private final List<Point> points;
 
-	public Line(final List<Point> points) {
-		this.points = points;
+	public Line(final LinePointsGenerator linePointsGenerator) {
+		this.points = linePointsGenerator.generateLine();
 	}
 
 	public int size() {
