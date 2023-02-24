@@ -10,11 +10,6 @@ public class Reward {
         this.reward = reward;
     }
 
-    private void validate(final String reward) {
-        validateBlank(reward);
-        validateLength(reward);
-    }
-
     private static void validateLength(final String reward) {
         if (reward.length() < MIN_LENGTH || reward.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(
@@ -29,6 +24,11 @@ public class Reward {
                     "[ERROR] 빈 문자열(공백)은 보상이 될 수 없습니다."
             );
         }
+    }
+
+    private void validate(final String reward) {
+        validateBlank(reward);
+        validateLength(reward);
     }
 
     public String getReward() {
