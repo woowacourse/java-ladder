@@ -28,9 +28,7 @@ public class Ladder {
     public void makeLineInLayers() {
         IntStream.range(0, height.getValue())
             .mapToObj(layers::get)
-            .forEach(
-                layer -> IntStream.range(0, width.getValue())
-                    .forEach(j -> layer.makeLine()));
+            .forEach(layer -> layer.makeLine(width));
     }
 
     public int ride(final Location location) {
