@@ -8,7 +8,7 @@ import java.util.Map;
  * <p>
  * 0보다 작은 정수를 입력하면 IllegalArgumentException 발생
  */
-class Position {
+public class Position {
 
     private static final int MIN_POSITION = 0;
     private static final Map<Integer, Position> CACHE = new HashMap<>();
@@ -19,7 +19,7 @@ class Position {
         this.index = index;
     }
 
-    static Position valueOf(int index) {
+    public static Position valueOf(int index) {
         validateMinimumIndex(index);
         Position exist = CACHE.get(index);
         if (exist != null) {
