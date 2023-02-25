@@ -42,4 +42,25 @@ class HeightTest {
             assertThat(height.getHeight()).isEqualTo(5);
         }
     }
+
+    @Nested
+    @DisplayName("높이의 값으로 객체를 비교할 수 있다.")
+    class compareHeightTest {
+        private final Height height1 = new Height(5);
+        private final Height height2 = new Height(5);
+        private final Height height3 = new Height(50);
+
+        @DisplayName("같은 값을 가지는 높이는 같은 객체이다.")
+        @Test
+        void compareSameHeightTest() {
+            assertThat(height1).isEqualTo(height2);
+        }
+
+        @DisplayName("다른 값을 가지는 높이는 다른 객체이다.")
+        @Test
+        void compareDifferentHeightTest() {
+            assertThat(height1).isNotEqualTo(height3);
+            assertThat(height2).isNotEqualTo(height3);
+        }
+    }
 }
