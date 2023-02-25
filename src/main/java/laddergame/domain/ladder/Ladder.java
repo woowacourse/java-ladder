@@ -15,17 +15,17 @@ public class Ladder {
     public Ladder(final BooleanGenerator booleanGenerator, final String height, final int participantCount) {
         final LadderHeight ladderHeight = new LadderHeight(height);
         final int rungCount = makeRungCount(participantCount);
-        this.lines = makeLines(booleanGenerator, ladderHeight, rungCount);
+        this.lines = makeLines(booleanGenerator, ladderHeight.getHeight(), rungCount);
     }
 
     private int makeRungCount(final int participantCount) {
         return participantCount - DEFAULT_COUNT;
     }
 
-    private List<Line> makeLines(final BooleanGenerator booleanGenerator, final LadderHeight ladderHeight, final int rungCount) {
+    private List<Line> makeLines(final BooleanGenerator booleanGenerator, final int linesSize, final int lineSize) {
         List<Line> lines = new ArrayList<>();
-        for (int index = 0; index < ladderHeight.getHeight(); index++) {
-            lines.add(Line.create(rungCount, booleanGenerator));
+        for (int index = 0; index < linesSize; index++) {
+            lines.add(Line.create(lineSize, booleanGenerator));
         }
         return lines;
     }
