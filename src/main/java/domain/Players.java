@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,6 +36,10 @@ public class Players {
         if (playerNames.size() != new HashSet<>(playerNames).size()) {
             throw new IllegalArgumentException("참여자 이름은 중복될 수 없습니다.");
         }
+    }
+
+    public List<Player> get() {
+        return Collections.unmodifiableList(players);
     }
 
     public Player get(String playerName) {

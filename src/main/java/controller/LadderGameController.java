@@ -6,22 +6,33 @@ import factory.PlayersFactory;
 import view.InputView;
 import view.OutputView;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderGameController {
 
+    private static final String END_CONDITION = "all";
     private LadderGame ladderGame;
 
     public void play() {
         ready();
         printGeneratedLadder();
-        printResult(InputView.readPlayerName());
+        printResultOfSinglePlayer(InputView.readPlayerName());
+        printAllPlayers();
     }
 
-    private void printResult(String playerName) {
-        GameResult gameResult = ladderGame.getGameResultOf(playerName);
-        OutputView.printGameResult(gameResult.getResult());
+    private void printAllPlayers() {
+        LinkedHashMap<String, GameResult> gameResults = ladderGame.getGameResultsOfAllPlayers();
+        OutputView.printGameResult(gameResults);
+    }
+
+    private void printResultOfSinglePlayer(String playerName) {
+        while (!playerName.equals(END_CONDITION)) {
+            GameResult gameResult = ladderGame.getGameResultOf(playerName);
+            OutputView.printGameResult(gameResult.getResult());
+            playerName = InputView.readPlayerName();
+        }
     }
 
     private void ready() {

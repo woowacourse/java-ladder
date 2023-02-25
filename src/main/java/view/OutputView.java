@@ -1,6 +1,9 @@
 package view;
 
+import domain.GameResult;
+
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class OutputView {
@@ -8,6 +11,7 @@ public class OutputView {
     public static final String RESULT_TITLE = "실행결과";
     public static final String POINT_SEPARATOR = "|";
     private static final String GENERATED_LADDER_TITLE = "사다리 결과";
+    private static final String RESULT_DELIMITER = " : ";
 
     public static void printGeneratedLadder(
             final List<String> playerNames,
@@ -69,6 +73,13 @@ public class OutputView {
         printLine(RESULT_TITLE);
         printLine(gameResult);
         printEmptyLine();
+    }
+
+    public static void printGameResult(LinkedHashMap<String, GameResult> gameResults) {
+        printLine(RESULT_TITLE);
+        for (String playerName : gameResults.keySet()) {
+            printLine(playerName + RESULT_DELIMITER + gameResults.get(playerName).getResult());
+        }
     }
 
     private static void getFormattedPoint(int nameFormatSize, Boolean point, StringBuilder stringBuilder) {

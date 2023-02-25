@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -74,12 +75,21 @@ public class LadderGameTest {
                 .isEqualTo(gameResult);
     }
 
-    @DisplayName("지정한 플레이어의 게임 실행 결과를 반환한다.")
+    @DisplayName("사다리에 Point가 없는 경우 지정한 플레이어의 게임 실행 결과를 반환한다.")
     @ParameterizedTest
     @MethodSource(value = "provideLadderGame")
     void getResultOfPlayerWithNoPointsLadder(LadderGame ladderGame2, List<String> expected) {
         assertThat(ladderGame2.getGameResultOf(expected.get(0)).getResult())
                 .isEqualTo(expected.get(1));
+    }
+
+    @DisplayName("모든 Player의 실행 결과를 반환한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"a:당첨", "b:꽝", "c:꽝", "d:당첨", "e:꽝"}, delimiter = ':')
+    void getResultsOfAllPlayers(String playerName, String gameResult) {
+        LinkedHashMap<String, GameResult> results = ladderGame.getGameResultsOfAllPlayers();
+        assertThat(results.get(playerName).getResult())
+                .isEqualTo(gameResult);
     }
 
     @DisplayName("지정한 플레이어가 없는 경우 예외 처리 한다.")

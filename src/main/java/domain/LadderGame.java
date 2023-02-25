@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class LadderGame {
@@ -28,6 +29,14 @@ public class LadderGame {
 
     public GameResult getGameResultOf(String playerName) {
         return getGameResult(players.get(playerName));
+    }
+
+    public LinkedHashMap<String, GameResult> getGameResultsOfAllPlayers() {
+        LinkedHashMap<String, GameResult> results = new LinkedHashMap<>();
+        for (Player player : players.get()) {
+            results.put(player.getName(), getGameResult(player));
+        }
+        return results;
     }
 
     private GameResult getGameResult(Player player) {
