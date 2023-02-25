@@ -8,9 +8,9 @@ import java.util.Map;
 import laddergame.domain.GameResult;
 import laddergame.domain.Results;
 import laddergame.domain.Height;
-import laddergame.domain.Ladder;
+import laddergame.domain.LadderImpl;
 import laddergame.domain.Name;
-import laddergame.domain.Point;
+import laddergame.domain.PointImpl;
 import laddergame.domain.User;
 import laddergame.domain.Users;
 import laddergame.utils.LineMaker;
@@ -25,7 +25,7 @@ class LadderGameTest {
     void setUp() {
         Height ladderHeight = new Height(3);
         int userCount = 4;
-        Ladder ladder = new Ladder(ladderHeight, userCount, new FixedLineMaker());
+        LadderImpl ladder = new LadderImpl(ladderHeight, userCount, new FixedLineMaker());
 
         Users users = new Users(List.of(new User(new Name("민트")), new User(new Name("헙크")),
                 new User(new Name("쥬니")), new User(new Name("테오"))
@@ -55,10 +55,10 @@ class LadderGameTest {
     private class FixedLineMaker implements LineMaker {
 
         @Override
-        public List<Point> generateLine(int userCount) {
-            return List.of(new Point(true)
-                    , new Point(false)
-                    , new Point(true));
+        public List<PointImpl> generateLine(int userCount) {
+            return List.of(new PointImpl(true)
+                    , new PointImpl(false)
+                    , new PointImpl(true));
         }
     }
 }

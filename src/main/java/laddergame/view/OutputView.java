@@ -72,25 +72,25 @@ public class OutputView {
     }
 
     private void printUsers(UsersNameDto usersName, int firstLength) {
-        StringBuilder result = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
 
         String firstUserName = usersName.getNames().get(0);
-        result.append(BLANK.repeat(firstLength - firstUserName.length() + 1)).append(firstUserName);
+        builder.append(BLANK.repeat(firstLength - firstUserName.length() + 1)).append(firstUserName);
         for (int index = SECOND_INDEX; index < usersName.getNames().size(); index++) {
             String name = usersName.getNames().get(index);
-            result.append(BLANK.repeat(MAX_NAME_LENGTH + 1 - name.length())).append(name);
+            builder.append(BLANK.repeat(MAX_NAME_LENGTH + 1 - name.length())).append(name);
         }
-        System.out.println(result);
+        System.out.println(builder);
     }
 
     private void printLadder(Ladder ladder, int width) {
-        StringBuilder result = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         for (Line line : ladder.getLines()) {
-            result.append(BLANK.repeat(width)).append(LadderFormat.LADDER_COLUMN);
-            appendLine(result, line);
-            result.append(NEXT_LINE);
+            builder.append(BLANK.repeat(width)).append(LadderFormat.LADDER_COLUMN);
+            appendLine(builder, line);
+            builder.append(NEXT_LINE);
         }
-        System.out.print(result);
+        System.out.print(builder);
     }
 
     private void printResults(ResultsDto results, int firstLength) {
@@ -105,10 +105,10 @@ public class OutputView {
         System.out.println(builder);
     }
 
-    private void appendLine(StringBuilder result, Line line) {
+    private void appendLine(StringBuilder builder, Line line) {
         for (Point point : line.getPoints()) {
-            result.append(getConnectionStatus(point));
-            result.append(LadderFormat.LADDER_COLUMN);
+            builder.append(getConnectionStatus(point));
+            builder.append(LadderFormat.LADDER_COLUMN);
         }
     }
 

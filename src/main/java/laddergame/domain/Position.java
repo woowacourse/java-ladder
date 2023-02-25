@@ -11,8 +11,8 @@ public class Position {
         this.position = position;
     }
 
-    public void moveByConnectionStatus(Line line) {
-        List<Point> points = line.getPoints();
+    public void moveByConnectionStatus(LineImpl line) {
+        List<PointImpl> points = line.getPoints();
 
         if (isMovableToRight(points)) {
             position++;
@@ -29,11 +29,11 @@ public class Position {
         }
     }
 
-    private boolean isMovableToRight(List<Point> points) {
+    private boolean isMovableToRight(List<PointImpl> points) {
         return position < points.size() && points.get(position).isConnected();
     }
 
-    private boolean isMovableToLeft(List<Point> points) {
+    private boolean isMovableToLeft(List<PointImpl> points) {
         return position > 0 && points.get(position - 1).isConnected();
     }
 

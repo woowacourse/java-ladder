@@ -5,17 +5,17 @@ import java.util.Map;
 import laddergame.domain.GameResult;
 import laddergame.domain.Position;
 import laddergame.domain.Results;
-import laddergame.domain.Ladder;
-import laddergame.domain.Line;
+import laddergame.domain.LadderImpl;
+import laddergame.domain.LineImpl;
 import laddergame.domain.User;
 import laddergame.domain.Users;
 
 public class LadderGame {
-    private final Ladder ladder;
+    private final LadderImpl ladder;
     private final Users users;
     private final Results results;
 
-    public LadderGame(Ladder ladder, Users users, Results results) {
+    public LadderGame(LadderImpl ladder, Users users, Results results) {
         this.ladder = ladder;
         this.users = users;
         this.results = results;
@@ -35,7 +35,7 @@ public class LadderGame {
     }
 
     private void progressLines(Position userPosition) {
-        for (Line line : ladder.getLines()) {
+        for (LineImpl line : ladder.getLines()) {
             userPosition.moveByConnectionStatus(line);
         }
     }

@@ -51,7 +51,7 @@ class PositionTest {
         Position position = new Position(initialPosition, userCount);
 
         LineMaker lineMaker = new FixedLineMaker();
-        Line line = new Line(lineMaker, userCount);
+        LineImpl line = new LineImpl(lineMaker, userCount);
         //when
         position.moveByConnectionStatus(line);
 
@@ -68,7 +68,7 @@ class PositionTest {
         Position position = new Position(initialPosition, userCount);
 
         LineMaker lineMaker = new FixedLineMaker();
-        Line line = new Line(lineMaker, userCount);
+        LineImpl line = new LineImpl(lineMaker, userCount);
         //when
         position.moveByConnectionStatus(line);
 
@@ -79,11 +79,11 @@ class PositionTest {
     private class FixedLineMaker implements LineMaker {
 
         @Override
-        public List<Point> generateLine(int userCount) {
-            return List.of(new Point(true)
-                    , new Point(false)
-                    , new Point(true)
-                    , new Point(false));
+        public List<PointImpl> generateLine(int userCount) {
+            return List.of(new PointImpl(true)
+                    , new PointImpl(false)
+                    , new PointImpl(true)
+                    , new PointImpl(false));
         }
     }
 }

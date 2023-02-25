@@ -1,6 +1,6 @@
 package laddergame.utils;
 
-import laddergame.domain.Point;
+import laddergame.domain.PointImpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -15,8 +15,8 @@ public class RandomLineMaker implements LineMaker {
     }
 
     @Override
-    public List<Point> generateLine(int userCount) {
-        List<Point> points = new ArrayList<>();
+    public List<PointImpl> generateLine(int userCount) {
+        List<PointImpl> points = new ArrayList<>();
         for (int point = 1; point < userCount; point++) {
             points.add(generatePoint(BOUND + 1));
         }
@@ -24,9 +24,9 @@ public class RandomLineMaker implements LineMaker {
         return points;
     }
 
-    public Point generatePoint(int bound) {
+    public PointImpl generatePoint(int bound) {
         boolean isConnected = random.nextInt(bound) == BOUND;
 
-        return new Point(isConnected);
+        return new PointImpl(isConnected);
     }
 }

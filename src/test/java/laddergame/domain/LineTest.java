@@ -14,10 +14,10 @@ class LineTest {
     @DisplayName("연결선을 연속해서 가질 수 없다.")
     @Test
     void generateLineTest() {
-        Line line = new Line(new FixedLineMaker(), 5);
+        LineImpl line = new LineImpl(new FixedLineMaker(), 5);
 
         List<Boolean> lineConnectionStatus = line.getPoints().stream()
-                .map(Point::isConnected)
+                .map(PointImpl::isConnected)
                 .collect(Collectors.toList());
 
         assertThat(lineConnectionStatus).isEqualTo(List.of(true, false, false, true));
@@ -26,11 +26,11 @@ class LineTest {
     private class FixedLineMaker implements LineMaker {
 
         @Override
-        public List<Point> generateLine(int userCount) {
-            return List.of(new Point(true)
-                    , new Point(true)
-                    , new Point(false)
-                    , new Point(true));
+        public List<PointImpl> generateLine(int userCount) {
+            return List.of(new PointImpl(true)
+                    , new PointImpl(true)
+                    , new PointImpl(false)
+                    , new PointImpl(true));
         }
     }
 

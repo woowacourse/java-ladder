@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 import laddergame.domain.GameResult;
 import laddergame.domain.Results;
 import laddergame.domain.Height;
-import laddergame.domain.Ladder;
+import laddergame.domain.LadderImpl;
 import laddergame.domain.Name;
 import laddergame.domain.User;
 import laddergame.domain.Users;
@@ -34,7 +34,7 @@ public class LadderGameController {
         Users users = repeat(this::setUpUsers);
         Results results = repeat(() -> setUpGameResults(users.count()));
         Height ladderHeight = repeat(this::setUpLadderHeight);
-        Ladder ladder = new Ladder(ladderHeight, users.count(), new RandomLineMaker());
+        LadderImpl ladder = new LadderImpl(ladderHeight, users.count(), new RandomLineMaker());
         outputView.printLadderResult(ladder, new UsersNameDto(users.getUsers()), new ResultsDto(results.getResults()));
         LadderGame ladderGame = new LadderGame(ladder, users, results);
 

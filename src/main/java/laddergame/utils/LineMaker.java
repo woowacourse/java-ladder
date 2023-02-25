@@ -1,10 +1,10 @@
 package laddergame.utils;
 
-import laddergame.domain.Point;
+import laddergame.domain.PointImpl;
 import java.util.List;
 
 public interface LineMaker {
 
-    List<Point> generateLine(int userCount);
+    List<PointImpl> generateLine(int userCount);
 
 }
