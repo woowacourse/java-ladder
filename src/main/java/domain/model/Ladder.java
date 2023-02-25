@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
+
     private static final int START_POSITION = 0;
+
     private final Height height;
     private final Width width;
     private final List<Layer> layers = new ArrayList<>();
