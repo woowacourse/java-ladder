@@ -15,13 +15,13 @@ public class LadderGame {
     private final Participants participants;
     private final Ladder ladder;
     private final Results results;
-    private boolean isContinuing;
+    private GameStatus gameStatus;
 
     public LadderGame(final Participants participants, final Ladder ladder, final Results results) {
         this.participants = participants;
         this.ladder = ladder;
         this.results = results;
-        this.isContinuing = true;
+        this.gameStatus = GameStatus.CONTINUE;
     }
 
     public void playGameOfAllParticipants() {
@@ -33,10 +33,9 @@ public class LadderGame {
 
     public Map<Participant, Result> getResultByParticipants(final UserRequest request) {
         if (request.isAllParticipants()) {
-            isContinuing = false;
+            gameStatus = GameStatus.END;
             return makeResultByAllParticipants();
         }
-        isContinuing = true;
         return makeResultByOneParticipant(request);
     }
 
@@ -62,6 +61,6 @@ public class LadderGame {
     }
 
     public boolean isContinuing() {
-        return isContinuing;
+        return gameStatus.isContinuing();
     }
 }
