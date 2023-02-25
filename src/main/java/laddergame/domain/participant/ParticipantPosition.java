@@ -2,6 +2,8 @@ package laddergame.domain.participant;
 
 public class ParticipantPosition {
 
+    private static final int POSITION_UNIT = 1;
+
     private final int position;
 
     public ParticipantPosition(final int position) {
@@ -9,11 +11,11 @@ public class ParticipantPosition {
     }
 
     public ParticipantPosition increase() {
-        return new ParticipantPosition(position + 1);
+        return new ParticipantPosition(position + POSITION_UNIT);
     }
 
     public ParticipantPosition decrease() {
-        return new ParticipantPosition(position - 1);
+        return new ParticipantPosition(position - POSITION_UNIT);
     }
 
     public int getPosition() {
