@@ -28,11 +28,11 @@ public class LadderGame {
 
     public Results resultsByNames(Names names) {
         List<Integer> order = names.orderByName(players);
-        List<Result> res = new ArrayList<>();
+        List<Result> orderedResults = new ArrayList<>();
         for (Integer integer : order) {
-            res.add(results.get(integer));
+            orderedResults.add(results.get(integer));
         }
-        return new Results(res);
+        return new Results(orderedResults);
     }
 
     public Players getPlayers() {
