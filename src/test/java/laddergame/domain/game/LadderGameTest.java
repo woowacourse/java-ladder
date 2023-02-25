@@ -15,6 +15,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.List;
 import java.util.Map;
 
+import static laddergame.domain.game.UserRequest.ALL_PARTICIPANTS_COMMAND;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderGameTest {
@@ -52,7 +53,7 @@ class LadderGameTest {
     void gets_all_results_if_request_content_is_same_with_all_request_key() {
         List<Participant> allParticipants = participants.getParticipants();
         List<String> resultNames = List.of("1st", "2nd", "3rd", "4th");
-        UserRequest request = UserRequest.from("all");
+        UserRequest request = UserRequest.from(ALL_PARTICIPANTS_COMMAND);
 
         Map<Participant, Result> resultByParticipants = ladderGame.getResultByParticipants(request);
 
