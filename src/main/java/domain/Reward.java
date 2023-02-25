@@ -1,12 +1,12 @@
 package domain;
 
 public class Reward {
-    private final String name;
+    private final RewardName name;
 
     public Reward(String name) {
         name = name.trim();
         validateName(name);
-        this.name = name;
+        this.name = new RewardName(name);
     }
 
     private void validateName(String name) {
@@ -15,7 +15,7 @@ public class Reward {
         }
     }
 
-    public String getName() {
+    public RewardName getName() {
         return name;
     }
 }

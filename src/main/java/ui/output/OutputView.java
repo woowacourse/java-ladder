@@ -25,11 +25,11 @@ public class OutputView {
 
     private static void printRewards(Rewards rewards, int maxNameLength) {
         for (Reward reward : rewards.getRewards()) {
-            System.out.print(rewardNameLengthFormat(reward.getName(), maxNameLength));
+            System.out.print(rewardNameResize(reward.getName().getRewardName(), maxNameLength));
         }
     }
 
-    private static String rewardNameLengthFormat(String name, int length) {
+    private static String rewardNameResize(String name, int length) {
         StringBuilder stringBuilder = new StringBuilder(name);
         int adjustLength = 0;
         for (char ch : name.toCharArray()) {
@@ -98,6 +98,6 @@ public class OutputView {
 
     private static void printResultTarget(Rewards rewards, Person person) {
         int position = person.getPosition();
-        System.out.println(person.getName().getPersonName() + " : " + rewards.getRewards().get(position).getName());
+        System.out.println(person.getName().getPersonName() + " : " + rewards.getRewards().get(position).getName().getRewardName());
     }
 }
