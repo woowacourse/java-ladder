@@ -1,6 +1,7 @@
 package domain;
 
 import exception.PlayerNotInResultException;
+import java.util.Collections;
 import java.util.Map;
 
 public class LadderGameResult {
@@ -19,7 +20,7 @@ public class LadderGameResult {
     }
 
     public Map<Player, Prize> getResult() {
-        return Map.copyOf(result);
+        return Collections.unmodifiableMap(result);
     }
 
     private void validateResultContainPlayer(Player player) {
