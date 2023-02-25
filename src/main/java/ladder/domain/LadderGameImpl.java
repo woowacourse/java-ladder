@@ -29,7 +29,9 @@ public class LadderGameImpl implements LadderGame {
 
     @Override
     public void initializeResults(List<String> resultNames) {
-        ladderRepository.put(Result.class, new Result(resultNames));
+        int playerCount = ladderRepository.get(Players.class)
+                .size();
+        ladderRepository.put(Result.class, new Result(resultNames, playerCount));
     }
 
     @Override
@@ -45,7 +47,13 @@ public class LadderGameImpl implements LadderGame {
 
     @Override
     public LadderInfoDto getLadderInfo() {
-        return null;
+        List<String> playerNames = ladderRepository.get(Players.class)
+                .getPlayerNames();
+        List<List<Boolean>> rows = ladderRepository.get(Ladder.class)
+                .getRows();
+        List<String> resultNames = ladderRepository.get(Result.class)
+                .getNames();
+        return new LadderInfoDto(playerNames, rows, resultNames);
     }
 
     @Override

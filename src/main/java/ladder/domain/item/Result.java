@@ -9,11 +9,19 @@ import java.util.stream.Collectors;
  */
 public class Result {
 
+    private static final String DIFFERENT_COUNT_MESSAGE = "플레이어의 수와 결과의 수가 다릅니다. 플레이어 : %d, 결과 : %d";
     private final List<Item> resultItems = new ArrayList<>();
 
-    public Result(List<String> itemNames) {
+    public Result(List<String> itemNames, int playerCount) {
+        validateResultSize(itemNames, playerCount);
         for (int i = 0; i < itemNames.size(); i++) {
             resultItems.add(new Item(itemNames.get(i), i));
+        }
+    }
+
+    private static void validateResultSize(List<String> itemNames, int playerCount) {
+        if (itemNames.size() != playerCount) {
+            throw new IllegalArgumentException(String.format(DIFFERENT_COUNT_MESSAGE, playerCount, itemNames.size()));
         }
     }
 
