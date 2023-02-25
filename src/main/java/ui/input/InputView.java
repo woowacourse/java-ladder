@@ -54,7 +54,7 @@ public class InputView {
     }
 
     public static String inputNameSeeResultWantsPerson() {
-        System.out.println("\n" + INPUT_WANTS_SEE_PERSON);
+        System.out.println("\n" + "\n" + INPUT_WANTS_SEE_PERSON);
         while (true) {
             try {
                 String name = scanner.nextLine().trim();
