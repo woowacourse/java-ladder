@@ -22,8 +22,7 @@ public class Application {
         Lines lines = ladderGame.createLines(people.getPeople().size(), ladderHeight);
         ladderGame.processResult(people, lines);
         OutputView.printLadderResult(people, lines, rewards);
-        String targetName = inputTargetPerson(people);
-        OutputView.printRewardResult(rewards, people, targetName);
+        repeatPrintPeopleResultUntilAll(rewards, people);
     }
 
     private static People inputPeople(LadderGame ladderGame) {
@@ -68,6 +67,16 @@ public class Application {
         }
         if (findPerson.size() != 1) {
             throw new IllegalArgumentException("결과를 출력할 참가자를 찾지 못했습니다.");
+        }
+    }
+
+    public static void repeatPrintPeopleResultUntilAll(Rewards inputRewards, People processedPeople) {
+        while (true) {
+            String targetName = inputTargetPerson(processedPeople);
+            OutputView.printRewardResult(inputRewards, processedPeople, targetName);
+            if (targetName.equals("all")) {
+                return;
+            }
         }
     }
 }
