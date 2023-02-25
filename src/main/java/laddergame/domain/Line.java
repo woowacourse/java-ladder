@@ -57,6 +57,6 @@ public class Line {
     }
 
     private boolean isConnected(int position) {
-        return points.get(position - 1).isConnected();
+        return points.get(position).isConnected();
     }
 }

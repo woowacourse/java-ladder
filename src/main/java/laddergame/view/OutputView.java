@@ -14,14 +14,13 @@ public class OutputView {
     private static final String PRIZES_REQUEST_MSG = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요) ";
     private static final String LADDER_HEIGHT_MSG = "최대 사다리 높이는 몇 개인가요?";
     private static final String PLAYER_NAME_FOR_RESULT_REQUEST_MSG = "결과를 보고 싶은 사람은?";
-
     private static final String LADDER_RESULT_MSG = "사다리 결과";
-
     private static final String RESULT_INFO_MSG = "실행 결과";
     private static final String PLAYER_NAME_FORMAT = "%" + NAME_SPACING + "s";
     private static final String LADDER_FORMAT = "%s|";
     private static final String RESULT_FORMAT = "%s : %s";
-
+    private static final String LADDER_CONNECT_FORMAT = "-";
+    private static final String LADDER_DISCONNECT_FORMAT = " ";
 
     private OutputView() {
     }
@@ -63,11 +62,18 @@ public class OutputView {
 
     private static void printLine(Line line) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.format(LADDER_FORMAT, Point.DISCONNECT.getDisplayFormat(LADDER_SPACING)));
+        stringBuilder.append(String.format(LADDER_FORMAT, makeLadderFormat(Point.DISCONNECT)));
         line.getLine().forEach((point) ->
-                stringBuilder.append(String.format(LADDER_FORMAT, point.getDisplayFormat(LADDER_SPACING)))
+                stringBuilder.append(String.format(LADDER_FORMAT, makeLadderFormat(point)))
         );
         System.out.println(stringBuilder);
+    }
+
+    private static String makeLadderFormat(Point point) {
+        if (point.isConnected()) {
+            return LADDER_CONNECT_FORMAT.repeat(LADDER_SPACING);
+        }
+        return LADDER_DISCONNECT_FORMAT.repeat(LADDER_SPACING);
     }
 
     public static void printPlayerNameForResult() {

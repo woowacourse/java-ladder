@@ -11,7 +11,7 @@ public class Prizes {
 
     public Prizes(List<String> values, int playersCount) {
         List<Prize> prizes = values.stream()
-                .map(value -> new Prize(value))
+                .map(Prize::new)
                 .collect(Collectors.toList());
         validatePrizes(prizes, playersCount);
         this.prizes = List.copyOf(prizes);
