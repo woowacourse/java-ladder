@@ -117,7 +117,9 @@ Point --> Position
 
 - 도메인을 패키지 단위로 분리했을 때, ladder, player, item 이 모두 의존하고 있는 공통의존성은 어디에 두어야 할까요?
   ex) Position
-- Player, Item 같은 객체는 책임이 애매하게 느껴질 수 있는데, 객체로서의 의미가 있나요?
+- Item 같은 객체는 책임이 애매하게 느껴질 수 있는데, 객체로서의 의미가 있나요?
+- Dto 의 경우에 패키지가 너무 애매하게 느껴집니다. 어디에 두어야 할까요?
+- LadderGame 과 LadderGameImpl 이 같은 위치에 존재하게 되는 것 같은데요 이런 경우에는 어떻게 해야할까요?
 
 # java-ladder
 

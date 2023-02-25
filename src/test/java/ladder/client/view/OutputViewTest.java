@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
+import java.util.Map;
 import ladder.domain.dto.LadderInfoDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,6 +23,11 @@ class OutputViewTest {
     void setSystemOut() {
         outContent.reset();
         System.setOut(new PrintStream(outContent));
+    }
+
+    @AfterEach
+    void restoreSystemOut() {
+        System.setOut(System.out);
     }
 
     @Test
@@ -47,8 +53,19 @@ class OutputViewTest {
                         + "c     d     " + System.lineSeparator());
     }
 
-    @AfterEach
-    void restoreSystemOut() {
-        System.setOut(System.out);
+    @Test
+    void 결과_하나_출력() {
+        OutputView.printResult("book");
+        assertThat(outContent)
+                .hasToString("실행 결과" + System.lineSeparator()
+                        + "book" + System.lineSeparator());
+    }
+
+    @Test
+    void 결과_여러개_출력() {
+        OutputView.printResults(Map.of("name", "book"));
+        assertThat(outContent)
+                .hasToString("실행 결과" + System.lineSeparator() +
+                        "name : book" + System.lineSeparator());
     }
 }
