@@ -55,7 +55,7 @@ public class MainController {
 
     private Ladder makeLadder(int nameNumber) {
         int lineNumber = nameNumber - 1;
-        return new Ladder(lineNumber, receiveHeight().getHeight(), ladderGenerator);
+        return new Ladder(lineNumber, receiveHeight(), ladderGenerator);
     }
 
     private void printLadder(Names names, Missions missions, Ladder ladder) {

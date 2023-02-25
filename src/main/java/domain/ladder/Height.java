@@ -6,11 +6,11 @@ public class Height {
 
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 100;
-    private final int height;
+    private final int value;
 
-    public Height(int height) {
-        validate(height);
-        this.height = height;
+    public Height(int value) {
+        validate(value);
+        this.value = value;
     }
 
     private void validate(int height) {
@@ -19,8 +19,8 @@ public class Height {
         }
     }
 
-    public int getHeight() {
-        return height;
+    public int getValue() {
+        return value;
     }
 
     @Override
@@ -32,11 +32,11 @@ public class Height {
             return false;
         }
         Height height1 = (Height) o;
-        return height == height1.height;
+        return value == height1.value;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(height);
+        return Objects.hash(value);
     }
 }

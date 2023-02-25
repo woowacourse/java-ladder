@@ -9,13 +9,13 @@ import java.util.List;
 public class Ladder {
     private final List<Line> ladder;
 
-    public Ladder(int count, int height, BooleanGenerator ladderGenerator) {
+    public Ladder(int count, Height height, BooleanGenerator ladderGenerator) {
         this.ladder = createLadder(count, height, ladderGenerator);
     }
 
-    private static List<Line> createLadder(int count, int height, BooleanGenerator ladderGenerator) {
+    private static List<Line> createLadder(int count, Height height, BooleanGenerator ladderGenerator) {
         List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < height.getValue(); i++) {
             lines.add(new Line(count, ladderGenerator));
         }
         return lines;
