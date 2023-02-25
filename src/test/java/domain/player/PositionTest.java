@@ -1,4 +1,4 @@
-package domain;
+package domain.player;
 
 import domain.player.Position;
 import org.junit.jupiter.api.Assertions;
