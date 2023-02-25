@@ -10,17 +10,17 @@ import java.util.List;
 public class LadderInfoDto {
 
     private final List<String> playerNames;
-    private final List<Boolean> isRightConnected;
+    private final List<List<Boolean>> ladderInfo;
     private final List<String> resultNames;
 
-    public LadderInfoDto(List<String> playerNames, List<Boolean> isRightConnected, List<String> resultNames) {
+    public LadderInfoDto(List<String> playerNames, List<List<Boolean>> ladderInfo, List<String> resultNames) {
         this.playerNames = playerNames;
-        this.isRightConnected = isRightConnected;
+        this.ladderInfo = ladderInfo;
         this.resultNames = resultNames;
     }
 
-    public List<Boolean> getIsRightConnected() {
-        return isRightConnected;
+    public List<List<Boolean>> getLadderInfo() {
+        return ladderInfo;
     }
 
     public List<String> getResultNames() {
