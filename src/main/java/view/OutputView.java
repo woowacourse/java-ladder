@@ -27,10 +27,15 @@ public class OutputView {
         return index == 0 || index == size - 1;
     }
 
+    /*TODO: 지금처럼 player.getReward().getRewardName()을 player.getRewardName()로 변경하는 게 나을까요?
+        Reward의 이름을 반환하는 건 Reward가 해야할 것 같은데 이렇게 코드를 변경하면 책임이 player까지 가는 것 아닐까요?
+        또 다르게 생각해보면 어짜피 Player가 Reward라는 값객체를 가지고 있으니 괜찮은 것 같기도 해요.
+        조앤은 어떻게 생각하시나요?? 조앤의 생각을 들려주세요! :D
+     */
     private static void printPlayerReward(String input, Players players) {
         for (Player player : players.getPlayers()) {
-            if (player.getName().equals(input)) {
-                System.out.println(player.getReward().getReward());
+            if (player.isSameNameWithInput(input)) {
+                System.out.println(player.getRewardName());
             }
         }
     }
@@ -41,7 +46,7 @@ public class OutputView {
 
     private static void printAllPlayersRewards(Players players) {
         for (Player player : players.getPlayers()) {
-            System.out.println(player.getName() + COLON + player.getReward().getReward());
+            System.out.println(player.getName() + COLON + player.getRewardName());
         }
     }
 
@@ -82,23 +87,29 @@ public class OutputView {
         List<Reward> rewardsRewards = rewards.getRewards();
         for (int i = 0; i < rewardsRewards.size(); i++) {
             Reward reward = rewardsRewards.get(i);
-            if (isFirstOrLast(i, rewardsRewards.size())) {
-                System.out.printf(FIRST_OR_LAST_FORMAT, reward.getReward());
-            }
-            if (isMiddle(i, rewardsRewards.size())) {
-                System.out.printf(MIDDLE_FORMAT, reward.getReward());
-            }
+            printFirstOrLastReward(rewardsRewards, i, reward);
+            printMiddleReward(rewardsRewards, i, reward);
+        }
+    }
+
+    private static void printMiddleReward(List<Reward> rewardsRewards, int i, Reward reward) {
+        if (isMiddle(i, rewardsRewards.size())) {
+            System.out.printf(MIDDLE_FORMAT, reward.getRewardName());
+        }
+    }
+
+    private static void printFirstOrLastReward(List<Reward> rewardsRewards, int i, Reward reward) {
+        if (isFirstOrLast(i, rewardsRewards.size())) {
+            System.out.printf(FIRST_OR_LAST_FORMAT, reward.getRewardName());
         }
     }
 
     public void printReward(String input, Players players) {
         System.out.println(REWARD_GUIDE_MESSAGE);
-
         if (isAll(input)) {
             printAllPlayersRewards(players);
             return;
         }
-
         printPlayerReward(input, players);
     }
 }

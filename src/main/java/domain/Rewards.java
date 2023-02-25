@@ -35,4 +35,8 @@ public class Rewards {
     public List<Reward> getRewards() {
         return rewards;
     }
+
+    public Reward getReward(int playerIndex) {
+        return rewards.get(playerIndex);
+    }
 }

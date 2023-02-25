@@ -17,7 +17,9 @@ public class Ladder {
     }
 
     public List<Line> createLadder(int ladderHeight, Players players) {
-        return IntStream.range(0, ladderHeight).mapToObj(i -> createLine(players)).collect(Collectors.toList());
+        return IntStream.range(0, ladderHeight)
+                .mapToObj(i -> createLine(players))
+                .collect(Collectors.toList());
     }
 
     private Line createLine(Players players) {
@@ -50,14 +52,15 @@ public class Ladder {
     }
 
     private void traverseLine(Line line) {
-        for (int Playerindex = 0; Playerindex < line.getLine().size(); Playerindex++) {
+        for (int Playerindex = 0; Playerindex < line.getBlocksSize(); Playerindex++) {
             crossLine(line, Playerindex);
         }
     }
 
     private void crossLine(Line line, int playerIndex) {
-        boolean isCross = line.getLine().get(playerIndex);
+        boolean isCross = line.getBlockByIndex(playerIndex);
 
+        //TODO: isCross, isCrossable 둘 중에 더 직관적인 네이밍은 어떤 것일까요??
         if (isCross) {
             swapPlayers(playerIndex);
         }
@@ -77,7 +80,7 @@ public class Ladder {
     private void matchRewardsForPlayers(Rewards rewards) {
         IntStream.range(0, result.size()).forEach(playerIndex -> {
             Player player = result.get(playerIndex);
-            player.setReward(rewards.getRewards().get(playerIndex));
+            player.setReward(rewards.getReward(playerIndex));
         });
     }
 

@@ -32,7 +32,7 @@ public class LineTest {
         blocks = new ArrayList<>(List.of(new Block(true), new Block(false)));
         Line line = new Line(players, blocks);
 
-        List<Boolean> result = line.getLine();
+        List<Boolean> result = line.getBlocks();
         List<Boolean> expect = new ArrayList<>(List.of(true, false));
 
         Assertions.assertThat(result).isEqualTo(expect);

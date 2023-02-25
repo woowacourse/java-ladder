@@ -16,7 +16,7 @@ public enum BlockType {
     }
 
     public static List<String> getBlockTypes(Line line) {
-        List<Boolean> blockLine = line.getLine();
+        List<Boolean> blockLine = line.getBlocks();
 
         return blockLine.stream()
                 .map(BlockType::decideBlockType)

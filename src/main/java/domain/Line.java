@@ -19,9 +19,17 @@ public class Line {
         }
     }
 
-    public List<Boolean> getLine() {
+    public List<Boolean> getBlocks() {
         return blocks.stream()
                 .map(Block::getIsCross)
                 .collect(Collectors.toList());
+    }
+
+    public boolean getBlockByIndex(int index) {
+        return getBlocks().get(index);
+    }
+
+    public int getBlocksSize() {
+        return getBlocks().size();
     }
 }

@@ -28,7 +28,7 @@ public class Reward {
         }
     }
 
-    public String getReward() {
+    public String getRewardName() {
         return reward;
     }
 }

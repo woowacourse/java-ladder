@@ -11,12 +11,19 @@ public class Player {
     public String getName() {
         return name.getName();
     }
+    public boolean isSameNameWithInput(String input){
+        return this.name.equals(input);
+    }
+
+    public void setReward(Reward reward) {
+        this.reward = reward;
+    }
 
     public Reward getReward() {
         return reward;
     }
 
-    public void setReward(Reward reward) {
-        this.reward = reward;
+    public String getRewardName() {
+        return reward.getRewardName();
     }
 }

@@ -15,7 +15,7 @@ public class LadderGame {
         this.booleanCreator = booleanCreator;
     }
 
-    public void ladderGame() {
+    public void start() {
         Players players = validatePlayersInput();
         Rewards rewards = validateRewardsInput(players);
         Ladder ladder = validateLadderInput(players);
