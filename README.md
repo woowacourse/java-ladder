@@ -8,8 +8,6 @@ graph TD
 LadderGameClient --> InputView
 LadderGameClient --> OutputView
 LadderGameClient --> LadderGameInterface
-LadderGameClient --> LadderGameResult
-OutputView --> LadderGameResult
 
 LadderGameInterface --> LadderGame
 LadderGame -->Ladder
