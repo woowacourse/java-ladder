@@ -15,7 +15,6 @@ public class OutputView {
     private static final String ROW_START_SPACE = "    ";
     private static final String NEXT_LINE = System.lineSeparator();
     private static final String NAME_MESSAGE = "%-6s";
-    private static final String RESULT_MESSAGE = "%-5s";
 
     private OutputView() {
     }
