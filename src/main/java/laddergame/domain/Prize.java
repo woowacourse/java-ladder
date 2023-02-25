@@ -5,6 +5,7 @@ import laddergame.constant.ErrorMessage;
 public class Prize {
 
     private final String prize;
+
     public Prize(String prize) {
         validatePrize(prize);
         this.prize = prize;
