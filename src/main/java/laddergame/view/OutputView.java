@@ -7,8 +7,7 @@ import laddergame.domain.Results;
 import laddergame.domain.Ladder;
 import laddergame.domain.Line;
 import laddergame.domain.Point;
-import laddergame.domain.User;
-import laddergame.domain.Users;
+import laddergame.domain.dto.UsersNameDto;
 import laddergame.utils.LadderFormat;
 
 public class OutputView {
@@ -39,14 +38,14 @@ public class OutputView {
         System.out.println(NEXT_LINE + LADDER_HEIGHT_ENTER_NOTICE_MESSAGE);
     }
 
-    public void printLadderResult(Ladder ladder, Users users, Results results) {
+    public void printLadderResult(Ladder ladder, UsersNameDto usersName, Results results) {
         System.out.println(NEXT_LINE + LADDER_RESULT + NEXT_LINE);
 
-        String firstUserName = users.getFirstUserName();
+        String firstUserName = usersName.getNames().get(0);
         String firstResult = results.getFirstResult();
         int firstLength = Math.max(firstUserName.length(), firstResult.length());
 
-        printUsers(users, firstLength);
+        printUsers(usersName, firstLength);
         printLadder(ladder, firstLength);
         printResults(results, firstLength);
     }
@@ -73,14 +72,13 @@ public class OutputView {
         System.out.println(e.getMessage() + NEXT_LINE);
     }
 
-    private void printUsers(Users users, int firstLength) {
+    private void printUsers(UsersNameDto usersName, int firstLength) {
         StringBuilder result = new StringBuilder();
 
-        String firstUserName = users.getFirstUserName();
+        String firstUserName = usersName.getNames().get(0);
         result.append(BLANK.repeat(firstLength - firstUserName.length() + 1)).append(firstUserName);
-        for (int index = SECOND_INDEX; index < users.getUsers().size(); index++) {
-            User user = users.getUsers().get(index);
-            String name = user.getName();
+        for (int index = SECOND_INDEX; index < usersName.getNames().size(); index++) {
+            String name = usersName.getNames().get(index);
             result.append(BLANK.repeat(MAX_NAME_LENGTH + 1 - name.length())).append(name);
         }
         System.out.println(result);

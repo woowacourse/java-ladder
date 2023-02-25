@@ -11,6 +11,7 @@ import laddergame.domain.User;
 import laddergame.domain.Users;
 import java.util.List;
 import java.util.stream.Collectors;
+import laddergame.domain.dto.UsersNameDto;
 import laddergame.service.LadderGame;
 import laddergame.utils.RandomLineMaker;
 import laddergame.view.InputView;
@@ -33,7 +34,7 @@ public class LadderGameController {
         Results results = repeat(() -> setUpGameResults(users.count()));
         Height ladderHeight = repeat(this::setUpLadderHeight);
         Ladder ladder = new Ladder(ladderHeight, users.count(), new RandomLineMaker());
-        outputView.printLadderResult(ladder, users, results);
+        outputView.printLadderResult(ladder, new UsersNameDto(users.getUsers()), results);
         LadderGame ladderGame = new LadderGame(ladder, users, results);
 
         Map<String, String> gameResultByUser = ladderGame.play();
