@@ -12,7 +12,7 @@ public class Player {
         this.position = new PlayerPosition(playerPosition);
     }
 
-    public void playerMove(Direction direction) {
+    public void move(Direction direction) {
         if (direction.equals(Direction.RIGHT)) {
             position.moveRight();
         }

@@ -39,7 +39,7 @@ public class LadderGame {
     }
 
     private void climbTheLadderPlayerPosition(Player player, Line line) {
-        player.playerMove(line.getDirection(player));
+        player.move(line.getDirection(player));
     }
 
     private void checkLadderGame(Players players, Products products) {
