@@ -17,8 +17,8 @@ class LadderGameTest {
     private final LadderGame ladderGame = new LadderGame(() -> true);
 
     @Test
-    @DisplayName("사다리 생성을 테스트한다.")
-    public void makeLadderSuccessTest() {
+    @DisplayName("사다리의 높이와 넓이가 주어졌을 때, 그에 맞는 사다리를 생성하는 것을 테스트")
+    public void testMakeLadder() {
         //given
         Height height = new Height(5);
         Width width = new Width(5);
@@ -31,8 +31,8 @@ class LadderGameTest {
     }
 
     @Test
-    @DisplayName("모든 위치에서 사다리를 탄 결과를 반환함을 테스트한다.")
-    public void makeResultBoardSuccessTest() {
+    @DisplayName("모든 위치에서 사다리를 탄 결과를 반환함을 테스트")
+    public void testMakeAllResult() {
         //given
         Height height = new Height(4);
         Width width = new Width(5);

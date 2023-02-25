@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test;
 public class LadderTest {
 
     @Test
-    @DisplayName("사다리 안의 각 층에 다리를 생성한다.")
-    public void makeLineInLayersTest() {
+    @DisplayName("사다리 안의 각 층에서 라인을 생성함을 테스트")
+    public void testMakeLineInLayers() {
         //given
         Height height = new Height(10);
         Width width = new Width(5);
@@ -32,8 +32,8 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("사다리 타기에 성공하는 경우1")
-    public void rideSuccessTestCase1() {
+    @DisplayName("사다리의 각 층에서 짝수번째에만 라인이 있을 때 사다리 타기를 테스트")
+    public void testRideLadderWhenOnlyHasLineAtEvenNumber() {
         //given
         Height height = new Height(5);
         Width width = new Width(2);
@@ -50,8 +50,8 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("사다리 타기에 성공하는 경우2")
-    public void rideSuccessTestCase2() {
+    @DisplayName("사다리의 모든 층에 라인이 없을 때 사다리 타기를 테스트")
+    public void testRideLadderWhenAllLayerHasNotLine() {
         //given
         Height height = new Height(5);
         Width width = new Width(2);
@@ -69,7 +69,7 @@ public class LadderTest {
 
     @Test
     @DisplayName("사다리를 탈 수 없는 시작 시점이 들어왔을 경우")
-    public void rideStartIndexOutOfBoundFailure() {
+    public void testRideLadderWhenStartLocationOutOfBound() {
         //given
         Height height = new Height(5);
         Width width = new Width(2);
@@ -86,7 +86,7 @@ public class LadderTest {
 
     @Test
     @DisplayName("Ladder 생성 시 높이와 List의 크기가 다를 시 예외")
-    public void validateTest() {
+    public void testCreateLadderWhenHeightAndListSizeNotMatch() {
         //given
         Height height = new Height(5);
         Width width = new Width(2);

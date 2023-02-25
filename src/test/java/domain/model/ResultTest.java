@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 public class ResultTest {
 
     @Test
-    @DisplayName("글자 제한 실패 테스트")
-    public void validateFailureTest() {
+    @DisplayName("적절하지 않은 길이의 문자가 들어왔을 때를 테스트")
+    public void testInvalidLengthString() {
         //given
         String value1 = "";
         String value2 = "123456";
@@ -24,8 +24,8 @@ public class ResultTest {
     }
 
     @Test
-    @DisplayName("글자 제한 성공 테스트")
-    public void validateSuccessTest() {
+    @DisplayName("적절한 길이의 문자가 들어왔을 때를 테스트")
+    public void testvalidLengthString() {
         //given
         String value1 = "1";
         String value2 = "12345";

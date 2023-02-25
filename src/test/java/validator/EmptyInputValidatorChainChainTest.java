@@ -13,9 +13,9 @@ public class EmptyInputValidatorChainChainTest {
 
     private final InputValidatorChain validator = new EmptyInputValidatorChain();
 
-    @ParameterizedTest(name = "{0} 빈 값은 허용되지 않는다.")
+    @ParameterizedTest(name = "빈 값 검사 테스트")
     @ValueSource(strings = {"", " "})
-    void emptyInputValidateTest(String input) {
+    void testEmptyInput(String input) {
         InputValidationRequest request = new InputValidationRequest(List.of(ValidateType.EMPTY_VALUE), input);
 
         assertThatThrownBy(() -> validator.validate(request))

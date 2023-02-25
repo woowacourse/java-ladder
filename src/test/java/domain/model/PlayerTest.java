@@ -11,22 +11,22 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class PlayerTest {
 
-    @ParameterizedTest(name = "이름 길이의 유효성 검증 실패를 테스트")
+    @ParameterizedTest(name = "적절하지 않은 길이의 이름이 들어왔을 때를 테스트")
     @ValueSource(strings = {"", "123456"})
-    public void validateFailureTest(final String name) {
+    public void testInvalidLengthName(final String name) {
         assertThatThrownBy(() -> new Player(name))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest(name = "이름 길이의 유효성 검증 성공을 테스트")
+    @ParameterizedTest(name = "적절한 길이의 이름이 들어왔을 때를 테스트")
     @ValueSource(strings = {"1", "12345"})
-    public void validateSuccessTest(final String name) {
+    public void testValidLengthName(final String name) {
         assertDoesNotThrow(() -> new Player(name));
     }
 
     @Test
     @DisplayName("동등성 검사 실패 테스트")
-    public void equalsFailureTest() {
+    public void testEquals() {
         //given
         Player player1 = new Player("test1");
         Player player2 = new Player("test2");
@@ -54,7 +54,7 @@ class PlayerTest {
 
     @Test
     @DisplayName("해쉬 코드 값 테스트")
-    public void hashCodeTest() {
+    public void testHashCode() {
         //given
         Player player1 = new Player("name");
         Player player2 = new Player("name");

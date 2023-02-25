@@ -15,8 +15,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class LayerTest {
 
     @Test
-    @DisplayName("언제나 PassGenerator가 true를 반환할 때 Line 생성을 테스트한다.")
-    public void makeLineWithAlwaysTrue() {
+    @DisplayName("짝수번째에만 라인을 생성함을 테스트")
+    public void testOnlyMakeLineAtEvenNumber() {
         //given
         Layer layer = new Layer(new ArrayList<>(), () -> true);
 
@@ -30,8 +30,8 @@ public class LayerTest {
     }
 
     @Test
-    @DisplayName("언제나 PassGenerator가 false를 반환할 때 Line 생성을 테스트한다.")
-    public void makeLineWithAlwaysFalse() {
+    @DisplayName("라인이 없는 다리를 생성함을 테스트")
+    public void testMakeLineNotHasLine() {
         //given
         Layer layer = new Layer(new ArrayList<>(), () -> false);
 
@@ -44,8 +44,8 @@ public class LayerTest {
     }
 
     @Test
-    @DisplayName("Layer가 Line을 생성한다.")
-    public void makeLineSuccessTest() {
+    @DisplayName("층이 라인을 생성하는 것을 테스트")
+    public void testMakeLine() {
         //given
         Layer layer = new Layer(new ArrayList<>(), new RandomBooleanGenerator());
 
@@ -57,9 +57,9 @@ public class LayerTest {
         assertThat(layer.getLines().size()).isEqualTo(size);
     }
 
-    @ParameterizedTest(name = "{0} 사다리에서 현위치가 들어왔을 때 위치를 움직이는 경우")
+    @ParameterizedTest(name = "사다리에서 현위치가 들어왔을 때 위치 움직임 테스트")
     @CsvSource(value = {"0:1", "1:0", "2:3", "3:2"}, delimiter = ':')
-    public void moveSuccessCase(int horizon, int result) {
+    public void testMoveInLayerGivenCurrentLocation(int horizon, int result) {
         //given
         Layer layer = new Layer(new ArrayList<>(), () -> true);
         layer.makeLine(new Width(10));

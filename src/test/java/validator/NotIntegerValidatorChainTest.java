@@ -22,8 +22,8 @@ public class NotIntegerValidatorChainTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"0", "q", "-1"})
-    @DisplayName("정수 외 숫자는 입력이 허용되지 않습니다.")
-    void notIntegerValidateTest(String input) {
+    @DisplayName("정수가 아닌 경우 테스트")
+    void testNotInteger(String input) {
         InputValidationRequest request = new InputValidationRequest(List.of(ValidateType.INTEGER_VALUE), input);
 
         assertThatThrownBy(() -> validator.validate(request))
@@ -32,8 +32,8 @@ public class NotIntegerValidatorChainTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "22345", "3123412"})
-    @DisplayName("정수 외 숫자는 입력이 허용되지 않습니다.")
-    void integerValidateTest(String input) {
+    @DisplayName("정수일 경우 테스트.")
+    void testInteger(String input) {
         InputValidationRequest request = new InputValidationRequest(List.of(ValidateType.INTEGER_VALUE), input);
 
         assertThatNoException().isThrownBy(() -> validator.validate(request));
