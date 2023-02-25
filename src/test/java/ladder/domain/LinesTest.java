@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
