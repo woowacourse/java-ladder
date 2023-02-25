@@ -65,7 +65,8 @@ class LadderTest {
         private int getLadderLineSize(final Ladder ladder) {
             List<Line> lines = ladder.getLines();
             Line line = lines.get(0);
-            return line.size();
+            List<Rung> rungs = line.getRungs();
+            return rungs.size();
         }
     }
 

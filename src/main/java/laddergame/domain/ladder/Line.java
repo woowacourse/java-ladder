@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Line {
 
-    public static final boolean DOES_NOT_EXIST = false;
+    private static final boolean DOES_NOT_EXIST = false;
     private static final int MINIMUM_INDEX = 0;
 
     private final List<Rung> rungs;
@@ -28,10 +28,6 @@ public class Line {
         }
         Rung rung = rungs.get(index);
         return rung.exists();
-    }
-
-    public int size() {
-        return rungs.size();
     }
 
     private List<Rung> makeRungs(final int rungCount) {
