@@ -30,17 +30,17 @@ public class RandomLadderRowGenerator implements LadderRowGenerator {
         return points;
     }
 
-    private Point createLastPoint(Point previous) {
-        if(previous.isRight()){
-            return Point.LEFT;
-        }
-        return Point.NONE;
-    }
-
     private Point generateBarByPrevious(Point previous) {
         if (previous.isRight()) {
             return Point.LEFT;
         }
         return Point.from(RANDOM.nextBoolean());
+    }
+
+    private Point createLastPoint(Point previous) {
+        if(previous.isRight()){
+            return Point.LEFT;
+        }
+        return Point.NONE;
     }
 }
