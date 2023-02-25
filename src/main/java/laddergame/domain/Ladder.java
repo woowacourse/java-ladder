@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.util.PointGenerator;
+import laddergame.util.BooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,15 +10,15 @@ public class Ladder {
     private final List<Line> lines;
     private final LadderHeight ladderHeight;
 
-    public Ladder(int playerCount, int height, PointGenerator pointGenerator) {
+    public Ladder(int playerCount, int height, BooleanGenerator booleanGenerator) {
         this.ladderHeight = new LadderHeight(height);
-        this.lines = List.copyOf(generateLines(playerCount, pointGenerator));
+        this.lines = List.copyOf(generateLines(playerCount, booleanGenerator));
     }
 
-    private List<Line> generateLines(int playerCount, PointGenerator pointGenerator) {
+    private List<Line> generateLines(int playerCount, BooleanGenerator booleanGenerator) {
         List<Line> lines = new ArrayList<>();
         while (!ladderHeight.isMaxHeight(lines.size())) {
-            lines.add(new Line(playerCount, pointGenerator));
+            lines.add(new Line(playerCount, booleanGenerator));
         }
         return lines;
     }

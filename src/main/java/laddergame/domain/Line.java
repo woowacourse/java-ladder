@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.util.PointGenerator;
+import laddergame.util.BooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,16 +9,16 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line(int playerCount, PointGenerator pointGenerator) {
+    public Line(int playerCount, BooleanGenerator booleanGenerator) {
         final int pointCount = playerCount - 1;
-        this.points = List.copyOf(createLine(pointCount, pointGenerator));
+        this.points = List.copyOf(createLine(pointCount, booleanGenerator));
     }
 
-    private List<Point> createLine(int pointCount, PointGenerator pointGenerator) {
+    private List<Point> createLine(int pointCount, BooleanGenerator booleanGenerator) {
         boolean isPreviousConnected = false;
         List<Point> points = new ArrayList<>();
         while (points.size() < pointCount) {
-            boolean isCurrentConnected = selectCurrentPoint(isPreviousConnected, pointGenerator.generate());
+            boolean isCurrentConnected = selectCurrentPoint(isPreviousConnected, booleanGenerator.generate());
             points.add(Point.findByConnectedCondition(isCurrentConnected));
             isPreviousConnected = isCurrentConnected;
         }

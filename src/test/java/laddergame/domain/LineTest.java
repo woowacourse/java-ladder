@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.util.PointGenerator;
+import laddergame.util.BooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -12,14 +12,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LineTest {
 
-    static class FalseGenerator implements PointGenerator {
+    static class FalseGenerator implements BooleanGenerator {
         @Override
         public boolean generate() {
             return false;
         }
     }
 
-    static class TrueGenerator implements PointGenerator {
+    static class TrueGenerator implements BooleanGenerator {
         @Override
         public boolean generate() {
             return true;
