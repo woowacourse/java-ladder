@@ -1,6 +1,6 @@
 package exception;
 
-public class InvalidPrizeNameException extends RadderGameException{
+public class InvalidPrizeNameException extends LadderGameException {
 
     public InvalidPrizeNameException(String message) {
         super(message);
