@@ -25,7 +25,13 @@ public class OutputView {
         return outputView;
     }
 
-    public void printNames(Players players) {
+    public void printLadderGame(LadderGame ladderGame) {
+        printNames(ladderGame.getPlayers());
+        printLadder(ladderGame.getLadder());
+        printPrizes(ladderGame.getPrizes());
+    }
+
+    private void printNames(Players players) {
         System.out.print(OBJECT_START_FORMAT);
         players.getPlayers().stream()
                 .map(Player::getName)
@@ -45,7 +51,7 @@ public class OutputView {
         return BLANK.repeat(leftPadding) + object + BLANK.repeat(rightPadding);
     }
 
-    public void printLadder(Ladder ladder) {
+    private void printLadder(Ladder ladder) {
         ladder.getLadder().forEach(outputView::printLine);
     }
 
@@ -63,7 +69,7 @@ public class OutputView {
         return FORMATTED_BLANK + DIVIDER;
     }
 
-    public void printPrizes(Prizes prizes) {
+    private void printPrizes(Prizes prizes) {
         System.out.print(OBJECT_START_FORMAT);
         prizes.getPrizes().stream()
                 .map(prize -> prize.getPrize())

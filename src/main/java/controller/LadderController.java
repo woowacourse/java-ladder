@@ -38,9 +38,7 @@ public class LadderController {
     }
 
     private void print(LadderGame ladderGame, Map<Player, Prize> results) {
-        outputView.printNames(ladderGame.getPlayers());
-        outputView.printLadder(ladderGame.getLadder());
-        outputView.printPrizes(ladderGame.getPrizes());
+        outputView.printLadderGame(ladderGame);
         printResults(results);
     }
 
