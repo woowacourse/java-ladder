@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import exception.InvalidPlayerNameException;
+import exception.InvalidPlayersSizeException;
 import exception.PlayerDuplicationException;
 import org.junit.jupiter.api.*;
 
@@ -21,7 +22,7 @@ public class PlayersTest {
     void 사다리_게임을_위해서는_플레이어가_적어도_2명이_필요하다() {
         //when + then
         assertThatThrownBy(() -> new Players(List.of(new Player("ako"))))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(InvalidPlayersSizeException.class);
     }
 
     @Test

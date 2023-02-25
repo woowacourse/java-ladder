@@ -3,6 +3,7 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import exception.InvalidLineSizeException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 
@@ -20,7 +21,7 @@ public class LineTest {
 
         //when + then
         assertThatThrownBy(() -> new Line(players, blocks))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(InvalidLineSizeException.class);
     }
 
     @Test

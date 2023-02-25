@@ -3,6 +3,7 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import exception.InvalidPlayerNameException;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +18,7 @@ public class PlayerTest {
     @ValueSource(strings = {"", " ", "judith"})
     void 플레이어의_생성_실패_테스트(String name) {
         assertThatThrownBy(() -> new Player(name))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(InvalidPlayerNameException.class);
     }
 
     @ParameterizedTest
