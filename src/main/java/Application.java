@@ -12,6 +12,7 @@ public class Application {
         Lines lines = getLinesResult(players);
 
         OutputView.printLadderResult(players, lines, results);
+
         lines.calculateResults(players);
         showPlayerLadderResult(players, results);
     }

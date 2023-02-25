@@ -1,7 +1,5 @@
 package domain;
 
-import ui.output.LadderShape;
-
 public class Player {
 
     private final String name;
