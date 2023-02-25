@@ -28,6 +28,7 @@ public class OutputView {
         ladder.getLines().forEach(line -> System.out.println(changeFormat(line, players.getMaxPlayerNameLength())));
         products.getProducts().forEach(product ->
                 System.out.printf("%" + players.getMaxPlayerNameLength() + "s ", product.getProduct()));
+        System.out.println();
     }
 
     private String changeFormat(Line line, int maxPlayerNameLength) {
