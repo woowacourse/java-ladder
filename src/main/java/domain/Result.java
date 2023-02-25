@@ -17,7 +17,7 @@ public class Result {
 		}
 	}
 
-	public String getSequence() {
+	public String getReward() {
 		return this.reward;
 	}
 }

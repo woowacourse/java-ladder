@@ -33,12 +33,12 @@ public class Results {
 
 	public List<String> getResults() {
 		return results.stream()
-			.map(Result::getSequence)
+			.map(Result::getReward)
 			.collect(Collectors.toList());
 	}
 
 	public String getResult(int position) {
-		return results.get(position).getSequence();
+		return results.get(position).getReward();
 	}
 
 	public int size() {
