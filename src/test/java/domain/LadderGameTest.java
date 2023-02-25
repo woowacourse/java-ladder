@@ -1,8 +1,9 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -31,9 +32,9 @@ public class LadderGameTest {
         LadderGameResult result = ladderGame.playGame();
 
         //then
-        Assertions.assertThat(result.getPrizeOfPlayer(players.getPlayer(0))).isEqualTo(prizes.getPrize(1));
-        Assertions.assertThat(result.getPrizeOfPlayer(players.getPlayer(1))).isEqualTo(prizes.getPrize(0));
-        Assertions.assertThat(result.getPrizeOfPlayer(players.getPlayer(2))).isEqualTo(prizes.getPrize(2));
+        assertThat(result.getPrizeOfPlayer(players.getPlayer(0))).isEqualTo(prizes.getPrize(1));
+        assertThat(result.getPrizeOfPlayer(players.getPlayer(1))).isEqualTo(prizes.getPrize(0));
+        assertThat(result.getPrizeOfPlayer(players.getPlayer(2))).isEqualTo(prizes.getPrize(2));
     }
 
     private Players generatePlayer() {
