@@ -42,14 +42,14 @@ public class Results {
         return FIND_ALL_KEYWORD.equals(name.getName());
     }
 
-    public Result findIndividualResultByName(final Name name) {
+    private Result findIndividualResultByName(final Name name) {
         return results.stream()
                 .filter(result -> result.equalsName(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("해당하는 이름의 플레이어가 없습니다."));
     }
 
-    public List<Result> findAll() {
+    private List<Result> findAll() {
         return Collections.unmodifiableList(results);
     }
 }

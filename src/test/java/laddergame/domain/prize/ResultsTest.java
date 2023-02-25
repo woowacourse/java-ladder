@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static laddergame.domain.prize.ResultsFixture.coil;
 import static laddergame.domain.prize.ResultsFixture.ethan;
 import static laddergame.domain.prize.ResultsFixture.junPk;
@@ -26,21 +28,25 @@ class ResultsTest {
     void givenResults_whenFindIndividualResultByName_thenReturnResult() {
         // when
         final Name ethanName = new Name("ethan");
-        final Result result = results.findIndividualResultByName(ethanName);
+        final List<Result> results = ResultsFixture.results.findResults(ethanName);
 
         // then
         assertAll(
-                () -> assertThat(result.getName()).isEqualTo(ethan.getName()),
-                () -> assertThat(result.getPrize()).isEqualTo("1000")
+                () -> assertThat(results).hasSize(1),
+                () -> assertThat(results).containsExactly(new Result(ethan, new Prize("1000")))
         );
     }
 
     @Test
     @DisplayName("결과가 주어졌을때 전체 조회를 하면 결과가 반환된다.")
     void givenResults_whenFindAll_thenReturnAllResult() {
+        // when
+        final List<Result> allResult = results.findResults(new Name("all"));
+
+        // then
         assertAll(
-                () -> assertThat(results.findAll()).hasSize(3),
-                () -> assertThat(results.findAll()).containsExactly(
+                () -> assertThat(allResult).hasSize(3),
+                () -> assertThat(allResult).containsExactly(
                         new Result(ethan, new Prize("1000")),
                         new Result(coil, new Prize("5000")),
                         new Result(junPk, new Prize("10000"))
