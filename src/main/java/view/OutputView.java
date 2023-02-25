@@ -47,17 +47,21 @@ public class OutputView {
     public void printResult(final Map<String, String> userNameAndPrizes) {
         System.out.println(RESULT_MESSAGE);
         if (userNameAndPrizes.size() == SELECT_ONE_USER) {
-            final String prizeName = userNameAndPrizes.values().stream().findFirst().orElse(null);
-            System.out.println(prizeName);
-            printBlankLine();
+            printOneUsersPrize(userNameAndPrizes);
             return;
         }
         printAllUsersAndPrizes(userNameAndPrizes);
     }
 
+    private void printOneUsersPrize(final Map<String, String> userNameAndPrizes) {
+        final String prizeName = userNameAndPrizes.values().stream().findFirst().get();
+        System.out.println(prizeName);
+        printBlankLine();
+    }
+
     public void printAllUsersAndPrizes(final Map<String, String> allUsersAndPrizes) {
-        for (final Map.Entry<String, String> userNameAndPrize : allUsersAndPrizes.entrySet()) {
-            System.out.printf("%s : %s\n", userNameAndPrize.getKey(), userNameAndPrize.getValue());
+        for (final String userName : allUsersAndPrizes.keySet()) {
+            System.out.printf("%s : %s\n", userName, allUsersAndPrizes.get(userName));
         }
         printBlankLine();
     }
