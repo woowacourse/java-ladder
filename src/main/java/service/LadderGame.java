@@ -32,7 +32,7 @@ public class LadderGame {
         for (Player player : players.getPlayers()) {
             Position position = player.move(ladder);
             LadderPrize prize = ladderPrizes.findPrizeByPosition(position);
-            gameResultDtos.add(new GameResultDto(player.getName(), prize.getPrize()));
+            gameResultDtos.add(GameResultDto.of(player, prize));
         }
 
         return gameResultDtos;

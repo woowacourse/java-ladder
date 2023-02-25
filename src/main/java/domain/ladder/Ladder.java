@@ -15,4 +15,5 @@ public class Ladder {
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
+
 }
