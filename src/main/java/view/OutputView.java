@@ -11,6 +11,7 @@ import java.util.List;
 public class OutputView {
 
     private static final OutputView instance = new OutputView();
+
     public static OutputView getInstance() {
         return instance;
     }
@@ -62,7 +63,6 @@ public class OutputView {
         System.out.print(Message.OUTPUT_RESULT.message);
         System.out.println(result.getMission());
     }
-
 
     private enum Message {
         OUTPUT_RESULT("실행결과" + System.lineSeparator()),

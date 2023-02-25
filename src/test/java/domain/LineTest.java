@@ -1,7 +1,6 @@
 package domain;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import domain.generator.BooleanGenerator;
 import domain.generator.RandomBooleanGenerator;

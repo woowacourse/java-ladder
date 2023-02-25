@@ -18,7 +18,6 @@ public class MainController {
     private final OutputView outputView;
     private final BooleanGenerator ladderGenerator;
 
-
     public MainController(InputView inputView, OutputView outputView, BooleanGenerator ladderGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
