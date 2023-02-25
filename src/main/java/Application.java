@@ -4,6 +4,7 @@ import domain.People;
 import domain.Person;
 import domain.Rewards;
 import java.util.List;
+import java.util.stream.Collectors;
 import ui.input.InputView;
 import ui.output.OutputView;
 
@@ -21,6 +22,7 @@ public class Application {
         Lines lines = ladderGame.createLines(people.getPeople().size(), ladderHeight);
         ladderGame.processResult(people, lines);
         OutputView.printResult(people, lines, people.calculateMaxNameLength());
+        String targetName = inputTargetPerson(people);
     }
 
     private static People inputPeople(LadderGame ladderGame) {
@@ -42,6 +44,29 @@ public class Application {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private static String inputTargetPerson(People people) {
+        while (true) {
+            try {
+                String name = InputView.inputNameSeeResultWantsPerson();
+                validateNameInPeople(name, people);
+                return name;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static void validateNameInPeople(String name, People people) {
+        List<Person> findPerson = people.getPeople().stream().filter(p -> p.getName().equals(name))
+                .collect(Collectors.toList());
+        if (name.equals("all")) {
+            return;
+        }
+        if (findPerson.size() != 1) {
+            throw new IllegalArgumentException("결과를 출력할 참가자를 찾지 못했습니다.");
         }
     }
 }
