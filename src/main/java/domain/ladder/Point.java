@@ -1,7 +1,5 @@
 package domain.ladder;
 
-import java.util.Random;
-
 public enum Point {
     EXIST(true),
     NOT_EXIST(false);
@@ -12,24 +10,22 @@ public enum Point {
         this.isExist = isExist;
     }
 
-    private static final Random random = new Random();
-
-    public static Point choosePoint(final Point previousPoint) {
-        if (previousPoint == EXIST) {
-            return NOT_EXIST;
-        }
-        return choosePoint();
-    }
-
-    public static Point choosePoint() {
-        return of(random.nextBoolean());
-    }
-
-    private static Point of(final boolean isExist) {
+    public static Point of(final boolean isExist) {
         if (EXIST.isExist() == isExist) {
             return EXIST;
         }
         return NOT_EXIST;
+    }
+
+    public static Point choosePoint(final Point previousPoint, final PointGenerator pointGenerator) {
+        if (previousPoint == EXIST) {
+            return NOT_EXIST;
+        }
+        return choosePoint(pointGenerator);
+    }
+
+    public static Point choosePoint(final PointGenerator pointGenerator) {
+        return pointGenerator.generate();
     }
 
     public boolean isExist() {

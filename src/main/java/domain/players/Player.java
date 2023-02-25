@@ -12,4 +12,8 @@ public class Player {
         return name.getName();
     }
 
+    public boolean isMyName(String playerName) {
+        return name.isMyName(playerName);
+    }
+
 }

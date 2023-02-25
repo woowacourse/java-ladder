@@ -1,8 +1,10 @@
 package domain.ladder;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -10,10 +12,17 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
 
+    private PointGenerator pointGenerator;
+
+    @BeforeEach
+    void before() {
+        pointGenerator = new ExistPointGenerator();
+    }
+
     @DisplayName("라인의 포인트 개수는 19를 넘을 수 없다.")
     @Test
     void pointNotMoreThan19() {
-        assertThatThrownBy(() -> new Line(20))
+        assertThatThrownBy(() -> Line.of(20, pointGenerator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("포인트 범위는 0부터 19까지입니다.");
     }
@@ -21,7 +30,7 @@ public class LineTest {
     @DisplayName("라인의 포인트 개수는 0보다 작을 수 없다.")
     @Test
     void pointNotLessThan0() {
-        assertThatThrownBy(() -> new Line(-1))
+        assertThatThrownBy(() -> Line.of(-1, pointGenerator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("포인트 범위는 0부터 19까지입니다.");
     }
@@ -30,7 +39,7 @@ public class LineTest {
     @ValueSource(ints = {0, 10, 19})
     @ParameterizedTest
     void pointSizeTest(int pointSize) {
-        Line line = new Line(pointSize);
+        Line line = Line.of(pointSize, pointGenerator);
         assertThat(line.getPoints().size()).isEqualTo(pointSize);
     }
 
@@ -38,12 +47,24 @@ public class LineTest {
     @Test
     void pointNotContinuous() {
         int pointSize = 5;
-        Line line = new Line(pointSize);
+        Line line = Line.of(pointSize, pointGenerator);
         for (int i = 0; i < pointSize - 1; i++) {
             Point left = line.getPointAt(i);
             Point right = line.getPointAt(i + 1);
             assertThat(left.isExist() && right.isExist()).isFalse();
         }
     }
+
+    @DisplayName("다음 방향을 결정한다")
+    @CsvSource(value = {"0:1:0", "1:0:1", "2:3:2", "3:2:3"}, delimiter = ':')
+    @ParameterizedTest
+    void decideDirection(int startIndex, int result, int sameIndex) {
+        Line line1 = Line.of(3, new ExistPointGenerator());
+        Line line2 = Line.of(3, new NotExistPointGenerator());
+
+        assertThat(line1.decideNextIndex(startIndex)).isEqualTo(result);
+        assertThat(line2.decideNextIndex(sameIndex)).isEqualTo(sameIndex);
+    }
+
 
 }

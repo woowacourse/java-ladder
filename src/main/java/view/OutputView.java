@@ -1,33 +1,57 @@
 package view;
 
 import controller.dto.LadderResponse;
-import controller.dto.PlayersResponse;
+import controller.dto.PersonalResultResponse;
+import controller.dto.TotalResultResponse;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
-    public static final String RESULT_TITLE = "실행결과";
+    public static final String LADDER_RESULT_TITLE = "사다리 결과";
+    public static final String PRIZE_RESULT_TITLE = "실행 결과";
     public static final String POINT_SEPARATOR = "|";
 
-    public void printGeneratedLadder(PlayersResponse playersResponse, LadderResponse ladderResponse) {
-        printLine(RESULT_TITLE);
+    public void printGeneratedLadder(LadderResponse ladderResponse) {
+        printLine(LADDER_RESULT_TITLE);
         printEmptyLine();
-        List<String> playerNames = playersResponse.getPlayers();
-        int nameFormatSize = getPlayerNameSize(playerNames);
-        printPlayerNames(playerNames, nameFormatSize);
+        List<String> playerNames = ladderResponse.getPlayers();
+        List<String> prizes = ladderResponse.getPrizes();
+        int nameFormatSize = getNameFormatSize(playerNames, prizes);
+        printNames(playerNames, nameFormatSize);
         printLadder(ladderResponse.getLadder(), nameFormatSize);
+        printNames(prizes, nameFormatSize);
+        printEmptyLine();
     }
 
-    private int getPlayerNameSize(List<String> playerNames) {
-        return playerNames.stream()
+    public void printPersonalResult(PersonalResultResponse personalResultResponse) {
+        printEmptyLine();
+        printLine(PRIZE_RESULT_TITLE);
+        printLine(personalResultResponse.getPrize());
+        printEmptyLine();
+    }
+
+    public void printTotalResult(TotalResultResponse totalResultResponse) {
+        printEmptyLine();
+        printLine(PRIZE_RESULT_TITLE);
+        Map<String, String> playerToPrize = totalResultResponse.getPlayerToPrize();
+        playerToPrize.forEach((player, prize) -> printLine(player + " : " + prize));
+    }
+
+    private int getNameFormatSize(List<String> playerNames, List<String> prizes) {
+        List<String> names = new ArrayList<>();
+        names.addAll(playerNames);
+        names.addAll(prizes);
+        return names.stream()
                 .map(String::length)
                 .max(Comparator.naturalOrder())
                 .orElse(0);
     }
 
-    private void printPlayerNames(List<String> playerNames, int nameFormatSize) {
+    private void printNames(List<String> playerNames, int nameFormatSize) {
         StringBuilder stringBuilder = new StringBuilder();
         String nameFormat = String.format("%%%ds", nameFormatSize);
         playerNames.forEach((playerName) -> {

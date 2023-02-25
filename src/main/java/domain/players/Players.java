@@ -12,9 +12,16 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(final List<Player> players) {
+    private Players(final List<Player> players) {
         validate(players);
         this.players = new ArrayList<>(players);
+    }
+
+    public static Players valueOf(final List<String> playerNames) {
+        List<Player> players = playerNames.stream()
+                .map(Player::new)
+                .collect(Collectors.toUnmodifiableList());
+        return new Players(players);
     }
 
     private void validate(final List<Player> players) {
@@ -45,6 +52,17 @@ public class Players {
 
     public int getPlayerSize() {
         return players.size();
+    }
+
+    public Player getPlayerAt(final int index) {
+        return players.get(index);
+    }
+
+    public Player getPlayerByName(final String name) {
+        return players.stream()
+                .filter(player -> player.isMyName(name))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참여자입니다."));
     }
 
 }
