@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
+    private static final int DEFAULT_LADDER_LENGTH = 5;
     private static final String VERTICAL = "|";
     private static final String HORIZON = "-";
     private static final String NONE = " ";
@@ -53,10 +54,10 @@ public class OutputView {
 
     private String extractLine(final Line line) {
         List<Point> points = line.toUnmodifiableLine();
-        StringJoiner result = new StringJoiner(VERTICAL, NONE.repeat(line.size()) + VERTICAL, VERTICAL);
+        StringJoiner result = new StringJoiner(VERTICAL, NONE.repeat(DEFAULT_LADDER_LENGTH) + VERTICAL, VERTICAL);
 
         for (Point point : points) {
-            String pointFormat = toPointFormat(point, line.size());
+            String pointFormat = toPointFormat(point, DEFAULT_LADDER_LENGTH);
             result.add(pointFormat);
         }
         return result.toString();
