@@ -21,7 +21,7 @@ class LadderGameTest {
     void 사다리는_높이_만큼의_라인을_가진다() {
         int height = 4;
         LadderGame ladderGame = new LadderGame(new Players(players), height);
-        assertThat(ladderGame.toUnmodifiableLines())
+        assertThat(ladderGame.getUnmodifiableLines())
                 .hasSize(height);
     }
 

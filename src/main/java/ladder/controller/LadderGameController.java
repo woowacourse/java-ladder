@@ -36,7 +36,7 @@ public class LadderGameController {
 
         LadderGame game = new LadderGame(players, height);
 
-        List<Line> lines = game.toUnmodifiableLines();
+        List<Line> lines = game.getUnmodifiableLines();
         outputView.showLadderGame(players, lines, products);
         game.play();
         checkResult(results);
@@ -66,7 +66,8 @@ public class LadderGameController {
 
     private void validateLength(final int playerCount, final int productCount) {
         if (playerCount != productCount) {
-            throw new IllegalArgumentException("참가자와 결과의 개수는 같아야합니다.");
+            throw new IllegalArgumentException("참가자와 결과의 개수는 같아야합니다.\n" +
+                    "playerCount : " + playerCount + " productCount : " + productCount);
         }
     }
 

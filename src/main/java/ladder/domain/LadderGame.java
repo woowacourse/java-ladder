@@ -34,7 +34,7 @@ public class LadderGame {
         }
     }
 
-    public List<Line> toUnmodifiableLines() {
+    public List<Line> getUnmodifiableLines() {
         return Collections.unmodifiableList(lines.toUnModifiableLines());
     }
 }
