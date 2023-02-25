@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Lines {
 
+    private static final String VALIDATE_LADDER_HEIGHT_MESSAGE = "사다리의 최소 높이는 1이상이어야 합니다.";
+
     private final List<Line> lines;
 
     public Lines(int personCount, int height) {
@@ -15,7 +17,7 @@ public class Lines {
 
     private void validateLadderHeight(int height) {
         if (height < 1) {
-            throw new IllegalArgumentException("사다리의 최소 높이는 1이상이어야 합니다.");
+            throw new IllegalArgumentException(VALIDATE_LADDER_HEIGHT_MESSAGE);
         }
     }
 

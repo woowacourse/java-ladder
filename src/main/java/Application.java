@@ -7,6 +7,7 @@ import java.util.Arrays;
 import static ui.input.InputView.*;
 
 public class Application {
+    private static final String VALIDATE_INPUT_PLAYER = "존재하지 않는 플레이어를 입력할 수 없습니다.";
     public static void main(String[] args) {
         Players players = getPlayers();
         Results results = new Results(players.getPlayersCount(), Arrays.asList(InputView.getResult().split(COMMA)));
@@ -27,13 +28,10 @@ public class Application {
     }
 
     private static void showPlayersLadderResults(Players players, Results results) {
-        while (true) {
-            String playerName = getPlayer();
-            if (playerName.equals("q")) break;
-            if (!players.isIncludePlayerName(playerName)) {
-                throw new IllegalArgumentException("존재하지 않는 플레이어를 입력할 수 없습니다.");
-            }
-            OutputView.printExecuteResult(players, results, playerName);
+        String playerName = getPlayer();
+        if (!players.isIncludePlayerName(playerName)) {
+            throw new IllegalArgumentException(VALIDATE_INPUT_PLAYER);
         }
+        OutputView.printExecuteResult(players, results, playerName);
     }
 }

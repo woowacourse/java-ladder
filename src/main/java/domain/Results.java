@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class Results {
 
+    private static final String VALIDATE_RESULTS_COUNT = "사다리 결과의 수는 플레이어의 수 만큼 존재해야 한다.";
     private final List<Result> results;
 
     public Results(int playerCount, List<String> inputResults) {
@@ -19,7 +20,7 @@ public class Results {
 
     private void validateInputResults(int playerCount, List<String> inputResults) {
         if (playerCount != inputResults.size()) {
-            throw new IllegalArgumentException("사다리 결과의 수는 플레이어의 수 만큼 존재해야 한다.");
+            throw new IllegalArgumentException(VALIDATE_RESULTS_COUNT);
         }
     }
 

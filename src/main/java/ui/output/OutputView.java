@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
+    private static final String PLAYER_NOT_FOUND = "플레이어를 찾을 수 없습니다";
     private static final String EXECUTE_LADDER_RESULT = "사다리 결과";
     private static final String EXECUTE_RESULT = "실행 결과";
     private static final String ALL = "all";
@@ -79,7 +80,7 @@ public class OutputView {
         return resultList.stream()
                 .filter(r -> r.getPlayerName().equals(playerName))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("플레이어를 찾을 수 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException(PLAYER_NOT_FOUND));
     }
 
     private static void printDetail(Results results, String playerName) {
