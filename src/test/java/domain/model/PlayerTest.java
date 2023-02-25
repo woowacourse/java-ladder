@@ -4,6 +4,7 @@ import domain.vo.Height;
 import domain.vo.Name;
 import domain.vo.Width;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -36,6 +37,7 @@ class PlayerTest {
         ladder.addLayer(layer3);
     }
 
+    @DisplayName("플레이어가 이동했을 때 position의 x가 1씩 증가한다.")
     @Test
     void move() {
         Player player = new Player(new Name("name1"));
@@ -47,6 +49,5 @@ class PlayerTest {
         assertThat(player.getXPosition()).isEqualTo(2);
         player.move(ladder);
         assertThat(player.getXPosition()).isEqualTo(3);
-
     }
 }
