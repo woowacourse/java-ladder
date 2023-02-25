@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
+    private static final int START_POSITION = 0;
     private final Height height;
     private final Width width;
     private final List<Layer> layers = new ArrayList<>();
@@ -20,7 +21,7 @@ public class Ladder {
 
     public boolean hasLeftAt(final Position position) {
         Layer layer = layers.get(position.getY());
-        if (position.getX() == 0) {
+        if (position.getX() == START_POSITION) {
             return false;
         }
         return layer.getLine(position.getX() - 1);
