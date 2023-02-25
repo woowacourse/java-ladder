@@ -1,4 +1,4 @@
-package ladder.domain.player;
+package ladder.domain;
 
 public class PlayerName {
     private static final int NAME_LENGTH_UPPER_BOUND = 5;

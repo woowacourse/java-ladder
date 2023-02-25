@@ -1,7 +1,7 @@
 package ladder.util;
 
 import java.util.List;
-import ladder.domain.ladder.BooleanGenerator;
+import ladder.domain.BooleanGenerator;
 
 public class TestBooleanGenerator implements BooleanGenerator {
 

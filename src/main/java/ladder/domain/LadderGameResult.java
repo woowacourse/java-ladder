@@ -1,9 +1,7 @@
-package ladder.domain.ladder;
+package ladder.domain;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import ladder.domain.item.Item;
-import ladder.domain.player.Player;
 
 public class LadderGameResult {
     private static final String MULTIPLE_RESULT_RESERVED_NAME = "all";

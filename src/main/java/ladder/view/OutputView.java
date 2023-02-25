@@ -5,8 +5,8 @@ import static java.util.stream.Collectors.joining;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import ladder.domain.ladder.LadderGame;
-import ladder.domain.ladder.LadderGameResult;
+import ladder.domain.LadderGame;
+import ladder.domain.LadderGameResult;
 
 public class OutputView {
     private static final int EMPTY_NAME_LENGTH = 0;

@@ -3,8 +3,8 @@ package ladder.view;
 import static java.util.stream.Collectors.joining;
 
 import java.util.List;
-import ladder.domain.ladder.Line;
-import ladder.domain.ladder.LineStatus;
+import ladder.domain.Line;
+import ladder.domain.LineStatus;
 
 class LadderMessageGenerator {
 

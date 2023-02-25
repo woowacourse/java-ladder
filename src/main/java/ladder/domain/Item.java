@@ -1,6 +1,4 @@
-package ladder.domain.item;
-
-import ladder.domain.ladder.Position;
+package ladder.domain;
 
 public class Item {
     private final ItemName name;

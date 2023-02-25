@@ -1,4 +1,4 @@
-package ladder.domain.player;
+package ladder.domain;
 
 import static java.util.stream.Collectors.toUnmodifiableList;
 
@@ -9,8 +9,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Position;
 
 public class Players {
     private static final int PLAYERS_SIZE_LOWER_BOUND = 2;

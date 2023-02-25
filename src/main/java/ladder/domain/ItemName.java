@@ -1,4 +1,4 @@
-package ladder.domain.item;
+package ladder.domain;
 
 public class ItemName {
     private static final int NAME_LENGTH_UPPER_BOUND = 5;
