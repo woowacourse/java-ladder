@@ -39,7 +39,6 @@ public class Ladder {
         return blocks;
     }
 
-    //TODO: 이 함수의 네이밍이 getter와 혼동될까요? 더 나은 이름으로 짓고 싶은데 아이디어가 없네요..
     public void getRewardsForPlayers(Rewards rewards) {
         traverseLines();
         matchRewardsForPlayers(rewards);
