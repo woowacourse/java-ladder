@@ -2,6 +2,8 @@ package laddergame.view;
 
 import laddergame.domain.ladder.Line;
 import laddergame.domain.ladder.Rung;
+import laddergame.domain.participant.Participant;
+import laddergame.domain.result.Result;
 
 import java.util.List;
 import java.util.Map;
@@ -43,17 +45,16 @@ public class OutputView {
         print(System.lineSeparator() + "실행결과");
     }
 
-    public void printResult(final Map<String, String> requestByParticipants, final List<String> participants) {
+    public void printResult(final Map<Participant, Result> requestByParticipants, final List<Participant> participants) {
         print(makeResultMessage(requestByParticipants, participants));
     }
 
-    private String makeResultMessage(final Map<String, String> requestByParticipants, final List<String> participants) {
+    private String makeResultMessage(final Map<Participant, Result> requestByParticipants, final List<Participant> participants) {
         if (requestByParticipants.size() == 1) {
-            String participantName = participants.get(0);
-            return requestByParticipants.get(participantName);
+            return requestByParticipants.values().stream().map(Result::getResultName).findFirst().orElseThrow();
         }
         return participants.stream()
-                .map(participantName -> String.format("%s : %s", participantName, requestByParticipants.get(participantName)))
+                .map(participant -> String.format("%s : %s", participant.getName(), requestByParticipants.get(participant)))
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
