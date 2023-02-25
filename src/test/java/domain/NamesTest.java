@@ -17,7 +17,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 @TestInstance(Lifecycle.PER_CLASS)
 class NamesTest {
-    @DisplayName("이름의 수는 2명 이상 100명 이하이다.")
+    @DisplayName("2명 이상 100명 이하의 이름만 입력 가능하다.")
     @ParameterizedTest
     @MethodSource("generateValidNames")
     void validNamesTest(List<String> names) {
@@ -31,7 +31,7 @@ class NamesTest {
         );
     }
 
-    @DisplayName("2명 미만 100명 초과의 이름 수는 예외 처리한다.")
+    @DisplayName("2명 미만 100명 초과의 이름으로는 게임을 진행할 수 없다.")
     @ParameterizedTest
     @MethodSource("generateInvalidNames")
     void invalidNamesTest(List<String> names) {
@@ -47,6 +47,7 @@ class NamesTest {
     }
 
 
+    @DisplayName("중복되는 이름으로는 게임을 진행할 수 없다.")
     @Test
     void validDuplicateNamesTest() {
         assertThatIllegalArgumentException()
