@@ -36,4 +36,23 @@ class PeopleTest {
             people.findPerson("none");
         });
     }
+
+    @DisplayName("People에 Person을 한 명만 추가하는 경우 생성 실패 테스트")
+    @Test
+    void Person_한명으로_생성_실패_테스트() {
+        Person person1 = new Person("aa", 0);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new People(Arrays.asList(person1));
+        });
+    }
+
+    @DisplayName("People 내부 최대 이름 길이 계산 테스트")
+    @Test
+    void People_내부_최대_이름_길이_계산_테스트() {
+        Person person1 = new Person("aa", 0);
+        Person person2 = new Person("bbb", 1);
+        Person longestPerson = new Person("ccccc", 2);
+        People people = new People(Arrays.asList(person1, person2, longestPerson));
+        Assertions.assertEquals(longestPerson.getName().getPersonName().length(), people.calculateMaxNameLength());
+    }
 }
