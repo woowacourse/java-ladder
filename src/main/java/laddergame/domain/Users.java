@@ -15,14 +15,6 @@ public class Users {
         this.users = new ArrayList<>(users);
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public int count() {
-        return users.size();
-    }
-
     public void validateResultCheckCommand(String name) {
         boolean isNotExist = users.stream()
                 .noneMatch(user -> user.getName().equals(name));
@@ -31,14 +23,23 @@ public class Users {
         }
     }
 
-    public String getFirstUserName() {
-        validateFirstUser();
-        return users.get(FIRST).getName();
-    }
-
     private void validateFirstUser() {
         if (users.isEmpty()) {
             throw new NullPointerException(NOT_FOUND_USER.getMessage());
         }
     }
+
+    public int count() {
+        return users.size();
+    }
+
+    public String getFirstUserName() {
+        validateFirstUser();
+        return users.get(FIRST).getName();
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
 }

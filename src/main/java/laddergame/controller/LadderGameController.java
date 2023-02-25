@@ -41,6 +41,15 @@ public class LadderGameController {
         printGameResult(users, gameResultByUser);
     }
 
+    private <T> T repeat(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return repeat(supplier);
+        }
+    }
+
     private Users setUpUsers() {
         return new Users(generateUsers(getUserNames()));
     }
@@ -101,15 +110,6 @@ public class LadderGameController {
             return;
         }
         outputView.printResultOfOneUser(gameResultByUser.get(userToCheckResult));
-    }
-
-    private <T> T repeat(Supplier<T> supplier) {
-        try {
-            return supplier.get();
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
-            return repeat(supplier);
-        }
     }
 
 }
