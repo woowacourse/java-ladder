@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Persons {
+    private static final int MIN_PLAYER = 2;
     private final List<Person> persons;
 
     public Persons(List<Person> persons) {
@@ -16,6 +17,9 @@ public class Persons {
     private void validate(List<Person> persons) {
         if (isNameDuplicate(persons)) {
             throw new IllegalArgumentException(ErrorCode.NAME_DUPLICATE.getMessage());
+        }
+        if (persons.size() < MIN_PLAYER) {
+            throw new IllegalArgumentException(ErrorCode.NOT_ENOUGH_PLAYER.getMessage());
         }
     }
 
@@ -39,5 +43,10 @@ public class Persons {
 
     public List<Person> getPersons() {
         return persons;
+    }
+
+    public String findNameByPosition(int position) {
+        return persons.get(position)
+                .getName();
     }
 }

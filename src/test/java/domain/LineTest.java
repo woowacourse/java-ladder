@@ -32,7 +32,8 @@ class LineTest {
         Line line = Line.generateWithBridges(new TrueGenerator(), personCount);
 
         //then
-        assertThat(line.getBridges()).containsExactly(true, false, true, false);
+        assertThat(line.getBridges()).containsExactly(Bridge.CONNECTED, Bridge.UNCONNECTED, Bridge.CONNECTED,
+                Bridge.UNCONNECTED);
     }
 
     @Test
@@ -45,7 +46,20 @@ class LineTest {
         Line line = Line.generateWithBridges(new FalseGenerator(), personCount);
 
         //then
-        assertThat(line.getBridges()).containsExactly(false, false, false, false);
+        assertThat(line.getBridges()).containsExactly(Bridge.UNCONNECTED, Bridge.UNCONNECTED, Bridge.UNCONNECTED,
+                Bridge.UNCONNECTED);
+    }
+
+    @Test
+    @DisplayName("한 Line 에서 현재 이동 가능한 위치 찾는 테스트")
+    void findMovePositionInLine() {
+        //given
+        int personCount = 5;
+        Line line = Line.generateWithBridges(new TrueGenerator(), personCount);
+
+        //when
+        line.findPositionAbleToMove(-1, 0, 0);
+        //then
     }
 
 }

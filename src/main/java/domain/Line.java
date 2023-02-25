@@ -6,7 +6,7 @@ import java.util.List;
 import util.BooleanGenerator;
 
 public class Line {
-    private final List<Boolean> bridges;
+    private final List<Bridge> bridges;
 
     private Line(int personCount) {
         this.bridges = new ArrayList<>();
@@ -19,9 +19,20 @@ public class Line {
         return line;
     }
 
+    public int findPositionAbleToMove(int leftBridge, int rightBridge, int prevPosition) {
+        int movePosition = prevPosition;
+        if (isBridgeInLeft(leftBridge)) {
+            movePosition--;
+        }
+        if (isBridgeInRight(rightBridge)) {
+            movePosition++;
+        }
+        return movePosition;
+    }
+
     private void initializeEmptyLine(int personCount) {
         for (int index = 0; index < personCount - 1; index++) {
-            bridges.add(false);
+            bridges.add(Bridge.UNCONNECTED);
         }
     }
 
@@ -32,36 +43,30 @@ public class Line {
     }
 
     private void generateBridge(BooleanGenerator booleanGenerator, int bridgeIndex) {
-        if (!hasSide(bridgeIndex, bridges.size() - 1)) {
-            bridges.set(bridgeIndex, booleanGenerator.generate());
+        if (!hasSide(bridgeIndex)) {
+            bridges.set(bridgeIndex, Bridge.from(booleanGenerator.generate()));
         }
     }
 
-    private boolean hasSide(int bridgeIndex, int maxIndex) {
-        if (bridgeIndex == 0 && maxIndex == 0) {
-            return false;
-        }
-
-        if (bridgeIndex == 0) {
-            return isBridgeInRight(bridgeIndex + 1);
-        }
-
-        if (bridgeIndex == maxIndex) {
-            return isBridgeInLeft(bridgeIndex - 1);
-        }
-
+    private boolean hasSide(int bridgeIndex) {
         return isBridgeInLeft(bridgeIndex - 1) || isBridgeInRight(bridgeIndex + 1);
     }
 
     private boolean isBridgeInLeft(int leftIndex) {
-        return bridges.get(leftIndex);
+        if (leftIndex < 0) {
+            return false;
+        }
+        return bridges.get(leftIndex) == Bridge.CONNECTED;
     }
 
     private boolean isBridgeInRight(int rightIndex) {
-        return bridges.get(rightIndex);
+        if (rightIndex > bridges.size() - 1) {
+            return false;
+        }
+        return bridges.get(rightIndex) == Bridge.CONNECTED;
     }
 
-    public List<Boolean> getBridges() {
+    public List<Bridge> getBridges() {
         return Collections.unmodifiableList(bridges);
     }
 }
