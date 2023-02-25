@@ -51,7 +51,7 @@ public class Users {
 
     public void swapUserByLine(final Line line) {
         final List<Position> linkedIndexes = line.getLinkedPositions();
-        linkedIndexes.forEach(position -> Collections.swap(users, position.getPosition(), position.getPosition() + 1));
+        linkedIndexes.forEach(position -> Collections.swap(users, position.getValue(), position.getValue() + 1));
     }
 
     public Map<String, String> getPrizeAndUserName(final String userName, final Prizes prizes) {

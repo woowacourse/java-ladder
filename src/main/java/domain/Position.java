@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class Position {
 
-    private final int position;
+    private final int value;
 
-    public Position(final int position) {
-        this.position = position;
+    public Position(final int value) {
+        this.value = value;
     }
 
     @Override
@@ -19,15 +19,15 @@ public class Position {
             return false;
         }
         final Position anotherPosition = (Position) o;
-        return position == anotherPosition.position;
+        return value == anotherPosition.value;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(position);
+        return Objects.hash(value);
     }
 
-    public int getPosition() {
-        return position;
+    public int getValue() {
+        return value;
     }
 }

@@ -26,7 +26,7 @@ public class Prizes {
     }
 
     public Prize getPrizeBy(final Position position) {
-        return prizes.get(position.getPosition());
+        return prizes.get(position.getValue());
     }
 
     public List<String> getPrizes() {
