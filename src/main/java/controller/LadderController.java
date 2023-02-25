@@ -23,19 +23,24 @@ public class LadderController {
     }
 
     public void run() {
+        LadderGame ladderGame = init();
+        Map<Player, Prize> results = ladderGame.run();
+        print(ladderGame, results);
+    }
+
+    private LadderGame init() {
         Players players = generatePlayers();
         int playerCount = players.getPlayerSize();
         Ladder ladder = generateLadder(playerCount);
         Prizes prizes = generatePrize(playerCount);
         LadderGame ladderGame = new LadderGame(ladder, players, prizes);
-        Map<Player, Prize> results = ladderGame.run();
-        print(players, ladder, prizes, results);
+        return ladderGame;
     }
 
-    private void print(Players players, Ladder ladder, Prizes prizes, Map<Player, Prize> results) {
-        outputView.printNames(players);
-        outputView.printLadder(ladder);
-        outputView.printPrizes(prizes);
+    private void print(LadderGame ladderGame, Map<Player, Prize> results) {
+        outputView.printNames(ladderGame.getPlayers());
+        outputView.printLadder(ladderGame.getLadder());
+        outputView.printPrizes(ladderGame.getPrizes());
         printResults(results);
     }
 
