@@ -11,16 +11,16 @@ public class Position {
         this.position = position;
     }
 
-    public int moveByConnectionStatus(Line line) {
+    public void moveByConnectionStatus(Line line) {
         List<Point> points = line.getPoints();
 
         if (isMovableToRight(points)) {
-            return ++position;
+            position++;
+            return;
         }
         if (isMovableToLeft(points)) {
-            return --position;
+            position--;
         }
-        return position;
     }
 
     private void validateInitialPosition(int position, int userCount) {
