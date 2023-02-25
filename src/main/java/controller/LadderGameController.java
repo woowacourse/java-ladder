@@ -28,7 +28,7 @@ public class LadderGameController {
         Ladder ladder = generateLadder(players);
         LadderGame ladderGame = new LadderGame(players, ladder, prizes);
 
-        Map<Player, Prize> result = ladderGame.playGame(players, ladder, prizes);
+        LadderGameResult result = ladderGame.playGame(players, ladder, prizes);
 
         printLadder(players, ladder, prizes);
         printLadderResultWithRetry(players, result);
@@ -52,7 +52,7 @@ public class LadderGameController {
         return ladder;
     }
 
-    private void printLadderResultWithRetry(Players players, Map<Player, Prize> result) {
+    private void printLadderResultWithRetry(Players players, LadderGameResult result) {
         while (flag) {
             String playerName = inputView.readWantedResultPlayer();
             printLadderResult(players, result, playerName);
@@ -60,7 +60,7 @@ public class LadderGameController {
         }
     }
 
-    private void printLadderResult(Players players, Map<Player, Prize> result, String input) {
+    private void printLadderResult(Players players, LadderGameResult result, String input) {
         List<String> playersName = players.getPlayersName();
         if (input.equals("all")) {
             outputView.printAllResult(result);

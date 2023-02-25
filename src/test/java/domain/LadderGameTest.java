@@ -29,12 +29,12 @@ public class LadderGameTest {
         LadderGame ladderGame = new LadderGame(players, ladder, prizes);
 
         //when
-        Map<Player, Prize> result = ladderGame.playGame(players, ladder, prizes);
+        LadderGameResult result = ladderGame.playGame(players, ladder, prizes);
 
         //then
-        Assertions.assertThat(result.get(players.getPlayer(0))).isEqualTo(prizes.getPrize(1));
-        Assertions.assertThat(result.get(players.getPlayer(1))).isEqualTo(prizes.getPrize(0));
-        Assertions.assertThat(result.get(players.getPlayer(2))).isEqualTo(prizes.getPrize(2));
+        Assertions.assertThat(result.getPrizeOfPlayer(players.getPlayer(0))).isEqualTo(prizes.getPrize(1));
+        Assertions.assertThat(result.getPrizeOfPlayer(players.getPlayer(1))).isEqualTo(prizes.getPrize(0));
+        Assertions.assertThat(result.getPrizeOfPlayer(players.getPlayer(2))).isEqualTo(prizes.getPrize(2));
     }
 
     private Players generatePlayer() {

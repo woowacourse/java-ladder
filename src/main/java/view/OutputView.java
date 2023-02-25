@@ -1,6 +1,7 @@
 package view;
 
 import domain.Ladder;
+import domain.LadderGameResult;
 import domain.Line;
 import domain.Player;
 import domain.Players;
@@ -8,7 +9,6 @@ import domain.Players;
 import domain.Prize;
 import domain.Prizes;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -54,16 +54,16 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printIndividualResult(Map<Player, Prize> result, Player player) {
+    public void printIndividualResult(LadderGameResult result, Player player) {
         printResultMessage();
-        Prize prize = result.get(player);
+        Prize prize = result.getPrizeOfPlayer(player);
         System.out.println(prize.getPrize());
     }
 
-    public void printAllResult(Map<Player, Prize> result) {
+    public void printAllResult(LadderGameResult result) {
         printResultMessage();
-        for (Player player : result.keySet()) {
-            Prize prize = result.get(player);
+        for (Player player : result.getResult().keySet()) {
+            Prize prize = result.getPrizeOfPlayer(player);
             System.out.println(player.getName() + " : " + prize.getPrize());
         }
     }

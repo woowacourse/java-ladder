@@ -16,13 +16,13 @@ public class LadderGame {
         this.prizes = prizes;
     }
 
-    public Map<Player, Prize> playGame(Players players, Ladder ladder, Prizes prizes) {
+    public LadderGameResult playGame(Players players, Ladder ladder, Prizes prizes) {
         Map<Player, Prize> result = new LinkedHashMap<>();
         for (int player = 0; player < players.getPlayersSize(); player++) {
             int movedPlayerPosition = playerMoveLadder(player, ladder);
             result.put(players.getPlayer(player), prizes.getPrize(movedPlayerPosition));
         }
-        return result;
+        return new LadderGameResult(result);
     }
 
     private int playerMoveLadder(int position, Ladder ladder) {
