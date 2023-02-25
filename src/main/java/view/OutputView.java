@@ -18,6 +18,7 @@ public class OutputView {
             final List<List<Boolean>> ladder,
             List<String> gameGameResultNames
     ) {
+        printEmptyLine();
         printLine(GENERATED_LADDER_TITLE);
         printEmptyLine();
         int nameFormatSize = getPlayerNameSize(playerNames);
@@ -34,6 +35,7 @@ public class OutputView {
             stringBuilder.append(" ");
         });
         printLine(stringBuilder.toString());
+        printEmptyLine();
     }
 
     private static int getPlayerNameSize(final List<String> playerNames) {
@@ -76,6 +78,7 @@ public class OutputView {
     }
 
     public static void printGameResult(final LinkedHashMap<String, GameResult> gameResults) {
+        printEmptyLine();
         printLine(RESULT_TITLE);
         for (String playerName : gameResults.keySet()) {
             printLine(playerName + RESULT_DELIMITER + gameResults.get(playerName).getResult());
