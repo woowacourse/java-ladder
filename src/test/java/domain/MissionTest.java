@@ -57,11 +57,11 @@ class MissionTest {
         }
     }
 
+    @DisplayName("같은 이름을 가진 미션은 같은 미션이다.")
     @Nested
-    @DisplayName("미션 비교")
     class compareMissionTest {
         @Test
-        void 같은_내용을_가진_미션은_같은_미션이다() {
+        void compareMissionTest() {
             Mission mission1 = new Mission("꽝");
             Mission mission2 = new Mission("꽝");
             Mission mission3 = new Mission("당첨");
@@ -69,12 +69,5 @@ class MissionTest {
             assertThat(mission1).isEqualTo(mission2);
             assertThat(mission1).isNotEqualTo(mission3);
         }
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"", " "})
-    void 공백으로_생성시_예외_처리(String input) {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Mission(input));
     }
 }

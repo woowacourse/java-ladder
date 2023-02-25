@@ -19,6 +19,9 @@ public class Mission {
         } catch (NullPointerException exception) {
             throw new IllegalArgumentException("공백 또는 null을 입력할 수 없습니다.");
         }
+        if (mission.isBlank()) {
+            throw new IllegalArgumentException("공백으로 미션을 생성할 수 없습니다.");
+        }
         if (mission.length() > MAX_LENGTH_EXCLUSIVE) {
             throw new IllegalArgumentException("미션 글자수는 5글자를 초과할 수 없습니다.");
         }
