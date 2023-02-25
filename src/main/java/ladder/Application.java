@@ -9,6 +9,7 @@ import static ladder.view.OutputView.printAllResult;
 import static ladder.view.OutputView.printLadder;
 import static ladder.view.OutputView.printSingleResult;
 
+import ladder.domain.Command;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.LadderFactory;
@@ -20,11 +21,10 @@ import ladder.domain.Results;
 import ladder.domain.Step;
 import ladder.domain.strategy.linestrategy.LineStrategy;
 import ladder.domain.strategy.linestrategy.RandomLineStrategy;
+import ladder.view.OutputView;
 import java.util.List;
 
 public class Application {
-    private static final String QUIT = "q";
-    private static final String ALL = "all";
     private static final Boolean FINISH = false;
     private static final Boolean PROCEED = true;
 
@@ -81,14 +81,14 @@ public class Application {
     }
 
     private static boolean isQuit(String input) {
-        if (input.equals(QUIT)) {
+        if (Command.isQuit(input)) {
             return FINISH;
         }
         return PROCEED;
     }
 
     private static boolean isAll(boolean proceed, String input) {
-        if (proceed && input.equals(ALL)) {
+        if (proceed && Command.isAll(input)) {
             printAllResult(toAllResult(players.getPlayerNames(), results.findAllResult(ladder)));
             return FINISH;
         }
