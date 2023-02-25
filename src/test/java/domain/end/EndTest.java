@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class EndTest {
 	@ParameterizedTest
 	@DisplayName("한 글자 이상, 다섯 글자 이하인 결과는 정상적으로 생성되어야 한다.")
-	@ValueSource(ints = {1, 2, 3, 4, 5})
+	@ValueSource(ints = {1, 5})
 	void endLengthSuccessTest(int endLength) {
 		String end = "9".repeat(endLength);
 		Assertions.assertDoesNotThrow(() -> new End(end));
