@@ -14,10 +14,10 @@ public class Player {
 
     public void playerMove(Direction direction) {
         if (direction.equals(Direction.RIGHT)) {
-            position.rightMovement();
+            position.moveRight();
         }
         if (direction.equals(Direction.LEFT)) {
-            position.leftMovement();
+            position.moveLeft();
         }
     }
 

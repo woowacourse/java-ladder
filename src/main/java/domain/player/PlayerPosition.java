@@ -11,11 +11,11 @@ public class PlayerPosition {
         this.position = position;
     }
 
-    public void rightMovement() {
+    public void moveRight() {
         position++;
     }
 
-    public void leftMovement() {
+    public void moveLeft() {
         position--;
     }
 
