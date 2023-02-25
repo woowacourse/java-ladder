@@ -33,6 +33,23 @@ public class LadderController {
         repeatViewResult(ladderGame);
     }
 
+    private LadderGame initLadderGame() {
+        Names inputNames = inputView.inputNames();
+        Results inputResult = inputView.inputResults();
+        Ladder ladder = makeLadder(inputNames.size());
+
+        outputView.printLadder(inputNames, ladder, inputResult);
+
+        Players players = new PlayerMaker().make(inputNames);
+        return new LadderGame(ladder, players, inputResult);
+    }
+
+    private Ladder makeLadder(int inputNameSize) {
+        Height height = inputView.inputLadderHeight();
+        Width width = new Width(inputNameSize - 1);
+        return ladderMaker.make(height, width);
+    }
+
     private void repeatViewResult(final LadderGame ladderGame) {
         boolean isRepeat = repeatableViewResult(ladderGame);
 
@@ -51,23 +68,6 @@ public class LadderController {
 
         outputView.printGameResult(viewers, viewResult);
         return true;
-    }
-
-    private LadderGame initLadderGame() {
-        Names inputNames = inputView.inputNames();
-        Results inputResult = inputView.inputResults();
-        Ladder ladder = getLadder(inputNames.size());
-
-        outputView.printLadder(inputNames, ladder, inputResult);
-
-        Players players = new PlayerMaker().make(inputNames);
-        return new LadderGame(ladder, players, inputResult);
-    }
-
-    private Ladder getLadder(int inputNameSize) {
-        Height height = inputView.inputLadderHeight();
-        Width width = new Width(inputNameSize - 1);
-        return ladderMaker.make(height, width);
     }
 
 }
