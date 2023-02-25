@@ -22,4 +22,12 @@ public enum Point {
     public Position move(Position position) {
         return move.apply(position);
     }
+
+    public Point next(ConnectionJudgement connectionJudgement) {
+        if (this == RIGHT) {
+            return LEFT;
+        }
+        boolean connected = connectionJudgement.judge();
+        return connected ? RIGHT : NONE;
+    }
 }
