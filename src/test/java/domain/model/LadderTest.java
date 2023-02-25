@@ -69,25 +69,25 @@ public class LadderTest {
         @ParameterizedTest(name = "({0}, {1}) 위치에서 왼쪽에 다리가 연결되어 있다")
         @CsvSource(value = {"1:0", "3:0", "2:1"}, delimiter = ':')
         void hasLeftAtTrue(int x, int y) {
-            assertThat(ladder.hasLeftAt(Position.from(x, y))).isTrue();
+            assertThat(ladder.hasLeftAt(Position.of(x, y))).isTrue();
         }
 
         @ParameterizedTest(name = "({0}, {1}) 위치에서 왼쪽에 다리가 연결되어있지 않다")
         @CsvSource(value = {"0:0", "2:0", "0:1", "1:1", "3:1"}, delimiter = ':')
         void hasLeftAtFalse(int x, int y) {
-            assertThat(ladder.hasLeftAt(Position.from(x, y))).isFalse();
+            assertThat(ladder.hasLeftAt(Position.of(x, y))).isFalse();
         }
 
         @ParameterizedTest(name = "({0}, {1}) 위치에서 오른쪽에 다리가 연결되어 있다")
         @CsvSource(value = {"0:0", "2:0"}, delimiter = ':')
         void hasRightAtTrue(int x, int y) {
-            assertThat(ladder.hasRightAt(Position.from(x, y))).isTrue();
+            assertThat(ladder.hasRightAt(Position.of(x, y))).isTrue();
         }
 
         @ParameterizedTest(name = "({0}, {1}) 위치에서 오른쪽에 다리가 연결되어있지 않다")
         @CsvSource(value = {"1:0", "3:0"}, delimiter = ':')
         void hasRightAtFalse(int x, int y) {
-            assertThat(ladder.hasRightAt(Position.from(x, y))).isFalse();
+            assertThat(ladder.hasRightAt(Position.of(x, y))).isFalse();
         }
     }
 }
