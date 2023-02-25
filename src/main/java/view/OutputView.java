@@ -40,7 +40,7 @@ public class OutputView {
     }
 
     public String tranceFrom(int maxPlayerNameLength, Point isExist) {
-        return Way.tranceFrom(isExist.isPoint()).repeat(maxPlayerNameLength) + BAR;
+        return Way.tranceFrom(isExist.isConnected()).repeat(maxPlayerNameLength) + BAR;
     }
 
     public void printResultOfPlayerName(String playerName, LadderGameResult ladderGameResult) {
