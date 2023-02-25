@@ -2,10 +2,8 @@ package ladder.view;
 
 import java.util.List;
 import java.util.StringJoiner;
-import ladder.domain.Direction;
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Players;
+
+import ladder.domain.*;
 
 public class OutputView {
 
@@ -18,20 +16,22 @@ public class OutputView {
     private static final String BLANK = " ";
     private static final String EMPTY = "";
     private static final String LADDER = "|";
+    private static final String DELIMITER = " : ";
     private static final String ERROR_PREFIX = "[ERROR] ";
 
-    public void printLadderResult(final Players players, final Ladder ladder) {
+    public void printLadderResult(final Players players, final Ladder ladder, final Gifts gifts) {
         System.out.println(EXECUTION_RESULT + LINE_BREAK);
         printPlayerNames(players);
         printLadder(ladder);
+        printGiftNames(gifts);
     }
 
     private void printPlayerNames(final Players players) {
         final List<String> playerNames = players.getPlayerNames();
-        System.out.println(getFormattedPlayerNames(playerNames));
+        System.out.println(getFormattedNames(playerNames));
     }
 
-    private String getFormattedPlayerNames(final List<String> playerNames) {
+    private String getFormattedNames(final List<String> playerNames) {
         final StringJoiner joiner = new StringJoiner(BLANK);
 
         for (final String playerName : playerNames) {
@@ -68,7 +68,19 @@ public class OutputView {
         return BLANK_FOOTHOLD;
     }
 
-    public void printErrorMessage(final String errorMessage) {
-        System.out.println(ERROR_PREFIX + errorMessage);
+    private void printGiftNames(Gifts gifts) {
+        final List<String> giftNames = gifts.getNames();
+        System.out.println(getFormattedNames(giftNames));
+    }
+
+    public void printErrorMessage(final IllegalArgumentException e) {
+        System.out.println(ERROR_PREFIX + e.getMessage());
+    }
+
+    public void printGameResult(Players players, Gifts gifts, Result result) {
+        System.out.println(EXECUTION_RESULT);
+        for (final String name : result.getNames()) {
+            System.out.println(name + DELIMITER + gifts.findNameByPosition(players.findPositionByName(name)));
+        }
     }
 }

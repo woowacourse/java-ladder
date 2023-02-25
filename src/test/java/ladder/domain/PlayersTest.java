@@ -5,34 +5,21 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.text.MessageFormat;
 import java.util.List;
-import java.util.stream.Stream;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class PlayersTest {
 
-    private static Stream<Arguments> generateValidNameSize() {
-        return Stream.of(
-                Arguments.of(List.of("pobi", "crong"), new String[]{"pobi", "crong"}),
-                Arguments.of(List.of("A", "B", "C", "D", "E", "F", "G", "H", "I", "J"),
-                        new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"})
-        );
-    }
-
-    private static Stream<Arguments> generateInvalidNameSize() {
-        return Stream.of(
-                Arguments.of(List.of("pobi")),
-                Arguments.of(List.of("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"))
-        );
-    }
-
     @ParameterizedTest(name = "입력: {0}, 출력: {1}")
-    @MethodSource("generateValidNameSize")
+    @ValueSource(strings = {"pobi,crong", "A,B,C,D,E,F,G,H,I,J"})
     @DisplayName("플레이어는 2명 이상, 10명 이하만 가능하다.")
-    void validPlayerSize(final List<String> names, final String[] expected) {
+    void validPlayerSize(final String nameRawData) {
+        final List<String> names = List.of(nameRawData.split(","));
+        final String[] expected = nameRawData.split(",");
+
         final Players players = new Players(names);
 
         assertThat(players.getPlayerNames())
@@ -40,9 +27,11 @@ class PlayersTest {
     }
 
     @ParameterizedTest(name = "입력: {0}")
-    @MethodSource("generateInvalidNameSize")
+    @ValueSource(strings = {"pobi", "A,B,C,D,E,F,G,H,I,J,K"})
     @DisplayName("플레이어는 2명 미만, 10명 초과인 경우 예외를 던진다.")
-    void throwExceptionWhenInvalidPlayerSize(final List<String> names) {
+    void throwExceptionWhenInvalidPlayerSize(final String namesRawData) {
+        final List<String> names = List.of(namesRawData.split(","));
+
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(MessageFormat.format(
@@ -58,5 +47,21 @@ class PlayersTest {
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("사다리 게임이 끝난 후, 특정 플레이어가 어디 위치에 있는지 알 수 있다.")
+    void findPlayerPositionAfterLadderGame() {
+        // given
+        final Players players = new Players(List.of("pobi", "crong", "eddy"), List.of(2, 0, 1));
+        final String name = "eddy";
+        final int expected = 1;
+
+        // when
+        final int actual = players.findPositionByName(name);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
 }
 

@@ -5,10 +5,12 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.text.MessageFormat;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class NameTest {
@@ -29,10 +31,11 @@ class NameTest {
                 .hasMessage(MessageFormat.format("사람 이름은 영문자만 가능합니다. 현재 입력은 {0} 입니다.", value));
     }
 
-    @Test
+    @ParameterizedTest
+    @NullSource
     @DisplayName("이름에 NULL이 들어오면 예외를 던진다.")
-    void throwExceptionWhenNameIsNull() {
-        assertThatThrownBy(() -> new Name(null))
+    void throwExceptionWhenNameIsNull(String value) {
+        assertThatThrownBy(() -> new Name(value))
                 .isInstanceOf(NullPointerException.class);
     }
 

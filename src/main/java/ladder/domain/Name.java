@@ -36,12 +36,12 @@ public class Name {
     }
 
     private void validateLength(final String value) {
-        if (hasExceedLength(value)) {
+        if (isExceedLength(value)) {
             throw new IllegalArgumentException(MessageFormat.format(NAME_LENGTH_ERROR_MESSAGE, value));
         }
     }
 
-    private boolean hasExceedLength(final String value) {
+    private boolean isExceedLength(final String value) {
         return NAME_MAX_LENGTH < value.length();
     }
 

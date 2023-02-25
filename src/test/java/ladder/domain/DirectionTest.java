@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -24,7 +25,7 @@ class DirectionTest {
     }
 
     @ParameterizedTest(name = "입력: {0}")
-    @ValueSource(ints = {-2, 2, 100})
+    @ValueSource(ints = {-2, 2})
     @DisplayName("존재하지 않는 값이라면 예외를 던진다.")
     void throwExceptionNotExistValue(final int value) {
         assertThatThrownBy(() -> Direction.from(value))

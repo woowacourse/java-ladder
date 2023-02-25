@@ -17,16 +17,16 @@ public class Height {
     }
 
     private void validate(final int value) {
-        if (hasShort(value) || hasLong(value)) {
+        if (isShort(value) || isLong(value)) {
             throw new IllegalArgumentException(MessageFormat.format(INVALID_HEIGHT_ERROR_MESSAGE, value));
         }
     }
 
-    private boolean hasShort(final int value) {
-        return value < MINIMUM_HEIGHT;
+    private boolean isShort(final int value) {
+        return MINIMUM_HEIGHT > value;
     }
 
-    private boolean hasLong(final int value) {
+    private boolean isLong(final int value) {
         return MAXIMUM_HEIGHT < value;
     }
 

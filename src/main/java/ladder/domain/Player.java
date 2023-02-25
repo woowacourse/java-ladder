@@ -5,13 +5,19 @@ import java.util.Objects;
 public class Player {
 
     private final Name name;
+    private int position;
 
-    public Player(final String value) {
+    public Player(final String value, final int position) {
         this.name = new Name(value);
+        this.position = position;
     }
 
     public String getName() {
         return name.getValue();
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override
@@ -29,5 +35,9 @@ public class Player {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public void move(Direction direction) {
+        position += direction.getMove();
     }
 }

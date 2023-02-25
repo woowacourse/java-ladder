@@ -6,6 +6,7 @@ import static ladder.domain.Direction.STAY;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import ladder.domain.Direction;
 import ladder.domain.Line;
 
@@ -23,7 +24,9 @@ public class LineGenerator {
 
     private List<Direction> generateDirections(final int directionCount) {
         final List<Direction> directions = new ArrayList<>();
-        generateDirectionsStrategy(directions, directionCount);
+        while (directions.size() < directionCount) {
+            generateDirectionsStrategy(directions, directionCount);
+        }
         return directions;
     }
 
@@ -33,7 +36,6 @@ public class LineGenerator {
             return;
         }
         addDirections(directions);
-        generateDirectionsStrategy(directions, directionCount);
     }
 
     private void addStayIfNotEnough(final List<Direction> directions, final int directionCount) {
