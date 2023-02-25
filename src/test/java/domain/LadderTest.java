@@ -38,7 +38,7 @@ public class LadderTest {
         final Ladder ladder = new Ladder(width, height, scaffoldGenerator);
 
         // then
-        assertThat(ladder.getHeight()).isEqualTo(heightValue);
+        assertThat(ladder.getHeight()).isEqualTo(5);
     }
 
     @Test
@@ -52,7 +52,7 @@ public class LadderTest {
         final Ladder ladder = new Ladder(width, height, scaffoldGenerator);
 
         // then
-        assertThat(ladder.getWidth()).isEqualTo(widthValue);
+        assertThat(ladder.getWidth()).isEqualTo(5);
     }
 
     @Test
@@ -80,8 +80,8 @@ public class LadderTest {
 
         Map<String, String> result = ladder.calculateMatching(names, prizes);
 
-        assertThat(result.get("찰리")).isEqualTo(winnerPrize.getValue());
-        assertThat(result.get("가비")).isEqualTo(prizes.getPrizes().get(1).getValue());
-        assertThat(result.get("바비")).isEqualTo(prizes.getPrizes().get(2).getValue());
+        assertThat(result.get("찰리")).isEqualTo("1등");
+        assertThat(result.get("가비")).isEqualTo("2등");
+        assertThat(result.get("바비")).isEqualTo("3등");
     }
 }

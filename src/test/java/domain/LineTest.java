@@ -36,7 +36,7 @@ public class LineTest {
         Line line = new Line(width, scaffoldGenerator);
 
         // then
-        assertThat(line.size()).isEqualTo(width.getValue());
+        assertThat(line.size()).isEqualTo(4);
     }
 
     @Test
