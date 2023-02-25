@@ -35,16 +35,7 @@ public class InputView {
         printEmptyLine();
         printMessage(Message.ASK_RESULTS);
 
-        List<String> results = Arrays.asList(sc.nextLine().split(DELIMITER));
-        validateAllResultsAreNotSame(results);
-
-        return results;
-    }
-
-    private void validateAllResultsAreNotSame(List<String> results) {
-        if (results.stream().distinct().count() == 1) {
-            throw new IllegalArgumentException(ErrorMessage.ALL_SAME_RESULTS.getMessage());
-        }
+        return Arrays.asList(sc.nextLine().split(DELIMITER));
     }
 
     public int requestLadderHeight() {

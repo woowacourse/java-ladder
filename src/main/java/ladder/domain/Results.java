@@ -20,13 +20,20 @@ public class Results {
             .collect(Collectors.toList());
     }
 
-    private void validate(List<String> names, int numberOfResults) {
-        validateNumberOfResults(names, numberOfResults);
+    private void validate(List<String> results, int numberOfResults) {
+        validateNumberOfResults(results, numberOfResults);
+        validateAllResultsAreNotSame(results);
     }
 
     private void validateNumberOfResults(List<String> names, int numberOfResults) {
         if (names.size() < numberOfResults || names.size() > numberOfResults) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_OF_RESULTS.getMessage());
+        }
+    }
+
+    private void validateAllResultsAreNotSame(List<String> results) {
+        if (results.stream().distinct().count() == 1) {
+            throw new IllegalArgumentException(ErrorMessage.ALL_SAME_RESULTS.getMessage());
         }
     }
 }
