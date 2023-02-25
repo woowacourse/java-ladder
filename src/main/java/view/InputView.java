@@ -1,5 +1,7 @@
 package view;
 
+import domain.model.Ladder;
+import domain.service.LadderMaker;
 import domain.vo.*;
 import validator.InputValidator;
 import validator.dto.InputRepeatableDTO;
@@ -83,6 +85,12 @@ public class InputView {
                 )
         );
         return new Height(Integer.parseInt(input));
+    }
+
+    public Ladder inputLadder(LadderMaker ladderMaker, int inputNameSize) {
+        Height height = inputLadderHeight();
+        Width width = new Width(inputNameSize - 1);
+        return ladderMaker.make(height, width);
     }
 
     private List<Result> mapToResult(final List<String> result) {

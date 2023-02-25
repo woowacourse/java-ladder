@@ -5,10 +5,8 @@ import domain.model.Players;
 import domain.service.LadderGame;
 import domain.service.LadderMaker;
 import domain.service.PlayerMaker;
-import domain.vo.Height;
 import domain.vo.Names;
 import domain.vo.Results;
-import domain.vo.Width;
 import validator.dto.InputRepeatableDTO;
 import view.InputView;
 import view.OutputView;
@@ -36,18 +34,12 @@ public class LadderController {
     private LadderGame initLadderGame() {
         Names inputNames = inputView.inputNames();
         Results inputResult = inputView.inputResults();
-        Ladder ladder = makeLadder(inputNames.size());
+        Ladder ladder = inputView.inputLadder(ladderMaker, inputNames.size());
 
         outputView.printLadder(inputNames, ladder, inputResult);
 
         Players players = PlayerMaker.make(inputNames);
         return new LadderGame(ladder, players, inputResult);
-    }
-
-    private Ladder makeLadder(int inputNameSize) {
-        Height height = inputView.inputLadderHeight();
-        Width width = new Width(inputNameSize - 1);
-        return ladderMaker.make(height, width);
     }
 
     private void repeatViewResult(final LadderGame ladderGame) {
