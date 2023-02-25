@@ -6,4 +6,8 @@ public class Result {
     public Result(String content) {
         this.content = content;
     }
+
+    public String getContent() {
+        return content;
+    }
 }
