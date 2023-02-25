@@ -53,7 +53,7 @@ public class OutputView {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (Person person : people.getPeople()) {
-            stringBuilder.append(align(person.getName(), maxLength));
+            stringBuilder.append(align(person.getName().getPersonName(), maxLength));
         }
 
         System.out.println(stringBuilder);
@@ -98,6 +98,6 @@ public class OutputView {
 
     private static void printResultTarget(Rewards rewards, Person person) {
         int position = person.getPosition();
-        System.out.println(person.getName() + " : " + rewards.getRewards().get(position).getName());
+        System.out.println(person.getName().getPersonName() + " : " + rewards.getRewards().get(position).getName());
     }
 }

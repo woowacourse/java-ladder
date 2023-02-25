@@ -29,11 +29,11 @@ public class People {
     }
 
     public int calculateMaxNameLength() {
-        return people.stream().mapToInt(p -> p.getName().length()).max().orElseThrow();
+        return people.stream().mapToInt(p -> p.getName().getPersonName().length()).max().orElseThrow();
     }
 
     public Person findPerson(String name) {
-        List<Person> findPeople = people.stream().filter(p -> p.getName().equals(name)).collect(Collectors.toList());
+        List<Person> findPeople = people.stream().filter(p -> p.getName().getPersonName().equals(name)).collect(Collectors.toList());
         if (findPeople.size() >= 2) {
             throw new IllegalStateException("중복된 참여자가 검색되었습니다.");
         }

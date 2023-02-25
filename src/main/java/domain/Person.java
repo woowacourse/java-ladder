@@ -7,7 +7,7 @@ package domain;
  */
 public class Person {
 
-    private final String name;
+    private final PersonName name;
     private int position;
 
     private static final int MAX_NAME_LENGTH = 5;
@@ -15,7 +15,7 @@ public class Person {
 
     public Person(String name, int initPosition) {
         validateNameLength(name);
-        this.name = name;
+        this.name = new PersonName(name);
         this.position = initPosition;
     }
 
@@ -26,7 +26,7 @@ public class Person {
     }
 
 
-    public String getName() {
+    public PersonName getName() {
         return name;
     }
 

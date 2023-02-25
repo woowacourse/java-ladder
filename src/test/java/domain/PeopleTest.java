@@ -12,7 +12,7 @@ class PeopleTest {
         Person person1 = new Person("aa", 0);
         Person person2 = new Person("bb", 1);
         People people = new People(Arrays.asList(person1, person2));
-        Assertions.assertEquals(person1.getName(), people.findPerson(person1.getName()).getName());
+        Assertions.assertEquals(person1.getName(), people.findPerson(person1.getName().getPersonName()).getName().getPersonName());
     }
 
     @DisplayName("People에서 중복된 이름인 경우 특정 Person 탐색 실패 테스트")
@@ -22,7 +22,7 @@ class PeopleTest {
         Person person2 = new Person("aa", 1);
         People people = new People(Arrays.asList(person1, person2));
         Assertions.assertThrows(IllegalStateException.class, () -> {
-            people.findPerson(person1.getName());
+            people.findPerson(person1.getName().getPersonName());
         });
     }
 

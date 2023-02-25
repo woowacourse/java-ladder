@@ -60,7 +60,7 @@ public class Application {
     }
 
     private static void validateNameInPeople(String name, People people) {
-        List<Person> findPerson = people.getPeople().stream().filter(p -> p.getName().equals(name))
+        List<Person> findPerson = people.getPeople().stream().filter(p -> p.getName().getPersonName().equals(name))
                 .collect(Collectors.toList());
         if (name.equals("all")) {
             return;
