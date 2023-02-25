@@ -1,4 +1,4 @@
-package model.VO;
+package model.vo;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

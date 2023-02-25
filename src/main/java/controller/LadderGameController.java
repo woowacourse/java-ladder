@@ -1,11 +1,11 @@
 package controller;
 
 import model.domain.Ladder;
-import model.VO.LadderHeight;
+import model.vo.LadderHeight;
 import model.domain.Line;
-import model.VO.Name;
+import model.vo.Name;
 import model.domain.Players;
-import model.VO.Result;
+import model.vo.Result;
 import view.InputView;
 import view.OutputView;
 

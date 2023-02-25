@@ -4,8 +4,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatNoException;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import model.VO.Name;
-import model.VO.Result;
+import model.vo.Name;
+import model.vo.Result;
 import model.factory.NameFactory;
 import model.factory.ResultFactory;
 import org.junit.jupiter.api.Disabled;

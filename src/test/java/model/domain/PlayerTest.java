@@ -2,9 +2,9 @@ package model.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import model.VO.Name;
-import model.VO.Position;
-import model.VO.Result;
+import model.vo.Name;
+import model.vo.Position;
+import model.vo.Result;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.assertj.core.api.Assertions;

@@ -3,8 +3,8 @@ package model.domain;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatNoException;
 
-import model.VO.LadderHeight;
-import model.VO.Name;
+import model.vo.LadderHeight;
+import model.vo.Name;
 import model.factory.NameFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

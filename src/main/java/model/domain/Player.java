@@ -1,8 +1,8 @@
 package model.domain;
 
-import model.VO.Name;
-import model.VO.Position;
-import model.VO.Result;
+import model.vo.Name;
+import model.vo.Position;
+import model.vo.Result;
 
 public class Player {
     private final Name name;

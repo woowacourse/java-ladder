@@ -1,4 +1,4 @@
-package model.VO;
+package model.vo;
 
 public class Result {
     private static final int MAXIMUM_RESULT_LENGTH = 5;

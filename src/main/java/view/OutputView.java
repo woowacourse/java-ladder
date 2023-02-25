@@ -2,8 +2,8 @@ package view;
 
 import model.domain.Ladder;
 import model.domain.Line;
-import model.VO.Name;
-import model.VO.Result;
+import model.vo.Name;
+import model.vo.Result;
 
 import java.util.List;
 import java.util.stream.Collectors;

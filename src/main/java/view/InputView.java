@@ -1,8 +1,8 @@
 package view;
 
-import model.VO.LadderHeight;
-import model.VO.Name;
-import model.VO.Result;
+import model.vo.LadderHeight;
+import model.vo.Name;
+import model.vo.Result;
 
 import java.util.Arrays;
 import java.util.List;
