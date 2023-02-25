@@ -1,5 +1,6 @@
 package domain.ladder;
 
+import domain.Position;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,19 +12,19 @@ public class Line {
         this.links = links;
     }
 
-    public List<Integer> getLinkedIndexes() {
-        final List<Integer> linkedIndexes = new ArrayList<>();
+    public List<Position> getLinkedPositions() {
+        final List<Position> linkedPositions = new ArrayList<>();
 
         for (int index = 0; index < links.size(); index++) {
-            addLinkedIndex(linkedIndexes, index);
+            addLinkedPositions(linkedPositions, index);
         }
 
-        return linkedIndexes;
+        return linkedPositions;
     }
 
-    private void addLinkedIndex(final List<Integer> linkedIndexes, final int index) {
+    private void addLinkedPositions(final List<Position> linkedPositions, final int index) {
         if (links.get(index).isLinked()) {
-            linkedIndexes.add(index);
+            linkedPositions.add(new Position(index));
         }
     }
 

@@ -10,12 +10,13 @@ import org.junit.jupiter.api.Test;
 class LineTest {
 
     @Test
-    @DisplayName("Line에서 연결된 부분의 index를 리스트 형태로 반환")
-    void getLinkedIndexesTest() {
+    @DisplayName("Line에서 연결된 부분의 index를 List<Position> 형태로 반환")
+    void getLinkedPositionsTest() {
         final Line line = new Line(List.of(Link.LINKED, Link.UNLINKED, Link.LINKED));
 
-        final List<Integer> indexes = line.getLinkedIndexes();
+        final List<Position> positions = line.getLinkedPositions();
 
-        Assertions.assertThat(indexes).containsExactly(0, 2);
+        Assertions.assertThat(positions)
+                .containsExactly(new Position(0), new Position(2));
     }
 }
