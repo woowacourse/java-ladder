@@ -5,6 +5,7 @@ import laddergame.domain.participant.Participant;
 import laddergame.domain.participant.Participants;
 import laddergame.domain.result.Result;
 import laddergame.domain.result.Results;
+import laddergame.util.BooleanGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,40 +26,45 @@ class LadderGameTest {
     void setUp() {
         final String participantNames = "pobi,honux,crong,jk";
         final String resultNames = "1st,2nd,3rd,4th";
+        final BooleanGenerator trueBooleanGenerator = () -> true;
 
         participants = Participants.create(participantNames);
-        Ladder ladder = new Ladder(() -> true, "2", 4);
+        Ladder orderedLadder = new Ladder(trueBooleanGenerator, "2", 4);
         Results results = new Results(resultNames, participants.size());
 
-        ladderGame = new LadderGame(participants, ladder, results);
+        ladderGame = new LadderGame(participants, orderedLadder, results);
     }
 
     @ParameterizedTest
     @CsvSource(value = {"pobi:1st", "honux:2nd", "crong:3rd", "jk:4th"}, delimiter = ':')
     @DisplayName("참여자 이름을 입력하면, 한 명의 참여자에 대한 실행결과를 얻는다.")
     void gets_result_of_participant_if_request_content_is_included_in_participants(String requestContent, String expectedResult) {
-        Participant participant = participants.findParticipant(requestContent);
         UserRequest request = UserRequest.from(requestContent);
+
         Map<Participant, Result> resultByParticipants = ladderGame.getResultByParticipants(request);
+        String actualResult = getActualResult(requestContent, resultByParticipants);
 
-        Result result = resultByParticipants.get(participant);
-        String resultName = result.getResultName();
-
-        assertThat(resultName).isEqualTo(expectedResult);
+        assertThat(actualResult).isEqualTo(expectedResult);
     }
 
     @Test
     @DisplayName("\"all\"을 입력하면, 모든 참여자에 대한 실행결과를 얻는다.")
     void gets_all_results_if_request_content_is_same_with_all_request_key() {
         List<Participant> allParticipants = participants.getParticipants();
+        List<String> resultNames = List.of("1st", "2nd", "3rd", "4th");
         UserRequest request = UserRequest.from("all");
 
-        List<String> resultNames = List.of("1st", "2nd", "3rd", "4th");
         Map<Participant, Result> resultByParticipants = ladderGame.getResultByParticipants(request);
 
         for (int i = 0; i < resultByParticipants.size(); i++) {
             Result result = resultByParticipants.get(allParticipants.get(i));
             assertThat(result.getResultName()).isEqualTo(resultNames.get(i));
         }
+    }
+
+    private String getActualResult(final String requestContent, final Map<Participant, Result> resultByParticipants) {
+        Participant participant = participants.findParticipant(requestContent);
+        Result result = resultByParticipants.get(participant);
+        return result.getResultName();
     }
 }
