@@ -15,7 +15,9 @@ import laddergame.view.OutputView;
 import java.util.List;
 
 public class GameController {
-    
+
+    private static final Name END_SIGNAL = new Name("end");
+
     private final Names names;
     private final Prizes prizes;
     private final Ladder ladder;
@@ -81,9 +83,7 @@ public class GameController {
 
         final Results results = startLadderGame(names, prizes, ladder);
 
-        while (true) {
-            findResultWithRetry(results);
-        }
+        printResultsUntilEnd(results);
     }
 
     private void printCreatedLadderAndPrizes(final Names names, final Prizes prizes, final Ladder ladder) {
@@ -98,13 +98,31 @@ public class GameController {
         return ladderGame.createResults();
     }
 
-    private void findResultWithRetry(final Results results) {
+    private void printResultsUntilEnd(final Results results) {
         try {
-            final Name resultName = new Name(InputView.readResultPlayerName());
-            final List<Result> result = results.findResults(resultName);
-            OutputView.printResult(result);
+            printResultAndCheckGameEnd(results);
         } catch (final IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
         }
+    }
+
+    private void printResultAndCheckGameEnd(final Results results) {
+        Name resultName = null;
+
+        while (canContinueGame(resultName)) {
+            resultName = new Name(InputView.readResultPlayerName());
+            printResult(results, resultName);
+        }
+    }
+
+    private void printResult(final Results results, final Name resultName) {
+        if (canContinueGame(resultName)) {
+            final List<Result> outputResults = results.findResults(resultName);
+            OutputView.printResult(outputResults);
+        }
+    }
+
+    private boolean canContinueGame(final Name resultName) {
+        return !END_SIGNAL.equals(resultName);
     }
 }
