@@ -15,14 +15,14 @@ public class ItemsTest {
 
     @Test
     void 실행결과는_참가인원과_동일한_개수가_아니라면_예외를_던진다() {
-        assertThatThrownBy(() -> Items.from(List.of("item1", "item2"), 3))
+        assertThatThrownBy(() -> Items.of(List.of("item1", "item2"), 3))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참가인원과 동일한 개수의 실행결과를 입력해야 합니다.");
     }
 
     @Test
     void 입력받은_위치에_해당하는_실행결과가_없다면_예외를_던진다() {
-        final Items items = Items.from(List.of("item1", "item2", "item3"), 3);
+        final Items items = Items.of(List.of("item1", "item2", "item3"), 3);
 
         assertThatThrownBy(() -> items.findByPosition(valueOf(10)))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -31,7 +31,7 @@ public class ItemsTest {
 
     @Test
     void 입력받은_위치에_해당하는_실행결과를_반환한다() {
-        final Items items = Items.from(List.of("item1", "item2", "item3"), 3);
+        final Items items = Items.of(List.of("item1", "item2", "item3"), 3);
 
         final Item item = items.findByPosition(valueOf(1));
 
@@ -40,7 +40,7 @@ public class ItemsTest {
 
     @Test
     void 모든_실행결과의_이름을_반환한다() {
-        final Items items = Items.from(List.of("item1", "item2", "item3"), 3);
+        final Items items = Items.of(List.of("item1", "item2", "item3"), 3);
 
         assertThat(items.getNames()).containsExactly("item1", "item2", "item3");
     }

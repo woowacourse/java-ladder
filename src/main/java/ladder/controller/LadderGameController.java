@@ -38,7 +38,7 @@ public class LadderGameController {
 
     private LadderGame initialize() {
         final Players players = repeatUntilGetValidInput(() -> Players.from(inputView.readPlayerNames()));
-        final Items items = repeatUntilGetValidInput(() -> Items.from(inputView.readItemNames(), players.count()));
+        final Items items = repeatUntilGetValidInput(() -> Items.of(inputView.readItemNames(), players.count()));
         final Height height = repeatUntilGetValidInput(() -> new Height(inputView.readLadderHeight()));
 
         return LadderGame.initialize(players, booleanGenerator, height, items);

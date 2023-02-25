@@ -17,7 +17,7 @@ public class Items {
         this.items = items;
     }
 
-    public static Items from(final List<String> names, int playerCount) {
+    public static Items of(final List<String> names, int playerCount) {
         validateItemCount(names, playerCount);
         return IntStream.range(0, names.size())
                 .mapToObj(index -> new Item(names.get(index), Position.valueOf(index)))

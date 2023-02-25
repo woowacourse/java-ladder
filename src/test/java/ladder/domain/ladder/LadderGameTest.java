@@ -24,7 +24,7 @@ public class LadderGameTest {
         final Players players = Players.from(playerNames);
         final BooleanGenerator booleanGenerator = new TestBooleanGenerator(ladder);
         final Height height = new Height(String.valueOf(value));
-        final Items items = Items.from(itemNames, players.count());
+        final Items items = Items.of(itemNames, players.count());
 
         return LadderGame.initialize(players, booleanGenerator, height, items);
     }
