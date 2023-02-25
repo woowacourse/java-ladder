@@ -4,18 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Rewards {
-    private static final String EXCEPTION_COUNT_MESSAGE = "[ERROR] 보상의 개수는 사용자의 수와 동일해야 합니다.";
+    private static final int MIN_REWARDS_COUNT = 2;
+    private static final int MAX_REWARDS_COUNT = 100;
 
     private final List<Reward> rewards;
 
-    public Rewards(final List<String> rewards, final Names names) {
-        validate(rewards.size(), names.getNamesSize());
+    public Rewards(final List<String> rewards) {
+        validate(rewards.size());
         this.rewards = generateRewards(rewards);
     }
 
-    private static void validate(final int rewardsSize, final int namesSize) {
-        if (rewardsSize != namesSize) {
-            throw new IllegalArgumentException(EXCEPTION_COUNT_MESSAGE);
+    private static void validate(final int rewardsSize) {
+        if (rewardsSize < MIN_REWARDS_COUNT || rewardsSize > MAX_REWARDS_COUNT) {
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] 보상의 개수는 %d개 이상 %d개 이하여야 합니다.", MIN_REWARDS_COUNT, MAX_REWARDS_COUNT)
+            );
         }
     }
 

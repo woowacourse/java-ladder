@@ -3,40 +3,45 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import domain.info.Names;
 import domain.info.Rewards;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class RewardsTest {
     private static final String SPLIT_DELIMITER = ",";
 
-    @DisplayName("보상의 입력 개수는 사다리 게임 참가자 수와 동일하다.")
+    @DisplayName("보상의 개수는 2개 이상 100개 이하이다.")
     @ParameterizedTest
-    @CsvSource(value = {"a,b:A,B", "a,b,c:A,B,C", "a,b,c,d,e:A,B,C,D,E"}, delimiter = ':')
-    void validRewardsTest(String rewardsInput, String namesInput) {
-        List<String> rewards = Arrays.asList(rewardsInput.split(SPLIT_DELIMITER));
-        Names names = new Names(
-                Arrays.asList(namesInput.split(SPLIT_DELIMITER))
-        );
+    @ValueSource(strings = {"a,b", "a,b,c", "a,b,c,d,e,f"})
+    void validRewardsTest(String input) {
+        List<String> rewards = Arrays.asList(input.split(SPLIT_DELIMITER));
 
-        assertDoesNotThrow(() -> new Rewards(rewards, names));
+        assertDoesNotThrow(() -> new Rewards(rewards));
     }
 
-    @DisplayName("보상의 입력 개수와 사다리 게임 참가자 수가 다르면 예외가 발생한다.")
+    @DisplayName("보상의 개수가 2개 미만인 경우 예외 처리한다.")
     @ParameterizedTest
-    @CsvSource(value = {"a,b:A,B,C", "a,b,c:A,B", "a,b,c,d,e:A,B,C,D"}, delimiter = ':')
-    void invalidRewardsTest(String rewardsInput, String namesInput) {
-        List<String> rewards = Arrays.asList(rewardsInput.split(SPLIT_DELIMITER));
-        Names names = new Names(
-                Arrays.asList(namesInput.split(SPLIT_DELIMITER))
-        );
+    @ValueSource(strings = {"", "a"})
+    void invalidRewardsTest1(String input) {
+        List<String> rewards = Arrays.asList(input.split(SPLIT_DELIMITER));
 
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Rewards(rewards, names))
-                .withMessageContaining("[ERROR] 보상의 개수는 사용자의 수와 동일해야 합니다.");
+                .isThrownBy(() -> new Rewards(rewards))
+                .withMessageContaining("[ERROR] 보상의 개수는 2개 이상 100개 이하여야 합니다.");
+    }
+
+    @DisplayName("보상의 개수가 100개 초과인 경우 예외 처리한다.")
+    @Test
+    void invalidRewardsTest2() {
+        String input = "a,".repeat(101);
+        List<String> rewards = Arrays.asList(input.split(SPLIT_DELIMITER));
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Rewards(rewards))
+                .withMessageContaining("[ERROR] 보상의 개수는 2개 이상 100개 이하여야 합니다.");
     }
 }

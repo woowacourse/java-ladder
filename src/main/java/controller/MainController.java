@@ -19,7 +19,7 @@ public class MainController {
 
     public MainController(final BooleanGenerator booleanGenerator) {
         names = InputView.readNames();
-        rewards = InputView.readRewards(names);
+        rewards = InputView.readRewards();
         ladder = generateLadder(booleanGenerator);
     }
 

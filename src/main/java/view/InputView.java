@@ -30,9 +30,9 @@ public class InputView {
         return new Names(splitAsList(input));
     }
 
-    public static Rewards readRewards(final Names names) {
+    public static Rewards readRewards() {
         String input = readInput(Message.INPUT_REWARDS.message);
-        return new Rewards(splitAsList(input), names);
+        return new Rewards(splitAsList(input));
     }
 
     private static List<String> splitAsList(final String input) {
