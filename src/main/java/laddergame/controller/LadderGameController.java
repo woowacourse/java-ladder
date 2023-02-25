@@ -3,7 +3,7 @@ package laddergame.controller;
 import java.util.Map;
 import java.util.function.Supplier;
 import laddergame.domain.GameResult;
-import laddergame.domain.GameResults;
+import laddergame.domain.Results;
 import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.Name;
@@ -30,11 +30,11 @@ public class LadderGameController {
 
     public void run() {
         Users users = repeat(this::setUpUsers);
-        GameResults gameResults = repeat(() -> setUpGameResults(users.count()));
+        Results results = repeat(() -> setUpGameResults(users.count()));
         Height ladderHeight = repeat(this::setUpLadderHeight);
         Ladder ladder = new Ladder(ladderHeight, users.count(), new RandomLineMaker());
-        outputView.printLadderResult(ladder, users, gameResults);
-        LadderGame ladderGame = new LadderGame(ladder, users, gameResults);
+        outputView.printLadderResult(ladder, users, results);
+        LadderGame ladderGame = new LadderGame(ladder, users, results);
 
         Map<String, String> gameResultByUser = ladderGame.play();
 
@@ -65,8 +65,8 @@ public class LadderGameController {
         return inputView.inputUserNames();
     }
 
-    private GameResults setUpGameResults(int userCount) {
-        return new GameResults(generateGameResults(getGameResults()), userCount);
+    private Results setUpGameResults(int userCount) {
+        return new Results(generateGameResults(getGameResults()), userCount);
     }
 
     private List<GameResult> generateGameResults(List<String> results) {

@@ -3,7 +3,7 @@ package laddergame.view;
 import java.util.Map;
 import java.util.Map.Entry;
 import laddergame.domain.GameResult;
-import laddergame.domain.GameResults;
+import laddergame.domain.Results;
 import laddergame.domain.Ladder;
 import laddergame.domain.Line;
 import laddergame.domain.Point;
@@ -39,16 +39,16 @@ public class OutputView {
         System.out.println(NEXT_LINE + LADDER_HEIGHT_ENTER_NOTICE_MESSAGE);
     }
 
-    public void printLadderResult(Ladder ladder, Users users, GameResults gameResults) {
+    public void printLadderResult(Ladder ladder, Users users, Results results) {
         System.out.println(NEXT_LINE + LADDER_RESULT + NEXT_LINE);
 
         String firstUserName = users.getFirstUserName();
-        String firstResult = gameResults.getFirstResult();
+        String firstResult = results.getFirstResult();
         int firstLength = Math.max(firstUserName.length(), firstResult.length());
 
         printUsers(users, firstLength);
         printLadder(ladder, firstLength);
-        printResults(gameResults, firstLength);
+        printResults(results, firstLength);
     }
 
     public void printEnterUserToCheckResultNotice() {
@@ -96,12 +96,12 @@ public class OutputView {
         System.out.print(result);
     }
 
-    private void printResults(GameResults gameResults, int firstLength) {
+    private void printResults(Results results, int firstLength) {
         StringBuilder builder = new StringBuilder();
-        String firstResult = gameResults.getFirstResult();
+        String firstResult = results.getFirstResult();
         builder.append(BLANK.repeat(firstLength - firstResult.length() + 1)).append(firstResult);
-        for (int index = SECOND_INDEX; index < gameResults.size(); index++) {
-            GameResult gameResult = gameResults.getResults().get(index);
+        for (int index = SECOND_INDEX; index < results.size(); index++) {
+            GameResult gameResult = results.getResults().get(index);
             String result = gameResult.getResult();
             builder.append(BLANK.repeat(MAX_NAME_LENGTH + 1 - result.length())).append(result);
         }

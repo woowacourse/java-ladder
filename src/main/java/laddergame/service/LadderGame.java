@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import laddergame.domain.GameResult;
-import laddergame.domain.GameResults;
+import laddergame.domain.Results;
 import laddergame.domain.Ladder;
 import laddergame.domain.Line;
 import laddergame.domain.Point;
@@ -17,12 +17,12 @@ public class LadderGame {
 
     private final Ladder ladder;
     private final Users users;
-    private final GameResults gameResults;
+    private final Results results;
 
-    public LadderGame(Ladder ladder, Users users, GameResults gameResults) {
+    public LadderGame(Ladder ladder, Users users, Results results) {
         this.ladder = ladder;
         this.users = users;
-        this.gameResults = gameResults;
+        this.results = results;
     }
 
     public Map<String, String> play() {
@@ -32,7 +32,7 @@ public class LadderGame {
 
             userPosition = progressLines(userPosition);
 
-            GameResult gameResult = gameResults.getResults().get(userPosition);
+            GameResult gameResult = results.getResults().get(userPosition);
             gameResultByUserName.put(user.getName(), gameResult.getResult());
         }
         return gameResultByUserName;

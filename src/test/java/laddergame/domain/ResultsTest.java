@@ -8,7 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("사다리 게임의 결과 목록은 ")
-class GameResultsTest {
+class ResultsTest {
 
     @DisplayName("유저 목록의 크기와 같다.")
     @Test
@@ -21,7 +21,7 @@ class GameResultsTest {
         int userCount = 3;
 
         assertDoesNotThrow(() -> {
-            new GameResults(results, userCount);
+            new Results(results, userCount);
         });
     }
 
@@ -35,6 +35,6 @@ class GameResultsTest {
         ));
         int userCount = 4;
 
-        assertThrows(IllegalArgumentException.class, () -> new GameResults(results, userCount));
+        assertThrows(IllegalArgumentException.class, () -> new Results(results, userCount));
     }
 }

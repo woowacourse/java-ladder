@@ -6,7 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import laddergame.domain.GameResult;
-import laddergame.domain.GameResults;
+import laddergame.domain.Results;
 import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.Name;
@@ -31,12 +31,12 @@ class LadderGameTest {
                 new User(new Name("쥬니")), new User(new Name("테오"))
         ));
 
-        GameResults gameResults = new GameResults(
+        Results results = new Results(
                 List.of(new GameResult("꽝"), new GameResult("3000원"), new GameResult("5000원"), new GameResult("8000원")),
                 userCount
         );
 
-        ladderGame = new LadderGame(ladder, users, gameResults);
+        ladderGame = new LadderGame(ladder, users, results);
     }
 
     @Test

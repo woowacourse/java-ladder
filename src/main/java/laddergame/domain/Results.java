@@ -5,12 +5,12 @@ import static laddergame.utils.ErrorMessage.INVALID_GAME_RESULTS_SIZE;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameResults {
+public class Results {
     private static final int FIRST = 0;
 
     private final List<GameResult> results;
 
-    public GameResults(List<GameResult> gameResults, int userCount) {
+    public Results(List<GameResult> gameResults, int userCount) {
         validateGameResults(gameResults, userCount);
         
         results = new ArrayList<>();
