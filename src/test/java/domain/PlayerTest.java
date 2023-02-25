@@ -2,6 +2,7 @@ package domain;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -55,11 +56,20 @@ public class PlayerTest {
 
     @DisplayName("플레이어는 음수의 위치 정보를 가질 수 없다.")
     @ParameterizedTest
-    @CsvSource(value = {"odo:0:LEFT:-1"}, delimiter = ':')
-    void validateTest_move3(String name, int position, MoveType moveType, int expected) {
+    @CsvSource(value = {"odo:0:LEFT"}, delimiter = ':')
+    void validateTest_move3(String name, int position, MoveType moveType) {
         Player player = new Player(name, position);
         assertThatThrownBy(() -> player.move(moveType))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사람의 위치는 자연수여야합니다.");
+    }
+
+    @DisplayName("플레이어의 이름이 동일한 경우에는 동일한 플레이어이다.")
+    @Test
+    void validateTest_equals() {
+        String name = "kong";
+        Player player1 = new Player(name, 0);
+        Player player2 = new Player(name, 0);
+        assertThat(player1).isEqualTo(player2);
     }
 }
