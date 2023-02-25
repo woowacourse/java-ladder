@@ -42,4 +42,16 @@ public class LadderGame {
             players.move(line);
         }
     }
+
+    public Ladder getLadder() {
+        return ladder;
+    }
+
+    public Players getPlayers() {
+        return players;
+    }
+
+    public Prizes getPrizes() {
+        return prizes;
+    }
 }
