@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Lines {
+public class Ladder {
     private final List<Line> lines;
 
-    public Lines(int countOfLine, int countOfBar) {
+    public Ladder(int countOfLine, int countOfBar) {
         lines = new ArrayList<>();
         generateLines(countOfLine, countOfBar);
     }
