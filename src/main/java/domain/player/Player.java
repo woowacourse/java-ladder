@@ -1,8 +1,6 @@
 package domain.player;
 
 import domain.ladder.Ladder;
-import domain.ladder.Line;
-import java.util.List;
 
 public class Player {
 
@@ -19,25 +17,9 @@ public class Player {
     }
 
     public Position move(Ladder ladder) {
-        List<Line> lines = ladder.getLines();
-
-        for (Line line : lines) {
-            moveEachLine(line);
-        }
-
-        return position;
+        return ladder.play(position);
     }
 
-    private void moveEachLine(Line line) {
-        if (position.isLeftSidePassable(line)) {
-            position.moveLeft();
-            return;
-        }
-
-        if (position.isRightSidePassable(line)) {
-            position.moveRight();
-        }
-    }
 
     public String getName() {
         return name.getName();
