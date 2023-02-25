@@ -6,7 +6,8 @@ import domain.product.Product;
 import java.util.Map;
 
 public class LadderGameResult {
-    Map<Player, Product> ladderResult;
+    private final Map<Player, Product> ladderResult;
+
     public LadderGameResult(Map<Player, Product> ladderResult) {
         this.ladderResult = ladderResult;
     }
@@ -14,7 +15,6 @@ public class LadderGameResult {
     public Map<Player, Product> getLadderResult() {
         return ladderResult;
     }
-
 
 
 }

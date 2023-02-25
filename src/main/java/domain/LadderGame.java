@@ -12,9 +12,9 @@ import java.util.Map;
 
 public class LadderGame {
     public static final String PLAYER_COUNT_SAME_PRODUCT = "[ERROR] 상품의 개수와 플레이어의 수가 일치하지 않습니다.";
-    Products products;
-    Players players;
-    Ladder ladder;
+    private final Products products;
+    private final Players players;
+    private final Ladder ladder;
 
     public LadderGame(Players players, Products products, Ladder ladder) {
         checkLadderGame(players, products);
@@ -23,12 +23,12 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public Map<Player, Product> play() {
+    public LadderGameResult play() {
         Map<Player, Product> result = new LinkedHashMap<>();
         for (Player player : players.getPlayers()) {
             result.put(player, products.productOfIndex(oneClimbTheLadder(player, ladder)));
         }
-        return result;
+        return new LadderGameResult(result);
     }
 
     private int oneClimbTheLadder(Player player, Ladder ladder) {

@@ -30,7 +30,7 @@ public class LadderGameController {
         Ladder ladder = Ladder.generate(players, height, trueOrFalseGenerator);
         outputView.printResult(players, ladder, products);
         LadderGame ladderGame = new LadderGame(players, products, ladder);
-        LadderGameResult ladderGameResult = new LadderGameResult(ladderGame.play());
+        LadderGameResult ladderGameResult = ladderGame.play();
         ladderGameTotalResult(ladderGameResult);
     }
 
@@ -41,6 +41,5 @@ public class LadderGameController {
             outputView.printResultOfPlayerName(searchByPlayerName, ladderGameResult);
         }
         while (!searchByPlayerName.equals(TOTAL_PLAYER_SEARCH));
-
     }
 }
