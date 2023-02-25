@@ -53,10 +53,10 @@ class PositionTest {
         LineMaker lineMaker = new FixedLineMaker();
         Line line = new Line(lineMaker, userCount);
         //when
-        int movedPosition = position.moveByConnectionStatus(line);
+        position.moveByConnectionStatus(line);
 
         //then
-        Assertions.assertThat(movedPosition).isEqualTo(initialPosition + 1);
+        Assertions.assertThat(position.getPosition()).isEqualTo(initialPosition + 1);
     }
 
     @DisplayName("왼쪽으로 이동 시 위치가 1 증가한다.")
@@ -70,10 +70,10 @@ class PositionTest {
         LineMaker lineMaker = new FixedLineMaker();
         Line line = new Line(lineMaker, userCount);
         //when
-        int movedPosition = position.moveByConnectionStatus(line);
+        position.moveByConnectionStatus(line);
 
         //then
-        Assertions.assertThat(movedPosition).isEqualTo(initialPosition - 1);
+        Assertions.assertThat(position.getPosition()).isEqualTo(initialPosition - 1);
     }
 
     private class FixedLineMaker implements LineMaker {
