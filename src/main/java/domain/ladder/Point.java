@@ -22,11 +22,11 @@ public class Point {
         return (point ? 1 : 0);
     }
 
-    public boolean isPoint() {
+    public boolean isConnected() {
         return point;
     }
 
-    public Point nonPass() {
+    public Point setDisconnect() {
         return new Point(false);
     }
 }
