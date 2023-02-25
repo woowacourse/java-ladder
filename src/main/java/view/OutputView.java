@@ -50,14 +50,14 @@ public class OutputView {
         }
     }
 
-    public void printResult(Players players, List<Line> ladder, Rewards rewards) {
+    public static void printResult(Players players, List<Line> ladder, Rewards rewards) {
         System.out.println(LADDER_RESULT_GUIDE_MESSAGE);
         printNames(players);
         printLadders(ladder);
         printRewards(rewards);
     }
 
-    public void printNames(Players players) {
+    public static void printNames(Players players) {
         List<String> names = players.getPlayersName();
         for (int i = 0; i < names.size(); i++) {
             printFirstOrLastPlayer(i, names);
@@ -65,25 +65,25 @@ public class OutputView {
         }
     }
 
-    private void printFirstOrLastPlayer(int index, List<String> names) {
+    private static void printFirstOrLastPlayer(int index, List<String> names) {
         if (isFirstOrLast(index, names.size())) {
             System.out.printf(FIRST_OR_LAST_FORMAT, names.get(index));
         }
     }
 
-    public void printLadders(List<Line> lines) {
+    public static void printLadders(List<Line> lines) {
         System.out.println();
         for (Line line : lines) {
             printLine(line);
         }
     }
 
-    private void printLine(Line line) {
+    private static void printLine(Line line) {
         List<String> ladders = BlockType.getBlockTypes(line);
         System.out.println("    " + VERTICAL_BAR + String.join(VERTICAL_BAR, ladders) + VERTICAL_BAR);
     }
 
-    public void printRewards(Rewards rewards) {
+    public static void printRewards(Rewards rewards) {
         List<Reward> rewardsRewards = rewards.getRewards();
         for (int i = 0; i < rewardsRewards.size(); i++) {
             Reward reward = rewardsRewards.get(i);
@@ -104,7 +104,7 @@ public class OutputView {
         }
     }
 
-    public void printReward(String input, Players players) {
+    public static void printReward(String input, Players players) {
         System.out.println(REWARD_GUIDE_MESSAGE);
         if (isAll(input)) {
             printAllPlayersRewards(players);
