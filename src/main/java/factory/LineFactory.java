@@ -36,10 +36,12 @@ public class LineFactory {
     }
 
     private static Point generatePoint(Point previousPoint, PointGenerateStrategy pointGenerateStrategy) {
+        // TODO : 리팩토링 해보기
+        Point generatedPoint = pointGenerateStrategy.generate();
         if (previousPoint == Point.EXIST) {
             return Point.NOT_EXIST;
         }
-        return pointGenerateStrategy.generate();
+        return generatedPoint;
     }
 
     private static Point getPreviousPoint(final List<Point> points, final int currentPointIndex) {
