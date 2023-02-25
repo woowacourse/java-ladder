@@ -35,8 +35,10 @@ public class LadderGameController {
         List<String> resultNames = getResultNames(results);
         outputView.printResultNames(resultNames);
 
-        String requestContent = makeRequest();
         LadderGame ladderGame = new LadderGame(participants, ladder, results);
+        ladderGame.playGameOfAllParticipants();
+
+        String requestContent = makeRequest();
         Map<String, String> resultByParticipants = ladderGame.getResultByRequestContent(requestContent);
 
         outputView.printResultGuide();

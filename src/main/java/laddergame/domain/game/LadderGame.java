@@ -24,14 +24,18 @@ public class LadderGame {
         this.results = results;
     }
 
+    public void playGameOfAllParticipants() {
+        List<Participant> players = participants.getParticipants();
+        for (Participant player : players) {
+            ladder.moveToDestination(player);
+        }
+    }
+
     public Map<String, String> getResultByRequestContent(final String requestContent) {
         validateRequestExistence(requestContent);
         Map<String, String> resultByParticipants = new HashMap<>();
-
         List<Participant> requestedParticipants = participants.findParticipants(requestContent);
-
         for (Participant requestedParticipant : requestedParticipants) {
-            ladder.moveToDestination(requestedParticipant);
             int participantPosition = requestedParticipant.getParticipantPosition();
             Result result = results.getResult(participantPosition);
             resultByParticipants.put(requestedParticipant.getName(), result.getResultName());
