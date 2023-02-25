@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 import utils.validator.Validator;
 
 public class User {
@@ -10,11 +12,24 @@ public class User {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
-    public boolean isEqualName(String userName) {
-        return userName.equals(name);
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj) {
+            return true;
+        }
+        if(!(obj instanceof User)) {
+            return false;
+        }
+        User user = (User) obj;
+        return this.name.equals(user.name);
+    }
+
+    public String getName() {
+        return name;
     }
 }

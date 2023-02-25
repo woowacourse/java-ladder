@@ -27,7 +27,7 @@ public class Users {
 
     public User findUserByName(String userName) {
         return users.stream()
-                .filter(user -> user.isEqualName(userName))
+                .filter(user -> user.equals(new User(userName)))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NONE_EXISTED_USER.getMessage()));
     }

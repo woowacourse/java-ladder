@@ -31,7 +31,7 @@ public class UserTest {
     void isEqualTest(String userName, boolean expected) {
         User pobi = new User("pobi");
 
-        boolean result = pobi.isEqualName(userName);
+        boolean result = pobi.equals(new User(userName));
 
         assertThat(result).isEqualTo(expected);
     }

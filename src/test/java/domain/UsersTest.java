@@ -41,7 +41,7 @@ public class UsersTest {
         users.add(user2);
         users.add(user3);
 
-        assertThatThrownBy(() -> users.findUserByName("boxter"))
+        assertThatThrownBy(() -> users.findUserByName("boxte"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NONE_EXISTED_USER.getMessage());
     }
