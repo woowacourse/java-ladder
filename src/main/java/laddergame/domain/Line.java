@@ -38,8 +38,7 @@ public class Line {
 
     public int move(int currentPosition) {
         int position = currentPosition;
-        int playerCount = points.size() + 1;
-        if (canMoveRight(currentPosition, playerCount)) {
+        if (canMoveRight(currentPosition)) {
             position++;
         }
         if (canMoveLeft(currentPosition)) {
@@ -48,12 +47,14 @@ public class Line {
         return position;
     }
 
-    private boolean canMoveRight(int position, int playerCount) {
-        return position < playerCount - 1 && isConnected(position);
+    private boolean canMoveRight(int position) {
+        final int maxPosition = points.size();
+        return position < maxPosition && isConnected(position);
     }
 
     private boolean canMoveLeft(int position) {
-        return position > 0 && isConnected(position - 1);
+        final int minPosition = 0;
+        return position > minPosition && isConnected(position - 1);
     }
 
     private boolean isConnected(int position) {
