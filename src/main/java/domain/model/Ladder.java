@@ -34,7 +34,7 @@ public class Ladder {
         return layer.getLine(position.getX());
     }
 
-    public void addLayer(Layer layer) {
+    public void addLayer(final Layer layer) {
         layers.add(layer);
     }
 
