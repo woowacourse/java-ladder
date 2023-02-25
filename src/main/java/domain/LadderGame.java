@@ -26,12 +26,12 @@ public class LadderGame {
     public LadderGameResult play() {
         Map<Player, Product> result = new LinkedHashMap<>();
         for (Player player : players.getPlayers()) {
-            result.put(player, products.productOfIndex(oneClimbTheLadder(player, ladder)));
+            result.put(player, products.productOfIndex(climbLadder(player, ladder)));
         }
         return new LadderGameResult(result);
     }
 
-    private int oneClimbTheLadder(Player player, Ladder ladder) {
+    private int climbLadder(Player player, Ladder ladder) {
         for (Line line : ladder.getLines()) {
             climbTheLadderPlayerPosition(player, line);
         }
