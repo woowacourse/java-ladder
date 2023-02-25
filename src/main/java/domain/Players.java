@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,15 +37,4 @@ public class Players {
                 .anyMatch(player -> player.getName().equals(playerName) || playerName.equals("all"));
     }
 
-    public void switchingPlayers(Line line) {
-        for (int pointNumber = 0; pointNumber < line.getSize(); pointNumber++) {
-            calculatePoints(line, pointNumber);
-        }
-    }
-
-    private void calculatePoints(Line line, int pointNumber) {
-        if (line.canGoThisPoint(pointNumber)) {
-            Collections.swap(players, pointNumber, pointNumber + 1);
-        }
-    }
 }

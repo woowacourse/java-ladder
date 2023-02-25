@@ -2,6 +2,9 @@ package ui.output;
 
 import domain.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class OutputView {
 
     private static final String EXECUTE_LADDER_RESULT = "사다리 결과";
@@ -46,7 +49,7 @@ public class OutputView {
 
     private static void printResults(Results results) {
         for (Result result : results.getResults()) {
-            System.out.print(" ".repeat(5 - result.getResult().length()) + result.getResult() + SPACE);
+            System.out.print(" ".repeat(5 - result.getPrize().length()) + result.getPrize() + SPACE);
         }
         System.out.println();
     }
@@ -57,27 +60,34 @@ public class OutputView {
             printAll(players, results);
             return;
         }
-        printDetail(players, results, playerName);
+        printDetail(results, playerName);
     }
 
     private static void printAll(Players players, Results results) {
-        for (Player player : players.getPlayers()) {
-            System.out.println(player.getName() + COLON + results.getResults().get(getResultIndex(players, player.getName())).getResult());
+        List<Result> resultList = results.getResults();
+        List<String> playerNames = players.getPlayers().stream()
+                .map(Player::getName)
+                .collect(Collectors.toList());
+
+        for (String playerName : playerNames) {
+            Result result = findResult(resultList, playerName);
+            System.out.println(playerName + COLON + result.getPrize());
         }
     }
 
-    private static void printDetail(Players players, Results results, String playerName) {
-        players.getPlayers().stream()
-                .filter(player -> player.getName().equals(playerName))
-                .forEach(player -> {
-                    System.out.println(results.getResults().get(getResultIndex(players, playerName)).getResult());
+    private static Result findResult(List<Result> resultList, String playerName) {
+        return resultList.stream()
+                .filter(r -> r.getPlayerName().equals(playerName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("플레이어를 찾을 수 없습니다."));
+    }
+
+    private static void printDetail(Results results, String playerName) {
+        results.getResults().stream()
+                .filter(result -> result.getPlayerName().equals(playerName))
+                .forEach(result -> {
+                    System.out.println(result.getPlayerName() + COLON + result.getPrize());
                 });
     }
 
-    private static int getResultIndex(Players players, String playerName) {
-        for (int i = 0; i < players.getPlayers().size(); i++) {
-            if (players.getPlayers().get(i).getName().equals(playerName)) return i;
-        }
-        return -1;
-    }
 }

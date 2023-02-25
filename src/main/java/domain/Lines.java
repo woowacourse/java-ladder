@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lines {
@@ -34,10 +35,25 @@ public class Lines {
         return lines;
     }
 
-    public void calculateResults(Players players) {
+    public void calculateResults(Players players, Results results) {
+        List<Player> playerList = new ArrayList<>(players.getPlayers());
         for (Line line : lines) {
-            players.switchingPlayers(line);
+            playerList = switchingPlayers(line, playerList);
         }
+        results.matchPlayerName(playerList);
     }
 
+    public List<Player> switchingPlayers(Line line, List<Player> players) {
+        for (int pointNumber = 0; pointNumber < line.getSize(); pointNumber++) {
+            players = calculatePoints(line, pointNumber, players);
+        }
+        return players;
+    }
+
+    private List<Player> calculatePoints(Line line, int pointNumber, List<Player> players) {
+        if (line.canGoThisPoint(pointNumber)) {
+            Collections.swap(players, pointNumber, pointNumber + 1);
+        }
+        return players;
+    }
 }

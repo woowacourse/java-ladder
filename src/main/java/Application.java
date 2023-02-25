@@ -1,4 +1,5 @@
 import domain.*;
+import ui.input.InputView;
 import ui.output.OutputView;
 
 import java.util.Arrays;
@@ -8,13 +9,12 @@ import static ui.input.InputView.*;
 public class Application {
     public static void main(String[] args) {
         Players players = getPlayers();
-        Results results = getResults(players);
+        Results results = new Results(players.getPlayersCount(), Arrays.asList(InputView.getResult().split(COMMA)));
         Lines lines = getLinesResult(players);
 
         OutputView.printLadderResult(players, lines, results);
-
-        lines.calculateResults(players);
-        showPlayerLadderResult(players, results);
+        lines.calculateResults(players, results);
+        showPlayersLadderResults(players, results);
     }
 
     private static Players getPlayers() {
@@ -22,16 +22,11 @@ public class Application {
         return new Players(Arrays.asList(playersName.split(COMMA)));
     }
 
-    private static Results getResults(Players players) {
-        String ladderResults = getResult();
-        return new Results(players.getPlayersCount(), Arrays.asList(ladderResults.split(COMMA)));
-    }
-
     private static Lines getLinesResult(Players players) {
         return new Lines(players.getPlayersCount(), getLadderHeight());
     }
 
-    private static void showPlayerLadderResult(Players players, Results results) {
+    private static void showPlayersLadderResults(Players players, Results results) {
         while (true) {
             String playerName = getPlayer();
             if (playerName.equals("q")) break;

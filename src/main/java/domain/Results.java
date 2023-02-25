@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Results {
 
@@ -9,7 +10,7 @@ public class Results {
 
     public Results(int playerCount, List<String> inputResults) {
         validateInputResults(playerCount, inputResults);
-        results = getResults(inputResults);
+        results = Result.createResults(inputResults);
     }
 
     public List<Result> getResults() {
@@ -22,12 +23,10 @@ public class Results {
         }
     }
 
-    private List<Result> getResults(List<String> inputResults) {
-        List<Result> resultList = new ArrayList<>();
-        for (String result : inputResults) {
-            resultList.add(new Result(result));
+    public void matchPlayerName(List<Player> playerList) {
+        for (int i = 0; i < results.size(); i++) {
+            results.get(i).savePlayer(playerList.get(i).getName());
         }
-        return resultList;
     }
 
 }
