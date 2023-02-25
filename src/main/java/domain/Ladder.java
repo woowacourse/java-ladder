@@ -12,23 +12,29 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(final int height, final int personCount, final BooleanGenerator booleanGenerator) {
-        validateHeight(height);
-        LinksGenerator linksGenerator = new LinksGenerator(booleanGenerator);
-
-        lines = new ArrayList<>();
-        for(int line = 0; line < height; line++) {
-            lines.add(new Line(linksGenerator.generate(personCount)));
-        }
+    Ladder(final List<Line> lines) {
+        this.lines = lines;
     }
 
-    public void validateHeight(final int height) {
-        if (MINIMUM_HEIGHT > height || height > MAXIMUM_HEIGHT) {
-            throw new IllegalArgumentException(ErrorMessage.LADDER_HEIGHT_EXCEPTION.getMessage());
+    public static Ladder of(final int height, final int personCount) {
+        BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
+        validateHeight(height);
+
+        List<Line> lines = new ArrayList<>();
+        for(int line = 0; line < height; line++) {
+            lines.add(Line.of(personCount, booleanGenerator));
         }
+
+        return new Ladder(lines);
     }
 
     public List<Line> getLadder() {
         return List.copyOf(lines);
+    }
+
+    private static void validateHeight(final int height) {
+        if (MINIMUM_HEIGHT > height || height > MAXIMUM_HEIGHT) {
+            throw new IllegalArgumentException(ErrorMessage.LADDER_HEIGHT_EXCEPTION.getMessage());
+        }
     }
 }

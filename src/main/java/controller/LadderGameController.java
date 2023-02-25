@@ -46,7 +46,7 @@ public class LadderGameController {
 
     private Ladder generateLadder(final Users users) {
         try {
-            return new Ladder(InputView.readLadderHeight(), users.size(), new RandomBooleanGenerator());
+            return Ladder.of(InputView.readLadderHeight(), users.size());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return generateLadder(users);
