@@ -1,6 +1,7 @@
 package ladder.client.view;
 
 import ladder.domain.LadderGame;
+import ladder.domain.dto.PlayerResultDto;
 
 /**
  * 이 클래스는 사다리 게임을 실행하는 클라이언트 클래스입니다
@@ -10,6 +11,8 @@ import ladder.domain.LadderGame;
  * LadderGame 클래스를 통해서 사다리 게임을 실행하고, OutputView 를 통해서 출력해주는 책임을 가지고 있습니다
  */
 public class LadderGameClient {
+
+    private static final String ALL_RESULT = "all";
 
     private final InputView inputView;
     private final LadderGame ladderGame;
@@ -21,7 +24,11 @@ public class LadderGameClient {
 
     public void play() {
         initializeLadderGame();
+        OutputView.printLadder(ladderGame.getLadderInfo());
+        PlayerResultDto ladderGameResult = ladderGame.calculateResult();
+        printResult(ladderGameResult);
     }
+
 
     private void initializeLadderGame() {
         repeatIfError(this::initializePlayers);
@@ -39,6 +46,23 @@ public class LadderGameClient {
 
     private void initializeLadder() {
         ladderGame.initializeLadder(inputView.inputHeight());
+    }
+
+    private void printResult(PlayerResultDto ladderGameResult) {
+        String targetPlayerName;
+        do {
+            targetPlayerName = inputView.inputPlayerResult();
+            printResult(ladderGameResult, targetPlayerName);
+        } while (!ALL_RESULT.equals(targetPlayerName));
+    }
+
+    private void printResult(PlayerResultDto ladderGameResult, String targetPlayerName) {
+        if (ALL_RESULT.equals(targetPlayerName)) {
+            OutputView.printResults(ladderGameResult.getPlayerResults());
+            return;
+        }
+        OutputView.printResult(ladderGameResult.getPlayerResults()
+                .get(targetPlayerName));
     }
 
     private void repeatIfError(Runnable runnable) {
