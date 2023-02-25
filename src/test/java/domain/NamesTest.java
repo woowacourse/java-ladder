@@ -40,7 +40,7 @@ public class NamesTest {
         final Name charlieName = new Name("찰리");
         final Names names = new Names(List.of(charlieName, new Name("가비")));
 
-        assertThat(names.hasName("찰리")).isEqualTo(true);
+        assertThat(names.isNotExistUser("찰리")).isEqualTo(false);
     }
 
     @Test

@@ -52,12 +52,8 @@ public class LadderController {
     }
 
     private void validateTargetUserExists(final Names names, final String targetName) {
-        if (isNotPlayer(names, targetName)) {
+        if (names.isNotExistUser(targetName)) {
             throw new IllegalArgumentException(ERROR_NON_EXIST_USER);
         }
-    }
-
-    private boolean isNotPlayer(final Names names, final String targetName) {
-        return !names.hasName(targetName);
     }
 }

@@ -38,9 +38,9 @@ public class Names {
         return names.size();
     }
 
-    public boolean hasName(final String targetName) {
+    public boolean isNotExistUser(final String targetName) {
         return names.stream()
-                .anyMatch(name -> name.getValue().equals(targetName));
+                .allMatch(name -> !name.getValue().equals(targetName));
     }
 
     public List<Name> getNames() {
