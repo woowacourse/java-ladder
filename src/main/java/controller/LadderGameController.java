@@ -7,11 +7,14 @@ import view.OutputView;
 import java.util.List;
 
 public class LadderGameController {
+
     private static final String END_COMMAND = "all";
 
     private final InputView inputView;
     private final OutputView outputView;
     private BooleanGenerator booleanGenerator;
+
+    private boolean flag = true;
 
     public LadderGameController(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
         this.inputView = inputView;
@@ -50,15 +53,28 @@ public class LadderGameController {
     }
 
     private void printLadderResultWithRetry(Players players, Map<Player, Prize> result) {
-        String playerName = inputView.readWantedResultPlayer();
-
-        while (!playerName.equals(END_COMMAND)) {
-            Player wantedResultPlayer = players.findPlayer(playerName);
-            outputView.printIndividualResult(result, wantedResultPlayer);
-            playerName = inputView.readWantedResultPlayer();
+        while (flag) {
+            String playerName = inputView.readWantedResultPlayer();
+            printLadderResult(players, result, playerName);
+            isExit(playerName);
         }
+    }
 
-        outputView.printAllResult(result);
+    private void printLadderResult(Players players, Map<Player, Prize> result, String input) {
+        List<String> playersName = players.getPlayersName();
+        if (input.equals("all")) {
+            outputView.printAllResult(result);
+        }
+        if (playersName.contains(input)) {
+            Player wantedResultPlayer = players.findPlayer(input);
+            outputView.printIndividualResult(result, wantedResultPlayer);
+        }
+    }
+
+    private void isExit(String input) {
+        if (input.equals(END_COMMAND)) {
+            flag = false;
+        }
     }
 
     private void printLadder(Players players, Ladder ladder, Prizes prizes) {
