@@ -154,3 +154,10 @@
 
 - `Player` 객체에 최종 결과가 정의되어 있지 않다 보니, `LadderGame`에서 이름을 입력받아, 결과를 받아 와야 하는데, 불편하다! 부자연스럽다! 어떻게 하나!
     - `말랑`은 부자연스럽지 않다고 한다.
+
+---
+
+### 3단계 해결하지 못한 문제
+
+1. `MissionTest`에서 `@NullSource`를 사용한 테스트를 하던 도중, `NullPointerException`이 발생하는데, 이것을 프로덕션 코드에서 `String.isBlank()` 메서드로
+   받아서 `IllegalArgumentException`으로 처리하겠다고 하는데도, `IllegalArgumentException`이 아닌 `NullPointerException`이 계속해서 발생한다.

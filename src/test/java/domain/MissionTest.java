@@ -11,33 +11,49 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @SuppressWarnings("NonAsciiCharacters")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class MissionTest {
 
+    @DisplayName("입력값에 따라 미션을 생성할 수 있다.")
     @Nested
-    @DisplayName("미션 생성 테스트")
     class createMissionTest {
+        @DisplayName("정상 입력 시 미션을 생성한다.")
         @ParameterizedTest
         @ValueSource(strings = {"꽝", "5000", "3000"})
-        void 미션_생성_값_입력(String input) {
+        void validInputTest(String input) {
             Mission mission = new Mission(input);
             Assertions.assertEquals(mission.getMission(), input);
         }
 
-        @Test
-        void 미션_글자수가_5글자_초과이면_예외_처리() {
-            assertThatIllegalArgumentException()
-                    .isThrownBy(() -> new Mission("다섯글자이상"));
-        }
+        @DisplayName("부적절한 입력값으로는 미션을 생성할 수 없다.")
+        @Nested
+        class invalidInputTest {
+            @DisplayName("다섯 글자 이상은 미션을 생성할 수 없다.")
+            @Test
+            void tooLongInputTest() {
+                assertThatIllegalArgumentException()
+                        .isThrownBy(() -> new Mission("다섯글자이상"));
+            }
 
-        @ParameterizedTest
-        @ValueSource(strings = {"", " "})
-        void 공백으로_생성시_예외_처리(String input) {
-            assertThatIllegalArgumentException()
-                    .isThrownBy(() -> new Mission(input));
+            @DisplayName("공백은 미션을 생성할 수 없다.")
+            @ParameterizedTest
+            @ValueSource(strings = {"", " "})
+            void emptySourceTest(String input) {
+                assertThatIllegalArgumentException()
+                        .isThrownBy(() -> new Mission(input));
+            }
+
+            @DisplayName("빈 값은 미션을 생성할 수 없다.")
+            @ParameterizedTest
+            @NullSource
+            void nullSourceTest(String input) {
+                assertThatIllegalArgumentException()
+                        .isThrownBy(() -> new Mission(input));
+            }
         }
     }
 
