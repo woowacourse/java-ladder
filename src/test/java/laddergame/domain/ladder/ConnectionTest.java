@@ -14,6 +14,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ConnectionTest {
 
     @ParameterizedTest
+    @MethodSource("createFromMethodParameters")
+    @DisplayName("boolean 값이 주어졌을 때 from 메서드를 사용하면 ")
+    void givenBoolean_whenCallFrom_thenReturnConnection(final boolean value, final Connection result) {
+        // when
+        final Connection connection = Connection.from(value);
+
+        // then
+        assertThat(connection).isEqualTo(result);
+    }
+
+    private static Stream<Arguments> createFromMethodParameters() {
+        return Stream.of(
+                Arguments.of(true, CONNECTED),
+                Arguments.of(false, UNCONNECTED)
+        );
+    }
+
+    @ParameterizedTest
     @MethodSource("createOverlapParameters")
     @DisplayName("Connection이 연속으로 이어져 있으면 true를 반환하고 아닌 경우에는 false를 반환한다.")
     void givenConnection_thenJudgeWhetherOverlap(
