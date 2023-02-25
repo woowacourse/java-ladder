@@ -14,6 +14,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class LadderMakerTest {
     private static final BooleanGenerator TRUE_BOOLEAN_GENERATOR = () -> true;
     private static final BooleanGenerator FALSE_BOOLEAN_GENERATOR = () -> false;
+
     private LadderMaker ladderMaker;
 
     @Test
@@ -23,6 +24,7 @@ public class LadderMakerTest {
         Height height = new Height(5);
         Width width = new Width(5);
         Ladder ladder = ladderMaker.make(height, width);
+
         assertThat(ladder.getHeight()).isEqualTo(5);
         assertThat(ladder.getWidth()).isEqualTo(5);
     }
@@ -34,6 +36,7 @@ public class LadderMakerTest {
         Height height = new Height(5);
         Width width = new Width(5);
         Ladder ladder = ladderMaker.make(height, width);
+
         List<Layer> layers = ladder.getLayers();
         for (Layer layer : layers) {
             assertEachLineTrue(layer);
@@ -47,6 +50,7 @@ public class LadderMakerTest {
         Height height = new Height(5);
         Width width = new Width(5);
         Ladder ladder = ladderMaker.make(height, width);
+
         List<Layer> layers = ladder.getLayers();
         for (Layer layer : layers) {
             assertEachLineFalse(layer);
