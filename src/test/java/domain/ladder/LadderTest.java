@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import domain.util.PointGenerator;
 
 class LadderTest {
-
+	// TODO: Ladder 클래스 생성자 수정에 따른 테스트 수정 필요.
 	@Test
 	@DisplayName("사다리 생성 테스트")
 	void buildLadderTest() {
@@ -44,6 +44,7 @@ class LadderTest {
 	@DisplayName("0, 1, 2, 3의 index가 1, 0, 3, 2로 변해야 한다.")
 	void getMovedIndexTest() {
 		Ladder ladder = new Ladder(new LadderHeight(3), new LadderWidth(3), new PresentPointGenerator());
+		// TODO: getMovedIndex() 메서드 사용 불가.
 		List<Integer> indices = ladder.getMovedIndex();
 		Assertions.assertThat(indices).containsExactly(1, 0, 3, 2);
 	}

@@ -13,18 +13,6 @@ public class ResultMapper {
 	private static final String KEY_NAME = "all";
 	private static final String RESULT_TARGETS_INVALID_ERROR_MSG = "중복되거나 존재하지 않는 결과를 출력할 수 없습니다.";
 
-	public static Map<User, End> map(final List<User> users,
-		final List<End> ends,
-		final List<Integer> indicies) {
-
-		Map<User, End> map = new LinkedHashMap<>();
-		int size = users.size();
-		for (int i = 0; i < size; i++) {
-			map.put(users.get(i), ends.get(indicies.get(i)));
-		}
-		return map;
-	}
-
 	public static Map<User, End> toResult(final Map<User, End> results, final List<String> targetUserNames) {
 		validateDuplication(targetUserNames);
 		validatePresence(results.keySet(), targetUserNames);
