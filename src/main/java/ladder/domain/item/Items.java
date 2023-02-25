@@ -20,7 +20,7 @@ public class Items {
     public static Items of(final List<String> names, int playerCount) {
         validateItemCount(names, playerCount);
         return IntStream.range(0, names.size())
-                .mapToObj(index -> new Item(names.get(index), Position.valueOf(index)))
+                .mapToObj(index -> Item.of(names.get(index), index))
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Items::new));
     }
 

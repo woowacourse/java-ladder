@@ -6,9 +6,13 @@ public class Item {
     private final ItemName name;
     private final Position position;
 
-    public Item(final String name, final Position position) {
-        this.name = new ItemName(name);
+    private Item(final ItemName name, final Position position) {
+        this.name = name;
         this.position = position;
+    }
+
+    public static Item of(final String name, final int index) {
+        return new Item(new ItemName(name), Position.valueOf(index));
     }
 
     public boolean isSamePosition(final Position position) {
