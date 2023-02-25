@@ -1,5 +1,6 @@
 package domain.prize;
 
+import domain.Position;
 import domain.user.Users;
 import exception.ErrorMessage;
 import java.util.ArrayList;
@@ -24,9 +25,8 @@ public class Prizes {
         }
     }
 
-    //TODO: 나중에 position 을 Position으로 포장할지 고민
-    public Prize getPrizeBy(final int position) {
-        return prizes.get(position);
+    public Prize getPrizeBy(final Position position) {
+        return prizes.get(position.getPosition());
     }
 
     public List<String> getPrizes() {

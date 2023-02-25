@@ -1,5 +1,6 @@
 package domain.user;
 
+import domain.Position;
 import domain.ladder.Line;
 import domain.prize.Prize;
 import domain.prize.Prizes;
@@ -81,6 +82,6 @@ public class Users {
 
     private Prize getPrizeByUserName(final Prizes prizes, final String userName) {
         final int userIndex = users.indexOf(new User(userName));
-        return prizes.getPrizeBy(userIndex);
+        return prizes.getPrizeBy(new Position(userIndex));
     }
 }

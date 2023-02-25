@@ -12,13 +12,13 @@ class PrizesTest {
     private final Users users = new Users(List.of("홍실", "다니"));
 
     @Test
-    @DisplayName("poition에 맞는 Prize를 반환하는 기능 테스튼")
-    void getPrizeByPositionTest() {
+    @DisplayName("Position 객체를 인자로 받아 Prize를 반환하는 기능 테스트")
+    void getPrizeByPositionObject() {
         final int position = 0;
         final List<String> prizeNames = List.of("1등", "2등");
         final Prizes prizes = new Prizes(prizeNames, users);
 
-        Assertions.assertThat(prizes.getPrizeBy(position))
+        Assertions.assertThat(prizes.getPrizeBy(new Position(position)))
                 .extracting("name")
                 .isEqualTo(prizeNames.get(position));
     }
