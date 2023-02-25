@@ -1,8 +1,5 @@
 package domain;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public enum Bridge {
     CONNECTED(true), UNCONNECTED(false);
 
@@ -19,11 +16,7 @@ public enum Bridge {
         return Bridge.UNCONNECTED;
     }
 
-    public static List<Boolean> convertToConnectionStatus(List<Bridge> bridges) {
-        return bridges
-                .stream()
-                .map(bridge -> bridge.isConnected)
-                .collect(Collectors.toList());
+    public boolean isConnected() {
+        return isConnected;
     }
-
 }

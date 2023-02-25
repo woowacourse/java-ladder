@@ -31,8 +31,7 @@ public class LadderGame {
     public List<List<Boolean>> getLadder() {
         return ladder.getLines()
                 .stream()
-                .map(Line::getBridges)
-                .map(Bridge::convertToConnectionStatus)
+                .map(this::getConnectionStatusInLine)
                 .collect(Collectors.toList());
     }
 
@@ -47,6 +46,13 @@ public class LadderGame {
         return winningEntry.getWinningEntry()
                 .stream()
                 .map(WinningResult::getResult)
+                .collect(Collectors.toList());
+    }
+
+    private List<Boolean> getConnectionStatusInLine(Line line) {
+        return line.getBridges()
+                .stream()
+                .map(Bridge::isConnected)
                 .collect(Collectors.toList());
     }
 }
