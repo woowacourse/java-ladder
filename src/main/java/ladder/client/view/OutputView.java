@@ -90,4 +90,8 @@ public class OutputView {
     private static String generateResultMessage(Map.Entry<String, String> result) {
         return result.getKey() + " : " + result.getValue();
     }
+
+    static void printError(Exception e) {
+        System.out.println(e.getMessage());
+    }
 }
