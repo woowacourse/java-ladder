@@ -29,29 +29,31 @@ public class LadderGame {
         }
     }
 
-    public Map<Participant, Result> getResultByRequestContent(final UserRequest request) {
-        Map<Participant, Result> resultByParticipants = new HashMap<>();
+    public Map<Participant, Result> getResultByParticipants(final UserRequest request) {
         if (request.isAllPlayer()) {
-            List<Participant> allParticipants = participants.getAllParticipants();
-            for (Participant participant : allParticipants) {
-                int position = participant.getParticipantPosition();
-                resultByParticipants.put(participant, results.getResult(position));
-            }
+            return makeResultByAllParticipants();
         }
-        if (!request.isAllPlayer()) {
-            validateParticipantExistence(request);
-            String participantName = request.getRequestContent();
-            Participant participant = participants.findParticipant(participantName);
-            int position = participant.getParticipantPosition();
-            resultByParticipants.put(participant, results.getResult(position));
+        return makeResultByOneParticipant(request);
+    }
+
+    private Map<Participant, Result> makeResultByAllParticipants() {
+        Map<Participant, Result> resultByParticipants = new HashMap<>();
+
+        List<Participant> allParticipants = participants.getAllParticipants();
+        for (Participant participant : allParticipants) {
+            resultByParticipants.put(participant, findResult(participant));
         }
+
         return resultByParticipants;
     }
 
-    private void validateParticipantExistence(final UserRequest request) {
-        String requestContent = request.getRequestContent();
-        if (!participants.contains(requestContent)) {
-            throw new IllegalArgumentException(String.format("[ERROR] %s은 존재하지 않는 이름입니다. 참여자 한 명의 이름 혹은 \"all\"을 입력하세요.", requestContent));
-        }
+    private Map<Participant, Result> makeResultByOneParticipant(final UserRequest request) {
+        Participant participant = participants.findParticipant(request.getRequestContent());
+        return Map.of(participant, findResult(participant));
+    }
+
+    private Result findResult(final Participant participant) {
+        int position = participant.getParticipantPosition();
+        return results.findResult(position);
     }
 }

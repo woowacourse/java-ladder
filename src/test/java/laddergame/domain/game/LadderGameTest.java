@@ -39,7 +39,7 @@ class LadderGameTest {
     void gets_result_of_participant_if_request_content_is_included_in_participants(String requestContent, String expectedResult) {
         Participant participant = participants.findParticipant(requestContent);
         UserRequest request = UserRequest.of(requestContent);
-        Map<Participant, Result> resultByParticipants = ladderGame.getResultByRequestContent(request);
+        Map<Participant, Result> resultByParticipants = ladderGame.getResultByParticipants(request);
 
         Result result = resultByParticipants.get(participant);
         String resultName = result.getResultName();
@@ -54,7 +54,7 @@ class LadderGameTest {
         UserRequest request = UserRequest.of("all");
 
         List<String> resultNames = List.of("1st", "2nd", "3rd", "4th");
-        Map<Participant, Result> resultByParticipants = ladderGame.getResultByRequestContent(request);
+        Map<Participant, Result> resultByParticipants = ladderGame.getResultByParticipants(request);
 
         for (int i = 0; i < resultByParticipants.size(); i++) {
             Result result = resultByParticipants.get(allParticipants.get(i));

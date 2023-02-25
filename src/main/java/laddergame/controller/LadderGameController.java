@@ -41,7 +41,7 @@ public class LadderGameController {
         ladderGame.playGameOfAllParticipants();
 
         UserRequest request = createRequest();
-        Map<Participant, Result> resultByParticipants = ladderGame.getResultByRequestContent(request);
+        Map<Participant, Result> resultByParticipants = ladderGame.getResultByParticipants(request);
 
         outputView.printResultGuide();
         outputView.printResult(resultByParticipants, participants.getAllParticipants());
