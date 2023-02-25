@@ -2,9 +2,11 @@ package laddergame.domain.participant;
 
 import java.util.Objects;
 
+import static laddergame.domain.game.UserRequest.ALL_PARTICIPANTS_COMMAND;
+
 public class ParticipantName {
 
-    private static final char INVALID_INCLUSION = ' ';
+    private static final String INVALID_INCLUSION = " ";
     private static final int MAX_LENGTH = 5;
 
     private final String name;
@@ -13,9 +15,7 @@ public class ParticipantName {
         validateNameNullOrEmpty(name);
         validateNameBlank(name);
         validateNameLength(name);
-        if (name.equals("all")) {
-            throw new IllegalArgumentException("[ERROR] 이름은 \"all\"일 수 없습니다.");
-        }
+        validateNameByCommand(name);
         this.name = name;
     }
 
@@ -28,13 +28,13 @@ public class ParticipantName {
     }
 
     private void validateNameNullOrEmpty(final String name) {
-        if (name == null || name.isBlank()) {
+        if (Objects.isNull(name) || name.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 이름을 입력하셔아 합니다.");
         }
     }
 
     private void validateNameBlank(final String name) {
-        if (name.indexOf(INVALID_INCLUSION) != -1) {
+        if (name.contains(INVALID_INCLUSION)) {
             throw new IllegalArgumentException("[ERROR] 이름에 공백이 포함될 수 없습니다.");
         }
     }
@@ -45,11 +45,21 @@ public class ParticipantName {
         }
     }
 
+    private void validateNameByCommand(final String name) {
+        if (name.equals(ALL_PARTICIPANTS_COMMAND)) {
+            throw new IllegalArgumentException(String.format("[ERROR] 이름은 \"%s\"일 수 없습니다.", ALL_PARTICIPANTS_COMMAND));
+        }
+    }
+
     @Override
-    public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ParticipantName that = (ParticipantName) o;
+    public boolean equals(final Object diffParticipantName) {
+        if (this == diffParticipantName) {
+            return true;
+        }
+        if (diffParticipantName == null || getClass() != diffParticipantName.getClass()) {
+            return false;
+        }
+        ParticipantName that = (ParticipantName) diffParticipantName;
         return name.equals(that.name);
     }
 
