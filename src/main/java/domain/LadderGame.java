@@ -56,7 +56,7 @@ public class LadderGame {
         if (isNextPointExist(line, currentXIndex)) {
             return getMovingPositionSide(line, currentXIndex);
         }
-        return PointPosition.NONE.getMovingPosition();
+        return PointSide.NONE.getMovingPosition();
     }
 
     private boolean isNextPointExist(Line line, int currentXPosition) {
@@ -79,8 +79,8 @@ public class LadderGame {
 
     private int getMovingPositionSide(Line line, int currentXIndex) {
         if (currentXIndex < line.getPoints().size() && line.getPointAt(currentXIndex).isExist()) {
-            return PointPosition.RIGHT.getMovingPosition();
+            return PointSide.RIGHT.getMovingPosition();
         }
-        return PointPosition.LEFT.getMovingPosition();
+        return PointSide.LEFT.getMovingPosition();
     }
 }
