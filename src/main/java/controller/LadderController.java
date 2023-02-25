@@ -15,6 +15,7 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderController {
+    private static final int MINUS_VALUE_FOR_LADDER_WIDTH = 1;
     private static final String SHOW_NAMES_COMMAND = "all";
     private static final String ERROR_NON_EXIST_USER = "[ERROR] 해당 이름을 가진 사용자가 존재하지 않습니다";
     private static final String BLANK = "";
@@ -28,7 +29,8 @@ public class LadderController {
         final Prizes prizes = new Prizes(InputView.inputPrizes().stream()
                 .map(Prize::new)
                 .collect(Collectors.toList()), names);
-        final Ladder ladder = new Ladder(names.toWidth(), new Height(InputView.inputHeight()), scaffoldGenerator);
+        final Ladder ladder = new Ladder(new Width(names.size() - MINUS_VALUE_FOR_LADDER_WIDTH),
+                new Height(InputView.inputHeight()), scaffoldGenerator);
         OutputView.printLadderResult(ladder, names, prizes);
         showMatchingResult(ladder, names, prizes);
     }

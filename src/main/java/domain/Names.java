@@ -30,10 +30,6 @@ public class Names {
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_NAME_SEARCH_ERROR));
     }
 
-    public Width toWidth() {
-        return new Width(names.size() - MINUS_VALUE_FOR_LADDER_WIDTH);
-    }
-
     public int size() {
         return names.size();
     }
