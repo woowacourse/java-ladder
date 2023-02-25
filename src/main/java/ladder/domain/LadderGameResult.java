@@ -46,17 +46,17 @@ public class LadderGameResult {
     }
 
     public void validatePlayerName(final String name) {
-        if (isInvalidPlayerName(name) && isNotReservedName(name)) {
+        if (isNotReservedName(name) && isInvalidPlayerName(name)) {
             throw new IllegalArgumentException(INVALID_PLAYER_MESSAGE);
         }
+    }
+
+    private boolean isNotReservedName(final String name) {
+        return !MULTIPLE_RESULT_RESERVED_NAME.equals(name);
     }
 
     private boolean isInvalidPlayerName(final String name) {
         return this.result.keySet().stream()
                 .noneMatch(player -> player.isSameName(name));
-    }
-
-    private boolean isNotReservedName(final String name) {
-        return !MULTIPLE_RESULT_RESERVED_NAME.equals(name);
     }
 }
