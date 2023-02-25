@@ -14,11 +14,11 @@ public class Ladder {
 
     public Ladder(final int height, final int personCount, final BooleanGenerator booleanGenerator) {
         validateHeight(height);
-        LineGenerator lineGenerator = new LineGenerator(booleanGenerator);
+        LinksGenerator linksGenerator = new LinksGenerator(booleanGenerator);
 
         lines = new ArrayList<>();
         for(int line = 0; line < height; line++) {
-            lines.add(lineGenerator.generate(personCount));
+            lines.add(new Line(linksGenerator.generate(personCount)));
         }
     }
 
