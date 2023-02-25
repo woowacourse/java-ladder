@@ -9,7 +9,7 @@ public class Products {
     private static final int MAX_PRODUCTS_SIZE = 12;
     private static final int MIN_PRODUCTS_SIZE = 2;
 
-    public Products(List<Product> products) {
+    private Products(List<Product> products) {
         checkProducts(products);
         this.products = products;
     }

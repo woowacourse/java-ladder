@@ -12,7 +12,7 @@ public class Ladder {
 
     private static final int FIRST_INDEX = 0;
 
-    public Ladder(List<Line> lines) {
+    private Ladder(List<Line> lines) {
         this.lines = List.copyOf(lines);
     }
 

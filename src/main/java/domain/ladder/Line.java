@@ -13,12 +13,8 @@ public class Line {
     private static final boolean NON_PASS = false;
     private final List<Point> points;
 
-    public Line(List<Point> points) {
+    private Line(List<Point> points) {
         this.points = Collections.unmodifiableList(points);
-    }
-
-    public List<Point> getPoints() {
-        return points;
     }
 
     public static Line generate(int personCount, TrueOrFalseGenerator trueOrFalseGenerator) {
@@ -29,33 +25,29 @@ public class Line {
         return new Line(points);
     }
 
-    private static Point correctOverLapPoints(List<Point> points, Point current) {
+    private static Point correctOverLapPoints(List<Point> points, Point randomPoint) {
         if (points.size() == FIRST_INDEX) {
-            return current;
+            return randomPoint;
         }
         Point beforPoint = points.get(points.size() - 1);
-        if (beforPoint.isPoint()) {
-            return current.nonPass();
+        if (beforPoint.isConnected()) {
+            return randomPoint.setDisconnect();
         }
-        return current;
+        return randomPoint;
     }
 
     public Direction getDirection(Player player) {
         if (checkSidePosition(player)) {
             return moveSidePosition(player.getPosition());
         }
-        return judge(points.get(player.getPosition() - 1).isPoint(), points.get(player.getPosition()).isPoint());
-    }
-
-    public boolean checkSidePosition(Player player) {
-        return player.getPosition() == 0 || player.getPosition() == points.size();
+        return judge(points.get(player.getPosition() - 1).isConnected(), points.get(player.getPosition()).isConnected());
     }
 
     public Direction moveSidePosition(int playerPosition) {
         if (playerPosition == 0) {
-            return judge(NON_PASS, points.get(playerPosition).isPoint());
+            return judge(NON_PASS, points.get(playerPosition).isConnected());
         }
-        return judge(points.get(playerPosition - 1).isPoint(), NON_PASS);
+        return judge(points.get(playerPosition - 1).isConnected(), NON_PASS);
     }
 
     private Direction judge(boolean left, boolean right) {
@@ -66,5 +58,13 @@ public class Line {
             return Direction.RIGHT;
         }
         return Direction.STAY;
+    }
+
+    public List<Point> getPoints() {
+        return List.copyOf(points);
+    }
+
+    public boolean checkSidePosition(Player player) {
+        return player.getPosition() == 0 || player.getPosition() == points.size();
     }
 }

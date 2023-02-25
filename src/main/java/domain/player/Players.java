@@ -11,7 +11,7 @@ public class Players {
     private static final String PLAYER_COUNT_ERROR_MESSAGE = "[ERROR] 플레이어 수는 2~12명만 입력 가능합니다.";
     private static final String PLAYER_NAME_DUPLICATE_ERROR_MESSAGE = "[ERROR] 플레이어의 이름은 중복이 불가능합니다.";
 
-    public Players(List<Player> players) {
+    private Players(List<Player> players) {
         this.players = players;
     }
 
