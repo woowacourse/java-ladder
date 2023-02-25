@@ -1,6 +1,7 @@
 package ladder.domain.player;
 
 import static java.util.List.of;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -18,4 +19,9 @@ class PlayersTest {
                 .hasMessage("참가자는 2명 이상이어야 합니다. 현재 : 1");
     }
 
+    @Test
+    void 플레이어들의_이름을_반환한다() {
+        Players players = new Players(of("a", "b", "c"));
+        assertThat(players.getPlayerNames()).isEqualTo(of("a", "b", "c"));
+    }
 }

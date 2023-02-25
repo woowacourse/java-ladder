@@ -2,6 +2,7 @@ package ladder.domain.player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 참가자의 이름과 위치를 가지고 있는 Player 를 가지고 있는 클래스입니다
@@ -28,5 +29,11 @@ public class Players {
 
     public int size() {
         return players.size();
+    }
+
+    public List<String> getPlayerNames() {
+        return players.stream()
+                .map(Player::getName)
+                .collect(Collectors.toList());
     }
 }
