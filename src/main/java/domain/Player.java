@@ -1,14 +1,14 @@
 package domain;
 
 public class Player {
-    private final Name name;
+    private final PlayerName playerName;
 
     public Player(String name) {
-        this.name = new Name(name);
+        this.playerName = new PlayerName(name);
     }
 
     public String getName() {
-        return name.getName();
+        return playerName.getName();
     }
 
 }

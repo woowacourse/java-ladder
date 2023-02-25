@@ -4,7 +4,7 @@ import java.util.List;
 
 import domain.Line;
 
-import domain.Name;
+import domain.PlayerName;
 import domain.Players;
 
 public class OutputView {
@@ -72,7 +72,7 @@ public class OutputView {
     }
 
     private String getNameBlank(String name) {
-        return BLANK.repeat(Name.MAX_LENGTH - name.length());
+        return BLANK.repeat(PlayerName.MAX_LENGTH - name.length());
     }
 
 }
