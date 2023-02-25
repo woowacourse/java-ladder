@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-@DisplayName("당첨 내용 테스트")
 class PrizeTest {
     @Test
     @DisplayName("앞 뒤의 공백이 있는 문자열이 입력되면 공백 제거 테스트")
