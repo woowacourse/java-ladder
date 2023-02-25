@@ -24,17 +24,25 @@ public class PlayerTest {
         assertThat(player.getName()).isEqualTo("name");
     }
 
+    @ParameterizedTest(name = "입력받은 이름과 같은 이름인지 확인한다. 이름: name, 입력받은이름: {0}, 결과 {1}")
+    @CsvSource({"name,true", "notSameName,false"})
+    void 입력받은_이름과_같은_이름인지_확인한다(final String name, final boolean result) {
+        final Player player = Player.of("name", 0);
+
+        assertThat(player.isSameName(name)).isEqualTo(result);
+    }
+
     @ParameterizedTest(name = "입력받은 위치와 같은 위치인지 확인한다. 위치: {0}, 결과 {1}")
     @CsvSource({"0,true", "1,false"})
     void 입력받은_위치와_같은_위치인지_확인한다(final int position, final boolean result) {
-        final Player player = Player.of("item", 0);
+        final Player player = Player.of("name", 0);
 
         assertThat(player.isSamePosition(Position.valueOf(position))).isEqualTo(result);
     }
 
     @Test
     void 참가자는_사다리를_받아_사다리타기를_진행한다() {
-        final Player player = Player.of("item", 0);
+        final Player player = Player.of("name", 0);
         final BooleanGenerator booleanGenerator = new TestBooleanGenerator(List.of(
                 false, false, true,
                 false, true, false,

@@ -42,7 +42,7 @@ public class LadderGameResult {
 
     private Player findPlayer(final String name) {
         return result.keySet().stream()
-                .filter(player -> player.getName().equals(name))
+                .filter(player -> player.isSameName(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_PLAYER_MESSAGE));
     }

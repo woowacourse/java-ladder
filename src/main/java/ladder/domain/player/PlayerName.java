@@ -35,6 +35,10 @@ public class PlayerName {
         }
     }
 
+    public boolean isSameAs(final String name) {
+        return value.equals(name);
+    }
+
     private boolean isReservedName(final String name) {
         return RESERVED_NAME.equals(name);
     }

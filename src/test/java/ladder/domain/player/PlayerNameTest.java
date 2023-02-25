@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -29,6 +30,14 @@ public class PlayerNameTest {
         final PlayerName name = new PlayerName("name");
 
         assertThat(name.getValue()).isEqualTo("name");
+    }
+
+    @ParameterizedTest(name = "입력받은 이름과 같은 이름인지 확인한다. 이름: name, 입력받은이름: {0}, 결과 {1}")
+    @CsvSource({"name,true", "notSameName,false"})
+    void 입력받은_이름과_같은_이름인지_확인한다(final String name, final boolean result) {
+        final PlayerName playerName = new PlayerName("name");
+
+        assertThat(playerName.isSameAs(name)).isEqualTo(result);
     }
 
     @Test

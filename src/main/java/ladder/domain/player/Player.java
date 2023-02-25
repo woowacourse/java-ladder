@@ -20,6 +20,10 @@ public class Player {
         return ladder.play(position);
     }
 
+    public boolean isSameName(final String name) {
+        return this.name.isSameAs(name);
+    }
+
     public boolean isSamePosition(final Position position) {
         return this.position == position;
     }
