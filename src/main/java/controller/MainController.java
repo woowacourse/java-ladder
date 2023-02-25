@@ -94,7 +94,6 @@ public class MainController {
         return Boolean.TRUE;
     }
 
-
     private void printAllResult(LadderGame ladderGame) {
         outputView.printAllResult(ladderGame.findAllResult());
     }

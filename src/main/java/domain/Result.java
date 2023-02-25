@@ -2,7 +2,6 @@ package domain;
 
 import domain.mission.Mission;
 import domain.player.Name;
-import domain.player.Player;
 
 public class Result {
 
