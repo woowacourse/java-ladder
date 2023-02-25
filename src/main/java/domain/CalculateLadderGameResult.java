@@ -8,7 +8,7 @@ public class CalculateLadderGameResult {
     public List<String> passLadder(final List<Line> ladder, final List<String> userNames) {
         List<String> userPositions = new ArrayList<>(userNames);
         for (Line line : ladder) {
-            List<Link> links = line.getLinks();
+            List<Link> links = line.getLine();
             passLine(links, userPositions);
         }
         return List.copyOf(userPositions);

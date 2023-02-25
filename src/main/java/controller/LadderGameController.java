@@ -71,7 +71,7 @@ public class LadderGameController {
 
     private void formatPrimitiveLine(final List<List<Boolean>> primitiveLadder, final Line line) {
         List<Boolean> primitiveLine = new ArrayList<>();
-        for (Link link : line.getLinks()) {
+        for (Link link : line.getLine()) {
             primitiveLine.add(link.isLink());
         }
         primitiveLadder.add(primitiveLine);

@@ -21,7 +21,7 @@ public class Line {
         return new Line(links);
     }
 
-    public List<Link> getLinks() {
+    public List<Link> getLine() {
         return List.copyOf(links);
     }
 
