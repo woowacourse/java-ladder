@@ -55,11 +55,15 @@ public class Players {
     }
 
     public int findPosition(String playerName) {
-        int position = players.indexOf(new Player(playerName));
-        if (position == -1) {
-            throw new IllegalArgumentException("[ERROR] 존재하는 참가자의 이름을 입력해주세요.");
-        }
-        return position;
+        Player findPlayer = findPlayer(playerName);
+        return players.indexOf(findPlayer);
+    }
+
+    private Player findPlayer(String playerName) {
+        return players.stream()
+                .filter(player -> player.hasName(playerName))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하는 참가자의 이름을 입력해주세요."));
     }
 
     public List<String> getPlayerNames() {
