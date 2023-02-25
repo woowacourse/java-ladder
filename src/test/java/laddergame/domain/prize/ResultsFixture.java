@@ -20,7 +20,7 @@ public class ResultsFixture {
         junPk = Player.of("junPk", 2);
         players = new Players(new Names(List.of(ethan.getName(), coil.getName(), junPk.getName())));
 
-        prizes = new Prizes(List.of("1000", "5000", "10000"), players.getPlayerSize());
+        prizes = new Prizes(List.of("1000", "5000", "10000"));
         results = new Results(players, prizes);
     }
 }

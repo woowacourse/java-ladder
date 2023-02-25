@@ -30,7 +30,7 @@ public class LadderFixture {
         junPark = Player.of("준팍", 2);
         players = new Players(new Names(List.of(ethan.getName(), coil.getName(), junPark.getName())));
 
-        prizes = new Prizes(List.of("1000", "5000", "10000"), 3);
+        prizes = new Prizes(List.of("1000", "5000", "10000"));
 
         connections = List.of(CONNECTED, UNCONNECTED);
         ladder = new Ladder(1, players.getPlayers().size(), new TestConnectionMaker(connections));

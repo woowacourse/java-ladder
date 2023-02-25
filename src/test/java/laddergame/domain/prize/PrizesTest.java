@@ -17,7 +17,7 @@ class PrizesTest {
         final List<String> resultNames = List.of("꽝", "1000", "5000", "10000");
 
         // when
-        final Prizes prizes = new Prizes(resultNames, resultNames.size());
+        final Prizes prizes = new Prizes(resultNames);
 
         // then
         assertThat(prizes)

@@ -37,12 +37,25 @@ public class GameController {
 
     private Prizes readPrizesWithRetry(final int size) {
         try {
-            return new Prizes(InputView.readResults(), size);
+            final List<String> prizeNames = InputView.readResults();
+            validatePrizeSize(prizeNames, size);
+            return new Prizes(prizeNames);
         } catch (final IllegalStateException | IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
             return readPrizesWithRetry(size);
         }
     }
+
+    private void validatePrizeSize(final List<String> prizeNames, final int size) {
+        if (isDifferentSize(prizeNames, size)) {
+            throw new IllegalArgumentException("결과의 수는 참여할 사람 수와 맞아야 합니다.");
+        }
+    }
+
+    private boolean isDifferentSize(final List<String> prizeNames, final int size) {
+        return prizeNames.size() != size;
+    }
+
 
     private Ladder createdLadder(final ConnectionStrategy connectionStrategy) {
         try {

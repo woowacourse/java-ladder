@@ -9,20 +9,8 @@ public class Prizes {
 
     private final List<Prize> prizes;
 
-    public Prizes(final List<String> prizeNames, final int size) {
-        validatePrizeSize(prizeNames, size);
-
+    public Prizes(final List<String> prizeNames) {
         this.prizes = createPrizes(prizeNames);
-    }
-
-    private void validatePrizeSize(final List<String> prizeNames, final int size) {
-        if (isDifferentSize(prizeNames, size)) {
-            throw new IllegalArgumentException("결과의 수는 참여할 사람 수와 맞아야 합니다.");
-        }
-    }
-
-    private boolean isDifferentSize(final List<String> prizeNames, final int size) {
-        return prizeNames.size() != size;
     }
 
     private List<Prize> createPrizes(final List<String> prizeNames) {
