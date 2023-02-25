@@ -71,12 +71,22 @@
 - [x] 메소드 라인 확인
 - [x] indent 확인
 
+**1단계 리뷰에 따른 리팩터링**
+- [ ] 메서드 선언 위치를 사용 순서에 맞게 재배치한다.
+- [ ] 컨벤션에 따른 상수 선언 final static -> static final
+  - 참고 : https://stackoverflow.com/questions/11219556/difference-between-final-static-and-static-final
+- [ ] position 클래스로 포장
+- [ ] view - domain 의존성 제거
+
 ---
 ### 궁금한 내용
 1. List<GameResult>를 감싸고 있는 일급 컬렉션인 GameResults를 생성할 때, 어떤 것이 더 좋은 방법일까?
   - 생성자에 InputView에서 받은 List<String>을 넣어주고 내부 메소드에서 GameResult를 생성하여 List<GameResult>에 add 하는 방법
   - 컨트롤러에서 InputView에서 받은 List<String>을 List<GameResult>로 만들어준 뒤, 생성자에 List<GameResult>를 바로 넣어주는 방법
 2. 테스트 메소드 역시 카멜 케이스/스네이크 케이스로 네이밍하며 일관성을 지켜야 될까?
+3. 메서드 위치 컨벤션
+  - public을 다 놓은 다음, 순서에 맞게 private 배치??
+  - public 놓으면서, 안에서 사용하는 private 메소드 바로 아래에 배치??
 ---
     
 ## 우아한테크코스 코드리뷰
