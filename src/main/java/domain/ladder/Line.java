@@ -16,10 +16,6 @@ public class Line {
         this.points = new ArrayList<>(points);
     }
 
-    public List<LinePoint> getPoints() {
-        return Collections.unmodifiableList(points);
-    }
-
     public boolean isLeftSidePassable(Position position) {
         return !isLeftEnd(position) && isPassable(position.getPosition() - LEFT_POINT_CONSTANT);
     }
@@ -36,8 +32,11 @@ public class Line {
         return !isLastPosition(position) && isPassable(position.getPosition()- RIGHT_POINT_CONSTANT);
     }
 
-
     private boolean isLastPosition(Position position) {
         return position.isSamePosition(points.size() + 1);
+    }
+
+    public List<LinePoint> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }

@@ -10,16 +10,16 @@ public class Position {
         this.position = position;
     }
 
-    public boolean isSamePosition(int other) {
-        return position == other;
-    }
-
     public void moveRight() {
         position++;
     }
 
     public void moveLeft() {
         position--;
+    }
+
+    public boolean isSamePosition(int other) {
+        return position == other;
     }
 
     public int getPosition() {

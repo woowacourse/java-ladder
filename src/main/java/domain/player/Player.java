@@ -12,12 +12,12 @@ public class Player {
         this.position = position;
     }
 
-    public boolean isSameName(String otherName) {
-        return name.isSame(otherName);
-    }
-
     public Position move(Ladder ladder) {
         return ladder.play(position);
+    }
+
+    public boolean isSameName(String otherName) {
+        return name.isSame(otherName);
     }
 
 
