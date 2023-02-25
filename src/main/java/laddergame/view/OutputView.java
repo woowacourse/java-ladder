@@ -19,6 +19,7 @@ public class OutputView {
     private static final String PADDING_FORMAT_FOR_PARTICIPANTS = "%6s";
     private static final String PADDING_FORMAT_FOR_RESULTS = "%-6s";
     private static final String DELIMITER = " : ";
+    private static final int MINIMUM = 1;
 
     public static void print(final String message) {
         System.out.println(message);
@@ -56,18 +57,6 @@ public class OutputView {
         print(makeResultMessage(requestByParticipants, participants));
     }
 
-    private String makeResultMessage(final Map<Participant, Result> requestByParticipants, final List<Participant> participants) {
-        if (requestByParticipants.size() == 1) {
-            return requestByParticipants.values().stream()
-                    .map(Result::getResultName)
-                    .findFirst()
-                    .orElseThrow(IllegalStateException::new);
-        }
-        return participants.stream()
-                .map(participant -> String.join(DELIMITER, participant.getName(), requestByParticipants.get(participant).getResultName()))
-                .collect(Collectors.joining(NEW_LINE));
-    }
-
     private String pad(final String paddingFormat, final String participantName) {
         return String.format(paddingFormat, participantName);
     }
@@ -95,5 +84,22 @@ public class OutputView {
             return LADDER_RUNG;
         }
         return LADDER_BLANK;
+    }
+
+    private String makeResultMessage(final Map<Participant, Result> requestByParticipants, final List<Participant> participants) {
+        if (requestByParticipants.size() == MINIMUM) {
+            return requestByParticipants.values().stream()
+                    .map(Result::getResultName)
+                    .findFirst()
+                    .orElseThrow(IllegalStateException::new);
+        }
+        return participants.stream()
+                .map(participant -> String.join(DELIMITER, participant.getName(), getResultName(requestByParticipants, participant)))
+                .collect(Collectors.joining(NEW_LINE));
+    }
+
+    private String getResultName(final Map<Participant, Result> requestByParticipants, final Participant participant) {
+        final Result result = requestByParticipants.get(participant);
+        return result.getResultName();
     }
 }
