@@ -2,7 +2,6 @@ package domain;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
-import view.InputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +15,9 @@ public class LineTest {
 
     @BeforeAll
     void initSetting() {
-        List<String> nameList = new ArrayList<>(List.of("judy","ako", "pobi"));
+        List<String> nameList = new ArrayList<>(List.of("judy", "ako", "pobi"));
 
-        players = new Players(new PlayerNames (nameList, new InputView()));
+        players = new Players(new PlayerNames(nameList));
     }
 
     @Test
@@ -33,7 +32,7 @@ public class LineTest {
         blocks = new ArrayList<>(List.of(new Block(true), new Block(false)));
         Line line = new Line(players, blocks);
 
-        List<Boolean> result = line.getLine();
+        List<Boolean> result = line.getBlocks();
         List<Boolean> expect = new ArrayList<>(List.of(true, false));
 
         Assertions.assertThat(result).isEqualTo(expect);

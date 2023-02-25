@@ -9,7 +9,6 @@ public class Players {
 
     public Players(PlayerNames playerNames) {
         players = new ArrayList<>();
-
         createPlayers(playerNames);
     }
 
@@ -27,5 +26,13 @@ public class Players {
 
     public int getPlayersSize() {
         return players.size();
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public Player getPlayerByIndex(int playerIndex) {
+        return players.get(playerIndex);
     }
 }

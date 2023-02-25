@@ -13,15 +13,23 @@ public class Line {
         this.blocks = blocks;
     }
 
-    public List<Boolean> getLine() {
+    private void validateLineLength(int playerCount, List<Block> blocks) {
+        if (blocks.size() != playerCount - 1) {
+            throw new IllegalArgumentException(LINE_LENGTH_ERROR_MESSAGE);
+        }
+    }
+
+    public List<Boolean> getBlocks() {
         return blocks.stream()
                 .map(Block::getIsCross)
                 .collect(Collectors.toList());
     }
 
-    private void validateLineLength(int playerCount, List<Block> blocks) {
-        if (blocks.size() != playerCount - 1) {
-            throw new IllegalArgumentException(LINE_LENGTH_ERROR_MESSAGE);
-        }
+    public boolean getBlockByIndex(int index) {
+        return getBlocks().get(index);
+    }
+
+    public int getBlocksSize() {
+        return getBlocks().size();
     }
 }

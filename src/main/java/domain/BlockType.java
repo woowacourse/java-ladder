@@ -10,13 +10,13 @@ public enum BlockType {
     private final String type;
     private final boolean isCross;
 
-    private BlockType(String type, boolean isCross) {
+    BlockType(String type, boolean isCross) {
         this.type = type;
         this.isCross = isCross;
     }
 
     public static List<String> getBlockTypes(Line line) {
-        List<Boolean> blockLine = line.getLine();
+        List<Boolean> blockLine = line.getBlocks();
 
         return blockLine.stream()
                 .map(BlockType::decideBlockType)
