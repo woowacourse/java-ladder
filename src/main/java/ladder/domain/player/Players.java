@@ -25,4 +25,8 @@ public class Players {
             throw new IllegalArgumentException(String.format(LESS_THAN_MINIMUM_PLAYER_MESSAGE, playerNames.size()));
         }
     }
+
+    public int size() {
+        return players.size();
+    }
 }
