@@ -7,7 +7,7 @@ import ladder.domain.LadderGame;
  * <p>
  * 이 클래스는 사다리 게임에서 필요한 데이터를 입력 받는 과정에서 발생하는 에러를 잡아서 다시 입력을 받습니다
  * <p>
- * LadderGame 클래스를 통해서 사다리 게임을 실행하고, 사용자와 출력해주는 책임을 가지고 있습니다
+ * LadderGame 클래스를 통해서 사다리 게임을 실행하고, OutputView 를 통해서 출력해주는 책임을 가지고 있습니다
  */
 public class LadderGameClient {
 
