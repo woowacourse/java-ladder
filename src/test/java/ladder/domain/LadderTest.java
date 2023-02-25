@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,5 +37,13 @@ class LadderTest {
         ladder.moveToResult(position);
 
         assertThat(position).isEqualTo(new Position(expectPosition));
+    }
+
+    @Test
+    @DisplayName("사다리의 높이에 1이하 숫자를 입력하면 예외를 발생한다")
+    void shouldThrowExceptionWhenLessThanOne() {
+        assertThatThrownBy(() -> Ladder.generate(0, 1, new RandomBooleanGenerator()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사다리 높이는 0보다 커야합니다.");
     }
 }

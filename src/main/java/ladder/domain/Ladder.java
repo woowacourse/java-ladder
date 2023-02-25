@@ -22,7 +22,7 @@ public class Ladder {
     }
 
     private static void validateCountOfLine(int countOfLine) {
-        if (countOfLine <= 0) {
+        if (countOfLine < 1) {
             throw new IllegalArgumentException("사다리 높이는 0보다 커야합니다.");
         }
     }

@@ -32,4 +32,12 @@ class NameTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 공백일 수 없습니다.");
     }
+
+    @Test
+    @DisplayName("예약어를 입력하면 예외를 발생한다")
+    void shouldThrowExceptionWhenInputReservedWord() {
+        assertThatThrownBy(() -> new Name("all"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 all을 사용할 수 없습니다.");
+    }
 }
