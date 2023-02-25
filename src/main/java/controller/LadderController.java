@@ -40,7 +40,7 @@ public class LadderController {
 
         outputView.printLadder(inputNames, ladder, inputResult);
 
-        Players players = new PlayerMaker().make(inputNames);
+        Players players = PlayerMaker.make(inputNames);
         return new LadderGame(ladder, players, inputResult);
     }
 
