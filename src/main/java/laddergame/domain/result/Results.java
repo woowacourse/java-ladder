@@ -21,7 +21,7 @@ public class Results {
     private List<Result> makeResults(final String resultNames) {
         return Arrays.stream(resultNames.split(DELIMITER))
                 .map(Result::new)
-                .collect(Collectors.toUnmodifiableList());
+                .collect(Collectors.toList());
     }
 
     private void validateResultsSize(final List<Result> results, final int participantCount) {
@@ -33,7 +33,7 @@ public class Results {
     private void validateIdenticalResults(final List<Result> results) {
         int uniqueCount = (int) results.stream().distinct().count();
         if (uniqueCount == MINIMUM_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 실행 결과가 모두 동일합니다.");
+            throw new IllegalArgumentException("[ERROR] 실행 결과가 모두 동일하지 않아야 합니다.");
         }
     }
 
