@@ -1,6 +1,7 @@
 package ladder.client.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -59,6 +60,13 @@ class OutputViewTest {
         assertThat(printResult)
                 .hasToString("실행 결과" + System.lineSeparator()
                         + "book" + System.lineSeparator());
+    }
+
+    @Test
+    void 결과_하나_출력시_null이면_예외() {
+        assertThatThrownBy(() -> OutputView.printResult(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("존재하지 않는 참가자입니다");
     }
 
     @Test
