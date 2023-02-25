@@ -12,7 +12,13 @@ import org.junit.jupiter.api.Test;
 public class LadderGameTest {
 
     /**
-     * ako   split     ash |-------|       | |-------|       | |-------|       | |-------|       | |-------|       | 꽝    5000       꽝
+     * ako   split     ash
+     * |-------|       |
+     * |-------|       |
+     * |-------|       |
+     * |-------|       |
+     * |-------|       |
+     * 꽝    5000       꽝
      */
     @Test
     void 사다리_게임을_실행하면_사다리_결과를_반환한다() {

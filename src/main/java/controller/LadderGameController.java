@@ -6,14 +6,14 @@ import view.InputView;
 import view.OutputView;
 import java.util.List;
 
-public class Controller {
+public class LadderGameController {
     private static final String END_COMMAND = "all";
 
     private InputView inputView;
     private OutputView outputView;
     private BooleanGenerator booleanGenerator;
 
-    public Controller(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
+    public LadderGameController(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.booleanGenerator = booleanGenerator;
