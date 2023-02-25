@@ -20,7 +20,7 @@ public class OutputView {
     private static final String SPACE = " ";
     private static final double KOREAN_SIZE = 1.3;
     private static final int NAME_SIZE = 8;
-    private static final String RESULT_MESSAGE = "\n실행 결과";
+    private static final String RESULT_MESSAGE = "실행 결과";
     private static final int SECOND_PRIZE = 1;
     private static final String LADDER_RESULT_MESSAGE = "사다리 결과";
 
@@ -137,6 +137,7 @@ public class OutputView {
     }
 
     private void printResultMessage() {
+        System.out.println();
         System.out.println(RESULT_MESSAGE);
     }
 
