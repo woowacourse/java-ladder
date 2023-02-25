@@ -30,7 +30,7 @@ public class LadderGame {
     }
 
     public Map<Participant, Result> getResultByParticipants(final UserRequest request) {
-        if (request.isAllPlayer()) {
+        if (request.isAllParticipants()) {
             return makeResultByAllParticipants();
         }
         return makeResultByOneParticipant(request);
