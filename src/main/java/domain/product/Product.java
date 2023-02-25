@@ -1,8 +1,8 @@
 package domain.product;
 
 import exception.EmptyException;
-import exception.NameLengthException;
 import exception.NullException;
+import exception.ProductNameLengthException;
 
 public class Product {
     private final String product;
@@ -27,7 +27,7 @@ public class Product {
 
     private void checkProductNameLength(String playerName) {
         if (playerName.length() > PRODUCT_NAME_MAX_SIZE || playerName.length() < PRODUCT_NAME_MIN_SIZE) {
-            throw new NameLengthException();
+            throw new ProductNameLengthException();
         }
     }
 

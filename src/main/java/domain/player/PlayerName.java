@@ -1,7 +1,7 @@
 package domain.player;
 
-import exception.NameLengthException;
 import exception.NullException;
+import exception.PlayerNameLengthException;
 
 import java.util.EmptyStackException;
 import java.util.Objects;
@@ -39,7 +39,7 @@ public class PlayerName {
 
     private void checkPlayerNameLength(String playerName) {
         if (playerName.length() > PLAYER_NAME_MAX_SIZE || playerName.length() < PLAYER_NAME_MIN_SIZE) {
-            throw new NameLengthException();
+            throw new PlayerNameLengthException();
         }
     }
 
