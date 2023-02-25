@@ -1,6 +1,5 @@
 package view;
 
-import domain.ladder.Line;
 import java.util.List;
 import java.util.Map;
 
@@ -20,10 +19,8 @@ public class OutputView {
         System.out.println(formattedUserNames);
     }
 
-    public void printLadders(final List<Line> lines) {
-        for (final Line line : lines) {
-            System.out.println(LineRender.render(line));
-        }
+    public void printLadders(final List<String> renderedLadder) {
+        renderedLadder.forEach(System.out::println);
     }
 
     private String formatUserNames(final List<String> userNames) {
@@ -41,7 +38,7 @@ public class OutputView {
 
     public void printPrizes(final List<String> prizeNames) {
         for (final String prizeName : prizeNames) {
-            System.out.print(String.format("%6s", prizeName));
+            System.out.printf("%6s", prizeName);
         }
         printBlankLine();
         printBlankLine();

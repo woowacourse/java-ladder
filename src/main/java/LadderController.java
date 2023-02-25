@@ -1,8 +1,11 @@
 import domain.ladder.Ladder;
-import domain.prize.Prizes;
 import domain.ladder.RandomLinkGenerator;
+import domain.prize.Prizes;
 import domain.user.Users;
+import java.util.List;
+import java.util.stream.Collectors;
 import view.InputView;
+import view.LineRender;
 import view.OutputView;
 
 public class LadderController {
@@ -60,7 +63,10 @@ public class LadderController {
     private void printGenerateLadderResult(final Ladder ladder, final Users users, final Prizes prizes) {
         outputView.printLadderResultMessage();
         outputView.printUserNames(users.getUserNames());
-        outputView.printLadders(ladder.getLines());
+        final List<String> renderedLadder = ladder.getLines().stream()
+                .map(LineRender::render)
+                .collect(Collectors.toUnmodifiableList());
+        outputView.printLadders(renderedLadder);
         outputView.printPrizes(prizes.getPrizes());
     }
 }
