@@ -16,6 +16,12 @@ public class LadderGameController {
     public void play() {
         ready();
         printGeneratedLadder();
+        printResult(InputView.readPlayerName());
+    }
+
+    private void printResult(String playerName) {
+        GameResult gameResult = ladderGame.getGameResultOf(playerName);
+        OutputView.printGameResult(gameResult.getResult());
     }
 
     private void ready() {

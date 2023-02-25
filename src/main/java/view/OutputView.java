@@ -7,13 +7,14 @@ public class OutputView {
 
     public static final String RESULT_TITLE = "실행결과";
     public static final String POINT_SEPARATOR = "|";
+    private static final String GENERATED_LADDER_TITLE = "사다리 결과";
 
     public static void printGeneratedLadder(
             final List<String> playerNames,
             final List<List<Boolean>> ladder,
             List<String> gameGameResultNames
     ) {
-        printLine(RESULT_TITLE);
+        printLine(GENERATED_LADDER_TITLE);
         printEmptyLine();
         int nameFormatSize = getPlayerNameSize(playerNames);
         printPlayerNames(playerNames, nameFormatSize);
@@ -64,6 +65,12 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
+    public static void printGameResult(String gameResult) {
+        printLine(RESULT_TITLE);
+        printLine(gameResult);
+        printEmptyLine();
+    }
+
     private static void getFormattedPoint(int nameFormatSize, Boolean point, StringBuilder stringBuilder) {
         stringBuilder.append(getPointUi(point, nameFormatSize));
         stringBuilder.append(POINT_SEPARATOR);
@@ -81,5 +88,4 @@ public class OutputView {
     private static void printLine(final String value) {
         System.out.println(value);
     }
-
 }
