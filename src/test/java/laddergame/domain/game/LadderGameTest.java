@@ -38,7 +38,7 @@ class LadderGameTest {
     @DisplayName("참여자 이름을 입력하면, 한 명의 참여자에 대한 실행결과를 얻는다.")
     void gets_result_of_participant_if_request_content_is_included_in_participants(String requestContent, String expectedResult) {
         Participant participant = participants.findParticipant(requestContent);
-        UserRequest request = UserRequest.of(requestContent);
+        UserRequest request = UserRequest.from(requestContent);
         Map<Participant, Result> resultByParticipants = ladderGame.getResultByParticipants(request);
 
         Result result = resultByParticipants.get(participant);
@@ -51,7 +51,7 @@ class LadderGameTest {
     @DisplayName("\"all\"을 입력하면, 모든 참여자에 대한 실행결과를 얻는다.")
     void gets_all_results_if_request_content_is_same_with_all_request_key() {
         List<Participant> allParticipants = participants.getAllParticipants();
-        UserRequest request = UserRequest.of("all");
+        UserRequest request = UserRequest.from("all");
 
         List<String> resultNames = List.of("1st", "2nd", "3rd", "4th");
         Map<Participant, Result> resultByParticipants = ladderGame.getResultByParticipants(request);

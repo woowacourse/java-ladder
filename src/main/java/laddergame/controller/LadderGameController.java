@@ -74,7 +74,7 @@ public class LadderGameController {
 
     private Map<Participant, Result> readRequestAndGetResultByParticipants(LadderGame ladderGame) {
         return inputView.repeatUntilGettingValidValue(() -> {
-            UserRequest request = UserRequest.of(inputView.readRequest());
+            UserRequest request = UserRequest.from(inputView.readRequest());
             return ladderGame.getResultByParticipants(request);
         });
     }

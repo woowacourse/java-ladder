@@ -10,7 +10,7 @@ public class UserRequest {
         this.requestContent = requestContent;
     }
 
-    public static UserRequest of(final String requestContent) {
+    public static UserRequest from(final String requestContent) {
         if (requestContent.equals(ALL_PARTICIPANTS_COMMAND)) {
             return ALL_PARTICIPANTS;
         }
