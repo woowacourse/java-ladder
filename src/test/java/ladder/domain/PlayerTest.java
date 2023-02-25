@@ -2,7 +2,6 @@ package ladder.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import ladder.domain.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,4 +16,10 @@ class PlayerTest {
         assertDoesNotThrow(() -> new Player("name"));
     }
 
+    @Test
+    @DisplayName("결과를 입력받아 Player의 결과로 저장한다.")
+    void shouldSaveResultWhenRequest() {
+        Player player = new Player("name");
+        assertDoesNotThrow(() -> player.saveResult(new Result("content")));
+    }
 }
