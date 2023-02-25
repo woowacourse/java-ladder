@@ -42,6 +42,9 @@ public class Line {
     }
 
     public boolean isCross(int position) {
+        if (position < 0 || position >= blocks.size()) {
+            return false;
+        }
         return blocks.get(position).getIsCross();
     }
 

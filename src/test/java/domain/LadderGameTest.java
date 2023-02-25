@@ -29,7 +29,7 @@ public class LadderGameTest {
         LadderGame ladderGame = new LadderGame(players, ladder, prizes);
 
         //when
-        LadderGameResult result = ladderGame.playGame(players, ladder, prizes);
+        LadderGameResult result = ladderGame.playGame();
 
         //then
         Assertions.assertThat(result.getPrizeOfPlayer(players.getPlayer(0))).isEqualTo(prizes.getPrize(1));

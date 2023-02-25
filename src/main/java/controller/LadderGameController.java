@@ -28,7 +28,7 @@ public class LadderGameController {
         Ladder ladder = generateLadder(players);
         LadderGame ladderGame = new LadderGame(players, ladder, prizes);
 
-        LadderGameResult result = ladderGame.playGame(players, ladder, prizes);
+        LadderGameResult result = ladderGame.playGame();
 
         printLadder(players, ladder, prizes);
         printLadderResultWithRetry(players, result);
