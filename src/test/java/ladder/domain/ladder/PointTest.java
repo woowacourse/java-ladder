@@ -53,4 +53,13 @@ class PointTest {
                 () -> assertThat(Point.RIGHT.next(alwaysDisConnected)).isEqualTo(Point.LEFT)
         );
     }
+
+    @Test
+    void 오른쪽으로_연결되었는지_확인() {
+        assertAll(
+                () -> assertThat(Point.RIGHT.isRightConnected()).isTrue(),
+                () -> assertThat(Point.LEFT.isRightConnected()).isFalse(),
+                () -> assertThat(Point.NONE.isRightConnected()).isFalse()
+        );
+    }
 }

@@ -2,6 +2,7 @@ package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Ladder 는 Row 를 가지고 있습니다
@@ -33,5 +34,11 @@ public class Ladder {
             throw new IllegalArgumentException(
                     String.format(MINIMUM_SIZE_MESSAGE, width, height));
         }
+    }
+
+    public List<List<Boolean>> getRows() {
+        return rows.stream()
+                .map(Row::getPoints)
+                .collect(Collectors.toList());
     }
 }

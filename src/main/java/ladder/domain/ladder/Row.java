@@ -3,6 +3,7 @@ package ladder.domain.ladder;
 import static ladder.domain.ladder.RowGenerator.generate;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Row 는 Point 를 가지고 있으며, Point 는 왼쪽으로 이동가능, 오른쪽으로 이동가능, 이동하지 않음 상태를 표현하고 있음
@@ -29,5 +30,11 @@ public class Row {
         if (size < MINIMUM_SIZE) {
             throw new IllegalArgumentException(String.format(SMALL_SIZE_MESSAGE, size));
         }
+    }
+
+    public List<Boolean> getPoints() {
+        return points.stream()
+                .map(Point::isRightConnected)
+                .collect(Collectors.toList());
     }
 }

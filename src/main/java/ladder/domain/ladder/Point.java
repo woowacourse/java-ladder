@@ -30,4 +30,8 @@ public enum Point {
         boolean connected = connectionJudgement.judge();
         return connected ? RIGHT : NONE;
     }
+
+    public boolean isRightConnected() {
+        return this == RIGHT;
+    }
 }
