@@ -1,8 +1,8 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author 최원용
@@ -18,16 +18,28 @@ public class People {
         this.people = people;
     }
 
-    private static void validatePeopleNumber(List<Person> people){
-        if(people.size() <= 1)
-        throw new IllegalArgumentException("진행자 수는 2명 이상이어야 합니다.");
+    private static void validatePeopleNumber(List<Person> people) {
+        if (people.size() <= 1) {
+            throw new IllegalArgumentException("진행자 수는 2명 이상이어야 합니다.");
+        }
     }
 
     public List<Person> getPeople() {
         return new ArrayList<>(people);
     }
 
-    public int calculateMaxNameLength(){
+    public int calculateMaxNameLength() {
         return people.stream().mapToInt(p -> p.getName().length()).max().orElseThrow();
+    }
+
+    public Person findPerson(String name) {
+        List<Person> findPeople = people.stream().filter(p -> p.getName().equals(name)).collect(Collectors.toList());
+        if (findPeople.size() >= 2) {
+            throw new IllegalStateException("중복된 참여자가 검색되었습니다.");
+        }
+        if (findPeople.size() == 0) {
+            throw new IllegalStateException("참여자 검색을 실패했습니다.");
+        }
+        return findPeople.get(0);
     }
 }
