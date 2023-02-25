@@ -1,17 +1,12 @@
 package laddergame.model;
 
 public class Point {
-    private final Direction right;
     private final Direction left;
+    private final Direction right;
 
-    public Point() {
-        this.right = new Direction(false);
-        this.left = new Direction(false);
-    }
-
-    public Point(Direction right, Direction left) {
-        this.right = right;
+    public Point(Direction left, Direction right) {
         this.left = left;
+        this.right = right;
     }
 
     public int moveDirection(int position) {
@@ -26,5 +21,13 @@ public class Point {
             return position - 1;
         }
         return position;
+    }
+
+    public Direction getRight() {
+        return right;
+    }
+
+    public boolean getRightIsBoolean() {
+        return getRight().isDirection();
     }
 }

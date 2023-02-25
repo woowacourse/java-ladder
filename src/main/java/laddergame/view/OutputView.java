@@ -3,6 +3,7 @@ package laddergame.view;
 import java.util.List;
 import laddergame.model.Ladder;
 import laddergame.model.People;
+import laddergame.model.Point;
 import laddergame.model.Prizes;
 
 public class OutputView {
@@ -17,8 +18,8 @@ public class OutputView {
     public void printLadderResult(Ladder ladder, People people, Prizes prizes) {
         System.out.println(System.lineSeparator() + LADDER_RESULT_MSG + System.lineSeparator());
         printPeople(people);
-        printPrizes(prizes);
         printLadder(ladder);
+        printPrizes(prizes);
     }
 
     private void printPeople(People people) {
@@ -28,16 +29,16 @@ public class OutputView {
 
     public void printLadder(Ladder ladder) {
         for (int i = 0; i < ladder.getSize(); i++) {
-            List<Boolean> lines = ladder.get(i).getLine();
+            List<Point> line = ladder.get(i).getLine();
             System.out.printf("%6s", VERTICAL_LINE);
-            printSymbol(lines);
+            printSymbol(line);
             System.out.println();
         }
     }
 
-    private void printSymbol(List<Boolean> lines) {
-        for (boolean bool : lines) {
-            System.out.print(LineSymbol.findByBool(bool).getSymbol());
+    private void printSymbol(List<Point> line) {
+        for (Point point : line) {
+            System.out.print(LineSymbol.findByBool(point.getRightIsBoolean()).getSymbol());
             System.out.print(VERTICAL_LINE);
         }
     }

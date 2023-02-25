@@ -24,7 +24,7 @@ class PointTest {
         @Nested
         @DisplayName("오른쪽 이동")
         class Right {
-            Point point = new Point(new Direction(true), new Direction(false));
+            Point point = new Point(new Direction(false), new Direction(true));
 
             @Test
             @DisplayName("오른쪽 이동 성공")
@@ -38,7 +38,7 @@ class PointTest {
         @Nested
         @DisplayName("왼쪽 이동")
         class Left {
-            Point point = new Point(new Direction(false), new Direction(true));
+            Point point = new Point(new Direction(true), new Direction(false));
 
             @Test
             @DisplayName("왼쪽 이동 성공")
