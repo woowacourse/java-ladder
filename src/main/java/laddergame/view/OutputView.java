@@ -54,7 +54,7 @@ public class OutputView {
             return requestByParticipants.values().stream().map(Result::getResultName).findFirst().orElseThrow();
         }
         return participants.stream()
-                .map(participant -> String.format("%s : %s", participant.getName(), requestByParticipants.get(participant)))
+                .map(participant -> String.format("%s : %s", participant.getName(), requestByParticipants.get(participant).getResultName()))
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
