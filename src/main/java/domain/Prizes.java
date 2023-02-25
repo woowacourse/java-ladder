@@ -12,7 +12,7 @@ public class Prizes {
 
     private void validate(List<String> names) {
         for (String name : names) {
-            new Name(name);
+            new PrizeName(name);
         }
     }
 
