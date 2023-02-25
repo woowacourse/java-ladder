@@ -2,8 +2,9 @@ package domain;
 
 import exception.ErrorMessage;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -20,10 +21,9 @@ public class Ladder {
         BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
         validateHeight(height);
 
-        List<Line> lines = new ArrayList<>();
-        for(int line = 0; line < height; line++) {
-            lines.add(Line.of(personCount, booleanGenerator));
-        }
+        List<Line> lines = IntStream.range(0, height)
+                .mapToObj(it -> Line.of(personCount, booleanGenerator))
+                .collect(Collectors.toUnmodifiableList());
 
         return new Ladder(lines);
     }

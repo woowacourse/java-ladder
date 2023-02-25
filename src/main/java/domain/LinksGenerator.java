@@ -3,6 +3,7 @@ package domain;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class LinksGenerator {
 
@@ -17,9 +18,9 @@ public class LinksGenerator {
         if (personCount != 1) {
             links.add(Link.from(booleanGenerator.generate()));
         }
-        for (int index = 1; index < personCount - 1; index++) {
-            addValidateLink(links);
-        }
+        IntStream.range(1, personCount - 1)
+                .forEach(it -> addValidateLink(links));
+
         return List.copyOf(links);
     }
 
