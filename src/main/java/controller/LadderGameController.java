@@ -26,15 +26,6 @@ public class LadderGameController {
         printResult(users);
     }
 
-    private void printResult(Users users) {
-        String name = InputView.readTargetUserName();
-        while(!"all".equals(name)) {
-            printResultWhenTargetIsNotAll(users, name);
-            name = InputView.readTargetUserName();
-        }
-        printAllResult();
-    }
-
     private Users generateUsers() {
         try {
             return new Users(InputView.readUserNames());
@@ -44,21 +35,21 @@ public class LadderGameController {
         }
     }
 
-    private Ladder generateLadder(final Users users) {
-        try {
-            return new Ladder(InputView.readLadderHeight(), users.size(), new RandomBooleanGenerator());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return generateLadder(users);
-        }
-    }
-
     private Results generateResults(final Users users) {
         try {
             return new Results(InputView.readResultNames(), users.size());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return generateResults(users);
+        }
+    }
+
+    private Ladder generateLadder(final Users users) {
+        try {
+            return new Ladder(InputView.readLadderHeight(), users.size(), new RandomBooleanGenerator());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return generateLadder(users);
         }
     }
 
@@ -95,6 +86,15 @@ public class LadderGameController {
     private List<String> calculateLadderGameResult(final Users users, final Ladder ladder) {
         CalculateLadderGameResult calculator = new CalculateLadderGameResult();
         return calculator.passLadder(ladder.getLadder(), users.getUserNames());
+    }
+
+    private void printResult(Users users) {
+        String name = InputView.readTargetUserName();
+        while(!"all".equals(name)) {
+            printResultWhenTargetIsNotAll(users, name);
+            name = InputView.readTargetUserName();
+        }
+        printAllResult();
     }
 
     private void printResultWhenTargetIsNotAll(final Users users, final String name) {
