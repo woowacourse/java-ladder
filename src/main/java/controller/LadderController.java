@@ -31,13 +31,9 @@ public class LadderController {
     }
 
     private void viewResult(LadderGame ladderGame) {
-        Names viewers = inputViewers(ladderGame);
+        Names viewers = inputView.inputResultViewerName(ladderGame.allPlayersName());
         Results viewResult = ladderGame.resultsByNames(viewers);
         outputView.printGameResult(viewers, viewResult);
-    }
-
-    private Names inputViewers(LadderGame ladderGame) {
-        return inputView.inputResultViewerName(ladderGame.allPlayersName());
     }
 
     private LadderGame initLadderGame() {
