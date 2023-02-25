@@ -65,16 +65,16 @@ public class OutputView {
     }
 
     public void printResult(Result result) {
-        System.out.println(result.getValue());
+        System.out.println(result.getResult());
     }
 
     private List<String> unwrapResults(List<Result> results) {
-        return results.stream().map(Result::getValue).collect(Collectors.toList());
+        return results.stream().map(Result::getResult).collect(Collectors.toList());
     }
 
     private List<String> unwrapNames(List<Name> names) {
         return names.stream()
-                .map(Name::getValue)
+                .map(Name::getName)
                 .collect(Collectors.toList());
     }
 
@@ -103,6 +103,6 @@ public class OutputView {
     }
 
     public void printNameAndResult(Name name, Result result) {
-        System.out.println(name.getValue() + NAME_RESULT_DELIMITER + result.getValue());
+        System.out.println(name.getName() + NAME_RESULT_DELIMITER + result.getResult());
     }
 }

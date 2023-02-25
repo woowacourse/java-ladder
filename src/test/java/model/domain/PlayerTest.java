@@ -47,7 +47,7 @@ public class PlayerTest {
         Result result = player.getResult();
 
         //then
-        assertThat(result.getValue()).isEqualTo("5000");
+        assertThat(result.getResult()).isEqualTo("5000");
     }
 
     @ParameterizedTest

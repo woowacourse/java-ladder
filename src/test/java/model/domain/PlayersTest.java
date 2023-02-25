@@ -33,7 +33,7 @@ public class PlayersTest {
         //when
         List<Name> names = players.getAllPlayerNames();
         List<String> result = names.stream()
-                .map(Name::getValue)
+                .map(Name::getName)
                 .collect(Collectors.toList());
 
         //then
@@ -53,7 +53,7 @@ public class PlayersTest {
 
         List<Name> names = players.getAllNamesOrderedByPosition();
         List<String> result = names.stream()
-                .map(Name::getValue)
+                .map(Name::getName)
                 .collect(Collectors.toList());
 
         //then
@@ -101,10 +101,10 @@ public class PlayersTest {
         Result oceanResult = players.getResultOf(new Name("ocean"));
 
         //then
-        assertThat(pobiResult.getValue()).isEqualTo("3000");
-        assertThat(neoResult.getValue()).isEqualTo("꽝");
-        assertThat(hiiroResult.getValue()).isEqualTo("꽝");
-        assertThat(oceanResult.getValue()).isEqualTo("5000");
+        assertThat(pobiResult.getResult()).isEqualTo("3000");
+        assertThat(neoResult.getResult()).isEqualTo("꽝");
+        assertThat(hiiroResult.getResult()).isEqualTo("꽝");
+        assertThat(oceanResult.getResult()).isEqualTo("5000");
     }
 
     @Test
