@@ -16,6 +16,7 @@ public class OutputView {
     private static final String CONNECTED_LINE = "-----";
     private static final String UNCONNECTED_LINE = "     ";
     private static final String NAME_SPACE = " ";
+    private static final String GAME_RESULT_MESSAGE = "\n실행 결과";
 
     public void printLadder(final Names names, final Ladder ladder, final Results results) {
         System.out.println(RESULT_ANNOUNCEMENT);
@@ -65,6 +66,7 @@ public class OutputView {
     }
 
     public void printGameResult(final Names viewers, final Results viewResult) {
+        System.out.println(GAME_RESULT_MESSAGE);
         for (int i = 0; i < viewers.size(); i++) {
             System.out.println(viewers.get(i).getValue() + " : " + viewResult.get(i).getValue());
         }
