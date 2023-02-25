@@ -1,10 +1,6 @@
 package domain;
 
-import exception.Error;
-
 public class Result {
-	public static final int MIN_LENGTH = 1;
-	public static final int MAX_LENGTH = 5;
 	private final String reward;
 
 	public Result(String reward) {
@@ -13,9 +9,11 @@ public class Result {
 	}
 
 	private void validate(String reward) {
-		reward = reward.trim();
+		reward = reward.strip();
+		int MIN_LENGTH = 1;
+		int MAX_LENGTH = 5;
 		if (reward.length() < MIN_LENGTH || reward.length() > MAX_LENGTH) {
-			throw new IllegalArgumentException(Error.INVALID_SEQUENCE_LENGTH.getMessage());
+			throw new IllegalArgumentException(String.format("예상 결과는 %d ~ %d글자만 가능합니다", MIN_LENGTH, MAX_LENGTH));
 		}
 	}
 

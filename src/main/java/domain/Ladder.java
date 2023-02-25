@@ -3,12 +3,8 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import exception.Error;
-
 public class Ladder {
 	private static final int FIRST_COLUMN = 0;
-	public static final int MIN_HEIGHT = 1;
-	public static final int MAX_HEIGHT = 100;
 
 	private final List<Level> levels;
 
@@ -23,12 +19,16 @@ public class Ladder {
 		for (int i = 0; i < height; i++) {
 			levelList.add(new Level(participantSize));
 		}
+
 		return new Ladder(levelList);
 	}
 
 	private static void validate(int height) {
+		int MIN_HEIGHT = 1;
+		int MAX_HEIGHT = 1;
+
 		if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
-			throw new IllegalArgumentException(Error.HEIGHT_RANGE_FROM_1_TO_100.getMessage());
+			throw new IllegalArgumentException(String.format("높이는 %d부터 %d까지만 가능합니다", MIN_HEIGHT, MAX_HEIGHT));
 		}
 	}
 

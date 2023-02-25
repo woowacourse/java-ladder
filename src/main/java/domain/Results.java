@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import exception.Error;
-
 public class Results {
-	private static final int MIN_RESULTS_SIZE_INCLUSIVE = 2;
-	private static final int MAX_RESULTS_SIZE_INCLUSIVE = 10;
 
 	private final List<Result> results;
 
@@ -22,14 +18,17 @@ public class Results {
 		for (String reward : rewards) {
 			resultList.add(new Result(reward));
 		}
+
 		return new Results(resultList);
 	}
 
 	private static void validateSize(List<String> rewards) {
-		if (rewards.size() < MIN_RESULTS_SIZE_INCLUSIVE)
-			throw new IllegalArgumentException(Error.RESULTS_FROM_2_TO_10.getMessage());
-		if (rewards.size() > MAX_RESULTS_SIZE_INCLUSIVE)
-			throw new IllegalArgumentException(Error.RESULTS_FROM_2_TO_10.getMessage());
+		int MIN_SIZE = 2;
+		int MAX_SIZE = 10;
+		if (rewards.size() < MIN_SIZE)
+			throw new IllegalArgumentException(String.format("예상 결과 개수는 %d ~ %d개여야 합니다", MIN_SIZE, MAX_SIZE));
+		if (rewards.size() > MAX_SIZE)
+			throw new IllegalArgumentException(String.format("예상 결과 개수는 %d ~ %d개여야 합니다", MIN_SIZE, MAX_SIZE));
 	}
 
 	public List<String> getResults() {
