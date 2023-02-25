@@ -40,7 +40,7 @@
   - [x] 사다리의 가로 길이는 5자로 출력한다.
 
 ---
-## 1단계 미션 PR 이후 리팩토링
+## 1단계 미션 리팩토링
 - 제어자
   - [x] 인텔리제이 설정 확인하기 (⌥⌘C → ⌥⌘C → private로 선택)
   - [x] Controller의 InputView OutputView는 외부에서 사용하는 필드가 아니므로 private final로 숨겨주기
@@ -54,7 +54,7 @@
   - [x] LineSymbol Class 오류 메시지 출력하기
 - 메서드 네이밍
   - [x] Persons class 의 사이즈 return 해주는 메소드 이름을 ‘크기’ 대신 ‘명’, ‘수’로 변경할 수 있도록 고민하기 .. getSize → getNumberOfPersons
-  - [ ] getNumberOfPersons → getPeople로 네이밍 수정 (Person의 복수형은 People로 많이 사용)
+  - [x] getNumberOfPersons → getPeople로 네이밍 수정 (Person의 복수형은 People로 많이 사용)
 - stream
   - [x] OutputView의 printPersons 메소드 출력 방법을 for문 대신 stream 사용하기
   - [x] Persons class에서 List<Person> 생성하는 부분 stream 사용하기
@@ -80,3 +80,7 @@
     - [ ]  실행 결과만 출력한다.
   - [ ]  "all"을 입력하면 전체 참여자의 실행 결과를 출력한다.
     - [ ]  전체 참여자의 실행 결과를 `이름 : 결과` 형식으로 출력한다.
+
+---
+## 2단계 미션 리팩토링
+- [ ] 상수와 객체의 필드 사이 개행 추가 

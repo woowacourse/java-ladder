@@ -37,7 +37,7 @@ public class Persons {
                 .collect(Collectors.toList());
     }
 
-    public int getNumberOfPersons() {
+    public int getPeople() {
         return persons.size();
     }
 
