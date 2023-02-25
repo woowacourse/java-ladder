@@ -42,7 +42,8 @@ public class LineTest {
     @Test
     void 너비를_받아_라인상태값을_생성한다() {
         // given
-        final TestScaffoldGenerator testScaffoldGenerator = new TestScaffoldGenerator(List.of(true, false, true, false));
+        final TestScaffoldGenerator testScaffoldGenerator = new TestScaffoldGenerator(
+                List.of(true, false, true, false));
         final Width width = new Width(4);
         // when
         final Line line = new Line(width, testScaffoldGenerator);
@@ -74,9 +75,9 @@ public class LineTest {
         final Line line = new Line(width, testScaffoldGenerator);
 
         /*
-        *  position 0    1    2    3
-        *           |----|    |----|
-        * */
+         *  position 0    1    2    3
+         *           |----|    |----|
+         * */
 
         // then
         assertThat(line.move(0)).isEqualTo(1);
