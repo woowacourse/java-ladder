@@ -60,7 +60,6 @@ class PlayerTest {
         @Test
         void move2() {
             player.move(ladder);
-            player.move(ladder);
             assertThat(player.getXPosition()).isEqualTo(2);
         }
 
