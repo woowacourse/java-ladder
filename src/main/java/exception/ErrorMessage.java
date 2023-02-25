@@ -10,7 +10,8 @@ public enum ErrorMessage {
     USER_NOT_FOUND_EXCEPTION("해당 유저를 찾을 수 없습니다."),
     USERS_NAME_BLANK_EXCEPTION("유저의 이름으로 쉼표만 입력하면 안 됩니다."),
     USERS_NAME_HAS_DUPLICATE("유저의 이름이 중복일 수 없습니다."),
-    PRIZES_SIZE_IS_NOT_EQUAL_USERS_SIZE_EXCEPTION("상품의 개수는 참여자의 수와 동일해야 합니다.");
+    PRIZES_SIZE_IS_NOT_EQUAL_USERS_SIZE_EXCEPTION("상품의 개수는 참여자의 수와 동일해야 합니다."),
+    USER_AND_PRIZE_COUNT_IS_NOT_ONE("단일 유저 또는 상금이 아닙니다.");
 
     private final String message;
 

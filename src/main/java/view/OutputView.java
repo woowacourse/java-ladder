@@ -1,5 +1,6 @@
 package view;
 
+import exception.ErrorMessage;
 import java.util.List;
 import java.util.Map;
 
@@ -53,8 +54,11 @@ public class OutputView {
         printAllUsersAndPrizes(userNameAndPrizes);
     }
 
-    private void printOneUsersPrize(final Map<String, String> userNameAndPrizes) {
-        final String prizeName = userNameAndPrizes.values().stream().findFirst().get();
+    private void printOneUsersPrize(final Map<String, String> userNameAndPrize) {
+        if (userNameAndPrize.size() != SELECT_ONE_USER) {
+            throw new IllegalStateException(ErrorMessage.USER_AND_PRIZE_COUNT_IS_NOT_ONE.getMessage());
+        }
+        final String prizeName = userNameAndPrize.values().stream().findFirst().get();
         System.out.println(prizeName);
         printBlankLine();
     }
