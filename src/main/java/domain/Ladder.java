@@ -22,7 +22,7 @@ public class Ladder {
         IntStream.range(0, names.size())
                 .forEach(position -> totalResult.put(names.getNameByIndex(position).getValue(),
                         calculateSingleMatching(prizes, position))
-                );
+        );
         return new HashMap<>(totalResult);
     }
 

@@ -49,7 +49,8 @@ public class Line {
     }
 
     private void validateConsistExistScaffolds(final List<Scaffold> scaffolds) {
-        IntStream.range(0, scaffolds.size() - 1).forEach(i -> validateConsistExistScaffold(scaffolds, i));
+        IntStream.range(0, scaffolds.size() - 1)
+                .forEach(scaffold -> validateConsistExistScaffold(scaffolds, scaffold));
     }
 
     private void validateConsistExistScaffold(final List<Scaffold> scaffolds, final int index) {
