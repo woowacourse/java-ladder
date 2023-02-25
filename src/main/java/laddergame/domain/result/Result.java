@@ -14,7 +14,7 @@ public class Result {
     }
 
     private void validateNullOrEmpty(final String result) {
-        if (result == null || result.isBlank()) {
+        if (Objects.isNull(result) || result.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 실행 결과는 null 이거나 빈 값일 수 없습니다.");
         }
     }
