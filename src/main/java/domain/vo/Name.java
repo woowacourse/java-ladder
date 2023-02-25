@@ -25,7 +25,6 @@ public class Name {
         return value;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

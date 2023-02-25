@@ -9,6 +9,7 @@ import domain.vo.Height;
 import domain.vo.Names;
 import domain.vo.Results;
 import domain.vo.Width;
+import validator.dto.InputRepeatableDTO;
 import view.InputView;
 import view.OutputView;
 
@@ -27,13 +28,27 @@ public class LadderController {
     public void play() {
         LadderGame ladderGame = initLadderGame();
         ladderGame.play();
-        viewResult(ladderGame);
+        repeatViewResult(ladderGame);
     }
 
-    private void viewResult(LadderGame ladderGame) {
-        Names viewers = inputView.inputResultViewerName(ladderGame.allPlayersName());
+    private void repeatViewResult(LadderGame ladderGame) {
+        boolean isRepeat = repeatableViewResult(ladderGame);
+
+        while (isRepeat) {
+            isRepeat = repeatableViewResult(ladderGame);
+        }
+    }
+
+    private boolean repeatableViewResult(LadderGame ladderGame) {
+        InputRepeatableDTO inputRepeatableDTO = inputView.inputResultViewersName(ladderGame.allPlayersName());
+        if (!inputRepeatableDTO.isRepeatable()) {
+            return false;
+        }
+        Names viewers = inputRepeatableDTO.getNames();
         Results viewResult = ladderGame.resultsByNames(viewers);
+
         outputView.printGameResult(viewers, viewResult);
+        return true;
     }
 
     private LadderGame initLadderGame() {
