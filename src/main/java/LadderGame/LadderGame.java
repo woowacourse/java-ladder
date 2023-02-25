@@ -17,7 +17,7 @@ public class LadderGame {
         Ladder ladder = validateLadderInput(players);
 
         printLadders(players, rewards, ladder);
-        ladder.getRewardsForPlayers(rewards);
+        ladder.traverseLines();
 
         selectPlayerName(players,rewards);
     }

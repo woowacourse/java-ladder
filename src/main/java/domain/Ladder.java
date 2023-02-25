@@ -39,12 +39,7 @@ public class Ladder {
         return blocks;
     }
 
-    public void getRewardsForPlayers(Rewards rewards) {
-        traverseLines();
-        matchRewardsForPlayers(rewards);
-    }
-
-    private void traverseLines() {
+    public void traverseLines() {
         for (Line line : ladder) {
             traverseLine(line);
         }
@@ -58,7 +53,6 @@ public class Ladder {
 
     private void crossLine(Line line, int playerIndex) {
         boolean isCross = line.getBlockByIndex(playerIndex);
-
         //TODO: isCross, isCrossable 둘 중에 더 직관적인 네이밍은 어떤 것일까요??
         if (isCross) {
             swapPlayers(playerIndex);
@@ -74,15 +68,6 @@ public class Ladder {
 
         result.set(prePlayerIndex, postPlayer);
         result.set(postPlayerIndex, prePlayer);
-    }
-
-    private void matchRewardsForPlayers(Rewards rewards) {
-        int bound = result.size();
-        for (int playerIndex = 0; playerIndex < bound; playerIndex++) {
-            Player player = result.get(playerIndex);
-
-            //player.setReward(rewards.getReward(playerIndex));
-        }
     }
 
     public List<Line> getLadder() {
