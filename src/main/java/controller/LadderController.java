@@ -3,10 +3,7 @@ package controller;
 import java.util.List;
 import java.util.Map;
 
-import domain.Ladder;
-import domain.LadderGame;
-import domain.Players;
-import domain.Prizes;
+import domain.*;
 import domain.numbergenerator.NumberGenerator;
 import utils.Command;
 import utils.LogType;
@@ -31,11 +28,11 @@ public class LadderController {
         Ladder ladder = generateLadder(playerCount);
         Prizes prizes = generatePrize(playerCount);
         LadderGame ladderGame = new LadderGame(ladder, players, prizes);
-        Map<String, String> results = ladderGame.run();
+        Map<Player, Prize> results = ladderGame.run();
         print(players, ladder, prizes, results);
     }
 
-    private void print(Players players, Ladder ladder, Prizes prizes, Map<String, String> results) {
+    private void print(Players players, Ladder ladder, Prizes prizes, Map<Player, Prize> results) {
         outputView.printNames(players);
         outputView.printLadder(ladder);
         outputView.printPrizes(prizes);
@@ -79,7 +76,7 @@ public class LadderController {
         }
     }
 
-    private void printResults(Map<String, String> results) {
+    private void printResults(Map<Player, Prize> results) {
         String command = inputView.readResultOfPlayer();
         if (Command.FINISH_GAME_COMMAND.isEqualTo(command)) {
             return;
@@ -91,7 +88,7 @@ public class LadderController {
         printOneResult(results, command);
     }
 
-    private void printOneResult(Map<String, String> results, String command) {
+    private void printOneResult(Map<Player, Prize> results, String command) {
         try {
             outputView.printOnePlayerResult(results, command);
         } catch (IllegalArgumentException exception) {
@@ -100,7 +97,7 @@ public class LadderController {
         printResults(results);
     }
 
-    private void printAllResult(Map<String, String> results) {
+    private void printAllResult(Map<Player, Prize> results) {
         outputView.printAllPlayerResult(results);
         printResults(results);
     }

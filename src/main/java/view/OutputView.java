@@ -65,26 +65,27 @@ public class OutputView {
 
     public void printPrizes(Prizes prizes) {
         System.out.print(OBJECT_START_FORMAT);
-        prizes.getPrizes()
+        prizes.getPrizes().stream()
+                .map(prize -> prize.getPrize())
                 .forEach(outputView::printObject);
         System.out.println();
     }
 
-    public void printOnePlayerResult(Map<String, String> results, String name) {
+    public void printOnePlayerResult(Map<Player, Prize> results, String name) {
         String trimmedName = name.trim();
-        String result = results.get(trimmedName);
+        Prize result = results.get(new Player(trimmedName, 1));
         if (result == null) {
             throw new IllegalArgumentException(NAME_ERROR_MESSAGE);
         }
         System.out.println(RESULT_MESSAGE);
-        System.out.println(result);
+        System.out.println(result.getPrize());
         System.out.println();
     }
 
-    public void printAllPlayerResult(Map<String, String> result) {
+    public void printAllPlayerResult(Map<Player, Prize> result) {
         System.out.println(RESULT_MESSAGE);
-        for (String key : result.keySet()) {
-            System.out.println(key + " : " + result.get(key));
+        for (Player key : result.keySet()) {
+            System.out.println(key.getName() + " : " + result.get(key).getPrize());
         }
         System.out.println();
     }

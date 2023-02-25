@@ -25,21 +25,21 @@ public class LadderGameTest {
         String prize1 = "꽝";
         String prize2 = "1000";
         String prize3 = "2000";
-        String prize4 = "3000";
+        String prize4 = "1000";
 
         Ladder ladder = new Ladder(4, 4, new TestNumberGenerator(Lists.newArrayList(1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0)));
         Players players = new Players(List.of(kong, odo, gray, kiara));
         Prizes prizes = new Prizes(List.of(prize1, prize2, prize3, prize4), 4);
 
-        Map<String, String> expected = new HashMap<>();
-        expected.put(kong, prize4);
-        expected.put(odo, prize2);
-        expected.put(gray, prize1);
-        expected.put(kiara, prize3);
+        Map<Player, Prize> expected = new HashMap<>();
+        expected.put(new Player(kong, 0), new Prize(prize4));
+        expected.put(new Player(odo, 0), new Prize(prize2));
+        expected.put(new Player(gray, 0), new Prize(prize1));
+        expected.put(new Player(kiara, 0), new Prize(prize3));
 
         // when
         LadderGame ladderGame = new LadderGame(ladder, players, prizes);
-        Map<String, String> result = ladderGame.run();
+        Map<Player, Prize> result = ladderGame.run();
 
         // then
         assertThat(result).isEqualTo(expected);

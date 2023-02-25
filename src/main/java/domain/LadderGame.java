@@ -8,7 +8,7 @@ public class LadderGame {
     private final Ladder ladder;
     private final Players players;
     private final Prizes prizes;
-    private final Map<String, String> result;
+    private final Map<Player, Prize> result;
 
     public LadderGame(Ladder ladder, Players players, Prizes prizes) {
         this.ladder = ladder;
@@ -17,7 +17,7 @@ public class LadderGame {
         this.result = new HashMap<>();
     }
 
-    public Map<String, String> run() {
+    public Map<Player, Prize> run() {
         if (isDone()) {
             return result;
         }
@@ -30,12 +30,11 @@ public class LadderGame {
         return !result.isEmpty();
     }
 
-    private Map<String, String> finish() {
+    private void finish() {
         for (Player player : players.getPlayers()) {
             int position = player.getPosition();
-            result.put(player.getName(), prizes.getOnePrizeByIndex(position));
+            result.put(player, prizes.getOnePrizeByIndex(position));
         }
-        return result;
     }
 
     private void play() {
