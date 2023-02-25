@@ -23,7 +23,7 @@ public class LadderHeight {
 
     private void validateHeightRange(final int heightNumber) {
         if (heightNumber < MIN_HEIGHT || heightNumber > MAX_HEIGHT) {
-            throw new IllegalArgumentException(String.format("[ERROR] 사다리 높이는 %d ~ %d 사이의 값만 가질 수 있습니다.", MIN_HEIGHT, MIN_HEIGHT));
+            throw new IllegalArgumentException(String.format("[ERROR] 사다리 높이는 %d ~ %d 사이의 값만 가질 수 있습니다.", MIN_HEIGHT, MAX_HEIGHT));
         }
     }
 
