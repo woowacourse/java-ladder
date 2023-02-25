@@ -13,6 +13,6 @@ public class LadderGameResult {
     }
 
     public Map<Player, Product> getLadderResult() {
-        return ladderResult;
+        return Map.copyOf(ladderResult);
     }
 }
