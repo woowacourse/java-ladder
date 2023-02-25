@@ -13,7 +13,7 @@ public class OutputView {
         System.out.println(ERROR_PREFIX + errorMessage);
     }
 
-    public void printResult(Ladder ladder, Persons persons) {
+    public void printLadderResult(Ladder ladder, Persons persons) {
         System.out.println(System.lineSeparator() + LADDER_RESULT_MSG + System.lineSeparator());
         printPersons(persons);
         printLadder(ladder);
