@@ -5,7 +5,7 @@ import domain.*;
 import java.util.List;
 
 public class OutputView {
-    public static final String FIRST_FORMAT = "%-5s";
+    public static final String FIRST_FORMAT = "%5s";
     public static final String MIDDLE_FORMAT = "%6s";
     public static final String LAST_FORMAT = "%5s";
     public static final String VERTICAL_BAR = "|";
