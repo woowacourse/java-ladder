@@ -1,6 +1,6 @@
 package techcourse.jcf.mission;
 
-public class SimpleLinkedList implements SimpleList{
+public class SimpleLinkedList implements SimpleList {
     private Node head;
     private Node tail;
     private int size;
@@ -102,7 +102,7 @@ public class SimpleLinkedList implements SimpleList{
             index++;
         }
         if (isFound) {
-            return index-1;
+            return index - 1;
         }
         return -1;
     }

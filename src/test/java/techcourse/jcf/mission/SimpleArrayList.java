@@ -2,7 +2,7 @@ package techcourse.jcf.mission;
 
 import java.util.Arrays;
 
-public class SimpleArrayList implements SimpleList{
+public class SimpleArrayList implements SimpleList {
 
     private static final int initialValue = 10;
 
@@ -17,7 +17,7 @@ public class SimpleArrayList implements SimpleList{
     @Override
     public boolean add(String value) {
         size++;
-        addValue(size-1, value);
+        addValue(size - 1, value);
         return true;
     }
 
@@ -76,7 +76,7 @@ public class SimpleArrayList implements SimpleList{
             isFound = arrayList[index] == value;
         }
         if (isFound) {
-            return index-1;
+            return index - 1;
         }
         return -1;
     }
@@ -102,7 +102,7 @@ public class SimpleArrayList implements SimpleList{
     }
 
     private void removeByIndex(int index) {
-        for (; index < size-1; index++) {
+        for (; index < size - 1; index++) {
             arrayList[index] = arrayList[index + 1];
         }
         size--;
