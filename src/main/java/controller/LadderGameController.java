@@ -36,36 +36,30 @@ public class LadderGameController {
     }
 
     private Users generateUsers() {
-        Users users = null;
         try {
-            users = new Users(InputView.readUserNames());
+            return new Users(InputView.readUserNames());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            generateUsers();
+            return generateUsers();
         }
-        return users;
     }
 
     private Ladder generateLadder(final Users users) {
-        Ladder ladder = null;
         try {
-            ladder = new Ladder(InputView.readLadderHeight(), users.size(), new RandomBooleanGenerator());
+            return new Ladder(InputView.readLadderHeight(), users.size(), new RandomBooleanGenerator());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            generateLadder(users);
+            return generateLadder(users);
         }
-        return ladder;
     }
 
     private Results generateResults(final Users users) {
-        Results results = null;
         try {
-            results = new Results(InputView.readResultNames(), users.size());
+            return new Results(InputView.readResultNames(), users.size());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            generateResults(users);
+            return generateResults(users);
         }
-        return results;
     }
 
     private void printLadder(final Users users, final Results results, final Ladder ladder) {
