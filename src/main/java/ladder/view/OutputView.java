@@ -5,7 +5,8 @@ import static java.util.stream.Collectors.joining;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import ladder.domain.ladder.Line;
+import ladder.domain.ladder.LadderGame;
+import ladder.domain.ladder.LadderGameResult;
 
 public class OutputView {
     private static final int EMPTY_NAME_LENGTH = 0;
@@ -18,11 +19,15 @@ public class OutputView {
     private static final String LADDER_GAME_RESULT_MESSAGE = NEXT_LINE + "실행 결과";
     private static final String LADDER_GAME_RESULT_MESSAGE_FORMAT = "%s : %s";
 
-    public void printLadderResult(final List<String> players, final List<Line> ladder, final List<String> items) {
+    public void printLadderResult(final LadderGame ladderGame) {
         System.out.println(LADDER_RESULT_MESSAGE);
+
+        final List<String> players = ladderGame.getPlayers();
+        final List<String> items = ladderGame.getItems();
         final int maxNameLength = calculateMaxNameLength(List.of(players, items));
+
         System.out.println(generateNameMessages(players, maxNameLength));
-        System.out.println(LadderMessageGenerator.generate(maxNameLength, ladder));
+        System.out.println(LadderMessageGenerator.generate(maxNameLength, ladderGame.getLadder()));
         System.out.println(generateNameMessages(items, maxNameLength));
     }
 
@@ -45,9 +50,9 @@ public class OutputView {
         return String.format(nameSizeFormat, name);
     }
 
-    public void printLadderGameResult(final Map<String, String> result) {
+    public void printLadderGameResult(final LadderGameResult ladderGameResult, final String name) {
         System.out.println(LADDER_GAME_RESULT_MESSAGE);
-        System.out.println(generateLadderGameResultMessage(result));
+        System.out.println(generateLadderGameResultMessage(ladderGameResult.get(name)));
     }
 
     private String generateLadderGameResultMessage(final Map<String, String> result) {

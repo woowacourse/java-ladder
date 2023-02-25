@@ -1,14 +1,11 @@
 package ladder.controller;
 
-import java.util.List;
-import java.util.Map;
 import java.util.function.Supplier;
 import ladder.domain.item.Items;
 import ladder.domain.ladder.BooleanGenerator;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.LadderGame;
 import ladder.domain.ladder.LadderGameResult;
-import ladder.domain.ladder.Line;
 import ladder.domain.player.Players;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -31,7 +28,7 @@ public class LadderGameController {
 
     public void run() {
         final LadderGame ladderGame = initialize();
-        printLadderResult(ladderGame);
+        outputView.printLadderResult(ladderGame);
         final LadderGameResult ladderGameResult = ladderGame.play();
         printLadderGameResult(ladderGameResult);
     }
@@ -53,39 +50,26 @@ public class LadderGameController {
         }
     }
 
-    private void printLadderResult(final LadderGame ladderGame) {
-        final List<String> players = ladderGame.getPlayers();
-        final List<Line> ladder = ladderGame.getLadder();
-        final List<String> items = ladderGame.getItems();
-
-        outputView.printLadderResult(players, ladder, items);
-    }
-
     private void printLadderGameResult(final LadderGameResult ladderGameResult) {
         LadderGameCommand command = LadderGameCommand.SINGLE;
         while (command.isContinued()) {
-            final Map<String, String> result = repeatUntilGetValidInput(() -> getLadderGameResult(ladderGameResult));
-            command = LadderGameCommand.from(result.size());
-            outputView.printLadderGameResult(result);
+            final String name = repeatUntilGetValidInput(inputView::readPlayerName);
+            command = LadderGameCommand.from(name);
+            outputView.printLadderGameResult(ladderGameResult, name);
         }
     }
 
-    private Map<String, String> getLadderGameResult(final LadderGameResult ladderGameResult) {
-        final String name = inputView.readPlayerName();
-        return ladderGameResult.get(name);
-    }
-
-    enum LadderGameCommand {
-        ALL,
+    private enum LadderGameCommand {
+        MULTIPLE,
         SINGLE;
 
-        private static final int SINGLE_RESULT_SIZE = 1;
+        private static final String MULTIPLE_RESULT_RESERVED_NAME = "all";
 
-        public static LadderGameCommand from(final int size) {
-            if (size == SINGLE_RESULT_SIZE) {
-                return SINGLE;
+        public static LadderGameCommand from(final String name) {
+            if (MULTIPLE_RESULT_RESERVED_NAME.equals(name)) {
+                return MULTIPLE;
             }
-            return ALL;
+            return SINGLE;
         }
 
         public boolean isContinued() {
