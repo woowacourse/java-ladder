@@ -9,11 +9,11 @@ public class Position {
         this.y = y;
     }
 
-    public static Position of(final int x) {
+    public static Position from(final int x) {
         return new Position(x, 0);
     }
 
-    public static Position of(final int x, final int y) {
+    public static Position from(final int x, final int y) {
         return new Position(x, y);
     }
 

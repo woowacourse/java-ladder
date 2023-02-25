@@ -13,7 +13,7 @@ public class Player {
     }
 
     public void initPosition(final int index) {
-        position = Position.of(index);
+        position = Position.from(index);
     }
 
     public void move(Ladder ladder) {
