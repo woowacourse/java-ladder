@@ -52,15 +52,15 @@ public class Results {
     private void addResult(List<String> playersName, List<Integer> lastPositions,
                            String targetPlayer, List<String> results) {
         if (targetPlayer.equals(ALL_PLAYER)) {
-            addPlayersResult(playersName, lastPositions, results);
+            addPlayersResult(lastPositions, results);
             return;
         }
         addPlayerResult(results, lastPositions.get(playersName.indexOf(targetPlayer)));
     }
 
-    private void addPlayersResult(List<String> playersName, List<Integer> lastPositions, List<String> results) {
-        for (int index = 0; index < playersName.size(); index++) {
-            results.add(getResult(lastPositions.get(index)));
+    private void addPlayersResult(List<Integer> lastPositions, List<String> results) {
+        for (Integer lastPosition : lastPositions) {
+            results.add(getResult(lastPosition));
         }
     }
 
