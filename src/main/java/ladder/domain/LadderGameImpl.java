@@ -7,6 +7,7 @@ import ladder.domain.item.Result;
 import ladder.domain.ladder.ConnectionJudgement;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Players;
+import ladder.repository.LadderRepository;
 
 /**
  * 이 클래스는 사다리 게임에 대한 실제 로직을 담당하는 클래스 입니다
