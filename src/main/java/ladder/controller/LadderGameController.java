@@ -53,10 +53,16 @@ public class LadderGameController {
     private void printLadderGameResult(final LadderGameResult ladderGameResult) {
         LadderGameCommand command = LadderGameCommand.SINGLE;
         while (command.isContinued()) {
-            final String name = repeatUntilGetValidInput(inputView::readPlayerName);
+            final String name = repeatUntilGetValidInput(() -> getValidPlayerName(ladderGameResult));
             command = LadderGameCommand.from(name);
             outputView.printLadderGameResult(ladderGameResult, name);
         }
+    }
+
+    private String getValidPlayerName(final LadderGameResult ladderGameResult) {
+        final String name = inputView.readPlayerName();
+        ladderGameResult.validatePlayerName(name);
+        return name;
     }
 
     private enum LadderGameCommand {

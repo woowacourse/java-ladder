@@ -6,7 +6,7 @@ import java.util.Map;
 public class LadderGameResult {
     static final String INVALID_PLAYER_MESSAGE = "사다리 게임에 참가한 사람의 이름을 입력해야합니다.";
     private static final String MULTIPLE_RESULT_RESERVED_NAME = "all";
-    
+
     private final Map<Player, Item> result;
 
     public LadderGameResult(final Map<Player, Item> result) {
@@ -43,5 +43,20 @@ public class LadderGameResult {
                 .filter(player -> player.isSameName(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_PLAYER_MESSAGE));
+    }
+
+    public void validatePlayerName(final String name) {
+        if (isInvalidPlayerName(name) && isNotReservedName(name)) {
+            throw new IllegalArgumentException(INVALID_PLAYER_MESSAGE);
+        }
+    }
+
+    private boolean isInvalidPlayerName(final String name) {
+        return this.result.keySet().stream()
+                .noneMatch(player -> player.isSameName(name));
+    }
+
+    private boolean isNotReservedName(final String name) {
+        return !MULTIPLE_RESULT_RESERVED_NAME.equals(name);
     }
 }
