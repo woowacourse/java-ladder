@@ -1,7 +1,5 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.rung.RandomBooleanGenerator;
-import laddergame.domain.rung.Rung;
 import laddergame.util.BooleanGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

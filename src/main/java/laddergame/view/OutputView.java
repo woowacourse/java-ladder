@@ -1,7 +1,7 @@
 package laddergame.view;
 
 import laddergame.domain.ladder.Line;
-import laddergame.domain.rung.Rung;
+import laddergame.domain.ladder.Rung;
 
 import java.util.List;
 import java.util.Map;

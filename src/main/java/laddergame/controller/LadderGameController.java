@@ -1,11 +1,11 @@
 package laddergame.controller;
 
 import laddergame.domain.ladder.Ladder;
+import laddergame.domain.ladder.RandomBooleanGenerator;
 import laddergame.domain.participant.Participant;
 import laddergame.domain.participant.Participants;
 import laddergame.domain.request.Request;
 import laddergame.domain.result.Results;
-import laddergame.domain.rung.RandomBooleanGenerator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
