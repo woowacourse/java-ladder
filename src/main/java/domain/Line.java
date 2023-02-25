@@ -25,13 +25,16 @@ public class Line {
         lineValue.add(generator.generate());
         --personCount;
         for (int i = 0; i < personCount - 1; i++) {
-            if (!lineValue.get(lineValue.size() - 1)) {
-                lineValue.add(generator.generate());
-                continue;
-            }
-            lineValue.add(false);
+            addLine(lineValue, generator);
         }
         return line;
     }
 
+    private static void addLine(List<Boolean> line, RandomValueGenerator generator) {
+        if (!line.get(line.size() - 1)) {
+            line.add(generator.generate());
+            return;
+        }
+        line.add(false);
+    }
 }
