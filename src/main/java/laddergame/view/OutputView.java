@@ -2,11 +2,10 @@ package laddergame.view;
 
 import java.util.Map;
 import java.util.Map.Entry;
-import laddergame.domain.GameResult;
-import laddergame.domain.Results;
 import laddergame.domain.Ladder;
 import laddergame.domain.Line;
 import laddergame.domain.Point;
+import laddergame.domain.dto.ResultsDto;
 import laddergame.domain.dto.UsersNameDto;
 import laddergame.utils.LadderFormat;
 
@@ -38,11 +37,11 @@ public class OutputView {
         System.out.println(NEXT_LINE + LADDER_HEIGHT_ENTER_NOTICE_MESSAGE);
     }
 
-    public void printLadderResult(Ladder ladder, UsersNameDto usersName, Results results) {
+    public void printLadderResult(Ladder ladder, UsersNameDto usersName, ResultsDto results) {
         System.out.println(NEXT_LINE + LADDER_RESULT + NEXT_LINE);
 
         String firstUserName = usersName.getNames().get(0);
-        String firstResult = results.getFirstResult();
+        String firstResult = results.getResults().get(0);
         int firstLength = Math.max(firstUserName.length(), firstResult.length());
 
         printUsers(usersName, firstLength);
@@ -94,13 +93,12 @@ public class OutputView {
         System.out.print(result);
     }
 
-    private void printResults(Results results, int firstLength) {
+    private void printResults(ResultsDto results, int firstLength) {
         StringBuilder builder = new StringBuilder();
-        String firstResult = results.getFirstResult();
+        String firstResult = results.getResults().get(0);
         builder.append(BLANK.repeat(firstLength - firstResult.length() + 1)).append(firstResult);
-        for (int index = SECOND_INDEX; index < results.size(); index++) {
-            GameResult gameResult = results.getResults().get(index);
-            String result = gameResult.getResult();
+        for (int index = SECOND_INDEX; index < results.getResults().size(); index++) {
+            String result = results.getResults().get(index);
             builder.append(BLANK.repeat(MAX_NAME_LENGTH + 1 - result.length())).append(result);
         }
         builder.append(NEXT_LINE);
