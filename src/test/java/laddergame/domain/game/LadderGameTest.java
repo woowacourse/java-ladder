@@ -25,7 +25,7 @@ class LadderGameTest {
 
     @BeforeEach
     void setUp() {
-        final String participantNames = "pobi,honux,crong,jk";
+        final String participantNames = "one,two,three,four";
         final String resultNames = "1st,2nd,3rd,4th";
         final BooleanGenerator trueBooleanGenerator = () -> true;
 
@@ -37,7 +37,7 @@ class LadderGameTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"pobi:1st", "honux:2nd", "crong:3rd", "jk:4th"}, delimiter = ':')
+    @CsvSource(value = {"one:1st", "two:2nd", "three:3rd", "four:4th"}, delimiter = ':')
     @DisplayName("참여자 이름을 입력하면, 한 명의 참여자에 대한 실행결과를 얻는다.")
     void gets_result_of_participant_if_request_content_is_included_in_participants(String requestContent, String expectedResult) {
         UserRequest request = UserRequest.from(requestContent);
