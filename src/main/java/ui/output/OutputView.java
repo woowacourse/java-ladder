@@ -3,9 +3,8 @@ package ui.output;
 import domain.Lines;
 import domain.People;
 import domain.Person;
+import domain.Reward;
 import domain.Rewards;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author 최원용
@@ -17,10 +16,37 @@ public class OutputView {
     private static final String LADDER_RESULT = "사다리 결과";
     private static final String EXECUTE_RESULT = "실행 결과";
 
-    public static void printResult(People people, Lines lines, int maxNameLength) {
+    public static void printLadderResult(People people, Lines lines, Rewards rewards) {
         System.out.println("\n" + LADDER_RESULT + "\n");
-        printNames(people, maxNameLength);
-        printLadder(lines, maxNameLength);
+        printNames(people, people.calculateMaxNameLength());
+        printLadder(lines, people.calculateMaxNameLength());
+        printRewards(rewards, people.calculateMaxNameLength());
+    }
+
+    private static void printRewards(Rewards rewards, int maxNameLength) {
+        for (Reward reward : rewards.getRewards()) {
+            System.out.print(rewardNameLengthFormat(reward.getName(), maxNameLength));
+        }
+    }
+
+    private static String rewardNameLengthFormat(String name, int length) {
+        StringBuilder stringBuilder = new StringBuilder(name);
+        int adjustLength = 0;
+        for (char ch : name.toCharArray()) {
+            adjustLength += correctionLength(ch);
+        }
+        for (; adjustLength<length; adjustLength++){
+            stringBuilder.append(" ");
+        }
+        stringBuilder.append(" ");
+        return stringBuilder.toString();
+    }
+
+    private static int correctionLength(char character) {
+        if (('a' <= character && character <= 'z') || ('0' <= character && character <= '9')) {
+            return 1;
+        }
+        return 2;
     }
 
     private static void printNames(People people, int maxLength) {
@@ -35,10 +61,10 @@ public class OutputView {
 
     private static StringBuilder align(String name, int maxLength) {
         StringBuilder stringBuilder = new StringBuilder(name);
-        while(stringBuilder.length() < maxLength - 1) {
+        while (stringBuilder.length() < maxLength - 1) {
             stringBuilder = new StringBuilder(" " + stringBuilder);
         }
-        while(stringBuilder.length() < maxLength) {
+        while (stringBuilder.length() < maxLength) {
             stringBuilder.append(" ");
         }
         stringBuilder.append(" ");
@@ -55,7 +81,7 @@ public class OutputView {
 
     public static void printRewardResult(Rewards rewards, People people, String targetName) {
         System.out.println("\n" + EXECUTE_RESULT);
-        if(targetName.equals("all")){
+        if (targetName.equals("all")) {
             printResultAll(rewards, people);
             return;
         }
@@ -63,7 +89,7 @@ public class OutputView {
         printResultTarget(rewards, targetPerson);
     }
 
-    private static void printResultAll(Rewards rewards, People people){
+    private static void printResultAll(Rewards rewards, People people) {
         for (int i = 0; i < people.getPeople().size(); i++) {
             Person person = people.getPeople().get(i);
             printResultTarget(rewards, person);

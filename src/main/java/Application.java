@@ -21,7 +21,7 @@ public class Application {
         int ladderHeight = InputView.inputLadderHeight();
         Lines lines = ladderGame.createLines(people.getPeople().size(), ladderHeight);
         ladderGame.processResult(people, lines);
-        OutputView.printResult(people, lines, people.calculateMaxNameLength());
+        OutputView.printLadderResult(people, lines, rewards);
         String targetName = inputTargetPerson(people);
         OutputView.printRewardResult(rewards, people, targetName);
     }
