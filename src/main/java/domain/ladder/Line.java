@@ -20,12 +20,13 @@ public class Line {
 		return Collections.unmodifiableList(points);
 	}
 
-	public void moveOnce(final List<Integer> indicies) {
+	public List<Integer> moveOnce(final List<Integer> indicies) {
 		int size = points.size();
 		for (int i = 0; i < size; i++) {
 			Point point = points.get(i);
 			swapIfPointPresent(indicies, i, point);
 		}
+		return indicies;
 	}
 
 	private void swapIfPointPresent(final List<Integer> indicies, final int i, final Point point) {

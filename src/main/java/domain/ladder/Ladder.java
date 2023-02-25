@@ -57,7 +57,11 @@ public class Ladder {
 	private List<Integer> getMovedIndex() {
 		List<Integer> indicies = getInitialIdx(ladderWidth.getWidth());
 		for (Line line : lines) {
-			line.moveOnce(indicies);
+			indicies = line.moveOnce(indicies);
+		}
+		System.out.println("MovedIdx");
+		for (int i = 0; i < indicies.size(); i++) {
+			System.out.println(i + " to " + indicies.get(i));
 		}
 		return indicies;
 	}
