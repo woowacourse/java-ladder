@@ -9,7 +9,7 @@ public class LadderGameController {
 
     private static final String TARGET_PLAYER_BLANK_ERROR = "[ERROR] 빈 문자열 입니다.";
     private static final int SINGLE_SIZE = 1;
-    private static final int FIRST_PLAYER_INDEX = 0;
+    private static final int SINGLE_PLAYER_INDEX = 0;
     private Command command = Command.CONTINUE;
 
     private final InputView inputView;
@@ -52,7 +52,7 @@ public class LadderGameController {
             command = Command.END;
             return;
         }
-        outputView.printPlayerResult(finalResults.get(FIRST_PLAYER_INDEX));
+        outputView.printPlayerResult(finalResults.get(SINGLE_PLAYER_INDEX));
     }
 
     private static List<String> getResults(Players players, Results results, Ladder ladder, String targetPlayer) {
