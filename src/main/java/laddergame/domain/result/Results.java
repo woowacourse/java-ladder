@@ -38,7 +38,7 @@ public class Results {
         }
     }
 
-    public Result getResult(final int index) {
+    public Result findResult(final int index) {
         return results.get(index);
     }
 
