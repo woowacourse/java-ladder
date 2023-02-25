@@ -16,10 +16,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class PlayerNameTest {
 
-    @ParameterizedTest(name = "이름이 비어있거나 6자 이상인 경우 예외를 던진다. 입력값: \"{0}\"")
+    @ParameterizedTest(name = "이름이 NULL, 빈값, 6자 이상인 경우 예외를 던진다. 입력값: \"{0}\"")
     @NullAndEmptySource
     @ValueSource(strings = {"우아한형제들"})
-    void 이름이_비어있거나_6자_이상인_경우_예외를_던진다(final String name) {
+    void 이름이_NULL_빈값_6자_이상인_경우_예외를_던진다(final String name) {
         assertThatThrownBy(() -> new PlayerName(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 1자 이상, 5자 이하여야 합니다.");
