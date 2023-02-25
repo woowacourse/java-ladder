@@ -22,8 +22,8 @@ Player --> PlayerName
 Player --> Position
 Players --> Ladder
 
-LadderGame --> Items
-Items --> Item
+LadderGame --> Result
+Result --> Item
 Item --> ItemName
 Item --> Position
 
