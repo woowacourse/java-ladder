@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Prize {
@@ -30,5 +31,22 @@ public class Prize {
     private boolean isInvalidNameLength(String prize) {
         int length = prize.length();
         return length < PRIZE_LENGTH_LOWER_BOUND || length > PRIZE_LENGTH_UPPER_BOUND;
+    }
+
+    public String getPrize() {
+        return prize;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Prize prize1 = (Prize) o;
+        return Objects.equals(prize, prize1.prize);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(prize);
     }
 }

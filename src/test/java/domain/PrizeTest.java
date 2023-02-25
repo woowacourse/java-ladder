@@ -2,6 +2,7 @@ package domain;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -9,6 +10,7 @@ import utils.Parser;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 public class PrizeTest {
@@ -36,5 +38,14 @@ public class PrizeTest {
     void prizeValidateTest3(String input) {
         assertThatCode(() -> new Prize(input))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("사다리 게임의 실행 결과의 이름이 동일하면 동일한 실행 결과이다.")
+    @Test
+    void prizeEqualsTest() {
+        String prizeName = "꽝";
+        Prize prize1 = new Prize(prizeName);
+        Prize prize2 = new Prize(prizeName);
+        assertThat(prize1).isEqualTo(prize2);
     }
 }
