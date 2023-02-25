@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import laddergame.constant.ErrorMessage;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +32,7 @@ public class Result {
 
     private void hasPlayerName(String playerName) {
         if (!result.containsKey(playerName)) {
-            throw new IllegalArgumentException("[ERROR] 해당하는 플레이어 이름이 없습니다. 재입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_CONTAIN_PLAYER_NAME.getMessage());
         }
     }
 

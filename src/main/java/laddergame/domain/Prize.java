@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import laddergame.constant.ErrorMessage;
+
 public class Prize {
 
     private final String prize;
@@ -10,7 +12,7 @@ public class Prize {
 
     private void validatePrize(String prize) {
         if (prize.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 사다리 상품은 공백이 아니여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage());
         }
     }
 

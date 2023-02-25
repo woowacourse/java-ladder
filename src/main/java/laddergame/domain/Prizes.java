@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import laddergame.constant.ErrorMessage;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +19,7 @@ public class Prizes {
 
     private void validatePrizes(List<Prize> prizes, int playersCount) {
         if (prizes.size() != playersCount) {
-            throw new IllegalArgumentException("[ERROR] 사다리 상품의 개수가 플레이어의 수와 동일하지 않습니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_SAME_COUNT.getMessage());
         }
     }
 
