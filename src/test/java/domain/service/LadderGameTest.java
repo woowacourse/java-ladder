@@ -5,6 +5,7 @@ import domain.model.Layer;
 import domain.model.Player;
 import domain.model.Players;
 import domain.vo.*;
+import domain.wrapper.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -67,8 +68,7 @@ class LadderGameTest {
 
         Player player = players.findByName(new Name(name));
 
-        assertThat(player.getXPosition()).isEqualTo(xPosition);
-        assertThat(player.getYPosition()).isEqualTo(3);
+        assertThat(player.getPosition()).isEqualTo(Position.of(xPosition, 3));
     }
 
 
