@@ -59,10 +59,6 @@ public class Ladder {
 		for (Line line : lines) {
 			indicies = line.moveOnce(indicies);
 		}
-		System.out.println("MovedIdx");
-		for (int i = 0; i < indicies.size(); i++) {
-			System.out.println(i + " to " + indicies.get(i));
-		}
 		return indicies;
 	}
 
