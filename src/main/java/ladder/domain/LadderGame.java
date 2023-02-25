@@ -17,7 +17,7 @@ public class LadderGame {
         initializeLines(height);
     }
 
-    public LadderGame(final RandomGenerator<Boolean> randomGenerator, final Players players, final int height) {
+    LadderGame(final RandomGenerator<Boolean> randomGenerator, final Players players, final int height) {
         this.players = players;
         this.randomGenerator = randomGenerator;
         initializeLines(height);
