@@ -17,15 +17,15 @@ public class Ladder {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public Map<String, String> calculateResult(final Names names, final Prizes prizes) {
+    public Map<String, String> calculateMatching(final Names names, final Prizes prizes) {
         Map<String, String> totalResult = new HashMap<>();
         IntStream.range(0, names.size()).forEach(
-                position -> totalResult.put(names.getNameByIndex(position).getValue(), calculateSingleResult(prizes, position))
+                position -> totalResult.put(names.getNameByIndex(position).getValue(), calculateSingleMatching(prizes, position))
         );
         return new HashMap<>(totalResult);
     }
 
-    private String calculateSingleResult(final Prizes prizes, final int startPosition) {
+    private String calculateSingleMatching(final Prizes prizes, final int startPosition) {
         int currentPosition = startPosition;
         for (Line line : lines) {
             currentPosition = line.move(currentPosition);

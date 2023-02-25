@@ -78,7 +78,7 @@ public class LadderTest {
          *(찰리) (가비) (바비)
          * */
 
-        Map<String, String> result = ladder.calculateResult(names, prizes);
+        Map<String, String> result = ladder.calculateMatching(names, prizes);
 
         assertThat(result.get("찰리")).isEqualTo(winnerPrize.getValue());
         assertThat(result.get("가비")).isEqualTo(prizes.getPrizes().get(1).getValue());
