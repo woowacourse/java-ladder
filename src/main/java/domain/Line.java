@@ -6,7 +6,7 @@ import java.util.List;
 import util.BooleanGenerator;
 
 public class Line {
-    private final List<Boolean> bridges;
+    private final List<Bridge> bridges;
 
     private Line(int personCount) {
         this.bridges = new ArrayList<>();
@@ -32,7 +32,7 @@ public class Line {
 
     private void initializeEmptyLine(int personCount) {
         for (int index = 0; index < personCount - 1; index++) {
-            bridges.add(false);
+            bridges.add(Bridge.UNCONNECTED);
         }
     }
 
@@ -44,7 +44,7 @@ public class Line {
 
     private void generateBridge(BooleanGenerator booleanGenerator, int bridgeIndex) {
         if (!hasSide(bridgeIndex)) {
-            bridges.set(bridgeIndex, booleanGenerator.generate());
+            bridges.set(bridgeIndex, Bridge.from(booleanGenerator.generate()));
         }
     }
 
@@ -56,17 +56,17 @@ public class Line {
         if (leftIndex < 0) {
             return false;
         }
-        return bridges.get(leftIndex);
+        return bridges.get(leftIndex) == Bridge.CONNECTED;
     }
 
     private boolean isBridgeInRight(int rightIndex) {
         if (rightIndex > bridges.size() - 1) {
             return false;
         }
-        return bridges.get(rightIndex);
+        return bridges.get(rightIndex) == Bridge.CONNECTED;
     }
 
-    public List<Boolean> getBridges() {
+    public List<Bridge> getBridges() {
         return Collections.unmodifiableList(bridges);
     }
 }

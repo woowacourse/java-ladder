@@ -32,6 +32,7 @@ public class LadderGame {
         return ladder.getLines()
                 .stream()
                 .map(Line::getBridges)
+                .map(Bridge::convertToConnectionStatus)
                 .collect(Collectors.toList());
     }
 

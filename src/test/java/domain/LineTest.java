@@ -32,7 +32,8 @@ class LineTest {
         Line line = Line.generateWithBridges(new TrueGenerator(), personCount);
 
         //then
-        assertThat(line.getBridges()).containsExactly(true, false, true, false);
+        assertThat(line.getBridges()).containsExactly(Bridge.CONNECTED, Bridge.UNCONNECTED, Bridge.CONNECTED,
+                Bridge.UNCONNECTED);
     }
 
     @Test
@@ -45,7 +46,8 @@ class LineTest {
         Line line = Line.generateWithBridges(new FalseGenerator(), personCount);
 
         //then
-        assertThat(line.getBridges()).containsExactly(false, false, false, false);
+        assertThat(line.getBridges()).containsExactly(Bridge.UNCONNECTED, Bridge.UNCONNECTED, Bridge.UNCONNECTED,
+                Bridge.UNCONNECTED);
     }
 
     @Test
