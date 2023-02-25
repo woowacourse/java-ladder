@@ -77,15 +77,15 @@ public class LadderGameTest {
     @ParameterizedTest
     @CsvSource(value = {"a,0", "b,2", "c,3", "d,1"})
     void get_result_of_player(String name, int expected) {
-        int result = ladderGame.getResultIndex(name);
+        List<Integer> result = ladderGame.getResult(name);
 
-        assertThat(result).isEqualTo(expected);
+        assertThat(result).isEqualTo(List.of(expected));
     }
 
-    @DisplayName("모든 플레이어들의 사다리 최종 위치를 반환한다.")
+    @DisplayName("all 인경우 모든 플레이어들의 사다리 최종 위치를 반환한다.")
     @Test
     void get_result_of_All() {
-        List<Integer> result = ladderGame.getResultAllIndex();
+        List<Integer> result = ladderGame.getResult("all");
 
         assertThat(result).isEqualTo(List.of(0, 2, 3, 1));
     }
