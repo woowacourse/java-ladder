@@ -1,6 +1,7 @@
 package domain;
 
 import domain.mission.Mission;
+import domain.player.Name;
 import domain.player.Player;
 
 public class Result {
@@ -8,8 +9,8 @@ public class Result {
     private final String name;
     private final String mission;
 
-    public Result(Player player, Mission mission) {
-        this.name = player.getName().getValue();
+    public Result(Name name, Mission mission) {
+        this.name = name.getValue();
         this.mission = mission.getMission();
     }
 

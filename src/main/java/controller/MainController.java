@@ -8,7 +8,6 @@ import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.mission.Missions;
 import domain.player.Names;
-import domain.player.Players;
 import java.util.NoSuchElementException;
 import view.InputView;
 import view.OutputView;
@@ -33,7 +32,7 @@ public class MainController {
         Ladder ladder = makeLadder(names.getPersonNumber());
         printLadder(names, missions, ladder);
 
-        LadderGame ladderGame = LadderGame.of(new Players(names), missions, ladder);
+        LadderGame ladderGame = LadderGame.of(names, missions, ladder);
         displayResult(ladderGame);
     }
 
@@ -102,7 +101,7 @@ public class MainController {
 
     private void printSingleResult(LadderGame ladderGame, String searchWord) {
         try {
-            Result result = ladderGame.findResultByName(searchWord);
+            Result result = ladderGame.findResultBy(searchWord);
             outputView.printSingleResult(result);
         } catch (NoSuchElementException exception) {
             outputView.printExceptionMessage(exception);

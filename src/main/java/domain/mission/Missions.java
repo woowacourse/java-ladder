@@ -1,5 +1,6 @@
 package domain.mission;
 
+import domain.player.Position;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,15 +33,15 @@ public class Missions {
         return randomMission;
     }
 
-    public Mission getMissionByIndex(int index) {
-        return missions.get(index);
-    }
-
     public List<Mission> getMissions() {
         return Collections.unmodifiableList(missions);
     }
 
     public int size() {
         return missions.size();
+    }
+
+    public Mission findByPosition(Position position) {
+        return missions.get(position.getValue());
     }
 }

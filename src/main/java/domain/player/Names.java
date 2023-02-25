@@ -2,6 +2,7 @@ package domain.player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class Names {
@@ -36,6 +37,17 @@ public class Names {
         }
     }
 
+    public Name findByName(String name) {
+        return names.stream()
+                .filter(element -> element.getValue().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("해당하는 이름이 존재하지 않습니다."));
+    }
+
+    public Position initialPositionOf(Name name) {
+        return new Position(names.indexOf(name));
+    }
+
     public int size() {
         return names.size();
     }
@@ -47,5 +59,4 @@ public class Names {
     public int getPersonNumber() {
         return names.size();
     }
-
 }

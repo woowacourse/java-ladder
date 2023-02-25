@@ -34,11 +34,11 @@ public class Player {
             return false;
         }
         Player player = (Player) o;
-        return Objects.equals(name, player.name) && Objects.equals(position, player.position);
+        return Objects.equals(name, player.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, position);
+        return Objects.hash(name);
     }
 }
