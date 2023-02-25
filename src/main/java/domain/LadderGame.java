@@ -39,13 +39,7 @@ public class LadderGame {
     }
 
     private void climbTheLadderPlayerPosition(Player player, Line line) {
-        if (line.getDirection(player) == Direction.LEFT) {
-            player.left();
-            return;
-        }
-        if (line.getDirection(player) == Direction.RIGHT) {
-            player.right();
-        }
+        player.playerMove(line.getDirection(player));
     }
 
     private void checkLadderGame(Players players, Products products) {

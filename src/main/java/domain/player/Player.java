@@ -1,6 +1,8 @@
 package domain.player;
 
 
+import domain.Direction;
+
 public class Player {
     private static final String BLANK_MESSAGE = "[ERROR] 입력값이 비어있습니다.";
     private static final String NULL_MESSAGE = "[ERROR] 아무것도 입력하지 않았습니다.";
@@ -30,12 +32,13 @@ public class Player {
         }
     }
 
-    public void right() {
-        position.rightMovement();
-    }
-
-    public void left() {
-        position.leftMovement();
+    public void playerMove(Direction direction) {
+        if (direction.equals(Direction.RIGHT)) {
+            position.rightMovement();
+        }
+        if (direction.equals(Direction.LEFT)) {
+            position.leftMovement();
+        }
     }
 
     public String getPlayerName() {
