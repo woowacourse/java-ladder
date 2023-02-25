@@ -7,7 +7,6 @@ import domain.end.End;
 import domain.end.Ends;
 import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
-import domain.ladder.LadderWidth;
 import domain.user.User;
 import domain.user.Users;
 import domain.util.RandomPointGenerator;
@@ -20,9 +19,10 @@ public class LadderController {
 	public void runLadderGame() {
 		Users users = retrieveUsers();
 		Ends ends = retrieveEnds(users.getUsersCount());
-		Ladder ladder = buildLadder(users);
+		LadderHeight height = retrieveLadderHeight();
+		Ladder ladder = new Ladder(users, ends, height, new RandomPointGenerator());
 		OutputView.printLadder(users, ladder, ends);
-		Map<User, End> mappedResult = mapResult(ladder, users, ends);
+		Map<User, End> mappedResult = ladder.getMappedResult();
 		while (true) {
 			printResult(mappedResult);
 		}
@@ -46,12 +46,6 @@ public class LadderController {
 		}
 	}
 
-	private Ladder buildLadder(Users users) {
-		LadderHeight height = retrieveLadderHeight();
-		LadderWidth width = changeIntoWidth(users.getUsersCount());
-		return new Ladder(height, width, new RandomPointGenerator());
-	}
-
 	private LadderHeight retrieveLadderHeight() {
 		try {
 			return new LadderHeight(InputView.readHeight());
@@ -59,15 +53,6 @@ public class LadderController {
 			OutputView.printError(e.getMessage());
 			return retrieveLadderHeight();
 		}
-	}
-
-	private LadderWidth changeIntoWidth(final int userCount) {
-		return new LadderWidth(userCount - 1);
-	}
-
-	private Map<User, End> mapResult(final Ladder ladder, final Users users, final Ends ends) {
-		List<Integer> movedIndex = ladder.getMovedIndex();
-		return ResultMapper.map(users.getUsers(), ends.getEnds(), movedIndex);
 	}
 
 	private void printResult(final Map<User, End> mappedResult) {
