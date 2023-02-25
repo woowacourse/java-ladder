@@ -2,20 +2,20 @@ package domain;
 
 public class Result {
 
-    private final String result;
+    private final String value;
 
-    public Result(final String result) {
-        validateRangeOfValue(result);
-        this.result = result;
+    public Result(final String value) {
+        validateRangeOfValue(value);
+        this.value = value;
     }
 
-    private void validateRangeOfValue(final String result) {
-        if (result.length() < 1 || result.length() > 5) {
+    private void validateRangeOfValue(final String value) {
+        if (value.length() < 1 || value.length() > 5) {
             throw new IllegalArgumentException("결과 값의 길이는 1이상 5이하만 가능합니다.");
         }
     }
 
-    public String getResult() {
-        return this.result;
+    public String getValue() {
+        return this.value;
     }
 }

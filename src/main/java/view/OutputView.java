@@ -44,32 +44,32 @@ public class OutputView {
     private static int findLongestLengthOfName(final Names names) {
         return names.getNames()
                 .stream()
-                .mapToInt(player -> player.getName().length())
+                .mapToInt(player -> player.getValue().length())
                 .max()
                 .orElseThrow(IllegalArgumentException::new);
     }
 
     private static String findFirstPlayerName(final Names names) {
-        return names.getNames().get(0).getName();
+        return names.getNames().get(0).getValue();
     }
 
     private static void appendPlayerNames(final int longestName, final Name name) {
         if (isMaximumLengthOfName(name)) {
             namesOutput.append(BLANK)
-                    .append(name.getName());
+                    .append(name.getValue());
             return;
         }
         drawPlayerName(longestName, name);
     }
 
     private static boolean isMaximumLengthOfName(final Name name) {
-        return name.getName().length() == MAXIMUM_LENGTH_OF_NAME;
+        return name.getValue().length() == MAXIMUM_LENGTH_OF_NAME;
     }
 
     private static void drawPlayerName(final int longestName, final Name name) {
-        int numberOfBlank = longestName - name.getName().length();
+        int numberOfBlank = longestName - name.getValue().length();
         namesOutput.append(LadderSymbol.draw(BLANK, numberOfBlank))
-                .append(name.getName())
+                .append(name.getValue())
                 .append(BLANK);
     }
 
@@ -87,7 +87,7 @@ public class OutputView {
     }
 
     private static int findLengthOfFirstPlayerName(final Names names) {
-        return names.getNames().get(0).getName().length();
+        return names.getNames().get(0).getValue().length();
     }
 
     private static void drawSpaceAtFirst(final int lengthOfFirstPlayerName) {
@@ -121,8 +121,8 @@ public class OutputView {
 
     private static StringBuilder makeResultsOutput(final Results results, final Names names) {
         for (Result result : results.getResults()) {
-            resultOutput.append(result.getResult())
-                    .append(BLANK.repeat(findLongestLengthOfName(names) - result.getResult().length()));
+            resultOutput.append(result.getValue())
+                    .append(BLANK.repeat(findLongestLengthOfName(names) - result.getValue().length()));
         }
 
         return resultOutput;

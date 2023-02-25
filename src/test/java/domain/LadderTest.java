@@ -39,10 +39,10 @@ public class LadderTest {
         List<Result> givenResults = List.of(result1, result2, result2, result2);
 
         Map<String, String> givenGameResult = new LinkedHashMap<>();
-        givenGameResult.put(name1.getName(), result1.getResult());
-        givenGameResult.put(name2.getName(), result2.getResult());
-        givenGameResult.put(name3.getName(), result2.getResult());
-        givenGameResult.put(name4.getName(), result2.getResult());
+        givenGameResult.put(name1.getValue(), result1.getValue());
+        givenGameResult.put(name2.getValue(), result2.getValue());
+        givenGameResult.put(name3.getValue(), result2.getValue());
+        givenGameResult.put(name4.getValue(), result2.getValue());
 
         Ladder ladder = new Ladder(givenNames.size(), 5, new NonExistConnectionGenerator());
 

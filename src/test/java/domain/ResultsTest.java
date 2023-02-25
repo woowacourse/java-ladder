@@ -34,7 +34,7 @@ public class ResultsTest {
         // when
         List<String> expectedResults = results.getResults()
                 .stream()
-                .map(Result::getResult)
+                .map(Result::getValue)
                 .collect(Collectors.toList());
 
         // then

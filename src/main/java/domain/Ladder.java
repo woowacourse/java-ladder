@@ -22,7 +22,7 @@ public class Ladder {
         for (int i = 0; i < names.size(); i++) {
             int finalPosition = lines.goDown(i);
 
-            finalResult.put(names.get(i).getName(), results.get(finalPosition).getResult());
+            finalResult.put(names.get(i).getValue(), results.get(finalPosition).getValue());
         }
         return finalResult;
     }

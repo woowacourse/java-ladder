@@ -12,14 +12,14 @@ public class Height {
         this.value = value;
     }
 
-    private void validateLengthOfHeight(final int height) {
-        if (isNotPermittedLengthOfHeight(height)) {
+    private void validateLengthOfHeight(final int value) {
+        if (isNotPermittedLengthOfHeight(value)) {
             throw new IllegalArgumentException("사다리의 높이는 최소 1이상 최대 10이하입니다.");
         }
     }
 
-    private boolean isNotPermittedLengthOfHeight(int height) {
-        return (height < MINIMUM_LENGTH_OF_HEIGHT) || (height > MAXIMUM_LENGTH_OF_HEIGHT);
+    private boolean isNotPermittedLengthOfHeight(final int value) {
+        return (value < MINIMUM_LENGTH_OF_HEIGHT) || (value > MAXIMUM_LENGTH_OF_HEIGHT);
     }
 
     public int getValue() {
