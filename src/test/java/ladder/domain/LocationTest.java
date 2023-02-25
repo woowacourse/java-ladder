@@ -3,9 +3,11 @@ package ladder.domain;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
+import java.lang.annotation.Documented;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LocationTest {
@@ -23,5 +25,13 @@ class LocationTest {
         assertThatThrownBy(() -> new Location(-1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("시작 위치는 0 이상이어야 합니다.");
+    }
+
+    @Test
+    @DisplayName("열 위치를 반환한다.")
+    void shouldReturnColumnIndexWhenRequest() {
+        int columnIndex = 1;
+        Location location = new Location(columnIndex);
+        assertThat(location.getColumnIndex()).isEqualTo(columnIndex);
     }
 }

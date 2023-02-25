@@ -10,6 +10,10 @@ public class Location {
         this.columnIndex = columnIndex;
     }
 
+    public int getColumnIndex() {
+        return this.columnIndex;
+    }
+
     private void validateStartColumnIndex(int startColumnIndex) {
         if (startColumnIndex < MINIMUM_INDEX) {
             throw new IllegalArgumentException(String.format("시작 위치는 %d 이상이어야 합니다.", MINIMUM_INDEX));
