@@ -27,7 +27,7 @@ class LadderGameTest {
         final String resultNames = "1st,2nd,3rd,4th";
 
         participants = Participants.create(participantNames);
-        Ladder ladder = Ladder.create(() -> true, "2", 4);
+        Ladder ladder = new Ladder(() -> true, "2", 4);
         Results results = new Results(resultNames, participants.size());
 
         ladderGame = new LadderGame(participants, ladder, results);

@@ -59,7 +59,7 @@ public class LadderGameController {
         RandomBooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator();
         return inputView.repeatUntilGettingValidValue(() -> {
             String maxLadderHeight = inputView.readMaxLadderHeight();
-            return Ladder.create(randomBooleanGenerator, maxLadderHeight, participants.size());
+            return new Ladder(randomBooleanGenerator, maxLadderHeight, participants.size());
         });
     }
 
