@@ -58,4 +58,11 @@ public class NamesTest {
 
         assertThat(names.getNameByIndex(0)).isEqualTo(charlieName);
     }
+
+    @Test
+    void name_의_개수를_알_수_있다() {
+        final Names names = new Names(List.of(new Name("찰리"),new Name("구구"), new Name("가비")));
+
+        assertThat(names.size()).isEqualTo(3);
+    }
 }
