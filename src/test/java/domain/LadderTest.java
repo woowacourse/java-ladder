@@ -48,7 +48,6 @@ class LadderTest {
         assertThat(firstResult).isNotEqualTo(secondResult);
     }
 
-    @DisplayName("사다리의 결과에 맞는 시작, 결과 위치를 반환해주어야 한다.")
     /** 0     1     2     3
      *  |-----|     |-----|
      *  |     |-----|     |
@@ -56,7 +55,7 @@ class LadderTest {
      *  0     1     2     3
      *  이면  0->3, 1->1, 2->2, 3->0
      * **/
-    @ParameterizedTest
+    @ParameterizedTest(name = "사다리의 결과에 맞는 시작, 결과 위치를 반환해주어야 한다. 시작: {0}, 결과: {1}")
     @CsvSource(value = {"0:3", "1:1", "2:2", "3:0"}, delimiter = ':')
     void get_appropriate_position(int startPosition, int expectedResultPosition) {
         List<Integer> numberListToGenerate = List.of(PASSABLE_THRESHOLDS, PASSABLE_THRESHOLDS,
