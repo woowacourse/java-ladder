@@ -23,22 +23,35 @@ public class LadderGameTest {
     @Test
     void 사다리_게임을_실행하면_사다리_결과를_반환한다() {
         //given
-        List<Player> player = List.of(new Player("ako"), new Player("split"), new Player("ash"));
-        Players players = new Players(player);
-        int height = 5;
-        TestGenerator testGenerator = setUpTestGenerator();
-        Ladder ladder = Ladder.generateLadder(height, players, testGenerator);
-        List<Prize> prize = List.of(new Prize("꽝"), new Prize("5000"), new Prize("꽝"));
-        Prizes prizes = new Prizes(players.getPlayersSize(), prize);
+        Players players = generatePlayer();
+        Ladder ladder = getLadder(players);
+        Prizes prizes = generatePrize(players.getPlayersSize());
         LadderGame ladderGame = new LadderGame(players, ladder, prizes);
 
         //when
         Map<Player, Prize> result = ladderGame.playGame(players, ladder, prizes);
 
         //then
-        Assertions.assertThat(result.get(player.get(0))).isEqualTo(prize.get(1));
-        Assertions.assertThat(result.get(player.get(1))).isEqualTo(prize.get(0));
-        Assertions.assertThat(result.get(player.get(2))).isEqualTo(prize.get(2));
+        Assertions.assertThat(result.get(players.getPlayer(0))).isEqualTo(prizes.getPrize(1));
+        Assertions.assertThat(result.get(players.getPlayer(1))).isEqualTo(prizes.getPrize(0));
+        Assertions.assertThat(result.get(players.getPlayer(2))).isEqualTo(prizes.getPrize(2));
+    }
+
+    private Players generatePlayer() {
+        List<Player> players = List.of(new Player("ako"), new Player("split"), new Player("ash"));
+        return new Players(players);
+    }
+
+    private Prizes generatePrize(int playerCount) {
+        List<Prize> prize = List.of(new Prize("꽝"), new Prize("5000"), new Prize("꽝"));
+        return new Prizes(playerCount, prize);
+    }
+
+    private Ladder getLadder(Players players) {
+        int height = 5;
+        TestGenerator testGenerator = setUpTestGenerator();
+        Ladder ladder = Ladder.generateLadder(height, players, testGenerator);
+        return ladder;
     }
 
     private TestGenerator setUpTestGenerator() {

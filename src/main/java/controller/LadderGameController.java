@@ -20,21 +20,33 @@ public class LadderGameController {
     }
 
     public void run() {
-        List<String> playerNames = inputView.readPlayerName();
-        Players players = Players.generatePlayer(playerNames);
-
-        List<String> prizeNames = inputView.readPrizeName();
-        Prizes prizes = Prizes.generatePrizes(players.getPlayersSize(), prizeNames);
-
-        int ladderHeight = inputView.readLadderHeight();
-        Ladder ladder = Ladder.generateLadder(ladderHeight, players, booleanGenerator);
-
+        Players players = generatePlayer();
+        Prizes prizes = generatePrize(players.getPlayersSize());
+        Ladder ladder = generateLadder(players);
         LadderGame ladderGame = new LadderGame(players, ladder, prizes);
 
-        printLadder(players, ladder, prizes);
-
         Map<Player, Prize> result = ladderGame.playGame(players, ladder, prizes);
+
+        printLadder(players, ladder, prizes);
         printLadderResultWithRetry(players, result);
+    }
+
+    private Players generatePlayer() {
+        List<String> playerNames = inputView.readPlayerName();
+        Players players = Players.generatePlayer(playerNames);
+        return players;
+    }
+
+    private Prizes generatePrize(int playerCount) {
+        List<String> prizeNames = inputView.readPrizeName();
+        Prizes prizes = Prizes.generatePrizes(playerCount, prizeNames);
+        return prizes;
+    }
+
+    private Ladder generateLadder(Players players) {
+        int ladderHeight = inputView.readLadderHeight();
+        Ladder ladder = Ladder.generateLadder(ladderHeight, players, booleanGenerator);
+        return ladder;
     }
 
     private void printLadderResultWithRetry(Players players, Map<Player, Prize> result) {
