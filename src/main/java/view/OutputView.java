@@ -5,31 +5,26 @@ import domain.*;
 import java.util.List;
 
 public class OutputView {
-    public static final String FIRST_FORMAT = "%5s";
+    public static final String FIRST_OR_LAST_FORMAT = "%5s";
     public static final String MIDDLE_FORMAT = "%6s";
-    public static final String LAST_FORMAT = "%5s";
     public static final String VERTICAL_BAR = "|";
     public static final String LADDER_RESULT_GUIDE_MESSAGE = "\n" + "사다리 결과" + "\n";
     public static final String REWARD_GUIDE_MESSAGE = "\n" + "실행 결과";
     public static final String ALL = "all";
     public static final String COLON = " : ";
 
-    private static void printMiddlePlayers(List<String> names, int index) {
-        if (isMiddle(names.size(), index)) {
+    private static void printMiddlePlayers(int index, List<String> names) {
+        if (isMiddle(index, names.size())) {
             System.out.printf(MIDDLE_FORMAT, names.get(index));
         }
     }
 
-    private static boolean isMiddle(int size, int index) {
+    private static boolean isMiddle(int index, int size) {
         return 0 < index && index < size - 1;
     }
 
-    private static boolean isFirst(int i) {
-        return i == 0;
-    }
-
-    private static boolean isLast(int size, int index) {
-        return index == size - 1;
+    private static boolean isFirstOrLast(int index, int size) {
+        return index == 0 || index == size - 1;
     }
 
     private static void printPlayerReward(String input, Players players) {
@@ -60,21 +55,14 @@ public class OutputView {
     public void printNames(Players players) {
         List<String> names = players.getPlayersName();
         for (int i = 0; i < names.size(); i++) {
-            printFirstPlayer(names, i);
-            printLastPlayer(names, i);
-            printMiddlePlayers(names, i);
+            printFirstOrLastPlayer(i, names);
+            printMiddlePlayers(i, names);
         }
     }
 
-    private void printFirstPlayer(List<String> names, int index) {
-        if (isFirst(index)) {
-            System.out.printf(FIRST_FORMAT, names.get(index));
-        }
-    }
-
-    private void printLastPlayer(List<String> names, int index) {
-        if (isLast(names.size(), index)) {
-            System.out.printf(LAST_FORMAT, names.get(index));
+    private void printFirstOrLastPlayer(int index, List<String> names) {
+        if (isFirstOrLast(index, names.size())) {
+            System.out.printf(FIRST_OR_LAST_FORMAT, names.get(index));
         }
     }
 
@@ -94,14 +82,11 @@ public class OutputView {
         List<Reward> rewardsRewards = rewards.getRewards();
         for (int i = 0; i < rewardsRewards.size(); i++) {
             Reward reward = rewardsRewards.get(i);
-            if (isFirst(i)) {
-                System.out.printf(LAST_FORMAT, reward.getReward());
+            if (isFirstOrLast(i, rewardsRewards.size())) {
+                System.out.printf(FIRST_OR_LAST_FORMAT, reward.getReward());
             }
-            if (isMiddle(rewardsRewards.size(), i)) {
+            if (isMiddle(i, rewardsRewards.size())) {
                 System.out.printf(MIDDLE_FORMAT, reward.getReward());
-            }
-            if (isLast(rewardsRewards.size(), i)) {
-                System.out.printf(LAST_FORMAT, reward.getReward());
             }
         }
     }
