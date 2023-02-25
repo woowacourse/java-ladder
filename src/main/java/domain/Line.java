@@ -11,18 +11,18 @@ import util.RandomValueGenerator;
  */
 public class Line {
 
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<ConnectStatus> points = new ArrayList<>();
     private Line() {
     }
 
-    public List<Boolean> getPoints() {
+    public List<ConnectStatus> getPoints() {
         return points;
     }
 
     public static Line newInstanceWithPersonCount(int personCount, RandomValueGenerator generator){
         Line line = new Line();
-        List<Boolean> lineValue = line.points;
-        lineValue.add(generator.generate());
+        List<ConnectStatus> lineValue = line.points;
+        lineValue.add(ConnectStatus.valueOf(generator.generate()));
         --personCount;
         for (int i = 0; i < personCount - 1; i++) {
             addLine(lineValue, generator);
@@ -30,11 +30,11 @@ public class Line {
         return line;
     }
 
-    private static void addLine(List<Boolean> line, RandomValueGenerator generator) {
-        if (!line.get(line.size() - 1)) {
-            line.add(generator.generate());
+    private static void addLine(List<ConnectStatus> line, RandomValueGenerator generator) {
+        if (!line.get(line.size() - 1).status()) {
+            line.add(ConnectStatus.valueOf(generator.generate()));
             return;
         }
-        line.add(false);
+        line.add(ConnectStatus.DISCCONECT);
     }
 }

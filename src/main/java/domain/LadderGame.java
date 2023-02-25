@@ -64,10 +64,10 @@ public class LadderGame {
 
     private static MoveCommand decisionPersonPosition(Person person, Line line, int peopleSize) {
         int i = person.getPosition();
-        if (person.getPosition() != peopleSize - 1 && line.getPoints().get(person.getPosition())) {
+        if (person.getPosition() != peopleSize - 1 && line.getPoints().get(person.getPosition()).status()) {
             return MoveCommand.RIGHT;
         }
-        if (i != 0 && line.getPoints().get(i - 1)) {
+        if (i != 0 && line.getPoints().get(i - 1).status()) {
             return MoveCommand.LEFT;
         }
         return MoveCommand.NONE;
