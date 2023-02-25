@@ -90,9 +90,9 @@ public class OutputView {
 
     public static void printAllResult(ResultTable resultTable) {
         List<User> users = resultTable.getUsers();
-        List<Reward> rewards = resultTable.getRewards();
-        for (int i = 0; i < users.size(); i++) {
-            System.out.println(users.get(i).getName() + " : " + rewards.get(i).getReward());
+        for (User user : users) {
+            String reward = resultTable.getRewardByUser(user).getReward();
+            System.out.println(user.getName() + " : "  + reward);
         }
     }
 }

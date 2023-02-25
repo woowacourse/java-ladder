@@ -42,10 +42,4 @@ public class ResultTable {
                 .stream()
                 .collect(Collectors.toUnmodifiableList());
     }
-
-    public List<Reward> getRewards() {
-        return resultTable.values()
-                .stream()
-                .collect(Collectors.toUnmodifiableList());
-    }
 }
