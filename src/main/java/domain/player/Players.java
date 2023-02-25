@@ -1,5 +1,8 @@
 package domain.player;
 
+import exception.CountException;
+import exception.DuplicateException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +11,6 @@ public class Players {
 
     private static final int PLAYER_MIN_COUNT = 2;
     private static final int PLAYER_MAX_COUNT = 12;
-    private static final String PLAYER_COUNT_ERROR_MESSAGE = "[ERROR] 플레이어 수는 2~12명만 입력 가능합니다.";
-    private static final String PLAYER_NAME_DUPLICATE_ERROR_MESSAGE = "[ERROR] 플레이어의 이름은 중복이 불가능합니다.";
 
     private Players(List<Player> players) {
         this.players = players;
@@ -46,13 +47,13 @@ public class Players {
 
     private static void checkPlayerCount(List<String> players) {
         if (players.size() < PLAYER_MIN_COUNT || players.size() > PLAYER_MAX_COUNT) {
-            throw new IllegalArgumentException(PLAYER_COUNT_ERROR_MESSAGE);
+            throw new CountException();
         }
     }
 
     private static void checkDuplicatePlayers(List<String> players) {
         if (players.stream().distinct().count() != players.size()) {
-            throw new IllegalArgumentException(PLAYER_NAME_DUPLICATE_ERROR_MESSAGE);
+            throw new DuplicateException();
         }
     }
 }

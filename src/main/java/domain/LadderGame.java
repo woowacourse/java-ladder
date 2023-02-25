@@ -6,12 +6,12 @@ import domain.player.Player;
 import domain.player.Players;
 import domain.product.Product;
 import domain.product.Products;
+import exception.PlayerCountSameProductException;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LadderGame {
-    public static final String PLAYER_COUNT_SAME_PRODUCT = "[ERROR] 상품의 개수와 플레이어의 수가 일치하지 않습니다.";
     private final Products products;
     private final Players players;
     private final Ladder ladder;
@@ -44,7 +44,7 @@ public class LadderGame {
 
     private void checkLadderGame(Players players, Products products) {
         if (players.getPlayersCount() != products.productsCount()) {
-            throw new IllegalArgumentException(PLAYER_COUNT_SAME_PRODUCT);
+            throw new PlayerCountSameProductException();
         }
     }
 }

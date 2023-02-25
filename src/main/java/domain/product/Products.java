@@ -1,5 +1,7 @@
 package domain.product;
 
+import exception.CountException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class Products {
 
     private void checkProductCount(List<Product> products) {
         if (products.size() > MAX_PRODUCTS_SIZE || products.size() < MIN_PRODUCTS_SIZE) {
-            throw new IllegalArgumentException();
+            throw new CountException();
         }
     }
 
