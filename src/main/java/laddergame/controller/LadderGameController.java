@@ -11,9 +11,7 @@ import laddergame.domain.result.Results;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class LadderGameController {
 
@@ -29,29 +27,25 @@ public class LadderGameController {
         Participants participants = createParticipants();
         Results results = createResults(participants);
         Ladder ladder = createLadder(participants);
-
-        outputView.printLadderResultGuide();
-        List<String> participantNames = getParticipantNames(participants);
-        outputView.printParticipantNames(participantNames);
-        outputView.printLadder(ladder.getLines(), participantNames);
-        List<String> resultNames = getResultNames(results);
-        outputView.printResultNames(resultNames);
-
         LadderGame ladderGame = new LadderGame(participants, ladder, results);
+
         ladderGame.playGameOfAllParticipants();
 
-
-        do {
-            Map<Participant, Result> resultByParticipants = createRequest(ladderGame);
-            outputView.printResultGuide();
-            outputView.printResult(resultByParticipants, participants.getAllParticipants());
-        } while (ladderGame.isContinuing());
+        print(participants, ladder, results);
+        printGameResultUntilTheEnd(ladderGame, participants);
     }
 
     private Participants createParticipants() {
         return inputView.repeatUntilGettingValidValue(() -> {
             String participantNames = inputView.readParticipantNames();
             return Participants.create(participantNames);
+        });
+    }
+
+    private Results createResults(final Participants participants) {
+        return inputView.repeatUntilGettingValidValue(() -> {
+            String resultNames = inputView.readResults();
+            return new Results(resultNames, participants.size());
         });
     }
 
@@ -63,27 +57,25 @@ public class LadderGameController {
         });
     }
 
-    private Results createResults(final Participants participants) {
-        return inputView.repeatUntilGettingValidValue(() -> {
-            String resultNames = inputView.readResults();
-            return new Results(resultNames, participants.size());
-        });
+    private void print(final Participants participants, final Ladder ladder, final Results results) {
+        outputView.printLadderResultGuide();
+        outputView.printParticipantNames(participants.getParticipants());
+        outputView.printLadder(ladder.getLines(), participants.getParticipants());
+        outputView.printResultNames(results.getResults());
     }
 
-    private Map<Participant, Result> createRequest(LadderGame ladderGame) {
+    private void printGameResultUntilTheEnd(final LadderGame ladderGame, final Participants participants) {
+        do {
+            Map<Participant, Result> resultByParticipants = readRequestAndGetResultByParticipants(ladderGame);
+            outputView.printResultGuide();
+            outputView.printResult(resultByParticipants, participants.getAllParticipants());
+        } while (ladderGame.isContinuing());
+    }
+
+    private Map<Participant, Result> readRequestAndGetResultByParticipants(LadderGame ladderGame) {
         return inputView.repeatUntilGettingValidValue(() -> {
             UserRequest request = UserRequest.of(inputView.readRequest());
             return ladderGame.getResultByParticipants(request);
         });
-    }
-
-    private List<String> getParticipantNames(final Participants participants) {
-        return participants.getParticipants().stream()
-                .map(Participant::getName)
-                .collect(Collectors.toUnmodifiableList());
-    }
-
-    private List<String> getResultNames(final Results results) {
-        return results.getResultNames();
     }
 }

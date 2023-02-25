@@ -1,6 +1,5 @@
 package laddergame.domain.result;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,9 +41,7 @@ public class Results {
         return results.get(index);
     }
 
-    public List<String> getResultNames() {
-        return results.stream()
-                .map(Result::getResultName)
-                .collect(Collectors.toCollection(ArrayList::new));
+    public List<Result> getResults() {
+        return results;
     }
 }

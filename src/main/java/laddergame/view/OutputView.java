@@ -15,34 +15,41 @@ public class OutputView {
     private static final String LADDER_RUNG = "-----";
     private static final String LADDER_BLANK = "     ";
     private static final String LADDER_PADDING = " ";
+    private static final String NEW_LINE = System.lineSeparator();
+    private static final String PADDING_FORMAT_FOR_PARTICIPANTS = "%6s";
+    private static final String PADDING_FORMAT_FOR_RESULTS = "%-6s";
+    private static final String DELIMITER = " : ";
 
     public static void print(final String message) {
         System.out.println(message);
     }
 
     public void printLadderResultGuide() {
-        print(System.lineSeparator() + "사다리 결과" + System.lineSeparator());
+        print(NEW_LINE + "사다리 결과" + NEW_LINE);
     }
 
-    public void printParticipantNames(final List<String> participantNames) {
-        String paddedParticipantNames = padAllValues(participantNames, "%6s");
-        print(paddedParticipantNames.trim());
+    public void printParticipantNames(final List<Participant> participants) {
+        final String paddedParticipantNames = participants.stream()
+                .map(participant -> pad(PADDING_FORMAT_FOR_PARTICIPANTS, participant.getName()))
+                .collect(Collectors.joining()).trim();
+        print(paddedParticipantNames);
     }
 
-    public void printLadder(final List<Line> lines, final List<String> participantNames) {
-        String firstParticipantName = getFirstParticipant(participantNames);
-        int firstNameLength = getNameLength(firstParticipantName);
-        String ladderMessage = makeLadderMessage(lines, firstNameLength);
+    public void printLadder(final List<Line> lines, final List<Participant> participants) {
+        String firstParticipantName = getFirstParticipantName(participants);
+        String ladderMessage = makeLadderMessage(lines, firstParticipantName);
         print(ladderMessage);
     }
 
-    public void printResultNames(final List<String> resultNames) {
-        String paddedResultNames = padAllValues(resultNames, "%-6s");
-        print(paddedResultNames.trim());
+    public void printResultNames(final List<Result> results) {
+        final String paddedResultNames = results.stream()
+                .map(result -> pad(PADDING_FORMAT_FOR_RESULTS, result.getResultName()))
+                .collect(Collectors.joining()).trim();
+        print(paddedResultNames);
     }
 
     public void printResultGuide() {
-        print(System.lineSeparator() + "실행결과");
+        print(NEW_LINE + "실행결과");
     }
 
     public void printResult(final Map<Participant, Result> requestByParticipants, final List<Participant> participants) {
@@ -51,35 +58,29 @@ public class OutputView {
 
     private String makeResultMessage(final Map<Participant, Result> requestByParticipants, final List<Participant> participants) {
         if (requestByParticipants.size() == 1) {
-            return requestByParticipants.values().stream().map(Result::getResultName).findFirst().orElseThrow();
+            return requestByParticipants.values().stream()
+                    .map(Result::getResultName)
+                    .findFirst()
+                    .orElseThrow(IllegalStateException::new);
         }
         return participants.stream()
-                .map(participant -> String.format("%s : %s", participant.getName(), requestByParticipants.get(participant).getResultName()))
-                .collect(Collectors.joining(System.lineSeparator()));
-    }
-
-    private String padAllValues(final List<String> values, final String paddingFormat) {
-        return values.stream()
-                .map(value -> pad(paddingFormat, value))
-                .collect(Collectors.joining());
+                .map(participant -> String.join(DELIMITER, participant.getName(), requestByParticipants.get(participant).getResultName()))
+                .collect(Collectors.joining(NEW_LINE));
     }
 
     private String pad(final String paddingFormat, final String participantName) {
         return String.format(paddingFormat, participantName);
     }
 
-    private String getFirstParticipant(final List<String> participantNames) {
-        return participantNames.get(0);
+    private String getFirstParticipantName(final List<Participant> participants) {
+        final Participant firstParticipant = participants.get(0);
+        return firstParticipant.getName();
     }
 
-    private int getNameLength(final String name) {
-        return name.length();
-    }
-
-    private String makeLadderMessage(final List<Line> lines, final int firstNameLength) {
+    private String makeLadderMessage(final List<Line> lines, final String firstNameLength) {
         return lines.stream()
-                .map(rungs -> makeRungsMessage(rungs.getRungs(), firstNameLength))
-                .collect(Collectors.joining(System.lineSeparator()));
+                .map(rungs -> makeRungsMessage(rungs.getRungs(), firstNameLength.length()))
+                .collect(Collectors.joining(NEW_LINE));
     }
 
     private String makeRungsMessage(final List<Rung> rungs, final int firstNameLength) {
