@@ -5,11 +5,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
 import static laddergame.domain.ladder.Connection.CONNECTED;
 import static laddergame.domain.ladder.Connection.UNCONNECTED;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,10 +47,11 @@ public class LineTest {
         void givenLine_thenCreateBooleanList() {
             //given
             final List<Connection> connections = createConnections(true, false, false);
-            final Line line = Line.of(connections.size(), new TestConnectionMaker(connections));
+            final int playerCount = connections.size() + 1;
+            final Line line = Line.of(playerCount, new TestConnectionMaker(connections));
 
             //then
-            assertThat(line.getConnections()).containsExactly(CONNECTED, UNCONNECTED);
+            assertThat(line.getConnections()).containsExactly(CONNECTED, UNCONNECTED, UNCONNECTED);
         }
     }
 
@@ -58,14 +60,49 @@ public class LineTest {
     void givenLine_thenNotOverLap() {
         //given
         final List<Connection> connections = createConnections(true, true, false);
-        final Line line = Line.of(connections.size(), new TestConnectionMaker(connections));
+        final int expectedPlayerCount = connections.size();
+        final Line line = Line.of(expectedPlayerCount, new TestConnectionMaker(connections));
 
         //then
         assertThat(line.getConnections()).containsExactly(CONNECTED, UNCONNECTED);
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"0, false", "1, true", "2, false"})
+    @DisplayName("Line과 Postion이 있고 왼쪽으로 움직일 수 있는지 여부를 확인하는 메서드를 실행하면 그 결과가 반환된다.")
+    void givenLineAndPosition_whenCanMoveLeft_thenReturnResult(final int position, boolean result) {
+        // given
+        final List<Connection> connections = createConnections(true, false);
+        final int playerCount = connections.size() + 1;
+        final Line line = Line.of(playerCount, new TestConnectionMaker(connections));
+
+        // when
+        final boolean canMoveLeft = line.canMoveLeft(position);
+
+        // then
+        assertThat(canMoveLeft).isEqualTo(result);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0, false", "1, true", "2, false"})
+    @DisplayName("Line과 Postion이 있고 오른쪽으로 움직일 수 있는지 여부를 확인하는 메서드를 실행하면 그 결과가 반환된다.")
+    void givenLineAndPosition_whenCanMoveRight_thenReturnResult(final int position, boolean result) {
+        // given
+        final List<Connection> connections = createConnections(false, true);
+        final int playerCount = connections.size() + 1;
+        final Line line = Line.of(playerCount, new TestConnectionMaker(connections));
+
+        // when
+        final boolean canMoveRight = line.canMoveRight(position);
+
+        // then
+        assertThat(canMoveRight).isEqualTo(result);
+    }
+
     private List<Connection> createConnections(Boolean... isConnected) {
         final List<Boolean> connections = List.of(isConnected);
-        return connections.stream().map(Connection::from).collect(Collectors.toList());
+        return connections.stream()
+                .map(Connection::from)
+                .collect(toList());
     }
 }

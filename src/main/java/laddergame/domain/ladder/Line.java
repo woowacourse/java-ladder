@@ -59,6 +59,10 @@ public class Line {
     }
 
     public boolean canMoveLeft(final int playerPosition) {
+        if (playerPosition == 0) {
+            return false;
+        }
+
         final int leftIndex = playerPosition - 1;
         final Connection leftConnection = connections.get(leftIndex);
 
