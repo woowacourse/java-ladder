@@ -59,7 +59,9 @@ public class LadderGameController {
 
     private List<String> getGameResults() {
         List<GameResult> gameResults = ladderGame.getGameResults().getGameResults();
-        return gameResults.stream().map(GameResult::getResult).collect(Collectors.toList());
+        return gameResults.stream()
+                .map(GameResult::getResult)
+                .collect(Collectors.toList());
     }
 
     private GameResults createGameResults(int playersSize, List<String> gameResultNames) {

@@ -5,6 +5,8 @@ import java.util.List;
 
 public class LadderGame {
 
+    public static final int FIRST_INDEX_OF_POINTS = 0;
+    private static final boolean NOT_EXIST = false;
     private final Players players;
     private final Ladder ladder;
     private final GameResults gameResults;
@@ -13,18 +15,6 @@ public class LadderGame {
         this.players = players;
         this.ladder = ladder;
         this.gameResults = gameResults;
-    }
-
-    public Ladder getLadder() {
-        return ladder;
-    }
-
-    public List<String> getPlayerNames() {
-        return players.getPlayerNames();
-    }
-
-    public GameResults getGameResults() {
-        return gameResults;
     }
 
     public GameResult getGameResultOf(String playerName) {
@@ -37,6 +27,18 @@ public class LadderGame {
             results.put(player.getName(), getGameResult(player));
         }
         return results;
+    }
+
+    public Ladder getLadder() {
+        return ladder;
+    }
+
+    public List<String> getPlayerNames() {
+        return players.getPlayerNames();
+    }
+
+    public GameResults getGameResults() {
+        return gameResults;
     }
 
     private GameResult getGameResult(Player player) {
@@ -57,14 +59,22 @@ public class LadderGame {
         return PointPosition.NONE.getMovingPosition();
     }
 
-    private boolean isNextPointExist(Line line, int currentXposition) {
-        if (currentXposition == 0) {
-            return line.getPointAt(currentXposition).isExist();
-        } else if (currentXposition == line.getPoints().size()) {
-            return line.getPointAt(currentXposition - 1).isExist();
+    private boolean isNextPointExist(Line line, int currentXPosition) {
+        return isLeftPointExist(line, currentXPosition) | isRightPointExist(line, currentXPosition);
+    }
+
+    private static boolean isRightPointExist(Line line, int currentXPosition) {
+        if (currentXPosition == line.getPoints().size()) {
+            return NOT_EXIST;
         }
-        return line.getPointAt(currentXposition - 1).isExist() |
-                line.getPointAt(currentXposition).isExist();
+        return line.getPointAt(currentXPosition).isExist();
+    }
+
+    private static boolean isLeftPointExist(Line line, int currentXPosition) {
+        if (currentXPosition == FIRST_INDEX_OF_POINTS) {
+            return NOT_EXIST;
+        }
+        return line.getPointAt(currentXPosition - 1).isExist();
     }
 
     private int getMovingPositionSide(Line line, int currentXIndex) {
