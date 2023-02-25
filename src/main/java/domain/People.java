@@ -13,11 +13,11 @@ public class People {
 
 	public static People from(List<String> names) {
 		validate(names);
-		List<Person> personList = new ArrayList<>();
+		List<Person> persons = new ArrayList<>();
 		for (String name : names) {
-			personList.add(new Person(name));
+			persons.add(new Person(name));
 		}
-		return new People(personList);
+		return new People(persons);
 	}
 
 	private static void validate(List<String> names) {
