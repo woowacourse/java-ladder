@@ -31,6 +31,10 @@ public class Results {
         results.addAll(gameResults);
     }
 
+    public GameResult getResultByPosition(Position position) {
+        return results.get(position.getPosition());
+    }
+
     public List<GameResult> getResults() {
         return results;
     }
