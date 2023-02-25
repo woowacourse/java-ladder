@@ -1,14 +1,14 @@
 package controller;
 
-import java.util.List;
-import java.util.Map;
-
 import domain.*;
 import domain.numbergenerator.NumberGenerator;
 import utils.Command;
 import utils.LogType;
 import view.InputView;
 import view.OutputView;
+
+import java.util.List;
+import java.util.Map;
 
 public class LadderController {
 

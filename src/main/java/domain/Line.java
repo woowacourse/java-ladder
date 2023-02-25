@@ -1,10 +1,10 @@
 package domain;
 
+import domain.numbergenerator.NumberGenerator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import domain.numbergenerator.NumberGenerator;
 
 public class Line {
 

@@ -1,9 +1,9 @@
 package view;
 
+import utils.Parser;
+
 import java.util.List;
 import java.util.Scanner;
-
-import utils.Parser;
 
 public class InputView {
 
