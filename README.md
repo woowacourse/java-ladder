@@ -72,11 +72,21 @@
 - [x] indent 확인
 
 **1단계 리뷰에 따른 리팩터링**
-- [ ] 메서드 선언 위치를 사용 순서에 맞게 재배치한다.
-- [ ] 컨벤션에 따른 상수 선언 final static -> static final
+- [x] 메서드 선언 위치를 사용 순서에 맞게 재배치한다.
+- [x] 컨벤션에 따른 상수 선언 final static -> static final
   - 참고 : https://stackoverflow.com/questions/11219556/difference-between-final-static-and-static-final
-- [ ] position 클래스로 포장
-- [ ] view - domain 의존성 제거
+- [x] GameResults 클래스명 변경
+- [x] position 클래스로 포장
+- [x] view - domain 의존성 제거
+
+**Position 클래스**
+- 사용자의 위치를 나타냄
+- [x] 이동
+  - [x] 오른쪽 이동
+  - [x] 왼쪽 이동
+- [x] [예외처리] 불가능한 위치
+  - [x] 0보다 작을 때
+  - [x] `사용자의 수 - 1` 보다 클 때
 
 ---
 ### 궁금한 내용
@@ -87,6 +97,11 @@
 3. 메서드 위치 컨벤션
   - public을 다 놓은 다음, 순서에 맞게 private 배치??
   - public 놓으면서, 안에서 사용하는 private 메소드 바로 아래에 배치??
+4. DTO는 어느 패키지에서 관리해야 할까?
+5. UsersNameDto 클래스가 List<Name>을 매개변수로 받고, 이를 List<String>으로 변환하여 인스턴스 변수로 저장하는 로직을 가지고 있어도 될까?
+6. DTO 생성자의 매개변수로 도메인 객체 자체를 넘겨주는 것이 좋을지, 아니면 필요한 필드를 직접 꺼내서 넘겨주는 것이 좋을지?
+7. Boolean을 Point가 감싸고, List<Point>를 Line이 감싸고, List<Line>을 Lines가 감싸고, List<Lines>를 Ladder가 감싸는 현재 상황에서 DTO를 어떻게 만드는 게 좋을까?
+8. 인터페이스로 구현체를 숨기며 view에 전달하는 것은 mvc 패턴의 `view와 Domain은 서로 의존하지 않는다`에 어긋나지 않는 것일까?
 ---
     
 ## 우아한테크코스 코드리뷰
