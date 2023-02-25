@@ -27,11 +27,11 @@ public class Player {
     }
 
     public boolean isPlayerName(Name other) {
-        return other.isSame(this.name);
+        return this.name.isSame(other);
     }
 
-    public boolean isPlayerPosition(Position otherPosition) {
-        return otherPosition.isSame(this.position);
+    public boolean isPlayerPosition(Position other) {
+        return this.position.isSame(other);
     }
 
     public void changePositionWith(Player otherPlayer) {
