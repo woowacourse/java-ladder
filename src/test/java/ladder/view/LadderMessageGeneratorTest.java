@@ -3,8 +3,8 @@ package ladder.view;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import ladder.domain.BooleanGenerator;
 import ladder.domain.Ladder;
+import ladder.util.BooleanGenerator;
 import ladder.util.TestBooleanGenerator;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;

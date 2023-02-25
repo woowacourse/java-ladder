@@ -1,12 +1,12 @@
 package ladder.controller;
 
 import java.util.function.Supplier;
-import ladder.domain.BooleanGenerator;
 import ladder.domain.Height;
 import ladder.domain.Items;
 import ladder.domain.LadderGame;
 import ladder.domain.LadderGameResult;
 import ladder.domain.Players;
+import ladder.util.BooleanGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 

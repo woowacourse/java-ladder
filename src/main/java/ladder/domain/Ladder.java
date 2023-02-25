@@ -6,6 +6,7 @@ import static java.util.stream.Collectors.toList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
+import ladder.util.BooleanGenerator;
 
 public class Ladder {
 

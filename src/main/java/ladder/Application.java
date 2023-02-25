@@ -2,7 +2,7 @@ package ladder;
 
 import java.util.Scanner;
 import ladder.controller.LadderGameController;
-import ladder.domain.RandomBooleanGenerator;
+import ladder.util.RandomBooleanGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 

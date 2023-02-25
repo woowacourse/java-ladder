@@ -5,6 +5,7 @@ import static ladder.domain.LineStatus.DISCONNECTED;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import ladder.util.BooleanGenerator;
 import ladder.util.TestBooleanGenerator;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;

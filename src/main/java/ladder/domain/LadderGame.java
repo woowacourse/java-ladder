@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import ladder.util.BooleanGenerator;
 
 public class LadderGame {
     private static final int SUBTRACT_LADDER_WIDTH_VALUE = 1;
