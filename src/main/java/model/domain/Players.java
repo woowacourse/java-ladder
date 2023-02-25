@@ -49,7 +49,7 @@ public class Players {
 
     public Result getResultOf(Name name) {
         return players.stream()
-                .filter(player -> player.isPlayerName(name))
+                .filter(player -> player.isSameName(name))
                 .map(Player::getResult)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NO_PLAYER_NAME_ERROR));
@@ -74,7 +74,7 @@ public class Players {
 
     private Name findNameBy(Position position) {
         return players.stream()
-                .filter(player -> player.isPlayerPosition(position))
+                .filter(player -> player.isSamePosition(position))
                 .map(Player::getName)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NO_PLAYER_AT_POSITION_ERROR));
@@ -82,7 +82,7 @@ public class Players {
 
     private Player findPlayerBy(Position position) {
         return players.stream()
-                .filter(player -> player.isPlayerPosition(position))
+                .filter(player -> player.isSamePosition(position))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NO_PLAYER_AT_POSITION_ERROR));
     }

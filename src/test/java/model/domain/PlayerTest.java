@@ -29,7 +29,7 @@ public class PlayerTest {
         Player player = new Player(new Name("pobi"), new Position(0));
 
         //when
-        boolean result = player.isPlayerName(new Name("pobi"));
+        boolean result = player.isSameName(new Name("pobi"));
 
         //then
         assertThat(result).isEqualTo(true);
@@ -58,7 +58,7 @@ public class PlayerTest {
         Player player = new Player(new Name("hiiro"), new Position(playerPosition));
 
         //when
-        boolean result = player.isPlayerPosition(new Position(inputNumber));
+        boolean result = player.isSamePosition(new Position(inputNumber));
 
         //then
         assertThat(result).isEqualTo(expected);
@@ -75,7 +75,7 @@ public class PlayerTest {
         hiiro.changePositionWith(ocean);
 
         //then
-        assertThat(hiiro.isPlayerPosition(new Position(1))).isTrue();
-        assertThat(ocean.isPlayerPosition(new Position(0))).isTrue();
+        assertThat(hiiro.isSamePosition(new Position(1))).isTrue();
+        assertThat(ocean.isSamePosition(new Position(0))).isTrue();
     }
 }
