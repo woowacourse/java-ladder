@@ -7,13 +7,13 @@ public class LadderGame {
 
     private final Ladder ladder;
     private final Players players;
-    private final Prize prize;
+    private final Prizes prizes;
     private final Map<String, String> result;
 
-    public LadderGame(Ladder ladder, Players players, Prize prize) {
+    public LadderGame(Ladder ladder, Players players, Prizes prizes) {
         this.ladder = ladder;
         this.players = players;
-        this.prize = prize;
+        this.prizes = prizes;
         this.result = new HashMap<>();
     }
 
@@ -33,7 +33,7 @@ public class LadderGame {
     private Map<String, String> finish() {
         for (Player player : players.getPlayers()) {
             int position = player.getPosition();
-            result.put(player.getName(), prize.getOnePrizeByIndex(position));
+            result.put(player.getName(), prizes.getOnePrizeByIndex(position));
         }
         return result;
     }

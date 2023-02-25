@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Prize {
+public class Prizes {
 
     private static final String INVALID_PRIZE_LENGTH_ERROR_MESSAGE = "사다리 게임의 실행 결과는 1글자에서 5글자 사이로 입력해야합니다.";
     private static final String INVALID_PRIZE_COUNT_ERROR_MESSAGE = "사다리 게임의 실행 결과는 사람 수와 동일하게 입력해야합니다.";
@@ -14,7 +14,7 @@ public class Prize {
 
     private final List<String> prizes;
 
-    public Prize(List<String> prizes, int personCount) {
+    public Prizes(List<String> prizes, int personCount) {
         List<String> timedPrizes = trimPrizes(prizes);
         validate(timedPrizes, personCount);
         this.prizes = timedPrizes;

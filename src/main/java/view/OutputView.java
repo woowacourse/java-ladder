@@ -63,7 +63,7 @@ public class OutputView {
         return FORMATTED_BLANK + DIVIDER;
     }
 
-    public void printPrizes(Prize prizes) {
+    public void printPrizes(Prizes prizes) {
         System.out.print(OBJECT_START_FORMAT);
         prizes.getPrizes()
                 .forEach(outputView::printObject);

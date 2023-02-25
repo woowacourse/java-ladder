@@ -10,14 +10,14 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 
-public class PrizeTest {
+public class PrizesTest {
 
     @DisplayName("사다리 게임의 실행 결과는 참여하는 사람의 수 만큼 입력받지 않으면 예외를 발생시킨다.")
     @ParameterizedTest
     @CsvSource(value = {"꽝,5000,꽝:2", "꽝:2"}, delimiter = ':')
     void prizeValidateTest1(String input, int personCount) {
         List<String> prizes = Parser.parse(input, ",");
-        Assertions.assertThatThrownBy(() -> new Prize(prizes, personCount))
+        Assertions.assertThatThrownBy(() -> new Prizes(prizes, personCount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리 게임의 실행 결과는 사람 수와 동일하게 입력해야합니다.");
     }
@@ -27,7 +27,7 @@ public class PrizeTest {
     @CsvSource(value = {"꽝,500000,꽝:3", "꽝,:2", "꽝      꽝,4000:2"}, delimiter = ':')
     void prizeValidateTest2(String input, int personCount) {
         List<String> prizes = Parser.parse(input, ",");
-        Assertions.assertThatThrownBy(() -> new Prize(prizes, personCount))
+        Assertions.assertThatThrownBy(() -> new Prizes(prizes, personCount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리 게임의 실행 결과는 1글자에서 5글자 사이로 입력해야합니다.");
     }
@@ -37,7 +37,7 @@ public class PrizeTest {
     @CsvSource(value = {"꽝,  5000 ,꽝:3", "꽝,1000  :2"}, delimiter = ':')
     void prizeValidateTest3(String input, int personCount) {
         List<String> prizes = Parser.parse(input, ",");
-        assertThatCode(() -> new Prize(prizes, personCount))
+        assertThatCode(() -> new Prizes(prizes, personCount))
                 .doesNotThrowAnyException();
     }
 
@@ -46,7 +46,7 @@ public class PrizeTest {
     @CsvSource(value = {"꽝,5000,꽝,도:4", "꽝,5000:2"}, delimiter = ':')
     void prizeValidateTest4(String input, int personCount) {
         List<String> prizes = Parser.parse(input, ",");
-        assertThatCode(() -> new Prize(prizes, personCount))
+        assertThatCode(() -> new Prizes(prizes, personCount))
                 .doesNotThrowAnyException();
     }
 }

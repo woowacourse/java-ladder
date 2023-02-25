@@ -6,7 +6,7 @@ import java.util.Map;
 import domain.Ladder;
 import domain.LadderGame;
 import domain.Players;
-import domain.Prize;
+import domain.Prizes;
 import domain.numbergenerator.NumberGenerator;
 import utils.Command;
 import utils.LogType;
@@ -29,16 +29,16 @@ public class LadderController {
         Players players = generatePlayers();
         int playerCount = players.getPlayerSize();
         Ladder ladder = generateLadder(playerCount);
-        Prize prize = generatePrize(playerCount);
-        LadderGame ladderGame = new LadderGame(ladder, players, prize);
+        Prizes prizes = generatePrize(playerCount);
+        LadderGame ladderGame = new LadderGame(ladder, players, prizes);
         Map<String, String> results = ladderGame.run();
-        print(players, ladder, prize, results);
+        print(players, ladder, prizes, results);
     }
 
-    private void print(Players players, Ladder ladder, Prize prize, Map<String, String> results) {
+    private void print(Players players, Ladder ladder, Prizes prizes, Map<String, String> results) {
         outputView.printNames(players);
         outputView.printLadder(ladder);
-        outputView.printPrizes(prize);
+        outputView.printPrizes(prizes);
         printResults(results);
     }
 
@@ -69,10 +69,10 @@ public class LadderController {
         }
     }
 
-    private Prize generatePrize(int playerCount) {
+    private Prizes generatePrize(int playerCount) {
         try {
             List<String> prizes = inputView.readPrizes();
-            return new Prize(prizes, playerCount);
+            return new Prizes(prizes, playerCount);
         } catch (IllegalArgumentException exception) {
             LogType.ERROR_MESSAGE.log(exception.getMessage());
             return generatePrize(playerCount);
