@@ -5,7 +5,6 @@ import domain.vo.Width;
 import domain.wrapper.Position;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -40,7 +39,7 @@ public class Ladder {
     }
 
     public List<Layer> getLayers() {
-        return Collections.unmodifiableList(layers);
+        return List.copyOf(layers);
     }
 
     public int getHeight() {
