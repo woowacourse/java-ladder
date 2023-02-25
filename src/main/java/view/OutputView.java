@@ -32,10 +32,11 @@ public class OutputView {
         또 다르게 생각해보면 어짜피 Player가 Reward라는 값객체를 가지고 있으니 괜찮은 것 같기도 해요.
         조앤은 어떻게 생각하시나요?? 조앤의 생각을 들려주세요! :D
      */
-    private static void printPlayerReward(String input, Players players) {
-        for (Player player : players.getPlayers()) {
+    private static void printPlayerReward(String input, Players players, Rewards rewards) {
+        for (int playerIndex = 0; playerIndex < players.getPlayersSize(); playerIndex++) {
+            Player player = players.getPlayerByIndex(playerIndex);
             if (player.isSameNameWithInput(input)) {
-                System.out.println(player.getRewardName());
+                System.out.println(rewards.getRewardByIndex(playerIndex));
             }
         }
     }
@@ -44,9 +45,10 @@ public class OutputView {
         return input.equals(ALL);
     }
 
-    private static void printAllPlayersRewards(Players players) {
-        for (Player player : players.getPlayers()) {
-            System.out.println(player.getName() + COLON + player.getRewardName());
+    private static void printAllPlayersRewards(Players players, Rewards rewards) {
+        for (int playerIndex = 0; playerIndex < players.getPlayersSize(); playerIndex++) {
+            Player player = players.getPlayerByIndex(playerIndex);
+            System.out.println(player.getName() + COLON + rewards.getRewardByIndex(playerIndex));
         }
     }
 
@@ -104,12 +106,12 @@ public class OutputView {
         }
     }
 
-    public static void printReward(String input, Players players) {
+    public static void printReward(String input, Players players, Rewards rewards) {
         System.out.println(REWARD_GUIDE_MESSAGE);
         if (isAll(input)) {
-            printAllPlayersRewards(players);
+            printAllPlayersRewards(players, rewards);
             return;
         }
-        printPlayerReward(input, players);
+        printPlayerReward(input, players, rewards);
     }
 }

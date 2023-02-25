@@ -36,7 +36,7 @@ public class Rewards {
         return rewards;
     }
 
-    public Reward getReward(int playerIndex) {
-        return rewards.get(playerIndex);
+    public String getRewardByIndex(int playerIndex) {
+        return rewards.get(playerIndex).getRewardName();
     }
 }

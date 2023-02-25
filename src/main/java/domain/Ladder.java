@@ -77,10 +77,12 @@ public class Ladder {
     }
 
     private void matchRewardsForPlayers(Rewards rewards) {
-        IntStream.range(0, result.size()).forEach(playerIndex -> {
+        int bound = result.size();
+        for (int playerIndex = 0; playerIndex < bound; playerIndex++) {
             Player player = result.get(playerIndex);
-            player.setReward(rewards.getReward(playerIndex));
-        });
+
+            //player.setReward(rewards.getReward(playerIndex));
+        }
     }
 
     public List<Line> getLadder() {

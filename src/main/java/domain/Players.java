@@ -31,4 +31,8 @@ public class Players {
     public List<Player> getPlayers() {
         return players;
     }
+
+    public Player getPlayerByIndex(int playerIndex) {
+        return players.get(playerIndex);
+    }
 }
