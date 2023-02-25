@@ -1,19 +1,16 @@
 package domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.*;
 
 public class GameResultsTest {
 
-    // TODO : 실행 결과 개수와 플레이어 수를 비교하는 것이 Result 객체의 책임인지 생각해보기
     @DisplayName("실행 결과의 개수가 플레이어 수보다 적으면 예외 처리 한다.")
     @ParameterizedTest
     @CsvSource(value = {"1:2", "10:11", "11:10", "19:20", "20:21"}, delimiter = ':')
@@ -29,13 +26,9 @@ public class GameResultsTest {
     @DisplayName("실행 결과가 비어있는 경우 예외 처리 한다.")
     @ParameterizedTest
     @NullAndEmptySource
-    void validateNullAndEmpty(List<String> results) {
-        int playerSize = 3;
+    void validateNullAndEmpty(String result) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new GameResults(
-                        playerSize,
-                        results.stream().map(GameResult::new).collect(Collectors.toList()))
-                );
+                .isThrownBy(() -> new GameResult(result));
     }
 
     @DisplayName("실행 결과를 일급컬렉션에 저장한다.")
@@ -64,23 +57,15 @@ public class GameResultsTest {
     }
 
     @DisplayName("실행 결과는 입력한 순서대로 사다리에 매핑된다.")
-    @Test
-    void mapGameResultWithLadder() {
-        GameResults gameResults = new GameResults(3, List.of(new GameResult("꽝"), new GameResult("꽝"), new GameResult("당첨")));
-        assertThat(gameResults.getGameResultAt(3).getResult())
-                .isEqualTo("당첨");
-        assertThat(gameResults.getGameResultAt(1).getResult())
-                .isEqualTo("꽝");
+    @ParameterizedTest
+    @CsvSource(value = {"0:꽝", "1:꽝", "2:당첨"}, delimiter = ':')
+    void mapGameResultWithLadder(String index, String gameResult) {
+        GameResults gameResults = new GameResults(
+                3,
+                List.of(new GameResult("꽝"), new GameResult("꽝"), new GameResult("당첨"))
+        );
+        assertThat(gameResults.getGameResultAt(Integer.parseInt(index)).getResult())
+                .isEqualTo(gameResult);
     }
-
-//    private static Stream<Arguments> provideStringsForIsBlank() {
-//        return Stream.of(
-//                Arguments.of(1, List.of(new GameResult("꽝"))),
-//                Arguments.of(10, List.of(new GameResult("꽝"), new GameResult("2000"), new GameResult("3000")),
-//                Arguments.of(3, List.of(new GameResult("꽝"), new GameResult("2000"), new GameResult("3000")),
-//                Arguments.of("  ", true),
-//                Arguments.of("not blank", false)
-//        );
-//    }
 
 }

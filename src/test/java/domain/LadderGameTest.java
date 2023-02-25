@@ -64,7 +64,7 @@ public class LadderGameTest {
     @Test
     void generatePlayers() {
         List<String> playerNames = ladderGame.getPlayerNames();
-        assertThat(playerNames).containsExactly("a", "b", "c");
+        assertThat(playerNames).containsExactly("a", "b", "c", "d", "e");
     }
 
     @DisplayName("지정한 플레이어의 게임 실행 결과를 반환한다.")
@@ -96,7 +96,7 @@ public class LadderGameTest {
     @Test
     void validatePlayerContaining() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> ladderGame.getGameResultOf("d"));
+                .isThrownBy(() -> ladderGame.getGameResultOf("f"));
     }
 
     private static Stream<Arguments> provideLadderGame() {
