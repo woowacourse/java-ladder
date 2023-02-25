@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class Results {
+
     private final List<Result> results;
 
     public Results(List<Result> results, Names names) {

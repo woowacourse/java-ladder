@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderGame {
+
     private final Names names;
     private final Results results;
 

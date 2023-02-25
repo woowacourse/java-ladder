@@ -3,7 +3,9 @@ package domain;
 import java.util.Objects;
 
 public class Result {
+
     public static final int MAX_LENGTH_OF_RESULT = 5;
+
     private final String value;
 
     public Result(String value) {
@@ -15,6 +17,10 @@ public class Result {
         if (value.isEmpty() || value.length() > MAX_LENGTH_OF_RESULT) {
             throw new IllegalArgumentException("결과의 길이는 1자 이상, 5자 이하 입니다.");
         }
+    }
+
+    public String value() {
+        return value;
     }
 
     @Override
@@ -32,9 +38,5 @@ public class Result {
     @Override
     public int hashCode() {
         return Objects.hash(value);
-    }
-
-    public String value() {
-        return value;
     }
 }
