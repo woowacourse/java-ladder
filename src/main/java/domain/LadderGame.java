@@ -26,10 +26,42 @@ public class LadderGame {
         return gameResults;
     }
 
-    public void getGameResultOf(String playerName) {
-        if (!players.contains(playerName)) {
-            throw new IllegalArgumentException("찾는 플레이어가 없습니다.");
-        }
+    public GameResult getGameResultOf(String playerName) {
+        return getGameResult(players.get(playerName));
+    }
 
+    private GameResult getGameResult(Player player) {
+        int currentXIndex = players.getCurrentPosition(player);
+        int currentLineIndex = 0;
+        List<Line> lines = ladder.getLines();
+        while (currentLineIndex < lines.size()) {
+            currentXIndex += getMovingPosition(lines.get(currentLineIndex), currentXIndex);
+            currentLineIndex++;
+        }
+        return gameResults.getGameResultAt(currentXIndex);
+    }
+
+    private int getMovingPosition(Line line, int currentXIndex) {
+        if (isNextPointExist(line, currentXIndex)) {
+            return getMovingPositionSide(line, currentXIndex);
+        }
+        return PointPosition.NONE.getMovingPosition();
+    }
+
+    private boolean isNextPointExist(Line line, int currentXposition) {
+        if (currentXposition == 0) {
+            return line.getPointAt(currentXposition).isExist();
+        } else if (currentXposition == line.getPoints().size()) {
+            return line.getPointAt(currentXposition - 1).isExist();
+        }
+        return line.getPointAt(currentXposition - 1).isExist() |
+                line.getPointAt(currentXposition).isExist();
+    }
+
+    private int getMovingPositionSide(Line line, int currentXIndex) {
+        if (currentXIndex < line.getPoints().size() && line.getPointAt(currentXIndex).isExist()) {
+            return PointPosition.RIGHT.getMovingPosition();
+        }
+        return PointPosition.LEFT.getMovingPosition();
     }
 }

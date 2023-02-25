@@ -17,18 +17,18 @@ public class Players {
         this.players = new ArrayList<>(players);
     }
 
-    public static void validate(final List<Player> players) {
+    public void validate(final List<Player> players) {
         validatePlayerSize(players);
         validateDuplication(players);
     }
 
-    private static void validatePlayerSize(final List<Player> players) {
+    private void validatePlayerSize(final List<Player> players) {
         if (players.size() < PLAYER_MIN_SIZE || players.size() > PLAYER_MAX_SIZE) {
             throw new IllegalArgumentException("참여자 수는 1명 이상 20명 이하입니다.");
         }
     }
 
-    private static void validateDuplication(final List<Player> players) {
+    private void validateDuplication(final List<Player> players) {
         List<String> playerNames = players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toUnmodifiableList());
@@ -37,17 +37,21 @@ public class Players {
         }
     }
 
+    public Player get(String playerName) {
+        return players.stream()
+                .filter(player -> player.getName().equals(playerName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("찾는 플레이어가 없습니다."));
+    }
+
     public List<String> getPlayerNames() {
         return players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public boolean contains(String playerName) {
-        List<String> playerNames = players.stream()
-                .map(Player::getName)
-                .collect(Collectors.toList());
-        return playerNames.stream()
-                .anyMatch(name -> playerName.equals(name));
+    public int getCurrentPosition(Player player) {
+        return players.indexOf(player);
     }
+
 }

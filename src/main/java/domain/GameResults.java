@@ -35,6 +35,6 @@ public class GameResults {
     }
 
     public GameResult getGameResultAt(int order) {
-        return gameResults.get(order - 1);
+        return gameResults.get(order);
     }
 }
