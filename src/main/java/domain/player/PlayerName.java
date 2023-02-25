@@ -36,12 +36,12 @@ public class PlayerName {
         checkPlayerNameLength(playerName);
     }
 
-
     private void checkPlayerNameLength(String playerName) {
-        if (playerName.length()>PLAYER_NAME_MAX_SIZE||playerName.length()<PLAYER_NAME_MIN_SIZE) {
+        if (playerName.length() > PLAYER_NAME_MAX_SIZE || playerName.length() < PLAYER_NAME_MIN_SIZE) {
             throw new IllegalArgumentException(PLAYER_NAME_LENGTH_ERROR_MESSAGE);
         }
     }
+
     private static void checkBlank(String player) {
         if (player.isBlank()) {
             throw new IllegalArgumentException(BLANK_MESSAGE);
