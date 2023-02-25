@@ -18,7 +18,6 @@ class PlayersTest {
 
     @BeforeEach
     void setUp() {
-
         Player player1 = new Player(new Name("p1"));
         Player player2 = new Player(new Name("p2"));
         Player player3 = new Player(new Name("p3"));
