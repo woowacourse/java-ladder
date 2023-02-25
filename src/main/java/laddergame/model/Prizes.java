@@ -16,6 +16,8 @@ public class Prizes {
         }
         return new Prizes(prizes.stream().map(Prize::new).collect(Collectors.toList()));
     }
+
+    public List<Prize> getPrizes() {
+        return prizes;
+    }
 }
-
-
