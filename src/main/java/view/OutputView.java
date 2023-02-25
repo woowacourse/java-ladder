@@ -1,9 +1,6 @@
 package view;
 
-import domain.ladder.Ladder;
-import domain.ladder.LadderGame;
 import domain.ladder.Line;
-import domain.player.Player;
 
 import java.util.List;
 import java.util.Map;
@@ -23,14 +20,12 @@ public class OutputView {
         System.out.println(RESULT_SHOW_MESSAGE);
     }
 
-    public static void showPlayers(List<Player> players) {
-        players.forEach(player -> printMessageFormat(player.getName(), PLAYER_SHOW_FORMAT));
+    public static void showPlayers(List<String> playerNames) {
+        playerNames.forEach(name -> printMessageFormat(name, PLAYER_SHOW_FORMAT));
         System.out.println();
     }
 
-    public static void showLadder(Ladder ladder) {
-        List<Line> lines = ladder.getLines();
-
+    public static void showLadder(List<Line> lines) {
         for (Line line : lines) {
             showPoints(line.getPoints());
             System.out.println();
@@ -42,12 +37,12 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void showGameResult(LadderGame ladderGame, String name) {
+    public static void showGameResult(Map<String, String> gameResult, String name) {
         if (name.equals(ALL_PLAYERS_RESULT_MESSAGE)) {
-            showAllPlayersOutcome(ladderGame.findAllResults());
+            showAllPlayersOutcome(gameResult);
             return;
         }
-        showPlayerOutcome(name, ladderGame.findByName(name));
+        showPlayerOutcome(name, gameResult.get(name));
     }
 
     private static void showPoints(List<Boolean> points) {

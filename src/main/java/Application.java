@@ -1,25 +1,31 @@
 import domain.generator.RandomBooleanGenerator;
 import domain.ladder.Ladder;
 import domain.ladder.LadderGame;
+import domain.ladder.Line;
+import domain.player.Player;
 import domain.player.Players;
+import domain.result.GameResult;
 import domain.result.Prizes;
 import utils.Log;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
 
     public static void main(String[] args) {
         Players players = readPlayers();
-        Prizes prizes = readPrizes(players.getPlayers().size());
-        Ladder ladder = createLadder(players.getPlayers().size());
-        LadderGame ladderGame = LadderGame.of(players, prizes, ladder);
+        Prizes prizes = readPrizes(players.getSize());
+        Ladder ladder = createLadder(players.getSize());
 
-        showLadder(players, ladder, prizes);
-        String resultName = readResultName(ladderGame);
-        showResult(ladderGame, resultName);
+        LadderGame ladderGame = new LadderGame(players, prizes, ladder);
+        GameResult gameResult = ladderGame.start();
+
+        showLadder(ladderGame.getPlayers(), ladderGame.getLadder(), ladderGame.getPrizes());
+        String resultName = readResultName(gameResult);
+        showResult(gameResult, resultName);
     }
 
     private static Players readPlayers() {
@@ -59,31 +65,33 @@ public class Application {
         }
     }
 
-    private static String readResultName(LadderGame ladderGame) {
+    private static String readResultName(GameResult gameResult) {
         try {
             String resultName = InputView.readResultName();
-            validateResultName(ladderGame, resultName);
+            validateResultName(gameResult, resultName);
             return resultName;
         } catch (IllegalArgumentException e) {
             Log.error(e.getMessage());
-            return readResultName(ladderGame);
+            return readResultName(gameResult);
         }
     }
 
-    private static void validateResultName(LadderGame ladderGame, String resultName) {
-        if (!resultName.equals("all") && !ladderGame.hasContain(resultName)) {
+    private static void validateResultName(GameResult gameResult, String resultName) {
+        if (!resultName.equals("all") && !gameResult.contains(resultName)) {
             throw new IllegalArgumentException("이름과 일치하는 참가자가 존재하지 않습니다.");
         }
     }
 
-    private static void showLadder(Players players, Ladder ladder, Prizes prizes) {
+    private static void showLadder(List<Player> players, List<Line> ladder, List<String> prizes) {
         OutputView.showResultMessage();
-        OutputView.showPlayers(players.getPlayers());
+        OutputView.showPlayers(players.stream()
+                .map(Player::getName)
+                .collect(Collectors.toUnmodifiableList()));
         OutputView.showLadder(ladder);
-        OutputView.showPrizes(prizes.getPrizes());
+        OutputView.showPrizes(prizes);
     }
 
-    private static void showResult(LadderGame ladderGame, String name) {
-        OutputView.showGameResult(ladderGame, name);
+    private static void showResult(GameResult gameResult, String name) {
+        OutputView.showGameResult(gameResult.getGameResult(), name);
     }
 }

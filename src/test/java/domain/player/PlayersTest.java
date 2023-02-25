@@ -47,10 +47,10 @@ public class PlayersTest {
         List<String> names = List.of("gray", "encho", "pobi");
 
         Players players = new Players(names);
-        int size = players.getPlayers().size();
+        int size = players.getSize();
 
         for (int index = 0; index < size; index++) {
-            assertThat(players.findNameByIndex(index)).isEqualTo(names.get(index));
+            assertThat(players.findNameByIndex(index).getName()).isEqualTo(names.get(index));
         }
     }
 

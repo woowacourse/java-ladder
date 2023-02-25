@@ -1,49 +1,62 @@
 package domain.ladder;
 
+import domain.player.Player;
 import domain.player.Players;
 import domain.result.Prizes;
+import domain.result.GameResult;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LadderGame {
 
-    private final Map<String, String> result;
+    private final Players players;
+    private final Prizes prizes;
+    private final Ladder ladder;
 
-    private LadderGame(Map<String, String> result) {
-        this.result = result;
+    public LadderGame(Players players, Prizes prizes, Ladder ladder) {
+        validateSize(players, prizes);
+        this.players = players;
+        this.prizes = prizes;
+        this.ladder = ladder;
     }
 
-    public static LadderGame of(Players players, Prizes prizes, Ladder ladder) {
-        HashMap<String, String> gameResult = start(players, prizes, ladder);
-        return new LadderGame(gameResult);
-    }
+    public GameResult start() {
+        Map<String, String> gameResult = new HashMap<>();
 
-    public String findByName(String name) {
-        if (!result.containsKey(name)) {
-            throw new IllegalArgumentException("이름과 일치하는 참가자가 존재하지 않습니다.");
-        }
-        return result.get(name);
-    }
-
-    public boolean hasContain(String name) {
-        return result.containsKey(name);
-    }
-
-    private static HashMap<String, String> start(Players players, Prizes prizes, Ladder ladder) {
-        HashMap<String, String> gameResult = new HashMap<>();
-        for (int playerIndex = 0; playerIndex < players.getPlayers().size(); playerIndex++) {
-            String playerName = players.findNameByIndex(playerIndex);
+        for (int playerIndex = 0; playerIndex < players.getSize(); playerIndex++) {
+            Player player = players.findNameByIndex(playerIndex);
 
             int playerLastPosition = ladder.move(playerIndex);
-            String prize = prizes.findByIndex(playerLastPosition);
-            gameResult.put(playerName, prize);
+
+            addPlayerResult(gameResult, player, playerLastPosition);
         }
-        return gameResult;
+        return new GameResult(gameResult);
     }
 
-    public Map<String, String> findAllResults() {
-        return this.result;
+    private void addPlayerResult(Map<String, String> gameResult, Player player, int playerLastPosition) {
+        String playerName = player.getName();
+        String playerPrize = prizes.findByIndex(playerLastPosition);
+        gameResult.put(playerName, playerPrize);
     }
 
+    private void validateSize(Players players, Prizes prizes) {
+        if (players.getSize() != prizes.getPrizes().size()) {
+            throw new IllegalArgumentException("참가자 수와 결과 수는 일치해야 합니다.");
+        }
+    }
+
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players.getPlayers());
+    }
+
+    public List<String> getPrizes() {
+        return Collections.unmodifiableList(prizes.getPrizes());
+    }
+
+    public List<Line> getLadder() {
+        return Collections.unmodifiableList(ladder.getLines());
+    }
 }

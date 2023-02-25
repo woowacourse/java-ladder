@@ -43,10 +43,14 @@ public class Players {
         return Collections.unmodifiableList(players);
     }
 
-    public String findNameByIndex(int playerIndex) {
-        if (playerIndex > getPlayers().size() - 1) {
+    public int getSize() {
+        return players.size();
+    }
+
+    public Player findNameByIndex(int playerIndex) {
+        if (playerIndex < 0 || playerIndex >= getPlayers().size()) {
             throw new IllegalArgumentException(PLAYER_INDEX_ERROR_MESSAGE);
         }
-        return players.get(playerIndex).getName();
+        return players.get(playerIndex);
     }
 }

@@ -31,6 +31,9 @@ public class Prizes {
     }
 
     public String findByIndex(int index) {
+        if (index < 0 || index >= prizes.size()) {
+            throw new IllegalArgumentException("인덱스 범위를 확인하세요.");
+        }
         return prizes.get(index);
     }
 
