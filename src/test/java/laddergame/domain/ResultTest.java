@@ -20,5 +20,4 @@ class ResultTest {
 
         assertDoesNotThrow(() -> new Result(players, ladder, prizes));
     }
-
 }

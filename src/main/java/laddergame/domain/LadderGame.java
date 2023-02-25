@@ -4,9 +4,9 @@ import java.util.List;
 
 public class LadderGame {
 
-    private Players players;
-    private Ladder ladder;
-    private Prizes prizes;
+    private final Players players;
+    private final Ladder ladder;
+    private final Prizes prizes;
 
     public LadderGame(Players players, Ladder ladder, Prizes prizes) {
         this.players = players;
@@ -21,6 +21,7 @@ public class LadderGame {
     public List<Line> getLadderMap() {
         return ladder.getLadder();
     }
+
     public List<String> getPrizeNames() {
         return prizes.getPrizes();
     }

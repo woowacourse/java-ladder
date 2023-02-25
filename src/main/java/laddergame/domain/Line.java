@@ -42,17 +42,21 @@ public class Line {
         if (canMoveRight(currentPosition, playerCount)) {
             position++;
         }
-        if (canMoveLeft(currentPosition, playerCount)) {
+        if (canMoveLeft(currentPosition)) {
             position--;
         }
         return position;
     }
 
     private boolean canMoveRight(int position, int playerCount) {
-        return position < playerCount - 1 && points.get(position).isConnected();
+        return position < playerCount - 1 && isConnected(position);
     }
 
-    private boolean canMoveLeft(int position, int playerCount) {
-        return position > 0 && points.get(position - 1).isConnected();
+    private boolean canMoveLeft(int position) {
+        return position > 0 && isConnected(position - 1);
+    }
+
+    private boolean isConnected(int position) {
+        return points.get(position - 1).isConnected();
     }
 }

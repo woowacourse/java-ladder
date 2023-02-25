@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,6 @@ public class Result {
     }
 
     public Map<String, String> getAllResults() {
-        return result;
+        return Collections.unmodifiableMap(result);
     }
 }

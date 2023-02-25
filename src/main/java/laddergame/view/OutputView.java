@@ -76,7 +76,6 @@ public class OutputView {
     }
 
     public static void printLadderGameAllResult(Map<String, String> result) {
-        System.out.println();
         System.out.println(RESULT_INFO_MSG);
         result.keySet().forEach((key) ->
                 System.out.println(String.format(RESULT_FORMAT, key, result.get(key)))
@@ -84,7 +83,6 @@ public class OutputView {
     }
 
     public static void printLadderGameResult(String result) {
-        System.out.println();
         System.out.println(RESULT_INFO_MSG);
         System.out.println(result);
     }
