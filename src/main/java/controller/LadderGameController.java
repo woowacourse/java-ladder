@@ -30,7 +30,7 @@ public class LadderGameController {
         Ladder ladder = Ladder.generate(players, height, trueOrFalseGenerator);
         outputView.printResult(players, ladder, products);
         LadderGame ladderGame = new LadderGame(players, products, ladder);
-        LadderGameResult ladderGameResult = ladderGame.play();
+        LadderGameResult ladderGameResult = ladderGame.gameResult();
         ladderGameTotalResult(ladderGameResult);
     }
 

@@ -23,7 +23,7 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public LadderGameResult play() {
+    public LadderGameResult gameResult() {
         Map<Player, Product> result = new LinkedHashMap<>();
         for (Player player : players.getPlayers()) {
             result.put(player, products.productOfIndex(climbLadder(player, ladder)));
