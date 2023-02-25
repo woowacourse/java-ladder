@@ -52,8 +52,8 @@ public class Ladder {
     }
 
     private void traverseLine(Line line) {
-        for (int Playerindex = 0; Playerindex < line.getBlocksSize(); Playerindex++) {
-            crossLine(line, Playerindex);
+        for (int playerIndex = 0; playerIndex < line.getBlocksSize(); playerIndex++) {
+            crossLine(line, playerIndex);
         }
     }
 
