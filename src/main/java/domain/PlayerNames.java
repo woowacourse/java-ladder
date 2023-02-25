@@ -1,9 +1,7 @@
 package domain;
 
-import view.InputView;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PlayerNames {
     public static final String PLAYERS_SIZE_ERROR_MESSAGE = "[ERROR] 사다리 게임을 위해서는 2명 이상의 플레이어가 필요합니다";
@@ -13,8 +11,7 @@ public class PlayerNames {
 
     public PlayerNames(List<String> playerNames) {
         playerNames = validatePlayerNames(playerNames);
-        this.playerNames = new ArrayList<>();
-        createPlayerNames(playerNames);
+        this.playerNames = createPlayerNames(playerNames);
     }
 
     private List<String> validatePlayerNames(List<String> playerNames) {
@@ -43,10 +40,8 @@ public class PlayerNames {
         }
     }
 
-    private void createPlayerNames(List<String> playerNames) {
-        for (String playerName : playerNames) {
-            this.playerNames.add(new PlayerName(playerName));
-        }
+    private List<PlayerName> createPlayerNames(List<String> playerNames) {
+        return playerNames.stream().map(PlayerName::new).collect(Collectors.toList());
     }
 
     public List<PlayerName> getPlayerNames() {
