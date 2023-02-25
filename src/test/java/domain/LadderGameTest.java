@@ -33,8 +33,20 @@ class LadderGameTest {
         Assertions.assertAll(
                 () -> {
                     for (int i = 0; i < names.size(); i++) {
-                        assertEquals(people.getPeople().get(i).getName(), names.get(i));
+                        assertEquals(people.getPeople().get(i).getName().getPersonName(), names.get(i));
                     }
+                }
+        );
+    }
+
+    @DisplayName("중복죈 이름을 입력 받았을 때 예외처리")
+    @Test
+    void PEOPLE_중복이름_예외_테스트() {
+        List<String> names = List.of("p", "p", "p");
+
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> {
+                    ladderGame.createPeople(names);
                 }
         );
     }

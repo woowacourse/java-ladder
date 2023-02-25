@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import util.RandomBooleanGenerator;
 import util.RandomValueGenerator;
@@ -13,11 +14,18 @@ import util.RandomValueGenerator;
 public class LadderGame {
 
     public People createPeople(List<String> names) {
+        validateDuplicateName(names);
         List<Person> people = new ArrayList<>();
         for (int i = 0; i < names.size(); i++) {
             people.add(new Person(names.get(i), i));
         }
         return new People(people);
+    }
+
+    private void validateDuplicateName(List<String> names) {
+        if (names.size() != new HashSet<>(names).size()) {
+            throw new IllegalArgumentException("참가지 이름은 중복일 수 없습니다.");
+        }
     }
 
     public Lines createLines(int width, int height) {
