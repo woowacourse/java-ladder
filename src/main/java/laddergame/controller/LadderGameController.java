@@ -68,7 +68,7 @@ public class LadderGameController {
         do {
             Map<Participant, Result> resultByParticipants = readRequestAndGetResultByParticipants(ladderGame);
             outputView.printResultGuide();
-            outputView.printResult(resultByParticipants, participants.getAllParticipants());
+            outputView.printResult(resultByParticipants, participants.getParticipants());
         } while (ladderGame.isContinuing());
     }
 

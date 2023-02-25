@@ -43,7 +43,7 @@ public class LadderGame {
     private Map<Participant, Result> makeResultByAllParticipants() {
         Map<Participant, Result> resultByParticipants = new HashMap<>();
 
-        List<Participant> allParticipants = participants.getAllParticipants();
+        List<Participant> allParticipants = participants.getParticipants();
         for (Participant participant : allParticipants) {
             resultByParticipants.put(participant, findResult(participant));
         }

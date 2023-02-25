@@ -26,20 +26,11 @@ public class Participants {
         return participants.size();
     }
 
-    public boolean contains(final String requestContent) {
-        return participants.stream()
-                .anyMatch(participant -> participant.isSameName(requestContent));
-    }
-
     public Participant findParticipant(final String requestContent) {
         return participants.stream()
                 .filter(participant -> participant.isSameName(requestContent))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(String.format("[ERROR] %s은 존재하지 않는 이름입니다. 참여자 한 명의 이름 혹은 \"all\"을 입력하세요.", requestContent)));
-    }
-
-    public List<Participant> getAllParticipants() {
-        return List.copyOf(participants);
+                .orElseThrow(() -> new IllegalArgumentException(String.format("[ERROR] %s은 존재하지 않는 이름입니다.", requestContent)));
     }
 
     private List<String> splitNames(final String names) {
