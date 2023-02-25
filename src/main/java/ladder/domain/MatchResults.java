@@ -1,65 +1,54 @@
 package ladder.domain;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import ladder.error.ErrorMessage;
 
 public class MatchResults {
-    LinkedHashMap<Name, Result> matchResults;
-    LinkedHashMap<Name, Boolean> checked;
+    private static final String ALL = "all";
+    private final Map<Name, Result> matchResults;
 
-    public MatchResults(LinkedHashMap<Name, Result> matchResults) {
+    public MatchResults(Map<Name, Result> matchResults) {
         this.matchResults = matchResults;
-        this.checked = new LinkedHashMap<>();
-        matchResults.forEach(((name, result) -> checked.put(name, Boolean.FALSE)));
     }
 
-    public String findMatchResult(String name) {
+    public Map<Name, Result> getMatchResults() {
+        return matchResults;
+    }
+
+    public String findMatchResult(String name, SearchCompletionChecker checker) {
         validate(name);
 
-        if (name.equals("all")) {
-            return findAllResults();
+        if (name.equals(ALL)) {
+            return findAllResults(checker);
         }
-        return findResult(new Name(name));
+        return findResult(checker, new Name(name)).getResult();
     }
 
     private void validate(String name) {
-        if (name.equals("all")) {
+        if (name.equals(ALL)) {
             return;
         }
 
-        Name targetName = new Name(name);
-        if (!matchResults.containsKey(targetName)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NAME_WANT_TO_KNOW.getMessage());
+        if (!matchResults.containsKey(new Name(name))) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NAME_WANT_TO_KNOW_RESULT.getMessage());
         }
     }
 
-    private String findAllResults() {
-        checkAll();
+    private String findAllResults(SearchCompletionChecker checker) {
+        checker.checkAll();
         return renderResults();
     }
 
-    private void checkAll() {
-        for (Name name : matchResults.keySet()) {
-            checked.put(name, Boolean.TRUE);
-        }
-    }
-
     private String renderResults() {
-        StringBuilder stringBuilder = new StringBuilder();
-        matchResults.forEach((name, result) -> stringBuilder.append(name.getName())
-            .append(" : ")
-            .append(result.getResult())
-            .append("\n"));
-        return stringBuilder.toString();
+        return matchResults.entrySet().stream()
+            .map(entry -> entry.getKey().getName() + " : " + entry.getValue().getResult() + "\n")
+            .collect(Collectors.joining());
     }
 
-    private String findResult(Name name) {
-        checked.put(name, Boolean.TRUE);
-        return matchResults.get(name).getResult();
-    }
-
-    public boolean isAllChecked() {
-        return checked.values().stream().allMatch(aBoolean -> aBoolean == Boolean.TRUE);
+    private Result findResult(SearchCompletionChecker checker, Name name) {
+        checker.check(name);
+        return matchResults.get(name);
     }
 }
