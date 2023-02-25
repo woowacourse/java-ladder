@@ -13,7 +13,7 @@ public class Position {
         return new Position(x, 0);
     }
 
-    public static Position from(final int x, final int y) {
+    public static Position of(final int x, final int y) {
         return new Position(x, y);
     }
 
