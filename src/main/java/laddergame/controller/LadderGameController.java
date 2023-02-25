@@ -40,11 +40,12 @@ public class LadderGameController {
         LadderGame ladderGame = new LadderGame(participants, ladder, results);
         ladderGame.playGameOfAllParticipants();
 
-        UserRequest request = createRequest();
-        Map<Participant, Result> resultByParticipants = ladderGame.getResultByParticipants(request);
 
-        outputView.printResultGuide();
-        outputView.printResult(resultByParticipants, participants.getAllParticipants());
+        do {
+            Map<Participant, Result> resultByParticipants = createRequest(ladderGame);
+            outputView.printResultGuide();
+            outputView.printResult(resultByParticipants, participants.getAllParticipants());
+        } while (ladderGame.isContinuing());
     }
 
     private Participants createParticipants() {
@@ -69,8 +70,11 @@ public class LadderGameController {
         });
     }
 
-    private UserRequest createRequest() {
-        return inputView.repeatUntilGettingValidValue(() -> UserRequest.of(inputView.readRequest()));
+    private Map<Participant, Result> createRequest(LadderGame ladderGame) {
+        return inputView.repeatUntilGettingValidValue(() -> {
+            UserRequest request = UserRequest.of(inputView.readRequest());
+            return ladderGame.getResultByParticipants(request);
+        });
     }
 
     private List<String> getParticipantNames(final Participants participants) {
