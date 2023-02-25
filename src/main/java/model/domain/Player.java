@@ -31,7 +31,7 @@ public class Player {
     }
 
     public boolean isPlayerPosition(Position otherPosition) {
-        return otherPosition.isSamePosition(this.position);
+        return otherPosition.isSame(this.position);
     }
 
     public void changePositionWith(Player otherPlayer) {

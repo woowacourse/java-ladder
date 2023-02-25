@@ -28,7 +28,7 @@ public class PositionTest {
         Position comparePosition = new Position(testCase);
 
         //when
-        boolean result = existingPosition.isSamePosition(comparePosition);
+        boolean result = existingPosition.isSame(comparePosition);
 
         //then
         assertThat(result).isEqualTo(expected);
