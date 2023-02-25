@@ -80,7 +80,7 @@ public class GameController {
     }
 
     private Results startLadderGame(final Names names, final Prizes prizes, final Ladder ladder) {
-        final LadderGame ladderGame = new LadderGame(ladder, new Players(names), prizes);
+        final LadderGame ladderGame = LadderGame.of(ladder, new Players(names), prizes);
         ladderGame.startGame();
         return ladderGame.createResults();
     }
