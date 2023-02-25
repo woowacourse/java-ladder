@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Users {
+
     private final List<User> users;
 
     public Users(final List<String> userNames) {
@@ -17,12 +18,15 @@ public class Users {
         return users.size();
     }
 
-    public List<String> getUsersName() {
-        final List<String> usersName = new ArrayList<>();
-        for (final User user : users) {
-            usersName.add(user.getName());
-        }
-        return usersName;
+    public boolean isExist(String userName) {
+        List<String> userNames = getUserNames();
+        return (userNames.contains(userName));
+    }
+
+    public List<String> getUserNames() {
+        final List<String> userNames = new ArrayList<>();
+        users.forEach(user -> userNames.add(user.getName()));
+        return userNames;
     }
 
     private void validateUserNamesEmpty(final List<String> userNames) {
@@ -32,11 +36,8 @@ public class Users {
     }
 
     private List<User> initUsers(List<String> userNames) {
-        final List<User> users;
-        users = new ArrayList<>();
-        for (final String userName : userNames) {
-            users.add(new User(userName));
-        }
+        final List<User> users = new ArrayList<>();
+        userNames.forEach(userName -> users.add(new User(userName)));
         return users;
     }
 }

@@ -1,32 +1,41 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import static exception.ErrorMessage.NON_VALID_LINE_EXCEPTION;
+
 public class Line {
-    private final List<Point> points;
 
-    public Line(final List<Point> points) {
-        validateLine(points);
-        this.points = points;
+    private final List<Link> links;
+
+    Line(final List<Link> links) {
+        validateLinks(links);
+        this.links = links;
     }
 
-    public List<Point> getPoints() {
-        return new ArrayList<>(points);
+    public static Line of(final int personCount, final BooleanGenerator booleanGenerator) {
+        LinksGenerator linksGenerator = new LinksGenerator(booleanGenerator);
+
+        List<Link> links = linksGenerator.generate(personCount);
+        validateLinks(links);
+        return new Line(links);
     }
 
-    private void validateLine(final List<Point> line) {
-        Point state = Point.EMPTY_POINT;
-        for (final Point point : line) {
-            state = comparePastPointAndPresentPoint(state, point);
+    public List<Link> getLine() {
+        return List.copyOf(links);
+    }
+
+    private static void validateLinks(final List<Link> line) {
+        Link leftLink = Link.UNLINKED;
+        for (final Link rightLink : line) {
+            leftLink = compareLeftLinkAndRightLink(leftLink, rightLink);
         }
     }
 
-    private Point comparePastPointAndPresentPoint(Point pastPoint, final Point point) {
-        if (point.isLink() && pastPoint.isLink()) {
-            throw new IllegalArgumentException();
+    private static Link compareLeftLinkAndRightLink(final Link leftLink, final Link rightLink) {
+        if (rightLink.isLink() && leftLink.isLink()) {
+            throw new IllegalArgumentException(NON_VALID_LINE_EXCEPTION.getMessage());
         }
-        pastPoint = point;
-        return pastPoint;
+        return rightLink;
     }
 }
