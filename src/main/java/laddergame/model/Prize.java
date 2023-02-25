@@ -7,12 +7,15 @@ public class Prize {
     private final String prize;
 
     public Prize(String prize) {
-        String prize2 = prize.trim();
-        if (prize2.length() < MIN_PRIZE_LENGTH || prize2.length() > MAX_PRIZE_LENGTH) {
+        validateTrimLength(prize.trim());
+        this.prize = prize.trim();
+    }
+
+    private void validateTrimLength(String prize) {
+        if (prize.length() < MIN_PRIZE_LENGTH || prize.length() > MAX_PRIZE_LENGTH) {
             throw new IllegalArgumentException(
                     "[ERROR] 공백에 제거된 실행 결과의 길이는 " + MIN_PRIZE_LENGTH + "보다 크고 " + MAX_PRIZE_LENGTH + "보다 작아야 합니다.");
         }
-        this.prize = prize2;
     }
 
     public String getPrize() {
