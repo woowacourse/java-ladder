@@ -39,11 +39,8 @@ public class Participants {
     }
 
     private void validateParticipantCount(List<String> participantNames) {
-        if (participantNames.size() < MIN_COUNT) {
-            throw new IllegalArgumentException(String.format("[ERROR] 참여자는 최소 %d 명 이상 입력해야 합니다.", MIN_COUNT));
-        }
-        if (participantNames.size() > MAX_COUNT) {
-            throw new IllegalArgumentException(String.format("[ERROR] 참여자는 최대 %d 명 입니다.", MAX_COUNT));
+        if (participantNames.size() < MIN_COUNT || participantNames.size() > MAX_COUNT) {
+            throw new IllegalArgumentException(String.format("[ERROR] 참여자는 최소 %d 명부터 최대 %d 명 입니다.", MIN_COUNT, MAX_COUNT));
         }
     }
 
@@ -60,10 +57,10 @@ public class Participants {
             String participantName = participantNames.get(index);
             participants.add(Participant.create(participantName, index));
         }
-        return List.copyOf(participants);
+        return participants;
     }
 
     public List<Participant> getParticipants() {
-        return participants;
+        return List.copyOf(participants);
     }
 }
