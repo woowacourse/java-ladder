@@ -19,7 +19,7 @@ public class InputView {
     private static final String NAME_DELIMITER = ",";
     private static final String INPUT_RESULTS_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String VIEW_ALL_PLAYERS_MESSAGE = "all";
-    private static final String INPUT_RESULT_VIEWER_NAME_MESSAGE = "결과를 보고 싶은 사람은?";
+    private static final String INPUT_RESULT_VIEWER_NAME_MESSAGE = "결과를 보고 싶은 사람은?(quit를 입력시 반복 종료)";
     private static final String QUIT_MESSAGE = "quit";
 
     private final InputValidator validator;
