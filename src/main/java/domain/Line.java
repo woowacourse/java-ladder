@@ -37,10 +37,6 @@ public class Line {
             .collect(Collectors.toUnmodifiableList());
     }
 
-    public int getLineSize() {
-        return blocks.size();
-    }
-
     public boolean isCross(int position) {
         if (position < 0 || position >= blocks.size()) {
             return false;
