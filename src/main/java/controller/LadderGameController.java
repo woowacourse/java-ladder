@@ -11,7 +11,8 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
-    public static final String TOTAL_PLAYER_SEARCH = "all";
+    private static final String ALL_CONDITION = "all";
+    private boolean quitCondition = true;
     private final InputView inputView;
     private final OutputView outputView;
     private final TrueOrFalseGenerator trueOrFalseGenerator;
@@ -35,11 +36,16 @@ public class LadderGameController {
     }
 
     private void ladderGameTotalResult(LadderGameResult ladderGameResult) {
-        String searchByPlayerName;
-        do {
-            searchByPlayerName = inputView.readResult();
+        while (quitCondition) {
+            String searchByPlayerName = inputView.readResult();
             outputView.printResultOfPlayerName(searchByPlayerName, ladderGameResult);
+            isInputAll(searchByPlayerName);
         }
-        while (!searchByPlayerName.equals(TOTAL_PLAYER_SEARCH));
+    }
+
+    private void isInputAll(final String input) {
+        if (input.equals(ALL_CONDITION)) {
+            quitCondition = false;
+        }
     }
 }
