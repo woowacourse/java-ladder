@@ -51,6 +51,5 @@
 - [x] domain의 값을 view로 넘길 때 도메인 객체 형태로 넘기지 않기
 - [ ] validateName에서 name이 null인 경우
 - [ ] getPrizeAndName에서 String userName이 null인 경우 -> 이 경우도 User로 포장해야 할 것 같음
-- [ ] findFirst vs findAny
-- [ ] 종료조건 추가
-- [ ] 결과를 반환하는 객체를 추가할 것인지?, 아니면 Map을 그대로 유지할 것인지? -> 고민해보자.
+- [x] 종료조건 추가 - 5회로 제한
+- [x] 결과를 반환하는 객체를 추가할 것인지?, 아니면 Map을 그대로 유지할 것인지? -> Map을 그대로 유지하는 방향 

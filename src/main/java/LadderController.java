@@ -10,16 +10,19 @@ import view.OutputView;
 
 public class LadderController {
 
+    private static final int MAX_TRY_COUNT = 5;
+
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
     public void run() {
+        int tryCount = 0;
         final Users users = generateUsers();
         final Ladder ladder = generateLadder(users);
         final Prizes prizes = generatePrizes(users);
         printGenerateLadderResult(ladder, users, prizes);
         ladder.playLadderGame(users);
-        while (true) {
+        while (tryCount++ < MAX_TRY_COUNT) {
             readUserAndPrintPrize(users, prizes);
         }
     }
