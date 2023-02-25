@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import static ladder.domain.Position.INVALID_VALUE_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -19,7 +20,7 @@ public class PositionTest {
     void 위치값이_0보다_작거나_20이상인_경우_예외를_던진다(final int value) {
         assertThatThrownBy(() -> Position.valueOf(value))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("위치값은 0이상, 20미만이어야 합니다.");
+                .hasMessage(INVALID_VALUE_MESSAGE);
     }
 
     @ParameterizedTest(name = "올바른 위치값을 받으면 정상적으로 생성된다. 입력값: {0}")
@@ -41,7 +42,7 @@ public class PositionTest {
     void 허용범위_밖_위치값을_입력하는_경우_예외를_던진다() {
         assertThatThrownBy(() -> Position.range(21))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("위치값은 0이상, 20미만이어야 합니다.");
+                .hasMessage(INVALID_VALUE_MESSAGE);
     }
 
     @Test

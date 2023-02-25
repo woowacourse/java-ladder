@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import static ladder.domain.Items.INVALID_ITEM_COUNT_MESSAGE;
+import static ladder.domain.Items.INVALID_ITEM_MESSAGE;
 import static ladder.domain.Position.valueOf;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -17,7 +19,7 @@ public class ItemsTest {
     void 실행결과는_참가인원과_동일한_개수가_아니라면_예외를_던진다() {
         assertThatThrownBy(() -> Items.of(List.of("item1", "item2"), 3))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참가인원과 동일한 개수의 실행결과를 입력해야 합니다.");
+                .hasMessage(INVALID_ITEM_COUNT_MESSAGE);
     }
 
     @Test
@@ -26,7 +28,7 @@ public class ItemsTest {
 
         assertThatThrownBy(() -> items.findByPosition(valueOf(10)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("해당 위치에 있는 아이템이 존재하지 않습니다.");
+                .hasMessage(INVALID_ITEM_MESSAGE);
     }
 
     @Test

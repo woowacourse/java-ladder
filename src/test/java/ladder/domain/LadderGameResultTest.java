@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import static ladder.domain.LadderGameResult.INVALID_PLAYER_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.entry;
@@ -21,7 +22,7 @@ public class LadderGameResultTest {
 
         assertThatThrownBy(() -> ladderGameResult.get("whois"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사다리 게임에 참가한 사람의 이름을 입력해야합니다.");
+                .hasMessage(INVALID_PLAYER_MESSAGE);
     }
 
     @Test

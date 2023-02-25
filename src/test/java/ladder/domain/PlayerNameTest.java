@@ -1,6 +1,8 @@
 package ladder.domain;
 
 
+import static ladder.domain.PlayerName.INVALID_NAME_LENGTH_MESSAGE;
+import static ladder.domain.PlayerName.RESERVED_NAME_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -22,7 +24,7 @@ public class PlayerNameTest {
     void 이름이_NULL_빈값_6자_이상인_경우_예외를_던진다(final String name) {
         assertThatThrownBy(() -> new PlayerName(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 1자 이상, 5자 이하여야 합니다.");
+                .hasMessage(INVALID_NAME_LENGTH_MESSAGE);
     }
 
     @Test
@@ -44,6 +46,6 @@ public class PlayerNameTest {
     void all을_이름으로_사용할_수_없다() {
         assertThatThrownBy(() -> new PlayerName("all"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("all은 사용할 수 없는 이름입니다.");
+                .hasMessage(RESERVED_NAME_MESSAGE);
     }
 }

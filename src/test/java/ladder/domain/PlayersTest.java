@@ -1,5 +1,9 @@
 package ladder.domain;
 
+import static ladder.domain.Players.DUPLICATE_NAMES_MESSAGE;
+import static ladder.domain.Players.INVALID_PLAYERS_SIZE_MESSAGE;
+import static ladder.domain.Players.INVALID_PLAYER_MESSAGE;
+import static ladder.domain.Position.valueOf;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -31,7 +35,7 @@ public class PlayersTest {
 
         assertThatThrownBy(() -> Players.from(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참가자는 최소 2명, 최대 20명이어야 합니다.");
+                .hasMessage(INVALID_PLAYERS_SIZE_MESSAGE);
     }
 
     @Test
@@ -43,7 +47,7 @@ public class PlayersTest {
     void 참가자의_이름은_중복되는_경우_예외를_던진다() {
         assertThatThrownBy(() -> Players.from(List.of("name", "name")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참가자의 이름은 중복되지 않아야 합니다.");
+                .hasMessage(DUPLICATE_NAMES_MESSAGE);
     }
 
     @Test
@@ -57,9 +61,18 @@ public class PlayersTest {
     void 입력받은_위치에_해당하는_참가자를_반환한다() {
         final Players players = Players.from(List.of("name1", "name2"));
 
-        final Player result = players.findByPosition(Position.valueOf(0));
+        final Player result = players.findByPosition(valueOf(0));
 
         assertThat(result.getName()).isEqualTo("name1");
+    }
+
+    @Test
+    void 입력받은_위치에_참가자가_없는경우_예외를_던진다() {
+        final Players players = Players.from(List.of("name1", "name2"));
+
+        assertThatThrownBy(() -> players.findByPosition(valueOf(5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_PLAYER_MESSAGE);
     }
 
     @Test
@@ -82,10 +95,10 @@ public class PlayersTest {
         final Map<Player, Position> result = players.play(ladder);
 
         assertThat(result).containsExactly(
-                entry(players.findByPosition(Position.valueOf(0)), Position.valueOf(1)),
-                entry(players.findByPosition(Position.valueOf(1)), Position.valueOf(3)),
-                entry(players.findByPosition(Position.valueOf(2)), Position.valueOf(2)),
-                entry(players.findByPosition(Position.valueOf(3)), Position.valueOf(0))
+                entry(players.findByPosition(valueOf(0)), valueOf(1)),
+                entry(players.findByPosition(valueOf(1)), valueOf(3)),
+                entry(players.findByPosition(valueOf(2)), valueOf(2)),
+                entry(players.findByPosition(valueOf(3)), valueOf(0))
         );
     }
 }

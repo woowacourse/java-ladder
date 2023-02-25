@@ -11,13 +11,13 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
+    static final String DUPLICATE_NAMES_MESSAGE = "참가자의 이름은 중복되지 않아야 합니다.";
+    static final String INVALID_PLAYER_MESSAGE = "해당 위치에 있는 참가자가 존재하지 않습니다.";
     private static final int PLAYERS_SIZE_LOWER_BOUND = 2;
     private static final int PLAYERS_SIZE_UPPER_BOUND = 20;
-    private static final String INVALID_PLAYERS_SIZE_MESSAGE =
+    static final String INVALID_PLAYERS_SIZE_MESSAGE =
             "참가자는 최소 " + PLAYERS_SIZE_LOWER_BOUND + "명, 최대 " + PLAYERS_SIZE_UPPER_BOUND + "명이어야 합니다.";
-    private static final String DUPLICATE_NAMES_MESSAGE = "참가자의 이름은 중복되지 않아야 합니다.";
-    private static final String INVALID_PLAYER_MESSAGE = "해당 위치에 있는 참가자가 존재하지 않습니다.";
-
+    
     private final List<Player> players;
 
     private Players(final List<Player> players) {

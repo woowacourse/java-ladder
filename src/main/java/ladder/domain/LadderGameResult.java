@@ -4,9 +4,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LadderGameResult {
+    static final String INVALID_PLAYER_MESSAGE = "사다리 게임에 참가한 사람의 이름을 입력해야합니다.";
     private static final String MULTIPLE_RESULT_RESERVED_NAME = "all";
-    private static final String INVALID_PLAYER_MESSAGE = "사다리 게임에 참가한 사람의 이름을 입력해야합니다.";
-
+    
     private final Map<Player, Item> result;
 
     public LadderGameResult(final Map<Player, Item> result) {

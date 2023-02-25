@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import static ladder.domain.ItemName.INVALID_NAME_LENGTH_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -16,7 +17,7 @@ public class ItemNameTest {
     void 이름이_NULL_빈값_6자_이상인_경우_예외를_던진다(final String name) {
         assertThatThrownBy(() -> new ItemName(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("실행 결과명은 1자 이상, 5자 이하여야 합니다.");
+                .hasMessage(INVALID_NAME_LENGTH_MESSAGE);
     }
 
     @Test

@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Items {
-    private static final String INVALID_ITEM_COUNT_MESSAGE = "참가인원과 동일한 개수의 실행결과를 입력해야 합니다.";
-    private static final String INVALID_ITEM_MESSAGE = "해당 위치에 있는 아이템이 존재하지 않습니다.";
+    static final String INVALID_ITEM_COUNT_MESSAGE = "참가인원과 동일한 개수의 실행결과를 입력해야 합니다.";
+    static final String INVALID_ITEM_MESSAGE = "해당 위치에 있는 아이템이 존재하지 않습니다.";
 
     private final List<Item> items;
 
