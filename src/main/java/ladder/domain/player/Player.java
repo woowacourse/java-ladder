@@ -7,9 +7,13 @@ public class Player {
     private final PlayerName name;
     private final Position position;
 
-    public Player(final String name, final Position position) {
-        this.name = new PlayerName(name);
+    private Player(final PlayerName name, final Position position) {
+        this.name = name;
         this.position = position;
+    }
+
+    public static Player of(final String name, final int index) {
+        return new Player(new PlayerName(name), Position.valueOf(index));
     }
 
     public Position play(final Ladder ladder) {

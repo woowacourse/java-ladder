@@ -29,7 +29,7 @@ public class Players {
     public static Players from(final List<String> names) {
         validate(names);
         return IntStream.range(0, names.size())
-                .mapToObj(index -> new Player(names.get(index), Position.valueOf(index)))
+                .mapToObj(index -> Player.of(names.get(index), index))
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Players::new));
     }
 

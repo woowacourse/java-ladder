@@ -19,7 +19,7 @@ public class PlayerTest {
 
     @Test
     void 참가자가_정상적으로_생성된다() {
-        final Player player = new Player("name", Position.valueOf(0));
+        final Player player = Player.of("name", 0);
 
         assertThat(player.getName()).isEqualTo("name");
     }
@@ -27,14 +27,14 @@ public class PlayerTest {
     @ParameterizedTest(name = "입력받은 위치와 같은 위치인지 확인한다. 위치: {0}, 결과 {1}")
     @CsvSource({"0,true", "1,false"})
     void 입력받은_위치와_같은_위치인지_확인한다(final int position, final boolean result) {
-        final Player player = new Player("item", Position.valueOf(0));
+        final Player player = Player.of("item", 0);
 
         assertThat(player.isSamePosition(Position.valueOf(position))).isEqualTo(result);
     }
 
     @Test
     void 참가자는_사다리를_받아_사다리타기를_진행한다() {
-        final Player player = new Player("item", Position.valueOf(0));
+        final Player player = Player.of("item", 0);
         final BooleanGenerator booleanGenerator = new TestBooleanGenerator(List.of(
                 false, false, true,
                 false, true, false,
