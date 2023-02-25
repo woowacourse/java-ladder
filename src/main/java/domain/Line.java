@@ -10,7 +10,7 @@ public class Line {
     private static final String LINE_LENGTH_ERROR_MESSAGE = "사다리 블록의 수는 플레이어의 수보다 하나 작아야합니다";
     private static final int SECOND_BLOCK = 1;
 
-    private List<Block> blocks;
+    private final List<Block> blocks;
 
     public Line(Players players, List<Block> blocks) {
         validateLineLength(players.getPlayersSize(), blocks);

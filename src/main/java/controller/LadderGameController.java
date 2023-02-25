@@ -9,8 +9,8 @@ import java.util.List;
 public class LadderGameController {
     private static final String END_COMMAND = "all";
 
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
     private BooleanGenerator booleanGenerator;
 
     public LadderGameController(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {

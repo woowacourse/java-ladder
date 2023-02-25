@@ -13,7 +13,7 @@ public class Players {
     private static final String DUPLICATE_PLAYER_ERROR_EXCEPTION = "중복된 플레이어가 존재하면 안됩니다.";
     private static final int PLAYERS_MIN_SIZE = 2;
 
-    private List<Player> players;
+    private final List<Player> players;
 
     public Players(List<Player> players) {
         validatePlayersSize(players);
