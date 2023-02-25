@@ -12,9 +12,9 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(final int height, final int personCount, final LinkGenerator linkGenerator) {
+    public Ladder(final int height, final int personCount, final BooleanGenerator booleanGenerator) {
         validateHeight(height);
-        LineGenerator lineGenerator = new LineGenerator(linkGenerator);
+        LineGenerator lineGenerator = new LineGenerator(booleanGenerator);
 
         lines = new ArrayList<>();
         for(int line = 0; line < height; line++) {

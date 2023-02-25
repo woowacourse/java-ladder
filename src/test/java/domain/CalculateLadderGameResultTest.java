@@ -20,7 +20,6 @@ class CalculateLadderGameResultTest {
     private final CalculateLadderGameResult calculator = new CalculateLadderGameResult();
     private final List<String> prevUserNames = List.of("pobi", "honux", "crong", "jk");
 
-
     @ParameterizedTest
     @DisplayName("참여자들이 사다리의 한 라인을 통과 후 올바른 위치에 있는지 확인한다.")
     @MethodSource("lineAndUserPositionsDummy")
@@ -33,7 +32,7 @@ class CalculateLadderGameResultTest {
     void passLadderTest() {
         List<Line> testLadder = List.of(new Line(LENGTH_THREE_LINE_CASE1), new Line(LENGTH_THREE_LINE_CASE2),
                 new Line(LENGTH_THREE_LINE_CASE3), new Line(LENGTH_THREE_LINE_CASE4));
-        List<String> postUserNames = List.of("pobi", "jk", "crong","honux");
+        List<String> postUserNames = List.of("pobi", "jk", "crong", "honux");
 
         assertThat(calculator.passLadder(testLadder, prevUserNames)).isEqualTo(postUserNames);
 

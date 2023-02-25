@@ -6,16 +6,16 @@ import java.util.List;
 
 public class LineGenerator {
 
-    private final LinkGenerator linkGenerator;
+    private final BooleanGenerator booleanGenerator;
 
-    public LineGenerator(final LinkGenerator linkGenerator) {
-        this.linkGenerator = linkGenerator;
+    public LineGenerator(final BooleanGenerator booleanGenerator) {
+        this.booleanGenerator = booleanGenerator;
     }
 
     public Line generate(final int personCount) {
         final Deque<Link> links = new LinkedList<>();
         if (personCount != 1) {
-            links.add(linkGenerator.generate());
+            links.add(Link.from(booleanGenerator.generate()));
         }
         for (int index = 1; index < personCount - 1; index++) {
             addValidateLink(links);
@@ -28,6 +28,6 @@ public class LineGenerator {
             line.add(Link.UNLINKED);
             return;
         }
-        line.add(linkGenerator.generate());
+        line.add(Link.from(booleanGenerator.generate()));
     }
 }

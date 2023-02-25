@@ -49,7 +49,7 @@ public class LadderGameController {
     private Ladder generateLadder(final Users users) {
         Ladder ladder = null;
         try {
-            ladder = new Ladder(InputView.readLadderHeight(), users.size(), new RandomLinkGenerator());
+            ladder = new Ladder(InputView.readLadderHeight(), users.size(), new RandomBooleanGenerator());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             generateLadder(users);
