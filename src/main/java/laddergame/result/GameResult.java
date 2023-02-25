@@ -8,10 +8,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * 이름에 대해 상품 결과를 만들어내는 게 도메인 로직일까
- * 아니면 view 로직일까
- */
 public class GameResult {
     private final Map<String, String> result;
 
