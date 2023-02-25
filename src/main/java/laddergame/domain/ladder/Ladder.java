@@ -36,26 +36,7 @@ public class Ladder {
 
     public void moveToDestination(final Participant participant) {
         for (Line line : lines) {
-            int position = participant.getParticipantPosition();
-            if (position == 0) {
-                if (line.hasRung(position)) {
-                    participant.moveToTheRight();
-                }
-                continue;
-            }
-            if (position == line.size()) {
-                if (line.hasRung(position - 1)) {
-                    participant.moveToTheLeft();
-                }
-                continue;
-            }
-            if (line.hasRung(position)) {
-                participant.moveToTheRight();
-                continue;
-            }
-            if (line.hasRung(position - 1)) {
-                participant.moveToTheLeft();
-            }
+            participant.move(line);
         }
     }
 }

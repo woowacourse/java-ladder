@@ -1,5 +1,7 @@
 package laddergame.domain.participant;
 
+import laddergame.domain.ladder.Line;
+
 import java.util.Objects;
 
 public class Participant {
@@ -20,12 +22,14 @@ public class Participant {
         return participantName.isSameName(name);
     }
 
-    public void moveToTheRight() {
-        participantPosition = participantPosition.increase();
-    }
-
-    public void moveToTheLeft() {
-        participantPosition = participantPosition.decrease();
+    public void move(final Line line) {
+        if (line.hasRung(participantPosition.getPosition())) {
+            participantPosition = participantPosition.increase();
+            return;
+        }
+        if (line.hasRung(participantPosition.getPosition() - 1)) {
+            participantPosition = participantPosition.decrease();
+        }
     }
 
     @Override

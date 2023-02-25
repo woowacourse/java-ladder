@@ -7,6 +7,9 @@ import java.util.List;
 
 public class Line {
 
+    public static final boolean DOES_NOT_EXIST = false;
+    private static final int MINIMUM_INDEX = 0;
+
     private final List<Rung> rungs;
     private final BooleanGenerator rungBooleanGenerator;
 
@@ -20,6 +23,9 @@ public class Line {
     }
 
     public boolean hasRung(final int index) {
+        if (index < MINIMUM_INDEX || index >= rungs.size()) {
+            return DOES_NOT_EXIST;
+        }
         Rung rung = rungs.get(index);
         return rung.exists();
     }
