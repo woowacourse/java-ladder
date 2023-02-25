@@ -6,6 +6,7 @@ public class Width {
     private static final int MIN_WIDTH = 1;
     private static final String INVALID_LINE_WIDTH_MESSAGE = "사다리의 너비는 1~9만 가능합니다.";
     private final int width;
+
     public Width(final int width) {
         validateWidthRange(width);
         this.width = width;

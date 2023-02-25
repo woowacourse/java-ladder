@@ -26,7 +26,7 @@ public class ResultTest {
         ladderGameResult.put("crong", 2);
         ladderGameResult.put("jk", 1);
 
-        Result result = new Result(new ArrayList<>(List.of("꽝","5000","꽝","3000")),ladderGameResult);
+        Result result = new Result(new ArrayList<>(List.of("꽝", "5000", "꽝", "3000")), ladderGameResult);
 
         Assertions.assertThat(result.getUserResult("pobi")).isEqualTo("꽝");
         Assertions.assertThat(result.getUserResult("honux")).isEqualTo("3000");

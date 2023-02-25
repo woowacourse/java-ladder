@@ -33,6 +33,7 @@ public class Line {
         }
         return index + checkLeft(index).getDirection() + checkRight(index).getDirection();
     }
+
     private Direction checkRight(final int index) {
         if (line.get(index) == Bridge.EXIST) {
             return Direction.RIGHT;

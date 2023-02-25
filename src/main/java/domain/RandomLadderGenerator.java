@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomLadderGenerator implements LadderGenerator{
+public class RandomLadderGenerator implements LadderGenerator {
     private final Random random = new Random();
+
     @Override
     public List<Line> generate(final Width width, final Height height) {
         List<Line> ladder = new ArrayList<>();

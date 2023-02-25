@@ -51,7 +51,7 @@ public class Controller {
 
     private void checkResult(final Users users, final Result result) {
         String inputResultWord = inputView.inputWantToKnowUser();
-        if (wantToKnowAllResult(inputResultWord,result)) {
+        if (wantToKnowAllResult(inputResultWord, result)) {
             return;
         }
         if (wantToKnowUserResult(users, result, inputResultWord)) return;

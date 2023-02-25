@@ -32,7 +32,7 @@ public class UsersTest {
 
     @DisplayName("사다리 게임에 참여한 유저이름을 검색하면 true, 그렇지 않으면 false를 반환한다.")
     @ParameterizedTest
-    @CsvSource(value = {"pobi,true","leo,false"})
+    @CsvSource(value = {"pobi,true", "leo,false"})
     void userContainsTest(String userName, boolean result) {
         Users users = new Users(new ArrayList<>(
                 List.of(

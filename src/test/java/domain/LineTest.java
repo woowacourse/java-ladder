@@ -29,7 +29,7 @@ public class LineTest {
 
     @DisplayName("유저의 위치에 맞게 사다리 이동 후 다음 position값을 반환한다.")
     @ParameterizedTest
-    @CsvSource(value = {"3,2", "2,3", "0,1","4,5","5,4"})
+    @CsvSource(value = {"3,2", "2,3", "0,1", "4,5", "5,4"})
     void calculateNextPositionTest(final int index, final int nextIndex) {
         Line line = new Line(List.of(Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST));
         Assertions.assertThat(line.calculateNextPosition(index)).isEqualTo(nextIndex);
