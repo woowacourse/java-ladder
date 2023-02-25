@@ -8,6 +8,7 @@ public class Participants {
 
     private static final String DELIMITER = ",";
     private static final int MIN_COUNT = 2;
+    private static final int MAX_COUNT = 10_000;
 
     private final List<Participant> participants;
 
@@ -40,6 +41,9 @@ public class Participants {
     private void validateParticipantCount(List<String> participantNames) {
         if (participantNames.size() < MIN_COUNT) {
             throw new IllegalArgumentException(String.format("[ERROR] 참여자는 최소 %d 명 이상 입력해야 합니다.", MIN_COUNT));
+        }
+        if (participantNames.size() > MAX_COUNT) {
+            throw new IllegalArgumentException(String.format("[ERROR] 참여자는 최대 %d 명 입니다.", MAX_COUNT));
         }
     }
 

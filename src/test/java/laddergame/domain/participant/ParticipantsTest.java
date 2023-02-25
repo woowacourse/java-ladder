@@ -23,10 +23,11 @@ public class ParticipantsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"pobi"})
-    @DisplayName("입력받은 참여자의 수가 1명이면, 예외가 발생한다.")
-    void throws_exception_if_names_consist_of_one_name(String names) {
-        assertThatThrownBy(() -> Participants.create(names))
+    @ValueSource(ints = {0, 1, 10_001, 10_002})
+    @DisplayName("입력받은 참여자의 수가 1명 미만 10,000명 초과이면, 예외가 발생한다.")
+    void throws_exception_if_names_size_is_out_of_range(int repeatCount) {
+        String sampleNames = "pobi,".repeat(repeatCount);
+        assertThatThrownBy(() -> Participants.create(sampleNames))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE_HEAD);
     }
