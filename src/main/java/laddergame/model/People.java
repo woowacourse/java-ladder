@@ -5,17 +5,17 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Persons {
+public class People {
     private static final int MIN_PERSON_LENGTH = 2;
     private static final String ERROR_PERSON_LENGTH = "최소 참여자의 수는 " + MIN_PERSON_LENGTH + "명 이상이어야 합니다.";
     private static final String ERROR_DUPLICATION = "참여자들 이름에 중복이 있어서는 안됩니다.";
 
-    private final List<Person> persons;
+    private final List<Person> people;
 
-    public Persons(List<String> names) {
+    public People(List<String> names) {
         validatePersonLength(names);
         validateDuplication(names);
-        this.persons = convertToPeople(names);
+        this.people = convertToPeople(names);
     }
 
     private static void validatePersonLength(List<String> names) {
@@ -37,11 +37,11 @@ public class Persons {
                 .collect(Collectors.toList());
     }
 
-    public int getPeople() {
-        return persons.size();
+    public int getSize() {
+        return people.size();
     }
 
-    public List<Person> getPersons() {
-        return persons;
+    public List<Person> getPeople() {
+        return people;
     }
 }

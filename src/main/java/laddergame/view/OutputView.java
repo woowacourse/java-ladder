@@ -2,7 +2,7 @@ package laddergame.view;
 
 import java.util.List;
 import laddergame.model.Ladder;
-import laddergame.model.Persons;
+import laddergame.model.People;
 
 public class OutputView {
     private static final String VERTICAL_LINE = "|";
@@ -13,15 +13,14 @@ public class OutputView {
         System.out.println(ERROR_PREFIX + errorMessage);
     }
 
-    public void printLadderResult(Ladder ladder, Persons persons) {
+    public void printLadderResult(Ladder ladder, People people) {
         System.out.println(System.lineSeparator() + LADDER_RESULT_MSG + System.lineSeparator());
-        printPersons(persons);
+        printPeople(people);
         printLadder(ladder);
     }
 
-    private void printPersons(Persons persons) {
-        persons.getPersons()
-                .forEach(person -> System.out.printf("%6s", person.getName()));
+    private void printPeople(People people) {
+        people.getPeople().forEach(person -> System.out.printf("%6s", person.getName()));
         System.out.println();
     }
 

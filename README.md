@@ -53,11 +53,11 @@
   - [x] 마찬가지로 "사다리 높이에 대한 에러 출력 메세지 포맷을 변경해주세요." 라고 하면 어떤 파일을 먼저 열어볼까요? 에 대한 고민도 해보기
   - [x] LineSymbol Class 오류 메시지 출력하기
 - 메서드 네이밍
-  - [x] Persons class 의 사이즈 return 해주는 메소드 이름을 ‘크기’ 대신 ‘명’, ‘수’로 변경할 수 있도록 고민하기 .. getSize → getNumberOfPersons
-  - [x] getNumberOfPersons → getPeople로 네이밍 수정 (Person의 복수형은 People로 많이 사용)
+  - [x] People class 의 사이즈 return 해주는 메소드 이름을 ‘크기’ 대신 ‘명’, ‘수’로 변경할 수 있도록 고민하기 .. getSize → getNumberOfPeople
+  - [x] getNumberOfPeople → getPeople로 네이밍 수정 (Person의 복수형은 People로 많이 사용)
 - stream
-  - [x] OutputView의 printPersons 메소드 출력 방법을 for문 대신 stream 사용하기
-  - [x] Persons class에서 List<Person> 생성하는 부분 stream 사용하기
+  - [x] OutputView의 printPeople 메소드 출력 방법을 for문 대신 stream 사용하기
+  - [x] People class에서 List<Person> 생성하는 부분 stream 사용하기
 - [x] 최종 생성자가 아래에 위치하도록 변경하기
 
 ---
@@ -81,6 +81,6 @@
 
 ---
 ## 2단계 미션 리팩토링
+- [x] Persons class 네이밍 People로 변경
 - [ ] 상수와 객체의 필드 사이 개행 추가 
 - [ ] 상수로 관리하던 에러 메세지 -> 직접 메세지를 보여주도록 수정
-- [ ] 

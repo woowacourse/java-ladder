@@ -2,7 +2,7 @@ package laddergame.controller;
 
 import laddergame.model.Height;
 import laddergame.model.Ladder;
-import laddergame.model.Persons;
+import laddergame.model.People;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -11,18 +11,18 @@ public class LadderGameController {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        Persons persons = makePersons();
+        People people = makePeople();
         Height height = makeLadderHeight();
-        Ladder ladder = new Ladder(height, persons);
-        outputView.printLadderResult(ladder, persons);
+        Ladder ladder = new Ladder(height, people);
+        outputView.printLadderResult(ladder, people);
     }
 
-    private Persons makePersons() {
+    private People makePeople() {
         try {
-            return new Persons(inputView.readPersonNames());
+            return new People(inputView.readPersonNames());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            return makePersons();
+            return makePeople();
         }
     }
 
