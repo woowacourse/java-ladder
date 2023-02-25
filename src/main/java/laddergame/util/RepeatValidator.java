@@ -18,26 +18,10 @@ public class RepeatValidator {
     private static <T> T trySupplier(Supplier<T> expression) {
         try {
             return expression.get();
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+        } catch (RuntimeException exception) {
+            OutputView.printErrorMsg(exception);
             return null;
         }
     }
 
-    public static void runUntilValidate(InputFunction inputFunction) {
-        boolean isSuccess = false;
-        while (!isSuccess) {
-            isSuccess = tryInputFunction(inputFunction);
-        }
-    }
-
-    private static boolean tryInputFunction(InputFunction inputFunction) {
-        try {
-            inputFunction.run();
-            return true;
-        } catch (RuntimeException exception) {
-            OutputView.printErrorMsg(exception.getMessage());
-            return false;
-        }
-    }
 }

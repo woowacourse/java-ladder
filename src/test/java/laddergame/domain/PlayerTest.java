@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.constant.ErrorMessage;
+import laddergame.constant.ErrorCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
+    private static final String KOREAN_LANG_CODE = "kor";
+
     @Test
     @DisplayName("\"test\"라는 이름으로 Player가 정상적으로 생성된다.")
     void playerCreateTest() {
@@ -18,11 +20,21 @@ class PlayerTest {
         assertDoesNotThrow(() -> new Player(playerName));
     }
 
-    @ParameterizedTest(name = "{0} 라는 이름으로 Player를 생성할 경우 예외가 발생한다.")
-    @ValueSource(strings = {"  ", "test11"})
-    void playerCreateExceptionTest(String playerName) {
+    @Test
+    @DisplayName("공백 입력시 예외를 발생시킨다.")
+    void playerNameEmptyExceptionTest() {
+        String playerName = " ";
         assertThatThrownBy(() -> new Player(playerName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.NOT_VALID_PLAYER_NAME.getMessage());
+                .hasMessageContaining(ErrorCode.EMPTY_INPUT.getCode());
+    }
+
+    @Test
+    @DisplayName("5자 초과 이름 입력시 예외를 발생한다.")
+    void playerNameLengthExceptionTest() {
+        String playerName = "123456";
+        assertThatThrownBy(() -> new Player(playerName))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorCode.NOT_VALID_LADDER_LABEL_LENGTH.getCode());
     }
 }
