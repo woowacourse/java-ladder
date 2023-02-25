@@ -37,7 +37,7 @@ class InputViewTest {
     @Test
     void 결과_이름들을_읽어오는_테스트() {
         InputView inputView = new InputView(mockInputValue("a,b,c"));
-        assertThat(inputView.inputResultItems())
+        assertThat(inputView.inputResultNames())
                 .containsExactly("a", "b", "c");
     }
 

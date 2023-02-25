@@ -18,7 +18,7 @@ public class InputView {
         this.scanner = scanner;
     }
 
-    public List<String> inputResultItems() {
+    public List<String> inputResultNames() {
         System.out.println(INPUT_RESULT_ITEMS);
         String resultItems = scanner.nextLine();
         return Arrays.stream(resultItems.split(",", -1))
