@@ -13,8 +13,6 @@ public class LadderGameController {
     private final OutputView outputView;
     private final BooleanGenerator booleanGenerator;
 
-    private boolean flag = true;
-
     public LadderGameController(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
@@ -52,27 +50,21 @@ public class LadderGameController {
     }
 
     private void printLadderResultWithRetry(Players players, LadderGameResult result) {
-        while (flag) {
-            String playerName = inputView.readWantedResultPlayer();
+        String playerName;
+        do {
+            playerName = inputView.readWantedResultPlayer();
             printLadderResult(players, result, playerName);
-            isExit(playerName);
-        }
+        } while (!playerName.equals(END_COMMAND));
     }
 
     private void printLadderResult(Players players, LadderGameResult result, String input) {
         List<String> playersName = players.getPlayersName();
-        if (input.equals("all")) {
+        if (input.equals(END_COMMAND)) {
             outputView.printAllResult(result);
         }
         if (playersName.contains(input)) {
             Player wantedResultPlayer = players.findPlayer(input);
             outputView.printIndividualResult(result, wantedResultPlayer);
-        }
-    }
-
-    private void isExit(String input) {
-        if (input.equals(END_COMMAND)) {
-            flag = false;
         }
     }
 
