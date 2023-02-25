@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +15,11 @@ class PlayerTest {
     @DisplayName("플레이어가 12명 초과일때 에러 확인")
     @Test
     void create12Players() {
-        List<Player> players = new ArrayList<>();
+        List<String> players = new ArrayList<>();
         for (int i = 0; i < 13; i++) {
-            players.add(new Player(String.valueOf(i), i));
+            players.add(String.valueOf(i));
         }
-        Assertions.assertThatThrownBy(() -> new Players(players))
+        Assertions.assertThatThrownBy(() -> Players.generate(players))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -28,20 +27,20 @@ class PlayerTest {
     @ValueSource(ints = {0, 1})
     @ParameterizedTest
     void create1Player(int count) {
-        List<Player> players = new ArrayList<>();
+        List<String> players = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            players.add(new Player(String.valueOf(i), i));
+            players.add(String.valueOf(i));
         }
-        Assertions.assertThatThrownBy(() -> new Players(players))
+        Assertions.assertThatThrownBy(() -> Players.generate(players))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("플레이어 이름이 중복일때 에러 확인")
     @Test
     void duplicatePlayerName() {
-        List<Player> players =
-                List.of(new Player("aa",0), new Player("aa",1));
-        Assertions.assertThatThrownBy(() -> new Players(players))
+        List<String> players =
+                List.of("aa", "aa");
+        Assertions.assertThatThrownBy(() -> Players.generate(players))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
