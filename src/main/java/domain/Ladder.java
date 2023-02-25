@@ -101,4 +101,8 @@ public class Ladder {
     public int height() {
         return ladderHeight.value();
     }
+
+    public List<Line> getValues() {
+        return List.copyOf(lines);
+    }
 }

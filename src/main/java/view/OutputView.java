@@ -1,14 +1,11 @@
 package view;
 
-import domain.Ladder;
-import domain.Line;
-import domain.Names;
 import domain.Point;
-import domain.Result;
-import domain.Results;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class OutputView {
 
@@ -20,25 +17,19 @@ public class OutputView {
     public static final String GAME_RESULT_MESSAGE = System.lineSeparator() + "실행결과";
     public static final String NAME_RESULT_DELIMITER = " : ";
 
-    public void printCreatedLadderGame(Names names, Ladder ladder, Results results) {
-        printFormattedNames(names);
+    public void printCreatedLadderGame(List<String> names, List<List<Point>> ladder, List<String> results) {
+        printFormattedLadderNodes(names);
         printLadder(ladder);
-        printFormattedResults(results);
+        printFormattedLadderNodes(results);
     }
 
-    public void printFormattedResults(Results results) {
+    public void printFormattedLadderNodes(List<String> ladderNodes) {
         int numberOfStandardBlanks = EDGE_OF_POINT.length() + PASSABLE_POINT.length();
-        results.forEach(result -> printFormattedString(result.value(), numberOfStandardBlanks));
+        ladderNodes.forEach(ladderNode -> printFormattedLadderNode(ladderNode, numberOfStandardBlanks));
         System.out.println();
     }
 
-    public void printFormattedNames(Names names) {
-        int numberOfStandardBlanks = EDGE_OF_POINT.length() + PASSABLE_POINT.length();
-        names.forEach(name -> printFormattedString(name.value(), numberOfStandardBlanks));
-        System.out.println();
-    }
-
-    private void printFormattedString(String target, int numberOfStandardBlanks) {
+    private void printFormattedLadderNode(String target, int numberOfStandardBlanks) {
         int numberOfBlanks = getNumberOfBlanks(target, numberOfStandardBlanks);
         System.out.print(target);
         System.out.print(BLANK_AFTER_NAME.repeat(numberOfBlanks));
@@ -58,13 +49,12 @@ public class OutputView {
         }
     }
 
-    private void printLadder(Ladder ladder) {
-        List<Line> lines = ladder.lines();
-        lines.forEach(this::printLine);
+    private void printLadder(List<List<Point>> ladder) {
+        ladder.forEach(this::printLine);
     }
 
-    private void printLine(Line line) {
-        line.points().forEach(this::printPoint);
+    private void printLine(List<Point> line) {
+        line.forEach(this::printPoint);
         System.out.println(EDGE_OF_POINT);
     }
 
@@ -76,16 +66,14 @@ public class OutputView {
         System.out.print(EDGE_OF_POINT + BLOCKED_POINT);
     }
 
-    public void printOneResult(Result result) {
+    public void printOneResult(String result) {
         System.out.println(GAME_RESULT_MESSAGE);
-        System.out.println(result.value());
+        System.out.println(result);
     }
 
-    public void printAllResult(Names names, Results allResult) {
-        System.out.println(GAME_RESULT_MESSAGE);
-        for (int i = 0; i < names.size(); i++) {
-            System.out.println(names.get(i).value() + NAME_RESULT_DELIMITER + allResult.get(i).value());
-        }
+    public void printAllNamesAndResults(Map<String, String> allNamesAndResults) {
+        Set<String> names = allNamesAndResults.keySet();
+        names.forEach(name -> System.out.println(name + NAME_RESULT_DELIMITER + allNamesAndResults.get(name)));
     }
 
     public void printErrorMessage(String message) {

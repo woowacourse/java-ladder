@@ -1,6 +1,8 @@
 package domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -34,12 +36,12 @@ public class LadderGame {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참가자 이름입니다."));
     }
 
-    public Names getAllNames() {
-        return this.names;
-    }
-
-    public Results getAllResults() {
-        return this.results;
+    public Map<Name, Result> getAllNamesAndResults() {
+        Map<Name, Result> namesAndResults = new LinkedHashMap<>();
+        for (int index = 0; index < names.size(); index++) {
+            namesAndResults.put(names.get(index), results.get(index));
+        }
+        return namesAndResults;
     }
 
 }

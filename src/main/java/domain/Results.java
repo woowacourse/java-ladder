@@ -2,7 +2,6 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class Results {
 
@@ -23,8 +22,8 @@ public class Results {
         return results.get(position);
     }
 
-    public void forEach(Consumer<Result> action) {
-        List.copyOf(results).forEach(action);
+    public List<Result> getValues() {
+        return List.copyOf(results);
     }
 
 }
