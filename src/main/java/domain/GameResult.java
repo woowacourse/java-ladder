@@ -6,6 +6,7 @@ public class GameResult {
 
     public static final int MIN_RESULT_NAME_SIZE = 1;
     public static final int MAX_RESULT_NAME_SIZE = 5;
+
     private final String result;
 
     public GameResult(String result) {
