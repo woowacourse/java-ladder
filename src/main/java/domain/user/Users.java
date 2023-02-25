@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Users {
@@ -66,10 +65,7 @@ public class Users {
     }
 
     private void validateParticipateUser(final String userName) {
-        final Optional<User> findUser = users.stream()
-                .filter(user -> user.isSameName(userName))
-                .findFirst();
-        if (findUser.isEmpty()) {
+        if (!users.contains(new User(userName))) {
             throw new IllegalArgumentException(ErrorMessage.USER_NOT_FOUND_EXCEPTION.getMessage());
         }
     }
