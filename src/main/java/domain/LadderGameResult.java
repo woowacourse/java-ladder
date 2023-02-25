@@ -3,6 +3,7 @@ package domain;
 import domain.player.Player;
 import domain.product.Product;
 
+import java.util.Collections;
 import java.util.Map;
 
 public class LadderGameResult {
@@ -13,6 +14,6 @@ public class LadderGameResult {
     }
 
     public Map<Player, Product> getLadderResult() {
-        return Map.copyOf(ladderResult);
+        return Collections.unmodifiableMap(ladderResult);
     }
 }

@@ -13,7 +13,7 @@ public class Ladder {
     private static final int FIRST_INDEX = 0;
 
     private Ladder(List<Line> lines) {
-        this.lines = List.copyOf(lines);
+        this.lines = lines;
     }
 
     public static Ladder generate(Players players, Height height, TrueOrFalseGenerator trueOrFalseGenerator) {
@@ -24,10 +24,10 @@ public class Ladder {
             lines.add(line);
             count++;
         }
-        return new Ladder(Collections.unmodifiableList(lines));
+        return new Ladder(List.copyOf(lines));
     }
 
     public List<Line> getLines() {
-        return List.copyOf(lines);
+        return Collections.unmodifiableList(lines);
     }
 }

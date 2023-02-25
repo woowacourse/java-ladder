@@ -3,6 +3,7 @@ package domain.product;
 import exception.CountException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Products {
@@ -21,7 +22,7 @@ public class Products {
         for (String product : inputProducts) {
             products.add(new Product(product));
         }
-        return new Products(products);
+        return new Products(List.copyOf(products));
     }
 
     private void checkProducts(List<Product> products) {
@@ -35,7 +36,7 @@ public class Products {
     }
 
     public List<Product> getProducts() {
-        return List.copyOf(products);
+        return Collections.unmodifiableList(products);
     }
 
     public int productsCount() {

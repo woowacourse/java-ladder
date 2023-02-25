@@ -28,7 +28,7 @@ public class LadderGame {
         for (Player player : players.getPlayers()) {
             result.put(player, products.productOfIndex(climbLadder(player)));
         }
-        return new LadderGameResult(result);
+        return new LadderGameResult(Map.copyOf(result));
     }
 
     private int climbLadder(Player player) {

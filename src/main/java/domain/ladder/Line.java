@@ -14,7 +14,7 @@ public class Line {
     private final List<Point> points;
 
     private Line(List<Point> points) {
-        this.points = Collections.unmodifiableList(points);
+        this.points = points;
     }
 
     public static Line generate(int personCount, TrueOrFalseGenerator trueOrFalseGenerator) {
@@ -22,7 +22,7 @@ public class Line {
         for (int count = 0; count < personCount - 1; count++) {
             points.add(correctOverLapPoints(points, new Point(trueOrFalseGenerator.generate())));
         }
-        return new Line(points);
+        return new Line(List.copyOf(points));
     }
 
     private static Point correctOverLapPoints(List<Point> points, Point randomPoint) {
@@ -61,7 +61,7 @@ public class Line {
     }
 
     public List<Point> getPoints() {
-        return List.copyOf(points);
+        return Collections.unmodifiableList(points);
     }
 
     public boolean checkSidePosition(Player player) {

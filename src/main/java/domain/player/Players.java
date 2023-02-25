@@ -4,6 +4,7 @@ import exception.CountException;
 import exception.DuplicateException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Players {
@@ -22,7 +23,7 @@ public class Players {
         for (int index = 0; index < playersName.size(); index++) {
             players.add(new Player(playersName.get(index), index));
         }
-        return new Players(players);
+        return new Players(List.copyOf(players));
     }
 
     public int getMaxPlayerNameLength() {
@@ -37,7 +38,7 @@ public class Players {
     }
 
     public List<Player> getPlayers() {
-        return List.copyOf(players);
+        return Collections.unmodifiableList(players);
     }
 
     private static void checkPlayers(List<String> playerNames) {
