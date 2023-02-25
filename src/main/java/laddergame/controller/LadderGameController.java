@@ -1,10 +1,10 @@
 package laddergame.controller;
 
+import laddergame.domain.game.LadderGame;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.RandomBooleanGenerator;
 import laddergame.domain.participant.Participant;
 import laddergame.domain.participant.Participants;
-import laddergame.domain.request.Request;
 import laddergame.domain.result.Results;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
@@ -36,8 +36,8 @@ public class LadderGameController {
         outputView.printResultNames(resultNames);
 
         String requestContent = makeRequest();
-        Request request = new Request(participants, ladder, results);
-        Map<String, String> resultByParticipants = request.getResultByRequestContent(requestContent);
+        LadderGame ladderGame = new LadderGame(participants, ladder, results);
+        Map<String, String> resultByParticipants = ladderGame.getResultByRequestContent(requestContent);
 
         outputView.printResultGuide();
         outputView.printResult(resultByParticipants, participantNames);

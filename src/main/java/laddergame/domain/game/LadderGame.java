@@ -1,4 +1,4 @@
-package laddergame.domain.request;
+package laddergame.domain.game;
 
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.participant.Participant;
@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Request {
+public class LadderGame {
 
     public static final String ALL_PARTICIPANTS_REQUEST_KEY = "all";
 
@@ -18,7 +18,7 @@ public class Request {
     private final Ladder ladder;
     private final Results results;
 
-    public Request(final Participants participants, final Ladder ladder, final Results results) {
+    public LadderGame(final Participants participants, final Ladder ladder, final Results results) {
         this.participants = participants;
         this.ladder = ladder;
         this.results = results;

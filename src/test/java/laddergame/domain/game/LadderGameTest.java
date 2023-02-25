@@ -1,4 +1,4 @@
-package laddergame.domain.request;
+package laddergame.domain.game;
 
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.participant.Participants;
@@ -17,9 +17,9 @@ import static laddergame.domain.TestFixture.ERROR_MESSAGE_HEAD;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class RequestTest {
+class LadderGameTest {
 
-    private Request request;
+    private LadderGame ladderGame;
     private Participants participants;
     private Ladder ladder;
     private Results results;
@@ -33,14 +33,14 @@ class RequestTest {
         ladder = Ladder.create(() -> true, "2", 4);
         results = new Results(resultNames, participants.size());
 
-        request = new Request(participants, ladder, results);
+        ladderGame = new LadderGame(participants, ladder, results);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"tomy", "토미", "jamie", "제이미"})
     @DisplayName("요청된 내용이 참여자나 요청 키에 포함되지 않으면, 예외가 발생한다.")
     void throws_exception_if_request_content_is_not_included_in_participants_or_request_key(String requestContent) {
-        assertThatThrownBy(() -> request.getResultByRequestContent(requestContent))
+        assertThatThrownBy(() -> ladderGame.getResultByRequestContent(requestContent))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE_HEAD);
     }
@@ -49,7 +49,7 @@ class RequestTest {
     @CsvSource(value = {"pobi:1st", "honux:2nd", "crong:3rd", "jk:4th"}, delimiter = ':')
     @DisplayName("참여자 이름을 입력하면, 한 명의 참여자에 대한 실행결과를 얻는다.")
     void gets_result_of_participant_if_request_content_is_included_in_participants(String requestContent, String expectedResult) {
-        Map<String, String> resultByRequestContent = request.getResultByRequestContent(requestContent);
+        Map<String, String> resultByRequestContent = ladderGame.getResultByRequestContent(requestContent);
 
         String actualResult = resultByRequestContent.get(requestContent);
 
@@ -62,7 +62,7 @@ class RequestTest {
         String requestAll = "all";
         List<String> participantNames = List.of("pobi", "honux", "crong", "jk");
         List<String> resultNames = List.of("1st", "2nd", "3rd", "4th");
-        Map<String, String> resultByRequestContent = request.getResultByRequestContent(requestAll);
+        Map<String, String> resultByRequestContent = ladderGame.getResultByRequestContent(requestAll);
 
         for (int i = 0; i < resultByRequestContent.size(); i++) {
             String actualResult = resultByRequestContent.get(participantNames.get(i));
