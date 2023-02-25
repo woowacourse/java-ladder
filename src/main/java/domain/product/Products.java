@@ -8,6 +8,7 @@ public class Products {
 
     private static final int MAX_PRODUCTS_SIZE = 12;
     private static final int MIN_PRODUCTS_SIZE = 2;
+
     public Products(List<Product> products) {
         checkProducts(products);
         this.products = products;
@@ -32,11 +33,13 @@ public class Products {
     }
 
     public List<Product> getProducts() {
-        return products;
+        return List.copyOf(products);
     }
+
     public int productsCount() {
         return products.size();
     }
+
     public Product productOfIndex(int index) {
         return products.get(index);
     }

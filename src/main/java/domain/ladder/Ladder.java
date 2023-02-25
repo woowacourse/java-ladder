@@ -10,7 +10,7 @@ import java.util.List;
 public class Ladder {
     private final List<Line> lines;
 
-    private static final int FIRST_INDEX=0;
+    private static final int FIRST_INDEX = 0;
 
     public Ladder(List<Line> lines) {
         this.lines = List.copyOf(lines);
@@ -28,6 +28,6 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return lines;
+        return List.copyOf(lines);
     }
 }
