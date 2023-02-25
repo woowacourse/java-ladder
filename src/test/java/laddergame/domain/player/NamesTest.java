@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.player;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,20 +49,4 @@ public class NamesTest {
         //then
         assertThat(maxNameLength).isEqualTo("블랙캣".length());
     }
-
-    @Test
-    @DisplayName("가장 첫번째 이름의 길이를 2로 나누고 반올림한 값을 반환한다.")
-    void givenNames_thenFirstNameLengthDividedByTwoRounded() {
-        //given
-        final List<String> input = List.of("에단", "준팍", "블랙캣");
-        final Names names = new Names(input);
-
-        //when
-        int firstNameLengthDividedByTwoRounded = names.getFirstNameLengthDividedByTwoRounded();
-
-        //then
-        assertThat(firstNameLengthDividedByTwoRounded).isEqualTo(1);
-
-    }
-
 }

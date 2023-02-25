@@ -9,6 +9,7 @@ import java.util.List;
 public class InputView {
 
     private static final String NAME_SEPARATOR = ",";
+    private static final String RESULT_SEPARATOR = ",";
     private static final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
     public static List<String> readNames() {
@@ -30,7 +31,28 @@ public class InputView {
         } catch (IOException e) {
             throw new IllegalStateException("입력값을 받을 수 없습니다.");
         } catch (NumberFormatException e) {
-            throw new IllegalStateException("숫자만 입력해주세요.");
+            throw new IllegalArgumentException("숫자만 입력해주세요.");
+        }
+    }
+
+    public static List<String> readResults() {
+        System.out.println(System.lineSeparator() + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+        try {
+            final String[] results = read().split(RESULT_SEPARATOR);
+            return Arrays.asList(results);
+        } catch (final IOException e) {
+            throw new IllegalStateException("입력값을 받을 수 없습니다.");
+        }
+    }
+
+    public static String readResultPlayerName() {
+        System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
+
+        try {
+            return read();
+        } catch (final IOException e) {
+            throw new IllegalStateException("입력값을 받을 수 없습니다.");
         }
     }
 

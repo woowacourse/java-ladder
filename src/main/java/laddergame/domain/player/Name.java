@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.player;
 
 import java.util.Objects;
 
@@ -24,7 +24,7 @@ public class Name {
         }
     }
 
-    private static boolean isOutOfRange(final String name) {
+    private boolean isOutOfRange(final String name) {
         return name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH;
     }
 
