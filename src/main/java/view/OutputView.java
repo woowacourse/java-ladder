@@ -1,6 +1,7 @@
 package view;
 
 import domain.game.Results;
+import domain.info.Info;
 import domain.info.Name;
 import domain.info.Names;
 import domain.info.Reward;
@@ -12,11 +13,11 @@ import java.util.List;
 public class OutputView {
     private static final String PRINT_ALL_COMMEND = "all";
 
-    public static void printLadderBoard(final Names names, final Ladder ladder, final Rewards rewards) {
+    public static void printLadderBoard(final Info info, final Ladder ladder) {
         System.out.println(Message.OUTPUT_LINES_MESSAGE.message);
-        printNames(names);
+        printNames(info.getNames());
         printLadder(ladder.getFloors());
-        printRewards(rewards.getRewards());
+        printRewards(info.getRewards());
     }
 
     private static void printNames(final Names names) {
@@ -35,8 +36,8 @@ public class OutputView {
         });
     }
 
-    private static void printRewards(final List<Reward> rewards) {
-        for (Reward reward : rewards) {
+    private static void printRewards(final Rewards rewards) {
+        for (Reward reward : rewards.getRewards()) {
             System.out.printf(Message.STRING_FORMAT.message, reward.getReward());
         }
         System.out.println();

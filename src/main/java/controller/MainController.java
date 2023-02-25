@@ -2,6 +2,7 @@ package controller;
 
 import domain.game.LadderGame;
 import domain.game.Results;
+import domain.info.Info;
 import domain.info.Names;
 import domain.info.Rewards;
 import domain.ladder.Height;
@@ -13,34 +14,38 @@ import view.OutputView;
 public class MainController {
     private static final String END_COMMEND = "all";
 
-    private final Names names;
-    private final Rewards rewards;
+    private final Info info;
     private final Ladder ladder;
 
     public MainController(final BooleanGenerator booleanGenerator) {
-        names = InputView.readNames();
-        rewards = InputView.readRewards();
+        info = generateInfo();
         ladder = generateLadder(booleanGenerator);
     }
 
-    public void start() {
-        OutputView.printLadderBoard(names, ladder, rewards);
-        LadderGame ladderGame = new LadderGame(names, ladder);
-        Results results = new Results(names, ladderGame, rewards);
-
-        showResult(results);
+    private static Info generateInfo() {
+        Names names = InputView.readNames();
+        Rewards rewards = InputView.readRewards();
+        return new Info(names, rewards);
     }
 
     private Ladder generateLadder(final BooleanGenerator booleanGenerator) {
         Height height = InputView.readHeight();
-        return new Ladder(names, height, booleanGenerator);
+        return new Ladder(info.getNames(), height, booleanGenerator);
+    }
+
+    public void start() {
+        OutputView.printLadderBoard(info, ladder);
+        LadderGame ladderGame = new LadderGame(info.getNames(), ladder);
+        Results results = new Results(info, ladderGame);
+
+        showResult(results);
     }
 
     private void showResult(Results results) {
         boolean isEnd = false;
         while (!isEnd) {
             String name = InputView.readShowName();
-            OutputView.printResult(name, names, results);
+            OutputView.printResult(name, info.getNames(), results);
             isEnd = name.equals(END_COMMEND);
         }
     }

@@ -39,4 +39,8 @@ public class Rewards {
     public Reward getReward(final int index) {
         return rewards.get(index);
     }
+
+    public int getRewardsSize() {
+        return rewards.size();
+    }
 }
