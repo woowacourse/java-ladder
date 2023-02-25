@@ -1,4 +1,4 @@
-package domain.ladder;
+package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import domain.generator.BooleanGenerator;
 import domain.generator.FalseBooleanGenerator;
 import domain.generator.TrueBooleanGenerator;
+import domain.ladder.LadderStep;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -19,7 +21,7 @@ class LadderStepTest {
     @DisplayName("첫 번째 사다리 발판을 생성할 때는 제약 없이 생성한다.")
     @Test
     void createFreelyTest() {
-        assertThat(LadderStep.createFreely(existsGenerator)).isEqualTo(LadderStep.EXISTS);
+        Assertions.assertThat(LadderStep.createFreely(existsGenerator)).isEqualTo(LadderStep.EXISTS);
         assertThat(LadderStep.createFreely(noneGenerator)).isEqualTo(LadderStep.NONE);
     }
 
