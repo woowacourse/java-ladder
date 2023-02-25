@@ -17,7 +17,6 @@ class PlayersTest {
     void create_success() {
         // given
         List<Player> players = generateRawPlayersByNames("pobi", "neo");
-
         // then
         assertThatNoException().isThrownBy(() -> new Players(players));
     }
@@ -27,7 +26,6 @@ class PlayersTest {
     void create_fail_by_not_enough_number_of_name() {
         // given
         List<Player> players = generateRawPlayersByNames("pobi");
-
         // then
         assertThatThrownBy(() -> new Players(players))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -39,7 +37,6 @@ class PlayersTest {
     void create_fail_by_duplicate_name() {
         // given
         List<Player> players = generateRawPlayersByNames("neo", "neo");
-
         // then
         assertThatThrownBy(() -> new Players(players))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -52,10 +49,8 @@ class PlayersTest {
         // given
         List<Player> rawPlayers = generateRawPlayersByNames("neo", "pobi", "jun");
         Players players = new Players(rawPlayers);
-
         //when
         int size = players.size();
-
         // then
         assertThat(size).isEqualTo(3);
     }
@@ -66,10 +61,8 @@ class PlayersTest {
         // given
         List<Player> rawPlayers = generateRawPlayersByNames("neo", "pobi", "jun");
         Players players = new Players(rawPlayers);
-
         // when
         boolean result = players.containPlayerBySpecificName("neo");
-
         // then
         assertThat(result).isTrue();
     }
@@ -80,10 +73,8 @@ class PlayersTest {
         // given
         List<Player> rawPlayers = generateRawPlayersByNames("neo", "pobi", "jun");
         Players players = new Players(rawPlayers);
-
         // when
         boolean result = players.containPlayerBySpecificName("noNeo");
-
         // then
         assertThat(result).isFalse();
     }
@@ -95,10 +86,8 @@ class PlayersTest {
         List<Player> rawPlayers = generateRawPlayersByNames("neo", "pobi", "jun");
         Players players = new Players(rawPlayers);
         Player expectedPlayer = rawPlayers.get(0);
-
         // when
         Player actualPlayer = players.findSpecificNamePlayer(expectedPlayer.getName());
-
         // then
         assertThat(actualPlayer).isEqualTo(expectedPlayer);
     }
@@ -109,7 +98,6 @@ class PlayersTest {
         // given
         List<Player> rawPlayers = generateRawPlayersByNames("neo", "pobi", "jun");
         Players players = new Players(rawPlayers);
-
         // then
         assertThatThrownBy(() -> players.findSpecificNamePlayer("wrongName"))
                 .isInstanceOf(IllegalStateException.class)

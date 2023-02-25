@@ -32,7 +32,6 @@ class LadderPrizesTest {
     void create_fail_by_different_size() {
         // given
         List<LadderPrize> ladderPrizes = List.of(new LadderPrize("any"), new LadderPrize("any"));
-
         // then
         assertThatThrownBy(() -> LadderPrizes.createWithSameSize(ladderPrizes, ladderPrizes.size() - 1))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -46,10 +45,8 @@ class LadderPrizesTest {
                                       String expectedResult) {
         // given
         LadderPrizes ladderPrizes = generateLadderPrizesByParameter("3000", "1000", "2000", "5000", "꽝");
-
         // when
         LadderPrize ladderPrize = ladderPrizes.findPrizeByPosition(new Position(position));
-
         assertThat(ladderPrize.getPrize()).isEqualTo(expectedResult);
     }
 

@@ -20,10 +20,8 @@ class LineGeneratorTest {
         lineGenerator = new LineGenerator(new RandomNumberGenerator());
         int width = 3;
         Line line = lineGenerator.generate(width);
-
         // when
         List<LinePoint> points = line.getPoints();
-
         // then
         assertThat(points.size()).isEqualTo(width);
     }
@@ -34,10 +32,8 @@ class LineGeneratorTest {
         // given
         lineGenerator = new LineGenerator(() -> MIN_NUMBER_RETURN_TRUE);
         Line line = lineGenerator.generate(3);
-
         // when
         List<LinePoint> points = line.getPoints();
-
         // then
         assertThat(points).containsExactly(LinePoint.PASSABLE, LinePoint.BLOCKED, LinePoint.PASSABLE);
     }

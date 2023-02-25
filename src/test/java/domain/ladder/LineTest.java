@@ -15,24 +15,20 @@ class LineTest {
         // given
         Position position = new Position(2);
         Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
-
         // when
         boolean result = line.isLeftSidePassable(position);
-
         // then
         assertThat(result).isTrue();
-    }
 
+    }
     @DisplayName("position이 좌측 끝이면 좌측 이동이 불가능하다..")
     @Test
     void left_passable_false_by_left_end() {
         // given
         Position position = new Position(1);
         Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
-
         // when
         boolean result = line.isLeftSidePassable(position);
-
         // then
         assertThat(result).isFalse();
     }
@@ -43,10 +39,8 @@ class LineTest {
         // given
         Position position = new Position(2);
         Line line = new Line(List.of(LinePoint.BLOCKED, LinePoint.PASSABLE));
-
         // when
         boolean result = line.isLeftSidePassable(position);
-
         // then
         assertThat(result).isFalse();
     }
@@ -57,10 +51,8 @@ class LineTest {
         // given
         Position position = new Position(2);
         Line line = new Line(List.of(LinePoint.BLOCKED, LinePoint.PASSABLE));
-
         // when
         boolean result = line.isRightSidePassable(position);
-
         // then
         assertThat(result).isTrue();
     }
@@ -71,10 +63,8 @@ class LineTest {
         // given
         Position position = new Position(3);
         Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
-
         // when
         boolean result = line.isLeftSidePassable(position);
-
         // then
         assertThat(result).isFalse();
     }
@@ -85,10 +75,8 @@ class LineTest {
         // given
         Position position = new Position(2);
         Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
-
         // when
         boolean result = line.isRightSidePassable(position);
-
         // then
         assertThat(result).isFalse();
     }

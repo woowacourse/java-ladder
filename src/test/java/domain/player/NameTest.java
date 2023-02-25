@@ -48,7 +48,6 @@ class NameTest {
     void same_name_return_true() {
         // given
         Name name = new Name("name");
-
         // then
         assertThat(name.isSame("name")).isTrue();
     }
@@ -58,7 +57,6 @@ class NameTest {
     void different_name_return_false() {
         // given
         Name name = new Name("name");
-
         // then
         assertThat(name.isSame("differentName")).isFalse();
     }

@@ -18,14 +18,12 @@ class LadderGeneratorTest {
     void create_success() {
         // given
         Ladder ladder = ladderGenerator.generate(3, new LadderHeight(3));
-
         // when
         List<Line> lines = ladder.getLines();
         int numberOfPoint = lines.stream()
                 .map(line -> line.getPoints().size())
                 .collect(Collectors.toSet())
                 .size();
-
         // then
         assertThat(numberOfPoint).isEqualTo(1);
     }

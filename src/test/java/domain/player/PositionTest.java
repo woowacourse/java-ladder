@@ -13,10 +13,8 @@ class PositionTest {
     void move_left_value_minus_one() {
         // given
         Position position = new Position(2);
-
         // when
         position.moveLeft();
-
         // then
         assertThat(position.getPosition()).isEqualTo(1);
     }
@@ -26,10 +24,8 @@ class PositionTest {
     void move_right_value_plus_one() {
         // given
         Position position = new Position(2);
-
         // when
         position.moveRight();
-
         // then
         assertThat(position.getPosition()).isEqualTo(3);
     }
@@ -39,10 +35,8 @@ class PositionTest {
     void is_same_position() {
         // given
         Position position = new Position(1);
-
         // when
         boolean result = position.isSamePosition(1);
-
         // then
         assertThat(result).isTrue();
     }
@@ -52,10 +46,8 @@ class PositionTest {
     void is_not_same_position() {
         // given
         Position position = new Position(1);
-
         // when
         boolean result = position.isSamePosition(2);
-
         // then
         assertThat(result).isFalse();
     }
