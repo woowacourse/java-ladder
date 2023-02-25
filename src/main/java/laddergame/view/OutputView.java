@@ -111,13 +111,13 @@ public class OutputView {
 
     private void appendLine(StringBuilder result, Line line) {
         for (Point point : line.getPoints()) {
-            result.append(getConnectionStatus(point.isConnected()));
+            result.append(getConnectionStatus(point));
             result.append(LadderFormat.LADDER_COLUMN);
         }
     }
 
-    private LadderFormat getConnectionStatus(Boolean point) {
-        if (point) {
+    private LadderFormat getConnectionStatus(Point point) {
+        if (point.isConnected()) {
             return LadderFormat.CONNECTION;
         }
         return LadderFormat.NON_CONNECTION;
