@@ -11,7 +11,7 @@ public class LadderGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private BooleanGenerator booleanGenerator;
+    private final BooleanGenerator booleanGenerator;
 
     private boolean flag = true;
 
