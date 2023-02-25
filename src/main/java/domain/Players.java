@@ -42,7 +42,7 @@ public class Players {
         return Collections.unmodifiableList(players);
     }
 
-    public Player get(String playerName) {
+    public Player get(final String playerName) {
         return players.stream()
                 .filter(player -> player.getName().equals(playerName))
                 .findFirst()

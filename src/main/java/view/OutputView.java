@@ -26,7 +26,7 @@ public class OutputView {
         printGameResultNames(gameGameResultNames, nameFormatSize);
     }
 
-    private static void printGameResultNames(List<String> gameResultNames, int nameFormatSize) {
+    private static void printGameResultNames(final List<String> gameResultNames, final int nameFormatSize) {
         StringBuilder stringBuilder = new StringBuilder();
         String nameFormat = String.format("%%%ds", nameFormatSize);
         gameResultNames.forEach((gameResultName) -> {
@@ -69,20 +69,24 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
-    public static void printGameResult(String gameResult) {
+    public static void printGameResult(final String gameResult) {
         printLine(RESULT_TITLE);
         printLine(gameResult);
         printEmptyLine();
     }
 
-    public static void printGameResult(LinkedHashMap<String, GameResult> gameResults) {
+    public static void printGameResult(final LinkedHashMap<String, GameResult> gameResults) {
         printLine(RESULT_TITLE);
         for (String playerName : gameResults.keySet()) {
             printLine(playerName + RESULT_DELIMITER + gameResults.get(playerName).getResult());
         }
     }
 
-    private static void getFormattedPoint(int nameFormatSize, Boolean point, StringBuilder stringBuilder) {
+    private static void getFormattedPoint(
+            final int nameFormatSize,
+            final Boolean point,
+            final StringBuilder stringBuilder
+    ) {
         stringBuilder.append(getPointUi(point, nameFormatSize));
         stringBuilder.append(POINT_SEPARATOR);
     }

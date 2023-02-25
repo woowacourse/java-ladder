@@ -15,7 +15,7 @@ public class Line {
         this.points = points;
     }
 
-    private void validate(List<Point> points) {
+    private void validate(final List<Point> points) {
         validateSize(points.size());
         validatePointExistContinuous(points);
     }
@@ -26,7 +26,7 @@ public class Line {
         }
     }
 
-    private void validatePointExistContinuous(List<Point> points) {
+    private void validatePointExistContinuous(final List<Point> points) {
         Point previousPoint = Point.NOT_EXIST;
         for (Point currentPoint : points) {
             compareWithPreviousPoint(previousPoint, currentPoint);
@@ -34,7 +34,7 @@ public class Line {
         }
     }
 
-    private void compareWithPreviousPoint(Point previousPoint, Point currentPoint) {
+    private void compareWithPreviousPoint(final Point previousPoint, final Point currentPoint) {
         if (previousPoint == Point.EXIST && currentPoint == Point.EXIST) {
             throw new IllegalArgumentException("사다리는 같은 라인에서 연속되는 포인트를 가질 수 없습니다.");
         }

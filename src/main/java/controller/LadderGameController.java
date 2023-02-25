@@ -65,21 +65,21 @@ public class LadderGameController {
                 .collect(Collectors.toList());
     }
 
-    private GameResults createGameResults(int playersSize, List<String> gameResultNames) {
+    private GameResults createGameResults(final int playersSize, final List<String> gameResultNames) {
         return new GameResults(
                 playersSize,
                 gameResultNames.stream().map(GameResult::new).collect(Collectors.toList())
         );
     }
 
-    private List<List<Boolean>> getPointValues(List<Line> lines) {
+    private List<List<Boolean>> getPointValues(final List<Line> lines) {
         return lines.stream()
                 .map(Line::getPoints)
                 .map(LadderGameController::convertPointsToValues)
                 .collect(Collectors.toList());
     }
 
-    public static List<Boolean> convertPointsToValues(List<Point> points) {
+    public static List<Boolean> convertPointsToValues(final List<Point> points) {
         return points.stream()
                 .map(Point::isExist)
                 .collect(Collectors.toUnmodifiableList());

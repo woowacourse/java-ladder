@@ -35,8 +35,7 @@ public class LineFactory {
         return Collections.unmodifiableList(points);
     }
 
-    private static Point generatePoint(Point previousPoint, PointGenerateStrategy pointGenerateStrategy) {
-        // TODO : 리팩토링 해보기
+    private static Point generatePoint(final Point previousPoint, final PointGenerateStrategy pointGenerateStrategy) {
         Point generatedPoint = pointGenerateStrategy.generate();
         if (previousPoint == Point.EXIST) {
             return Point.NOT_EXIST;
