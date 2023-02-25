@@ -1,20 +1,25 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import domain.generator.BooleanGenerator;
 import domain.generator.RandomBooleanGenerator;
+import domain.generator.TrueBooleanGenerator;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
+import domain.player.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LadderTest {
 
     private final BooleanGenerator randomLadderGenerator = new RandomBooleanGenerator();
+    private final BooleanGenerator nonRandomLadderGenerator = new TrueBooleanGenerator();
 
     @DisplayName("유효한 파라미터가 들어오면, 사다리를 생성한다.")
     @Nested
@@ -35,17 +40,22 @@ class LadderTest {
         }
     }
 
-    @Nested
-    @DisplayName("라인 이동 테스트")
-    class MoveLadderTest {
-       /* @Test
-        void 사다리를_따라_끝까지_이동한다() {
-            BooleanGenerator trueBooleanGenerator = new TrueBooleanGenerator();
-            Ladder nonRandomLadder = new Ladder(3, 3, trueBooleanGenerator);
-            Assertions.assertEquals(nonRandomLadder.getExitPosition(0), 1);
-            Assertions.assertEquals(nonRandomLadder.getExitPosition(1), 0);
-            Assertions.assertEquals(nonRandomLadder.getExitPosition(2), 3);
-            Assertions.assertEquals(nonRandomLadder.getExitPosition(3), 2);
-        }*/
+
+    @DisplayName("초기 위치에 따라 도착하는 최종 위치를 알려줄 수 있다.")
+    @ParameterizedTest
+    @CsvSource({
+            "0,1",
+            "1,0",
+            "2,3",
+            "3,2"}
+    )
+    void findFinalPositionTest(int initialIndex, int finalIndex) {
+        Ladder ladder = new Ladder(3, new Height(3), nonRandomLadderGenerator);
+            /*
+              |-----|     |-----|
+              |-----|     |-----|
+              |-----|     |-----|
+            */
+        assertThat(ladder.findFinalPosition(new Position(initialIndex))).isEqualTo(new Position(finalIndex));
     }
 }

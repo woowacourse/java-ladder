@@ -13,8 +13,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class HeightTest {
 
-    @Nested
     @DisplayName("사다리의 높이를 생성한다.")
+    @Nested
     class createHeightTest {
         @DisplayName("1 이상 100 이하의 값이 들어오면 사다리를 정상 생성한다.")
         @ParameterizedTest
@@ -32,19 +32,19 @@ class HeightTest {
         }
     }
 
-    @Nested
     @DisplayName("높이 값을 반환할 수 있다.")
+    @Nested
     class returnHeightTest {
         @DisplayName("생성된 사다리의 값을 반환할 수 있다.")
         @Test
         void returnValueTest() {
             Height height = new Height(5);
-            assertThat(height.getHeight()).isEqualTo(5);
+            assertThat(height.getValue()).isEqualTo(5);
         }
     }
 
-    @Nested
     @DisplayName("높이의 값으로 객체를 비교할 수 있다.")
+    @Nested
     class compareHeightTest {
         private final Height height1 = new Height(5);
         private final Height height2 = new Height(5);
