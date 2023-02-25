@@ -3,7 +3,6 @@ package factory;
 import domain.Ladder;
 import domain.Line;
 import domain.PointGenerateStrategy;
-import domain.RandomBasedStrategy;
 
 import java.util.ArrayList;
 import java.util.Collections;

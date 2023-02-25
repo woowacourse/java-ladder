@@ -11,8 +11,8 @@ import java.util.List;
 public class LineFactory {
 
     private static final int FIRST_INDEX = 0;
-    public static final int MIN_POINT_SIZE = 0;
-    public static final int MAX_POINT_SIZE = 19;
+    private static final int MIN_POINT_SIZE = 0;
+    private static final int MAX_POINT_SIZE = 19;
 
     public static Line of(final int pointSize, final PointGenerateStrategy pointGenerateStrategy) {
         validate(pointSize);

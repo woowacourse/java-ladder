@@ -20,4 +20,5 @@ public class CompleteBasedStrategy implements PointGenerateStrategy {
         }
         return points.get(currentLineIndex).get(currentPointIndex++);
     }
+
 }

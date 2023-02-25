@@ -7,6 +7,7 @@ public class LadderGame {
 
     public static final int FIRST_INDEX_OF_POINTS = 0;
     private static final boolean NOT_EXIST = false;
+
     private final Players players;
     private final Ladder ladder;
     private final GameResults gameResults;
@@ -83,4 +84,5 @@ public class LadderGame {
         }
         return PointSide.LEFT.getMovingPosition();
     }
+
 }

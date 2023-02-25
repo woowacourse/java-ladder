@@ -8,8 +8,8 @@ import java.util.List;
 
 public class OutputView {
 
-    public static final String RESULT_TITLE = "실행결과";
-    public static final String POINT_SEPARATOR = "|";
+    private static final String RESULT_TITLE = "실행결과";
+    private static final String POINT_SEPARATOR = "|";
     private static final String GENERATED_LADDER_TITLE = "사다리 결과";
     private static final String RESULT_DELIMITER = " : ";
 
@@ -99,4 +99,5 @@ public class OutputView {
     private static void printLine(final String value) {
         System.out.println(value);
     }
+
 }

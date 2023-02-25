@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class LadderGameController {
 
     private static final String END_CONDITION = "all";
+
     private LadderGame ladderGame;
 
     public void play() {

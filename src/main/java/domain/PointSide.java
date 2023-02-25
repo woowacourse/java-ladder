@@ -15,4 +15,5 @@ public enum PointSide {
     public int getMovingPosition() {
         return this.movingPosition;
     }
+
 }

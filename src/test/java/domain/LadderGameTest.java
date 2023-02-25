@@ -124,4 +124,5 @@ public class LadderGameTest {
                 Arguments.of(new LadderGame(players, ladder, gameResults), List.of("c", "당첨"))
         );
     }
+
 }

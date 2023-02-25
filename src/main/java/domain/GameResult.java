@@ -34,4 +34,5 @@ public class GameResult {
     public String getResult() {
         return result;
     }
+
 }
