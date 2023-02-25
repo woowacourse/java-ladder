@@ -22,7 +22,14 @@ public class OutputView {
         System.out.println(exception.getMessage());
     }
 
-    public static void printResultMessage() {
+    public static void printLadder(List<String> userNames, Ladder ladder, List<String> rewards) {
+        printResultMessage();
+        printUserNames(userNames);
+        printLadderMap(ladder);
+        printRewards(rewards);
+    }
+
+    private static void printResultMessage() {
         System.out.println("\n사다리 결과\n");
     }
 
@@ -31,7 +38,7 @@ public class OutputView {
         System.out.println(parsedUserNames);
     }
 
-    public static void printLadder(Ladder ladder) {
+    public static void printLadderMap(Ladder ladder) {
         List<LadderRow> ladderRows = ladder.getLadderRows();
         List<List<Boolean>> ladderMap = ladderRows.stream()
                 .map(OutputView::getRight)
@@ -70,7 +77,7 @@ public class OutputView {
         return NON_EXISTED_LINE.getFormat();
     }
 
-    public static void printRewards(List<String> rewardNames) {
+    private static void printRewards(List<String> rewardNames) {
         List<String> formattedRewardNames = formatLength(rewardNames);
         String parsedUserNames = String.join(" ", formattedRewardNames);
         System.out.println(parsedUserNames);

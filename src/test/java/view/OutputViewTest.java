@@ -43,7 +43,7 @@ class OutputViewTest {
 
         ladder.create(5, 4);
 
-        OutputView.printLadder(ladder);
+        OutputView.printLadderMap(ladder);
         assertThat(outputStream.toString()).isEqualTo(expected);
     }
 }

@@ -75,24 +75,9 @@ public class Controller {
     }
 
     private void printLadderMap() {
-        OutputView.printResultMessage();
-        printUsers();
-        printLadder();
-        printRewards();
-    }
-
-    private void printUsers() {
         List<String> userNames = users.getUserNames();
-        OutputView.printUserNames(userNames);
-    }
-
-    private void printLadder() {
-        OutputView.printLadder(ladder);
-    }
-
-    private void printRewards() {
         List<String> rewardNames = rewards.getRewardNames();
-        OutputView.printRewards(rewardNames);
+        OutputView.printLadder(userNames, ladder, rewardNames);
     }
 
     private void playLadderGame() {
