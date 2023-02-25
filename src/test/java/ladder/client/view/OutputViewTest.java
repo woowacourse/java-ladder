@@ -17,12 +17,12 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(ReplaceUnderscores.class)
 class OutputViewTest {
 
-    private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private ByteArrayOutputStream printResult = new ByteArrayOutputStream();
 
     @BeforeEach
     void setSystemOut() {
-        outContent.reset();
-        System.setOut(new PrintStream(outContent));
+        printResult.reset();
+        System.setOut(new PrintStream(printResult));
     }
 
     @AfterEach
@@ -44,7 +44,7 @@ class OutputViewTest {
         OutputView.printLadder(ladderInfoDto);
 
         //then
-        assertThat(outContent)
+        assertThat(printResult)
                 .hasToString("사다리 결과" + System.lineSeparator()
                         + System.lineSeparator()
                         + "a     b     " + System.lineSeparator()
@@ -56,7 +56,7 @@ class OutputViewTest {
     @Test
     void 결과_하나_출력() {
         OutputView.printResult("book");
-        assertThat(outContent)
+        assertThat(printResult)
                 .hasToString("실행 결과" + System.lineSeparator()
                         + "book" + System.lineSeparator());
     }
@@ -64,7 +64,7 @@ class OutputViewTest {
     @Test
     void 결과_여러개_출력() {
         OutputView.printResults(Map.of("name", "book"));
-        assertThat(outContent)
+        assertThat(printResult)
                 .hasToString("실행 결과" + System.lineSeparator() +
                         "name : book" + System.lineSeparator());
     }
