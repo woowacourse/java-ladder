@@ -12,8 +12,6 @@ import domain.vo.Width;
 import view.InputView;
 import view.OutputView;
 
-import java.util.function.Consumer;
-
 public class LadderController {
 
     private final InputView inputView;
@@ -29,16 +27,7 @@ public class LadderController {
     public void play() {
         LadderGame ladderGame = initLadderGame();
         ladderGame.play();
-        repeat(this::viewResult, ladderGame);
-    }
-
-    private  void repeat(Consumer<LadderGame> consumer, LadderGame ladderGame) {
-        try {
-            consumer.accept(ladderGame);
-            repeat(this::viewResult, ladderGame);
-        } catch (IllegalArgumentException e){
-            e.printStackTrace();
-        }
+        viewResult(ladderGame);
     }
 
     private void viewResult(LadderGame ladderGame) {
@@ -48,18 +37,16 @@ public class LadderController {
     }
 
     private Names inputViewers(LadderGame ladderGame) {
-        Names viewers = inputView.inputResultViewerName();
-        if (viewers.contains(inputView.getAllMessage())) {
-            viewers = ladderGame.getPlayers().mapToNames();
-        }
-        return viewers;
+        return inputView.inputResultViewerName(ladderGame.allPlayersName());
     }
 
     private LadderGame initLadderGame() {
         Names inputNames = inputView.inputNames();
         Results inputResult = inputView.inputResults();
         Ladder ladder = getLadder(inputNames.size());
+
         outputView.printLadder(inputNames, ladder, inputResult);
+
         Players players = new PlayerMaker().make(inputNames);
         return new LadderGame(ladder, players, inputResult);
     }

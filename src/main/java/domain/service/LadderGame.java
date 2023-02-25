@@ -38,4 +38,8 @@ public class LadderGame {
     public Players getPlayers() {
         return players;
     }
+
+    public Names allPlayersName() {
+        return players.mapToNames();
+    }
 }

@@ -16,7 +16,7 @@ public class InputView {
     private static final String NAME_DELIMITER = ",";
     private static final String INPUT_RESULTS_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String INPUT_RESULT_VIEWER_NAME_MESSAGE = "결과를 보고 싶은 사람은?";
-    private static final String ALL_MESSAGE = "all";
+    private static final String VIEW_ALL_PLAYERS_MESSAGE = "all";
 
     private final InputValidator validator;
     private final Scanner scanner = new Scanner(System.in);
@@ -38,9 +38,14 @@ public class InputView {
         return new Results(mapToResult(trimNames(results)));
     }
 
-    public Names inputResultViewerName() {
+    public Names inputResultViewerName(Names allNames) {
         System.out.println(INPUT_RESULT_VIEWER_NAME_MESSAGE);
         List<String> names = List.of(scanner.nextLine().split(NAME_DELIMITER));
+
+        if (names.contains(VIEW_ALL_PLAYERS_MESSAGE)) {
+            return allNames;
+        }
+
         return new Names(mapToName(trimNames(names)));
     }
 
@@ -85,7 +90,4 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public Name getAllMessage() {
-        return new Name(ALL_MESSAGE);
-    }
 }
