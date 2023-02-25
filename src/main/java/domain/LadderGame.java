@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,7 +13,7 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    // todo : 접근제어자 수정 + 테스트
+    // TODO : 접근제어자 수정 + 테스트
     public boolean moveRight(Line line, Position position) {
         if (position.getIndex() == line.getPointsSize()) {
             return false;
@@ -51,9 +52,13 @@ public class LadderGame {
         return position.getIndex();
     }
 
-    public List<Integer> getResultAllIndex() {
-        return players.getNames().stream()
-                .map(this::getResultIndex).collect(Collectors.toList());
+    public List<Integer> getResult(String name) {
+        if (name.equals("all")) {
+            return players.getNames().stream()
+                    .map(this::getResultIndex).collect(Collectors.toList());
+        }
+        return new ArrayList<>(
+                List.of(getResultIndex(name)));
     }
 
 }

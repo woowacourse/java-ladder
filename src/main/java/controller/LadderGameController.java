@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import domain.*;
 
@@ -29,14 +30,13 @@ public class LadderGameController {
     }
 
     private void printPlayerResult(Players players, Prizes prizes, LadderGame ladderGame) {
-        while (true) {
-            int index = getPlayerIndex(ladderGame);
-            if (index == -10) {
-                outputView.printAllPlayerResult(players, ladderGame.getResultAllIndex());
-                break;
-            }
-            outputView.printPlayerResult(prizes.getName(index));
+        List<Integer> indexs = getPlayerIndex(ladderGame);
+        while (indexs.size() == 1) {
+            outputView.printPlayerResult(prizes.getName(indexs.get(0)));
+            indexs = getPlayerIndex(ladderGame);
         }
+        List<String> results = indexs.stream().map(prizes::getName).collect(Collectors.toList());
+        outputView.printAllPlayerResult(players, results);
     }
 
     private void printLadderInformation(Players players, Prizes prizes, Ladder ladder) {
@@ -45,13 +45,10 @@ public class LadderGameController {
         outputView.printNames(prizes.getNames());
     }
 
-    private int getPlayerIndex(LadderGame ladderGame) {
+    private List<Integer> getPlayerIndex(LadderGame ladderGame) {
         try {
             String name = inputView.readCheckPlayer();
-            if (name.equals("all")) {
-                return -10;
-            }
-            return ladderGame.getResultIndex(name);
+            return ladderGame.getResult(name);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return getPlayerIndex(ladderGame);
@@ -87,7 +84,6 @@ public class LadderGameController {
     }
 
     private Ladder getLadder(int width) {
-
         try {
             int height = inputView.readLadderHeight();
             return new Ladder(height, width, generator);
