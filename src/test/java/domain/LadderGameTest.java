@@ -39,7 +39,7 @@ class LadderGameTest {
         );
     }
 
-    @DisplayName("중복죈 이름을 입력 받았을 때 예외처리")
+    @DisplayName("중복된 이름을 입력 받았을 때 예외처리")
     @Test
     void PEOPLE_중복이름_예외_테스트() {
         List<String> names = List.of("p", "p", "p");
@@ -62,6 +62,26 @@ class LadderGameTest {
                 () -> {
                     assertEquals(lines.getClass(), Lines.class);
                     assertEquals(lines.getLines().size(), height);
+                }
+        );
+    }
+
+    @DisplayName("REWARDS 생성 테스트")
+    @Test
+    void Rewards_생성_테스트() {
+        Assertions.assertDoesNotThrow(
+                () -> {
+                    ladderGame.createRewards(Arrays.asList("a"), 1);
+                }
+        );
+    }
+
+    @DisplayName("참가자와 다른 수의 결과 수를 받았을 때 예외처리 테스트")
+    @Test
+    void Rewards와_참가자_수가_다른_경우_테스트() {
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> {
+                    ladderGame.createRewards(Arrays.asList("a", "b"), 1);
                 }
         );
     }
