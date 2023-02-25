@@ -20,10 +20,7 @@ public class Users {
 
     public boolean isExist(String userName) {
         List<String> userNames = getUserNames();
-        if (userNames.contains(userName)) {
-            return true;
-        }
-        return false;
+        return (userNames.contains(userName));
     }
 
     public List<String> getUserNames() {
