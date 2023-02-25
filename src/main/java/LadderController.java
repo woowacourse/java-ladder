@@ -1,3 +1,5 @@
+import domain.Height;
+import domain.PersonCount;
 import domain.ladder.Ladder;
 import domain.ladder.RandomLinkGenerator;
 import domain.prize.Prizes;
@@ -56,7 +58,8 @@ public class LadderController {
 
     private Ladder generateLadder(Users users) {
         try {
-            return new Ladder(inputView.readLadderHeight(), users.size(), new RandomLinkGenerator());
+            return new Ladder(new Height(inputView.readLadderHeight()), new PersonCount(users.size())
+                    , new RandomLinkGenerator());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return generateLadder(users);

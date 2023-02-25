@@ -21,7 +21,7 @@ public class LineGeneratorTest {
         final List<Link> input = List.of(Link.LINKED, Link.LINKED);
         final LineGenerator lineGenerator = new LineGenerator(new TestLinkGenerator(input));
         //when
-        final Line line = lineGenerator.generate(4);
+        final Line line = lineGenerator.generate(new PersonCount(4));
         //then
         Assertions.assertThat(line.getLinks())
                 .containsExactly(Link.LINKED, Link.UNLINKED, Link.LINKED);

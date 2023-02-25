@@ -1,5 +1,6 @@
 package domain.ladder;
 
+import domain.PersonCount;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,12 +13,12 @@ public class LineGenerator {
         this.linkGenerator = linkGenerator;
     }
 
-    public Line generate(final int personCount) {
+    public Line generate(final PersonCount personCount) {
         final Deque<Link> line = new LinkedList<>();
-        if (personCount != 1) {
+        if (personCount.getValue() != 1) {
             line.add(linkGenerator.generate());
         }
-        for (int index = 1; index < personCount - 1; index++) {
+        for (int index = 1; index < personCount.getValue() - 1; index++) {
             addValidatedLink(line);
         }
         return new Line(List.copyOf(line));

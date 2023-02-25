@@ -1,30 +1,22 @@
 package domain.ladder;
 
+import domain.Height;
+import domain.PersonCount;
 import domain.user.Users;
-import exception.ErrorMessage;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
 
-    private static final int MINIMUM_HEIGHT = 1;
 
     private final List<Line> lines = new ArrayList<>();
 
-    public Ladder(final int height, final int personCount, final LinkGenerator linkGenerator) {
-        validateHeight(height);
+    public Ladder(final Height height, final PersonCount personCount, final LinkGenerator linkGenerator) {
         generateLines(height, personCount, new LineGenerator(linkGenerator));
     }
 
-    private void validateHeight(final int height) {
-        if (height < MINIMUM_HEIGHT) {
-            throw new IllegalArgumentException(ErrorMessage.LADDER_HEIGHT_EXCEPTION.getMessage());
-        }
-    }
-
-    private void generateLines(final int height, final int personCount, final LineGenerator lineGenerator) {
-        for (int index = 0; index < height; index++) {
+    private void generateLines(final Height height, final PersonCount personCount, final LineGenerator lineGenerator) {
+        for (int index = 0; index < height.getValue(); index++) {
             lines.add(lineGenerator.generate(personCount));
         }
     }

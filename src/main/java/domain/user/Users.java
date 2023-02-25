@@ -46,7 +46,6 @@ public class Users {
         return users.size();
     }
 
-
     public void swapUserByLine(final Line line) {
         final List<Position> linkedIndexes = line.getLinkedPositions();
         linkedIndexes.forEach(position -> Collections.swap(users, position.getValue(), position.getValue() + 1));
