@@ -38,11 +38,9 @@ public class Users {
     }
 
     public List<String> getUserNames() {
-        final List<String> usersName = new ArrayList<>();
-        for (final User user : users) {
-            usersName.add(user.getName());
-        }
-        return usersName;
+        return users.stream()
+                .map(User::getName)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public int size() {
