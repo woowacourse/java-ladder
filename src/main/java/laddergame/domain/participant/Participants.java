@@ -3,7 +3,6 @@ package laddergame.domain.participant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Participants {
 
@@ -32,13 +31,15 @@ public class Participants {
                 .anyMatch(participant -> participant.isSameName(requestContent));
     }
 
-    public List<Participant> findParticipants(final String requestContent) {
-        if (requestContent.equals("all")) {
-            return participants;
-        }
+    public Participant findParticipant(final String requestContent) {
         return participants.stream()
                 .filter(participant -> participant.isSameName(requestContent))
-                .collect(Collectors.toCollection(ArrayList::new));
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(String.format("[ERROR] %s은 존재하지 않는 이름입니다. 참여자 한 명의 이름 혹은 \"all\"을 입력하세요.", requestContent)));
+    }
+
+    public List<Participant> getAllParticipants() {
+        return List.copyOf(participants);
     }
 
     private List<String> splitNames(final String names) {

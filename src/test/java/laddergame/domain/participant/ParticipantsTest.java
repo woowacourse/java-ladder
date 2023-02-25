@@ -3,19 +3,15 @@ package laddergame.domain.participant;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
-
+import static laddergame.domain.TestFixture.ERROR_MESSAGE_HEAD;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ParticipantsTest {
-
-    private static final String ERROR_MESSAGE_HEAD = "[ERROR]";
 
     @ParameterizedTest
     @ValueSource(strings = {"pobi,pobi"})
@@ -64,25 +60,23 @@ public class ParticipantsTest {
 
         @ParameterizedTest
         @ValueSource(strings = {"pobi", "honux", "crong", "jk"})
-        @DisplayName("요청된 내용이 참여자에 포함되면, 참여자가 담긴 컬렉션을 얻는다.")
-        void gets_some_participants_if_request_content_is_included_in_participants(String requestContent) {
-            int participantPosition = participantNames.indexOf("requestContent");
+        @DisplayName("요청된 내용이 참여자에 포함되면, 참여자를 얻는다.")
+        void succeeds_in_finding_participant_if_request_content_is_included_in_participants(String requestContent) {
+            int participantPosition = participantNames.indexOf(requestContent);
             Participant expectedParticipant = Participant.create(requestContent, participantPosition);
 
-            List<Participant> actualParticipant = participants.findParticipants(requestContent);
+            Participant actualParticipant = participants.findParticipant(requestContent);
 
-            assertThat(actualParticipant).containsExactly(expectedParticipant);
+            assertThat(actualParticipant).isEqualTo(expectedParticipant);
         }
 
-        @Test
-        @DisplayName("요청된 이름이 모든 참가자를 가리키는 요청 키이면, 모든 참가자를 얻는다.")
-        void gets_all_participants_if_request_content_is_same_with_all_request_key() {
-            String requestAll = "all";
-            List<Participant> expectedAllParticipants = participants.getParticipants();
-
-            List<Participant> actualAllParticipants = participants.findParticipants(requestAll);
-
-            assertThat(actualAllParticipants).isEqualTo(expectedAllParticipants);
+        @ParameterizedTest
+        @ValueSource(strings = {"tomy", "토미", "jamie", "제이미"})
+        @DisplayName("요청된 내용이 참여자에 포함되지 않으면, 예외가 발생한다.")
+        void throws_exception_if_request_content_is_not_included_in_participants(String requestContent) {
+            assertThatThrownBy(() -> participants.findParticipant(requestContent))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(ERROR_MESSAGE_HEAD);
         }
     }
 }
