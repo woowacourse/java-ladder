@@ -3,7 +3,7 @@ package laddergame.domain;
 import static laddergame.utils.ErrorMessage.INVALID_LADDER_HEIGHT_RANGE;
 
 public class Height {
-    private final static int MIN_HEIGHT = 1;
+    private static final int MIN_HEIGHT = 1;
 
     private final int height;
 

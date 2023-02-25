@@ -3,9 +3,9 @@ package laddergame.domain;
 import static laddergame.utils.ErrorMessage.INVALID_GAME_RESULT_LENGTH;
 
 public class GameResult {
-    private final static int MIN_RESULT_LENGTH = 1;
-    private final static int MAX_RESULT_LENGTH = 5;
-    private final static String BLANK = " ";
+    private static final int MIN_RESULT_LENGTH = 1;
+    private static final int MAX_RESULT_LENGTH = 5;
+    private static final String BLANK = " ";
 
     private final String result;
 

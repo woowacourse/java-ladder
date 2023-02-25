@@ -5,10 +5,10 @@ import static laddergame.utils.ErrorMessage.INVALID_USER_NAME_FORMAT;
 import static laddergame.utils.ErrorMessage.INVALID_USER_NAME_LENGTH;
 
 public class Name {
-    private final static int MIN_NAME_LENGTH = 1;
-    private final static String ALL = "all";
-    private final static String BLANK = " ";
-    private final static int MAX_NAME_LENGTH = 5;
+    private static final int MIN_NAME_LENGTH = 1;
+    private static final String ALL = "all";
+    private static final String BLANK = " ";
+    private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
 
