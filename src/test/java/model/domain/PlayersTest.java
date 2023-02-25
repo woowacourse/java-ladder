@@ -6,8 +6,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import model.vo.Name;
 import model.vo.Result;
-import model.factory.NameFactory;
-import model.factory.ResultFactory;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,14 +19,14 @@ public class PlayersTest {
     @Test
     @DisplayName("Players 객체 생성 성공 테스트")
     void createPlayersTest() {
-        assertThatNoException().isThrownBy(() -> new Players(NameFactory.create("pobi, neo, hiiro")));
+        assertThatNoException().isThrownBy(() -> new Players(List.of(new Name("pobi"), new Name("neo"), new Name("hiiro"))));
     }
 
     @Test
     @DisplayName("사다리 게임 전체 참여자 명단을 반환하는 기능 테스트")
     void getAllPlayerNamesTest() {
         //given
-        Players players = new Players(NameFactory.create("pobi, neo, hiiro"));
+        Players players = new Players(List.of(new Name("pobi"), new Name("neo"), new Name("hiiro")));
 
         //when
         List<Name> names = players.getAllPlayerNames();
@@ -44,7 +42,7 @@ public class PlayersTest {
     @DisplayName("사다리 라인에 따라 참여자 현재 위치를 바꾸는 기능 테스트")
     void moveAllPlayersByLinePointsTest() {
         //given
-        Players players = new Players(NameFactory.create("pobi, neo, hiiro, ocean"));
+        Players players = new Players(List.of(new Name("pobi"), new Name("neo"), new Name("hiiro"), new Name("ocean")));
         List<List<Boolean>> givenLines = List.of(List.of(true, false, true), List.of(false, true, false),
                 List.of(true, false, false), List.of(true, false, true));
 
@@ -66,7 +64,7 @@ public class PlayersTest {
     void saveResultByPositionTest() {
 //        //given
 //        Players players = new Players(NameFactory.create("pobi, neo, hiiro, ocean"));
-//        List<Result> results = ResultFactory.create(players.size(), "꽝, 5000, 꽝, 3000");
+//        List<Result> results = List.of(new Result("꽝"), new Result("5000"), new Result("꽝"), new Result("3000"));
 //
 //        //when
 //        players.saveAllResults(results);
@@ -86,10 +84,10 @@ public class PlayersTest {
     @DisplayName("참여자 이름을 검색하여 최종 결과 반환 기능 테스트")
     void getResultByNameTest() {
         //given
-        Players players = new Players(NameFactory.create("pobi, neo, hiiro, ocean"));
+        Players players = new Players(List.of(new Name("pobi"), new Name("neo"), new Name("hiiro"), new Name("ocean")));
         List<List<Boolean>> givenLines = List.of(List.of(true, false, true), List.of(false, true, false),
                 List.of(true, false, false), List.of(true, false, true));
-        List<Result> results = ResultFactory.create(players.size(), "꽝, 5000, 꽝, 3000");
+        List<Result> results = List.of(new Result("꽝"), new Result("5000"), new Result("꽝"), new Result("3000"));
 
         //when
         givenLines.forEach(players::moveAllPlayersByLinePoints);
@@ -111,8 +109,8 @@ public class PlayersTest {
     @DisplayName("존재하지 않는 이름을 검색한 경우 예외 처리 기능 테스트")
     void throwExceptionNoNameErrorTest() {
         //given
-        Players players = new Players(NameFactory.create("pobi, neo, hiiro, ocean"));
-        List<Result> results = ResultFactory.create(players.size(), "꽝, 5000, 꽝, 3000");
+        Players players = new Players(List.of(new Name("pobi"), new Name("neo"), new Name("hiiro"), new Name("ocean")));
+        List<Result> results = List.of(new Result("꽝"), new Result("5000"), new Result("꽝"), new Result("3000"));
 
         //when
         players.saveAllResults(results);

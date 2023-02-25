@@ -5,7 +5,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatNoException
 
 import model.vo.LadderHeight;
 import model.vo.Name;
-import model.factory.NameFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,7 @@ public class LadderTest {
 
     @BeforeEach
     void beforeTest() {
-        names = NameFactory.create("pobi, neo, hiiro");
+        names = List.of(new Name("pobi"), new Name("neo"), new Name("hiiro"));
         players = new Players(names);
         ladderHeight = new LadderHeight(5);
     }
