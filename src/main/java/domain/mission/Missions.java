@@ -29,16 +29,12 @@ public class Missions {
                 .map(Mission::new)
                 .collect(Collectors.toList());
         // TODO: shuffle에 대해서 통제할 수 있는 코드 작성
-        Collections.shuffle(randomMission);
+        // Collections.shuffle(randomMission);
         return randomMission;
     }
 
     public List<Mission> getMissions() {
         return Collections.unmodifiableList(missions);
-    }
-
-    public int size() {
-        return missions.size();
     }
 
     public Mission findByPosition(Position position) {
