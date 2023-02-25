@@ -1,32 +1,29 @@
 package ladder.domain;
 
-import java.util.Objects;
+import java.util.Arrays;
 
-public class Bar {
-    private final boolean bar;
-
-    public Bar(boolean bar) {
-        this.bar = bar;
+public enum Bar {
+    TRUE(true),
+    FALSE(false);
+    
+    private final boolean isExistBar;
+    
+    Bar(boolean isExistBar) {
+        this.isExistBar = isExistBar;
     }
-
-    public Bar(BarGenerator barGenerator) {
-        this.bar = barGenerator.createBar();
+    
+    public static Bar valueOfBar(boolean otherBar) {
+        return Arrays.stream(values())
+                .filter(bar -> bar.isSame(otherBar))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 Bar입니다."));
     }
-
+    
+    private boolean isSame(boolean otherBar) {
+        return this.isExistBar == otherBar;
+    }
+    
     public boolean isExistBar(){
-        return this.bar;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Bar bar1 = (Bar) o;
-        return bar == bar1.bar;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(bar);
+        return this.isExistBar;
     }
 }

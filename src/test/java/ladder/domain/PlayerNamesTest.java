@@ -1,44 +1,103 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.*;
 
 class PlayerNamesTest {
-    @Test
-    @DisplayName("입력받은 이름들을 ,를 기준으로 나눈다.")
-    void test_1() {
-        // when
-        PlayerNames playerNames = new PlayerNames("chech,abel");
-        
-        // then
-        assertThat(playerNames.getNames())
-                .contains("chech", "abel");
+    PlayerNames playerNames;
+    
+    @BeforeEach
+    void setUp() {
+        List<PlayerName> names = List.of(new PlayerName("abel"), new PlayerName("chech"), new PlayerName("pobi"));
+        playerNames = new PlayerNames(names);
     }
     
     @Test
-    @DisplayName("플레이어 이름이 5자를 초과할 시 예외가 발생한다.")
-    void test_2() {
+    @DisplayName("입력받은 이름들을 ,를 기준으로 나눈다.")
+    void test_1() {
+        // given, when
+        List<PlayerName> names = playerNames.getNames();
+        
+        // then
+        assertThat(names)
+                .containsExactly( new PlayerName("abel"), new PlayerName("chech"), new PlayerName("pobi"));
+    }
+    
+    @Test
+    @DisplayName("플레이어 명수를 가져온다.")
+    void playerSize() {
+        // given, when
+        int playerSize = playerNames.playerSize();
+        
+        // then
+        assertThat(playerSize).isEqualTo(3);
+    }
+    
+    @Test
+    @DisplayName("해당 플레이어 인덱스를 가져온다.")
+    void getPlayerIndex() {
+        // given, when
+        int playerIndex = playerNames.getPlayerIndex("pobi");
+        
+        // then
+        assertThat(playerIndex).isEqualTo(2);
+    }
+    
+    @Test
+    @DisplayName("첫번째 플레이어의 글자 길이를 가져온다.")
+    void getFirstPlayerNameLength() {
+        // given, when
+        int firstPlayerNameLength = playerNames.getFirstPlayerNameLength();
+        
+        // then
+        assertThat(firstPlayerNameLength).isEqualTo(4);
+    }
+    
+    @ParameterizedTest
+    @ValueSource(strings = {"abel", "chech", "pobi", "all"})
+    @DisplayName("all 또는 존재하는 플레이어 이름 입력 시, 정상 동작한다.")
+    void existedPlayer(String playerName) {
+        assertThatNoException()
+                .isThrownBy(() -> playerNames.findByName(playerName));
+    }
+    
+    @ParameterizedTest
+    @ValueSource(strings = {"aaa", "abal"})
+    @DisplayName("없는 플레이어가 인자로 전달될 경우 예외처리를 한다.")
+    void notExistedPlayerException(String playerName) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new PlayerNames("abel,cheche"))
-                .withMessage("입력된 플레이어들의 이름 형식이 올바르지 않습니다.");
+                .isThrownBy(() -> playerNames.findByName(playerName))
+                .withMessage("존재하지 않는 플레이어입니다.");
     }
     
     @Test
     @DisplayName("플레이어 이름 개수가 2미만일 시 예외가 발생한다.")
     void test_3() {
+        // given
+        List<PlayerName> playerNames = List.of(new PlayerName("abel"));
+        
+        // when, then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new PlayerNames("abel"))
+                .isThrownBy(() -> new PlayerNames(playerNames))
                 .withMessage("이름의 수가 2이상 100이하여야 합니다.");
     }
     
     @Test
     @DisplayName("플레이어 이름이 중복될 시 예외가 발생한다.")
     void test_4() {
+        // given
+        List<PlayerName> playerNames = List.of(new PlayerName("abel"), new PlayerName("abel"));
+        
+        // when, then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new PlayerNames("abel,abel"))
+                .isThrownBy(() -> new PlayerNames(playerNames))
                 .withMessage("중복된 이름은 입력할 수 없습니다.");
     }
 }

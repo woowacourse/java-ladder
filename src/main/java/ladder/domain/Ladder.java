@@ -28,11 +28,24 @@ public class Ladder {
     }
 
     private Line createLine(BarGenerator barGenerator, int peopleSize) {
-        Line line = new Line();
-        line.addBars(peopleSize, barGenerator);
-        return line;
+        return new Line(barGenerator, peopleSize);
     }
-
+    
+    public List<Integer> getMovedPositions(int playersSize) {
+        List<Integer> movedPositions = initPositions(playersSize);
+        for (Line line : lines) {
+            movedPositions = line.getMovedPositions(movedPositions);
+        }
+        
+        return movedPositions;
+    }
+    
+    private List<Integer> initPositions(int playersSize) {
+        return IntStream.range(0, playersSize)
+                .boxed()
+                .collect(Collectors.toUnmodifiableList());
+    }
+    
     public List<Line> getLines() {
         return this.lines;
     }

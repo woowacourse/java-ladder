@@ -1,55 +1,39 @@
 package ladder.domain;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class PlayerNames {
-    private static final Pattern INPUT_NAMES_FORMAT = Pattern.compile("([a-zA-Z]{1,5})(,[a-zA-Z]{1,5})*");
-    private static final int MINIMUM_PLAYER_NUMBER = 2;
-    private static final int MAXIMUM_PLAYER_NUMBER = 100;
+    private static final int MIN_PLAYER_NUMBER = 2;
+    private static final int MAX_PLAYER_NUMBER = 100;
+    private static final int FIRST_INDEX = 0;
     
-    private final List<String> names;
+    private final List<PlayerName> names;
     
-    public PlayerNames(String playerNames) {
+    public PlayerNames(List<PlayerName> playerNames) {
         validate(playerNames);
-        names = splitNames(playerNames);
+        names = playerNames;
     }
     
-    private void validate(String playerNames) {
-        validateNamesInputForm(playerNames);
-        List<String> splitNames = splitNames(playerNames);
+    private void validate(List<PlayerName> splitNames) {
         validateRange(splitNames);
         validateDuplicateNames(splitNames);
     }
     
-    private void validateRange(List<String> splitedNames) {
-        if (splitedNames.size() < MINIMUM_PLAYER_NUMBER || splitedNames.size() > MAXIMUM_PLAYER_NUMBER) {
+    private void validateRange(List<PlayerName> splitedNames) {
+        int splitedNamesSize = splitedNames.size();
+        
+        if (splitedNamesSize < MIN_PLAYER_NUMBER || splitedNamesSize > MAX_PLAYER_NUMBER) {
             throw new IllegalArgumentException("이름의 수가 2이상 100이하여야 합니다.");
         }
     }
     
-    private void validateNamesInputForm(String names) {
-        Matcher matcher = INPUT_NAMES_FORMAT.matcher(names);
-        if (!matcher.matches()) {
-            throw new IllegalArgumentException("입력된 플레이어들의 이름 형식이 올바르지 않습니다.");
-        }
-    }
-    
-    private List<String> splitNames(String names) {
-        return Arrays.stream(names.split(","))
-                .collect(Collectors.toUnmodifiableList());
-    }
-    
-    private void validateDuplicateNames(List<String> splitedNames) {
+    private void validateDuplicateNames(List<PlayerName> splitedNames) {
         if (getDistinctNamesNumber(splitedNames) != splitedNames.size()) {
             throw new IllegalArgumentException("중복된 이름은 입력할 수 없습니다.");
         }
     }
     
-    private int getDistinctNamesNumber(List<String> splitedNames) {
+    private int getDistinctNamesNumber(List<PlayerName> splitedNames) {
         return (int) splitedNames.stream()
                 .distinct()
                 .count();
@@ -59,11 +43,27 @@ public class PlayerNames {
         return names.size();
     }
     
-    public int firstPlayerNameLength() {
-        return names.get(0).length();
+    public int getFirstPlayerNameLength() {
+        return names.get(FIRST_INDEX).getLength();
     }
     
-    public List<String> getNames() {
+    public int getPlayerIndex(String player) {
+        return names.indexOf(new PlayerName(player));
+    }
+    
+    public String findByName(String playerName) {
+        if ("all".equals(playerName)) {
+            return playerName;
+        }
+        
+        return names.stream()
+                .filter(name -> name.equals(new PlayerName(playerName)))
+                .map(PlayerName::getPlayerName)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어입니다."));
+    }
+    
+    public List<PlayerName> getNames() {
         return names;
     }
 }

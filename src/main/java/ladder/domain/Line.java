@@ -2,46 +2,58 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.stream.Collectors;
 
 public class Line {
-    private final List<Bar> bars;
+    private static final int BOTH_ENDS_COUNT = 2;
+    
+    private final List<Direction> line;
 
-    public Line() {
-        bars = new ArrayList<>(List.of(new Bar(false)));
+    public Line(BarGenerator barGenerator, int peopleSize) {
+        line = createLine(barGenerator, peopleSize);
     }
-
-    public void addBars(int peopleSize, BarGenerator barGenerator) {
-        IntStream.range(0, peopleSize - 1)
-                .forEach(count -> addCorrectBar(barGenerator));
+    
+    private List<Direction> createLine(BarGenerator barGenerator, int peopleSize) {
+        List<Direction> line = new ArrayList<>();
+        addFirstDirection(barGenerator, line);
+        addMiddleDirections(barGenerator, peopleSize, line);
+        addLastDirection(line);
+        return line;
     }
-
-    private void addCorrectBar(BarGenerator barGenerator) {
-        if (lastBar().isExistBar()) {
-            addNotExistedBar();
-            return;
+    
+    private void addFirstDirection(BarGenerator barGenerator, List<Direction> line) {
+        line.add(Direction.createFirst(barGenerator));
+    }
+    
+    private void addMiddleDirections(BarGenerator barGenerator, int peopleSize, List<Direction> line) {
+        for (int middleDirectionCount = 0; middleDirectionCount < peopleSize - BOTH_ENDS_COUNT; middleDirectionCount++) {
+            line.add(getLastDirection(line).createNext(barGenerator));
         }
-
-        addBar(barGenerator);
     }
-
-    private Bar lastBar() {
-        return bars.get(barsLastIndex());
+    
+    private void addLastDirection(List<Direction> line) {
+        line.add(getLastDirection(line).createLast());
     }
-
-    private int barsLastIndex() {
-        return bars.size() - 1;
+    
+    private Direction getLastDirection(List<Direction> line) {
+        return line.get(getLineLastIndex(line));
     }
-
-    private void addBar(BarGenerator barGenerator) {
-        bars.add(new Bar(barGenerator));
+    
+    private int getLineLastIndex(List<Direction> line) {
+        return line.size() - 1;
     }
-
-    private void addNotExistedBar() {
-        bars.add(new Bar(false));
+    
+    public List<Integer> getMovedPositions(List<Integer> positions) {
+        return positions.stream()
+                .map(position -> getCurrentPositionDirection(position).getMovedPosition(position))
+                .collect(Collectors.toUnmodifiableList());
     }
-
-    public List<Bar> getBars() {
-        return bars;
+    
+    private Direction getCurrentPositionDirection(Integer position) {
+        return line.get(position);
+    }
+    
+    public List<Direction> getLine() {
+        return line;
     }
 }

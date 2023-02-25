@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Bar;
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.PlayerNames;
+import ladder.domain.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,12 +8,22 @@ import java.util.stream.IntStream;
 
 public class OutputView {
     private static final int PER_NAME_SPACE = 6;
-
-    public static void printNames(PlayerNames playerNames) {
-        println(parseDisplayNames(playerNames.getNames()));
+    
+    private OutputView() {
+        throw new IllegalStateException("인스턴스를 생성할 수 없는 유틸클래스입니다.");
     }
-
-    private static String parseDisplayNames(List<String> names) {
+    
+    public static void printNames(PlayerNames playerNames) {
+        println(System.lineSeparator() + parseDisplayElements(parsePlayerNames(playerNames)));
+    }
+    
+    private static List<String> parsePlayerNames(PlayerNames playerNames) {
+        return playerNames.getNames().stream()
+                .map(PlayerName::getPlayerName)
+                .collect(Collectors.toUnmodifiableList());
+    }
+    
+    private static String parseDisplayElements(List<String> names) {
         return IntStream.range(0, names.size())
                 .mapToObj(nameIndex -> parseDisplayName(names, nameIndex))
                 .collect(Collectors.joining());
@@ -37,27 +44,61 @@ public class OutputView {
         return ladder.getLines().stream()
                 .map(OutputView::parseLine)
                 .map(lineDisplay -> lineDisplay.substring(PER_NAME_SPACE - firstNameLength))
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
     private static String parseLine(Line line) {
-        return line.getBars().stream()
+        return line.getLine().stream()
                 .map(OutputView::parseBar)
                 .collect(Collectors.joining("|", "", "|"));
     }
-
-    private static String parseBar(Bar bar) {
-        return parseBarMatcher(bar).getBarDisplay();
+    
+    private static String parseBar(Direction direction) {
+        return parseBarMatcher(direction.getLeftBar()).getBarDisplay();
     }
-
-    private static BarMatcher parseBarMatcher(Bar bar) {
-        return BarMatcher.valueOfBarMatcher(bar);
+    
+    private static BarDisplayMatcher parseBarMatcher(Bar bar) {
+        return BarDisplayMatcher.valueOfBarMatcher(bar);
     }
-
+    
+    public static void printGameResults(GameResults gameResults) {
+        println(parseDisplayElements(parseGameResultsDisplay(gameResults)));
+    }
+    
+    private static List<String> parseGameResultsDisplay(GameResults gameResults) {
+        return gameResults.getGameResults().stream().map(GameResult::getGameResult).collect(Collectors.toUnmodifiableList());
+    }
+    
+    public static void printAllPlayerResult(PlayerNames playerNames, List<Integer> movedPositions, GameResults gameResults) {
+        List<String> names = parsePlayerNames(playerNames);
+        List<GameResult> sortedGameResults = gameResults.getSortedGameResults(movedPositions);
+        
+        println(System.lineSeparator() + "실행 결과");
+        println(parseAllPlayerResult(names, sortedGameResults));
+    }
+    
+    private static String parseAllPlayerResult(List<String> names, List<GameResult> gameResults) {
+        return IntStream.range(0, names.size())
+                .mapToObj(playerIndex -> parsePlayerResult(playerIndex, names, gameResults))
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
+    
+    private static String parsePlayerResult(int playerIndex, List<String> names, List<GameResult> gameResults) {
+        GameResult gameResult = gameResults.get(playerIndex);
+        return names.get(playerIndex) + " : " + gameResult.getGameResult();
+    }
+    
+    public static void printOnePlayerResult(int playerIndex, List<Integer> movedPositions, GameResults gameResults) {
+        println(System.lineSeparator() + "실행 결과");
+        
+        GameResult gameResult = gameResults.getGameResult(playerIndex, movedPositions);
+        println(gameResult.getGameResult());
+    }
+    
     public static void printExceptionMessage(IllegalArgumentException illegalArgumentException) {
         println(illegalArgumentException.getMessage());
     }
-
+    
     private static void println(String message) {
         System.out.println(message);
     }
