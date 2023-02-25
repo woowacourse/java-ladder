@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Ends {
-	private static final String END_COUNT_INVALID_ERROR_MSG = "결과의 수가 맞지 않습니다.";
+	private static final String END_COUNT_INVALID_ERROR_MSG = "결과의 수가 참가자 수와 다릅니다.";
 	private final List<End> ends;
 
 	public Ends(final List<String> endNames, final int count) {
