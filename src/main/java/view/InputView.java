@@ -40,7 +40,7 @@ public class InputView {
         return new Results(mapToResult(trimNames(results)));
     }
 
-    public InputRepeatableDTO inputResultViewersName(Names allPlayersName) {
+    public InputRepeatableDTO inputResultViewersName(final Names allPlayersName) {
         System.out.println(INPUT_RESULT_VIEWER_NAME_MESSAGE);
         List<String> inputNames = List.of(scanner.nextLine().split(NAME_DELIMITER));
 
@@ -67,7 +67,7 @@ public class InputView {
         }
     }
 
-    private List<String> trimNames(List<String> names) {
+    private List<String> trimNames(final List<String> names) {
         return names.stream()
                 .map(String::trim)
                 .collect(Collectors.toUnmodifiableList());
@@ -85,7 +85,7 @@ public class InputView {
         return new Height(Integer.parseInt(input));
     }
 
-    private List<Result> mapToResult(List<String> result) {
+    private List<Result> mapToResult(final List<String> result) {
         return result.stream()
                 .map(Result::new)
                 .collect(Collectors.toList());

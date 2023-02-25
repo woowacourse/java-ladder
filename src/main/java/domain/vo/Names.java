@@ -11,7 +11,7 @@ public class Names {
     private final List<Name> names;
 
     public Names(List<Name> names) {
-        this.names = names;
+        this.names = List.copyOf(names);
     }
 
     public boolean contains(Name name) {

@@ -8,7 +8,7 @@ import domain.vo.Width;
 public class LadderMaker {
     private final BooleanGenerator booleanGenerator;
 
-    public LadderMaker(BooleanGenerator booleanGenerator) {
+    public LadderMaker(final BooleanGenerator booleanGenerator) {
         this.booleanGenerator = booleanGenerator;
     }
 

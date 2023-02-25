@@ -12,7 +12,7 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(List<Player> players) {
+    public Players(final List<Player> players) {
         this.players = List.copyOf(players);
         initPosition();
     }
@@ -23,16 +23,16 @@ public class Players {
         }
     }
 
-    public void moveAll(Ladder ladder) {
+    public void moveAll(final Ladder ladder) {
         players.forEach(player -> player.move(ladder));
     }
 
-    public int orderByName(Name name) {
+    public int orderByName(final Name name) {
         Player player = findByName(name);
         return player.getXPosition();
     }
 
-    public Player findByName(Name name) {
+    public Player findByName(final Name name) {
         return players.stream()
                 .filter(player -> player.getName().equals(name))
                 .findAny()

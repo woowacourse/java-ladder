@@ -7,16 +7,16 @@ public class InputRepeatableDTO {
     private final Names names;
     private final boolean repeatable;
 
-    private InputRepeatableDTO(Names names, boolean repeatable) {
+    private InputRepeatableDTO(final Names names, final boolean repeatable) {
         this.names = names;
         this.repeatable = repeatable;
     }
 
-    public static InputRepeatableDTO repeatable(Names data) {
+    public static InputRepeatableDTO repeatable(final Names data) {
         return new InputRepeatableDTO(data, true);
     }
 
-    public static InputRepeatableDTO Unrepeatable(Names data) {
+    public static InputRepeatableDTO Unrepeatable(final Names data) {
         return new InputRepeatableDTO(data, false);
     }
 

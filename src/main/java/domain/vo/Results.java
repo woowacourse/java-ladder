@@ -11,7 +11,7 @@ public class Results {
         this.results = List.copyOf(results);
     }
 
-    public Result get(int index) {
+    public Result get(final int index) {
         return results.get(index);
     }
 

@@ -4,7 +4,7 @@ public class Result {
 
     private final String value;
 
-    public Result(String value) {
+    public Result(final String value) {
         this.value = value;
     }
 

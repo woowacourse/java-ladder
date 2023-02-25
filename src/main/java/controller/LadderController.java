@@ -19,7 +19,9 @@ public class LadderController {
     private final OutputView outputView;
     private final LadderMaker ladderMaker;
 
-    public LadderController(InputView inputView, OutputView outputView, LadderMaker ladderMaker) {
+    public LadderController(final InputView inputView,
+                            final OutputView outputView,
+                            final LadderMaker ladderMaker) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.ladderMaker = ladderMaker;
@@ -31,7 +33,7 @@ public class LadderController {
         repeatViewResult(ladderGame);
     }
 
-    private void repeatViewResult(LadderGame ladderGame) {
+    private void repeatViewResult(final LadderGame ladderGame) {
         boolean isRepeat = repeatableViewResult(ladderGame);
 
         while (isRepeat) {

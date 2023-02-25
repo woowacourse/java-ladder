@@ -18,7 +18,7 @@ public class Ladder {
         this.width = width;
     }
 
-    public boolean hasLeftAt(Position position) {
+    public boolean hasLeftAt(final Position position) {
         Layer layer = layers.get(position.getY());
         if (position.getX() == 0) {
             return false;
@@ -26,7 +26,7 @@ public class Ladder {
         return layer.getLine(position.getX() - 1);
     }
 
-    public boolean hasRightAt(Position position) {
+    public boolean hasRightAt(final Position position) {
         Layer layer = layers.get(position.getY());
         if (position.getX() >= layer.getLines().size()) {
             return false;

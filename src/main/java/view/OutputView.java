@@ -17,14 +17,14 @@ public class OutputView {
     private static final String UNCONNECTED_LINE = "     ";
     private static final String NAME_SPACE = " ";
 
-    public void printLadder(Names names, Ladder ladder, Results results) {
+    public void printLadder(final Names names, final Ladder ladder, final Results results) {
         System.out.println(RESULT_ANNOUNCEMENT);
         printNames(names);
         printLadder(ladder);
         printResult(results);
     }
 
-    private void printResult(Results results) {
+    private void printResult(final Results results) {
         StringBuilder stringBuilder = new StringBuilder();
         for (String result : results.mapToStrings()) {
             stringBuilder.append(NAME_SPACE.repeat(4));
@@ -43,13 +43,13 @@ public class OutputView {
         System.out.println(stringBuilder);
     }
 
-    private void printLadder(Ladder ladder) {
+    private void printLadder(final Ladder ladder) {
         for (Layer layer : ladder.getLayers()) {
             printLayer(layer);
         }
     }
 
-    private void printLayer(Layer layer) {
+    private void printLayer(final Layer layer) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(FRONT_SPACE).append(LINE_DELIMITER);
         List<Boolean> lines = layer.getLines();
@@ -57,14 +57,14 @@ public class OutputView {
         System.out.println(stringBuilder);
     }
 
-    private String selectLine(boolean line) {
+    private String selectLine(final boolean line) {
         if (line) {
             return CONNECTED_LINE;
         }
         return UNCONNECTED_LINE;
     }
 
-    public void printGameResult(Names viewers, Results viewResult) {
+    public void printGameResult(final Names viewers, final Results viewResult) {
         for (int i = 0; i < viewers.size(); i++) {
             System.out.println(viewers.get(i).getValue() + " : " + viewResult.get(i).getValue());
         }

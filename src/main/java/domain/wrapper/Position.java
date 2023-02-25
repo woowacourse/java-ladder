@@ -4,16 +4,16 @@ public class Position {
     private int x;
     private int y;
 
-    private Position(int x, int y) {
+    private Position(final int x, final int y) {
         this.x = x;
         this.y = y;
     }
 
-    public static Position of(int x) {
+    public static Position of(final int x) {
         return new Position(x, 0);
     }
 
-    public static Position of(int x, int y) {
+    public static Position of(final int x, final int y) {
         return new Position(x, y);
     }
 

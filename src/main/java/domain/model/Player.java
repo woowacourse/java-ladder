@@ -12,7 +12,7 @@ public class Player {
         this.name = name;
     }
 
-    public void initPosition(int index) {
+    public void initPosition(final int index) {
         position = Position.of(index);
     }
 
