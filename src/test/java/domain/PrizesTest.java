@@ -1,5 +1,7 @@
 package domain;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import exception.InvalidPrizesSizeException;
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -21,4 +23,17 @@ public class PrizesTest {
             .isInstanceOf(InvalidPrizesSizeException.class);
     }
 
+    @Test
+    void getPrizeNames_하면_상품들의_이름_리스트를_반환한다() {
+        //given
+        int playerCount = 3;
+        List<String> prizeName = List.of("꽝", "5000", "꽝");
+        Prizes prizes = Prizes.generatePrizes(playerCount, prizeName);
+
+        //when
+        List<String> result = prizes.getPrizeName();
+
+        //then
+        assertTrue(result.containsAll(prizeName));
+    }
 }

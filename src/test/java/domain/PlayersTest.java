@@ -2,8 +2,10 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import exception.InvalidPlayerNameException;
+import exception.PlayerDuplicationException;
 import org.junit.jupiter.api.*;
 
 import java.util.List;
@@ -58,5 +60,25 @@ public class PlayersTest {
 
         //then
         assertThat(result.getName()).isEqualTo(playerName);
+    }
+
+    @Test
+    void 중복된_이름이_있으면_Players_객체를_생성하지_않고_에러를_발생시킨다() {
+        //given
+        List<String> players = List.of("ako", "ako", "ash", "split");
+
+        //when + then
+        assertThatThrownBy(() -> Players.generatePlayer(players))
+            .isInstanceOf(PlayerDuplicationException.class);
+
+    }
+
+    @Test
+    void 중복된_이름이_없으면_Players_객체를_생성한다() {
+        //given
+        List<String> player = List.of("ako","ash", "split");
+
+        //when + then
+        assertDoesNotThrow(() -> Players.generatePlayer(player));
     }
 }
