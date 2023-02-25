@@ -2,7 +2,6 @@ package domain.user;
 
 import domain.Position;
 import domain.ladder.Line;
-import domain.prize.Prize;
 import domain.prize.Prizes;
 import exception.ErrorMessage;
 import java.util.ArrayList;
@@ -58,10 +57,7 @@ public class Users {
             return getAllUsersAndPrizes(prizes);
         }
         validateParticipateUser(userName);
-        return users.stream()
-                .filter(user -> user.isSameName(userName))
-                .collect(Collectors.toUnmodifiableMap(User::getName,
-                        (User user) -> getPrizeByUserName(prizes, userName).getName()));
+        return Map.of(userName, getPrizeNameByUserName(prizes, userName));
     }
 
     private void validateParticipateUser(final String userName) {
@@ -73,11 +69,11 @@ public class Users {
     private Map<String, String> getAllUsersAndPrizes(final Prizes prizes) {
         return users.stream()
                 .collect(Collectors.toUnmodifiableMap(User::getName,
-                        (User user) -> getPrizeByUserName(prizes, user.getName()).getName()));
+                        (User user) -> getPrizeNameByUserName(prizes, user.getName())));
     }
 
-    private Prize getPrizeByUserName(final Prizes prizes, final String userName) {
+    private String getPrizeNameByUserName(final Prizes prizes, final String userName) {
         final int userIndex = users.indexOf(new User(userName));
-        return prizes.getPrizeBy(new Position(userIndex));
+        return prizes.getPrizeBy(new Position(userIndex)).getName();
     }
 }
