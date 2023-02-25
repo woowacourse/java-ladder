@@ -23,6 +23,7 @@ public class Application {
         ladderGame.processResult(people, lines);
         OutputView.printResult(people, lines, people.calculateMaxNameLength());
         String targetName = inputTargetPerson(people);
+        OutputView.printRewardResult(rewards, people, targetName);
     }
 
     private static People inputPeople(LadderGame ladderGame) {

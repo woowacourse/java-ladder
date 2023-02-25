@@ -15,4 +15,8 @@ public class Rewards {
             throw new IllegalArgumentException("결과의 수는 참가자의 수와 동일해야 합니다.");
         }
     }
+
+    public List<Reward> getRewards() {
+        return rewards;
+    }
 }
