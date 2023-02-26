@@ -15,7 +15,9 @@ class RowTest {
     void createLineTest() {
         int personCount = 5;
         List<Boolean> test = newArrayList(true, false, false, true);
+
         Row row = new Row(personCount, new TestLineCreateDecider(test));
+
         Assertions.assertThat(row.getPoints()).containsExactly(true, false, false, true);
     }
 
@@ -24,7 +26,9 @@ class RowTest {
     void createLineIfLeftHasLineTest() {
         int personCount = 5;
         List<Boolean> test = newArrayList(true, true, false, true);
+
         Row row = new Row(personCount, new TestLineCreateDecider(test));
+        
         Assertions.assertThat(row.getPoints()).containsExactly(true, false, false, true);
     }
 

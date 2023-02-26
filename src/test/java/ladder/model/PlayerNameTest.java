@@ -20,10 +20,20 @@ class PlayerNameTest {
     }
 
     @ParameterizedTest
+    @DisplayName("플레이어 이름이 all, quit 이면 예외처리 테스트")
+    @ValueSource(strings = {"all", "quit"})
+    void invalidNameCommandTest(String input) {
+        Assertions.assertThatThrownBy(() -> new PlayerName(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
+    @ParameterizedTest
     @DisplayName("플레이어 이름이 1자 이상 5자 이하면 통과 테스트")
     @ValueSource(strings = {"이리내", "이오", "이", "이리내이오"})
     void validNameLengthTest(String input) {
-        assertThatCode(() -> new PlayerName(input)).doesNotThrowAnyException();
+        assertThatCode(() -> new PlayerName(input))
+                .doesNotThrowAnyException();
     }
 
     @ParameterizedTest

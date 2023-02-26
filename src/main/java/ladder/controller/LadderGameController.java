@@ -5,6 +5,7 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderGameController {
@@ -18,19 +19,39 @@ public class LadderGameController {
     }
 
     public void run() {
-        List<PlayerName> playerNames = generatePlayerNames();
-        Height height = generateHeight();
+        try {
+            LadderGame ladderGame = generateLadderGame();
+            showLadderGame(ladderGame);
 
-        LadderGame ladderGame = new LadderGame(playerNames, height, new RandomLineCreateDecider());
-        showResult(ladderGame);
+            ladderGame.playLadderGame();
+            askResults(ladderGame.getResult());
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+        }
     }
 
-    private List<PlayerName> generatePlayerNames() {
+    private LadderGame generateLadderGame() {
+        List<Player> players = generatePlayers();
+        List<Reward> rewards = generateRewards();
+        Height height = generateHeight();
+
+        LadderGame ladderGame = new LadderGame(players, rewards, height);
+        ladderGame.generateLadder(new RandomLineCreateDecider());
+        return ladderGame;
+    }
+
+    private List<Player> generatePlayers() {
         List<String> names = inputView.readNames();
-        List<PlayerName> playerNames = names.stream()
-                .map(PlayerName::new)
+        return names.stream()
+                .map(Player::new)
                 .collect(Collectors.toList());
-        return playerNames;
+    }
+
+    private List<Reward> generateRewards() {
+        List<String> reward = inputView.readRewards();
+        return reward.stream()
+                .map(Reward::new)
+                .collect(Collectors.toList());
     }
 
     private Height generateHeight() {
@@ -38,16 +59,66 @@ public class LadderGameController {
         return new Height(height);
     }
 
-    private void showResult(LadderGame ladderGame) {
-        outputView.printPlayerNames(ladderGame.getPlayerNames().stream()
-                .map(PlayerName::getPlayerName)
-                .collect(Collectors.toList()));
+    private void showLadderGame(LadderGame ladderGame) {
+        showPlayer(ladderGame.getPlayers());
+        showLadder(ladderGame.getLadder());
+        showReward(ladderGame.getRewards());
+    }
 
-        Ladder ladder = ladderGame.getLadder();
+    private void showPlayer(List<Player> players) {
+        outputView.printPlayerNames(players.stream()
+                .map(Player::getPlayerName)
+                .collect(Collectors.toList()));
+    }
+
+    private void showLadder(Ladder ladder) {
         List<Row> rows = ladder.getRows();
         for (Row row : rows) {
             outputView.printRow(row.getPoints());
         }
+    }
+
+    private void showReward(List<Reward> rewards) {
+        outputView.printReward(rewards.stream()
+                .map(Reward::getReward)
+                .collect(Collectors.toList()));
+    }
+
+    private void askResults(Result result) {
+        String askedPlayerName = inputView.readAskingResult();
+
+        while (!askedPlayerName.equals(Command.QUIT.getCommand())) {
+            searchResult(result, askedPlayerName);
+
+            askedPlayerName = inputView.readAskingResult();
+        }
+    }
+
+    private void searchResult(Result result, String askedPlayerName) {
+        if (askedPlayerName.equals(Command.ALL.getCommand())) {
+            showAllResult(result);
+            return;
+        }
+
+        showOneResult(result.getRewardFor(askedPlayerName));
+    }
+
+    private void showAllResult(Result result) {
+        Map<String, String> convertedResult = convertResult(result.getResult());
+
+        outputView.printAllResult(convertedResult);
+    }
+
+    private static Map<String, String> convertResult(Map<Player, Reward> result) {
+        return result.keySet().stream()
+                .collect(Collectors.toMap(
+                        Player::getPlayerName,
+                        key -> result.get(key).getReward()
+                ));
+    }
+
+    private void showOneResult(Reward reward) {
+        outputView.printOneResult(reward.getReward());
     }
 
 }

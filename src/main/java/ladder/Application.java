@@ -10,4 +10,5 @@ public class Application {
         LadderGameController ladderGameController = new LadderGameController(InputView.getInstance(), OutputView.getInstance());
         ladderGameController.run();
     }
+
 }

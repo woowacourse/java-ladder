@@ -19,7 +19,7 @@ class InputViewTest {
     }
 
     @Test
-    @DisplayName("입력받은 문자열을 ,를 기준으로 잘 분리하는지 테스트")
+    @DisplayName("입력받은 이름 문자열을 ,를 기준으로 잘 분리하는지 테스트")
     void splitNameTest() {
         String input = "이오,이리내,깃짱,성하\n";
         InputStream in = generateUserInput(input);
@@ -48,6 +48,16 @@ class InputViewTest {
 
         Assertions.assertThatThrownBy(inputView::readHeight)
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("입력받은 보상 문자열을 ,를 기준으로 잘 분리하는지 테스트")
+    void splitRewardTest() {
+        String input = "꽝,5000,꽝,3000\n";
+        InputStream in = generateUserInput(input);
+        System.setIn(in);
+
+        assertThat(inputView.readRewards().size()).isEqualTo(4);
     }
 
 }

@@ -1,5 +1,7 @@
 package ladder.model;
 
+import static ladder.model.ErrorMessage.*;
+
 public class PlayerName {
 
     private static final int MIN_LENGTH = 1;
@@ -8,7 +10,7 @@ public class PlayerName {
 
     public PlayerName(String playerName) {
         playerName = removeWhiteSpace(playerName);
-        validatePlayerNameLength(playerName);
+        validatePlayerName(playerName);
         this.playerName = playerName;
     }
 
@@ -16,27 +18,28 @@ public class PlayerName {
         return playerName.replaceAll(" ", "");
     }
 
+    private void validatePlayerName(String playerName) {
+        validatePlayerNameLength(playerName);
+        validatePlayerNameRestricted(playerName);
+    }
+
     private void validatePlayerNameLength(String playerName) {
         if (playerName.length() < MIN_LENGTH || playerName.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_INVALID_LENGTH_NAME.getMessage());
+            throw new IllegalArgumentException(EXCEPTION_PLAYER_NAME_LENGTH.getMessage());
+        }
+    }
+
+    private void validatePlayerNameRestricted(String playerName) {
+        if (playerName.equals(Command.ALL.getCommand())) {
+            throw new IllegalArgumentException(EXCEPTION_PLAYER_NAME_RESTRICTED_ALL.getMessage());
+        }
+        if (playerName.equals(Command.QUIT.getCommand())) {
+            throw new IllegalArgumentException(EXCEPTION_PLAYER_NAME_RESTRICTED_QUIT.getMessage());
         }
     }
 
     public String getPlayerName() {
         return playerName;
-    }
-
-    private enum ErrorMessage {
-        EXCEPTION_INVALID_LENGTH_NAME("플레이어 이름은 1자 이상 5자 이하여야 합니다.");
-        private final String message;
-
-        ErrorMessage(String message) {
-            this.message = message;
-        }
-
-        private String getMessage() {
-            return message;
-        }
     }
 
 }

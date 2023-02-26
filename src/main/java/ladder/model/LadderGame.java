@@ -1,57 +1,77 @@
 package ladder.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
+import static ladder.model.ErrorMessage.EXCEPTION_PLAYER_COUNT;
+import static ladder.model.ErrorMessage.EXCEPTION_REWARD_COUNT;
 
 public class LadderGame {
 
     private static final int MIN_PLAYER_COUNT = 2;
-    private final List<PlayerName> playerNames;
+    private static final int MAX_PLAYER_COUNT = 30;
+    private final List<Player> players;
+    private final List<Reward> rewards;
     private final Height height;
-    private final LineCreateDecider lineCreateDecider;
-    private final Ladder ladder;
+    private Ladder ladder;
+    private Result result;
 
-    public LadderGame(List<PlayerName> playerNames, Height height, LineCreateDecider lineCreateDecider) {
-        validatePlayerCount(playerNames);
-        this.playerNames = playerNames;
+    public LadderGame(List<Player> players, List<Reward> rewards, Height height) {
+        validatePlayerCount(players);
+        this.players = players;
+
+        validateRewardsCount(rewards);
+        this.rewards = rewards;
         this.height = height;
-        this.lineCreateDecider = lineCreateDecider;
-        this.ladder = generateLadder();
     }
 
-    private void validatePlayerCount(List<PlayerName> playerNames) {
-        if (playerNames.size() < MIN_PLAYER_COUNT) {
-            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_INVALID_PLAYER_COUNT.getMessage());
+    private void validatePlayerCount(List<Player> players) {
+        if (players.size() < MIN_PLAYER_COUNT || players.size() > MAX_PLAYER_COUNT) {
+            throw new IllegalArgumentException(EXCEPTION_PLAYER_COUNT.getMessage());
         }
     }
 
-    public Ladder generateLadder() {
-        int personCount = playerNames.size();
+    private void validateRewardsCount(List<Reward> rewards) {
+        if (rewards.size() != players.size()) {
+            throw new IllegalArgumentException(EXCEPTION_REWARD_COUNT.getMessage());
+        }
+    }
+
+    public void generateLadder(LineCreateDecider lineCreateDecider) {
+        int personCount = players.size();
+
         List<Row> rows = new ArrayList<>();
         for (int i = 0; i < height.getHeight(); i++) {
             rows.add(new Row(personCount, lineCreateDecider));
         }
-        return new Ladder(rows);
+
+        ladder = new Ladder(rows);
     }
 
-    public List<PlayerName> getPlayerNames() {
-        return playerNames;
+    public void playLadderGame() {
+        Map<Player, Reward> result = new HashMap<>();
+
+        for (int i = 0; i < players.size(); i++) {
+            int rewardIndex = ladder.getResult(i);
+            result.put(players.get(i), rewards.get(rewardIndex));
+        }
+
+        this.result = new Result(result);
+    }
+
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
+    }
+
+    public List<Reward> getRewards() {
+        return Collections.unmodifiableList(rewards);
     }
 
     public Ladder getLadder() {
         return ladder;
     }
 
-    private enum ErrorMessage {
-        EXCEPTION_INVALID_PLAYER_COUNT("게임을 진행하기 위해서는 두 명 이상의 플레이어가 필요합니다.");
-        private final String message;
-
-        ErrorMessage(String message) {
-            this.message = message;
-        }
-
-        private String getMessage() {
-            return message;
-        }
+    public Result getResult() {
+        return result;
     }
+
 }

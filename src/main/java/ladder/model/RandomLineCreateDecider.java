@@ -12,4 +12,5 @@ public class RandomLineCreateDecider implements LineCreateDecider {
         int number = SECURE_RANDOM.nextInt(MAX_RANDOM_INT);
         return number >= MAX_RANDOM_INT / 2;
     }
+
 }
