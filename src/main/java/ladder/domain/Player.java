@@ -5,11 +5,13 @@ import java.util.Optional;
 
 public class Player {
     private final Name name;
+    private int index;
     private Optional<Result> result;
 
-    public Player(String nameValue) {
+    public Player(String nameValue, int index) {
         this.name = new Name(nameValue);
         this.result = Optional.empty();
+        this.index = index;
     }
 
     public Name getName() {
@@ -31,5 +33,9 @@ public class Player {
 
     public Result getResult() {
         return this.result.orElseThrow(() -> new NoSuchElementException("플레이어의 결과가 존재하지 않습니다."));
+    }
+
+    public int getIndex() {
+        return this.index;
     }
 }

@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,7 +13,7 @@ public class Players {
     public Players(String namesRaw) {
         List<String> names = splitNames(namesRaw);
         validatePlayersSize(names);
-        this.players = generatePlayer(names);
+        this.players = generatePlayers(names);
     }
 
     private List<String> splitNames(String namesRaw) {
@@ -26,10 +27,12 @@ public class Players {
         }
     }
 
-    private List<Player> generatePlayer(List<String> names) {
-       return names.stream()
-                .map(Player::new)
-               .collect(Collectors.toList());
+    private List<Player> generatePlayers(List<String> names) {
+        List<Player> players = new ArrayList<>();
+        for (int index = 0; index < names.size(); index++) {
+            players.add(new Player(names.get(index), index));
+        }
+        return players;
     }
 
     public int getSize() {
