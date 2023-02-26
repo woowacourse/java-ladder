@@ -26,15 +26,23 @@ public class Row {
         points.add(isCreated);
     }
 
-    private boolean isLeftPointHasLine(int point) {
+    public boolean isLeftPointHasLine(int point) {
         if (point == FIRST_POINT) {
             return false;
         }
         return points.get(point - 1);
     }
 
+    public boolean isCurrentPointHasLine(int point) {
+        return points.get(point);
+    }
+
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(points);
+    }
+
+    public int getSize() {
+        return points.size();
     }
 
 }

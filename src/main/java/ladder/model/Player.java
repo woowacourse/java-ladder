@@ -1,5 +1,9 @@
 package ladder.model;
 
+import ladder.exceptionMessage.ExceptionMessage;
+
+import java.util.Objects;
+
 public class Player {
 
     private static final int MIN_LENGTH = 1;
@@ -10,6 +14,7 @@ public class Player {
     public Player(String playerName) {
         playerName = removeWhiteSpace(playerName);
         validatePlayerNameLength(playerName);
+        validateIsPlayerNameBannedWord(playerName);
         this.playerName = playerName;
     }
 
@@ -19,7 +24,7 @@ public class Player {
 
     private void validatePlayerNameLength(String playerName) {
         if (!isNameLengthIncludedInRange(playerName)) {
-            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_INVALID_LENGTH_NAME.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_INVALID_NAME_LENGTH.getMessage());
         }
     }
 
@@ -27,21 +32,27 @@ public class Player {
         return MIN_LENGTH <= playerName.length() && playerName.length() <= MAX_LENGTH;
     }
 
+    private void validateIsPlayerNameBannedWord(String playerName) {
+        if (Command.contains(playerName)) {
+            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_INVALID_NAME.getMessage());
+        }
+    }
+
     public String getPlayerName() {
         return playerName;
     }
 
-    private enum ErrorMessage {
-        EXCEPTION_INVALID_LENGTH_NAME("플레이어 이름은 1자 이상 5자 이하여야 합니다.");
-        private final String message;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return Objects.equals(playerName, player.playerName);
+    }
 
-        ErrorMessage(String message) {
-            this.message = message;
-        }
-
-        private String getMessage() {
-            return message;
-        }
+    @Override
+    public int hashCode() {
+        return Objects.hash(playerName);
     }
 
 }

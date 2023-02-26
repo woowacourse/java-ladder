@@ -1,7 +1,10 @@
 package ladder.model;
 
+import ladder.exceptionMessage.ExceptionMessage;
+
 public class Height {
     private static final int MIN_HEIGHT = 2;
+    private static final int MAX_HEIGHT = 100;
 
     private final int height;
 
@@ -11,26 +14,17 @@ public class Height {
     }
 
     private void validateHeight(int height) {
-        if (height < MIN_HEIGHT) {
-            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_INVALID_HEIGHT.getMessage());
+        if (!isHeightIncludedInRange(height)) {
+            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_INVALID_HEIGHT.getMessage());
         }
+    }
+
+    private boolean isHeightIncludedInRange(int height) {
+        return MIN_HEIGHT <= height && height <= MAX_HEIGHT;
     }
 
     public int getHeight() {
         return height;
-    }
-
-    private enum ErrorMessage {
-        EXCEPTION_INVALID_HEIGHT("사다리 높이는 2 이상이어야 합니다.");
-        private final String message;
-
-        ErrorMessage(String message) {
-            this.message = message;
-        }
-
-        private String getMessage() {
-            return message;
-        }
     }
 
 }

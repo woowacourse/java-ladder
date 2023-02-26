@@ -1,5 +1,7 @@
 package ladder.view;
 
+import ladder.exceptionMessage.ExceptionMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -23,19 +25,20 @@ public class InputView {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
-        List<String> names = new ArrayList<>(List.of(splitNames(input)));
-        validateDuplicatedNames(names);
-        return names;
+        return split(input);
     }
 
-    private String[] splitNames(String input) {
-        return input.split(",");
+    private List<String> split(String input) {
+        return new ArrayList<>(List.of(input.split(",")));
     }
 
-    private void validateDuplicatedNames(List<String> names) {
-        if (names.size() != names.stream().distinct().count()) {
-            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_DUPLICATED_NAME.getMessage());
-        }
+    public List<String> readRewards() {
+        System.out.println(InputMessage.INPUT_REWARDS.getMessage());
+
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+
+        return split(input);
     }
 
     public int readHeight() {
@@ -51,7 +54,7 @@ public class InputView {
 
     private void validateHeight(String input) {
         if (!NUMBER_REGEX.matcher(input).matches()) {
-            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_NOT_INTEGER.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_NOT_INTEGER.getMessage());
         }
     }
 
@@ -59,30 +62,25 @@ public class InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_BIG_INTEGER.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_INVALID_BIG_HEIGHT.getMessage());
         }
     }
 
-    private enum ErrorMessage {
-        EXCEPTION_DUPLICATED_NAME("이름은 중복될 수 없습니다."),
-        EXCEPTION_BIG_INTEGER("사다리 높이가 너무 높습니다. 사다리 높이는 100 이하를 권장합니다."),
-        EXCEPTION_NOT_INTEGER("정수가 아닙니다.");
-        private final String message;
+    public String readPlayerChoice() {
+        System.out.println();
+        System.out.println(InputMessage.INPUT_PLAYER_CHOICE.getMessage());
 
-        ErrorMessage(String message) {
-            this.message = message;
-        }
-
-        public String getMessage() {
-            return message;
-        }
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
     }
 
     private enum InputMessage {
 
         INPUT_NAMES("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)"),
+        INPUT_REWARDS("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"),
+        INPUT_HEIGHT("최대 사다리 높이는 몇 개인가요?"),
+        INPUT_PLAYER_CHOICE("결과를 보고 싶은 사람은?");
 
-        INPUT_HEIGHT("최대 사다리 높이는 몇 개인가요?");
         private final String message;
 
         InputMessage(String message) {
