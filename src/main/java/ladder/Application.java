@@ -1,14 +1,5 @@
 package ladder;
 
-import static java.util.stream.Collectors.joining;
-import static ladder.view.InputView.readLadderHeight;
-import static ladder.view.InputView.readPlayerNames;
-import static ladder.view.InputView.readResults;
-import static ladder.view.InputView.readTargetName;
-import static ladder.view.OutputView.printAllResult;
-import static ladder.view.OutputView.printLadder;
-import static ladder.view.OutputView.printSingleResult;
-
 import ladder.domain.Command;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
@@ -21,8 +12,10 @@ import ladder.domain.Results;
 import ladder.domain.Step;
 import ladder.domain.strategy.linestrategy.LineStrategy;
 import ladder.domain.strategy.linestrategy.RandomLineStrategy;
+import ladder.view.InputView;
 import ladder.view.OutputView;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
     private static final Boolean FINISH = false;
@@ -36,44 +29,42 @@ public class Application {
     private static Ladder ladder;
 
     public static void main(String[] args) {
-        players = new Players(readPlayerNames());
-        results = new Results(readResults(), players.getPlayersCount());
-        height = new Height(readLadderHeight());
+        players = new Players(InputView.readPlayerNames());
+        results = new Results(InputView.readResults(), players.getPlayersCount());
+        height = new Height(InputView.readLadderHeight());
         ladderFactory = new LadderFactory(height, players, lineStrategy);
         ladder = ladderFactory.makeLadder();
 
-        printLadder(playersToNames(players.getPlayers()),
+        OutputView.printLadder(playersToString(players.getPlayers()),
                 ladderToString(ladder.getLines()),
                 resultsToString(results.getResults()));
         askResult();
     }
 
-    private static String playersToNames(List<Player> players) {
+    private static List<String> playersToString(List<Player> players) {
         return players.stream()
                 .map(Player::getName)
-                .map(name -> String.format("%-5s", name))
-                .collect(joining(" "));
+                .collect(Collectors.toList());
     }
 
-    private static String ladderToString(List<Line> lines) {
+    private static List<List<String>> ladderToString(List<Line> lines) {
         return lines.stream()
-                .map(line -> "|" + line.getSteps().stream()
+                .map(line -> line.getSteps().stream()
                         .map(Step::getShape)
-                        .collect(joining("|")) + "|")
-                .collect(joining(System.lineSeparator()));
+                        .collect(Collectors.toList()))
+                .collect(Collectors.toList());
     }
 
-    private static String resultsToString(List<Result> results) {
+    private static List<String> resultsToString(List<Result> results) {
         return results.stream()
                 .map(Result::getResult)
-                .map(result -> String.format("%-5s", result))
-                .collect(joining(" "));
+                .collect(Collectors.toList());
     }
 
     private static void askResult() {
         boolean proceed = true;
         while (proceed) {
-            String input = readTargetName();
+            String input = InputView.readTargetName();
             proceed = isQuit(input);
             proceed = isAll(proceed, input);
             isSingleResult(proceed, input);
@@ -89,23 +80,15 @@ public class Application {
 
     private static boolean isAll(boolean proceed, String input) {
         if (proceed && Command.isAll(input)) {
-            printAllResult(toAllResult(players.getPlayerNames(), results.findAllResult(ladder)));
+            OutputView.printAllResult(players.getPlayerNames(), results.findAllResult(ladder));
             return FINISH;
         }
         return PROCEED;
     }
 
-    private static String toAllResult(List<String> players, List<String> allResult) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < players.size(); i++) {
-            stringBuilder.append(players.get(i) + " : " + allResult.get(i) + System.lineSeparator());
-        }
-        return stringBuilder.toString();
-    }
-
     private static void isSingleResult(boolean proceed, String playerName) {
         if (proceed) {
-            printSingleResult(results.findResult(ladder, players.findPosition(playerName)));
+            OutputView.printSingleResult(results.findResult(ladder, players.findPosition(playerName)));
         }
     }
 }
