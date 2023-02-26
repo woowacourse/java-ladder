@@ -2,8 +2,7 @@ package controller;
 
 import domain.ladder.Ladder;
 import domain.ladder.LadderGenerator;
-import domain.Name;
-import domain.Names;
+import domain.player.Names;
 import util.RandomBooleanGenerator;
 import view.InputView;
 import view.OutputView;

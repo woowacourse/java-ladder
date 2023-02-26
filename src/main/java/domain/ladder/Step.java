@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import domain.Position;
+import domain.player.Position;
 
 public enum Step {
     NONE(0),
