@@ -80,10 +80,10 @@ public class OutputView {
     public static void printLadderGameResult(final LadderGameResult ladderGameResult) {
         System.out.println(RESULT_MESSAGE);
         Map<User, Reward> result = ladderGameResult.getLadderGameResult();
-        result.entrySet().forEach(OutputView::printResultWithFormat);
+        result.entrySet().forEach(OutputView::printLadderGameResultWithFormat);
     }
 
-    private static void printResultWithFormat(final Map.Entry<User, Reward> entry) {
+    private static void printLadderGameResultWithFormat(final Map.Entry<User, Reward> entry) {
         System.out.printf(RESULT_FORMAT, entry.getKey().getName(), entry.getValue().getRewardName());
     }
 }
