@@ -1,7 +1,11 @@
 package controller;
 
 import domain.*;
+import domain.ladder.Ladder;
 import domain.numbergenerator.NumberGenerator;
+import domain.player.Players;
+import domain.prize.Prizes;
+import domain.prize.Results;
 import utils.Command;
 import utils.LogType;
 import view.InputView;

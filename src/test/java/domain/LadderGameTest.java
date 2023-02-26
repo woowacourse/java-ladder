@@ -1,6 +1,12 @@
 package domain;
 
+import domain.ladder.Ladder;
 import domain.numbergenerator.TestNumberGenerator;
+import domain.player.Player;
+import domain.player.Players;
+import domain.prize.Prize;
+import domain.prize.Prizes;
+import domain.prize.Results;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

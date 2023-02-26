@@ -1,5 +1,8 @@
 package domain;
 
+import domain.ladder.Line;
+import domain.player.Player;
+
 public enum MoveType {
 
     LEFT(-1),

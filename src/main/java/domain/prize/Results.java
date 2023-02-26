@@ -1,4 +1,6 @@
-package domain;
+package domain.prize;
+
+import domain.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;

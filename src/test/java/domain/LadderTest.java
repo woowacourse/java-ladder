@@ -1,5 +1,6 @@
 package domain;
 
+import domain.ladder.Ladder;
 import domain.numbergenerator.RandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

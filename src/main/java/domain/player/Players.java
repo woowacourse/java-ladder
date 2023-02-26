@@ -1,4 +1,7 @@
-package domain;
+package domain.player;
+
+import domain.MoveType;
+import domain.ladder.Line;
 
 import java.util.ArrayList;
 import java.util.Collections;

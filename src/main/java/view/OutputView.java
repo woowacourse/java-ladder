@@ -1,6 +1,14 @@
 package view;
 
 import domain.*;
+import domain.ladder.Ladder;
+import domain.ladder.Line;
+import domain.ladder.Point;
+import domain.player.Player;
+import domain.player.Players;
+import domain.prize.Prize;
+import domain.prize.Prizes;
+import domain.prize.Results;
 
 import java.util.List;
 
