@@ -42,7 +42,34 @@ public class LadderGameController {
         Ladder ladder = new Ladder(height, people);
         outputView.printLadderResult(ladder, people, prizes);
         Results results = makeResults(people, ladder, prizes);
-        outputView.printLadderGameResult(results);
+        ladderGameResult(results);
+    }
+
+    private void ladderGameResult(Results results) {
+        try {
+            String resultType = inputView.readLadderGameResult();
+            if (isResultType(results, resultType)) {
+                return;
+            }
+            ladderGameResult(results);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            ladderGameResult(results);
+        }
+    }
+
+    private boolean isResultType(Results results, String resultType) {
+        if (resultType.equals("Q")) {
+            System.out.println("게임이 끝났습니다.");
+            return true;
+        }
+        if (resultType.equals("all")) {
+            outputView.printAllResult(results);
+            return false;
+        }
+        Result result = results.findResultOfPerson(resultType);
+        outputView.printPersonalResult(result);
+        return false;
     }
 
     private People makePeople() {

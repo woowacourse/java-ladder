@@ -41,4 +41,11 @@ public class InputView {
         validateIsBlank(input);
         return List.of(input.split(DELIMITER));
     }
+
+    public String readLadderGameResult() {
+        System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
+        String input = scanner.nextLine();
+        validateIsBlank(input);
+        return input;
+    }
 }

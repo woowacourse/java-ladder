@@ -58,10 +58,15 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printLadderGameResult(Results results) {
-        System.out.println("실행 결과");
+    public void printAllResult(Results results) {
+        System.out.println(System.lineSeparator()+"실행 결과");
         for (Result result : results.getResults()) {
             System.out.println(result.getPerson().getName() + " : " + result.getPrize().getPrize());
         }
+    }
+
+    public void printPersonalResult(Result result) {
+        System.out.println(System.lineSeparator()+"실행 결과");
+        System.out.println(result.getPrize().getPrize());
     }
 }
