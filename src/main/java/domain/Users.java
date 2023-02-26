@@ -2,6 +2,7 @@ package domain;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import utils.StringParser;
@@ -27,6 +28,7 @@ public class Users {
 
     public User findByName(final String name) {
         return users.stream()
+                .filter(Objects::nonNull)
                 .filter(user -> user.getName().equals(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_USER_ERROR));
