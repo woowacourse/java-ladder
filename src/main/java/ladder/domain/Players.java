@@ -47,13 +47,9 @@ public class Players {
     private void validateDuplicatePlayer(final List<Player> players) {
         final Set<Player> uniquePlayers = new HashSet<>(players);
 
-        if (isDuplicate(players, uniquePlayers)) {
+        if (players.size() != uniquePlayers.size()) {
             throw new IllegalArgumentException("플레이어 이름은 중복되면 안됩니다.");
         }
-    }
-
-    private boolean isDuplicate(final List<Player> players, final Set<Player> uniquePlayers) {
-        return players.size() != uniquePlayers.size();
     }
 
     public List<String> getPlayerNames() {

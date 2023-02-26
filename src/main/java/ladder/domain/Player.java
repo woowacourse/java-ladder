@@ -16,28 +16,12 @@ public class Player {
     }
 
     private void validate(final String value) {
-        validateFormat(value);
-        validateLength(value);
-    }
-
-    private void validateFormat(final String value) {
-        if (isNotEnglish(value)) {
+        if (!NAME_FORMAT.matcher(value).matches()) {
             throw new IllegalArgumentException("플레이어 이름은 영문자만 가능합니다. 현재 입력은 " + value + "입니다.");
         }
-    }
-
-    private boolean isNotEnglish(final String value) {
-        return !NAME_FORMAT.matcher(value).matches();
-    }
-
-    private void validateLength(final String value) {
-        if (isInvalidLength(value)) {
+        if (value.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException("플레이어 이름은 " + NAME_MAX_LENGTH + "글자까지 가능합니다. 현재 입력은 " + value + "입니다.");
         }
-    }
-
-    private boolean isInvalidLength(final String value) {
-        return value.length() > NAME_MAX_LENGTH;
     }
 
     public String getValue() {
