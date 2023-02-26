@@ -4,6 +4,8 @@ import domain.Height;
 import domain.Ladder;
 import domain.LadderGame;
 import domain.Line;
+import domain.LineMaker;
+import domain.LineStatus;
 import domain.Lines;
 import domain.Players;
 import domain.Results;
@@ -93,9 +95,9 @@ public class LadderController {
         int numberOfLine = numberOfWalls - 1;
 
         for (int i = 0; i < height.getHeight(); i++) {
-            Line line = new Line(new ArrayList<>(), lineGenerator);
-            line.addStatus(numberOfLine);
-            lines.add(line);
+            LineMaker lineMaker = new LineMaker(lineGenerator);
+            List<LineStatus> lineStatuses = lineMaker.makeLineStatus(numberOfLine);
+            lines.add(new Line(lineStatuses));
         }
 
         return new Lines(lines);

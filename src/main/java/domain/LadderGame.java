@@ -30,13 +30,13 @@ public class LadderGame {
     }
 
     private void crossLadder(Line line) {
-        for (int index = 0; index < line.getLine().size(); index++) {
+        for (int index = 0; index < line.getLineStatuses().size(); index++) {
             changePosition(line, index);
         }
     }
 
     private void changePosition(Line line, int index) {
-        if (line.getLine().get(index).getStatus()) {
+        if (line.getLineStatuses().get(index).getStatus()) {
             playersInGame.changePosition(index, index + 1);
         }
     }

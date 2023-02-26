@@ -46,7 +46,7 @@ public class OutputView {
         Lines lines = ladder.getLines();
 
         for (Line line : lines.getLines()) {
-            List<LineStatus> oneLine = line.getLine();
+            List<LineStatus> oneLine = line.getLineStatuses();
             System.out.println(getLineStatus(oneLine));
         }
     }

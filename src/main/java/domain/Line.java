@@ -1,24 +1,23 @@
 package domain;
 
 import java.util.List;
-import generator.LineGenerator;
 
 public class Line {
 
-    private final List<LineStatus> line;
-    private final LineGenerator lineGenerator;
+    private final List<LineStatus> lineStatuses;
 
-    public Line(List<LineStatus> line, LineGenerator lineGenerator) {
-        this.line = line;
-        this.lineGenerator = lineGenerator;
+    public Line(List<LineStatus> lineStatuses) {
+        validateEmptyLineStatus(lineStatuses);
+        this.lineStatuses = lineStatuses;
     }
 
-    public void addStatus(int numberOfLine) {
-        LineMaker.makeFirstLineStatus(lineGenerator, line);
-        LineMaker.makeElseLineStatus(lineGenerator, line, numberOfLine);
+    private void validateEmptyLineStatus(List<LineStatus> lineStatuses){
+        if (lineStatuses.isEmpty()) {
+            throw new NullPointerException("[ERROR] 빈 리스트로 Line을 생성할 수 없습니다.");
+        }
     }
 
-    public List<LineStatus> getLine() {
-        return this.line;
+    public List<LineStatus> getLineStatuses() {
+        return this.lineStatuses;
     }
 }
