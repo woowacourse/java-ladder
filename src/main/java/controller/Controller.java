@@ -33,47 +33,7 @@ public class Controller {
         showLadder(users, ladder, inputResult);
 
         Result result = playLadderGame(users, ladder, inputResult);
-        checkResult(users, result);
-    }
-
-    private Result playLadderGame(final Users users, final Ladder ladder, List<String> inputResult) {
-        Map<String, Integer> ladderGameResult = ladder.play(users);
-        return new Result(inputResult, ladderGameResult);
-    }
-
-    private void showLadder(final Users users, final Ladder ladder, final List<String> inputResult) {
-        outputView.printUsers(users.getUsersDTO());
-        for (Line line : ladder.getLadder()) {
-            outputView.printLadder(line.getLineDTO());
-        }
-        outputView.printResult(inputResult);
-    }
-
-    private void checkResult(final Users users, final Result result) {
-        String inputResultWord = inputView.inputWantToKnowUser();
-        if (wantToKnowAllResult(inputResultWord, result)) {
-            return;
-        }
-        if (wantToKnowUserResult(users, result, inputResultWord)) return;
-        resultView.printNonExistUser();
-        checkResult(users, result);
-    }
-
-    private boolean wantToKnowAllResult(final String inputResultWord, final Result result) {
-        if (inputResultWord.equals(ALL_USER_RESULT)) {
-            resultView.printAllResult(result.getResult());
-            return true;
-        }
-        return false;
-    }
-
-    private boolean wantToKnowUserResult(final Users users, final Result userResult, final String inputResultWord) {
-        if (users.contain(inputResultWord)) {
-            resultView.printUserResult(userResult.getUserResult(inputResultWord));
-            checkResult(users, userResult);
-            return true;
-        }
-        return false;
+        showResult(users, result);
     }
 
     private Users settingUsers() {
@@ -92,6 +52,15 @@ public class Controller {
                 .collect(Collectors.toList());
     }
 
+    private List<String> settingResult(final int userCount) {
+        try {
+            return inputView.inputResult(userCount);
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e.getMessage());
+            return settingResult(userCount);
+        }
+    }
+
     private Height settingHeight() {
         try {
             return new Height(inputView.inputLadderHeight());
@@ -101,12 +70,43 @@ public class Controller {
         }
     }
 
-    private List<String> settingResult(final int userCount) {
+    private void showLadder(final Users users, final Ladder ladder, final List<String> inputResult) {
+        outputView.printUsers(users.getUsersDTO());
+        for (Line line : ladder.getLadder()) {
+            outputView.printLadder(line.getLineDTO());
+        }
+        outputView.printResult(inputResult);
+    }
+
+    private Result playLadderGame(final Users users, final Ladder ladder, List<String> inputResult) {
+        Map<String, Integer> ladderGameResult = ladder.play(users);
+        return new Result(inputResult, ladderGameResult);
+    }
+
+    private void showResult(final Users users, final Result result) {
         try {
-            return inputView.inputResult(userCount);
+            checkResult(users, result);
         } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e.getMessage());
-            return settingResult(userCount);
+            resultView.printNonExistUser();
+            showResult(users, result);
+        }
+    }
+
+    private void checkResult(final Users users, final Result result) {
+        String inputResultWord = inputView.inputWantToKnowUser();
+        validateIsExistUser(inputResultWord, users);
+        final Map<String, String> gameResult = result.getResult(inputResultWord);
+        resultView.printResult(gameResult);
+        if (users.getCount() == gameResult.size()) {
+            resultView.printGameExitMessage();
+            return;
+        }
+        checkResult(users, result);
+    }
+
+    private void validateIsExistUser(final String userName, final Users users) {
+        if (!users.contain(userName) && !userName.equals(ALL_USER_RESULT)) {
+            throw new IllegalArgumentException("존재하지 않는 유저입니다.");
         }
     }
 }

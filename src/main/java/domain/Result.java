@@ -1,9 +1,6 @@
 package domain;
 
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Result {
     private final Map<String, String> result;
@@ -16,11 +13,15 @@ public class Result {
         }
     }
 
-    public String getUserResult(final String userName) {
-        return result.get(userName);
+    public Map<String, String> getResult(final String inputResultWord) {
+        if (inputResultWord.equals("all")) {
+            return Collections.unmodifiableMap(new LinkedHashMap<>(result));
+        }
+
+        return Map.of(inputResultWord, result.get(inputResultWord));
     }
 
-    public Map<String, String> getResult() {
-        return Collections.unmodifiableMap(new LinkedHashMap<>(result));
+    public String getUserResult(final String userName) {
+        return result.get(userName);
     }
 }
