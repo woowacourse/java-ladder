@@ -1,5 +1,6 @@
 package view;
 
+import controller.LadderGameController;
 import domain.GameResult;
 import domain.LadderGame;
 import domain.ladder.Block;
@@ -18,7 +19,6 @@ public class OutputView {
     private static final boolean CONNECTED = true;
     private static final int EMPTY = 0;
     public static final String ALL = "all";
-    public static final String EXIT = "exit";
     public static final String DELIMITER = " : ";
 
     private final StringBuilder gameMap = new StringBuilder();
@@ -74,7 +74,7 @@ public class OutputView {
     }
 
     public void printGameResult(String name, GameResult gameResult) {
-        if (name.equals(EXIT)) {
+        if (name.equals(LadderGameController.EXIT_RESERVED_WORD)) {
             return;
         }
         System.out.println(GAME_RESULT_MESSAGE);
@@ -90,6 +90,7 @@ public class OutputView {
     }
 
     public void printAllGameResult(GameResult gameResult) {
-        gameResult.getResults().forEach((key, value) -> System.out.println(key.getName() + DELIMITER + value.getName()));
+        gameResult.getResults()
+            .forEach((key, value) -> System.out.println(key.getName() + DELIMITER + value.getName()));
     }
 }

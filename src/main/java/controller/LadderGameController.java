@@ -8,7 +8,6 @@ import domain.ladder.LadderPrizes;
 import domain.ladder.LadderSize;
 import domain.ladder.LineWeight;
 import domain.participants.Participants;
-import exception.ladder.GameEndException;
 import util.BooleanGenerator;
 import util.RandomBooleanGenerator;
 import view.InputView;
@@ -16,7 +15,7 @@ import view.OutputView;
 
 public class LadderGameController {
 
-    private static final String EXIT = "exit";
+    public static final String EXIT_RESERVED_WORD = "exit";
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -103,7 +102,7 @@ public class LadderGameController {
     }
 
     private boolean isNotFinish(String nameForResult) {
-        return !nameForResult.equals(EXIT);
+        return !nameForResult.equals(EXIT_RESERVED_WORD);
     }
 
     private String getNameForResult(GameResult gameResult) {
@@ -114,8 +113,6 @@ public class LadderGameController {
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception);
             return getNameForResult(gameResult);
-        } catch (GameEndException exception) {
-            return EXIT;
         }
     }
 }
