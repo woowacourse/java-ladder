@@ -128,4 +128,22 @@ class SimpleArrayListTest {
 
         Assertions.assertEquals(0, arrayList.size());
     }
+
+    @DisplayName("SimpleArrayList 내부 비어있는지 테스트")
+    @Test
+    void SimpleArrayList_비어있는지_테스트() {
+        SimpleArrayList arrayList = new SimpleArrayList();
+
+        Assertions.assertEquals(true, arrayList.isEmpty());
+    }
+
+    @DisplayName("SimpleArrayList 안 비어있는지 테스트")
+    @Test
+    void SimpleArrayList_내부가_비어있지_않은_경우_테스트() {
+        SimpleArrayList arrayList = new SimpleArrayList();
+        final String beforeValue = "before";
+        arrayList.add(beforeValue);
+
+        Assertions.assertEquals(false, arrayList.isEmpty());
+    }
 }
