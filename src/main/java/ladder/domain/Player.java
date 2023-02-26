@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class Player {
 
     private static final Pattern NAME_FORMAT = Pattern.compile("[a-zA-Z]+");
-    private static final int NAME_MAX_LENGTH = 5;
+    private static final int MAX_NAME_LENGTH = 5;
 
     private final String value;
 
@@ -19,8 +19,8 @@ public class Player {
         if (!NAME_FORMAT.matcher(value).matches()) {
             throw new IllegalArgumentException("플레이어 이름은 영문자만 가능합니다. 현재 입력은 " + value + "입니다.");
         }
-        if (value.length() > NAME_MAX_LENGTH) {
-            throw new IllegalArgumentException("플레이어 이름은 " + NAME_MAX_LENGTH + "글자까지 가능합니다. 현재 입력은 " + value + "입니다.");
+        if (value.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("플레이어 이름은 " + MAX_NAME_LENGTH + "글자까지 가능합니다. 현재 입력은 " + value + "입니다.");
         }
     }
 
