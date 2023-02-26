@@ -1,9 +1,7 @@
 package laddergame.controller;
 
-import laddergame.domain.Ladder;
-import laddergame.domain.LadderGame;
-import laddergame.domain.Players;
-import laddergame.util.RandomPointGenerator;
+import laddergame.domain.*;
+import laddergame.util.RandomBooleanGenerator;
 import laddergame.util.RepeatValidator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
@@ -12,12 +10,17 @@ import java.util.List;
 
 public class LadderGameController {
 
+    private static final String ALL_RESULT_COMMAND = "all";
+
     public void run() {
-        Players players = initPlayers();
-        int ladderHeight = initLadder();
-        Ladder ladder = new Ladder(players.size(), ladderHeight, new RandomPointGenerator());
-        LadderGame ladderGame = new LadderGame(players, ladder);
-        printLadderResult(ladderGame);
+        final Players players = initPlayers();
+        final Prizes prizes = initPrizes(players.size());
+        final int ladderHeight = initLadderHeight();
+        final Ladder ladder = new Ladder(players.size(), ladderHeight, new RandomBooleanGenerator());
+        printLadderGame(players, ladder, prizes);
+
+        final Result result = new Result(players, ladder, prizes);
+        printLadderGameResult(result);
     }
 
     private Players initPlayers() {
@@ -28,17 +31,48 @@ public class LadderGameController {
         });
     }
 
-    private int initLadder() {
+    private Prizes initPrizes(int playersCount) {
         return RepeatValidator.retryUntilValidate(() -> {
-            OutputView.printLadderHeightRequestMsg();
-            int ladderHeight = InputView.inputLadderHeight();
-            return ladderHeight;
+            OutputView.printPrizesRequestMsg();
+            List<String> prizeNames = InputView.inputLadderPrizes();
+            return new Prizes(prizeNames, playersCount);
         });
     }
 
-    private void printLadderResult(LadderGame ladderGame) {
-        OutputView.printResultInfoMsg();
-        OutputView.printPlayerNames(ladderGame.getPlayerNames());
-        OutputView.printLadderMap(ladderGame.getLadderMap());
+    private int initLadderHeight() {
+        return RepeatValidator.retryUntilValidate(() -> {
+            OutputView.printLadderHeightRequestMsg();
+            return InputView.inputLadderHeight();
+        });
+    }
+
+    private void printLadderGame(Players players, Ladder ladder, Prizes prizes) {
+        OutputView.printLadderResultMsg();
+        OutputView.printPlayerNames(players.getPlayerNames());
+        OutputView.printLadderMap(ladder.getLadder());
+        OutputView.printPrizeNames(prizes.getPrizes());
+    }
+
+    private Result printLadderGameResult(Result result) {
+        return RepeatValidator.retryUntilValidate(() -> {
+            repeatPrintPlayerResult(result);
+            OutputView.printLadderGameAllResult(result.getAllResults());
+            return result;
+        });
+    }
+
+    private void repeatPrintPlayerResult(Result result) {
+        String playerName = readPlayerNameForResult();
+        while (!playerName.equals(ALL_RESULT_COMMAND)) {
+            OutputView.printLadderGameResult(result.getResult(playerName));
+            playerName = readPlayerNameForResult();
+        }
+    }
+
+    private String readPlayerNameForResult() {
+        return RepeatValidator.retryUntilValidate(() -> {
+            OutputView.printPlayerNameForResult();
+            return InputView.inputPlayerNameForResult();
+        });
     }
 }

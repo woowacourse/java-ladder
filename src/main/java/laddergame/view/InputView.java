@@ -20,6 +20,12 @@ public class InputView {
         return Arrays.asList(playerNames.split(SPLIT_DELIMITER));
     }
 
+    public static List<String> inputLadderPrizes() {
+        String prizeNames = scanner.nextLine();
+        validateBlankInput(prizeNames);
+        return Arrays.asList(prizeNames.split(SPLIT_DELIMITER));
+    }
+
     private static void validateBlankInput(String input) {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage());
@@ -36,5 +42,11 @@ public class InputView {
         if (!input.matches(NATURAL_NUMBER_REGEX)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NATURAL_NUMBER.getMessage());
         }
+    }
+
+    public static String inputPlayerNameForResult() {
+        String playerName = scanner.nextLine();
+        validateBlankInput(playerName);
+        return playerName;
     }
 }

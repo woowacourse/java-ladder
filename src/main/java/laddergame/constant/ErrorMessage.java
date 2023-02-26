@@ -5,6 +5,8 @@ public enum ErrorMessage {
     NOT_NATURAL_NUMBER("자연수를 입력해 주세요."),
     NOT_VALID_PLAYER_NAME("플레이어 이름은 공백이 아닌 5글자 이하여야 합니다"),
     NOT_VALID_PLAYER_COUNT("2명 이상의 플레이어가 필요합니다."),
+    NOT_CONTAIN_PLAYER_NAME("해당하는 플레이어 이름이 없습니다. 다시 입력해주세요."),
+    NOT_SAME_COUNT("사다리 상품의 개수가 플레이어의 수와 동일하지 않습니다."),
     EMPTY_INPUT("공백을 입력할 수 없습니다."),
     NOT_VALID_ARGUMENT("올바른 값이 아닙니다.");
 
