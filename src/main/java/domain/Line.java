@@ -11,9 +11,10 @@ public class Line {
     private static final int GENERATE_NUMBER = 1;
     private static final int INDEX_LOWER_BOUND = 0;
 
-    private final List<Point> line = new ArrayList<>();
+    private final List<Point> line;
 
     public Line(int personCount, NumberGenerator numberGenerator) {
+        line = new ArrayList<>();
         generateLine(personCount, numberGenerator);
     }
 
