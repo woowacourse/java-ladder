@@ -1,46 +1,47 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Line {
 
-    private final BooleanGenerator booleanGenerator;
+    private static final int LEFT_ENDPOINTS = 0;
+    private static final int DELTA = 1;
+
     private final List<Point> points;
 
-    public Line(BooleanGenerator booleanGenerator, int personCount) {
-        this.booleanGenerator = booleanGenerator;
-        points = generatePoints(personCount);
+    public Line(final List<Point> points) {
+        this.points = points;
     }
 
-    private List<Point> generatePoints(int personCount) {
-        List<Point> points = new ArrayList<>();
-
-        Point previousPoint = Point.DISCONNECTED;
-        for (int i = 0; i < personCount - 1; i++) {
-            Point currentPoint = generatePoint(previousPoint);
-            points.add(currentPoint);
-            previousPoint = currentPoint;
+    public int move(final int index) {
+        if (hasLeft(index)) {
+            return index - DELTA;
         }
 
-        return points;
+        if (hasRight(index)) {
+            return index + DELTA;
+        }
+
+        return index;
     }
 
-    private Point generatePoint(Point previousPoint) {
-        if (previousPoint.isConnected()) {
-            return Point.DISCONNECTED;
+    private boolean hasLeft(final int index) {
+        if (index == LEFT_ENDPOINTS) {
+            return false;
         }
 
-        return generatePoint();
+        Point leftPoint = points.get(index - DELTA);
+        return leftPoint.isConnected();
     }
 
-    private Point generatePoint() {
-        if (booleanGenerator.generate()) {
-            return Point.CONNECTED;
+    private boolean hasRight(final int index) {
+        if (index == points.size()) {
+            return false;
         }
 
-        return Point.DISCONNECTED;
+        Point rightPoint = points.get(index);
+        return rightPoint.isConnected();
     }
 
     public List<Point> getPoints() {

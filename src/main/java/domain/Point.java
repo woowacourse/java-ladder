@@ -7,7 +7,7 @@ public enum Point {
 
     private final boolean status;
 
-    Point(boolean status) {
+    Point(final boolean status) {
         this.status = status;
     }
 

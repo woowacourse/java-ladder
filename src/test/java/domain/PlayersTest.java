@@ -1,5 +1,6 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -7,14 +8,16 @@ import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-public class NamesTest {
+public class PlayersTest {
 
     @DisplayName("참가자의 숫자가 0명이면 예외를 발생시킨다.")
     @Test
     void throwExceptionWhenSizeEqualZero() {
         List<String> names = List.of();
-        assertThatThrownBy(() -> new Names(names))
+        assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참가자는 2명 이상이어야 합니다.");
     }
@@ -23,7 +26,7 @@ public class NamesTest {
     @Test
     void throwExceptionWhenSizeEqualOne() {
         List<String> names = List.of("one");
-        assertThatThrownBy(() -> new Names(names))
+        assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참가자는 2명 이상이어야 합니다.");
     }
@@ -32,7 +35,7 @@ public class NamesTest {
     @Test
     void doesNotThrowExceptionWhenSizeIsMoreThanTwo() {
         List<String> names = List.of("one", "two");
-        assertThatCode(() -> new Names(names))
+        assertThatCode(() -> new Players(names))
                 .doesNotThrowAnyException();
     }
 
@@ -40,7 +43,7 @@ public class NamesTest {
     @Test
     void throwExceptionWhenNamesHasInvalidName() {
         List<String> names = List.of("o", "odo27", "konghana");
-        assertThatThrownBy(() -> new Names(names))
+        assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 1글자에서 5글자 사이이어야 합니다.");
     }
@@ -49,7 +52,23 @@ public class NamesTest {
     @Test
     void doesNotThrowExceptionWhenNamesOnlyHasValidName() {
         List<String> names = List.of("ko ng", "   odo    ", "od  o");
-        assertThatCode(() -> new Names(names))
+        assertThatCode(() -> new Players(names))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("이름으로 번호를 찾을 수 있다.")
+    @ParameterizedTest
+    @CsvSource({"pobi,0", "honux,1", "crong,2", "jk,3"})
+    void shouldReturnIndexOfName(String name, int expected) {
+        List<String> names = List.of("pobi", "honux", "crong", "jk");
+        assertThat(new Players(names).findIndexByName(new Name(name))).isEqualTo(expected);
+    }
+
+    @DisplayName("이름으로 번호를 찾을 수 없다면 예외를 발생시킨다.")
+    @Test
+    void throwExceptionWhenCanNotFindByName() {
+        List<String> names = List.of("pobi", "honux", "crong", "jk");
+        assertThatThrownBy(() -> new Players(names).findIndexByName(new Name("odo27")))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
