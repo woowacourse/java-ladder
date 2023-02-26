@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.LadderGame;
 import ladder.domain.LadderGameFactory;
+import ladder.dto.ResultDto;
 import ladder.dto.ResultDtos;
 import ladder.utils.LineStrategy;
 import ladder.utils.RandomDiscreteStrategy;
@@ -20,7 +21,7 @@ public class Application {
 
         final LadderGame game = repeatUntilValid(() -> initGame(gameFactory));
         OutputView.printLadder(game.getPlayerNames(), game.getLadder(), game.getResults());
-        inquireGameResult(game);
+        playUntilQueryAll(game);
     }
 
     private static LadderGameFactory initFactory() {
@@ -35,18 +36,17 @@ public class Application {
         return factory.generateGame(names, results, height);
     }
 
-    private static void inquireGameResult(LadderGame game) {
+    private static void playUntilQueryAll(LadderGame game) {
         String queryName = "";
         while (!queryName.equals(QUERY_ALL)) {
-            queryName = inquireResult(game);
+            queryName = InputView.readInquireName();
+            playOneTime(game, queryName);
         }
     }
 
-    private static String inquireResult(final LadderGame game) {
-        String queryName = InputView.readResultInquireName();
-        ResultDtos results = new ResultDtos(game.calculatePlayerResult(queryName, QUERY_ALL));
-        OutputView.printInquireResult(results);
-        return queryName;
+    private static void playOneTime(final LadderGame game, final String queryName) {
+        List<ResultDto> results = game.play(queryName, QUERY_ALL);
+        OutputView.printInquireResult(new ResultDtos(results));
     }
 
     private static <T>T repeatUntilValid(Supplier<T> reader) {
