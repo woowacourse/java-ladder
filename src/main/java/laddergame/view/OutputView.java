@@ -13,6 +13,7 @@ public class OutputView {
     private static final String HORIZONTAL_LINE = "-----";
     private static final String BLANK_LINE = "     ";
     private static final String LADDER_RESULT_MSG = "사다리 결과";
+    private static final String GAME_RESULT_MSG = "실행 결과";
     private static final String ERROR_PREFIX = "[ERROR] ";
 
     public void printErrorMessage(String errorMessage) {
@@ -59,14 +60,14 @@ public class OutputView {
     }
 
     public void printAllResult(Results results) {
-        System.out.println(System.lineSeparator() + "실행 결과");
+        System.out.println(System.lineSeparator() + GAME_RESULT_MSG);
         for (Result result : results.getResults()) {
             System.out.println(result.getPerson().getName() + " : " + result.getPrize().getPrize());
         }
     }
 
     public void printPersonalResult(Result result) {
-        System.out.println(System.lineSeparator() + "실행 결과");
+        System.out.println(System.lineSeparator() + GAME_RESULT_MSG);
         System.out.println(result.getPrize().getPrize());
     }
 }

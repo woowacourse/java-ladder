@@ -7,8 +7,6 @@ import java.util.stream.Collectors;
 
 public class People {
     private static final int MIN_PERSON_LENGTH = 2;
-    private static final String ERROR_PERSON_LENGTH = "최소 참여자의 수는 " + MIN_PERSON_LENGTH + "명 이상이어야 합니다.";
-    private static final String ERROR_DUPLICATION = "참여자들 이름에 중복이 있어서는 안됩니다.";
 
     private final List<Person> people;
 
@@ -20,14 +18,14 @@ public class People {
 
     private static void validatePersonLength(List<String> names) {
         if (names.size() < MIN_PERSON_LENGTH) {
-            throw new IllegalArgumentException(ERROR_PERSON_LENGTH);
+            throw new IllegalArgumentException("최소 참여자의 수는 " + MIN_PERSON_LENGTH + "명 이상이어야 합니다.");
         }
     }
 
     private static void validateDuplication(List<String> names) {
         Set<String> removeDuplicateNames = new HashSet<>(names);
         if (removeDuplicateNames.size() != names.size()) {
-            throw new IllegalArgumentException(ERROR_DUPLICATION);
+            throw new IllegalArgumentException("참여자들 이름에 중복이 있어서는 안됩니다.");
         }
     }
 
