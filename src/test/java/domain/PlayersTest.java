@@ -20,7 +20,7 @@ public class PlayersTest {
 
         assertThat(Players.from(playerNamesInput).getPlayers())
                 .map(Player::getName)
-                .containsExactly(String.valueOf(playerNamesInput));
+                .containsExactly("pobi", "honux", "crong", "jk");
     }
 
     @Test

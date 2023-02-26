@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Players {
@@ -19,14 +20,16 @@ public class Players {
     }
 
     public static Players from(List<String> names) {
-        List<Player> players = new ArrayList<>();
-
-        for (int i = 0; i < names.size(); i++) {
-            String name = names.get(i);
-            players.add(new Player(name, i));
-        }
+        AtomicInteger standingLine = new AtomicInteger();
+        List<Player> players = names.stream()
+                .map(name -> createPlayer(name, standingLine))
+                .collect(Collectors.toList());
 
         return new Players(players);
+    }
+
+    private static Player createPlayer(String name, AtomicInteger standingLine) {
+        return new Player(name, standingLine.getAndIncrement());
     }
 
     private void validate(List<Player> players) {
