@@ -28,8 +28,7 @@ public class Missions {
                 .map(String::trim)
                 .map(Mission::new)
                 .collect(Collectors.toList());
-        // TODO: shuffle에 대해서 통제할 수 있는 코드 작성
-        // Collections.shuffle(randomMission);
+        Collections.shuffle(randomMission);
         return randomMission;
     }
 
