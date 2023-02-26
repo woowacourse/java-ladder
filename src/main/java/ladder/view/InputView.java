@@ -16,14 +16,14 @@ public class InputView {
     public static List<String> inputPlayer() {
         System.out.println(PLAYER_INPUT_MESSAGE);
 
-        String playerNames = scanner.nextLine();
+        String playerNames = scanner.nextLine().trim();
         return splitInputByDelimiter(playerNames);
     }
 
     public static List<String> inputPrize() {
         System.out.println(PRIZE_INPUT_MESSAGE);
 
-        String prizeNames = scanner.nextLine();
+        String prizeNames = scanner.nextLine().trim();
         return splitInputByDelimiter(prizeNames);
     }
 
