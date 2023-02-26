@@ -74,4 +74,22 @@ class SimpleArrayListTest {
                     new SimpleArrayList().get(1);
                 });
     }
+
+    @DisplayName("SimpleArrayList 범위 내부의 원소 포함 여부 테스트")
+    @Test
+    void SimpleArrayList_범위_내부의_원소_포함_여부_테스트() {
+        SimpleArrayList arrayList = new SimpleArrayList();
+        final String beforeValue = "before";
+        arrayList.add(beforeValue);
+
+        Assertions.assertEquals(true, arrayList.contains(beforeValue));
+    }
+
+    @DisplayName("SimpleArrayList 범위 내부의 원소 불포함 여부 테스트")
+    @Test
+    void SimpleArrayList_범위_내부의_원소_불포함_테스트() {
+        SimpleArrayList arrayList = new SimpleArrayList();
+
+        Assertions.assertEquals(false, arrayList.contains("not contain"));
+    }
 }

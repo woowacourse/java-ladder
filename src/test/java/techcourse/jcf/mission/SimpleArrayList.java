@@ -1,5 +1,7 @@
 package techcourse.jcf.mission;
 
+import java.util.Arrays;
+
 public class SimpleArrayList implements SimpleList {
 
     private String[] values;
@@ -50,14 +52,14 @@ public class SimpleArrayList implements SimpleList {
     @Override
     public String get(int index) {
         if (!(0 <= index && index < this.size)) {
-            throw new IllegalArgumentException("값을 가져올 수 있는 인덱스의 범위를 벗어났습니다.");
+            throw new IllegalArgumentException("값을 가져ㅇ 수 있는 인덱스의 범위를 벗어났습니다.");
         }
         return values[index];
     }
 
     @Override
     public boolean contains(String value) {
-        return false;
+        return Arrays.asList(this.values).contains(value);
     }
 
     @Override
