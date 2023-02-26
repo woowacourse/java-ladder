@@ -24,7 +24,8 @@ public class InputView {
         return sc.next();
     }
 
-    public void inputPrizeName() {
+    public String inputPrizeName() {
         System.out.println(INPUT_PRIZE_NAME);
+        return sc.next();
     }
 }
