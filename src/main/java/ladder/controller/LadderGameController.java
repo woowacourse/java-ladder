@@ -8,9 +8,9 @@ import ladder.domain.ladder.generator.BlockGenerator;
 import ladder.domain.ladder.generator.RandomBlockGenerator;
 import ladder.domain.player.PlayerName;
 import ladder.domain.player.Players;
-import ladder.domain.prize.Prize;
-import ladder.domain.prize.Prizes;
-import ladder.domain.result.Result;
+import ladder.domain.prize.Result;
+import ladder.domain.prize.Results;
+import ladder.domain.LadderGame;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -26,11 +26,11 @@ public class LadderGameController {
     public void run() {
         Players players = initPlayers();
         int playerNumber = players.size();
-        Prizes prizes = initPrizes(playerNumber);
+        Results results = initPrizes(playerNumber);
         Ladder ladder = initLadder(playerNumber);
 
-        showDrawnResult(players, prizes, ladder);
-        showAnalyzedResult(players, prizes, ladder);
+        showDrawnResult(players, results, ladder);
+        showAnalyzedResult(players, results, ladder);
         InputView.terminate();
     }
 
@@ -44,10 +44,10 @@ public class LadderGameController {
         }
     }
 
-    private Prizes initPrizes(final int playerNumber) {
+    private Results initPrizes(final int playerNumber) {
         try {
             List<String> prizeNames = InputView.inputPrize();
-            return new Prizes(playerNumber, prizeNames);
+            return new Results(playerNumber, prizeNames);
         } catch (CustomException e) {
             OutputView.printErrorMessage(e);
             return initPrizes(playerNumber);
@@ -65,11 +65,11 @@ public class LadderGameController {
         }
     }
 
-    private void showDrawnResult(final Players players, final Prizes prizes, final Ladder ladder) {
+    private void showDrawnResult(final Players players, final Results results, final Ladder ladder) {
         OutputView.printGameResultHeader();
         printPlayersName(players);
         OutputView.printLadder(toLines(ladder));
-        printPrizesName(prizes);
+        printPrizesName(results);
     }
 
     private void printPlayersName(final Players players) {
@@ -95,52 +95,44 @@ public class LadderGameController {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private void printPrizesName(Prizes prizes) {
-        List<String> prizesName = toPrizesName(prizes);
+    private void printPrizesName(Results results) {
+        List<String> prizesName = toPrizesName(results);
         OutputView.printPrizesName(prizesName);
     }
 
-    private List<String> toPrizesName(Prizes prizes) {
-        return prizes.getPrizes().stream()
-                .map(Prize::getName)
+    private List<String> toPrizesName(Results results) {
+        return results.getPrizes().stream()
+                .map(Result::getName)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private void showAnalyzedResult(Players players, Prizes prizes, Ladder ladder) {
-        Result result = new Result(players, prizes, ladder);
-        searchResult(result, players);
+    private void showAnalyzedResult(Players players, Results results, Ladder ladder) {
+        LadderGame ladderGame = new LadderGame(players, results, ladder);
+        searchResult(ladderGame, players);
     }
 
-    private void searchResult(Result result, Players players) {
+    private void searchResult(LadderGame ladderGame, Players players) {
         try {
-            chooseSearchOption(result, players);
+            chooseSearchOption(ladderGame, players);
         } catch (CustomException e) {
             OutputView.printErrorMessage(e);
-            searchResult(result, players);
+            searchResult(ladderGame, players);
         }
     }
 
-    private void chooseSearchOption(Result result, Players players) {
+    private void chooseSearchOption(LadderGame ladderGame, Players players) {
         String input = InputView.inputPlayerResult();
         while (!input.equals(SEARCH_ALL_KEYWORD)) {
-            showSinglePlayerResult(result, players, input);
+            showSinglePlayerResult(ladderGame, players, input);
             input = InputView.inputPlayerResult();
         }
-        showAllPlayersResult(result);
+        showAllPlayersResult(ladderGame);
     }
 
-    private void showResult(Result result, Players players, String input) {
-        if (input.equals(SEARCH_ALL_KEYWORD)) {
-            showAllPlayersResult(result);
-            return;
-        }
-        showSinglePlayerResult(result, players, input);
-    }
-
-    private void showAllPlayersResult(Result result) {
+    private void showAllPlayersResult(LadderGame ladderGame) {
         OutputView.printPlayerResultHeaderMessage();
         Map<String, String> resultForView = new LinkedHashMap<>();
-        Map<PlayerName, Prize> results = result.getAllResult();
+        Map<PlayerName, Result> results = ladderGame.getAllResult();
         for (PlayerName playerName : results.keySet()) {
             String prizeName = results.get(playerName).getName();
             resultForView.put(playerName.getName(), prizeName);
@@ -148,10 +140,10 @@ public class LadderGameController {
         OutputView.printAllResults(resultForView);
     }
 
-    private void showSinglePlayerResult(Result result, Players players, String name) {
+    private void showSinglePlayerResult(LadderGame ladderGame, Players players, String name) {
         OutputView.printPlayerResultHeaderMessage();
         PlayerName playerName = players.findByName(name);
-        Prize prize = result.getSinglePlayerResult(playerName);
-        OutputView.printSingleResult(prize.getName());
+        Result result = ladderGame.getSinglePlayerResult(playerName);
+        OutputView.printSingleResult(result.getName());
     }
 }
