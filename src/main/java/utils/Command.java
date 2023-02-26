@@ -14,9 +14,8 @@ public enum Command {
     }
 
     public static boolean isIn(List<String> names) {
-        return Arrays.stream(Command.values())
-                .filter(x -> names.contains(x.getCommand()))
-                .count() != 0;
+        return Arrays.stream(values())
+                .anyMatch(x -> names.contains(x.getCommand()));
     }
 
     private String getCommand() {
