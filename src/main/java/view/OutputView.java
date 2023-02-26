@@ -1,6 +1,5 @@
 package view;
 
-import controller.LadderGameController;
 import domain.game.Results;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
@@ -29,7 +28,9 @@ public class OutputView {
 
     private void printAllUserResult(Map<String, String> resultMap, List<String> userNames) {
         for (String name : userNames) {
-            System.out.println(new StringBuilder().append(name).append(RESULT_SEPARATOR).append(resultMap.get(name)));
+            System.out.println(new StringBuilder()
+                    .append(name).append(RESULT_SEPARATOR)
+                    .append(resultMap.get(name)));
         }
     }
 
