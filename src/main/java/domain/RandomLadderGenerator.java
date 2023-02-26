@@ -9,12 +9,12 @@ public class RandomLadderGenerator implements LadderGenerator {
     private static final Random random = new Random();
 
     @Override
-    public Ladder generate(People people, Results results, int height) {
+    public Ladder generate(People people, ResultsEntry resultsEntry, int height) {
         List<Line> result = new ArrayList<>(height);
         for (int i = 0; i < height; i++) {
             result.add(new Line(getHorizontalLineMovements(people.getCount())));
         }
-        return new Ladder(people, results, result);
+        return new Ladder(people, resultsEntry, result);
     }
 
     private List<Boolean> getHorizontalLineMovements(int width) {

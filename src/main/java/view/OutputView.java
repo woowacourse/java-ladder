@@ -1,6 +1,13 @@
 package view;
 
-import domain.*;
+import domain.Ladder;
+import domain.Line;
+import domain.Lines;
+import domain.CalculatedResults;
+import domain.People;
+import domain.Person;
+import domain.Result;
+import domain.ResultsEntry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,8 +41,8 @@ public class OutputView {
         }
     }
 
-    private void printResults(Results results) {
-        for (Result result : results.getResults()) {
+    private void printResults(ResultsEntry resultsEntry) {
+        for (Result result : resultsEntry.getResults()) {
             System.out.printf("%5s ", result.getResult());
         }
         System.out.println();
@@ -49,7 +56,7 @@ public class OutputView {
         return collect;
     }
 
-    public void printGameResults(ResultsMap resultMap) {
+    public void printGameResults(CalculatedResults resultMap) {
         System.out.println("\n실행 결과");
         if (!resultMap.canTryAgain()) {
             printTotalResults(resultMap);
@@ -58,7 +65,7 @@ public class OutputView {
         printSingleResult(resultMap);
     }
 
-    private void printTotalResults(ResultsMap resultMap) {
+    private void printTotalResults(CalculatedResults resultMap) {
         Map<Person, Result> map = resultMap.getResultMap();
         for (Map.Entry<Person, Result> entry : map.entrySet()) {
             System.out.printf(FORMAT, entry.getKey().getName(), entry.getValue().getResult());
@@ -66,7 +73,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printSingleResult(ResultsMap resultMap) {
+    private void printSingleResult(CalculatedResults resultMap) {
         Result singleResult = resultMap.findSingleResult();
         System.out.println(singleResult.getResult());
     }

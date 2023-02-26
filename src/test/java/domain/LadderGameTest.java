@@ -1,6 +1,5 @@
 package domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,8 +28,8 @@ public class LadderGameTest {
         );
         List<String> resultList = List.of("꽝", "5000", "꽝", "3000");
         People people = new People(List.of("pobi", "honux", "crong", "jk"));
-        Results results = new Results(resultList);
-        ladder = new Ladder(people, results, customizedLines);
+        ResultsEntry resultsEntry = new ResultsEntry(resultList);
+        ladder = new Ladder(people, resultsEntry, customizedLines);
     }
 
     @DisplayName("단일 사용자의 결과 출력")
@@ -55,7 +54,7 @@ public class LadderGameTest {
                 Map.entry(new Person("crong"), new Result("꽝")),
                 Map.entry(new Person("jk"), new Result("5000"))
         );
-        ResultsMap resultMap = ladder.getTotalResults();
+        CalculatedResults resultMap = ladder.getTotalResults();
         assertThat(resultMap.getResultMap()).isEqualTo(data);
     }
 }

@@ -3,11 +3,11 @@ package domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Results {
+public class ResultsEntry {
 
     private final List<Result> results;
 
-    public Results(List<String> results) {
+    public ResultsEntry(List<String> results) {
         this.results = results.stream()
                 .map(Result::new)
                 .collect(Collectors.toList());

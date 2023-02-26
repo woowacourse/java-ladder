@@ -1,8 +1,8 @@
 import domain.Ladder;
 import domain.People;
 import domain.RandomLadderGenerator;
-import domain.Results;
-import domain.ResultsMap;
+import domain.ResultsEntry;
+import domain.CalculatedResults;
 import view.InputView;
 import view.OutputView;
 
@@ -18,8 +18,8 @@ public class Application {
         this.inputView = inputView;
         this.outputView = outputView;
         People people = repeat(() -> new People(inputView.readNames()));
-        Results results = repeat(() -> new Results(inputView.readResults()));
-        this.ladder = repeat(() -> new RandomLadderGenerator().generate(people, results, inputView.readMaxHeight()));
+        ResultsEntry resultsEntry = repeat(() -> new ResultsEntry(inputView.readResults()));
+        this.ladder = repeat(() -> new RandomLadderGenerator().generate(people, resultsEntry, inputView.readMaxHeight()));
         outputView.printTotalLadder(ladder);
     }
 
@@ -36,7 +36,7 @@ public class Application {
     }
 
     private void run() {
-        ResultsMap results;
+        CalculatedResults results;
         do {
             results = repeat(() -> {
                 String input = inputView.readResult();
