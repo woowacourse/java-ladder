@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class NonContinuousRandomLineStrategy implements LineStrategy {
+public class NoncontinuousRandomLineStrategy implements LineStrategy {
     private final Random random = new Random();
 
     @Override

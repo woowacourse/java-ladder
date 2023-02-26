@@ -7,12 +7,12 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class NonContinuousRandomLineStrategyTest {
+class NoncontinuousRandomLineStrategyTest {
     @Test
     @DisplayName("연속으로 이어지지 않는 라인을 생성한다.")
     void line_generateNotContinuous() {
         // given
-        NonContinuousRandomLineStrategy nonContinuousRandomLineStrategy = new NonContinuousRandomLineStrategy();
+        NoncontinuousRandomLineStrategy nonContinuousRandomLineStrategy = new NoncontinuousRandomLineStrategy();
 
         // when
         List<Step> randomLine = nonContinuousRandomLineStrategy.generate(5);

@@ -17,7 +17,7 @@ class LadderGameTest {
         List<String> results = new ArrayList<>(List.of("꽝", "당첨"));
 
         // expected
-        assertThatThrownBy(() -> new LadderGame(names, results, 4, new NonContinuousRandomLineStrategy()))
+        assertThatThrownBy(() -> new LadderGame(names, results, 4, new NoncontinuousRandomLineStrategy()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
