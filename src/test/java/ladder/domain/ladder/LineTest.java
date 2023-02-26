@@ -10,11 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
 
-    private static final int DIRECTION_RIGHT = 1;
-    private static final int DIRECTION_LEFT = -1;
-    private static final int DIRECTION_DOWN = 0;
-
-
     private final List<Bar> bars = List.of(Bar.MOVABLE_BAR, Bar.UNMOVABLE_BAR);
     private Line line;
 
@@ -45,14 +40,13 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("n번째 위치에서 어디로갈지 알려주는 테스트")
-    void decideDirectionTest() {
+    @DisplayName("이동한 위치를 반환하는 기능 테스트")
+    void movePositionTest() {
         List<Bar> bars =List.of(Bar.MOVABLE_BAR, Bar.UNMOVABLE_BAR, Bar.UNMOVABLE_BAR);
         Line line = new Line(bars);
 
-        assertThat(line.decideDirection(0)).isEqualTo(DIRECTION_RIGHT);
-        assertThat(line.decideDirection(1)).isEqualTo(DIRECTION_LEFT);
-        assertThat(line.decideDirection(2)).isEqualTo(DIRECTION_DOWN);
+        assertThat(line.movePosition(0)).isEqualTo(1);
+        assertThat(line.movePosition(1)).isEqualTo(0);
+        assertThat(line.movePosition(2)).isEqualTo(2);
     }
-
 }
