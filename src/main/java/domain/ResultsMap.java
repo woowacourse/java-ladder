@@ -1,8 +1,6 @@
 package domain;
 
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ResultsMap {
@@ -16,7 +14,7 @@ public class ResultsMap {
         return resultMap.size() == 1;
     }
 
-    public Result getSingleResult() {
+    public Result findSingleResult() {
         return resultMap.values()
                 .stream()
                 .findFirst()
@@ -29,20 +27,7 @@ public class ResultsMap {
                 .collect(Collectors.toUnmodifiableSet());
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        ResultsMap that = (ResultsMap) o;
-        return Objects.equals(resultMap, that.resultMap);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(resultMap);
+    public Map<Person, Result> getResultMap() {
+        return Collections.unmodifiableMap(new LinkedHashMap<>(resultMap));
     }
 }

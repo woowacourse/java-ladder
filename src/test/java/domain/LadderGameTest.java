@@ -1,5 +1,6 @@
 package domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,7 @@ import java.util.Map;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderGameTest {
@@ -55,6 +57,10 @@ public class LadderGameTest {
                 new Person("jk"), new Result("5000")
         );
         ResultsMap resultMap = ladderGame.getTotalResults();
-        assertThat(resultMap).isEqualTo(new ResultsMap(data));
+        assertThat(resultMap.getResultMap())
+                .containsEntry(new Person("pobi"), new Result("꽝"))
+                .containsEntry(new Person("honux"), new Result("3000"))
+                .containsEntry(new Person("crong"), new Result("꽝"))
+                .containsEntry(new Person("jk"), new Result("5000"));
     }
 }

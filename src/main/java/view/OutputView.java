@@ -72,7 +72,7 @@ public class OutputView {
     }
 
     private void printSingleResult(ResultsMap resultMap) {
-        Result singleResult = resultMap.getSingleResult();
+        Result singleResult = resultMap.findSingleResult();
         System.out.println(singleResult.getResult());
     }
 
