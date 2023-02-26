@@ -5,7 +5,7 @@ public enum Direction {
     RIGHT(currentPosition -> currentPosition + 1),
     STRAIGHT(currentPosition -> currentPosition);
 
-    private Positioning positioning;
+    private final Positioning positioning;
 
     Direction(Positioning positioning) {
         this.positioning = positioning;
@@ -19,6 +19,10 @@ public enum Direction {
             return RIGHT;
         }
         return STRAIGHT;
+    }
+
+    public int move(int currentPosition) {
+        return positioning.decidePosition(currentPosition);
     }
 
     @FunctionalInterface
