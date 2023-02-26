@@ -26,11 +26,10 @@ public class Controller {
         Users users = getUsers();
         Rewards rewards = getRewards(users.getSize());
         Height height = getHeight();
-
         Ladder ladder = getLadder(users, height);
-        LadderGame ladderGame = getLadderGame(ladder, users, rewards);
 
-        OutputView.printLadderGame(users, rewards, ladder);
+        LadderGame ladderGame = getLadderGame(ladder, users, rewards);
+        OutputView.printLadderGame(ladderGame);
 
         ladderGame.play();
         searchResult(ladderGame);

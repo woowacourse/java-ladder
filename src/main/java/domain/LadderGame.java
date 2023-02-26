@@ -72,6 +72,18 @@ public class LadderGame {
         return new LadderGameResult(user, reward);
     }
 
+    public Ladder getLadder() {
+        return ladder;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public Rewards getRewards() {
+        return rewards;
+    }
+
     public boolean inProgress() {
         return inProgress;
     }

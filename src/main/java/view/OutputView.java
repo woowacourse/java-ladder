@@ -1,6 +1,7 @@
 package view;
 
 import domain.Ladder;
+import domain.LadderGame;
 import domain.LadderGameResult;
 import domain.LadderRow;
 import domain.Line;
@@ -28,11 +29,11 @@ public class OutputView {
         System.out.println(exception.getMessage());
     }
 
-    public static void printLadderGame(final Users users, final Rewards rewards, final Ladder ladder) {
+    public static void printLadderGame(final LadderGame ladderGame) {
         System.out.println(LADDER_RESULT_MESSAGE);
-        printUserNames(users);
-        printLadder(ladder);
-        printRewardNames(rewards);
+        printUserNames(ladderGame.getUsers());
+        printLadder(ladderGame.getLadder());
+        printRewardNames(ladderGame.getRewards());
     }
 
     private static void printUserNames(final Users users) {
