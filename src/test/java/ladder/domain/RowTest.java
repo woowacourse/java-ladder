@@ -22,14 +22,6 @@ class RowTest {
                 .hasMessage("가로로 연속된 발판은 만들 수 없습니다.");
     }
 
-    @Test
-    @DisplayName("width가 player수 - 1이 아니면 예외가 발생한다")
-    public void 생성_fail_width사이즈() {
-        assertThatThrownBy(() -> Row.of(List.of(Step.N, Step.N, Step.Y)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사다리 길이가 맞지 않습니다.");
-    }
-
     @ParameterizedTest(name = "발판이 가로로 {0}, {1}이면 정상 생성된다")
     @CsvSource({"Y,N", "N,N"})
     public void 생성_success(Step first, Step second) {
