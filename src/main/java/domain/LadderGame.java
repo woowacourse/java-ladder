@@ -1,5 +1,7 @@
 package domain;
 
+import dto.LadderDTO;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +33,7 @@ public class LadderGame {
         return finalPosition;
     }
 
-    public Ladder getLadder() {
-        return ladder;
+    public LadderDTO getLadderDTO() {
+        return ladder.getLadderDTO();
     }
 }

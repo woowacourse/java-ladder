@@ -1,6 +1,8 @@
 package controller;
 
 import domain.*;
+import dto.LadderDTO;
+import dto.LineDTO;
 import view.InputView;
 import view.OutputView;
 import view.ResultView;
@@ -29,7 +31,7 @@ public class Controller {
         List<String> inputResult = settingResult(users.getCount());
         Height height = settingHeight();
         LadderGame ladderGame = new LadderGame(height, width, new RandomLadderGenerator());
-        showLadder(users, ladderGame.getLadder(), inputResult);
+        showLadder(users, ladderGame.getLadderDTO(), inputResult);
 
         final Result result = ladderGame.play(users, inputResult);
         showResult(users, result);
@@ -69,18 +71,13 @@ public class Controller {
         }
     }
 
-    private void showLadder(final Users users, final Ladder ladder, final List<String> inputResult) {
+    private void showLadder(final Users users, final LadderDTO ladderDTO, final List<String> inputResult) {
         outputView.printUsers(users.getUsersDTO());
-        for (Line line : ladder.getLadder()) {
-            outputView.printLadder(line.getLineDTO());
+        for (LineDTO lineDTO : ladderDTO.getLadderDTO()) {
+            outputView.printLadder(lineDTO);
         }
         outputView.printResult(inputResult);
     }
-
-//    private Result playLadderGame(final Users users, final Ladder ladder, List<String> inputResult) {
-//        Map<String, Integer> ladderGameResult = ladder.play(users);
-//        return new Result(inputResult, ladderGameResult);
-//    }
 
     private void showResult(final Users users, final Result result) {
         try {

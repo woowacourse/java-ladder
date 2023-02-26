@@ -20,6 +20,6 @@ class RandomLadderGeneratorTest {
         final LineDTO lineDTO = line.getLineDTO();
 
         assertThat(ladder.size()).isEqualTo(4);
-        assertThat(lineDTO.getLine().size()).isEqualTo(3);
+        assertThat(lineDTO.getLineDTO().size()).isEqualTo(3);
     }
 }

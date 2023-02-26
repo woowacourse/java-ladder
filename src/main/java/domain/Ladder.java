@@ -1,5 +1,8 @@
 package domain;
 
+import dto.LadderDTO;
+import dto.LineDTO;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,5 +15,13 @@ public class Ladder {
 
     public List<Line> getLadder() {
         return new ArrayList<>(ladder);
+    }
+
+    public LadderDTO getLadderDTO() {
+        List<LineDTO> lineDTOs = new ArrayList<>();
+        for (Line line : ladder) {
+            lineDTOs.add(line.getLineDTO());
+        }
+        return new LadderDTO(lineDTOs);
     }
 }

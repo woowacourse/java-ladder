@@ -11,7 +11,7 @@ public class LineDTO {
         this.line = line;
     }
 
-    public List<Bridge> getLine() {
+    public List<Bridge> getLineDTO() {
         return line;
     }
 }

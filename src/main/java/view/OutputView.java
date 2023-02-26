@@ -22,7 +22,7 @@ public class OutputView {
     }
 
     public void printLadder(final LineDTO lineDTO) {
-        String collect = lineDTO.getLine().stream()
+        String collect = lineDTO.getLineDTO().stream()
                 .map(Bridge::getFormat)
                 .collect(Collectors.joining(BRIDGE_DELIMITER));
         System.out.printf(LADDER_FORMAT, collect);
