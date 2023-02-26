@@ -1,12 +1,16 @@
 package ladder.domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import ladder.domain.dto.LadderInfoDto;
 import ladder.domain.dto.PlayerResultDto;
 import ladder.domain.item.Result;
 import ladder.domain.ladder.ConnectionJudgement;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Players;
+import ladder.domain.player.Position;
 import ladder.repository.LadderRepository;
 
 /**
@@ -58,6 +62,18 @@ public class LadderGameImpl implements LadderGame {
 
     @Override
     public PlayerResultDto calculateResult() {
-        return null;
+        Players players = ladderRepository.get(Players.class);
+        Ladder ladder = ladderRepository.get(Ladder.class);
+        Result resultItems = ladderRepository.get(Result.class);
+        Map<String, Position> playerNameAndResultPosition = players.calculateResult(ladder);
+        //그냥 바로 collect toMap 만 호출하면 순서가 보장이 되지 않아서 LinkedHashMap 으로 감싸준다
+        Map<String, String> playerNameAndResultName = playerNameAndResultPosition.entrySet()
+                .stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        entry -> resultItems.findByPosition(entry.getValue()),
+                        (x, y) -> y,
+                        LinkedHashMap::new));
+        return new PlayerResultDto(playerNameAndResultName);
     }
 }
