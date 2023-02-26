@@ -59,10 +59,6 @@ public class Names {
         return names.get(index);
     }
 
-    public boolean contains(String name) {
-        return names.stream().anyMatch((el) -> el.isEqual(name));
-    }
-
     public Name findName(String name) throws IllegalArgumentException {
         return names.stream()
             .filter((el) -> el.isEqual(name))
