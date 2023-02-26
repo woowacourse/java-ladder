@@ -178,6 +178,7 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public void clear() {
-
+        firstNode = null;
+        size = 0;
     }
 }

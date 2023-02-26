@@ -188,4 +188,18 @@ class SimpleLinkedListTest {
             linkedList.remove(1);
         });
     }
+
+    @DisplayName("SimpleLinkedList 초기화 테스트")
+    @Test
+    void SimpleLinkedList_초기화_테스트() {
+        SimpleLinkedList linkedList = new SimpleLinkedList();
+        final String beforeValue = "before";
+        linkedList.add(beforeValue);
+
+        linkedList.clear();
+
+        Assertions.assertEquals(true, linkedList.isEmpty());
+        Assertions.assertEquals(0, linkedList.size());
+        Assertions.assertEquals(false, linkedList.contains(beforeValue));
+    }
 }
