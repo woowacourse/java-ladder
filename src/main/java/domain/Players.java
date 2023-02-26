@@ -9,8 +9,7 @@ public class Players {
     private static final int MAX_NUMBER_OF_PLAYERS = 100;
     private static final String DUPLICATE_NAME_MESSAGE = "중복된 이름입니다.";
     private static final String INVALID_NUMBER_OF_PLAYER_MESSAGE = "참여자 수는 %d부터 %d까지 입니다.";
-
-    private static final String PLAYER_NOT_EXSIST_MESSAGE = "해당 참여자가 존재하지 않습니다.";
+    private static final String PLAYER_NOT_EXIST_MESSAGE = "해당 참여자가 존재하지 않습니다.";
 
     private final List<Player> players = new ArrayList<>();
 
@@ -33,7 +32,7 @@ public class Players {
     public int getOrder(String name) {
         int order = getNames().indexOf(name);
         if (order == -1) {
-            throw new IllegalArgumentException(PLAYER_NOT_EXSIST_MESSAGE);
+            throw new IllegalArgumentException(PLAYER_NOT_EXIST_MESSAGE);
         }
         return order;
     }

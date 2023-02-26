@@ -4,9 +4,8 @@ public class PlayerName {
     public static final int MAX_LENGTH = 5;
     private static final String BLANK_NAME_MESSAGE = "빈 문자열 입니다.";
     private static final String INVALID_NAME_LENGTH_MESSAGE = "이름 길이는 %d자를 넘길 수 없습니다.";
-    private static final String IMPOSSIBLE_NAME_NOTICE = "불가능한 이름입니다.";
+    private static final String IMPOSSIBLE_NAME_NOTICE = "%s은 불가능한 이름입니다.";
     private static final String RESERVED_NAME = "all";
-
 
     private final String name;
 
@@ -32,7 +31,8 @@ public class PlayerName {
 
     private void validateName(String name) {
         if (name.equals(RESERVED_NAME)) {
-            throw new IllegalArgumentException(IMPOSSIBLE_NAME_NOTICE);
+            throw new IllegalArgumentException(
+                    String.format(IMPOSSIBLE_NAME_NOTICE, RESERVED_NAME));
         }
     }
 

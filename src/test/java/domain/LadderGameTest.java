@@ -2,14 +2,15 @@ package domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import helper.StubTestDigitsGenerator;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.List;
+import helper.StubTestDigitsGenerator;
 
 public class LadderGameTest {
     private static LadderGame ladderGame;
@@ -62,7 +63,7 @@ public class LadderGameTest {
     @DisplayName("모든 사다리를 타고난 뒤의 최종 위치를 확인한다.")
     @ParameterizedTest
     @CsvSource(value = {"a,0", "b,2", "c,3", "d,1"})
-    void move_brdige(String name, int resultIndex) {
+    void move_bridge(String name, int resultIndex) {
         int startIndex = players.getOrder(name);
         Position position = new Position(startIndex);
 
