@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.FixedLineStrategy;
+import ladder.domain.ladder.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

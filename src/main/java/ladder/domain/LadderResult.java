@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import ladder.domain.ladder.Item;
+import ladder.domain.player.Player;
+
 import java.util.Map;
 
 public class LadderResult {

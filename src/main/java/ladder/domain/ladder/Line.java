@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.domain.ladder;
+
+import ladder.domain.Position;
 
 import java.util.List;
 import java.util.stream.Collectors;

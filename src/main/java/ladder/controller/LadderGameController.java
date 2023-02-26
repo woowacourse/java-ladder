@@ -1,7 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.LadderGame;
-import ladder.domain.LineStrategy;
+import ladder.domain.ladder.LineStrategy;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 

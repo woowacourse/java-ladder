@@ -1,7 +1,7 @@
 package ladder;
 
-import ladder.domain.LineStrategy;
-import ladder.domain.Step;
+import ladder.domain.ladder.LineStrategy;
+import ladder.domain.ladder.Step;
 
 import java.util.List;
 import java.util.stream.Collectors;

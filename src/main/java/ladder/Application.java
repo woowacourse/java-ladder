@@ -1,8 +1,8 @@
 package ladder;
 
 import ladder.controller.LadderGameController;
-import ladder.domain.LineStrategy;
-import ladder.domain.NoncontinuousRandomLineStrategy;
+import ladder.domain.ladder.LineStrategy;
+import ladder.domain.ladder.NoncontinuousRandomLineStrategy;
 
 public class Application {
     public static void main(String[] args) {
