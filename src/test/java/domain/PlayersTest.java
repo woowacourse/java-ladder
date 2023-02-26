@@ -19,7 +19,7 @@ public class PlayersTest {
     void playerSizeNotMoreThan20() {
         List<Player> players = new ArrayList<>();
         for (int i = 0; i < 21; i++) {
-            players.add(new Player(String.valueOf(i)));
+            players.add(new Player(String.valueOf(i), i));
         }
         assertThatThrownBy(() -> new Players(players))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -42,7 +42,7 @@ public class PlayersTest {
     void playerSizeTest(int playerSize) {
         List<Player> players = new ArrayList<>();
         for (int i = 0; i < playerSize; i++) {
-            players.add(new Player(String.valueOf(i)));
+            players.add(new Player(String.valueOf(i), i));
         }
         assertThat(new Players(players).getPlayerNames().size()).isEqualTo(playerSize);
     }
@@ -50,7 +50,7 @@ public class PlayersTest {
     @DisplayName("참여자 이름이 중복될 수 없다.")
     @Test
     void playerNameNotDuplicated() {
-        List<Player> players = List.of(new Player("a"), new Player("a"));
+        List<Player> players = List.of(new Player("a", 0), new Player("a", 1));
         assertThatThrownBy(() -> new Players(players))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("참여자 이름은 중복될 수 없습니다.");
@@ -59,7 +59,7 @@ public class PlayersTest {
     @DisplayName("참여자들의 이름을 불러올 수 있다.")
     @Test
     void getPlayerNames() {
-        Players players = new Players(List.of(new Player("a"), new Player("b")));
+        Players players = new Players(List.of(new Player("a", 0), new Player("b", 1)));
         assertThat(players.getPlayerNames()).containsExactly("a", "b");
     }
 

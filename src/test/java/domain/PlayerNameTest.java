@@ -21,7 +21,7 @@ public class PlayerNameTest {
     @DisplayName("참여자 이름은 빈 문자열일 수 없다.")
     @Test
     void playerNameNotBlank() {
-        assertThatThrownBy(() -> new Player(""))
+        assertThatThrownBy(() -> new Player("", 0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("참여자 이름은 공백일 수 없습니다.");
     }
@@ -31,7 +31,7 @@ public class PlayerNameTest {
     @ParameterizedTest
     void generatePlayerName(String playerName) {
         assertThatNoException()
-                .isThrownBy(() -> new Player(playerName));
+                .isThrownBy(() -> new Player(playerName, 0));
     }
 
 }

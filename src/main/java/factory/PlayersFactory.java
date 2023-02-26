@@ -14,7 +14,7 @@ public class PlayersFactory {
 
     private static List<Player> generatePlayers(final List<String> playerNames) {
         return playerNames.stream()
-                .map(Player::new)
+                .map((String name) -> new Player(name, playerNames.indexOf(name)))
                 .collect(Collectors.toUnmodifiableList());
     }
 
