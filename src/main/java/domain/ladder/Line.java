@@ -13,59 +13,49 @@ public class Line {
 
     private final List<Boolean> points = new ArrayList<>();
 
-    public Line(int personCount, BooleanGenerator booleanGenerator) {
-        validate(personCount);
-        createPoints(personCount, booleanGenerator);
+    public Line(int count, BooleanGenerator booleanGenerator) {
+        validate(count);
+        createPoints(count, booleanGenerator);
     }
 
-    public Direction chooseMoveDirection(int position) {
-        if (isLeftPointExist(position)) {
-            return Direction.LEFT;
+    public Position findNext(Position position) {
+        if (position.canMoveLeft(points, position)) {
+            return position.moveDirection(Direction.LEFT);
         }
-        if (isRightPointExist(position)) {
-            return Direction.RIGHT;
+        if (position.canMoveRight(points, position)) {
+            return position.moveDirection(Direction.RIGHT);
         }
-        return Direction.STAY;
+        return position.moveDirection(Direction.STRAIGHT);
     }
 
-    private boolean isLeftPointExist(int position) {
-        return position > 0 && points.get(position - 1);
-    }
-
-    private boolean isRightPointExist(int position) {
-        return position < points.size() && points.get(position);
-    }
-
-    private void validate(int personCount) {
-        int pointSize = personCount - 1;
-        if (pointSize < POINTS_MIN_SIZE || pointSize > POINTS_MAX_SIZE) {
+    private void validate(int count) {
+        if (count < POINTS_MIN_SIZE || count > POINTS_MAX_SIZE) {
             throw new IllegalArgumentException(PLAYER_SIZE_ERROR_MESSAGE);
         }
     }
 
-    private void createPoints(int personCount, BooleanGenerator booleanGenerator) {
-        int pointsSize = personCount - 1;
-        for (int index = 0; index < pointsSize; index++) {
+    private void createPoints(int count, BooleanGenerator booleanGenerator) {
+        for (int index = 0; index < count; index++) {
             addPoint(index, booleanGenerator.generate());
         }
     }
 
     private void addPoint(int index, boolean flag) {
-        if (canMake(points, flag, index)) {
+        if (canMake(flag, index)) {
             points.add(true);
             return;
         }
         points.add(false);
     }
 
-    private static boolean canMake(List<Boolean> points, boolean flag, int index) {
-        if (flag) {
-            return isFirstIndexOrLeftEmpty(points, index);
+    private boolean canMake(boolean flag, int index) {
+        if (flag && isFirstIndexOrLeftEmpty(index)) {
+            return true;
         }
         return false;
     }
 
-    private static boolean isFirstIndexOrLeftEmpty(List<Boolean> points, int index) {
+    private boolean isFirstIndexOrLeftEmpty(int index) {
         return index == 0 || points.get(index - 1) == false;
     }
 

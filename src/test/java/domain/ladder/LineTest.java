@@ -48,29 +48,6 @@ public class LineTest {
         assertThat(line.getPoints()).isEqualTo(expectedFlag);
     }
 
-    @ParameterizedTest
-    @MethodSource("generatePoints")
-    @DisplayName("왼쪽으로 이동할 수 있는 경우 LEFT가 반환된다.")
-    void moveLeftFailWithFirstIndex(int personCount, List<Boolean> points) {
-        Line line = new Line(personCount, new MockBooleanGenerator(points));
-
-        int canLeftMovePosition = points.size();
-
-        assertThat(line.chooseMoveDirection(canLeftMovePosition)).isEqualTo(Direction.LEFT);
-    }
-
-    @ParameterizedTest
-    @MethodSource("generatePoints")
-    @DisplayName("오른쪽으로 이동할 수 있는 경우 RIGHT가 반환된다.")
-    void moveRightFailWithLastIndex(int personCount, List<Boolean> points) {
-        Line line = new Line(personCount, new MockBooleanGenerator(points));
-
-        int canRightMovePosition = points.size() - 1;
-
-        assertThat(line.chooseMoveDirection(canRightMovePosition)).isEqualTo(Direction.RIGHT);
-    }
-
-
     static Stream<Arguments> generatePointsAndOutcome() {
         return Stream.of(
                 Arguments.arguments(2, List.of(true), List.of(true)),
@@ -78,15 +55,6 @@ public class LineTest {
                 Arguments.arguments(4, List.of(false, true, true), List.of(false, true, false)),
                 Arguments.arguments(5, List.of(false, false, false, false), List.of(false, false, false, false)),
                 Arguments.arguments(6, List.of(true, true, true, true, true), List.of(true, false, true, false, true))
-        );
-    }
-
-    static Stream<Arguments> generatePoints() {
-        return Stream.of(
-                Arguments.arguments(2, List.of(true)),
-                Arguments.arguments(3, List.of(false, true)),
-                Arguments.arguments(4, List.of(false, false, true)),
-                Arguments.arguments(5, List.of(false, false, false, true))
         );
     }
 

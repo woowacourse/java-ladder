@@ -14,16 +14,15 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(int personCount, int height, BooleanGenerator booleanGenerator) {
+    public Ladder(int count, int height, BooleanGenerator booleanGenerator) {
         validateHeight(height);
-        this.lines = createLadder(personCount, height, booleanGenerator);
+        this.lines = createLadder(count, height, booleanGenerator);
     }
 
-    public int move(int playerPosition) {
-        int position = playerPosition;
+    public Position findLastPosition(Position playerPosition) {
+        Position position = playerPosition;
         for (Line line : lines) {
-            Direction direction = line.chooseMoveDirection(position);
-            position += direction.getMovement();
+            position = line.findNext(position);
         }
         return position;
     }
@@ -34,10 +33,10 @@ public class Ladder {
         }
     }
 
-    private List<Line> createLadder(int personCount, int height, BooleanGenerator booleanGenerator) {
+    private List<Line> createLadder(int count, int height, BooleanGenerator booleanGenerator) {
         List<Line> createdLines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            createdLines.add(new Line(personCount, booleanGenerator));
+            createdLines.add(new Line(count, booleanGenerator));
         }
         return createdLines;
     }

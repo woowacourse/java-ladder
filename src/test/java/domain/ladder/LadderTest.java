@@ -41,7 +41,7 @@ public class LadderTest {
         Ladder ladder = new Ladder(5, height, new RandomBooleanGenerator());
 
         for (int i = 0; i < personCount; i++) {
-            assertThat(ladder.move(i)).isBetween(0, personCount - 1);
+            assertThat(ladder.findLastPosition(new Position(i)).getValue()).isBetween(0, personCount - 1);
         }
     }
 }

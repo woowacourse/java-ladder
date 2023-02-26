@@ -27,11 +27,11 @@ public class LadderGame {
         Map<String, String> gameResult = new HashMap<>();
 
         for (int playerIndex = 0; playerIndex < players.getSize(); playerIndex++) {
-            Player player = players.findNameByIndex(playerIndex);
+            Player player = players.findByIndex(playerIndex);
 
-            int playerLastPosition = ladder.move(playerIndex);
+            Position playerLastPosition = ladder.findLastPosition(new Position(playerIndex));
 
-            addPlayerResult(gameResult, player, playerLastPosition);
+            addPlayerResult(gameResult, player, playerLastPosition.getValue());
         }
         return new GameResult(gameResult);
     }

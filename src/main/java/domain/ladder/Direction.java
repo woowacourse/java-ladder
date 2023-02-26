@@ -3,7 +3,7 @@ package domain.ladder;
 public enum Direction {
     LEFT(-1),
     RIGHT(1),
-    STAY(0);
+    STRAIGHT(0);
 
     private final int movement;
 
