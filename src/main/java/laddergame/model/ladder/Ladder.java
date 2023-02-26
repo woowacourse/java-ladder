@@ -19,11 +19,11 @@ public class Ladder {
         return ladder.size();
     }
 
-    public List<Point> getLineToListPoint(int i) {
-        return ladder.get(i).getLine();
-    }
-
     public Line getLine(int i) {
         return ladder.get(i);
+    }
+
+    public List<Point> getLineToListPoint(int i) {
+        return ladder.get(i).getLine();
     }
 }

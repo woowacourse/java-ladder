@@ -11,12 +11,12 @@ public class People {
     private final List<Person> people;
 
     public People(List<String> names) {
-        validatePersonLength(names);
+        validatePeopleSize(names);
         validateDuplication(names);
         this.people = makePeople(names);
     }
 
-    private static void validatePersonLength(List<String> names) {
+    private static void validatePeopleSize(List<String> names) {
         if (names.size() < MIN_PERSON_LENGTH) {
             throw new IllegalArgumentException("최소 참여자의 수는 " + MIN_PERSON_LENGTH + "명 이상이어야 합니다.");
         }

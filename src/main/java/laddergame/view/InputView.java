@@ -19,6 +19,20 @@ public class InputView {
         return List.of(input.split(DELIMITER));
     }
 
+    public List<String> readPrizes() {
+        System.out.println(System.lineSeparator() + READ_PRIZES_MSG);
+        String input = scanner.nextLine();
+        validateIsBlank(input);
+        return List.of(input.split(DELIMITER));
+    }
+
+    public String readLadderGameResult() {
+        System.out.println(System.lineSeparator() + READ_RESULT_TYPE_MSG);
+        String input = scanner.nextLine();
+        validateIsBlank(input);
+        return input;
+    }
+
     private void validateIsBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException("참여자의 이름은 빈 문자열로 입력되어선 안됩니다.");
@@ -32,19 +46,5 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("사다리의 높이는 숫자로 입력되어야합니다.");
         }
-    }
-
-    public List<String> readPrizes() {
-        System.out.println(System.lineSeparator() + READ_PRIZES_MSG);
-        String input = scanner.nextLine();
-        validateIsBlank(input);
-        return List.of(input.split(DELIMITER));
-    }
-
-    public String readLadderGameResult() {
-        System.out.println(System.lineSeparator() + READ_RESULT_TYPE_MSG);
-        String input = scanner.nextLine();
-        validateIsBlank(input);
-        return input;
     }
 }
