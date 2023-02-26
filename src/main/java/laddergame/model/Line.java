@@ -47,7 +47,7 @@ public class Line {
 
     private static void validatePoint(Point point1, Point point2) {
         if (point1.getRightIsBoolean() && point2.getRightIsBoolean()) {
-            throw new IllegalArgumentException("[ERROR] 사다리가 연속되게 이어질 수 없습니다.");
+            throw new IllegalArgumentException("사다리가 연속되게 이어질 수 없습니다.");
         }
     }
 

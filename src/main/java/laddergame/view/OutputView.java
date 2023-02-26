@@ -5,6 +5,8 @@ import laddergame.model.Ladder;
 import laddergame.model.People;
 import laddergame.model.Point;
 import laddergame.model.Prizes;
+import laddergame.model.Result;
+import laddergame.model.Results;
 
 public class OutputView {
     private static final String VERTICAL_LINE = "|";
@@ -37,14 +39,14 @@ public class OutputView {
         }
     }
 
-    private static void printLine(List<Point> line) {
+    private void printLine(List<Point> line) {
         for (Point point : line) {
             System.out.print(VERTICAL_LINE);
             System.out.print(printPoint(point));
         }
     }
 
-    private static String printPoint(Point point) {
+    private String printPoint(Point point) {
         if (point.getRightIsBoolean()) {
             return HORIZONTAL_LINE;
         }
@@ -54,5 +56,12 @@ public class OutputView {
     private void printPrizes(Prizes prizes) {
         prizes.getPrizes().forEach(prize -> System.out.printf("%6s", prize.getPrize()));
         System.out.println();
+    }
+
+    public void printLadderGameResult(Results results) {
+        System.out.println("실행 결과");
+        for (Result result : results.getResults()) {
+            System.out.println(result.getPerson().getName() + " : " + result.getPrize().getPrize());
+        }
     }
 }
