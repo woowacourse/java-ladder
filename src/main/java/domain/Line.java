@@ -16,6 +16,16 @@ public class Line {
         this.line = line;
     }
 
+    public Direction calculateNextPosition(final int index) {
+        if (isStartPosition(index)) {
+            return isMovableToRight(index);
+        }
+        if (isLastPosition(index)) {
+            return isMovableToLeft(index);
+        }
+        return checkNextDirection(index);
+    }
+
     private void validateLine(final List<Bridge> line, final int index) {
         Bridge currentBridge = line.get(index);
         Bridge previousBridge = line.get(index - 1);
@@ -24,25 +34,33 @@ public class Line {
         }
     }
 
-    public int calculateNextPosition(final int index) {
-        if (index == 0) {
-            return index + checkRight(index).getDirection();
-        }
-        if (index == line.size()) {
-            return index + checkLeft(index).getDirection();
-        }
-        return index + checkLeft(index).getDirection() + checkRight(index).getDirection();
+    private boolean isStartPosition(final int index) {
+        return index == 0;
     }
 
-    private Direction checkRight(final int index) {
+    private boolean isLastPosition(final int index) {
+        return index == line.size();
+    }
+
+    private Direction isMovableToRight(final int index) {
         if (line.get(index) == Bridge.EXIST) {
             return Direction.RIGHT;
         }
         return Direction.DOWN;
     }
 
-    private Direction checkLeft(final int index) {
+    private Direction isMovableToLeft(final int index) {
         if (line.get(index - 1) == Bridge.EXIST) {
+            return Direction.LEFT;
+        }
+        return Direction.DOWN;
+    }
+
+    private Direction checkNextDirection(final int index) {
+        if (isMovableToRight(index).equals(Direction.RIGHT)) {
+            return Direction.RIGHT;
+        }
+        if (isMovableToLeft(index).equals(Direction.LEFT)) {
             return Direction.LEFT;
         }
         return Direction.DOWN;

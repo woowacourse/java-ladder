@@ -26,7 +26,8 @@ public class Ladder {
 
     private int calculateFinalPosition(int finalPosition) {
         for (Line line : ladder) {
-            finalPosition = line.calculateNextPosition(finalPosition);
+            final Direction nextDirection = line.calculateNextPosition(finalPosition);
+            finalPosition += nextDirection.getDirectionWeight();
         }
         return finalPosition;
     }
