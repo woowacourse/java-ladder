@@ -1,11 +1,10 @@
 package controller;
 
 import domain.Command;
+import domain.CommandCountController;
 import domain.Height;
-import domain.Player;
 import domain.Players;
 import domain.Results;
-import domain.Reward;
 import domain.Rewards;
 import domain.ladder.Ladder;
 import domain.ladder.LadderGame;
@@ -38,10 +37,13 @@ public class LadderGameController {
     }
 
     private void printResult(LadderGame ladderGame) {
-        while (true) {
+        CommandCountController commandCountController = new CommandCountController();
+
+        while (commandCountController.isCommandCountRemain()) {
             Command command = new Command(inputView.requestCommand());
             Results results = ladderGame.getResults(command);
             outputView.printResult(results);
+            commandCountController.execute(command);
         }
     }
 

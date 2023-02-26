@@ -28,8 +28,8 @@ public class CommandCountController {
         }
     }
 
-    public boolean isExhausted() {
-        return this.count == COMMAND_COUNT_UPPERBOUND;
+    public boolean isCommandCountRemain() {
+        return this.count != COMMAND_COUNT_UPPERBOUND;
     }
 
     public int getCount() {

@@ -45,7 +45,7 @@ public class CommandCountControllerTest {
             commandCountController.execute(command);
         }
 
-        assertThat(commandCountController.isExhausted()).isTrue();
+        assertThat(commandCountController.isCommandCountRemain()).isFalse();
     }
 
     @Test
@@ -73,7 +73,7 @@ public class CommandCountControllerTest {
         int count = commandCountController.getCount();
 
         assertThat(count).isEqualTo(20);
-        assertThat(commandCountController.isExhausted()).isTrue();
+        assertThat(commandCountController.isCommandCountRemain()).isFalse();
     }
 
 }
