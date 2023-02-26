@@ -7,9 +7,8 @@ public class Result {
 
     public Result(final List<String> inputResult, final Map<String, Integer> ladderGameResult) {
         result = new LinkedHashMap<>();
-        for (String user : ladderGameResult.keySet()) {
-            int finalPosition = ladderGameResult.get(user);
-            result.put(user, inputResult.get(finalPosition));
+        for (Map.Entry<String, Integer> gameResult : ladderGameResult.entrySet()) {
+            result.put(gameResult.getKey(), inputResult.get(gameResult.getValue()));
         }
     }
 
