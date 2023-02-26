@@ -4,11 +4,10 @@ import ladder.domain.ladder.Block;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.generator.BlockGenerator;
 import ladder.domain.player.Player;
-import ladder.domain.player.PlayerName;
 import ladder.domain.player.Players;
+import ladder.domain.player.exception.NoSuchPlayerException;
 import ladder.domain.result.Result;
 import ladder.domain.result.Results;
-import ladder.domain.player.exception.NoSuchPlayerException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +35,7 @@ public class LadderGameTest {
      */
     @BeforeEach
     void setup() {
-        players = new Players(List.of("pobi", "honux", "crong", "jk"));
+        players = Players.from(List.of("pobi", "honux", "crong", "jk"));
         results = new Results(players.size(), List.of("꽝", "5000", "꽝", "3000"));
         int playerNumber = players.size();
         int height = 5;

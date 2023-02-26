@@ -38,7 +38,7 @@ public class LadderGameController {
     private Players initPlayers() {
         try {
             List<String> playerNames = InputView.inputPlayer();
-            return new Players(playerNames);
+            return Players.from(playerNames);
         } catch (CustomException e) {
             OutputView.printErrorMessage(e);
             return initPlayers();

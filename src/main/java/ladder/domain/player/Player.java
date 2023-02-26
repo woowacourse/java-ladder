@@ -5,12 +5,12 @@ public class Player {
     private final PlayerName playerName;
     private final Position position;
 
-    private Player(PlayerName playerName, Position position) {
+    private Player(final PlayerName playerName, final Position position) {
         this.playerName = playerName;
         this.position = position;
     }
 
-    public static Player of(String name, int initialPosition) {
+    public static Player of(final String name, final int initialPosition) {
         PlayerName playerName = new PlayerName(name);
         Position position = new Position(initialPosition);
         return new Player(playerName, position);

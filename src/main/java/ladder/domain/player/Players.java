@@ -4,6 +4,7 @@ import ladder.domain.player.exception.DuplicatePlayerNameException;
 import ladder.domain.player.exception.NoSuchPlayerException;
 import ladder.domain.player.exception.PlayerNumberException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,22 +14,28 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(final List<String> playerNames) {
-        validatePlayerNumber(playerNames);
-        validateDuplicatedPlayer(playerNames);
-
-        players = playerNames.stream()
-                .map(playerName -> Player.of(playerName, 0))
-                .collect(Collectors.toUnmodifiableList());
+    private Players(final List<Player> players) {
+        this.players = players;
     }
 
-    private void validatePlayerNumber(final List<String> playerNames) {
+    public static Players from(final List<String> playerNames) {
+        validatePlayerNumber(playerNames);
+        validateDuplicatedPlayer(playerNames);
+        List<Player> players = new ArrayList<>();
+        int playerPosition = 0;
+        for (String playerName : playerNames) {
+            players.add(Player.of(playerName, playerPosition++));
+        }
+        return new Players(players);
+    }
+
+    private static void validatePlayerNumber(final List<String> playerNames) {
         if (playerNames.size() < PLAYER_MINIMUM_NUMBER) {
             throw new PlayerNumberException();
         }
     }
 
-    private void validateDuplicatedPlayer(final List<String> playerNames) {
+    private static void validateDuplicatedPlayer(final List<String> playerNames) {
         List<String> distinctPlayerNames = playerNames.stream()
                 .distinct()
                 .collect(Collectors.toUnmodifiableList());
