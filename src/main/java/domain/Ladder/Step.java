@@ -1,29 +1,23 @@
 package domain.Ladder;
 
+import domain.Position;
+
 public enum Step {
     NONE(0),
     LEFT(-1),
     RIGHT(1);
 
-    private final int moveDirection;
+    private final int direction;
 
-    Step(final int movePosition) {
-        this.moveDirection = movePosition;
+    Step(final int direction) {
+        this.direction = direction;
     }
 
     public boolean isRightConnection() {
         return this == RIGHT;
     }
 
-    public static Step getRandomValidStep(boolean rightStepFlag) {
-        if (rightStepFlag) {
-            return Step.RIGHT;
-        }
-
-        return Step.NONE;
-    }
-
-    public int move(int currentPosition) {
-        return this.moveDirection + currentPosition;
+    public void step(Position currentPosition) {
+        currentPosition.move(direction);
     }
 }
