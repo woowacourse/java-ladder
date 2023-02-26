@@ -4,13 +4,13 @@ import domain.ladder.LadderGame;
 import domain.ladder.Line;
 import domain.player.Player;
 import domain.player.Players;
-import domain.result.GameResult;
 import domain.result.Prizes;
 import utils.Log;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Application {
@@ -21,7 +21,7 @@ public class Application {
         Ladder ladder = createLadder(players.getSize());
 
         LadderGame ladderGame = new LadderGame(players, prizes, ladder);
-        GameResult gameResult = ladderGame.start();
+        Map<String, String> gameResult = ladderGame.start();
 
         showLadder(ladderGame.getPlayers(), ladderGame.getLadder(), ladderGame.getPrizes());
         String resultName = readResultName(gameResult);
@@ -65,7 +65,7 @@ public class Application {
         }
     }
 
-    private static String readResultName(GameResult gameResult) {
+    private static String readResultName(Map<String, String> gameResult) {
         try {
             String resultName = InputView.readResultName();
             validateResultName(gameResult, resultName);
@@ -76,8 +76,8 @@ public class Application {
         }
     }
 
-    private static void validateResultName(GameResult gameResult, String resultName) {
-        if (!resultName.equals("all") && !gameResult.contains(resultName)) {
+    private static void validateResultName(Map<String, String> gameResult, String resultName) {
+        if (!resultName.equals("all") && !gameResult.containsKey(resultName)) {
             throw new IllegalArgumentException("이름과 일치하는 참가자가 존재하지 않습니다.");
         }
     }
@@ -91,7 +91,7 @@ public class Application {
         OutputView.showPrizes(prizes);
     }
 
-    private static void showResult(GameResult gameResult, String name) {
-        OutputView.showGameResult(gameResult.getGameResult(), name);
+    private static void showResult(Map<String, String> gameResult, String name) {
+        OutputView.showGameResult(gameResult, name);
     }
 }

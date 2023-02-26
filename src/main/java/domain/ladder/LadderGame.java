@@ -3,7 +3,6 @@ package domain.ladder;
 import domain.player.Player;
 import domain.player.Players;
 import domain.result.Prizes;
-import domain.result.GameResult;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -23,7 +22,7 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public GameResult start() {
+    public Map<String, String> start() {
         Map<String, String> gameResult = new HashMap<>();
 
         for (int playerIndex = 0; playerIndex < players.getSize(); playerIndex++) {
@@ -33,7 +32,7 @@ public class LadderGame {
 
             addPlayerResult(gameResult, player, playerLastPosition.getValue());
         }
-        return new GameResult(gameResult);
+        return gameResult;
     }
 
     private void addPlayerResult(Map<String, String> gameResult, Player player, int playerLastPosition) {
