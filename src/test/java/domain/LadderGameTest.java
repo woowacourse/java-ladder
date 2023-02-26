@@ -19,6 +19,8 @@ public class LadderGameTest {
 
     @BeforeEach
     void init() {
+        Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
+        Results results = new Results(List.of("꽝", "5000", "꽝", "3000"));
         List<Line> customizedLines = List.of(
                 new Line(List.of(TRUE, FALSE, TRUE)),
                 new Line(List.of(FALSE, TRUE, FALSE)),
@@ -26,9 +28,6 @@ public class LadderGameTest {
                 new Line(List.of(FALSE, TRUE, FALSE)),
                 new Line(List.of(TRUE, FALSE, TRUE))
         );
-        List<String> resultList = List.of("꽝", "5000", "꽝", "3000");
-        Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
-        Results results = new Results(resultList);
         ladder = new Ladder(players, results, customizedLines);
     }
 
