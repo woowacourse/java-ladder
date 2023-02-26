@@ -35,7 +35,7 @@ public class Ladder {
     }
 
     public Item findItemsByStartIndex(int startIndex) {
-        IndexValidator.validateBounds(startIndex, lines.width(), "출발 위치가 범위 밖의 수입니다.");
+        IndexValidator.validateBounds(lines.toLines(), startIndex);
         int destinationIndex = lines.findDestinationIndex(startIndex);
         return destination.get(destinationIndex);
     }

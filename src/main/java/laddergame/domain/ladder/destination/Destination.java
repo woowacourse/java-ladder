@@ -17,7 +17,7 @@ public class Destination {
     }
 
     public Item get(int index) {
-        IndexValidator.validateBounds(index, items.size(), "주어진 종착지 위치가 범위 밖의 수입니다.");
+        IndexValidator.validateBounds(items, index);
         return items.get(index);
     }
 

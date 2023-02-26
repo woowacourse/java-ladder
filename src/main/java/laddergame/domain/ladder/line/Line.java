@@ -43,7 +43,7 @@ public class Line {
     }
 
     public int findNextLineIndex(int index) {
-        IndexValidator.validateBounds(index, directions.size(), "주어진 사다리 위치가 범위 밖의 수입니다.");
+        IndexValidator.validateBounds(directions, index);
         Direction direction = directions.get(index);
         return direction.computeNextIndex(index);
     }
