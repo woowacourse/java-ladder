@@ -20,12 +20,12 @@ public class Prizes {
             throw new IllegalArgumentException(PRIZE_SIZE_ERROR_MESSAGE);
         }
 
-        if (hasBlank(prizes)) {
+        if (isBlank(prizes)) {
             throw new IllegalArgumentException(PRIZE_BLANK_ERROR_MESSAGE);
         }
     }
 
-    private boolean hasBlank(List<String> prizes) {
+    private boolean isBlank(List<String> prizes) {
         return prizes.stream()
                 .anyMatch(String::isBlank);
     }

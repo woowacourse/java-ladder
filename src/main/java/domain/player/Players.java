@@ -47,7 +47,7 @@ public class Players {
         return players.size();
     }
 
-    public Player findNameByIndex(int playerIndex) {
+    public Player findByIndex(int playerIndex) {
         if (playerIndex < 0 || playerIndex >= getPlayers().size()) {
             throw new IllegalArgumentException(PLAYER_INDEX_ERROR_MESSAGE);
         }

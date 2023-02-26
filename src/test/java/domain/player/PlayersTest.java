@@ -50,7 +50,7 @@ public class PlayersTest {
         int size = players.getSize();
 
         for (int index = 0; index < size; index++) {
-            assertThat(players.findNameByIndex(index).getName()).isEqualTo(names.get(index));
+            assertThat(players.findByIndex(index).getName()).isEqualTo(names.get(index));
         }
     }
 
@@ -62,7 +62,7 @@ public class PlayersTest {
         Players players = new Players(names);
         int size = players.getPlayers().size();
 
-        assertThatThrownBy(() -> players.findNameByIndex(size))
+        assertThatThrownBy(() -> players.findByIndex(size))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("참가자 수 보다 큰 인덱스가 입력 되었습니다.");
     }

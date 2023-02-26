@@ -58,7 +58,8 @@ public class Application {
     private static Ladder createLadder(int personCount) {
         try {
             int height = InputView.readLadderHeight();
-            return new Ladder(personCount, height, new RandomBooleanGenerator());
+            int lineCount = personCount - 1;
+            return new Ladder(lineCount, height, new RandomBooleanGenerator());
         } catch (IllegalArgumentException e) {
             Log.error(e.getMessage());
             return createLadder(personCount);
