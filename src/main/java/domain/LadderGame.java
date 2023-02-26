@@ -45,8 +45,12 @@ public class LadderGame {
 
     public List<List<Boolean>> getLadder() {
         List<List<Boolean>> ladderStatus = new ArrayList<>();
-        ladder.getLines()
-              .forEach(line -> ladderStatus.add(line.getStatus()));
+        for (Line line : ladder.getLines()) {
+            List<Boolean> lineStatus = new ArrayList<>();
+            line.getStatus()
+                .forEach(status -> lineStatus.add(status.isConnected()));
+            ladderStatus.add(lineStatus);
+        }
         return List.copyOf(ladderStatus);
     }
 

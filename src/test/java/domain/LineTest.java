@@ -16,8 +16,9 @@ class LineTest {
     @Test
     void createSuccess() {
         Line line = new Line(9, new RandomBooleanGenerator());
-        List<Boolean> weight = line.getStatus();
-        Assertions.assertThat(weight).hasSize(9);
+        List<LineStatus> weight = line.getStatus();
+        Assertions.assertThat(weight)
+                  .hasSize(9);
     }
 
     @DisplayName("라인의 너비가 9을 넘을 경우 오류를 던진다.")
@@ -38,14 +39,18 @@ class LineTest {
     @Test
     void makeStatusCheckAllFalse() {
         Line line = new Line(3, () -> false);
-        Assertions.assertThat(line.getStatus()).containsExactly(false, false, false);
+        Assertions.assertThat(line.getStatus())
+                  .containsExactly(LineStatus.DISCONNECTED,
+                          LineStatus.DISCONNECTED, LineStatus.DISCONNECTED);
     }
 
     @DisplayName("라인은 정상적으로 생성된 경우. (연결가능 부분 연결)")
     @Test
     void makeStatusCheck() {
         Line line = new Line(3, () -> true);
-        Assertions.assertThat(line.getStatus()).containsExactly(true, false, true);
+        Assertions.assertThat(line.getStatus())
+                  .containsExactly(LineStatus.CONNECTED,
+                          LineStatus.DISCONNECTED, LineStatus.CONNECTED);
     }
 
     @DisplayName("왼쪽으로 움직일 수 있는지에 따른 결과 확인")
@@ -53,7 +58,8 @@ class LineTest {
     @CsvSource({"0, false", "1, true", "2, false"})
     void canMoveLeft(int index, boolean expect) {
         Line line = new Line(2, () -> true);
-        Assertions.assertThat(line.canMoveLeft(index)).isEqualTo(expect);
+        Assertions.assertThat(line.canMoveLeft(index))
+                  .isEqualTo(expect);
     }
 
     @DisplayName("왼쪽으로 움직일 수 있는지에 따른 결과 확인")
@@ -61,6 +67,7 @@ class LineTest {
     @CsvSource({"0, true", "1, false", "2, false"})
     void canMoveRight(int index, boolean expect) {
         Line line = new Line(2, () -> true);
-        Assertions.assertThat(line.canMoveRight(index)).isEqualTo(expect);
+        Assertions.assertThat(line.canMoveRight(index))
+                  .isEqualTo(expect);
     }
 }
