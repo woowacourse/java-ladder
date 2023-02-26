@@ -1,5 +1,6 @@
 package domain.ladder;
 
+import domain.player.Player;
 import util.BooleanGenerator;
 
 import java.util.List;
@@ -41,5 +42,11 @@ public class Ladder {
                 "lines=" + lines +
                 ", booleanGenerator=" + booleanGenerator +
                 '}';
+    }
+
+    public void ride(Player player) {
+        for(Line line:lines){
+            line.ride(player);
+        }
     }
 }
