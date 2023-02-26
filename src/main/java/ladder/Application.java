@@ -3,7 +3,7 @@ package ladder;
 import java.util.Scanner;
 import ladder.client.LadderGameClient;
 import ladder.client.view.InputView;
-import ladder.domain.LadderGameImpl;
+import ladder.domain.LadderGame;
 import ladder.domain.RandomConnectionJudgement;
 
 public class Application {
@@ -18,8 +18,8 @@ public class Application {
         }
     }
 
-    private static LadderGameImpl getLadderGame() {
-        return new LadderGameImpl(new RandomConnectionJudgement());
+    private static LadderGame getLadderGame() {
+        return new LadderGame(new RandomConnectionJudgement());
     }
 
     private static InputView getInputView() {

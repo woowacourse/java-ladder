@@ -1,23 +1,69 @@
 package ladder.domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import ladder.dto.LadderInfoDto;
 import ladder.dto.PlayerResultDto;
+import ladder.repository.LadderRepository;
 
 /**
- * 이 클래스는 사다리 게임을 테스트하는 과정에서 구현체를 바꾸기 위해서 존재합니다
- * <p>
- * 이 클래스와, dto 만을 공통적으로 알고 있고, 그 외의 의존성은 서로에게 존재하지 않습니다
+ * 이 클래스는 사다리 게임에 대한 실제 로직을 담당하는 클래스 입니다
  */
-public interface LadderGame {
+public class LadderGame {
 
-    void initializePlayers(List<String> playerNames);
+    private final ConnectionJudgement connectionJudgement;
+    private final LadderRepository ladderRepository;
 
-    void initializeResults(List<String> resultNames);
+    public LadderGame(ConnectionJudgement connectionJudgement) {
+        this.connectionJudgement = connectionJudgement;
+        ladderRepository = new LadderRepository();
+    }
 
-    void initializeLadder(int height);
+    public void initializePlayers(List<String> playerNames) {
+        ladderRepository.put(Players.class, new Players(playerNames));
+    }
 
-    LadderInfoDto getLadderInfo();
+    public void initializeResults(List<String> resultNames) {
+        int playerCount = ladderRepository.get(Players.class)
+                .size();
+        ladderRepository.put(Result.class, new Result(resultNames, playerCount));
+    }
 
-    PlayerResultDto calculateResult();
+    public void initializeLadder(int height) {
+        Players players = ladderRepository.get(Players.class);
+        ladderRepository.put(Ladder.class, generateLadder(height, players));
+
+    }
+
+    private Ladder generateLadder(int height, Players players) {
+        return Ladder.of(players.size(), height, connectionJudgement);
+    }
+
+    public LadderInfoDto getLadderInfo() {
+        List<String> playerNames = ladderRepository.get(Players.class)
+                .getPlayerNames();
+        List<List<Boolean>> rows = ladderRepository.get(Ladder.class)
+                .getRows();
+        List<String> resultNames = ladderRepository.get(Result.class)
+                .getNames();
+        return new LadderInfoDto(playerNames, rows, resultNames);
+    }
+
+    public PlayerResultDto calculateResult() {
+        Players players = ladderRepository.get(Players.class);
+        Ladder ladder = ladderRepository.get(Ladder.class);
+        Result resultItems = ladderRepository.get(Result.class);
+        Map<String, Position> playerNameAndResultPosition = players.calculateResult(ladder);
+        //그냥 바로 collect toMap 만 호출하면 순서가 보장이 되지 않아서 LinkedHashMap 으로 감싸준다
+        Map<String, String> playerNameAndResultName = playerNameAndResultPosition.entrySet()
+                .stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        entry -> resultItems.findByPosition(entry.getValue()),
+                        (x, y) -> y,
+                        LinkedHashMap::new));
+        return new PlayerResultDto(playerNameAndResultName);
+    }
 }
