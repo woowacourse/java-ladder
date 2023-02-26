@@ -21,12 +21,18 @@ public class LadderGameController {
 
     public void run() {
         Players players = getPlayers();
-        Prizes prizes = getPrizes(players.getCount());
+        Prizes prizes = getPrizes(players);
         Ladder ladder = getLadder(players.getCount() - 1);
         LadderGame ladderGame = new LadderGame(players, ladder);
 
         printLadderInformation(players, prizes, ladder);
         printPlayerResult(players, prizes, ladderGame);
+    }
+
+    private void printLadderInformation(Players players, Prizes prizes, Ladder ladder) {
+        outputView.printNames(players.getNames());
+        outputView.printLadder(ladder.getLines());
+        outputView.printNames(prizes.getNames());
     }
 
     private void printPlayerResult(Players players, Prizes prizes, LadderGame ladderGame) {
@@ -39,12 +45,6 @@ public class LadderGameController {
         outputView.printAllPlayerResult(players, results);
     }
 
-    private void printLadderInformation(Players players, Prizes prizes, Ladder ladder) {
-        outputView.printNames(players.getNames());
-        outputView.printLadder(ladder.getLines());
-        outputView.printNames(prizes.getNames());
-    }
-
     private List<Integer> getPlayerIndex(LadderGame ladderGame) {
         try {
             String name = inputView.readCheckPlayer();
@@ -55,24 +55,6 @@ public class LadderGameController {
         }
     }
 
-    private Prizes getPrizes(int count) {
-        try {
-            List<String> names = inputView.readPrizeNames();
-            Prizes prizes = new Prizes(names);
-            validatePrizesCount(prizes, count);
-            return prizes;
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
-            return getPrizes(count);
-        }
-    }
-
-    private void validatePrizesCount(Prizes prizes, int count) {
-        if (!prizes.isSame(count)) {
-            throw new IllegalArgumentException("실행결과 수는 참여자 수와 같아야합니다.");
-        }
-    }
-
     private Players getPlayers() {
         try {
             List<String> names = inputView.readPlayerNames();
@@ -80,6 +62,17 @@ public class LadderGameController {
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return getPlayers();
+        }
+    }
+
+    private Prizes getPrizes(Players players) {
+        try {
+            List<String> names = inputView.readPrizeNames();
+            Prizes prizes = new Prizes(names, players);
+            return prizes;
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return getPrizes(players);
         }
     }
 
