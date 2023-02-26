@@ -12,10 +12,10 @@ public class Line {
     private static final int ORDER_UNIT = 1;
 
     private final List<Rung> rungs;
-    private final BooleanGenerator rungBooleanGenerator;
+    private final BooleanGenerator randomBooleanGenerator;
 
-    private Line(final int rungCount, final BooleanGenerator rungBooleanGenerator) {
-        this.rungBooleanGenerator = rungBooleanGenerator;
+    private Line(final int rungCount, final BooleanGenerator randomBooleanGenerator) {
+        this.randomBooleanGenerator = randomBooleanGenerator;
         rungs = makeRungs(rungCount);
     }
 
@@ -33,7 +33,7 @@ public class Line {
 
     private List<Rung> makeRungs(final int rungCount) {
         List<Rung> rungs = new ArrayList<>();
-        Rung firstRung = Rung.create(rungBooleanGenerator.generate());
+        Rung firstRung = Rung.create(randomBooleanGenerator.generate());
         rungs.add(firstRung);
 
         for (int order = 1; order < rungCount; order++) {
@@ -48,7 +48,7 @@ public class Line {
         if (previousRung.exists()) {
             return DOES_NOT_EXIST;
         }
-        return rungBooleanGenerator.generate();
+        return randomBooleanGenerator.generate();
     }
 
     public List<Rung> getRungs() {
