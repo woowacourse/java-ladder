@@ -1,7 +1,7 @@
 package controller;
 
-import domain.Ladder;
-import domain.LadderGenerator;
+import domain.Ladder.Ladder;
+import domain.Ladder.LadderGenerator;
 import domain.Name;
 import domain.Names;
 import util.RandomBooleanGenerator;
