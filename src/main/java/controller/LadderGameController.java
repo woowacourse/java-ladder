@@ -34,7 +34,7 @@ public class LadderGameController {
 
     private Players generatePlayer() {
         List<String> playerNames = inputView.readPlayerName();
-        Players players = Players.generatePlayer(playerNames);
+        Players players = Players.generatePlayers(playerNames);
         return players;
     }
 
@@ -63,7 +63,7 @@ public class LadderGameController {
     }
 
     private void printLadderResult(Players players, LadderGameResult result, String input) {
-        List<String> playersName = players.getPlayersName();
+        List<String> playersName = players.getPlayerNames();
         if (input.equals(ALL_RESULT_COMMAND)) {
             outputView.printAllResult(result);
         }
@@ -76,7 +76,7 @@ public class LadderGameController {
     private void printLadder(Players players, Ladder ladder, Prizes prizes) {
         outputView.printResult();
         outputView.printNames(players);
-        outputView.printLadders(ladder, players.getPlayersName());
+        outputView.printLadders(ladder, players.getPlayerNames());
         outputView.printPrize(prizes, players);
     }
 }

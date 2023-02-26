@@ -19,7 +19,7 @@ public class OutputViewTest {
     void calculateBlank_메서드_테스트() {
         //given
         OutputView outputView = new OutputView();
-        Players players = Players.generatePlayer(List.of("judy", "ako", "pobi"));
+        Players players = Players.generatePlayers(List.of("judy", "ako", "pobi"));
         OutputStream out = new ByteArrayOutputStream();
 
         //when

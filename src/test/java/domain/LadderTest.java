@@ -14,7 +14,7 @@ class LadderTest {
     void 사다리를_생성하면_높이는_입력받은_높이와_같다() {
         //given
         int height = 5;
-        Players players = Players.generatePlayer(List.of("ako", "judy", "pobi"));
+        Players players = Players.generatePlayers(List.of("ako", "judy", "pobi"));
         BooleanGenerator booleanGenerator = new BooleanGeneratorImplements();
 
         //when

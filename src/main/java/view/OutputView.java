@@ -31,7 +31,7 @@ public class OutputView {
     }
 
     public void printNames(Players players) {
-        List<String> names = players.getPlayersName();
+        List<String> names = players.getPlayerNames();
         for (int i = 0; i < names.size(); i++) {
             firstPlayerPrint(names, i);
             lastPlayerPrint(names, i);
@@ -48,7 +48,7 @@ public class OutputView {
 
     public void printPrize(Prizes prizes, Players players) {
         List<String> prizeNames = prizes.getPrizeName();
-        List<String> playerNames = players.getPlayersName();
+        List<String> playerNames = players.getPlayerNames();
         printFirstPrize(playerNames, prizeNames.get(0));
         printOtherPrize(prizeNames, playerNames);
         System.out.println();
@@ -120,15 +120,15 @@ public class OutputView {
         System.out.print(ladderLineBlock.repeat(repeatCount(prePlayerName, currentPlayerNames)) + VERTICAL_BAR);
     }
 
-    private int repeatCount(String preName, String currentName) {
-        if (isKorean(currentName)) {
-            return (int) Math.round(currentName.length() * KOREAN_SIZE + calculateNameSpace(preName));
+    private int repeatCount(String prePlayerName, String currentPlayerName) {
+        if (isKorean(currentPlayerName)) {
+            return (int) Math.round(currentPlayerName.length() * KOREAN_SIZE + calculateNameSpace(prePlayerName));
         }
-        return currentName.length() + calculateNameSpace(preName);
+        return currentPlayerName.length() + calculateNameSpace(prePlayerName);
     }
 
-    private boolean isKorean(String name) {
-        Matcher koreanMatcher = koreanPattern.matcher(name);
+    private boolean isKorean(String playerName) {
+        Matcher koreanMatcher = koreanPattern.matcher(playerName);
         return koreanMatcher.matches();
     }
 
@@ -149,8 +149,8 @@ public class OutputView {
         }
     }
 
-    private void printFirstPrize(List<String> playerNames, String prizeNames) {
+    private void printFirstPrize(List<String> playerNames, String prizeName) {
         String firstSpace = calculateFirstSpace(playerNames);
-        System.out.print(firstSpace + prizeNames);
+        System.out.print(firstSpace + prizeName);
     }
 }

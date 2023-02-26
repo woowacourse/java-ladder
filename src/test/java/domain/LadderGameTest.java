@@ -39,7 +39,7 @@ public class LadderGameTest {
 
     private Players generatePlayer() {
         List<String> players = List.of("ako", "split", "ash");
-        return Players.generatePlayer(players);
+        return Players.generatePlayers(players);
     }
 
     private Prizes generatePrize(int playerCount) {

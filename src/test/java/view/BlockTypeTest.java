@@ -19,7 +19,7 @@ class BlockTypeTest {
     @Test
     void 다리모양으로_변환한다() {
         //given
-        Players players = Players.generatePlayer(List.of("judy", "ako", "pobi"));
+        Players players = Players.generatePlayers(List.of("judy", "ako", "pobi"));
         List<Block> blocks = List.of(Block.createBlock(true), Block.createBlock(false));
         Line line = new Line(players, blocks);
 

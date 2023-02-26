@@ -21,14 +21,14 @@ public class Players {
         this.players = players;
     }
 
-    public static Players generatePlayer(List<String> playerNames) {
+    public static Players generatePlayers(List<String> playerNames) {
         List<Player> players = playerNames.stream()
             .map(Player::new)
             .collect(Collectors.toList());
         return new Players(players);
     }
 
-    public List<String> getPlayersName() {
+    public List<String> getPlayerNames() {
         return players.stream()
             .map(Player::getName)
             .collect(Collectors.toUnmodifiableList());
