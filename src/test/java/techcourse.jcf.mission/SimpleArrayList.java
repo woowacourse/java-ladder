@@ -1,5 +1,7 @@
 package techcourse.jcf.mission;
 
+import java.util.Arrays;
+
 public class SimpleArrayList implements SimpleList {
     private static final int INITIAL_CAPACITY = 10;
     private String[] values;
@@ -10,24 +12,37 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean add(String value) {
-        int currentCapacity = values.length;
+        int capacity = calculateCapacity();
+        int size = calculateSize();
+        if (size >= capacity) {
+            increaseCapacity(capacity);
+            values[size] = value;
+            return true;
+        }
+        values[size] = value;
+        return true;
+    }
+
+    private int calculateCapacity() {
+        return values.length;
+    }
+
+    private int calculateSize() {
         int currentSize = 0;
         for (String element : values) {
             if (element != null) {
                 currentSize++;
             }
         }
-        if (currentSize >= currentCapacity) {
-            String[] currentValues = this.values;
-            values = new String[currentCapacity * 2];
-            for (int index = 0; index < values.length; index++) {
-                values[index] = currentValues[index];
-            }
-            values[currentSize] = value;
-            return true;
+        return currentSize;
+    }
+
+    private void increaseCapacity(int capacity) {
+        String[] currentValues = values;
+        values = new String[capacity * 2];
+        for (int index = 0; index < calculateCapacity(); index++) {
+            values[index] = currentValues[index];
         }
-        values[currentSize] = value;
-        return true;
     }
 
     @Override
@@ -77,6 +92,10 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void clear() {
+    }
 
+    @Override
+    public String toString() {
+        return Arrays.toString(values);
     }
 }
