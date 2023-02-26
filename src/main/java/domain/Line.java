@@ -58,7 +58,7 @@ public class Line {
         return Collections.unmodifiableList(line);
     }
 
-    public int getPointsSize() {
+    public int getLineSize() {
         return line.size();
     }
 }
