@@ -48,4 +48,22 @@ class RewardsTest {
             () -> allRewards.getReward(index));
     }
 
+    @DisplayName("글자수가 1이상 5 이하이다.")
+    @Test
+    void validateRewardsLengthTest_success() {
+        List<String> rewards = List.of("j", "jo", "joy", "yeon", "yeonk");
+
+        assertDoesNotThrow(
+                () -> Rewards.of(rewards, rewards.size()));
+    }
+
+    @DisplayName("글자 수가 1미만이거나 5 초과이면 예외가 발생한다.")
+    @Test
+    void validateRewardsLengthTest_fail() {
+        List<String> rewards = List.of("", "yeonkk");
+
+        assertThrows(IllegalArgumentException.class,
+                () -> Rewards.of(rewards, rewards.size()));
+    }
+
 }

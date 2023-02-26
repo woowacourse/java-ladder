@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -37,6 +38,15 @@ class UsersTest {
 
         users.moveUsers(allNumbers);
         assertEquals(2, users.findUser(name).getPosition());
+    }
+
+    @DisplayName("참여자 중 같은 이름이 있으면 예외가 발생한다.")
+    @Test
+    void validateUserNameTest() {
+        List<String> usernames = List.of("joy", "joy", "crong");
+
+        assertThrows(IllegalArgumentException.class,
+                () -> Users.from(usernames));
     }
 
 }
