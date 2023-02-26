@@ -1,7 +1,8 @@
-package laddergame.model;
+package laddergame.model.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import laddergame.model.people.People;
 
 public class Ladder {
     private final Height height;

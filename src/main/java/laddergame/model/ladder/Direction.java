@@ -1,4 +1,4 @@
-package laddergame.model;
+package laddergame.model.ladder;
 
 public class Direction {
     private final boolean direction;

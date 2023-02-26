@@ -1,4 +1,4 @@
-package laddergame.model;
+package laddergame.model.people;
 
 import java.util.HashSet;
 import java.util.List;

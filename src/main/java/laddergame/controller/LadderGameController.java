@@ -2,16 +2,16 @@ package laddergame.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import laddergame.model.Height;
-import laddergame.model.Ladder;
-import laddergame.model.Line;
-import laddergame.model.People;
-import laddergame.model.Person;
-import laddergame.model.Point;
-import laddergame.model.Prize;
-import laddergame.model.Prizes;
-import laddergame.model.Result;
-import laddergame.model.Results;
+import laddergame.model.ladder.Height;
+import laddergame.model.ladder.Ladder;
+import laddergame.model.ladder.Line;
+import laddergame.model.ladder.Point;
+import laddergame.model.people.People;
+import laddergame.model.people.Person;
+import laddergame.model.people.Prize;
+import laddergame.model.people.Prizes;
+import laddergame.model.people.Result;
+import laddergame.model.people.Results;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 

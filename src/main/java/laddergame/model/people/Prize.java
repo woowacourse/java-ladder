@@ -1,4 +1,4 @@
-package laddergame.model;
+package laddergame.model.people;
 
 public class Prize {
     private static final int MIN_PRIZE_LENGTH = 1;

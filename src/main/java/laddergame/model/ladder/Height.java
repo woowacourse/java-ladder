@@ -1,4 +1,4 @@
-package laddergame.model;
+package laddergame.model.ladder;
 
 public class Height {
     private static final int MIN_HEIGHT = 1;

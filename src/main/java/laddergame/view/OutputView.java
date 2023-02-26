@@ -1,12 +1,12 @@
 package laddergame.view;
 
 import java.util.List;
-import laddergame.model.Ladder;
-import laddergame.model.People;
-import laddergame.model.Point;
-import laddergame.model.Prizes;
-import laddergame.model.Result;
-import laddergame.model.Results;
+import laddergame.model.ladder.Ladder;
+import laddergame.model.ladder.Point;
+import laddergame.model.people.People;
+import laddergame.model.people.Prizes;
+import laddergame.model.people.Result;
+import laddergame.model.people.Results;
 
 public class OutputView {
     private static final String VERTICAL_LINE = "|";
@@ -59,14 +59,14 @@ public class OutputView {
     }
 
     public void printAllResult(Results results) {
-        System.out.println(System.lineSeparator()+"실행 결과");
+        System.out.println(System.lineSeparator() + "실행 결과");
         for (Result result : results.getResults()) {
             System.out.println(result.getPerson().getName() + " : " + result.getPrize().getPrize());
         }
     }
 
     public void printPersonalResult(Result result) {
-        System.out.println(System.lineSeparator()+"실행 결과");
+        System.out.println(System.lineSeparator() + "실행 결과");
         System.out.println(result.getPrize().getPrize());
     }
 }

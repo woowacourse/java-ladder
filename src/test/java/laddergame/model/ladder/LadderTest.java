@@ -1,9 +1,10 @@
-package laddergame.model;
+package laddergame.model.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
+import laddergame.model.people.People;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

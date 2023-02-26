@@ -1,4 +1,4 @@
-package laddergame.model;
+package laddergame.model.people;
 
 public class Result {
     private final Person person;
