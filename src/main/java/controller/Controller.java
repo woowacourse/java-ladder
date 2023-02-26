@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 public class Controller {
 
     private static final String ALL_USER_RESULT = "all";
+    private static final String WRONG_RESULT_INPUT_MESSAGE = "존재하지 않는 유저입니다.";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -80,28 +81,30 @@ public class Controller {
 
     private void showResult(final Users users, final Result result) {
         try {
-            checkResult(users, result);
+            final String input = readResultInput(users);
+            final Map<String, String> gameResult = result.getResult(input);
+            resultView.printResult(gameResult);
+            if (isPrintAllResult(users, gameResult)) return;
+            showResult(users, result);
         } catch (IllegalArgumentException e) {
             resultView.printNonExistUser();
             showResult(users, result);
         }
     }
 
-    private void checkResult(final Users users, final Result result) {
-        String inputResultWord = inputView.inputWantToKnowUser();
-        validateIsExistUser(inputResultWord, users);
-        final Map<String, String> gameResult = result.getResult(inputResultWord);
-        resultView.printResult(gameResult);
-        if (users.getCount() == gameResult.size()) {
-            resultView.printGameExitMessage();
-            return;
+    private String readResultInput(final Users users) {
+        final String input = inputView.inputWantToKnowUser();
+        if (!users.contain(input) && !input.equals(ALL_USER_RESULT)) {
+            throw new IllegalArgumentException(WRONG_RESULT_INPUT_MESSAGE);
         }
-        checkResult(users, result);
+        return input;
     }
 
-    private void validateIsExistUser(final String userName, final Users users) {
-        if (!users.contain(userName) && !userName.equals(ALL_USER_RESULT)) {
-            throw new IllegalArgumentException("존재하지 않는 유저입니다.");
+    private boolean isPrintAllResult(final Users users, final Map<String, String> gameResult) {
+        if (users.getCount() == gameResult.size()) {
+            resultView.printGameExitMessage();
+            return true;
         }
+        return false;
     }
 }
