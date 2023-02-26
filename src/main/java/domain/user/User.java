@@ -1,5 +1,8 @@
 package domain.user;
 
+import domain.ladder.Line;
+import java.util.List;
+
 public class User {
     private static final int MIN_NAME_LENGTH = 1;
     public static final int MAX_NAME_LENGTH = 5;
@@ -9,11 +12,13 @@ public class User {
     private static final String NAME_REGEX_FORMAT = "^[a-zA-z]*$";
 
     private final String name;
+    private final int position;
 
-    public User(String name) {
+    public User(String name, int position) {
         validateNameLength(name);
         validateNameFormat(name);
         this.name = name;
+        this.position = position;
     }
 
     private void validateNameLength(String name) {
@@ -34,5 +39,16 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public int movePosition(int currentPosition, Line nextLine) {
+        List<Boolean> nextLineValues = nextLine.getLine();
+        if (nextLineValues.get(currentPosition)) {
+            return currentPosition - 1;
+        }
+        if (nextLineValues.get(currentPosition + 1)) {
+            return currentPosition + 1;
+        }
+        return currentPosition;
     }
 }

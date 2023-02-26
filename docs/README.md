@@ -69,7 +69,7 @@
 - 실행 결과 출력
   - [ ] 사다리 결과 형식에 맞게 실행 결과 출력
 - 사다리 이동
-  - [ ] 현재 index 기준으로 다음 Line의 index와 index + 1에 해당하는 값 비교
+  - [x] 현재 index 기준으로 다음 Line의 index와 index + 1에 해당하는 값 비교
     - index에 해당하는 값이 true인 경우, index 감소
     - index + 1에 해당하는 값이 true인 경우, index 증가
     - 둘 다 false인 경우, index 그대로

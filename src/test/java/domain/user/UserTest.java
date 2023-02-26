@@ -5,12 +5,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import domain.ladder.Line;
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import utils.FixedBooleanGenerator;
 
 class UserTest {
     public static final int NAME_LENGTH_LIMIT = 5;
@@ -22,7 +22,7 @@ class UserTest {
         @ParameterizedTest
         @ValueSource(strings = {"i", "am", "fun", "dino", "mango"})
         void shouldSuccessMakeUser(String name) {
-            assertDoesNotThrow(() -> new User(name));
+            assertDoesNotThrow(() -> new User(name, 0));
         }
     }
 
@@ -33,7 +33,7 @@ class UserTest {
         @Test
         void shouldFailNameLengthOver() {
             String name = "abcdef";
-            assertThatThrownBy(() -> new User(name)).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> new User(name, 0)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(User.NAME_LENGTH_ERROR_MESSAGE);
         }
 
@@ -41,7 +41,7 @@ class UserTest {
         @Test
         void shouldFailNameLengthZero() {
             String name = "";
-            assertThatThrownBy(() -> new User(name)).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> new User(name, 0)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(User.NAME_LENGTH_ERROR_MESSAGE);
         }
     }
@@ -53,7 +53,7 @@ class UserTest {
         @Test
         void shouldFailNameWithSpecialCharacter() {
             String name = "ab#c";
-            assertThatThrownBy(() -> new User(name)).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> new User(name, 0)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
         }
 
@@ -61,7 +61,7 @@ class UserTest {
         @Test
         void shouldFailNameWithNumber() {
             String name = "ab23c";
-            assertThatThrownBy(() -> new User(name)).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> new User(name, 0)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
         }
 
@@ -69,7 +69,7 @@ class UserTest {
         @Test
         void shouldFailNameWithKorean() {
             String name = "ab가c";
-            assertThatThrownBy(() -> new User(name)).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> new User(name, 0)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
         }
 
@@ -77,7 +77,7 @@ class UserTest {
         @Test
         void shouldFailNameWithBlank() {
             String name = "ab c";
-            assertThatThrownBy(() -> new User(name)).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> new User(name, 0)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
         }
     }
@@ -85,29 +85,27 @@ class UserTest {
     @Nested
     @DisplayName("유저 이동 테스트")
     class MoveUserTest {
+        User user = new User("test", 0);
+
         @DisplayName("현재 position에 해당하는 다음 라인 값이 true인 경우, 왼쪽 밑으로 이동한다.")
         @Test
-        void shouldSuccessMoveLeft() {
-            int currentPosition = 1;
-            Line nextLine = (Line) List.of(false, true);
-            boolean nextLineValue = true;
-            assertThat(movePosition(currentPosition, nextLineValue)).isEqualTo(0);
+        void shouldSuccessMoveLowerLeft() {
+            Line nextLine = new Line(4, new FixedBooleanGenerator(true));
+            assertThat(user.movePosition(1, nextLine)).isEqualTo(0);
         }
 
         @DisplayName("현재 position + 1에 해당하는 다음 라인 값이 true인 경우, 오른쪽 밑으로 이동한다.")
         @Test
-        void shouldSuccessMoveLeft() {
-            int currentPosition = 1;
-            boolean nextLineValue = true;
-            assertThat(movePosition(currentPosition, nextLineValue)).isEqualTo(2);
+        void shouldSuccessMoveLowerRight() {
+            Line nextLine = new Line(4, new FixedBooleanGenerator(true));
+            assertThat(user.movePosition(0, nextLine)).isEqualTo(1);
         }
 
         @DisplayName("현재 position과 position + 1에 해당하는 다음 라인 값이 둘 다 false인 경우, 그대로 밑으로 이동한다.")
         @Test
-        void shouldSuccessMoveLeft() {
-            int currentPosition = 1;
-            boolean nextLineValue = true;
-            assertThat(movePosition(currentPosition, nextLineValue)).isEqualTo(1);
+        void shouldSuccessMoveDown() {
+            Line nextLine = new Line(4, new FixedBooleanGenerator(false));
+            assertThat(user.movePosition(0, nextLine)).isEqualTo(0);
         }
     }
 }
