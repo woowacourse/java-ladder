@@ -98,8 +98,8 @@ public class OutputView {
     private void printLadder(Ladder ladder) {
         StringBuilder result = new StringBuilder();
         List<Line> lines = ladder.getLines();
-        for (int i = 0; i < lines.size() - 1; i++) {
-            result.append(buildLadderLine(lines.get(i)));
+        for (Line line : lines) {
+            result.append(buildLadderLine(line));
             result.append(NEXT_LINE);
         }
         System.out.print(result);
