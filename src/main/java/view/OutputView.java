@@ -58,7 +58,7 @@ public class OutputView {
             printSteppableLine(maxLength, isSteppable);
             printUnSteppableLine(maxLength, isSteppable);
         }
-        System.out.println(PILLAR.getShape());
+        System.out.println();
     }
 
     private static void printUnSteppableLine(final int maxLength, final Boolean isSteppable) {

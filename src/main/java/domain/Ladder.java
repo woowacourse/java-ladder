@@ -25,15 +25,8 @@ public class Ladder {
 
     private void generateLines(final Height height, final int width, BooleanGenerator booleanGenerator) {
         while(height.isNotBottom()){
-            Line currentLine = new Line(booleanGenerator);
-            generateFootsteps(width, currentLine);
+            Line currentLine = new LineGenerator(booleanGenerator).build(width);
             this.lines.add(currentLine);
-        }
-    }
-
-    private void generateFootsteps(final int width, final Line line) {
-        for (int currentWidth = 0; currentWidth < width - 1; currentWidth++) {
-            line.generateStep();
         }
     }
 
