@@ -23,15 +23,15 @@ public class LadderGame {
         return new LadderGame(ladder, players, results);
     }
 
-    public List<ResultDto> calculatePlayerResult(String playerName, String queryAll) {
-        Map<Position, String> playerArrive;
+    public List<ResultDto> play(String playerName, String queryAll) {
+        Map<Position, String> arrivePosition;
 
         if (playerName.equals(queryAll)) {
-            playerArrive = players.moveAllToResult(ladder);
-            return results.getResultsByPosition(playerArrive);
+            arrivePosition = players.moveAllToLadderEnd(ladder);
+            return results.getResultsByPosition(arrivePosition);
         }
-        playerArrive = players.moveToResult(playerName, ladder);
-        return results.getResultsByPosition(playerArrive);
+        arrivePosition = players.moveToLadderEnd(playerName, ladder);
+        return results.getResultsByPosition(arrivePosition);
     }
 
     public List<List<Boolean>> getLadder() {

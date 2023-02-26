@@ -30,7 +30,7 @@ class LadderGameTest {
         LadderGame game = LadderGame.of(ladder, new Players(names), new Results(results, names.size()));
 
         // when
-        List<ResultDto> resultDtos = game.calculatePlayerResult(input, "all");
+        List<ResultDto> resultDtos = game.play(input, "all");
 
         //then
         assertThat(resultDtos.get(0).getResult()).isEqualTo(expected);
@@ -50,7 +50,7 @@ class LadderGameTest {
         LadderGame game = LadderGame.of(ladder, new Players(names), new Results(results, names.size()));
 
         //then
-        assertThatThrownBy(() -> game.calculatePlayerResult("못찾겠지", "all"))
+        assertThatThrownBy(() -> game.play("못찾겠지", "all"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("존재하지 않는 플레이어 입니다.");
     }
