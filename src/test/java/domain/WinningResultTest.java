@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class WinningResultTest {
     @ParameterizedTest
-    @ValueSource(strings = {"","당첨!!!!"})
+    @ValueSource(strings = {"","당첨!!!!"," "})
     void winningResultValidateFailTest(String winningResultInput) {
         Assertions.assertThatThrownBy(() -> new WinningResult(winningResultInput))
                 .isInstanceOf(IllegalArgumentException.class);
