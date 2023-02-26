@@ -22,6 +22,7 @@ class PlayersTest {
     @Test
     void 플레이어들의_이름을_반환한다() {
         Players players = new Players(of("a", "b", "c"));
-        assertThat(players.getPlayerNames()).isEqualTo(of("a", "b", "c"));
+        assertThat(players.getPlayerNames())
+                .isEqualTo(of("a", "b", "c"));
     }
 }

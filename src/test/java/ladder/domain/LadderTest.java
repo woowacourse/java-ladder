@@ -36,17 +36,21 @@ class LadderTest {
     @Test
     void getRows_메서드로_연결된_정보를_알_수_있음() {
         Ladder ladder = of(3, 2, () -> true);
-        assertThat(ladder.getRows()).containsExactly(
-                List.of(true, false, false),
-                List.of(true, false, false)
-        );
+        assertThat(ladder.getRows())
+                .containsExactly(
+                        List.of(true, false, false),
+                        List.of(true, false, false)
+                );
     }
 
     @Test
     void ladder에서_시작_포지션을_받게_되면_결과_포지션을_반환() {
         Ladder ladder = of(3, 2, () -> true);
-        assertThat(ladder.calculateResult(Position.valueOf(0))).isEqualTo(Position.valueOf(0));
-        assertThat(ladder.calculateResult(Position.valueOf(1))).isEqualTo(Position.valueOf(1));
-        assertThat(ladder.calculateResult(Position.valueOf(2))).isEqualTo(Position.valueOf(2));
+        assertThat(ladder.calculateResult(Position.valueOf(0)))
+                .isEqualTo(Position.valueOf(0));
+        assertThat(ladder.calculateResult(Position.valueOf(1)))
+                .isEqualTo(Position.valueOf(1));
+        assertThat(ladder.calculateResult(Position.valueOf(2)))
+                .isEqualTo(Position.valueOf(2));
     }
 }
