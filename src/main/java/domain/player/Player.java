@@ -20,7 +20,6 @@ public class Player {
         return name.isSame(otherName);
     }
 
-
     public String getName() {
         return name.getName();
     }
