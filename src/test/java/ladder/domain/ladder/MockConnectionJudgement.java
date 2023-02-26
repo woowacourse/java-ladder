@@ -7,7 +7,7 @@ package ladder.domain.ladder;
  */
 public class MockConnectionJudgement implements ConnectionJudgement {
 
-    private boolean expected;
+    private final boolean expected;
 
     public MockConnectionJudgement(boolean expected) {
         this.expected = expected;

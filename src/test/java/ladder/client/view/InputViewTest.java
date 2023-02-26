@@ -13,11 +13,11 @@ import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Test;
 
-@SuppressWarnings({"NonAsciiCharacters", "SpellCheckingInspection"})
+@SuppressWarnings({"NonAsciiCharacters"})
 @DisplayNameGeneration(ReplaceUnderscores.class)
 class InputViewTest {
 
-    private ByteArrayOutputStream printResult = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream printResult = new ByteArrayOutputStream();
 
     @BeforeEach
     void setSystemOut() {

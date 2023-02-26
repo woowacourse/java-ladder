@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public class LadderRepository {
 
-    Map<Class<?>, Object> repository;
+    private final Map<Class<?>, Object> repository;
 
     public LadderRepository() {
         repository = new HashMap<>();
