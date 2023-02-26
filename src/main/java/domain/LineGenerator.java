@@ -25,7 +25,7 @@ public class LineGenerator {
         buildFirstStep();
         buildMiddleStep();
         buildLastStep();
-        return new Line(steps);
+        return new Line(new ArrayList<>(steps));
     }
 
     private void buildMiddleStep() {
