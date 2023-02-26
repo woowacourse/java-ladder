@@ -48,7 +48,8 @@ public class LadderService {
 
     private void validateSize(List<Player> players) {
         if (isProperPlayerLength(players)) {
-            throw new IllegalArgumentException("[ERROR] 사용자는 2명에서 13명까지 가능합니다.");
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] 사용자는 %d명에서 %d명까지 가능합니다.", MIN_PLAYERS, MAX_PLAYERS));
         }
     }
 
