@@ -8,7 +8,7 @@ import ladder.domain.PlayerResults;
 import ladder.domain.Players;
 import ladder.domain.Prizes;
 import ladder.dto.LadderResponse;
-import ladder.dto.PlayerResultsResponse;
+import ladder.dto.PlayerResultResponse;
 import ladder.dto.PlayersResponse;
 import ladder.dto.PrizesResponse;
 import ladder.service.LadderService;
@@ -29,7 +29,7 @@ public class LadderController {
     public void run() {
         PlayerResults playerResults = createPlayerResults();
         printPlayerResult(playerResults);
-        ladderView.printAllPlayerResults(PlayerResultsResponse.of(playerResults));
+        ladderView.printAllPlayerResults(PlayerResultResponse.of(playerResults));
     }
 
     private PlayerResults createPlayerResults() {

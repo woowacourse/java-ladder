@@ -8,36 +8,19 @@ import ladder.domain.Line;
 import ladder.domain.Step;
 
 public class LadderResponse {
-    private final List<String> lines;
+    private final List<List<Step>> lines;
 
-    public LadderResponse(List<String> lines) {
+    public LadderResponse(List<List<Step>> lines) {
         this.lines = lines;
     }
 
     public static LadderResponse ofLadder(Ladder ladder) {
         return ladder.getLines().stream()
                 .map(Line::getSteps)
-                .map(LadderResponse::stepsToString)
                 .collect(collectingAndThen(toList(), LadderResponse::new));
     }
 
-    private static String stepsToString(List<Step> steps) {
-        return "|" + steps.stream()
-                .map(LadderResponse::stepToString)
-                .collect(joining("|")) + "|";
-    }
-
-    private static String stepToString(Step step) {
-        if (step == Step.EXIST) {
-            return "-----";
-        }
-        if (step == Step.EMPTY) {
-            return "     ";
-        }
-        throw new UnsupportedOperationException("[ERROR] 처리할 수 없는 Step 입니다.");
-    }
-
-    public List<String> getLines() {
+    public List<List<Step>> getLines() {
         return lines;
     }
 }

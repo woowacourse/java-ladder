@@ -1,7 +1,8 @@
 package ladder.view;
 
+import java.util.List;
 import ladder.dto.LadderResponse;
-import ladder.dto.PlayerResultsResponse;
+import ladder.dto.PlayerResultResponse;
 import ladder.dto.PlayersResponse;
 import ladder.dto.PrizesResponse;
 
@@ -32,8 +33,8 @@ public class LadderView {
         return InputView.readPlayerName();
     }
 
-    public void printAllPlayerResults(PlayerResultsResponse resultsResponse) {
-        OutputView.printAllPlayerResults(resultsResponse.getPlayerResults());
+    public void printAllPlayerResults(List<PlayerResultResponse> resultsResponses) {
+        OutputView.printAllPlayerResults(resultsResponses);
     }
 
     public void printResult(String result) {
