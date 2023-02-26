@@ -1,9 +1,11 @@
 package domain;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class ResultsMap {
+
     private final Map<Person, Result> resultMap;
 
     public ResultsMap(Map<Person, Result> resultMap) {
@@ -22,6 +24,6 @@ public class ResultsMap {
     }
 
     public Map<Person, Result> getResultMap() {
-        return Collections.unmodifiableMap(new LinkedHashMap<>(resultMap));
+        return Map.copyOf(resultMap);
     }
 }
