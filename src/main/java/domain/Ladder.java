@@ -2,32 +2,21 @@ package domain;
 
 import util.BooleanGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Ladder {
 
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
     private final BooleanGenerator booleanGenerator;
 
-    public Ladder(final BooleanGenerator booleanGenerator) {
-        this.booleanGenerator = booleanGenerator;
+    public Ladder(final List<Line> liens){
+        this.lines = liens;
+        this.booleanGenerator = null;
     }
 
     public int getLineHeight() {
         return this.lines.size();
-    }
-
-    public void build(final Height height, final int width) {
-        generateLines(height, width, booleanGenerator);
-    }
-
-    private void generateLines(final Height height, final int width, BooleanGenerator booleanGenerator) {
-        while(height.isNotBottom()){
-            Line currentLine = new LineGenerator(booleanGenerator).build(width);
-            this.lines.add(currentLine);
-        }
     }
 
     public int getWidth() {

@@ -1,7 +1,7 @@
 package controller;
 
-import domain.Height;
 import domain.Ladder;
+import domain.LadderGenerator;
 import domain.Name;
 import domain.Names;
 import util.RandomBooleanGenerator;
@@ -12,17 +12,15 @@ public class LadderGameController {
 
     public void run() {
         Names names = getNames();
-        Height height = getHeight();
+        int height = getHeight();
 
         Ladder ladder = buildLadder(names, height);
 
         printResult(names, ladder);
     }
 
-    private Ladder buildLadder(final Names names, final Height height) {
-        Ladder ladder = new Ladder(new RandomBooleanGenerator());
-        ladder.build(height, names.count());
-        return ladder;
+    private Ladder buildLadder(final Names names, final int height) {
+        return new LadderGenerator(new RandomBooleanGenerator()).build(height, names.count());
     }
 
     private static void printResult(final Names names, final Ladder ladder) {
@@ -40,10 +38,10 @@ public class LadderGameController {
         }
     }
 
-    private Height getHeight() {
+    private int getHeight() {
         try {
             OutputView.printRequestLadderHeight();
-            return new Height(InputView.getHeight());
+            return InputView.getHeight();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getHeight();
