@@ -7,7 +7,6 @@ import domain.Results;
 import domain.ladder.Ladder;
 
 import java.util.List;
-import java.util.function.Function;
 
 public class OutputView {
 
@@ -41,8 +40,8 @@ public class OutputView {
     }
 
     private void getFormatResult(Result result) {
-        String playerName = result.getPlayer().getName();
-        String rewardName = result.getReward().getName();
+        String playerName = result.getPlayerName();
+        String rewardName = result.getRewardName();
         System.out.printf(RESULT_FORMAT, playerName, rewardName);
     }
 

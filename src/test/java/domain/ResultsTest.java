@@ -18,10 +18,10 @@ public class ResultsTest {
 
         List<Result> extractedResult = results.getResults();
 
-        assertThat(extractedResult.get(0).getPlayer().getName()).isEqualTo("pobi");
-        assertThat(extractedResult.get(0).getReward().getName()).isEqualTo("fail");
-        assertThat(extractedResult.get(1).getPlayer().getName()).isEqualTo("hell");
-        assertThat(extractedResult.get(1).getReward().getName()).isEqualTo("5000");
+        assertThat(extractedResult.get(0).getPlayerName()).isEqualTo("pobi");
+        assertThat(extractedResult.get(0).getRewardName()).isEqualTo("fail");
+        assertThat(extractedResult.get(1).getPlayerName()).isEqualTo("hell");
+        assertThat(extractedResult.get(1).getRewardName()).isEqualTo("5000");
     }
 
 }

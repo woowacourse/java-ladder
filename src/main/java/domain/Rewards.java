@@ -14,7 +14,9 @@ public class Rewards {
 
     public static Rewards from(int numberOfPlayer, List<String> inputRewards) {
         validate(numberOfPlayer, inputRewards);
-        List<Reward> rewards = inputRewards.stream().map(Reward::new).collect(Collectors.toList());
+        List<Reward> rewards = inputRewards.stream()
+                .map(Reward::new)
+                .collect(Collectors.toList());
         return new Rewards(rewards);
     }
 

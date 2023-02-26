@@ -37,10 +37,10 @@ public class LadderGameTest {
         Result firstResult = results.get(0);
         Result secondResult = results.get(1);
 
-        assertThat(firstResult.getPlayer().getName()).isEqualTo("pobi");
-        assertThat(firstResult.getReward().getName()).isEqualTo("5000");
-        assertThat(secondResult.getPlayer().getName()).isEqualTo("crong");
-        assertThat(secondResult.getReward().getName()).isEqualTo("fail");
+        assertThat(firstResult.getPlayerName()).isEqualTo("pobi");
+        assertThat(firstResult.getRewardName()).isEqualTo("5000");
+        assertThat(secondResult.getPlayerName()).isEqualTo("crong");
+        assertThat(secondResult.getRewardName()).isEqualTo("fail");
     }
 
     @Test
@@ -51,8 +51,8 @@ public class LadderGameTest {
         List<Result> results = ladderGame.getResults(command).getResults();
 
         assertThat(results).hasSize(1);
-        assertThat(results.get(0).getPlayer().getName()).isEqualTo("crong");
-        assertThat(results.get(0).getReward().getName()).isEqualTo("fail");
+        assertThat(results.get(0).getPlayerName()).isEqualTo("crong");
+        assertThat(results.get(0).getRewardName()).isEqualTo("fail");
     }
 
     private RandomNumberGenerator createCustomRandomNumberGenerator() {
