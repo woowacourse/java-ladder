@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,6 +12,16 @@ class ResultsTest {
     @DisplayName("여러 개의 값을 입력받아 Result를 복수로 생성한다.")
     void shouldCreatePlayersWhenInputStrings() {
         String resultValuesRaw = "꽝,5000,당첨,재시도";
-        assertDoesNotThrow(() -> new Results(resultValuesRaw));
+        assertDoesNotThrow(() -> new Results(resultValuesRaw, 4));
+    }
+
+    @Test
+    @DisplayName("입력받은 수와 다른 수의 Results를 생성하려하면 예외가 발생한다.")
+    void shouldThrowExceptionWhenCreateResultsMoreThanInputSize() {
+        String resultValuesRaw = "꽝,5000,당첨,재시도";
+        assertThatThrownBy(() -> new Results(resultValuesRaw, 3))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("플레이어의 수와 결과의 수가 다릅니다.");
+
     }
 }
