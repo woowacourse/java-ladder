@@ -110,4 +110,22 @@ class SimpleLinkedListTest {
 
         Assertions.assertEquals(-1, linkedList.indexOf("not contain"));
     }
+
+    @DisplayName("SimpleLinkedList 내부 원소 개수 반환 테스트")
+    @Test
+    void SimpleLinkedList_범위_내부의_원소_개수_반환_테스트() {
+        SimpleLinkedList linkedList = new SimpleLinkedList();
+        final String beforeValue = "before";
+        linkedList.add(beforeValue);
+
+        Assertions.assertEquals(1, linkedList.size());
+    }
+
+    @DisplayName("SimpleLinkedList 범위 내부에 찾는 원소가 없는 경우 -1 반환 테스트")
+    @Test
+    void SimpleLinkedList_범위_내부에_원소_없는_경우_개수_테스트() {
+        SimpleLinkedList linkedList = new SimpleLinkedList();
+
+        Assertions.assertEquals(0, linkedList.size());
+    }
 }
