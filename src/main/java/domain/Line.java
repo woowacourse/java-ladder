@@ -1,8 +1,7 @@
 package domain;
 
 import java.util.List;
-import util.LineGenerator;
-import util.LineMaker;
+import generator.LineGenerator;
 
 public class Line {
 

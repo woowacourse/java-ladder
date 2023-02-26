@@ -1,4 +1,4 @@
-package util;
+package generator;
 
 public class ExistLineGenerator implements LineGenerator {
 

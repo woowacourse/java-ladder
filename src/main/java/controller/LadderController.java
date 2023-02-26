@@ -10,9 +10,9 @@ import domain.Results;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import util.LineGenerator;
-import util.PlayersMaker;
-import util.RandomLineGenerator;
+import generator.LineGenerator;
+import domain.PlayersMaker;
+import generator.RandomLineGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -28,17 +28,6 @@ public class LadderController {
 
         LadderGame ladderGame = playLadderGame(players, results, ladder);
         getResult(players, ladderGame);
-    }
-
-    private String inputPlayerNameWantToSeeResult(Players players) {
-        try {
-            String playerName = InputView.receivePlayerName();
-            players.validateExistPlayer(playerName);
-            return playerName;
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e);
-            return inputPlayerNameWantToSeeResult(players);
-        }
     }
 
     private Players makePlayers() {
@@ -125,5 +114,16 @@ public class LadderController {
         Map<String, String> ladderGameResult = ladderGame.getLadderGameResult();
         String playerNameWantToSeeResult = inputPlayerNameWantToSeeResult(players);
         OutputView.printResult(ladderGameResult, players, playerNameWantToSeeResult);
+    }
+
+    private String inputPlayerNameWantToSeeResult(Players players) {
+        try {
+            String playerName = InputView.receivePlayerName();
+            players.validateExistPlayer(playerName);
+            return playerName;
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return inputPlayerNameWantToSeeResult(players);
+        }
     }
 }

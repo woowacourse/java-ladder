@@ -1,14 +1,18 @@
-package util;
+package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import domain.LineMaker;
 import domain.LineStatus;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import generator.ExistLineGenerator;
+import generator.LineGenerator;
+import generator.RandomLineGenerator;
 
 class LineMakerTest {
 

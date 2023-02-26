@@ -5,9 +5,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import util.ExistLineGenerator;
-import util.NonExistLineGenerator;
-import util.RandomLineGenerator;
+import generator.ExistLineGenerator;
+import generator.NonExistLineGenerator;
+import generator.RandomLineGenerator;
 
 public class LineTest {
 

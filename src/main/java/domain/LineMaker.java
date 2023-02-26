@@ -1,7 +1,8 @@
-package util;
+package domain;
 
 import domain.LineStatus;
 import java.util.List;
+import generator.LineGenerator;
 
 public class LineMaker {
 
