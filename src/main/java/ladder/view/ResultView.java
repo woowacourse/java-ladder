@@ -1,6 +1,7 @@
 package ladder.view;
 
 import java.util.List;
+import java.util.Map.Entry;
 import ladder.domain.Step;
 import ladder.dto.ResultDto;
 import ladder.dto.LadderDto;
@@ -65,8 +66,9 @@ public class ResultView {
     public static void printAllResult(ResultDto resultDto) {
         System.out.println();
         System.out.println("실행 결과");
-        resultDto.getResults().entrySet().stream()
-            .forEach(result -> System.out.println(result.getKey() + " : " + result.getValue()));
+        for (Entry<String, String> result : resultDto.getResults().entrySet()) {
+            System.out.println(result.getKey() + " : " + result.getValue());
+        }
         System.out.println();
     }
 
