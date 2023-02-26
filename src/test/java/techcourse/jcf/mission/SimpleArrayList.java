@@ -114,7 +114,7 @@ public class SimpleArrayList implements SimpleList {
         return oldValue;
     }
 
-    private void validateOutOfBound(int index){
+    private void validateOutOfBound(int index) {
         if (!(0 <= index && index < this.size)) {
             throw new IllegalArgumentException("삭제할 인덱스는 범위를 벗어날 수 없습니다.");
         }
@@ -122,6 +122,9 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void clear() {
-
+        for (int i = 0; i < this.size; i++) {
+            this.values[i] = null;
+        }
+        this.size = 0;
     }
 }

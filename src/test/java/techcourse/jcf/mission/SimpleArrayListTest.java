@@ -188,4 +188,18 @@ class SimpleArrayListTest {
             arrayList.remove(1);
         });
     }
+
+    @DisplayName("SimpleArrayList 초기화 테스트")
+    @Test
+    void SimpleArrayList_초기화_테스트() {
+        SimpleArrayList arrayList = new SimpleArrayList();
+        final String beforeValue = "before";
+        arrayList.add(beforeValue);
+
+        arrayList.clear();
+
+        Assertions.assertEquals(true, arrayList.isEmpty());
+        Assertions.assertEquals(0, arrayList.size());
+        Assertions.assertEquals(false, arrayList.contains(beforeValue));
+    }
 }
