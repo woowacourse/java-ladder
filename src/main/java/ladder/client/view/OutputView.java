@@ -72,7 +72,8 @@ public class OutputView {
     public static void printResult(String result) {
         System.out.println("실행 결과");
         if (result == null) {
-            throw new IllegalArgumentException("존재하지 않는 참가자입니다");
+            System.out.println("결과가 없는 사람입니다");
+            return;
         }
         System.out.println(result);
     }
