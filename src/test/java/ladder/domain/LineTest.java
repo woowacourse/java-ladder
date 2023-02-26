@@ -51,7 +51,7 @@ class LineTest {
         Line line = new Line(fixedStrategy, 3);
 
         assertThatThrownBy(() -> {
-            line.moveFrom(new Position(start));
+            line.moveFrom(Position.from(start));
         })
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("line 범위 밖의 시작점입니다.");
@@ -67,9 +67,9 @@ class LineTest {
         // |--|  |--|  |
 
         //when
-        Position arrive = line.moveFrom(new Position(start));
+        Position arrive = line.moveFrom(Position.from(start));
 
         //then
-        assertThat(arrive).isEqualTo(new Position(expected));
+        assertThat(arrive).isEqualTo(Position.from(expected));
     }
 }

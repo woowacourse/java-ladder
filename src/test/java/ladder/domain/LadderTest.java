@@ -23,9 +23,9 @@ class LadderTest {
         // |  |--|  |
 
         // when
-        Position arrived  = ladder.moveThrough(new Position(start));
+        Position arrived  = ladder.moveThrough(Position.from(start));
 
         //then
-        assertThat(arrived).isEqualTo(new Position(expected));
+        assertThat(arrived).isEqualTo(Position.from(expected));
     }
 }
