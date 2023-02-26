@@ -7,9 +7,9 @@ public class Width {
     private static final String INVALID_LINE_WIDTH_MESSAGE = "사다리의 너비는 1~9만 가능합니다.";
     private final int width;
 
-    public Width(final int width) {
-        validateWidthRange(width);
-        this.width = width;
+    public Width(final Users users) {
+        validateWidthRange(users.getCount() - 1);
+        this.width = users.getCount() - 1;
     }
 
     private void validateWidthRange(final int width) {
