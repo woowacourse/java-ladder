@@ -3,9 +3,6 @@ package ladder.domain;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import ladder.domain.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -53,5 +50,24 @@ class PlayersTest {
         assertThatThrownBy(() -> new Players(namesRaw))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("플레이어는 최소 2명 이상이여야 합니다");
+    }
+
+    @Test
+    @DisplayName("이름을 입력 받아 해당하는 플레이어를 반환한다.")
+    void shouldReturnAppropriatePlayerWhenInputName() {
+        String namesRaw = "a,ab,abc";
+        Players players = new Players(namesRaw);
+        Player player = players.getPlayerByName("abc");
+        assertThat(player.getNameValue()).isEqualTo("abc");
+    }
+
+    @Test
+    @DisplayName("입력받은 이름의 플레이어가 없으면 예외가 발생한다.")
+    void shouldThrowExceptionWhenInputNameNotExist() {
+        String namesRaw = "a,ab,abc";
+        Players players = new Players(namesRaw);
+        assertThatThrownBy(() -> players.getPlayerByName("abcd"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("존재하지 않는 플레이어의 이름입니다.");
     }
 }

@@ -45,4 +45,11 @@ public class Players {
                 .map(Name::value)
                 .collect(Collectors.toList());
     }
+
+    public Player getPlayerByName(String nameValue) {
+        return players.stream()
+                .filter(player -> player.haveNameOf(nameValue))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어의 이름입니다."));
+    }
 }
