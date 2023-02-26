@@ -36,12 +36,12 @@ public class LadderGame {
     }
 
     private Players enroll() {
-        List<String> names = inputView.inputPlayers();
+        List<String> names = inputView.inputPlayerNames();
         return Players.from(names);
     }
 
     private Prizes getPrizes(int expectedSize) {
-        List<String> names = inputView.inputPrizes();
+        List<String> names = inputView.inputPrizeNames();
         return Prizes.from(names, expectedSize);
     }
 
