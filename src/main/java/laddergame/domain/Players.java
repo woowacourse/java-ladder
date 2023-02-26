@@ -14,7 +14,7 @@ public class Players {
     private final List<Player> players;
 
     public Players(List<String> playerNames) {
-        List<Player> players = playerNames.stream()
+        final List<Player> players = playerNames.stream()
                 .map(Player::new)
                 .collect(Collectors.toList());
         validatePlayerNames(players);
@@ -22,7 +22,7 @@ public class Players {
     }
 
     private void validatePlayerNames(List<Player> players) {
-        Set<Player> playerSet = new HashSet<>(players);
+        final Set<Player> playerSet = new HashSet<>(players);
         if (playerSet.size() != players.size()) {
             throw new IllegalArgumentException(ErrorMessage.PLAYER_NAME_DUPLICATED.getMessage());
         }

@@ -16,7 +16,7 @@ public class Line {
 
     private List<Point> createLine(int pointCount, BooleanGenerator booleanGenerator) {
         boolean isPreviousConnected = false;
-        List<Point> points = new ArrayList<>();
+        final List<Point> points = new ArrayList<>();
         while (points.size() < pointCount) {
             boolean isCurrentConnected = selectCurrentPoint(isPreviousConnected, booleanGenerator.generate());
             points.add(Point.findByConnectedCondition(isCurrentConnected));
@@ -33,7 +33,7 @@ public class Line {
     }
 
     public List<Point> getLine() {
-        return points;
+        return this.points;
     }
 
     public int move(int currentPosition) {
@@ -48,7 +48,7 @@ public class Line {
     }
 
     private boolean canMoveRight(int position) {
-        final int maxPosition = points.size();
+        final int maxPosition = this.points.size();
         return position < maxPosition && isConnected(position);
     }
 
@@ -58,6 +58,6 @@ public class Line {
     }
 
     private boolean isConnected(int position) {
-        return points.get(position).isConnected();
+        return this.points.get(position).isConnected();
     }
 }

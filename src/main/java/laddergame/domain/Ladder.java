@@ -16,7 +16,7 @@ public class Ladder {
     }
 
     private List<Line> generateLines(int playerCount, BooleanGenerator booleanGenerator) {
-        List<Line> lines = new ArrayList<>();
+        final List<Line> lines = new ArrayList<>();
         while (!ladderHeight.isMaxHeight(lines.size())) {
             lines.add(new Line(playerCount, booleanGenerator));
         }
