@@ -7,10 +7,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private final List<Line> ladder;
+    private final List<Line> lines;
 
     public Ladder(int count, Height height, BooleanGenerator ladderGenerator) {
-        this.ladder = createLadder(count, height, ladderGenerator);
+        this.lines = createLadder(count, height, ladderGenerator);
     }
 
     private static List<Line> createLadder(int count, Height height, BooleanGenerator ladderGenerator) {
@@ -21,13 +21,13 @@ public class Ladder {
         return lines;
     }
 
-    public List<Line> getLadder() {
-        return Collections.unmodifiableList(ladder);
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 
     public Position findFinalPosition(Position initialPosition) {
         Position position = initialPosition;
-        for (Line line : ladder) {
+        for (Line line : lines) {
             position = position.findNextPosition(position, line);
         }
         return position;
