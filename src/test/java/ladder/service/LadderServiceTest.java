@@ -86,7 +86,7 @@ class LadderServiceTest {
 
     @Test
     @DisplayName("실행 결과가 정상적으로 생성되어야 한다.")
-    void createResults_success() {
+    void createPrizes_success() {
         // given
         playerRepository.saveAll(createPlayers(4));
         String[] input = {"꽝", "5000", "꽝", "3000"};
@@ -106,7 +106,7 @@ class LadderServiceTest {
 
     @Test
     @DisplayName("실행 결과의 갯수가 참여하는 인원과 같지 않으면 예외가 발생한다.")
-    void create_notEqualsPlayersCount() {
+    void createPrizes_notEqualsPlayersCount() {
         // given
         playerRepository.saveAll(createPlayers(3));
         String[] input = {"꽝", "5000", "꽝", "3000"};
@@ -120,7 +120,7 @@ class LadderServiceTest {
 
     @Test
     @DisplayName("사다리가 정상적으로 생성되어야 한다.")
-    void createLadderResponse_success() {
+    void playLadderGame_success() {
         // given
         playerRepository.saveAll(createPlayers(4));
         prizeRepository.saveAll(createPrizes(4));
@@ -141,8 +141,8 @@ class LadderServiceTest {
     }
 
     @Test
-    @DisplayName("게임의 결과가 정확히 반환되어야 한다.")
-    void createPlayerResults_success() {
+    @DisplayName("모든 플레이어의 결과가 정확히 반환되어야 한다.")
+    void findAllPlayerResults_success() {
         // given
         ladderService.createPlayers(new String[]{"glen", "pobi", "bero"});
         ladderService.createPrizes(new String[]{"1000", "꽝", "5000"});
