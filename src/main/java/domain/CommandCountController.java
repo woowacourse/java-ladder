@@ -12,12 +12,18 @@ public class CommandCountController {
     }
 
     public void execute(Command command) {
-        count++;
         validate();
+
+        if (command.isAllCommand()) {
+            count = COMMAND_COUNT_UPPERBOUND;
+            return;
+        }
+
+        count++;
     }
 
     private void validate() {
-        if (COMMAND_COUNT_UPPERBOUND < this.count) {
+        if (COMMAND_COUNT_UPPERBOUND <= this.count) {
             throw new IllegalArgumentException(COMMAND_COUNT_ERROR_MESSAGE);
         }
     }
