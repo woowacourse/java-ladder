@@ -63,7 +63,7 @@ public class OutputView {
         printBlankLine();
     }
 
-    public void printAllUsersAndPrizes(final Map<String, String> allUsersAndPrizes) {
+    private void printAllUsersAndPrizes(final Map<String, String> allUsersAndPrizes) {
         for (final String userName : allUsersAndPrizes.keySet()) {
             System.out.printf("%s : %s\n", userName, allUsersAndPrizes.get(userName));
         }
