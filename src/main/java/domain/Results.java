@@ -2,6 +2,7 @@ package domain;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 public class Results {
@@ -29,8 +30,16 @@ public class Results {
         return results.get(player);
     }
 
-    public Map<Player, Prize> getResults() {
-        return results;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Results results1 = (Results) o;
+        return Objects.equals(results, results1.results);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(results);
+    }
 }

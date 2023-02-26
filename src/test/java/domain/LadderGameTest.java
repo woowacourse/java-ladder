@@ -42,6 +42,6 @@ public class LadderGameTest {
         Results result = ladderGame.run();
 
         // then
-        assertThat(result.getResults()).isEqualTo(expected.getResults());
+        assertThat(result).isEqualTo(expected);
     }
 }
