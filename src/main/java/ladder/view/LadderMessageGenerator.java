@@ -14,6 +14,9 @@ class LadderMessageGenerator {
     private static final String EMPTY_SYMBOL = " ";
     private static final String LINE_STATUS_MESSAGE_FORMAT = "%s|";
 
+    private LadderMessageGenerator() {
+    }
+
     public static String generate(final int maxNameLength, final List<Line> lines) {
         return lines.stream()
                 .map(line -> generateLineMessage(maxNameLength, line))
