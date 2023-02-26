@@ -1,7 +1,6 @@
 package laddergame.model.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -45,12 +44,6 @@ class PointTest {
             void success() {
                 int position = point.moveDirection(2);
                 assertThat(position).isEqualTo(1);
-            }
-
-            @Test
-            @DisplayName("포인터가 라인의 첫번째일 때 왼쪽 이동 불가")
-            void fail() {
-                assertThatThrownBy(() -> point.moveDirection(0));
             }
         }
     }

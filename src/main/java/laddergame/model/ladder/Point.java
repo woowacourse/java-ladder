@@ -10,9 +10,6 @@ public class Point {
     }
 
     public int moveDirection(int position) {
-        if (getLeftIsBoolean() && (position - 1 < 0)) {
-            throw new IllegalArgumentException("더이상 왼쪽으로 이동할 수 없습니다.");
-        }
         if (getRightIsBoolean()) {
             return position + 1;
         }

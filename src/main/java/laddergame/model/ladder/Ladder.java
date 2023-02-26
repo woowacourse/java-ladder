@@ -6,7 +6,6 @@ import laddergame.model.people.People;
 
 public class Ladder {
     private final List<Line> ladder;
-    private final Height height;
 
     public Ladder(Height height, People people) {
         List<Line> ladder = new ArrayList<>();
@@ -14,7 +13,6 @@ public class Ladder {
             ladder.add(new Line(people.size()));
         }
         this.ladder = ladder;
-        this.height = height;
     }
 
     public int size() {

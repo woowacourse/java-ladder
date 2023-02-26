@@ -17,8 +17,7 @@ public class Results {
         for (int i = 0; i < people.size(); i++) {
             Person person = people.getPeople().get(i);
             int prizeIndex = getPrizeIndex(ladder, i);
-            Prize prize = prizes.getPrize(prizeIndex);
-            results.add(new Result(person, prize));
+            results.add(new Result(person, prizes.getPrize(prizeIndex)));
         }
         return new Results(results);
     }

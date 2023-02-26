@@ -13,7 +13,7 @@ public class People {
     public People(List<String> names) {
         validatePersonLength(names);
         validateDuplication(names);
-        this.people = convertToPeople(names);
+        this.people = makePeople(names);
     }
 
     private static void validatePersonLength(List<String> names) {
@@ -29,7 +29,7 @@ public class People {
         }
     }
 
-    private static List<Person> convertToPeople(List<String> names) {
+    private static List<Person> makePeople(List<String> names) {
         return names.stream()
                 .map(Person::new)
                 .collect(Collectors.toList());

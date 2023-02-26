@@ -55,8 +55,9 @@ public class OutputView {
 
     public void printAllResult(Results results) {
         System.out.println(System.lineSeparator() + GAME_RESULT_MSG);
-        results.getResults().forEach(result ->System.out.println(result.getPersonToName() + RESULT_DELIMITER + result.getPrizeToString())
-);
+        results.getResults().forEach(
+                result -> System.out.println(result.getPersonToName() + RESULT_DELIMITER + result.getPrizeToString())
+        );
     }
 
     public void printPersonalResult(String prize) {
