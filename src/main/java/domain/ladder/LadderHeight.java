@@ -17,7 +17,7 @@ public class LadderHeight {
         if (isNotNum(height)) {
             throw new InvalidLadderHeightException();
         }
-        if (isInValidHeight(Integer.parseInt(height))) {
+        if (isInvalidHeight(Integer.parseInt(height))) {
             throw new InvalidLadderHeightException();
         }
     }
@@ -31,7 +31,7 @@ public class LadderHeight {
         }
     }
 
-    private boolean isInValidHeight(int heightInput) {
+    private boolean isInvalidHeight(int heightInput) {
         return heightInput < MIN_LADDER_HEIGHT || heightInput > MAX_LADDER_HEIGHT;
     }
 
