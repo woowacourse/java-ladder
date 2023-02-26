@@ -15,6 +15,7 @@ public class OutputView {
     private static final String PLAYER_SHOW_FORMAT = "%5s ";
     private static final String POINT_SHOW_FORMAT = "%s";
     private static final String ALL_PLAYERS_RESULT_MESSAGE = "all";
+    private static final String LINE_CHANGE_MESSAGE= "";
 
     public static void showResultMessage() {
         System.out.println(RESULT_SHOW_MESSAGE);
@@ -22,19 +23,19 @@ public class OutputView {
 
     public static void showPlayers(List<String> playerNames) {
         playerNames.forEach(name -> printMessageFormat(name, PLAYER_SHOW_FORMAT));
-        System.out.println();
+        printMessage(LINE_CHANGE_MESSAGE);
     }
 
     public static void showLadder(List<Line> lines) {
         for (Line line : lines) {
             showPoints(line.getPoints());
-            System.out.println();
+            printMessage(LINE_CHANGE_MESSAGE);
         }
     }
 
     public static void showPrizes(List<String> prizes) {
         prizes.forEach(prize -> printMessageFormat(prize, PLAYER_SHOW_FORMAT));
-        System.out.println();
+        printMessage(LINE_CHANGE_MESSAGE);
     }
 
     public static void showGameResult(Map<String, String> gameResult, String name) {
@@ -60,7 +61,7 @@ public class OutputView {
     private static void showAllPlayersOutcome(Map<String, String> allResults) {
         printMessage(PLAYERS_RESULT_MESSAGE);
         for (Map.Entry<String, String> entry : allResults.entrySet()) {
-            System.out.println(entry.getKey() + RESULT_SPLIT_MESSAGE + entry.getValue());
+            printMessage(entry.getKey() + RESULT_SPLIT_MESSAGE + entry.getValue());
         }
     }
 

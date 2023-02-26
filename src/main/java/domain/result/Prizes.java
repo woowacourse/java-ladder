@@ -20,19 +20,19 @@ public class Prizes {
             throw new IllegalArgumentException(PRIZE_SIZE_ERROR_MESSAGE);
         }
 
-        if (isBlank(prizes)) {
+        if (hasBlankPrize(prizes)) {
             throw new IllegalArgumentException(PRIZE_BLANK_ERROR_MESSAGE);
         }
     }
 
-    private boolean isBlank(List<String> prizes) {
+    private boolean hasBlankPrize(List<String> prizes) {
         return prizes.stream()
                 .anyMatch(String::isBlank);
     }
 
     public String findByIndex(int index) {
         if (index < 0 || index >= prizes.size()) {
-            throw new IllegalArgumentException("인덱스 범위를 확인하세요.");
+            throw new IllegalArgumentException("일치하는 상품이 존재하지 않습니다.");
         }
         return prizes.get(index);
     }
