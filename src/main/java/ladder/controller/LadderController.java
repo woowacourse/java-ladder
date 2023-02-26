@@ -1,16 +1,8 @@
 package ladder.controller;
 
 import java.util.function.Supplier;
-import ladder.domain.Height;
-import ladder.domain.Ladder;
-import ladder.domain.PlayerResult;
-import ladder.domain.PlayerResults;
-import ladder.domain.Players;
-import ladder.domain.Prizes;
 import ladder.dto.LadderResponse;
 import ladder.dto.PlayerResultResponse;
-import ladder.dto.PlayersResponse;
-import ladder.dto.PrizesResponse;
 import ladder.service.LadderService;
 import ladder.view.LadderView;
 import ladder.view.OutputView;
@@ -27,44 +19,39 @@ public class LadderController {
     }
 
     public void run() {
-        PlayerResults playerResults = createPlayerResults();
-        printPlayerResult(playerResults);
-        ladderView.printAllPlayerResults(PlayerResultResponse.of(playerResults));
+        repeat(() -> ladderService.createPlayers(ladderView.readPlayerNames()));
+        repeat(() -> ladderService.createPrizes(ladderView.readPrizes()));
+        LadderResponse ladderResponse = repeat(() -> ladderService.playLadderGame(ladderView.readLadderHeight()));
+        ladderView.printLadderResult(ladderResponse);
+        repeat(this::printPlayerResult);
+        ladderView.printAllPlayerResults(ladderService.findAllPlayerResults());
     }
 
-    private PlayerResults createPlayerResults() {
-        Players players = repeat(() -> ladderService.createPlayers(ladderView.readPlayerNames()));
-        Height height = repeat(() -> new Height(ladderView.readLadderHeight(), players));
-        Prizes prizes = repeat(() -> ladderService.createPrizes(ladderView.readPrizes(), players));
-        Ladder ladder = ladderService.createLadder(height, players);
-        ladderView.printLadderResult(PlayersResponse.ofPlayers(players), LadderResponse.ofLadder(ladder),
-                PrizesResponse.ofPrizes(prizes));
-        return ladderService.createPlayerResults(players, ladder, prizes);
-    }
-
-    private void printPlayerResult(PlayerResults playerResults) {
-        PlayerResult playerResult = repeat(() -> getPlayerResult(playerResults));
-        if (playerResult == null) {
-            return;
-        }
-        ladderView.printResult(playerResult.getPrize());
-        printPlayerResult(playerResults);
-    }
-
-    private PlayerResult getPlayerResult(PlayerResults playerResults) {
+    private void printPlayerResult() {
         String playerName = ladderView.readPlayerName();
         if (playerName.equals(EXIT_COMMAND)) {
-            return null;
+            return;
         }
-        return playerResults.findByPlayerName(playerName);
+        PlayerResultResponse result = ladderService.findPlayerResultByName(playerName);
+        ladderView.printPlayerResult(result);
+        printPlayerResult();
     }
 
     private <T> T repeat(Supplier<T> supplier) {
         try {
             return supplier.get();
-        } catch (IllegalArgumentException e) {
+        } catch (RuntimeException e) {
             OutputView.printError(e.getMessage());
             return repeat(supplier);
+        }
+    }
+
+    private void repeat(Runnable runnable) {
+        try {
+            runnable.run();
+        } catch (RuntimeException e) {
+            OutputView.printError(e.getMessage());
+            repeat(runnable);
         }
     }
 }

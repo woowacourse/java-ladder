@@ -6,8 +6,8 @@ import java.util.List;
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(List<Line> lines, Players players) {
-        validateLinesWidth(lines, players.getPlayersCount());
+    public Ladder(List<Line> lines, int playersCount) {
+        validateLinesWidth(lines, playersCount);
         this.lines = lines;
     }
 

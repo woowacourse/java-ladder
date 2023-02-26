@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import static ladder.Util.createLines;
-import static ladder.Util.createPlayers;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
@@ -17,7 +16,7 @@ class LadderTest {
     void create_success() {
         // expect
         assertThatNoException().isThrownBy(() -> {
-            new Ladder(createLines(3, 3), createPlayers(3));
+            new Ladder(createLines(3, 3), 3);
         });
     }
 
@@ -42,7 +41,7 @@ class LadderTest {
     void create_lineWidthNotMatchPlayerCount() {
         // expect
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Ladder(createLines(4, 3), createPlayers(4));
+            new Ladder(createLines(4, 3), 4);
         });
     }
 
@@ -52,6 +51,6 @@ class LadderTest {
                 new Line(List.of(Step.EMPTY, Step.EMPTY, Step.EMPTY)),
                 new Line(List.of(Step.EMPTY, Step.EMPTY, Step.EMPTY)),
                 new Line(List.of(Step.EMPTY, Step.EXIST, Step.EMPTY))
-        ), createPlayers(4));
+        ), 4);
     }
 }

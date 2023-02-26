@@ -3,8 +3,6 @@ package ladder.view;
 import java.util.List;
 import ladder.dto.LadderResponse;
 import ladder.dto.PlayerResultResponse;
-import ladder.dto.PlayersResponse;
-import ladder.dto.PrizesResponse;
 
 public class LadderView {
     private static final String PLAYERS_STRING_DELIMITER = ",";
@@ -24,9 +22,8 @@ public class LadderView {
         return InputView.readLadderHeight();
     }
 
-    public void printLadderResult(PlayersResponse playersResponse, LadderResponse ladderResponse,
-                                  PrizesResponse prizesResponse) {
-        OutputView.printLadderResult(playersResponse, ladderResponse, prizesResponse);
+    public void printLadderResult(LadderResponse ladderResponse) {
+        OutputView.printLadderResult(ladderResponse);
     }
 
     public String readPlayerName() {
@@ -37,7 +34,7 @@ public class LadderView {
         OutputView.printAllPlayerResults(resultsResponses);
     }
 
-    public void printResult(String result) {
+    public void printPlayerResult(PlayerResultResponse result) {
         OutputView.printPlayerResult(result);
     }
 }

@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import static ladder.Util.createPlayers;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
@@ -15,12 +14,9 @@ class HeightTest {
     @DisplayName("1보다 낮은 값이 들어오거나 26보다 큰 값이 들어오면 예외가 발생한다.")
     @ValueSource(ints = {-1, 0, 27})
     void create_UnderThan1OrOverThan26(int input) {
-        // given
-        Players players = createPlayers(2);
-
         // expect
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Height(input, players);
+            new Height(input, 2);
         }).withMessage("[ERROR] 사다리의 높이는 1~26 사이여야 합니다.");
     }
 
@@ -29,7 +25,7 @@ class HeightTest {
     void create_success() {
         // expect
         assertThatNoException().isThrownBy(() -> {
-            new Height(10, createPlayers(10));
+            new Height(10, 10);
         });
     }
 
@@ -38,7 +34,7 @@ class HeightTest {
     void create_heightMinPlayersCount() {
         // expect
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Height(3, createPlayers(4));
+            new Height(3, 4);
         }).withMessage("[ERROR] 사다리의 높이는 사람 수보다 크거나, 사람 수의 두 배 보다 작아야 합니다.");
     }
 
@@ -47,7 +43,7 @@ class HeightTest {
     void create_heightMaxPlayersCount() {
         // expect
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Height(7, createPlayers(3));
+            new Height(7, 3);
         }).withMessage("[ERROR] 사다리의 높이는 사람 수보다 크거나, 사람 수의 두 배 보다 작아야 합니다.");
     }
 }

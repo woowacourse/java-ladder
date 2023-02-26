@@ -1,9 +1,6 @@
 package ladder.dto;
 
-import static java.util.stream.Collectors.*;
-
-import java.util.List;
-import ladder.domain.PlayerResults;
+import ladder.domain.PlayerResult;
 
 public class PlayerResultResponse {
     private final String playerName;
@@ -14,10 +11,8 @@ public class PlayerResultResponse {
         this.playerPrize = playerPrize;
     }
 
-    public static List<PlayerResultResponse> of(PlayerResults playerResults) {
-        return playerResults.getPlayerResults().stream()
-                .map(playerResult -> new PlayerResultResponse(playerResult.getPlayerName(), playerResult.getPrize()))
-                .collect(toList());
+    public static PlayerResultResponse of(PlayerResult playerResult) {
+        return new PlayerResultResponse(playerResult.getPlayerName(), playerResult.getPrize());
     }
 
     public String getPlayerName() {

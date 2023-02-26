@@ -6,20 +6,17 @@ import java.util.List;
 import ladder.domain.Step;
 import ladder.dto.LadderResponse;
 import ladder.dto.PlayerResultResponse;
-import ladder.dto.PlayersResponse;
-import ladder.dto.PrizesResponse;
 
 public class OutputView {
 
     private OutputView() {
     }
 
-    public static void printLadderResult(PlayersResponse playersResponse, LadderResponse ladderResponse,
-                                         PrizesResponse prizesResponse) {
+    public static void printLadderResult(LadderResponse ladderResponse) {
         System.out.println("\n사다리 결과");
-        printNames(playersResponse.getPlayerNames());
+        printNames(ladderResponse.getPlayerNames());
         printLadder(ladderResponse.getLines());
-        printPrizes(prizesResponse.getPrizes());
+        printPrizes(ladderResponse.getPrizeNames());
     }
 
     private static void printNames(List<String> playerNames) {
@@ -66,10 +63,10 @@ public class OutputView {
                 .forEach(System.out::println);
     }
 
-    public static void printPlayerResult(String result) {
+    public static void printPlayerResult(PlayerResultResponse result) {
         System.out.println();
         System.out.println("실행 결과");
-        System.out.println(result);
+        System.out.println(result.getPlayerPrize());
     }
 
     public static void printError(String message) {
