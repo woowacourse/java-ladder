@@ -8,6 +8,7 @@ import java.util.List;
 public class LadderGameController {
 
     private static final String END_COMMAND = "all";
+    private static final String ALL_RESULT_COMMAND = "all";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -59,7 +60,7 @@ public class LadderGameController {
 
     private void printLadderResult(Players players, LadderGameResult result, String input) {
         List<String> playersName = players.getPlayersName();
-        if (input.equals(END_COMMAND)) {
+        if (input.equals(ALL_RESULT_COMMAND)) {
             outputView.printAllResult(result);
         }
         if (playersName.contains(input)) {
