@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -9,7 +10,7 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(List<Line> lines) {
+    private Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
@@ -25,6 +26,6 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return this.lines;
+        return Collections.unmodifiableList(lines);
     }
 }

@@ -1,6 +1,5 @@
 package view;
 
-import domain.Player;
 import domain.Players;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -19,7 +18,7 @@ public class OutputViewTest {
     void calculateBlank_메서드_테스트() {
         //given
         OutputView outputView = new OutputView();
-        Players players = new Players(List.of(new Player("judy"), new Player("ako"), new Player("pobi")));
+        Players players = Players.generatePlayers(List.of("judy", "ako", "pobi"));
         OutputStream out = new ByteArrayOutputStream();
 
         //when

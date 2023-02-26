@@ -3,6 +3,7 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import exception.InvalidLineSizeException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 
@@ -15,19 +16,19 @@ public class LineTest {
     @Test
     void 한_column에서의_블록_개수는_플레이어_수보다_하나_적어야한다() {
         //given
-        List<Block> blocks = List.of(new Block(true), new Block(false), new Block(true));
-        Players players = new Players(List.of(new Player("judy"), new Player("ako"), new Player("pobi")));
+        List<Block> blocks = List.of(Block.createBlock(true), Block.createBlock(false), Block.createBlock(true));
+        Players players = Players.generatePlayers(List.of("judy", "ako", "pobi"));
 
         //when + then
         assertThatThrownBy(() -> new Line(players, blocks))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(InvalidLineSizeException.class);
     }
 
     @Test
     void 한_라인의_블록들을_반환한다() {
         //given
-        List<Block> blocks = List.of(new Block(true), new Block(false));
-        Players players = new Players(List.of(new Player("judy"), new Player("ako"), new Player("pobi")));
+        List<Block> blocks = List.of(Block.createBlock(true), Block.createBlock(false));
+        Players players = Players.generatePlayers(List.of("judy", "ako", "pobi"));
         Line line = new Line(players, blocks);
 
         //when
@@ -44,7 +45,7 @@ public class LineTest {
         List<Boolean> testData = new ArrayList<>();
         testData.add(true);
         TestGenerator testGenerator = new TestGenerator(testData);
-        Players players = new Players(List.of(new Player("judy"), new Player("ako"), new Player("pobi")));
+        Players players = Players.generatePlayers(List.of("judy", "ako", "pobi"));
         List<Boolean> expect = List.of(true, false);
 
         //when

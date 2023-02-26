@@ -1,4 +1,4 @@
-import controller.Controller;
+import controller.LadderGameController;
 import domain.BooleanGeneratorImplements;
 import view.InputView;
 import view.OutputView;
@@ -6,7 +6,7 @@ import view.OutputView;
 public class Application {
 
     public static void main(String[] args) {
-        Controller controller = new Controller(new InputView(), new OutputView(), new BooleanGeneratorImplements());
-        controller.run();
+        LadderGameController ladderGameController = new LadderGameController(new InputView(), new OutputView(), new BooleanGeneratorImplements());
+        ladderGameController.run();
     }
 }
