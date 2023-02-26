@@ -14,9 +14,9 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(int count, int height, BooleanGenerator booleanGenerator) {
+    public Ladder(int personCount, int height, BooleanGenerator booleanGenerator) {
         validateHeight(height);
-        this.lines = createLadder(count, height, booleanGenerator);
+        this.lines = createLadder(personCount, height, booleanGenerator);
     }
 
     public Position findLastPosition(Position playerPosition) {
@@ -33,10 +33,10 @@ public class Ladder {
         }
     }
 
-    private List<Line> createLadder(int count, int height, BooleanGenerator booleanGenerator) {
+    private List<Line> createLadder(int personCount, int height, BooleanGenerator booleanGenerator) {
         List<Line> createdLines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            createdLines.add(new Line(count, booleanGenerator));
+            createdLines.add(new Line(personCount, booleanGenerator));
         }
         return createdLines;
     }

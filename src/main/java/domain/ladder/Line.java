@@ -13,9 +13,9 @@ public class Line {
 
     private final List<Boolean> points = new ArrayList<>();
 
-    public Line(int count, BooleanGenerator booleanGenerator) {
-        validate(count);
-        createPoints(count, booleanGenerator);
+    public Line(int playerCount, BooleanGenerator booleanGenerator) {
+        validate(playerCount);
+        createPoints(playerCount, booleanGenerator);
     }
 
     public Position findNext(Position position) {
@@ -28,14 +28,16 @@ public class Line {
         return position.moveDirection(Direction.STRAIGHT);
     }
 
-    private void validate(int count) {
-        if (count < POINTS_MIN_SIZE || count > POINTS_MAX_SIZE) {
+    private void validate(int playerCount) {
+        int pointCount = playerCount - 1;
+        if (pointCount < POINTS_MIN_SIZE || pointCount > POINTS_MAX_SIZE) {
             throw new IllegalArgumentException(PLAYER_SIZE_ERROR_MESSAGE);
         }
     }
 
-    private void createPoints(int count, BooleanGenerator booleanGenerator) {
-        for (int index = 0; index < count; index++) {
+    private void createPoints(int playerCount, BooleanGenerator booleanGenerator) {
+        int pointCount = playerCount - 1;
+        for (int index = 0; index < pointCount; index++) {
             addPoint(index, booleanGenerator.generate());
         }
     }
