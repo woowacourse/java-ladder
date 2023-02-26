@@ -1,15 +1,15 @@
 package ladder;
 
 import ladder.controller.LadderController;
-import ladder.domain.RandomMovableGenerator;
+import ladder.domain.RandomBarGenerator;
 import ladder.view.InputView;
-import ladder.view.ResultView;
+import ladder.view.OutputView;
 
 public class Application {
 
     public static void main(String[] args) {
         LadderController ladderController = new LadderController(
-                new InputView(), new ResultView(), new RandomMovableGenerator());
+                new InputView(), new OutputView(), new RandomBarGenerator());
         ladderController.run();
     }
 }
