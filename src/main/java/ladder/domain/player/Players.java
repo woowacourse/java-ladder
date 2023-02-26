@@ -42,17 +42,6 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public Players createTargetPlayers(List<String> targetPlayerNames) {
-        if (targetPlayerNames.contains(ALL_TARGET_PLAYERS)) {
-            return this;
-        }
-        List<Player> targetPlayers = targetPlayerNames.stream()
-                .map(targetPlayerName -> new Player(new Name(targetPlayerName)))
-                .collect(Collectors.toList());
-        validateDoesNotExistPlayers(targetPlayers);
-        return new Players(targetPlayers);
-    }
-
     private static void validateContainsAll(List<String> playerNames) {
         if (playerNames.contains(ALL_TARGET_PLAYERS)) {
             throw new IllegalArgumentException("플레이어 이름으로 all은 금지됩니다.");
@@ -62,18 +51,6 @@ public class Players {
     private static void validateCountOfPlayers(List<String> inputPlayers) {
         if (inputPlayers.size() < MINIMUM_COUNT_OF_PLAYERS) {
             throw new IllegalArgumentException("플레이어의 수는 2명 이상이어야 합니다.");
-        }
-    }
-
-    private void validateDoesNotExistPlayers(List<Player> targetPlayers) {
-        for (Player targetPlayer : targetPlayers) {
-            validateDoesNotExistPlayer(targetPlayer);
-        }
-    }
-
-    private void validateDoesNotExistPlayer(Player targetPlayer) {
-        if (!players.contains(targetPlayer)) {
-            throw new IllegalArgumentException("존재하지 않는 참가자 입니다.");
         }
     }
 

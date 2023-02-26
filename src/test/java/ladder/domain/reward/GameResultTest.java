@@ -29,7 +29,7 @@ public class GameResultTest {
 
     @Test
     @DisplayName("플레이어 목록의 결과 모두 가져오는 테스트")
-    void findGameResult() {
+    void findGameResultAllTest() {
         //given
         Players createdPlayers = Players.create(List.of("a", "b", "c"));
         List<String> targetPlayers = (List.of("all"));
@@ -46,7 +46,7 @@ public class GameResultTest {
 
     @Test
     @DisplayName("플레이어 목록의 결과 일부만 가져오는 테스트")
-    void findGameResult() {
+    void findGameResultTest() {
         //given
         Players createdPlayers = Players.create(List.of("a", "b", "c"));
         List<String> targetPlayers = (List.of("b", "c"));
@@ -62,8 +62,8 @@ public class GameResultTest {
     }
 
     @Test
-    @DisplayName("플레이어 목록의 결과 예외 가져오는 테스트")
-    void findGameResult() {
+    @DisplayName("플레이어 목록에 없는 플레이어 이름 예외 발생 테스트")
+    void findGameResultExceptionTest() {
         //given
         Players createdPlayers = Players.create(List.of("a", "b", "c"));
         List<String> targetPlayers = (List.of("a", "b", "d"));

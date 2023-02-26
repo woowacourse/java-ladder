@@ -44,8 +44,8 @@ public class LadderController {
         GameResult gameResult = GameResult.create(players, ladder, rewards);
         Continue resultContinue;
         do {
-            Players targetPlayers = exceptionProcess.repeat(input::inputTargetPlayerNames, players::createTargetPlayers);
-            Map<Player, Reward> resultByPlayers = gameResult.findResultByPlayers(targetPlayers);
+            Map<Player, Reward> resultByPlayers = exceptionProcess
+                    .repeat(input::inputTargetPlayerNames, gameResult::findResultByPlayers);
 
             result.printGameResult(resultByPlayers);
 

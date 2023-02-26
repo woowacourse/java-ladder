@@ -1,15 +1,16 @@
 package ladder.domain.reward;
 
 import ladder.domain.ladder.Ladder;
+import ladder.domain.player.Name;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class GameResult {
+
+    private static final String ALL_TARGET_PLAYERS = "all";
 
     private final Map<Player, Reward> gameResult = new LinkedHashMap<>();
 
@@ -29,15 +30,29 @@ public class GameResult {
         return createdGameResult;
     }
 
-    public Map<Player, Reward> findResultByPlayers(Players players) {
+    public Map<Player, Reward> findResultByPlayers(List<String> targetPlayerNames) {
         Map<Player, Reward> result = new HashMap<>();
-
-        List<Player> targetPlayers = players.getPlayers();
+        List<Player> targetPlayers = targetPlayerNamesToPlayers(targetPlayerNames);
         for (Player targetPlayer : targetPlayers) {
+            validateDoesNotExistPlayers(targetPlayer);
             result.put(targetPlayer, gameResult.get(targetPlayer));
         }
-
         return result;
+    }
+
+    private List<Player> targetPlayerNamesToPlayers(List<String> targetPlayerNames) {
+        if (targetPlayerNames.contains(ALL_TARGET_PLAYERS)) {
+            return new ArrayList<>(gameResult.keySet());
+        }
+        return targetPlayerNames.stream()
+                .map(targetPlayerName -> new Player(new Name(targetPlayerName)))
+                .collect(Collectors.toList());
+    }
+
+    private void validateDoesNotExistPlayers(Player targetPlayer) {
+        if (!gameResult.containsKey(targetPlayer)) {
+            throw new IllegalArgumentException("플레이어 목록에 없는 이름입니다.");
+        }
     }
 
 }
