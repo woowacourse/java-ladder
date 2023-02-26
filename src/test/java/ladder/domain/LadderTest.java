@@ -3,7 +3,6 @@ package ladder.domain;
 import static ladder.Util.createLines;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -14,10 +13,12 @@ class LadderTest {
     @Test
     @DisplayName("사다리가 정상적으로 생성되어야 한다.")
     void create_success() {
+        // given
+        Ladder ladder = new Ladder(createLines(3, 3), 3);
+
         // expect
-        assertThatNoException().isThrownBy(() -> {
-            new Ladder(createLines(3, 3), 3);
-        });
+        assertThat(ladder.getLines())
+                .hasSize(3);
     }
 
     @Test
@@ -25,6 +26,7 @@ class LadderTest {
     void getLadderIndexResult_success() {
         // given
         Ladder ladder = createLadder();
+
         // expect
         assertThat(ladder.getLadderIndexResult(0))
                 .isEqualTo(2);
@@ -42,7 +44,7 @@ class LadderTest {
         // expect
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Ladder(createLines(4, 3), 4);
-        });
+        }).withMessage("[ERROR] 사다리의 너비는 사람의 수와 같아야 합니다.");
     }
 
     private Ladder createLadder() {
