@@ -1,22 +1,14 @@
 package domain;
 
-import java.util.ArrayList;
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.List;
-import java.util.stream.Stream;
 import util.TestScaffoldGenerator;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @SuppressWarnings("NonAsciiCharacters")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -44,13 +36,14 @@ public class LineTest {
         Line line = new Line(width, scaffoldGenerator);
 
         // then
-        assertThat(line.size()).isEqualTo(width.getValue());
+        assertThat(line.size()).isEqualTo(4);
     }
 
     @Test
     void 너비를_받아_라인상태값을_생성한다() {
         // given
-        final TestScaffoldGenerator testScaffoldGenerator = new TestScaffoldGenerator(List.of(true, false, true, false));
+        final TestScaffoldGenerator testScaffoldGenerator = new TestScaffoldGenerator(
+                List.of(true, false, true, false));
         final Width width = new Width(4);
         // when
         final Line line = new Line(width, testScaffoldGenerator);
@@ -70,5 +63,26 @@ public class LineTest {
 
         // then
         assertThat(line.getScaffolds()).containsExactly(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE);
+    }
+
+    @Test
+    void move_를_통해_Scaffold가_있는_방향으로_이동할_수_있다() {
+        // given
+        final TestScaffoldGenerator testScaffoldGenerator = new TestScaffoldGenerator(List.of(true, false, true, true));
+        final Width width = new Width(4);
+
+        // when
+        final Line line = new Line(width, testScaffoldGenerator);
+
+        /*
+         *  position 0    1    2    3
+         *           |----|    |----|
+         * */
+
+        // then
+        assertThat(line.move(0)).isEqualTo(1);
+        assertThat(line.move(1)).isEqualTo(0);
+        assertThat(line.move(2)).isEqualTo(3);
+        assertThat(line.move(3)).isEqualTo(2);
     }
 }

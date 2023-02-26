@@ -19,5 +19,4 @@ public class TestScaffoldGenerator implements ScaffoldGenerator {
         }
         return Scaffold.NONE;
     }
-
 }

@@ -23,7 +23,7 @@ public class WidthTest {
 
     @ParameterizedTest(name = "생성 시 파라미터로 받은 너비를 값으로 가진다")
     @ValueSource(ints = {2, 5, 100})
-    void 생성_시_파라미터로_받은_높이를_값으로_가진다(final int parsedWidth) {
+    void 생성_시_파라미터로_받은_너비를_값으로_가진다(final int parsedWidth) {
         Width width = new Width(parsedWidth);
         Assertions.assertThat(width.getValue()).isEqualTo(parsedWidth);
     }

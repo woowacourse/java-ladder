@@ -11,7 +11,7 @@ public enum Scaffold {
         this.status = status;
     }
 
-    public boolean getStatus() {
-        return this.status;
+    public boolean isExist() {
+        return this == EXIST;
     }
 }

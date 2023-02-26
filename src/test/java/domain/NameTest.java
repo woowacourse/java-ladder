@@ -1,14 +1,15 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @SuppressWarnings("NonAsciiCharacters")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -33,5 +34,12 @@ public class NameTest {
     void 생성_시_파라미터로_받은_이름을_값으로_가진다(final String input) {
         Name name = new Name(input);
         Assertions.assertThat(name.getValue()).isEqualTo(input);
+    }
+
+    @Test
+    void all_을_원시값으로_가질_수_없다() {
+        String bannedName = "all";
+        assertThatThrownBy(() -> new Name(bannedName))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
