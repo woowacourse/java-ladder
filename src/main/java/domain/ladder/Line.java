@@ -1,5 +1,6 @@
 package domain.ladder;
 
+import domain.player.Player;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,5 +24,9 @@ public class Line {
         return List.copyOf(steps.stream()
                 .map(Step::isRightConnection)
                 .collect(Collectors.toList()));
+    }
+
+    public void ride(Player player) {
+        player.move(steps.get(player.getPosition()));
     }
 }
