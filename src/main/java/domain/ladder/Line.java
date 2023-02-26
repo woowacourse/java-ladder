@@ -19,10 +19,10 @@ public class Line {
     }
 
     public Position findNext(Position position) {
-        if (position.canMoveLeft(points, position)) {
+        if (canMoveLeft(position)) {
             return position.moveDirection(Direction.LEFT);
         }
-        if (position.canMoveRight(points, position)) {
+        if (canMoveRight(position)) {
             return position.moveDirection(Direction.RIGHT);
         }
         return position.moveDirection(Direction.STRAIGHT);
@@ -38,23 +38,26 @@ public class Line {
     private void createPoints(int playerCount, BooleanGenerator booleanGenerator) {
         int pointCount = playerCount - 1;
         for (int index = 0; index < pointCount; index++) {
-            addPoint(index, booleanGenerator.generate());
+            boolean createdPoint = createPoint(index, booleanGenerator);
+            points.add(createdPoint);
         }
     }
 
-    private void addPoint(int index, boolean flag) {
-        if (canMake(flag, index)) {
-            points.add(true);
-            return;
-        }
-        points.add(false);
-    }
-
-    private boolean canMake(boolean flag, int index) {
-        if (flag && isFirstIndexOrLeftEmpty(index)) {
-            return true;
+    private boolean createPoint(int index, BooleanGenerator booleanGenerator) {
+        if (isFirstIndexOrLeftEmpty(index)) {
+            return booleanGenerator.generate();
         }
         return false;
+    }
+
+    private boolean canMoveLeft(Position position) {
+        int playerPosition = position.getValue();
+        return playerPosition > 0 && points.get(playerPosition - 1);
+    }
+
+    private boolean canMoveRight(Position position) {
+        int playerPosition = position.getValue();
+        return playerPosition < points.size() && points.get(playerPosition);
     }
 
     private boolean isFirstIndexOrLeftEmpty(int index) {

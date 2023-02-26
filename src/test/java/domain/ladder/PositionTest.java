@@ -3,45 +3,12 @@ package domain.ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PositionTest {
-
-    @ParameterizedTest
-    @CsvSource(value = {"false,false,true:true", "false,false,false:false"}, delimiter = ':')
-    @DisplayName("포지션 객체는 왼쪽으로 이동할 수 있는지 판단할 수 있다..")
-    void getLeftMoveFlagWithPosition(String inputPoints, boolean expectedFlag) {
-        List<Boolean> points = Arrays.stream(inputPoints.split(","))
-                .map(Boolean::valueOf)
-                .collect(Collectors.toList());
-
-        Position position = new Position(points.size() - 1);
-        boolean resultFlag = position.canMoveRight(points, position);
-
-        assertThat(resultFlag).isEqualTo(expectedFlag);
-    }
-
-    @ParameterizedTest
-    @CsvSource(value = {"false,false,true:true", "false,false,false:false"}, delimiter = ':')
-    @DisplayName("포지션 객체는 오른쪽으로 이동할 수 있는지 판단할 수 있다..")
-    void getRightMoveFlagWithPosition(String inputPoints, boolean expectedFlag) {
-        List<Boolean> points = Arrays.stream(inputPoints.split(","))
-                .map(Boolean::valueOf)
-                .collect(Collectors.toList());
-
-        Position position = new Position(points.size() - 1);
-        boolean resultFlag = position.canMoveRight(points, position);
-
-        assertThat(resultFlag).isEqualTo(expectedFlag);
-    }
 
     @ParameterizedTest
     @ValueSource(ints = {-1, -100})
