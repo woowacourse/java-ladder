@@ -9,21 +9,22 @@ public class Line {
 
     private final List<Block> blocks;
 
-    public Line(final BlockGenerator blockGenerator, final int playerNumber) {
-        this.blocks = makeBlocks(blockGenerator, playerNumber - 1);
+    private Line(final List<Block> blocks) {
+        this.blocks = blocks;
     }
 
-    private List<Block> makeBlocks(final BlockGenerator blockGenerator, int blockCount) {
+    public static Line of(final BlockGenerator blockGenerator, final int playerNumber) {
+        final int blockCount = playerNumber - 1;
         Stack<Block> blocks = new Stack<>();
         blocks.push(blockGenerator.generate());
         while (blocks.size() != blockCount) {
             Block block = generateBlock(blockGenerator, blocks.peek());
             blocks.push(block);
         }
-        return List.copyOf(blocks);
+        return new Line(blocks);
     }
 
-    private Block generateBlock(final BlockGenerator blockGenerator, final Block previousBlock) {
+    private static Block generateBlock(final BlockGenerator blockGenerator, final Block previousBlock) {
         if (previousBlock.isExistBlock()) {
             return Block.EMPTY;
         }
