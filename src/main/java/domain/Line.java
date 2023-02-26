@@ -34,11 +34,11 @@ public class Line {
 
     public void move(Column position) {
         int column = position.get();
-        checkLeft(position, column);
-        checkRight(position, column);
+        checkAndGoLeft(position, column);
+        checkAndGoRight(position, column);
     }
 
-    private void checkLeft(Column position, int column) {
+    private void checkAndGoLeft(Column position, int column) {
         boolean isNotStartColumnAndCanGoLeft =
                 column != 0 && movements.get(column - 1);
         if (isNotStartColumnAndCanGoLeft) {
@@ -46,7 +46,7 @@ public class Line {
         }
     }
 
-    private void checkRight(Column position, int column) {
+    private void checkAndGoRight(Column position, int column) {
         boolean isNotEndColumnAndCanGoRight =
                 column != movements.size() && movements.get(column);
         if (isNotEndColumnAndCanGoRight) {
