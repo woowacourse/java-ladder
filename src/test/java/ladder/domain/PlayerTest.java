@@ -38,4 +38,12 @@ class PlayerTest {
         Player player = new Player("name");
         assertThat(player.haveResult()).isFalse();
     }
+
+    @Test
+    @DisplayName("이름을 반환한다.")
+    void shouldReturnNameValueWhenRequest() {
+        String name = "name";
+        Player player = new Player(name);
+        assertThat(player.getNameValue()).isEqualTo(name);
+    }
 }

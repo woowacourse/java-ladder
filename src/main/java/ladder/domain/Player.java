@@ -23,4 +23,8 @@ public class Player {
     public boolean haveResult() {
         return this.result.isPresent();
     }
+
+    public String getNameValue() {
+        return this.name.value();
+    }
 }
