@@ -32,10 +32,12 @@ class LadderStepTest {
         @DisplayName("직전 사다리가 존재하는 경우, 사다리 발판을 생성하지 않는다.")
         @Test
         void previousStepExistsTest() {
-            assertThat(LadderStep.createConsideringPreviousStep(existsGenerator, LadderStep.EXISTS))
-                    .isEqualTo(LadderStep.NONE);
-            assertThat(LadderStep.createConsideringPreviousStep(noneGenerator, LadderStep.EXISTS))
-                    .isEqualTo(LadderStep.NONE);
+            assertAll(
+                () -> assertThat(LadderStep.createConsideringPreviousStep(existsGenerator, LadderStep.EXISTS))
+                    .isEqualTo(LadderStep.NONE),
+                () -> assertThat(LadderStep.createConsideringPreviousStep(noneGenerator, LadderStep.EXISTS))
+                    .isEqualTo(LadderStep.NONE)
+            );
         }
 
         @DisplayName("직전 사다리가 존재하지 않는 경우, 사다리 발판을 자유롭게 생성할 수 있다.")
