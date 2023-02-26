@@ -108,17 +108,25 @@ public class LadderGameController {
 
     private void showAnalyzedResult(Players players, Prizes prizes, Ladder ladder) {
         Result result = new Result(players, prizes, ladder);
-        searchPlayerResult(result, players);
+        searchResult(result, players);
     }
 
-    private void searchPlayerResult(Result result, Players players) {
+    private void searchResult(Result result, Players players) {
         try {
-            String input = InputView.inputPlayerResult();
-            showResult(result, players, input);
+            chooseSearchOption(result, players);
         } catch (CustomException e) {
             OutputView.printErrorMessage(e);
-            searchPlayerResult(result, players);
+            searchResult(result, players);
         }
+    }
+
+    private void chooseSearchOption(Result result, Players players) {
+        String input = InputView.inputPlayerResult();
+        while (!input.equals(SEARCH_ALL_KEYWORD)) {
+            showSinglePlayerResult(result, players, input);
+            input = InputView.inputPlayerResult();
+        }
+        showAllPlayersResult(result);
     }
 
     private void showResult(Result result, Players players, String input) {
