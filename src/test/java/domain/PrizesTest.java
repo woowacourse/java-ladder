@@ -17,7 +17,7 @@ public class PrizesTest {
     @CsvSource(value = {"꽝,5000,꽝:2", "꽝:2"}, delimiter = ':')
     void prizesValidateTest1(String input, int personCount) {
         List<String> prizes = Parser.parse(input, ",");
-        Assertions.assertThatThrownBy(() -> new Prizes(prizes, personCount))
+        Assertions.assertThatThrownBy(() -> Prizes.of(prizes, personCount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리 게임의 실행 결과는 사람 수와 동일하게 입력해야합니다.");
     }
@@ -27,7 +27,7 @@ public class PrizesTest {
     @CsvSource(value = {"꽝,5000,꽝,도:4", "꽝,5000:2"}, delimiter = ':')
     void prizesValidateTest3(String input, int personCount) {
         List<String> prizes = Parser.parse(input, ",");
-        assertThatCode(() -> new Prizes(prizes, personCount))
+        assertThatCode(() -> Prizes.of(prizes, personCount))
                 .doesNotThrowAnyException();
     }
 }

@@ -29,7 +29,7 @@ public class LadderGameTest {
 
         Ladder ladder = new Ladder(4, 4, new TestNumberGenerator(Lists.newArrayList(1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0)));
         Players players = new Players(List.of(kong, odo, gray, kiara));
-        Prizes prizes = new Prizes(List.of(prize1, prize2, prize3, prize4), 4);
+        Prizes prizes = Prizes.of(List.of(prize1, prize2, prize3, prize4), 4);
 
         Results expected = new Results();
         expected.addResult(new Player(kong, 0), new Prize(prize4));

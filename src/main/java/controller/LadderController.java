@@ -8,9 +8,10 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.List;
-import java.util.Map;
 
 public class LadderController {
+
+    private static final String INVALID_PRIZE_COUNT_ERROR_MESSAGE = "사다리 게임의 실행 결과는 사람 수와 동일하게 입력해야합니다.";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -72,12 +73,28 @@ public class LadderController {
     private Prizes generatePrize(int playerCount) {
         try {
             List<String> prizes = inputView.readPrizes();
-            return new Prizes(prizes, playerCount);
+            validate(prizes, playerCount);
+            return Prizes.of(prizes, playerCount);
         } catch (IllegalArgumentException exception) {
             LogType.ERROR_MESSAGE.log(exception.getMessage());
             return generatePrize(playerCount);
         }
     }
+
+    private void validate(List<String> prizes, int personCount) {
+        validatePrizesCount(prizes, personCount);
+    }
+
+    private void validatePrizesCount(List<String> prizes, int personCount) {
+        if (!isSameCountBetween(prizes, personCount)) {
+            throw new IllegalArgumentException(INVALID_PRIZE_COUNT_ERROR_MESSAGE);
+        }
+    }
+
+    private boolean isSameCountBetween(List<String> objects, int personCount) {
+        return objects.size() == personCount;
+    }
+
 
     private void printResults(Results results) {
         String command = inputView.readResultOfPlayer();

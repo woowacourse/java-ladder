@@ -10,22 +10,26 @@ public class Prizes {
 
     private final List<Prize> prizes;
 
-    public Prizes(List<String> prizes, int personCount) {
-        validate(prizes, personCount);
+    private Prizes(List<String> prizes) {
         this.prizes = generatePrizes(prizes);
     }
 
-    private void validate(List<String> prizes, int personCount) {
+    public static Prizes of(List<String> prizes, int personCount) {
+        validate(prizes, personCount);
+        return new Prizes(prizes);
+    }
+
+    private static void validate(List<String> prizes, int personCount) {
         validatePrizesCount(prizes, personCount);
     }
 
-    private void validatePrizesCount(List<String> prizes, int personCount) {
+    private static void validatePrizesCount(List<String> prizes, int personCount) {
         if (!isSameCount(prizes, personCount)) {
             throw new IllegalArgumentException(INVALID_PRIZE_COUNT_ERROR_MESSAGE);
         }
     }
 
-    private boolean isSameCount(List<String> prizes, int personCount) {
+    private static boolean isSameCount(List<String> prizes, int personCount) {
         return prizes.size() == personCount;
     }
 
