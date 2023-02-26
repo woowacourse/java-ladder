@@ -35,6 +35,8 @@
   - [x] IllegalArgumentException
     - [x] (참여자수 - 1)과 사다리 너비가 일치해야 한다
 - [x] 입력 받은 높이만큼 사다리 생성하기
+  - [x] IllegalArgumentException
+    - [x] Row의 길이가 일정하지 않은 경우
 
 ### 사다리 게임 진행
 

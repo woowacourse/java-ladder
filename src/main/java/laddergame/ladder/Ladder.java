@@ -10,7 +10,21 @@ public class Ladder {
     private final List<Row> rows;
 
     public Ladder(List<Row> rows) {
+        validateRowsLengthAllEqual(rows);
         this.rows = rows;
+    }
+
+    private void validateRowsLengthAllEqual(List<Row> rows) {
+        if (isAllRowsLengthNotEqual(rows)) {
+            throw new IllegalArgumentException("사다리 길이가 균일하지 않습니다.");
+        }
+    }
+
+    private boolean isAllRowsLengthNotEqual(List<Row> rows) {
+        return rows.stream()
+                   .mapToInt(Row::getWidth)
+                   .distinct()
+                   .count() > 1;
     }
 
     public Position climbDownFrom(Position initialPosition) {

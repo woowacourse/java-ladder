@@ -85,4 +85,8 @@ public class Row {
     public List<Foothold> getFootholds() {
         return new ArrayList<>(footholds);
     }
+
+    public int getWidth() {
+        return footholds.size();
+    }
 }
