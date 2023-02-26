@@ -15,11 +15,7 @@ class UsersTest {
 
     @BeforeEach
     void setUp() {
-        users = new Users(List.of(
-            new User(new Name("joy"), new Position(0)),
-            new User(new Name("pobi"), new Position(1)),
-            new User(new Name("crong"), new Position(2)))
-        );
+        users = Users.of(List.of("joy", "pobi", "crong"));
     }
 
     @DisplayName("이름과 동일한 참여자를 찾는다.")

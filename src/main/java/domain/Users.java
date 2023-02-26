@@ -3,21 +3,32 @@ package domain;
 
 import static utils.ErrorMessage.NOT_FOUND_USER;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Users {
 
     private final List<User> users;
 
-    public Users(List<User> users) {
+    private Users(List<User> users) {
         this.users = users;
+    }
+
+    public static Users of(List<String> userNames) {
+        List<User> users = new ArrayList<>();
+
+        for (int i = 0; i < userNames.size(); i++) {
+            users.add(new User(new Name(userNames.get(i)), new Position(i)));
+        }
+
+        return new Users(users);
     }
 
     public User findUser(String name) {
         return users.stream()
-            .filter(user -> user.getName().equals(name))
-            .findAny()
-            .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_USER.getMessage()));
+                .filter(user -> user.getName().equals(name))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_USER.getMessage()));
     }
 
     public void moveUsers(List<List<Integer>> allNumbers) {

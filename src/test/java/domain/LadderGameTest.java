@@ -15,10 +15,7 @@ class LadderGameTest {
     @BeforeEach
     void setUp() {
         Ladder ladder = Ladder.of(new Height(5), 3);
-        Users users = new Users(List.of(
-            new User(new Name("pobi"), new Position(0)),
-            new User(new Name("joy"), new Position(1)),
-            new User(new Name("crong"), new Position(2))));
+        Users users = Users.of(List.of("pobi", "joy", "crong"));
         Rewards rewards = Rewards.of(List.of("꽝", "3000", "2000"), 3);
 
         ladderGame = new LadderGame(ladder, users, rewards);
