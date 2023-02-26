@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Mission {
 
     private static final int MAX_LENGTH_EXCLUSIVE = 5;
+    
     private final String mission;
 
     public Mission(String mission) {
