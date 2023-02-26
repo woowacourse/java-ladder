@@ -14,8 +14,8 @@ public class ResultView {
 
     public void printResult(final Map<String, String> result) {
         System.out.println(RESULT_PRINT_GUIDE_MESSAGE);
-        for (Map.Entry<String, String> stringStringEntry : result.entrySet()) {
-            System.out.println(stringStringEntry.getKey() + PRINT_ALL_RESULT_DELIMITER + stringStringEntry.getValue());
+        for (Map.Entry<String, String> gameResult : result.entrySet()) {
+            System.out.println(gameResult.getKey() + PRINT_ALL_RESULT_DELIMITER + gameResult.getValue());
         }
     }
 
