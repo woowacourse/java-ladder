@@ -55,7 +55,7 @@ public class LadderGameController {
         outputView.printPlayerResult(finalResults.get(SINGLE_PLAYER_INDEX));
     }
 
-    private static List<String> getResults(Players players, Results results, Ladder ladder, String targetPlayer) {
+    private List<String> getResults(Players players, Results results, Ladder ladder, String targetPlayer) {
         return results.getFinalResults(players.getPlayersName(),
                 ladder.getLastPositions(players.getSize()),
                 targetPlayer);
