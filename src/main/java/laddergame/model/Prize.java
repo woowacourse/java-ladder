@@ -14,7 +14,7 @@ public class Prize {
     private void validateTrimLength(String prize) {
         if (prize.length() < MIN_PRIZE_LENGTH || prize.length() > MAX_PRIZE_LENGTH) {
             throw new IllegalArgumentException(
-                    "[ERROR] 공백에 제거된 실행 결과의 길이는 " + MIN_PRIZE_LENGTH + "보다 크고 " + MAX_PRIZE_LENGTH + "보다 작아야 합니다.");
+                    "공백에 제거된 실행 결과의 길이는 " + MIN_PRIZE_LENGTH + "보다 크고 " + MAX_PRIZE_LENGTH + "보다 작아야 합니다.");
         }
     }
 
