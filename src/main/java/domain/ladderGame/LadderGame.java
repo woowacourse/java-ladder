@@ -19,17 +19,15 @@ public class LadderGame {
         this.items = gameInit.getItems();
     }
 
-    public void play() {
+    public GameResult play() {
         for (Player player : players.getPlayers()) {
             player.findGameResult(ladder, items.getItems());
         }
-    }
 
-    public GameResult getGameResult() {
-        LinkedHashMap<String, String> gameResult = new LinkedHashMap<>();
+        LinkedHashMap<String, String> results = new LinkedHashMap<>();
         for (Player player : players.getPlayers()) {
-            gameResult.put(player.getName(), player.getResult());
+            results.put(player.getName(), player.getResult());
         }
-        return new GameResult(gameResult);
+        return new GameResult(results);
     }
 }

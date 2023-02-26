@@ -31,8 +31,7 @@ public class LadderGameController {
     }
 
     private void playGame(LadderGame ladderGame) {
-        ladderGame.play();
-        GameResult gameResult = ladderGame.getGameResult();
+        GameResult gameResult = ladderGame.play();
         showGameResult(gameResult);
     }
 
