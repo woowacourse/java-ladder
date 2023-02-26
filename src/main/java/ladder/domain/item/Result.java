@@ -1,7 +1,8 @@
 package ladder.domain.item;
 
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import ladder.domain.player.Position;
 
@@ -11,12 +12,12 @@ import ladder.domain.player.Position;
 public class Result {
 
     private static final String DIFFERENT_COUNT_MESSAGE = "플레이어의 수와 결과의 수가 다릅니다. 플레이어 : %d, 결과 : %d";
-    private final List<Item> resultItems = new ArrayList<>();
+    private final Map<Position, Item> resultItems = new LinkedHashMap<>();
 
     public Result(List<String> itemNames, int playerCount) {
         validateResultSize(itemNames, playerCount);
         for (int i = 0; i < itemNames.size(); i++) {
-            resultItems.add(new Item(itemNames.get(i), i));
+            resultItems.put(Position.valueOf(i), new Item(itemNames.get(i), i));
         }
     }
 
@@ -27,16 +28,14 @@ public class Result {
     }
 
     public List<String> getNames() {
-        return resultItems.stream()
+        return resultItems.values()
+                .stream()
                 .map(Item::getName)
                 .collect(Collectors.toList());
     }
 
     public String findByPosition(Position position) {
-        return resultItems.stream()
-                .filter(item -> item.isSamePosition(position))
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new)
+        return resultItems.get(position)
                 .getName();
     }
 }
