@@ -1,37 +1,41 @@
 package domain.game;
 
-import domain.info.Names;
+import domain.info.Info;
+import domain.info.Name;
+import domain.info.Reward;
 import domain.ladder.Floor;
 import domain.ladder.Ladder;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LadderGame {
     private static final int MOVE_FORWARD = 1;
     private static final int MOVE_BACKWARD = -1;
     private static final int MOVE_STRAIGHT = 0;
 
-    private final List<Integer> results;
+    private final Info info;
+    private final Ladder ladder;
 
-    public LadderGame(final Names names, final Ladder ladder) {
-        results = generateResults(names.getNamesSize(), ladder.getFloors());
+    public LadderGame(final Info info, final Ladder ladder) {
+        this.info = info;
+        this.ladder = ladder;
     }
 
-    private static List<Integer> generateResults(final int personCount, final List<Floor> floors) {
-        List<Integer> results = new ArrayList<>();
+    public Results play() {
+        Results results = new Results();
 
-        for (int i = 0; i < personCount; i++) {
-            results.add(calculateResultIndex(floors, i));
+        for (int i = 0; i < info.getNamesSize(); i++) {
+            Name player = info.getName(i);
+            Reward reward = calculateReward(i);
+            results.putResult(player, reward);
         }
 
         return results;
     }
 
-    private static int calculateResultIndex(final List<Floor> floors, int index) {
-        for (Floor floor : floors) {
+    private Reward calculateReward(int index) {
+        for (Floor floor : ladder.getFloors()) {
             index += calculateWeight(index, floor);
         }
-        return index;
+        return info.getReward(index);
     }
 
     private static int calculateWeight(final int index, final Floor floor) {
@@ -50,9 +54,5 @@ public class LadderGame {
 
     private static boolean isAbleBackward(final int index, final Floor floor) {
         return index > 0 && floor.getPoint(index - 1);
-    }
-
-    public int getResult(final int index) {
-        return results.get(index);
     }
 }

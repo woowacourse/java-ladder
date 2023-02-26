@@ -1,7 +1,10 @@
 package domain;
 
 import domain.game.LadderGame;
+import domain.game.Results;
+import domain.info.Info;
 import domain.info.Names;
+import domain.info.Rewards;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import java.util.Arrays;
@@ -25,12 +28,20 @@ public class LadderGameTest {
     void validLinesGameTest() {
         Height height = new Height(1);
         Names names = new Names(Arrays.asList("a", "b", "c", "d"));
+        Rewards rewards = new Rewards(Arrays.asList("e", "f", "g", "h"));
+        Info info = new Info(names, rewards);
         Ladder ladder = new Ladder(names, height, booleanGenerator);
-        LadderGame ladderGame = new LadderGame(names, ladder);
 
-        Assertions.assertThat(ladderGame.getResult(0)).isEqualTo(1);
-        Assertions.assertThat(ladderGame.getResult(1)).isEqualTo(0);
-        Assertions.assertThat(ladderGame.getResult(2)).isEqualTo(3);
-        Assertions.assertThat(ladderGame.getResult(3)).isEqualTo(2);
+        LadderGame ladderGame = new LadderGame(info, ladder);
+        Results results = ladderGame.play();
+
+        Assertions.assertThat(results.getReward(names.getName(0)))
+                .isEqualTo(rewards.getReward(1));
+        Assertions.assertThat(results.getReward(names.getName(1)))
+                .isEqualTo(rewards.getReward(0));
+        Assertions.assertThat(results.getReward(names.getName(2)))
+                .isEqualTo(rewards.getReward(3));
+        Assertions.assertThat(results.getReward(names.getName(3)))
+                .isEqualTo(rewards.getReward(2));
     }
 }

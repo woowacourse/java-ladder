@@ -35,8 +35,8 @@ public class MainController {
 
     public void start() {
         OutputView.printLadderBoard(info, ladder);
-        LadderGame ladderGame = new LadderGame(info.getNames(), ladder);
-        Results results = new Results(info, ladderGame);
+        LadderGame ladderGame = new LadderGame(info, ladder);
+        Results results = ladderGame.play();
 
         showResult(results);
     }
