@@ -9,25 +9,26 @@ public class LadderGame {
     private final Ladder ladder;
     private final Users users;
     private final Rewards rewards;
-    private final LadderGameResult ladderGameResult;
+    private LadderGameResult ladderGameResult;
     private boolean inProgress;
 
     public LadderGame(final Ladder ladder, final Users users, final Rewards rewards) {
         this.ladder = ladder;
         this.users = users;
         this.rewards = rewards;
-        ladderGameResult = getLadderGameResult(users.getSize(), ladder.getLadderHeight());
+        inProgress = false;
     }
 
-    private LadderGameResult getLadderGameResult(final int userCount, final int ladderHeight) {
-        Map<User, Reward> map = new HashMap<>();
-        for (int i = 0; i < userCount; i++) {
-            User user = users.getUsers().get(i);
-            int arrivalIndex = move(i, 0, ladderHeight);
+    public void play() {
+        inProgress = true;
+        Map<User, Reward> result = new HashMap<>();
+        for (int departureIndex = 0; departureIndex < users.getSize(); departureIndex++) {
+            int arrivalIndex = move(departureIndex, 0, ladder.getLadderHeight());
+            User user = users.getUsers().get(departureIndex);
             Reward reward = rewards.getRewards().get(arrivalIndex);
-            map.put(user, reward);
+            result.put(user, reward);
         }
-        return new LadderGameResult(map);
+        ladderGameResult = new LadderGameResult(result);
     }
 
     private int move(final int index, final int currentHeight, final int ladderHeight) {
@@ -56,10 +57,6 @@ public class LadderGame {
 
     private boolean isLeft(final int index, final int existingLineIndex) {
         return index == existingLineIndex + 1;
-    }
-
-    public void play() {
-        inProgress = true;
     }
 
     public LadderGameResult getLadderGameResultByName(final String name) {
