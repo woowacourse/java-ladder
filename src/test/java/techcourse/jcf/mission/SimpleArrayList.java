@@ -27,11 +27,11 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void add(int index, String value) {
-        if (!(index<=this.size)){
+        if (!(index <= this.size)) {
             throw new IllegalArgumentException("원소를 추가할 위치는 현재 리스트 크기 이하여야 합니다.");
         }
-        for (int i = this.size; i >index; i--) {
-            values[i] = values[i-1];
+        for (int i = this.size; i > index; i--) {
+            values[i] = values[i - 1];
         }
         values[index] = value;
         ++this.size;
@@ -39,7 +39,12 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String set(int index, String value) {
-        return null;
+        if (!(0 <= index && index < this.size)) {
+            throw new IllegalArgumentException("값을 수정할 수 있는 인덱스의 범위를 벗어났습니다.");
+        }
+        String beforeValue = values[index];
+        values[index] = value;
+        return beforeValue;
     }
 
     @Override
