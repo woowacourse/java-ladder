@@ -24,13 +24,19 @@ public class LadderGame {
     }
 
     public List<ResultDto> play(String playerName, String queryAll) {
-        Map<Position, String> arrivePosition;
-
         if (playerName.equals(queryAll)) {
-            arrivePosition = players.moveAllToLadderEnd(ladder);
-            return results.getResultsByPosition(arrivePosition);
+            return allPlayerResults();
         }
-        arrivePosition = players.moveToLadderEnd(playerName, ladder);
+        return onePlayerResult(playerName);
+    }
+
+    private List<ResultDto> allPlayerResults() {
+        Map<Position, String> arrivePosition = players.moveAllToLadderEnd(ladder);
+        return results.getResultsByPosition(arrivePosition);
+    }
+
+    private List<ResultDto> onePlayerResult(String playerName) {
+        Map<Position, String> arrivePosition = players.moveToLadderEnd(playerName, ladder);
         return results.getResultsByPosition(arrivePosition);
     }
 

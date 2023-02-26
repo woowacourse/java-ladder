@@ -19,7 +19,7 @@ public class Players {
                 .forEach(i -> players.add(new Player(names.get(i), i)));
     }
 
-    public Map<Position, String> moveToResult(String playerName, Ladder ladder) {
+    public Map<Position, String> moveToLadderEnd(String playerName, Ladder ladder) {
         Map<Position, String> result = new HashMap<>();
 
         Player player = getPlayerByName(playerName);
@@ -28,7 +28,7 @@ public class Players {
         return Collections.unmodifiableMap(result);
     }
 
-    public Map<Position, String> moveAllToResult(Ladder ladder) {
+    public Map<Position, String> moveAllToLadderEnd(Ladder ladder) {
         Map<Position, String> results = new HashMap<>();
 
         for (Player player : players) {
@@ -40,7 +40,8 @@ public class Players {
     private Player getPlayerByName(String name) {
         return players.stream()
                 .filter(player -> player.isEqualName(name))
-                .findFirst().orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어 입니다."));
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어 입니다."));
     }
 
     private void validateDuplicateNames(List<String> names) {
