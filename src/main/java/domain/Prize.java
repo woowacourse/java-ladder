@@ -1,16 +1,20 @@
 package domain;
 
-public class PrizeName {
+public class Prize {
     private static final int MAX_LENGTH = 5;
     private static final String BLANK_NAME_MESSAGE = "빈 문자열 입니다.";
     private static final String INVALID_NAME_LENGTH_MESSAGE = "실행결과 길이는 %d자를 넘길 수 없습니다.";
 
     private final String name;
 
-    public PrizeName(String name) {
+    public Prize(String name) {
         this.name = name;
         validateNameBlank(name);
         validateNameLength(name);
+    }
+
+    public String getName() {
+        return name;
     }
 
     private void validateNameBlank(String name) {
