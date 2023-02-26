@@ -13,45 +13,6 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    // TODO : 접근제어자 수정 + 테스트
-    public boolean moveRight(Line line, Position position) {
-        if (position.getIndex() == line.getPointsSize()) {
-            return false;
-        }
-        if (line.isMovablePoint(position.getIndex())) {
-            position.moveRight();
-            return true;
-        }
-        return false;
-    }
-
-    public boolean moveLeft(Line line, Position position) {
-        if (position.getIndex() == 0) {
-            return false;
-        }
-        if (line.isMovablePoint(position.getIndex() - 1)) {
-            position.moveLeft();
-            return true;
-        }
-        return false;
-    }
-
-    public void move(Line line, Position position) {
-        if (moveRight(line, position)) {
-            return;
-        }
-        moveLeft(line, position);
-    }
-
-    public int getResultIndex(String name) {
-        int playerIndex = players.getOrder(name);
-        Position position = new Position(playerIndex);
-        for (Line line : ladder.getLines()) {
-            move(line, position);
-        }
-        return position.getIndex();
-    }
-
     public List<Integer> getResult(String name) {
         if (name.equals("all")) {
             return players.getNames().stream()
@@ -59,6 +20,16 @@ public class LadderGame {
         }
         return new ArrayList<>(
                 List.of(getResultIndex(name)));
+    }
+
+
+    private int getResultIndex(String name) {
+        int playerIndex = players.getOrder(name);
+        Position position = new Position(playerIndex);
+        for (Line line : ladder.getLines()) {
+            ladder.move(line, position);
+        }
+        return position.getIndex();
     }
 
 }

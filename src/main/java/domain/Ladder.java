@@ -19,6 +19,36 @@ public class Ladder {
         return lines;
     }
 
+    public Position move(Line line, Position position) {
+        if (moveRight(line, position)) {
+            return position;
+        }
+        moveLeft(line, position);
+        return position;
+    }
+
+    private boolean moveRight(Line line, Position position) {
+        if (position.getIndex() == line.getPointsSize()) {
+            return false;
+        }
+        if (line.isMovablePoint(position.getIndex())) {
+            position.moveRight();
+            return true;
+        }
+        return false;
+    }
+
+    private boolean moveLeft(Line line, Position position) {
+        if (position.getIndex() == 0) {
+            return false;
+        }
+        if (line.isMovablePoint(position.getIndex() - 1)) {
+            position.moveLeft();
+            return true;
+        }
+        return false;
+    }
+
     private void addLine(int height, int width, RandomGenerator generator) {
         for (int i = 0; i < height; i++) {
             lines.add(new Line(width, generator));
@@ -30,10 +60,6 @@ public class Ladder {
             throw new IllegalArgumentException(
                     String.format(INVALID_HEIGHT_MESSAGE, MIN_HEIGHT, MAX_HEIGHT));
         }
-    }
-
-    public boolean isExist(int heightIndex, int widthIndex) {
-        return lines.get(heightIndex).getPoints().get(widthIndex);
     }
 
 }
