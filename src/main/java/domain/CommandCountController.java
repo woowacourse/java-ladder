@@ -8,6 +8,10 @@ public class CommandCountController {
         this.count = 0;
     }
 
+    public void execute(Command command) {
+        count++;
+    }
+
     public int getCount() {
         return this.count;
     }
