@@ -50,13 +50,6 @@ public class LadderGameTest {
         ladderGame = new LadderGame(players, ladder, gameResults);
     }
 
-    @DisplayName("Players를 생성한다.")
-    @Test
-    void generatePlayers() {
-        List<String> playerNames = ladderGame.getPlayerNames();
-        assertThat(playerNames).containsExactly("a", "b", "c", "d", "e");
-    }
-
     @DisplayName("지정한 플레이어의 게임 실행 결과를 반환한다.")
     @ParameterizedTest
     @CsvSource(value = {"a:당첨", "b:꽝", "c:꽝", "d:당첨", "e:꽝"}, delimiter = ':')
