@@ -29,12 +29,12 @@ public class Ladder {
         return Collections.unmodifiableList(ladder);
     }
 
-    public int findLadderResult(int startIndex) {
-        int currIndex = startIndex;
+    public int findLadderResult(int startPosition) {
+        int currPosition = startPosition;
         for (Line line : ladder) {
-            currIndex = currIndex + line.decideDirection(currIndex);
+            currPosition = line.nextPosition(currPosition);
         }
-        return currIndex;
+        return currPosition;
     }
 
 }
