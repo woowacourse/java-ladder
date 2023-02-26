@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
+import ladder.domain.player.Position;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Test;
@@ -40,5 +41,13 @@ class LadderTest {
                 List.of(true, false, false),
                 List.of(true, false, false)
         );
+    }
+
+    @Test
+    void ladder에서_시작_포지션을_받게_되면_결과_포지션을_반환() {
+        Ladder ladder = of(3, 2, () -> true);
+        assertThat(ladder.calculateResult(Position.valueOf(0))).isEqualTo(Position.valueOf(0));
+        assertThat(ladder.calculateResult(Position.valueOf(1))).isEqualTo(Position.valueOf(1));
+        assertThat(ladder.calculateResult(Position.valueOf(2))).isEqualTo(Position.valueOf(2));
     }
 }

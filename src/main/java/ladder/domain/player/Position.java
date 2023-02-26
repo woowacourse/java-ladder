@@ -41,4 +41,15 @@ public class Position {
     public Position moveLeft() {
         return valueOf(index - 1);
     }
+
+    public int getIndex() {
+        return index;
+    }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "index=" + index +
+                '}';
+    }
 }

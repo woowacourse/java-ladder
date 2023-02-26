@@ -3,6 +3,7 @@ package ladder.domain.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import ladder.domain.player.Position;
 
 /**
  * Ladder 는 Row 를 가지고 있습니다
@@ -15,6 +16,7 @@ public class Ladder {
     private static final int MINIMUM_WIDTH = 2;
     private static final int MINIMUM_HEIGHT = 1;
     private final List<Row> rows;
+    private int check = 0;
 
     private Ladder(List<Row> rows) {
         this.rows = rows;
@@ -40,5 +42,13 @@ public class Ladder {
         return rows.stream()
                 .map(Row::getPoints)
                 .collect(Collectors.toList());
+    }
+
+    public Position calculateResult(Position position) {
+        Position result = position;
+        for (Row row : rows) {
+            result = row.calculateNextPosition(result);
+        }
+        return result;
     }
 }
