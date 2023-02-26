@@ -3,16 +3,17 @@ package domain;
 import java.util.*;
 
 public class Result {
-    private final Map<String, String> result;
+    private final Map<String, WinningResult> result;
 
-    public Result(final List<String> inputResult, final Map<String, Integer> ladderGameResult) {
+    public Result(final WinningResults inputWinningResults, final Map<String, Integer> ladderGameResult) {
         result = new LinkedHashMap<>();
+        final List<WinningResult> winningResults = inputWinningResults.getWinningResults();
         for (Map.Entry<String, Integer> gameResult : ladderGameResult.entrySet()) {
-            result.put(gameResult.getKey(), inputResult.get(gameResult.getValue()));
+            result.put(gameResult.getKey(), winningResults.get(gameResult.getValue()));
         }
     }
 
-    public Map<String, String> getResult(final String inputResultWord) {
+    public Map<String, WinningResult> getResult(final String inputResultWord) {
         if (inputResultWord.equals("all")) {
             return Collections.unmodifiableMap(new LinkedHashMap<>(result));
         }
@@ -20,7 +21,7 @@ public class Result {
         return Map.of(inputResultWord, result.get(inputResultWord));
     }
 
-    public String getUserResult(final String userName) {
-        return result.get(userName);
-    }
+//    public String getUserResult(final String userName) {
+//        return result.get(userName);
+//    }
 }

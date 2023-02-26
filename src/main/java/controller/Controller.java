@@ -7,6 +7,7 @@ import view.InputView;
 import view.OutputView;
 import view.ResultView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -28,12 +29,12 @@ public class Controller {
 
     public void run() {
         Users users = settingUsers();
-        List<String> inputResult = settingResult(users.getCount());
+        WinningResults winningResults = settingResult(users.getCount());
         Height height = settingHeight();
         LadderGame ladderGame = new LadderGame(height, users, new RandomLadderGenerator());
-        showLadder(users, ladderGame.getLadderDTO(), inputResult);
+        showLadder(users, ladderGame.getLadderDTO(), winningResults);
 
-        final Result result = ladderGame.play(inputResult);
+        final Result result = ladderGame.play(winningResults);
         showResult(users, result);
     }
 
@@ -53,9 +54,14 @@ public class Controller {
                 .collect(Collectors.toList());
     }
 
-    private List<String> settingResult(final int userCount) {
+    private WinningResults settingResult(final int userCount) {
         try {
-            return inputView.inputResult(userCount);
+            final List<String> inputResults = inputView.inputResult(userCount);
+            List<WinningResult> winningResults = new ArrayList<>();
+            for (String inputResult : inputResults) {
+                winningResults.add(new WinningResult(inputResult));
+            }
+            return new WinningResults(winningResults);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
             return settingResult(userCount);
@@ -71,18 +77,18 @@ public class Controller {
         }
     }
 
-    private void showLadder(final Users users, final LadderDTO ladderDTO, final List<String> inputResult) {
+    private void showLadder(final Users users, final LadderDTO ladderDTO, final WinningResults winningResults) {
         outputView.printUsers(users.getUsersDTO());
         for (LineDTO lineDTO : ladderDTO.getLadderDTO()) {
             outputView.printLadder(lineDTO);
         }
-        outputView.printResult(inputResult);
+        outputView.printResult(winningResults.getWinningResults());
     }
 
     private void showResult(final Users users, final Result result) {
         try {
             final String input = readResultInput(users);
-            final Map<String, String> gameResult = result.getResult(input);
+            final Map<String, WinningResult> gameResult = result.getResult(input);
             resultView.printResult(gameResult);
             if (isPrintAllResult(users, gameResult)) return;
             showResult(users, result);
@@ -100,7 +106,7 @@ public class Controller {
         return input;
     }
 
-    private boolean isPrintAllResult(final Users users, final Map<String, String> gameResult) {
+    private boolean isPrintAllResult(final Users users, final Map<String, WinningResult> gameResult) {
         if (users.getCount() == gameResult.size()) {
             resultView.printGameExitMessage();
             return true;

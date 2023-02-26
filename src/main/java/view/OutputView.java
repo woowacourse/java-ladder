@@ -1,6 +1,7 @@
 package view;
 
 import domain.Bridge;
+import domain.WinningResult;
 import dto.LineDTO;
 import dto.UsersDTO;
 
@@ -28,9 +29,9 @@ public class OutputView {
         System.out.printf(LADDER_FORMAT, collect);
     }
 
-    public void printResult(final List<String> inputResult) {
-        inputResult
-                .forEach(result -> System.out.printf(USER_NAME_FORMAT, (result)));
+    public void printResult(final List<WinningResult> winningResults) {
+        winningResults
+                .forEach(result -> System.out.printf(USER_NAME_FORMAT, (result.getWinningResult())));
         System.out.println();
     }
 

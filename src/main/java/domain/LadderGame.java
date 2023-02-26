@@ -3,7 +3,6 @@ package domain;
 import dto.LadderDTO;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LadderGame {
@@ -15,7 +14,7 @@ public class LadderGame {
         this.ladder = new Ladder(height, users.getCount() - 1, ladderGenerator);
     }
 
-    public Result play(List<String> inputResults) {
+    public Result play(WinningResults winningResults) {
         int startPosition = 0;
         Map<String, Integer> result = new HashMap<>();
         for (User user : users.getUsers()) {
@@ -24,7 +23,7 @@ public class LadderGame {
             result.put(user.getName(), finalPosition);
             startPosition++;
         }
-        return new Result(inputResults, result);
+        return new Result(winningResults, result);
     }
 
     private int calculateFinalPosition(int finalPosition) {

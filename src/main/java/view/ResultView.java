@@ -1,5 +1,7 @@
 package view;
 
+import domain.WinningResult;
+
 import java.util.Map;
 
 public class ResultView {
@@ -12,10 +14,10 @@ public class ResultView {
         System.out.println(NON_EXIST_USER_GUIDE_MESSAGE);
     }
 
-    public void printResult(final Map<String, String> result) {
+    public void printResult(final Map<String, WinningResult> result) {
         System.out.println(RESULT_PRINT_GUIDE_MESSAGE);
-        for (Map.Entry<String, String> gameResult : result.entrySet()) {
-            System.out.println(gameResult.getKey() + PRINT_ALL_RESULT_DELIMITER + gameResult.getValue());
+        for (Map.Entry<String, WinningResult> gameResult : result.entrySet()) {
+            System.out.println(gameResult.getKey() + PRINT_ALL_RESULT_DELIMITER + gameResult.getValue().getWinningResult());
         }
     }
 
