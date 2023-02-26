@@ -1,24 +1,38 @@
 package laddergame.ladder;
 
-import org.junit.jupiter.api.DisplayName;
+import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderHeightTest {
-    @Test
-    @DisplayName("높이는 1이하이면 예외던지기")
-    public void 생성_fail() {
-        assertThatThrownBy(() -> new LadderHeight(1))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("높이가 2이상이어야 합니다.");
-    }
+    @Nested
+    class 생성기능 {
+        @Test
+        void test_생성자_should_예외를던진다_when_높이가1이하인경우() {
+            // given
 
-    @Test
-    @DisplayName("높이가 2이상이면 정상 생성한다")
-    public void 생성_success() {
-        assertThatNoException()
-                .isThrownBy(() -> new LadderHeight(2));
+            // when
+            ThrowingCallable throwingCallable = () -> new LadderHeight(1);
+
+            //then
+            assertThatThrownBy(throwingCallable)
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("높이가 2이상이어야 합니다.");
+        }
+
+        @Test
+        void test_생성자_should_정상생성_when_높이가2이상인경우() {
+            // given
+
+            // when
+            ThrowingCallable throwingCallable = () -> new LadderHeight(2);
+
+            //then
+            assertThatNoException()
+                    .isThrownBy(throwingCallable);
+        }
     }
 }
