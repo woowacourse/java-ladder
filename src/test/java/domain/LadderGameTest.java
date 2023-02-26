@@ -41,7 +41,7 @@ public class LadderGameTest {
 
         ladderGame.play();
 
-        Assertions.assertThat(ladderGame.inProgress()).isTrue();
+        Assertions.assertThat(ladderGame.isInProgress()).isTrue();
     }
 
     @ParameterizedTest(name = "getLadderGameResultByName 메서드는 이름을 통해 결과를 찾을 수 있다.")

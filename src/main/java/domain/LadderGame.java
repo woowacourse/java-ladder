@@ -81,7 +81,7 @@ public class LadderGame {
         return rewards;
     }
 
-    public boolean inProgress() {
+    public boolean isInProgress() {
         return inProgress;
     }
 }

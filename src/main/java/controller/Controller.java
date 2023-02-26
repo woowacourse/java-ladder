@@ -80,7 +80,7 @@ public class Controller {
     }
 
     private void searchResult(final LadderGame ladderGame) {
-        while (ladderGame.inProgress()) {
+        while (ladderGame.isInProgress()) {
             LadderGameResult ladderGameResult = getLadderGameResult(ladderGame);
             OutputView.printLadderGameResult(ladderGameResult);
         }
