@@ -43,7 +43,7 @@ public class OutputView {
     }
 
     public static void printLadder(Ladder ladder) {
-        Lines lines = ladder.getLines();
+        Lines lines = ladder.getLadder();
 
         for (Line line : lines.getLines()) {
             List<LineStatus> oneLine = line.getLineStatuses();

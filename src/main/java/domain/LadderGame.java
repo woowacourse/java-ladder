@@ -24,7 +24,7 @@ public class LadderGame {
     }
 
     public void playGame() {
-        for (Line line : ladder.getLines().getLines()) {
+        for (Line line : ladder.getLadder().getLines()) {
             crossLadder(line);
         }
     }
