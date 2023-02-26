@@ -21,7 +21,7 @@ public class LadderGame {
 
     public void play() {
         for (Player player : players.getPlayers()) {
-            player.goToResult(ladder.getLines(), items.getItems());
+            player.findGameResult(ladder, items.getItems());
         }
     }
 

@@ -2,6 +2,7 @@ package domain.player;
 
 import domain.generator.MockBooleanGenerator;
 import domain.item.Item;
+import domain.ladder.Ladder;
 import domain.ladder.Line;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -17,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PlayerTest {
 
     private static MockBooleanGenerator booleanGenerator;
-    private static List<Line> ladder;
+    private static Ladder ladder;
     private static List<Item> items;
 
     /**
@@ -43,8 +44,8 @@ class PlayerTest {
     @ParameterizedTest
     @MethodSource("generatePlayer")
     @DisplayName("참가자가 사다리를 타고 내려가서 당첨 결과를 받는다.")
-    void goToResultTest(Player player, String result) {
-        player.goToResult(ladder, items);
+    void findGameResultTest(Player player, String result) {
+        player.findGameResult(ladder, items);
         assertThat(player.getResult()).isEqualTo(result);
     }
 
@@ -66,7 +67,7 @@ class PlayerTest {
                         false, true, false,
                         true, false, true));
 
-        ladder = makeTestLadder();
+        ladder = new Ladder(makeTestLadder());
         items = makeTestItems();
     }
 

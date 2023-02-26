@@ -31,4 +31,12 @@ public class Position {
     public int getY() {
         return y;
     }
+
+    public int getLeft() {
+        return x - 1;
+    }
+
+    public int getRight() {
+        return x;
+    }
 }
