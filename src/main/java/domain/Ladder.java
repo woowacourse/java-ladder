@@ -24,8 +24,8 @@ public class Ladder {
         return lines;
     }
 
-    public int getResultIndex(int index) {
-        int resultIndex = index;
+    public int getResultIndex(int startIndex) {
+        int resultIndex = startIndex;
         for (Line line : lines) {
             resultIndex = getNextIndex(resultIndex, line);
         }
