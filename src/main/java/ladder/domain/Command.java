@@ -2,7 +2,7 @@ package ladder.domain;
 
 public enum Command {
     ALL("all"), QUIT("quit");
-    
+
     private String value;
 
     Command(String value) {

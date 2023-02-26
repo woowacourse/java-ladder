@@ -2,12 +2,10 @@ package ladder.domain;
 
 class Height {
 
-    private final int value;
     private static final int HEIGHT_MIN_BOUND = 0;
 
     Height(int value) {
         validateHeight(value);
-        this.value = value;
     }
 
     private void validateHeight(int height) {

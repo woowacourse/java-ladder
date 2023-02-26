@@ -5,15 +5,15 @@ import ladder.domain.Step;
 
 public class LadderDto {
 
-  private final List<List<Step>> lines;
-  private final int height;
+    private final List<List<Step>> lines;
+    private final int height;
 
-  public LadderDto(List<List<Step>> lines, int height) {
-    this.lines = lines;
-    this.height = height;
-  }
+    public LadderDto(List<List<Step>> lines, int height) {
+        this.lines = lines;
+        this.height = height;
+    }
 
-  public List<List<Step>> getLines() {
-    return lines;
-  }
+    public List<List<Step>> getLines() {
+        return lines;
+    }
 }

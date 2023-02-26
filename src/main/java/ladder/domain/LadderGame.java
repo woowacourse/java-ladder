@@ -7,7 +7,7 @@ import ladder.dto.ResultDto;
 
 public class LadderGame {
 
-    private Map<Name, Name> ladderResult;
+    private final Map<Name, Name> ladderResult;
 
     public LadderGame(Names players, Ladder ladder, Names rewards) {
         ladderResult = new HashMap<>();
