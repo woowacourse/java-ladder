@@ -24,8 +24,8 @@ public class InputView {
         return sc.next();
     }
 
-    public String inputPrizeName() {
+    public List<String> inputPrizeName() {
         System.out.println(INPUT_PRIZE_NAME);
-        return sc.next();
+        return splitNameInput(sc.next());
     }
 }
