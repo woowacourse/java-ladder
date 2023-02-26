@@ -45,14 +45,19 @@ public class Rewards {
         }
     }
 
+    private void validateIndex(int index) {
+        if (index < FIRST_INDEX || index >= rewards.size()) {
+            throw new IllegalArgumentException(INDEX_OUT_OF_BOUNDS.getMessage());
+        }
+    }
+
     public int size() {
         return rewards.size();
     }
 
     public String getReward(int index) {
-        if (index < FIRST_INDEX || index >= rewards.size()) {
-            throw new IllegalArgumentException(INDEX_OUT_OF_BOUNDS.getMessage());
-        }
+        validateIndex(index);
+
         return rewards.get(index);
     }
 

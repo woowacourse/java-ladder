@@ -16,9 +16,10 @@ public class Users {
 
     public static Users from(List<String> userNames) {
         List<User> users = new ArrayList<>();
-
         for (int i = 0; i < userNames.size(); i++) {
-            users.add(User.of(Name.from(userNames.get(i)), Position.from(i)));
+            users.add(User.of(
+                    Name.from(userNames.get(i)),
+                    Position.from(i)));
         }
 
         return new Users(users);
