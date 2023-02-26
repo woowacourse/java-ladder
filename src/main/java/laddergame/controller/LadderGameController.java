@@ -21,10 +21,10 @@ public class LadderGameController {
 
     private static Results makeResults(People people, Ladder ladder, Prizes prizes) {
         List<Result> results = new ArrayList<>();
-        for (int i = 0; i < people.getSize(); i++) {
+        for (int i = 0; i < people.size(); i++) {
             Person person = people.getPeople().get(i);
             int index = i;
-            for (int j = 0; j < ladder.getSize(); j++) {
+            for (int j = 0; j < ladder.size(); j++) {
                 Line line = ladder.get(j);
                 Point point = line.getLine().get(index);
                 index = point.moveDirection(index);

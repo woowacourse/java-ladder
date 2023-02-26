@@ -12,12 +12,12 @@ public class Ladder {
         this.height = height;
         List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < this.height.getHeight(); i++) {
-            ladder.add(new Line(people.getSize()));
+            ladder.add(new Line(people.size()));
         }
         this.ladder = ladder;
     }
 
-    public int getSize() {
+    public int size() {
         return ladder.size();
     }
 

@@ -18,7 +18,7 @@ public class Prizes {
     }
 
     private static void validatePrizesSize(List<String> prizes, People people) {
-        if (prizes.size() != people.getSize()) {
+        if (prizes.size() != people.size()) {
             throw new IllegalArgumentException("입력된 실행 결과의 수는 참여자의 수와 같아야 합니다.");
         }
     }

@@ -52,7 +52,7 @@ public class Line {
         }
     }
 
-    public int getSize() {
+    public int size() {
         return line.size();
     }
 

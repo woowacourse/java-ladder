@@ -94,7 +94,7 @@
 - 네이밍
   - [x] Persons class 네이밍 People로 변경
   - [x] 상수로 관리하던 에러 메세지 -> 직접 메세지를 보여주도록 수정
-  - [ ] getSize 메서드 size로 네이밍 변경 -> 일관성을 위해
+  - [x] getSize 메서드 size로 네이밍 변경 -> 일관성을 위해
   - [ ] getter 범위나 네이밍 통일
 - 함수(또는 메서드)
   - [ ] indent(인덴트, 들여쓰기) depth를 2

@@ -31,7 +31,7 @@ public class OutputView {
     }
 
     public void printLadder(Ladder ladder) {
-        for (int i = 0; i < ladder.getSize(); i++) {
+        for (int i = 0; i < ladder.size(); i++) {
             System.out.print(LineSymbol.BLANK_LINE.getSymbol());
             printLine(ladder.get(i).getLine());
             System.out.println();
