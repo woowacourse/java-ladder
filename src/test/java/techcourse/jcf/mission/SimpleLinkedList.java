@@ -107,7 +107,15 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public int indexOf(String value) {
-        return 0;
+        int index = 0;
+        Node iterator = firstNode;
+        for (; index < size && !(iterator.getValue().equals(value)); index++) {
+            iterator = iterator.getNext();
+        }
+        if (Objects.isNull(iterator)) {
+            return -1;
+        }
+        return index;
     }
 
     @Override
