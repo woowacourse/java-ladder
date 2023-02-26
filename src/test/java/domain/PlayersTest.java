@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

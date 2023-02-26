@@ -56,13 +56,13 @@ public class Player {
         }
     }
 
-    public int getStandingLine() {
-        return this.standingLine;
-    }
-
     public boolean isSameName(String name) {
         return this.name
                 .equals(name);
+    }
+
+    public int getStandingLine() {
+        return this.standingLine;
     }
 
     public String getName() {

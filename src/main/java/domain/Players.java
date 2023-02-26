@@ -61,6 +61,28 @@ public class Players {
                 && playerNumber <= PLAYER_NUMBER_UPPER_BOUND_INCLUSIVE);
     }
 
+    public void move(Ladder ladder) {
+        players.forEach(player -> moveEachPlayer(ladder, player));
+    }
+
+    private void moveEachPlayer(Ladder ladder, Player player) {
+        int playerHeight = 0;
+
+        while (playerHeight != ladder.getHeightSize()) {
+            player.move(getPoint(ladder, player, playerHeight));
+            playerHeight++;
+        }
+    }
+
+    private Point getPoint(Ladder ladder, Player player, int playerHeight) {
+        int standingLine = player.getStandingLine();
+        return ladder.getPoint(playerHeight, standingLine);
+    }
+
+    private boolean isSameName(String name, Player player) {
+        return player.isSameName(name);
+    }
+
     public List<Player> getPlayers() {
         return List.copyOf(this.players);
     }
@@ -80,28 +102,6 @@ public class Players {
                 .filter(player -> isSameName(name, player))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_PLAYER_NAME_ERROR_MESSAGE));
-    }
-
-    private boolean isSameName(String name, Player player) {
-        return player.isSameName(name);
-    }
-
-    public void move(Ladder ladder) {
-        players.forEach(player -> moveEachPlayer(ladder, player));
-    }
-
-    private void moveEachPlayer(Ladder ladder, Player player) {
-        int playerHeight = 0;
-
-        while (playerHeight != ladder.getHeightSize()) {
-            player.move(getPoint(ladder, player, playerHeight));
-            playerHeight++;
-        }
-    }
-
-    private Point getPoint(Ladder ladder, Player player, int playerHeight) {
-        int standingLine = player.getStandingLine();
-        return ladder.getPoint(playerHeight, standingLine);
     }
 
 }
