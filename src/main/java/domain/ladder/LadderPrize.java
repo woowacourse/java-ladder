@@ -13,36 +13,19 @@ public class LadderPrize {
     private final String resultName;
     private final Pattern compile = Pattern.compile("^[^0-9a-zA-Z]*$");
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        LadderPrize that = (LadderPrize) o;
-        return resultName.equals(that.resultName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(resultName);
-    }
-
     public LadderPrize(String resultName) {
         validate(resultName);
-        this.resultName = resultName;
+        this.resultName = resultName.strip();
     }
 
     private void validate(String resultName) {
         if (isNotEmpty(resultName)) {
             throw new EmptyInputException();
         }
-        if (isInvalidLength(resultName)) {
+        if (isInvalidLength(resultName.strip())) {
             throw new InvalidLadderResultException();
         }
-        if (isNotEnglishOrNumber(resultName)) {
+        if (isNotEnglishOrNumber(resultName.strip())) {
             throw new NotEnglishAndNumberException();
         }
     }
@@ -61,5 +44,22 @@ public class LadderPrize {
 
     public String getName() {
         return resultName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LadderPrize that = (LadderPrize) o;
+        return resultName.equals(that.resultName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(resultName);
     }
 }

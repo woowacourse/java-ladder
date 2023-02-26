@@ -18,14 +18,14 @@ public class Participant {
 
     public Participant(String name) {
         validateName(name);
-        this.name = name;
+        this.name = name.strip();
     }
 
     private void validateName(String name) throws IllegalArgumentException {
         if (isEmpty(name)) {
             throw new EmptyNameException();
         }
-        isInvalidName(name);
+        isInvalidName(name.strip());
     }
 
     private void isInvalidName(String name) {
