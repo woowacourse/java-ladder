@@ -25,22 +25,22 @@ public class LadderController {
     }
 
     public void run() {
-        final Players players = readPlayers(new Retry(5));
-        final Prizes prizes = readPrizes(new Retry(5), players);
-        final Height height = readHeight(new Retry(5));
+        final Players players = createPlayers(new Retry(5));
+        final Prizes prizes = createPrizes(new Retry(5), players);
+        final Height height = createHeight(new Retry(5));
         final Ladder ladder = Ladder.of(new RandomDirectionGenerator(), players, height);
         outputView.printLadderGame(players, ladder, prizes);
         final Result result = Result.of(players, ladder, prizes);
-        final String target = readTarget(new Retry(5), result);
+        final String target = createTarget(new Retry(5), result);
         printResult(result, target);
     }
 
-    private Players readPlayers(final Retry retry) {
+    private Players createPlayers(final Retry retry) {
         checkCount(retry);
-        final Optional<Players> players = generatePlayers();
+        final Optional<Players> players = readPlayers();
         if (players.isEmpty()) {
             retry.decrease();
-            return readPlayers(retry);
+            return createPlayers(retry);
         }
         return players.get();
     }
@@ -51,7 +51,7 @@ public class LadderController {
         }
     }
 
-    private Optional<Players> generatePlayers() {
+    private Optional<Players> readPlayers() {
         try {
             final List<String> playerNames = inputView.readPlayerNames();
             return Optional.of(Players.from(playerNames));
@@ -61,17 +61,17 @@ public class LadderController {
         return Optional.empty();
     }
 
-    private Prizes readPrizes(final Retry retry, final Players players) {
+    private Prizes createPrizes(final Retry retry, final Players players) {
         checkCount(retry);
-        final Optional<Prizes> prizes = generatePrizes(players);
+        final Optional<Prizes> prizes = readPrizes(players);
         if (prizes.isEmpty()) {
             retry.decrease();
-            return readPrizes(retry, players);
+            return createPrizes(retry, players);
         }
         return prizes.get();
     }
 
-    private Optional<Prizes> generatePrizes(final Players players) {
+    private Optional<Prizes> readPrizes(final Players players) {
         try {
             final List<String> prizeNames = inputView.readPrizeNames();
             return Optional.of(Prizes.from(prizeNames, players));
@@ -81,17 +81,17 @@ public class LadderController {
         return Optional.empty();
     }
 
-    private Height readHeight(final Retry retry) {
+    private Height createHeight(final Retry retry) {
         checkCount(retry);
-        final Optional<Height> height = generateHeight();
+        final Optional<Height> height = readHeight();
         if (height.isEmpty()) {
             retry.decrease();
-            return readHeight(retry);
+            return createHeight(retry);
         }
         return height.get();
     }
 
-    private Optional<Height> generateHeight() {
+    private Optional<Height> readHeight() {
         try {
             final int height = inputView.readHeight();
             return Optional.of(new Height(height));
@@ -101,17 +101,17 @@ public class LadderController {
         return Optional.empty();
     }
 
-    private String readTarget(final Retry retry, final Result result) {
+    private String createTarget(final Retry retry, final Result result) {
         checkCount(retry);
-        final Optional<String> target = generateTarget(result);
+        final Optional<String> target = readTarget(result);
         if (target.isEmpty()) {
             retry.decrease();
-            return readTarget(retry, result);
+            return createTarget(retry, result);
         }
         return target.get();
     }
 
-    private Optional<String> generateTarget(final Result result) {
+    private Optional<String> readTarget(final Result result) {
         final String target = inputView.readTarget();
         if (target.equals(ALL_COMMAND) || result.exist(target)) {
             return Optional.of(target);
