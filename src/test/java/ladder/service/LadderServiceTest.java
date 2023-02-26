@@ -133,7 +133,7 @@ class LadderServiceTest {
         assertThat(lines)
                 .hasSize(6);
         assertThat(lines.get(0))
-                .hasSize(4);
+                .hasSize(3);
         assertThat(ladderResponse.getPlayerNames())
                 .hasSize(4);
         assertThat(ladderResponse.getPrizeNames())
