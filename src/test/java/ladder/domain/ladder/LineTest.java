@@ -45,8 +45,8 @@ public class LineTest {
         List<Bar> bars =List.of(Bar.MOVABLE_BAR, Bar.UNMOVABLE_BAR, Bar.UNMOVABLE_BAR);
         Line line = new Line(bars);
 
-        assertThat(line.movePosition(0)).isEqualTo(1);
-        assertThat(line.movePosition(1)).isEqualTo(0);
-        assertThat(line.movePosition(2)).isEqualTo(2);
+        assertThat(line.nextPosition(0)).isEqualTo(1);
+        assertThat(line.nextPosition(1)).isEqualTo(0);
+        assertThat(line.nextPosition(2)).isEqualTo(2);
     }
 }
