@@ -23,12 +23,7 @@ public class Users {
     }
 
     public boolean contain(final String userName) {
-        for (User user : users) {
-            if (user.getName().equals(userName)) {
-                return true;
-            }
-        }
-        return false;
+        return users.contains(new User(userName));
     }
 
     public int getCount() {
