@@ -11,6 +11,7 @@ public class InputView implements AutoCloseable {
     private static final String INPUT_RESULT_ITEMS = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String INPUT_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
     private static final String INPUT_PLAYER_RESULT = "결과를 보고 싶은 사람은?";
+    private static final String NOT_NUMBER_MESSAGE = "숫자만 입력 가능합니다. 현재 : %s";
 
     private final Scanner scanner;
 
@@ -31,7 +32,7 @@ public class InputView implements AutoCloseable {
         try {
             return Integer.parseInt(height);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자만 입력 가능합니다. 현재 : " + height);
+            throw new IllegalArgumentException(String.format(NOT_NUMBER_MESSAGE, height));
         }
     }
 
