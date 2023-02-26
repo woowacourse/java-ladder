@@ -2,13 +2,16 @@ package laddergame.domain.participant;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Participants {
 
     private static final String DELIMITER = ",";
     private static final int MIN_COUNT = 2;
     private static final int MAX_COUNT = 10_000;
+    private static final int MINIMUM_COUNT = 1;
 
     private final List<Participant> participants;
 
@@ -40,15 +43,23 @@ public class Participants {
 
     private void validateParticipantCount(List<String> participantNames) {
         if (participantNames.size() < MIN_COUNT || participantNames.size() > MAX_COUNT) {
-            throw new IllegalArgumentException(String.format("[ERROR] 참여자는 최소 %d 명부터 최대 %d 명 입니다.", MIN_COUNT, MAX_COUNT));
+            throw new IllegalArgumentException(String.format("[ERROR] 참여자는 최소 %d 명부터 최대 %d 명 입니다. 입력된 참여자 수 : %d", MIN_COUNT, MAX_COUNT, participantNames.size()));
         }
     }
 
     private void validateDuplicateName(List<String> participantNames) {
         int uniqueCount = (int) participantNames.stream().distinct().count();
         if (uniqueCount != participantNames.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 이름을 입력할 수 없습니다.");
+            String duplicateName = makeDuplicateName(participantNames);
+            throw new IllegalArgumentException(String.format("[ERROR] 중복된 이름을 입력할 수 없습니다.%n중복된 이름 : %s%n", duplicateName));
         }
+    }
+
+    private String makeDuplicateName(final List<String> participantNames) {
+        return participantNames.stream()
+                .filter(name -> Collections.frequency(participantNames, name) > MINIMUM_COUNT)
+                .distinct()
+                .collect(Collectors.joining(DELIMITER));
     }
 
     private List<Participant> makeParticipants(final List<String> participantNames) {

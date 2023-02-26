@@ -26,7 +26,7 @@ public class Results {
 
     private void validateResultsSize(final List<Result> results, final int participantCount) {
         if (results.size() != participantCount) {
-            throw new IllegalArgumentException("[ERROR] 실행 결과는 참여자 수와 같게 입력해야 합니다.");
+            throw new IllegalArgumentException(String.format("[ERROR] 실행 결과는 참여자 수와 같게 입력해야 합니다.%n참여자 수 : %d%n실행 결과 수 : %d", participantCount, results.size()));
         }
     }
 

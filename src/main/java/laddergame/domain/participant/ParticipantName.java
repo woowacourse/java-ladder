@@ -35,13 +35,13 @@ public class ParticipantName {
 
     private void validateNameBlank(final String name) {
         if (name.contains(INVALID_INCLUSION)) {
-            throw new IllegalArgumentException("[ERROR] 이름에 공백이 포함될 수 없습니다.");
+            throw new IllegalArgumentException(String.format("[ERROR] 이름에 공백이 포함될 수 없습니다. 입력된 이름 : %s", name));
         }
     }
 
     private void validateNameLength(final String name) {
         if (name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException(String.format("[ERROR] 이름은 %d 글자를 초과할 수 없습니다.", MAX_LENGTH));
+            throw new IllegalArgumentException(String.format("[ERROR] 이름은 %d 글자를 초과할 수 없습니다. 입력된 이름 : %s", MAX_LENGTH, name));
         }
     }
 

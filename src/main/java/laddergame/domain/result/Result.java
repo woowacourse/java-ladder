@@ -22,7 +22,7 @@ public class Result {
 
     private void validateBlank(final String result) {
         if (result.contains(INVALID_INCLUSION)) {
-            throw new IllegalArgumentException("[ERROR] 실행 결과에 공백이 포함될 수 없습니다.");
+            throw new IllegalArgumentException(String.format("[ERROR] 실행 결과에 공백이 포함될 수 없습니다. 입력된 값 : %s", result));
         }
     }
 
