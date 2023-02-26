@@ -13,15 +13,25 @@ public class Rewards {
         this.rewards = createRewardsBy(rewards);
     }
 
+    private void validateNumberOfRewards(int numberOfPlayers, List<String> rewards) {
+        if (numberOfPlayers != rewards.size()) {
+            throw new IllegalArgumentException("보상의 개수는 플레이어 수와 일치해야 합니다.");
+        }
+    }
+
     private List<Reward> createRewardsBy(List<String> rewards) {
         return rewards.stream()
                 .map(Reward::new)
                 .collect(Collectors.toList());
     }
 
-    private void validateNumberOfRewards(int numberOfPlayers, List<String> rewards) {
-        if (numberOfPlayers != rewards.size()) {
-            throw new IllegalArgumentException("보상의 개수는 플레이어 수와 일치해야 합니다.");
-        }
+    public Reward findRewardBy(int index) {
+        return rewards.get(index);
+    }
+
+    public List<String> findRewards() {
+        return rewards.stream()
+                .map(Reward::getName)
+                .collect(Collectors.toList());
     }
 }

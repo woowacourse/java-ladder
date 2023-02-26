@@ -4,9 +4,12 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class RewardsTest {
@@ -14,6 +17,17 @@ class RewardsTest {
     private final int numberOfPlayers = 3;
     private List<String> rewards;
 
+    @ParameterizedTest
+    @CsvSource(value = {"0,꽝", "1,3000", "2,500"})
+    @DisplayName("특정 위치값에 해당하는 보상을 반환한다")
+    void findRewardByIndexTest(int index, String reward) {
+        rewards = List.of("꽝", "3000", "500");
+        Rewards newRewards = new Rewards(numberOfPlayers, rewards);
+
+        assertThat(newRewards.findRewardBy(index).getName())
+                .isEqualTo(reward);
+
+    }
 
     @Nested
     @DisplayName("Rewards 객체를 생성할 때, ")
@@ -41,11 +55,10 @@ class RewardsTest {
         @Test
         @DisplayName("모든 조건이 충족되면, 정상적으로 Rewards 객체가 생성된다")
         void validateCorrectRewardTest() {
-            rewards = List.of("꽝","3000", "500");
+            rewards = List.of("꽝", "3000", "500");
 
             assertDoesNotThrow(() -> new Rewards(numberOfPlayers, rewards));
         }
     }
-
 
 }
