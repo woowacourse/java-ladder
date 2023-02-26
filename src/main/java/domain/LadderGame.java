@@ -8,12 +8,14 @@ import java.util.Map;
 
 public class LadderGame {
     private final Ladder ladder;
+    private final Users users;
 
-    public LadderGame(final Height height, final Width width, final LadderGenerator ladderGenerator) {
-        this.ladder = new Ladder(height, width, ladderGenerator);
+    public LadderGame(final Height height, final Users users, final LadderGenerator ladderGenerator) {
+        this.users = users;
+        this.ladder = new Ladder(height, users.getCount() - 1, ladderGenerator);
     }
 
-    public Result play(final Users users, List<String> inputResults) {
+    public Result play(List<String> inputResults) {
         int startPosition = 0;
         Map<String, Integer> result = new HashMap<>();
         for (User user : users.getUsers()) {

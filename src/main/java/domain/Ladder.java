@@ -9,7 +9,7 @@ import java.util.List;
 public class Ladder {
     private final List<Line> ladder;
 
-    public Ladder(final Height height, final Width width, final LadderGenerator randomLadderGenerator) {
+    public Ladder(final Height height, final int width, final LadderGenerator randomLadderGenerator) {
         this.ladder = randomLadderGenerator.generate(width, height);
     }
 

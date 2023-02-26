@@ -16,7 +16,7 @@ class LadderGameTest {
         final Users users = new Users(List.of(new User("pobi"), new User("crong"), new User("jk"), new User("honux")));
         final LadderGame ladderGame = new LadderGame(
                 new Height(4),
-                new Width(users.getCount() - 1),
+                users,
                 ((width, height) -> List.of(
                         new Line(List.of(Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST)),
                         new Line(List.of(Bridge.NON_EXIST, Bridge.EXIST, Bridge.NON_EXIST)),
@@ -25,7 +25,7 @@ class LadderGameTest {
                 )));
 
         // when
-        final Result result = ladderGame.play(users, List.of("1", "2", "3", "4"));
+        final Result result = ladderGame.play(List.of("1", "2", "3", "4"));
         final Map<String, String> gameResult = result.getResult("all");
 
         // then

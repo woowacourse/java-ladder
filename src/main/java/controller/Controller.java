@@ -27,13 +27,12 @@ public class Controller {
 
     public void run() {
         Users users = settingUsers();
-        Width width = new Width(users.getCount() - 1);
         List<String> inputResult = settingResult(users.getCount());
         Height height = settingHeight();
-        LadderGame ladderGame = new LadderGame(height, width, new RandomLadderGenerator());
+        LadderGame ladderGame = new LadderGame(height, users, new RandomLadderGenerator());
         showLadder(users, ladderGame.getLadderDTO(), inputResult);
 
-        final Result result = ladderGame.play(users, inputResult);
+        final Result result = ladderGame.play(inputResult);
         showResult(users, result);
     }
 

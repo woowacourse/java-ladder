@@ -8,7 +8,7 @@ public class RandomLadderGenerator implements LadderGenerator {
     private final Random random = new Random();
 
     @Override
-    public List<Line> generate(final Width width, final Height height) {
+    public List<Line> generate(final int width, final Height height) {
         List<Line> ladder = new ArrayList<>();
         for (int floor = 0; floor < height.getHeight(); floor++) {
             ladder.add(makeLine(width));
@@ -16,10 +16,9 @@ public class RandomLadderGenerator implements LadderGenerator {
         return ladder;
     }
 
-    private Line makeLine(final Width width) {
+    private Line makeLine(final int width) {
         List<Bridge> line = new ArrayList<>();
-        int maxWidth = width.getWidth();
-        while (line.size() < maxWidth) {
+        while (line.size() < width) {
             line.add(generateBridge(line));
         }
         return new Line(line);
