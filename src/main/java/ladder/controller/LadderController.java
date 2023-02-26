@@ -5,7 +5,6 @@ import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
-import ladder.domain.reward.Continue;
 import ladder.domain.reward.GameResult;
 import ladder.domain.reward.Reward;
 import ladder.domain.reward.Rewards;
@@ -15,6 +14,8 @@ import ladder.view.Result;
 import java.util.Map;
 
 public class LadderController {
+
+    private static final String CONTINUE = "Y";
 
     private final Input input;
     private final Result result;
@@ -42,15 +43,15 @@ public class LadderController {
 
     private void calculateGameResult(Players players, Ladder ladder, Rewards rewards) {
         GameResult gameResult = GameResult.create(players, ladder, rewards);
-        Continue resultContinue;
-        do {
+        String printContinue = CONTINUE;
+        while (printContinue.equals(CONTINUE)) {
             Map<Player, Reward> resultByPlayers = exceptionProcess
                     .repeat(input::inputTargetPlayerNames, gameResult::findResultByPlayers);
 
             result.printGameResult(resultByPlayers);
 
-            resultContinue = exceptionProcess.repeat(input::inputContinue, Continue::getContinue);
-        } while (resultContinue == Continue.CONTINUE);
+            printContinue = exceptionProcess.repeat(input::inputContinue, inputContinue -> inputContinue);
+        }
     }
 
 }

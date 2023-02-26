@@ -14,6 +14,8 @@ public class InputView implements Input {
     private static final String INPUT_CONTINUE_MESSAGE = "다른 결과를 출력하시겠습니까? (y/n)";
     private static final String DELIMITER = ",";
     private static final String REGEX_ENGLISH_KOREAN_DIGIT_BLANK = "[a-zA-Z가-힣\\d\\s]+";
+    private static final String CONTINUE = "Y";
+    private static final String STOP = "N";
 
     private static final Scanner sc = new Scanner(System.in);
 
@@ -51,7 +53,9 @@ public class InputView implements Input {
     @Override
     public String inputContinue() {
         System.out.println(INPUT_CONTINUE_MESSAGE);
-        return inputString();
+        String input = inputString().toUpperCase();
+        validateYOrN(input);
+        return input;
     }
 
     private String inputString() {
@@ -76,6 +80,12 @@ public class InputView implements Input {
     private void validateNull(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException("값을 입력해주세요.");
+        }
+    }
+
+    private static void validateYOrN(String inputContinue) {
+        if ((!inputContinue.equals(CONTINUE)) && (!inputContinue.equals(STOP))) {
+            throw new IllegalArgumentException("y 혹은 n만 입력해주세요.");
         }
     }
 
