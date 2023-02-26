@@ -33,6 +33,6 @@ class DestinationTest {
     void should_ThrowException_When_GivenIndex_OutOfBounds() {
         assertThatThrownBy(() -> destination.get(Integer.MAX_VALUE))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("주어진 위치가 종착지 정보의 개수보다 큽니다.");
+                .hasMessageContaining("주어진 종착지 위치가 범위 밖의 수입니다.");
     }
 }
