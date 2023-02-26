@@ -36,7 +36,7 @@ public class LadderTest {
     @RepeatedTest(100)
     @DisplayName("생성된 Line의 가로가 겹치지 않는지 확인한다.")
     void generateLineTest() {
-        List<Bar> bars = Ladder.create(100, 1,new RandomBooleanGenerator())
+        List<Bar> bars = Ladder.create(100, 1, new RandomBooleanGenerator())
                 .getLadder().get(0).getLine();
 
         for (int idx = 0; idx < bars.size() - 1; idx++) {
