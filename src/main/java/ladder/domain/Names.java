@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import ladder.dto.NamesDto;
@@ -11,25 +10,19 @@ public class Names {
 
     private static final Pattern NAMES_FORMAT = Pattern.compile("[^,]+(,[^,]+)+");
 
-    private final List<Name> nameList;
+    private final List<Name> names;
 
-    public Names(String nameList) {
-        validateNames(nameList);
+    public Names(String names) {
+        validateNames(names);
 
-        this.nameList = StringSplitter.split(nameList, ",")
+        this.names = StringSplitter.split(names, ",")
             .stream()
             .map(Name::new)
             .collect(Collectors.toList());
     }
 
-    public Names(String nameList, int expectedCount) {
-        validateNames(nameList);
-
-        this.nameList = StringSplitter.split(nameList, ",")
-            .stream()
-            .map(Name::new)
-            .collect(Collectors.toList());
-
+    public Names(String names, int expectedCount) {
+        this(names);
         validateNamesCount(expectedCount);
     }
 
@@ -51,34 +44,34 @@ public class Names {
     }
 
     private void validateNamesCount(int expectedCount) {
-        if (this.nameList.size() != expectedCount) {
+        if (this.names.size() != expectedCount) {
             throw new IllegalArgumentException(
                 String.format("입력하는 이름의 개수는 %d와 같아야 합니다.(입력된 이름의 수 : %d)",
-                    expectedCount, this.nameList.size()));
+                    expectedCount, this.names.size()));
         }
     }
 
     public int findNamesCount() {
-        return nameList.size();
+        return names.size();
     }
 
     public Name findNameByIndex(int index) {
-        return nameList.get(index);
+        return names.get(index);
     }
 
     public boolean contains(String name) {
-        return nameList.stream().anyMatch((el) -> el.isEqual(name));
+        return names.stream().anyMatch((el) -> el.isEqual(name));
     }
 
     public Name findName(String name) throws IllegalArgumentException {
-        return nameList.stream()
+        return names.stream()
             .filter((el) -> el.isEqual(name))
             .findFirst().orElseThrow(
                 () -> new IllegalArgumentException("찾으려는 이름이 이름 목록에 존재하지 않습니다."));
     }
 
     public NamesDto toDto() {
-        return new NamesDto(nameList.stream()
+        return new NamesDto(names.stream()
             .map(Name::toDto)
             .collect(Collectors.toList()));
     }

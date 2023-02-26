@@ -15,30 +15,30 @@ import ladder.dto.LadderDto;
  */
 public class Ladder {
 
-    private final List<Row> rowList;
+    private final List<Row> rows;
 
     public Ladder(int height, int width, StepGenerator stepGenerator) {
         new Height(height);
-        rowList = new ArrayList<>();
+        rows = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            rowList.add(new Row(width));
+            rows.add(new Row(width));
         }
-        rowList.forEach(row -> row.generateStep(stepGenerator));
+        rows.forEach(row -> row.generateStep(stepGenerator));
     }
 
 
     public int followLadder(int initPosition) {
         int currentPosition = initPosition;
-        for (int i = 0; i < rowList.size(); i++) {
-            currentPosition = rowList.get(i).findAdjacentIndex(currentPosition);
+        for (int i = 0; i < rows.size(); i++) {
+            currentPosition = rows.get(i).findAdjacentIndex(currentPosition);
         }
         return currentPosition;
     }
 
 
     public LadderDto toDto() {
-        return new LadderDto(rowList.stream()
+        return new LadderDto(rows.stream()
             .map(Row::toDto)
-            .collect(Collectors.toList()), rowList.size());
+            .collect(Collectors.toList()), rows.size());
     }
 }
