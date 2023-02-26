@@ -3,7 +3,6 @@ package ladder.domain;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import ladder.domain.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -43,5 +42,15 @@ class NameTest {
         assertThatThrownBy(() -> new Name(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 공백일 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("입력받은 값과 같은 값을 가지는지 확인한다.")
+    void shouldTrueWhenInputSameValue() {
+        String nameValue = "name";
+        String differentNameValue = "abcd";
+        Name name = new Name("name");
+        assertThat(name.haveSameValueWith(nameValue)).isTrue();
+        assertThat(name.haveSameValueWith(differentNameValue)).isFalse();
     }
 }
