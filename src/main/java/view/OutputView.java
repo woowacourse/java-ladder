@@ -86,11 +86,11 @@ public class OutputView {
     }
 
     public void printOneGameResult(String name, GameResult gameResult) {
-        System.out.println(gameResult.getPrizeByName(name));
+        System.out.println(gameResult.getPrizeByName(name).getName());
     }
 
     public void printAllGameResult(GameResult gameResult) {
         gameResult.getAllResults()
-            .forEach((key, value) -> System.out.println(key + DELIMITER + value));
+            .forEach((key, value) -> System.out.println(key.getName() + DELIMITER + value.getName()));
     }
 }

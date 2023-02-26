@@ -10,7 +10,6 @@ import domain.participants.Participants;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class LadderGame {
 
@@ -27,22 +26,21 @@ public class LadderGame {
     }
 
     public GameResult generateResults() {
-        List<String> participantNames = participants.getAllParticipants().stream().map(Participant::getName).collect(
-            Collectors.toList());
-        Map<String, String> results = new LinkedHashMap<>();
-        participantNames.forEach((participant) -> {
-            final int position = participantNames.indexOf(participant);
-            results.put(participant, getPrizeNameByParticipantPosition(position));
+        Map<Participant, LadderPrize> results = new LinkedHashMap<>();
+        List<Participant> participants = this.participants.getAllParticipants();
+        participants.forEach((participant) -> {
+            final int position = participants.indexOf(participant);
+            results.put(participant, getPrizeByParticipantPosition(position));
         });
         return new GameResult(results);
     }
 
-    private String getPrizeNameByParticipantPosition(int position) {
+    private LadderPrize getPrizeByParticipantPosition(int position) {
         for (Line line : ladder.getLines()) {
             Move nextMove = getMove(position, line.getBlocks());
             position = nextMove.newPosition(position);
         }
-        return ladderPrizes.getPrizes().get(position).getName();
+        return ladderPrizes.getPrizes().get(position);
     }
 
     private Move getMove(int currentPosition, List<Block> blocks) {

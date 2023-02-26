@@ -3,6 +3,7 @@ package domain;
 import controller.LadderGameController;
 import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
+import domain.ladder.LadderPrize;
 import domain.ladder.LadderPrizes;
 import domain.ladder.LadderSize;
 import domain.ladder.LineWeight;
@@ -23,15 +24,16 @@ class LadderGameTest {
     @Test
     void getGameResult() {
         //given
-        List<String> names = List.of("ash", "split", "ako", "mako", "heero", "bever");
-        List<String> prizes = List.of("1000", "2000", "3000", "4000", "5000", "6000");
+        List<String> names = List.of("ash", "split", "ako");
+        List<String> prizes = List.of("1000", "2000", "3000");
         String height = "1";
+        List<LadderPrize> ladderPrizes = List.of(
+            new LadderPrize("2000"), new LadderPrize("1000"), new LadderPrize("3000"));
         //when
         GameResult gameResult = makeResult(names, prizes, height);
-        List<String> expected = List.of("2000", "1000", "3000", "4000", "6000", "5000");
         //then
-        Assertions.assertThat(gameResult.getAllResults()).hasSize(6);
-        Assertions.assertThat(gameResult.getAllResults().values()).containsExactlyElementsOf(expected);
+        Assertions.assertThat(gameResult.getAllResults()).hasSize(3);
+        Assertions.assertThat(gameResult.getAllResults().values()).containsExactlyElementsOf(ladderPrizes);
     }
 
     @DisplayName("잘못된 입력으로 조회 할 떄")
@@ -79,7 +81,7 @@ class LadderGameTest {
 
     private TestBooleanGenerator setTestGenerator() {
         TestBooleanGenerator testBooleanGenerator = new TestBooleanGenerator();
-        testBooleanGenerator.addOrderedValues(List.of(true, false, false, true, false));
+        testBooleanGenerator.addOrderedValues(List.of(true, false, false));
         return testBooleanGenerator;
     }
 }

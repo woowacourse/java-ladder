@@ -3,6 +3,7 @@ package domain.ladder;
 import exception.NotEnglishAndNumberException;
 import exception.ladder.InvalidLadderResultException;
 import exception.view.EmptyInputException;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class LadderPrize {
@@ -11,6 +12,23 @@ public class LadderPrize {
     private static final int MAX_LENGTH = 5;
     private final String resultName;
     private final Pattern compile = Pattern.compile("^[^0-9a-zA-Z]*$");
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LadderPrize that = (LadderPrize) o;
+        return resultName.equals(that.resultName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(resultName);
+    }
 
     public LadderPrize(String resultName) {
         validate(resultName);
