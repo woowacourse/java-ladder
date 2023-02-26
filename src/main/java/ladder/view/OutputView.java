@@ -22,15 +22,29 @@ public class OutputView {
     }
 
     public static void printInquireResult(ResultDtos results) {
-        StringBuilder sb = new StringBuilder();
         System.out.println();
         System.out.println("실행 결과");
         if (results.size() == INQUIRE_ONE_NAME) {
-            System.out.println(results.getResult(0));
+            printOneResult(results);
             return;
         }
+        printAllResult(results);
+    }
+
+    private static void printOneResult(ResultDtos results) {
+        String firstResult = results.getResult(0);
+        System.out.println(firstResult);
+    }
+
+    private static void printAllResult(ResultDtos results) {
+        StringBuilder sb = new StringBuilder();
+
         for (ResultDto result : results.getResultDtos()) {
-            System.out.println(sb.append(result.getName()).append(RESULT_DELIMITER).append(result.getResult()));
+            String resultBundle = sb.append(result.getName())
+                    .append(RESULT_DELIMITER)
+                    .append(result.getResult())
+                    .toString();
+            System.out.println(resultBundle);
             sb.setLength(0);
         }
     }
