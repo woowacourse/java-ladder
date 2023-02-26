@@ -20,7 +20,7 @@ public class Info {
         return names;
     }
 
-    public Name getName(int index) {
+    public Name getName(final int index) {
         return names.getName(index);
     }
 
@@ -32,7 +32,7 @@ public class Info {
         return rewards;
     }
 
-    public Reward getReward(int index) {
+    public Reward getReward(final int index) {
         return rewards.getReward(index);
     }
 }

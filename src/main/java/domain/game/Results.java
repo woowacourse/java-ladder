@@ -8,7 +8,7 @@ import java.util.Map;
 public class Results {
     private final Map<Name, Reward> results = new HashMap<>();
 
-    public void putResult(Name name, Reward reward) {
+    public void putResult(final Name name, final Reward reward) {
         results.put(name, reward);
     }
 

@@ -3,6 +3,7 @@ package domain.info;
 public class Reward {
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
+
     private final String reward;
 
     public Reward(final String reward) {
@@ -26,7 +27,7 @@ public class Reward {
         }
     }
 
-    private void validate(final String reward) {
+    private static void validate(final String reward) {
         validateBlank(reward);
         validateLength(reward);
     }
