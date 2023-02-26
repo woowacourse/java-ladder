@@ -26,29 +26,13 @@ public class OutputView {
         System.out.println(LADDER_RESULT_PREFIX_MESSAGE);
     }
 
-    public <T, R> void printNames(List<T> t, Function<T, R> function) {
-        for (T element : t) {
-            System.out.print(formatName((String) function.apply(element)) + BLANK);
+    public void printNames(List<String> names) {
+        for (String name : names) {
+            System.out.print(formatName(name) + BLANK);
         }
 
         breakLine();
     }
-
-//    public void printPlayerNames(Players players) {
-//        for (Player player : players.getPlayers()) {
-//            System.out.print(formatName(player.getName()) + BLANK);
-//        }
-//
-//        breakLine();
-//    }
-//
-//    public void printRewardNames(Rewards rewards) {
-//        for (Reward reward : rewards.getRewards()) {
-//            System.out.print(formatName(reward.getName()) + BLANK);
-//        }
-//
-//        breakLine();
-//    }
 
     public void printResult(Results results) {
         System.out.println(RESULT_PREFIX_MESSAGE);

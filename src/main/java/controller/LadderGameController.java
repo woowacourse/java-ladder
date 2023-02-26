@@ -47,9 +47,9 @@ public class LadderGameController {
 
     private void printLadderInitialState(Players players, Ladder ladder, Rewards rewards) {
         outputView.printLadderResultPrefix();
-        outputView.printNames(players.getPlayers(), Player::getName);
+        outputView.printNames(players.getPlayerNames());
         outputView.printLadder(ladder);
-        outputView.printNames(rewards.getRewards(), Reward::getName);
+        outputView.printNames(rewards.getRewardNames());
     }
 
     public void printError(Exception exception) {

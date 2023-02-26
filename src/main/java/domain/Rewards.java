@@ -28,4 +28,10 @@ public class Rewards {
         return List.copyOf(this.rewards);
     }
 
+    public List<String> getRewardNames() {
+        return this.rewards.stream()
+                .map(Reward::getName)
+                .collect(Collectors.toList());
+    }
+
 }

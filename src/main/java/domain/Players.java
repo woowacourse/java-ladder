@@ -60,6 +60,12 @@ public class Players {
         return List.copyOf(this.players);
     }
 
+    public List<String> getPlayerNames() {
+        return this.players.stream()
+                .map(Player::getName)
+                .collect(Collectors.toList());
+    }
+
     public int getSize() {
         return players.size();
     }
