@@ -1,6 +1,8 @@
 package ladder.domain;
 
-import java.util.HashMap;
+import ladder.constant.Command;
+
+import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
 
@@ -14,33 +16,40 @@ public class LadderGame {
         this.players = players;
         this.ladder = ladder;
         this.rewards = rewards;
+        trace();
     }
 
-    public void trace() {
-        IntStream.range(0,players.findNumberOfPlayers())
+    private void trace() {
+        IntStream.range(0, players.findNumberOfAllPlayers())
                 .forEach(positionOfPlayer ->
-                    players.rewardPlayer(positionOfPlayer, findRewardOfStartPosition(positionOfPlayer))
+                        players.rewardPlayer(positionOfPlayer, findRewardOfStartPositionInLadder(positionOfPlayer))
                 );
     }
 
-    private Reward findRewardOfStartPosition(int positionOfPlayer) {
+    private Reward findRewardOfStartPositionInLadder(int positionOfPlayer) {
         int resultPosition = ladder.findEndPositionFrom(positionOfPlayer);
 
-        return rewards.getRewardBy(resultPosition);
+        return rewards.findRewardBy(resultPosition);
 
     }
 
-    /**
-     * 혹은 ladder에서는 map형식의 결과값만 반환하고
-     * 컨트롤러에서 명령이 all이면 전부 주고, 이름이면 그중에 하나만
-     * getPlayerBy쓰지말고, map을 넣어서 players에서 저장하도록하기
-     */
-
-    public Map<String, String> showResult() {
-        Map<String, String> result = new HashMap<>();
-
-        players.inputStatusOfPlayers(result);
-
-        return result;
+    public Map<String, String> findRewardsOfPlayersByRequest(final String request) {
+        if (request.equals(Command.REQUEST_TO_GET_ALL_RESULT)) {
+            return players.findRewardsOfPlayers();
+        }
+        return players.findRewardOfPlayerBy(request);
     }
+
+    public String findValidRequest(String request) {
+        if (!request.equals(Command.REQUEST_TO_GET_ALL_RESULT) && !findPlayerNames().contains(request)) {
+            throw new IllegalArgumentException("해당하는 플레이어의 이름이 없습니다.");
+        }
+
+        return request;
+    }
+
+    public List<String> findPlayerNames() {
+        return players.findNameOfAllPlayers();
+    }
+
 }
