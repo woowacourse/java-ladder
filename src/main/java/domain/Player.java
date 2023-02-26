@@ -46,12 +46,14 @@ public class Player {
                 && playerName.length() <= PLAYER_NAME_MAX_SIZE_INCLUSIVE);
     }
 
-    public void moveLeft() {
-        this.standingLine--;
-    }
+    public void move(Point point) {
+        if (point.matchDirection(Direction.LEFT_DOWN)) {
+            standingLine--;
+        }
 
-    public void moveRight() {
-        this.standingLine++;
+        if (point.matchDirection(Direction.RIGHT_DOWN)) {
+            standingLine++;
+        }
     }
 
     public int getStandingLine() {

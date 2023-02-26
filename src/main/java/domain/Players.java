@@ -1,6 +1,7 @@
 package domain;
 
-import java.util.ArrayList;
+import domain.ladder.Ladder;
+
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -83,6 +84,24 @@ public class Players {
 
     private boolean isSameName(String name, Player player) {
         return player.isSameName(name);
+    }
+
+    public void move(Ladder ladder) {
+        players.forEach(player -> moveEachPlayer(ladder, player));
+    }
+
+    private void moveEachPlayer(Ladder ladder, Player player) {
+        int playerHeight = 0;
+
+        while (playerHeight != ladder.getHeightSize()) {
+            player.move(getPoint(ladder, player, playerHeight));
+            playerHeight++;
+        }
+    }
+
+    private Point getPoint(Ladder ladder, Player player, int playerHeight) {
+        int standingLine = player.getStandingLine();
+        return ladder.getPoint(playerHeight, standingLine);
     }
 
 }

@@ -1,6 +1,5 @@
 package domain;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -48,8 +47,8 @@ public class PlayerTest {
         Player pobi = new Player("pobi", 0);
         Player hello = new Player("hello", 1);
 
-        pobi.moveRight();
-        hello.moveLeft();
+        pobi.move(new Point(Direction.RIGHT_DOWN));
+        hello.move(new Point(Direction.LEFT_DOWN));
 
         assertThat(pobi.getStandingLine()).isEqualTo(1);
         assertThat(hello.getStandingLine()).isEqualTo(0);
