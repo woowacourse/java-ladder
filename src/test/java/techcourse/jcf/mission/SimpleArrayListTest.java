@@ -92,4 +92,22 @@ class SimpleArrayListTest {
 
         Assertions.assertEquals(false, arrayList.contains("not contain"));
     }
+
+    @DisplayName("SimpleArrayList 내부 원소 위치 반환 테스트")
+    @Test
+    void SimpleArrayList_범위_내부의_원소_위치_반환_테스트() {
+        SimpleArrayList arrayList = new SimpleArrayList();
+        final String beforeValue = "before";
+        arrayList.add(beforeValue);
+
+        Assertions.assertEquals(0, arrayList.indexOf(beforeValue));
+    }
+
+    @DisplayName("SimpleArrayList 범위 내부에 찾는 원소가 없는 경우 -1 반환 테스트")
+    @Test
+    void SimpleArrayList_범위_내부에_원소_없는_경우_위치_테스트() {
+        SimpleArrayList arrayList = new SimpleArrayList();
+
+        Assertions.assertEquals(-1, arrayList.indexOf("not contain"));
+    }
 }

@@ -64,7 +64,12 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public int indexOf(String value) {
-        return 0;
+        int index = 0;
+        for (; (index < this.size) && !this.values[index].equals(value); index++);
+        if (index == this.size) {
+            return -1;
+        }
+        return index;
     }
 
     @Override
