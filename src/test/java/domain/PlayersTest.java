@@ -69,4 +69,11 @@ public class PlayersTest {
                 () -> assertThat(resultPlayers.getPlayers().get(2)).isEqualTo(new Player("b"))
         );
     }
+
+    @Test
+    @DisplayName("플레이어 이름 최대 길이 구하기")
+    void findMaxPlayerNameLength() {
+        Players players1 = PlayersMaker.makePlayers("a,bb,ccc,dddd");
+        assertThat(players1.findMaxPlayerNameLength()).isEqualTo(4);
+    }
 }

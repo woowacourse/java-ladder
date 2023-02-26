@@ -30,4 +30,11 @@ public class ResultsTest {
         Results results = new Results(List.of("꽝", "당첨1", "당첨2", "당첨3"), 4);
         assertThat(results.getSize()).isEqualTo(4);
     }
+
+    @Test
+    @DisplayName("결과 문자 최대 길이 구하기")
+    void findMaxResultLength() {
+        Results results = new Results(List.of("꽝", "당첨1", "당첨2222", "당첨333333"), 4);
+        assertThat(results.findMaxResultLength()).isEqualTo(8);
+    }
 }
