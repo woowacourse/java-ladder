@@ -34,13 +34,13 @@ public class Row {
         }
     }
 
-    public List<Boolean> getPoints() {
+    List<Boolean> getPoints() {
         return points.stream()
                 .map(Point::isRightConnected)
                 .collect(Collectors.toList());
     }
 
-    public Position calculateNextPosition(Position position) {
+    Position calculateNextPosition(Position position) {
         int index = position.getIndex();
         return points.get(index)
                 .move(position);

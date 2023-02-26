@@ -10,7 +10,7 @@ import java.util.List;
  * <p>
  * 오른쪽으로 이동 가능한 point 가 마지막에 있는 경우 왼쪽으로 이동 가능한 point 를 추가해준다. 왼쪽으로 연결되지 않아도 되는 경우 NONE 이나, 오른쪽으로 이동한 point 를 추가해준다
  */
-public class RowGenerator {
+class RowGenerator {
 
     private RowGenerator() {
     }

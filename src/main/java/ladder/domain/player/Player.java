@@ -14,7 +14,7 @@ public class Player {
     private final PlayerName name;
     private final Position position;
 
-    public Player(String name, int position) {
+    Player(String name, int position) {
         this.name = new PlayerName(name);
         this.position = Position.valueOf(position);
     }
@@ -23,7 +23,7 @@ public class Player {
         return name.getName();
     }
 
-    public Position calculateResult(Ladder ladder) {
+    Position calculateResult(Ladder ladder) {
         return ladder.calculateResult(position);
     }
 }

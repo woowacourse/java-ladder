@@ -81,7 +81,7 @@ class InputViewTest {
                         .hasToString("결과를 보고 싶은 사람은?" + System.lineSeparator()));
     }
 
-    Scanner mockInputValue(String expected) {
+    private Scanner mockInputValue(String expected) {
         return new Scanner(expected);
     }
 }

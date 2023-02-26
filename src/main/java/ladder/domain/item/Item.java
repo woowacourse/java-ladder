@@ -13,7 +13,7 @@ public class Item {
     private final ItemName name;
     private final Position position;
 
-    public Item(String name, int position) {
+    Item(String name, int position) {
         this.name = new ItemName(name);
         this.position = Position.valueOf(position);
     }
@@ -22,7 +22,7 @@ public class Item {
         return name.getName();
     }
 
-    public boolean isSamePosition(Position other) {
+    boolean isSamePosition(Position other) {
         return position == other;
     }
 }

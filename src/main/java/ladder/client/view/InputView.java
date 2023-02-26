@@ -19,14 +19,14 @@ public class InputView implements AutoCloseable {
         this.scanner = scanner;
     }
 
-    public List<String> inputResultNames() {
+    List<String> inputResultNames() {
         System.out.println(INPUT_RESULT_ITEMS);
         String resultItems = scanner.nextLine();
         return Arrays.stream(resultItems.split(",", -1))
                 .collect(Collectors.toList());
     }
 
-    public int inputHeight() {
+    int inputHeight() {
         System.out.println(INPUT_HEIGHT);
         String height = scanner.nextLine();
         try {
@@ -36,12 +36,12 @@ public class InputView implements AutoCloseable {
         }
     }
 
-    public String inputPlayerResult() {
+    String inputPlayerResult() {
         System.out.println(INPUT_PLAYER_RESULT);
         return scanner.nextLine();
     }
 
-    public List<String> inputPlayerNames() {
+    List<String> inputPlayerNames() {
         System.out.println(INPUT_PLAYER_NAMES);
         String playerNames = scanner.nextLine();
         return Arrays.stream(playerNames.split(",", -1))

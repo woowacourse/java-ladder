@@ -10,7 +10,7 @@ import ladder.domain.dto.LadderInfoDto;
  * <p>
  * 사다리를 출력하는 기능과 사람과 결과에 대한 출력을 담당합니다
  */
-public class OutputView {
+class OutputView {
 
     private static final String ROW_START_SPACE = "    ";
     private static final String NEXT_LINE = System.lineSeparator();
@@ -19,7 +19,7 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printLadder(LadderInfoDto ladderInfoDto) {
+    static void printLadder(LadderInfoDto ladderInfoDto) {
         System.out.println(generateTitleMessage());
         System.out.println(generatePlayerNamesMessage(ladderInfoDto.getPlayerNames()));
         System.out.println(generateLadderMessage(ladderInfoDto.getLadderInfo()));
@@ -69,7 +69,7 @@ public class OutputView {
         return String.format(NAME_MESSAGE, resultName);
     }
 
-    public static void printResult(String result) {
+    static void printResult(String result) {
         System.out.println("실행 결과");
         if (result == null) {
             System.out.println("결과가 없는 사람입니다");
@@ -78,7 +78,7 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public static void printResults(Map<String, String> results) {
+    static void printResults(Map<String, String> results) {
         System.out.println("실행 결과");
         System.out.println(generateResultsMessage(results));
     }
