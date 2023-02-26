@@ -52,7 +52,7 @@ public class LadderGame {
         Map<Player, Item> gameResult = result.getResult();
         Map<String, String> result = new LinkedHashMap<>();
         for (Player player : gameResult.keySet()) {
-            result.put(player.getName().getValue(), gameResult.get(player).getItemName());
+            result.put(player.getName().getValue(), gameResult.get(player).getName());
         }
         return result;
     }
@@ -60,7 +60,7 @@ public class LadderGame {
     public String getPlayerResult(String playerName) {
         Player player = players.findPlayerByName(playerName);
         return result.getItemOfPlayer(player)
-                .getItemName();
+                .getName();
     }
 
     public List<String> getItems() {

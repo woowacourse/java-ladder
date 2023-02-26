@@ -31,7 +31,7 @@ class ItemsTest {
         Items items = new Items(List.of("1", "2", "3"));
 
         // expected
-        assertThat(items.findItem(new Position(position)).getItemName())
+        assertThat(items.findItem(new Position(position)).getName())
                 .isEqualTo(expectedItem);
     }
 }

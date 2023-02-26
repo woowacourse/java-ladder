@@ -1,16 +1,16 @@
 package ladder.domain;
 
 public class Item {
-    private final Name itemName;
+    private final Name name;
     private final Position position;
 
-    public Item(String itemName, int position) {
-        this.itemName = new Name(itemName);
+    public Item(String name, int position) {
+        this.name = new Name(name);
         this.position = new Position(position);
     }
 
-    public String getItemName() {
-        return itemName.getValue();
+    public String getName() {
+        return name.getValue();
     }
 
     public boolean isSamePosition(Position position) {

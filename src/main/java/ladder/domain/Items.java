@@ -23,7 +23,7 @@ public class Items {
 
     public List<String> getItems() {
         return items.stream()
-                .map(Item::getItemName)
+                .map(Item::getName)
                 .collect(Collectors.toList());
     }
 }
