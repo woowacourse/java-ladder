@@ -41,7 +41,7 @@ public class LadderGame {
 
     public Result calculateResult(Person person) {
         Column startColumn = people.findColumnByPerson(person);
-        Column resultColumn = ladder.startFromColumnAndGetResultColumn(startColumn);
+        Column resultColumn = ladder.calculateResult(startColumn);
         return results.getResultByColumn(resultColumn);
     }
 }

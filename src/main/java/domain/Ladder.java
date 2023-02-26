@@ -22,7 +22,7 @@ public class Ladder {
         }
     }
 
-    public Column startFromColumnAndGetResultColumn(Column column) {
+    public Column calculateResult(Column column) {
         for (Line line : lines) {
             line.move(column);
         }

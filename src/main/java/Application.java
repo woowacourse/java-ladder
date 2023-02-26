@@ -10,6 +10,7 @@ import view.OutputView;
 import java.util.function.Supplier;
 
 public class Application {
+
     private final InputView inputView;
     private final OutputView outputView;
     private final LadderGame ladderGame;
