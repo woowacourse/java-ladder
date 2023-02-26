@@ -52,21 +52,24 @@ public class OutputView {
 
     public static void printResult(final String name, final Names names, final Results results) {
         System.out.println(Message.OUTPUT_RESULT_MESSAGE.message);
-        for (Name nameObj : names.getNames()) {
-            printOrPass(name, results, nameObj);
+        for (Name player : names.getNames()) {
+            printOrPass(name, results, player);
         }
     }
 
-    private static void printOrPass(final String name, final Results results, final Name nameObj) {
-        if (isPrint(name, nameObj)) {
-            System.out.printf(Message.REWARD_MESSAGE_FORMAT.message, nameObj.getName(),
-                    results.getReward(nameObj).getReward());
+    private static void printOrPass(final String name, final Results results, final Name player) {
+        if (isPrint(name, player)) {
+            System.out.printf(
+                    Message.REWARD_MESSAGE_FORMAT.message,
+                    player.getName(),
+                    results.getReward(player).getReward()
+            );
             System.out.println();
         }
     }
 
-    private static boolean isPrint(final String name, final Name nameObj) {
-        return name.equals(nameObj.getName()) || name.equals(PRINT_ALL_COMMEND);
+    private static boolean isPrint(final String name, final Name player) {
+        return name.equals(player.getName()) || name.equals(PRINT_ALL_COMMEND);
     }
 
     private enum Message {
