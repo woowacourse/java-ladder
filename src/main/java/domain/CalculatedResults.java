@@ -2,11 +2,11 @@ package domain;
 
 import java.util.Map;
 
-public class ResultsMap {
+public class CalculatedResults {
 
     private final Map<Person, Result> resultMap;
 
-    public ResultsMap(Map<Person, Result> resultMap) {
+    public CalculatedResults(Map<Person, Result> resultMap) {
         this.resultMap = resultMap;
     }
 
