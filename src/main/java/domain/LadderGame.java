@@ -49,9 +49,9 @@ public class LadderGame {
         return connections;
     }
 
-    private void addIndex(boolean point, List<Integer> connections, int i) {
+    private void addIndex(boolean point, List<Integer> connections, int index) {
         if (point) {
-            connections.add(i);
+            connections.add(index);
         }
     }
 
