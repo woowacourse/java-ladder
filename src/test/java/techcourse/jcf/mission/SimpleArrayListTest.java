@@ -52,7 +52,9 @@ class SimpleArrayListTest {
     void SimpleArrayList_잘못된_범위_인덱스의_원소_설정_실패_테스트() {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> {
-                    new SimpleArrayList().add(1, "hello");
+                    new SimpleArrayList().set(1, "hello");
                 });
     }
+
+
 }
