@@ -27,13 +27,14 @@ class LadderGameTest {
         List<String> names = List.of("ash", "split", "ako");
         List<String> prizes = List.of("1000", "2000", "3000");
         String height = "1";
-        List<LadderPrize> ladderPrizes = List.of(
+        List<Boolean> generateValues = List.of(true, false, false);
+        List<LadderPrize> expected = List.of(
             new LadderPrize("2000"), new LadderPrize("1000"), new LadderPrize("3000"));
         //when
-        GameResult gameResult = makeResult(names, prizes, height);
+        GameResult gameResult = makeResult(names, prizes, generateValues, height);
         //then
         Assertions.assertThat(gameResult.getAllResults()).hasSize(3);
-        Assertions.assertThat(gameResult.getAllResults().values()).containsExactlyElementsOf(ladderPrizes);
+        Assertions.assertThat(gameResult.getAllResults().values()).containsExactlyElementsOf(expected);
     }
 
     @DisplayName("잘못된 입력으로 조회 할 떄")
@@ -42,8 +43,9 @@ class LadderGameTest {
         //given
         List<String> names = List.of("split", "jamie");
         List<String> prizes = List.of("1000", "2000");
+        List<Boolean> generateValues = List.of(true);
         String height = "1";
-        GameResult gameResult = makeResult(names, prizes, height);
+        GameResult gameResult = makeResult(names, prizes, generateValues, height);
         return Stream.of(
             DynamicTest.dynamicTest("존재하지 않는 참가자로 조회", () ->
                 Assertions.assertThatThrownBy(() -> gameResult.getPrizeByName("none"))
@@ -54,11 +56,12 @@ class LadderGameTest {
         );
     }
 
-    private GameResult makeResult(List<String> names, List<String> prizes, String height) {
+    private GameResult makeResult(List<String> names, List<String> prizes, List<Boolean> generateValues,
+        String height) {
         Participants participants = makeParticipants(names);
         LadderPrizes ladderPrizes = makeLadderPrizes(prizes);
         LadderSize ladderSize = makeLadderSize(height, participants.getCount() - 1);
-        Ladder ladder = Ladder.valueOf(ladderSize, setTestGenerator());
+        Ladder ladder = Ladder.valueOf(ladderSize, setTestGenerator(generateValues));
         LadderGame ladderGame = LadderGame.builder()
             .addParticipants(participants)
             .addLadderPrizes(ladderPrizes)
@@ -79,9 +82,9 @@ class LadderGameTest {
         return new LadderSize(new LadderHeight(height), new LineWeight(weight));
     }
 
-    private TestBooleanGenerator setTestGenerator() {
+    private TestBooleanGenerator setTestGenerator(List<Boolean> generateValues) {
         TestBooleanGenerator testBooleanGenerator = new TestBooleanGenerator();
-        testBooleanGenerator.addOrderedValues(List.of(true, false, false));
+        testBooleanGenerator.addOrderedValues(generateValues);
         return testBooleanGenerator;
     }
 }
