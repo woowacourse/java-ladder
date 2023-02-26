@@ -2,7 +2,7 @@ package domain.model;
 
 import java.util.Random;
 
-public class RandomPassGenerator implements PassGenerator {
+public class RandomBooleanGenerator implements BooleanGenerator {
 
     private static final Random random = new Random();
 

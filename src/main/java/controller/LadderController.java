@@ -2,60 +2,71 @@ package controller;
 
 import common.ExecuteContext;
 import domain.model.Ladder;
-import domain.model.Layer;
-import domain.model.PassGenerator;
+import domain.model.Player;
+import domain.model.Players;
+import domain.model.Result;
+import domain.model.Results;
+import domain.model.LadderGame;
 import domain.vo.Height;
-import domain.vo.Name;
 import domain.vo.Width;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.Map;
 import view.InputView;
 import view.OutputView;
 
 public class LadderController {
 
     private static final int NAMES_WIDTH_DIFFERENCE = 1;
+    private static final String ALL = "all";
+    public static final String NAME_NOT_FOUND_ERROR_MESSAGE = "해당 이름이 존재하지 않습니다.";
     private final InputView inputView;
     private final OutputView outputView;
-    private final PassGenerator passGenerator;
+    private final LadderGame ladderGame;
 
-    public LadderController(InputView inputView, OutputView outputView,
-        PassGenerator passGenerator) {
+    public LadderController(final InputView inputView, final OutputView outputView, final LadderGame ladderGame) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.passGenerator = passGenerator;
+        this.ladderGame = ladderGame;
     }
 
     public void play() {
-        List<Name> names = getNames();
-        Height height = getHeight();
-        List<Layer> layers = makeEmptyLayers(height);
-        Ladder ladder = new Ladder(height, getWidth(names.size() - NAMES_WIDTH_DIFFERENCE), layers);
-        outputView.printResult(names, ladder);
+        final Players players = getPlayers();
+        final Results results = getResults(players.size());
+        final Width width = new Width(players.size() - NAMES_WIDTH_DIFFERENCE);
+        final Ladder ladder = ladderGame.makeLadder(getHeight(), width);
+        outputView.printLadder(players, ladder, results);
+        final Map<Player, Result> resultBoard = ladderGame.makeResultBoard(ladder, players, results);
+        ExecuteContext.workWithExecuteStrategy(() -> printResult(resultBoard));
     }
 
-    private List<Name> getNames() {
-        return ExecuteContext.workWithExecuteStrategy(() -> inputView.inputNames()
-            .stream()
-            .map(Name::new)
-            .collect(Collectors.toList()));
+    private Boolean printResult(final Map<Player, Result> resultBoard) {
+        final String input = inputView.inputResultTarget();
+        final Player player = new Player(input);
+        if (player.getName().equals(ALL)) {
+            outputView.printAllResult(resultBoard);
+            return true;
+        }
+        printOneResult(resultBoard, player);
+        return printResult(resultBoard);
+    }
+
+    private void printOneResult(final Map<Player, Result> resultBoard, final Player player) {
+        if (resultBoard.containsKey(player)) {
+            outputView.printResult(resultBoard.get(player));
+            return;
+        }
+        throw new IllegalArgumentException(NAME_NOT_FOUND_ERROR_MESSAGE);
+    }
+
+    private Players getPlayers() {
+        return ExecuteContext.workWithExecuteStrategy(() -> new Players(inputView.inputPlayers()));
     }
 
     private Height getHeight() {
-        return ExecuteContext.workWithExecuteStrategy(
-            () -> new Height(inputView.inputLadderHeight()));
+        return ExecuteContext.workWithExecuteStrategy(() -> new Height(inputView.inputLadderHeight()));
     }
 
-    private List<Layer> makeEmptyLayers(Height height) {
-        return IntStream.range(0, height.getValue())
-            .mapToObj(index -> new Layer(new ArrayList<>(), passGenerator))
-            .collect(Collectors.toList());
+    private Results getResults(final int playersSize) {
+        return ExecuteContext.workWithExecuteStrategy(() -> new Results(inputView.inputResults(playersSize))
+        );
     }
-
-    private Width getWidth(final int size) {
-        return ExecuteContext.workWithExecuteStrategy(() -> new Width(size));
-    }
-
 }

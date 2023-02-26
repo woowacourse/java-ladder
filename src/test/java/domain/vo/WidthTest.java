@@ -11,21 +11,22 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class WidthTest {
 
-    @ParameterizedTest(name = "{0} 너비는 허용된다.")
+    @ParameterizedTest(name = "적절한 너비일 경우를 테스트")
     @ValueSource(strings = {"1", "99"})
-    void makeWidthSuccess(int provided) {
+    void testInvalidWidth(int provided) {
         assertThatNoException().isThrownBy(() -> new Width(provided));
     }
 
-    @ParameterizedTest(name = "{0} 너비는 허용되지 않는다.")
+    @ParameterizedTest(name = "적절하지 않은 너비일 경우를 테스트")
     @ValueSource(strings = {"0", "100"})
-    void makeWidthFailure(int provided) {
-        assertThatThrownBy(() -> new Width(provided)).isInstanceOf(IllegalArgumentException.class);
+    void testvalidWidth(int provided) {
+        assertThatThrownBy(() -> new Width(provided))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("동등성 비교 테스트")
-    public void equalsTest() {
+    public void testEquals() {
         //given
         int value = 10;
         Width target = new Width(value);
