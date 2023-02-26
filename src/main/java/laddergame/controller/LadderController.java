@@ -16,7 +16,6 @@ import laddergame.view.LadderFormGenerator;
 import laddergame.view.OutputView;
 
 public class LadderController {
-    public static final String ALL = "all";
     public static final int RETRY_LIMIT = 5;
 
     private final InputView inputView;
@@ -96,6 +95,6 @@ public class LadderController {
     }
 
     private static boolean isAll(String name) {
-        return name.equals(ALL);
+        return name.equals("all");
     }
 }
