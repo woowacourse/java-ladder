@@ -8,14 +8,21 @@ public class Result {
     public static final int MAX_LENGTH = 5;
 
     private final String result;
+    private final Column column;
 
-    public Result(String result) {
+    public Result(String result, int column) {
         validateResultLength(result);
         this.result = result;
+        this.column = new Column(column);
+    }
+
+    public Result(String result) {
+        this(result, 0);
     }
 
     public Result(Result result) {
         this.result = result.getResult();
+        this.column = result.getColumn();
     }
 
     private void validateResultLength(String result) {
@@ -27,6 +34,10 @@ public class Result {
 
     public String getResult() {
         return result;
+    }
+
+    public Column getColumn() {
+        return column;
     }
 
     @Override

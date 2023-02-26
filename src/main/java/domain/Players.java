@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -24,9 +26,11 @@ public class Players {
     }
 
     private List<Player> toList(List<String> names) {
-        return names.stream()
-                .map(Player::new)
-                .collect(Collectors.toList());
+        List<Player> players = new ArrayList<>();
+        for (int i = 0; i < names.size(); i++) {
+            players.add(new Player(names.get(i), i));
+        }
+        return Collections.unmodifiableList(players);
     }
 
     private void validatePersonCount(List<Player> people) {

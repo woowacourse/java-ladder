@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,9 +9,11 @@ public class ResultsEntry {
     private final List<Result> results;
 
     public ResultsEntry(List<String> results) {
-        this.results = results.stream()
-                .map(Result::new)
-                .collect(Collectors.toList());
+        List<Result> resultList = new ArrayList<>();
+        for (int i = 0; i < results.size(); i++) {
+            resultList.add(new Result(results.get(i), i));
+        }
+        this.results = resultList;
     }
 
     private void validateColumn(Column column) {

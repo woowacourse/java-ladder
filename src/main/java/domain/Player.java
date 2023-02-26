@@ -9,15 +9,22 @@ public class Player {
     public static final String INVALID_NAME = "all";
 
     private final String name;
+    private final Column column;
 
-    public Player(String name) {
+    public Player(String name, int column) {
         validateNameLength(name);
         validateName(name);
         this.name = name;
+        this.column = new Column(column);
+    }
+
+    public Player(String name) {
+        this(name, 0);
     }
 
     public Player(Player player) {
         this.name = player.getName();
+        this.column = player.getColumn();
     }
 
     private void validateNameLength(String name) {
@@ -35,6 +42,10 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public Column getColumn() {
+        return column;
     }
 
     @Override

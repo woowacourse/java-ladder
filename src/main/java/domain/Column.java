@@ -6,7 +6,7 @@ public class Column {
 
     private int column;
 
-    private Column(int column) {
+    public Column(int column) {
         this.column = column;
     }
 
