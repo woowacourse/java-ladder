@@ -65,7 +65,8 @@ public class SimpleArrayList implements SimpleList {
     @Override
     public int indexOf(String value) {
         int index = 0;
-        for (; (index < this.size) && !this.values[index].equals(value); index++);
+        for (; (index < this.size) && !this.values[index].equals(value); index++)
+            ;
         if (index == this.size) {
             return -1;
         }
@@ -79,7 +80,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean isEmpty() {
-        if(this.size == 0){
+        if (this.size == 0) {
             return true;
         }
         return false;
@@ -87,12 +88,36 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean remove(String value) {
-        return false;
+        int index = indexOf(value);
+        if (index == -1) {
+            return false;
+        }
+        remove(index);
+        return true;
     }
 
     @Override
     public String remove(int index) {
-        return null;
+        validateOutOfBound(index);
+        String oldValue = this.values[index];
+        if (index == this.size - 1) {
+            return removePostProcess(oldValue);
+        }
+        for (int i = index; i < this.size; i++) {
+            this.values[i] = this.values[i + 1];
+        }
+        return removePostProcess(oldValue);
+    }
+
+    private String removePostProcess(String oldValue) {
+        this.values[--this.size] = null;
+        return oldValue;
+    }
+
+    private void validateOutOfBound(int index){
+        if (!(0 <= index && index < this.size)) {
+            throw new IllegalArgumentException("삭제할 인덱스는 범위를 벗어날 수 없습니다.");
+        }
     }
 
     @Override

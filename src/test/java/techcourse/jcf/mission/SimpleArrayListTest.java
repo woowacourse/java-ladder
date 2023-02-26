@@ -146,4 +146,46 @@ class SimpleArrayListTest {
 
         Assertions.assertEquals(false, arrayList.isEmpty());
     }
+
+    @DisplayName("SimpleArrayList에서 특정 값으로 삭제 테스트")
+    @Test
+    void SimpleArrayList_특정_값_삭제_테스트() {
+        SimpleArrayList arrayList = new SimpleArrayList();
+        final String beforeValue = "before";
+        arrayList.add(beforeValue);
+
+        Assertions.assertEquals(true, arrayList.remove(beforeValue));
+    }
+
+    @DisplayName("SimpleArrayList 특정 값 삭제 실패 테스트")
+    @Test
+    void SimpleArrayList_특정_값_삭제_실패_테스트() {
+        SimpleArrayList arrayList = new SimpleArrayList();
+        final String beforeValue = "before";
+        arrayList.add(beforeValue);
+
+        Assertions.assertEquals(false, arrayList.remove("not contain"));
+    }
+
+    @DisplayName("SimpleArrayList에서 특정 인덱스로 삭제 테스트")
+    @Test
+    void SimpleArrayList_특정_인덱스로_삭제_테스트() {
+        SimpleArrayList arrayList = new SimpleArrayList();
+        final String beforeValue = "before";
+        arrayList.add(beforeValue);
+
+        Assertions.assertEquals(beforeValue, arrayList.remove(0));
+    }
+
+    @DisplayName("SimpleArrayList 특정 값 삭제 실패 테스트")
+    @Test
+    void SimpleArrayList_특정_인덱스로_삭제_실패_테스트() {
+        SimpleArrayList arrayList = new SimpleArrayList();
+        final String beforeValue = "before";
+        arrayList.add(beforeValue);
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            arrayList.remove(1);
+        });
+    }
 }
