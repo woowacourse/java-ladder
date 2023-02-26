@@ -38,4 +38,8 @@ public class Player {
     public int getIndex() {
         return this.index;
     }
+
+    public boolean haveNameOf(String nameValue) {
+        return this.name.haveSameValueWith(nameValue);
+    }
 }

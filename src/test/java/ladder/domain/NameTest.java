@@ -45,12 +45,18 @@ class NameTest {
     }
 
     @Test
-    @DisplayName("입력받은 값과 같은 값을 가지는지 확인한다.")
+    @DisplayName("입력받은 값과 같은 값을 가지면 true를 반환한다.")
     void shouldTrueWhenInputSameValue() {
         String nameValue = "name";
-        String differentNameValue = "abcd";
         Name name = new Name("name");
         assertThat(name.haveSameValueWith(nameValue)).isTrue();
+    }
+
+    @Test
+    @DisplayName("입력받은 값과 같은 값을 가지지 않으면 false를 반환한다..")
+    void shouldFalseWhenInputDifferentValue() {
+        String differentNameValue = "abcd";
+        Name name = new Name("name");
         assertThat(name.haveSameValueWith(differentNameValue)).isFalse();
     }
 }
