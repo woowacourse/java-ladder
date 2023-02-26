@@ -19,7 +19,7 @@ public class Results {
         results.put(player, prize);
     }
 
-    public boolean isSameSizeTo(int size) {
+    public boolean isSameSizeAs(int size) {
         return results.size() == size;
     }
 

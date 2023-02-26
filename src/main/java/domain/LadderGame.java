@@ -32,18 +32,18 @@ public class LadderGame {
     }
 
     private boolean isDone() {
-        return results.isSameSizeTo(players.getPlayerSize());
+        return results.isSameSizeAs(players.getPlayerSize());
     }
 
     private void finish() {
-        for (Player player : players.getPlayers()) {
+        for (final Player player : players.getPlayers()) {
             int position = player.getPosition();
             results.addResult(player, prizes.getOnePrizeByIndex(position));
         }
     }
 
     private void play() {
-        for (Line line : ladder.getLadder()) {
+        for (final Line line : ladder.getLadder()) {
             players.move(line);
         }
     }

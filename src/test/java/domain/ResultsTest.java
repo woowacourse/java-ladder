@@ -26,16 +26,16 @@ public class ResultsTest {
 
     @DisplayName("실행 결과는 게임을 통해 아직 결과를 구하지 않았다면 false를 반환할 수 있다.")
     @Test
-    void resultIsSameSizeToTest1() {
+    void resultIsSameSizeAsTest1() {
         Results results = new Results();
-        assertThat(results.isSameSizeTo(1)).isFalse();
+        assertThat(results.isSameSizeAs(1)).isFalse();
     }
 
     @DisplayName("실행 결과는 게임을 통해 결과를 구했다면 true를 반환할 수 있다.")
     @Test
-    void resultIsSameSizeToTest2() {
+    void resultIsSameSizeAsTest2() {
         Results results = new Results();
         results.addResult(new Player("kong", 1), new Prize("꽝"));
-        assertThat(results.isSameSizeTo(1)).isTrue();
+        assertThat(results.isSameSizeAs(1)).isTrue();
     }
 }
