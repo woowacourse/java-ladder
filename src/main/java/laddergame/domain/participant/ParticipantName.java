@@ -2,7 +2,7 @@ package laddergame.domain.participant;
 
 import java.util.Objects;
 
-import static laddergame.domain.game.UserRequest.ALL_PARTICIPANTS_COMMAND;
+import static laddergame.domain.game.UserRequestedParticipants.ALL_PARTICIPANTS_COMMAND;
 
 public class ParticipantName {
 

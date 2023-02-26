@@ -31,7 +31,7 @@ public class LadderGame {
         }
     }
 
-    public Map<Participant, Result> getResultByParticipants(final UserRequest request) {
+    public Map<Participant, Result> getResultByParticipants(final UserRequestedParticipants request) {
         if (request.isAllParticipants()) {
             gameStatus = GameStatus.END;
             return makeResultByAllParticipants();
@@ -50,7 +50,7 @@ public class LadderGame {
         return resultByParticipants;
     }
 
-    private Map<Participant, Result> makeResultByOneParticipant(final UserRequest request) {
+    private Map<Participant, Result> makeResultByOneParticipant(final UserRequestedParticipants request) {
         Participant participant = participants.findParticipant(request.getRequestContent());
         return Map.of(participant, findResult(participant));
     }

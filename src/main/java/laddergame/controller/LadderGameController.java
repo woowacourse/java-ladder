@@ -1,7 +1,7 @@
 package laddergame.controller;
 
 import laddergame.domain.game.LadderGame;
-import laddergame.domain.game.UserRequest;
+import laddergame.domain.game.UserRequestedParticipants;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.RandomBooleanGenerator;
 import laddergame.domain.participant.Participant;
@@ -74,7 +74,7 @@ public class LadderGameController {
 
     private Map<Participant, Result> readRequestAndGetResultByParticipants(LadderGame ladderGame) {
         return inputView.repeatUntilGettingValidValue(() -> {
-            UserRequest request = UserRequest.from(inputView.readRequest());
+            UserRequestedParticipants request = UserRequestedParticipants.from(inputView.readRequest());
             return ladderGame.getResultByParticipants(request);
         });
     }
