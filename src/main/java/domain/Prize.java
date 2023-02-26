@@ -1,6 +1,6 @@
 package domain;
 
-import exception.InvalidPrizeNameException;
+import exception.NullOrBlankInputException;
 
 public class Prize {
 
@@ -22,13 +22,13 @@ public class Prize {
 
     private void validatePrizeNameIsNull(String prize) {
         if (prize == null) {
-            throw new InvalidPrizeNameException(PRIZE_NAME_NULL_ERROR_MESSAGE);
+            throw new NullOrBlankInputException(PRIZE_NAME_NULL_ERROR_MESSAGE);
         }
     }
 
     private void validatePrizeNameIsBlank(String prize) {
         if (prize.isBlank()) {
-            throw new InvalidPrizeNameException(PRIZE_NAME_BLANK_ERROR_MESSAGE);
+            throw new NullOrBlankInputException(PRIZE_NAME_BLANK_ERROR_MESSAGE);
         }
     }
 }

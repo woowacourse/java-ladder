@@ -19,7 +19,7 @@ public class InputView {
 
         String playerName = scanner.nextLine();
 
-        InputValidator.validatePlayerNameInput(playerName);
+        InputValidator.validateNullOrBlankInput(playerName);
         return List.of(playerName.split(DELIMITER));
     }
 
@@ -37,7 +37,7 @@ public class InputView {
 
         String prizeName = scanner.nextLine();
 
-        InputValidator.validatePrizeNameInput(prizeName);
+        InputValidator.validateNullOrBlankInput(prizeName);
         return List.of(prizeName.split(DELIMITER));
     }
 
@@ -46,7 +46,7 @@ public class InputView {
 
         String playerName = scanner.nextLine();
 
-        InputValidator.validatePlayerNameInput(playerName);
+        InputValidator.validateNullOrBlankInput(playerName);
 
         return playerName.trim();
     }

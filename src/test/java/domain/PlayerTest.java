@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import exception.InvalidPlayerNameException;
+import exception.NullOrBlankInputException;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,10 +16,10 @@ public class PlayerTest {
 
     @ParameterizedTest
     @NullSource
-    @ValueSource(strings = {"", " ", "judith"})
+    @ValueSource(strings = {"", " ", "  "})
     void 플레이어의_생성_실패_테스트(String name) {
         assertThatThrownBy(() -> new Player(name))
-            .isInstanceOf(InvalidPlayerNameException.class);
+            .isInstanceOf(NullOrBlankInputException.class);
     }
 
     @ParameterizedTest

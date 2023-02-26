@@ -1,6 +1,7 @@
 package domain;
 
 import exception.InvalidPlayerNameException;
+import exception.NullOrBlankInputException;
 import java.util.Objects;
 
 public class Player {
@@ -26,13 +27,13 @@ public class Player {
 
     private void validateNameIsNull(String name) {
         if (name == null) {
-            throw new InvalidPlayerNameException(NAME_NULL_ERROR_MESSAGE);
+            throw new NullOrBlankInputException(NAME_NULL_ERROR_MESSAGE);
         }
     }
 
     private void validateNameIsBlank(String name) {
         if (name.isBlank()) {
-            throw new InvalidPlayerNameException(NAME_BLANK_ERROR_MESSAGE);
+            throw new NullOrBlankInputException(NAME_BLANK_ERROR_MESSAGE);
         }
     }
 
