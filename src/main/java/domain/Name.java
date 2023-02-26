@@ -1,21 +1,18 @@
 package domain;
 
-public class Person {
+public class Name {
 
     public static final int NAME_MAX_LENGTH = 5;
-    private static final String BLANK_NAME_ERROR = "[ERROR] 빈 문자열 입니다.";
-    private static final String NAME_LENGTH_ERROR = "[ERROR] 이름 길이는 5자를 넘길 수 없습니다.";
+
+    static final String BLANK_NAME_ERROR = "[ERROR] 빈 문자열 입니다.";
+    static final String NAME_LENGTH_ERROR = "[ERROR] 이름 길이는 5자를 넘길 수 없습니다.";
 
     private final String name;
 
-    public Person(String name){
-        this.name = name;
+    public Name(String name) {
         validateNameLength(name);
         validateNameBlank(name);
-    }
-
-    public String getName() {
-        return name;
+        this.name = name;
     }
 
     private void validateNameBlank(String name) {
@@ -28,6 +25,14 @@ public class Person {
         if (name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException(NAME_LENGTH_ERROR);
         }
+    }
+
+    public boolean isSame(String name) {
+        return this.name.equals(name);
+    }
+
+    public String getName() {
+        return name;
     }
 
 }

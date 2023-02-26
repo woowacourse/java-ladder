@@ -1,7 +1,7 @@
 package view;
 
 import domain.Line;
-import domain.Person;
+import domain.Name;;
 import java.util.List;
 
 public class OutputView {
@@ -9,20 +9,29 @@ public class OutputView {
     private static final String VERTICAL_LINE = "|";
     private static final String BLANK_LINE = "     ";
     private static final String BLANK = " ";
+    private static final String PLAY_RESULT = "실행 결과";
+    private static final String ALL_PLAYER_DELIMITER = " : ";
 
     public void printLadder(List<Line> lines){
         StringBuilder builder = new StringBuilder();
 
-        for (Line line : lines) {
-            appendLine(builder, line);
+        for (int index = 0; index < lines.size(); index++) {
+            appendLine(builder, lines.get(index));
+            appendNewLine(lines, builder, index);
         }
         System.out.println(builder);
     }
 
-    public void printPersonNames(List<String> names){
+    private void appendNewLine(List<Line> lines, StringBuilder builder, int index) {
+        if (index != lines.size() - 1) {
+            builder.append("\n");
+        }
+    }
+
+    public void printPlayersName(List<String> names){
         StringBuilder stringBuilder = new StringBuilder();
 
-        for(String name : names){
+        for (String name : names) {
             stringBuilder.append(name)
                     .append(getNameBlank(name))
                     .append(BLANK);
@@ -35,7 +44,6 @@ public class OutputView {
         for (int pointIndex = 0; pointIndex < line.getPointsSize(); pointIndex++) {
             appendPoint(builder, line, pointIndex);
         }
-        builder.append("\n");
     }
 
     private void appendPoint(StringBuilder builder, Line line, int pointIndex) {
@@ -49,6 +57,34 @@ public class OutputView {
     }
 
     private String getNameBlank(String name) {
-        return BLANK.repeat(Person.NAME_MAX_LENGTH - name.length());
+        return BLANK.repeat(Name.NAME_MAX_LENGTH - name.length());
+    }
+
+    public void printResults(List<String> results) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for(String result : results){
+            stringBuilder.append(result)
+                    .append(getNameBlank(result))
+                    .append(BLANK);
+        }
+        System.out.println(stringBuilder);
+    }
+
+    public void printPlayerResult(String result) {
+        System.out.println("\n" + PLAY_RESULT);
+        System.out.println(result);
+    }
+
+    public void printAllPlayerResult(List<String> playersName, List<String> playersResult) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append("\n" + PLAY_RESULT + "\n");
+        for (int index = 0; index < playersName.size(); index++) {
+            stringBuilder.append(playersName.get(index) + ALL_PLAYER_DELIMITER);
+            stringBuilder.append(playersResult.get(index));
+            stringBuilder.append("\n");
+        }
+        System.out.println(stringBuilder);
     }
 }

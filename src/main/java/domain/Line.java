@@ -12,12 +12,8 @@ public class Line {
 
     private final List<Boolean> points = new ArrayList<>();
 
-    public Line(int personCount, RandomGenerator generator) {
-        addPoints(personCount, generator);
-    }
-
-    public List<Boolean> getPoints() {
-        return points;
+    public Line(int playerCount, RandomGenerator generator) {
+        addPoints(playerCount, generator);
     }
 
     public int getPointsSize() {
@@ -28,9 +24,9 @@ public class Line {
         return points.get(pointIndex);
     }
 
-    private void addPoints(int personCount, RandomGenerator generator) {
+    private void addPoints(int playerCount, RandomGenerator generator) {
         addRandomPoint(generator);
-        for (int pointIndex = FIRST_INDEX; pointIndex < personCount - LAST_INDEX_OFFSET; pointIndex++) {
+        for (int pointIndex = FIRST_INDEX; pointIndex < playerCount - LAST_INDEX_OFFSET; pointIndex++) {
             addConditionalPoint(generator, pointIndex);
         }
     }
@@ -54,5 +50,31 @@ public class Line {
     private void addPoint(boolean state) {
         points.add(state);
     }
-    
+
+    public Direction getDirection(int position) {
+        if (isLeft(position)) {
+            return Direction.LEFT;
+        }
+        if (isRight(position)) {
+            return Direction.RIGHT;
+        }
+        return Direction.STRAIGHT;
+    }
+
+    private boolean isRight(int position) {
+        return !isLastPosition(position) && points.get(position);
+    }
+
+    private boolean isLastPosition(int position) {
+        return position == points.size();
+    }
+
+    private boolean isLeft(int position) {
+        return position != 0 && points.get(position - 1);
+    }
+
+    public List<Boolean> getPoints() {
+        return points;
+    }
+
 }
