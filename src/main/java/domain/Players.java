@@ -25,15 +25,25 @@ public class Players {
         return this.players.size();
     }
 
+    public int findMaxPlayerNameLength() {
+        int maxLength = 0;
+
+        for (Player player : getPlayers()) {
+            maxLength = Math.max(maxLength, player.getName().length());
+        }
+
+        return maxLength;
+    }
+
     public void validateExistPlayer(String playerName) {
         boolean isExist = false;
 
+        if (playerName.equals("all")) {
+            return;
+        }
         for (Player player : players) {
             isExist = isTherePlayerByName(playerName, player);
-            if (isExist) return;
-        }
-        if (playerName.equals("all")) {
-            isExist = true;
+            if (isExist) break;
         }
         if (!isExist) {
             throw new IllegalArgumentException("[ERROR] 존재하지 않는 사람입니다.");

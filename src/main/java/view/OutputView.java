@@ -12,10 +12,8 @@ import java.util.Map;
 
 public class OutputView {
 
-    private static final int STANDARD_BLANK = 7;
-    private static final int STANDARD_RESULT_BLANK = 3;
-    private static final String EXIST_LINE = "-------";
-    private static final String NON_EXIST_LINE = "       ";
+    private static final String EXIST_LINE = "-";
+    private static final String NON_EXIST_LINE = " ";
     private static final String WALL = "|";
 
     public static void printLadderMessage() {
@@ -26,62 +24,62 @@ public class OutputView {
         System.out.println("\n실행 결과");
     }
 
-    public static void printPlayers(Players players) {
-        System.out.println(getPlayersNames(players));
+    public static void printPlayers(Players players, int width) {
+        System.out.println(getPlayersNames(players, width));
     }
 
-    private static String getPlayersNames(Players players) {
+    private static String getPlayersNames(Players players, int width) {
         StringBuilder sb = new StringBuilder();
 
         for (Player player : players.getPlayers()) {
             sb.append(player.getName());
-            String blank = " ".repeat(STANDARD_BLANK - player.getName().length());
+            String blank = " ".repeat(width - player.getName().length());
             sb.append(blank);
         }
 
         return sb.toString();
     }
 
-    public static void printLadder(Ladder ladder) {
+    public static void printLadder(Ladder ladder, int width) {
         Lines lines = ladder.getLadder();
 
         for (Line line : lines.getLines()) {
             List<LineStatus> oneLine = line.getLineStatuses();
-            System.out.println(getLineStatus(oneLine));
+            System.out.println(getLineStatus(oneLine, width));
         }
     }
 
-    private static String getLineStatus(List<LineStatus> line) {
+    private static String getLineStatus(List<LineStatus> line, int width) {
         StringBuilder sb = new StringBuilder();
 
         sb.append(WALL);
         for (LineStatus lineStatus : line) {
-            buildLine(sb, lineStatus);
+            buildLine(sb, lineStatus, width);
         }
 
         return sb.toString();
     }
 
-    private static void buildLine(StringBuilder sb, LineStatus lineStatus) {
+    private static void buildLine(StringBuilder sb, LineStatus lineStatus, int width) {
         if (lineStatus.getStatus()) {
-            sb.append(EXIST_LINE);
+            sb.append(EXIST_LINE.repeat(width));
         }
         if (!lineStatus.getStatus()) {
-            sb.append(NON_EXIST_LINE);
+            sb.append(NON_EXIST_LINE.repeat(width));
         }
         sb.append(WALL);
     }
 
-    public static void printLadderResult(Results results) {
-        System.out.println(getLadderResult(results));
+    public static void printLadderResult(Results results, int width) {
+        System.out.println(getLadderResult(results, width));
     }
 
-    private static String getLadderResult(Results results) {
+    private static String getLadderResult(Results results, int width) {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < results.getSize(); i++) {
             sb.append(results.getResultByIndex(i));
-            String blank = " ".repeat(STANDARD_RESULT_BLANK);
+            String blank = " ".repeat(width - results.getResultByIndex(i).length());
             sb.append(blank);
         }
 

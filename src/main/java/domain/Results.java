@@ -24,4 +24,14 @@ public class Results {
     public int getSize() {
         return results.size();
     }
+
+    public int findMaxResultLength() {
+        int maxLength = 0;
+
+        for (String result : results) {
+            maxLength = Math.max(maxLength, result.length());
+        }
+
+        return maxLength;
+    }
 }

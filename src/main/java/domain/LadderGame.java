@@ -40,10 +40,12 @@ public class LadderGame {
     }
 
     public void printLadder() {
+        int width = Math.max(results.findMaxResultLength(), playersInGame.findMaxPlayerNameLength()) + 1;
+
         OutputView.printLadderMessage();
-        OutputView.printPlayers(playersInGame);
-        OutputView.printLadder(ladder);
-        OutputView.printLadderResult(results);
+        OutputView.printPlayers(playersInGame, width);
+        OutputView.printLadder(ladder, width);
+        OutputView.printLadderResult(results, width);
     }
 
     public void playGame() {
