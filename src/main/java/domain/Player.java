@@ -9,7 +9,7 @@ public class Player {
     }
 
     public boolean isTargetPlayer(String name) {
-        return getName().equals(name);
+        return this.name.isSame(name);
     }
 
     public String getName() {
