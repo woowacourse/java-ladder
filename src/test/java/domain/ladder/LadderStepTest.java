@@ -1,13 +1,13 @@
 package domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import domain.generator.BooleanGenerator;
 import domain.generator.FalseBooleanGenerator;
 import domain.generator.TrueBooleanGenerator;
-import domain.ladder.LadderStep;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -33,10 +33,10 @@ class LadderStepTest {
         @Test
         void previousStepExistsTest() {
             assertAll(
-                () -> assertThat(LadderStep.createConsideringPreviousStep(existsGenerator, LadderStep.EXISTS))
-                    .isEqualTo(LadderStep.NONE),
-                () -> assertThat(LadderStep.createConsideringPreviousStep(noneGenerator, LadderStep.EXISTS))
-                    .isEqualTo(LadderStep.NONE)
+                    () -> assertThat(LadderStep.createConsideringPreviousStep(existsGenerator, LadderStep.EXISTS))
+                            .isEqualTo(LadderStep.NONE),
+                    () -> assertThat(LadderStep.createConsideringPreviousStep(noneGenerator, LadderStep.EXISTS))
+                            .isEqualTo(LadderStep.NONE)
             );
         }
 

@@ -2,7 +2,6 @@ package domain.player;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import domain.player.Names;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;

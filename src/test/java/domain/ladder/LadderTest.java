@@ -7,8 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import domain.generator.BooleanGenerator;
 import domain.generator.RandomBooleanGenerator;
 import domain.generator.TrueBooleanGenerator;
-import domain.ladder.Height;
-import domain.ladder.Ladder;
 import domain.player.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
