@@ -25,9 +25,8 @@ public class Ladder {
         this.randomNumberGenerator = randomNumberGenerator;
     }
 
-    public static Ladder of(Players players, Height height, RandomNumberGenerator randomNumberGenerator) {
+    public static Ladder of(int numberOfLinesToMake, Height height, RandomNumberGenerator randomNumberGenerator) {
         List<Line> lines = new ArrayList<>();
-        int numberOfLinesToMake = players.getSize();
 
         for (int index = 0; index < numberOfLinesToMake; index++) {
             lines.add(Line.fromHeight(height));

@@ -29,7 +29,7 @@ public class LadderGameController {
         Rewards rewards = Rewards.from(players.getSize(), inputView.requestRewards());
         Height height = new Height(inputView.requestLadderHeight());
 
-        Ladder ladder = Ladder.of(players, height, randomNumberGenerator);
+        Ladder ladder = Ladder.of(players.getSize(), height, randomNumberGenerator);
         ladder.buildBridges();
         LadderGame ladderGame = new LadderGame(ladder, players, rewards);
         printLadderInitialState(players, ladder, rewards);

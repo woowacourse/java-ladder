@@ -21,7 +21,7 @@ public class LadderGameTest {
         Players players = Players.from(List.of("pobi", "crong"));
         Height height = new Height(5);
         Rewards rewards = Rewards.from(players.getSize(), List.of("fail", "5000"));
-        Ladder ladder = Ladder.of(players, height, createCustomRandomNumberGenerator());
+        Ladder ladder = Ladder.of(players.getSize(), height, createCustomRandomNumberGenerator());
         Point startPoint = ladder.getPoint(0, 0);
         Point endPoint = ladder.getPoint(0, 1);
         ladder.buildBridge(startPoint, endPoint);

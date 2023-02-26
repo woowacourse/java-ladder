@@ -27,7 +27,7 @@ public class LadderTest {
     @Test
     @DisplayName("게임 참여자 수와 높이에 따라 사다리 생성")
     void createLadderSuccess() {
-        Ladder ladder = Ladder.of(players, height, createCustomRandomNumberGenerator());
+        Ladder ladder = Ladder.of(players.getSize(), height, createCustomRandomNumberGenerator());
         int lineCount = ladder.getLines().size();
         int lineHeight = ladder.getHeightSize();
 
@@ -38,7 +38,7 @@ public class LadderTest {
     @Test
     @DisplayName("사다리의 다리 생성")
     void buildBridgeSuccess() {
-        Ladder ladder = Ladder.of(players, height, createCustomRandomNumberGenerator());
+        Ladder ladder = Ladder.of(players.getSize(), height, createCustomRandomNumberGenerator());
         Point startPoint = ladder.getPoint(0, 1);
         Point endPoint = ladder.getPoint(0, 2);
         ladder.buildBridge(startPoint, endPoint);
@@ -50,7 +50,7 @@ public class LadderTest {
     @Test
     @DisplayName("이미 다리가 건설 된 지점을 끝 점으로 다리 생성 불가")
     void buildBridgeFail1() {
-        Ladder ladder = Ladder.of(players, height, createCustomRandomNumberGenerator());
+        Ladder ladder = Ladder.of(players.getSize(), height, createCustomRandomNumberGenerator());
         Point startPoint = ladder.getPoint(0, 1);
         Point endPoint = ladder.getPoint(0, 2);
         ladder.buildBridge(startPoint, endPoint);
@@ -65,7 +65,7 @@ public class LadderTest {
     @Test
     @DisplayName("이미 다리가 건설 된 지점을 시작점으로 다리 생성 불가")
     void buildBridgeFail2() {
-        Ladder ladder = Ladder.of(players, height, createCustomRandomNumberGenerator());
+        Ladder ladder = Ladder.of(players.getSize(), height, createCustomRandomNumberGenerator());
         Point startPoint = ladder.getPoint(0, 1);
         Point endPoint = ladder.getPoint(0, 2);
         ladder.buildBridge(startPoint, endPoint);
