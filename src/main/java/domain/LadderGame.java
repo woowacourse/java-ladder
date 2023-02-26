@@ -1,19 +1,42 @@
 package domain;
 
+import generator.LineGenerator;
+import generator.RandomLineGenerator;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import view.OutputView;
 
 public class LadderGame {
 
     private final Players playersInGame;
-    private final Ladder ladder;
+    private Ladder ladder;
     private final Results results;
 
-    public LadderGame(Players players, Ladder ladder, Results results) {
+    public LadderGame(Players players, Results results) {
         this.playersInGame = new Players(players.getPlayers());
-        this.ladder = ladder;
         this.results = results;
+    }
+
+    public void makeLadder(Height height, int numberOfWalls) {
+        LineGenerator lineGenerator = new RandomLineGenerator();
+        Lines lines = makeLines(height, numberOfWalls, lineGenerator);
+
+        this.ladder = new Ladder(lines, height);
+    }
+
+    private Lines makeLines(Height height, int numberOfWalls, LineGenerator lineGenerator) {
+        List<Line> lines = new ArrayList<>();
+        int numberOfLine = numberOfWalls - 1;
+
+        for (int i = 0; i < height.getHeight(); i++) {
+            LineMaker lineMaker = new LineMaker(lineGenerator);
+            List<LineStatus> lineStatuses = lineMaker.makeLineStatus(numberOfLine);
+            lines.add(new Line(lineStatuses));
+        }
+
+        return new Lines(lines);
     }
 
     public void printLadder() {

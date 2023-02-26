@@ -1,20 +1,12 @@
 package controller;
 
 import domain.Height;
-import domain.Ladder;
 import domain.LadderGame;
-import domain.Line;
-import domain.LineMaker;
-import domain.LineStatus;
-import domain.Lines;
 import domain.Players;
+import domain.PlayersMaker;
 import domain.Results;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import generator.LineGenerator;
-import domain.PlayersMaker;
-import generator.RandomLineGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -26,9 +18,11 @@ public class LadderController {
         Players players = makePlayers();
         Results results = makeResult(players.getNumberOfPlayers());
         Height height = new Height(inputHeight());
-        Ladder ladder = makeLadder(height, players.getNumberOfPlayers());
 
-        LadderGame ladderGame = playLadderGame(players, results, ladder);
+        LadderGame ladderGame = new LadderGame(players, results);
+        ladderGame.makeLadder(height, players.getNumberOfPlayers());
+
+        playLadderGame(ladderGame);
         getResult(players, ladderGame);
     }
 
@@ -83,33 +77,9 @@ public class LadderController {
         return List.of(results.split(DELIMITER_WITH_BLANK));
     }
 
-    private Ladder makeLadder(Height height, int numberOfWalls) {
-        LineGenerator lineGenerator = new RandomLineGenerator();
-        Lines lines = makeLines(height, numberOfWalls, lineGenerator);
-
-        return new Ladder(lines, height);
-    }
-
-    private Lines makeLines(Height height, int numberOfWalls, LineGenerator lineGenerator) {
-        List<Line> lines = new ArrayList<>();
-        int numberOfLine = numberOfWalls - 1;
-
-        for (int i = 0; i < height.getHeight(); i++) {
-            LineMaker lineMaker = new LineMaker(lineGenerator);
-            List<LineStatus> lineStatuses = lineMaker.makeLineStatus(numberOfLine);
-            lines.add(new Line(lineStatuses));
-        }
-
-        return new Lines(lines);
-    }
-
-    private LadderGame playLadderGame(Players players, Results results, Ladder ladder) {
-        LadderGame ladderGame = new LadderGame(players, ladder, results);
-
+    private void playLadderGame(LadderGame ladderGame) {
         ladderGame.printLadder();
         ladderGame.playGame();
-
-        return ladderGame;
     }
 
     private void getResult(Players players, LadderGame ladderGame) {
