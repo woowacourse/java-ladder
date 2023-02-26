@@ -4,9 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import domain.generator.BooleanGenerator;
-import domain.generator.RandomBooleanGenerator;
-import domain.generator.TrueBooleanGenerator;
+import domain.generator.LadderStepGenerator;
+import domain.generator.RandomLadderStepGenerator;
+import domain.generator.ExistsLadderStepGenerator;
 import domain.player.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -16,8 +16,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class LadderTest {
 
-    private final BooleanGenerator randomLadderGenerator = new RandomBooleanGenerator();
-    private final BooleanGenerator nonRandomLadderGenerator = new TrueBooleanGenerator();
+    private final LadderStepGenerator randomLadderGenerator = new RandomLadderStepGenerator();
+    private final LadderStepGenerator nonRandomLadderGenerator = new ExistsLadderStepGenerator();
 
     @DisplayName("유효한 파라미터가 들어오면, 사다리를 생성한다.")
     @Nested

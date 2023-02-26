@@ -3,9 +3,9 @@ package domain.ladder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import domain.generator.BooleanGenerator;
-import domain.generator.RandomBooleanGenerator;
-import domain.generator.TrueBooleanGenerator;
+import domain.generator.LadderStepGenerator;
+import domain.generator.RandomLadderStepGenerator;
+import domain.generator.ExistsLadderStepGenerator;
 import domain.player.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -14,8 +14,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class LineTest {
-    private final BooleanGenerator randomLadderGenerator = new RandomBooleanGenerator();
-    private final BooleanGenerator nonRandomLadderGenerator = new TrueBooleanGenerator();
+    private final LadderStepGenerator randomLadderGenerator = new RandomLadderStepGenerator();
+    private final LadderStepGenerator nonRandomLadderGenerator = new ExistsLadderStepGenerator();
 
     @DisplayName("사다리 값에 따라서 사다리를 생성할 수 있다.")
     @Nested

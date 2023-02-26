@@ -3,7 +3,7 @@ package controller;
 import domain.LadderGame;
 import domain.Result;
 import domain.SearchCommand;
-import domain.generator.BooleanGenerator;
+import domain.generator.LadderStepGenerator;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.mission.Missions;
@@ -16,9 +16,9 @@ public class MainController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final BooleanGenerator ladderGenerator;
+    private final LadderStepGenerator ladderGenerator;
 
-    public MainController(InputView inputView, OutputView outputView, BooleanGenerator ladderGenerator) {
+    public MainController(InputView inputView, OutputView outputView, LadderStepGenerator ladderGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.ladderGenerator = ladderGenerator;

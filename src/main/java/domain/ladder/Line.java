@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import domain.generator.BooleanGenerator;
+import domain.generator.LadderStepGenerator;
 import domain.player.Position;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,11 +9,11 @@ import java.util.List;
 public class Line {
     private final List<LadderStep> line;
 
-    public Line(int count, BooleanGenerator ladderGenerator) {
+    public Line(int count, LadderStepGenerator ladderGenerator) {
         this.line = createLine(count, ladderGenerator);
     }
 
-    private List<LadderStep> createLine(int count, BooleanGenerator ladderGenerator) {
+    private List<LadderStep> createLine(int count, LadderStepGenerator ladderGenerator) {
         List<LadderStep> newLine = new ArrayList<>();
         newLine.add(LadderStep.createFreely(ladderGenerator));
         for (int index = 1; index < count; index++) {

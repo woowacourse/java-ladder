@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import domain.generator.BooleanGenerator;
-import domain.generator.FalseBooleanGenerator;
-import domain.generator.TrueBooleanGenerator;
+import domain.generator.LadderStepGenerator;
+import domain.generator.NoneLadderStepGenerator;
+import domain.generator.ExistsLadderStepGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test;
 
 class LadderStepTest {
 
-    private final BooleanGenerator existsGenerator = new TrueBooleanGenerator();
-    private final BooleanGenerator noneGenerator = new FalseBooleanGenerator();
+    private final LadderStepGenerator existsGenerator = new ExistsLadderStepGenerator();
+    private final LadderStepGenerator noneGenerator = new NoneLadderStepGenerator();
 
     @DisplayName("첫 번째 사다리 발판을 생성할 때는 제약 없이 생성한다.")
     @Test
