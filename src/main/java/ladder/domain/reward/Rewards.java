@@ -1,6 +1,7 @@
 package ladder.domain.reward;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +26,7 @@ public class Rewards {
     }
 
     public List<Reward> getRewards() {
-        return rewards;
+        return Collections.unmodifiableList(rewards);
     }
 
     private static void validateSize(List<String> inputRewards, int playerCount) {
