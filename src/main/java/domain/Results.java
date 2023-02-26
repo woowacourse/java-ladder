@@ -7,17 +7,10 @@ public class Results {
 
     private final List<Result> results;
 
-    public Results(List<String> results, People people) {
-        validateResultsCount(results, people);
+    public Results(List<String> results) {
         this.results = results.stream()
                 .map(Result::new)
                 .collect(Collectors.toList());
-    }
-
-    private void validateResultsCount(List<String> results, People people) {
-        if (results.size() != people.getCount()) {
-            throw new IllegalArgumentException("실행 결과의 수는 사람 수와 같아야 합니다.");
-        }
     }
 
     private void validateColumn(Column column) {

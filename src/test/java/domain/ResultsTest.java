@@ -23,7 +23,7 @@ public class ResultsTest {
     void success(String results, String people) {
         List<String> names = Arrays.stream(people.split(",")).collect(Collectors.toList());
         List<String> resultList = Arrays.stream(results.split(",")).collect(Collectors.toList());
-        assertDoesNotThrow(() -> new Results(resultList, new People(names)));
+        assertDoesNotThrow(() -> new Results(resultList));
     }
 
     @DisplayName("실행 결과의 수가 일치하지 않으면 예외가 발생한다.")
@@ -36,7 +36,7 @@ public class ResultsTest {
     void fail(String results, String people) {
         List<String> names = Arrays.stream(people.split(",")).collect(Collectors.toList());
         List<String> resultList = Arrays.stream(results.split(",")).collect(Collectors.toList());
-        assertThatThrownBy(() -> new Results(resultList, new People(names)))
+        assertThatThrownBy(() -> new Results(resultList))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("실행 결과의 수는 사람 수와 같아야 합니다.");
     }

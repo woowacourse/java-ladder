@@ -12,12 +12,11 @@ import java.util.Map;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderGameTest {
 
-    LadderGame ladderGame;
+    Ladder ladder;
 
     @BeforeEach
     void init() {
@@ -30,8 +29,8 @@ public class LadderGameTest {
         );
         List<String> resultList = List.of("꽝", "5000", "꽝", "3000");
         People people = new People(List.of("pobi", "honux", "crong", "jk"));
-        Results results = new Results(resultList, people);
-        ladderGame = new LadderGame(people, results, new Ladder(customizedLines));
+        Results results = new Results(resultList);
+        ladder = new Ladder(people, results, customizedLines);
     }
 
     @DisplayName("단일 사용자의 결과 출력")
@@ -43,7 +42,7 @@ public class LadderGameTest {
             "jk,5000",
     })
     void single_result_test(String name, String result) {
-        assertThat(ladderGame.calculateResult(new Person(name)))
+        assertThat(ladder.calculateResult(new Person(name)))
                 .isEqualTo(new Result(result));
     }
 
@@ -56,7 +55,7 @@ public class LadderGameTest {
                 Map.entry(new Person("crong"), new Result("꽝")),
                 Map.entry(new Person("jk"), new Result("5000"))
         );
-        ResultsMap resultMap = ladderGame.getTotalResults();
+        ResultsMap resultMap = ladder.getTotalResults();
         assertThat(resultMap.getResultMap()).isEqualTo(data);
     }
 }

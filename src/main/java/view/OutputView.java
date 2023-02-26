@@ -1,12 +1,6 @@
 package view;
 
-import domain.Ladder;
-import domain.Line;
-import domain.People;
-import domain.Person;
-import domain.Result;
-import domain.Results;
-import domain.ResultsMap;
+import domain.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,11 +13,11 @@ public class OutputView {
     public static final String DELIMITER = "|";
     public static final String FORMAT = "%s : %s\n";
 
-    public void printTotalLadder(People people, Results results, Ladder ladder) {
+    public void printTotalLadder(Ladder ladder) {
         System.out.println("사다리 결과\n");
-        printNames(people);
-        printLadder(ladder);
-        printResults(results);
+        printNames(ladder.getPeople());
+        printLadder(ladder.getLines());
+        printResults(ladder.getResults());
     }
 
     private void printNames(People people) {
@@ -33,8 +27,8 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printLadder(Ladder ladder) {
-        for (Line line : ladder.getLines()) {
+    private void printLadder(Lines lines) {
+        for (Line line : lines.getLines()) {
             List<String> collect = getHorizonLine(line.getMovements());
             System.out.printf("    |%s|%n", String.join(DELIMITER, collect));
         }

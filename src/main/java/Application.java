@@ -1,5 +1,4 @@
 import domain.Ladder;
-import domain.LadderGame;
 import domain.People;
 import domain.RandomLadderGenerator;
 import domain.Results;
@@ -13,21 +12,15 @@ public class Application {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final LadderGame ladderGame;
+    private final Ladder ladder;
 
     private Application(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.ladderGame = initLadderGame();
-    }
-
-    private LadderGame initLadderGame() {
         People people = repeat(() -> new People(inputView.readNames()));
-        Results results = repeat(() -> new Results(inputView.readResults(), people));
-        Ladder ladder = repeat(() -> new RandomLadderGenerator().generate(people, inputView.readMaxHeight()));
-
-        outputView.printTotalLadder(people, results, ladder);
-        return new LadderGame(people, results, ladder);
+        Results results = repeat(() -> new Results(inputView.readResults()));
+        this.ladder = repeat(() -> new RandomLadderGenerator().generate(people, results, inputView.readMaxHeight()));
+        outputView.printTotalLadder(ladder);
     }
 
     private <T> T repeat(Supplier<T> inputReader) {
@@ -47,7 +40,7 @@ public class Application {
         do {
             results = repeat(() -> {
                 String input = inputView.readResult();
-                return ladderGame.getResults(input);
+                return ladder.getResults(input);
             });
             outputView.printGameResults(results);
         } while (results.canTryAgain());
