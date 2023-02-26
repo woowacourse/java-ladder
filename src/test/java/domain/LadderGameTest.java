@@ -31,17 +31,17 @@ public class LadderGameTest {
         Players players = new Players(List.of(kong, odo, gray, kiara));
         Prizes prizes = new Prizes(List.of(prize1, prize2, prize3, prize4), 4);
 
-        Map<Player, Prize> expected = new HashMap<>();
-        expected.put(new Player(kong, 0), new Prize(prize4));
-        expected.put(new Player(odo, 0), new Prize(prize2));
-        expected.put(new Player(gray, 0), new Prize(prize1));
-        expected.put(new Player(kiara, 0), new Prize(prize3));
+        Results expected = new Results();
+        expected.addResult(new Player(kong, 0), new Prize(prize4));
+        expected.addResult(new Player(odo, 0), new Prize(prize2));
+        expected.addResult(new Player(gray, 0), new Prize(prize1));
+        expected.addResult(new Player(kiara, 0), new Prize(prize3));
 
         // when
         LadderGame ladderGame = new LadderGame(ladder, players, prizes);
-        Map<Player, Prize> result = ladderGame.run();
+        Results result = ladderGame.run();
 
         // then
-        assertThat(result).isEqualTo(expected);
+        assertThat(result.getResults()).isEqualTo(expected.getResults());
     }
 }

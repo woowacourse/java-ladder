@@ -24,7 +24,7 @@ public class LadderController {
 
     public void run() {
         LadderGame ladderGame = init();
-        Map<Player, Prize> results = ladderGame.run();
+        Results results = ladderGame.run();
         print(ladderGame, results);
     }
 
@@ -37,7 +37,7 @@ public class LadderController {
         return ladderGame;
     }
 
-    private void print(LadderGame ladderGame, Map<Player, Prize> results) {
+    private void print(LadderGame ladderGame, Results results) {
         outputView.printLadderGame(ladderGame);
         printResults(results);
     }
@@ -79,7 +79,7 @@ public class LadderController {
         }
     }
 
-    private void printResults(Map<Player, Prize> results) {
+    private void printResults(Results results) {
         String command = inputView.readResultOfPlayer();
         if (Command.FINISH_GAME_COMMAND.isEqualTo(command)) {
             return;
@@ -91,7 +91,7 @@ public class LadderController {
         printOneResult(results, command);
     }
 
-    private void printOneResult(Map<Player, Prize> results, String command) {
+    private void printOneResult(Results results, String command) {
         try {
             outputView.printOnePlayerResult(results, command);
         } catch (IllegalArgumentException exception) {
@@ -100,7 +100,7 @@ public class LadderController {
         printResults(results);
     }
 
-    private void printAllResult(Map<Player, Prize> results) {
+    private void printAllResult(Results results) {
         outputView.printAllPlayerResult(results);
         printResults(results);
     }

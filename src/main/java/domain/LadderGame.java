@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class LadderGame {
@@ -8,32 +7,33 @@ public class LadderGame {
     private final Ladder ladder;
     private final Players players;
     private final Prizes prizes;
-    private final Map<Player, Prize> result;
+    private final Results results;
+
 
     public LadderGame(Ladder ladder, Players players, Prizes prizes) {
         this.ladder = ladder;
         this.players = players;
         this.prizes = prizes;
-        this.result = new HashMap<>();
+        this.results = new Results();
     }
 
-    public Map<Player, Prize> run() {
+    public Results run() {
         if (isDone()) {
-            return result;
+            return results;
         }
         play();
         finish();
-        return result;
+        return results;
     }
 
     private boolean isDone() {
-        return !result.isEmpty();
+        return results.isSameSizeTo(players.getPlayerSize());
     }
 
     private void finish() {
         for (Player player : players.getPlayers()) {
             int position = player.getPosition();
-            result.put(player, prizes.getOnePrizeByIndex(position));
+            results.addResult(player, prizes.getOnePrizeByIndex(position));
         }
     }
 
