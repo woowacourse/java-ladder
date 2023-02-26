@@ -3,18 +3,15 @@ package controller;
 import domain.game.Game;
 import domain.game.Results;
 import domain.ladder.Ladder;
-import domain.ladder.Line;
 import domain.user.User;
 import domain.user.Users;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import utils.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
-    public static final String FIND_ALL_RESULT = "전체 결과 조회";
     private final InputView inputView;
     private final OutputView outputView;
     private Users users;
@@ -29,7 +26,7 @@ public class LadderGameController {
     public void initialize() {
         users = initializeUsers();
         results = initializeResults();
-        ladder = createLadder(users.getPersonCount(), initializeHeight());
+        ladder = new Ladder(users.getPersonCount(), initializeHeight());
     }
 
     public void run() {
@@ -65,18 +62,10 @@ public class LadderGameController {
     private Users initializeUsers() {
         try {
             List<String> userNames = inputView.inputUserName();
-            return new Users(createUsers(userNames));
+            return new Users(userNames);
         } catch (IllegalArgumentException e) {
             return initializeUsers();
         }
-    }
-
-    private List<User> createUsers(List<String> userNames) {
-        List<User> users = new ArrayList<>();
-        for (String userName : userNames) {
-            users.add(new User(userName));
-        }
-        return users;
     }
 
     private int initializeHeight() {
@@ -86,15 +75,6 @@ public class LadderGameController {
             System.out.println(e.getMessage());
             return initializeHeight();
         }
-    }
-
-    public Ladder createLadder(int personCount, int height) {
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-        List<Line> lines = new ArrayList<>();
-        while (height-- > 0) {
-            lines.add(new Line(personCount, randomNumberGenerator));
-        }
-        return new Ladder(lines);
     }
 
     private String findUserResult() {

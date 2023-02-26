@@ -1,5 +1,6 @@
 package domain.user;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,8 +10,11 @@ public class Users {
 
     private final List<User> users;
 
-    public Users(List<User> users) {
-        this.users = users;
+    public Users(List<String> userNames) {
+        users = new ArrayList<>();
+        for (String userName : userNames) {
+            users.add(new User(userName));
+        }
     }
 
     public int getPersonCount() {
