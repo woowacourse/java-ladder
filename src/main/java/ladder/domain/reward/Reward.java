@@ -20,7 +20,7 @@ public class Reward {
 
     private void validateLength(String reward) {
         if(calculateLength(reward) > REWARD_MAXIMUM_LENGTH) {
-            throw new IllegalArgumentException("보상은 최대 " + REWARD_MAXIMUM_LENGTH + "글자 입니다.");
+            throw new IllegalArgumentException("보상은 최대 " + REWARD_MAXIMUM_LENGTH + "글자 입니다. 영어, 숫자, 공백 = 길이 1 / 한글 = 길이 2");
         }
     }
 

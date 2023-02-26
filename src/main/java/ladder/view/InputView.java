@@ -13,26 +13,22 @@ public class InputView implements Input{
     private static final String INPUT_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String INPUT_CONTINUE_MESSAGE = "다른 결과를 출력하시겠습니까? (y/n)";
     private static final String DELIMITER = ",";
+    private static final String REGEX_ENGLISH_KOREAN_DIGIT_BLANK = "[a-zA-Z가-힣\\d\\s]+";
 
     private static final Scanner sc = new Scanner(System.in);
 
     @Override
     public List<String> inputPlayerNames() {
         System.out.println(INPUT_NAMES_MESSAGE);
-        String input = sc.nextLine();
-        validateNull(input);
 
-        return splitInputByDelimiter(input);
+        return splitInputByDelimiter(inputString());
     }
 
     @Override
     public int inputHeightOfLadder() {
         System.out.println(INPUT_HEIGHT_MESSAGE);
         try {
-            String input = sc.nextLine();
-            validateNull(input);
-
-            return Integer.parseInt(input);
+            return Integer.parseInt(inputString());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("숫자를 입력하세요.");
         }
@@ -41,26 +37,27 @@ public class InputView implements Input{
     @Override
     public List<String> inputRewards() {
         System.out.println(INPUT_REWARDS_MESSAGE);
-        String input = sc.nextLine();
-        validateNull(input);
 
-        return splitInputByDelimiter(input);
+        return splitInputByDelimiter(inputString());
     }
 
     @Override
     public List<String> inputTargetPlayerNames() {
         System.out.println(INPUT_TARGET_NAMES_MESSAGE);
-        String input = sc.nextLine();
-        validateNull(input);
 
-        return splitInputByDelimiter(input);
+        return splitInputByDelimiter(inputString());
     }
 
     @Override
     public String inputContinue() {
         System.out.println(INPUT_CONTINUE_MESSAGE);
+        return inputString();
+    }
+
+    private String inputString() {
         String input = sc.nextLine();
         validateNull(input);
+        validateType(input);
         return input;
     }
 
@@ -68,6 +65,12 @@ public class InputView implements Input{
         return Arrays.stream(input.split(DELIMITER))
                 .map(String::trim)
                 .collect(Collectors.toList());
+    }
+
+    private void validateType(String input) {
+        if (!input.matches(REGEX_ENGLISH_KOREAN_DIGIT_BLANK)) {
+            throw new IllegalArgumentException("입력은 공백, 숫자, 영어, 한글만 할 수 있습니다.");
+        }
     }
 
     private void validateNull(String input) {

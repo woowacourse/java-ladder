@@ -34,7 +34,7 @@ public class Name {
     private void validateNameLength(String name) {
         int length = calculateLength(name);
         if (name.isBlank() || length > NAME_MAXIMUM_LENGTH) {
-            throw new IllegalArgumentException("플레이어의 이름 길이는 1 이상 5 이하여야 합니다. 영어 = 길이 1, 한글 = 길이 2");
+            throw new IllegalArgumentException("플레이어의 이름 길이는 1 이상 5 이하여야 합니다. 영어, 숫자, 공백 = 길이 1 / 한글 = 길이 2");
         }
     }
 
