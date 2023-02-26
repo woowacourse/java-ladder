@@ -1,9 +1,7 @@
 package laddergame.view.util;
 
 import java.util.List;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
-import laddergame.domain.ladder.line.Direction;
 import laddergame.domain.ladder.line.Line;
 import laddergame.domain.ladder.line.StepPoint;
 
@@ -43,14 +41,10 @@ public class LadderResultFormatter {
     }
 
     private static String extractLine(Line line, int pointWidth) {
-        List<Direction> directions = line.toDirections();
-
-        StringJoiner extracted = new StringJoiner(VERTICAL, VERTICAL, VERTICAL);
-        for (int i = 0; i < directions.size() - 1; i++) {
-            Direction direction = directions.get(i);
-            String stepPointFormat = toStepPointFormat(direction.getRightStepPoint(), pointWidth);
-            extracted.add(stepPointFormat);
-        }
+        String extracted = line.toStepPointsInLine()
+                .stream()
+                .map(point -> toStepPointFormat(point, pointWidth))
+                .collect(Collectors.joining(VERTICAL, VERTICAL, VERTICAL));
         return toStepPointFormat(StepPoint.NONE, pointWidth) + extracted;
     }
 

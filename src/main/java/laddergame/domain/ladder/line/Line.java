@@ -55,4 +55,13 @@ public class Line {
     public List<Direction> toDirections() {
         return new ArrayList<>(directions);
     }
+
+    public List<StepPoint> toStepPointsInLine() {
+        List<StepPoint> stepPoints = new ArrayList<>();
+        for (int i = 0; i < (directions.size() - 1); i++) {
+            Direction direction = directions.get(i);
+            stepPoints.add(direction.getRightStepPoint());
+        }
+        return stepPoints;
+    }
 }
