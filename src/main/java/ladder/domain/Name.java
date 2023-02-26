@@ -1,8 +1,6 @@
 package ladder.domain;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Name {
     private static final int NAME_LENGTH_LOWER_BOUND_INCLUSIVE = 1;
@@ -28,8 +26,7 @@ public class Name {
     }
 
     private void validateOnlyBlank(String name) {
-        Set<Character> chars = name.chars().mapToObj(e -> (char) e).collect(Collectors.toSet());
-        if (chars.size() == 1 && chars.contains(' ')) {
+        if (name.isBlank()) {
             throw new IllegalArgumentException(NAME_BLANK_ERROR_MESSAGE);
         }
     }
