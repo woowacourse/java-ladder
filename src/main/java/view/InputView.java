@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class InputView {
 
     private static final String INPUT_DELIMITER = ",";
+
     private final Scanner scanner;
 
     public InputView() {
@@ -15,7 +16,7 @@ public class InputView {
     }
 
     public List<String> readNames() {
-        System.out.println(String.format("참여할 사람 이름을 입력하세요. (이름은 쉼표(%s)로 구분하세요)", INPUT_DELIMITER));
+        System.out.printf("참여할 사람 이름을 입력하세요. (이름은 쉼표(%s)로 구분하세요)" + System.lineSeparator(), INPUT_DELIMITER);
 
         String rawNames = scanner.nextLine();
         return Arrays.stream(rawNames.split(INPUT_DELIMITER))
@@ -40,7 +41,7 @@ public class InputView {
     }
 
     public List<String> readResults() {
-        System.out.println(String.format("실행 결과를 입력하세요. (결과는  쉼표(%s)로 구분하세요)", INPUT_DELIMITER));
+        System.out.printf("실행 결과를 입력하세요. (결과는  쉼표(%s)로 구분하세요)" + System.lineSeparator(), INPUT_DELIMITER);
 
         String rawResults = scanner.nextLine();
         return Arrays.stream(rawResults.split(INPUT_DELIMITER))

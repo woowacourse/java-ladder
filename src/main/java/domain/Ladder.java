@@ -8,6 +8,7 @@ import utils.NumberGenerator;
 
 public class Ladder {
 
+    public static final int LEFTMOST_POSITION = 0;
     private final List<Line> lines;
     private final LadderHeight ladderHeight;
 
@@ -51,7 +52,7 @@ public class Ladder {
     }
 
     private void getLineConnectionStatus(Boolean[] isConnectedAt, Line line) {
-        for (int i = 0; i < line.points().size(); i++) {
+        for (int i = 0; i < line.width(); i++) {
             getPointConnectionStatus(isConnectedAt, line, i);
         }
     }
@@ -63,35 +64,35 @@ public class Ladder {
     }
 
     public int getResultPositionOf(int startPosition) {
-        int horizontalPosition = startPosition;
+        Position position = new Position(startPosition);
         for (Line line : lines) {
-            horizontalPosition = getNextLineHorizontalPosition(line, horizontalPosition);
+            moveToNextLine(line, position);
         }
-        return horizontalPosition;
+        return position.value();
     }
 
-    private int getNextLineHorizontalPosition(Line line, int horizontalPosition) {
-        if (isRightPassable(line, horizontalPosition)) {
-            return horizontalPosition + 1;
+    private void moveToNextLine(Line line, Position position) {
+        if (isRightPassable(line, position.value())) {
+            position.moveToRight();
+            return;
         }
-        if (isLeftPassable(line, horizontalPosition)) {
-            return horizontalPosition - 1;
+        if (isLeftPassable(line, position.value())) {
+            position.moveToLeft();
         }
-        return horizontalPosition;
     }
 
-    private boolean isRightPassable(Line line, int horizontalPosition) {
-        if (horizontalPosition == line.width()) {
+    private boolean isRightPassable(Line line, int position) {
+        if (position == line.width()) {
             return false;
         }
-        return line.points().get(horizontalPosition).isPassable();
+        return line.points().get(position).isPassable();
     }
 
-    private boolean isLeftPassable(Line line, int horizontalPosition) {
-        if (horizontalPosition == 0) {
+    private boolean isLeftPassable(Line line, int position) {
+        if (position == LEFTMOST_POSITION) {
             return false;
         }
-        return line.points().get(horizontalPosition - 1).isPassable();
+        return line.points().get(position - 1).isPassable();
     }
 
     public List<Line> lines() {
