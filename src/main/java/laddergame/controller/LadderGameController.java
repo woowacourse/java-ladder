@@ -60,10 +60,10 @@ public class LadderGameController {
         Power power = inputView.readReGame();
         if (power == Power.RE_GAME) {
             run();
-        }
-        if (power == Power.PRINT) {
+        } else if (power == Power.PRINT) {
             printReward(ladderGame);
+        } else {
+            inputView.closeScanner();
         }
-        inputView.closeScanner();
     }
 }
