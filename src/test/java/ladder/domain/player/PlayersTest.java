@@ -73,39 +73,11 @@ public class PlayersTest {
     }
 
     @Test
-    @DisplayName("타겟 플레이어 생성 테스트")
-    void createTargetPlayers() {
-        Players createPlayers = Players.create(correctPlayerNames);
-
-        Players targetPlayers = createPlayers.createTargetPlayers(List.of("crong", "honux"));
-
-        assertThat(targetPlayers.getPlayers().get(0)).isEqualTo(new Player(new Name("crong")));
-        assertThat(targetPlayers.getPlayers().get(1)).isEqualTo(new Player(new Name("honux")));
-    }
-
-    @Test
-    @DisplayName("타겟 플레이어 생성 시, 중복 이름 예외 테스트")
-    void createTargetDuplicateExceptionPlayers() {
-        Players createPlayers = Players.create(correctPlayerNames);
-
-        assertThatThrownBy(() -> createPlayers.createTargetPlayers(List.of("crong", "crong")))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("타겟 플레이어 생성 시, 없는 이름 예외 테스트")
-    void createTargetDoesNotExistExceptionPlayers() {
-        Players createPlayers = Players.create(correctPlayerNames);
-
-        assertThatThrownBy(() -> createPlayers.createTargetPlayers(List.of("crong", "aaaa")))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
     @DisplayName("플레이어 이름 중 all 이 있으면 예외 발생")
     void createPlayersContainsAllExceptionTest() {
         List<String> playerNames = List.of("pobi", "crong", "all");
 
         assertThatThrownBy(() -> Players.create(playerNames)).isInstanceOf(IllegalArgumentException.class);
     }
+
 }
