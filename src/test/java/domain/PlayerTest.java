@@ -2,7 +2,7 @@ package domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import domain.Ladder.Step;
+import domain.ladder.Step;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

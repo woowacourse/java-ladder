@@ -1,6 +1,5 @@
-package domain.Ladder;
+package domain.ladder;
 
-import domain.Step;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,7 +7,7 @@ public class Line {
 
     private final List<Step> steps;
 
-    public Line(final List<Step> steps){
+    public Line(final List<Step> steps) {
         this.steps = steps;
     }
 

@@ -1,7 +1,5 @@
-package domain.Ladder;
+package domain.ladder;
 
-import domain.Ladder.Line;
-import domain.Step;
 import java.util.ArrayList;
 import java.util.List;
 import util.BooleanGenerator;

@@ -1,6 +1,6 @@
 package domain;
 
-import domain.Ladder.Step;
+import domain.ladder.Step;
 
 public class Player {
 
