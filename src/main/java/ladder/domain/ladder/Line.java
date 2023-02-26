@@ -21,16 +21,16 @@ public class Line {
     }
 
     public Position findNextPosition(Position playerPosition) {
-        if (existLeft(playerPosition)) {
+        if (canMoveLeft(playerPosition)) {
             return new Position(playerPosition.getValue() - 1);
         }
-        if (existRight(playerPosition)) {
+        if (canMoveRight(playerPosition)) {
             return new Position(playerPosition.getValue() + 1);
         }
         return playerPosition;
     }
 
-    private boolean existLeft(Position playerPosition) {
+    private boolean canMoveLeft(Position playerPosition) {
         int leftPosition = playerPosition.getValue() - 1;
         if (leftPosition < 0) {
             return false;
@@ -38,7 +38,7 @@ public class Line {
         return Step.isExist(steps.get(leftPosition));
     }
 
-    private boolean existRight(Position playerPosition) {
+    private boolean canMoveRight(Position playerPosition) {
         int rightPosition = playerPosition.getValue();
         if (rightPosition >= lineLength) {
             return false;
