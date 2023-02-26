@@ -35,4 +35,23 @@ class SimpleLinkedListTest {
         });
     }
 
+    @DisplayName("SimpleLinkedList 범위 내부의 원소 설정 테스트")
+    @Test
+    void SimpleLinkedList_범위_내부의_원소_재설정_테스트() {
+        SimpleLinkedList linkedList = new SimpleLinkedList();
+        final String beforeValue = "before";
+        final String setValue = "after";
+        linkedList.add(beforeValue);
+
+        Assertions.assertEquals(beforeValue, linkedList.set(0, setValue));
+    }
+
+    @DisplayName("SimpleLinkedList 범위를 벗어나는 특정 인덱스의 원소 재설정 실패 테스트")
+    @Test
+    void SimpleLinkedList_잘못된_범위_인덱스의_원소_설정_실패_테스트() {
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> {
+                    new SimpleLinkedList().set(1, "hello");
+                });
+    }
 }

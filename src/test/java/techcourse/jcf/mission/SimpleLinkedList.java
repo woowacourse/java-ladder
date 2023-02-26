@@ -69,7 +69,16 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public String set(int index, String value) {
-        return null;
+        if (!(0 <= index && index < this.size)) {
+            throw new IllegalArgumentException("인덱스는 범위를 벗어날 수 없습니다.");
+        }
+        Node iterator = firstNode;
+        for (int i = 0; i < index; i++) {
+            iterator = iterator.getNext();
+        }
+        String oldValue = iterator.getValue();
+        iterator.setValue(value);
+        return oldValue;
     }
 
     @Override

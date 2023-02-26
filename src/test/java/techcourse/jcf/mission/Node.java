@@ -15,19 +15,26 @@ public class Node {
         this.next = node;
     }
 
-    public boolean isNextNull(){
-        if(Objects.isNull(next)){
+    public boolean isNextNull() {
+        if (Objects.isNull(next)) {
             return true;
         }
         return false;
     }
 
-    public Node getNext(){
+    public Node getNext() {
         return next;
     }
 
-    public void setNext(Node node){
+    public void setNext(Node node) {
         next = node;
     }
 
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
 }
