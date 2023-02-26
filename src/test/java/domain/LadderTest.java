@@ -4,15 +4,25 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import helper.StubTestDigitsGenerator;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
 public class LadderTest {
+    private static Ladder ladder;
+
+    @BeforeAll
+    static void set() {
+        StubTestDigitsGenerator randomDigitsGenerator = new StubTestDigitsGenerator(
+                List.of(1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0)
+        );
+        ladder = new Ladder(4, 3, randomDigitsGenerator);
+    }
+
     private final RandomDigitsGenerator randomDigitsGenerator = new RandomDigitsGenerator();
 
     @DisplayName("사다리를 생성한다.")
@@ -30,15 +40,37 @@ public class LadderTest {
                 .hasMessage("사다리 높이는 1부터 50까지 입니다.");
     }
 
-    @DisplayName("지정한 위치에 다리의 존재 여부 확인하기")
-    @ParameterizedTest
-    @CsvSource({"0,0,true", "0,1,false", "1,0,true", "1,1,false", "2,2,true", "3,0,false"})
-    void check_exist(int heightIndex, int widthIndex, boolean result) {
-        StubTestDigitsGenerator myRandomDigitsGenerator = new StubTestDigitsGenerator(
-                List.of(1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0)
-        );
-        Ladder ladder = new Ladder(4, 3, myRandomDigitsGenerator);
-        assertThat(ladder.isExist(heightIndex, widthIndex)).isEqualTo(result);
+    @DisplayName("위치를 받아 오른쪽에 다리가 있으면 건넌다.")
+    @Test
+    void move_bridge_to_right() {
+        Position position = new Position(0);
+        Line line = ladder.getLines().get(0);
+
+        ladder.move(line, position);
+
+        assertThat(position.getIndex()).isEqualTo(1);
+    }
+
+    @DisplayName("위치를 받아 왼쪽에 다리가 있으면 건넌다.")
+    @Test
+    void move_bridge_to_left() {
+        Position position = new Position(1);
+        Line line = ladder.getLines().get(0);
+
+        ladder.move(line, position);
+
+        assertThat(position.getIndex()).isEqualTo(0);
+    }
+
+    @DisplayName("위치를 받아 양쪽에 다리가 없는 경우 건너지 않는다.")
+    @Test
+    void move_bridge_stay() {
+        Position position = new Position(1);
+        Line line = ladder.getLines().get(2);
+
+        ladder.move(line, position);
+
+        assertThat(position.getIndex()).isEqualTo(1);
     }
 
 }
