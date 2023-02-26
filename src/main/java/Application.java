@@ -1,10 +1,12 @@
 import controller.MainController;
-import view.InputView;
-import view.OutputView;
+import utils.BooleanGenerator;
+import utils.RandomBooleanGenerator;
 
 public class Application {
     public static void main(String[] args) {
-        MainController mainController = new MainController(InputView.getInstance(), OutputView.getInstance());
+        BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
+        MainController mainController = new MainController(booleanGenerator);
+
         mainController.start();
     }
 }

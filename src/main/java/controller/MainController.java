@@ -1,29 +1,52 @@
 package controller;
 
-import domain.Height;
-import domain.LineSize;
-import domain.Lines;
-import domain.Names;
-import utils.booleanGenerator.RandomBooleanGenerator;
+import domain.game.LadderGame;
+import domain.game.Results;
+import domain.info.Info;
+import domain.info.Names;
+import domain.info.Rewards;
+import domain.ladder.Height;
+import domain.ladder.Ladder;
+import utils.BooleanGenerator;
 import view.InputView;
 import view.OutputView;
 
 public class MainController {
-    private static final RandomBooleanGenerator RANDOM_BOOLEAN_GENERATOR = new RandomBooleanGenerator();
+    private static final String END_COMMEND = "all";
 
-    private final InputView inputView;
-    private final OutputView outputView;
+    private final Info info;
+    private final Ladder ladder;
 
-    public MainController(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public MainController(final BooleanGenerator booleanGenerator) {
+        info = generateInfo();
+        ladder = generateLadder(booleanGenerator);
+    }
+
+    private static Info generateInfo() {
+        Names names = InputView.readNames();
+        Rewards rewards = InputView.readRewards();
+        return new Info(names, rewards);
+    }
+
+    private Ladder generateLadder(final BooleanGenerator booleanGenerator) {
+        Height height = InputView.readHeight();
+        return new Ladder(info.getNames(), height, booleanGenerator);
     }
 
     public void start() {
-        Names names = inputView.readNames();
-        Height height = inputView.readHeight();
-        LineSize lineSize = new LineSize(names.getPersonNumber());
-        Lines lines = new Lines(lineSize, height, RANDOM_BOOLEAN_GENERATOR);
-        outputView.printResult(names, lines);
+        OutputView.printLadderBoard(info, ladder);
+        LadderGame ladderGame = new LadderGame(info, ladder);
+        Results results = ladderGame.play();
+
+        showResult(results);
+    }
+
+    private void showResult(Results results) {
+        boolean isEnd = false;
+        while (!isEnd) {
+            String name = InputView.readShowName();
+            OutputView.printResult(name, info.getNames(), results);
+            isEnd = name.equals(END_COMMEND);
+        }
     }
 }
