@@ -12,4 +12,5 @@ public class Application {
                 new InputView(), new OutputView(), new RandomBarGenerator());
         ladderController.run();
     }
+
 }

@@ -31,7 +31,7 @@ public class PlayerName {
     }
 
     private void validateCommandName(String name) {
-        if(name.equals(COMMAND)) {
+        if (name.equals(COMMAND)) {
             throw new IllegalArgumentException(ERROR_SAME_AS_COMMAND);
         }
     }

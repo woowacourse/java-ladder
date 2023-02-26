@@ -34,4 +34,5 @@ public class Rewards {
                 .map(Reward::getName)
                 .collect(Collectors.toList());
     }
+
 }

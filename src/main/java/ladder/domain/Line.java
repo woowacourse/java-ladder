@@ -41,12 +41,11 @@ public class Line {
 
     public int findNextMovingOf(int currentIndex) {
         int left = currentIndex - 1;
-        int right = currentIndex;
 
         if (left >= 0 && bars.get(left).getValue()) {
             return MOVING_LEFT;
         }
-        if (right < bars.size() && bars.get(right).getValue()) {
+        if (currentIndex < bars.size() && bars.get(currentIndex).getValue()) {
             return MOVING_RIGHT;
         }
 

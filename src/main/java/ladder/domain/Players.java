@@ -72,7 +72,6 @@ public class Players {
         return result;
     }
 
-
     private enum ErrorMessage {
         DUPLICATED_PLAYERS_ERROR("플레이어의 이름이 중복됩니다."),
         NUMBER_OF_PLAYERS_ERROR("플레이어의 수는 %d명 이상 %d명 이하여야 합니다.", MINIMUM_COUNT_OF_PLAYERS, MAXIMUM_COUNT_OF_PLAYERS);
