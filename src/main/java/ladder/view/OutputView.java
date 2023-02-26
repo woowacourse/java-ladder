@@ -1,8 +1,11 @@
 package ladder.view;
 
 import java.util.List;
+import java.util.Map;
 import ladder.domain.Bar;
+import ladder.domain.Item;
 import ladder.domain.Line;
+import ladder.domain.Player;
 
 public class OutputView {
     private static final String WIDTH_PREFIX = "    ";
@@ -10,29 +13,28 @@ public class OutputView {
     private static final String MOVABLE_BAR = "|-----";
     private static final String IMMOVABLE_BAR = "|     ";
     private static final String BLANK = " ";
-    private static final int DEFAULT_NAME_LENGTH = 7;
+    private static final int DEFAULT_NAME_LENGTH = 6;
 
-    public static void printPlayers(List<String> playerNames) {
-        System.out.print(playerNames.get(0));
-        for (int i = 1; i < playerNames.size(); i++) {
-            printNameOnSquares(playerNames.get(i));
+    public void printPlayers(List<String> playerNames) {
+        for (String playerName : playerNames) {
+            printNameOnSquares(playerName);
         }
         System.out.println();
     }
 
-    private static void printNameOnSquares(String playerName) {
+    private void printNameOnSquares(String playerName) {
         int nameLength = playerName.length();
         System.out.print(BLANK.repeat(DEFAULT_NAME_LENGTH - nameLength));
         System.out.print(playerName);
     }
 
-    public static void printLadder(List<Line> lines) {
+    public void printLadder(List<Line> lines) {
         for (Line line : lines) {
             printLine(line);
         }
     }
 
-    private static void printLine(Line line) {
+    private void printLine(Line line) {
         System.out.print(WIDTH_PREFIX);
         for (Bar bar : line.getBars()) {
             printBar(bar);
@@ -40,11 +42,39 @@ public class OutputView {
         System.out.println(WIDTH_SUFFIX);
     }
 
-    private static void printBar(Bar bar) {
+    private void printBar(Bar bar) {
         if (bar.isMovable()) {
             System.out.print(MOVABLE_BAR);
             return;
         }
         System.out.print(IMMOVABLE_BAR);
+    }
+
+    public void printItems(List<String> itemNames) {
+        for (String itemName : itemNames) {
+            printNameOnSquares(itemName);
+        }
+        System.out.println();
+    }
+
+    public void printResult(Map<Player, Item> result) {
+        printResultMessage();
+        if (result.size() != 1) {
+            printAllResult(result);
+            return;
+        }
+        for (Player player : result.keySet()) {
+            System.out.println(result.get(player).getName());
+        }
+    }
+
+    private void printAllResult(Map<Player, Item> result) {
+        for (Player player : result.keySet()) {
+            System.out.println(player.getName() + " : " + result.get(player).getName());
+        }
+    }
+
+    private void printResultMessage() {
+        System.out.println("실행 결과");
     }
 }

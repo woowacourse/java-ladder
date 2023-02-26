@@ -1,12 +1,12 @@
-package ladder.utils;
+package ladder.domain;
 
 import java.util.Random;
 
-public class BooleanGenerator implements RandomGenerator<Boolean> {
+public class RandomBooleanGenerator implements BooleanGenerator {
     private static final Random RANDOM = new Random();
 
     @Override
-    public Boolean generate() {
+    public boolean generate() {
         return RANDOM.nextBoolean();
     }
 }

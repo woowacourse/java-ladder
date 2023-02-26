@@ -1,40 +1,53 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
-import ladder.utils.BooleanGenerator;
-import ladder.utils.RandomGenerator;
 
 public class Line {
     private final List<Bar> bars;
 
-    public Line(int size) {
-        this(size, new BooleanGenerator());
+    private Line(List<Bar> bars) {
+        this.bars = bars;
     }
 
-    public Line(int size, RandomGenerator<Boolean> randomGenerator) {
-        this.bars = generateBars(size, randomGenerator);
-    }
-
-    private List<Bar> generateBars(int size, RandomGenerator<Boolean> randomGenerator) {
+    public static Line generate(int size, BooleanGenerator booleanGenerator) {
         Deque<Bar> bars = new LinkedList<>();
-        for (int i = 0; i < size; i++) {
-            bars.add(getAppropriateBar(bars, randomGenerator));
+        while (bars.size() < size) {
+            bars.add(getAppropriateBar(bars, booleanGenerator));
         }
-        return new ArrayList<>(bars);
+        return new Line(List.copyOf(bars));
     }
 
-    private Bar getAppropriateBar(Deque<Bar> bars, RandomGenerator<Boolean> randomGenerator) {
+    private static Bar getAppropriateBar(Deque<Bar> bars, BooleanGenerator booleanGenerator) {
         if (bars.isEmpty() || bars.getLast().isImmovable()) {
-            return Bar.of(randomGenerator.generate());
+            return Bar.of(booleanGenerator.generate());
         }
         return Bar.IMMOVABLE;
+    }
+
+    public Direction getDirection(Position currentPosition) {
+        int position = currentPosition.getValue();
+        return Direction.of(hasLeftBar(position), hasRightBar(position));
+    }
+
+    private boolean hasRightBar(int position) {
+        if (position == bars.size()) {
+            return false;
+        }
+        return bars.get(position).isMovable();
+    }
+
+    private boolean hasLeftBar(int position) {
+        if (position == 0) {
+            return false;
+        }
+        return bars.get(position - 1).isMovable();
     }
 
     public List<Bar> getBars() {
         return Collections.unmodifiableList(bars);
     }
+
 }
