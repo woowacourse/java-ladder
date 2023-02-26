@@ -2,7 +2,7 @@ package domain;
 
 import java.util.regex.Pattern;
 
-public class PlayerName {
+public class Player {
 
     private static final int PLAYER_NAME_MIN_SIZE_INCLUSIVE = 1;
     private static final int PLAYER_NAME_MAX_SIZE_INCLUSIVE = 5;
@@ -11,11 +11,13 @@ public class PlayerName {
     private static final String VALID_WORD_REGEX = "(\\w)+";
     private static final Pattern PLAYER_NAME_PATTERN = Pattern.compile(VALID_WORD_REGEX);
 
-    private final String playerName;
+    private final String name;
+    private int standingLine;
 
-    public PlayerName(final String playerName) {
-        validate(playerName);
-        this.playerName = playerName;
+    public Player(final String name, int standingLine) {
+        validate(name);
+        this.name = name;
+        this.standingLine = standingLine;
     }
 
     public void validate(String playerName) {
@@ -30,9 +32,13 @@ public class PlayerName {
     }
 
     private void validateWord(String playerName) {
-        if (!PLAYER_NAME_PATTERN.matcher(playerName).matches()) {
+        if (isNotMatches(playerName)) {
             throw new IllegalArgumentException(VALUE_ERROR_MESSAGE);
         }
+    }
+
+    private boolean isNotMatches(String playerName) {
+        return !PLAYER_NAME_PATTERN.matcher(playerName).matches();
     }
 
     private boolean isOutOfRange(String playerName) {
@@ -40,8 +46,27 @@ public class PlayerName {
                 && playerName.length() <= PLAYER_NAME_MAX_SIZE_INCLUSIVE);
     }
 
-    public String getPlayerName() {
-        return this.playerName;
+    public void move(Point point) {
+        if (point.matchDirection(Direction.LEFT_DOWN)) {
+            standingLine--;
+        }
+
+        if (point.matchDirection(Direction.RIGHT_DOWN)) {
+            standingLine++;
+        }
+    }
+
+    public boolean isSameName(String name) {
+        return this.name
+                .equals(name);
+    }
+
+    public int getStandingLine() {
+        return this.standingLine;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
 }

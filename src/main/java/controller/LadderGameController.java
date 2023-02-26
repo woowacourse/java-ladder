@@ -1,8 +1,13 @@
 package controller;
 
+import domain.Command;
+import domain.CommandCountController;
 import domain.Height;
-import domain.PlayerNames;
+import domain.Players;
+import domain.Results;
+import domain.Rewards;
 import domain.ladder.Ladder;
+import domain.ladder.LadderGame;
 import util.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -20,19 +25,33 @@ public class LadderGameController {
     }
 
     public void run() {
-        PlayerNames playerNames = PlayerNames.from(inputView.requestPlayerNames());
+        Players players = Players.from(inputView.requestPlayerNames());
+        Rewards rewards = Rewards.from(players.getSize(), inputView.requestRewards());
         Height height = new Height(inputView.requestLadderHeight());
 
-        Ladder ladder = Ladder.of(playerNames, height, randomNumberGenerator);
+        Ladder ladder = Ladder.of(players.getSize(), height, randomNumberGenerator);
         ladder.buildBridges();
-
-        printLadderGameResult(playerNames, ladder);
+        LadderGame ladderGame = new LadderGame(ladder, players, rewards);
+        printLadderInitialState(players, ladder, rewards);
+        printResult(ladderGame);
     }
 
-    private void printLadderGameResult(PlayerNames playerNames, Ladder ladder) {
-        outputView.printResultPrefix();
-        outputView.printPlayerNames(playerNames);
-        outputView.printResult(ladder);
+    private void printResult(LadderGame ladderGame) {
+        CommandCountController commandCountController = new CommandCountController();
+
+        while (commandCountController.isCommandCountRemain()) {
+            Command command = new Command(inputView.requestCommand());
+            Results results = ladderGame.getResults(command);
+            outputView.printResult(results);
+            commandCountController.execute(command);
+        }
+    }
+
+    private void printLadderInitialState(Players players, Ladder ladder, Rewards rewards) {
+        outputView.printLadderResultPrefix();
+        outputView.printNames(players.getPlayerNames());
+        outputView.printLadder(ladder);
+        outputView.printNames(rewards.getRewardNames());
     }
 
     public void printError(Exception exception) {
