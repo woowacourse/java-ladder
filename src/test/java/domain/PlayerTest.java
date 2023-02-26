@@ -47,7 +47,7 @@ class PlayerTest {
             player.move(Step.RIGHT);
 
             //then
-            assertThat(player.getPosition().getPosition())
+            assertThat(player.getPosition())
                     .isEqualTo(1);
         }
     }
