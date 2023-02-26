@@ -1,11 +1,11 @@
 package ladder.domain;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class Player {
     private static final int MAX_NAME_LENGTH = 5;
-    private static final String[] BLACKLIST_NAME = {"all"};
+    private static final List<String> BLACKLIST_NAME = List.of("all");
 
     private final String name;
 
@@ -40,13 +40,9 @@ public class Player {
     }
 
     private void validateBlacklist(String name) {
-        if (isInBlacklist(name)) {
+        if (BLACKLIST_NAME.contains(name)) {
             throw new IllegalArgumentException("[ERROR] 해당 이름으로 만들 수 없습니다.");
         }
-    }
-
-    private static boolean isInBlacklist(String name) {
-        return Arrays.asList(BLACKLIST_NAME).contains(name);
     }
 
     public boolean isNameMatch(String name) {
