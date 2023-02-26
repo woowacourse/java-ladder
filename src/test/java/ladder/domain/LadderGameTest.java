@@ -11,10 +11,8 @@ import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
-class ResultTest {
+class LadderGameTest {
 
     private Players players;
     private Ladder ladder;
@@ -30,20 +28,13 @@ class ResultTest {
     }
 
     @Test
-    @DisplayName("사다리 결과를 생성한다.")
-    void should_generate_result() {
-        final Result result = Result.of(players, ladder, prizes);
+    @DisplayName("사다리 결과를 확인한다.")
+    void should_get_result() {
+        final LadderGame ladderGame = new LadderGame(players, ladder, prizes);
 
-        assertThat(result.extract("pobi")).isEqualTo("3000");
-        assertThat(result.extract("crong")).isEqualTo("꽝");
-    }
+        final LadderResult ladderResult = ladderGame.getResult();
 
-    @ParameterizedTest(name = "입력: {0}, 결과: {1}")
-    @CsvSource(value = {"pobi:true", "honux:false"}, delimiter = ':')
-    @DisplayName("사다리 결과를 확인할 수 있는 대상인지 판별한다.")
-    void check_valid_result_target(final String target, final boolean expected) {
-        final Result result = Result.of(players, ladder, prizes);
-
-        assertThat(result.exist(target)).isEqualTo(expected);
+        assertThat(ladderResult.extract("pobi")).isEqualTo("3000");
+        assertThat(ladderResult.extract("crong")).isEqualTo("꽝");
     }
 }

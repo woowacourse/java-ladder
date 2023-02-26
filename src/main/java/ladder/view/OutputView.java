@@ -10,7 +10,7 @@ import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Players;
 import ladder.domain.Prizes;
-import ladder.domain.Result;
+import ladder.domain.LadderResult;
 
 public class OutputView {
 
@@ -74,9 +74,9 @@ public class OutputView {
         System.out.println(getFormattedNames(resultNames));
     }
 
-    public void printResult(final Result result) {
+    public void printResult(final LadderResult ladderResult) {
         System.out.println(LINE_BREAK + EXECUTION_RESULT);
-        final Map<String, String> value = result.getValue();
+        final Map<String, String> value = ladderResult.getValue();
         for (final String key : value.keySet()) {
             System.out.println(format("{0} : {1}", key, value.get(key)));
         }

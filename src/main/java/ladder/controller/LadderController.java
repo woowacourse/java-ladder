@@ -4,9 +4,10 @@ import java.util.List;
 import java.util.Optional;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
+import ladder.domain.LadderGame;
+import ladder.domain.LadderResult;
 import ladder.domain.Players;
 import ladder.domain.Prizes;
-import ladder.domain.Result;
 import ladder.domain.Retry;
 import ladder.domain.generator.RandomDirectionGenerator;
 import ladder.view.InputView;
@@ -30,9 +31,9 @@ public class LadderController {
         final Height height = createHeight(new Retry(5));
         final Ladder ladder = Ladder.of(new RandomDirectionGenerator(), players, height);
         outputView.printLadderGame(players, ladder, prizes);
-        final Result result = Result.of(players, ladder, prizes);
-        final String target = createTarget(new Retry(5), result);
-        printResult(result, target);
+        final LadderGame ladderGame = new LadderGame(players, ladder, prizes);
+        final LadderResult ladderResult = ladderGame.getResult();
+        printResult(ladderResult);
     }
 
     private Players createPlayers(final Retry retry) {
@@ -101,30 +102,31 @@ public class LadderController {
         return Optional.empty();
     }
 
-    private String createTarget(final Retry retry, final Result result) {
+    private String createTarget(final Retry retry, final LadderResult ladderResult) {
         checkCount(retry);
-        final Optional<String> target = readTarget(result);
+        final Optional<String> target = readTarget(ladderResult);
         if (target.isEmpty()) {
             retry.decrease();
-            return createTarget(retry, result);
+            return createTarget(retry, ladderResult);
         }
         return target.get();
     }
 
-    private Optional<String> readTarget(final Result result) {
+    private Optional<String> readTarget(final LadderResult ladderResult) {
         final String target = inputView.readTarget();
-        if (target.equals(ALL_COMMAND) || result.exist(target)) {
+        if (target.equals(ALL_COMMAND) || ladderResult.exist(target)) {
             return Optional.of(target);
         }
-        outputView.printErrorMessage("결과를 확인할 수 없는 대상입니다. 존재하는 대상: " + result.getValue().keySet());
+        outputView.printErrorMessage("결과를 확인할 수 없는 대상입니다. 존재하는 대상: " + ladderResult.getValue().keySet());
         return Optional.empty();
     }
 
-    private void printResult(final Result result, final String target) {
+    private void printResult(final LadderResult ladderResult) {
+        final String target = createTarget(new Retry(5), ladderResult);
         if (target.equals(ALL_COMMAND)) {
-            outputView.printResult(result);
+            outputView.printResult(ladderResult);
             return;
         }
-        outputView.printResult(result.extract(target));
+        outputView.printResult(ladderResult.extract(target));
     }
 }
