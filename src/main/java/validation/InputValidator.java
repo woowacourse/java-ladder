@@ -1,7 +1,6 @@
 package validation;
 
 import exception.InvalidLadderHeightException;
-import exception.InvalidPlayerNameException;
 import exception.NullOrBlankInputException;
 
 public class InputValidator {

@@ -1,6 +1,5 @@
 package view;
 
-import domain.Player;
 import domain.Players;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
