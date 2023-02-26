@@ -106,7 +106,7 @@ public class LadderGameApplication {
         while (true) {
             ResultRequestDto request = inputView.readSpecificResult();
 
-            if (request.isAll()) {
+            if (request.isEveryResultsRequest()) {
                 printEveryPlayerResult(ladderGame);
                 return;
             }
@@ -121,8 +121,8 @@ public class LadderGameApplication {
     }
 
     private void printEveryPlayerResult(LadderGame ladderGame) {
-        List<GameResultDto> allPlayerResult = ladderGame.findAllPlayerResult();
-        outputView.printAllPlayerResult(allPlayerResult);
+        List<GameResultDto> results = ladderGame.findAllPlayerResult();
+        outputView.printAllPlayerResult(results);
     }
 
     private void printSinglePlayerResult(LadderGame ladderGame, ResultRequestDto request) {

@@ -8,7 +8,7 @@ public class ResultRequestDto {
         this.message = message;
     }
 
-    public boolean isAll() {
+    public boolean isEveryResultsRequest() {
         return message.equals("all");
     }
 
