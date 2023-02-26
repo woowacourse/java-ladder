@@ -55,8 +55,4 @@ public class Names {
     public List<Name> getNames() {
         return new ArrayList<>(names);
     }
-
-    public int getPersonNumber() {
-        return names.size();
-    }
 }

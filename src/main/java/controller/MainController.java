@@ -28,7 +28,7 @@ public class MainController {
         Names names = receiveNames();
         Missions missions = receiveMissions(names);
 
-        Ladder ladder = makeLadder(names.getPersonNumber());
+        Ladder ladder = makeLadder(names.size());
         printLadder(names, missions, ladder);
 
         LadderGame ladderGame = LadderGame.of(names, missions, ladder);
