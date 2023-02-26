@@ -24,7 +24,10 @@ public class Results {
 
     public Result getResultByColumn(Column column) {
         validateColumn(column);
-        return results.get(column.get());
+        return results.stream()
+                .filter(m -> m.getColumn().equals(column))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("결과를 찾을 수 없습니다."));
     }
 
     public List<Result> getResults() {
