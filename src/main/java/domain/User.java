@@ -9,9 +9,13 @@ public class User {
     private final Name name;
     private final Position position;
 
-    public User(Name name, Position position) {
+    private User(Name name, Position position) {
         this.name = name;
         this.position = position;
+    }
+
+    public static User of(Name name, Position position) {
+        return new User(name, position);
     }
 
     public void movePosition(List<Integer> numbers) {

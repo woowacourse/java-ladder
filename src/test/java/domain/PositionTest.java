@@ -16,7 +16,7 @@ class PositionTest {
 
     @BeforeEach
     void setUp() {
-        position = new Position(3);
+        position = Position.from(3);
     }
 
     @DisplayName("사용자의 위치는 입력되는 수가 1만큼 작으면 감소하고 동일한 경우 증가, 이 외에는 변하지 않는다.")

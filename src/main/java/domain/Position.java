@@ -10,8 +10,12 @@ public class Position {
 
     private int position;
 
-    public Position(int position) {
+    private Position(int position) {
         this.position = position;
+    }
+
+    public static Position from(int position) {
+        return new Position(position);
     }
 
     public void move(int number) {

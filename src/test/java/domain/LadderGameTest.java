@@ -14,11 +14,11 @@ class LadderGameTest {
 
     @BeforeEach
     void setUp() {
-        Ladder ladder = Ladder.of(new Height(5), 3);
-        Users users = Users.of(List.of("pobi", "joy", "crong"));
+        Ladder ladder = Ladder.of(Height.from(5), 3);
+        Users users = Users.from(List.of("pobi", "joy", "crong"));
         Rewards rewards = Rewards.of(List.of("꽝", "3000", "2000"), 3);
 
-        ladderGame = new LadderGame(ladder, users, rewards);
+        ladderGame = LadderGame.of(ladder, users, rewards);
     }
 
     @DisplayName("인덱스를 통해 실행 결과를 조회한다.")

@@ -14,9 +14,9 @@ class UserTest {
 
     @BeforeEach
     void setUp() {
-        user = new User(
-            new Name("joy"),
-            new Position(0));
+        user = User.of(
+            Name.from("joy"),
+            Position.from(0));
     }
 
     @DisplayName("입력 받은 수들 중에 현재 사용자의 위치와 동일하거나 1만큼 작은 경우 위치가 변화한다.")

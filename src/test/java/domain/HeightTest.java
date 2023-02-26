@@ -10,14 +10,14 @@ class HeightTest {
     @DisplayName("1 이상입니다.")
     @Test
     public void heightRangeTest_1() {
-        Assertions.assertDoesNotThrow(() -> new Height(1));
+        Assertions.assertDoesNotThrow(() -> Height.from(1));
     }
 
     @DisplayName("1 미만일 때 예외가 발생합니다.")
     @Test
     public void heightRangeTest_0() {
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> new Height(0));
+                () -> Height.from(0));
     }
 
 }

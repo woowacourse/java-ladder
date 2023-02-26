@@ -25,7 +25,7 @@ public class LadderGameController {
         Users users = getUsers();
         Rewards rewards = getRewards(users.size());
         Ladder ladder = getLadder(users.size());
-        LadderGame ladderGame = new LadderGame(ladder, users, rewards);
+        LadderGame ladderGame = LadderGame.of(ladder, users, rewards);
         ladderGame.moveUsers();
 
         printLadderResult(ladder, users, rewards);
@@ -63,14 +63,14 @@ public class LadderGameController {
         outputView.printEnterUserNotice();
         List<String> userNames = inputView.inputUsernames();
 
-        return Users.of(userNames);
+        return Users.from(userNames);
     }
 
     private Height getLadderHeight() {
         outputView.printEnterHeightNotice();
         int height = inputView.inputHeight();
 
-        return new Height(height);
+        return Height.from(height);
     }
 
     private void printLadderResult(Ladder ladder, Users users, Rewards rewards) {

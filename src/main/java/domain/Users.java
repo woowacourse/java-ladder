@@ -14,11 +14,11 @@ public class Users {
         this.users = users;
     }
 
-    public static Users of(List<String> userNames) {
+    public static Users from(List<String> userNames) {
         List<User> users = new ArrayList<>();
 
         for (int i = 0; i < userNames.size(); i++) {
-            users.add(new User(new Name(userNames.get(i)), new Position(i)));
+            users.add(User.of(Name.from(userNames.get(i)), Position.from(i)));
         }
 
         return new Users(users);

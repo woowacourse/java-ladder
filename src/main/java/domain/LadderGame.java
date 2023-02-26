@@ -10,10 +10,14 @@ public class LadderGame {
     private final Users users;
     private final Rewards rewards;
 
-    public LadderGame(Ladder ladder, Users users, Rewards rewards) {
+    private LadderGame(Ladder ladder, Users users, Rewards rewards) {
         this.ladder = ladder;
         this.users = users;
         this.rewards = rewards;
+    }
+
+    public static LadderGame of(Ladder ladder, Users users, Rewards rewards) {
+        return new LadderGame(ladder, users, rewards);
     }
 
     public String findUserReward(int index) {
