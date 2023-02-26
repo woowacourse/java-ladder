@@ -21,36 +21,36 @@ public class LadderGameController {
         GameResult gameResult = game.computeResult();
 
         while (gameStatus == GameStatus.PLAYED) {
-            String keyword = InputView.askFindResultKeyword();
-            showGameResult(gameResult, keyword);
+            String keyword = InputView.askSearchKeyword();
+            searchFromGameResult(gameResult, keyword);
         }
     }
 
     private Ladder play() {
         List<String> players = InputView.askPlayerNames();
         game = new LadderGame(players);
-        List<String> results = InputView.askLadderResults();
+        List<String> items = InputView.askDestinationItems();
         int height = InputView.askLadderHeight();
-        game.generateLadder(height, results);
+        game.generateLadder(height, items);
         return game.ladder();
     }
 
     private void showLadderResult(Ladder ladder) {
         gameStatus = GameStatus.PLAYED;
-        OutputView.showLadderResult(game.playerNames(), ladder.toLadderLines(), ladder.toResults());
+        OutputView.showLadderResult(game.playerNames(), ladder.toLadderLines(), ladder.toDestinationItems());
     }
 
-    private void showGameResult(GameResult gameResult, String keyword) {
+    private void searchFromGameResult(GameResult gameResult, String keyword) {
         validateGameStatus(gameStatus);
         if (Objects.equals(FindCommand.QUIT, keyword)) {
             gameStatus = GameStatus.QUIT;
             return;
         }
         if (Objects.equals(FindCommand.FIND_ALL, keyword)) {
-            OutputView.showAllResultsByPlayer(gameResult.result());
+            OutputView.showAllItemsByPlayer(gameResult.result());
             return;
         }
-        OutputView.showResultByPlayer(gameResult.findByPlayerName(keyword));
+        OutputView.showItemByPlayer(gameResult.findByPlayerName(keyword));
     }
 
     private void validateGameStatus(GameStatus gameStatus) {

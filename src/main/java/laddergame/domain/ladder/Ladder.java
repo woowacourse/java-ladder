@@ -3,6 +3,8 @@ package laddergame.domain.ladder;
 import java.util.List;
 import java.util.stream.Collectors;
 import laddergame.domain.generator.RandomStepPointGenerator;
+import laddergame.domain.ladder.destination.Destination;
+import laddergame.domain.ladder.destination.Item;
 import laddergame.domain.ladder.line.Line;
 import laddergame.domain.ladder.line.LineWidth;
 import laddergame.util.ExceptionMessageFormatter;
@@ -18,21 +20,21 @@ public class Ladder {
         this.destination = destination;
     }
 
-    public static Ladder of(LineWidth width, LadderHeight height, List<Result> results) {
-        validateResults(width.get(), results.size());
+    public static Ladder of(LineWidth width, LadderHeight height, List<Item> items) {
+        validateItems(width.get(), items.size());
         LadderLines ladderLines = LadderLines.of(new RandomStepPointGenerator(), width, height);
-        Destination destination = new Destination(results);
+        Destination destination = new Destination(items);
         return new Ladder(ladderLines, destination);
     }
 
-    private static void validateResults(int linesWidth, int resultsCount) {
-        if (linesWidth != resultsCount) {
+    private static void validateItems(int linesWidth, int itemsCount) {
+        if (linesWidth != itemsCount) {
             String message = String.format("결과의 개수와 라인의 폭(%d)은 일치해야 합니다.", linesWidth);
-            throw new IllegalArgumentException(ExceptionMessageFormatter.format(message, resultsCount));
+            throw new IllegalArgumentException(ExceptionMessageFormatter.format(message, itemsCount));
         }
     }
 
-    public Result findResultByStartIndex(int startIndex) {
+    public Item findItemsByStartIndex(int startIndex) {
         IndexValidator.validateBounds(startIndex, lines.width(), "출발 위치가 사다리 폭보다 큽니다.");
         int destinationIndex = lines.findDestinationIndex(startIndex);
         return destination.get(destinationIndex);
@@ -42,10 +44,10 @@ public class Ladder {
         return lines.toLines();
     }
 
-    public List<String> toResults() {
-        return destination.results()
+    public List<String> toDestinationItems() {
+        return destination.items()
                 .stream()
-                .map(Result::getValue)
+                .map(Item::getValue)
                 .collect(Collectors.toList());
     }
 }

@@ -19,13 +19,13 @@ public class OutputView {
         System.out.println(LadderResultFormatter.extractLadderResult(players, lines, results));
     }
 
-    public static void showAllResultsByPlayer(Map<String, String> allResults) {
+    public static void showAllItemsByPlayer(Map<String, String> allResults) {
         System.out.println();
         System.out.println(MESSAGE_GAME_RESULT);
         allResults.forEach((name, result) -> System.out.printf(FORMAT_PLAYER_RESULT, name, result));
     }
 
-    public static void showResultByPlayer(String result) {
+    public static void showItemByPlayer(String result) {
         System.out.println();
         System.out.println(MESSAGE_GAME_RESULT);
         System.out.println(result);

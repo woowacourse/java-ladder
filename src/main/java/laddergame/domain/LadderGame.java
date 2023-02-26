@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import laddergame.domain.ladder.GameResult;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderHeight;
-import laddergame.domain.ladder.Result;
+import laddergame.domain.ladder.destination.Item;
 import laddergame.domain.ladder.line.LineWidth;
 import laddergame.domain.players.Players;
 
@@ -20,16 +20,16 @@ public class LadderGame {
         this.players = Players.of(playerNames);
     }
 
-    public void generateLadder(int height, List<String> resultValues) {
-        List<Result> results = resultValues.stream()
-                .map(Result::new)
+    public void generateLadder(int height, List<String> itemValues) {
+        List<Item> items = itemValues.stream()
+                .map(Item::new)
                 .collect(Collectors.toList());
-        this.ladder = Ladder.of(new LineWidth(players.size()), new LadderHeight(height), results);
+        this.ladder = Ladder.of(new LineWidth(players.size()), new LadderHeight(height), items);
     }
 
     public GameResult computeResult() {
         validateLadderStatus();
-        return new GameResult(findAllResultsByPlayer());
+        return new GameResult(findItemsByPlayer());
     }
 
     private void validateLadderStatus() {
@@ -38,16 +38,16 @@ public class LadderGame {
         }
     }
 
-    private Map<String, String> findAllResultsByPlayer() {
-        Map<String, String> allResults = new LinkedHashMap<>();
+    private Map<String, String> findItemsByPlayer() {
+        Map<String, String> result = new LinkedHashMap<>();
         players.getNames()
-                .forEach(name -> allResults.put(name, findResultByPlayerName(name)));
-        return allResults;
+                .forEach(name -> result.put(name, findItemByPlayerName(name)));
+        return result;
     }
 
-    private String findResultByPlayerName(String playerName) {
+    private String findItemByPlayerName(String playerName) {
         int startIndex = players.indexOf(playerName);
-        Result found = ladder.findResultByStartIndex(startIndex);
+        Item found = ladder.findItemsByStartIndex(startIndex);
         return found.getValue();
     }
 

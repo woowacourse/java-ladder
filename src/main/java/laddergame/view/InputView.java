@@ -10,7 +10,7 @@ public class InputView {
         return ConsoleReader.readLineByDelimiter(",");
     }
 
-    public static List<String> askLadderResults() {
+    public static List<String> askDestinationItems() {
         System.out.println();
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         return ConsoleReader.readLineByDelimiter(",");
@@ -22,7 +22,7 @@ public class InputView {
         return ConsoleReader.readNaturalNumber();
     }
 
-    public static String askFindResultKeyword() {
+    public static String askSearchKeyword() {
         System.out.println();
         System.out.println("결과를 보고 싶은 사람은?");
         return ConsoleReader.readLine();

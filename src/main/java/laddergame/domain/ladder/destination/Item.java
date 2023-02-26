@@ -1,10 +1,10 @@
-package laddergame.domain.ladder;
+package laddergame.domain.ladder.destination;
 
-public class Result {
+public class Item {
 
     private final String value;
 
-    public Result(String value) {
+    public Item(String value) {
         this.value = value;
     }
 

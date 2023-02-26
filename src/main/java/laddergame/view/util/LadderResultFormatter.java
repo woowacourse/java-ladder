@@ -13,14 +13,14 @@ public class LadderResultFormatter {
     private static final String STEP_EXIST = "-";
     private static final String STEP_NONE = " ";
 
-    public static String extractLadderResult(List<String> players, List<Line> lines, List<String> results) {
-        int pointWidth = computePointWidth(players, results);
+    public static String extractLadderResult(List<String> players, List<Line> lines, List<String> items) {
+        int pointWidth = computePointWidth(players, items);
 
         String formattedPlayers = " " + LadderResultFormatter.extractWords(players, pointWidth);
         String formattedLadder = lines.stream()
                 .map(line -> LadderResultFormatter.extractLine(line, pointWidth))
                 .collect(Collectors.joining(System.lineSeparator()));
-        String formattedResults = " " + LadderResultFormatter.extractWords(results, pointWidth);
+        String formattedResults = " " + LadderResultFormatter.extractWords(items, pointWidth);
 
         return String.join(System.lineSeparator(), formattedPlayers, formattedLadder, formattedResults);
     }
@@ -45,13 +45,13 @@ public class LadderResultFormatter {
     private static String extractLine(Line line, int pointWidth) {
         List<Direction> directions = line.toDirections();
 
-        StringJoiner result = new StringJoiner(VERTICAL, VERTICAL, VERTICAL);
+        StringJoiner extracted = new StringJoiner(VERTICAL, VERTICAL, VERTICAL);
         for (int i = 0; i < directions.size() - 1; i++) {
             Direction direction = directions.get(i);
             String stepPointFormat = toStepPointFormat(direction.getRightStepPoint(), pointWidth);
-            result.add(stepPointFormat);
+            extracted.add(stepPointFormat);
         }
-        return toStepPointFormat(StepPoint.NONE, pointWidth) + result;
+        return toStepPointFormat(StepPoint.NONE, pointWidth) + extracted;
     }
 
     private static String toStepPointFormat(StepPoint point, int pointWidth) {
