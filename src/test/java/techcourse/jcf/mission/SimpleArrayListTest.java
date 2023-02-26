@@ -56,5 +56,22 @@ class SimpleArrayListTest {
                 });
     }
 
+    @DisplayName("SimpleArrayList 범위 내부의 원소 반환 테스트")
+    @Test
+    void SimpleArrayList_범위_내부의_원소_반환_테스트() {
+        SimpleArrayList arrayList = new SimpleArrayList();
+        final String beforeValue = "before";
+        arrayList.add(beforeValue);
 
+        Assertions.assertEquals(beforeValue, arrayList.get(0));
+    }
+
+    @DisplayName("SimpleArrayList 범위를 벗어나는 특정 인덱스의 원소 반환 실패 테스트")
+    @Test
+    void SimpleArrayList_잘못된_범위_인덱스의_원소_반환_실패_테스트() {
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> {
+                    new SimpleArrayList().get(1);
+                });
+    }
 }

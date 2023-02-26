@@ -49,7 +49,10 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String get(int index) {
-        return null;
+        if (!(0 <= index && index < this.size)) {
+            throw new IllegalArgumentException("값을 가져올 수 있는 인덱스의 범위를 벗어났습니다.");
+        }
+        return values[index];
     }
 
     @Override
