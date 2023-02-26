@@ -2,12 +2,12 @@ package domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import java.util.List;
 
 public class PrizesTest {
     private static Players players = new Players(List.of("1", "2", "3", "4"));
