@@ -20,13 +20,13 @@ public class Line {
     }
 
     private void checkContinuous(List<Step> steps, int index) {
-        if (isContinuous(steps, index)) {
+        if (isContinuous(steps.get(index - 1), steps.get(index))) {
             throw new IllegalArgumentException("[ERROR] 라인에 Step이 연속될 수 없습니다.");
         }
     }
 
-    private boolean isContinuous(List<Step> steps, int index) {
-        return steps.get(index) == Step.EXIST && steps.get(index - 1) == Step.EXIST;
+    private boolean isContinuous(Step leftStep, Step rightStep) {
+        return leftStep == Step.EXIST && rightStep == Step.EXIST;
     }
 
     public int nextLineIndex(int index) {
