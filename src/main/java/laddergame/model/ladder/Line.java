@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class Line {
     private static final Random random = new Random();
+
     private final List<Point> line;
 
     public Line(int personCount) {
