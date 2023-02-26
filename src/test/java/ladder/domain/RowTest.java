@@ -1,8 +1,8 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
@@ -21,7 +21,8 @@ class RowTest {
 
     @Test
     void 길이가_2이상이면_예외가_발생하지_않음() {
-        assertDoesNotThrow(() -> Row.valueOf(2, new MockConnectionJudgement(true)));
+        assertThatCode(() -> Row.valueOf(2, new MockConnectionJudgement(true)))
+                .doesNotThrowAnyException();
     }
 
     @Test

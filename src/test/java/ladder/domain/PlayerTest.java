@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
@@ -13,7 +13,8 @@ class PlayerTest {
 
     @Test
     void 플레이어_생성() {
-        assertDoesNotThrow(() -> new Player("pobi", 0));
+        assertThatCode(() -> new Player("pobi", 0))
+                .doesNotThrowAnyException();
     }
 
     @Test

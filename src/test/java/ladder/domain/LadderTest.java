@@ -2,8 +2,8 @@ package ladder.domain;
 
 import static ladder.domain.Ladder.of;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -30,7 +30,8 @@ class LadderTest {
 
     @Test
     void 생성시_플레이어의_수가_2이상이면_예외가_발생하지_않음() {
-        assertDoesNotThrow(() -> of(2, 1, () -> true));
+        assertThatCode(() -> of(2, 1, () -> true))
+                .doesNotThrowAnyException();
     }
 
     @Test

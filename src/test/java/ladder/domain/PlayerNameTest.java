@@ -1,8 +1,8 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -17,7 +17,8 @@ class PlayerNameTest {
 
     @Test
     void 이름이_잘_생성됨() {
-        assertDoesNotThrow(() -> new PlayerName("pobi"));
+        assertThatCode(() -> new PlayerName("pobi"))
+                .doesNotThrowAnyException();
     }
 
     @Test

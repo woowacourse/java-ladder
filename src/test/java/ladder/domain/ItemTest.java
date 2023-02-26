@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -13,7 +13,8 @@ class ItemTest {
 
     @Test
     void 아이템이_잘_생성됨() {
-        assertDoesNotThrow(() -> new Item("pobi", 0));
+        assertThatCode(() -> new Item("pobi", 0))
+                .doesNotThrowAnyException();
     }
 
     @Test
