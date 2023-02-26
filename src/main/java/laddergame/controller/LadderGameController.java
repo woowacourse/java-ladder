@@ -10,6 +10,8 @@ import java.util.List;
 
 public class LadderGameController {
 
+    private static final String ALL_RESULT_COMMAND = "all";
+
     public void run() {
         final Players players = initPlayers();
         final Prizes prizes = initPrizes(players.size());
@@ -61,7 +63,7 @@ public class LadderGameController {
 
     private void repeatPrintPlayerResult(Result result) {
         String playerName = readPlayerNameForResult();
-        while (!playerName.equals("all")) {
+        while (!playerName.equals(ALL_RESULT_COMMAND)) {
             OutputView.printLadderGameResult(result.getResult(playerName));
             playerName = readPlayerNameForResult();
         }
