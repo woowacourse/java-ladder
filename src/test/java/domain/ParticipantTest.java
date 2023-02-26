@@ -3,8 +3,10 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
+import controller.LadderGameController;
 import domain.participants.Participant;
 import exception.NotEnglishAndNumberException;
+import exception.ladder.GameEndReservedWordException;
 import exception.participants.EmptyNameException;
 import exception.participants.InvalidPersonNameException;
 import java.util.stream.Stream;
@@ -43,6 +45,9 @@ class ParticipantTest {
                 .isExactlyInstanceOf(EmptyNameException.class)),
             dynamicTest("5자보다 긴 경우", () -> assertThatThrownBy(() -> new Participant("jamsil"))
                 .isExactlyInstanceOf(InvalidPersonNameException.class)),
+            dynamicTest("게임 종료 명령어가 이름일 때",
+                () -> assertThatThrownBy(() -> new Participant(LadderGameController.EXIT_RESERVED_WORD))
+                    .isExactlyInstanceOf(GameEndReservedWordException.class)),
             dynamicTest("영어와 숫자로 이루어지지 않은 경우", () -> assertThatThrownBy(() -> new Participant("인밸리드"))
                 .isExactlyInstanceOf(NotEnglishAndNumberException.class))
         );

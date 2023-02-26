@@ -1,6 +1,8 @@
 package domain.participants;
 
+import controller.LadderGameController;
 import exception.NotEnglishAndNumberException;
+import exception.ladder.GameEndReservedWordException;
 import exception.participants.EmptyNameException;
 import exception.participants.InvalidPersonNameException;
 import java.util.regex.Pattern;
@@ -9,17 +11,25 @@ public class Participant {
 
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
+    private static final String ONLY_ENGLISH_AND_NUMBER = "^[^0-9a-zA-Z]*$";
     private final String name;
-    private final Pattern compile = Pattern.compile("^[^0-9a-zA-Z]*$");
+    private final Pattern compile = Pattern.compile(ONLY_ENGLISH_AND_NUMBER);
 
     public Participant(String name) {
         validateName(name);
         this.name = name;
     }
 
-    private void validateName(String name) {
-        if (isBlank(name)) {
+    private void validateName(String name) throws IllegalArgumentException {
+        if (isEmpty(name)) {
             throw new EmptyNameException();
+        }
+        isInvalidName(name);
+    }
+
+    private void isInvalidName(String name) {
+        if (isGameEndReservedWord(name)) {
+            throw new GameEndReservedWordException();
         }
         if (isInvalidLength(name)) {
             throw new InvalidPersonNameException();
@@ -29,7 +39,7 @@ public class Participant {
         }
     }
 
-    private boolean isBlank(String name) {
+    private boolean isEmpty(String name) {
         return name == null || name.isBlank();
     }
 
@@ -39,6 +49,10 @@ public class Participant {
 
     private boolean isNotEnglishOrNumber(String name) {
         return compile.matcher(name).matches();
+    }
+
+    private boolean isGameEndReservedWord(String name) {
+        return name.equals(LadderGameController.EXIT_RESERVED_WORD);
     }
 
     public String getName() {

@@ -1,19 +1,23 @@
 package domain;
 
+import controller.LadderGameController;
 import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
 import domain.ladder.LadderPrizes;
 import domain.ladder.LadderSize;
 import domain.ladder.LineWeight;
 import domain.participants.Participants;
-import exception.ladder.GameEndException;
+import exception.ladder.GameEndReservedWordException;
 import exception.participants.NullNameException;
 import java.util.List;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestFactory;
 
 class GameResultTest {
 
@@ -64,21 +68,15 @@ class GameResultTest {
                 .isEqualTo(expected.get(index)));
     }
 
-    @DisplayName("존재하지 않는 참가자의 결과를 조회시 오류를 던진다.")
-    @Test
-    void noParticipant() {
-        //given
-        //when, then
-        Assertions.assertThatThrownBy(() -> gameResult.getResultByName("none"))
-            .isExactlyInstanceOf(NullNameException.class);
-    }
-
-    @DisplayName("exit 을 조회시 오류를 던진다.")
-    @Test
-    void findExit() {
-        //given
-        //when, then
-        Assertions.assertThatThrownBy(() -> gameResult.getResultByName("exit"))
-            .isExactlyInstanceOf(GameEndException.class);
+    @DisplayName("잘못된 입력으로 조회 할 떄")
+    @TestFactory
+    Stream<DynamicTest> invalidNameForResult() {
+        return Stream.of(DynamicTest.dynamicTest("존재하지 않는 참가자로 조회", () ->
+                Assertions.assertThatThrownBy(() -> gameResult.getResultByName("none"))
+                    .isExactlyInstanceOf(NullNameException.class)),
+            DynamicTest.dynamicTest("게임 종료 예약어로 참가자 조회", () ->
+                Assertions.assertThatThrownBy(() -> gameResult.getResultByName(LadderGameController.EXIT_RESERVED_WORD))
+                    .isExactlyInstanceOf(GameEndReservedWordException.class))
+        );
     }
 }

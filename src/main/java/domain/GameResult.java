@@ -1,10 +1,11 @@
 package domain;
 
+import controller.LadderGameController;
 import domain.ladder.Block;
 import domain.ladder.LadderPrize;
 import domain.ladder.Line;
 import domain.participants.Participant;
-import exception.ladder.GameEndException;
+import exception.ladder.GameEndReservedWordException;
 import exception.participants.NullNameException;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -72,8 +73,8 @@ public class GameResult {
     }
 
     public LadderPrize getResultByName(final String name) {
-        if (name.equals("exit")) {
-            throw new GameEndException();
+        if (name.equals(LadderGameController.EXIT_RESERVED_WORD)) {
+            throw new GameEndReservedWordException();
         }
         Optional<Participant> findParticipant = results.keySet().stream()
             .filter((participant) -> participant.getName().equals(name))
