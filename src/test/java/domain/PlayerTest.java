@@ -2,6 +2,7 @@ package domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import domain.Ladder.Step;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -14,11 +15,11 @@ class PlayerTest {
     class Generate {
 
         @Test
-        @DisplayName("이름과 시작 위치를 받아서 생성한다.")
+        @DisplayName("올바른 이름과 시작 올바른 시작 위치를 받아서 생성한다.")
         void generatePlayerCase() {
             //given
             Name name = new Name("pobi");
-            int startPosition = 0;
+            Position startPosition = new Position(0);
 
             //when
             Player player = new Player(name, startPosition);
@@ -33,19 +34,17 @@ class PlayerTest {
     @Nested
     @DisplayName("움직일 때 ")
     class MoveCase {
-
         @Test
-        @DisplayName(" 받은 값 만큼 위치를 옮긴다.")
+        @DisplayName(" 밟은 위치에 따라 해당 방향으로 위치를 옮긴다.")
         void givenPositionValue_thenMovePosition() {
             //given
-            Player player = new Player(new Name("Pobi"), 0);
+            Player player = new Player(new Name("Pobi"), new Position(0));
 
             //then
-            player.move(1);
+            player.move(Step.RIGHT);
 
             //then
-            assertThat(player)
-                    .extracting("currentColumnPosition")
+            assertThat(player.getPosition().getPosition())
                     .isEqualTo(1);
         }
     }
