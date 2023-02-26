@@ -12,23 +12,18 @@ import ladder.view.ResultView;
 public class LadderController {
 
     private Names playerNames;
-    private Names rewardNames;
-    private Ladder ladder;
     private LadderGame ladderGame;
 
     public void run() {
-        loadLadderData();
+        playerNames = Repeater.repeatIfError(this::inputPlayerNames, ResultView::printErrorMessage);
+        Names rewardNames = Repeater.repeatIfError(this::inputRewardNames,
+            ResultView::printErrorMessage);
+        Ladder ladder = Repeater.repeatIfError(this::inputRows, ResultView::printErrorMessage);
 
         ladderGame = new LadderGame(playerNames, ladder, rewardNames);
 
         ResultView.printResult(playerNames.toDto(), ladder.toDto(), rewardNames.toDto());
         repeatUntilQuit();
-    }
-
-    private void loadLadderData() {
-        playerNames = Repeater.repeatIfError(this::inputPlayerNames, ResultView::printErrorMessage);
-        rewardNames = Repeater.repeatIfError(this::inputRewardNames, ResultView::printErrorMessage);
-        ladder = Repeater.repeatIfError(this::inputRows, ResultView::printErrorMessage);
     }
 
     private Names inputPlayerNames() {

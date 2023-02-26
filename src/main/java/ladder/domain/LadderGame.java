@@ -7,19 +7,9 @@ import ladder.dto.ResultDto;
 
 public class LadderGame {
 
-    private Names players;
-    private Ladder ladder;
-    private Names rewards;
     private Map<Name, Name> ladderResult;
 
     public LadderGame(Names players, Ladder ladder, Names rewards) {
-        this.players = players;
-        this.ladder = ladder;
-        this.rewards = rewards;
-        generateLadderResult();
-    }
-
-    private void generateLadderResult() {
         ladderResult = new HashMap<>();
         for (int i = 0; i < players.findNamesCount(); i++) {
             ladderResult.put(
