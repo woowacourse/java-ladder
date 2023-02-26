@@ -102,7 +102,7 @@ public class LadderService {
         List<Prize> playerPrizes = players.stream()
                 .map(playerRepository::findIndexByPlayer)
                 .map(ladder::getLadderIndexResult)
-                .map(prizeRepository::findPrizeByIndex)
+                .map(prizeRepository::findByIndex)
                 .collect(toList());
         savePlayerResult(players, playerPrizes);
     }
