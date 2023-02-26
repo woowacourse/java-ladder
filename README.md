@@ -161,3 +161,8 @@
 
 1. `MissionTest`에서 `@NullSource`를 사용한 테스트를 하던 도중, `NullPointerException`이 발생하는데, 이것을 프로덕션 코드에서 `String.isBlank()` 메서드로
    받아서 `IllegalArgumentException`으로 처리하겠다고 하는데도, `IllegalArgumentException`이 아닌 `NullPointerException`이 계속해서 발생한다.
+
+2. `Missions` 클래스에서 `Collections.shuffle`에 대한 내용을 테스트하지 못했다. 
+   - api를 믿어볼까? 그렇다면 사실 많은 인구가 사용하는 이런 메서드까지 테스트해야 하나 의문이 들었다.
+   - 사실 안한게 아니라 못한거긴 하지만, 꼭 테스트 해야할까?
+   - 쿨하게 생략하고, 전체 리스트가 내가 저장한 아이들을 갖고 있는지, `contains`로만 테스트했다. 
