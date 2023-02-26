@@ -1,6 +1,6 @@
-package ladder.domain.prize;
+package ladder.domain.result;
 
-import ladder.domain.prize.exception.ResultNumberException;
+import ladder.domain.result.exception.ResultNumberException;
 
 import java.util.List;
 import java.util.stream.Collectors;

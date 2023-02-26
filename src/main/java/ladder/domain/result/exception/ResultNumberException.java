@@ -1,4 +1,4 @@
-package ladder.domain.prize.exception;
+package ladder.domain.result.exception;
 
 import ladder.common.CustomException;
 

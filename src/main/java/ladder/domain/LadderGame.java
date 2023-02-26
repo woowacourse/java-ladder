@@ -5,8 +5,8 @@ import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 import ladder.domain.player.PlayerName;
 import ladder.domain.player.Players;
-import ladder.domain.prize.Result;
-import ladder.domain.prize.Results;
+import ladder.domain.result.Result;
+import ladder.domain.result.Results;
 import ladder.domain.player.exception.NoSuchPlayerException;
 
 import java.util.*;

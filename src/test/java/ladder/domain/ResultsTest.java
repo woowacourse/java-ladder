@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import ladder.common.CustomException;
-import ladder.domain.prize.Results;
+import ladder.domain.result.Results;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

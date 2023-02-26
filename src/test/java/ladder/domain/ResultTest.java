@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import ladder.common.CustomException;
-import ladder.domain.prize.Result;
+import ladder.domain.result.Result;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatCode;

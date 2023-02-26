@@ -1,6 +1,6 @@
-package ladder.domain.prize;
+package ladder.domain.result;
 
-import ladder.domain.prize.exception.ResultNameLengthException;
+import ladder.domain.result.exception.ResultNameLengthException;
 
 public class Result {
 
