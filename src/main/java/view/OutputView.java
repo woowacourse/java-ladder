@@ -40,6 +40,8 @@ public class OutputView {
     }
 
     public void showTargetResult(String target, GameResult gameResult) {
+        if (target.equals("all"))
+            return;
         System.out.println(GAME_RESULT_SHOW_MESSAGE);
         LinkedHashMap<String, String> results = gameResult.getGameResult();
         printTargetResult(target, results.get(target));

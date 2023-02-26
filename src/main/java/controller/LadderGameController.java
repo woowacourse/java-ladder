@@ -8,7 +8,9 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class LadderGameController {
 
@@ -36,19 +38,21 @@ public class LadderGameController {
 
     private void showGameResult(GameResult gameResult) {
         List<String> playersName = new ArrayList<>(gameResult.getGameResult().keySet());
-        while(!playersName.isEmpty()) {
+        Set<String> checkedPlayer = new HashSet<>();
+        while(!gottenAllResult(checkedPlayer, playersName)) {
             String target = readValidatedTarget(playersName);
             outputView.showTargetResult(target, gameResult);
-            playersName = afterRemoveTarget(playersName, target);
+            checkedPlayer.add(target);
         }
         outputView.showAllResult(gameResult);
     }
 
-    private List<String> afterRemoveTarget(List<String> playersName, String target) {
-        if (target.equals("all"))
-            return new ArrayList<>();
-        playersName.remove(target);
-        return playersName;
+    private boolean gottenAllResult(Set<String> checkedPlayer, List<String> playersName) {
+        if (checkedPlayer.containsAll(playersName))
+            return true;
+        if (checkedPlayer.contains("all"))
+            return true;
+        return false;
     }
 
     private String readValidatedTarget(List<String> playersName) {
