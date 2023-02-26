@@ -29,6 +29,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void add(int index, String value) {
+        realloc();
         if (!(index <= this.size)) {
             throw new IllegalArgumentException("원소를 추가할 위치는 현재 리스트 크기 이하여야 합니다.");
         }
@@ -37,6 +38,17 @@ public class SimpleArrayList implements SimpleList {
         }
         values[index] = value;
         ++this.size;
+    }
+
+    private void realloc() {
+        if (this.size < this.values.length) {
+            return;
+        }
+        String[] newMemory = new String[this.values.length * 2];
+        for (int i = 0; i < this.size; i++) {
+            newMemory[i] = this.values[i];
+        }
+        this.values = newMemory;
     }
 
     @Override

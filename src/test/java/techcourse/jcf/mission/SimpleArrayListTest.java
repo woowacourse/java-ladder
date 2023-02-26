@@ -27,6 +27,16 @@ class SimpleArrayListTest {
         });
     }
 
+    @DisplayName("SimpleArrayList 원소 추가 시 자동 크기 증가 테스트")
+    @Test
+    void SimpleArrayList_자동_크기_증가_테스트() {
+        SimpleArrayList arrayList = new SimpleArrayList(1);
+        arrayList.add("first");
+        arrayList.add("second");
+
+        Assertions.assertEquals(2, arrayList.size());
+    }
+
     @DisplayName("SimpleArrayList 범위를 벗어나는 특정 인덱스에 원소 추가 실패 테스트")
     @Test
     void SimpleArrayList_잘못된_범위의_특정_인덱스에_원소_추가_실패_테스트() {
