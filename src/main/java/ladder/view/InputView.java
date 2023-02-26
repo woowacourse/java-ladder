@@ -61,14 +61,17 @@ public class InputView implements Input {
     private String inputString() {
         String input = sc.nextLine();
         validateNull(input);
-        validateType(input);
         return input;
     }
 
     private List<String> splitInputByDelimiter(String input) {
-        return Arrays.stream(input.split(DELIMITER))
+        List<String> inputs = Arrays.stream(input.split(DELIMITER))
                 .map(String::trim)
                 .collect(Collectors.toList());
+        for (String element : inputs) {
+            validateType(element);
+        }
+        return inputs;
     }
 
     private void validateType(String input) {
