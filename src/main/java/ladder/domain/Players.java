@@ -2,7 +2,9 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Players {
@@ -11,9 +13,9 @@ public class Players {
     private final List<Player> players;
 
     public Players(String namesRaw) {
-        List<String> names = splitNames(namesRaw);
-        validatePlayersSize(names);
-        this.players = generatePlayers(names);
+        List<String> nameValues = splitNames(namesRaw);
+        validateNamesRaw(nameValues);
+        this.players = generatePlayers(nameValues);
     }
 
     private List<String> splitNames(String namesRaw) {
@@ -21,9 +23,21 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    private void validatePlayersSize(List<String> names) {
-        if (names.size() < MINIMUM_PLAYERS_SIZE) {
+    private void validateNamesRaw(List<String> nameValues) {
+        validateCountOfPlayers(nameValues);
+        validateDuplicatedName(nameValues);
+    }
+
+    private void validateCountOfPlayers(List<String> nameValues) {
+        if (nameValues.size() < MINIMUM_PLAYERS_SIZE) {
             throw new IllegalArgumentException("플레이어는 최소 2명 이상이여야 합니다");
+        }
+    }
+
+    private void validateDuplicatedName(List<String> nameValues) {
+        Set namesDeduplicated = new HashSet<>(nameValues);
+        if (nameValues.size() != namesDeduplicated.size()) {
+            throw new IllegalArgumentException("플레이어의 이름은 중복될 수 없습니다.");
         }
     }
 

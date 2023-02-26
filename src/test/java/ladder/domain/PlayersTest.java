@@ -70,4 +70,13 @@ class PlayersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("존재하지 않는 플레이어의 이름입니다.");
     }
+
+    @Test
+    @DisplayName("중복된 이름의 플레이어를 생성하면 예외가 발생한다.")
+    void shouldThrowExceptionWhenInputDuplicatedName() {
+        String namesRaw = "a,b,a,d";
+        assertThatThrownBy(() -> new Players(namesRaw))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("플레이어의 이름은 중복될 수 없습니다.");
+    }
 }
