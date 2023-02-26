@@ -16,10 +16,10 @@ public class PrizesTest {
     void 상품들의_개수가_플레이어의_수와_다르면_에러가_발생한다() {
         //given
         int playerCount = 3;
-        List<Prize> prizes = List.of(new Prize("꽝"), new Prize("5000"));
+        List<String> prizes = List.of("꽝", "5000");
 
         // when + then
-        Assertions.assertThatThrownBy(() -> new Prizes(playerCount, prizes))
+        Assertions.assertThatThrownBy(() -> Prizes.generatePrizes(playerCount, prizes))
             .isInstanceOf(InvalidPrizesSizeException.class);
     }
 

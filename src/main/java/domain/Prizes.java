@@ -10,7 +10,7 @@ public class Prizes {
 
     private final List<Prize> prizes;
 
-    public Prizes(int playerCount, List<Prize> prizes) {
+    private Prizes(int playerCount, List<Prize> prizes) {
         validatePrizesSize(playerCount, prizes);
         this.prizes = prizes;
     }

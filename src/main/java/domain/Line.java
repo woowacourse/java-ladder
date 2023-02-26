@@ -18,7 +18,7 @@ public class Line {
     }
 
     public static Line generateLine(BooleanGenerator booleanGenerator, Players players) {
-        Block block = new Block(booleanGenerator.generate());
+        Block block = Block.createBlock(booleanGenerator.generate());
         List<Block> blocks = new ArrayList<>();
         blocks.add(block);
 

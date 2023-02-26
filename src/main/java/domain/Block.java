@@ -4,7 +4,7 @@ public class Block {
 
     private final boolean isCross;
 
-    public Block(boolean isCross) {
+    private Block(boolean isCross) {
         this.isCross = isCross;
     }
 
@@ -13,6 +13,10 @@ public class Block {
             return new Block(false);
         }
         return new Block(booleanGenerator.generate());
+    }
+
+    public static Block createBlock(boolean isCross) {
+        return new Block(isCross);
     }
 
     public boolean getIsCross() {

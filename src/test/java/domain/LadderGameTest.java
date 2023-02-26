@@ -38,13 +38,13 @@ public class LadderGameTest {
     }
 
     private Players generatePlayer() {
-        List<Player> players = List.of(new Player("ako"), new Player("split"), new Player("ash"));
-        return new Players(players);
+        List<String> players = List.of("ako", "split", "ash");
+        return Players.generatePlayer(players);
     }
 
     private Prizes generatePrize(int playerCount) {
-        List<Prize> prize = List.of(new Prize("꽝"), new Prize("5000"), new Prize("꽝"));
-        return new Prizes(playerCount, prize);
+        List<String> prize = List.of("꽝", "5000", "꽝");
+        return Prizes.generatePrizes(playerCount, prize);
     }
 
     private Ladder getLadder(Players players) {

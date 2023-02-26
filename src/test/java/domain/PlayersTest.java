@@ -21,15 +21,14 @@ public class PlayersTest {
     @Test
     void 사다리_게임을_위해서는_플레이어가_적어도_2명이_필요하다() {
         //when + then
-        assertThatThrownBy(() -> new Players(List.of(new Player("ako"))))
+        assertThatThrownBy(() -> Players.generatePlayer(List.of("ako")))
             .isInstanceOf(InvalidPlayersSizeException.class);
     }
 
     @Test
     void 플레이어들의_이름_리스트를_반환하는_기능_테스트() {
         //given
-        List<Player> playerList = List.of(new Player("judy"), new Player("ako"), new Player("pobi"));
-        Players players = new Players(playerList);
+        Players players = Players.generatePlayer(List.of("judy", "ako", "pobi"));
 
         //when
         List<String> test = players.getPlayersName();
@@ -43,7 +42,7 @@ public class PlayersTest {
     @ValueSource(strings = {"", " ", "  ", "maco"})
     void 입력값이_players에_포함되지_않은면_에러를_발생시킨다(String player) {
         //given
-        Players players = new Players(List.of(new Player("ako"), new Player("split"), new Player("ash")));
+        Players players = Players.generatePlayer(List.of("ako", "split", "ash"));
 
         //when + then
         assertThatThrownBy(() -> players.findPlayer(player))
@@ -53,7 +52,7 @@ public class PlayersTest {
     @Test
     void 입력값이_players에_포함되면_객체를_반환한다() {
         //given
-        Players players = new Players(List.of(new Player("ako"), new Player("split"), new Player("ash")));
+        Players players = Players.generatePlayer(List.of("ako", "split", "ash"));
         String playerName = "ako";
 
         //when
@@ -77,7 +76,7 @@ public class PlayersTest {
     @Test
     void 중복된_이름이_없으면_Players_객체를_생성한다() {
         //given
-        List<String> player = List.of("ako","ash", "split");
+        List<String> player = List.of("ako", "ash", "split");
 
         //when + then
         assertDoesNotThrow(() -> Players.generatePlayer(player));
