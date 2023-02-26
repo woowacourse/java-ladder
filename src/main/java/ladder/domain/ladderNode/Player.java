@@ -8,7 +8,7 @@ public class Player {
 
     public Player(String name, int startPoint) {
         this.name = new Name(name);
-        this.position = new Position(startPoint);
+        this.position = Position.from(startPoint);
     }
 
     public Position moveThroughLadder(Ladder ladder) {

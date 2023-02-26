@@ -6,7 +6,7 @@ public class Result {
 
     public Result(String result, int position) {
         this.result = new Name(result);
-        this.position = new Position(position);
+        this.position = Position.from(position);
     }
 
     public boolean isMappedPosition(Position position) {
