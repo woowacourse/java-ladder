@@ -24,7 +24,7 @@ public class LadderGameController {
 
     }
 
-    private void runGame(LadderGame ladderGame){
+    private void runGame(LadderGame ladderGame) {
         ladderGame.run();
     }
 

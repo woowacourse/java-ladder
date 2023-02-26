@@ -18,7 +18,7 @@ public class InputController {
         this.inputView = inputView;
     }
 
-    public ResultCommand inputResultCommand(){
+    public ResultCommand inputResultCommand() {
         return ResultCommand.from(inputView.inputPlayerForResult());
     }
 

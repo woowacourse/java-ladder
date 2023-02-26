@@ -1,7 +1,7 @@
 package ladder;
 
-import ladder.controller.LadderGameController;
 import ladder.controller.InputController;
+import ladder.controller.LadderGameController;
 import ladder.controller.ResultController;
 import ladder.view.InputView;
 import ladder.view.ResultView;

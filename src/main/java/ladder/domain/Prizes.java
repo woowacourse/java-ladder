@@ -5,7 +5,6 @@ import static java.util.stream.Collectors.toUnmodifiableList;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Prizes {
     private final List<Prize> prizes;
@@ -32,7 +31,7 @@ public class Prizes {
         return new Prizes(orderedPrize);
     }
 
-    public int size(){
+    public int size() {
         return prizes.size();
     }
 

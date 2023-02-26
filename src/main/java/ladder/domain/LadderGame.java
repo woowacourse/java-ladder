@@ -28,7 +28,7 @@ public class LadderGame {
         players.setPrizes(orderedPrizes);
     }
 
-    public String getPrizeNameByPlayerName(String playerName){
+    public String getPrizeNameByPlayerName(String playerName) {
         Player player = players.findByName(playerName);
         return player.getPrizeName();
     }
@@ -37,7 +37,7 @@ public class LadderGame {
         return players.getNames();
     }
 
-    public Map<String, String> getGameResult(){
+    public Map<String, String> getGameResult() {
         return players.getPrizesWithPlayers();
     }
 

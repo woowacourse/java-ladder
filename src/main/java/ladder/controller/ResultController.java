@@ -17,20 +17,20 @@ public class ResultController {
         resultView.printNames(ladderGame.getPrizeNames());
     }
 
-    public void printErrorMessage(String errorMessage){
+    public void printErrorMessage(String errorMessage) {
         resultView.printErrorMessage(errorMessage);
     }
 
-    public void printEndMessage(){
+    public void printEndMessage() {
         resultView.printEndMessage();
     }
 
-    public void printPrizeNameByPlayerName(LadderGame ladderGame, String playerName){
+    public void printPrizeNameByPlayerName(LadderGame ladderGame, String playerName) {
         String prizeName = ladderGame.getPrizeNameByPlayerName(playerName);
         resultView.printPrizeName(prizeName);
     }
 
-    public void printGameResult(LadderGame ladderGame){
+    public void printGameResult(LadderGame ladderGame) {
         resultView.printGameResult(ladderGame.getGameResult());
     }
 }

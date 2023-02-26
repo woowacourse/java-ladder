@@ -55,9 +55,6 @@ public class Name {
             return false;
         }
         Name other = (Name) obj;
-        if (name.equals(other.name)) {
-            return true;
-        }
-        return false;
+        return name.equals(other.name);
     }
 }
