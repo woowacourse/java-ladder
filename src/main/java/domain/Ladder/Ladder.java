@@ -1,4 +1,4 @@
-package domain;
+package domain.Ladder;
 
 import util.BooleanGenerator;
 

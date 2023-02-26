@@ -1,5 +1,6 @@
-package domain;
+package domain.Ladder;
 
+import domain.Step;
 import java.util.List;
 import java.util.stream.Collectors;
 

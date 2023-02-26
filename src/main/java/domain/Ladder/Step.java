@@ -1,4 +1,4 @@
-package domain;
+package domain.Ladder;
 
 public enum Step {
     NONE(0),
