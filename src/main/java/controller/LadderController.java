@@ -37,7 +37,7 @@ public class LadderController {
     }
 
     private String inputPlayers() {
-        try{
+        try {
             return InputView.receivePlayer();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
@@ -46,7 +46,7 @@ public class LadderController {
     }
 
     private Results makeResult(int playerCount) {
-        try{
+        try {
             String results = inputResults();
             return new Results(makeResults(results), playerCount);
         } catch (IllegalArgumentException e) {
@@ -56,7 +56,7 @@ public class LadderController {
     }
 
     private String inputResults() {
-        try{
+        try {
             return InputView.receiveResults();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
