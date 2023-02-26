@@ -3,6 +3,7 @@ package ladder.domain;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.NoSuchElementException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -45,5 +46,23 @@ class PlayerTest {
         String name = "name";
         Player player = new Player(name);
         assertThat(player.getNameValue()).isEqualTo(name);
+    }
+
+    @Test
+    @DisplayName("Player에 저장된 결과를 반환한다.")
+    void shouldReturnValueOfResultWhenRequest() {
+        Player player = new Player("name");
+        Result result = new Result("content");
+        player.saveResult(result);
+        assertThat(player.getResult()).isEqualTo(result);
+    }
+
+    @Test
+    @DisplayName("Player에 결과가 저장되지 않은 채로 결과를 조회하면 예외가 발생한다.")
+    void shouldThrowExceptionWhenGetResultNotSaved() {
+        Player player = new Player("name");
+        assertThatThrownBy(() -> player.getResult())
+                .isInstanceOf(NoSuchElementException.class)
+                .hasMessage("플레이어의 결과가 존재하지 않습니다.");
     }
 }

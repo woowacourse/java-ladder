@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class Player {
@@ -26,5 +27,9 @@ public class Player {
 
     public String getNameValue() {
         return this.name.value();
+    }
+
+    public Result getResult() {
+        return this.result.orElseThrow(() -> new NoSuchElementException("플레이어의 결과가 존재하지 않습니다."));
     }
 }
