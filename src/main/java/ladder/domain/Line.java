@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Line {
 
+    private static final int MAX_WIDTH = 1;
+
     private final int width;
     private final List<Point> points = new ArrayList<>();
     private final RandomGenerator<Boolean> pointGenerator;
@@ -18,7 +20,7 @@ public class Line {
     }
 
     private void validateWidth(final int width) {
-        if (width < 1) {
+        if (width < MAX_WIDTH) {
             throw new IllegalArgumentException("라인의 넓이는 1이상이어야 합니다.\n" + "width : " + width);
         }
     }
@@ -30,8 +32,8 @@ public class Line {
     }
 
     private Point generatePoint(final int index) {
+        Boolean generate = pointGenerator.generate();
         if (isPossible(index)) {
-            Boolean generate = pointGenerator.generate();
             return Point.from(generate);
         }
         return Point.DISABLE;
@@ -42,10 +44,41 @@ public class Line {
             return true;
         }
 
-        return !points.get(index - 1).isAvailable();
+        final int before = index - 1;
+        return !points.get(before).isAvailable();
+    }
+
+    public Direction decideDirection(final int position) {
+        Point right = decidePoint(position);
+        if (right.isAvailable()) {
+            return Direction.RIGHT;
+        }
+
+        final int before = position - 1;
+        Point left = decidePoint(before);
+        if (left.isAvailable()) {
+            return Direction.LEFT;
+        }
+
+        return Direction.STRAIGHT;
+    }
+
+    private Point decidePoint(final int position) {
+        if (isOutOfBound(position)) {
+            return Point.DISABLE;
+        }
+        return points.get(position);
+    }
+
+    private boolean isOutOfBound(final int position) {
+        return (position < 0) || (points.size() <= position);
     }
 
     public List<Point> toUnmodifiableLine() {
         return Collections.unmodifiableList(points);
+    }
+
+    public int size() {
+        return width;
     }
 }

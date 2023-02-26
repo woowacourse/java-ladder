@@ -1,8 +1,11 @@
 package ladder.domain;
 
+import ladder.util.MockedPointGenerator;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,8 +29,8 @@ class LineTest {
 
     @Test
     void 라인은_연속된_True를_가지지_않는다() {
-        List<Boolean> dummy = List.of(true, true, true);
-        List<Boolean> expected = List.of(true, false, true);
+        List<Boolean> dummy = List.of(true, true, false, true, true);
+        List<Boolean> expected = List.of(true, false, false, true, false);
         Line line = new Line(new MockedPointGenerator(dummy), dummy.size());
 
         assertThat(line.toUnmodifiableLine().stream()
@@ -36,18 +39,14 @@ class LineTest {
                 .isEqualTo(expected);
     }
 
-    private static class MockedPointGenerator implements RandomGenerator<Boolean> {
+    @ParameterizedTest(name = "decideDirection 메소드는 위치{0}에 대해 {1}를 반환한다")
+    @CsvSource(value = {"0:RIGHT", "1:LEFT", "2:RIGHT", "4:STRAIGHT"}, delimiter = ':')
+    void 라인은_주어진_위치에_대해_방향을_반환한다(int position, Direction expect) {
+        List<Boolean> dummy = List.of(true, false, true, false, false);
+        Line line = new Line(new MockedPointGenerator(dummy), dummy.size());
 
-        private final List<Boolean> dummy;
-        private int index = 0;
+        Direction direction = line.decideDirection(position);
 
-        private MockedPointGenerator(final List<Boolean> dummy) {
-            this.dummy = dummy;
-        }
-
-        @Override
-        public Boolean generate() {
-            return dummy.get(index++);
-        }
+        assertThat(direction).isEqualTo(expect);
     }
 }
