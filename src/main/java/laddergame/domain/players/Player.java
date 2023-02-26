@@ -6,7 +6,7 @@ public class Player {
 
     private final Name name;
 
-    public Player(String name) {
+    public Player(final String name) {
         this.name = new Name(name);
     }
 

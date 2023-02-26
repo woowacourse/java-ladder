@@ -19,12 +19,12 @@ public class LadderGame {
     private final Players players;
     private Ladder ladder;
 
-    public LadderGame(List<String> playerNames) {
+    public LadderGame(final List<String> playerNames) {
         this.players = Players.of(playerNames);
     }
 
-    public void generateLadder(int height, List<String> itemValues) {
-        List<Item> items = itemValues.stream()
+    public void generateLadder(final int height, final List<String> itemValues) {
+        final List<Item> items = itemValues.stream()
                 .map(Item::new)
                 .collect(Collectors.toList());
         this.ladder = Ladder.of(new LineWidth(players.size()), new LadderHeight(height), items);
@@ -49,8 +49,8 @@ public class LadderGame {
                         LinkedHashMap::new));
     }
 
-    private Item findItemByPlayerName(Name playerName) {
-        int startIndex = players.indexOf(playerName);
+    private Item findItemByPlayerName(final Name playerName) {
+        final int startIndex = players.indexOf(playerName);
         return ladder.findItemsByStartIndex(startIndex);
     }
 

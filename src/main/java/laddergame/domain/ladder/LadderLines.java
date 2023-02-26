@@ -10,20 +10,20 @@ public class LadderLines {
 
     private final List<Line> lines;
 
-    private LadderLines(List<Line> lines) {
+    private LadderLines(final List<Line> lines) {
         this.lines = lines;
     }
 
-    public static LadderLines of(StepPointGenerator stepPointGenerator, LineWidth width,
-                                 LadderHeight height) {
-        List<Line> generated = new ArrayList<>();
+    public static LadderLines of(final StepPointGenerator stepPointGenerator, final LineWidth width,
+                                 final LadderHeight height) {
+        final List<Line> generated = new ArrayList<>();
         for (int i = 0; i < height.get(); i++) {
             generated.add(Line.of(stepPointGenerator, width));
         }
         return new LadderLines(generated);
     }
 
-    public int findDestinationIndex(int startIndex) {
+    public int findDestinationIndex(final int startIndex) {
         int index = startIndex;
         for (Line line : lines) {
             index = line.findNextLineIndex(index);
@@ -33,11 +33,6 @@ public class LadderLines {
 
     public int height() {
         return lines.size();
-    }
-
-    public int width() {
-        Line firstLine = lines.get(0);
-        return firstLine.size();
     }
 
     public List<Line> toLines() {

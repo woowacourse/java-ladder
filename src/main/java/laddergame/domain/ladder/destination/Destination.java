@@ -8,7 +8,7 @@ public class Destination {
 
     private final List<Item> items;
 
-    public Destination(List<Item> items) {
+    public Destination(final List<Item> items) {
         this.items = items;
     }
 
@@ -16,7 +16,7 @@ public class Destination {
         return items.size();
     }
 
-    public Item get(int index) {
+    public Item get(final int index) {
         IndexValidator.validateBounds(items, index);
         return items.get(index);
     }

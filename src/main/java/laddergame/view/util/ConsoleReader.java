@@ -7,8 +7,8 @@ public class ConsoleReader {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static List<String> readLineByDelimiter(String delimiter) {
-        String readValue = scanner.nextLine();
+    public static List<String> readLineByDelimiter(final String delimiter) {
+        final String readValue = scanner.nextLine();
         if (readValue == null) {
             throw new NullPointerException("콘솔 입력값이 null입니다.");
         }
@@ -16,7 +16,7 @@ public class ConsoleReader {
     }
 
     public static int readNaturalNumber() {
-        int readValue = readInteger();
+        final int readValue = readInteger();
         if (readValue <= 0) {
             throw new IllegalArgumentException("콘솔 입력값이 자연수가 아닙니다.");
         }
@@ -24,7 +24,7 @@ public class ConsoleReader {
     }
 
     private static int readInteger() {
-        String readValue = scanner.nextLine();
+        final String readValue = scanner.nextLine();
         try {
             return Integer.parseInt(readValue);
         } catch (NumberFormatException exception) {
@@ -33,7 +33,7 @@ public class ConsoleReader {
     }
 
     public static String readLine() {
-        String readValue = scanner.nextLine();
+        final String readValue = scanner.nextLine();
         if (readValue == null) {
             throw new IllegalArgumentException("콘솔 입력값이 null값입니다.");
         }

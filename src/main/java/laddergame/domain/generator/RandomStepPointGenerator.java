@@ -8,7 +8,7 @@ public class RandomStepPointGenerator implements StepPointGenerator {
     private static final Random random = new Random();
 
     @Override
-    public StepPoint generate(StepPoint previousValue) {
+    public StepPoint generate(final StepPoint previousValue) {
         if (previousValue == StepPoint.EXIST) {
             return StepPoint.NONE;
         }

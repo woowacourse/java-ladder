@@ -8,20 +8,20 @@ public enum SearchType {
     FIND_BY_NAME(null),
     QUIT("Q");
 
-    SearchType(String keyword) {
+    SearchType(final String keyword) {
         this.keyword = keyword;
     }
 
     private final String keyword;
 
-    public static SearchType match(String keyword) {
+    public static SearchType match(final String keyword) {
         return Arrays.stream(values())
                 .filter(type -> type.isSameKeyword(keyword))
                 .findFirst()
                 .orElse(FIND_BY_NAME);
     }
 
-    private boolean isSameKeyword(String keyword) {
+    private boolean isSameKeyword(final String keyword) {
         if (this.keyword == null) {
             return false;
         }

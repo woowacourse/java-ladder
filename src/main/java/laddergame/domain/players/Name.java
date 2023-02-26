@@ -9,24 +9,24 @@ public class Name {
 
     private final String value;
 
-    public Name(String value) {
+    public Name(final String value) {
         validate(value);
         this.value = value;
     }
 
-    private void validate(String name) {
+    private void validate(final String name) {
         validateNullOrEmpty(name);
         validateLength(name);
     }
 
-    private static void validateLength(String name) {
+    private static void validateLength(final String name) {
         if (name.length() > MAX_NAME_LENGTH) {
-            String message = String.format("참여자의 이름은 최대 %d글자를 넘을 수 없습니다.", MAX_NAME_LENGTH);
+            final String message = String.format("참여자의 이름은 최대 %d글자를 넘을 수 없습니다.", MAX_NAME_LENGTH);
             throw new IllegalArgumentException(ExceptionMessageFormatter.format(message, name.length()));
         }
     }
 
-    private static void validateNullOrEmpty(String name) {
+    private static void validateNullOrEmpty(final String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("참여자의 이름은 null 또는 빈 문자열일 수 없습니다.");
         }

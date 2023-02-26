@@ -10,19 +10,19 @@ public class InputView {
 
     public static List<String> askPlayerNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        List<String> playerNames = ConsoleReader.readLineByDelimiter(",");
+        final List<String> playerNames = ConsoleReader.readLineByDelimiter(",");
         playerNames.forEach(InputView::validateReserved);
         return playerNames;
     }
 
-    private static void validateReserved(String name) {
+    private static void validateReserved(final String name) {
         if (isReservedWord(name)) {
-            String message = "참여자의 이름은 예약어와 일치할 수 없습니다.";
+            final String message = "참여자의 이름은 예약어와 일치할 수 없습니다.";
             throw new IllegalArgumentException(ExceptionMessageFormatter.format(message, name));
         }
     }
 
-    private static boolean isReservedWord(String name) {
+    private static boolean isReservedWord(final String name) {
         return RESERVED_WORDS.stream()
                 .anyMatch(invalidName -> invalidName.equalsIgnoreCase(name));
     }

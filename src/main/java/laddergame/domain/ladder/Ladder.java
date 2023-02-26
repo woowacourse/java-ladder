@@ -15,28 +15,28 @@ public class Ladder {
     private final LadderLines lines;
     private final Destination destination;
 
-    private Ladder(LadderLines lines, Destination destination) {
+    private Ladder(final LadderLines lines, final Destination destination) {
         this.lines = lines;
         this.destination = destination;
     }
 
-    public static Ladder of(LineWidth width, LadderHeight height, List<Item> items) {
+    public static Ladder of(final LineWidth width, final LadderHeight height, final List<Item> items) {
         validateItems(width.get(), items.size());
-        LadderLines ladderLines = LadderLines.of(new RandomStepPointGenerator(), width, height);
-        Destination destination = new Destination(items);
+        final LadderLines ladderLines = LadderLines.of(new RandomStepPointGenerator(), width, height);
+        final Destination destination = new Destination(items);
         return new Ladder(ladderLines, destination);
     }
 
-    private static void validateItems(int linesWidth, int itemsCount) {
+    private static void validateItems(final int linesWidth, final int itemsCount) {
         if (linesWidth != itemsCount) {
-            String message = String.format("결과의 개수와 라인의 폭(%d)은 일치해야 합니다.", linesWidth);
+            final String message = String.format("결과의 개수와 라인의 폭(%d)은 일치해야 합니다.", linesWidth);
             throw new IllegalArgumentException(ExceptionMessageFormatter.format(message, itemsCount));
         }
     }
 
-    public Item findItemsByStartIndex(int startIndex) {
+    public Item findItemsByStartIndex(final int startIndex) {
         IndexValidator.validateBounds(lines.toLines(), startIndex);
-        int destinationIndex = lines.findDestinationIndex(startIndex);
+        final int destinationIndex = lines.findDestinationIndex(startIndex);
         return destination.get(destinationIndex);
     }
 

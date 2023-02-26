@@ -15,48 +15,48 @@ public class Players {
 
     private final List<Player> players;
 
-    private Players(List<Player> players) {
+    private Players(final List<Player> players) {
         this.players = players;
     }
 
-    public static Players of(List<String> playerNames) {
-        List<Player> players = playerNames.stream()
+    public static Players of(final List<String> playerNames) {
+        final List<Player> players = playerNames.stream()
                 .map(Player::new)
                 .collect(Collectors.toList());
         validate(players);
         return new Players(players);
     }
 
-    private static void validate(List<Player> players) {
+    private static void validate(final List<Player> players) {
         validateCount(players.size());
         validateDuplicated(players);
     }
 
-    private static void validateCount(int playerCount) {
+    private static void validateCount(final int playerCount) {
         if (playerCount < MIN_PLAYER_COUNT) {
-            String message = String.format("참여자는 %d명 이상이어야 합니다.", MIN_PLAYER_COUNT);
+            final String message = String.format("참여자는 %d명 이상이어야 합니다.", MIN_PLAYER_COUNT);
             throw new IllegalArgumentException(ExceptionMessageFormatter.format(message, playerCount));
         }
     }
 
-    private static void validateDuplicated(List<Player> players) {
-        List<String> duplicatedNames = findDuplicatedNames(players);
+    private static void validateDuplicated(final List<Player> players) {
+        final List<String> duplicatedNames = findDuplicatedNames(players);
         if (duplicatedNames.size() != 0) {
-            String message = "참여자 간 이름은 중복되지 않아야 합니다.";
+            final String message = "참여자 간 이름은 중복되지 않아야 합니다.";
             throw new IllegalArgumentException(
                     ExceptionMessageFormatter.format(message, String.join(",", duplicatedNames)));
         }
     }
 
-    private static List<String> findDuplicatedNames(List<Player> players) {
-        Set<Player> checker = new HashSet<>();
+    private static List<String> findDuplicatedNames(final List<Player> players) {
+        final Set<Player> checker = new HashSet<>();
         return players.stream()
                 .filter(player -> !(checker.add(player)))
                 .map(Players::getNameByPlayer)
                 .collect(Collectors.toList());
     }
 
-    private static String getNameByPlayer(Player player) {
+    private static String getNameByPlayer(final Player player) {
         return player.getName().getValue();
     }
 
@@ -66,8 +66,8 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public int indexOf(Name name) {
-        String nameValue = name.getValue();
+    public int indexOf(final Name name) {
+        final String nameValue = name.getValue();
         return IntStream.range(0, players.size())
                 .filter(index -> Objects.equals(getNameByPlayer(players.get(index)), nameValue))
                 .findFirst()

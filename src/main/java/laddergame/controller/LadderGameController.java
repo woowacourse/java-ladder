@@ -13,22 +13,22 @@ public class LadderGameController {
     private GameStatus gameStatus = GameStatus.START;
 
     public void run() {
-        Ladder ladder = play();
+        final Ladder ladder = play();
 
         showLadderResult(ladder);
-        GameResult gameResult = game.computeResult();
+        final GameResult gameResult = game.computeResult();
 
         while (gameStatus == GameStatus.PLAYED) {
-            String keyword = InputView.askSearchKeyword();
+            final String keyword = InputView.askSearchKeyword();
             searchFromGameResult(gameResult, keyword);
         }
     }
 
     private Ladder play() {
-        List<String> players = InputView.askPlayerNames();
+        final List<String> players = InputView.askPlayerNames();
         game = new LadderGame(players);
-        List<String> items = InputView.askDestinationItems();
-        int height = InputView.askLadderHeight();
+        final List<String> items = InputView.askDestinationItems();
+        final int height = InputView.askLadderHeight();
         game.generateLadder(height, items);
         return game.ladder();
     }
@@ -38,9 +38,9 @@ public class LadderGameController {
         OutputView.showLadderResult(game.playerNames(), ladder.toLadderLines(), ladder.toDestinationItems());
     }
 
-    private void searchFromGameResult(GameResult gameResult, String keyword) {
+    private void searchFromGameResult(final GameResult gameResult, final String keyword) {
         validateGameStatus(gameStatus);
-        SearchType searchType = SearchType.match(keyword);
+        final SearchType searchType = SearchType.match(keyword);
         if (searchType == SearchType.QUIT) {
             gameStatus = GameStatus.QUIT;
             return;
@@ -52,7 +52,7 @@ public class LadderGameController {
         OutputView.showItemByPlayer(gameResult.findByPlayerName(keyword));
     }
 
-    private void validateGameStatus(GameStatus gameStatus) {
+    private void validateGameStatus(final GameStatus gameStatus) {
         if (gameStatus == GameStatus.START) {
             throw new IllegalStateException("아직 사다리가 생성되지 않은 게임입니다.");
         }
