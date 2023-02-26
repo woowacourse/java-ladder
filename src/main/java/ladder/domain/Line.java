@@ -7,7 +7,11 @@ import java.util.stream.IntStream;
 
 public class Line {
 
+    private static final int MOVING_RIGHT = 1;
+    private static final int MOVING_LEFT = -1;
+    private static final int MOVING_DOWN = 0;
     private final List<Bar> bars;
+
 
     private Line(List<Bar> bars) {
         this.bars = bars;
@@ -24,7 +28,7 @@ public class Line {
 
     private static Bar createBar(List<Bar> bars, int index, RandomGenerator randomGenerator) {
         if (bars.isEmpty() || bars.get(index - 1) == Bar.UNCONNECTED) {
-            return Bar.from(randomGenerator.generateBoolean());
+            return randomGenerator.generate();
         }
 
         return Bar.UNCONNECTED;
@@ -34,5 +38,19 @@ public class Line {
         return Collections.unmodifiableList(bars);
     }
 
+
+    public int findNextMovingOf(int currentIndex) {
+        int left = currentIndex - 1;
+        int right = currentIndex;
+
+        if (left >= 0 && bars.get(left).getValue()) {
+            return MOVING_LEFT;
+        }
+        if (right < bars.size() && bars.get(right).getValue()) {
+            return MOVING_RIGHT;
+        }
+
+        return MOVING_DOWN;
+    }
 }
 
