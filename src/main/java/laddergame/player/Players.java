@@ -17,7 +17,7 @@ public class Players {
 
     private Players(List<Player> players) {
         validate(players);
-        this.players = players;
+        this.players = new ArrayList<>(players);
     }
 
     public static Players from(List<String> names) {

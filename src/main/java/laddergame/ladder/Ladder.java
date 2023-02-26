@@ -2,6 +2,8 @@ package laddergame.ladder;
 
 import laddergame.vo.Position;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static java.util.stream.Collectors.toUnmodifiableList;
@@ -11,7 +13,7 @@ public class Ladder {
 
     public Ladder(List<Row> rows) {
         validateRowsLengthAllEqual(rows);
-        this.rows = rows;
+        this.rows = new ArrayList<>(rows);
     }
 
     private void validateRowsLengthAllEqual(List<Row> rows) {
@@ -36,7 +38,7 @@ public class Ladder {
     }
 
     public List<Row> getRows() {
-        return rows;
+        return Collections.unmodifiableList(rows);
     }
 
     public List<List<Foothold>> getFootholdsMap() {

@@ -3,6 +3,7 @@ package laddergame.ladder;
 import laddergame.vo.Position;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Row {
@@ -10,7 +11,7 @@ public class Row {
 
     private Row(List<Foothold> footholds) {
         validateNoContinuousSteps(footholds);
-        this.footholds = footholds;
+        this.footholds = new ArrayList<>(footholds);
     }
 
     public static Row of(List<Foothold> footholds, int expectedWidth) {
@@ -83,7 +84,7 @@ public class Row {
     }
 
     public List<Foothold> getFootholds() {
-        return new ArrayList<>(footholds);
+        return Collections.unmodifiableList(footholds);
     }
 
     public int getWidth() {
