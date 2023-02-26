@@ -1,17 +1,22 @@
 package helper;
 
+import java.util.List;
 import strategy.PassGenerator;
 
 public class StubPassGenerator implements PassGenerator {
 
-    private final boolean pass;
+    private final List<Boolean> returnBoolean;
+    private int index = 0;
 
-    public StubPassGenerator(boolean pass) {
-        this.pass = pass;
+    public StubPassGenerator(List<Boolean> returnBoolean) {
+        this.returnBoolean = returnBoolean;
     }
 
     @Override
     public boolean generate() {
-        return pass;
+        if (index == returnBoolean.size()) {
+            index = 0;
+        }
+        return returnBoolean.get(index++);
     }
 }

@@ -1,70 +1,91 @@
 package controller;
 
-import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Supplier;
-import model.Height;
-import model.Ladder;
-import model.Names;
-import model.LadderMaker;
-import utils.LadderStatus;
+import model.LadderGame;
+import model.LadderGameCommand;
+import strategy.PassGenerator;
 import view.InputView;
 import view.OutputView;
 
-public class LadderController implements Controller {
+public class LadderController {
+
+    private static final boolean DONE = false;
+    private static final boolean RETRY = true;
+    private static final String DEFAULT_PARTICIPANT_NAME = "";
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final LadderMaker ladderMaker;
-    private final Map<LadderStatus, Supplier<LadderStatus>> mappings = new EnumMap<>(LadderStatus.class);
 
-    public LadderController(InputView inputView, OutputView outputView, LadderMaker ladderMaker) {
+    public LadderController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.ladderMaker = ladderMaker;
-        initMappings();
     }
 
-    private void initMappings() {
-        mappings.put(LadderStatus.INPUT_PARTICIPANT_NAMES, this::inputParticipantsName);
-        mappings.put(LadderStatus.GENERATE_LADDER, this::generateLadder);
-        mappings.put(LadderStatus.PRINT_LADDER, this::printLadder);
+    public void run(PassGenerator generator, LadderGame ladderGame) {
+        handle(() -> initParticipantsName(ladderGame));
+        handle(() -> initLadderResult(ladderGame));
+        handle(() -> initLadder(ladderGame, generator));
+        handle(() -> printLadder(ladderGame));
+        ladderGame.play();
+        handle(() -> findLadderResult(ladderGame));
     }
 
-    @Override
-    public LadderStatus run(LadderStatus ladderStatus) {
-        return mappings.get(ladderStatus).get();
+    private void handle(Runnable logic) {
+        boolean isRepeatable = true;
+
+        while (isRepeatable) {
+            isRepeatable = process(logic);
+        }
     }
 
-    private LadderStatus inputParticipantsName() {
+    private boolean process(Runnable logic) {
+        try {
+            logic.run();
+            return DONE;
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e.getMessage());
+            return RETRY;
+        }
+    }
+
+    private void initParticipantsName(LadderGame ladderGame) {
         outputView.noticeInputParticipants();
 
-        List<String> participantsName = inputView.inputNameOfParticipants();
-        ladderMaker.initParticipants(participantsName);
+        List<String> nameInfo = inputView.inputNameOfParticipants();
 
-        return LadderStatus.GENERATE_LADDER;
+        ladderGame.initParticipantsNames(nameInfo);
     }
 
-    private LadderStatus generateLadder() {
+    private void initLadderResult(LadderGame ladderGame) {
+        outputView.noticeInputLadderResult();
+
+        List<String> ladderResultInfo = inputView.inputLadderResults();
+
+        ladderGame.initLadderResults(ladderResultInfo);
+    }
+
+    private void initLadder(LadderGame ladderGame, PassGenerator generator) {
         outputView.noticeInputHeightOfLadder();
 
         int heightOfLadder = inputView.inputHeightOfLadder();
-        Height height = new Height(heightOfLadder);
-        Names participantsName = ladderMaker.getParticipantsName();
 
-        ladderMaker.initLadder(height, participantsName.getTotalParticipantSize());
-        return LadderStatus.PRINT_LADDER;
+        ladderGame.initLadder(generator, heightOfLadder);
     }
 
-    private LadderStatus printLadder() {
-        outputView.noticeResult();
+    private void printLadder(LadderGame ladderGame) {
+        outputView.noticeLadderResult();
+        outputView.printNameOfParticipants(ladderGame.getParticipantsNames());
+        outputView.printLadder(ladderGame.getLadder());
+        outputView.printLadderResult(ladderGame.getLadderResults());
+    }
 
-        Names participantsName = ladderMaker.getParticipantsName();
-        Ladder ladder = ladderMaker.getLadder();
+    private void findLadderResult(LadderGame ladderGame) {
+        String targetParticipantName = DEFAULT_PARTICIPANT_NAME;
 
-        outputView.printNameOfParticipants(participantsName);
-        outputView.printLadder(ladder);
-        return LadderStatus.APPLICATION_EXIT;
+        while (LadderGameCommand.ALL_RESULT_PRINT_AND_EXIT_COMMAND.isPlayable(targetParticipantName)) {
+            outputView.noticeFindResultOfName();
+            targetParticipantName = inputView.inputNameForGameResult();
+            outputView.printLadderGameResult(ladderGame.findGameResult(targetParticipantName));
+        }
     }
 }
