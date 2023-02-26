@@ -51,11 +51,15 @@ public class LadderGameController {
     }
 
     private void printLadderResultWithRetry(Players players, LadderGameResult result) {
-        String playerName;
+        String resultCommand;
         do {
-            playerName = inputView.readWantedResultPlayer();
-            printLadderResult(players, result, playerName);
-        } while (!playerName.equals(END_COMMAND));
+            resultCommand = inputView.readWantedResultPlayer();
+            printLadderResult(players, result, resultCommand);
+        } while (isNotEndCommand(resultCommand));
+    }
+
+    private static boolean isNotEndCommand(String resultCommand) {
+        return !resultCommand.equals(END_COMMAND);
     }
 
     private void printLadderResult(Players players, LadderGameResult result, String input) {
