@@ -1,12 +1,13 @@
 package ladder.domain;
 
+import ladder.constant.Command;
+
 import java.util.Objects;
 
 public class PlayerName {
 
     public static final int NAME_MAXIMUM_LENGTH = 5;
-    private static final String COMMAND = "all";
-    //COMMAND 이름으로도 all을 쓰려면 입력창을 따로 받아야 한다.
+    private static final String COMMAND = Command.REQUEST_TO_GET_ALL_RESULT;
     private static final String ERROR_SAME_AS_COMMAND = String.format(
             "%s은 플레이어의 이름으로 불가능 합니다.", COMMAND);
     private static final String ERROR_LENGTH_OF_NAME = String.format(
