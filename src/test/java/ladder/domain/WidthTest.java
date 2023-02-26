@@ -10,7 +10,7 @@ class WidthTest {
     @Test
     @DisplayName("너비는 1미만이면 예외던지기")
     public void 생성_fail() {
-        assertThatThrownBy(() -> new Width(1))
+        assertThatThrownBy(() -> new Width(0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("너비가 1이상이어야 합니다.");
     }
