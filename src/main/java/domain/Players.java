@@ -65,8 +65,4 @@ public class Players {
                 .anyMatch(player -> player.isTargetPlayer(targetPlayer));
     }
 
-    public int getTargetPlayerPosition(String targetPlayer) {
-        return getPlayersName().indexOf(targetPlayer);
-    }
-
 }
