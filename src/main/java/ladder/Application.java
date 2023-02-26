@@ -1,10 +1,10 @@
 package ladder;
 
 import java.util.Scanner;
+import ladder.client.LadderGameClient;
 import ladder.client.view.InputView;
-import ladder.client.view.LadderGameClient;
 import ladder.domain.LadderGameImpl;
-import ladder.domain.ladder.RandomConnectionJudgement;
+import ladder.domain.RandomConnectionJudgement;
 
 public class Application {
 

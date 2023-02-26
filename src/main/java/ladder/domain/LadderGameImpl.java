@@ -4,13 +4,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import ladder.domain.dto.LadderInfoDto;
-import ladder.domain.dto.PlayerResultDto;
-import ladder.domain.item.Result;
-import ladder.domain.ladder.ConnectionJudgement;
-import ladder.domain.ladder.Ladder;
-import ladder.domain.player.Players;
-import ladder.domain.player.Position;
+import ladder.dto.LadderInfoDto;
+import ladder.dto.PlayerResultDto;
 import ladder.repository.LadderRepository;
 
 /**

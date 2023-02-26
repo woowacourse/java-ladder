@@ -1,8 +1,8 @@
 package ladder.domain;
 
 import java.util.List;
-import ladder.domain.dto.LadderInfoDto;
-import ladder.domain.dto.PlayerResultDto;
+import ladder.dto.LadderInfoDto;
+import ladder.dto.PlayerResultDto;
 
 /**
  * 이 클래스는 사다리 게임을 테스트하는 과정에서 구현체를 바꾸기 위해서 존재합니다
