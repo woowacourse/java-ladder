@@ -71,11 +71,8 @@ public class Players {
         return IntStream.range(0, players.size())
                 .filter(index -> Objects.equals(getNameByPlayer(players.get(index)), nameValue))
                 .findFirst()
-                .orElseThrow(() -> {
-                            throw new IllegalArgumentException(
-                                    ExceptionMessageFormatter.format("참가자 이름이 존재하지 않습니다.", nameValue));
-                        }
-                );
+                .orElseThrow(() -> new IllegalArgumentException(
+                        ExceptionMessageFormatter.format("참가자 이름이 존재하지 않습니다.", nameValue)));
     }
 
     public int size() {
