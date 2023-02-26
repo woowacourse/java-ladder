@@ -3,6 +3,7 @@ package ladder.domain.ladder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import ladder.domain.player.Position;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Test;
@@ -28,5 +29,23 @@ class RowTest {
         Row row = Row.valueOf(3, new MockConnectionJudgement(true));
         assertThat(row.getPoints())
                 .containsExactly(true, false, false);
+    }
+
+    @Test
+    void 오른쪽으로_연결되어_있는_경우에_다음_포인트를_구함() {
+        Row row = Row.valueOf(3, new MockConnectionJudgement(true));
+        assertThat(row.calculateNextPosition(Position.valueOf(0))).isEqualTo(Position.valueOf(1));
+    }
+
+    @Test
+    void 왼쪽으로_연결되어_있는_경우에_다음_포인트를_구함() {
+        Row row = Row.valueOf(3, new MockConnectionJudgement(true));
+        assertThat(row.calculateNextPosition(Position.valueOf(1))).isEqualTo(Position.valueOf(0));
+    }
+
+    @Test
+    void 연결되어_있지_않은_경우에_다음_포인트를_구함() {
+        Row row = Row.valueOf(3, new MockConnectionJudgement(false));
+        assertThat(row.calculateNextPosition(Position.valueOf(2))).isEqualTo(Position.valueOf(2));
     }
 }
