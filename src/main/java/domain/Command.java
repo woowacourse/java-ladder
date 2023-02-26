@@ -26,7 +26,7 @@ public class Command {
     }
 
     public boolean isAllCommand() {
-        return command.equals(ALL_INCLUSIVE);
+        return ALL_INCLUSIVE.equals(command);
     }
 
     public boolean isCommandMatches(Player player) {
