@@ -9,7 +9,8 @@ public class Rewards {
 
     private final List<Reward> rewards = new ArrayList<>();
 
-    private Rewards() {}
+    private Rewards() {
+    }
 
     public static Rewards create(List<String> inputRewards, int playerCount) {
         validateSize(inputRewards, playerCount);

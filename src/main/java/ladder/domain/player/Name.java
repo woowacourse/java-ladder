@@ -49,7 +49,7 @@ public class Name {
 
     private int countKorean(char letter) {
         if (letter >= START_KOREAN && letter <= END_KOREAN) {
-            return  1;
+            return 1;
         }
         return 0;
     }

@@ -23,7 +23,7 @@ public class GameResultTest {
         Players players = Players.create(List.of("a", "b", "c"));
         Ladder ladder = Ladder.create(3, 5, new MockBooleanGenerator(List.of(false)));
         Rewards rewards = Rewards.create(List.of("보상1", "보상2", "보상3"), 3);
-        assertDoesNotThrow(()-> GameResult.create(players, ladder, rewards));
+        assertDoesNotThrow(() -> GameResult.create(players, ladder, rewards));
     }
 
     @Test

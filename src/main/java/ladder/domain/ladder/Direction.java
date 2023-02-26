@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 public enum Direction {
+
     LEFT(currentPosition -> currentPosition - 1),
     RIGHT(currentPosition -> currentPosition + 1),
     STRAIGHT(currentPosition -> currentPosition);
@@ -29,4 +30,5 @@ public enum Direction {
     interface Positioning {
         int decidePosition(int currentPosition);
     }
+
 }

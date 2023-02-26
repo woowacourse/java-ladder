@@ -88,7 +88,7 @@ public class PlayersTest {
     void createTargetDuplicateExceptionPlayers() {
         Players createPlayers = Players.create(correctPlayerNames);
 
-        assertThatThrownBy(()->createPlayers.createTargetPlayers(List.of("crong", "crong")))
+        assertThatThrownBy(() -> createPlayers.createTargetPlayers(List.of("crong", "crong")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -97,7 +97,7 @@ public class PlayersTest {
     void createTargetDoesNotExistExceptionPlayers() {
         Players createPlayers = Players.create(correctPlayerNames);
 
-        assertThatThrownBy(()->createPlayers.createTargetPlayers(List.of("crong", "aaaa")))
+        assertThatThrownBy(() -> createPlayers.createTargetPlayers(List.of("crong", "aaaa")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

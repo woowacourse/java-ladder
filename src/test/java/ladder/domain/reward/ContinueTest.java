@@ -21,7 +21,7 @@ public class ContinueTest {
 
     @ParameterizedTest(name = "input={0}")
     @DisplayName("getContinue 잘못된 문자 예외 테스트")
-    @ValueSource(strings = {"x","1","o","no"})
+    @ValueSource(strings = {"x", "1", "o", "no"})
     void getContinueWrongValueExceptionTest(String inputContinue) {
         assertThatThrownBy(() -> Continue.getContinue(inputContinue))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -29,7 +29,7 @@ public class ContinueTest {
 
     @ParameterizedTest(name = "input={0}")
     @DisplayName("getContinue 공백 문자 예외 테스트")
-    @ValueSource(strings = {" ","     ",""})
+    @ValueSource(strings = {" ", "     ", ""})
     void getContinueBlankExceptionTest(String inputContinue) {
         assertThatThrownBy(() -> Continue.getContinue(inputContinue))
                 .isInstanceOf(IllegalArgumentException.class);

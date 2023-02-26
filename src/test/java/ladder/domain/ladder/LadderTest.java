@@ -40,7 +40,7 @@ public class LadderTest {
     @Test
     @DisplayName("Bar가 아예 없는 사다리 결과 테스트")
     void resultStraightLadderTest() {
-        Ladder ladder = Ladder.create(2, 5,new MockBooleanGenerator(List.of(false)));
+        Ladder ladder = Ladder.create(2, 5, new MockBooleanGenerator(List.of(false)));
 
         assertThat(ladder.findLadderResult(0)).isEqualTo(0);
         assertThat(ladder.findLadderResult(1)).isEqualTo(1);
@@ -49,7 +49,7 @@ public class LadderTest {
     @Test
     @DisplayName("Bar가 있는 복잡한 사다리 결과 테스트")
     void resultCurvedLadderTest() {
-        Ladder ladder = Ladder.create(4, 5,new MockBooleanGenerator(List.of(true,true,false)));
+        Ladder ladder = Ladder.create(4, 5, new MockBooleanGenerator(List.of(true, true, false)));
         /* 다음과 같은 사다리가 생성된다 가정
          * |-| |-|
          * | |-| |

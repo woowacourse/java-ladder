@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class InputView implements Input{
+public class InputView implements Input {
 
     private static final String INPUT_REWARDS_MESSAGE = "실행 결과를 입력하세요.";
     private static final String INPUT_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";

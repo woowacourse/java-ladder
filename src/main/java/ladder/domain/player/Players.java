@@ -21,7 +21,7 @@ public class Players {
     public static Players create(List<String> playerNames) {
         validateContainsAll(playerNames);
         validateCountOfPlayers(playerNames);
-        List<Player> players =  playerNames.stream()
+        List<Player> players = playerNames.stream()
                 .map(playerName -> new Player(new Name(playerName)))
                 .collect(Collectors.toList());
 

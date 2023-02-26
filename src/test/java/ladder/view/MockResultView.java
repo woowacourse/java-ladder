@@ -10,7 +10,7 @@ import ladder.domain.reward.Rewards;
 import java.util.List;
 import java.util.Map;
 
-public class MockResultView implements Result{
+public class MockResultView implements Result {
 
     private List<String> players;
     private List<Line> ladder;
@@ -34,6 +34,7 @@ public class MockResultView implements Result{
     public void printGameResult(Map<Player, Reward> gameResult) {
         this.gameResult = gameResult;
     }
+
     public Boolean hasError() {
         return hasError;
     }

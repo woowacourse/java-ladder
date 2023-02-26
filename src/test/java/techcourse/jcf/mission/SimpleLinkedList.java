@@ -130,7 +130,7 @@ public class SimpleLinkedList implements SimpleList {
         Node node = headNode;
         for (int i = 0; i < capacity; i++) {
             if (node.getValue().equals(value)) {
-               return node;
+                return node;
             }
             node = node.getNextNode();
         }

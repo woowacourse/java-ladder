@@ -19,13 +19,13 @@ public class Reward {
     }
 
     private void validateLength(String reward) {
-        if(calculateLength(reward) > REWARD_MAXIMUM_LENGTH) {
+        if (calculateLength(reward) > REWARD_MAXIMUM_LENGTH) {
             throw new IllegalArgumentException("보상은 최대 " + REWARD_MAXIMUM_LENGTH + "글자 입니다. 영어, 숫자, 공백 = 길이 1 / 한글 = 길이 2");
         }
     }
 
     private void validateBlank(String reward) {
-        if(reward.isBlank()) {
+        if (reward.isBlank()) {
             throw new IllegalArgumentException("보상은 빈 문자열을 입력할 수 없습니다.");
         }
     }
@@ -41,7 +41,7 @@ public class Reward {
 
     private int countKorean(char letter) {
         if (letter >= START_KOREAN && letter <= END_KOREAN) {
-            return  1;
+            return 1;
         }
         return 0;
     }

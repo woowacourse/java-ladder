@@ -2,7 +2,7 @@ package techcourse.jcf.mission;
 
 import java.util.Arrays;
 
-public class SimpleArrayList implements SimpleList{
+public class SimpleArrayList implements SimpleList {
 
     private final int initCapacity;
     private int capacity;
@@ -35,8 +35,8 @@ public class SimpleArrayList implements SimpleList{
     public void add(int index, String value) {
         checkOutOfIndex(index);
         add(value);
-        for (int i = tailIndex - 1; i >= index ; i--) {
-            storage[i+1] = storage[i];
+        for (int i = tailIndex - 1; i >= index; i--) {
+            storage[i + 1] = storage[i];
         }
         storage[index] = value;
     }
@@ -58,7 +58,7 @@ public class SimpleArrayList implements SimpleList{
     @Override
     public boolean contains(String value) {
         for (int index = 0; index < tailIndex + 1; index++) {
-            if(storage[index].equals(value)){
+            if (storage[index].equals(value)) {
                 return true;
             }
         }
@@ -68,7 +68,7 @@ public class SimpleArrayList implements SimpleList{
     @Override
     public int indexOf(String value) {
         for (int index = 0; index < tailIndex + 1; index++) {
-            if(storage[index].equals(value)){
+            if (storage[index].equals(value)) {
                 return index;
             }
         }
@@ -91,7 +91,7 @@ public class SimpleArrayList implements SimpleList{
     @Override
     public boolean remove(String value) {
         for (int index = 0; index < tailIndex; index++) {
-            if(storage[index].equals(value)){
+            if (storage[index].equals(value)) {
                 remove(index);
                 return true;
             }
@@ -104,7 +104,7 @@ public class SimpleArrayList implements SimpleList{
         checkOutOfIndex(index);
         String oldValue = storage[index];
         for (int i = index + 1; i < tailIndex + 1; i++) {
-            storage[i] = storage[i-1];
+            storage[i] = storage[i - 1];
         }
         tailIndex -= 1;
         return oldValue;

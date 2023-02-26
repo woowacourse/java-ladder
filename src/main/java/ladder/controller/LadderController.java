@@ -37,10 +37,10 @@ public class LadderController {
 
         result.printLadder(players, ladder, rewards);
 
-        endOfGame(players, ladder, rewards);
+        calculateGameResult(players, ladder, rewards);
     }
 
-    private void endOfGame(Players players, Ladder ladder, Rewards rewards) {
+    private void calculateGameResult(Players players, Ladder ladder, Rewards rewards) {
         GameResult gameResult = GameResult.create(players, ladder, rewards);
         Continue resultContinue;
         do {

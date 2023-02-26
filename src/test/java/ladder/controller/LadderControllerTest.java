@@ -25,9 +25,9 @@ public class LadderControllerTest {
     @DisplayName("사다리 컨트롤러 정상 테스트")
     void ladderControllerTest() {
         MockInputView inputView = new MockInputView(
-                List.of(List.of("a","b","c","d")),
+                List.of(List.of("a", "b", "c", "d")),
                 List.of(3),
-                List.of(List.of("1","2","3","4")),
+                List.of(List.of("1", "2", "3", "4")),
                 List.of(List.of("all")),
                 List.of("n"));
         MockResultView resultView = new MockResultView();
@@ -39,7 +39,7 @@ public class LadderControllerTest {
         List<Reward> rewards = resultView.getRewards();
         Map<Player, Reward> gameResult = resultView.getGameResult();
 
-        assertThat(resultPlayers).isEqualTo(List.of("a","b","c","d"));
+        assertThat(resultPlayers).isEqualTo(List.of("a", "b", "c", "d"));
         assertThat(resultLadder.get(0).getLine()).isEqualTo(List.of(MOVABLE_BAR, UNMOVABLE_BAR, UNMOVABLE_BAR));
         assertThat(resultLadder.get(1).getLine()).isEqualTo(List.of(MOVABLE_BAR, UNMOVABLE_BAR, UNMOVABLE_BAR));
         assertThat(resultLadder.get(2).getLine()).isEqualTo(List.of(MOVABLE_BAR, UNMOVABLE_BAR, UNMOVABLE_BAR));
@@ -57,9 +57,9 @@ public class LadderControllerTest {
     @DisplayName("사다리 컨트롤러 예외 후 정상 테스트")
     void ladderControllerExceptionTest() {
         MockInputView inputView = new MockInputView(
-                List.of(List.of("a","b","c","c"), List.of("aaaaaa","b","c","d"), List.of("a","b","c","d")),
+                List.of(List.of("a", "b", "c", "c"), List.of("aaaaaa", "b", "c", "d"), List.of("a", "b", "c", "d")),
                 List.of(0, 3),
-                List.of(List.of("1","2","3"), List.of("1","2","3","4")),
+                List.of(List.of("1", "2", "3"), List.of("1", "2", "3", "4")),
                 List.of(List.of("e", "a"), List.of("all")),
                 List.of("No", "n"));
         MockResultView resultView = new MockResultView();
@@ -73,7 +73,7 @@ public class LadderControllerTest {
         boolean resultError = resultView.hasError();
 
         assertThat(resultError).isTrue();
-        assertThat(resultPlayers).isEqualTo(List.of("a","b","c","d"));
+        assertThat(resultPlayers).isEqualTo(List.of("a", "b", "c", "d"));
         assertThat(resultLadder.get(0).getLine()).isEqualTo(List.of(MOVABLE_BAR, UNMOVABLE_BAR, UNMOVABLE_BAR));
         assertThat(resultLadder.get(1).getLine()).isEqualTo(List.of(MOVABLE_BAR, UNMOVABLE_BAR, UNMOVABLE_BAR));
         assertThat(resultLadder.get(2).getLine()).isEqualTo(List.of(MOVABLE_BAR, UNMOVABLE_BAR, UNMOVABLE_BAR));
