@@ -11,6 +11,7 @@ public class Players {
     private static final int PLAYER_NUMBER_UPPER_BOUND_INCLUSIVE = 20;
     public static final String PLAYER_NUMBER_RANGE_ERROR_MESSAGE = "참여자 수는 2 ~ 20명만 가능합니다.";
     private static final String PLAYER_NAME_DUPLICATION_ERROR_MESSAGE = "이름은 중복될 수 없습니다.";
+    private static final String INVALID_PLAYER_NAME_ERROR_MESSAGE = "없는 player 입니다.";
 
     private final List<Player> players;
 
@@ -73,8 +74,15 @@ public class Players {
         return players.size();
     }
 
-//    public Player findByName() {
-//
-//    }
+    public Player findByName(String name) {
+        return players.stream()
+                .filter(player -> isSameName(name, player))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_PLAYER_NAME_ERROR_MESSAGE));
+    }
+
+    private boolean isSameName(String name, Player player) {
+        return player.isSameName(name);
+    }
 
 }

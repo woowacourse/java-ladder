@@ -32,8 +32,7 @@ public class CommandTest {
     void createCommandSuccess() {
         Command command = new Command("play");
 
-        assertThat(command.isCommandMatches(new Player("play", 0)))
-                .isTrue();
+        assertThat(command.getCommand()).isEqualTo("play");
     }
 
 }

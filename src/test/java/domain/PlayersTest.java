@@ -2,10 +2,13 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -37,6 +40,7 @@ public class PlayersTest {
     @Test
     void createPlayerNumberUnderNumberFail() {
         List<String> input = List.of("pobi");
+
         assertThatThrownBy(() -> Players.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PLAYER_NUMBER_UPPER_BOUND_INCLUSIVE);
@@ -54,6 +58,30 @@ public class PlayersTest {
         assertThatThrownBy(() -> Players.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PLAYER_NUMBER_UPPER_BOUND_INCLUSIVE);
+    }
+
+    @DisplayName("player의 이름으로 player 를 찾아 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi", "hello", "crong", "jk"})
+    void findByNameSuccess(String input) {
+        List<String> playerNamesInput = List.of("pobi", "hello", "crong", "jk");
+
+        Players players = Players.from(playerNamesInput);
+        Player playerByFindByName = players.findByName(input);
+
+        assertThat(playerByFindByName.getName()).isEqualTo(input);
+    }
+
+    @Test
+    @DisplayName("없는 player 의 이름을 찾을 경우 예외를 반환한다.")
+    void findByNameFail() {
+        List<String> playerNamesInput = List.of("pobi", "hello", "crong", "jk");
+
+        Players players = Players.from(playerNamesInput);
+
+        assertThatThrownBy(() -> players.findByName("pob"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("없는 player 입니다.");
     }
 
 }

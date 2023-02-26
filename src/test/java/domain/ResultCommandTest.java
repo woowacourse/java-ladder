@@ -29,7 +29,7 @@ public class ResultCommandTest {
 
         assertThatThrownBy(() -> resultCommand.getCommandResult(command))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("all 이나 Player 의 이름만 입력이 가능합니다.");
+                .hasMessageContaining("없는 player 입니다.");
     }
 
     @Test

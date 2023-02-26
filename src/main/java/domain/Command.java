@@ -29,9 +29,8 @@ public class Command {
         return ALL_INCLUSIVE.equals(command);
     }
 
-    public boolean isCommandMatches(Player player) {
-        return player.getName()
-                .equals(this.command);
+    public String getCommand() {
+        return this.command;
     }
 
 }
