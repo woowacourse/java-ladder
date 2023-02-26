@@ -19,7 +19,7 @@ public class Players {
                 .forEach(i -> players.add(new Player(names.get(i), i)));
     }
 
-    public Map<Position, String> moveToLadderEnd(String playerName, Ladder ladder) {
+    public Map<Position, String> moveToLadderEnd(Name playerName, Ladder ladder) {
         Map<Position, String> result = new HashMap<>();
 
         Player player = getPlayerByName(playerName);
@@ -37,7 +37,7 @@ public class Players {
         return Collections.unmodifiableMap(results);
     }
 
-    private Player getPlayerByName(String name) {
+    private Player getPlayerByName(Name name) {
         return players.stream()
                 .filter(player -> player.isEqualName(name))
                 .findFirst()

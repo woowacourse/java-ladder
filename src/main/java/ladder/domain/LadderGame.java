@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.ladderNode.Name;
 import ladder.domain.ladderNode.Players;
 import ladder.domain.ladderNode.Position;
 import ladder.domain.ladderNode.Results;
@@ -36,7 +37,7 @@ public class LadderGame {
     }
 
     private List<ResultDto> onePlayerResult(String playerName) {
-        Map<Position, String> arrivePosition = players.moveToLadderEnd(playerName, ladder);
+        Map<Position, String> arrivePosition = players.moveToLadderEnd(new Name(playerName), ladder);
         return results.getResultsByPosition(arrivePosition);
     }
 

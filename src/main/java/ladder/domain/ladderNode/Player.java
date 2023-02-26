@@ -16,15 +16,11 @@ public class Player {
         return resultPosition;
     }
 
-    public boolean isEqualName(String inputName) {
-        return name.equals(new Name(inputName));
+    public boolean isEqualName(Name inputName) {
+        return name.equals(inputName);
     }
 
     public String getName() {
         return name.getName();
-    }
-
-    public int getNameLength() {
-        return name.getNameLength();
     }
 }
