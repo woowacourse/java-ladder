@@ -1,5 +1,6 @@
 package laddergame.domain.players;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -51,27 +52,37 @@ public class Players {
         Set<Player> checker = new HashSet<>();
         return players.stream()
                 .filter(player -> !(checker.add(player)))
-                .map(Player::getName)
+                .map(Players::getNameByPlayer)
                 .collect(Collectors.toList());
+    }
+
+    private static String getNameByPlayer(Player player) {
+        return player.getName().getValue();
     }
 
     public List<String> getNames() {
         return players.stream()
-                .map(Player::getName)
+                .map(Players::getNameByPlayer)
                 .collect(Collectors.toList());
     }
 
-    public int indexOf(String name) {
+    public int indexOf(Name name) {
+        String nameValue = name.getValue();
         return IntStream.range(0, players.size())
-                .filter(index -> Objects.equals(players.get(index).getName(), name))
+                .filter(index -> Objects.equals(getNameByPlayer(players.get(index)), nameValue))
                 .findFirst()
                 .orElseThrow(() -> {
-                            throw new IllegalArgumentException(ExceptionMessageFormatter.format("참가자 이름이 존재하지 않습니다.", name));
+                            throw new IllegalArgumentException(
+                                    ExceptionMessageFormatter.format("참가자 이름이 존재하지 않습니다.", nameValue));
                         }
                 );
     }
 
     public int size() {
         return players.size();
+    }
+
+    public List<Player> players() {
+        return new ArrayList<>(players);
     }
 }

@@ -3,12 +3,15 @@ package laddergame.domain;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import laddergame.domain.ladder.GameResult;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderHeight;
 import laddergame.domain.ladder.destination.Item;
 import laddergame.domain.ladder.line.LineWidth;
+import laddergame.domain.players.Name;
+import laddergame.domain.players.Player;
 import laddergame.domain.players.Players;
 
 public class LadderGame {
@@ -38,17 +41,17 @@ public class LadderGame {
         }
     }
 
-    private Map<String, String> findItemsByPlayer() {
-        Map<String, String> result = new LinkedHashMap<>();
-        players.getNames()
-                .forEach(name -> result.put(name, findItemByPlayerName(name)));
-        return result;
+    private Map<Name, Item> findItemsByPlayer() {
+        return players.players()
+                .stream()
+                .map(Player::getName)
+                .collect(Collectors.toMap(Function.identity(), this::findItemByPlayerName, (a, b) -> a,
+                        LinkedHashMap::new));
     }
 
-    private String findItemByPlayerName(String playerName) {
+    private Item findItemByPlayerName(Name playerName) {
         int startIndex = players.indexOf(playerName);
-        Item found = ladder.findItemsByStartIndex(startIndex);
-        return found.getValue();
+        return ladder.findItemsByStartIndex(startIndex);
     }
 
     public List<String> playerNames() {

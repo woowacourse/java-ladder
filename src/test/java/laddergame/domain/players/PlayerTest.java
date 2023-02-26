@@ -15,6 +15,6 @@ class PlayerTest {
     void should_Success_When_CreatePlayerWithName() {
         Player player = new Player("이름");
 
-        assertThat(player.getName()).isEqualTo("이름");
+        assertThat(player.getName().getValue()).isEqualTo("이름");
     }
 }
