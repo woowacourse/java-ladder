@@ -7,11 +7,9 @@ import java.util.stream.Collectors;
 
 public class Line {
     private final List<Step> steps;
-    private final int lineLength;
 
     public Line(LineStrategy lineStrategy, int sectionCount) {
         this.steps = lineStrategy.generate(sectionCount);
-        this.lineLength = sectionCount;
     }
 
     public List<Boolean> getSteps() {
@@ -40,7 +38,8 @@ public class Line {
 
     private boolean canMoveRight(Position playerPosition) {
         int rightPosition = playerPosition.getValue();
-        if (rightPosition >= lineLength) {
+        int numberOfSteps = steps.size();
+        if (rightPosition >= numberOfSteps) {
             return false;
         }
         return Step.isExist(steps.get(rightPosition));
