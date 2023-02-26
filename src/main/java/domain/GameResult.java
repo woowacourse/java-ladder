@@ -31,7 +31,7 @@ public class GameResult {
         }
     }
 
-    public String getResult() {
+    public String getGameResultName() {
         return result;
     }
 

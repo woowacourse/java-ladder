@@ -64,7 +64,7 @@ public class GameResultsTest {
                 3,
                 List.of(new GameResult("꽝"), new GameResult("꽝"), new GameResult("당첨"))
         );
-        assertThat(gameResults.getGameResultAt(Integer.parseInt(index)).getResult())
+        assertThat(gameResults.getGameResultAt(Integer.parseInt(index)).getGameResultName())
                 .isEqualTo(gameResult);
     }
 

@@ -38,7 +38,7 @@ public class GameResultTest {
     @ValueSource(strings = {"꽝", "3000", "20000"})
     void getGameResult(String resultInput) {
         GameResult gameResult = new GameResult(resultInput);
-        assertThat(gameResult.getResult())
+        assertThat(gameResult.getGameResultName())
                 .isEqualTo(resultInput);
     }
 

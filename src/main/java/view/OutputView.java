@@ -81,7 +81,7 @@ public class OutputView {
         printEmptyLine();
         printLine(RESULT_TITLE);
         for (String playerName : gameResults.keySet()) {
-            printLine(playerName + RESULT_DELIMITER + gameResults.get(playerName).getResult());
+            printLine(playerName + RESULT_DELIMITER + gameResults.get(playerName).getGameResultName());
         }
     }
 
