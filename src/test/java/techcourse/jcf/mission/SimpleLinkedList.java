@@ -1,5 +1,6 @@
 package techcourse.jcf.mission;
 
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class SimpleLinkedList implements SimpleList {
@@ -29,7 +30,7 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public void add(int index, String value) {
-        validateOutOfBound(index);
+        validateOutOfBoundForAdd(index);
         if (size == 0 && index == 0) {
             addFirstNode(new Node(value));
             return;
@@ -48,7 +49,15 @@ public class SimpleLinkedList implements SimpleList {
         }
     }
 
-    private void validateOutOfBound(int index) {
+    private Node findLastNode(Node first) {
+        Node iterator = first;
+        while (!Objects.isNull(iterator.getNext())){
+            iterator = iterator.getNext();
+        }
+        return iterator;
+    }
+
+    private void validateOutOfBoundForAdd(int index) {
         if (!(0 <= index && index <= this.size)) {
             throw new IllegalArgumentException("인덱스는 범위를 벗어날 수 없습니다.");
         }
@@ -133,12 +142,38 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public boolean remove(String value) {
-        return false;
+        Node before = firstNode;
+        Node iterator = firstNode;
+        for (int i = 0; i < size && !(iterator.getValue().equals(value)); i++) {
+            before = iterator;
+            iterator = iterator.getNext();
+        }
+        if (Objects.isNull(iterator)) {
+            return false;
+        }
+        before.setNext(iterator.getNext());
+        --size;
+        return true;
     }
 
     @Override
     public String remove(int index) {
-        return null;
+        validateOutOfBoundForSearch(index);
+        Node before = firstNode;
+        Node iterator = firstNode;
+        for (int i = 0; i < index; i++) {
+            before = iterator;
+            iterator = iterator.getNext();
+        }
+        before.setNext(iterator.getNext());
+        --size;
+        return iterator.getValue();
+    }
+
+    private void validateOutOfBoundForSearch(int index){
+        if (!(0 <= index && index < this.size)) {
+            throw new IllegalArgumentException("인덱스는 범위를 벗어날 수 없습니다.");
+        }
     }
 
     @Override

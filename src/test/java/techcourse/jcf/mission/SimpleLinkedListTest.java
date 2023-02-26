@@ -146,4 +146,46 @@ class SimpleLinkedListTest {
 
         Assertions.assertEquals(false, linkedList.isEmpty());
     }
+
+    @DisplayName("SimpleLinkedList 특정 값으로 삭제 테스트")
+    @Test
+    void SimpleLinkedList_특정_값_삭제_테스트() {
+        SimpleLinkedList linkedList = new SimpleLinkedList();
+        final String beforeValue = "before";
+        linkedList.add(beforeValue);
+
+        Assertions.assertEquals(true, linkedList.remove(beforeValue));
+    }
+
+    @DisplayName("SimpleLinkedList 특정 값 삭제 실패 테스트")
+    @Test
+    void SimpleLinkedList_특정_값_삭제_실패_테스트() {
+        SimpleLinkedList linkedList = new SimpleLinkedList();
+        final String beforeValue = "before";
+        linkedList.add(beforeValue);
+
+        Assertions.assertEquals(false, linkedList.remove("not contain"));
+    }
+
+    @DisplayName("SimpleLinkedList 특정 인덱스로 삭제 테스트")
+    @Test
+    void SimpleLinkedList_특정_인덱스로_삭제_테스트() {
+        SimpleLinkedList linkedList = new SimpleLinkedList();
+        final String beforeValue = "before";
+        linkedList.add(beforeValue);
+
+        Assertions.assertEquals(beforeValue, linkedList.remove(0));
+    }
+
+    @DisplayName("SimpleLinkedList 특정 인덱스로 삭제 실패 테스트")
+    @Test
+    void SimpleLinkedList_특정_인덱스로_삭제_실패_테스트() {
+        SimpleLinkedList linkedList = new SimpleLinkedList();
+        final String beforeValue = "before";
+        linkedList.add(beforeValue);
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            linkedList.remove(1);
+        });
+    }
 }
