@@ -10,12 +10,15 @@ import ladder.domain.Player;
 import ladder.domain.Prize;
 import ladder.domain.Step;
 import ladder.dto.LadderResponse;
+import ladder.dto.PlayerResultResponse;
 import ladder.repository.PlayerRepository;
 import ladder.repository.PlayerResultsRepository;
 import ladder.repository.PrizeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LadderServiceTest {
     PlayerRepository playerRepository;
@@ -151,13 +154,74 @@ class LadderServiceTest {
         ladderService.playLadderGame(3);
 
         // then
-        assertThat(ladderService.findAllPlayerResults())
+        List<PlayerResultResponse> results = ladderService.findAllPlayerResults();
+        assertThat(results)
                 .hasSize(3);
-        assertThat(playerResultsRepository.findByPlayerName("glen").getPrize())
+        assertThat(results.get(0).getPlayerPrize())
                 .isEqualTo("1000");
-        assertThat(playerResultsRepository.findByPlayerName("pobi").getPrize())
+        assertThat(results.get(1).getPlayerPrize())
                 .isEqualTo("꽝");
-        assertThat(playerResultsRepository.findByPlayerName("bero").getPrize())
+        assertThat(results.get(2).getPlayerPrize())
                 .isEqualTo("5000");
+    }
+
+    @Test
+    @DisplayName("게임을 플레이하지 않으면 결과가 없어야 한다.")
+    void findAllPlayerResults_notPlayGame() {
+        // given
+        ladderService.createPlayers(new String[]{"glen", "pobi", "bero"});
+        ladderService.createPrizes(new String[]{"1000", "꽝", "5000"});
+
+        // expect
+        assertThat(ladderService.findAllPlayerResults())
+                .isEmpty();
+    }
+
+    @Test
+    @DisplayName("사용자의 이름으로 결과가 정확히 반환되어야 한다.")
+    void findPlayerResultByName_success() {
+        // given
+        ladderService.createPlayers(new String[]{"glen", "pobi", "bero"});
+        ladderService.createPrizes(new String[]{"1000", "꽝", "5000"});
+
+        // when
+        ladderService.playLadderGame(4);
+
+        // then
+        PlayerResultResponse result = ladderService.findPlayerResultByName("pobi");
+        assertThat(result.getPlayerName())
+                .isEqualTo("pobi");
+        assertThat(result.getPlayerPrize())
+                .isEqualTo("꽝");
+    }
+
+    @Test
+    @DisplayName("사용자 이름으로 결과를 가져올 때 사용자가 없으면 예외가 발생한다.")
+    void findPlayerResultByName_noPlayer() {
+        // given
+        ladderService.createPlayers(new String[]{"glen", "pobi", "bero"});
+        ladderService.createPrizes(new String[]{"1000", "꽝", "5000"});
+
+        // when
+        ladderService.playLadderGame(4);
+
+        // then
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            ladderService.findPlayerResultByName("mango");
+        }).withMessage("[ERROR] 해당 참여자가 없습니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {2, 3, 11, 12})
+    @DisplayName("사다리 게임을 플레이할 때 높이가 범위를 벗어나면 예외가 발생한다.")
+    void playerLadderGame_heightOutOfRange(int input) {
+        // given
+        ladderService.createPlayers(new String[]{"glen", "pobi", "bero", "mango"});
+        ladderService.createPrizes(new String[]{"1000", "꽝", "5000", "1000"});
+
+        // expect
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            ladderService.playLadderGame(input);
+        }).withMessage("[ERROR] 사다리의 높이는 사람 수보다 크거나, 사람 수의 두 배 보다 작아야 합니다.");
     }
 }
