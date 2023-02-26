@@ -8,6 +8,7 @@ import dto.ladder.LadderDto;
 import dto.user.UsersDto;
 import java.util.ArrayList;
 import java.util.List;
+import utils.RandomBooleanGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -24,7 +25,7 @@ public class LadderGameController {
 
     public void initialize() {
         users = initializeUsers();
-        ladder = new Ladder(users.getPersonCount(), initializeHeight());
+        ladder = new Ladder(users.getPersonCount(), initializeHeight(), new RandomBooleanGenerator());
     }
 
     public void run() {
@@ -43,8 +44,8 @@ public class LadderGameController {
 
     private List<User> createUsers(List<String> userNames) {
         List<User> users = new ArrayList<>();
-        for (String userName : userNames) {
-            users.add(new User(userName));
+        for (int i = 0; i < userNames.size(); i++) {
+            users.add(new User(userNames.get(i), i));
         }
         return users;
     }

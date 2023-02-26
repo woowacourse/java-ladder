@@ -6,6 +6,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.FixedBooleanGenerator;
+import utils.RandomBooleanGenerator;
 import view.LineStatus;
 
 public class LineTest {
@@ -26,6 +27,6 @@ public class LineTest {
     @DisplayName("라인 생성 확인 테스트")
     @Test
     void shouldSuccessLine() {
-        assertDoesNotThrow(() -> new Line(4));
+        assertDoesNotThrow(() -> new Line(4, new RandomBooleanGenerator()));
     }
 }
