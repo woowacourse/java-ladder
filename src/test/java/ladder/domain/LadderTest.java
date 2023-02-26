@@ -19,7 +19,7 @@ public class LadderTest {
     void setup() {
         heightOfLadder = 5;
         playerCount = 5;
-        ladder = Ladder.of(playerCount, heightOfLadder, new MockRandomDataGenerator());
+        ladder = Ladder.of(playerCount, heightOfLadder, new MockRandomBarGenerator());
     }
 
     /**
