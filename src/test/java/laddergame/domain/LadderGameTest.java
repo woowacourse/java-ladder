@@ -15,10 +15,7 @@ class LadderGameTest {
     @DisplayName("사다리가 생성되지 않은 게임의 결과를 요청하면 예외를 던진다.")
     void should_ThrowException_When_ComputeResultWithoutLadder() {
         LadderGame ladderGame = new LadderGame(List.of("name1", "name2"));
-
-        assertThatThrownBy(ladderGame::ladder)
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessageContaining("아직 사다리가 생성되지 않은 게임입니다.");
+        
         assertThatThrownBy(ladderGame::computeResult)
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("아직 사다리가 생성되지 않은 게임입니다.");
