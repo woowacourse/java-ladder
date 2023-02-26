@@ -3,8 +3,8 @@ import domain.Ladder;
 import domain.ResultTable;
 import domain.Rewards;
 import domain.Users;
-import utils.LadderRowGenerator;
-import utils.RandomLadderRowGenerator;
+import domain.ladderRowGenerator.LadderRowGenerator;
+import domain.ladderRowGenerator.RandomLadderRowGenerator;
 
 public class Application {
     public static void main(String[] args) {

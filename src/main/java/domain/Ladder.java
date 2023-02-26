@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import utils.LadderRowGenerator;
+import domain.ladderRowGenerator.LadderRowGenerator;
 
 public class Ladder {
     private final List<LadderRow> ladderRows = new ArrayList<>();

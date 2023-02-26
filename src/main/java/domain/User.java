@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-import utils.validator.Validator;
+import domain.validator.Validator;
 
 public class User {
     private final String name;

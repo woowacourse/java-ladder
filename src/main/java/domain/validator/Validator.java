@@ -1,4 +1,4 @@
-package utils.validator;
+package domain.validator;
 
 import static domain.ErrorMessages.CONFLICT_NAME;
 import static domain.ErrorMessages.DIFFERENT_LENGTH;

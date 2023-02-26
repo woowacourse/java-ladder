@@ -4,7 +4,7 @@ import static domain.Point.*;
 
 import java.util.List;
 
-import utils.LadderRowGenerator;
+import domain.ladderRowGenerator.LadderRowGenerator;
 
 public class TestLadderRowGenerator implements LadderRowGenerator {
     private final List<List<Point>> ladder = List.of(

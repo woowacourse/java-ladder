@@ -1,4 +1,4 @@
-package utils;
+package domain.ladderRowGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.Random;
 
 import domain.LadderRow;
 import domain.Point;
+import domain.ladderRowGenerator.LadderRowGenerator;
 
 public class RandomLadderRowGenerator implements LadderRowGenerator {
 

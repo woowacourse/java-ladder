@@ -1,6 +1,6 @@
 package domain;
 
-import utils.validator.Validator;
+import domain.validator.Validator;
 
 public class Reward {
     private final String reward;

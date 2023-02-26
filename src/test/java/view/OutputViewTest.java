@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import domain.Ladder;
 import domain.TestLadderRowGenerator;
-import utils.LadderRowGenerator;
+import domain.ladderRowGenerator.LadderRowGenerator;
 
 class OutputViewTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

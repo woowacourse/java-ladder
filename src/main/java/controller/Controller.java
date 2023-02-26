@@ -11,7 +11,7 @@ import domain.Reward;
 import domain.Rewards;
 import domain.User;
 import domain.Users;
-import utils.validator.Validator;
+import domain.validator.Validator;
 import view.InputView;
 import view.OutputView;
 

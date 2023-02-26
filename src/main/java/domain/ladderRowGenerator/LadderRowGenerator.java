@@ -1,4 +1,4 @@
-package utils;
+package domain.ladderRowGenerator;
 
 import domain.LadderRow;
 
