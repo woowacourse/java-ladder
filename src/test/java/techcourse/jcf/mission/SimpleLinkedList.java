@@ -41,7 +41,7 @@ public class SimpleLinkedList implements SimpleList {
         ++size;
     }
 
-    private void nodeMovingDestination(Node before, Node iterator, Integer destination){
+    private void nodeMovingDestination(Node before, Node iterator, Integer destination) {
         for (int i = 0; i < destination; i++) {
             before = iterator;
             iterator = iterator.getNext();
@@ -95,7 +95,14 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public boolean contains(String value) {
-        return false;
+        Node iterator = firstNode;
+        for (int i = 0; i < size && !(iterator.getValue().equals(value)); i++) {
+            iterator = iterator.getNext();
+        }
+        if (Objects.isNull(iterator)) {
+            return false;
+        }
+        return true;
     }
 
     @Override

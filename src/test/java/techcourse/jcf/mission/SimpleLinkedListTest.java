@@ -73,4 +73,23 @@ class SimpleLinkedListTest {
                     new SimpleLinkedList().get(1);
                 });
     }
+
+    @DisplayName("SimpleLinkedList 범위 내부의 원소 포함 여부 테스트")
+    @Test
+    void SimpleLinkedList_범위_내부의_원소_포함_여부_테스트() {
+        SimpleLinkedList linkedList = new SimpleLinkedList();
+        final String beforeValue = "before";
+        linkedList.add(beforeValue);
+
+        Assertions.assertEquals(true, linkedList.contains(beforeValue));
+    }
+
+    @DisplayName("SimpleLinkedList 범위 내부의 원소 불포함 여부 테스트")
+    @Test
+    void SimpleLinkedList_범위_내부의_원소_불포함_테스트() {
+        SimpleLinkedList linkedList = new SimpleLinkedList();
+
+        Assertions.assertEquals(false,
+                linkedList.contains("not contain"));
+    }
 }
