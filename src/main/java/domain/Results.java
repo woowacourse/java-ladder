@@ -1,7 +1,9 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Results {
 
@@ -43,29 +45,21 @@ public class Results {
     }
 
     public List<String> getFinalResults(List<String> playersName, List<Integer> lastPositions, String targetPlayer) {
-        List<String> results = new ArrayList<>();
-
-        addResult(playersName, lastPositions, targetPlayer, results);
-        return results;
-    }
-
-    private void addResult(List<String> playersName, List<Integer> lastPositions,
-                           String targetPlayer, List<String> results) {
         if (targetPlayer.equals(ALL_PLAYER)) {
-            addPlayersResult(lastPositions, results);
-            return;
+            return getAllPlayerResult(lastPositions);
         }
-        addPlayerResult(results, lastPositions.get(playersName.indexOf(targetPlayer)));
+        return List.of(getSinglePlayerResult(playersName, lastPositions, targetPlayer));
     }
 
-    private void addPlayersResult(List<Integer> lastPositions, List<String> results) {
-        for (Integer lastPosition : lastPositions) {
-            results.add(getResult(lastPosition));
-        }
+    private String getSinglePlayerResult(List<String> playersName, List<Integer> lastPositions, String targetPlayer) {
+        int index = playersName.indexOf(targetPlayer);
+        return getResult(lastPositions.get(index));
     }
 
-    private void addPlayerResult(List<String> results, int lastPosition) {
-        results.add(getResult(lastPosition));
+    private List<String> getAllPlayerResult(List<Integer> lastPositions) {
+        return lastPositions.stream()
+                .map(this::getResult)
+                .collect(Collectors.toList());
     }
 
 }
