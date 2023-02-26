@@ -4,9 +4,13 @@ import static ladder.domain.Height.INVALID_HEIGHT_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+@SuppressWarnings("NonAsciiCharacters")
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class HeightTest {
 
     @ParameterizedTest(name = "높이는 1이상, 100이하의 값이 아닌 경우 예외를 던진다. 입력값: \"{0}\"")
