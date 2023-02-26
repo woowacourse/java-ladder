@@ -23,6 +23,7 @@ public class Line {
         for (int i = 1; i < personCount - 1; i++) {
             line.add(makePoint(isPreRightPoint(line.get(i - 1))));
         }
+        line.add(new Point(new Direction(isPreRightPoint(line.get(personCount - 2))), new Direction(false)));
         return line;
     }
 

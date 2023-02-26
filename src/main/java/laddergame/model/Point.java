@@ -13,7 +13,6 @@ public class Point {
         if (position - 1 < 0) {
             throw new IllegalArgumentException("[ERROR] 더이상 왼쪽으로 이동할 수 없습니다.");
         }
-        // 마지막은 무조건 false..
         if (right.isDirection()) {
             return position + 1;
         }
@@ -23,8 +22,16 @@ public class Point {
         return position;
     }
 
+    private Direction getLeft() {
+        return left;
+    }
+
     public Direction getRight() {
         return right;
+    }
+
+    public boolean getLeftIsBoolean() {
+        return getLeft().isDirection();
     }
 
     public boolean getRightIsBoolean() {

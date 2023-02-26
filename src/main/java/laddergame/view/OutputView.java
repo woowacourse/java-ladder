@@ -8,6 +8,8 @@ import laddergame.model.Prizes;
 
 public class OutputView {
     private static final String VERTICAL_LINE = "|";
+    private static final String HORIZONTAL_LINE = "-----";
+    private static final String BLANK_LINE = "     ";
     private static final String LADDER_RESULT_MSG = "사다리 결과";
     private static final String ERROR_PREFIX = "[ERROR] ";
 
@@ -29,18 +31,24 @@ public class OutputView {
 
     public void printLadder(Ladder ladder) {
         for (int i = 0; i < ladder.getSize(); i++) {
-            List<Point> line = ladder.get(i).getLine();
-            System.out.printf("%6s", VERTICAL_LINE);
-            printSymbol(line);
+            System.out.print(BLANK_LINE);
+            printLine(ladder.get(i).getLine());
             System.out.println();
         }
     }
 
-    private void printSymbol(List<Point> line) {
+    private static void printLine(List<Point> line) {
         for (Point point : line) {
-            System.out.print(LineSymbol.findByBool(point.getRightIsBoolean()).getSymbol());
             System.out.print(VERTICAL_LINE);
+            System.out.print(printPoint(point));
         }
+    }
+
+    private static String printPoint(Point point) {
+        if (point.getRightIsBoolean()) {
+            return HORIZONTAL_LINE;
+        }
+        return BLANK_LINE;
     }
 
     private void printPrizes(Prizes prizes) {
