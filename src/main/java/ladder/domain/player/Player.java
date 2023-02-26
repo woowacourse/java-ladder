@@ -1,5 +1,7 @@
 package ladder.domain.player;
 
+import ladder.domain.ladder.Ladder;
+
 /**
  * 플레이어의 이름과 위치를 가지는 클래스
  * <p>
@@ -19,5 +21,9 @@ public class Player {
 
     public String getName() {
         return name.getName();
+    }
+
+    public Position calculateResult(Ladder ladder) {
+        return ladder.calculateResult(position);
     }
 }

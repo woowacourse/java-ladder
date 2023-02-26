@@ -1,8 +1,11 @@
 package ladder.domain.player;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import ladder.domain.ladder.Ladder;
 
 /**
  * 참가자의 이름과 위치를 가지고 있는 Player 를 가지고 있는 클래스입니다
@@ -35,5 +38,16 @@ public class Players {
         return players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toList());
+    }
+
+    public Map<String, Position> calculateResult(Ladder ladder) {
+        //그냥 바로 collect toMap 만 호출하면 순서가 보장이 되지 않아서 LinkedHashMap 으로 감싸준다
+        return players.stream()
+                .collect(Collectors.toMap(
+                        Player::getName,
+                        player -> player.calculateResult(ladder),
+                        (x, y) -> y,
+                        LinkedHashMap::new)
+                );
     }
 }
