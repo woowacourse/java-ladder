@@ -50,17 +50,13 @@ public class LadderGameTest {
     @DisplayName("모든 사용자의 결과 출력")
     @Test
     void all_result_test() {
-        Map<Person, Result> data = Map.of(
-                new Person("pobi"), new Result("꽝"),
-                new Person("honux"), new Result("3000"),
-                new Person("crong"), new Result("꽝"),
-                new Person("jk"), new Result("5000")
+        Map<Person, Result> data = Map.ofEntries(
+                Map.entry(new Person("pobi"), new Result("꽝")),
+                Map.entry(new Person("honux"), new Result("3000")),
+                Map.entry(new Person("crong"), new Result("꽝")),
+                Map.entry(new Person("jk"), new Result("5000"))
         );
         ResultsMap resultMap = ladderGame.getTotalResults();
-        assertThat(resultMap.getResultMap())
-                .containsEntry(new Person("pobi"), new Result("꽝"))
-                .containsEntry(new Person("honux"), new Result("3000"))
-                .containsEntry(new Person("crong"), new Result("꽝"))
-                .containsEntry(new Person("jk"), new Result("5000"));
+        assertThat(resultMap.getResultMap()).isEqualTo(data);
     }
 }
