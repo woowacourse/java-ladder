@@ -23,16 +23,11 @@ public class LadderGameTest {
         Ladder ladder = Ladder.create(LadderHeight.from(1), LadderWidth.from(2), new FixedPresencePointGenerator());
         ladderGame = new LadderGame(participants, results, ladder);
     }
-    @Test
-    @DisplayName("사다리 게임을 실행하면 사다리를 읽으며 순서를 변화시킨다.")
-    void runLadderGameTest() {
-        ladderGame.run();
-    }
 
     @Test
     @DisplayName("사다리 게임을 실행하면 참가자들과 결과 맵을 생성한다.")
     void getLadderGameResultMap(){
-
-        assertThat(ladderGame.getAllGameResult().get(Participant.from("echo"))).isEqualTo(Result.from("5000"));
+        ladderGame.run();
+        assertThat(ladderGame.getAllGameResult().get(Participant.from("echo"))).isEqualTo(Result.from("꽝"));
     }
 }
