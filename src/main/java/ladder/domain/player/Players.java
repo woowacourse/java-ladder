@@ -11,14 +11,14 @@ public class Players {
 
     private static final int PLAYER_MINIMUM_NUMBER = 2;
 
-    private final List<PlayerName> players;
+    private final List<Player> players;
 
     public Players(final List<String> playerNames) {
         validatePlayerNumber(playerNames);
         validateDuplicatedPlayer(playerNames);
 
         players = playerNames.stream()
-                .map(PlayerName::new)
+                .map(playerName -> Player.of(playerName, 0))
                 .collect(Collectors.toUnmodifiableList());
     }
 
@@ -37,13 +37,13 @@ public class Players {
         }
     }
 
-    public List<PlayerName> getPlayers() {
+    public List<Player> getPlayers() {
         return List.copyOf(players);
     }
 
-    public PlayerName findByName(String name) {
+    public Player findByName(String name) {
         return players.stream()
-                .filter(playerName -> playerName.getName().equals(name))
+                .filter(player -> player.getPlayerName().getName().equals(name))
                 .findFirst()
                 .orElseThrow(NoSuchPlayerException::new);
     }

@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.domain.ladder.Block;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.generator.BlockGenerator;
+import ladder.domain.player.Player;
 import ladder.domain.player.PlayerName;
 import ladder.domain.player.Players;
 import ladder.domain.result.Result;
@@ -55,9 +56,9 @@ public class LadderGameTest {
 
     @Test
     void 모든_플레이어의_결과가_정확한지_확인() {
-        Map<PlayerName, Result> allResult = ladderGame.getAllResult();
+        Map<Player, Result> allResult = ladderGame.getAllResult();
         List<String> playerNames = allResult.keySet().stream()
-                .map(playerName -> allResult.get(playerName).getName())
+                .map(player -> allResult.get(player).getName())
                 .collect(Collectors.toUnmodifiableList());
 
         assertThat(playerNames).isEqualTo(List.of("꽝", "3000", "꽝", "5000"));
@@ -65,17 +66,17 @@ public class LadderGameTest {
 
     @Test
     void 플레이어_개별_조회_결과가_정확한지_확인() {
-        PlayerName playerName = players.getPlayers().get(3);
+        Player player = players.getPlayers().get(3);
         Result result = results.getPrizes().get(1);
 
-        assertThat(ladderGame.getSinglePlayerResult(playerName)).isEqualTo(result);
+        assertThat(ladderGame.getSinglePlayerResult(player)).isEqualTo(result);
     }
 
     @Test
     void 없는_플레이어_조회_시_예외_발생() {
-        PlayerName playerName = new PlayerName("ditoo");
+        Player player = Player.of("ditoo", 0);
 
-        assertThatThrownBy(() -> ladderGame.getSinglePlayerResult(playerName))
+        assertThatThrownBy(() -> ladderGame.getSinglePlayerResult(player))
                 .isInstanceOf(NoSuchPlayerException.class);
     }
 }

@@ -6,6 +6,7 @@ import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 import ladder.domain.ladder.generator.BlockGenerator;
 import ladder.domain.ladder.generator.RandomBlockGenerator;
+import ladder.domain.player.Player;
 import ladder.domain.player.PlayerName;
 import ladder.domain.player.Players;
 import ladder.domain.result.Result;
@@ -79,7 +80,7 @@ public class LadderGameController {
 
     private List<String> toPlayersName(final Players players) {
         return players.getPlayers().stream()
-                .map(PlayerName::getName)
+                .map(player -> player.getPlayerName().getName())
                 .collect(Collectors.toUnmodifiableList());
     }
 
@@ -132,18 +133,18 @@ public class LadderGameController {
     private void showAllPlayersResult(LadderGame ladderGame) {
         OutputView.printPlayerResultHeaderMessage();
         Map<String, String> resultForView = new LinkedHashMap<>();
-        Map<PlayerName, Result> results = ladderGame.getAllResult();
-        for (PlayerName playerName : results.keySet()) {
-            String prizeName = results.get(playerName).getName();
-            resultForView.put(playerName.getName(), prizeName);
+        Map<Player, Result> results = ladderGame.getAllResult();
+        for (Player player : results.keySet()) {
+            String prizeName = results.get(player).getName();
+            resultForView.put(player.getPlayerName().getName(), prizeName);
         }
         OutputView.printAllResults(resultForView);
     }
 
     private void showSinglePlayerResult(LadderGame ladderGame, Players players, String name) {
         OutputView.printPlayerResultHeaderMessage();
-        PlayerName playerName = players.findByName(name);
-        Result result = ladderGame.getSinglePlayerResult(playerName);
+        Player player = players.findByName(name);
+        Result result = ladderGame.getSinglePlayerResult(player);
         OutputView.printSingleResult(result.getName());
     }
 }
