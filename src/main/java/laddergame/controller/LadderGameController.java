@@ -33,8 +33,8 @@ public class LadderGameController {
         Prizes prizes = readGamePrizes(players.getCount());
 
         Ladder ladder = makeLadder(players);
-
         printLadderInformation(players, ladder, prizes);
+
         GameResult gameResult = runLadderGame(players, ladder, prizes);
         checkGameResult(gameResult);
     }

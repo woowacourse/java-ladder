@@ -27,7 +27,7 @@ public class ResultView {
 
     private String toRowFormat(List<Foothold> footholds) {
         return footholds.stream()
-                        .map(Foothold::format)
+                        .map(Foothold::getFormat)
                         .collect(joining(FOOTHOLD_DELIMITER, "     " + FOOTHOLD_DELIMITER, FOOTHOLD_DELIMITER));
     }
 
