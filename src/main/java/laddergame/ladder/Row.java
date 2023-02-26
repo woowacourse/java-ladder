@@ -2,6 +2,7 @@ package laddergame.ladder;
 
 import laddergame.vo.Position;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Row {
@@ -57,29 +58,31 @@ public class Row {
         if (isEndOfRow(from)) {
             return false;
         }
-        return isPassable(from);
+        Position rightSlot = from;
+        return isPassable(rightSlot);
     }
 
     private boolean isEndOfRow(Position position) {
-        return position.getValue() >= footholds.size();
+        return position.getPosition() >= footholds.size();
     }
 
     private boolean isMovableToLeft(Position from) {
         if (isBeginOfRow(from)) {
             return false;
         }
-        return isPassable(from.decrease());
+        Position leftSlot = from.decrease();
+        return isPassable(leftSlot);
     }
 
     private boolean isBeginOfRow(Position position) {
-        return position.getValue() == 0;
+        return position.getPosition() == 0;
     }
 
     private boolean isPassable(Position position) {
-        return footholds.get(position.getValue()) == Foothold.PASSABLE;
+        return footholds.get(position.getPosition()) == Foothold.PASSABLE;
     }
 
     public List<Foothold> getFootholds() {
-        return footholds;
+        return new ArrayList<>(footholds);
     }
 }
