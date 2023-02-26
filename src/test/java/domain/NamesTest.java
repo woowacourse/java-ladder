@@ -15,7 +15,6 @@ class NamesTest {
 
     private Names getNamesInstance(String... names) {
         return new Names(Stream.of(names)
-                .map(Name::new)
                 .collect(Collectors.toList()));
     }
 

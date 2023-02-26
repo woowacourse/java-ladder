@@ -14,23 +14,28 @@ public class Names {
 
     private final List<Name> names;
 
-    public Names(final List<Name> names) {
+    public Names(final List<String> names) {
         validateNames(names);
-        this.names = names;
+        this.names = createNames(names);
     }
 
-    private static void validateNames(final List<Name> names) {
+    private List<Name> createNames(final List<String> names) {
+        return names.stream().map(Name::new)
+                .collect(Collectors.toList());
+    }
+
+    private static void validateNames(final List<String> names) {
         validateNamesSize(names);
         validateDuplicated(names);
     }
 
-    private static void validateNamesSize(final List<Name> names) {
+    private static void validateNamesSize(final List<String> names) {
         if (names.size() < MIN_SIZE || names.size() > MAX_SIZE) {
             throw new IllegalArgumentException(INVALID_NAMES_SIZE_ERROR_MESSAGE);
         }
     }
 
-    private static void validateDuplicated(final List<Name> names) {
+    private static void validateDuplicated(final List<String> names) {
         names.forEach(target -> {
             if (hasDuplication(names, target)) {
                 throw new IllegalArgumentException(DUPLICATED_ERROR_MESSAGE);
@@ -38,7 +43,7 @@ public class Names {
         });
     }
 
-    private static boolean hasDuplication(final List<Name> names, Name target) {
+    private static boolean hasDuplication(final List<String> names, String target) {
         return (Collections.frequency(names, target) > 1);
     }
 
@@ -46,11 +51,7 @@ public class Names {
         return this.names.size();
     }
 
-    public List<String> getNames() {
-        List<String> names = this.names.stream()
-                .map(Name::getValue)
-                .collect(Collectors.toList());
-
+    public List<Name> getNames() {
         return List.copyOf(names);
     }
 

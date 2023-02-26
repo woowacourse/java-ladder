@@ -31,7 +31,7 @@ public class LadderGameController {
     private Names getNames() {
         try {
             OutputView.printRequestNames();
-            return new Names(Name.of(InputView.getNames()));
+            return new Names(InputView.getNames());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getNames();

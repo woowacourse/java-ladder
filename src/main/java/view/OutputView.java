@@ -1,5 +1,6 @@
 package view;
 
+import domain.Name;
 import domain.ladder.Ladder;
 import domain.Names;
 import java.util.Collections;
@@ -28,8 +29,15 @@ public class OutputView {
 
     public static void printResult(final Names names, final Ladder ladder) {
         printResultMessage();
-        printParticipantNames(getMaxNameLength(names), names.getNames());
+        printParticipantNames(getMaxNameLength(names), getNames(names));
         printGeneratedLadder(ladder.getLadderShape(), getMaxNameLength(names));
+    }
+
+    private static List<String> getNames(final Names names){
+        return names.getNames()
+                .stream()
+                .map(Name::getValue)
+                .collect(Collectors.toList());
     }
 
     private static void printResultMessage() {
@@ -74,7 +82,7 @@ public class OutputView {
     }
 
     private static int getMaxNameLength(final Names names) {
-        return Collections.max(names.getNames()
+        return Collections.max(getNames(names)
                 .stream()
                 .map(String::length)
                 .collect(Collectors.toList()));

@@ -16,11 +16,6 @@ public class Name {
         this.name = name;
     }
 
-    public static List<Name> of(final List<String> names) {
-        return names.stream().map(Name::new)
-                .collect(Collectors.toList());
-    }
-
     private void validateName(final String name) {
         validateBlank(name);
         validateMaxLength(name);
