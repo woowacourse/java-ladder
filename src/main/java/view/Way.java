@@ -1,13 +1,13 @@
 package view;
 
 enum Way {
-    PASS( "-", true),
+    PASS("-", true),
     NOT_PASS(" ", false);
 
     private final String way;
     private final boolean isExist;
 
-    Way( String way, boolean isExist) {
+    Way(String way, boolean isExist) {
         this.way = way;
         this.isExist = isExist;
     }
@@ -18,6 +18,5 @@ enum Way {
         }
         return NOT_PASS.way;
     }
-
 }
 

@@ -1,20 +1,22 @@
 package controller;
 
-import domain.*;
+import domain.LadderGame;
+import domain.LadderGameResult;
+import domain.ladder.Height;
+import domain.ladder.Ladder;
+import domain.player.Players;
+import domain.product.Products;
 import util.TrueOrFalseGenerator;
 import view.InputView;
 import view.OutputView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class LadderGameController {
+    private static final String ALL_CONDITION = "all";
+    private boolean quitCondition = true;
     private final InputView inputView;
     private final OutputView outputView;
     private final TrueOrFalseGenerator trueOrFalseGenerator;
 
-    private static final int FIRST_INDEX=0;
 
     public LadderGameController(InputView inputView, OutputView outputView, TrueOrFalseGenerator trueOrFalseGenerator) {
         this.inputView = inputView;
@@ -23,20 +25,27 @@ public class LadderGameController {
     }
 
     public void run() {
-        Players players = Players.generatePlayers(inputView.readUserNames());
+        Players players = Players.generate(inputView.readUserNames());
+        Products products = Products.generate(inputView.readProducts());
         Height height = new Height(inputView.readHeight());
-        Ladder ladder = generateLadder(players, height);
-        outputView.printResult(players, ladder);
+        Ladder ladder = Ladder.generate(players, height, trueOrFalseGenerator);
+        outputView.printResult(players, ladder, products);
+        LadderGame ladderGame = new LadderGame(players, products, ladder);
+        LadderGameResult ladderGameResult = ladderGame.gameResult();
+        ladderGameTotalResult(ladderGameResult);
     }
 
-    private Ladder generateLadder(Players players, Height height) {
-        List<Line> lines = new ArrayList<>();
-        int count = FIRST_INDEX;
-        while (height.isSameHeight(count)) {
-            Line line = new Line(players.getPlayersCount(), trueOrFalseGenerator);
-            lines.add(line);
-            count++;
+    private void ladderGameTotalResult(LadderGameResult ladderGameResult) {
+        while (quitCondition) {
+            String searchByPlayerName = inputView.readResult();
+            outputView.printResultOfPlayerName(searchByPlayerName, ladderGameResult);
+            isInputAll(searchByPlayerName);
         }
-        return new Ladder(Collections.unmodifiableList(lines));
+    }
+
+    private void isInputAll(final String input) {
+        if (input.equals(ALL_CONDITION)) {
+            quitCondition = false;
+        }
     }
 }
