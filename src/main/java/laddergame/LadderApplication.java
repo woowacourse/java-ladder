@@ -7,8 +7,8 @@ import laddergame.view.OutputView;
 
 public class LadderApplication {
     public static void main(String[] args) {
-        LadderController ladderController = new LadderController(new InputView(), new OutputView(),
-                new RandomBooleanGenerator());
+        LadderController ladderController = new LadderController(
+                new InputView(), new OutputView(), new RandomBooleanGenerator());
         runWithAlert(ladderController);
     }
 
