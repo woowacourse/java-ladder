@@ -1,6 +1,10 @@
 package ladder.domain;
 
 import ladder.constant.Command;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.player.Players;
+import ladder.domain.reward.Reward;
+import ladder.domain.reward.Rewards;
 
 import java.util.List;
 import java.util.Map;

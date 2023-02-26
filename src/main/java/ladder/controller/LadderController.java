@@ -1,12 +1,12 @@
 package ladder.controller;
 
 import ladder.constant.Command;
-import ladder.domain.Height;
-import ladder.domain.Ladder;
+import ladder.domain.ladder.Height;
+import ladder.domain.ladder.Ladder;
 import ladder.domain.LadderGame;
-import ladder.domain.Players;
+import ladder.domain.player.Players;
 import ladder.domain.RandomGenerator;
-import ladder.domain.Rewards;
+import ladder.domain.reward.Rewards;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 

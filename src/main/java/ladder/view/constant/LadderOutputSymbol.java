@@ -1,6 +1,6 @@
 package ladder.view.constant;
 
-import ladder.domain.Bar;
+import ladder.domain.ladder.Bar;
 
 public enum LadderOutputSymbol {
 

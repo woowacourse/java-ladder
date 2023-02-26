@@ -1,6 +1,6 @@
-package ladder.domain;
+package ladder.domain.reward;
 
-import static ladder.domain.PlayerName.NAME_MAXIMUM_LENGTH;
+import static ladder.domain.player.PlayerName.NAME_MAXIMUM_LENGTH;
 
 public class Reward {
 

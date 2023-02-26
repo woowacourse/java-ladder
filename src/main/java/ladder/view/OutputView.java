@@ -1,9 +1,9 @@
 package ladder.view;
 
-import ladder.domain.Bar;
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Rewards;
+import ladder.domain.ladder.Bar;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
+import ladder.domain.reward.Rewards;
 import ladder.view.constant.LadderOutputSymbol;
 
 import java.util.List;

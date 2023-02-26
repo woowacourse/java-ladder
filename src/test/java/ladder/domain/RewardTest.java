@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.reward.Reward;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

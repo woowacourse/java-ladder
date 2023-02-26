@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import ladder.domain.player.Player;
+import ladder.domain.player.PlayerName;
+import ladder.domain.reward.Reward;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

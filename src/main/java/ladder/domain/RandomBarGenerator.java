@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.domain.ladder.Bar;
+
 import java.util.Random;
 
 public class RandomBarGenerator implements RandomGenerator {

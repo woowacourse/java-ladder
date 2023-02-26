@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.domain.player;
+
+import ladder.domain.reward.Reward;
 
 import java.util.HashMap;
 import java.util.List;

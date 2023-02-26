@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.domain.ladder.Bar;
+
 public class MockRandomBarGenerator implements RandomGenerator{
 
 
