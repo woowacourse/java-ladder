@@ -85,8 +85,7 @@ public class OutputView {
     }
 
     public void printOnePlayerResult(Results results, String name) {
-        String trimmedName = name.trim();
-        Prize result = results.getPrizeByPlayer(new Player(trimmedName, 1));
+        Prize result = results.getPrizeByPlayer(Player.from(name));
         if (result == null) {
             throw new IllegalArgumentException(NAME_ERROR_MESSAGE);
         }

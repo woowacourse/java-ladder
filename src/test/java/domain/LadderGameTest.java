@@ -36,10 +36,10 @@ public class LadderGameTest {
         Prizes prizes = Prizes.of(List.of(prize1, prize2, prize3, prize4), 4);
 
         Results expected = new Results();
-        expected.addResult(new Player(kong, 0), new Prize(prize4));
-        expected.addResult(new Player(odo, 0), new Prize(prize2));
-        expected.addResult(new Player(gray, 0), new Prize(prize1));
-        expected.addResult(new Player(kiara, 0), new Prize(prize3));
+        expected.addResult(Player.from(kong), new Prize(prize4));
+        expected.addResult(Player.from(odo), new Prize(prize2));
+        expected.addResult(Player.from(gray), new Prize(prize1));
+        expected.addResult(Player.from(kiara), new Prize(prize3));
 
         // when
         LadderGame ladderGame = new LadderGame(ladder, players, prizes);

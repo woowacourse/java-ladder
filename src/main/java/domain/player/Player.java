@@ -23,6 +23,10 @@ public class Player {
         this.position = position;
     }
 
+    public static Player from(String name) {
+        return new Player(name, 0);
+    }
+
     private static void validate(String name, int position) {
         validateName(name);
         validatePosition(position);
