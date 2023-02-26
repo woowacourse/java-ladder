@@ -22,7 +22,7 @@ public class Results {
         }
     }
 
-    public Result getResultByColumn(Column column) {
+    public Result getFinalResult(Column column) {
         validateColumn(column);
         return results.stream()
                 .filter(m -> m.getColumn().equals(column))

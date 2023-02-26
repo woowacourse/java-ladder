@@ -53,7 +53,7 @@ class PlayersTest {
     })
     void success_findByName(String name, int index) {
         Players players = new Players(List.of("a1", "a2", "a3"));
-        assertThat(players.findColumnByPerson(new Player(name)))
+        assertThat(players.findColumn(new Player(name)))
                 .isEqualTo(Column.of(index));
     }
 
@@ -62,7 +62,7 @@ class PlayersTest {
     @ValueSource(strings = {"b1", "b2", "b3"})
     void fail_findByName(String name) {
         Players players = new Players(List.of("a1", "a2", "a3"));
-        assertThatThrownBy(() -> players.findColumnByPerson(new Player(name)))
+        assertThatThrownBy(() -> players.findColumn(new Player(name)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("해당 사용자는 존재하지 않습니다.");
     }

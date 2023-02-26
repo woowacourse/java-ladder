@@ -45,7 +45,7 @@ public class Ladder {
 
     public CalculatedResults getTotalResults() {
         Map<Player, Result> resultMap = new LinkedHashMap<>();
-        for (Player player : players.getPeople()) { // 이 부분에서 getter를 사용한 것이 아쉽다...
+        for (Player player : players.getPlayers()) { // 이 부분에서 getter를 사용한 것이 아쉽다...
             resultMap.put(player, calculateResult(player));
         }
         return new CalculatedResults(resultMap);
@@ -59,9 +59,9 @@ public class Ladder {
     }
 
     public Result calculateResult(Player player) {
-        Column startColumn = players.findColumnByPerson(player);
+        Column startColumn = players.findColumn(player);
         Column resultColumn = lines.move(startColumn);
-        return results.getResultByColumn(resultColumn);
+        return results.getFinalResult(resultColumn);
     }
 
     public int getHeight() {

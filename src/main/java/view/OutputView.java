@@ -28,7 +28,7 @@ public class OutputView {
     }
 
     private void printNames(Players players) {
-        for (Player player : players.getPeople()) {
+        for (Player player : players.getPlayers()) {
             System.out.printf("%5s ", player.getName());
         }
         System.out.println();
