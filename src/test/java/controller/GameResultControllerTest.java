@@ -9,8 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import exception.ErrorMessage;
-import view.input.InputView;
-import view.output.OutputView;
+import view.InputView;
+import view.OutputView;
 
 class GameResultControllerTest {
 

@@ -1,4 +1,6 @@
-package view.output;
+package view;
+
+import domain.LineStatus;
 
 import java.util.List;
 import java.util.Map;
@@ -6,6 +8,7 @@ import java.util.Map;
 public class OutputView {
 
     private static final String RESULT_MESSAGE = System.lineSeparator() + "사다리 결과" + System.lineSeparator();
+    private static final String NAME_FORMAT = "%5s ";
     private static final String START_LINE = "    |";
     private static final String END_LINE = "|";
     private static final String CONNECTED_LINE = "-----";
@@ -29,7 +32,7 @@ public class OutputView {
     }
 
     private String reformatName(String name) {
-        return String.format("%5s ", name);
+        return String.format(NAME_FORMAT, name);
     }
 
     private void setLadder(StringBuilder ladderResult, List<List<Boolean>> ladder) {
@@ -48,8 +51,7 @@ public class OutputView {
     }
 
     private String reformatStatus(boolean status) {
-        final boolean isConnected = true;
-        if (status == isConnected) {
+        if (LineStatus.getStatus(status) == LineStatus.CONNECTED) {
             return CONNECTED_LINE;
         }
         return DISCONNECTED_LINE;

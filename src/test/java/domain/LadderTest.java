@@ -29,9 +29,12 @@ class LadderTest {
     void generateMap() {
         List<Line> lines = ladder.getLines();
         Assertions.assertThat(lines).hasSize(3);
-        Assertions.assertThat(lines.get(0).getStatus()).containsExactly(true, false);
-        Assertions.assertThat(lines.get(1).getStatus()).containsExactly(true, false);
-        Assertions.assertThat(lines.get(2).getStatus()).containsExactly(true, false);
+        Assertions.assertThat(lines.get(0).getStatus())
+                  .containsExactly(LineStatus.CONNECTED, LineStatus.DISCONNECTED);
+        Assertions.assertThat(lines.get(1).getStatus())
+                  .containsExactly(LineStatus.CONNECTED, LineStatus.DISCONNECTED);
+        Assertions.assertThat(lines.get(2).getStatus())
+                  .containsExactly(LineStatus.CONNECTED, LineStatus.DISCONNECTED);
     }
 
     @DisplayName("각 인덱스에 따른 결과를 반환한다")
