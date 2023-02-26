@@ -1,16 +1,22 @@
 package domain;
 
+import domain.Ladder.Step;
+
 public class Player {
 
     private final Name name;
-    private int currentColumnPosition;
+    private final Position position;
 
-    public Player(final Name name, final int startPosition) {
+    public Player(final Name name, final Position position) {
         this.name = name;
-        this.currentColumnPosition = startPosition;
+        this.position = position;
     }
 
-    public void move(final int move) {
-        currentColumnPosition += move;
+    public void move(final Step step) {
+        step.step(position);
+    }
+
+    public Position getPosition(){
+        return position;
     }
 }
