@@ -2,6 +2,8 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -48,12 +50,10 @@ public class Ladder {
     }
 
     public List<Integer> getLastPositions(int playerSize) {
-        List<Integer> lastPositions = new ArrayList<>();
-
-        for (int position = 0; position < playerSize; position++) {
-            lastPositions.add(getLastPosition(position));
-        }
-        return lastPositions;
+        return IntStream.range(0, playerSize)
+                .map(this::getLastPosition)
+                .boxed()
+                .collect(Collectors.toList());
     }
 
     public List<Line> getLines() {
