@@ -21,12 +21,6 @@ public class ResultsMap {
                 .orElseThrow(() -> new IllegalArgumentException("결과가 존재하지 않습니다."));
     }
 
-    public Set<Map.Entry<Person, Result>> entrySet() {
-        return resultMap.entrySet().stream()
-                .map(m -> Map.entry(m.getKey(), m.getValue()))
-                .collect(Collectors.toUnmodifiableSet());
-    }
-
     public Map<Person, Result> getResultMap() {
         return Collections.unmodifiableMap(new LinkedHashMap<>(resultMap));
     }

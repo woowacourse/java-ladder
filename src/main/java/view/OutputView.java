@@ -65,7 +65,8 @@ public class OutputView {
     }
 
     private void printTotalResults(ResultsMap resultMap) {
-        for (Map.Entry<Person, Result> entry : resultMap.entrySet()) {
+        Map<Person, Result> map = resultMap.getResultMap();
+        for (Map.Entry<Person, Result> entry : map.entrySet()) {
             System.out.printf(FORMAT, entry.getKey().getName(), entry.getValue().getResult());
         }
         System.out.println();
