@@ -7,9 +7,7 @@ graph TD
 
 LadderGameClient --> InputView
 LadderGameClient --> OutputView
-LadderGameClient --> LadderGameInterface
-
-LadderGameInterface --> LadderGame
+LadderGameClient --> LadderGame
 LadderGame -->Ladder
 Ladder --> Row
 Row --> Point
@@ -84,20 +82,12 @@ Point --> Position
 
 ## LadderGame
 
-- [ ] 결과를 계산해주고, 조합하는 클래스의 역할을 한다
-
-## LadderGameResult
-
-- [ ] 클라이언트가 저장해두는 느낌의 결과를 가진다
-
-## LadderGameInterface
-
-- [ ] 게임을 테스트하기 위해서 의존성을 분리하기 위한 인터페이스
+- [x] 결과를 계산해주고, 조합하는 클래스의 역할을 한다
 
 ## LadderGameClient
 
-- [ ] 게임을 실행하는 클라이언트
-- [ ] all 과 같은 예약어를 입력받으면 게임을 종료한다.
+- [x] 게임을 실행하는 클라이언트
+- [x] all 과 같은 예약어를 입력받으면 게임을 종료한다.
 
 ## InputView
 
@@ -108,8 +98,8 @@ Point --> Position
 
 ## OutputView
 
-- [ ] 사다리를 출력한다.
-- [ ] 결과를 출력한다.
+- [x] 사다리를 출력한다.
+- [x] 결과를 출력한다.
 
 # 질문
 
