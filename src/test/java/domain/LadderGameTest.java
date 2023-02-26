@@ -23,15 +23,15 @@ class LadderGameTest {
                         new Line(List.of(Bridge.EXIST, Bridge.NON_EXIST, Bridge.NON_EXIST)),
                         new Line(List.of(Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST))
                 )));
-
+        final WinningResults winningResults = new WinningResults(List.of(new WinningResult("1"), new WinningResult("2"), new WinningResult("3"), new WinningResult("4")));
         // when
-        final Result result = ladderGame.play(List.of("1", "2", "3", "4"));
-        final Map<String, String> gameResult = result.getResult("all");
+        final Result result = ladderGame.play(winningResults);
+        final Map<String, WinningResult> gameResult = result.getResult("all");
 
         // then
-        Assertions.assertThat(gameResult.get("pobi")).isEqualTo("4");
-        Assertions.assertThat(gameResult.get("crong")).isEqualTo("1");
-        Assertions.assertThat(gameResult.get("jk")).isEqualTo("3");
-        Assertions.assertThat(gameResult.get("honux")).isEqualTo("2");
+        Assertions.assertThat(gameResult.get("pobi").getWinningResult()).isEqualTo("4");
+        Assertions.assertThat(gameResult.get("crong").getWinningResult()).isEqualTo("1");
+        Assertions.assertThat(gameResult.get("jk").getWinningResult()).isEqualTo("3");
+        Assertions.assertThat(gameResult.get("honux").getWinningResult()).isEqualTo("2");
     }
 }
