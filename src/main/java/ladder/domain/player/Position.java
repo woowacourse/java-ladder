@@ -16,6 +16,10 @@ public class Position {
         position--;
     }
 
+    public void moveRight() {
+        position++;
+    }
+
     public int getPosition() {
         return position;
     }

@@ -14,4 +14,12 @@ public class PositionTest {
 
         assertThat(position.getPosition()).isEqualTo(2);
     }
+
+    @Test
+    void 오른쪽으로_이동_테스트() {
+        Position position = Position.from(3);
+        position.moveRight();
+
+        assertThat(position.getPosition()).isEqualTo(4);
+    }
 }
