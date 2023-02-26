@@ -15,9 +15,7 @@ public class LadderGameController {
         final Prizes prizes = initPrizes(players.size());
         final int ladderHeight = initLadderHeight();
         final Ladder ladder = new Ladder(players.size(), ladderHeight, new RandomBooleanGenerator());
-
-        final LadderGame ladderGame = new LadderGame(players, ladder, prizes);
-        printLadderGame(ladderGame);
+        printLadderGame(players, ladder, prizes);
 
         final Result result = new Result(players, ladder, prizes);
         printLadderGameResult(result);
@@ -46,11 +44,11 @@ public class LadderGameController {
         });
     }
 
-    private void printLadderGame(LadderGame ladderGame) {
+    private void printLadderGame(Players players, Ladder ladder, Prizes prizes) {
         OutputView.printLadderResultMsg();
-        OutputView.printPlayerNames(ladderGame.getPlayerNames());
-        OutputView.printLadderMap(ladderGame.getLadderMap());
-        OutputView.printPrizeNames(ladderGame.getPrizeNames());
+        OutputView.printPlayerNames(players.getPlayerNames());
+        OutputView.printLadderMap(ladder.getLadder());
+        OutputView.printPrizeNames(prizes.getPrizes());
     }
 
     private Result printLadderGameResult(Result result) {
