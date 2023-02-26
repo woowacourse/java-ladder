@@ -23,4 +23,8 @@ public class Position {
             throw new IllegalArgumentException(UNDER_MIN_POSITION_MESSAGE);
         }
     }
+
+    public int getPosition(){
+        return this.position;
+    }
 }
