@@ -51,7 +51,7 @@ public class LadderPrizes {
             .collect(Collectors.toList());
     }
 
-    public List<LadderPrize> getLadderPrizes() {
+    public List<LadderPrize> getPrizes() {
         return Collections.unmodifiableList(ladderPrizes);
     }
 }

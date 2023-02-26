@@ -27,7 +27,7 @@ public class LadderGameController {
     public void play() {
         LadderGame ladderGame = generateLadderGame();
         showLadderGameMap(ladderGame);
-        GameResult gameResult = GameResult.from(ladderGame);
+        GameResult gameResult = ladderGame.generateResults();
         showGameResultUntilFinish(gameResult);
     }
 

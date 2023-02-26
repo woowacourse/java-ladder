@@ -63,7 +63,7 @@ public class OutputView {
     }
 
     private void addLadderResults(LadderGame ladderGame) {
-        ladderGame.getResults()
+        ladderGame.getPrizes()
             .stream().map(LadderPrize::getName)
             .forEach((ladderResult) -> gameMap.append(reformatLadderResult(ladderResult)));
         gameMap.append(System.lineSeparator());
@@ -86,11 +86,11 @@ public class OutputView {
     }
 
     public void printOneGameResult(String name, GameResult gameResult) {
-        System.out.println(gameResult.getResultByName(name).getName());
+        System.out.println(gameResult.getPrizeByName(name));
     }
 
     public void printAllGameResult(GameResult gameResult) {
-        gameResult.getResults()
-            .forEach((key, value) -> System.out.println(key.getName() + DELIMITER + value.getName()));
+        gameResult.getAllResults()
+            .forEach((key, value) -> System.out.println(key + DELIMITER + value));
     }
 }
