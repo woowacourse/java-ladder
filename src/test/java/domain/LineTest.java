@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -27,12 +28,16 @@ public class LineTest {
                 .doesNotThrowAnyException();
     }
 
+    // directionIndex[0] == 오른쪽으로 이동
+    // directionIndex[1] == 아래로 이동
+    // directionIndex[2] == 왼쪽으로 이동
     @DisplayName("유저의 위치에 맞게 사다리 이동 후 다음 position값을 반환한다.")
     @ParameterizedTest
-    @CsvSource(value = {"3,2", "2,3", "0,1", "4,5", "5,4"})
-    void calculateNextPositionTest(final int index, final int nextIndex) {
-        Line line = new Line(List.of(Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST));
-        Assertions.assertThat(line.calculateNextPosition(index)).isEqualTo(nextIndex);
+    @CsvSource(value = {"0,0", "1,2", "2,1"})
+    void calculateNextPositionTest(final int index, final int directionIndex) {
+        List<Direction> directions = new ArrayList<>(List.of(Direction.RIGHT, Direction.DOWN, Direction.LEFT));
+        Line line = new Line(List.of(Bridge.EXIST, Bridge.NON_EXIST, Bridge.NON_EXIST));
+        Assertions.assertThat(line.calculateNextPosition(index)).isEqualTo(directions.get(directionIndex));
     }
 
     static Stream<Arguments> lineGeneratorFailParameter() {
