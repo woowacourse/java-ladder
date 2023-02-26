@@ -23,7 +23,7 @@ class ResultsTest {
         Results results = new Results(3, List.of("꽝", "5000", "3000"));
 
         assertThat(results.getFinalResults(List.of("a", "b", "c"), List.of(1, 0, 2), "all"))
-                .isEqualTo(List.of("5000", "꽝", "3000"));
+                .isEqualTo(new Results(3, List.of("5000", "꽝", "3000")));
     }
 
     @Test
@@ -32,6 +32,6 @@ class ResultsTest {
         Results results = new Results(3, List.of("꽝", "5000", "3000"));
 
         assertThat(results.getFinalResults(List.of("a", "b", "c"), List.of(1, 0, 2), "a"))
-                .isEqualTo(List.of("5000"));
+                .isEqualTo(new Results(1, List.of("5000")));
     }
 }

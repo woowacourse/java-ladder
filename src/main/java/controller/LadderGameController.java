@@ -3,12 +3,10 @@ package controller;
 import domain.*;
 import view.InputView;
 import view.OutputView;
-import java.util.List;
 
 public class LadderGameController {
 
     private static final String TARGET_PLAYER_BLANK_ERROR = "[ERROR] 빈 문자열 입니다.";
-    private static final int SINGLE_SIZE = 1;
     private static final int SINGLE_PLAYER_INDEX = 0;
     private Command command = Command.CONTINUE;
 
@@ -46,16 +44,16 @@ public class LadderGameController {
         }
     }
 
-    private void print(Players players, List<String> finalResults) {
-        if (finalResults.size() != SINGLE_SIZE) {
-            outputView.printAllPlayerResult(players.getPlayersName(), finalResults);
+    private void print(Players players, Results finalResults) {
+        if (finalResults.isAllPlayerResults()) {
+            outputView.printAllPlayerResult(players.getPlayersName(), finalResults.getResult());
             command = Command.END;
             return;
         }
-        outputView.printPlayerResult(finalResults.get(SINGLE_PLAYER_INDEX));
+        outputView.printPlayerResult(finalResults.getResult(SINGLE_PLAYER_INDEX));
     }
 
-    private List<String> getResults(Players players, Results results, Ladder ladder, String targetPlayer) {
+    private Results getResults(Players players, Results results, Ladder ladder, String targetPlayer) {
         return results.getFinalResults(players.getPlayersName(),
                 ladder.getLastPositions(players.getSize()),
                 targetPlayer);
