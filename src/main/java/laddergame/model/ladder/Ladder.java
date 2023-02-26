@@ -5,23 +5,27 @@ import java.util.List;
 import laddergame.model.people.People;
 
 public class Ladder {
-    private final Height height;
     private final List<Line> ladder;
+    private final Height height;
 
     public Ladder(Height height, People people) {
-        this.height = height;
         List<Line> ladder = new ArrayList<>();
-        for (int i = 0; i < this.height.getHeight(); i++) {
+        for (int i = 0; i < height.getHeight(); i++) {
             ladder.add(new Line(people.size()));
         }
         this.ladder = ladder;
+        this.height = height;
     }
 
     public int size() {
         return ladder.size();
     }
 
-    public Line get(int i) {
+    public List<Point> getLineToListPoint(int i) {
+        return ladder.get(i).getLine();
+    }
+
+    public Line getLine(int i) {
         return ladder.get(i);
     }
 }

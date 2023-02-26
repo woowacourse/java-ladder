@@ -1,8 +1,9 @@
 package laddergame.model.people;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+import laddergame.model.ladder.Ladder;
 
 public class Results {
     private final List<Result> results;
@@ -11,17 +12,35 @@ public class Results {
         this.results = results;
     }
 
-    public List<Result> getResults() {
-        return results;
+    public static Results from(People people, Ladder ladder, Prizes prizes) {
+        List<Result> results = new ArrayList<>();
+        for (int i = 0; i < people.size(); i++) {
+            Person person = people.getPeople().get(i);
+            int prizeIndex = getPrizeIndex(ladder, i);
+            Prize prize = prizes.getPrize(prizeIndex);
+            results.add(new Result(person, prize));
+        }
+        return new Results(results);
+    }
+
+    private static int getPrizeIndex(Ladder ladder, int index) {
+        for (int j = 0; j < ladder.size(); j++) {
+            index = ladder.getLine(j).getLineToPoint(index).moveDirection(index);
+        }
+        return index;
     }
 
     public Result findResultOfPerson(String name) {
         Optional<Result> findResult = results.stream()
-                .filter(result -> Objects.equals(result.getPerson().getName(), name))
+                .filter(result -> result.getPersonToName().equals(name))
                 .findAny();
         if (findResult.isPresent()) {
             return findResult.get();
         }
         throw new IllegalArgumentException("결과를 확인하고 싶은 참여자의 이름을 다시 확인해주세요.");
+    }
+
+    public List<Result> getResults() {
+        return results;
     }
 }

@@ -59,4 +59,8 @@ public class Line {
     public List<Point> getLine() {
         return line;
     }
+
+    public Point getLineToPoint(int i) {
+        return line.get(i);
+    }
 }

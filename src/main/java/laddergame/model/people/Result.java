@@ -9,11 +9,11 @@ public class Result {
         this.prize = prize;
     }
 
-    public Person getPerson() {
-        return person;
+    public String getPersonToName() {
+        return person.getName();
     }
 
-    public Prize getPrize() {
-        return prize;
+    public String getPrizeToString() {
+        return prize.getPrize();
     }
 }

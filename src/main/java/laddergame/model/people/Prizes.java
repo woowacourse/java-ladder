@@ -26,4 +26,8 @@ public class Prizes {
     public List<Prize> getPrizes() {
         return prizes;
     }
+
+    public Prize getPrize(int i) {
+        return prizes.get(i);
+    }
 }
