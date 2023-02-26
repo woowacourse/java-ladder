@@ -1,7 +1,6 @@
 package laddergame.controller;
 
 import java.util.List;
-import java.util.Objects;
 import laddergame.domain.LadderGame;
 import laddergame.domain.ladder.GameResult;
 import laddergame.domain.ladder.Ladder;
@@ -41,11 +40,12 @@ public class LadderGameController {
 
     private void searchFromGameResult(GameResult gameResult, String keyword) {
         validateGameStatus(gameStatus);
-        if (Objects.equals(SearchKeyword.QUIT, keyword)) {
+        SearchType searchType = SearchType.match(keyword);
+        if (searchType == SearchType.QUIT) {
             gameStatus = GameStatus.QUIT;
             return;
         }
-        if (Objects.equals(SearchKeyword.FIND_ALL, keyword)) {
+        if (searchType == SearchType.FIND_ALL) {
             OutputView.showAllItemsByPlayer(gameResult.result());
             return;
         }
