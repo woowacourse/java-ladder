@@ -15,10 +15,11 @@ class RandomLadderGeneratorTest {
     void generateTest() {
         final RandomLadderGenerator randomLadderGenerator = new RandomLadderGenerator();
         final List<Line> ladder = randomLadderGenerator.generate(new Width(3), new Height(4));
-        assertThat(ladder.size()).isEqualTo(4);
-
         final Line line = ladder.get(0);
+
         final LineDTO lineDTO = line.getLineDTO();
+
+        assertThat(ladder.size()).isEqualTo(4);
         assertThat(lineDTO.getLine().size()).isEqualTo(3);
     }
 }

@@ -41,6 +41,7 @@ public class UsersTest {
                         new User("honux"),
                         new User("jk")))
         );
+
         assertThat(users.contain(userName)).isEqualTo(result);
     }
 

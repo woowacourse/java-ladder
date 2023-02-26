@@ -34,6 +34,7 @@ public class LadderTest {
     @DisplayName("사다리 게임을 정상적으로 진행후 (유저 이름 : 도착 index)데이터가 반환된다.")
     @Test
     void ladderResultTest() {
+        //given
         Users users = new Users(List.of(
                 new User("pobi"),
                 new User("honux"),
@@ -50,7 +51,11 @@ public class LadderTest {
                         new Line(List.of(Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST))
                 ))
         );
+
+        //when
         Map<String, Integer> result = ladder.play(users);
+
+        //then
         assertThat(result.get("pobi")).isEqualTo(3);
         assertThat(result.get("honux")).isEqualTo(0);
         assertThat(result.get("crong")).isEqualTo(2);
