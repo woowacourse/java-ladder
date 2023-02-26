@@ -37,19 +37,13 @@ public class LadderController {
     }
 
     private Players createPlayers(final Retry retry) {
-        checkCount(retry);
+        retry.checkCount();
         final Optional<Players> players = readPlayers();
         if (players.isEmpty()) {
             retry.decrease();
             return createPlayers(retry);
         }
         return players.get();
-    }
-
-    private void checkCount(final Retry retry) {
-        if (!retry.isPossible()) {
-            throw new IllegalStateException("재입력 횟수를 초과하였습니다.");
-        }
     }
 
     private Optional<Players> readPlayers() {
@@ -63,7 +57,7 @@ public class LadderController {
     }
 
     private Prizes createPrizes(final Retry retry, final Players players) {
-        checkCount(retry);
+        retry.checkCount();
         final Optional<Prizes> prizes = readPrizes(players);
         if (prizes.isEmpty()) {
             retry.decrease();
@@ -83,7 +77,7 @@ public class LadderController {
     }
 
     private Height createHeight(final Retry retry) {
-        checkCount(retry);
+        retry.checkCount();
         final Optional<Height> height = readHeight();
         if (height.isEmpty()) {
             retry.decrease();
@@ -103,7 +97,7 @@ public class LadderController {
     }
 
     private String createTarget(final Retry retry, final LadderResult ladderResult) {
-        checkCount(retry);
+        retry.checkCount();
         final Optional<String> target = readTarget(ladderResult);
         if (target.isEmpty()) {
             retry.decrease();

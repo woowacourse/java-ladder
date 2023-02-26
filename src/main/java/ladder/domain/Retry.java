@@ -11,10 +11,12 @@ public class Retry {
     }
 
     public void decrease() {
-        value--;
+        --value;
     }
 
-    public boolean isPossible() {
-        return value > LIMIT;
+    public void checkCount() {
+        if (value <= LIMIT) {
+            throw new IllegalStateException("재입력 횟수를 초과하였습니다.");
+        }
     }
 }

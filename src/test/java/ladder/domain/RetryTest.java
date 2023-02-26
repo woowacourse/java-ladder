@@ -1,21 +1,22 @@
 package ladder.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class RetryTest {
 
-    @ParameterizedTest(name = "횟수: {0}, 재시도 가능: {1}")
-    @CsvSource(value = {"2:true", "1:true", "0:false"}, delimiter = ':')
+    @ParameterizedTest(name = "횟수: {0}")
+    @ValueSource(ints = {2, 1})
     @DisplayName("남아 있는 횟수가 1회 이상이라면 재시도가 가능하다.")
-    void possible_retry_count_more_1(final int value, final boolean result) {
+    void possible_retry_count_more_1(final int value) {
         final Retry retry = new Retry(value);
 
-        assertThat(retry.isPossible()).isEqualTo(result);
+        assertThatNoException().isThrownBy(() -> retry.checkCount());
     }
 
     @Test
@@ -25,6 +26,8 @@ class RetryTest {
 
         retry.decrease();
 
-        assertThat(retry.isPossible()).isEqualTo(false);
+        assertThatThrownBy(() -> retry.checkCount())
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("재입력 횟수를 초과하였습니다.");
     }
 }
