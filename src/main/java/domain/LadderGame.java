@@ -22,7 +22,6 @@ public class LadderGame {
                 List.of(getResultIndex(name)));
     }
 
-
     private int getResultIndex(String name) {
         int playerIndex = players.getOrder(name);
         Position position = new Position(playerIndex);
