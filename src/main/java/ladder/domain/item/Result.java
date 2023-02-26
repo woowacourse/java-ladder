@@ -12,6 +12,7 @@ import ladder.domain.player.Position;
 public class Result {
 
     private static final String DIFFERENT_COUNT_MESSAGE = "플레이어의 수와 결과의 수가 다릅니다. 플레이어 : %d, 결과 : %d";
+
     private final Map<Position, Item> resultItems = new LinkedHashMap<>();
 
     public Result(List<String> itemNames, int playerCount) {

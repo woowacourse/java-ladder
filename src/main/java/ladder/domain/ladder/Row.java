@@ -15,6 +15,7 @@ public class Row {
 
     private static final int MINIMUM_SIZE = 2;
     private static final String SMALL_SIZE_MESSAGE = "길이는 " + MINIMUM_SIZE + " 이상이어야 합니다. 현재 : %s";
+
     private final List<Point> points;
 
     private Row(List<Point> points) {

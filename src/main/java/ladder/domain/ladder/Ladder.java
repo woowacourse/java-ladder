@@ -15,8 +15,8 @@ public class Ladder {
     private static final String MINIMUM_SIZE_MESSAGE = "최소 가로는 2, 세로는 1이어야 합니다. 현재 가로 : %s, 세로 : %s";
     private static final int MINIMUM_WIDTH = 2;
     private static final int MINIMUM_HEIGHT = 1;
+
     private final List<Row> rows;
-    private int check = 0;
 
     private Ladder(List<Row> rows) {
         this.rows = rows;

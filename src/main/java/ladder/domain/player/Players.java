@@ -15,6 +15,7 @@ public class Players {
     private static final int MINIMUM_PLAYER_COUNT = 2;
     private static final String LESS_THAN_MINIMUM_PLAYER_MESSAGE =
             "참가자는 " + MINIMUM_PLAYER_COUNT + "명 이상이어야 합니다. 현재 : %s";
+
     private final List<Player> players = new ArrayList<>();
 
     public Players(List<String> playerNames) {
