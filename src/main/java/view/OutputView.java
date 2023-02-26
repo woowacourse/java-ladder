@@ -4,8 +4,8 @@ import domain.Ladder;
 import domain.LadderGameResult;
 import domain.LadderRow;
 import domain.Line;
-import domain.Result;
-import domain.Results;
+import domain.Reward;
+import domain.Rewards;
 import domain.User;
 import domain.Users;
 import java.util.List;
@@ -28,11 +28,11 @@ public class OutputView {
         System.out.println(exception.getMessage());
     }
 
-    public static void printResult(final Users users, final Results results, final Ladder ladder) {
+    public static void printLadderGame(final Users users, final Rewards rewards, final Ladder ladder) {
         System.out.println(LADDER_RESULT_MESSAGE);
         printUserNames(users);
         printLadder(ladder);
-        printResultNames(results);
+        printRewardNames(rewards);
     }
 
     private static void printUserNames(final Users users) {
@@ -46,9 +46,9 @@ public class OutputView {
         ladderFormat.forEach(System.out::println);
     }
 
-    private static void printResultNames(final Results results) {
-        String resultNames = String.join(USER_DELIMITER, results.getResultNames());
-        System.out.println(resultNames);
+    private static void printRewardNames(final Rewards rewards) {
+        String rewardNames = String.join(USER_DELIMITER, rewards.getRewardNames());
+        System.out.println(rewardNames);
     }
 
     private static List<String> getLadderFormat(final Ladder ladder) {
@@ -78,11 +78,11 @@ public class OutputView {
 
     public static void printLadderGameResult(final LadderGameResult ladderGameResult) {
         System.out.println(RESULT_MESSAGE);
-        Map<User, Result> result = ladderGameResult.getLadderGameResult();
+        Map<User, Reward> result = ladderGameResult.getLadderGameResult();
         result.entrySet().forEach(OutputView::printResultWithFormat);
     }
 
-    private static void printResultWithFormat(final Map.Entry<User, Result> entry) {
-        System.out.printf(RESULT_FORMAT, entry.getKey().getName(), entry.getValue().getResultName());
+    private static void printResultWithFormat(final Map.Entry<User, Reward> entry) {
+        System.out.printf(RESULT_FORMAT, entry.getKey().getName(), entry.getValue().getRewardName());
     }
 }

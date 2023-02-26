@@ -4,8 +4,8 @@ import domain.Height;
 import domain.Ladder;
 import domain.LadderGame;
 import domain.LadderGameResult;
-import domain.Result;
-import domain.Results;
+import domain.Reward;
+import domain.Rewards;
 import domain.User;
 import domain.Users;
 import java.util.List;
@@ -24,13 +24,13 @@ public class Controller {
 
     public void run() {
         Users users = getUsers();
-        Results results = getResults(users.getSize());
+        Rewards rewards = getRewards(users.getSize());
         Height height = getHeight();
 
         Ladder ladder = getLadder(users, height);
-        LadderGame ladderGame = getLadderGame(ladder, users, results);
+        LadderGame ladderGame = getLadderGame(ladder, users, rewards);
 
-        OutputView.printResult(users, results, ladder);
+        OutputView.printLadderGame(users, rewards, ladder);
 
         ladderGame.play();
         searchResult(ladderGame);
@@ -49,16 +49,16 @@ public class Controller {
         }
     }
 
-    private Results getResults(int userCount) {
+    private Rewards getRewards(int userCount) {
         try {
-            List<String> resultNames = InputView.readResultNames();
-            List<Result> results = resultNames.stream()
-                    .map(Result::new)
+            List<String> rewardNames = InputView.readRewardNames();
+            List<Reward> rewards = rewardNames.stream()
+                    .map(Reward::new)
                     .collect(Collectors.toList());
-            return new Results(results, userCount);
+            return new Rewards(rewards, userCount);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
-            return getResults(userCount);
+            return getRewards(userCount);
         }
     }
 
@@ -76,8 +76,8 @@ public class Controller {
         return new Ladder(users.getSize(), height.getHeight(), ladderRowGenerator);
     }
 
-    private LadderGame getLadderGame(final Ladder ladder, final Users users, final Results results) {
-        return new LadderGame(ladder, users, results);
+    private LadderGame getLadderGame(final Ladder ladder, final Users users, final Rewards rewards) {
+        return new LadderGame(ladder, users, rewards);
     }
 
     private void searchResult(final LadderGame ladderGame) {
@@ -89,8 +89,8 @@ public class Controller {
 
     private LadderGameResult getLadderGameResult(final LadderGame ladderGame) {
         try {
-            String resultViewer = InputView.readResultViewer();
-            return ladderGame.getLadderGameResultByName(resultViewer);
+            String rewardViewer = InputView.readRewardViewer();
+            return ladderGame.getLadderGameResultByName(rewardViewer);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
             return getLadderGameResult(ladderGame);

@@ -8,24 +8,24 @@ public class LadderGame {
 
     private final Ladder ladder;
     private final Users users;
-    private final Results results;
+    private final Rewards rewards;
     private final LadderGameResult ladderGameResult;
     private boolean inProgress;
 
-    public LadderGame(final Ladder ladder, final Users users, final Results results) {
+    public LadderGame(final Ladder ladder, final Users users, final Rewards rewards) {
         this.ladder = ladder;
         this.users = users;
-        this.results = results;
+        this.rewards = rewards;
         ladderGameResult = getLadderGameResult(users.getSize(), ladder.getLadderHeight());
     }
 
     private LadderGameResult getLadderGameResult(final int userCount, final int ladderHeight) {
-        Map<User, Result> map = new HashMap<>();
+        Map<User, Reward> map = new HashMap<>();
         for (int i = 0; i < userCount; i++) {
             User user = users.getUsers().get(i);
             int arrivalIndex = move(i, 0, ladderHeight);
-            Result result = results.getResults().get(arrivalIndex);
-            map.put(user, result);
+            Reward reward = rewards.getRewards().get(arrivalIndex);
+            map.put(user, reward);
         }
         return new LadderGameResult(map);
     }
@@ -68,8 +68,8 @@ public class LadderGame {
             return ladderGameResult;
         }
         User user = users.findByName(name);
-        Result result = ladderGameResult.findByUser(user);
-        return new LadderGameResult(user, result);
+        Reward reward = ladderGameResult.findByUser(user);
+        return new LadderGameResult(user, reward);
     }
 
     public boolean inProgress() {

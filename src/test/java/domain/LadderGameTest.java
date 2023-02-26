@@ -15,7 +15,7 @@ public class LadderGameTest {
     private LadderRowGenerator ladderRowGenerator;
     private Ladder ladder;
     private Users users;
-    private Results results;
+    private Rewards rewards;
 
     @BeforeEach
     void init() {
@@ -23,21 +23,21 @@ public class LadderGameTest {
         ladder = new Ladder(4, 5, ladderRowGenerator);
         users = new Users(
                 List.of(new User("userA"), new User("userB"), new User("userC"), new User("userD")));
-        results = new Results(
-                List.of(new Result("1"), new Result("2"), new Result("3"), new Result("4")), 4);
+        rewards = new Rewards(
+                List.of(new Reward("1"), new Reward("2"), new Reward("3"), new Reward("4")), 4);
     }
 
     @Test
-    @DisplayName("LadderGame은 Ladder, Users, Results를 받아 생성된다.")
+    @DisplayName("LadderGame은 Ladder, Users, Rewards 를 받아 생성된다.")
     void ladderGameTest() {
-        Assertions.assertThatCode(() -> new LadderGame(ladder, users, results))
+        Assertions.assertThatCode(() -> new LadderGame(ladder, users, rewards))
                 .doesNotThrowAnyException();
     }
 
     @Test
     @DisplayName("play 메서드는 게임 진행 상태 값을 변경시킨다.")
     void should_changeGameProgressStatus_when_play() {
-        LadderGame ladderGame = new LadderGame(ladder, users, results);
+        LadderGame ladderGame = new LadderGame(ladder, users, rewards);
 
         ladderGame.play();
 
@@ -46,12 +46,12 @@ public class LadderGameTest {
 
     @ParameterizedTest(name = "getLadderGameResultByName 메서드는 이름을 통해 결과를 찾을 수 있다.")
     @CsvSource({"userA,1", "userB,4", "userC,3", "userD,2"})
-    void should_findLadderGameResultByName_when_getLadderGameResultByName(String userName, String resultName) {
-        LadderGame ladderGame = new LadderGame(ladder, users, results);
+    void should_findLadderGameResultByName_when_getLadderGameResultByName(String userName, String rewardName) {
+        LadderGame ladderGame = new LadderGame(ladder, users, rewards);
 
         LadderGameResult ladderGameResult = ladderGame.getLadderGameResultByName(userName);
-        Result result = ladderGameResult.findByUser(new User(userName));
+        Reward reward = ladderGameResult.findByUser(new User(userName));
 
-        Assertions.assertThat(result.getResultName()).isEqualTo(resultName);
+        Assertions.assertThat(reward.getRewardName()).isEqualTo(rewardName);
     }
 }
