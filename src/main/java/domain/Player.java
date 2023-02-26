@@ -47,18 +47,18 @@ public class Player {
         return position < POSITION_LOWER_BOUND;
     }
 
+    public void move(MoveType moveType) {
+        int step = moveType.getStep();
+        validatePosition(position + step);
+        position += step;
+    }
+
     public String getName() {
         return name;
     }
 
     public int getPosition() {
         return position;
-    }
-
-    public void move(MoveType moveType) {
-        int step = moveType.getStep();
-        validatePosition(position + step);
-        position += step;
     }
 
     @Override

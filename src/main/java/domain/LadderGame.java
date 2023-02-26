@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.Map;
-
 public class LadderGame {
 
     private final Ladder ladder;
