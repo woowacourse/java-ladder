@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ResultsEntry {
+public class Results {
 
     private final List<Result> results;
 
-    public ResultsEntry(List<String> results) {
+    public Results(List<String> results) {
         List<Result> resultList = new ArrayList<>();
         for (int i = 0; i < results.size(); i++) {
             resultList.add(new Result(results.get(i), i));

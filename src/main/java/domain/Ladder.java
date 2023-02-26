@@ -13,14 +13,14 @@ public class Ladder {
 
     private final Players players;
     private final Lines lines;
-    private final ResultsEntry resultsEntry;
+    private final Results results;
 
-    public Ladder(Players players, ResultsEntry resultsEntry, List<Line> lines) {
+    public Ladder(Players players, Results results, List<Line> lines) {
         validateHeight(lines);
         this.players = players;
         this.lines = new Lines(lines);
-        validateResultsCount(resultsEntry);
-        this.resultsEntry = resultsEntry;
+        validateResultsCount(results);
+        this.results = results;
     }
 
     private void validateHeight(List<Line> lines) {
@@ -30,17 +30,13 @@ public class Ladder {
         }
     }
 
-    private void validateResultsCount(ResultsEntry resultsEntry) {
-        if (resultsEntry.getResults().size() != players.getCount()) {
+    private void validateResultsCount(Results results) {
+        if (results.getResults().size() != players.getCount()) {
             throw new IllegalArgumentException("실행 결과의 수는 사람 수와 같아야 합니다.");
         }
     }
 
-    public Column calculateResult(Column column) {
-        return lines.move(column);
-    }
-
-    public CalculatedResults getResults(String input) {
+    public CalculatedResults calculateResults(String input) {
         if (input.equals(ALL)) {
             return getTotalResults();
         }
@@ -57,15 +53,15 @@ public class Ladder {
 
     public CalculatedResults getSingleResult(String name) {
         Map<Player, Result> resultMap = new LinkedHashMap<>();
-        Player targetPlayer = new Player(name);
-        resultMap.put(targetPlayer, calculateResult(targetPlayer));
+        Player player = new Player(name);
+        resultMap.put(player, calculateResult(player));
         return new CalculatedResults(resultMap);
     }
 
     public Result calculateResult(Player player) {
         Column startColumn = players.findColumnByPerson(player);
-        Column resultColumn = calculateResult(startColumn);
-        return resultsEntry.getResultByColumn(resultColumn);
+        Column resultColumn = lines.move(startColumn);
+        return results.getResultByColumn(resultColumn);
     }
 
     public int getHeight() {
@@ -84,7 +80,7 @@ public class Ladder {
         return players;
     }
 
-    public ResultsEntry getResults() {
-        return resultsEntry;
+    public Results calculateResults() {
+        return results;
     }
 }

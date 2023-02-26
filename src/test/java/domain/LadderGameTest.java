@@ -28,8 +28,8 @@ public class LadderGameTest {
         );
         List<String> resultList = List.of("꽝", "5000", "꽝", "3000");
         Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
-        ResultsEntry resultsEntry = new ResultsEntry(resultList);
-        ladder = new Ladder(players, resultsEntry, customizedLines);
+        Results results = new Results(resultList);
+        ladder = new Ladder(players, results, customizedLines);
     }
 
     @DisplayName("단일 사용자의 결과 출력")

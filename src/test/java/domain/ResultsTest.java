@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-public class ResultsEntryTest {
+public class ResultsTest {
 
     @DisplayName("실행 결과의 수는 사람 수와 일치해야 한다.")
     @ParameterizedTest
@@ -23,7 +23,7 @@ public class ResultsEntryTest {
     void success(String results, String people) {
         List<String> names = Arrays.stream(people.split(",")).collect(Collectors.toList());
         List<String> resultList = Arrays.stream(results.split(",")).collect(Collectors.toList());
-        assertDoesNotThrow(() -> new ResultsEntry(resultList));
+        assertDoesNotThrow(() -> new Results(resultList));
     }
 
     @DisplayName("실행 결과의 수가 일치하지 않으면 예외가 발생한다.")
@@ -38,7 +38,7 @@ public class ResultsEntryTest {
         List<String> resultList = Arrays.stream(results.split(",")).collect(Collectors.toList());
         assertThatThrownBy(() -> new RandomLadderGenerator().generate(
                 new Players(names),
-                new ResultsEntry(resultList),
+                new Results(resultList),
                 5
         ))
                 .isInstanceOf(IllegalArgumentException.class)

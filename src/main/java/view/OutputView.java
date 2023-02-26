@@ -7,7 +7,7 @@ import domain.CalculatedResults;
 import domain.Players;
 import domain.Player;
 import domain.Result;
-import domain.ResultsEntry;
+import domain.Results;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +24,7 @@ public class OutputView {
         System.out.println("사다리 결과\n");
         printNames(ladder.getPeople());
         printLadder(ladder.getLines());
-        printResults(ladder.getResults());
+        printResults(ladder.calculateResults());
     }
 
     private void printNames(Players players) {
@@ -41,8 +41,8 @@ public class OutputView {
         }
     }
 
-    private void printResults(ResultsEntry resultsEntry) {
-        for (Result result : resultsEntry.getResults()) {
+    private void printResults(Results results) {
+        for (Result result : results.getResults()) {
             System.out.printf("%5s ", result.getResult());
         }
         System.out.println();
