@@ -1,4 +1,4 @@
-package ladder.domain.valueGenerator;
+package ladder.domain.generator;
 
 public interface BooleanGenerator {
 

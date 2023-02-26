@@ -16,5 +16,18 @@ public class Line {
         return Collections.unmodifiableList(line);
     }
 
+    public int nextPosition(int currentPosition) {
+        Bar leftBar = null;
+        if (currentPosition != 0) {
+            leftBar = line.get(currentPosition - 1);
+        }
+        Bar rightBar = null;
+        if (currentPosition != line.size()) {
+            rightBar = line.get(currentPosition);
+        }
+        Direction direction = Direction.getDirection(leftBar, rightBar);
+        return direction.move(currentPosition);
+    }
+
 }
 

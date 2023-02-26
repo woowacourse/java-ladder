@@ -39,4 +39,14 @@ public class LineTest {
                 .isEqualTo(bars);
     }
 
+    @Test
+    @DisplayName("이동한 위치를 반환하는 기능 테스트")
+    void movePositionTest() {
+        List<Bar> bars = List.of(Bar.MOVABLE_BAR, Bar.UNMOVABLE_BAR, Bar.UNMOVABLE_BAR);
+        Line line = new Line(bars);
+
+        assertThat(line.nextPosition(0)).isEqualTo(1);
+        assertThat(line.nextPosition(1)).isEqualTo(0);
+        assertThat(line.nextPosition(2)).isEqualTo(2);
+    }
 }

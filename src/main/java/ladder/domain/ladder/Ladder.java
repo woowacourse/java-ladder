@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.domain.valueGenerator.BooleanGenerator;
+import ladder.domain.generator.BooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +18,7 @@ public class Ladder {
         List<Line> lines = new ArrayList<>();
 
         for (int idx = 0; idx < height; idx++) {
-            List<Bar> bars = LineMaker.generate(count, booleanGenerator);
+            List<Bar> bars = generate(count, booleanGenerator);
             lines.add(new Line(bars));
         }
 
@@ -29,5 +29,33 @@ public class Ladder {
         return Collections.unmodifiableList(ladder);
     }
 
+    public int findLadderResult(int startPosition) {
+        int currPosition = startPosition;
+        for (Line line : ladder) {
+            currPosition = line.nextPosition(currPosition);
+        }
+        return currPosition;
+    }
+
+
+    public static List<Bar> generate(int playerCount, BooleanGenerator booleanGenerator) {
+        int lineSize = playerCount - 1;
+        List<Bar> line = new ArrayList<>();
+        boolean beforeValue = false;
+        for (int idx = 0; idx < lineSize; idx++) {
+            Bar currentBar = createBar(beforeValue, booleanGenerator);
+            line.add(currentBar);
+            beforeValue = currentBar.getValue();
+        }
+        return line;
+    }
+
+    private static Bar createBar(boolean beforeValue, BooleanGenerator booleanGenerator) {
+        if (beforeValue) {
+            return Bar.UNMOVABLE_BAR;
+        }
+
+        return Bar.getBar(booleanGenerator.generateBoolean());
+    }
 
 }

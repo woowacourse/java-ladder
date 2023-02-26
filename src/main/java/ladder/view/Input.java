@@ -8,4 +8,9 @@ public interface Input {
 
     int inputHeightOfLadder();
 
+    List<String> inputRewards();
+
+    List<String> inputTargetPlayerNames();
+
+    String inputContinue();
 }

@@ -1,7 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.valueGenerator.IntegerGenerator;
-
 import java.util.Objects;
 
 public class Height {
@@ -10,14 +8,9 @@ public class Height {
 
     private final int height;
 
-    private Height(int height) {
+    public Height(int height) {
+        validateZeroHeight(height);
         this.height = height;
-    }
-
-    public static Height create(int maxHeight, IntegerGenerator integerGenerator) {
-        int height = integerGenerator.generateNumber(MINIMUM_HEIGHT, maxHeight);
-
-        return new Height(height);
     }
 
     public int getHeight() {
@@ -35,6 +28,12 @@ public class Height {
     @Override
     public int hashCode() {
         return Objects.hash(height);
+    }
+
+    private void validateZeroHeight(int height) {
+        if (height < MINIMUM_HEIGHT) {
+            throw new IllegalArgumentException("높이는 1 이상을 입력해주세요.");
+        }
     }
 
 }

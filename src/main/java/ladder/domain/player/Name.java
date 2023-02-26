@@ -5,6 +5,8 @@ import java.util.Objects;
 public class Name {
 
     public static final int NAME_MAXIMUM_LENGTH = 5;
+    private static final char START_KOREAN = '가';
+    private static final char END_KOREAN = '힣';
 
     private final String name;
 
@@ -15,12 +17,6 @@ public class Name {
 
     public String getName() {
         return name;
-    }
-
-    private void validateNameLength(String name) {
-        if (name.isBlank() || name.length() > NAME_MAXIMUM_LENGTH) {
-            throw new IllegalArgumentException("플레이어의 이름은 1자 이상 5자 이하여야 합니다.");
-        }
     }
 
     public boolean equals(Object o) {
@@ -34,4 +30,28 @@ public class Name {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    private void validateNameLength(String name) {
+        int length = calculateLength(name);
+        if (name.isBlank() || length > NAME_MAXIMUM_LENGTH) {
+            throw new IllegalArgumentException("플레이어의 이름 길이는 1 이상 5 이하여야 합니다. 영어, 숫자, 공백 = 길이 1 / 한글 = 길이 2");
+        }
+    }
+
+    private int calculateLength(String content) {
+        int countKorean = 0;
+        for (int index = 0; index < content.length(); index++) {
+            char charAt = content.charAt(index);
+            countKorean += countKorean(charAt);
+        }
+        return content.length() + countKorean;
+    }
+
+    private int countKorean(char letter) {
+        if (letter >= START_KOREAN && letter <= END_KOREAN) {
+            return 1;
+        }
+        return 0;
+    }
+
 }
