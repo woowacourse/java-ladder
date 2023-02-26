@@ -20,8 +20,4 @@ public class Result {
 
         return Map.of(inputResultWord, result.get(inputResultWord));
     }
-
-//    public String getUserResult(final String userName) {
-//        return result.get(userName);
-//    }
 }
