@@ -5,6 +5,7 @@ import ladder.client.LadderGameClient;
 import ladder.client.view.InputView;
 import ladder.domain.LadderGame;
 import ladder.domain.RandomConnectionJudgement;
+import ladder.repository.LadderRepositoryImpl;
 
 public class Application {
 
@@ -19,7 +20,7 @@ public class Application {
     }
 
     private static LadderGame getLadderGame() {
-        return new LadderGame(new RandomConnectionJudgement());
+        return new LadderGame(new RandomConnectionJudgement(), new LadderRepositoryImpl());
     }
 
     private static InputView getInputView() {

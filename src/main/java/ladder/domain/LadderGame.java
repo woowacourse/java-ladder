@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import ladder.dto.LadderInfoDto;
 import ladder.dto.PlayerResultDto;
-import ladder.repository.LadderRepository;
 
 /**
  * 이 클래스는 사다리 게임에 대한 실제 로직을 담당하는 클래스 입니다
@@ -16,9 +15,9 @@ public class LadderGame {
     private final ConnectionJudgement connectionJudgement;
     private final LadderRepository ladderRepository;
 
-    public LadderGame(ConnectionJudgement connectionJudgement) {
+    public LadderGame(ConnectionJudgement connectionJudgement, LadderRepository ladderRepository) {
         this.connectionJudgement = connectionJudgement;
-        ladderRepository = new LadderRepository();
+        this.ladderRepository = ladderRepository;
     }
 
     public void initializePlayers(List<String> playerNames) {
