@@ -7,7 +7,6 @@ import laddergame.domain.ladder.GameResult;
 import laddergame.domain.ladder.Ladder;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
-import laddergame.view.constant.FindCommand;
 
 public class LadderGameController {
 
@@ -42,11 +41,11 @@ public class LadderGameController {
 
     private void searchFromGameResult(GameResult gameResult, String keyword) {
         validateGameStatus(gameStatus);
-        if (Objects.equals(FindCommand.QUIT, keyword)) {
+        if (Objects.equals(SearchKeyword.QUIT, keyword)) {
             gameStatus = GameStatus.QUIT;
             return;
         }
-        if (Objects.equals(FindCommand.FIND_ALL, keyword)) {
+        if (Objects.equals(SearchKeyword.FIND_ALL, keyword)) {
             OutputView.showAllItemsByPlayer(gameResult.result());
             return;
         }
