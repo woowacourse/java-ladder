@@ -3,9 +3,7 @@ package controller;
 import domain.game.Game;
 import domain.game.Results;
 import domain.ladder.Ladder;
-import domain.user.User;
 import domain.user.Users;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import view.InputView;
@@ -32,10 +30,11 @@ public class LadderGameController {
     public void run() {
         printGameSet();
         Map<String, String> resultMap = playGame();
-        while (true) {
-            String findUser = findUserResult();
-            outputView.printResultByUser(resultMap, findUser, users.getUserNames());
+        String findUser;
+        do {
+            findUser = findUserResult();
         }
+        while (outputView.printResultByUser(resultMap, findUser, users.getUserNames()));
     }
 
     private Map<String, String> playGame() {

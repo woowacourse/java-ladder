@@ -16,14 +16,20 @@ public class OutputView {
     private static final String LINE_DELIMITER = "|";
     private static final String SPACE_SEPARATOR = " ";
     public static final String RESULT_SEPARATOR = " : ";
+    public static final String GAME_QUIT_MESSAGE = "실행을 종료합니다.";
 
-    public void printResultByUser(Map<String, String> resultMap, String findUser, List<String> userNames) {
+    public boolean printResultByUser(Map<String, String> resultMap, String findUser, List<String> userNames) {
+        if (findUser.equals(Users.END)) {
+            System.out.println(GAME_QUIT_MESSAGE);
+            return false;
+        }
         System.out.println(OUTPUT_RESULT_MESSAGE);
         if (findUser.equals(Users.ALL)) {
             printAllUserResult(resultMap, userNames);
-            return;
+            return true;
         }
         System.out.println(resultMap.get(findUser));
+        return true;
     }
 
     private void printAllUserResult(Map<String, String> resultMap, List<String> userNames) {
