@@ -10,8 +10,8 @@ public class Result {
     }
 
     private void validateRangeOfValue(final String value) {
-        if (value.length() < 1 || value.length() > 5) {
-            throw new IllegalArgumentException("결과 값의 길이는 1이상 5이하만 가능합니다.");
+        if (value.length() < 1) {
+            throw new IllegalArgumentException("결과 값의 길이는 1이상만 가능합니다.");
         }
     }
 
