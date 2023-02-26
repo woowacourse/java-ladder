@@ -37,7 +37,7 @@ public class LadderGameController {
     }
 
     private void showGameResult(GameResult gameResult) {
-        List<String> playersName = new ArrayList<>(gameResult.getGameResult().keySet());
+        List<String> playersName = new ArrayList<>(gameResult.getResults().keySet());
         Set<String> checkedPlayer = new HashSet<>();
         while(!gottenAllResult(checkedPlayer, playersName)) {
             String target = readValidatedTarget(playersName);

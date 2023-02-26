@@ -35,7 +35,7 @@ public class OutputView {
 
     public void showAllResult(GameResult gameResult) {
         System.out.println(GAME_RESULT_SHOW_MESSAGE);
-        LinkedHashMap<String, String> results = gameResult.getGameResult();
+        LinkedHashMap<String, String> results = gameResult.getResults();
         results.forEach((target, result) -> printTargetResult(target, result));
     }
 
@@ -43,7 +43,7 @@ public class OutputView {
         if (target.equals("all"))
             return;
         System.out.println(GAME_RESULT_SHOW_MESSAGE);
-        LinkedHashMap<String, String> results = gameResult.getGameResult();
+        LinkedHashMap<String, String> results = gameResult.getResults();
         printTargetResult(target, results.get(target));
     }
 
