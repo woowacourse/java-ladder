@@ -18,6 +18,15 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
+/**
+ * 사다리 UI
+ *  a  b  c  d  e
+ *  |--|  |  |--|
+ *  |  |--|  |--|
+ *  |  |--|  |  |
+ *  |--|  |--|  |
+ * 당첨 꽝 당첨 꽝 꽝
+ */
 public class LadderGameTest {
 
     private LadderGame ladderGame;
