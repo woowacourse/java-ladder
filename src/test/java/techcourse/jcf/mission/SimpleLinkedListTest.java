@@ -128,4 +128,22 @@ class SimpleLinkedListTest {
 
         Assertions.assertEquals(0, linkedList.size());
     }
+
+    @DisplayName("SimpleLinkedList 내부 비어있는지 테스트")
+    @Test
+    void SimpleLinkedList_비어있는지_테스트() {
+        SimpleLinkedList linkedList = new SimpleLinkedList();
+
+        Assertions.assertEquals(true, linkedList.isEmpty());
+    }
+
+    @DisplayName("SimpleLinkedList 안 비어있는지 테스트")
+    @Test
+    void SimpleLinkedList_내부가_비어있지_않은_경우_테스트() {
+        SimpleLinkedList linkedList = new SimpleLinkedList();
+        final String beforeValue = "before";
+        linkedList.add(beforeValue);
+
+        Assertions.assertEquals(false, linkedList.isEmpty());
+    }
 }
