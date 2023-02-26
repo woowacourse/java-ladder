@@ -4,6 +4,7 @@ public class UserRequestedParticipants {
 
     public static final String ALL_PARTICIPANTS_COMMAND = "all";
     private static final UserRequestedParticipants ALL_PARTICIPANTS = new UserRequestedParticipants(ALL_PARTICIPANTS_COMMAND);
+
     private final String requestContent;
 
     private UserRequestedParticipants(final String requestContent) {

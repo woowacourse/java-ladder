@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Result {
 
     public static final String INVALID_INCLUSION = " ";
+
     private final String resultName;
 
     public Result(final String resultName) {
