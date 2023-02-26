@@ -2,6 +2,7 @@ package domain;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Results {
 
@@ -19,7 +20,17 @@ public class Results {
         return results.size() == size;
     }
 
+
+    public Set<Player> getPlayers() {
+        return results.keySet();
+    }
+
+    public Prize getPrizeByPlayer(Player player) {
+        return results.get(player);
+    }
+
     public Map<Player, Prize> getResults() {
         return results;
     }
+
 }
