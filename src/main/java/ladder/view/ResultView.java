@@ -45,11 +45,11 @@ public class ResultView {
         System.out.println(ERROR_MESSAGE_HEADER + message);
     }
 
-    public void printPrizeOfPlayer(String prize) {
+    public void printPrizeName(String prize) {
         System.out.println(RESULT_MESSAGE_HEADER + prize);
     }
 
-    public void printPrizeOfPlayers(Map<String, String> prizes) {
+    public void printGameResult(Map<String, String> prizes) {
         for (String key : prizes.keySet()) {
             System.out.println(key + PRIZE_OF_PLAYERS_DELIMITER + prizes.get(key));
         }
