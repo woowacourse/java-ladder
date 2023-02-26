@@ -11,13 +11,13 @@ public class Ladder {
     public static final int MIN_RANGE = 1;
     public static final int MAX_RANGE = 10;
 
-    private final People people;
+    private final Players players;
     private final Lines lines;
     private final ResultsEntry resultsEntry;
 
-    public Ladder(People people, ResultsEntry resultsEntry, List<Line> lines) {
+    public Ladder(Players players, ResultsEntry resultsEntry, List<Line> lines) {
         validateHeight(lines);
-        this.people = people;
+        this.players = players;
         this.lines = new Lines(lines);
         validateResultsCount(resultsEntry);
         this.resultsEntry = resultsEntry;
@@ -31,7 +31,7 @@ public class Ladder {
     }
 
     private void validateResultsCount(ResultsEntry resultsEntry) {
-        if (resultsEntry.getResults().size() != people.getCount()) {
+        if (resultsEntry.getResults().size() != players.getCount()) {
             throw new IllegalArgumentException("실행 결과의 수는 사람 수와 같아야 합니다.");
         }
     }
@@ -48,22 +48,22 @@ public class Ladder {
     }
 
     public CalculatedResults getTotalResults() {
-        Map<Person, Result> resultMap = new LinkedHashMap<>();
-        for (Person person : people.getPeople()) { // 이 부분에서 getter를 사용한 것이 아쉽다...
-            resultMap.put(person, calculateResult(person));
+        Map<Player, Result> resultMap = new LinkedHashMap<>();
+        for (Player player : players.getPeople()) { // 이 부분에서 getter를 사용한 것이 아쉽다...
+            resultMap.put(player, calculateResult(player));
         }
         return new CalculatedResults(resultMap);
     }
 
     public CalculatedResults getSingleResult(String name) {
-        Map<Person, Result> resultMap = new LinkedHashMap<>();
-        Person targetPerson = new Person(name);
-        resultMap.put(targetPerson, calculateResult(targetPerson));
+        Map<Player, Result> resultMap = new LinkedHashMap<>();
+        Player targetPlayer = new Player(name);
+        resultMap.put(targetPlayer, calculateResult(targetPlayer));
         return new CalculatedResults(resultMap);
     }
 
-    public Result calculateResult(Person person) {
-        Column startColumn = people.findColumnByPerson(person);
+    public Result calculateResult(Player player) {
+        Column startColumn = players.findColumnByPerson(player);
         Column resultColumn = calculateResult(startColumn);
         return resultsEntry.getResultByColumn(resultColumn);
     }
@@ -80,8 +80,8 @@ public class Ladder {
         return lines;
     }
 
-    public People getPeople() {
-        return people;
+    public Players getPeople() {
+        return players;
     }
 
     public ResultsEntry getResults() {

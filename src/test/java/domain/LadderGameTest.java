@@ -27,9 +27,9 @@ public class LadderGameTest {
                 new Line(List.of(TRUE, FALSE, TRUE))
         );
         List<String> resultList = List.of("꽝", "5000", "꽝", "3000");
-        People people = new People(List.of("pobi", "honux", "crong", "jk"));
+        Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
         ResultsEntry resultsEntry = new ResultsEntry(resultList);
-        ladder = new Ladder(people, resultsEntry, customizedLines);
+        ladder = new Ladder(players, resultsEntry, customizedLines);
     }
 
     @DisplayName("단일 사용자의 결과 출력")
@@ -41,18 +41,18 @@ public class LadderGameTest {
             "jk,5000",
     })
     void single_result_test(String name, String result) {
-        assertThat(ladder.calculateResult(new Person(name)))
+        assertThat(ladder.calculateResult(new Player(name)))
                 .isEqualTo(new Result(result));
     }
 
     @DisplayName("모든 사용자의 결과 출력")
     @Test
     void all_result_test() {
-        Map<Person, Result> data = Map.ofEntries(
-                Map.entry(new Person("pobi"), new Result("꽝")),
-                Map.entry(new Person("honux"), new Result("3000")),
-                Map.entry(new Person("crong"), new Result("꽝")),
-                Map.entry(new Person("jk"), new Result("5000"))
+        Map<Player, Result> data = Map.ofEntries(
+                Map.entry(new Player("pobi"), new Result("꽝")),
+                Map.entry(new Player("honux"), new Result("3000")),
+                Map.entry(new Player("crong"), new Result("꽝")),
+                Map.entry(new Player("jk"), new Result("5000"))
         );
         CalculatedResults resultMap = ladder.getTotalResults();
         assertThat(resultMap.getResultMap()).isEqualTo(data);

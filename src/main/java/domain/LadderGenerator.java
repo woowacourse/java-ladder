@@ -3,5 +3,5 @@ package domain;
 @FunctionalInterface
 public interface LadderGenerator {
 
-    Ladder generate(People people, ResultsEntry resultsEntry, int height);
+    Ladder generate(Players players, ResultsEntry resultsEntry, int height);
 }

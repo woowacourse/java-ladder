@@ -25,10 +25,10 @@ class LadderTest {
         for (int i = 0; i < personCount; i++) {
             list.add("hi" + i);
         }
-        People people = new People(list);
+        Players players = new Players(list);
         ResultsEntry resultsEntry = new ResultsEntry(list);
         Ladder ladder = new RandomLadderGenerator()
-                .generate(people, resultsEntry, maxHeight);
+                .generate(players, resultsEntry, maxHeight);
         assertThat(ladder.getWidth()).isEqualTo(personCount - 1);
         assertThat(ladder.getHeight()).isEqualTo(maxHeight);
     }
@@ -37,10 +37,10 @@ class LadderTest {
     @ParameterizedTest(name = "{index} : 현재 사다리 높이 = {0}")
     @ValueSource(ints = {0, 11})
     void ladder_height_test(int height) {
-        People people = new People(List.of("a", "b", "c"));
+        Players players = new Players(List.of("a", "b", "c"));
         ResultsEntry resultsEntry = new ResultsEntry(List.of("1", "2", "3"));
         assertThatThrownBy(() -> new RandomLadderGenerator()
-                .generate(people, resultsEntry, height))
+                .generate(players, resultsEntry, height))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리 높이는 1 이상 10 이하여야 합니다.");
     }

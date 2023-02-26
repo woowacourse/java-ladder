@@ -4,15 +4,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class People {
+public class Players {
 
     public static final int MIN_PERSON_COUNT = 2;
 
-    private final List<Person> people;
+    private final List<Player> people;
 
-    public People(List<String> names) {
+    public Players(List<String> names) {
         validateDuplicate(names);
-        List<Person> people = toList(names);
+        List<Player> people = toList(names);
         validatePersonCount(people);
         this.people = people;
     }
@@ -23,30 +23,30 @@ public class People {
         }
     }
 
-    private List<Person> toList(List<String> names) {
+    private List<Player> toList(List<String> names) {
         return names.stream()
-                .map(Person::new)
+                .map(Player::new)
                 .collect(Collectors.toList());
     }
 
-    private void validatePersonCount(List<Person> people) {
+    private void validatePersonCount(List<Player> people) {
         if (people.size() < MIN_PERSON_COUNT) {
             throw new IllegalArgumentException(
                     String.format("사람은 %d명 이상이어야 합니다.", MIN_PERSON_COUNT));
         }
     }
 
-    public Column findColumnByPerson(Person person) {
+    public Column findColumnByPerson(Player player) {
         int column = IntStream.range(0, people.size())
-                .filter(index -> people.get(index).equals(person))
+                .filter(index -> people.get(index).equals(player))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자는 존재하지 않습니다."));
         return Column.of(column);
     }
 
-    public List<Person> getPeople() {
+    public List<Player> getPeople() {
         return people.stream()
-                .map(Person::new)
+                .map(Player::new)
                 .collect(Collectors.toUnmodifiableList());
     }
 

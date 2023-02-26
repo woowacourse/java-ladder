@@ -37,7 +37,7 @@ public class ResultsEntryTest {
         List<String> names = Arrays.stream(people.split(",")).collect(Collectors.toList());
         List<String> resultList = Arrays.stream(results.split(",")).collect(Collectors.toList());
         assertThatThrownBy(() -> new RandomLadderGenerator().generate(
-                new People(names),
+                new Players(names),
                 new ResultsEntry(resultList),
                 5
         ))

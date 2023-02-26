@@ -4,8 +4,8 @@ import domain.Ladder;
 import domain.Line;
 import domain.Lines;
 import domain.CalculatedResults;
-import domain.People;
-import domain.Person;
+import domain.Players;
+import domain.Player;
 import domain.Result;
 import domain.ResultsEntry;
 
@@ -27,9 +27,9 @@ public class OutputView {
         printResults(ladder.getResults());
     }
 
-    private void printNames(People people) {
-        for (Person person : people.getPeople()) {
-            System.out.printf("%5s ", person.getName());
+    private void printNames(Players players) {
+        for (Player player : players.getPeople()) {
+            System.out.printf("%5s ", player.getName());
         }
         System.out.println();
     }
@@ -66,8 +66,8 @@ public class OutputView {
     }
 
     private void printTotalResults(CalculatedResults resultMap) {
-        Map<Person, Result> map = resultMap.getResultMap();
-        for (Map.Entry<Person, Result> entry : map.entrySet()) {
+        Map<Player, Result> map = resultMap.getResultMap();
+        for (Map.Entry<Player, Result> entry : map.entrySet()) {
             System.out.printf(FORMAT, entry.getKey().getName(), entry.getValue().getResult());
         }
         System.out.println();

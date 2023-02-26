@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-public class Person {
+public class Player {
 
     public static final int MIN_LENGTH = 1;
     public static final int MAX_LENGTH = 5;
@@ -10,14 +10,14 @@ public class Person {
 
     private final String name;
 
-    public Person(String name) {
+    public Player(String name) {
         validateNameLength(name);
         validateName(name);
         this.name = name;
     }
 
-    public Person(Person person) {
-        this.name = person.getName();
+    public Player(Player player) {
+        this.name = player.getName();
     }
 
     private void validateNameLength(String name) {
@@ -45,8 +45,8 @@ public class Person {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Person person = (Person) o;
-        return Objects.equals(name, person.name);
+        Player player = (Player) o;
+        return Objects.equals(name, player.name);
     }
 
     @Override
