@@ -19,20 +19,20 @@ public class LadderTest {
                 .hasMessage("사다리의 높이는 자연수이어야 합니다.");
     }
 
-    @DisplayName("사다리 높이는 참가자 수 이상이어야한다.")
+    @DisplayName("사다리의 높이는 열의 개수 이상이어야 한다.")
     @ParameterizedTest
     @CsvSource(value = {"3:4", "8:14"}, delimiter = ':')
-    void createLadderTest2(int height, int personCount) {
-        assertThatThrownBy(() -> new Ladder(height, personCount, new RandomNumberGenerator()))
+    void createLadderTest2(int height, int width) {
+        assertThatThrownBy(() -> new Ladder(height, width, new RandomNumberGenerator()))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사다리의 높이는 참가자 수 이상이어야 합니다.");
+                .hasMessage("사다리의 높이는 열의 개수 이상이어야 합니다.");
     }
 
-    @DisplayName("사다리 높이가 참가자 수 이상인 경우에는 사다리를 생성한다.")
+    @DisplayName("사다리 높이가 열의 개수 이상인 경우에는 사다리를 생성한다.")
     @ParameterizedTest
     @CsvSource(value = {"4:3", "5:5"}, delimiter = ':')
-    void createLadderTest3(int height, int personCount) {
-        assertThatCode(() -> new Ladder(height, personCount, new RandomNumberGenerator()))
+    void createLadderTest3(int height, int width) {
+        assertThatCode(() -> new Ladder(height, width, new RandomNumberGenerator()))
                 .doesNotThrowAnyException();
     }
 }

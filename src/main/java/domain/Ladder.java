@@ -10,23 +10,23 @@ public class Ladder {
 
     private static final int HEIGHT_LOWER_BOUND = 1;
     private static final String NOT_NATURAL_NUMBER_ERROR_MESSAGE = "사다리의 높이는 자연수이어야 합니다.";
-    private static final String HEIGHT_IS_LOWER_THAN_PERSON_COUNT_ERROR_MESSAGE = "사다리의 높이는 참가자 수 이상이어야 합니다.";
+    private static final String HEIGHT_IS_LOWER_THAN_WIDTH_ERROR_MESSAGE = "사다리의 높이는 열의 개수 이상이어야 합니다.";
 
     private final List<Line> ladder = new ArrayList<>();
 
-    public Ladder(int height, int personCount, NumberGenerator numberGenerator) {
-        validate(height, personCount);
-        generateLadder(height, personCount, numberGenerator);
+    public Ladder(int height, int width, NumberGenerator numberGenerator) {
+        validate(height, width);
+        generateLadder(height, width, numberGenerator);
     }
 
-    private static void validate(int height, int personCount) {
+    private static void validate(int height, int width) {
         validateHeightGreaterThanLowerBound(height);
-        validatePersonCountLessThanHeight(height, personCount);
+        validateWidthLessThanHeight(height, width);
     }
 
-    private static void validatePersonCountLessThanHeight(int height, int personCount) {
-        if (height < personCount) {
-            throw new IllegalArgumentException(HEIGHT_IS_LOWER_THAN_PERSON_COUNT_ERROR_MESSAGE);
+    private static void validateWidthLessThanHeight(int height, int width) {
+        if (height < width) {
+            throw new IllegalArgumentException(HEIGHT_IS_LOWER_THAN_WIDTH_ERROR_MESSAGE);
         }
     }
 
