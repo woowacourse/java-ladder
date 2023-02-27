@@ -52,37 +52,14 @@ public class LadderGame {
 
     public void processResult() {
         for (Line line : lines.getLines()) {
-            calculateLine(people, line);
+            calculateLine(line);
         }
     }
 
-    private void calculateLine(People people, Line line) {
+    private void calculateLine(Line line) {
         for (Person person : people.getPeople()) {
-            movePerson(person, line, people.getPeople().size());
+            person.move(line, people.getPeople().size());
         }
-    }
-
-    private void movePerson(Person person, Line line, int peopleSize) {
-        MoveCommand command = decisionPersonPosition(person, line, peopleSize);
-        if (command == MoveCommand.LEFT) {
-            person.goLeft();
-            return;
-        }
-        if (command == MoveCommand.RIGHT) {
-            person.goRight();
-            return;
-        }
-    }
-
-    private MoveCommand decisionPersonPosition(Person person, Line line, int peopleSize) {
-        int i = person.getPosition();
-        if (person.getPosition() != peopleSize - 1 && line.getPoints().get(person.getPosition()).status()) {
-            return MoveCommand.RIGHT;
-        }
-        if (i != 0 && line.getPoints().get(i - 1).status()) {
-            return MoveCommand.LEFT;
-        }
-        return MoveCommand.NONE;
     }
 
     public People getPeople(){

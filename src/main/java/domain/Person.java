@@ -41,4 +41,18 @@ public class Person {
     public void goRight() {
         ++position;
     }
+
+    final static int FIRST_INDEX = 0;
+
+    public void move(Line line, int peopleSize){
+        int lastPosition = peopleSize - 1;
+        if (position != lastPosition && line.getPoints().get(position).status()) {
+            ++position;
+            return;
+        }
+        int leftPosition = position - 1;
+        if (position != FIRST_INDEX && line.getPoints().get(leftPosition).status()) {
+            --position;
+        }
+    }
 }
