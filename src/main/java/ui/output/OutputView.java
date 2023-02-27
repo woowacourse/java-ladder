@@ -15,6 +15,7 @@ public class OutputView {
 
     private static final String LADDER_RESULT = "사다리 결과";
     private static final String EXECUTE_RESULT = "실행 결과";
+    private static final String VIEW_RESULT_ALL = "all";
 
     public static void printLadderResult(People people, Lines lines, Rewards rewards) {
         System.out.println("\n" + LADDER_RESULT + "\n");
@@ -80,7 +81,7 @@ public class OutputView {
 
     public static void printRewardResult(Rewards rewards, People people, String targetName) {
         System.out.println("\n" + EXECUTE_RESULT);
-        if (targetName.equals("all")) {
+        if (targetName.equals(VIEW_RESULT_ALL)) {
             printResultAll(rewards, people);
             return;
         }
