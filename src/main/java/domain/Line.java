@@ -13,6 +13,7 @@ public class Line {
 
     private static final int WALL_AND_PEOPLE_DIFFERENCE = 1;
     private final List<ConnectStatus> points = new ArrayList<>();
+
     private Line() {
     }
 
@@ -20,7 +21,7 @@ public class Line {
         return points;
     }
 
-    public static Line newInstanceWithPersonCount(int personCount, RandomValueGenerator generator){
+    public static Line newInstanceWithPersonCount(int personCount, RandomValueGenerator generator) {
         Line line = new Line();
         List<ConnectStatus> lineValue = line.points;
         lineValue.add(ConnectStatus.valueOf(generator.generate()));

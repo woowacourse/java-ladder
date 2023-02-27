@@ -1,5 +1,4 @@
 import domain.LadderGame;
-import domain.Lines;
 import domain.People;
 import domain.Person;
 import domain.Rewards;

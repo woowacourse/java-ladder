@@ -12,6 +12,8 @@ public class Person {
 
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_NAME_LENGTH = 1;
+    final static int FIRST_INDEX = 0;
+
 
     public Person(String name, int initPosition) {
         validateNameLength(name);
@@ -24,7 +26,6 @@ public class Person {
             throw new IllegalArgumentException("이름은 1~" + MAX_NAME_LENGTH + "글자여야 합니다.");
         }
     }
-
 
     public PersonName getName() {
         return name;
@@ -42,9 +43,8 @@ public class Person {
         ++position;
     }
 
-    final static int FIRST_INDEX = 0;
 
-    public void move(Line line, int peopleSize){
+    public void move(Line line, int peopleSize) {
         int lastPosition = peopleSize - 1;
         if (position != lastPosition && line.getPoints().get(position).status()) {
             ++position;

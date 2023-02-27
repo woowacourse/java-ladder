@@ -9,14 +9,14 @@ public enum ConnectStatus {
         this.status = status;
     }
 
-    public static ConnectStatus valueOf(boolean status){
-        if(status){
+    public static ConnectStatus valueOf(boolean status) {
+        if (status) {
             return CONNECT;
         }
         return DISCONNECT;
     }
 
-    public boolean status(){
+    public boolean status() {
         return this.status;
     }
 }

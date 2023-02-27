@@ -1,9 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import util.RandomBooleanGenerator;
 import util.RandomValueGenerator;
 
 /**
@@ -25,7 +23,6 @@ public class LadderGame {
         }
         this.people = new People(people);
     }
-
 
 
     public void createLines(int height, RandomValueGenerator generator) {
@@ -58,15 +55,15 @@ public class LadderGame {
         }
     }
 
-    public People getPeople(){
+    public People getPeople() {
         return people;
     }
 
-    public Lines getLines(){
+    public Lines getLines() {
         return lines;
     }
 
-    public Rewards getRewards(){
+    public Rewards getRewards() {
         return rewards;
     }
 }

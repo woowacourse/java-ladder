@@ -1,7 +1,6 @@
 package ui.output;
 
 import domain.Lines;
-import domain.Names;
 import domain.People;
 import domain.Person;
 import domain.Reward;
@@ -40,7 +39,7 @@ public class OutputView {
         for (char ch : name.toCharArray()) {
             adjustLength += correctionLength(ch);
         }
-        for (; adjustLength<length; adjustLength++){
+        for (; adjustLength < length; adjustLength++) {
             stringBuilder.append(" ");
         }
         stringBuilder.append(" ");
@@ -102,6 +101,7 @@ public class OutputView {
 
     private static void printResultTarget(Rewards rewards, Person person) {
         int position = person.getPosition();
-        System.out.println(person.getName().getPersonName() + " : " + rewards.getRewards().get(position).getName().getRewardName());
+        System.out.println(person.getName().getPersonName() + " : " + rewards.getRewards().get(position).getName()
+                .getRewardName());
     }
 }
