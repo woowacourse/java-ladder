@@ -2,7 +2,6 @@ package domain.player;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utils.ErrorMessage;
 
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class PlayersTest {
         List<String> playersName = List.of("gray", "encho", "gray");
         assertThatThrownBy(() -> new Players(playersName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.PLAYER_DUPLICATE_ERROR.getMessage());
+                .hasMessageContaining("게임 참여자의 이름은 중복될 수 없습니다.");
     }
 
     @Test
@@ -40,6 +39,6 @@ public class PlayersTest {
         List<String> playersName = List.of("gray");
         assertThatThrownBy(() -> new Players(playersName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.PLAYER_SIZE_ERROR.getMessage());
+                .hasMessageContaining("게임 참여자 수는 최소 2명 최대 50명까지 가능합니다.");
     }
 }

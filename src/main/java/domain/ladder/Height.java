@@ -1,7 +1,5 @@
 package domain.ladder;
 
-import utils.ErrorMessage;
-
 public class Height {
 
     private static final int MIN_HEIGHT = 1;
@@ -16,7 +14,7 @@ public class Height {
 
     private void validate(int height) {
         if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
-            throw new IllegalArgumentException(ErrorMessage.HEIGHT_ERROR.getMessage());
+            throw new IllegalArgumentException("사다리 높이는 1이상 100이하의 자연수만 가능합니다.");
         }
     }
 

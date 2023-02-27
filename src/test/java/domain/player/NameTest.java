@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import utils.ErrorMessage;
 
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -23,7 +22,7 @@ class NameTest {
     void validateNameLength_Fail(String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.NAME_LENGTH_ERROR.getMessage());
+                .hasMessageContaining("참가자 이름의 길이는 1이상 5이하만 가능합니다.");
     }
 
     @ParameterizedTest
@@ -32,7 +31,7 @@ class NameTest {
     void validateNameWithSpace_Fail(String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.NAME_FORMAT_ERROR.getMessage());
+                .hasMessageContaining("참가자 이름에는 공백이 들어갈 수 없습니다.");
     }
 
 }
