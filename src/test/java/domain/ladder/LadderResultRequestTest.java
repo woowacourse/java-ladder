@@ -14,7 +14,7 @@ class LadderResultRequestTest {
         // given
         ResultRequestDto request = new ResultRequestDto("all");
         // when
-        boolean result = request.isEveryResultsRequest();
+        boolean result = request.isAllResults();
         // then
         assertThat(result).isTrue();
     }
@@ -25,7 +25,7 @@ class LadderResultRequestTest {
         // given
         ResultRequestDto request = new ResultRequestDto("notAll");
         // when
-        boolean result = request.isEveryResultsRequest();
+        boolean result = request.isAllResults();
         // then
         assertThat(result).isFalse();
     }

@@ -10,6 +10,7 @@ import dto.GameResultDto;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO: 테스트 만들기
 public class LadderGame {
 
     private final Ladder ladder;
@@ -22,11 +23,11 @@ public class LadderGame {
         this.ladderPrizes = ladderPrizes;
     }
 
-    public boolean isPlayerExistByName(String name) {
-        return players.containPlayerBySpecificName(name);
+    public boolean containName(String name) {
+        return players.containName(name);
     }
 
-    public List<GameResultDto> findAllPlayerResult() {
+    public List<GameResultDto> findResults() {
         List<GameResultDto> gameResultDtos = new ArrayList<>();
 
         for (Player player : players.getPlayers()) {
@@ -38,8 +39,8 @@ public class LadderGame {
         return gameResultDtos;
     }
 
-    public LadderPrize findSinglePlayerResultByName(String name) {
-        Player findPlayer = players.findSpecificNamePlayer(name);
+    public LadderPrize findResultByName(String name) {
+        Player findPlayer = players.findPlayerByName(name);
         Position position = findPlayer.move(ladder);
 
         return ladderPrizes.findPrizeByPosition(position);

@@ -106,12 +106,12 @@ public class LadderGameApplication {
         while (true) {
             ResultRequestDto request = inputView.readSpecificResult();
 
-            if (request.isEveryResultsRequest()) {
+            if (request.isAllResults()) {
                 printEveryPlayerResult(ladderGame);
                 return;
             }
 
-            if (!ladderGame.isPlayerExistByName(request.getMessage())) {
+            if (!ladderGame.containName(request.getMessage())) {
                 outputView.printPlayerNotExistMessage(request);
                 continue;
             }
@@ -121,12 +121,12 @@ public class LadderGameApplication {
     }
 
     private void printEveryPlayerResult(LadderGame ladderGame) {
-        List<GameResultDto> results = ladderGame.findAllPlayerResult();
+        List<GameResultDto> results = ladderGame.findResults();
         outputView.printAllPlayerResult(results);
     }
 
     private void printSinglePlayerResult(LadderGame ladderGame, ResultRequestDto request) {
-        LadderPrize ladderPrize = ladderGame.findSinglePlayerResultByName(request.getMessage());
+        LadderPrize ladderPrize = ladderGame.findResultByName(request.getMessage());
         outputView.printSinglePlayerResult(ladderPrize);
     }
 }

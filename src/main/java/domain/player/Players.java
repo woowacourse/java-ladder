@@ -33,12 +33,12 @@ public class Players {
                 .count() != players.size();
     }
 
-    public boolean containPlayerBySpecificName(String name) {
+    public boolean containName(String name) {
         return players.stream()
                 .anyMatch(player -> player.isSameName(name));
     }
 
-    public Player findSpecificNamePlayer(String name) {
+    public Player findPlayerByName(String name) {
         return players.stream()
                 .filter(player -> player.isSameName(name))
                 .findFirst()

@@ -62,7 +62,7 @@ class PlayersTest {
         List<Player> rawPlayers = generateRawPlayersByNames("neo", "pobi", "jun");
         Players players = new Players(rawPlayers);
         // when
-        boolean result = players.containPlayerBySpecificName("neo");
+        boolean result = players.containName("neo");
         // then
         assertThat(result).isTrue();
     }
@@ -74,7 +74,7 @@ class PlayersTest {
         List<Player> rawPlayers = generateRawPlayersByNames("neo", "pobi", "jun");
         Players players = new Players(rawPlayers);
         // when
-        boolean result = players.containPlayerBySpecificName("noNeo");
+        boolean result = players.containName("noNeo");
         // then
         assertThat(result).isFalse();
     }
@@ -87,7 +87,7 @@ class PlayersTest {
         Players players = new Players(rawPlayers);
         Player expectedPlayer = rawPlayers.get(0);
         // when
-        Player actualPlayer = players.findSpecificNamePlayer(expectedPlayer.getName());
+        Player actualPlayer = players.findPlayerByName(expectedPlayer.getName());
         // then
         assertThat(actualPlayer).isEqualTo(expectedPlayer);
     }
@@ -99,7 +99,7 @@ class PlayersTest {
         List<Player> rawPlayers = generateRawPlayersByNames("neo", "pobi", "jun");
         Players players = new Players(rawPlayers);
         // then
-        assertThatThrownBy(() -> players.findSpecificNamePlayer("wrongName"))
+        assertThatThrownBy(() -> players.findPlayerByName("wrongName"))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("해당하는 이름을 가진 Player는 존재하지 않습니다.");
     }
