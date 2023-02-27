@@ -1,7 +1,5 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.participant.Participant;
-import laddergame.domain.participant.Participants;
 import laddergame.util.BooleanGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -67,33 +65,6 @@ class LadderTest {
             Line line = lines.get(0);
             List<Rung> rungs = line.getRungs();
             return rungs.size();
-        }
-    }
-
-    @Nested
-    @DisplayName("사다리 이동 시")
-    class moveTest {
-
-        private Ladder orderedLadder;
-        private Participants participants;
-
-        @BeforeEach
-        void setUp() {
-            orderedLadder = new Ladder(() -> true, "2", 4);
-            participants = Participants.create("one,two,three,four");
-        }
-
-        @ParameterizedTest
-        @ValueSource(ints = {0, 1, 2, 3})
-        @DisplayName("참여자를 입력하면, 도착지로 이동시키는지 확인한다.")
-        void moves_participant_test(int startPosition) {
-            List<Participant> allParticipants = participants.getParticipants();
-            Participant participant = allParticipants.get(startPosition);
-
-            orderedLadder.moveToDestination(participant);
-            int endPosition = participant.getParticipantPosition();
-
-            assertThat(endPosition).isEqualTo(startPosition);
         }
     }
 }

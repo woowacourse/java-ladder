@@ -1,6 +1,5 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.participant.Participant;
 import laddergame.util.BooleanGenerator;
 
 import java.util.ArrayList;
@@ -32,11 +31,5 @@ public class Ladder {
 
     public List<Line> getLines() {
         return lines;
-    }
-
-    public void moveToDestination(final Participant participant) {
-        for (Line line : lines) {
-            participant.move(line);
-        }
     }
 }

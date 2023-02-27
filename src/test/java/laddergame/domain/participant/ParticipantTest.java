@@ -1,83 +1,73 @@
 package laddergame.domain.participant;
 
-import laddergame.domain.ladder.Line;
+import laddergame.domain.ladder.Ladder;
 import laddergame.util.BooleanGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ParticipantTest {
 
-    private static final int MOVING_UNIT = 1;
     private static final BooleanGenerator TRUE_BOOLEAN_GENERATOR = () -> true;
     private static final BooleanGenerator FALSE_BOOLEAN_GENERATOR = () -> false;
-
-    private String participantName;
-    private Line lineWithRung;
-    private Line lineWithoutRung;
+    private static final int FIRST_POSITION = 0;
+    private static final int SECOND_POSITION = 1;
+    private static final String PARTICIPANT_NAME = "후추";
+    
+    private Ladder ladderWithOneLineAndOneRung;
+    private Ladder ladderWithOneLineButNoRung;
 
     @BeforeEach
     void setUp() {
-        participantName = "poby";
-        final int rungCount = 1;
-        lineWithRung = Line.create(rungCount, TRUE_BOOLEAN_GENERATOR); // |-----|
-        lineWithoutRung = Line.create(rungCount, FALSE_BOOLEAN_GENERATOR); // |     |
+        final int participantCount = 2;
+        final String height = "1";
+        ladderWithOneLineAndOneRung = new Ladder(TRUE_BOOLEAN_GENERATOR, height, participantCount); // |-----|
+        ladderWithOneLineButNoRung = new Ladder(FALSE_BOOLEAN_GENERATOR, height, participantCount); // |     |
     }
 
     @Nested
-    @DisplayName("사다리 가로대가 존재할 때")
-    class MoveTestWithRung {
+    @DisplayName("사다리 가로대가 있는 사다리가 입력 되었을 때")
+    class MoveToDestinationTestWithRung {
 
         @Test
-        @DisplayName("오른쪽으로 움직이면 참여자의 위치 1 증가한다.")
-        void increases_by_1_if_participant_moves_to_the_right() {
-            final int basePosition = 0;
-            Participant participant = Participant.create(participantName, basePosition);
+        @DisplayName("첫 번째 위치에 있던 참여자는 두 번째 위치로 도착한다.")
+        void arrives_at_the_second_position_if_participant_was_in_the_first_position() {
+            Participant participant = Participant.create(PARTICIPANT_NAME, FIRST_POSITION);
 
-            participant.move(lineWithRung);
+            participant.moveToDestination(ladderWithOneLineAndOneRung);
 
-            assertThat(participant.getParticipantPosition()).isEqualTo(basePosition + MOVING_UNIT);
+            assertThat(participant.getParticipantPosition()).isEqualTo(SECOND_POSITION);
         }
 
         @Test
-        @DisplayName("왼쪽으로 움직이면 참여자의 위치 1 감소한다.")
-        void decreases_by_1_if_participant_moves_to_the_left() {
-            final int basePosition = 1;
-            Participant participant = Participant.create(participantName, basePosition);
+        @DisplayName("두 번째 위치에 있던 참여자는 첫 번째 위치로 도착한다.")
+        void arrives_at_the_first_position_if_participant_was_in_the_second_position() {
+            Participant participant = Participant.create(PARTICIPANT_NAME, SECOND_POSITION);
 
-            participant.move(lineWithRung);
+            participant.moveToDestination(ladderWithOneLineAndOneRung);
 
-            assertThat(participant.getParticipantPosition()).isEqualTo(basePosition - MOVING_UNIT);
+            assertThat(participant.getParticipantPosition()).isEqualTo(FIRST_POSITION);
         }
     }
 
     @Nested
-    @DisplayName("사다리 가로대가 존재하지 않을 때")
-    class MoveTestWithoutRung {
+    @DisplayName("사다리 가로대가 없는 사다리가 입력 되었을 때")
+    class MoveToDestinationTestWithoutRung {
 
-        @Test
-        @DisplayName("오른쪽으로 움직이면 참여자의 위치는 증가하지 않는다")
-        void does_not_increase_if_participant_moves_to_the_right() {
-            final int basePosition = 0;
-            Participant participant = Participant.create(participantName, basePosition);
+        @ParameterizedTest
+        @ValueSource(ints = {FIRST_POSITION, SECOND_POSITION})
+        @DisplayName("출발점과 같은 위치에 도착한다")
+        void arrives_at_the_same_position_as_the_start(final int position) {
+            Participant participant = Participant.create(PARTICIPANT_NAME, position);
 
-            participant.move(lineWithoutRung);
+            participant.moveToDestination(ladderWithOneLineButNoRung);
 
-            assertThat(participant.getParticipantPosition()).isEqualTo(basePosition);
-        }
-
-        @Test
-        @DisplayName("왼쪽으로 움직이면 참여자의 위치 1 감소한다.")
-        void does_not_decrease_if_participant_moves_to_the_left() {
-            final int basePosition = 1;
-            Participant participant = Participant.create(participantName, basePosition);
-
-            participant.move(lineWithoutRung);
-
-            assertThat(participant.getParticipantPosition()).isEqualTo(basePosition);
+            assertThat(participant.getParticipantPosition()).isEqualTo(position);
         }
     }
 }
