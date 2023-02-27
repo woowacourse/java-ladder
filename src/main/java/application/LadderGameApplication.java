@@ -2,6 +2,7 @@ package application;
 
 import static java.util.stream.Collectors.toList;
 
+import domain.RetryCount;
 import domain.ladder.Ladder;
 import domain.ladder.LadderGenerator;
 import domain.ladder.LadderHeight;
@@ -34,9 +35,9 @@ public class LadderGameApplication {
     }
 
     public void run() {
-        Players players = createPlayers();
-        LadderHeight ladderHeight = createLadderHeight();
-        LadderPrizes ladderPrizes = createLadderPrizes(players.size());
+        Players players = createPlayers(new RetryCount(5));
+        LadderHeight ladderHeight = createLadderHeight(new RetryCount(5));
+        LadderPrizes ladderPrizes = createLadderPrizes(players.size(), new RetryCount(5));
 
         Ladder ladder = ladderGenerator.generate(players.size(), ladderHeight);
         LadderGame ladderGame = new LadderGame(ladder, players, ladderPrizes);
@@ -46,19 +47,18 @@ public class LadderGameApplication {
         printResult(ladderGame);
     }
 
-    private Players createPlayers() {
-        int countOfMaxRetry = 5;
-        while (countOfMaxRetry-- > 0) {
-            try {
-                List<Name> names = createNames();
-                List<Player> players = createRawPlayers(names);
-                return new Players(players);
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
+    private Players createPlayers(RetryCount retryCount) {
+        try {
+            List<Name> names = createNames();
+            List<Player> players = createRawPlayers(names);
+            return new Players(players);
+        } catch (IllegalArgumentException e) {
+            throwIfRetryCountOver(retryCount);
+
+            outputView.printErrorMessage(e.getMessage());
+            return createPlayers(retryCount);
         }
 
-        throw new IllegalStateException(RETRY_COUNT_OVER_EXCEPTION);
     }
 
     private List<Name> createNames() {
@@ -76,35 +76,38 @@ public class LadderGameApplication {
         return players;
     }
 
-    private LadderHeight createLadderHeight() {
-        int countOfMaxRetry = 5;
-        while (countOfMaxRetry-- > 0) {
-            try {
-                int height = inputView.readLadderHeight();
-                return new LadderHeight(height);
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
+    private void throwIfRetryCountOver(RetryCount retryCount) {
+        if (retryCount.isLimit()) {
+            throw new IllegalStateException(RETRY_COUNT_OVER_EXCEPTION);
         }
-        throw new IllegalStateException(RETRY_COUNT_OVER_EXCEPTION);
     }
 
-    private LadderPrizes createLadderPrizes(int size) {
-        int countOfMaxRetry = 5;
-        while (countOfMaxRetry-- > 0) {
-            try {
-                List<String> rawLadderPrizes = inputView.readLadderPrizes();
-                List<LadderPrize> ladderPrizes = rawLadderPrizes.stream()
-                        .map(LadderPrize::new)
-                        .collect(toList());
+    private LadderHeight createLadderHeight(RetryCount retryCount) {
+        try {
+            int height = inputView.readLadderHeight();
+            return new LadderHeight(height);
+        } catch (IllegalArgumentException e) {
+            throwIfRetryCountOver(retryCount);
 
-                return LadderPrizes.createWithSameSize(ladderPrizes, size);
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
+            outputView.printErrorMessage(e.getMessage());
+            return createLadderHeight(retryCount);
         }
+    }
 
-        throw new IllegalStateException(RETRY_COUNT_OVER_EXCEPTION);
+    private LadderPrizes createLadderPrizes(int size, RetryCount retryCount) {
+        try {
+            List<String> rawLadderPrizes = inputView.readLadderPrizes();
+            List<LadderPrize> ladderPrizes = rawLadderPrizes.stream()
+                    .map(LadderPrize::new)
+                    .collect(toList());
+
+            return LadderPrizes.createWithSameSize(ladderPrizes, size);
+        } catch (IllegalArgumentException e) {
+            throwIfRetryCountOver(retryCount);
+
+            outputView.printErrorMessage(e.getMessage());
+            return createLadderPrizes(size, retryCount);
+        }
     }
 
     private void printResult(LadderGame ladderGame) {
