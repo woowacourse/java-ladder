@@ -12,48 +12,52 @@ import ladder.common.LadderGame;
 public class LadderGameController implements LadderGame {
 
     private final ConnectionJudgement connectionJudgement;
-    private final LadderRepository ladderRepository;
+    private Players players;
+    private Ladder ladder;
+    private Result result;
 
-    public LadderGameController(ConnectionJudgement connectionJudgement, LadderRepository ladderRepository) {
+
+    public LadderGameController(ConnectionJudgement connectionJudgement) {
         this.connectionJudgement = connectionJudgement;
-        this.ladderRepository = ladderRepository;
     }
 
     @Override
     public void initializePlayers(List<String> playerNames) {
-        ladderRepository.put(Players.class, new Players(playerNames));
+        players = new Players(playerNames);
     }
 
     @Override
     public void initializeResults(List<String> resultNames) {
-        int playerCount = ladderRepository.get(Players.class)
-                .size();
-        ladderRepository.put(Result.class, new Result(resultNames, playerCount));
+        validatePlayerState();
+        int playerCount = players.size();
+        result = new Result(resultNames, playerCount);
+    }
+
+    private void validatePlayerState() {
+        if (players == null) {
+            throw new IllegalStateException("플레이어가 초기화 되지 않았습니다");
+        }
     }
 
     @Override
     public void initializeLadder(int height) {
-        Players players = ladderRepository.get(Players.class);
-        ladderRepository.put(Ladder.class, generateLadder(height, players));
-
+        validatePlayerState();
+        ladder = generateLadder(height, players);
     }
 
     @Override
     public List<String> getPlayerNames() {
-        return ladderRepository.get(Players.class)
-                .getPlayerNames();
+        return players.getPlayerNames();
     }
 
     @Override
     public List<List<Boolean>> getLadderRows() {
-        return ladderRepository.get(Ladder.class)
-                .getRows();
+        return ladder.getRows();
     }
 
     @Override
     public List<String> getResultNames() {
-        return ladderRepository.get(Result.class)
-                .getNames();
+        return result.getNames();
     }
 
     private Ladder generateLadder(int height, Players players) {
@@ -62,16 +66,13 @@ public class LadderGameController implements LadderGame {
 
     @Override
     public Map<String, String> calculateResult() {
-        Players players = ladderRepository.get(Players.class);
-        Ladder ladder = ladderRepository.get(Ladder.class);
-        Result resultItems = ladderRepository.get(Result.class);
         Map<String, Position> playerNameAndResultPosition = players.calculateResult(ladder);
         //그냥 바로 collect toMap 만 호출하면 순서가 보장이 되지 않아서 LinkedHashMap 으로 감싸준다
         return playerNameAndResultPosition.entrySet()
                 .stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
-                        entry -> resultItems.findByPosition(entry.getValue()),
+                        entry -> result.findByPosition(entry.getValue()),
                         (x, y) -> y,
                         LinkedHashMap::new));
     }
