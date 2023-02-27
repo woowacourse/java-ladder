@@ -98,7 +98,7 @@ public class LadderController {
     }
 
     private boolean printGameResult(Result result, String name) {
-        if (name.equals(ALL)) {
+        if (ALL.equals(name)) {
             resultView.printGameAllResult(result);
             return false;
         }
