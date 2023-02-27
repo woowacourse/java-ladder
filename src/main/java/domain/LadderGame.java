@@ -41,13 +41,13 @@ public class LadderGame {
         this.lines = new Lines(lines);
     }
 
-    public Rewards createRewards(List<String> names, int peopleNum) {
+    public void createRewards(List<String> names, int peopleNum) {
         List<Reward> rewards = new ArrayList<>();
         for (String name : names) {
             rewards.add(new Reward(name));
         }
 
-        return new Rewards(rewards, peopleNum);
+        this.rewards = new Rewards(rewards, peopleNum);
     }
 
     public void processResult(People people, Lines lines) {
@@ -91,5 +91,9 @@ public class LadderGame {
 
     public Lines getLines(){
         return lines;
+    }
+
+    public Rewards getRewards(){
+        return rewards;
     }
 }

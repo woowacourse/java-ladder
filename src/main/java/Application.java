@@ -17,12 +17,12 @@ public class Application {
     public static void main(String[] args) {
         LadderGame ladderGame = new LadderGame();
         inputPeople(ladderGame);
-        Rewards rewards = inputRewards(ladderGame, ladderGame.getPeople().getPeople().size());
+        inputRewards(ladderGame, ladderGame.getPeople().getPeople().size());
         int ladderHeight = InputView.inputLadderHeight();
         ladderGame.createLines(ladderGame.getPeople().getPeople().size(), ladderHeight);
         ladderGame.processResult(ladderGame.getPeople(), ladderGame.getLines());
-        OutputView.printLadderResult(ladderGame.getPeople(), ladderGame.getLines(), rewards);
-        repeatPrintPeopleResultUntilAll(rewards, ladderGame.getPeople());
+        OutputView.printLadderResult(ladderGame.getPeople(), ladderGame.getLines(), ladderGame.getRewards());
+        repeatPrintPeopleResultUntilAll(ladderGame.getRewards(), ladderGame.getPeople());
     }
 
     private static void inputPeople(LadderGame ladderGame) {
@@ -37,11 +37,12 @@ public class Application {
         }
     }
 
-    private static Rewards inputRewards(LadderGame ladderGame, int peopleNum) {
+    private static void inputRewards(LadderGame ladderGame, int peopleNum) {
         while (true) {
             try {
                 List<String> names = InputView.inputRewards(peopleNum);
-                return ladderGame.createRewards(names, peopleNum);
+                ladderGame.createRewards(names, peopleNum);
+                return;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
