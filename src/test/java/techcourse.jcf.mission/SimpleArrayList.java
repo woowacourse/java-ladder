@@ -62,10 +62,14 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String get(int index) {
+        validateIndexInBounds(index);
+        return values[index];
+    }
+
+    private void validateIndexInBounds(final int index) {
         if (index < 0 || index >= size()) {
             throw new IndexOutOfBoundsException();
         }
-        return values[index];
     }
 
     @Override
@@ -106,7 +110,13 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String remove(int index) {
-        return null;
+        validateIndexInBounds(index);
+        String removeValue = values[index];
+        String[] currentValues = copyCurrentValues();
+        for (int i = index; i < size() - 1; i++) {
+            values[i] = currentValues[i + 1];
+        }
+        return removeValue;
     }
 
     @Override
