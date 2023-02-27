@@ -1,28 +1,25 @@
 package ladder.domain;
 
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.List;
-import java.util.stream.Stream;
-
 import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import org.junit.jupiter.api.Test;
 
 class LadderTest {
-    static Stream<Arguments> Row_리스트_데이터() {
-        return Stream.of(
-                Arguments.of(List.of(
-                        Row.of(List.of(Foothold.Y, Foothold.N), 2),
-                        Row.of(List.of(Foothold.N, Foothold.Y), 2)
-                ))
-        );
+    @Test
+    public void 도착점_구하기_success() {
+        Ladder ladder = new LadderGenerator(new Width(5), new Height(4)).generateLadder();
+        int startPosition = 0;
+        assertThatNoException()
+                .isThrownBy(() -> ladder.getEndPosition(startPosition));
     }
 
-    @ParameterizedTest(name = "Row 생성 성공")
-    @MethodSource("Row_리스트_데이터")
-    public void 생성_success(List<Row> rows) {
-        assertThatNoException()
-                .isThrownBy(() -> new Ladder(rows));
+    @Test
+    public void 도착점_구하기_fail() {
+        Ladder ladder = new LadderGenerator(new Width(5), new Height(4)).generateLadder();
+        int startPoint = 6;
+        assertThatThrownBy(() -> ladder.getEndPosition(startPoint))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(String.format("사다리 시작점은 0이상 %d이하이어야합니다.", 5));
     }
 }
