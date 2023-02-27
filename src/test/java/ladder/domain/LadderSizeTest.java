@@ -13,6 +13,6 @@ class LadderSizeTest {
     @DisplayName("높이가 1 미만이거나 1000 초과이면 예외를 던진다.")
     void heightRangeTest(final int height) {
         assertThrows(IllegalArgumentException.class,
-                () ->  new LadderSize(3, height));
+                () -> new LadderSize(3, height));
     }
 }
