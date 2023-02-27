@@ -19,12 +19,12 @@ public class Ladder {
 
     public Position play(Position position) {
         for (Line line : lines) {
-            moveToPassableDirection(position, line);
+            move(position, line);
         }
         return position;
     }
 
-    private void moveToPassableDirection(Position position, Line line) {
+    private void move(Position position, Line line) {
         if (line.isLeftSidePassable(position)) {
             position.moveLeft();
             return;

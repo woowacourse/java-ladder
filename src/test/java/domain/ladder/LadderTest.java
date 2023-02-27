@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class LadderTest {
 
+    //TODO 검증할것이 Player와 똑같다.
     /**
      * |-----|     |-----|     |
      * |     |-----|     |-----|
