@@ -21,4 +21,8 @@ public class Result {
     public void saveResult(String userName, String prizeName) {
         this.result.replace(userName, prizeName);
     }
+
+    public String findOneResult(String searchName) {
+        return this.result.get(searchName);
+    }
 }
