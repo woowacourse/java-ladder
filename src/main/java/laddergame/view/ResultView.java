@@ -9,7 +9,6 @@ import static java.util.stream.Collectors.joining;
 
 public class ResultView {
     private static final String FOOTHOLD_DELIMITER = "|";
-    private static final String ERROR_MESSAGE_HEADER = "[ERROR] ";
 
     public void printLadderInformationTitle() {
         System.out.println("사다리 결과");
@@ -71,9 +70,5 @@ public class ResultView {
                      .append(result.getValue());
 
         return formatBuilder.toString();
-    }
-
-    public void printErrorMessage(String message) {
-        System.out.println(ERROR_MESSAGE_HEADER + message);
     }
 }
