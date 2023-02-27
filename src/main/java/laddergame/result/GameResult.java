@@ -21,7 +21,7 @@ public class GameResult {
         for (Player player : ladderResult.keySet()) {
             Position position = ladderResult.get(player);
             String playerName = player.getName();
-            String prizeName = prizes.getPrizeName(position);
+            String prizeName = prizes.getPrizeName(position.getPosition());
             gameResult.put(playerName, prizeName);
         }
 

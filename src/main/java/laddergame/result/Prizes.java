@@ -1,30 +1,23 @@
 package laddergame.result;
 
-import laddergame.vo.PlayerName;
-import laddergame.vo.Position;
-
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Prizes {
-    private final Map<Position, Prize> prizes;
+    private final List<Prize> prizes;
 
-    private Prizes(Map<Position, Prize> prizes) {
-        this.prizes = prizes;
+    private Prizes(List<Prize> prizes) {
+        this.prizes = new ArrayList<>(prizes);
     }
 
     public static Prizes from(List<String> prizeNames, int prizesCount) {
         validatePrizesCount(prizeNames.size(), prizesCount);
 
-        Map<Position, Prize> prizes = new LinkedHashMap<>();
-        for (int i = 0; i < prizeNames.size(); i++) {
-            Position prizePosition = new Position(i);
-            PlayerName prizeName = new PlayerName(prizeNames.get(i));
+        List<Prize> prizes = new ArrayList<>();
+        for (String prizeName : prizeNames) {
             Prize prize = new Prize(prizeName);
-
-            prizes.put(prizePosition, prize);
+            prizes.add(prize);
         }
         return new Prizes(prizes);
     }
@@ -35,15 +28,14 @@ public class Prizes {
         }
     }
 
-    public String getPrizeName(Position position) {
+    public String getPrizeName(int position) {
         return prizes.get(position)
-                     .getName();
+                     .getPrizeName();
     }
 
     public List<String> getPrizeNames() {
-        return prizes.values()
-                     .stream()
-                     .map(Prize::getName)
+        return prizes.stream()
+                     .map(Prize::getPrizeName)
                      .collect(Collectors.toUnmodifiableList());
     }
 }
