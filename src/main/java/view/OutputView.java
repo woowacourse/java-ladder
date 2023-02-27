@@ -15,18 +15,17 @@ import java.util.List;
 public class OutputView {
 
     private static final OutputView outputView = new OutputView();
-
-    private final String RESULT_MESSAGE = "실행결과";
-    private final String NAME_ERROR_MESSAGE = "사다리 게임에 참여한 플레이어의 이름을 입력해주세요.";
-    private final String BLANK = " ";
-    private final String LINE_START_FORMAT = "    |";
-    private final String OBJECT_START_FORMAT = "  ";
-    private final String FORMATTED_DASH = "-----";
-    private final String FORMATTED_BLANK = "     ";
-    private final String DIVIDER = "|";
-    private final int DIVISOR = 2;
-    private final int DEFAULT_PADDING = 2;
-    private final int FLAG = 1;
+    private static final String RESULT_MESSAGE = "실행결과";
+    private static final String NAME_ERROR_MESSAGE = "사다리 게임에 참여한 플레이어의 이름을 입력해주세요.";
+    private static final String BLANK = " ";
+    private static final String LINE_START_FORMAT = "    |";
+    private static final String OBJECT_START_FORMAT = "  ";
+    private static final String FORMATTED_DASH = "-----";
+    private static final String FORMATTED_BLANK = "     ";
+    private static final String DIVIDER = "|";
+    private static final int DIVISOR = 2;
+    private static final int DEFAULT_PADDING = 2;
+    private static final int FLAG = 1;
 
     public static OutputView getOutputView() {
         return outputView;
