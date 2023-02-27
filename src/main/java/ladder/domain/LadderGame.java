@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -9,24 +10,34 @@ public class LadderGame {
     private static final String PLAYER_NAME_NOT_FOUND_EXCEPTION_MESSAGE = "[ERROR] 게임 내의 참가자를 입력해주세요.";
     private static final String ALL_PRINT_AND_EXIT_CODE = "all";
 
-    private final PlayerNames playerNames;
+    private final Players players;
     private final LadderSize ladderSize;
     private final Ladder ladder;
     private final Prize prize;
     private final Result result;
 
     public LadderGame(final List<String> names, final int height, final List<String> prizes, final BooleanGenerator booleanGenerator) {
-        this.playerNames = new PlayerNames(names);
+        this.players = new Players(makePlayers(names));
         this.ladderSize = new LadderSize(names.size() - 1, height);
         this.ladder = new Ladder(ladderSize, booleanGenerator);
         this.prize = new Prize(prizes, names.size());
         this.result = new Result();
     }
 
+    private List<Player> makePlayers(final List<String> names) {
+        List<Player> players= new ArrayList<>();
+        for(int startIndex = 0; startIndex < names.size(); startIndex++) {
+            players.add(new Player(names.get(startIndex), startIndex));
+        }
+        return players;
+    }
+
     public void start() {
-        for (int playerColumnLocation = 0; playerColumnLocation < playerNames.getPlayerCount(); playerColumnLocation++) {
-            String playerName = playerNames.getPlayerNameByIndex(playerColumnLocation);
-            int playerPrizeIndex = ladder.getEachPlayerPrize(0, playerColumnLocation);
+        for (Player player: players.getPlayers()) {
+            String playerName = player.getName();
+            int startIndex = player.getStartIndex();
+
+            int playerPrizeIndex = ladder.getEachPlayerPrize(0, startIndex);
             String gamePrize = prize.getPrizeByIndex(playerPrizeIndex);
             result.add(playerName, gamePrize);
         }
@@ -48,7 +59,7 @@ public class LadderGame {
     }
 
     private void validateWhomToKnowResult(final String playerName) {
-        if (!playerName.equals(ALL_PRINT_AND_EXIT_CODE) && !playerNames.contains(playerName)) {
+        if (!playerName.equals(ALL_PRINT_AND_EXIT_CODE) && !players.contains(playerName)) {
             throw new IllegalArgumentException(PLAYER_NAME_NOT_FOUND_EXCEPTION_MESSAGE);
         }
     }
@@ -65,7 +76,7 @@ public class LadderGame {
     }
 
     public List<String> getNames() {
-        return playerNames.getNames();
+        return players.getNames();
     }
 
     public List<Line> getLines() {
