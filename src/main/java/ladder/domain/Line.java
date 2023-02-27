@@ -59,7 +59,8 @@ public class Line {
     public void move(Location location) {
         if (moveLeftIfPossible(location)) {
             return;
-        };
+        }
+
         if (moveRightIfPossible(location)) {
             return;
         }
