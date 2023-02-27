@@ -11,6 +11,8 @@ import domain.LadderGame.LadderGame;
 import domain.util.PointGenerator;
 import view.*;
 
+import java.util.List;
+
 public class LadderGameController {
 
 	private final LadderGame ladderGame;
