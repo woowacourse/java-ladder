@@ -2,7 +2,6 @@ package laddergame.domain;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -15,9 +14,6 @@ public class PersonalNames {
     }
 
     private void validate(List<String> personalNames) {
-        if (Objects.isNull(personalNames)) {
-            throw new IllegalArgumentException("이름 목록은 null이 될 수 없습니다.");
-        }
         if (personalNames.isEmpty() || personalNames.size() == 1) {
             throw new IllegalArgumentException("이름은 2개 이상이어야 합니다.");
         }

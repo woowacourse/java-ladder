@@ -46,18 +46,6 @@ class PersonalNamesTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("이름 목록이 null일 경우 예외가 발생한다.")
-    @Test
-    void throwExceptionWhenNamesIsNull() {
-        //given
-        final List<String> personalNames = null;
-
-        //when
-        //then
-        assertThatThrownBy(() -> new PersonalNames(personalNames))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("이름 목록의 크기를 가져온다.")
     @Test
     void getSize() {
