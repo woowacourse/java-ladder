@@ -54,15 +54,19 @@ public class Controller {
     private WinningResults settingResult(final int userCount) {
         try {
             final List<String> inputResults = inputView.inputResult(userCount);
-            List<WinningResult> winningResults = new ArrayList<>();
-            for (String inputResult : inputResults) {
-                winningResults.add(new WinningResult(inputResult));
-            }
-            return new WinningResults(winningResults);
+            return makeWinningResults(inputResults);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
             return settingResult(userCount);
         }
+    }
+
+    private WinningResults makeWinningResults(final List<String> inputResults) {
+        List<WinningResult> winningResults = new ArrayList<>();
+        for (String inputResult : inputResults) {
+            winningResults.add(new WinningResult(inputResult));
+        }
+        return new WinningResults(winningResults);
     }
 
     private Height settingHeight() {
@@ -84,16 +88,20 @@ public class Controller {
 
     private void showResult(final Users users, final Result result) {
         try {
-            final String input = readResultInput(users);
-            final Map<String, WinningResult> gameResult = result.getResult(input);
-            outputView.printGameResult(gameResult);
-            if (input.equals(ALL_USER_RESULT)) {
-                return;
-            }
-            showResult(users, result);
+            showResultByInput(users, result);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
             showResult(users, result);
+        }
+    }
+
+    private void showResultByInput(final Users users, final Result result) {
+        boolean isContinueGame = true;
+        while (isContinueGame) {
+            final String input = readResultInput(users);
+            final Map<String, WinningResult> gameResult = result.getResult(input);
+            outputView.printGameResult(gameResult);
+            isContinueGame = isPrintOneUserResult(input);
         }
     }
 
@@ -103,5 +111,9 @@ public class Controller {
             throw new IllegalArgumentException(WRONG_RESULT_INPUT_MESSAGE);
         }
         return input;
+    }
+
+    private static boolean isPrintOneUserResult(final String input) {
+        return !input.equals(ALL_USER_RESULT);
     }
 }
