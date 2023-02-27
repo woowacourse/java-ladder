@@ -1,6 +1,7 @@
 package view;
 
 import domain.GameResult;
+import domain.Player;
 
 import java.util.Comparator;
 import java.util.LinkedHashMap;
@@ -12,6 +13,8 @@ public class OutputView {
     private static final String POINT_SEPARATOR = "|";
     private static final String GENERATED_LADDER_TITLE = "사다리 결과";
     private static final String RESULT_DELIMITER = " : ";
+    private static final int GAME_RESULT_OF_SINGLE_PLAYER = 1;
+    private static final int SINGLE_GAME_RESULT_INDEX = 0;
 
     public static void printGeneratedLadder(
             final List<String> playerNames,
@@ -71,18 +74,27 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
+    public static void printGameResult(final LinkedHashMap<Player, GameResult> gameResults) {
+        printLine(RESULT_TITLE);
+        if (gameResults.size() == GAME_RESULT_OF_SINGLE_PLAYER) {
+            printGameResult(gameResults.get(SINGLE_GAME_RESULT_INDEX).getGameResultName());
+            return;
+        }
+        printGameResultsOfAllPlayers(gameResults);
+    }
+
+    private static void printGameResultsOfAllPlayers(final LinkedHashMap<Player, GameResult> gameResults) {
+        printEmptyLine();
+        printLine(RESULT_TITLE);
+        for (Player player : gameResults.keySet()) {
+            printLine(player.getName() + RESULT_DELIMITER + gameResults.get(player).getGameResultName());
+        }
+    }
+
     public static void printGameResult(final String gameResult) {
         printLine(RESULT_TITLE);
         printLine(gameResult);
         printEmptyLine();
-    }
-
-    public static void printGameResult(final LinkedHashMap<String, GameResult> gameResults) {
-        printEmptyLine();
-        printLine(RESULT_TITLE);
-        for (String playerName : gameResults.keySet()) {
-            printLine(playerName + RESULT_DELIMITER + gameResults.get(playerName).getGameResultName());
-        }
     }
 
     private static void getFormattedPoint(

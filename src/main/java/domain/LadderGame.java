@@ -1,10 +1,10 @@
 package domain;
 
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 public class LadderGame {
+
+    private static final String ALL_PLAYERS = "all";
 
     private final Players players;
     private final Ladder ladder;
@@ -16,17 +16,14 @@ public class LadderGame {
         this.gameResults = gameResults;
     }
 
-    public GameResult getGameResultOf(final String playerName) {
-        Player player = players.get(playerName);
-        return gameResults.getGameResultAt(ladder.getGameResultOf(player));
-    }
-
-    public LinkedHashMap<String, GameResult> getGameResultsOfAllPlayers() {
-        LinkedHashMap<String, GameResult> results = new LinkedHashMap<>();
-        for (Player player : players.get()) {
-            results.put(player.getName(), getGameResultOf(player.getName()));
+    public LinkedHashMap<Player, GameResult> getGameResultOf(final String playerName) {
+        LinkedHashMap<Player, GameResult> gameResults = new LinkedHashMap<>();
+        if (playerName.equals(ALL_PLAYERS)) {
+            return getGameResultsOfAllPlayers(gameResults);
         }
-        return results;
+        Player player = players.get(playerName);
+        gameResults.put(player, this.gameResults.getGameResultAt(ladder.getGameResultOrderOf(player)));
+        return gameResults;
     }
 
     public List<String> getPlayerNames() {
@@ -39,6 +36,13 @@ public class LadderGame {
 
     public Ladder getLadder() {
         return ladder;
+    }
+
+    private LinkedHashMap<Player, GameResult> getGameResultsOfAllPlayers(LinkedHashMap<Player, GameResult> gameResults) {
+        for (Player player : players.get()) {
+            gameResults.put(player, this.gameResults.getGameResultAt(ladder.getGameResultOrderOf(player)));
+        }
+        return gameResults;
     }
 
 }

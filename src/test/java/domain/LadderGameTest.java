@@ -12,10 +12,10 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * 사다리 UI
@@ -26,14 +26,24 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
  *  |--|  |--|  |
  * 당첨 꽝 당첨 꽝 꽝
  */
+
+/**
+ * 실행 결과
+ * a - 당첨
+ * b - 꽝
+ * c - 꽝
+ * d - 당첨
+ * e - 꽝
+ */
 public class LadderGameTest {
 
     private LadderGame ladderGame;
+    private Players players;
 
     @BeforeEach
     void before() {
         List<String> playerNames = List.of("a", "b", "c", "d", "e");
-        Players players = PlayersFactory.of(playerNames);
+        players = PlayersFactory.of(playerNames);
         GameResults gameResults = new GameResults(
                 playerNames.size(),
                 List.of(new GameResult("당첨"), new GameResult("꽝"), new GameResult("당첨"), new GameResult("꽝"), new GameResult("꽝"))
@@ -53,33 +63,84 @@ public class LadderGameTest {
     @DisplayName("지정한 플레이어의 게임 실행 결과를 반환한다.")
     @ParameterizedTest
     @CsvSource(value = {"a:당첨", "b:꽝", "c:꽝", "d:당첨", "e:꽝"}, delimiter = ':')
-    void getResultOfPlayer(String playerName, String gameResult) {
-        assertThat(ladderGame.getGameResultOf(playerName).getResult())
-                .isEqualTo(gameResult);
+    void getResultOfPlayer(String playerName, String expectedGameResult) {
+        // when
+        LinkedHashMap<Player, GameResult> gameResultMappingPlayer = ladderGame.getGameResultOf(playerName);
+        GameResult gameResult = gameResultMappingPlayer.get(players.get(playerName));
+
+        // then
+        assertThat(gameResult.getGameResultName())
+                .isEqualTo(expectedGameResult);
     }
 
-    @DisplayName("사다리에 Point가 없는 경우 지정한 플레이어의 게임 실행 결과를 반환한다.")
+    /**
+     * 사다리 UI
+     *  a b c
+     *  | | |
+     *  | | |
+     *  | | |
+     *  | | |
+     * 꽝 꽝 당첨
+     */
+    @DisplayName("지정한 플레이어의 게임 실행 결과를 반환한다. (사다리에 Point가 없는 케이스)")
     @ParameterizedTest
     @MethodSource(value = "provideLadderGame")
-    void getResultOfPlayerWithNoPointsLadder(LadderGame ladderGame2, List<String> expected) {
-        assertThat(ladderGame2.getGameResultOf(expected.get(0)).getResult())
-                .isEqualTo(expected.get(1));
+    void getResultOfPlayerWithNoPointsLadder(
+            LadderGame ladderGameWithNoPointsLadder,
+            Player player,
+            String expectedGameResult
+    ) {
+        // given
+        String playerName = player.getName();
+
+        // when
+        LinkedHashMap<Player, GameResult> gameResults = ladderGameWithNoPointsLadder
+                .getGameResultOf(playerName);
+        String gameResult = gameResults.get(player).getGameResultName();
+
+        // then
+        assertThat(gameResult)
+                .isEqualTo(expectedGameResult);
+    }
+
+    @DisplayName("PlayerName 대신 'all'을 넘겨줄 경우 Player 수만큼의 실행 결과를 반환한다.")
+    @Test
+    void getResultsOfAllPlayers_sizeTest() {
+        // given
+        LinkedHashMap<Player, GameResult> gameResultMappingPlayer = ladderGame.getGameResultOf("all");
+
+        // when
+        int expectedResultSize = 5;
+
+        // then
+        assertThat(gameResultMappingPlayer.size())
+                .isEqualTo(expectedResultSize);
     }
 
     @DisplayName("모든 Player의 실행 결과를 반환한다.")
     @ParameterizedTest
     @CsvSource(value = {"a:당첨", "b:꽝", "c:꽝", "d:당첨", "e:꽝"}, delimiter = ':')
-    void getResultsOfAllPlayers(String playerName, String gameResult) {
-        LinkedHashMap<String, GameResult> results = ladderGame.getGameResultsOfAllPlayers();
-        assertThat(results.get(playerName).getResult())
-                .isEqualTo(gameResult);
+    void getResultsOfAllPlayers(String playerName, String expectedGameResult) {
+        // given
+        LinkedHashMap<Player, GameResult> gameResultMappingPlayer = ladderGame.getGameResultOf("all");
+
+        // when
+        GameResult gameResult = gameResultMappingPlayer.get(players.get(playerName));
+
+        // then
+        assertThat(gameResult.getGameResultName())
+                .isEqualTo(expectedGameResult);
     }
 
     @DisplayName("지정한 플레이어가 없는 경우 예외 처리 한다.")
     @Test
     void validatePlayerContaining() {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> ladderGame.getGameResultOf("f"));
+        // given
+        String wrongPlayerName = "f";
+
+        // when, then
+        assertThatThrownBy(() -> ladderGame.getGameResultOf(wrongPlayerName))
+                .isInstanceOf(NoSuchElementException.class);
     }
 
     private static Stream<Arguments> provideLadderGame() {
@@ -102,9 +163,9 @@ public class LadderGameTest {
         Ladder ladder = LadderFactory.of(playerNames.size(), ladderHeight, completeBasedStrategy);
 
         return Stream.of(
-                Arguments.of(new LadderGame(players, ladder, gameResults), List.of("a", "꽝")),
-                Arguments.of(new LadderGame(players, ladder, gameResults), List.of("b", "꽝")),
-                Arguments.of(new LadderGame(players, ladder, gameResults), List.of("c", "당첨"))
+                Arguments.of(new LadderGame(players, ladder, gameResults), players.get("a"), "꽝"),
+                Arguments.of(new LadderGame(players, ladder, gameResults), players.get("b"), "꽝"),
+                Arguments.of(new LadderGame(players, ladder, gameResults), players.get("c"), "당첨")
         );
     }
 

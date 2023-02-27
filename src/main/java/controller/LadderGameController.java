@@ -19,21 +19,7 @@ public class LadderGameController {
     public void play() {
         ready();
         printGeneratedLadder();
-        printResultOfSinglePlayer(InputView.readPlayerName());
-        printAllPlayers();
-    }
-
-    private void printAllPlayers() {
-        LinkedHashMap<String, GameResult> gameResults = ladderGame.getGameResultsOfAllPlayers();
-        OutputView.printGameResult(gameResults);
-    }
-
-    private void printResultOfSinglePlayer(String playerName) {
-        while (!playerName.equals(END_CONDITION)) {
-            GameResult gameResult = ladderGame.getGameResultOf(playerName);
-            OutputView.printGameResult(gameResult.getResult());
-            playerName = InputView.readPlayerName();
-        }
+        printResults();
     }
 
     private void ready() {
@@ -52,6 +38,15 @@ public class LadderGameController {
         OutputView.printGeneratedLadder(ladderGame.getPlayerNames(), pointValues, gameGameResultNames);
     }
 
+    private void printResults() {
+        String playerName;
+        do {
+            playerName = InputView.readPlayerName();
+            LinkedHashMap<Player, GameResult> gameResults = ladderGame.getGameResultOf(playerName);
+            OutputView.printGameResult(gameResults);
+        } while (!playerName.equals(END_CONDITION));
+    }
+
     private List<List<Boolean>> getLadder() {
         Ladder ladder = ladderGame.getLadder();
         List<Line> lines = ladder.getLines();
@@ -61,7 +56,7 @@ public class LadderGameController {
     private List<String> getGameResults() {
         List<GameResult> gameResults = ladderGame.getGameResults().getGameResults();
         return gameResults.stream()
-                .map(GameResult::getResult)
+                .map(GameResult::getGameResultName)
                 .collect(Collectors.toList());
     }
 
@@ -75,11 +70,11 @@ public class LadderGameController {
     private List<List<Boolean>> getPointValues(final List<Line> lines) {
         return lines.stream()
                 .map(Line::getPoints)
-                .map(LadderGameController::convertPointsToValues)
+                .map(this::convertPointsToValues)
                 .collect(Collectors.toList());
     }
 
-    public static List<Boolean> convertPointsToValues(final List<Point> points) {
+    private List<Boolean> convertPointsToValues(final List<Point> points) {
         return points.stream()
                 .map(Point::isExist)
                 .collect(Collectors.toUnmodifiableList());
