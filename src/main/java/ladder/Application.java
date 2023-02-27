@@ -35,7 +35,8 @@ public class Application {
         ladderFactory = new LadderFactory(height, players, lineStrategy);
         ladder = ladderFactory.makeLadder();
 
-        OutputView.printLadder(playersToString(players.getPlayers()),
+        OutputView.printLadder(
+                playersToString(players.getPlayers()),
                 ladderToString(ladder.getLines()),
                 resultsToString(results.getResults()));
         askResult();
