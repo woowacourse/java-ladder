@@ -52,7 +52,7 @@ class LineTest {
 
     @ParameterizedTest
     @CsvSource(value = {"0:1", "1:0", "2:2", "3:4", "4:3"}, delimiter = ':')
-    @DisplayName("MOVABLE, IMMOVABLE, IMMOVABLE, MOVABLE인 Line에서, Location을 입력받아 Line에 맞게 움직인다.")
+    @DisplayName("위치를 입력받아 Line에 맞게 움직인다.")
     void shouldMoveTo1WhenStartAT0(int startColumnIndex, int endColumnIndex) {
         // given
         List<Boolean> determinedBars = new ArrayList<>(List.of(true, false, true));
