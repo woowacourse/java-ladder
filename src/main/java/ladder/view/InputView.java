@@ -32,7 +32,7 @@ public class InputView {
     }
 
     public static String readTargetName() {
-        System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
+        System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은? (종료하려면 q를 누르세요.)");
         return scanner.nextLine();
     }
 }
