@@ -13,19 +13,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class GameResultTest {
 
-    private List<Player> result;
+    private Players players;
     private WinningPrizes winningPrizes;
     private GameResult gameResult;
 
     @BeforeEach
     public void beforeEach() {
         //given
-        result = List.of(new Player(new Name("준팍"), Position.of(0, 4)),
-                new Player(new Name("에단"), Position.of(1, 4)),
-                new Player(new Name("또링"), Position.of(2, 4)),
-                new Player(new Name("코일"), Position.of(3, 4)));
+        players = Players.from(List.of("준팍", "에단", "또링", "코일"));
         winningPrizes = WinningPrizes.of(List.of("1", "2", "3", "4"), 4);
-        gameResult = new GameResult(result, winningPrizes);
+        gameResult = new GameResult(players, winningPrizes);
     }
 
     @Test

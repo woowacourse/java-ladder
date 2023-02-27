@@ -1,16 +1,15 @@
 package laddergame.domain;
 
+import java.util.Collections;
 import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 public class GameResult {
 
-    private final List<Player> gameResult;
+    private final Players players;
     private final WinningPrizes winningPrizes;
 
-    public GameResult(final List<Player> gameResult, final WinningPrizes winningPrizes) {
-        this.gameResult = gameResult;
+    public GameResult(final Players players, final WinningPrizes winningPrizes) {
+        this.players = players;
         this.winningPrizes = winningPrizes;
     }
 
@@ -26,13 +25,11 @@ public class GameResult {
     }
 
     private List<String> getPlayerNames() {
-        return gameResult.stream()
-                .map(Player::getName)
-                .collect(toList());
+        return players.getPlayerName();
     }
 
     public List<Player> getGameResult() {
-        return gameResult;
+        return Collections.unmodifiableList(players.getPlayers());
     }
 
     public WinningPrizes getWinningPrizes() {
