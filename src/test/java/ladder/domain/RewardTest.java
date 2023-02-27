@@ -34,7 +34,7 @@ public class RewardTest {
         final Reward reward = new Reward(List.of("꽝", "1000", "하이", "2000"));
         assertThatThrownBy(() -> {
             reward.getRewardOf(index);
-        }).isInstanceOf(IllegalArgumentException.class)
+        }).isInstanceOf(IndexOutOfBoundsException.class)
                 .hasMessage("해당 위치의 아이템은 존재하지 않습니다.");
     }
 }

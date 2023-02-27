@@ -15,7 +15,7 @@ public class Reward {
         try {
             return rewardItemsName.get(i);
         } catch (IndexOutOfBoundsException e) {
-            throw new IllegalArgumentException(OUT_OF_INDEX_ITEM_ERROR_MESSAGE, e);
+            throw new IndexOutOfBoundsException(OUT_OF_INDEX_ITEM_ERROR_MESSAGE);
         }
     }
 
