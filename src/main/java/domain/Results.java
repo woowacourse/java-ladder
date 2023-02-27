@@ -3,6 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Results {
 
@@ -12,11 +13,17 @@ public class Results {
 
     public Results(int playerCount, List<String> inputResults) {
         validateInputResults(playerCount, inputResults);
-        results = Result.createResults(inputResults);
+        results = createResults(inputResults);
     }
 
     public List<Result> getResults() {
         return results;
+    }
+
+    public static List<Result> createResults(List<String> inputResults) {
+        return inputResults.stream()
+                .map(Result::new)
+                .collect(Collectors.toList());
     }
 
     private void validateInputResults(int playerCount, List<String> inputResults) {

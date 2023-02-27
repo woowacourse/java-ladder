@@ -1,8 +1,5 @@
 package domain;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class Result {
 
     private final String prize;
@@ -10,12 +7,6 @@ public class Result {
 
     public Result(String prize) {
         this.prize = prize;
-    }
-
-    public static List<Result> createResults(List<String> inputResults) {
-        return inputResults.stream()
-                .map(Result::new)
-                .collect(Collectors.toList());
     }
 
     public String getPrize() {

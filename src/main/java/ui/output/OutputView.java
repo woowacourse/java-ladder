@@ -3,6 +3,7 @@ package ui.output;
 import domain.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -55,40 +56,30 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printExecuteResult(Players players, Results results, String playerName) {
+    public static void printExecuteResult(Players players, Map<String, String> finalResults, String playerName) {
         System.out.println("\n" + EXECUTE_RESULT);
         if (playerName.equals(ALL)) {
-            printAll(players, results);
+            printAll(players, finalResults);
             return;
         }
-        printDetail(results, playerName);
+        printDetail(finalResults, playerName);
     }
 
-    private static void printAll(Players players, Results results) {
-        List<Result> resultList = results.getResults();
-        List<String> playerNames = players.getPlayers().stream()
-                .map(Player::getName)
-                .collect(Collectors.toList());
-
-        for (String playerName : playerNames) {
-            Result result = findResult(resultList, playerName);
-            System.out.println(playerName + COLON + result.getPrize());
+    private static void printAll(Players players, Map<String, String> finalResults) {
+        for (Player player : players.getPlayers()) {
+            System.out.println(player.getName() + COLON + finalResults.get(player.getName()));
         }
     }
 
-    private static Result findResult(List<Result> resultList, String playerName) {
-        return resultList.stream()
-                .filter(r -> r.getPlayerName().equals(playerName))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(PLAYER_NOT_FOUND));
-    }
+//    private static Result findResult(List<Result> resultList, String playerName) {
+//        return resultList.stream()
+//                .filter(r -> r.getPlayerName().equals(playerName))
+//                .findFirst()
+//                .orElseThrow(() -> new IllegalArgumentException(PLAYER_NOT_FOUND));
+//    }
 
-    private static void printDetail(Results results, String playerName) {
-        results.getResults().stream()
-                .filter(result -> result.getPlayerName().equals(playerName))
-                .forEach(result -> {
-                    System.out.println(result.getPlayerName() + COLON + result.getPrize());
-                });
+    private static void printDetail(Map<String, String> finalResults, String playerName) {
+        System.out.println(playerName + COLON + finalResults.get(playerName));
     }
 
 }

@@ -6,7 +6,8 @@ import java.util.List;
 
 public class Lines {
 
-    private static final String MINIMUM_LADDER_HEIGHT_MORE_THAN_ONE = "사다리의 최소 높이는 1이상이어야 합니다.";
+    private static final int MINIMUM_LADDER_HEIGHT = 1;
+    private static final String VALIDATE_LADDER_HEIGHT_MESSAGE = "사다리의 최소 높이는 " + MINIMUM_LADDER_HEIGHT + " 이상이어야 합니다.";
 
     private final List<Line> lines;
 
@@ -17,7 +18,7 @@ public class Lines {
 
     private void validateLadderHeight(int height) {
         if (height < 1) {
-            throw new IllegalArgumentException(MINIMUM_LADDER_HEIGHT_MORE_THAN_ONE);
+            throw new IllegalArgumentException(VALIDATE_LADDER_HEIGHT_MESSAGE);
         }
     }
 
@@ -37,26 +38,28 @@ public class Lines {
         return lines;
     }
 
-    // Lines 객체는 특정 위치가 주어졌을 때 이동하고 최종 위치를 가지고만 있으면 된다.
-    public void calculateResults(Players players, Results results) {
-        List<Player> playerList = new ArrayList<>(players.getPlayers());
+    public int calculateResults(int playerPosition) {
         for (Line line : lines) {
-            playerList = switchingPlayers(line, playerList);
+            playerPosition = calculateNewPosition(playerPosition, line);
         }
-        results.matchPlayerName(playerList);
+        return playerPosition;
     }
 
-    public List<Player> switchingPlayers(Line line, List<Player> players) {
-        for (int pointNumber = 0; pointNumber < line.getSize(); pointNumber++) {
-            calculatePoints(line, pointNumber, players);
+    private int calculateNewPosition(int playerPosition, Line line) {
+        if (isRightMovable(playerPosition, line)) {
+            return playerPosition + 1;
         }
-        return players;
+        if (isLeftMovable(playerPosition, line)) {
+            return playerPosition - 1;
+        }
+        return playerPosition;
     }
 
-    private List<Player> calculatePoints(Line line, int pointNumber, List<Player> players) {
-        if (line.isMovable(pointNumber)) {
-            Collections.swap(players, pointNumber, pointNumber + 1);
-        }
-        return players;
+    private boolean isRightMovable(int playerPosition, Line line) {
+        return playerPosition != line.getSize() && line.isRightMovable(playerPosition);
+    }
+
+    private boolean isLeftMovable(int playerPosition, Line line) {
+        return playerPosition != 0 && line.isLeftMovable(playerPosition);
     }
 }

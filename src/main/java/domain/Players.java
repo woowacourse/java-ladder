@@ -1,6 +1,8 @@
 package domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Players {
@@ -28,13 +30,20 @@ public class Players {
 
     private List<Player> createPlayers(List<String> names) {
         return names.stream()
-                .map(name -> new Player(name))
+                .map(name -> new Player(name, names.indexOf(name)))
                 .collect(Collectors.toList());
     }
 
-    public boolean isIncludePlayerName(String playerName) {
+    public boolean contains(String name) {
         return players.stream()
-                .anyMatch(player -> player.getName().equals(playerName));
+                .anyMatch(player -> player.getName().equals(name));
     }
 
+    public Map<String, Integer> calculatePosition(Lines lines) {
+        Map<String, Integer> playerPositionResults = new HashMap<>();
+        for (Player player : players) {
+            playerPositionResults.put(player.getName(), lines.calculateResults(player.getPosition()));
+        }
+        return playerPositionResults;
+    }
 }

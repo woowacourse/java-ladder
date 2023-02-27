@@ -33,10 +33,14 @@ public class Line {
         }
     }
 
-    public boolean isMovable(int pointNumber) {
+    public boolean isRightMovable(int pointNumber) {
         if (pointNumber > points.size()) {
             throw new IllegalArgumentException(POINT_NUMBER_MESSAGE);
         }
         return points.get(pointNumber);
+    }
+
+    public boolean isLeftMovable(int playerPosition) {
+        return points.get(playerPosition - 1);
     }
 }
