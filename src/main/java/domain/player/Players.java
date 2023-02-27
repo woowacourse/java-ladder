@@ -1,6 +1,7 @@
 package domain.player;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Players {
@@ -20,5 +21,9 @@ public class Players {
         }
 
         return players;
+    }
+
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
     }
 }
