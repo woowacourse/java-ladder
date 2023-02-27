@@ -12,8 +12,7 @@ public class LadderPrizes {
         this.ladderPrizes = ladderPrizes;
     }
 
-    public static LadderPrizes createWithSameSize(List<LadderPrize> ladderPrizes,
-                                                  int size) {
+    public static LadderPrizes createWithSameSize(List<LadderPrize> ladderPrizes, int size) {
         if (ladderPrizes.size() != size) {
             throw new IllegalArgumentException("크기가 일치하지 않습니다.");
         }
