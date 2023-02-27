@@ -27,7 +27,7 @@ public class OutputView {
     private static final int DEFAULT_PADDING = 2;
     private static final int FLAG = 1;
 
-    public static OutputView getOutputView() {
+    public static OutputView getInstance() {
         return outputView;
     }
 

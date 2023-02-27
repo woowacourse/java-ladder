@@ -20,7 +20,7 @@ public class InputView {
     private InputView() {
     }
 
-    public static InputView getInputView() {
+    public static InputView getInstance() {
         return inputView;
     }
 
