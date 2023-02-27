@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 class SearchTest {
     @Nested
     @DisplayName("검색 이름 형식 검증 테스트")
-    class NameFormatTest {
+    class SearchNameFormatTest {
         @DisplayName("검색하는 이름이 저장되지 않은 이름이면 실패한다.")
         @Test
         void shouldFailUnsavedName() {
