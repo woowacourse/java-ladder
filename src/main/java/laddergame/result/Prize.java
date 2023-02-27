@@ -1,15 +1,15 @@
 package laddergame.result;
 
-import laddergame.vo.PlayerName;
+import laddergame.vo.PrizeName;
 
 public class Prize {
-    private final PlayerName name;
+    private final PrizeName prizeName;
 
-    public Prize(PlayerName name) {
-        this.name = name;
+    public Prize(String prizeName) {
+        this.prizeName = new PrizeName(prizeName);
     }
 
-    public String getName() {
-        return name.getName();
+    public String getPrizeName() {
+        return prizeName.getName();
     }
 }
