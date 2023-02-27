@@ -3,7 +3,6 @@ package domain;
 import exception.DuplicateNameException;
 import exception.EmptyInputException;
 import exception.InvalidParticipantsCountException;
-import exception.NotFindPersonException;
 import util.StringUtil;
 
 import java.util.*;
