@@ -5,6 +5,7 @@ import exception.ErrorCode;
 public class Height {
     private static final int MIN_HEIGHT = 2;
     private static final int MAX_HEIGHT = 100;
+
     private final int height;
 
     private Height(int height) {
@@ -16,12 +17,12 @@ public class Height {
     }
 
     private static int validate(String height) {
-        int integerNumber = validateIntegerNumber(height);
+        int integerNumber = getIntegerNumber(height);
         validateNumberRange(integerNumber);
         return integerNumber;
     }
 
-    private static int validateIntegerNumber(String height) {
+    private static int getIntegerNumber(String height) {
         try {
             return Integer.parseInt(height);
         } catch (IllegalArgumentException exception) {
