@@ -16,14 +16,14 @@ public class LadderGame {
 
     public Result play(WinningResults winningResults) {
         int startPosition = 0;
-        Map<String, Integer> result = new HashMap<>();
+        Map<String, Integer> gameResult = new HashMap<>();
         for (User user : users.getUsers()) {
             int finalPosition = startPosition;
             finalPosition = calculateFinalPosition(finalPosition);
-            result.put(user.getName(), finalPosition);
+            gameResult.put(user.getName(), finalPosition);
             startPosition++;
         }
-        return new Result(winningResults, result);
+        return Result.of(winningResults, gameResult);
     }
 
     private int calculateFinalPosition(int finalPosition) {
