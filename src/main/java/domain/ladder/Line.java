@@ -21,10 +21,6 @@ public class Line {
         return new Line(generateLine(personCount, booleanGenerator));
     }
 
-    private static boolean isGenerated(BooleanGenerator booleanGenerator) {
-        return booleanGenerator.generate() == GENERATE_VALUE;
-    }
-
     private static List<Point> generateLine(int personCount, BooleanGenerator booleanGenerator) {
         List<Point> line = new ArrayList<>();
         for (int i = 0; i < personCount - 1; i++) {
@@ -34,7 +30,7 @@ public class Line {
     }
 
     private static void generatePoint(List<Point> line, BooleanGenerator booleanGenerator) {
-        if (isGenerated(booleanGenerator) && !hasAdjacentPoint(line)) {
+        if (Point.isGenerated(booleanGenerator) && !hasAdjacentPoint(line)) {
             line.add(Point.CONNECTION);
             return;
         }
