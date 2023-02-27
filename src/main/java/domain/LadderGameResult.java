@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +22,6 @@ public class LadderGameResult {
     }
 
     public Map<User, Reward> getLadderGameResult() {
-        return ladderGameResult;
+        return Collections.unmodifiableMap(ladderGameResult);
     }
 }
