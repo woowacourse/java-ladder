@@ -16,7 +16,7 @@ public class Ladder {
     public static Ladder makeDefaultLadder(int numberOfPlayers, int height, BooleanGenerator booleanGenerator) {
         List<Line> lines = new ArrayList<>();
         for (int numberOfLines = 0; numberOfLines < height; numberOfLines++) {
-            lines.add(Line.of(numberOfPlayers - 1, booleanGenerator));
+            lines.add(Line.makeDefaultLine(numberOfPlayers - 1, booleanGenerator));
         }
         return new Ladder(lines);
     }

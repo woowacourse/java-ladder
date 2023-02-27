@@ -12,7 +12,7 @@ public class Results {
         this.results = results;
     }
 
-    public static Results of(String[] result, int numberOfPlayers) {
+    public static Results from(String[] result, int numberOfPlayers) {
         List<Result> results;
         results = Arrays.stream(result)
                 .map(Result::new)

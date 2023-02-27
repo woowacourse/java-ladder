@@ -24,9 +24,9 @@ public class MatchingResultTest {
     @DisplayName("결과를 알고 싶은 사람을 입력하면 사람이름과 결과를 담은 hashmap을 리턴한다")
     void findResultWhenGettingPlayerNameAsInput() {
         String[] playersInput = {"roy", "poy", "soy", "coy"};
-        Players players = Players.of(playersInput);
+        Players players = Players.from(playersInput);
         String[] resultInput = {"2nd", "1st", "4th", "3rd"};
-        Results results = Results.of(resultInput, 4);
+        Results results = Results.from(resultInput, 4);
         BooleanGenerator booleanGenerator = new TrueGenerator();
         Ladder ladder = Ladder.makeDefaultLadder(4, 1, booleanGenerator);
 

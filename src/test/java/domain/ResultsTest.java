@@ -17,7 +17,7 @@ public class ResultsTest {
         String[] results = {"1등", "2등", "3등", "꽝"};
         int numberOfPlayers = 4;
 
-        assertThat(Results.of(results, numberOfPlayers).getResults().size()).isEqualTo(results.length);
+        assertThat(Results.from(results, numberOfPlayers).getResults().size()).isEqualTo(results.length);
     }
 
     @Test
@@ -27,7 +27,7 @@ public class ResultsTest {
         String[] results = {"1등", "2등", "3등", "꽝"};
         int numberOfPlayers = 6;
 
-        assertThatThrownBy(() -> Results.of(results, numberOfPlayers))
+        assertThatThrownBy(() -> Results.from(results, numberOfPlayers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 사다리 결과 수가 플레이어 수와 일치하지 않습니다.");
     }
@@ -36,9 +36,9 @@ public class ResultsTest {
     @DisplayName("Player와 실행 결과를 매칭했을 때 HashMap 형식으로 매칭 결과가 출력된다")
     void matchPlayersWithResults() {
         String[] playersInput = {"roy", "poy", "soy", "coy"};
-        Players players = Players.of(playersInput);
+        Players players = Players.from(playersInput);
         String[] resultInput = {"2nd", "1st", "4th", "3rd"};
-        Results results = Results.of(resultInput, 4);
+        Results results = Results.from(resultInput, 4);
         BooleanGenerator booleanGenerator = new TrueGenerator();
         Ladder ladder = Ladder.makeDefaultLadder(4, 1, booleanGenerator);
 

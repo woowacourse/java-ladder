@@ -15,7 +15,7 @@ public class Players {
         this.players = players;
     }
 
-    public static Players of(String[] names) {
+    public static Players from(String[] names) {
         List<Player> players = new ArrayList<>();
 
         for (int playerPosition = 0; playerPosition < names.length; playerPosition++) {

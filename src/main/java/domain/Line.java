@@ -15,7 +15,7 @@ public class Line {
         this.booleanGenerator = booleanGenerator;
     }
 
-    public static Line of(int numberOfHorizontalSteps, BooleanGenerator booleanGenerator) {
+    public static Line makeDefaultLine(int numberOfHorizontalSteps, BooleanGenerator booleanGenerator) {
         List<LineStep> line = new ArrayList<>();
         for (int horizontalStep = 0; horizontalStep < numberOfHorizontalSteps; horizontalStep++) {
             line.add(LineStep.NON_EXIST);

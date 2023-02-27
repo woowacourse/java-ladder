@@ -23,7 +23,7 @@ public class LadderController {
     private Players makePlayers() {
         try {
             String[] playerNames = InputView.receivePlayers();
-            return Players.of(playerNames);
+            return Players.from(playerNames);
         } catch (IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
             return makePlayers();
@@ -33,7 +33,7 @@ public class LadderController {
     private Results makeResults(Players players) {
         try {
             String[] resultNames = InputView.receiveResults();
-            return Results.of(resultNames, players.getNumberOfPlayers());
+            return Results.from(resultNames, players.getNumberOfPlayers());
         } catch (IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
             return makeResults(players);
