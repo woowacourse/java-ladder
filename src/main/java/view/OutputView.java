@@ -1,6 +1,6 @@
 package view;
 
-import domain.*;
+import domain.LadderGame;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
 import domain.ladder.Point;

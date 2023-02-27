@@ -1,6 +1,6 @@
 package controller;
 
-import domain.*;
+import domain.LadderGame;
 import domain.ladder.Ladder;
 import domain.numbergenerator.NumberGenerator;
 import domain.player.Players;
@@ -98,7 +98,6 @@ public class LadderController {
     private boolean isSameCountBetween(List<String> objects, int personCount) {
         return objects.size() == personCount;
     }
-
 
     private void printResults(Results results) {
         String command = inputView.readResultOfPlayer();
