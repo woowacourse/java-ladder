@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import static ladder.domain.Bar.IMMOVABLE;
-import static ladder.domain.Bar.MOVABLE;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
