@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 
 public class Line {
     private final List<Bar> bars;
-    private final int FIRST_BAR = 1;
+    private static final int FIRST_BAR = 1;
 
     public Line() {
         bars = new ArrayList<>(List.of(Bar.FALSE));
