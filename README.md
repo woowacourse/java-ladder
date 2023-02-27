@@ -8,7 +8,11 @@
 - [x] LadderGame, Players 객체 책임 더 생각해보기
   (Players.getPlayers.get(i) 로 얻은 클래스에 setter로 결과를 주입하는 것과 현재 코드의 차이)
   - [x] players.getPlayers 를 필수적인 getter 사용으로 볼 수 있을까요?
-- [ ] Point, Position 객체 만들어서 책임 나눠줘보기
+- [ ] 원시값 다 포장하기
+  - [ ] Name
+  - [ ] Position
+  - [ ] Reward
+  - [ ] Point
 - [x] 개행 확인(stream)
 
 ## 2단계 요구사항
