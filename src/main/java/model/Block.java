@@ -32,6 +32,10 @@ public class Block {
         return new Block(Pass.NOTHING);
     }
 
+    public int nextLineIndex(int playerIndex) {
+        return pass.nextindex(playerIndex);
+    }
+
     public Pass getPass() {
         return pass;
     }

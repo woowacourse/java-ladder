@@ -36,4 +36,22 @@ public class InputView {
 
         return height;
     }
+
+    public List<String> inputResult() {
+        String names = scanner.nextLine();
+
+        if (!names.contains(DELIMITER)) {
+            throw new IllegalArgumentException("결과에는 유효한 구분자가 포함되어야 합니다.");
+        }
+
+        return Arrays.stream(names.split(DELIMITER))
+            .collect(Collectors.toUnmodifiableList());
+    }
+
+    public String inputTargetName() {
+        scanner.nextLine();
+        return scanner.nextLine();
+    }
+
+
 }
