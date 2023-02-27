@@ -60,7 +60,7 @@ public class LadderGameController {
         ResultView.printExecutionMessage();
         ResultView.printPlayerNames(ladderGame.getNames());
         ResultView.printLadder(ladderGame.getLines());
-        ResultView.printResults(ladderGame.getResults());
+        ResultView.printResults(ladderGame.getPrizes());
     }
 
     private void process() {

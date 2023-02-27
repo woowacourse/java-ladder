@@ -14,38 +14,38 @@ public class LadderGame {
     private final PlayerNames playerNames;
     private final LadderSize ladderSize;
     private final Ladder ladder;
-    private final Result result;
+    private final Prize prize;
     private final ResultStorage resultStorage;
 
-    public LadderGame(final List<String> names, final int height, final List<String> results, final BooleanGenerator booleanGenerator) {
+    public LadderGame(final List<String> names, final int height, final List<String> prizes, final BooleanGenerator booleanGenerator) {
         this.playerNames = new PlayerNames(names);
         this.ladderSize = new LadderSize(names.size() - 1, height);
         LadderMaker ladderMaker = new LadderMaker(ladderSize);
 
         this.ladder = ladderMaker.generate(booleanGenerator);
-        this.result = new Result(results, names.size());
+        this.prize = new Prize(prizes, names.size());
         this.resultStorage = new ResultStorage();
     }
 
     public void start() {
         for (int ladderLocation = 0; ladderLocation < playerNames.getPlayerCount(); ladderLocation++) {
             String playerName = playerNames.getNames().get(ladderLocation);
-            String gameResult = result.getResults().get(getEachPlayerResult(0, ladderLocation));
-            resultStorage.add(gameResult);
+            String gamePrize = prize.getPrizes().get(getEachPlayerPrize(0, ladderLocation));
+            resultStorage.add(gamePrize);
         }
     }
 
-    private int getEachPlayerResult(final int height, final int ladderLocation) {
+    private int getEachPlayerPrize(final int height, final int ladderLocation) {
         if (height >= ladderSize.getHeight()) {
             return ladderLocation;
         }
         int updatedLadderLocation = ladderLocation + decideRow(height, ladderLocation);
 
         if (ladderLocation == updatedLadderLocation) {
-            return getEachPlayerResult(height + DOWN, ladderLocation);
+            return getEachPlayerPrize(height + DOWN, ladderLocation);
         }
 
-        return getEachPlayerResult(height + DOWN, updatedLadderLocation);
+        return getEachPlayerPrize(height + DOWN, updatedLadderLocation);
     }
 
     private int decideRow(final int height, final int ladderLocation) {
@@ -87,8 +87,8 @@ public class LadderGame {
         return ladder.getLines();
     }
 
-    public List<String> getResults() {
-        return result.getResults();
+    public List<String> getPrizes() {
+        return prize.getPrizes();
     }
 
     public ResultDto getGameResult(final String playerName) {
