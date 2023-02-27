@@ -19,4 +19,12 @@ public class InputValidator {
             throw new IllegalArgumentException("숫자가 아닌 값은 입력할 수 없습니다.");
         }
     }
+
+    public static int validateLadderHeightRange(int ladderHeight) {
+        if (ladderHeight < 1 || ladderHeight > 100) {
+            throw new IllegalArgumentException("사다리 높이는 1이상 100 이하만 입력할 수 있습니다.");
+        }
+        return ladderHeight;
+    }
+
 }
