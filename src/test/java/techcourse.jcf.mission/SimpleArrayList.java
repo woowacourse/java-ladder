@@ -111,7 +111,14 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean remove(String value) {
-        return false;
+        try {
+            int index = indexOf(value);
+            remove(index);
+            return true;
+        } catch (NoSuchElementException exception) {
+            return false;
+        }
+
     }
 
     @Override
