@@ -11,6 +11,7 @@ import util.RandomValueGenerator;
  */
 public class Line {
 
+    private static final int WALL_AND_PEOPLE_DIFFERENCE = 1;
     private final List<ConnectStatus> points = new ArrayList<>();
     private Line() {
     }
@@ -24,7 +25,7 @@ public class Line {
         List<ConnectStatus> lineValue = line.points;
         lineValue.add(ConnectStatus.valueOf(generator.generate()));
         --personCount;
-        for (int i = 0; i < personCount - 1; i++) {
+        for (int i = 0; i < personCount - WALL_AND_PEOPLE_DIFFERENCE; i++) {
             addLine(lineValue, generator);
         }
         return line;
