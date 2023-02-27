@@ -1,26 +1,33 @@
 package domain.ladder;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import domain.util.LinePointsGenerator;
+import domain.util.PointGenerator;
 
 public class Line {
 	private final List<Point> points;
 
-	public Line(final LinePointsGenerator linePointsGenerator) {
-		this.points = linePointsGenerator.generateLine();
+	public Line(final int width, final PointGenerator pointGenerator) {
+		points = new ArrayList<>();
+		while (width > points.size()) {
+			Point point = pointGenerator.generate();
+			points.add(point);
+			addAbsenceIfLastlyAddedPresence(width, point);
+		}
 	}
 
-	public int size() {
-		return points.size();
+	private void addAbsenceIfLastlyAddedPresence(final int width, final Point lastlyAdded) {
+		if (points.size() == width) {
+			return;
+		}
+		if (lastlyAdded.isPresent()) {
+			points.add(Point.ABSENCE);
+		}
 	}
 
-	public List<Point> getPoints() {
-		return Collections.unmodifiableList(points);
-	}
-
-	public List<Integer> moveOnce(final List<Integer> indicies) {
+	public List<Integer> moveThroughLine(final List<Integer> indicies) {
 		int size = points.size();
 		for (int i = 0; i < size; i++) {
 			Point point = points.get(i);
@@ -33,5 +40,9 @@ public class Line {
 		if (point.isPresent()) {
 			Collections.swap(indicies, i, i + 1);
 		}
+	}
+
+	public List<Point> getPoints() {
+		return Collections.unmodifiableList(points);
 	}
 }

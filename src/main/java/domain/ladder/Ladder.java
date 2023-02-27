@@ -12,7 +12,6 @@ import domain.end.End;
 import domain.end.Ends;
 import domain.user.User;
 import domain.user.Users;
-import domain.util.LinePointsGenerator;
 import domain.util.PointGenerator;
 
 public class Ladder {
@@ -31,10 +30,9 @@ public class Ladder {
 		this.lines = new ArrayList<>();
 		this.ladderWidth = new LadderWidth(usersToWidth(users));
 
-		LinePointsGenerator linePointsGenerator = new LinePointsGenerator(ladderWidth.getWidth(), pointGenerator);
 		int height = ladderHeight.getHeight();
 		for (int i = 0; i < height; i++) {
-			lines.add(new Line(linePointsGenerator));
+			lines.add(new Line(ladderWidth.getWidth(), pointGenerator));
 		}
 	}
 
@@ -57,7 +55,7 @@ public class Ladder {
 	private List<Integer> getMovedIndex() {
 		List<Integer> indicies = getInitialIdx(ladderWidth.getWidth());
 		for (Line line : lines) {
-			indicies = line.moveOnce(indicies);
+			indicies = line.moveThroughLine(indicies);
 		}
 		return indicies;
 	}
