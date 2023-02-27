@@ -15,7 +15,7 @@ public class GameController {
     public GameController() {
         this.players = readPlayers();
         final int playerCount = players.getSize();
-        this.ladder = new Ladder(readHeight(), playerCount);
+        this.ladder = Ladder.of(readHeight(), playerCount, new RandomLinkGenerator());
         this.winningPrizes = readWinningPrizes(playerCount);
     }
 
