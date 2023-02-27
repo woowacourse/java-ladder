@@ -1,7 +1,5 @@
 package domain.player;
 
-import domain.MoveType;
-
 import java.util.Objects;
 
 public class Player {

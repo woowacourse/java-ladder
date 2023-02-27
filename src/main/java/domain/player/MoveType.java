@@ -1,7 +1,6 @@
-package domain;
+package domain.player;
 
 import domain.ladder.Line;
-import domain.player.Player;
 
 public enum MoveType {
 

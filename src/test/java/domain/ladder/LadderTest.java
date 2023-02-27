@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 import domain.ladder.Ladder;
 import domain.booleangenerator.RandomBooleanGenerator;

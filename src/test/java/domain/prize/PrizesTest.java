@@ -1,4 +1,4 @@
-package domain;
+package domain.prize;
 
 import domain.prize.Prizes;
 import org.assertj.core.api.Assertions;

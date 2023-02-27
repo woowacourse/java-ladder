@@ -1,4 +1,4 @@
-package domain;
+package domain.player;
 
 import domain.ladder.Line;
 import domain.booleangenerator.TestBooleanGenerator;
