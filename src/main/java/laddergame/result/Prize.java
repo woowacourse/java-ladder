@@ -1,11 +1,11 @@
 package laddergame.result;
 
-import laddergame.vo.Name;
+import laddergame.vo.PlayerName;
 
 public class Prize {
-    private final Name name;
+    private final PlayerName name;
 
-    public Prize(Name name) {
+    public Prize(PlayerName name) {
         this.name = name;
     }
 

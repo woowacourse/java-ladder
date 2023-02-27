@@ -2,14 +2,14 @@ package laddergame.vo;
 
 import java.util.Objects;
 
-public class Name {
+public class PlayerName {
     private static final int NAME_LENGTH_LOWER_BOUND_INCLUSIVE = 1;
     private static final int NAME_LENGTH_UPPER_BOUND_INCLUSIVE = 5;
     private static final String RESTRICTED = " ";
 
     private final String name;
 
-    public Name(String name) {
+    public PlayerName(String name) {
         validateLengthInRange(name);
         validateHasNoRestricted(name);
         this.name = name;
@@ -35,7 +35,7 @@ public class Name {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Name p = (Name) o;
+        PlayerName p = (PlayerName) o;
         return Objects.equals(name, p.name);
     }
 

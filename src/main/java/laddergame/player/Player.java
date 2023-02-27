@@ -1,22 +1,18 @@
 package laddergame.player;
 
 import laddergame.ladder.Ladder;
-import laddergame.vo.Name;
+import laddergame.vo.PlayerName;
 import laddergame.vo.Position;
 
 import java.util.Objects;
 
 public class Player {
-    private final Name name;
-    private Position position;
+    private final PlayerName playerName;
+    private final Position position;
 
-    public Player(String name) {
-        this.name = new Name(name);
-    }
-
-    public Player(Name name, Position position) {
-        this.name = name;
-        this.position = position;
+    public Player(String playerName, int position) {
+        this.playerName = new PlayerName(playerName);
+        this.position = new Position(position);
     }
 
     public Position climbDownLadder(Ladder ladder) {
@@ -32,19 +28,15 @@ public class Player {
             return false;
         }
         Player p = (Player) o;
-        return Objects.equals(name, p.name);
+        return Objects.equals(playerName, p.playerName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(playerName);
     }
 
     public String getName() {
-        return name.getName();
-    }
-
-    public Position getPosition() {
-        return position;
+        return playerName.getName();
     }
 }

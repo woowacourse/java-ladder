@@ -1,6 +1,6 @@
 package laddergame.result;
 
-import laddergame.vo.Name;
+import laddergame.vo.PlayerName;
 import laddergame.vo.Position;
 
 import java.util.LinkedHashMap;
@@ -21,7 +21,7 @@ public class Prizes {
         Map<Position, Prize> prizes = new LinkedHashMap<>();
         for (int i = 0; i < prizeNames.size(); i++) {
             Position prizePosition = new Position(i);
-            Name prizeName = new Name(prizeNames.get(i));
+            PlayerName prizeName = new PlayerName(prizeNames.get(i));
             Prize prize = new Prize(prizeName);
 
             prizes.put(prizePosition, prize);
