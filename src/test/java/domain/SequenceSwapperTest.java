@@ -1,6 +1,6 @@
 package domain;
 
-import domain.LadderGame.SequenceSwapper;
+import domain.util.SequenceSwapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ public class SequenceSwapperTest {
         SequenceSwapper swapper = SequenceSwapper.initialize(4);
         assertThat(swapper.getSequence()).containsExactly(0, 1, 2, 3);
     }
-
+    
     @Test
     @DisplayName("index를 입력하면 양 옆의 순서를 바꿔준다.")
     void swapSequenceTest() {
@@ -22,7 +22,7 @@ public class SequenceSwapperTest {
         swapper.swap(0);
         assertThat(swapper.getSequence()).containsExactly(1, 0, 2, 3);
     }
-
+    
     @Test
     @DisplayName("마지막 index를 넣으면 예외가 발생한다.")
     void makeInvalidSwapTest() {
