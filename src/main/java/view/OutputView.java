@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class OutputView {
 
+    private static final String BLANK = " ";
     private static final String EXIST_LINE = "-------";
     private static final String NON_EXIST_LINE = "       ";
     private static final String WALL = "|";
@@ -24,7 +25,7 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
         for (Player player : players.getPlayers()) {
             sb.append(player.getName());
-            String blank = " ".repeat(STANDARD_BLANK - player.getName().length());
+            String blank = BLANK.repeat(STANDARD_BLANK - player.getName().length());
             sb.append(blank);
         }
         return sb.toString();

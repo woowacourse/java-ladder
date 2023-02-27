@@ -47,6 +47,7 @@ public class Line {
     private void makeNextRandomSteps(int stepIndex) {
         if (!isExistPrevStep(stepIndex) && booleanGenerator.generate()) {
             line.set(stepIndex, LineStep.EXIST);
+            return;
         }
         if (isExistPrevStep(stepIndex)) {
             line.set(stepIndex, LineStep.NON_EXIST);
