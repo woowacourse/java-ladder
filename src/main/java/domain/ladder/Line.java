@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 public class Line {
 
     private final List<Step> steps;
-
     public Line(final List<Step> steps) {
         this.steps = steps;
     }

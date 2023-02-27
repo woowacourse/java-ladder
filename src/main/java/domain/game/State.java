@@ -4,15 +4,15 @@ public class State {
 
     private boolean isPlayed;
 
-    public State(){
+    public State() {
         this.isPlayed = false;
     }
 
-    public void flipState(){
+    public void flipState() {
         this.isPlayed = !isPlayed;
     }
 
-    public boolean isPlayed(){
+    public boolean isPlayed() {
         return isPlayed;
     }
 }

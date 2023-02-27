@@ -1,15 +1,16 @@
 package view;
 
-import domain.player.Name;
+import static view.constant.LadderShapes.BLANK;
+import static view.constant.LadderShapes.FOOTSTEP;
+import static view.constant.LadderShapes.PILLAR;
+
 import domain.ladder.Ladder;
+import domain.player.Name;
 import domain.player.Names;
 import domain.result.Prizes;
 import java.util.Collections;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static view.constant.LadderShapes.*;
 
 public class OutputView {
 

@@ -1,12 +1,11 @@
-package domain;
+package domain.ladder;
 
-import domain.ladder.Step;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import domain.player.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("디딤대는 ")
 class StepTest {
@@ -14,7 +13,7 @@ class StepTest {
     private Position position;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         //given
         position = new Position(1);
     }

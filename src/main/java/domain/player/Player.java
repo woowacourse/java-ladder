@@ -8,7 +8,7 @@ public class Player {
     private final Name name;
     private final Position position;
 
-    public Player(final Name name){
+    public Player(final Name name) {
         this(name, new Position(0));
     }
 
@@ -21,7 +21,7 @@ public class Player {
         step.step(position);
     }
 
-    public int getPosition(){
+    public int getPosition() {
         return position.getPosition();
     }
 

@@ -1,10 +1,9 @@
 package view;
 
-import view.constant.Command;
-import view.constant.Sign;
-
 import java.util.List;
 import java.util.Scanner;
+import view.constant.Command;
+import view.constant.Sign;
 
 public class InputView {
 

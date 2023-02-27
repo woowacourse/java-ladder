@@ -1,17 +1,16 @@
 package domain.ladder;
 
 import domain.player.Player;
-import util.BooleanGenerator;
-
 import java.util.List;
 import java.util.stream.Collectors;
+import util.BooleanGenerator;
 
 public class Ladder {
 
     private final List<Line> lines;
     private final BooleanGenerator booleanGenerator;
 
-    public Ladder(final List<Line> liens){
+    public Ladder(final List<Line> liens) {
         this.lines = liens;
         this.booleanGenerator = null;
     }
@@ -21,7 +20,7 @@ public class Ladder {
     }
 
     public int getWidth() {
-        if(this.lines.isEmpty()){
+        if (this.lines.isEmpty()) {
             return 0;
         }
 
@@ -45,7 +44,7 @@ public class Ladder {
     }
 
     public void ride(Player player) {
-        for(Line line:lines){
+        for (Line line : lines) {
             line.ride(player);
         }
     }

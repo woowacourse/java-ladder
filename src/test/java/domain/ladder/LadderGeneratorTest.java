@@ -1,10 +1,8 @@
-package domain;
+package domain.ladder;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import domain.ladder.Ladder;
-import domain.ladder.LadderGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.BooleanGenerator;
@@ -15,7 +13,7 @@ class LadderGeneratorTest {
 
     @Test
     @DisplayName(" 크기와 높이를 받아서 사다리를 생성한다.")
-    void generateLadder(){
+    void generateLadder() {
         //given
         BooleanGenerator generator = new RandomBooleanGenerator();
         int height = 2;

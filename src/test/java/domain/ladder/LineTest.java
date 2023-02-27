@@ -1,7 +1,7 @@
-package domain;
+package domain.ladder;
 
-import domain.ladder.Line;
-import domain.ladder.LineGenerator;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import domain.player.Name;
 import domain.player.Player;
 import domain.player.Position;
@@ -12,8 +12,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import util.BooleanGenerator;
 import util.FixBooleanGenerator;
-
-import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("사다리 한 층은 ")
 class LineTest {
@@ -35,12 +33,12 @@ class LineTest {
 
     @Nested
     @DisplayName("밟을 때")
-    class RideLineCase{
+    class RideLineCase {
 
         @ParameterizedTest
         @DisplayName("플레이어를 받아, 해당 플레이어의 위치를 업데이트한다.")
         @CsvSource(value = {"0:1", "1:0", "2:2", "3:4", "4:3"}, delimiter = ':')
-        void rideLineTest(final int startPosition, final int targetPosition){
+        void rideLineTest(final int startPosition, final int targetPosition) {
             //given
             BooleanGenerator generator = new FixBooleanGenerator(true, true, false, true, true);
             Player player = new Player(new Name("pobi"), new Position(startPosition));

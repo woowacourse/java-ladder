@@ -1,9 +1,7 @@
-package domain;
+package domain.player;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import domain.player.Names;
-import domain.player.Players;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,9 +14,9 @@ class PlayersTest {
     @DisplayName(" 이름을 받아서 정상 생성된다.")
     void createPlayersCase() {
         //given
-        Names names = new Names(List.of("pobi","crong", "bkcat"));
+        Names names = new Names(List.of("pobi", "crong", "bkcat"));
 
         //then
-        assertDoesNotThrow(()-> new Players(names));
+        assertDoesNotThrow(() -> new Players(names));
     }
 }

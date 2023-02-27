@@ -1,6 +1,6 @@
 package domain.game;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,13 +10,13 @@ class StateTest {
 
     @Test
     @DisplayName("처음 생성에는 실행되지 않은 상태이다.")
-    void generateStateTest(){
+    void generateStateTest() {
         assertThat(new State().isPlayed()).isFalse();
     }
 
     @Test
     @DisplayName("생성 이후 상태를 한번 뒤집으면 플레이된 상태이다.")
-    void flipStateTest(){
+    void flipStateTest() {
         //given
         State state = new State();
 

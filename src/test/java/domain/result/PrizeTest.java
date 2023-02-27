@@ -1,7 +1,7 @@
 package domain.result;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -24,7 +24,7 @@ class PrizeTest {
         @DisplayName("길이가 1 미만 5 초과이면 익셉션이 발생한다.")
         @ValueSource(strings = {"", "500000", "111111"})
         void invalidGenerateTest(final String prizeName) {
-            assertThatThrownBy(()-> new Prize((prizeName)))
+            assertThatThrownBy(() -> new Prize((prizeName)))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }

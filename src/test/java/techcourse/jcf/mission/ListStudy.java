@@ -21,6 +21,5 @@ public class ListStudy {
 
         // TODO values에 담긴 모든 값을 출력한다.
         values.forEach(System.out::println);
-
     }
 }

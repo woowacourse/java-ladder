@@ -1,7 +1,7 @@
 package controller;
 
+import domain.game.LadderGame;
 import domain.ladder.Ladder;
-import domain.ladder.LadderGame;
 import domain.ladder.LadderGenerator;
 import domain.player.Names;
 import domain.player.Players;

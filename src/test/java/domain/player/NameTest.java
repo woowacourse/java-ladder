@@ -1,11 +1,10 @@
-package domain;
-
-import domain.player.Name;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+package domain.player;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 @DisplayName("이름은 ")
 class NameTest {

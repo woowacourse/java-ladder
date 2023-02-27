@@ -1,9 +1,8 @@
-package domain;
+package domain.player;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import domain.player.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +18,7 @@ public class PositionTest {
 
     @Test
     @DisplayName("방향을 받아 현재 위치를 업데이트한다.")
-    void movePositionCase(){
+    void movePositionCase() {
         //given
         Position position = new Position(0);
         int direction = 1;
@@ -34,14 +33,14 @@ public class PositionTest {
 
     @Test
     @DisplayName("갈 수 없는 위치이면 익셉션을 발생한다.")
-    void moveInvalidPositionCase(){
+    void moveInvalidPositionCase() {
         //given
         Position position = new Position(0);
         int direction = -1;
 
         //when
         //then
-        assertThatThrownBy(()->position.move(direction))
+        assertThatThrownBy(() -> position.move(direction))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

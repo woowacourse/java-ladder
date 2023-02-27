@@ -1,10 +1,10 @@
-package domain;
+package domain.game;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import domain.ladder.Ladder;
-import domain.ladder.LadderGame;
 import domain.ladder.LadderGenerator;
 import domain.player.Names;
 import domain.player.Player;

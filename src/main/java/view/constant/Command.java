@@ -9,17 +9,17 @@ public enum Command {
 
     String command;
 
-    Command(final String command){
+    Command(final String command) {
         this.command = command;
     }
 
-    public String getCommand(){
+    public String getCommand() {
         return this.command;
     }
 
-    public static boolean isCommand(final String doubtWord){
+    public static boolean isCommand(final String doubtWord) {
         return Arrays.stream(Command
-                .values())
+                        .values())
                 .filter(command -> command.getCommand().equals(doubtWord))
                 .collect(Collectors.toList())
                 .isEmpty();

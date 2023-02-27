@@ -17,11 +17,11 @@ public class Prizes {
                 .collect(Collectors.toList());
     }
 
-    public Prize query(final int position){
+    public Prize query(final int position) {
         return prizes.get(position);
     }
 
-    public List<String> getPrizeNames(){
+    public List<String> getPrizeNames() {
         return prizes.stream()
                 .map(Prize::getPrize)
                 .collect(Collectors.toList());

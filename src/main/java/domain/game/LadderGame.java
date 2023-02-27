@@ -1,11 +1,10 @@
-package domain.ladder;
+package domain.game;
 
-import domain.game.State;
-import domain.result.Prizes;
+import domain.ladder.Ladder;
 import domain.player.Player;
 import domain.player.Players;
+import domain.result.Prizes;
 import domain.result.Result;
-
 
 public class LadderGame {
     private static final String GAME_NOT_PLAYED_MESSAGE = "게임이 아직 플레이 되지 않았습니다.";
@@ -15,7 +14,7 @@ public class LadderGame {
 
     private final State gameState;
 
-    public LadderGame(Ladder ladder, Players players, Prizes prizes){
+    public LadderGame(Ladder ladder, Players players, Prizes prizes) {
         this.gameState = new State();
 
         this.ladder = ladder;
@@ -24,19 +23,19 @@ public class LadderGame {
     }
 
     public void play() {
-        for(Player player: players.getPlayers()){
+        for (Player player : players.getPlayers()) {
             ladder.ride(player);
         }
         gameState.flipState();
     }
 
-    public Result getResult(){
+    public Result getResult() {
         validateGamePlayedState();
         return new Result(players, prizes);
     }
 
-    private void validateGamePlayedState(){
-        if(!this.gameState.isPlayed()){
+    private void validateGamePlayedState() {
+        if (!this.gameState.isPlayed()) {
             throw new IllegalStateException(GAME_NOT_PLAYED_MESSAGE);
         }
     }
