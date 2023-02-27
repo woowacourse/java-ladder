@@ -25,9 +25,8 @@ class PlayerTest {
             Player player = new Player(name, startPosition);
 
             //then
-            assertThat(player)
-                    .extracting("currentColumnPosition")
-                    .isEqualTo(startPosition);
+            assertThat(player.getPosition())
+                    .isEqualTo(startPosition.getPosition());
         }
     }
 

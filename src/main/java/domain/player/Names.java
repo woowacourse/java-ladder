@@ -55,28 +55,4 @@ public class Names {
     public List<Name> getNames() {
         return List.copyOf(names);
     }
-
-    @Override
-    public boolean equals(Object names) {
-        if (this == names) {
-            return true;
-        }
-        if (names == null || getClass() != names.getClass()) {
-            return false;
-        }
-        Names anotherNames = (Names) names;
-        return this.names.equals(anotherNames.names);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(names);
-    }
-
-    @Override
-    public String toString() {
-        return "Names{" +
-                "names=" + names +
-                '}';
-    }
 }

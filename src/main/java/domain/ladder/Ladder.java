@@ -35,14 +35,6 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public String toString() {
-        return "Ladder{" +
-                "lines=" + lines +
-                ", booleanGenerator=" + booleanGenerator +
-                '}';
-    }
-
     public void ride(Player player) {
         for (Line line : lines) {
             line.ride(player);
