@@ -50,7 +50,7 @@ class LineTest {
         List<Stool> intendedStools = List.of(Stool.EXIST, Stool.EXIST);
         Line line = new Line(3, new TestStoolGenerator(new ArrayList<>(intendedStools)));
 
-        assertThat(line.goDownAndGetLocation(0)).isEqualTo(1);
+        assertThat(line.getWentDownLocation(0)).isEqualTo(1);
     }
 
     @Test
@@ -58,6 +58,6 @@ class LineTest {
         List<Stool> intendedStools = List.of(Stool.EMPTY, Stool.EXIST);
         Line line = new Line(3, new TestStoolGenerator(new ArrayList<>(intendedStools)));
 
-        assertThat(line.goDownAndGetLocation(0)).isEqualTo(0);
+        assertThat(line.getWentDownLocation(0)).isEqualTo(0);
     }
 }

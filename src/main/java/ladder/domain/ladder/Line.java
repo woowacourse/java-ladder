@@ -32,7 +32,7 @@ public class Line {
         return stoolGenerator.generate();
     }
 
-    public int goDownAndGetLocation(final int currentLocation) {
+    public int getWentDownLocation(final int currentLocation) {
         int newLocation = currentLocation;
         if (hasWayToGo(currentLocation)) {
             newLocation = getUpdatedLocation(currentLocation);

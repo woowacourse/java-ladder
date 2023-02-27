@@ -35,7 +35,7 @@ public class Ladder {
     public int getDestinationOf(int startingLocation) {
         int currentLocation = startingLocation;
         for (Line line : lines) {
-            currentLocation = line.goDownAndGetLocation(currentLocation);
+            currentLocation = line.getWentDownLocation(currentLocation);
         }
         return currentLocation;
     }
