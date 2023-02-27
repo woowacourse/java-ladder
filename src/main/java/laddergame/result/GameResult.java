@@ -19,13 +19,18 @@ public class GameResult {
         Map<String, String> gameResult = new HashMap<>();
 
         for (Player player : ladderResult.keySet()) {
-            Position position = ladderResult.get(player);
             String playerName = player.getName();
-            String prizeName = prizes.getPrizeName(position.getPosition());
+            String prizeName = getPrizeName(ladderResult, player, prizes);
             gameResult.put(playerName, prizeName);
         }
 
         return new GameResult(gameResult);
+    }
+
+    private static String getPrizeName(Map<Player, Position> ladderResult, Player player, Prizes prizes) {
+        Position destination = ladderResult.get(player);
+        String prizeName = prizes.getPrizeName(destination.getPosition());
+        return prizeName;
     }
 
     public Map<String, String> fetchAllResults() {

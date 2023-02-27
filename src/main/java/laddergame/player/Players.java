@@ -6,8 +6,8 @@ import laddergame.vo.Position;
 import java.util.*;
 
 import static java.util.function.Function.identity;
-import static java.util.stream.Collectors.toMap;
 import static java.util.stream.Collectors.toUnmodifiableList;
+import static java.util.stream.Collectors.toUnmodifiableMap;
 
 public class Players {
     private static final int PLAYERS_SIZE_LOWER_BOUND_INCLUSIVE = 2;
@@ -48,7 +48,7 @@ public class Players {
 
     public Map<Player, Position> climbDownLadder(Ladder ladder) {
         return players.stream()
-                      .collect(toMap(identity(), player -> player.climbDownLadder(ladder)));
+                      .collect(toUnmodifiableMap(identity(), player -> player.climbDownLadder(ladder)));
     }
 
     public int getCount() {
