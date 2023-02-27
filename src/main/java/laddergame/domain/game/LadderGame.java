@@ -25,9 +25,9 @@ public class LadderGame {
     }
 
     public void playGameOfAllParticipants() {
-        List<Participant> players = participants.getParticipants();
-        for (Participant player : players) {
-            player.moveToDestination(ladder);
+        List<Participant> gameParticipants = participants.getParticipants();
+        for (Participant participant : gameParticipants) {
+            participant.moveToDestination(ladder);
         }
     }
 
