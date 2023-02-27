@@ -1,9 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Players {
@@ -46,17 +43,13 @@ public class Players {
         return players.stream()
                 .filter(player -> player.getName().equals(playerName))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("찾는 플레이어가 없습니다."));
+                .orElseThrow(() -> new NoSuchElementException("찾는 플레이어가 없습니다."));
     }
 
     public List<String> getPlayerNames() {
         return players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toUnmodifiableList());
-    }
-
-    public int getCurrentPosition(Player player) {
-        return players.indexOf(player);
     }
 
 }
