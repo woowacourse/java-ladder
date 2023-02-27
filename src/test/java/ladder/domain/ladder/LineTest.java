@@ -1,7 +1,7 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import ladder.FixedLineStrategy;
-import ladder.domain.ladder.Line;
+import ladder.domain.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,7 +1,6 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import ladder.FixedLineStrategy;
-import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import org.junit.jupiter.api.DisplayName;
