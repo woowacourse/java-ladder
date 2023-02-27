@@ -2,6 +2,7 @@ package laddergame.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class LadderLinesGenerator {
     private final BooleanGenerator booleanGenerator;
@@ -25,11 +26,23 @@ public class LadderLinesGenerator {
         while (true) {
             try {
                 final List<Boolean> points = decidePointTypes(width);
+                validate(points);
                 return new Line(points);
             } catch (IllegalArgumentException ignored) {
                 /* IGNORED */
             }
         }
+    }
+
+    private void validate(List<Boolean> points) {
+        if (hasAdjacentRung(points)) {
+            throw new IllegalArgumentException("사다리의 가로 라인은 겹칠 수 없습니다.");
+        }
+    }
+
+    private boolean hasAdjacentRung(List<Boolean> rungExistsAtColumn) {
+        return IntStream.range(0, rungExistsAtColumn.size() - 1)
+                .anyMatch(pointIndex -> rungExistsAtColumn.get(pointIndex) && rungExistsAtColumn.get(pointIndex + 1));
     }
 
     private List<Boolean> decidePointTypes(final Width width) {

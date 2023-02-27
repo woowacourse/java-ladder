@@ -2,7 +2,10 @@ package laddergame.domain;
 
 import static laddergame.TestDummy.TEST_BOOLEAN_GENERATOR;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,5 +24,25 @@ class LadderLinesGeneratorTest {
 
         //then
         assertThat(lines).hasSize(5);
+    }
+
+    @DisplayName("가로 라인이 겹치면 예외가 발생한다.")
+    @Test
+    void throwExceptionWhenBothTrue() {
+        //given
+        BooleanGenerator booleanGenerator = new BooleanGenerator() {
+            Deque<Boolean> given = new ArrayDeque<>(List.of(true, true, false));
+
+            @Override
+            public boolean generate() {
+                return given.pollFirst();
+            }
+        };
+        LadderLinesGenerator ladderLinesGenerator = new LadderLinesGenerator(booleanGenerator);
+        Width width = new Width(4);
+        Height height = new Height(1);
+        //when
+        //then
+        assertThatThrownBy(() -> ladderLinesGenerator.createLines(width, height));
     }
 }

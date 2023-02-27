@@ -46,16 +46,6 @@ class LineTest {
         assertThatThrownBy(() -> new Line(given));
     }
 
-    @DisplayName("가로 라인이 겹치면 예외가 발생한다.")
-    @Test
-    void throwExceptionWhenBothTrue() {
-        //given
-        given = List.of(true, true, false);
-        //when
-        //then
-        assertThatThrownBy(() -> new Line(given));
-    }
-
     @DisplayName("인덱스로 rungExistsAtColumn 의 원소를 가져올 수 있다.")
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2})
