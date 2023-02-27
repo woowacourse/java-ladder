@@ -1,5 +1,7 @@
 package domain.result;
 
+import java.util.Objects;
+
 public class Prize {
 
     private static final int MIN_PRIZE_LENGTH = 1;
@@ -22,5 +24,29 @@ public class Prize {
         if (MIN_PRIZE_LENGTH > prize.length() || MAX_PRIZE_LENGTH < prize.length()) {
             throw new IllegalArgumentException(WRONG_PRIZE_LENGTH_MESSAGE);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Prize prize1 = (Prize) o;
+        return Objects.equals(prize, prize1.prize);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(prize);
+    }
+
+    @Override
+    public String toString() {
+        return "Prize{" +
+                "prize='" + prize + '\'' +
+                '}';
     }
 }

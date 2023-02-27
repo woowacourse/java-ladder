@@ -16,4 +16,8 @@ public class Prizes {
                 .map(Prize::new)
                 .collect(Collectors.toList());
     }
+
+    public Prize query(final int position){
+        return prizes.get(position);
+    }
 }
