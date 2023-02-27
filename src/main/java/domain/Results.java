@@ -5,14 +5,13 @@ import java.util.stream.Collectors;
 
 public class Results {
 
-    List<Result> results;
-    Map<Player, Result> matchingResult;
+    private final List<Result> results;
 
     private Results(List<Result> results) {
         this.results = results;
     }
 
-    public static Results from(String[] result, int numberOfPlayers) {
+    public static Results of(String[] result, int numberOfPlayers) {
         List<Result> results;
         results = Arrays.stream(result)
                 .map(Result::new)
@@ -29,17 +28,17 @@ public class Results {
         }
     }
 
-    public List<Result> getResults() {
-        return results;
-    }
-
     public MatchingResult matchResults(Players players) {
-        this.matchingResult = new LinkedHashMap<>();
+        Map<Player, Result> matchingResult = new LinkedHashMap<>();
         for (Player player : players.getPlayers()) {
             int playerFinalPosition = player.getPosition();
             Result matchedResult  = results.get(playerFinalPosition);
             matchingResult.put(player, matchedResult);
         }
         return new MatchingResult(matchingResult);
+    }
+
+    public List<Result> getResults() {
+        return results;
     }
 }

@@ -57,5 +57,4 @@ public class LadderTest {
             assertThat(line.getLine()).containsAnyOf(LineStep.EXIST);
         }
     }
-
 }

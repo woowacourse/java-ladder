@@ -7,6 +7,8 @@ import java.util.List;
 
 public class Line {
 
+    private static final int FIRST_POSITION_OF_STEP = 0;
+
     private final List<LineStep> line;
     private final BooleanGenerator booleanGenerator;
 
@@ -31,11 +33,15 @@ public class Line {
     }
 
     public void movePlayerInLine(Player player) {
-        int leftStepPositionOfPlayer = player.getPosition()-1;
+        int leftStepPositionOfPlayer = player.getPosition() - 1;
         int rightStepPositionOfPlayer = player.getPosition();
 
         movePlayerToRight(player, leftStepPositionOfPlayer);
         movePlayerToLeft(player, rightStepPositionOfPlayer);
+    }
+
+    public List<LineStep> getLine() {
+        return this.line;
     }
 
     private void makeFirstRandomStep() {
@@ -56,7 +62,7 @@ public class Line {
     }
 
     private void movePlayerToRight(Player player, int leftStepPositionOfPlayer) {
-        if (leftStepPositionOfPlayer >= 0
+        if (leftStepPositionOfPlayer >= FIRST_POSITION_OF_STEP
                 && line.get(leftStepPositionOfPlayer).equals(LineStep.EXIST)) {
             player.moveToLeft();
         }
@@ -71,9 +77,5 @@ public class Line {
 
     private boolean isExistPrevStep(int stepIndex) {
         return this.line.get(stepIndex - 1).equals(LineStep.EXIST);
-    }
-
-    public List<LineStep> getLine() {
-        return this.line;
     }
 }

@@ -26,7 +26,7 @@ public class MatchingResultTest {
         String[] playersInput = {"roy", "poy", "soy", "coy"};
         Players players = Players.from(playersInput);
         String[] resultInput = {"2nd", "1st", "4th", "3rd"};
-        Results results = Results.from(resultInput, 4);
+        Results results = Results.of(resultInput, 4);
         BooleanGenerator booleanGenerator = new TrueGenerator();
         Ladder ladder = Ladder.makeDefaultLadder(4, 1, booleanGenerator);
 

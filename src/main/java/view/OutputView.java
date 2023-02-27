@@ -11,6 +11,7 @@ public class OutputView {
     private static final String EXIST_LINE = "-------";
     private static final String NON_EXIST_LINE = "       ";
     private static final String WALL = "|";
+    private static final String COLON = ":";
     private static final int STANDARD_BLANK = 7;
 
     public static void printResultMessage() {
@@ -43,7 +44,7 @@ public class OutputView {
     public static void printFinalResult(Map<Player, Result> finalMatchingResult) {
         System.out.println("\n실행 결과");
         for (Map.Entry<Player, Result> finalResult : finalMatchingResult.entrySet()) {
-            System.out.println(finalResult.getKey().getName() + ":" + finalResult.getValue().getResult());
+            System.out.println(finalResult.getKey().getName() + COLON + finalResult.getValue().getResult());
         }
         System.out.println();
     }
