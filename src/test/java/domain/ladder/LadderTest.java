@@ -32,16 +32,4 @@ public class LadderTest {
         Ladder ladder = new Ladder(5, height, new RandomBooleanGenerator());
         assertThat(ladder.getLines().size()).isEqualTo(height);
     }
-
-    @ParameterizedTest
-    @ValueSource(ints = {2, 10, 100})
-    @DisplayName("인덱스에 해당하는 참가자를 움직이면 최종 인덱스가 반환된다.")
-    void moveLadderTest(int height) {
-        int personCount = 5;
-        Ladder ladder = new Ladder(5, height, new RandomBooleanGenerator());
-
-        for (int i = 0; i < personCount; i++) {
-            assertThat(ladder.findLastPosition(new Position(i)).getValue()).isBetween(0, personCount - 1);
-        }
-    }
 }

@@ -1,6 +1,7 @@
 package domain.ladder;
 
 import domain.generator.BooleanGenerator;
+import domain.player.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,12 +20,12 @@ public class Ladder {
         this.lines = createLadder(personCount, height, booleanGenerator);
     }
 
-    public Position findLastPosition(Position playerPosition) {
-        Position position = playerPosition;
+    public void movePosition(Player player) {
         for (Line line : lines) {
-            position = line.findNext(position);
+            Position playerPosition = player.getPosition();
+            Direction nextDirection = line.findNext(playerPosition);
+            player.move(nextDirection);
         }
-        return position;
     }
 
     private void validateHeight(int height) {
