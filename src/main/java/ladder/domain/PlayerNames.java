@@ -49,6 +49,17 @@ public class PlayerNames {
         return count != 0;
     }
 
+    public String getPlayerNameByIndex(final int playerIndex) {
+        return names.get(playerIndex);
+    }
+
+    public boolean contains(final String playerName) {
+        if (names.contains(playerName)) {
+            return true;
+        }
+        return false;
+    }
+
     public List<String> getNames() {
         return List.copyOf(names);
     }
