@@ -17,6 +17,7 @@ public class InputView {
     private static final String INPUT_REWARDS = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String INPUT_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
     private static final String INPUT_WANTS_SEE_PERSON = "결과를 보고 싶은 사람은?";
+    private static final String REGEX = ",";
 
     public static List<String> inputPersonName() {
         System.out.println(INPUT_PEOPLES_NAME);
@@ -33,7 +34,7 @@ public class InputView {
         System.out.println("\n" + INPUT_REWARDS);
         while (true) {
             try {
-                List<String> rewards = Arrays.asList(scanner.nextLine().split(","));
+                List<String> rewards = Arrays.asList(scanner.nextLine().split(REGEX));
                 InputVerifier.validateRewardsNum(rewards, peopleNum);
                 return rewards;
             } catch (IllegalArgumentException e) {
