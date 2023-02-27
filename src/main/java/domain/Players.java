@@ -44,6 +44,6 @@ public class Players {
         return players.stream()
                 .filter(player -> player.getName().equals(name))
                 .findAny()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 사람입니다."));
     }
 }
