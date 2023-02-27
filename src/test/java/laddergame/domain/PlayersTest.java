@@ -79,4 +79,22 @@ public class PlayersTest {
         assertThat(maxNameLength).isEqualTo("블랙캣".length());
     }
 
+
+    @Test
+    @DisplayName("플레이어의 순서가 바뀌면 플레이어 순서에 따라 리스트를 재정렬한다.")
+    void sortPlayersByPositionTest() {
+        //given
+        final List<String> names = List.of("에단", "준팍", "블랙캣");
+        final Players players = Players.from(names);
+
+        //when
+        players.getPlayers().get(0).move(Position.of(1, 3));
+        players.getPlayers().get(1).move(Position.of(2, 3));
+        players.getPlayers().get(2).move(Position.of(0, 3));
+        players.sortPlayersByPosition();
+
+        //then
+        assertThat(players.getPlayers())
+                .isEqualTo(Players.from(List.of("블랙캣", "에단", "준팍")).getPlayers());
+    }
 }

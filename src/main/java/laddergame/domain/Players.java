@@ -1,6 +1,8 @@
 package laddergame.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -12,11 +14,11 @@ public class Players {
     private final List<Player> players;
 
     private Players(final List<Player> players) {
-        validatePlayerCount(players);
         this.players = players;
     }
 
     public static Players from(final List<String> names) {
+        validatePlayerCount(names);
         final List<Player> players = createPlayers(names);
         return new Players(players);
     }
@@ -26,6 +28,10 @@ public class Players {
                 .mapToInt(Player::getNameLength)
                 .max()
                 .orElseThrow(() -> new IllegalStateException("가장 긴 이름을 찾을 수 없습니다."));
+    }
+
+    public void sortPlayersByPosition() {
+        Collections.sort(players, Comparator.comparingInt(Player::getOrder));
     }
 
     private static List<Player> createPlayers(final List<String> names) {
@@ -55,8 +61,8 @@ public class Players {
         return positions;
     }
 
-    private void validatePlayerCount(final List<Player> players) {
-        if (players.size() < MIN_PLAYER_COUNT) {
+    private static void validatePlayerCount(final List<String> names) {
+        if (names.size() < MIN_PLAYER_COUNT) {
             throw new IllegalArgumentException("최소 2명 이상의 플레이어가 필요합니다.");
         }
     }
