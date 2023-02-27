@@ -1,5 +1,7 @@
 package domain.ladder;
 
+import java.util.Objects;
+
 public class LadderPrize {
 
     private static final int MAX_RESULT_LENGTH = 5;
@@ -12,7 +14,7 @@ public class LadderPrize {
     }
 
     private void validate(String prize) {
-        if (prize.isBlank()) {
+        if (Objects.isNull(prize) || prize.isBlank()) {
             throw new IllegalArgumentException(String.format("경품명은 공백이거나 비어있을 수 없습니다. 입력값 : %s", prize));
         }
 

@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LadderPrizeTest {
@@ -18,9 +19,9 @@ class LadderPrizeTest {
 
     @DisplayName("결과 명칭이 공백이면 예외를 반환한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"", " ", "  "})
-    void create_fail_by_blank_value(String wrongName) {
-        assertThatThrownBy(() -> new LadderPrize(wrongName))
+    @NullAndEmptySource
+    void create_fail_by_blank_value(String wrongValue) {
+        assertThatThrownBy(() -> new LadderPrize(wrongValue))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("경품명은 공백이거나 비어있을 수 없습니다.");
     }
