@@ -3,7 +3,6 @@ package ladder.client.view;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import ladder.dto.LadderInfoDto;
 
 /**
  * 사다리 게임의 결과를 출력하는 클래스입니다
@@ -19,11 +18,20 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printLadder(LadderInfoDto ladderInfoDto) {
+    public static void printLadderTitle() {
         System.out.println(generateTitleMessage());
-        System.out.println(generatePlayerNamesMessage(ladderInfoDto.getPlayerNames()));
-        System.out.println(generateLadderMessage(ladderInfoDto.getLadderInfo()));
-        System.out.println(generateResultNamesMessage(ladderInfoDto.getResultNames()));
+    }
+
+    public static void printPlayerNames(List<String> playerNames) {
+        System.out.println(generatePlayerNamesMessage(playerNames));
+    }
+
+    public static void printLadderRows(List<List<Boolean>> ladderRows) {
+        System.out.println(generateLadderMessage(ladderRows));
+    }
+
+    public static void printResultNames(List<String> resultNames) {
+        System.out.println(generateResultNamesMessage(resultNames));
     }
 
     private static String generateTitleMessage() {

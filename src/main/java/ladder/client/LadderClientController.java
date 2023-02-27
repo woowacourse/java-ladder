@@ -1,9 +1,9 @@
 package ladder.client;
 
+import java.util.Map;
 import ladder.client.view.InputView;
 import ladder.client.view.OutputView;
-import ladder.domain.LadderGame;
-import ladder.dto.PlayerResultDto;
+import ladder.server.LadderGameController;
 
 /**
  * 이 클래스는 사다리 게임을 실행하는 클라이언트 클래스입니다
@@ -12,23 +12,22 @@ import ladder.dto.PlayerResultDto;
  * <p>
  * LadderGame 클래스를 통해서 사다리 게임을 실행하고, OutputView 를 통해서 출력해주는 책임을 가지고 있습니다
  */
-public class LadderGameClient {
+public class LadderClientController {
 
     private static final String ALL_RESULT = "all";
 
     private final InputView inputView;
-    private final LadderGame ladderGame;
+    private final LadderGameController ladderGame;
 
-    public LadderGameClient(InputView inputView, LadderGame ladderGame) {
+    public LadderClientController(InputView inputView, LadderGameController ladderGame) {
         this.inputView = inputView;
         this.ladderGame = ladderGame;
     }
 
     public void play() {
         initializeLadderGame();
-        OutputView.printLadder(ladderGame.getLadderInfo());
-        PlayerResultDto ladderGameResult = ladderGame.calculateResult();
-        printResult(ladderGameResult);
+        printLadderInfo();
+        printResult(ladderGame.calculateResult());
     }
 
 
@@ -50,7 +49,15 @@ public class LadderGameClient {
         ladderGame.initializeLadder(inputView.inputHeight());
     }
 
-    private void printResult(PlayerResultDto ladderGameResult) {
+    private void printLadderInfo() {
+        OutputView.printLadderTitle();
+        OutputView.printPlayerNames(ladderGame.getPlayerNames());
+        OutputView.printLadderRows(ladderGame.getLadderRows());
+        OutputView.printResultNames(ladderGame.getResultNames());
+    }
+
+
+    private void printResult(Map<String, String> ladderGameResult) {
         String targetPlayerName;
         do {
             targetPlayerName = inputView.inputPlayerResult();
@@ -58,13 +65,12 @@ public class LadderGameClient {
         } while (!ALL_RESULT.equals(targetPlayerName));
     }
 
-    private void printResult(PlayerResultDto ladderGameResult, String targetPlayerName) {
+    private void printResult(Map<String, String> ladderGameResult, String targetPlayerName) {
         if (ALL_RESULT.equals(targetPlayerName)) {
-            OutputView.printResults(ladderGameResult.getPlayerResults());
+            OutputView.printResults(ladderGameResult);
             return;
         }
-        OutputView.printResult(ladderGameResult.getPlayerResults()
-                .get(targetPlayerName));
+        OutputView.printResult(ladderGameResult.get(targetPlayerName));
     }
 
     private void repeatIfError(Runnable runnable) {
