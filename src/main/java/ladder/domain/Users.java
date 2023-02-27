@@ -15,10 +15,10 @@ public class Users {
 
     public Users(List<String> userNames) {
         validate(userNames);
-        List<User> collect = userNames.stream()
+        List<User> users = userNames.stream()
                 .map(User::new)
                 .collect(Collectors.toList());
-        this.users = new ArrayList<>(collect);
+        this.users = users;
     }
 
     private void validate(List<String> userNames) {
