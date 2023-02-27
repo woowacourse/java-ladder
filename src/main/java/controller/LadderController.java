@@ -38,8 +38,7 @@ public class LadderController {
         int playerCount = players.getPlayerSize();
         Ladder ladder = generateLadder(playerCount);
         Prizes prizes = generatePrize(playerCount);
-        LadderGame ladderGame = new LadderGame(ladder, players, prizes);
-        return ladderGame;
+        return new LadderGame(ladder, players, prizes);
     }
 
     private void print(LadderGame ladderGame, Results results) {
