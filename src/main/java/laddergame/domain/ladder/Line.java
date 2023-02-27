@@ -10,6 +10,7 @@ public class Line {
     private static final boolean DOES_NOT_EXIST = false;
     private static final int MINIMUM_INDEX = 0;
     private static final int ORDER_UNIT = 1;
+    private static final int DEFAULT_RUNG_COUNT = 1;
 
     private final List<Rung> rungs;
     private final BooleanGenerator randomBooleanGenerator;
@@ -36,7 +37,7 @@ public class Line {
         Rung firstRung = Rung.create(randomBooleanGenerator.generate());
         rungs.add(firstRung);
 
-        for (int order = 1; order < rungCount; order++) {
+        for (int order = 1; order < rungCount - DEFAULT_RUNG_COUNT; order++) {
             Rung previousRung = rungs.get(order - ORDER_UNIT);
             Rung newRung = Rung.create(generateWith(previousRung));
             rungs.add(newRung);

@@ -7,24 +7,17 @@ import java.util.List;
 
 public class Ladder {
 
-    public static final int DEFAULT_COUNT = 1;
-
     private final List<Line> lines;
 
     public Ladder(final BooleanGenerator booleanGenerator, final String height, final int participantCount) {
         final LadderHeight ladderHeight = new LadderHeight(height);
-        final int rungCount = makeRungCount(participantCount);
-        this.lines = makeLines(booleanGenerator, ladderHeight.getHeight(), rungCount);
+        this.lines = makeLines(booleanGenerator, ladderHeight.getHeight(), participantCount);
     }
 
-    private int makeRungCount(final int participantCount) {
-        return participantCount - DEFAULT_COUNT;
-    }
-
-    private List<Line> makeLines(final BooleanGenerator booleanGenerator, final int linesSize, final int lineSize) {
+    private List<Line> makeLines(final BooleanGenerator booleanGenerator, final int linesSize, final int participantCount) {
         List<Line> lines = new ArrayList<>();
         for (int index = 0; index < linesSize; index++) {
-            lines.add(Line.create(lineSize, booleanGenerator));
+            lines.add(Line.create(participantCount, booleanGenerator));
         }
         return lines;
     }
