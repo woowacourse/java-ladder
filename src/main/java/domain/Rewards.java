@@ -19,4 +19,8 @@ public class Rewards {
     public List<Reward> getRewards() {
         return rewards;
     }
+
+    public int calculateMaxNameLength() {
+        return rewards.stream().mapToInt(p -> p.getName().getRewardName().length()).max().orElseThrow();
+    }
 }

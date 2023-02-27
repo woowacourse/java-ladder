@@ -22,9 +22,10 @@ public class OutputView {
 
     public static void printLadderResult(People people, Lines lines, Rewards rewards) {
         System.out.println("\n" + LADDER_RESULT + "\n");
-        printNames(people, people.calculateMaxNameLength());
-        printLadder(lines, people.calculateMaxNameLength());
-        printRewards(rewards, people.calculateMaxNameLength());
+        int printStandardLength = Math.max(people.calculateMaxNameLength(), rewards.calculateMaxNameLength());
+        printNames(people, printStandardLength);
+        printLadder(lines, printStandardLength);
+        printRewards(rewards, printStandardLength);
     }
 
     private static void printRewards(Rewards rewards, int maxNameLength) {
