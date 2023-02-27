@@ -24,19 +24,18 @@ public class Line {
         return connections;
     }
 
-    private void makeOtherConnections(final ConnectionGenerator connectionGenerator, final List<Boolean> connection,
+    private void makeOtherConnections(final ConnectionGenerator connectionGenerator, final List<Boolean> connections,
                                       final int numberOfPoint) {
         for (int i = 1; i < numberOfPoint; i++) {
-            makeConnectionExceptFirst(connection, i, connectionGenerator.generate());
+            connections.add(makeConnectionExceptFirst(connections, i, connectionGenerator.generate()));
         }
     }
 
-    private void makeConnectionExceptFirst(final List<Boolean> connection, final int index, final boolean isExisting) {
-        if (connection.get(index - 1) && isExisting) {
-            connection.add(false);
-            return;
+    private boolean makeConnectionExceptFirst(final List<Boolean> connections, final int index, final boolean isExisting) {
+        if (connections.get(index - 1) && isExisting) {
+            return false;
         }
-        connection.add(isExisting);
+        return isExisting;
     }
 
     public int move(final int presentPosition) {
