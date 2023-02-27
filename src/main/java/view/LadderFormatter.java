@@ -2,7 +2,7 @@ package view;
 
 import domain.Ladder.Ladder;
 import domain.Ladder.Line;
-import domain.util.Point;
+import domain.Ladder.Point;
 
 import java.util.stream.Collectors;
 

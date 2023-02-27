@@ -1,4 +1,4 @@
-package domain.util;
+package domain.Ladder;
 
 public enum Point {
     

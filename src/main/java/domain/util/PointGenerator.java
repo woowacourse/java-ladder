@@ -1,6 +1,8 @@
 package domain.util;
 
-public interface PointGenerator {
+import domain.Ladder.Point;
 
-	Point generate();
+public interface PointGenerator {
+    
+    Point generate();
 }

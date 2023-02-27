@@ -1,6 +1,6 @@
 package domain;
 
-import domain.util.Point;
+import domain.Ladder.Point;
 import domain.util.PointGenerator;
 
 public class FixedPresencePointGenerator implements PointGenerator {
