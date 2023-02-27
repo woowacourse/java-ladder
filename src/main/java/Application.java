@@ -19,9 +19,9 @@ public class Application {
         inputPeople(ladderGame);
         Rewards rewards = inputRewards(ladderGame, ladderGame.getPeople().getPeople().size());
         int ladderHeight = InputView.inputLadderHeight();
-        Lines lines = ladderGame.createLines(ladderGame.getPeople().getPeople().size(), ladderHeight);
-        ladderGame.processResult(ladderGame.getPeople(), lines);
-        OutputView.printLadderResult(ladderGame.getPeople(), lines, rewards);
+        ladderGame.createLines(ladderGame.getPeople().getPeople().size(), ladderHeight);
+        ladderGame.processResult(ladderGame.getPeople(), ladderGame.getLines());
+        OutputView.printLadderResult(ladderGame.getPeople(), ladderGame.getLines(), rewards);
         repeatPrintPeopleResultUntilAll(rewards, ladderGame.getPeople());
     }
 

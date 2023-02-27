@@ -32,13 +32,13 @@ public class LadderGame {
         }
     }
 
-    public Lines createLines(int width, int height) {
+    public void createLines(int width, int height) {
         RandomValueGenerator generator = new RandomBooleanGenerator();
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             lines.add(Line.newInstanceWithPersonCount(width, generator));
         }
-        return new Lines(lines);
+        this.lines = new Lines(lines);
     }
 
     public Rewards createRewards(List<String> names, int peopleNum) {
@@ -87,5 +87,9 @@ public class LadderGame {
 
     public People getPeople(){
         return people;
+    }
+
+    public Lines getLines(){
+        return lines;
     }
 }

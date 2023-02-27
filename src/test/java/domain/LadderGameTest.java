@@ -56,12 +56,11 @@ class LadderGameTest {
     void LINES_객체_생성() {
         final int height = 3;
         final int width = 3;
-        Lines lines = ladderGame.createLines(width, height);
+        ladderGame.createLines(width, height);
 
         Assertions.assertAll(
                 () -> {
-                    assertEquals(lines.getClass(), Lines.class);
-                    assertEquals(lines.getLines().size(), height);
+                    assertEquals(ladderGame.getLines().getLines().size(), height);
                 }
         );
     }
