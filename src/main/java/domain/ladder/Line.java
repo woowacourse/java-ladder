@@ -8,7 +8,6 @@ import java.util.List;
 
 public class Line {
 
-    private static final boolean GENERATE_VALUE = true;
     private static final int INDEX_LOWER_BOUND = 0;
 
     private final List<Point> line;
