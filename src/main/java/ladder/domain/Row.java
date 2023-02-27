@@ -1,7 +1,6 @@
 package ladder.domain;
 
-import static ladder.domain.RowGenerator.generate;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +22,28 @@ public class Row {
 
     public static Row valueOf(int size, ConnectionJudgement connectionJudgement) {
         validateMinimumSize(size);
-        return new Row(generate(size, connectionJudgement));
+        List<Point> row = generateRow(size, connectionJudgement);
+        return new Row(row);
+    }
+
+    private static List<Point> generateRow(int size, ConnectionJudgement connectionJudgement) {
+        Point previous = Point.NONE;
+        List<Point> row = new ArrayList<>();
+        for (int i = 0; i < size - 1; i++) {
+            previous = previous.next(connectionJudgement);
+            row.add(previous);
+        }
+        connectLastPoint(row);
+        return row;
+    }
+
+    private static void connectLastPoint(List<Point> points1) {
+        int lastIndex = points1.size() - 1;
+        if (points1.get(lastIndex) == Point.RIGHT) {
+            points1.add(Point.LEFT);
+        } else {
+            points1.add(Point.NONE);
+        }
     }
 
 

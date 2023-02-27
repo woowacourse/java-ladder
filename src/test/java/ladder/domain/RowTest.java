@@ -52,4 +52,18 @@ class RowTest {
         assertThat(row.calculateNextPosition(Position.valueOf(2)))
                 .isEqualTo(Position.valueOf(2));
     }
+
+    @Test
+    void 생성시_최대한_연결된_경우를_생성() {
+        Row row = Row.valueOf(5, new MockConnectionJudgement(true));
+        assertThat(row.getPoints())
+                .containsExactly(true, false, true, false, false);
+    }
+
+    @Test
+    void 생성시_최대한_연결되지_않은_경우를_생성() {
+        Row row = Row.valueOf(3, new MockConnectionJudgement(false));
+        assertThat(row.getPoints())
+                .containsExactly(false, false, false);
+    }
 }
