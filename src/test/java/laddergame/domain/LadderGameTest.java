@@ -12,6 +12,8 @@ class LadderGameTest {
 
     private List<String> names;
     private Players players;
+    private Ladder ladder;
+    private WinningPrizes winningPrizes;
     private LadderGame ladderGame;
 
     @BeforeEach
@@ -20,7 +22,10 @@ class LadderGameTest {
         //given
         names = List.of("준팍", "에단", "또링", "코일");
         players = Players.from(names);
-        ladderGame = new LadderGame();
+        ladder = Ladder.of(new Height(3), names.size(), new TestLinkGenerator(
+                List.of(true, false, true, false, true, false, true, false, true)));
+        winningPrizes = WinningPrizes.of(List.of("1", "2", "3", "4"), names.size());
+        ladderGame = new LadderGame(players, ladder, winningPrizes);
     }
 
     @Test
@@ -28,20 +33,11 @@ class LadderGameTest {
     void givenLayerAndPlayers_thenReturnGameResult() {
 
         //when
-        final List<Layer> layers = List.of(
-                Layer.of(names.size(), new TestLinkGenerator(List.of(true, false, true))),
-                Layer.of(names.size(), new TestLinkGenerator(List.of(false, true, false))),
-                Layer.of(names.size(), new TestLinkGenerator(List.of(true, false, true))));
-
-
-        final List<Player> gameResult = ladderGame.playGame(players.getPlayers(), layers);
-
-        final List<Player> playerResult = Players.from(List.of("코일", "에단", "또링", "준팍")).getPlayers();
-
+        final GameResult gameResult = ladderGame.playGame();
 
         //then
-        assertThat(gameResult)
-                .isEqualTo(playerResult);
+        assertThat(gameResult.getGameResult())
+                .isEqualTo(Players.from(List.of("코일", "에단", "또링", "준팍")).getPlayers());
     }
 
 }
