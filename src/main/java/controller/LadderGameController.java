@@ -77,9 +77,9 @@ public class LadderGameController {
     private void moveUserToPrize(String searchName) {
         User searchUser = users.findUserByUserName(searchName);
         for (Line line : ladder.getLines()) {
-            searchUser.movePosition(line);
+            searchUser.getPosition().movePosition(line);
         }
-        result.saveResult(searchName, prizes.getPrizeNames().get(searchUser.getPosition()));
+        result.saveResult(searchName, prizes.getPrizeNames().get(searchUser.getPosition().getValue()));
     }
 
     private Users initializeUsers() {

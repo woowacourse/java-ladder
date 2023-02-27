@@ -90,8 +90,8 @@ class UserTest {
         void shouldSuccessMoveLowerLeft() {
             User user = new User("test", 1);
             Line nextLine = new Line(4, new FixedBooleanGenerator(true));
-            user.movePosition(nextLine);
-            assertThat(user.getPosition()).isEqualTo(0);
+            user.getPosition().movePosition(nextLine);
+            assertThat(user.getPosition().getValue()).isEqualTo(0);
         }
 
         @DisplayName("현재 position + 1에 해당하는 다음 라인 값이 true인 경우, 오른쪽 밑으로 이동한다.")
@@ -99,8 +99,8 @@ class UserTest {
         void shouldSuccessMoveLowerRight() {
             User user = new User("test", 0);
             Line nextLine = new Line(4, new FixedBooleanGenerator(true));
-            user.movePosition(nextLine);
-            assertThat(user.getPosition()).isEqualTo(1);
+            user.getPosition().movePosition(nextLine);
+            assertThat(user.getPosition().getValue()).isEqualTo(1);
         }
 
         @DisplayName("현재 position과 position + 1에 해당하는 다음 라인 값이 둘 다 false인 경우, 그대로 밑으로 이동한다.")
@@ -108,8 +108,8 @@ class UserTest {
         void shouldSuccessMoveDown() {
             User user = new User("test", 0);
             Line nextLine = new Line(4, new FixedBooleanGenerator(false));
-            user.movePosition(nextLine);
-            assertThat(user.getPosition()).isEqualTo(0);
+            user.getPosition().movePosition(nextLine);
+            assertThat(user.getPosition().getValue()).isEqualTo(0);
         }
     }
 }
