@@ -18,14 +18,14 @@ public class LadderGame {
     private final LadderResult result;
 
     public LadderGame(List<String> names, List<String> rewards, int height, LineStrategy lineStrategy) {
-        validateNameItemSizeEquality(names, rewards);
+        validateNameItemSizeNotEquality(names, rewards);
         this.players = new Players(names);
         this.ladder = new Ladder(height, rewards);
         ladder.assignLines(lineStrategy, names.size() - 1);
         this.result = new LadderResult(makeLadderResult());
     }
 
-    private void validateNameItemSizeEquality(List<String> names, List<String> rewards) {
+    private void validateNameItemSizeNotEquality(List<String> names, List<String> rewards) {
         if (names.size() != rewards.size()) {
             throw new IllegalArgumentException("이름과 실행 결과의 개수가 맞지 않습니다.");
         }
