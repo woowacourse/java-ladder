@@ -12,7 +12,7 @@ class LadderTest {
     @ValueSource(ints = {-1,0})
     void 사다리의_높이가_1미만이면_예외가_발생한다(int height){
         Assertions.assertThatThrownBy(
-            () -> new Ladder(height,new Players(List.of("lee","kim")),new TruePassGenerator())
+            () -> new Ladder(height,3,new TruePassGenerator())
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
