@@ -1,6 +1,5 @@
 package domain;
 
-import factory.LadderFactory;
 import factory.PlayersFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -48,15 +47,12 @@ public class LadderGameTest {
                 playerNames.size(),
                 List.of(new GameResult("당첨"), new GameResult("꽝"), new GameResult("당첨"), new GameResult("꽝"), new GameResult("꽝"))
         );
-        List<Point> pointsOfFirstLine = List.of(Point.EXIST, Point.NOT_EXIST, Point.NOT_EXIST, Point.EXIST);
-        List<Point> pointsOfSecondLine = List.of(Point.NOT_EXIST, Point.EXIST, Point.NOT_EXIST, Point.EXIST);
-        List<Point> pointsOfThirdLine = List.of(Point.NOT_EXIST, Point.EXIST, Point.NOT_EXIST, Point.NOT_EXIST);
-        List<Point> pointsOfFourthLine = List.of(Point.EXIST, Point.NOT_EXIST, Point.EXIST, Point.NOT_EXIST);
-        CompleteBasedStrategy completeBasedStrategy = new CompleteBasedStrategy(
-                List.of(pointsOfFirstLine, pointsOfSecondLine, pointsOfThirdLine, pointsOfFourthLine)
-        );
-        int ladderHeight = 4;
-        Ladder ladder = LadderFactory.of(playerNames.size(), ladderHeight, completeBasedStrategy);
+        Line pointsOfFirstLine = new Line(List.of(Point.EXIST, Point.NOT_EXIST, Point.NOT_EXIST, Point.EXIST));
+        Line pointsOfSecondLine = new Line(List.of(Point.NOT_EXIST, Point.EXIST, Point.NOT_EXIST, Point.EXIST));
+        Line pointsOfThirdLine = new Line(List.of(Point.NOT_EXIST, Point.EXIST, Point.NOT_EXIST, Point.NOT_EXIST));
+        Line pointsOfFourthLine = new Line(List.of(Point.EXIST, Point.NOT_EXIST, Point.EXIST, Point.NOT_EXIST));
+
+        Ladder ladder = new Ladder(List.of(pointsOfFirstLine, pointsOfSecondLine, pointsOfThirdLine, pointsOfFourthLine));
         ladderGame = new LadderGame(players, ladder, gameResults);
     }
 
@@ -76,9 +72,6 @@ public class LadderGameTest {
     /**
      * 사다리 UI
      *  a b c
-     *  | | |
-     *  | | |
-     *  | | |
      *  | | |
      * 꽝 꽝 당첨
      */
@@ -150,17 +143,8 @@ public class LadderGameTest {
                 3,
                 List.of(new GameResult("꽝"), new GameResult("꽝"), new GameResult("당첨"))
         );
-        List<Point> pointsOfFirstLine = List.of(Point.NOT_EXIST, Point.NOT_EXIST);
-        List<Point> pointsOfSecondLine = List.of(Point.NOT_EXIST, Point.NOT_EXIST);
-        List<Point> pointsOfThirdLine = List.of(Point.NOT_EXIST, Point.NOT_EXIST);
-        List<Point> pointsOfFourthLine = List.of(Point.NOT_EXIST, Point.NOT_EXIST);
-        CompleteBasedStrategy completeBasedStrategy = new CompleteBasedStrategy(
-                List.of(
-                        pointsOfFirstLine, pointsOfSecondLine, pointsOfThirdLine, pointsOfFourthLine
-                )
-        );
-        int ladderHeight = 3;
-        Ladder ladder = LadderFactory.of(playerNames.size(), ladderHeight, completeBasedStrategy);
+        Line pointsOfFirstLine = new Line(List.of(Point.NOT_EXIST, Point.NOT_EXIST));
+        Ladder ladder = new Ladder(List.of(pointsOfFirstLine));
 
         return Stream.of(
                 Arguments.of(new LadderGame(players, ladder, gameResults), players.get("a"), "꽝"),
