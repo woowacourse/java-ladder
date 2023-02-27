@@ -1,10 +1,12 @@
 package ladder.controller;
 
-import java.util.List;
-import ladder.domain.BooleanGenerator;
+import java.util.function.Supplier;
+import ladder.domain.Height;
+import ladder.domain.Items;
 import ladder.domain.LadderGame;
-import ladder.domain.Line;
+import ladder.domain.LadderGameResult;
 import ladder.domain.Players;
+import ladder.util.BooleanGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -26,35 +28,41 @@ public class LadderGameController {
 
     public void run() {
         final LadderGame ladderGame = initialize();
-        final List<String> players = ladderGame.getPlayers();
-        final List<Line> ladder = ladderGame.getLadder();
-
-        outputView.printResult(players, ladder);
+        outputView.printLadderResult(ladderGame);
+        final LadderGameResult ladderGameResult = ladderGame.play();
+        printLadderGameResult(ladderGameResult);
     }
 
     private LadderGame initialize() {
-        final Players players = readPlayers();
-        final int height = readHeight();
-        
-        return new LadderGame(booleanGenerator, players, height);
+        final Players players = repeatUntilGetValidInput(() -> Players.from(inputView.readPlayerNames()));
+        final Items items = repeatUntilGetValidInput(() -> Items.of(inputView.readItemNames(), players.count()));
+        final Height height = repeatUntilGetValidInput(() -> new Height(inputView.readLadderHeight()));
+
+        return LadderGame.initialize(players, booleanGenerator, height, items);
     }
 
-    private Players readPlayers() {
+    private <T> T repeatUntilGetValidInput(final Supplier<T> inputReader) {
         try {
-            final List<String> names = inputView.readPlayerNames();
-            return new Players(names);
+            return inputReader.get();
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-            return readPlayers();
+            return repeatUntilGetValidInput(inputReader);
         }
     }
 
-    private int readHeight() {
-        try {
-            return inputView.readLadderHeight();
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return readHeight();
+    private void printLadderGameResult(final LadderGameResult ladderGameResult) {
+        LadderGameCommand command = LadderGameCommand.SINGLE;
+        while (command.isContinued()) {
+            final String name = repeatUntilGetValidInput(() -> getValidPlayerName(ladderGameResult));
+            command = LadderGameCommand.from(name);
+            outputView.printLadderGameResult(ladderGameResult, name);
         }
     }
+
+    private String getValidPlayerName(final LadderGameResult ladderGameResult) {
+        final String name = inputView.readPlayerName();
+        ladderGameResult.validatePlayerName(name);
+        return name;
+    }
+
 }

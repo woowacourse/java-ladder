@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.util;
 
 import java.util.Random;
 

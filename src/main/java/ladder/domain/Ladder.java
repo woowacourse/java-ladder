@@ -1,23 +1,33 @@
 package ladder.domain;
 
-import static java.util.stream.Collectors.toUnmodifiableList;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
+import ladder.util.BooleanGenerator;
 
-class Ladder {
+public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(final BooleanGenerator booleanGenerator, final int height, final int width) {
-        this.lines = generateLines(booleanGenerator, height, width);
+    private Ladder(final List<Line> lines) {
+        this.lines = lines;
     }
 
-    private List<Line> generateLines(final BooleanGenerator booleanGenerator, final int height, final int width) {
-        return Stream.generate(() -> new Line(booleanGenerator, width))
+    public static Ladder generate(final BooleanGenerator booleanGenerator, final int height, final int width) {
+        return Stream.generate(() -> Line.generate(booleanGenerator, width))
                 .limit(height)
-                .collect(toUnmodifiableList());
+                .collect(collectingAndThen(toList(), Ladder::new));
+    }
+
+    public Position play(final Position position) {
+        Position currentPosition = position;
+        for (Line line : lines) {
+            currentPosition = line.play(currentPosition);
+        }
+        return currentPosition;
     }
 
     public List<Line> getLines() {

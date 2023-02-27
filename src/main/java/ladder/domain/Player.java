@@ -1,28 +1,31 @@
 package ladder.domain;
 
 public class Player {
-    private static final int NAME_LENGTH_UPPER_BOUND = 5;
-    private static final String INVALID_NAME_LENGTH_MESSAGE = "이름은 1자 이상, " +
-            NAME_LENGTH_UPPER_BOUND + "자 이하여야 한다.";
+    private final PlayerName name;
+    private final Position position;
 
-    private final String name;
-
-    public Player(final String name) {
-        validate(name);
+    private Player(final PlayerName name, final Position position) {
         this.name = name;
+        this.position = position;
     }
 
-    private void validate(final String name) {
-        if (isInvalidNameLength(name)) {
-            throw new IllegalArgumentException(INVALID_NAME_LENGTH_MESSAGE);
-        }
+    public static Player of(final String name, final int index) {
+        return new Player(new PlayerName(name), Position.valueOf(index));
     }
 
-    private boolean isInvalidNameLength(final String name) {
-        return name.isBlank() || NAME_LENGTH_UPPER_BOUND < name.length();
+    public Position play(final Ladder ladder) {
+        return ladder.play(position);
+    }
+
+    public boolean isSameName(final String name) {
+        return this.name.isSameAs(name);
+    }
+
+    public boolean isSamePosition(final Position position) {
+        return this.position == position;
     }
 
     public String getName() {
-        return name;
+        return name.getValue();
     }
 }

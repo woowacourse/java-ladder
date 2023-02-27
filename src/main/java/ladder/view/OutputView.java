@@ -2,80 +2,81 @@ package ladder.view;
 
 import static java.util.stream.Collectors.joining;
 
+import java.util.Collection;
 import java.util.List;
-import ladder.domain.Line;
-import ladder.domain.LineStatus;
+import java.util.Map;
+import ladder.domain.LadderGame;
+import ladder.domain.LadderGameResult;
 
 public class OutputView {
-    private static final int INITIAL_PLAYER_INDEX = 0;
     private static final int EMPTY_NAME_LENGTH = 0;
-    private static final long SKIP_INITIAL_PLAYER = 1L;
-    private static final String GAME_RESULT_MESSAGE = "\n실행결과";
-    private static final String CONNECTED_SYMBOL = "-";
-    private static final String EMPTY_SYMBOL = " ";
-    private static final String NAME_MESSAGE_FORMAT = " %";
-    private static final String STRING_FORMAT = "s";
-    private static final String LINE_STATUS_MESSAGE_FORMAT = "%s|";
-    private static final String NEXT_LINE = "\n";
+    private static final String NEXT_LINE = System.lineSeparator();
+    private static final String LADDER_RESULT_MESSAGE = NEXT_LINE + "사다리결과" + NEXT_LINE;
+    private static final String NAME_MESSAGE_FORMAT = " %%%ds";
     private static final String ERROR_MESSAGE = "[ERROR] ";
+    private static final int SINGLE_GAME_RESULT_SIZE = 1;
+    private static final String SINGLE_RESULT_MESSAGE_FORMAT = "%s";
+    private static final String LADDER_GAME_RESULT_MESSAGE = NEXT_LINE + "실행 결과";
+    private static final String LADDER_GAME_RESULT_MESSAGE_FORMAT = "%s : %s";
 
-    public void printResult(final List<String> players, final List<Line> ladder) {
-        System.out.println(GAME_RESULT_MESSAGE);
+    public void printLadderResult(final LadderGame ladderGame) {
+        System.out.println(LADDER_RESULT_MESSAGE);
 
-        final int maxNameLength = calculateMaxNameLength(players);
+        final List<String> players = ladderGame.getPlayers();
+        final List<String> items = ladderGame.getItems();
+        final int maxNameLength = calculateMaxNameLength(List.of(players, items));
+
         System.out.println(generateNameMessages(players, maxNameLength));
-
-        final String initialPlayerName = findInitialPlayerName(players);
-        System.out.println(generateLadderMessage(initialPlayerName.length(), maxNameLength, ladder));
+        System.out.println(LadderMessageGenerator.generate(maxNameLength, ladderGame.getLadder()));
+        System.out.println(generateNameMessages(items, maxNameLength));
     }
 
-    private int calculateMaxNameLength(final List<String> players) {
-        return players.stream()
+    private int calculateMaxNameLength(final List<List<String>> names) {
+        return names.stream()
+                .flatMap(Collection::stream)
                 .map(String::length)
                 .max(Integer::compareTo)
                 .orElse(EMPTY_NAME_LENGTH);
     }
 
-    private String generateNameMessages(final List<String> players, final int maxNameLength) {
-        final String initialPlayerName = findInitialPlayerName(players) + EMPTY_SYMBOL;
-        final String nameMessage = players.stream()
-                .skip(SKIP_INITIAL_PLAYER)
+    private String generateNameMessages(final List<String> names, final int maxNameLength) {
+        return names.stream()
                 .map(name -> generateNameMessage(name, maxNameLength))
                 .collect(joining());
-        return NEXT_LINE + initialPlayerName + nameMessage;
     }
 
     private String generateNameMessage(final String name, int maxNameLength) {
-        return String.format(NAME_MESSAGE_FORMAT + maxNameLength + STRING_FORMAT, name);
+        final String nameSizeFormat = String.format(NAME_MESSAGE_FORMAT, maxNameLength);
+        return String.format(nameSizeFormat, name);
     }
 
-    private String findInitialPlayerName(final List<String> players) {
-        return players.get(INITIAL_PLAYER_INDEX);
+    public void printLadderGameResult(final LadderGameResult ladderGameResult, final String name) {
+        System.out.println(LADDER_GAME_RESULT_MESSAGE);
+        System.out.println(generateLadderGameResultMessage(ladderGameResult.get(name)));
     }
 
-    private String generateLadderMessage(final int initialNameLength, final int maxNameLength, final List<Line> lines) {
-        return lines.stream()
-                .map(line -> generateLineMessage(initialNameLength, maxNameLength, line))
-                .collect(joining(NEXT_LINE));
-    }
-
-    private String generateLineMessage(final int initialNameLength, final int maxNameLength, final Line line) {
-        final String initialMessage = generateRepeatedLineStatusMessage(EMPTY_SYMBOL, initialNameLength);
-        final String ladderMessage = line.getLine().stream()
-                .map(lineStatus -> generateLineStatusMessage(maxNameLength, lineStatus))
-                .collect(joining());
-        return initialMessage + ladderMessage;
-    }
-
-    private String generateRepeatedLineStatusMessage(final String symbol, final int count) {
-        return String.format(LINE_STATUS_MESSAGE_FORMAT, symbol.repeat(count));
-    }
-
-    private String generateLineStatusMessage(final int maxNameLength, final LineStatus lineStatus) {
-        if (lineStatus.isConnected()) {
-            return generateRepeatedLineStatusMessage(CONNECTED_SYMBOL, maxNameLength);
+    private String generateLadderGameResultMessage(final Map<String, String> result) {
+        if (isSingleLadderGameResult(result)) {
+            return generateSingleLadderGameResultMessage(result);
         }
-        return generateRepeatedLineStatusMessage(EMPTY_SYMBOL, maxNameLength);
+        return generateMultipleLadderGameResultMessage(result);
+    }
+
+    private boolean isSingleLadderGameResult(final Map<String, String> result) {
+        return result.size() == SINGLE_GAME_RESULT_SIZE;
+    }
+
+    private String generateSingleLadderGameResultMessage(final Map<String, String> result) {
+        final String itemName = result.values().stream()
+                .findAny()
+                .orElse(NEXT_LINE);
+        return String.format(SINGLE_RESULT_MESSAGE_FORMAT, itemName);
+    }
+
+    private String generateMultipleLadderGameResultMessage(final Map<String, String> result) {
+        return result.keySet().stream()
+                .map(player -> String.format(LADDER_GAME_RESULT_MESSAGE_FORMAT, player, result.get(player)))
+                .collect(joining(NEXT_LINE));
     }
 
     public void printError(final String message) {

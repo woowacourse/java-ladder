@@ -1,40 +1,76 @@
 package ladder.domain;
 
-import java.util.ArrayDeque;
+import static ladder.domain.LineStatus.DISCONNECTED;
+import static ladder.domain.LineStatus.from;
+
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Deque;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import ladder.util.BooleanGenerator;
 
 public class Line {
 
-    private final List<LineStatus> statuses;
+    private final Map<Position, LineStatus> statuses;
 
-    public Line(final BooleanGenerator booleanGenerator, final int width) {
-        this.statuses = generateLine(booleanGenerator, width);
+    private Line(final Map<Position, LineStatus> statuses) {
+        this.statuses = statuses;
     }
 
-    private List<LineStatus> generateLine(final BooleanGenerator booleanGenerator, final int width) {
-        final Deque<LineStatus> statuses = new ArrayDeque<>();
-        for (int i = 0; i < width; i++) {
-            statuses.add(generateLineStatus(booleanGenerator, statuses));
+    public static Line generate(final BooleanGenerator booleanGenerator, final int width) {
+        final Map<Position, LineStatus> statuses = new LinkedHashMap<>();
+        for (Position position : Position.range(width)) {
+            final LineStatus previousStatus = getPreviousLineStatus(statuses, position);
+            statuses.put(position, generateLineStatus(booleanGenerator, previousStatus));
         }
-        return new ArrayList<>(statuses);
+        return new Line(statuses);
     }
 
-    private LineStatus generateLineStatus(final BooleanGenerator booleanGenerator, final Deque<LineStatus> statuses) {
+    private static LineStatus getPreviousLineStatus(final Map<Position, LineStatus> statuses, final Position position) {
+        if (position.hasPrevious()) {
+            return statuses.get(position.getPrevious());
+        }
+        return DISCONNECTED;
+    }
+
+    private static LineStatus generateLineStatus(
+            final BooleanGenerator booleanGenerator,
+            final LineStatus previousLineStatus
+    ) {
         final boolean status = booleanGenerator.generate();
-        if (isConnectable(statuses)) {
-            return LineStatus.from(status);
+        if (previousLineStatus.isDisconnected()) {
+            return from(status);
         }
-        return LineStatus.DISCONNECTED;
+        return DISCONNECTED;
     }
 
-    private boolean isConnectable(final Deque<LineStatus> statuses) {
-        return statuses.isEmpty() || statuses.getLast().isDisconnected();
+    public Position play(final Position position) {
+        if (isPreviousConnected(position)) {
+            return position.getPrevious();
+        }
+
+        if (isNextConnected(position)) {
+            return position.getNext();
+        }
+
+        return position;
+    }
+
+    private boolean isPreviousConnected(final Position position) {
+        if (position.hasPrevious()) {
+            return statuses.getOrDefault(position.getPrevious(), DISCONNECTED).isConnected();
+        }
+        return false;
+    }
+
+    private boolean isNextConnected(final Position position) {
+        if (position.hasNext()) {
+            return statuses.getOrDefault(position, DISCONNECTED).isConnected();
+        }
+        return false;
     }
 
     public List<LineStatus> getLine() {
-        return Collections.unmodifiableList(statuses);
+        return new ArrayList<>(statuses.values());
     }
 }
