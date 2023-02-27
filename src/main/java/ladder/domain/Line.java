@@ -56,15 +56,14 @@ public class Line {
         return bars;
     }
 
-    public Location move(Location location) {
+    public void move(Location location) {
         if (moveLeftIfPossible(location)) {
-            return location;
+            return;
         };
         if (moveRightIfPossible(location)) {
-            return location;
+            return;
         }
         moveCenterIfPossible(location);
-        return location;
     }
 
     private boolean moveLeftIfPossible(Location location) {
@@ -85,13 +84,11 @@ public class Line {
         return false;
     }
 
-    private boolean moveCenterIfPossible(Location location) {
+    private void moveCenterIfPossible(Location location) {
         int startColumnIndex = location.getColumnIndex();
         if (isMovableToCenter(startColumnIndex)) {
             location.moveColumnTo(CENTER);
-            return true;
         }
-        return false;
     }
 
     private boolean isMovableToLeft(int startColumnIndex) {
