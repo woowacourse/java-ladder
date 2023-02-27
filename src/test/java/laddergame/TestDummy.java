@@ -5,6 +5,7 @@ import java.util.Deque;
 import java.util.List;
 import laddergame.domain.BooleanGenerator;
 import laddergame.domain.Height;
+import laddergame.domain.LadderLinesGenerator;
 import laddergame.domain.LadderResult;
 import laddergame.domain.PersonalName;
 import laddergame.domain.PersonalNames;
@@ -27,4 +28,6 @@ public class TestDummy {
             return polled;
         }
     };
+
+    public static final LadderLinesGenerator TEST_LADDER_GENERATOR = new LadderLinesGenerator(TEST_BOOLEAN_GENERATOR);
 }

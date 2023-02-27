@@ -1,11 +1,8 @@
 package laddergame.domain;
 
-import static laddergame.TestDummy.TEST_BOOLEAN_GENERATOR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.List;
 import java.util.Map;
 import laddergame.TestDummy;
@@ -30,7 +27,8 @@ class LadderGameTest {
         //given
         PersonalNames personalNames = new PersonalNames(List.of("rosie", "kiara"));
         LadderResult ladderResult = TestDummy.LADDER_RESULT_SIZE_2;
-        Ladder ladder = new Ladder(new Width(2), new Height(3), TEST_BOOLEAN_GENERATOR);
+        List<Line> lines = List.of(new Line(List.of(true)), new Line(List.of(false)));
+        Ladder ladder = new Ladder(new Width(2), new Height(3), lines);
         LadderGame ladderGame = new LadderGame(personalNames, ladderResult);
         //when
         //then
@@ -45,7 +43,9 @@ class LadderGameTest {
         //given
         PersonalNames personalNames = new PersonalNames(List.of("rosie", "kiara"));
         LadderResult ladderResult = TestDummy.LADDER_RESULT_SIZE_2;
-        Ladder ladder = new Ladder(new Width(2), new Height(3), TEST_BOOLEAN_GENERATOR);
+
+        List<Line> lines = List.of(new Line(List.of(true)), new Line(List.of(false)));
+        Ladder ladder = new Ladder(new Width(2), new Height(3), lines);
         LadderGame ladderGame = new LadderGame(personalNames, ladderResult);
         //when
         Map<PersonalName, LadderResultItem> gameResult = ladderGame.moveAndGetResult(ladder).getNameToItem();
@@ -59,19 +59,10 @@ class LadderGameTest {
         //given
         PersonalNames personalNames = new PersonalNames(List.of("rosie", "kiara"));
         LadderResult ladderResult = LadderResult.of(personalNames, List.of("result1", "result2"));
-        BooleanGenerator fixedGenerator = new BooleanGenerator() { // TODO: fixture로 빼기
-            final Deque<Boolean> queue = new ArrayDeque<>(List.of(
-                    false,
-                    true,
-                    false
-            ));
 
-            @Override
-            public boolean generate() {
-                return queue.pollFirst();
-            }
-        };
-        Ladder ladder = new Ladder(new Width(2), new Height(3), fixedGenerator);
+        List<Line> lines = List.of(new Line(List.of(false)), new Line(List.of(true)), new Line(List.of(false)));
+        Ladder ladder = new Ladder(new Width(2), new Height(3), lines);
+
         LadderGame ladderGame = new LadderGame(personalNames, ladderResult);
         //when
         Map<PersonalName, LadderResultItem> matchedResult = ladderGame.moveAndGetResult(ladder).getNameToItem();

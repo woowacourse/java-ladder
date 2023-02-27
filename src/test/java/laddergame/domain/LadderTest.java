@@ -1,7 +1,6 @@
 package laddergame.domain;
 
 import static laddergame.TestDummy.HEIGHT_VALUE_1;
-import static laddergame.TestDummy.TEST_BOOLEAN_GENERATOR;
 import static laddergame.TestDummy.WIDTH_VALUE_2;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -20,10 +19,10 @@ class LadderTest {
         //given
         final Width width = null;
         final Height height = new Height(1);
-
+        final List<Line> lines = List.of(new Line(List.of(true, false, true)));
         //when
         //then
-        assertThatThrownBy(() -> new Ladder(width, height, TEST_BOOLEAN_GENERATOR))
+        assertThatThrownBy(() -> new Ladder(width, height, lines))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -33,9 +32,9 @@ class LadderTest {
         //given
         final Width width = new Width(2);
         final Height height = null;
-
+        final List<Line> lines = List.of(new Line(List.of(true, false, true)));
         //when,then
-        assertThatThrownBy(() -> new Ladder(width, height, TEST_BOOLEAN_GENERATOR))
+        assertThatThrownBy(() -> new Ladder(width, height, lines))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -45,16 +44,17 @@ class LadderTest {
         //given
         final Width width = new Width(2);
         final Height height = new Height(2);
-
+        final List<Line> lines = List.of(new Line(List.of(true, false, true)), new Line(List.of(true, false, true)));
         //when,then
-        assertDoesNotThrow(() -> new Ladder(width, height, TEST_BOOLEAN_GENERATOR));
+        assertDoesNotThrow(() -> new Ladder(width, height, lines));
     }
 
     @DisplayName("라인 사이즈가 비면 예외가 발생한다.")
     @Test
     void createdLineSizeIsNotEmpty() {
         //given
-        final Ladder ladder = new Ladder(WIDTH_VALUE_2, HEIGHT_VALUE_1, TEST_BOOLEAN_GENERATOR);
+        final List<Line> lines = List.of(new Line(List.of(true, false, true)));
+        final Ladder ladder = new Ladder(WIDTH_VALUE_2, HEIGHT_VALUE_1, lines);
 
         //when,then
         assertThat(ladder.getLines()).isNotEmpty();
@@ -64,33 +64,10 @@ class LadderTest {
     @Test
     void createLineSizeIsEqualToHeight() {
         //given
-        final Ladder ladder = new Ladder(WIDTH_VALUE_2, HEIGHT_VALUE_1, TEST_BOOLEAN_GENERATOR);
+        final List<Line> lines = List.of(new Line(List.of(true, false, true)));
+        final Ladder ladder = new Ladder(WIDTH_VALUE_2, HEIGHT_VALUE_1, lines);
 
         //when,then
         assertThat(ladder.getLines()).hasSize(HEIGHT_VALUE_1.getValue());
-    }
-
-    @DisplayName("BooleanGenerator가 null이면 예외가 발생한다.")
-    @Test
-    void throwExceptionWhenBooleanGeneratorIsNull() {
-        //given
-        final BooleanGenerator generator = null;
-
-        //when,then
-        assertThatThrownBy(() -> new Ladder(WIDTH_VALUE_2, HEIGHT_VALUE_1, generator));
-    }
-
-    @DisplayName("라인 사이즈는 세로 길이와 같다.")
-    @Test
-    void returnsLinesSizeIsHeight() {
-        //given
-        final Height height_5 = new Height(5);
-        final Ladder ladder = new Ladder(WIDTH_VALUE_2, height_5, TEST_BOOLEAN_GENERATOR);
-
-        //when
-        final List<Line> lines = ladder.getLines();
-
-        //then
-        assertThat(lines).hasSize(5);
     }
 }

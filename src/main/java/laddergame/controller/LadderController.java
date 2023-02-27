@@ -6,6 +6,7 @@ import laddergame.domain.BooleanGenerator;
 import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.LadderGame;
+import laddergame.domain.LadderLinesGenerator;
 import laddergame.domain.LadderResult;
 import laddergame.domain.Line;
 import laddergame.domain.NamesWithItem;
@@ -35,11 +36,19 @@ public class LadderController {
     public void run() {
         final PersonalNames names = createPersonalNames();
         final LadderResult ladderResult = createLadderResult(names);
+        final Width ladderWidth = new Width(names.getSize());
         final Height ladderHeight = createHeight();
-        final Ladder ladder = new Ladder(new Width(names.getSize()), ladderHeight, booleanGenerator);
+
+        final Ladder ladder = makeLadder(ladderWidth, ladderHeight);
 
         printLadder(names, ladderResult, ladder);
         playGame(names, ladderResult, ladder);
+    }
+
+    private Ladder makeLadder(Width ladderWidth, Height ladderHeight) {
+        final LadderLinesGenerator ladderLinesGenerator = new LadderLinesGenerator(booleanGenerator);
+        final List<Line> lines = ladderLinesGenerator.createLines(ladderWidth, ladderHeight);
+        return new Ladder(ladderWidth, ladderHeight, lines);
     }
 
     private void playGame(PersonalNames names, LadderResult ladderResult, Ladder ladder) {
