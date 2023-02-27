@@ -12,21 +12,21 @@ public class Line {
 
     public Line(final int playerNumber, final StoolGenerator stoolGenerator) {
         this.stoolGenerator = stoolGenerator;
-        this.stools = makeBlocks(playerNumber - 1);
+        this.stools = makeStools(playerNumber - 1);
     }
 
-    private List<Stool> makeBlocks(final int blockCount) {
+    private List<Stool> makeStools(final int blockCount) {
         Stack<Stool> temporaryStools = new Stack<>();
         temporaryStools.push(stoolGenerator.generate());
         while (temporaryStools.size() != blockCount) {
-            Stool stool = generateBlock(temporaryStools.peek());
+            Stool stool = generateStools(temporaryStools.peek());
             temporaryStools.push(stool);
         }
         return List.copyOf(temporaryStools);
     }
 
-    private Stool generateBlock(final Stool previousStool) {
-        if (previousStool.isExistBlock()) {
+    private Stool generateStools(final Stool previousStool) {
+        if (previousStool.isExistStool()) {
             return Stool.EMPTY;
         }
         return stoolGenerator.generate();

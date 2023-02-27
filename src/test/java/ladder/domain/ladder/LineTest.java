@@ -18,7 +18,7 @@ import static org.assertj.core.util.Lists.newArrayList;
 class LineTest {
 
     @Test
-    @DisplayName("라인에 연속해서 블록이 놓인다면 다시 블록을 놓는다.")
+    @DisplayName("라인에 연속해서 발판이 놓인다면 다시 블록을 놓는다.")
     void 라인이_재생성되는지_테스트() {
         List<Stool> stools = newArrayList(Stool.EXIST, Stool.EXIST);
         StoolGenerator stoolGenerator = new TestStoolGenerator(new ArrayList<>(stools));
@@ -30,8 +30,8 @@ class LineTest {
 
     @ParameterizedTest
     @MethodSource("parameterProvider")
-    @DisplayName("<플레이어수 - 1>만큼의 블록이 생성된다.")
-    void 올바른_개수의_블록이_생성되는지_확인(List<Stool> stools, int playerNumber) {
+    @DisplayName("<플레이어수 - 1>만큼의 발판이 생성된다.")
+    void 올바른_개수의_발판이_생성되는지_확인(List<Stool> stools, int playerNumber) {
         StoolGenerator stoolGenerator = new TestStoolGenerator(new ArrayList<>(stools));
 
         assertThat(new Line(playerNumber, stoolGenerator).getStools().size())

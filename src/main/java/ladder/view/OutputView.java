@@ -66,7 +66,7 @@ public class OutputView {
     }
 
     private static void printBlock(final Stool stool) {
-        if (stool.isExistBlock()) {
+        if (stool.isExistStool()) {
             System.out.print(LADDER_BLOCK);
             return;
         }

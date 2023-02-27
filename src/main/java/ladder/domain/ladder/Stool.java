@@ -5,7 +5,7 @@ public enum Stool {
     EMPTY,
     EXIST;
 
-    public boolean isExistBlock() {
+    public boolean isExistStool() {
         return this == Stool.EXIST;
     }
 }
