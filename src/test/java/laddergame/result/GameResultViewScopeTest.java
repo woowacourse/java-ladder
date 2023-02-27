@@ -1,6 +1,5 @@
-package laddergame.ladder;
+package laddergame.result;
 
-import laddergame.result.GameResultViewScope;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

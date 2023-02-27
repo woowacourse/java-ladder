@@ -1,8 +1,8 @@
-package laddergame.ladder;
+package laddergame.result;
 
+import laddergame.ladder.Ladder;
+import laddergame.ladder.LadderTest;
 import laddergame.player.Players;
-import laddergame.result.GameResult;
-import laddergame.result.Prizes;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

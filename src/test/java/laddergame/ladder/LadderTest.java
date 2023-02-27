@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-class LadderTest {
+public class LadderTest {
     @Nested
     class 생성기능 {
         @Test
@@ -62,7 +62,7 @@ class LadderTest {
         }
     }
 
-    static List<Row> generateRowList() {
+    public static List<Row> generateRowList() {
         return List.of(
                 Row.of(List.of(Foothold.PASSABLE, Foothold.BLOCKED, Foothold.BLOCKED, Foothold.PASSABLE), 4),
                 Row.of(List.of(Foothold.BLOCKED, Foothold.PASSABLE, Foothold.BLOCKED, Foothold.PASSABLE), 4)

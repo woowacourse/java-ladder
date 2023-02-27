@@ -1,6 +1,5 @@
-package laddergame.ladder;
+package laddergame.result;
 
-import laddergame.result.Prizes;
 import laddergame.vo.Position;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.Test;

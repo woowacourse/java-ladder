@@ -1,6 +1,7 @@
-package laddergame.ladder;
+package laddergame.player;
 
-import laddergame.player.Player;
+import laddergame.ladder.Ladder;
+import laddergame.ladder.LadderTest;
 import laddergame.vo.Position;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;

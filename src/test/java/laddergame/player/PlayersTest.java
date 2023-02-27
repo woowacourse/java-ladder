@@ -1,7 +1,7 @@
-package laddergame.ladder;
+package laddergame.player;
 
-import laddergame.player.Player;
-import laddergame.player.Players;
+import laddergame.ladder.Ladder;
+import laddergame.ladder.LadderTest;
 import laddergame.vo.Position;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.Nested;
