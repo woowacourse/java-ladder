@@ -66,7 +66,7 @@ public class LadderController {
     private Ladder generateLadder(int personCount) {
         try {
             int height = inputView.readHeight();
-            return new Ladder(height, personCount, booleanGenerator);
+            return Ladder.of(height, personCount, booleanGenerator);
         } catch (IllegalArgumentException exception) {
             LogType.ERROR_MESSAGE.log(exception.getMessage());
             return generateLadder(personCount);

@@ -31,7 +31,7 @@ public class LadderGameTest {
         String prize3 = "2000";
         String prize4 = "1000";
 
-        Ladder ladder = new Ladder(4, 4, new TestBooleanGenerator(Lists.newArrayList(true, false, false, false, true, false, true, false, true, false, false, false)));
+        Ladder ladder = Ladder.of(4, 4, new TestBooleanGenerator(Lists.newArrayList(true, false, false, false, true, false, true, false, true, false, false, false)));
         Players players = new Players(List.of(kong, odo, gray, kiara));
         Prizes prizes = Prizes.of(List.of(prize1, prize2, prize3, prize4), 4);
 

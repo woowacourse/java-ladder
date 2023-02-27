@@ -14,10 +14,13 @@ public class Ladder {
 
     private final List<Line> ladder;
 
-    public Ladder(int height, int width, BooleanGenerator booleanGenerator) {
-        ladder = new ArrayList<>();
+    private Ladder(List<Line> ladder) {
+        this.ladder = ladder;
+    }
+
+    public static Ladder of(int height, int width, BooleanGenerator booleanGenerator) {
         validate(height, width);
-        generateLadder(height, width, booleanGenerator);
+        return new Ladder(generateLadder(height, width, booleanGenerator));
     }
 
     private static void validate(int height, int width) {
@@ -37,10 +40,12 @@ public class Ladder {
         }
     }
 
-    private void generateLadder(int height, int personCount, BooleanGenerator booleanGenerator) {
+    private static List<Line> generateLadder(int height, int personCount, BooleanGenerator booleanGenerator) {
+        List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             ladder.add(new Line(personCount, booleanGenerator));
         }
+        return ladder;
     }
 
     public List<Line> getLadder() {
