@@ -32,7 +32,8 @@ public class Line {
     }
 
     private static void addLine(List<ConnectStatus> line, RandomValueGenerator generator) {
-        if (!line.get(line.size() - 1).status()) {
+        int lastPosition = line.size() - 1;
+        if (!line.get(lastPosition).status()) {
             line.add(ConnectStatus.valueOf(generator.generate()));
             return;
         }
