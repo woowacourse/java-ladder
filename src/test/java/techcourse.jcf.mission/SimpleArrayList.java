@@ -58,7 +58,9 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String set(int index, String value) {
-        return null;
+        String currentValue = values[index];
+        values[index] = value;
+        return currentValue;
     }
 
     @Override
@@ -135,6 +137,9 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void clear() {
+        for (int index = 0; index < size(); index++) {
+            values[index] = null;
+        }
     }
 
     @Override
