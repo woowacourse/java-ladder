@@ -11,27 +11,33 @@ import util.RandomValueGenerator;
  */
 public class Line {
 
-    private final List<Boolean> points = new ArrayList<>();
+    private static final int WALL_AND_PEOPLE_DIFFERENCE = 1;
+    private final List<ConnectStatus> points = new ArrayList<>();
+
     private Line() {
     }
 
-    public List<Boolean> getPoints() {
+    public List<ConnectStatus> getPoints() {
         return points;
     }
 
-    public static Line newInstanceWithPersonCount(int personCount, RandomValueGenerator generator){
+    public static Line newInstanceWithPersonCount(int personCount, RandomValueGenerator generator) {
         Line line = new Line();
-        List<Boolean> lineValue = line.points;
-        lineValue.add(generator.generate());
+        List<ConnectStatus> lineValue = line.points;
+        lineValue.add(ConnectStatus.valueOf(generator.generate()));
         --personCount;
-        for (int i = 0; i < personCount - 1; i++) {
-            if (!lineValue.get(lineValue.size() - 1)) {
-                lineValue.add(generator.generate());
-                continue;
-            }
-            lineValue.add(false);
+        for (int i = 0; i < personCount - WALL_AND_PEOPLE_DIFFERENCE; i++) {
+            addLine(lineValue, generator);
         }
         return line;
     }
 
+    private static void addLine(List<ConnectStatus> line, RandomValueGenerator generator) {
+        int lastPosition = line.size() - 1;
+        if (!line.get(lastPosition).status()) {
+            line.add(ConnectStatus.valueOf(generator.generate()));
+            return;
+        }
+        line.add(ConnectStatus.DISCONNECT);
+    }
 }

@@ -1,5 +1,6 @@
 package ui.output;
 
+import domain.ConnectStatus;
 import java.util.List;
 
 /**
@@ -16,11 +17,11 @@ public enum LadderShape {
 
     private final String shape;
 
-    public static StringBuilder getLineForm(List<Boolean> points, int maxLength) {
+    public static StringBuilder getLineForm(List<ConnectStatus> points, int maxLength) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(generateFirstWall(maxLength));
-        for (boolean point : points) {
-            appendLineForm(point, stringBuilder, maxLength);
+        for (ConnectStatus point : points) {
+            appendLineForm(point.status(), stringBuilder, maxLength);
             stringBuilder.append(WALL.shape);
         }
         return stringBuilder;
