@@ -58,7 +58,9 @@ public class Persons {
 
     public String findPersonNameInPosition(int position) {
         return persons.stream()
-                .filter(person -> person.getPosition() == position)
-                .findAny().get().getName();
+                .filter(person -> person.hasSamePosition(position))
+                .map(Person::getName)
+                .findAny()
+                .orElse(null);
     }
 }

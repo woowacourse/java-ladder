@@ -1,5 +1,6 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -40,7 +41,7 @@ class PersonsTest {
             Persons persons = Persons.from(names);
 
             //then
-            Assertions.assertThat(persons.getAllPersonPosition()).isEqualTo(List.of(0, 1, 2));
+            assertThat(persons.getAllPersonPosition()).containsExactly(0, 1, 2);
         }
 
         @Test
@@ -53,7 +54,7 @@ class PersonsTest {
             String name = persons.findPersonNameInPosition(1);
 
             //then
-            Assertions.assertThat(name).isEqualTo("baron");
+            assertThat(name).isEqualTo("baron");
         }
     }
 }
