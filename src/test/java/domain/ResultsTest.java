@@ -1,4 +1,4 @@
-package domain.util;
+package domain;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -7,7 +7,6 @@ import java.util.Map;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -17,10 +16,7 @@ import domain.end.Ends;
 import domain.user.User;
 import domain.user.Users;
 
-class ResultMapperTest {
-
-	@Nested
-	static class ToResultTest {
+class ResultsTest {
 		static List<User> users = new Users(List.of("a", "b", "c", "d")).getUsers();
 		static List<End> ends = new Ends(List.of("가", "나", "다", "라"), 4).getEnds();
 		static Map<User, End> result = new LinkedHashMap<>();
@@ -36,7 +32,7 @@ class ResultMapperTest {
 		@DisplayName("한 명의 결과만을 반환해야 한다.")
 		@CsvSource({"a,가", "b,나", "c,다", "d,라"})
 		void toResultSingleTest(String name, String end) {
-			Map<User, End> selectedResult = ResultMapper.toResult(result, List.of(name));
+			Map<User, End> selectedResult = Results.of(result, List.of(name)).getResults();
 			Assertions.assertThat(selectedResult.size()).isEqualTo(1);
 			Assertions.assertThat(selectedResult.get(new User(name)).getName()).isEqualTo(end);
 		}
@@ -50,7 +46,7 @@ class ResultMapperTest {
 			expected.put(new User("b"), new End("나"));
 			expected.put(new User("a"), new End("가"));
 
-			Map<User, End> selectedResult = ResultMapper.toResult(result, targetUserNames);
+			Map<User, End> selectedResult = Results.of(result, targetUserNames).getResults();
 			Assertions.assertThat(selectedResult)
 				.containsExactlyEntriesOf(expected);
 		}
@@ -65,7 +61,7 @@ class ResultMapperTest {
 			expected.put(new User("c"), new End("다"));
 			expected.put(new User("d"), new End("라"));
 
-			Map<User, End> selectedResult = ResultMapper.toResult(result, targetUserNames);
+			Map<User, End> selectedResult = Results.of(result, targetUserNames).getResults();
 			Assertions.assertThat(selectedResult)
 				.containsExactlyEntriesOf(expected);
 		}
@@ -75,7 +71,7 @@ class ResultMapperTest {
 		void userNotExistTest() {
 			List<String> targetUserNames = List.of("a", "b", "null");
 
-			Assertions.assertThatThrownBy(() -> ResultMapper.toResult(result, targetUserNames))
+			Assertions.assertThatThrownBy(() -> Results.of(result, targetUserNames))
 				.isInstanceOf(IllegalArgumentException.class);
 		}
 
@@ -84,8 +80,7 @@ class ResultMapperTest {
 		void userDuplicatedTest() {
 			List<String> targetUserNames = List.of("a", "b", "b");
 
-			Assertions.assertThatThrownBy(() -> ResultMapper.toResult(result, targetUserNames))
+			Assertions.assertThatThrownBy(() -> Results.of(result, targetUserNames))
 				.isInstanceOf(IllegalArgumentException.class);
 		}
-	}
 }

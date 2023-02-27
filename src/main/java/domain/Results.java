@@ -1,6 +1,5 @@
-package domain.util;
+package domain;
 
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,17 +8,22 @@ import java.util.Set;
 import domain.end.End;
 import domain.user.User;
 
-public class ResultMapper {
+public class Results {
 	private static final String KEY_NAME = "all";
 	private static final String RESULT_TARGETS_INVALID_ERROR_MSG = "중복되거나 존재하지 않는 결과를 출력할 수 없습니다.";
+	private final Map<User, End> results;
 
-	public static Map<User, End> toResult(final Map<User, End> results, final List<String> targetUserNames) {
+	private Results(final Map<User, End> results) {
+		this.results = results;
+	}
+
+	public static Results of(final Map<User, End> results, final List<String> targetUserNames) {
 		validateDuplication(targetUserNames);
 		validatePresence(results.keySet(), targetUserNames);
 		if (hasKeyName(targetUserNames)) {
-			return results;
+			return new Results(results);
 		}
-		return selectTargets(results, targetUserNames);
+		return new Results(selectTargets(results, targetUserNames));
 	}
 
 	private static void validateDuplication(final List<String> targetUserNames) {
@@ -50,6 +54,10 @@ public class ResultMapper {
 			User user = new User(name);
 			selected.put(user, results.get(user));
 		}
-		return Collections.unmodifiableMap(selected);
+		return selected;
+	}
+
+	public Map<User, End> getResults() {
+		return results;
 	}
 }
