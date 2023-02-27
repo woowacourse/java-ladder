@@ -44,7 +44,7 @@ public class OutputView {
         System.out.print(System.lineSeparator() + "실행 결과" + System.lineSeparator());
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < players.size(); i++) {
-            stringBuilder.append(players.get(i) + " : " + allResult.get(i) + System.lineSeparator());
+            stringBuilder.append(players.get(i)).append(" : ").append(allResult.get(i)).append(System.lineSeparator());
         }
         System.out.print(stringBuilder);
     }
