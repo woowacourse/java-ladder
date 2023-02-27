@@ -57,14 +57,14 @@ public class ResultView {
         String resultMessage = BLANK.repeat(lengthOfFirstName - 1);
         resultMessage += result.getResult().values()
                 .stream()
-                .map(bet -> String.format(BET_FORMAT, bet) + BLANK)
+                .map(bet -> String.format(BET_FORMAT, bet.getBet()) + BLANK)
                 .collect(Collectors.joining());
         System.out.println(resultMessage);
     }
 
     public void printGameResult(Result result, Name name) {
         System.out.println("실행결과");
-        System.out.println(result.getBetByName(name));
+        System.out.println(result.getBetByName(name).getBet());
     }
 
     public void printGameAllResult(Result result) {
@@ -74,7 +74,7 @@ public class ResultView {
 
         String resultMessage = "";
         for (int i = 0; i < names.size(); i++) {
-            resultMessage += String.format(RESULT_FORMAT, names.get(i), bets.get(i));
+            resultMessage += String.format(RESULT_FORMAT, names.get(i), bets.get(i).getBet());
             resultMessage += "\n";
         }
 

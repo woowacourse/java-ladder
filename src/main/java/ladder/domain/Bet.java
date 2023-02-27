@@ -34,8 +34,7 @@ public class Bet {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BET_FORMAT.getMessage());
     }
 
-    @Override
-    public String toString() {
+    public String getBet() {
         return this.bet;
     }
 }

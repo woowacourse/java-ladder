@@ -50,7 +50,7 @@ public class ResultTest {
         List<Bet> actualBets = List.copyOf(result.getResult().values());
 
         for (int i = 0; i < expectedBets.size(); i++) {
-            assertEquals(expectedBets.get(i), actualBets.get(i).toString());
+            assertEquals(expectedBets.get(i), actualBets.get(i).getBet());
         }
     }
 
@@ -66,7 +66,7 @@ public class ResultTest {
         List<Bet> actualBets = List.copyOf(result.getResult().values());
 
         for (int i = 0; i < expectedBets.size(); i++) {
-            assertEquals(expectedBets.get(i), actualBets.get(i).toString());
+            assertEquals(expectedBets.get(i), actualBets.get(i).getBet());
         }
     }
 }
