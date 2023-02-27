@@ -5,7 +5,6 @@ import static java.util.stream.Collectors.toList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Players {
     private static final int MIN_PLAYERS = 2;
@@ -14,14 +13,29 @@ public class Players {
     private final List<Player> players;
 
     public Players(String[] names) {
-        validateSize(names);
-        validateDuplicate(names);
-        this.players = Arrays.stream(names)
+        trimNames(names);
+        validate(names);
+        this.players = create(names);
+    }
+
+    private List<Player> create(String[] names) {
+        return Arrays.stream(names)
                 .map(Player::new)
                 .collect(toList());
     }
 
-    public void validateSize(String[] names) {
+    private void trimNames(String[] names) {
+        for (int i = 0; i < names.length; i++) {
+            names[i] = names[i].trim();
+        }
+    }
+
+    private void validate(String[] names) {
+        validateSize(names);
+        validateDuplicate(names);
+    }
+
+    private void validateSize(String[] names) {
         if (isProper(names)) {
             throw new IllegalArgumentException("[ERROR] 사용자는 2명에서 13명까지 가능합니다.");
         }
@@ -40,11 +54,22 @@ public class Players {
         }
     }
 
-    public String asString() {
+    public int findPosition(String playerName) {
+        Player findPlayer = findPlayer(playerName);
+        return players.indexOf(findPlayer);
+    }
+
+    private Player findPlayer(String playerName) {
+        return players.stream()
+                .filter(player -> player.hasName(playerName))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하는 참가자의 이름을 입력해주세요."));
+    }
+
+    public List<String> getPlayerNames() {
         return players.stream()
                 .map(Player::getName)
-                .map(name -> String.format("%-5s", name))
-                .collect(Collectors.joining(" "));
+                .collect(toList());
     }
 
     public List<Player> getPlayers() {

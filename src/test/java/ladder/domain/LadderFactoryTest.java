@@ -3,7 +3,7 @@ package ladder.domain;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
-import ladder.domain.linestrategy.CustomLineStrategy;
+import ladder.domain.strategy.linestrategy.CustomLineStrategy;
 import ladder.domain.strategy.linestrategy.LineStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package ladder.domain.linestrategy;
+package ladder.domain.strategy.linestrategy;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -6,8 +6,6 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import ladder.domain.Line;
 import ladder.domain.Step;
-import ladder.domain.strategy.linestrategy.LineStrategy;
-import ladder.domain.strategy.linestrategy.RandomLineStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;

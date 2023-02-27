@@ -6,10 +6,14 @@ public class Player {
     private final String name;
 
     public Player(String name) {
+        validate(name);
+        this.name = name;
+    }
+
+    private void validate(String name) {
         validateNull(name);
         validateBlank(name);
         validateLength(name);
-        this.name = name;
     }
 
     private void validateNull(String name) {
@@ -28,6 +32,10 @@ public class Player {
         if (name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 이름이 5글자를 초과할 수 없습니다.");
         }
+    }
+
+    public boolean hasName(String name) {
+        return this.name.equals(name);
     }
 
     public String getName() {

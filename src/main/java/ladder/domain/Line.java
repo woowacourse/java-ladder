@@ -1,9 +1,11 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Line {
+    private final static int FIRST_LINE = 0;
+
     private final List<Step> steps;
 
     public Line(List<Step> steps) {
@@ -27,10 +29,30 @@ public class Line {
         return steps.get(index) == Step.EXIST && steps.get(index - 1) == Step.EXIST;
     }
 
-    public String asString() {
-        return "|" + steps.stream()
-                .map(Step::getShape)
-                .collect(Collectors.joining("|")) + "|";
+    public int move(int position) {
+        if (canMoveLeft(position)) {
+            int leftPosition = position - 1;
+            return leftPosition;
+        }
+        if (canMoveRight(position)) {
+            int rightPosition = position + 1;
+            return rightPosition;
+        }
+        return position;
+    }
+
+    private boolean canMoveLeft(int position) {
+        int left = position - 1;
+        return position != FIRST_LINE && steps.get(left) == Step.EXIST;
+    }
+
+    private boolean canMoveRight(int position) {
+        int right = position;
+        return position != steps.size() && steps.get(right) == Step.EXIST;
+    }
+
+    public List<Step> getSteps() {
+        return Collections.unmodifiableList(steps);
     }
 
     public int getSize() {
