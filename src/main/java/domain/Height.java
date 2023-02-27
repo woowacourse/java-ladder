@@ -22,7 +22,7 @@ public class Height {
     }
 
     private boolean invalidNumber(String height) {
-        return StringUtil.isNullOrBlank(height) || !height.matches("^[1-9]*$");
+        return StringUtil.isNullOrBlank(height) || !height.matches("[0-9]+");
     }
 
     private boolean invalidHeight(String heightInput) {
