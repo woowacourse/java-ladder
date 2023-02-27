@@ -27,7 +27,7 @@ public class ResultTest {
         ladderGameResult.put("jk", 1);
 
         final WinningResults winningResults = new WinningResults(List.of(new WinningResult("꽝"), new WinningResult("5000"), new WinningResult("꽝"), new WinningResult("3000")));
-        Result result = new Result(winningResults, ladderGameResult);
+        Result result = Result.of(winningResults, ladderGameResult);
 
         //when
         final Map<String, WinningResult> pobiGameResult = result.getResult("pobi");
