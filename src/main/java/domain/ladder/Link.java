@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 public enum Link {
     LINKED(true),
@@ -17,7 +17,7 @@ public enum Link {
         return UNLINKED;
     }
 
-    public boolean isLink() {
+    public boolean isLinked() {
         return link;
     }
 }

@@ -1,6 +1,10 @@
 package domain;
 
 
+import domain.ladder.Line;
+import domain.ladder.LineGenerator;
+import domain.ladder.Link;
+import domain.ladder.LinkGenerator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -17,13 +21,13 @@ public class LineGeneratorTest {
         final List<Link> input = List.of(Link.LINKED, Link.LINKED);
         final LineGenerator lineGenerator = new LineGenerator(new TestLinkGenerator(input));
         //when
-        final Line line = lineGenerator.generate(4);
+        final Line line = lineGenerator.generate(new PersonCount(4));
         //then
         Assertions.assertThat(line.getLinks())
                 .containsExactly(Link.LINKED, Link.UNLINKED, Link.LINKED);
     }
 
-    class TestLinkGenerator implements LinkGenerator {
+    static class TestLinkGenerator implements LinkGenerator {
         private final Queue<Link> links;
 
         public TestLinkGenerator(final List<Link> links) {
