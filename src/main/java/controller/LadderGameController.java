@@ -38,19 +38,23 @@ public class LadderGameController {
     }
 
     public void run() {
-        outputView.printLadderGameResult(UsersDto.from(users), LadderDto.from(ladder), PrizesDto.from(prizes));
-        result = new Result(UsersDto.from(users).getUserNames());
-        searchResult();
+        UsersDto usersDto = UsersDto.from(users);
+        outputView.printLadderGameResult(usersDto, LadderDto.from(ladder), PrizesDto.from(prizes));
+        result = new Result(usersDto.getUserNames());
+        searchResult(usersDto);
     }
 
-    private void searchResult() {
-        Search search = initializeSearch(UsersDto.from(users));
+    private void searchResult(UsersDto usersDto) {
+        Search search = initializeSearch(usersDto);
         String searchName = search.getSearchName();
+        checkAllKeyword(usersDto, searchName);
+    }
 
+    private void checkAllKeyword(UsersDto usersDto, String searchName) {
         if (!searchName.equals("all")) {
             checkMoved(searchName);
-            System.out.println(result.findOneResult(searchName));
-            searchResult();
+            outputView.printOneResult(result.findOneResult(searchName));
+            searchResult(usersDto);
         }
         if (searchName.equals("all")) {
             List<String> searchNames = UsersDto.from(users).getUserNames();

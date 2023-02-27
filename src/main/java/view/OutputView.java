@@ -78,4 +78,8 @@ public class OutputView {
             System.out.println(userNames.get(i) + " : " + prizeNames.get(i));
         }
     }
+
+    public void printOneResult(String result) {
+        System.out.println(result);
+    }
 }
