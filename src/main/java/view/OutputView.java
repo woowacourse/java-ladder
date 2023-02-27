@@ -1,6 +1,5 @@
 package view;
 
-import domain.ladder.Line;
 import domain.user.Name;
 import dto.ladder.LadderDto;
 import dto.ladder.LineDto;
@@ -45,8 +44,8 @@ public class OutputView {
     }
 
     private void printLadder(LadderDto ladderDto) {
-        for (Line line : ladderDto.getLines()) {
-            printLine(LineDto.from(line));
+        for (LineDto lineDto : ladderDto.getLines()) {
+            printLine(lineDto);
             System.out.println();
         }
     }

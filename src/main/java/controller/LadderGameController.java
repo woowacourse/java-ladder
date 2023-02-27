@@ -2,7 +2,6 @@ package controller;
 
 import domain.ladder.Height;
 import domain.ladder.Ladder;
-import domain.ladder.Line;
 import domain.prize.Prize;
 import domain.prize.Prizes;
 import domain.result.Result;
@@ -10,6 +9,7 @@ import domain.result.Search;
 import domain.user.User;
 import domain.user.Users;
 import dto.ladder.LadderDto;
+import dto.ladder.LineDto;
 import dto.prize.PrizesDto;
 import dto.user.UsersDto;
 import java.util.ArrayList;
@@ -75,8 +75,8 @@ public class LadderGameController {
 
     private void moveUserToPrize(String searchName) {
         User searchUser = users.findUserByUserName(searchName);
-        for (Line line : ladder.getLines()) {
-            searchUser.getPosition().movePosition(line);
+        for (LineDto lineDto : ladder.getLines()) {
+            searchUser.getPosition().movePosition(lineDto.getLine());
         }
         result.saveResult(searchName, prizes.getPrizeNames().get(searchUser.getPosition().getValue()));
     }
