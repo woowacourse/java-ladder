@@ -13,12 +13,12 @@ class PlayerTest {
         //given
         final int prevOrder = 0;
         final Name name = new Name("준팍");
-        final Position prevPosition = new Position(prevOrder, 3);
+        final Position prevPosition = Position.of(prevOrder, 3);
         final Player player = new Player(name, prevPosition);
 
         //when
         final int nextOrder = 1;
-        final Position nextPosition = new Position(nextOrder, 3);
+        final Position nextPosition = Position.of(nextOrder, 3);
         player.move(nextPosition);
 
         //then

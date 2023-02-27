@@ -16,10 +16,10 @@ class GameResultTest {
     @BeforeEach
     public void beforeEach() {
         //given
-        result = List.of(new Player(new Name("준팍"), new Position(0, 4)),
-                new Player(new Name("에단"), new Position(1, 4)),
-                new Player(new Name("또링"), new Position(2, 4)),
-                new Player(new Name("코일"), new Position(3, 4)));
+        result = List.of(new Player(new Name("준팍"), Position.of(0, 4)),
+                new Player(new Name("에단"), Position.of(1, 4)),
+                new Player(new Name("또링"), Position.of(2, 4)),
+                new Player(new Name("코일"), Position.of(3, 4)));
         winningPrizes = WinningPrizes.of(List.of("1", "2", "3", "4"), 4);
         gameResult = new GameResult(result, winningPrizes);
     }

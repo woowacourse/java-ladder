@@ -26,7 +26,6 @@ public class Layer {
         return new Layer(playerCount, linkGenerator);
     }
 
-
     private List<Link> createLayer(final int linkCount, final LinkGenerator linkGenerator) {
         List<Link> layer = new ArrayList<>();
         for (int i = 0; i < linkCount; i++) {
@@ -44,7 +43,6 @@ public class Layer {
     }
 
     private Link checkLink(final List<Link> layer, final int index, final Link link) {
-
         if (index == FIRST_INDEX_OF_LINK) {
             return link;
         }

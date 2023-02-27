@@ -65,5 +65,4 @@ public class PlayersTest {
         assertThat(maxNameLength).isEqualTo("블랙캣".length());
     }
 
-
 }

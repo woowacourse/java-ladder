@@ -50,7 +50,7 @@ public class Players {
     private static List<Position> createPosition(final int playerCount) {
         List<Position> positions = new ArrayList<>();
         for (int i = 0; i < playerCount; i++) {
-            positions.add(new Position(i, playerCount));
+            positions.add(Position.of(i, playerCount));
         }
         return positions;
     }

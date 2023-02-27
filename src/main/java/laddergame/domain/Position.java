@@ -7,15 +7,18 @@ public class Position {
     private static final int START_INDEX = 0;
 
     private final int order;
-    private final int playerCount;
 
-    public Position(final int order, final int playerCount) {
-        this.playerCount = playerCount;
-        validateRange(order);
+
+    private Position(final int order) {
         this.order = order;
     }
 
-    private void validateRange(final int order) {
+    public static Position of(final int order, final int playerCount) {
+        validateRange(order, playerCount);
+        return new Position(order);
+    }
+
+    private static void validateRange(final int order, final int playerCount) {
         if (order < START_INDEX || order >= playerCount) {
             throw new IllegalStateException(String.format("%d이상 %d미만의 값만 입력해주세요.", START_INDEX, playerCount));
         }
@@ -26,12 +29,12 @@ public class Position {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         final Position position = (Position) o;
-        return order == position.order && playerCount == position.playerCount;
+        return order == position.order;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(order, playerCount);
+        return Objects.hash(order);
     }
 
     public int getOrder() {

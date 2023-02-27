@@ -29,7 +29,7 @@ public class LadderGame {
     private void giveNewPosition(final List<Player> layerResult) {
         final int playerCount = layerResult.size();
         for (int i = 0; i < playerCount; i++) {
-            layerResult.get(i).move(new Position(i, playerCount));
+            layerResult.get(i).move(Position.of(i, playerCount));
         }
     }
 }
