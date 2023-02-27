@@ -11,7 +11,7 @@ public class LadderGame {
 
     public LadderGame(final Height height, final Users users, final LadderGenerator ladderGenerator) {
         this.users = users;
-        this.ladder = new Ladder(height, users.getCount() - 1, ladderGenerator);
+        this.ladder = ladderGenerator.generate(users.getCount() - 1, height);
     }
 
     public Result play(WinningResults winningResults) {

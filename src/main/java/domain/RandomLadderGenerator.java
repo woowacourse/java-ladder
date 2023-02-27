@@ -8,12 +8,12 @@ public class RandomLadderGenerator implements LadderGenerator {
     private final Random random = new Random();
 
     @Override
-    public List<Line> generate(final int width, final Height height) {
-        List<Line> ladder = new ArrayList<>();
+    public Ladder generate(final int width, final Height height) {
+        List<Line> lines = new ArrayList<>();
         for (int floor = 0; floor < height.getHeight(); floor++) {
-            ladder.add(makeLine(width));
+            lines.add(makeLine(width));
         }
-        return ladder;
+        return new Ladder(lines);
     }
 
     private Line makeLine(final int width) {
