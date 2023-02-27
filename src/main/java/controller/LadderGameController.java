@@ -43,7 +43,7 @@ public class LadderGameController {
         do {
             playerName = InputView.readPlayerName();
             LinkedHashMap<Player, GameResult> gameResults = ladderGame.getGameResultOf(playerName);
-            OutputView.printGameResult(gameResults);
+            OutputView.printGameResults(gameResults);
         } while (!playerName.equals(END_CONDITION));
     }
 

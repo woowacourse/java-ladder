@@ -80,4 +80,5 @@ public class Line {
             throw new IllegalArgumentException("사다리는 같은 라인에서 연속되는 포인트를 가질 수 없습니다.");
         }
     }
+
 }

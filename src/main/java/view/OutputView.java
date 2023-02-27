@@ -14,7 +14,6 @@ public class OutputView {
     private static final String GENERATED_LADDER_TITLE = "사다리 결과";
     private static final String RESULT_DELIMITER = " : ";
     private static final int GAME_RESULT_OF_SINGLE_PLAYER = 1;
-    private static final int SINGLE_GAME_RESULT_INDEX = 0;
 
     public static void printGeneratedLadder(
             final List<String> playerNames,
@@ -74,10 +73,9 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
-    public static void printGameResult(final LinkedHashMap<Player, GameResult> gameResults) {
-        printLine(RESULT_TITLE);
+    public static void printGameResults(final LinkedHashMap<Player, GameResult> gameResults) {
         if (gameResults.size() == GAME_RESULT_OF_SINGLE_PLAYER) {
-            printGameResult(gameResults.get(SINGLE_GAME_RESULT_INDEX).getGameResultName());
+            printGameResultOfSinglePlayer(gameResults);
             return;
         }
         printGameResultsOfAllPlayers(gameResults);
@@ -91,9 +89,12 @@ public class OutputView {
         }
     }
 
-    public static void printGameResult(final String gameResult) {
+    public static void printGameResultOfSinglePlayer(final LinkedHashMap<Player, GameResult> gameResults) {
+        printEmptyLine();
         printLine(RESULT_TITLE);
-        printLine(gameResult);
+        for (Player player : gameResults.keySet()) {
+            printLine(gameResults.get(player).getGameResultName());
+        }
         printEmptyLine();
     }
 
