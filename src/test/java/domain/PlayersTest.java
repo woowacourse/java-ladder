@@ -24,7 +24,8 @@ class PlayersTest {
             "a1,a2,a3,a4",
     })
     void success_test(String value) {
-        List<String> names = Arrays.stream(value.split(",")).collect(Collectors.toList());
+        List<String> names = Arrays.stream(value.split(","))
+                .collect(Collectors.toList());
         assertDoesNotThrow(() -> new Players(names));
     }
 

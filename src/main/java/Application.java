@@ -48,7 +48,6 @@ public class Application {
         } while (results.canTryAgain());
     }
 
-
     public static void main(String[] args) {
         Application application = new Application(new InputView(), new OutputView());
         application.run();
