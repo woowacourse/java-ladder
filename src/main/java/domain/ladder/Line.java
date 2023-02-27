@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import domain.util.PointGenerator;
-
 public class Line {
 	private final List<Point> points;
 

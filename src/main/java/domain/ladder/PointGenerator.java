@@ -1,6 +1,4 @@
-package domain.util;
-
-import domain.ladder.Point;
+package domain.ladder;
 
 public interface PointGenerator {
 	Point generate();

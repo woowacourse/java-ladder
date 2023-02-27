@@ -1,8 +1,6 @@
-package domain.util;
+package domain.ladder;
 
 import java.util.Random;
-
-import domain.ladder.Point;
 
 public class RandomPointGenerator implements PointGenerator {
 	@Override

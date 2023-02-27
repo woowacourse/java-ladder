@@ -3,14 +3,14 @@ package controller;
 import java.util.List;
 import java.util.Map;
 
+import domain.LadderGame;
+import domain.Results;
 import domain.end.End;
 import domain.end.Ends;
-import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
 import domain.user.User;
 import domain.user.Users;
-import domain.util.RandomPointGenerator;
-import domain.util.ResultMapper;
+import domain.ladder.RandomPointGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -20,9 +20,9 @@ public class LadderController {
 		Users users = retrieveUsers();
 		Ends ends = retrieveEnds(users.getUsersCount());
 		LadderHeight height = retrieveLadderHeight();
-		Ladder ladder = new Ladder(users, ends, height, new RandomPointGenerator());
-		OutputView.printLadder(users, ladder, ends);
-		Map<User, End> mappedResult = ladder.getMappedResult();
+		LadderGame ladderGame = LadderGame.create(users, ends, height, new RandomPointGenerator());
+		OutputView.printLadder(users, ladderGame.getLadder(), ends);
+		Map<User, End> mappedResult = ladderGame.getMappedResult();
 		while (true) {
 			printResult(mappedResult);
 		}
@@ -58,7 +58,7 @@ public class LadderController {
 	private void printResult(final Map<User, End> mappedResult) {
 		try {
 			List<String> names = InputView.readWhomToPrint();
-			Map<User, End> result = ResultMapper.toResult(mappedResult, names);
+			Map<User, End> result = Results.of(mappedResult, names).getResults();
 			OutputView.printResult(result);
 		} catch (IllegalArgumentException e) {
 			OutputView.printError(e.getMessage());
