@@ -36,7 +36,7 @@ public class Name {
     }
 
     @Override
-    public boolean equals(Object name) {
+    public boolean equals(final Object name) {
         if (this == name) {
             return true;
         }

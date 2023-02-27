@@ -14,7 +14,7 @@ public class LadderGame {
 
     private final State gameState;
 
-    public LadderGame(Ladder ladder, Players players, Prizes prizes) {
+    public LadderGame(final Ladder ladder, final Players players, final Prizes prizes) {
         this.gameState = new State();
 
         this.ladder = ladder;
@@ -23,7 +23,7 @@ public class LadderGame {
     }
 
     public void play() {
-        for (Player player : players.getPlayers()) {
+        for (final Player player : players.getPlayers()) {
             ladder.ride(player);
         }
         gameState.flipState();

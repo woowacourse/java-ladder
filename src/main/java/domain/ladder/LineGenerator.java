@@ -42,7 +42,7 @@ public class LineGenerator {
         addStep(Step.NONE);
     }
 
-    private void addStep(Step step) {
+    private void addStep(final Step step) {
         if (isPreviousRightConnected()) {
             steps.add(Step.LEFT);
             return;
