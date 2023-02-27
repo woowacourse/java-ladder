@@ -33,7 +33,7 @@ public class LadderController {
     private Results makeResults(Players players) {
         try {
             String[] resultNames = InputView.receiveResults();
-            return Results.from(resultNames, players.getNumberOfPlayers());
+            return Results.of(resultNames, players.getNumberOfPlayers());
         } catch (IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
             return makeResults(players);
@@ -67,11 +67,9 @@ public class LadderController {
             String[] matchingNames = InputView.receiveMatchingName();
             Map<Player, Result> finalMatchingResult = matchingResult.getFinalResult(players, matchingNames);
             OutputView.printFinalResult(finalMatchingResult);
-            return;
         } catch (IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
             printMatchingResult(matchingResult, players);
         }
-        printMatchingResult(matchingResult, players);
     }
 }
