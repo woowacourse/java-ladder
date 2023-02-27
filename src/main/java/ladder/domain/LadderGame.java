@@ -42,10 +42,15 @@ public class LadderGame {
     public BridgeGameResult getGameResult() {
         final HashMap<User, String> userAndReward = new HashMap<>();
         for (User user : users.getUsers()) {
-            final int rewardIndex = ladder.resultPositionOf(users.getOrderByName(user.getName()));
+            final int userIndex = getOrderOf(user);
+            final int rewardIndex = ladder.resultPositionOf(userIndex);
             userAndReward.put(user, reward.getRewardOf(rewardIndex));
         }
         return new BridgeGameResult(userAndReward);
+    }
+
+    private int getOrderOf(final User user) {
+        return users.getOrderByName(user.getName());
     }
 
     public Ladder getLadder() {
