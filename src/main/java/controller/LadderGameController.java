@@ -33,8 +33,9 @@ public class LadderGameController {
 
     public void initialize() {
         users = initializeUsers();
-        ladder = new Ladder(users.getPersonCount(), initializeHeight(), new RandomBooleanGenerator());
-        prizes = initializePrizes();
+        int width = users.getPersonCount();
+        ladder = new Ladder(width, initializeHeight(), new RandomBooleanGenerator());
+        prizes = initializePrizes(width);
     }
 
     public void run() {
@@ -112,13 +113,13 @@ public class LadderGameController {
         }
     }
 
-    private Prizes initializePrizes() {
+    private Prizes initializePrizes(int width) {
         try {
             List<String> prizeNames = inputView.inputPrizeName();
-            return new Prizes(createPrizes(prizeNames));
+            return new Prizes(createPrizes(prizeNames), width);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return initializePrizes();
+            return initializePrizes(width);
         }
     }
 
