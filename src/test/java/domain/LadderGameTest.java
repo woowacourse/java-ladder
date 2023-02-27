@@ -17,12 +17,12 @@ class LadderGameTest {
         final LadderGame ladderGame = new LadderGame(
                 new Height(4),
                 users,
-                ((width, height) -> List.of(
+                ((width, height) -> new Ladder(List.of(
                         new Line(List.of(Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST)),
                         new Line(List.of(Bridge.NON_EXIST, Bridge.EXIST, Bridge.NON_EXIST)),
                         new Line(List.of(Bridge.EXIST, Bridge.NON_EXIST, Bridge.NON_EXIST)),
                         new Line(List.of(Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST))
-                )));
+                ))));
         final WinningResults winningResults = new WinningResults(List.of(new WinningResult("1"), new WinningResult("2"), new WinningResult("3"), new WinningResult("4")));
         // when
         final Result result = ladderGame.play(winningResults);
