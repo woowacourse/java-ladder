@@ -62,7 +62,10 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String get(int index) {
-        return null;
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        return values[index];
     }
 
     @Override
