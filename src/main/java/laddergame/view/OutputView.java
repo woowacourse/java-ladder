@@ -3,8 +3,8 @@ package laddergame.view;
 
 import java.util.Map;
 import laddergame.domain.LadderResultItem;
-import laddergame.domain.NamesWithItem;
 import laddergame.domain.PersonalName;
+import laddergame.domain.game.NamesWithItem;
 
 public class OutputView {
     public void printLadderForm(final String ladderFrom) {
@@ -21,7 +21,7 @@ public class OutputView {
         System.out.println("실행결과");
         final Map<PersonalName, LadderResultItem> nameToItem = namesWithItem.getNameToItem();
         for (PersonalName name : nameToItem.keySet()) {
-            System.out.println(String.format("%s : %s", name.getValue(), nameToItem.get(name).getName()));
+            System.out.printf("%s : %s%n", name.getValue(), nameToItem.get(name).getName());
         }
     }
 

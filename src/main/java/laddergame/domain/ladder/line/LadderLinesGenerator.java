@@ -1,8 +1,10 @@
-package laddergame.domain;
+package laddergame.domain.ladder.line;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
+import laddergame.domain.ladder.Height;
+import laddergame.domain.ladder.Width;
 
 public class LadderLinesGenerator {
     private final BooleanGenerator booleanGenerator;

@@ -1,9 +1,16 @@
-package laddergame.domain;
+package laddergame.domain.game;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import laddergame.domain.LadderResult;
+import laddergame.domain.LadderResultItem;
+import laddergame.domain.PersonalName;
+import laddergame.domain.PersonalNames;
+import laddergame.domain.game.player.Player;
+import laddergame.domain.ladder.Ladder;
+import laddergame.domain.ladder.line.Line;
 
 public class LadderGame {
     private final List<Player> players;

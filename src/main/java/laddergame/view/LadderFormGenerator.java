@@ -1,6 +1,6 @@
 package laddergame.view;
 
-import static laddergame.domain.Point.FILLED;
+import static laddergame.domain.ladder.line.Point.FILLED;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import laddergame.domain.LadderResult;
 import laddergame.domain.LadderResultItem;
-import laddergame.domain.Line;
 import laddergame.domain.PersonalName;
 import laddergame.domain.PersonalNames;
-import laddergame.domain.Point;
+import laddergame.domain.ladder.line.Line;
+import laddergame.domain.ladder.line.Point;
 
 public class LadderFormGenerator {
     private final String LADDER_ROW_FILLED = "-";

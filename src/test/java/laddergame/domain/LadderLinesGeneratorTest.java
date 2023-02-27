@@ -7,6 +7,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
+import laddergame.domain.ladder.Height;
+import laddergame.domain.ladder.Width;
+import laddergame.domain.ladder.line.BooleanGenerator;
+import laddergame.domain.ladder.line.LadderLinesGenerator;
+import laddergame.domain.ladder.line.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +36,7 @@ class LadderLinesGeneratorTest {
     void throwExceptionWhenBothTrue() {
         //given
         BooleanGenerator booleanGenerator = new BooleanGenerator() {
-            Deque<Boolean> given = new ArrayDeque<>(List.of(true, true, false));
+            private final Deque<Boolean> given = new ArrayDeque<>(List.of(true, true, false));
 
             @Override
             public boolean generate() {

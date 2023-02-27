@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.ladder.line;
 
 public enum Point {
     FILLED(true),

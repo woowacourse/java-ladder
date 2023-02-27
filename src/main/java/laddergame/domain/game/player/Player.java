@@ -1,4 +1,6 @@
-package laddergame.domain;
+package laddergame.domain.game.player;
+
+import laddergame.domain.PersonalName;
 
 public class Player {
     private final PersonalName personalName;

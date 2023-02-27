@@ -1,6 +1,8 @@
-package laddergame.domain;
+package laddergame.domain.game;
 
 import java.util.Map;
+import laddergame.domain.LadderResultItem;
+import laddergame.domain.PersonalName;
 
 public class NamesWithItem {
     final private Map<PersonalName, LadderResultItem> nameToItem;

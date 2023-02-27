@@ -1,6 +1,6 @@
-package laddergame.domain;
+package laddergame.domain.ladder.line;
 
-import static laddergame.domain.Point.of;
+import static laddergame.domain.ladder.line.Point.of;
 
 import java.util.ArrayList;
 import java.util.List;

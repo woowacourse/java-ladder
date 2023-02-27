@@ -3,13 +3,12 @@ package laddergame;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
-import laddergame.domain.BooleanGenerator;
-import laddergame.domain.Height;
-import laddergame.domain.LadderLinesGenerator;
 import laddergame.domain.LadderResult;
 import laddergame.domain.PersonalName;
 import laddergame.domain.PersonalNames;
-import laddergame.domain.Width;
+import laddergame.domain.ladder.Height;
+import laddergame.domain.ladder.Width;
+import laddergame.domain.ladder.line.BooleanGenerator;
 
 public class TestDummy {
     public static final PersonalName PERSONAL_NAME_ROSIE = PersonalName.valueOf("rosie");
@@ -28,6 +27,4 @@ public class TestDummy {
             return polled;
         }
     };
-
-    public static final LadderLinesGenerator TEST_LADDER_GENERATOR = new LadderLinesGenerator(TEST_BOOLEAN_GENERATOR);
 }

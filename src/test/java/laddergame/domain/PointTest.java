@@ -2,6 +2,7 @@ package laddergame.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import laddergame.domain.ladder.line.Point;
 import org.junit.jupiter.api.Test;
 
 class PointTest {

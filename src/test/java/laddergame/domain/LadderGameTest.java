@@ -6,6 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import java.util.List;
 import java.util.Map;
 import laddergame.TestDummy;
+import laddergame.domain.game.LadderGame;
+import laddergame.domain.ladder.Height;
+import laddergame.domain.ladder.Ladder;
+import laddergame.domain.ladder.Width;
+import laddergame.domain.ladder.line.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
