@@ -34,8 +34,8 @@ public class LadderGameController {
     public void initialize() {
         users = initializeUsers();
         int width = users.getPersonCount();
-        ladder = new Ladder(width, initializeHeight(), new RandomBooleanGenerator());
         prizes = initializePrizes(width);
+        ladder = new Ladder(width, initializeHeight(), new RandomBooleanGenerator());
     }
 
     public void run() {
