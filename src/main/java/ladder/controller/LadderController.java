@@ -2,6 +2,7 @@ package ladder.controller;
 
 import ladder.domain.Ladder;
 import ladder.domain.Players;
+import ladder.domain.Results;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -10,9 +11,11 @@ public class LadderController {
 
     private final Players players;
     private final Ladder ladder;
+    private final Results results;
 
     public LadderController() {
         this.players = new Players(InputView.readNames());
+        this.results = new Results(InputView.readResults(), this.players.getSize());
         this.ladder = new Ladder(InputView.readCountOfLines(), getCountOfBars());
     }
 
