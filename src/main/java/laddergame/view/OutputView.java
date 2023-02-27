@@ -59,6 +59,6 @@ public class OutputView {
 
     private void printAllRewards(LadderGame ladderGame) {
         ladderGame.getMatching().forEach((key, value) ->
-            System.out.println(key + REWARDS_DELIMITER + value));
+            System.out.println(key.getName() + REWARDS_DELIMITER + value.getName()));
     }
 }

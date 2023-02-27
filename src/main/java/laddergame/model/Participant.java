@@ -1,5 +1,6 @@
 package laddergame.model;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class Participant {
@@ -33,5 +34,24 @@ public class Participant {
 
     public String getName() {
         return this.name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Participant that = (Participant)obj;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

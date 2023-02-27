@@ -10,29 +10,36 @@ public class LadderGame {
     public static final String ALL_MATCHING_KEY = "all";
     private static final String ERROR_MATCHING_KEY = "참여자명이 올바르지 않습니다.";
 
-    private final Map<String, String> matching;
+    private final Map<Participant, Reward> matching;
 
     public LadderGame(Ladder ladder, Rewards rewards, Participants participants) {
         this.matching = new LinkedHashMap<>();
-        for (int i = 0; i < participants.getNumber(); i++) {
-            String name = participants.getName(i);
-            int position = ladder.getParticipantPosition(i);
-            String reward = rewards.getName(position);
-            this.matching.put(name, reward);
-        }
+        rideLadder(ladder, rewards, participants);
     }
 
-    public String getReward(String name) {
-        return matching.get(name);
+    private void rideLadder(Ladder ladder, Rewards rewards, Participants participants) {
+        for (int i = 0; i < participants.getNumber(); i++) {
+            Participant participant = participants.gerParticipant(i);
+            int position = ladder.getParticipantPosition(i);
+            Reward reward = rewards.getReward(position);
+            this.matching.put(participant, reward);
+        }
     }
 
     public void checkParticipant(String name) {
-        if (!name.equals(ALL_MATCHING_KEY) && !matching.containsKey(name)) {
-            throw new IllegalArgumentException(ERROR_MATCHING_KEY);
-        }
+        matching.keySet()
+            .stream()
+            .filter(participant -> ALL_MATCHING_KEY.equals(name) || participant.getName().equals(name))
+            .findAny()
+            .orElseThrow(() -> new IllegalArgumentException(ERROR_MATCHING_KEY));
     }
 
-    public Map<String, String> getMatching() {
+    public String getReward(String name) {
+        Reward reward = matching.get(new Participant(name));
+        return reward.getName();
+    }
+
+    public Map<Participant, Reward> getMatching() {
         return Collections.unmodifiableMap(matching);
     }
 }

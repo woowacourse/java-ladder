@@ -46,7 +46,7 @@ public class Participants {
         return Collections.unmodifiableList(participants);
     }
 
-    public String getName(int i) {
-        return participants.get(i).getName();
+    public Participant gerParticipant(int i) {
+        return participants.get(i);
     }
 }
