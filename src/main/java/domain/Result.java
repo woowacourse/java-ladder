@@ -3,6 +3,7 @@ package domain;
 import java.util.*;
 
 public class Result {
+    private static final String ENTIRE_RESULT = "all";
     private final Map<String, WinningResult> result;
 
     public Result(final WinningResults inputWinningResults, final Map<String, Integer> ladderGameResult) {
@@ -14,7 +15,7 @@ public class Result {
     }
 
     public Map<String, WinningResult> getResult(final String inputResultWord) {
-        if (inputResultWord.equals("all")) {
+        if (inputResultWord.equals(ENTIRE_RESULT)) {
             return Collections.unmodifiableMap(new LinkedHashMap<>(result));
         }
 
