@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import domain.numbergenerator.NumberGenerator;
+import domain.booleangenerator.BooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,28 +8,28 @@ import java.util.List;
 
 public class Line {
 
-    private static final int GENERATE_NUMBER = 1;
+    private static final boolean GENERATE_VALUE = true;
     private static final int INDEX_LOWER_BOUND = 0;
 
     private final List<Point> line;
 
-    public Line(int personCount, NumberGenerator numberGenerator) {
+    public Line(int personCount, BooleanGenerator booleanGenerator) {
         line = new ArrayList<>();
-        generateLine(personCount, numberGenerator);
+        generateLine(personCount, booleanGenerator);
     }
 
-    private static boolean isGenerated(NumberGenerator numberGenerator) {
-        return numberGenerator.generate() == GENERATE_NUMBER;
+    private static boolean isGenerated(BooleanGenerator booleanGenerator) {
+        return booleanGenerator.generate() == GENERATE_VALUE;
     }
 
-    private void generateLine(int personCount, NumberGenerator numberGenerator) {
+    private void generateLine(int personCount, BooleanGenerator booleanGenerator) {
         for (int i = 0; i < personCount - 1; i++) {
-            generatePoint(numberGenerator);
+            generatePoint(booleanGenerator);
         }
     }
 
-    private void generatePoint(NumberGenerator numberGenerator) {
-        if (isGenerated(numberGenerator) && !hasAdjacentPoint()) {
+    private void generatePoint(BooleanGenerator booleanGenerator) {
+        if (isGenerated(booleanGenerator) && !hasAdjacentPoint()) {
             line.add(Point.CONNECTION);
             return;
         }

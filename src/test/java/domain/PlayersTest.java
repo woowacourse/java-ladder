@@ -1,7 +1,7 @@
 package domain;
 
 import domain.ladder.Line;
-import domain.numbergenerator.TestNumberGenerator;
+import domain.booleangenerator.TestBooleanGenerator;
 import domain.player.Player;
 import domain.player.Players;
 import org.assertj.core.util.Lists;
@@ -53,11 +53,11 @@ public class PlayersTest {
 
     @DisplayName("사다리 한 줄에 대한 정보가 주어지면 사다리 게임 참여자의 위치를 옮길 수 있다.")
     @ParameterizedTest
-    @CsvSource(value = {"1:1:0", "0:0:1"}, delimiter = ':')
-    void playerMoveTest(int generateNumber, int expectedOdoPosition, int expectedKongPosition) {
+    @CsvSource(value = {"true:1:0", "false:0:1"}, delimiter = ':')
+    void playerMoveTest(boolean generateValue, int expectedOdoPosition, int expectedKongPosition) {
         List<String> names = List.of("odo", "kong");
         Players players = new Players(names);
-        Line line = new Line(2, new TestNumberGenerator(Lists.newArrayList(generateNumber)));
+        Line line = new Line(2, new TestBooleanGenerator(Lists.newArrayList(generateValue)));
         players.move(line);
         Player odo = players.getPlayers().get(0);
         Player kong = players.getPlayers().get(1);

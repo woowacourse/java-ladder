@@ -2,7 +2,7 @@ package controller;
 
 import domain.LadderGame;
 import domain.ladder.Ladder;
-import domain.numbergenerator.NumberGenerator;
+import domain.booleangenerator.BooleanGenerator;
 import domain.player.Players;
 import domain.prize.Prizes;
 import domain.prize.Results;
@@ -19,12 +19,12 @@ public class LadderController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final NumberGenerator numberGenerator;
+    private final BooleanGenerator booleanGenerator;
 
-    public LadderController(InputView inputView, OutputView outputView, NumberGenerator numberGenerator) {
+    public LadderController(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.numberGenerator = numberGenerator;
+        this.booleanGenerator = booleanGenerator;
     }
 
     public void run() {
@@ -67,7 +67,7 @@ public class LadderController {
     private Ladder generateLadder(int personCount) {
         try {
             int height = inputView.readHeight();
-            return new Ladder(height, personCount, numberGenerator);
+            return new Ladder(height, personCount, booleanGenerator);
         } catch (IllegalArgumentException exception) {
             LogType.ERROR_MESSAGE.log(exception.getMessage());
             return generateLadder(personCount);
