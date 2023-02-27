@@ -1,6 +1,5 @@
 package domain;
 
-import factory.LineFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,28 +15,17 @@ import static org.assertj.core.api.Assertions.*;
 
 public class LineTest {
 
-    private static final RandomBasedStrategy randomBasedStrategy = new RandomBasedStrategy();
-
     @DisplayName("라인의 포인트 개수는 19를 넘을 수 없다.")
     @Test
     void pointNotMoreThan19() {
         // given
         int pointSize = 20;
+        List<Point> points = Stream.generate(() -> Point.NOT_EXIST)
+                .limit(pointSize)
+                .collect(Collectors.toList());
 
         // when, then
-        assertThatThrownBy(() -> LineFactory.of(pointSize, randomBasedStrategy))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("포인트 범위는 0부터 19까지입니다.");
-    }
-
-    @DisplayName("라인의 포인트 개수는 0보다 작을 수 없다.")
-    @Test
-    void pointNotLessThan0() {
-        // given
-        int pointSize = -1;
-
-        // when, then
-        assertThatThrownBy(() -> LineFactory.of(pointSize, randomBasedStrategy))
+        assertThatThrownBy(() -> new Line(points))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("포인트 범위는 0부터 19까지입니다.");
     }
@@ -45,28 +33,15 @@ public class LineTest {
     @DisplayName("라인의 포인트 개수는 0이상 19이하이다.")
     @ValueSource(ints = {0, 10, 19})
     @ParameterizedTest
-    void pointSizeTest(int expectedPointSize) {
-        // when
-        Line line = LineFactory.of(expectedPointSize, randomBasedStrategy);
-        int pointSize = line.getPoints().size();
-
-        // then
-        assertThat(pointSize).isEqualTo(expectedPointSize);
-    }
-
-    @DisplayName("사다리의 포인트가 true인 지점은 연속될 수 없다.")
-    @Test
-    void pointNotContinuous() {
+    void pointSizeTest(int pointSize) {
         // given
-        int pointSize = 5;
-        Line line = LineFactory.of(pointSize, randomBasedStrategy);
+        List<Point> points = Stream.generate(() -> Point.NOT_EXIST)
+                .limit(pointSize)
+                .collect(Collectors.toList());
 
         // when, then
-        for (int pointIndex = 0; pointIndex < pointSize - 1; pointIndex++) {
-            Point left = line.getPointAt(pointIndex);
-            Point right = line.getPointAt(pointIndex + 1);
-            assertThat(left.isExist() && right.isExist()).isFalse();
-        }
+        assertThatNoException()
+                .isThrownBy(() -> new Line(points));
     }
 
     @DisplayName("사다리가의 포인트가 true인 지점이 연속되어 있을 경우 예외 처리 한다.")
