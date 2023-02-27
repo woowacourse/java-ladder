@@ -8,10 +8,10 @@ public class Ladder {
     private final List<Line> lines;
     private final Height height;
 
-    public Ladder(int personCount, Height height, BooleanGenerator booleanGenerator) {
+    public Ladder(int width, Height height, BooleanGenerator booleanGenerator) {
         this.lines = new ArrayList<>();
         for (int i = 0; i < height.getHeight(); i++) {
-            this.lines.add(new Line(personCount, booleanGenerator));
+            this.lines.add(new Line(width, booleanGenerator));
         }
         this.height = height;
     }

@@ -7,14 +7,14 @@ import utils.BooleanGenerator;
 public class Line {
     private final List<Boolean> line;
 
-    public Line(int personCount, BooleanGenerator booleanGenerator) {
-        this.line = createLine(personCount, booleanGenerator);
+    public Line(int width, BooleanGenerator booleanGenerator) {
+        this.line = createLine(width, booleanGenerator);
     }
 
-    private List<Boolean> createLine(int personCount, BooleanGenerator booleanGenerator) {
+    private List<Boolean> createLine(int width, BooleanGenerator booleanGenerator) {
         List<Boolean> line = new ArrayList<>();
         line.add(false);
-        for (int i = 1; i < personCount; i++) {
+        for (int i = 1; i < width; i++) {
             line.add(isContinuousTrue(line.get(i - 1), booleanGenerator));
         }
         return line;
