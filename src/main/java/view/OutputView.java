@@ -1,6 +1,5 @@
 package view;
 
-import domain.user.Name;
 import dto.ladder.LadderDto;
 import dto.ladder.LineDto;
 import dto.prize.PrizesDto;
@@ -12,6 +11,7 @@ public class OutputView {
     private static final String OUTPUT_EXECUTE_MESSAGE = "\n실행결과\n";
     private static final String LINE_DELIMITER = "|";
     private static final String NAME_DELIMITER = " ";
+    private static final int MAX_NAME_LENGTH = 5;
 
     public void printLadderGameResult(UsersDto usersDto, LadderDto ladderDto, PrizesDto prizesDto) {
         System.out.println(OUTPUT_EXECUTE_MESSAGE);
@@ -29,7 +29,7 @@ public class OutputView {
     }
 
     private String convertName(String name) {
-        if (name.length() == Name.MAX_NAME_LENGTH) {
+        if (name.length() == MAX_NAME_LENGTH) {
             return name;
         }
         return insertBlank(name);
@@ -37,7 +37,7 @@ public class OutputView {
 
     private String insertBlank(String name) {
         StringBuilder nameBuilder = new StringBuilder(name + " ");
-        while (nameBuilder.length() < Name.MAX_NAME_LENGTH) {
+        while (nameBuilder.length() < MAX_NAME_LENGTH) {
             nameBuilder.insert(0, " ");
         }
         return nameBuilder.toString();
@@ -57,7 +57,7 @@ public class OutputView {
     }
 
     private void printLineByStatus(boolean status) {
-        System.out.print(LineStatus.printStatus(status, Name.MAX_NAME_LENGTH));
+        System.out.print(LineStatus.printStatus(status, MAX_NAME_LENGTH));
         System.out.print(LINE_DELIMITER);
     }
 
