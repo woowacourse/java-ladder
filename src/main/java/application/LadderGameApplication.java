@@ -51,10 +51,7 @@ public class LadderGameApplication {
         while (countOfMaxRetry-- > 0) {
             try {
                 List<Name> names = createNames();
-                List<Player> players = new ArrayList<>();
-                for (int idx = 0; idx < names.size(); idx++) {
-                    players.add(new Player(names.get(idx), new Position(idx + 1)));
-                }
+                List<Player> players = createRawPlayers(names);
                 return new Players(players);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
@@ -69,6 +66,14 @@ public class LadderGameApplication {
                 .stream()
                 .map(Name::new)
                 .collect(toList());
+    }
+
+    private static List<Player> createRawPlayers(List<Name> names) {
+        List<Player> players = new ArrayList<>();
+        for (int idx = 0; idx < names.size(); idx++) {
+            players.add(new Player(names.get(idx), new Position(idx + 1)));
+        }
+        return players;
     }
 
     private LadderHeight createLadderHeight() {
