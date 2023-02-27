@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
 public class SequenceTest {
@@ -16,5 +17,14 @@ public class SequenceTest {
         assertThatNoException().isThrownBy(() -> {
             Sequence.of(numbers);
         });
+    }
+    
+    @Test
+    @DisplayName("순서 객체의 순서를 변환하면 새로운 순서 객체를 반환한다.")
+    public void swapNewSequenceTest() {
+        List<Integer> numbers = List.of(0, 1, 2, 3, 4);
+        Sequence prevSequence = Sequence.of(numbers);
+        Sequence newSequence = prevSequence.exchange(0);
+        assertThat(newSequence).isNotEqualTo(prevSequence);
     }
 }
