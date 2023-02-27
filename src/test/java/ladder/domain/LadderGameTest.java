@@ -92,5 +92,4 @@ public class LadderGameTest {
         assertEquals("꽝", gameResult.get("crong"));
         assertEquals("당첨", gameResult.get("seong"));
     }
-
 }
