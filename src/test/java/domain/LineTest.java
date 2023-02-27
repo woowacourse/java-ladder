@@ -3,12 +3,10 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import util.FalseGenerator;
-import util.TestGenerator;
 import util.TrueGenerator;
 
 class LineTest {
@@ -62,24 +60,22 @@ class LineTest {
         @DisplayName("왼쪽에 연결된 다리가 있는지")
         void hasBridgeInLeftTest() {
             //given
-            Line line = Line.from(5);
-            line.generate(new TestGenerator(List.of(true, false, true, false)));
+            Line line = new Line(List.of(Bridge.EXIST, Bridge.EMPTY));
 
             //when
-            Assertions.assertThat(line.hasBridgeInLeft(1)).isTrue();
-            Assertions.assertThat(line.hasBridgeInLeft(2)).isFalse();
+            assertThat(line.hasBridgeInLeft(1)).isTrue();
+            assertThat(line.hasBridgeInLeft(2)).isFalse();
         }
 
         @Test
         @DisplayName("오른쪽에 연결된 다리가 있는지")
         void hasBridgeInRightTest() {
             //given
-            Line line = Line.from(5);
-            line.generate(new TestGenerator(List.of(true, false, true, false)));
+            Line line = new Line(List.of(Bridge.EXIST, Bridge.EMPTY));
 
             //when
-            Assertions.assertThat(line.hasBridgeInRight(0)).isTrue();
-            Assertions.assertThat(line.hasBridgeInRight(1)).isFalse();
+            assertThat(line.hasBridgeInRight(0)).isTrue();
+            assertThat(line.hasBridgeInRight(1)).isFalse();
         }
     }
 }

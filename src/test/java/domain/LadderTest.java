@@ -53,19 +53,15 @@ public class LadderTest {
         @DisplayName("사다리를 타고난 후의 위치값을 제대로 반환하는지 테스트")
         void climbTest() {
             //given
-            int personCount = 5;
-            Height height = Height.from("3");
-            Ladder ladder = Ladder.of(height, personCount);
-
             //when
-            ladder.generate(new TestGenerator(
-                    List.of(true, false, true, false,
-                            false, true, false, true,
-                            false, false, true, false)));
+            Line line1 = new Line(List.of(Bridge.EXIST, Bridge.EMPTY, Bridge.EXIST, Bridge.EMPTY));
+            Line line2 = new Line(List.of(Bridge.EMPTY, Bridge.EXIST, Bridge.EMPTY, Bridge.EXIST));
+            Line line3 = new Line(List.of(Bridge.EXIST, Bridge.EMPTY, Bridge.EMPTY, Bridge.EXIST));
+            Ladder ladder = new Ladder(List.of(line1, line2, line3));
 
             //then
-            assertThat(ladder.findFinalPosition(0)).isEqualTo(3);
-            assertThat(ladder.findFinalPosition(1)).isEqualTo(0);
+            assertThat(ladder.findFinalPosition(0)).isEqualTo(2);
+            assertThat(ladder.findFinalPosition(4)).isEqualTo(4);
         }
     }
 }

@@ -8,7 +8,7 @@ import util.BooleanGenerator;
 public class Ladder {
     private final List<Line> lines;
 
-    private Ladder(List<Line> lines) {
+    public Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
@@ -28,13 +28,17 @@ public class Ladder {
 
     public int findFinalPosition(int position) {
         for (Line line : lines) {
-            if (line.hasBridgeInRight(position)) {
-                position++;
-                continue;
-            }
-            if (line.hasBridgeInLeft(position)) {
-                position--;
-            }
+            position = finalPosition(position, line);
+        }
+        return position;
+    }
+
+    private int finalPosition(int position, Line line) {
+        if (line.hasBridgeInRight(position)) {
+            return position + 1;
+        }
+        if (line.hasBridgeInLeft(position)) {
+            return position - 1;
         }
         return position;
     }
