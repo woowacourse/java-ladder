@@ -1,6 +1,7 @@
 package domain.model;
 
 import domain.vo.Name;
+import domain.vo.Names;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,4 +57,8 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
+    public boolean containsAll(Names names) {
+        return Names.from(nameToString()).containsAll(names);
+
+    }
 }

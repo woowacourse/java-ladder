@@ -4,10 +4,9 @@ import domain.model.Ladder;
 import domain.model.Players;
 import domain.service.LadderGame;
 import domain.service.LadderMaker;
-import domain.vo.Names;
 import domain.vo.Results;
 import dto.LadderParameter;
-import dto.InputRepeatableDTO;
+import dto.ViewResultParameter;
 import view.InputView;
 import view.OutputView;
 
@@ -30,7 +29,11 @@ public class LadderController {
     public void play() {
         LadderGame ladderGame = initLadderGame();
         ladderGame.play();
-        repeatViewResult(ladderGame);
+        try {
+            repeatableViewResult(ladderGame);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e);
+        }
     }
 
     private LadderGame initLadderGame() {
@@ -51,27 +54,14 @@ public class LadderController {
         return ladderMaker.make(ladderParameter.getHeight(), ladderParameter.getWidth());
     }
 
-    private void repeatViewResult(final LadderGame ladderGame) {
-        boolean isRepeat = repeatableViewResult(ladderGame);
+    private void repeatableViewResult(final LadderGame ladderGame) {
+        ViewResultParameter viewResultParameter;
+        do {
+            List<String> viewers = inputView.inputResultViewersName();
+            viewResultParameter = ladderGame.viewersAndResults(viewers);
+            outputView.printGameResult(viewResultParameter);
+        } while (!viewResultParameter.getViewResult().isEmpty());
 
-        while (isRepeat) {
-            isRepeat = repeatableViewResult(ladderGame);
-        }
-    }
-
-    private boolean repeatableViewResult(final LadderGame ladderGame) {
-        Players allPlayers = ladderGame.getPlayers();
-        List<String> allPlayersName = allPlayers.nameToString();
-        InputRepeatableDTO inputRepeatableDTO = inputView.inputResultViewersName(allPlayersName);
-        if (!inputRepeatableDTO.isRepeatable()) {
-            return false;
-        }
-        List<String> viewers = inputRepeatableDTO.getNames();
-        Names viewersName = Names.from(viewers);
-        List<String> viewResult = ladderGame.resultsByNames(viewersName).mapToString();
-
-        outputView.printGameResult(viewers, viewResult);
-        return true;
     }
 
 }

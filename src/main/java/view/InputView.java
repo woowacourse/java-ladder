@@ -2,7 +2,6 @@ package view;
 
 import dto.LadderParameter;
 import validator.InputValidator;
-import dto.InputRepeatableDTO;
 import validator.dto.InputValidationRequest;
 import validator.type.ValidateType;
 
@@ -16,9 +15,7 @@ public class InputView {
     private static final String INPUT_LADDER_HEIGHT_MESSAGE = "\n최대 사다리 높이는 몇 개인가요?";
     private static final String NAME_DELIMITER = ",";
     private static final String INPUT_RESULTS_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
-    private static final String VIEW_ALL_PLAYERS_MESSAGE = "all";
     private static final String INPUT_RESULT_VIEWER_NAME_MESSAGE = "\n결과를 보고 싶은 사람은?(quit를 입력시 반복 종료)";
-    private static final String QUIT_MESSAGE = "quit";
 
     private final InputValidator validator;
     private final Scanner scanner = new Scanner(System.in);
@@ -38,23 +35,12 @@ public class InputView {
         System.out.println(INPUT_RESULTS_MESSAGE);
         List<String> results = List.of(scanner.nextLine().split(NAME_DELIMITER));
         return trimNames(results);
-//        return new Results(mapToResult(trimNames(results)));
     }
 
-    public InputRepeatableDTO inputResultViewersName(final List<String> allPlayersName) {
+    public List<String> inputResultViewersName() {
         System.out.println(INPUT_RESULT_VIEWER_NAME_MESSAGE);
         List<String> inputNames = List.of(scanner.nextLine().split(NAME_DELIMITER));
-
-        List<String> names = trimNames(inputNames);
-
-        if (inputNames.contains(QUIT_MESSAGE)) {
-            return InputRepeatableDTO.unrepeatable(names);
-        }
-        if (inputNames.contains(VIEW_ALL_PLAYERS_MESSAGE)) {
-            return InputRepeatableDTO.repeatable(allPlayersName);
-        }
-
-        return InputRepeatableDTO.repeatable(names);
+        return trimNames(inputNames);
     }
 
     private void validateNames(final List<String> names) {

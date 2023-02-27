@@ -5,9 +5,9 @@ import domain.model.Layer;
 import domain.model.Player;
 import domain.model.Players;
 import domain.vo.Name;
-import domain.vo.Names;
 import domain.vo.Results;
 import domain.wrapper.Position;
+import dto.ViewResultParameter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -71,10 +71,10 @@ class LadderGameTest {
         LadderGame ladderGame = new LadderGame(ladder, players, results);
 
         ladderGame.play();
-        Names wantResult = Names.from(List.of("p1", "p2", "p3", "p4"));
-        Results resultsByNames = ladderGame.resultsByNames(wantResult);
+        List<String> viewers = List.of("p1", "p2", "p3", "p4");
+        ViewResultParameter resultsByNames = ladderGame.viewersAndResults(viewers);
 
-        assertThat(resultsByNames.get(index).getValue()).isEqualTo(expected);
+        assertThat(resultsByNames.getViewResult().get(index)).isEqualTo(expected);
     }
 
     @ParameterizedTest(name = "결과를 원하는 {0}번 째 player의 결과는 {1}")
@@ -83,9 +83,9 @@ class LadderGameTest {
         LadderGame ladderGame = new LadderGame(ladder, players, results);
 
         ladderGame.play();
-        Names wantResult = Names.from(List.of("p3", "p4"));
-        Results resultsByNames = ladderGame.resultsByNames(wantResult);
+        List<String> viewers = List.of("p3", "p4");
+        ViewResultParameter resultsByNames = ladderGame.viewersAndResults(viewers);
 
-        assertThat(resultsByNames.get(index).getValue()).isEqualTo(expected);
+        assertThat(resultsByNames.getViewResult().get(index)).isEqualTo(expected);
     }
 }

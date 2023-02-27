@@ -2,6 +2,7 @@ package view;
 
 import domain.model.Ladder;
 import domain.model.Layer;
+import dto.ViewResultParameter;
 
 import java.util.List;
 
@@ -63,10 +64,17 @@ public class OutputView {
         return UNCONNECTED_LINE;
     }
 
-    public void printGameResult(final List<String> viewers, final List<String> viewResult) {
-        System.out.println(GAME_RESULT_MESSAGE);
-        for (int i = 0; i < viewers.size(); i++) {
-            System.out.println(viewers.get(i) + " : " + viewResult.get(i));
+    public void printGameResult(final ViewResultParameter viewResultParameter) {
+        if (viewResultParameter.getViewResult().isEmpty()) {
+            return;
         }
+        System.out.println(GAME_RESULT_MESSAGE);
+        for (int i = 0; i < viewResultParameter.getViewers().size(); i++) {
+            System.out.println(viewResultParameter.getViewers().get(i) + " : " + viewResultParameter.getViewResult().get(i));
+        }
+    }
+
+    public void printError(IllegalArgumentException e) {
+        e.printStackTrace();
     }
 }

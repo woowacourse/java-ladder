@@ -2,6 +2,7 @@ package domain.vo;
 
 import domain.model.Players;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,4 +42,11 @@ public class Names {
         return names.get(index);
     }
 
+    public boolean containsAll(Names names) {
+        return new HashSet<>(this.names).containsAll(names.getNames());
+    }
+
+    private List<Name> getNames() {
+        return names;
+    }
 }
