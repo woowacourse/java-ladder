@@ -1,12 +1,14 @@
 package ladder.domain;
 
 import ladder.error.ErrorMessage;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class NameTest {
 
@@ -16,43 +18,43 @@ class NameTest {
         assertDoesNotThrow(() -> new Name(name));
     }
 
-    @Test
     @DisplayName("이름은 5글자 이하여야 한다.")
+    @Test
     void createNameFailByLengthTest() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> new Name("ABCDEF"));
-        assertEquals(ErrorMessage.INVALID_NAME_LENGTH.getMessage(), exception.getMessage());
+        assertThatThrownBy(() -> new Name("ABCDEF"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_NAME_LENGTH.getMessage());
     }
 
-    @Test
     @DisplayName("이름은 빈 문자열일 수 없다.")
+    @Test
     void createNameFailByEmptyInputTest() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> new Name(""));
-        assertEquals(ErrorMessage.INVALID_NAME_LENGTH.getMessage(), exception.getMessage());
+        assertThatThrownBy(() -> new Name(""))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_NAME_LENGTH.getMessage());
     }
 
-    @Test
     @DisplayName("이름은 null일 수 없다.")
-    void createNameFailByNullTest() {
-        NullPointerException exception = assertThrows(NullPointerException.class,
-                () -> new Name(null));
-        assertEquals(ErrorMessage.NAME_IS_NULL.getMessage(), exception.getMessage());
-    }
-
     @Test
-    @DisplayName("이름에 쉼표(,)가 포함될 수 없다.")
-    void createNameFailByIncludingCommaTest() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> new Name("yo,me"));
-        assertEquals(ErrorMessage.INVALID_NAME_FORMAT.getMessage(), exception.getMessage());
+    void createNameFailByNullTest() {
+        assertThatThrownBy(() -> new Name(null))
+                .isInstanceOf(NullPointerException.class)
+                .hasMessage(ErrorMessage.NAME_IS_NULL.getMessage());
     }
 
-    @ParameterizedTest(name = "이름은 'all'이 될 수 없다.")
-    @ValueSource(strings = {"all"})
-    void createNameFailByUnavailableName(String name) {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> new Name(name));
-        assertEquals(ErrorMessage.UNAVAILABLE_NAME.getMessage(), exception.getMessage());
+    @DisplayName("이름에 쉼표(,)가 포함될 수 없다.")
+    @Test
+    void createNameFailByIncludingCommaTest() {
+        assertThatThrownBy(() -> new Name("yo,me"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_NAME_FORMAT.getMessage());
+    }
+
+    @DisplayName("이름은 'all'이 될 수 없다.")
+    @Test
+    void createNameFailByUnavailableName() {
+        assertThatThrownBy(() -> new Name("all"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.UNAVAILABLE_NAME.getMessage());
     }
 }
