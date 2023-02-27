@@ -19,7 +19,8 @@ public class Rewards {
 
     private void checkNotFailMessageOrNotDigit(List<String> rewards) {
         if (rewards.stream()
-                .filter(e -> (!e.equals(FAIL_MESSAGE) && !e.chars().allMatch(Character::isDigit))).count() != 0) {
+                .filter(e -> (!e.equals(FAIL_MESSAGE) && !e.chars().allMatch(Character::isDigit)))
+                .count() != 0) {
             throw new IllegalArgumentException("reward 목록은 '꽝' 이나 숫자만 입력 가능합니다.");
         }
     }

@@ -24,7 +24,10 @@ public class Players {
     }
 
     public int getMaxPlayerNameLength() {
-        return players.stream().mapToInt(e -> e.getName().length()).max().orElse(0);
+        return players.stream()
+                .mapToInt(e -> e.getName().length())
+                .max()
+                .orElseThrow(()->new IllegalStateException("최대 이름 길이를 찾지 못하였습니다"));
     }
 
     public int getPlayersCount() {
@@ -73,7 +76,9 @@ public class Players {
     }
 
     private void checkDuplicatePlayers(List<String> players) {
-        if (players.stream().distinct().count() != players.size()) {
+        if (players.stream()
+                .distinct()
+                .count() != players.size()) {
             throw new IllegalArgumentException("플레이어의 이름은 중복이 불가능합니다.");
         }
     }

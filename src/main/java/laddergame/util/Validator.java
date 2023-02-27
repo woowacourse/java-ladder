@@ -25,11 +25,12 @@ public class Validator {
         if (falseIndexCountmap.containsValue(height)) {
             throw new LadderStateException("잘못된 사다리가 만들어졌습니다.");
         }
-
     }
 
     public void validateRewards(List<String> rewardNames, int playerCount) {
-        if (rewardNames.stream().filter(rewardName -> rewardName.isBlank()).count() != 0) {
+        if (rewardNames.stream()
+                .filter(rewardName -> rewardName.isBlank())
+                .count() != 0) {
             throw new IllegalArgumentException("reward 목록에 공백이 입력될 수 없습니다.");
         }
         if (rewardNames.size() != playerCount) {
