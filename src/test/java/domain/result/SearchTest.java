@@ -16,7 +16,7 @@ class SearchTest {
         void shouldFailUnsavedName() {
             String searchName = "abc";
             assertThatThrownBy(() -> new Search(searchName, List.of("test", "mango", "toney"))).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("[ERROR] 등록되지 않은 유저입니다.");
+                    .hasMessageContaining(Search.SEARCH_NAME_ERROR_MESSAGE);
         }
     }
 }
