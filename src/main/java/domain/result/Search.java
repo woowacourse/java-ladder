@@ -17,4 +17,8 @@ public class Search {
             throw new IllegalArgumentException(SEARCH_NAME_ERROR_MESSAGE);
         }
     }
+
+    public String getSearchName() {
+        return searchName;
+    }
 }

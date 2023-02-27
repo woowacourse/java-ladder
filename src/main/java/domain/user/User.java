@@ -12,7 +12,7 @@ public class User {
     private static final String NAME_REGEX_FORMAT = "^[a-zA-z]*$";
 
     private final String name;
-    private final int position;
+    private int position;
 
     public User(String name, int position) {
         validateNameLength(name);
@@ -41,14 +41,17 @@ public class User {
         return name;
     }
 
-    public int movePosition(int currentPosition, Line nextLine) {
+    public void movePosition(Line nextLine) {
         List<Boolean> nextLineValues = nextLine.getLine();
-        if (nextLineValues.get(currentPosition)) {
-            return currentPosition - 1;
+        if (nextLineValues.get(position)) {
+            this.position--;
         }
-        if (nextLineValues.get(currentPosition + 1)) {
-            return currentPosition + 1;
+        else if (position + 1 < nextLineValues.size() && nextLineValues.get(position + 1)) {
+            this.position++;
         }
-        return currentPosition;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

@@ -2,9 +2,15 @@ package controller;
 
 import domain.ladder.Height;
 import domain.ladder.Ladder;
+import domain.ladder.Line;
+import domain.prize.Prize;
+import domain.prize.Prizes;
+import domain.result.Result;
+import domain.result.Search;
 import domain.user.User;
 import domain.user.Users;
 import dto.ladder.LadderDto;
+import dto.prize.PrizesDto;
 import dto.user.UsersDto;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +23,9 @@ public class LadderGameController {
     private final OutputView outputView;
     private Users users;
     private Ladder ladder;
+    private Prizes prizes;
+    private Search search;
+    private Result result;
 
     public LadderGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -26,10 +35,51 @@ public class LadderGameController {
     public void initialize() {
         users = initializeUsers();
         ladder = new Ladder(users.getPersonCount(), initializeHeight(), new RandomBooleanGenerator());
+        prizes = initializePrizes();
     }
 
     public void run() {
-        outputView.printLadderGameResult(UsersDto.from(users), LadderDto.from(ladder));
+        outputView.printLadderGameResult(UsersDto.from(users), LadderDto.from(ladder), PrizesDto.from(prizes));
+        result = new Result(UsersDto.from(users).getUserNames());
+        searchResult();
+    }
+
+    private void searchResult() {
+        search = initializeSearch(UsersDto.from(users));
+        String searchName = search.getSearchName();
+
+        if (!searchName.equals("all")) {
+            checkMoved(searchName);
+            System.out.println(result.findOneResult(searchName));
+            searchResult();
+        }
+        if (searchName.equals("all")) {
+            List<String> searchNames = UsersDto.from(users).getUserNames();
+            outputView.printAllResult(searchNames, moveAllUser(searchNames));
+        }
+    }
+
+    private List<String> moveAllUser(List<String> searchNames) {
+        List<String> results = new ArrayList<>();
+        for (String searchName : searchNames) {
+            checkMoved(searchName);
+            results.add(result.findOneResult(searchName));
+        }
+        return results;
+    }
+
+    private void checkMoved(String searchName) {
+        if (result.findOneResult(searchName) == null) {
+            moveUserToPrize(searchName);
+        }
+    }
+
+    private void moveUserToPrize(String searchName) {
+        User searchUser = users.findUserByUserName(searchName);
+        for (Line line : ladder.getLines()) {
+            searchUser.movePosition(line);
+        }
+        result.saveResult(searchName, prizes.getPrizeNames().get(searchUser.getPosition()));
     }
 
     private Users initializeUsers() {
@@ -56,6 +106,33 @@ public class LadderGameController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return initializeHeight();
+        }
+    }
+
+    private Prizes initializePrizes() {
+        try {
+            List<String> prizeNames = inputView.inputPrizeName();
+            return new Prizes(createPrizes(prizeNames));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return initializePrizes();
+        }
+    }
+
+    private List<Prize> createPrizes(List<String> prizeNames) {
+        List<Prize> prizes = new ArrayList<>();
+        for (String prizeName : prizeNames) {
+            prizes.add(new Prize(prizeName));
+        }
+        return prizes;
+    }
+
+    private Search initializeSearch(UsersDto usersDto) {
+        try {
+            return new Search(inputView.inputSearchName(), usersDto.getUserNames());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return initializeSearch(usersDto);
         }
     }
 }

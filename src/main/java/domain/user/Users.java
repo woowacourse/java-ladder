@@ -21,4 +21,11 @@ public class Users {
         }
         return userNames;
     }
+
+    public User findUserByUserName(String userName) {
+        return users.stream()
+                .filter(user -> user.getName().equals(userName))
+                .findAny()
+                .orElseThrow(IllegalArgumentException::new);
+    }
 }

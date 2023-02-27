@@ -73,4 +73,10 @@ public class OutputView {
         }
         return String.join(NAME_DELIMITER, convertedPrizeNames);
     }
+
+    public void printAllResult(List<String> userNames, List<String> prizeNames) {
+        for (int i = 0; i < userNames.size(); i++) {
+            System.out.println(userNames.get(i) + " : " + prizeNames.get(i));
+        }
+    }
 }
