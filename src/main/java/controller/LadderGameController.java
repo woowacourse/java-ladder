@@ -29,12 +29,20 @@ public class LadderGameController {
         ladderGame.moveUsers();
 
         printLadderResult(ladder, users, rewards);
-        confirmResult(users, ladderGame);
+        finalResult(users, ladderGame);
+    }
+
+    private void finalResult(Users users, LadderGame ladderGame) {
+        try {
+            confirmResult(users, ladderGame);
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
+            finalResult(users, ladderGame);
+        }
     }
 
     private void confirmResult(Users users, LadderGame ladderGame) {
         String name;
-
         do {
             name = getChoiceUser();
             printFinalResult(ladderGame, users, name);
@@ -47,23 +55,36 @@ public class LadderGameController {
     }
 
     private Rewards getRewards(int userCount) {
-        outputView.printEnterRewardNotice();
-        List<String> rewards = inputView.inputRewards();
-
-        return Rewards.of(rewards, userCount);
+        try {
+            outputView.printEnterRewardNotice();
+            List<String> rewards = inputView.inputRewards();
+            return Rewards.of(rewards, userCount);
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
+            return getRewards(userCount);
+        }
     }
 
     private Ladder getLadder(int userCount) {
-        Height ladderHeight = getLadderHeight();
+        try {
+            Height ladderHeight = getLadderHeight();
 
-        return Ladder.of(ladderHeight, userCount);
+            return Ladder.of(ladderHeight, userCount);
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
+            return getLadder(userCount);
+        }
     }
 
     private Users getUsers() {
-        outputView.printEnterUserNotice();
-        List<String> userNames = inputView.inputUsernames();
-
-        return Users.from(userNames);
+        try {
+            outputView.printEnterUserNotice();
+            List<String> userNames = inputView.inputUsernames();
+            return Users.from(userNames);
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
+            return getUsers();
+        }
     }
 
     private Height getLadderHeight() {
