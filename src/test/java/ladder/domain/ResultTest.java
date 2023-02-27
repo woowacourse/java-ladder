@@ -11,9 +11,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ResultTest {
     private Names names;
@@ -46,32 +46,37 @@ public class ResultTest {
     @ParameterizedTest(name = "주어진 사다리(ladder)를 기반으로 결과의 순서를 바꾼다.")
     @ValueSource(ints = {1, 3, 5, 7, 9, 11, 13})
     void performResultSuccessTest1(int height) {
+        //given
         Ladder ladder = new Ladder(names.size(), new Height(height), new TrueGenerator());
         Result result = new Result(names, bets);
 
-        result.perform(ladder); // ladder를 기반으로 내기 목록 위치 변경
+        //when
+        result.perform(ladder);
 
-        List<String> expectedBets = Arrays.asList("B", "A", "D", "C", "E"); // 예상 결과
+        //then
         List<Bet> actualBets = List.copyOf(result.getResult().values());
-
-        for (int i = 0; i < expectedBets.size(); i++) {
-            assertEquals(expectedBets.get(i), actualBets.get(i).getBet());
-        }
+        assertThat(actualBets)
+                .containsExactly(
+                        new Bet("B"), new Bet("A"), new Bet("D"), new Bet("C"), new Bet("E")
+                );
     }
 
     @ParameterizedTest(name = "주어진 사다리(ladder)를 기반으로 결과의 순서를 바꾼다.")
     @ValueSource(ints = {2, 4, 6, 8, 10, 12, 14})
     void performResultSuccessTest2(int height) {
+        //given
         Ladder ladder = new Ladder(names.size(), new Height(height), new TrueGenerator());
         Result result = new Result(names, bets);
 
-        result.perform(ladder); // ladder를 기반으로 내기 목록 위치 변경
+        //when
+        result.perform(ladder);
 
-        List<String> expectedBets = Arrays.asList("A", "B", "C", "D", "E"); // 예상 결과
+        //then
         List<Bet> actualBets = List.copyOf(result.getResult().values());
-
-        for (int i = 0; i < expectedBets.size(); i++) {
-            assertEquals(expectedBets.get(i), actualBets.get(i).getBet());
-        }
+        assertThat(actualBets)
+                .containsExactly(
+                        new Bet("A"), new Bet("B"), new Bet("C"), new Bet("D"), new Bet("E")
+                );
     }
 }
+
