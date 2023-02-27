@@ -18,6 +18,9 @@ public class ListStudy {
         assertThat(values.remove(0)).isEqualTo("first"); // 첫 번째 값을 삭제한다.
         // assertThat(values.size()).isEqualTo(2); // 값이 삭제 됐는지 확인한다
 
+        SimpleList emptyList = new SimpleArrayList();
+        assertThat(emptyList.isEmpty()).isTrue();
+        
         System.out.println(values);
     }
 }
