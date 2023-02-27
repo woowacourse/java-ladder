@@ -3,23 +3,36 @@ package controller;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.List;
+import java.util.Scanner;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import exception.ErrorMessage;
+import util.TestGenerator;
 import view.InputView;
 import view.OutputView;
 
 class GameResultControllerTest {
 
     private ByteArrayOutputStream byteArrayOutputStream;
-    private LadderGameController ladderGameController;
+    private static TestGenerator testGenerator;
 
     @BeforeEach
     void before() {
-        ladderGameController = new LadderGameController(new InputView(), new OutputView(), () -> true);
+        List<Boolean> generateStatus = List.of(
+                true, true,
+                false, true,
+                true, false,
+                false, true,
+                true, true
+        );
+
+        testGenerator = new TestGenerator();
+        testGenerator.addAll(generateStatus);
     }
 
     void setInput(String input) {
@@ -35,6 +48,10 @@ class GameResultControllerTest {
     @Test
     void playSuccess() {
         setInput("pobi,honux,crong,jk\na,b,c,d\n5\nall\n");
+        LadderGameController ladderGameController =
+                new LadderGameController(new InputView(new Scanner(System.in)),
+                new OutputView(), testGenerator);
+
         setOutput();
         ladderGameController.play();
         Assertions.assertThat(byteArrayOutputStream.toString())
@@ -45,22 +62,26 @@ class GameResultControllerTest {
                           , "\n"
                           , " pobi honux crong    jk \n"
                           , "    |-----|     |-----|\n"
-                          , "    |-----|     |-----|\n"
-                          , "    |-----|     |-----|\n"
-                          , "    |-----|     |-----|\n"
+                          , "    |     |-----|     |\n"
+                          , "    |-----|     |     |\n"
+                          , "    |     |-----|     |\n"
                           , "    |-----|     |-----|\n"
                           , "    a     b     c     d \n"
                           , "실행 결과\n"
-                          , "pobi : b\n"
-                          , "honux : a\n"
-                          , "crong : d\n"
-                          , "jk : c\n");
+                          , "pobi : a\n"
+                          , "honux : d\n"
+                          , "crong : c\n"
+                          , "jk : b\n");
     }
 
     @DisplayName("컨트롤러는 잘못된 입력으로 Participant를 생성 시 오류를 던진다.")
     @Test
     void makeParticipantsFail() {
         setInput("abcdef,abcde\nsplit,jamie\na,b\n5\nall");
+        LadderGameController ladderGameController =
+                new LadderGameController(new InputView(new Scanner(System.in)),
+                new OutputView(), testGenerator);
+
         setOutput();
         ladderGameController.play();
         Assertions.assertThat(byteArrayOutputStream.toString())
@@ -71,6 +92,10 @@ class GameResultControllerTest {
     @Test
     void makeResultsFail() {
         setInput("split,jamie\na,b,c\na,b\n5\nall");
+        LadderGameController ladderGameController =
+                new LadderGameController(new InputView(new Scanner(System.in)),
+                new OutputView(), testGenerator);
+
         setOutput();
         ladderGameController.play();
         Assertions.assertThat(byteArrayOutputStream.toString())
@@ -81,6 +106,10 @@ class GameResultControllerTest {
     @Test
     void makeLadderFail() {
         setInput("split,jamie,pobi\na,b,c\n11\n3\nall");
+        LadderGameController ladderGameController =
+                new LadderGameController(new InputView(new Scanner(System.in)),
+                new OutputView(), testGenerator);
+
         setOutput();
         ladderGameController.play();
         Assertions.assertThat(byteArrayOutputStream.toString())
