@@ -10,6 +10,10 @@ public class Position {
         this.position = position;
     }
 
+    public Position createSame() {
+        return new Position(position);
+    }
+
     public void moveRight() {
         position++;
     }
@@ -20,6 +24,10 @@ public class Position {
 
     public boolean isSamePosition(int other) {
         return position == other;
+    }
+
+    public int doSomething(int value) {
+        return position - value;
     }
 
     public int getPosition() {

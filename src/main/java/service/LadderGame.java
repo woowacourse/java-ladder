@@ -10,7 +10,6 @@ import dto.GameResultDto;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO: 테스트 만들기
 public class LadderGame {
 
     private final Ladder ladder;

@@ -13,7 +13,7 @@ public class Player {
     }
 
     public Position move(Ladder ladder) {
-        return ladder.play(position);
+        return ladder.play(position.createSame());
     }
 
     public boolean isSameName(String otherName) {
