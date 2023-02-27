@@ -49,7 +49,7 @@ public class InputView {
         Names names = new Names(mapToName(trimNames(inputNames)));
 
         if (inputNames.contains(QUIT_MESSAGE)) {
-            return InputRepeatableDTO.Unrepeatable(names);
+            return InputRepeatableDTO.unrepeatable(names);
         }
         if (inputNames.contains(VIEW_ALL_PLAYERS_MESSAGE)) {
             return InputRepeatableDTO.repeatable(allPlayersName);

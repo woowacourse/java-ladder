@@ -16,7 +16,7 @@ public class InputRepeatableDTO {
         return new InputRepeatableDTO(data, true);
     }
 
-    public static InputRepeatableDTO Unrepeatable(final Names data) {
+    public static InputRepeatableDTO unrepeatable(final Names data) {
         return new InputRepeatableDTO(data, false);
     }
 
