@@ -43,7 +43,7 @@ public class Ladder {
     private static List<Line> generateLadder(int height, int personCount, BooleanGenerator booleanGenerator) {
         List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            ladder.add(new Line(personCount, booleanGenerator));
+            ladder.add(Line.of(personCount, booleanGenerator));
         }
         return ladder;
     }

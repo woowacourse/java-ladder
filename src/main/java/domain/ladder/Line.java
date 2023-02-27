@@ -13,30 +13,35 @@ public class Line {
 
     private final List<Point> line;
 
-    public Line(int personCount, BooleanGenerator booleanGenerator) {
-        line = new ArrayList<>();
-        generateLine(personCount, booleanGenerator);
+    public Line(List<Point> line) {
+        this.line = line;
+    }
+
+    public static Line of(int personCount, BooleanGenerator booleanGenerator) {
+        return new Line(generateLine(personCount, booleanGenerator));
     }
 
     private static boolean isGenerated(BooleanGenerator booleanGenerator) {
         return booleanGenerator.generate() == GENERATE_VALUE;
     }
 
-    private void generateLine(int personCount, BooleanGenerator booleanGenerator) {
+    private static List<Point> generateLine(int personCount, BooleanGenerator booleanGenerator) {
+        List<Point> line = new ArrayList<>();
         for (int i = 0; i < personCount - 1; i++) {
-            generatePoint(booleanGenerator);
+            generatePoint(line, booleanGenerator);
         }
+        return line;
     }
 
-    private void generatePoint(BooleanGenerator booleanGenerator) {
-        if (isGenerated(booleanGenerator) && !hasAdjacentPoint()) {
+    private static void generatePoint(List<Point> line, BooleanGenerator booleanGenerator) {
+        if (isGenerated(booleanGenerator) && !hasAdjacentPoint(line)) {
             line.add(Point.CONNECTION);
             return;
         }
         line.add(Point.SEPARATION);
     }
 
-    private boolean hasAdjacentPoint() {
+    private static boolean hasAdjacentPoint(List<Point> line) {
         return !line.isEmpty() && line.get(line.size() - 1).getStatus();
     }
 

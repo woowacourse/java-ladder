@@ -57,7 +57,7 @@ public class PlayersTest {
     void playerMoveTest(boolean generateValue, int expectedOdoPosition, int expectedKongPosition) {
         List<String> names = List.of("odo", "kong");
         Players players = new Players(names);
-        Line line = new Line(2, new TestBooleanGenerator(Lists.newArrayList(generateValue)));
+        Line line = Line.of(2, new TestBooleanGenerator(Lists.newArrayList(generateValue)));
         players.move(line);
         Player odo = players.getPlayers().get(0);
         Player kong = players.getPlayers().get(1);

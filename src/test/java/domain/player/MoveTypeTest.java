@@ -17,7 +17,7 @@ public class MoveTypeTest {
     @CsvSource(value = {"kong:1:LEFT", "kong:0:RIGHT", "kong:2:STAY"}, delimiter = ':')
     void moveTypeTest1(String name, int position, MoveType expected) {
         Player player = new Player(name, position);
-        Line line = new Line(4, new TestBooleanGenerator(Lists.newArrayList(true, false, false)));
+        Line line = Line.of(4, new TestBooleanGenerator(Lists.newArrayList(true, false, false)));
         MoveType moveType = MoveType.getMoveTypeByPosition(player, line);
 
         assertThat(moveType).isEqualTo(expected);
@@ -28,7 +28,7 @@ public class MoveTypeTest {
     @CsvSource(value = {"kong:4:4", "kong:2:1"}, delimiter = ':')
     void moveTypeTest2(String name, int position, int personCount) {
         Player player = new Player(name, position);
-        Line line = new Line(personCount, new TestBooleanGenerator(Lists.newArrayList(true, false, false)));
+        Line line = Line.of(personCount, new TestBooleanGenerator(Lists.newArrayList(true, false, false)));
         assertThatThrownBy(() -> MoveType.getMoveTypeByPosition(player, line))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리 가로줄의 번호는 0부터 플레이어 수 - 1까지의 범위를 갖는 정수로 입력해주세요.");
