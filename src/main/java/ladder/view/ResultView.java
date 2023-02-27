@@ -22,7 +22,7 @@ public class ResultView {
     public void printForm(Names names, Ladder ladder, Result result) {
         int lengthOfFirstName = names.lengthOfFirstName();
 
-        System.out.println("실행결과\n");
+        System.out.println("실행결과" + System.lineSeparator());
         printNames(names);
         printLadder(ladder, lengthOfFirstName);
         printBets(result, lengthOfFirstName);
@@ -75,7 +75,7 @@ public class ResultView {
         String resultMessage = "";
         for (int i = 0; i < names.size(); i++) {
             resultMessage += String.format(RESULT_FORMAT, names.get(i), bets.get(i).getBet());
-            resultMessage += "\n";
+            resultMessage += System.lineSeparator();
         }
 
         System.out.print(resultMessage);
