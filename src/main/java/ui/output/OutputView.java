@@ -1,6 +1,7 @@
 package ui.output;
 
 import domain.Lines;
+import domain.Names;
 import domain.People;
 import domain.Person;
 import domain.Reward;
@@ -16,6 +17,8 @@ public class OutputView {
     private static final String LADDER_RESULT = "사다리 결과";
     private static final String EXECUTE_RESULT = "실행 결과";
     private static final String VIEW_RESULT_ALL = "all";
+    private static final int NON_ENGLISH_CHAR_SIZE = 2;
+    private static final int ENGLISH_AND_NUMBER_CHAR_SIZE = 1;
 
     public static void printLadderResult(People people, Lines lines, Rewards rewards) {
         System.out.println("\n" + LADDER_RESULT + "\n");
@@ -45,9 +48,9 @@ public class OutputView {
 
     private static int correctionLength(char character) {
         if (('a' <= character && character <= 'z') || ('0' <= character && character <= '9')) {
-            return 1;
+            return ENGLISH_AND_NUMBER_CHAR_SIZE;
         }
-        return 2;
+        return NON_ENGLISH_CHAR_SIZE;
     }
 
     private static void printNames(People people, int maxLength) {
