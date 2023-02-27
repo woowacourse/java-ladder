@@ -36,5 +36,19 @@ class ResultTest {
 
             assertThat(result.findOneResult(searchName)).isEqualTo(prizeName);
         }
+
+        @DisplayName("result에서 모든 유저의 결과 검색이 성공하는지 확인한다.")
+        @Test
+        void shouldSuccessFindAllResult() {
+            List<String> searchNames = List.of("test", "mango");
+            List<String> prizeNames = List.of("꽝", "당첨");
+            Result result = new Result(searchNames);
+
+            for (int i = 0; i < searchNames.size(); i++) {
+                result.saveResult(searchNames.get(i), prizeNames.get(i));
+            }
+
+            assertThat(result.findAllResult()).isEqualTo(prizeNames);
+        }
     }
 }
