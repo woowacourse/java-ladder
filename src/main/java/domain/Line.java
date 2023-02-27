@@ -7,13 +7,13 @@ import java.util.List;
 
 public class Line {
     private static final String INVALID_BRIDGE_MESSAGE = "다리는 연속으로 생성되면 안됩니다.";
-    private final List<Bridge> line;
+    private final List<Bridge> bridges;
 
-    public Line(final List<Bridge> line) {
-        for (int index = 1; index < line.size(); index++) {
-            validateLine(line, index);
+    public Line(final List<Bridge> bridges) {
+        for (int index = 1; index < bridges.size(); index++) {
+            validateLine(bridges, index);
         }
-        this.line = line;
+        this.bridges = bridges;
     }
 
     public Direction calculateNextPosition(final int index) {
@@ -39,18 +39,18 @@ public class Line {
     }
 
     private boolean isLastPosition(final int index) {
-        return index == line.size();
+        return index == bridges.size();
     }
 
     private Direction isMovableToRight(final int index) {
-        if (line.get(index) == Bridge.EXIST) {
+        if (bridges.get(index) == Bridge.EXIST) {
             return Direction.RIGHT;
         }
         return Direction.DOWN;
     }
 
     private Direction isMovableToLeft(final int index) {
-        if (line.get(index - 1) == Bridge.EXIST) {
+        if (bridges.get(index - 1) == Bridge.EXIST) {
             return Direction.LEFT;
         }
         return Direction.DOWN;
@@ -67,7 +67,7 @@ public class Line {
     }
 
     public LineDTO getLineDTO() {
-        List<Bridge> lineDTO = new ArrayList<>(line);
+        List<Bridge> lineDTO = new ArrayList<>(bridges);
         return new LineDTO(lineDTO);
     }
 }
