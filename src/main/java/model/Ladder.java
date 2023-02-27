@@ -10,13 +10,12 @@ public class Ladder {
     private static final int MINIMUM_HEIGHT = 1;
 
     private final List<Line> lines = new ArrayList<>();
-    private final Players players;
 
-    public Ladder(int height, Players players, PassGenerator passGenerator) {
+    public Ladder(int height, int numberOfPlayer, PassGenerator passGenerator) {
         validateMinHeight(height);
-        this.players = players;
-        while (height-- > 0) {
-            lines.add(new Line(players.getPlayersName().size(), passGenerator));
+        while (height > 0) {
+            lines.add(new Line(numberOfPlayer, passGenerator));
+            height -= 1;
         }
     }
 
@@ -26,17 +25,17 @@ public class Ladder {
         }
     }
 
+    public int calculateResultIndex(int playerIndex) {
+        int finalIndex = playerIndex;
+        for (Line line : lines) {
+            finalIndex = line.nextLineIndex(finalIndex);
+        }
+        return finalIndex;
+    }
+
     public List<List<String>> getLadder() {
         return lines.stream()
             .map(Line::getLineBlockPass)
             .collect(Collectors.toList());
-    }
-
-    public List<Line> getLines() {
-        return lines;
-    }
-
-    public Players getPlayers() {
-        return players;
     }
 }

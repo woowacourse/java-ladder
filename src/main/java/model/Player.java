@@ -11,6 +11,7 @@ public class Player {
         this.name = name;
     }
 
+
     private void validateLength(String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 최대 5글자까지만 가능합니다.");

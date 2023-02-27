@@ -11,13 +11,10 @@ public class Players {
     private static final int MINIMUM_PARTICIPANT_NUM = 2;
 
     private final Set<Player> players = new LinkedHashSet<>();
-    private final int playersNum;
 
     public Players(List<String> input) {
         validateDuplicateName(input);
         validateMinPlayers(input.size());
-        this.playersNum = input.size();
-
         for (String name : input) {
             players.add(new Player(name));
         }
@@ -36,8 +33,12 @@ public class Players {
         }
     }
 
-    public int getPlayersNum() {
-        return playersNum;
+    public int numberOfPlayer() {
+        return this.players.size();
+    }
+
+    public String findNameByIndex(int index) {
+        return getPlayers().get(index).getName();
     }
 
     public List<Player> getPlayers() {

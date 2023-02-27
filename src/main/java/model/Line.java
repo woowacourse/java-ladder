@@ -31,8 +31,9 @@ public class Line {
         }
     }
 
-    public List<Block> getLine() {
-        return line;
+    public int nextLineIndex(int playerIndex) {
+        Block currentBlock = line.get(playerIndex);
+        return currentBlock.nextLineIndex(playerIndex);
     }
 
     public List<String> getLineBlockPass() {
