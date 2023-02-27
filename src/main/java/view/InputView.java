@@ -75,7 +75,7 @@ public class InputView {
     public LadderParameter inputLadder(int inputNameSize) {
         int height = inputLadderHeight();
         int width = inputNameSize - 1;
-        return new LadderParameter(height, width);
+        return LadderParameter.of(height, width);
     }
 
 }

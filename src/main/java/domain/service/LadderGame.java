@@ -32,10 +32,10 @@ public class LadderGame {
 
     public ViewResultParameter viewersAndResults(List<String> viewers) {
         if (viewers.contains(Command.QUIT.getName())) {
-            return new ViewResultParameter(Collections.emptyList(), Collections.emptyList());
+            return ViewResultParameter.of(Collections.emptyList(), Collections.emptyList());
         }
         if (viewers.contains(Command.ALL.getName())) {
-            return new ViewResultParameter(players.nameToString(), results.mapToString());
+            return ViewResultParameter.of(players.nameToString(), results.mapToString());
         }
 
         if (!players.containsAll(viewers)) {
@@ -43,7 +43,7 @@ public class LadderGame {
         }
 
         List<String> orderedResults = orderResultsByName(viewers);
-        return new ViewResultParameter(viewers, orderedResults);
+        return ViewResultParameter.of(viewers, orderedResults);
     }
 
     private List<String> orderResultsByName(List<String> viewersName) {
