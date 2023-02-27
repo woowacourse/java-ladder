@@ -28,7 +28,6 @@ public class InputView {
         System.out.println(LADDER_HEIGHT_INPUT_MESSAGE);
 
         String input = scanner.nextLine();
-        InputValidator.validateInteger(input);
         return Integer.parseInt(input);
     }
 
