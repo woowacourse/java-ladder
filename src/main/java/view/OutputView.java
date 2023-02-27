@@ -6,9 +6,7 @@ import java.util.Map;
 import domain.Ladder;
 import domain.Lines;
 import domain.Name;
-import domain.Names;
 import domain.Result;
-import domain.Results;
 
 public class OutputView {
 
@@ -22,7 +20,7 @@ public class OutputView {
     private static final StringBuilder ladderOutput = new StringBuilder();
     private static final StringBuilder resultOutput = new StringBuilder();
 
-    public static void printLadder(final Names names, final Ladder ladder, final Results results) {
+    public static void printLadder(final List<Name> names, final Ladder ladder, final List<Result> results) {
         System.out.println(NEW_LINE + "사다리결과" + NEW_LINE);
 
         System.out.println(makeNamesOutput(names));
@@ -30,25 +28,24 @@ public class OutputView {
         System.out.println(makeResultsOutput(results, names));
     }
 
-    private static StringBuilder makeNamesOutput(final Names names) {
+    private static StringBuilder makeNamesOutput(final List<Name> names) {
         namesOutput.append(findFirstPlayerName(names))
                 .append(BLANK);
 
-        for (int i = 1; i < names.getNames().size(); i++) {
-            appendPlayerNames(findLongestLengthOfName(names), names.getNames().get(i));
+        for (int i = 1; i < names.size(); i++) {
+            appendPlayerNames(findLongestLengthOfName(names), names.get(i));
         }
 
         return namesOutput;
     }
 
-    private static String findFirstPlayerName(final Names names) {
-        return names.getNames().get(0).getValue();
+    private static String findFirstPlayerName(final List<Name> names) {
+        return names.get(0).getValue();
     }
 
 
-    private static int findLongestLengthOfName(final Names names) {
-        return names.getNames()
-                .stream()
+    private static int findLongestLengthOfName(final List<Name> names) {
+        return names.stream()
                 .mapToInt(player -> player.getValue().length())
                 .max()
                 .orElseThrow(IllegalArgumentException::new);
@@ -74,7 +71,7 @@ public class OutputView {
                 .append(BLANK);
     }
 
-    private static StringBuilder makeLadderOutput(final Names names, final Ladder ladder) {
+    private static StringBuilder makeLadderOutput(final List<Name> names, final Ladder ladder) {
         for (int heightIndex = 0; heightIndex < findLadderHeight(ladder); heightIndex++) {
             drawSpaceAtFirst(findLengthOfFirstPlayerName(names));
             drawInnerLadder(names, ladder, heightIndex);
@@ -87,8 +84,8 @@ public class OutputView {
         return ladder.getHeight().getValue();
     }
 
-    private static int findLengthOfFirstPlayerName(final Names names) {
-        return names.getNames().get(0).getValue().length();
+    private static int findLengthOfFirstPlayerName(final List<Name> names) {
+        return names.get(0).getValue().length();
     }
 
     private static void drawSpaceAtFirst(final int lengthOfFirstPlayerName) {
@@ -99,7 +96,7 @@ public class OutputView {
         ladderOutput.append(BLANK.repeat(lengthOfFirstPlayerName));
     }
 
-    private static void drawInnerLadder(final Names names, final Ladder ladder, final int heightIndex) {
+    private static void drawInnerLadder(final List<Name> names, final Ladder ladder, final int heightIndex) {
         for (Boolean isExistingConnection : findSelectedLine(ladder.getLines(), heightIndex)) {
             ladderOutput.append(BAR);
             drawExistingConnection(names, isExistingConnection);
@@ -112,7 +109,7 @@ public class OutputView {
         return lines.getLines().get(selectedPosition).getConnections();
     }
 
-    private static void drawExistingConnection(final Names names, final Boolean isExistingConnection) {
+    private static void drawExistingConnection(final List<Name> names, final Boolean isExistingConnection) {
         if (isExistingConnection) {
             ladderOutput.append(CONNECTION.repeat(findLongestLengthOfName(names)));
             return;
@@ -120,8 +117,8 @@ public class OutputView {
         ladderOutput.append(BLANK.repeat(findLongestLengthOfName(names)));
     }
 
-    private static StringBuilder makeResultsOutput(final Results results, final Names names) {
-        for (Result result : results.getResults()) {
+    private static StringBuilder makeResultsOutput(final List<Result> results, final List<Name> names) {
+        for (Result result : results) {
             resultOutput.append(result.getValue())
                     .append(BLANK.repeat(findLongestLengthOfName(names) - result.getValue().length()));
         }

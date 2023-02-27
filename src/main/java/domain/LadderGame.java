@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.List;
 import java.util.Map;
 
 import domain.generator.RandomConnectionGenerator;
@@ -22,11 +23,11 @@ public class LadderGame {
         return ladder.matchResult(names.getNames(), results.getResults());
     }
 
-    public Names getNames() {
-        return this.names;
+    public List<Name> getNames() {
+        return this.names.getNames();
     }
 
-    public Results getResults() {
-        return this.results;
+    public List<Result> getResults() {
+        return this.results.getResults();
     }
 }
