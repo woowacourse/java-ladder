@@ -7,11 +7,14 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.domain.Line;
 import ladder.utils.BooleanGenerator;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class LineTest {
 
@@ -22,7 +25,7 @@ class LineTest {
         // when
         Line line = new Line(3);
         // then
-        assertThat(line.getBars()).hasSize(3);
+        assertThat(line.getBars()).hasSize(5);
     }
 
     @Test
@@ -44,7 +47,32 @@ class LineTest {
         // when
         Line line = new Line(3, new DeterminedBooleanGenerator(determinedBars));
         // then
-        assertThat(line.getBars()).containsExactly(MOVABLE, IMMOVABLE, MOVABLE);
+        assertThat(line.getBars()).containsExactly(IMMOVABLE, MOVABLE, IMMOVABLE, MOVABLE, IMMOVABLE);
+    }
+
+    @Nested
+    @DisplayName("MOVABLE, IMMOVABLE, IMMOVABLE, MOVABLE인 Line에서")
+    class shouldMoveCorrectlyWhenRequest {
+        private Line line;
+
+        @BeforeEach
+        void generateLine() {
+            List<Boolean> determinedBars = new ArrayList<>(List.of(true, false, true));
+            line = new Line(4, new DeterminedBooleanGenerator(determinedBars));
+        }
+
+        @ParameterizedTest
+        @CsvSource(value = {"0:1", "1:0", "2:2", "3:4", "4:3"}, delimiter = ':')
+        @DisplayName("Location을 입력받아 사다리 모양에 맞게 움직인다.")
+        void shouldMoveTo1WhenStartAT0(int startColumnIndex, int endColumnIndex) {
+            // given
+            Location location = new Location(startColumnIndex);
+            // when
+            line.move(location);
+            // then
+            assertThat(line.getBars()).containsExactly(IMMOVABLE, MOVABLE, IMMOVABLE, IMMOVABLE, MOVABLE, IMMOVABLE);
+            assertThat(location.getColumnIndex()).isEqualTo(endColumnIndex);
+        }
     }
 
     static class DeterminedBooleanGenerator implements BooleanGenerator {
