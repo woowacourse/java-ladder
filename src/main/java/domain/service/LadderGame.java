@@ -39,12 +39,12 @@ public class LadderGame {
             return new ViewResultParameter(players.nameToString(), results.mapToString());
         }
         Names viewersName = Names.from(viewers);
-        checkPlayersHave(viewersName);
+        checkPlayersContainsAll(viewersName);
         List<String> orderedResults = orderResultsByName(viewersName);
         return new ViewResultParameter(viewers, orderedResults);
     }
 
-    private void checkPlayersHave(Names viewersName) {
+    private void checkPlayersContainsAll(Names viewersName) {
         if (!players.containsAll(viewersName)) {
             throw new IllegalArgumentException(NO_PLAYER_ERROR_MESSAGE);
         }
