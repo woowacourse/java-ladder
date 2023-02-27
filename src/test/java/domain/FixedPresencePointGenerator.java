@@ -1,4 +1,7 @@
-package domain.util;
+package domain;
+
+import domain.Ladder.Point;
+import domain.util.PointGenerator;
 
 public class FixedPresencePointGenerator implements PointGenerator {
     @Override

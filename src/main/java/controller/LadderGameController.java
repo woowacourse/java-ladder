@@ -1,58 +1,119 @@
 package controller;
 
-import domain.LadderGame;
-import domain.LadderHeight;
-import domain.ParticipantName;
-import domain.Participants;
-import view.InputView;
-import view.OutputView;
+import domain.Collection.Participant;
+import domain.Collection.Participants;
+import domain.Collection.Result;
+import domain.Collection.Results;
+import domain.Ladder.Ladder;
+import domain.Ladder.LadderHeight;
+import domain.Ladder.LadderWidth;
+import domain.LadderGame.LadderGame;
+import domain.LadderGame.ResultCommand;
+import domain.util.PointGenerator;
+import view.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderGameController {
-
-	public void run() {
-		LadderGame ladderGame = setUpLadderGame();
-		OutputView.printLadder(
-				ladderGame.getParticipants(),
-				ladderGame.getLadder()
-		);
-	}
-
-	public LadderGame setUpLadderGame() {
-		Participants participants = retrieveParticipants();
-		LadderHeight ladderHeight = new LadderHeight(retrieveLadderHeight());
-		return new LadderGame(participants, ladderHeight);
-	}
-
-
-	private Participants retrieveParticipants() {
-		List<ParticipantName> names = retrieveParticipantsNames();
-		Participants participants = new Participants();
-		for (ParticipantName name : names) {
-			participants.add(name);
-		}
-		return participants;
-	}
-
-	private List<ParticipantName> retrieveParticipantsNames() {
-		try {
-			List<String> names = InputView.readParticipantsNames();
-			return names.stream().map(ParticipantName::new).collect(Collectors.toList());
-		} catch (IllegalArgumentException e) {
-			OutputView.printError(e.getMessage());
-			return retrieveParticipantsNames();
-		}
-	}
-
-	private int retrieveLadderHeight() {
-		try{
-			return InputView.readHeight();
-		} catch (IllegalArgumentException e){
-			OutputView.printError(e.getMessage());
-			return retrieveLadderHeight();
-		}
-	}
-
+    
+    private final LadderGame ladderGame;
+    private ResultCommand command;
+    
+    public LadderGameController( PointGenerator pointGenerator ) {
+        this.ladderGame = this.buildLadderGame(pointGenerator);
+    }
+    
+    private LadderGame buildLadderGame( PointGenerator pointGenerator ) {
+        Participants participants = this.retrieveParticipants();
+        Results results = this.retrieveResults(participants.getSize());
+        Ladder ladder = this.buildLadder(pointGenerator, participants);
+        return new LadderGame(participants, results, ladder);
+    }
+    
+    private Ladder buildLadder( PointGenerator pointGenerator, Participants participants ) {
+        LadderHeight ladderHeight = this.retrieveHeight();
+        LadderWidth ladderWidth = this.retrieveWidth(participants);
+        return Ladder.create(ladderHeight, ladderWidth, pointGenerator);
+    }
+    
+    public void runGame() {
+        this.displayLadder();
+        this.ladderGame.run();
+        this.displayResult();
+    }
+    
+    private void displayResult() {
+        String name = this.retrieveNameToFind();
+        while ( this.command == ResultCommand.NAME ) {
+            this.displayGameResult(name);
+            name = this.retrieveNameToFind();
+        }
+        if ( this.command == ResultCommand.ALL ) {
+            this.displayAllGameResults();
+        }
+    }
+    
+    private Participants retrieveParticipants() {
+        try {
+            List<String> names = InputView.readNames();
+            return Participants.of(names);
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return this.retrieveParticipants();
+        }
+    }
+    
+    private Results retrieveResults( int size ) {
+        try {
+            List<String> strings = InputView.readResults(size);
+            return Results.of(strings);
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return this.retrieveResults(size);
+        }
+    }
+    
+    private LadderHeight retrieveHeight() {
+        try {
+            int height = InputView.readHeight();
+            return LadderHeight.from(height);
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return this.retrieveHeight();
+        }
+    }
+    
+    private LadderWidth retrieveWidth( Participants participants ) {
+        return LadderWidth.from(participants.getSize() - 1);
+    }
+    
+    private String retrieveNameToFind() {
+        try {
+            String name = InputView.readNameToFind();
+            this.command = this.ladderGame.validateNameToFind(name);
+            return name;
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return this.retrieveNameToFind();
+        }
+    }
+    
+    private void displayAllGameResults() {
+        String allGameResults = GameResultFormatter.formatAllGameResults(this.ladderGame.getParticipants(), this.ladderGame.getAllGameResult());
+        OutputView.printAllGameResults(allGameResults);
+    }
+    
+    private void displayGameResult( String name ) {
+        Participant participant = Participant.from(name);
+        Result result = this.ladderGame.getResultFrom(participant);
+        String formattedResult = GameResultFormatter.formatGameResult(result);
+        OutputView.printGameResult(formattedResult);
+    }
+    
+    private void displayLadder() {
+        String names = CollectionFormatter.formatParticipants(this.ladderGame.getParticipants());
+        String ladder = LadderFormatter.formatLadder(this.ladderGame.getLadder());
+        String results = CollectionFormatter.formatResults(this.ladderGame.getResults());
+        OutputView.printLadderResult(names, ladder, results);
+    }
 }
