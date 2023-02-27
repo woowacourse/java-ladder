@@ -1,8 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Results {
@@ -29,12 +27,6 @@ public class Results {
     private void validateInputResults(int playerCount, List<String> inputResults) {
         if (playerCount != inputResults.size()) {
             throw new IllegalArgumentException(VALIDATE_RESULTS_COUNT);
-        }
-    }
-
-    public void matchPlayerName(List<Player> playerList) {
-        for (int i = 0; i < results.size(); i++) {
-            results.get(i).savePlayer(playerList.get(i).getName());
         }
     }
 

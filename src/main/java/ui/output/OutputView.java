@@ -2,9 +2,7 @@ package ui.output;
 
 import domain.*;
 
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -51,7 +49,7 @@ public class OutputView {
 
     private static void printResults(Results results) {
         for (Result result : results.getResults()) {
-            System.out.print(" ".repeat(5 - result.getPrize().length()) + result.getPrize() + SPACE);
+            System.out.print(result.getPrize() + SPACE.repeat(5 - result.getPrize().length()));
         }
         System.out.println();
     }
@@ -70,13 +68,6 @@ public class OutputView {
             System.out.println(player.getName() + COLON + finalResults.get(player.getName()));
         }
     }
-
-//    private static Result findResult(List<Result> resultList, String playerName) {
-//        return resultList.stream()
-//                .filter(r -> r.getPlayerName().equals(playerName))
-//                .findFirst()
-//                .orElseThrow(() -> new IllegalArgumentException(PLAYER_NOT_FOUND));
-//    }
 
     private static void printDetail(Map<String, String> finalResults, String playerName) {
         System.out.println(playerName + COLON + finalResults.get(playerName));
