@@ -36,4 +36,14 @@ public class PlayersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 두 명 이상 입력해야 합니다.");
     }
+
+    @Test
+    @DisplayName("중복된 플레이어 이름을 입력했을 때 예외 발생")
+    void throwExceptionWhenDuplicatedNamesAreInput() {
+        String[] names = {"roy", "roy"};
+
+        assertThatThrownBy(() -> Players.of(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 중복된 이름을 입력할 수 없습니다.");
+    }
 }

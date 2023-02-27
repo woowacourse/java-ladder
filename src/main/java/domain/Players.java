@@ -10,8 +10,8 @@ public class Players {
     private final List<Player> players;
 
     private Players(List<Player> players) {
-
         validateNumberOfPlayers(players);
+        validateDuplication(players);
         this.players = players;
     }
 
@@ -29,6 +29,17 @@ public class Players {
     private void validateNumberOfPlayers(List<Player> players) {
         if (players.size() < MINIMUM_NUMBER_OF_PLAYERS) {
             throw new IllegalArgumentException("[ERROR] 두 명 이상 입력해야 합니다.");
+        }
+    }
+
+    private void validateDuplication(List<Player> players) {
+        boolean isDuplicated = players.stream()
+                .map(Player::getName)
+                .distinct()
+                .count() != players.size();
+
+        if (isDuplicated) {
+            throw new IllegalArgumentException("[ERROR] 중복된 이름을 입력할 수 없습니다.");
         }
     }
 
