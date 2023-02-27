@@ -4,7 +4,6 @@ import ladder.domain.game.LadderGame;
 import ladder.domain.rule.RandomStoolGenerator;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Players;
-import ladder.domain.exception.CustomException;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -12,6 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderGameController {
+
+    private static final String EXIST_SIGNAL = "all";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -91,7 +92,7 @@ public class LadderGameController {
     private void startGameResultLoop(LadderGame ladderGame) {
         String playerName = inputView.inputPlayerWhoNeedsGameResult();
 
-        while (!playerName.equals("all")) {
+        while (!playerName.equals(EXIST_SIGNAL)) {
             outputView.printOneGameResult(ladderGame.getOneLadderGameResult(playerName));
             playerName = inputView.inputPlayerWhoNeedsGameResult();
         }
