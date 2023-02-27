@@ -77,10 +77,11 @@ public class Application {
     public static void repeatPrintPeopleResultUntilAll(Rewards inputRewards, People processedPeople) {
         while (true) {
             String targetName = inputTargetPerson(processedPeople);
-            OutputView.printRewardResult(inputRewards, processedPeople, targetName);
             if (targetName.equals("all")) {
+                OutputView.printRewardResultAll(inputRewards, processedPeople);
                 return;
             }
+            OutputView.printRewardResult(inputRewards, processedPeople.findPerson(targetName));
         }
     }
 }

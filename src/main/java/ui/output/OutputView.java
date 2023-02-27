@@ -83,14 +83,14 @@ public class OutputView {
                 });
     }
 
-    public static void printRewardResult(Rewards rewards, People people, String targetName) {
+    public static void printRewardResult(Rewards rewards, Person targetPerson) {
         System.out.println("\n" + EXECUTE_RESULT);
-        if (targetName.equals(VIEW_RESULT_ALL)) {
-            printResultAll(rewards, people);
-            return;
-        }
-        Person targetPerson = people.findPerson(targetName);
         printResultTarget(rewards, targetPerson);
+    }
+
+    public static void printRewardResultAll(Rewards rewards, People people) {
+        System.out.println("\n" + EXECUTE_RESULT);
+        printResultAll(rewards, people);
     }
 
     private static void printResultAll(Rewards rewards, People people) {
