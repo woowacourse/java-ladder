@@ -17,4 +17,5 @@ public class Player {
     public int getStartPosition() {
         return startPosition;
     }
+
 }

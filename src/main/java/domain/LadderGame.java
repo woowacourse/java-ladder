@@ -17,12 +17,21 @@ public class LadderGame {
     }
 
     public LinkedHashMap<Player, GameResult> getGameResultOf(final String playerName) {
-        LinkedHashMap<Player, GameResult> gameResults = new LinkedHashMap<>();
         if (playerName.equals(ALL_PLAYERS)) {
-            return getGameResultsOfAllPlayers(gameResults);
+            return getGameResultsOfAllPlayers();
         }
+        LinkedHashMap<Player, GameResult> gameResults = new LinkedHashMap<>();
         Player player = players.get(playerName);
         gameResults.put(player, this.gameResults.getGameResultAt(ladder.getGameResultOrderOf(player)));
+        return gameResults;
+    }
+
+    private LinkedHashMap<Player, GameResult> getGameResultsOfAllPlayers() {
+        LinkedHashMap<Player, GameResult> gameResults = new LinkedHashMap<>();
+        for (Player player : players.get()) {
+            int gameResultOrder = ladder.getGameResultOrderOf(player);
+            gameResults.put(player, this.gameResults.getGameResultAt(gameResultOrder));
+        }
         return gameResults;
     }
 
@@ -36,13 +45,6 @@ public class LadderGame {
 
     public Ladder getLadder() {
         return ladder;
-    }
-
-    private LinkedHashMap<Player, GameResult> getGameResultsOfAllPlayers(LinkedHashMap<Player, GameResult> gameResults) {
-        for (Player player : players.get()) {
-            gameResults.put(player, this.gameResults.getGameResultAt(ladder.getGameResultOrderOf(player)));
-        }
-        return gameResults;
     }
 
 }
