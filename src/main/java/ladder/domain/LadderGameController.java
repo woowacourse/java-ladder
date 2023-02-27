@@ -47,17 +47,32 @@ public class LadderGameController implements LadderGame {
 
     @Override
     public List<String> getPlayerNames() {
+        validatePlayerState();
         return players.getPlayerNames();
     }
 
     @Override
     public List<List<Boolean>> getLadderRows() {
+        validateLadderState();
         return ladder.getRows();
+    }
+
+    private void validateLadderState() {
+        if (ladder == null) {
+            throw new IllegalStateException("사다리가 초기화 되지 않았습니다");
+        }
     }
 
     @Override
     public List<String> getResultNames() {
+        validateResultState();
         return result.getNames();
+    }
+
+    private void validateResultState() {
+        if (result == null) {
+            throw new IllegalStateException("결과가 초기화 되지 않았습니다");
+        }
     }
 
     private Ladder generateLadder(int height, Players players) {
@@ -66,6 +81,9 @@ public class LadderGameController implements LadderGame {
 
     @Override
     public Map<String, String> calculateResult() {
+        validatePlayerState();
+        validateLadderState();
+        validateResultState();
         Map<String, Position> playerNameAndResultPosition = players.calculateResult(ladder);
         //그냥 바로 collect toMap 만 호출하면 순서가 보장이 되지 않아서 LinkedHashMap 으로 감싸준다
         return playerNameAndResultPosition.entrySet()
