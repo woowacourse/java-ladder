@@ -40,7 +40,7 @@ public class InputView {
     private void validateHeight(String height) {
         try {
             Integer.parseInt(height);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_LADDER_HEIGHT_INPUT.getMessage());
         }
     }
