@@ -13,8 +13,8 @@ public class Position {
         this.position = position;
     }
 
-    public void move(int direction) {
-        validatePosition(position+direction);
+    public void move(final int direction) {
+        validatePosition(position + direction);
         this.position += direction;
     }
 
@@ -24,7 +24,7 @@ public class Position {
         }
     }
 
-    public int getPosition(){
+    public int getPosition() {
         return this.position;
     }
 }
