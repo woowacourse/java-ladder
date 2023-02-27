@@ -1,14 +1,15 @@
 package laddergame.domain;
 
+import javax.swing.text.Position;
 import java.util.List;
 
 public class Player {
-    private String name;
+    private Name name;
     private String reward;
     private int position;
 
     public Player(String name, int position) {
-        this.name = name;
+        this.name = new Name(name);
         this.position = position;
     }
 
@@ -17,7 +18,7 @@ public class Player {
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     public String getReward() {
