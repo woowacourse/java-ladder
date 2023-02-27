@@ -10,6 +10,10 @@ public class WinningResults {
         this.winningResults = winningResults;
     }
 
+    public WinningResult findByDestinationPosition(final int index) {
+        return winningResults.get(index);
+    }
+
     public List<WinningResult> getWinningResults() {
         return new ArrayList<>(winningResults);
     }

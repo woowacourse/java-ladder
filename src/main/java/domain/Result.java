@@ -10,12 +10,11 @@ public class Result {
         this.result = result;
     }
 
-    public static Result of(final WinningResults inputWinningResults, final Map<String, Integer> ladderGameResult) {
+    public static Result of(final WinningResults winningResults, final Map<String, Integer> ladderGameResult) {
         final Map<String, WinningResult> result = new LinkedHashMap<>();
-        final List<WinningResult> winningResults = inputWinningResults.getWinningResults();
 
         for (Map.Entry<String, Integer> gameResult : ladderGameResult.entrySet()) {
-            result.put(gameResult.getKey(), winningResults.get(gameResult.getValue()));
+            result.put(gameResult.getKey(), winningResults.findByDestinationPosition(gameResult.getValue()));
         }
         return new Result(result);
     }
