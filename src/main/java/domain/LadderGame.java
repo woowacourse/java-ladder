@@ -48,11 +48,11 @@ public class LadderGame {
 
     public void processResult() {
         for (Line line : lines.getLines()) {
-            calculateLine(line);
+            movePeopleInLine(line);
         }
     }
 
-    private void calculateLine(Line line) {
+    private void movePeopleInLine(Line line) {
         for (Person person : people.getPeople()) {
             person.move(line, people.getPeople().size());
         }
