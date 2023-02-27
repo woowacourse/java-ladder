@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,7 +11,12 @@ public class Results {
         List<String> resultValues = splitResultValuesRaw(resultValuesRaw);
         validateSize(resultValues, size);
         this.results = generateResultsByRaw(resultValues);
+    }
 
+    public List<String> getContents() {
+        return this.results.stream()
+                .map(Result::getContent)
+                .collect(Collectors.toList());
     }
 
     private List<String> splitResultValuesRaw(String resultValuesRaw) {

@@ -24,4 +24,12 @@ class ResultsTest {
                 .hasMessage("플레이어의 수와 결과의 수가 다릅니다.");
 
     }
+
+    @Test
+    @DisplayName("결과들의 내용을 반환한다.")
+    void shouldReturnContentsOfResultsWhenRequest() {
+        String resultValuesRaw = "꽝,5000,당첨";
+        Results results = new Results(resultValuesRaw, 3);
+        assertThat(results.getContents()).containsExactly("꽝", "5000", "당첨");
+    }
 }
