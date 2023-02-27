@@ -13,7 +13,7 @@ public class Search {
     }
 
     private void validateSearchName(String searchName, List<String> userNames) {
-        if (!userNames.contains("all") && !userNames.contains(searchName)) {
+        if (!searchName.equals("all") && !userNames.contains(searchName)) {
             throw new IllegalArgumentException(SEARCH_NAME_ERROR_MESSAGE);
         }
     }
