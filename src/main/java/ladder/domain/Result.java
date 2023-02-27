@@ -55,8 +55,9 @@ public class Result {
     public Bet getBetByName(Name name) {
         Bet bet = result.get(name);
 
-        if (bet == null)
+        if (bet == null) {
             throw new IllegalArgumentException(ErrorMessage.NAME_IS_NOT_EXIST.getMessage());
+        }
 
         return bet;
     }
