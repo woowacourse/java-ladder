@@ -1,15 +1,19 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
 
     private final List<Boolean> movements;
 
-    public Line(int count, GenerateStrategy strategy) {
-        List<Boolean> movements = strategy.generate(count);
+    public Line(List<Boolean> movements) {
         validate(movements);
         this.movements = movements;
+    }
+
+    public Line(Line line) {
+        this.movements = line.getMovements();
     }
 
     private void validate(List<Boolean> movements) {
@@ -28,11 +32,33 @@ public class Line {
         }
     }
 
-    public List<Boolean> getMovements() {
-        return movements;
+    public void move(Column position) {
+        int column = position.get();
+        checkAndGoLeft(position, column);
+        checkAndGoRight(position, column);
+    }
+
+    private void checkAndGoLeft(Column position, int column) {
+        boolean isNotStartColumnAndCanGoLeft =
+                column != 0 && movements.get(column - 1);
+        if (isNotStartColumnAndCanGoLeft) {
+            position.goLeft();
+        }
+    }
+
+    private void checkAndGoRight(Column position, int column) {
+        boolean isNotEndColumnAndCanGoRight =
+                column != movements.size() && movements.get(column);
+        if (isNotEndColumnAndCanGoRight) {
+            position.goRight();
+        }
     }
 
     public int size() {
         return movements.size();
+    }
+
+    public List<Boolean> getMovements() {
+        return Collections.unmodifiableList(movements);
     }
 }

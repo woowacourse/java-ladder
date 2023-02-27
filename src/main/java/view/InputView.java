@@ -12,14 +12,10 @@ public class InputView {
 
     public List<String> readNames() {
         System.out.printf("참여할 사람 이름을 입력하세요. (이름은 쉼표(%s)로 구분하세요)%n", DELIMITER);
-        return getValidResult(readLine());
-    }
-
-    private List<String> getValidResult(String input) {
+        String input = readLine();
         validateDelimiter(input);
-        List<String> result = toNames(input);
-        validateDuplicate(result);
-        return result;
+        return Arrays.stream(input.split(DELIMITER))
+                .collect(Collectors.toList());
     }
 
     private String readLine() {
@@ -32,19 +28,7 @@ public class InputView {
         }
     }
 
-    private List<String> toNames(String names) {
-        return Arrays.stream(names.split(DELIMITER))
-                .collect(Collectors.toList());
-    }
-
-
-    private void validateDuplicate(List<String> result) {
-        if (result.size() != result.stream().distinct().count()) {
-            throw new IllegalArgumentException("중복된 이름이 존재합니다");
-        }
-    }
-
-    public int readLadderHeightAndTransform() {
+    public int readMaxHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         return toNumber(readLine());
     }
@@ -55,5 +39,18 @@ public class InputView {
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException("숫자를 입력해야 합니다.", exception);
         }
+    }
+
+    public List<String> readResults() {
+        System.out.printf("실행 결과를 입력하세요. (결과는 쉼표(%s)로 구분하세요)\n", DELIMITER);
+        String input = scanner.nextLine();
+        validateDelimiter(input);
+        return Arrays.stream(input.split(DELIMITER))
+                .collect(Collectors.toList());
+    }
+
+    public String readResult() {
+        System.out.println("\n결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
     }
 }
