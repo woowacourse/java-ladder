@@ -19,6 +19,13 @@ public class Line {
         return points;
     }
 
+    public boolean isStep(int position) {
+        if (position < 0 || position > points.size() - 1) {
+            return false;
+        }
+        return points.get(position);
+    }
+
     private List<Boolean> makeLine(int personCount) {
         List<Boolean> points = new ArrayList<>();
         int pointCount = personCount - 1;
