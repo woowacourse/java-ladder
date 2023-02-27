@@ -6,7 +6,6 @@ public class LadderGame {
 
     private static final String PLAYER_NAME_NOT_FOUND_EXCEPTION_MESSAGE = "[ERROR] 게임 내의 참가자를 입력해주세요.";
     private static final String ALL_PRINT_AND_EXIT_CODE = "all";
-
     private static final int LEFT = -1;
     private static final int STAY = 0;
     private static final int RIGHT = 1;
