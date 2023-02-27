@@ -10,13 +10,21 @@ public class OutputView {
     private static final String BLANK_PART = " ";
     private static final String GAME_RESULT_MESSAGE = "실행 결과";
 
-    public static void printLadder(List<String> names, List<List<Boolean>> lines, List<String> rewards, int nameMaxLength) {
+    public static void printLadder(List<String> names, List<List<Boolean>> lines, List<String> rewards) {
         System.out.println("사다리 결과");
         System.out.println();
+        int nameMaxLength = getNameMaxLength(names);
         printNames(names, nameMaxLength);
         printLines(lines, nameMaxLength);
         printRewards(rewards, nameMaxLength);
         System.out.println();
+    }
+
+    private static int getNameMaxLength(List<String> names) {
+        return names.stream()
+                .map(String::length)
+                .max(Integer::compareTo)
+                .orElseThrow(() -> new IllegalArgumentException("이름이 존재하지 않습니다."));
     }
 
     private static void printNames(List<String> names, int nameMaxLength) {

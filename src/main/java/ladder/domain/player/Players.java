@@ -47,15 +47,6 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public int getNameMaxLength() {
-        return this.players.stream()
-                .map(Player::getName)
-                .map(Name::getValue)
-                .map(String::length)
-                .max(Integer::compareTo)
-                .orElseThrow(() -> new IllegalStateException("플레이어가 존재하지 않습니다."));
-    }
-
     public Player findPlayerByName(String name) {
         return players.stream()
                 .filter(

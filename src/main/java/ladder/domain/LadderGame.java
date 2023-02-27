@@ -47,10 +47,6 @@ public class LadderGame {
                 .collect(Collectors.toList());
     }
 
-    public int getNameMaxLength() {
-        return players.getNameMaxLength();
-    }
-
     public List<String> getPlayerNames() {
         return players.getPlayerNames();
     }
