@@ -77,7 +77,7 @@ public class LadderGameTest {
      */
     @DisplayName("지정한 플레이어의 게임 실행 결과를 반환한다. (사다리에 Point가 없는 케이스)")
     @ParameterizedTest
-    @MethodSource(value = "provideLadderGame")
+    @MethodSource(value = "provideLadderGameWithNoPointsLadder")
     void getResultOfPlayerWithNoPointsLadder(
             LadderGame ladderGameWithNoPointsLadder,
             Player player,
@@ -136,7 +136,7 @@ public class LadderGameTest {
                 .isInstanceOf(NoSuchElementException.class);
     }
 
-    private static Stream<Arguments> provideLadderGame() {
+    private static Stream<Arguments> provideLadderGameWithNoPointsLadder() {
         List<String> playerNames = List.of("a", "b", "c");
         Players players = PlayersFactory.of(playerNames);
         GameResults gameResults = new GameResults(
