@@ -52,6 +52,20 @@ public class PlayersTest {
     }
 
     @Test
+    @DisplayName("첫번째 플레이어의 이름 길이를 반환한다.")
+    void getFirstNameLengthTest() {
+        //given
+        final List<String> names = List.of("에단", "준팍", "블랙캣");
+        final Players players = Players.from(names);
+
+        //when
+        final int firstNameLength = players.getFirstNameLength();
+
+        //then
+        assertThat(firstNameLength).isEqualTo("에단".length());
+    }
+
+    @Test
     @DisplayName("가장 긴 이름의 길이를 반환한다.")
     void givenNames_thenReturnMaxNameLength() {
         //given

@@ -25,6 +25,21 @@ class WinningPrizesTest {
     }
 
     @Test
+    @DisplayName("findMaxNameLength() 메서드를 호출하면 가장 긴 상품의 이름을 반환한다.")
+    void findMaxNameLengthTest() {
+        //given
+        final List<String> prizes = List.of("꽝", "5000", "꽝", "당첨");
+        final int playerCount = 4;
+        final WinningPrizes winningPrizes = WinningPrizes.of(prizes, playerCount);
+
+        //when
+        final int maxNameLength = winningPrizes.findMaxNameLength();
+
+        //then
+        assertThat(maxNameLength).isEqualTo("5000".length());
+    }
+
+    @Test
     @DisplayName("index를 입력하면 해당되는 상품을 반환한다.")
     void givenIndex_thenReturnWinningPrize() {
         //given

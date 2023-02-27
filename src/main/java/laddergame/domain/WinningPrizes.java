@@ -15,6 +15,7 @@ public class WinningPrizes {
     public static WinningPrizes of(final List<String> prizes, final int playerCount) {
         validateSize(prizes, playerCount);
         final List<WinningPrize> winningPrizes = createWinningPrizes(prizes, playerCount);
+
         return new WinningPrizes(winningPrizes);
     }
 
