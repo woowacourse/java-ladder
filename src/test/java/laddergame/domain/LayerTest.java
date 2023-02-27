@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.HashSet;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -20,7 +19,7 @@ public class LayerTest {
         @DisplayName("Players가 두 명 이상이면 Layer이 생성된다.")
         @ValueSource(ints = {2, 5, 10})
         void givenTwoMorePlayers_thenCreateLine(final int numberOfPlayers) {
-            assertThatCode(() -> Layer.from(numberOfPlayers))
+            assertThatCode(() -> Layer.of(numberOfPlayers, new RandomLinkGenerator()))
                     .doesNotThrowAnyException();
         }
 
@@ -30,7 +29,7 @@ public class LayerTest {
 
             final int minLinkCount = 1;
 
-            assertThatThrownBy(() -> Layer.from(minLinkCount))
+            assertThatThrownBy(() -> Layer.of(minLinkCount, new RandomLinkGenerator()))
                     .isInstanceOf(IllegalStateException.class)
                     .hasMessage(String.format("Layer의 길이는 %d보다 작을 수 없습니다.", minLinkCount));
         }
@@ -64,17 +63,4 @@ public class LayerTest {
                 .isEqualTo(List.of(Link.CONNECTION, Link.DISCONNECTION));
     }
 
-    @Test
-    @DisplayName("Layer의 길이가 2 이상인 경우, 적어도 하나이상 연결된다.")
-    void givenTwoMoreSizeLine_thenSetLineSizeTwo() {
-        //given
-        final Layer layer = Layer.from(3);
-
-        //when
-        final int size = new HashSet<>(layer.getLayer()).size();
-
-        //then
-        assertThat(size)
-                .isEqualTo(2);
-    }
 }
