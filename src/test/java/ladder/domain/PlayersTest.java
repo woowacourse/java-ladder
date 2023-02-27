@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class PlayersTest {
 
@@ -78,5 +81,23 @@ class PlayersTest {
         assertThatThrownBy(() -> new Players(namesRaw))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("플레이어의 이름은 중복될 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("너무 긴 길이의 이름을 넣으면 예외를 발생한다")
+    void shouldThrowExceptionWhenWrongLength() {
+        assertThatThrownBy(() -> new Player("abcdef", 0))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 1자 이상 5자 이하여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " "})
+    @DisplayName("공백을 넣으면 예외를 발생한다")
+    @NullSource
+    void shouldThrowExceptionWhenBlank(String input) {
+        assertThatThrownBy(() -> new Player(input, 0))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 공백일 수 없습니다.");
     }
 }
