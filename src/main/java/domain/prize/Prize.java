@@ -6,4 +6,8 @@ public class Prize {
     public Prize(String prizeName) {
         this.prizeName = prizeName;
     }
+
+    public String getPrizeName() {
+        return prizeName;
+    }
 }

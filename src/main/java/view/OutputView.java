@@ -4,6 +4,7 @@ import domain.ladder.Line;
 import domain.user.User;
 import dto.ladder.LadderDto;
 import dto.ladder.LineDto;
+import dto.prize.PrizesDto;
 import dto.user.UsersDto;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +14,11 @@ public class OutputView {
     private static final String LINE_DELIMITER = "|";
     private static final String NAME_DELIMITER = " ";
 
-    public void printLadderGameResult(UsersDto usersDto, LadderDto ladderDto) {
+    public void printLadderGameResult(UsersDto usersDto, LadderDto ladderDto, PrizesDto prizesDto) {
         System.out.println(OUTPUT_EXECUTE_MESSAGE);
         System.out.println(" " + printUserNames(usersDto.getUserNames()));
         printLadder(ladderDto);
+        printPrizes(prizesDto);
     }
 
     private String printUserNames(List<String> userNames) {
@@ -58,5 +60,17 @@ public class OutputView {
     private void printLineByStatus(boolean status) {
         System.out.print(LineStatus.printStatus(status, User.MAX_NAME_LENGTH));
         System.out.print(LINE_DELIMITER);
+    }
+
+    private void printPrizes(PrizesDto prizesDto) {
+        System.out.println(" " + convertPrizeNames(prizesDto.getPrizeNames()));
+    }
+
+    private String convertPrizeNames(List<String> prizeNames) {
+        List<String> convertedPrizeNames = new ArrayList<>();
+        for (String prizeName : prizeNames) {
+            convertedPrizeNames.add(insertBlank(prizeName));
+        }
+        return String.join(NAME_DELIMITER, convertedPrizeNames);
     }
 }
