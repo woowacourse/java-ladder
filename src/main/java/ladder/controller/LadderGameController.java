@@ -47,7 +47,7 @@ public class LadderGameController {
         return InputView.readResults();
     }
 
-    public <T> T readUserInput(Supplier<T> supplier) {
+    public <T> T readUserInput(final Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
