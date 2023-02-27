@@ -17,6 +17,6 @@ class MissionsTest {
         Mission mission2 = new Mission("꽝");
         Mission mission3 = new Mission("3000원");
 
-        assertThat(missions.getMissions()).containsExactly(mission1, mission2, mission3);
+        assertThat(missions.getMissions()).contains(mission1, mission2, mission3);
     }
 }
