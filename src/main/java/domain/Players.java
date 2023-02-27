@@ -39,4 +39,11 @@ public class Players {
     public List<Player> getPlayers() {
         return players;
     }
+
+    public Player findPlayer(String name) {
+        return players.stream()
+                .filter(player -> player.getName().equals(name))
+                .findAny()
+                .orElseThrow(IllegalArgumentException::new);
+    }
 }

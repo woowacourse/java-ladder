@@ -37,6 +37,15 @@ public class InputView {
         return Integer.parseInt(height);
     }
 
+    public static String[] receiveMatchingName() {
+        System.out.println("결과를 보고 싶은 사람은?");
+
+        String matchingName = input();
+        validateBlank(matchingName);
+
+        return matchingName.split(",");
+    }
+
     private static void validateBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 공백은 입력할 수 없습니다.");

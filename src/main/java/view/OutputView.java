@@ -3,6 +3,7 @@ package view;
 import domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -35,6 +36,15 @@ public class OutputView {
             List<LineStep> oneLine = line.getLine();
             System.out.println(getLineStatus(oneLine));
         }
+        System.out.println();
+    }
+
+    public static void printFinalResult(Map<Player, Result> finalMatchingResult) {
+        System.out.println("\n실행 결과");
+        for (Map.Entry<Player, Result> finalResult : finalMatchingResult.entrySet()) {
+            System.out.println(finalResult.getKey().getName() + ":" + finalResult.getValue().getResult());
+        }
+        System.out.println();
     }
 
     private static String getLineStatus(List<LineStep> line) {

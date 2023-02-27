@@ -16,7 +16,8 @@ public class LadderController {
         Ladder ladder = makeLadder(players);
         ladder.generateRandomLadder();
         printLadder(players, ladder);
-        Map<Player, Result> matchingResult = playLadderGame(ladder, players, results);
+        MatchingResult matchingResult = playLadderGame(ladder, players, results);
+        printMatchingResult(matchingResult, players);
     }
 
     private Players makePlayers() {
@@ -56,10 +57,21 @@ public class LadderController {
         OutputView.printLadder(ladder);
     }
 
-    private Map<Player, Result> playLadderGame(Ladder ladder, Players players, Results results) {
+    private MatchingResult playLadderGame(Ladder ladder, Players players, Results results) {
         ladder.movePlayer(players);
         return results.matchResults(players);
-
     }
 
+    private void printMatchingResult(MatchingResult matchingResult, Players players) {
+        try {
+            String[] matchingNames = InputView.receiveMatchingName();
+            Map<Player, Result> finalMatchingResult = matchingResult.getFinalResult(players, matchingNames);
+            OutputView.printFinalResult(finalMatchingResult);
+            return;
+        } catch (IllegalArgumentException e) {
+            OutputView.printMessage(e.getMessage());
+            printMatchingResult(matchingResult, players);
+        }
+        printMatchingResult(matchingResult, players);
+    }
 }

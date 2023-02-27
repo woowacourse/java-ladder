@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import util.BooleanGenerator;
 import util.TrueGenerator;
 
-import java.util.Map;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -46,11 +44,11 @@ public class ResultsTest {
 
         ladder.generateRandomLadder();
         ladder.movePlayer(players);
-        Map<Player, Result> matchingResult = results.matchResults(players);
+        MatchingResult matchingResult = results.matchResults(players);
 
-        assertThat(matchingResult.get(players.getPlayers().get(0))).isEqualTo(results.getResults().get(1));
-        assertThat(matchingResult.get(players.getPlayers().get(1))).isEqualTo(results.getResults().get(0));
-        assertThat(matchingResult.get(players.getPlayers().get(2))).isEqualTo(results.getResults().get(3));
-        assertThat(matchingResult.get(players.getPlayers().get(3))).isEqualTo(results.getResults().get(2));
+        assertThat(matchingResult.getMatchingResult().get(players.getPlayers().get(0))).isEqualTo(results.getResults().get(1));
+        assertThat(matchingResult.getMatchingResult().get(players.getPlayers().get(1))).isEqualTo(results.getResults().get(0));
+        assertThat(matchingResult.getMatchingResult().get(players.getPlayers().get(2))).isEqualTo(results.getResults().get(3));
+        assertThat(matchingResult.getMatchingResult().get(players.getPlayers().get(3))).isEqualTo(results.getResults().get(2));
     }
 }

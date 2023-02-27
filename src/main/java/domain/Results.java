@@ -33,13 +33,13 @@ public class Results {
         return results;
     }
 
-    public Map<Player,Result> matchResults(Players players) {
+    public MatchingResult matchResults(Players players) {
         this.matchingResult = new LinkedHashMap<>();
         for (Player player : players.getPlayers()) {
             int playerFinalPosition = player.getPosition();
             Result matchedResult  = results.get(playerFinalPosition);
             matchingResult.put(player, matchedResult);
         }
-        return matchingResult;
+        return new MatchingResult(matchingResult);
     }
 }
