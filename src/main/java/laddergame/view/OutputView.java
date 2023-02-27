@@ -28,9 +28,9 @@ public class OutputView {
         System.out.print(result);
     }
 
-    public static void printWinningPrizeAll(final WinningPrizes winningPrizes) {
+    public static void printWinningPrizeAll(final WinningPrizes winningPrizes, final Players players) {
         final String allWinningPrize = winningPrizes.getWinningPrizes().stream()
-                .map(winningPrize -> makeNameFormat(winningPrizes.findMaxNameLength(), winningPrize.getWinningPrize()))
+                .map(winningPrize -> makeNameFormat(players.findMaxNameLength(), winningPrize.getWinningPrize()))
                 .collect(joining(BLANK.getLadderElement()));
 
         System.out.println(allWinningPrize);
@@ -50,7 +50,7 @@ public class OutputView {
 
     public static void printResult(final String message) {
         System.out.println("실행 결과");
-        System.out.println(message + System.lineSeparator());
+        System.out.println(message);
 
     }
 

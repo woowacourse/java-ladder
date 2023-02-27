@@ -4,30 +4,24 @@ import laddergame.domain.*;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
-import java.util.List;
-
 public class GameController {
 
-    private final Players players;
-    private final Ladder ladder;
-    private final WinningPrizes winningPrizes;
-
-    public GameController() {
-        this.players = readPlayers();
-        final int playerCount = players.getSize();
-        this.ladder = Ladder.of(readHeight(), playerCount, new RandomLinkGenerator());
-        this.winningPrizes = readWinningPrizes(playerCount);
-    }
-
     public void process() {
-        setUpGame();
-        playGame();
+        final LadderGame ladderGame = setUpGame();
+        final GameResult gameResult = ladderGame.playGame();
+        matchPlayerPrize(gameResult);
     }
 
-    private void setUpGame() {
+    private LadderGame setUpGame() {
+        final Players players = readPlayers();
+        final int playerCount = players.getSize();
+        final Ladder ladder = Ladder.of(readHeight(), playerCount, new RandomLinkGenerator());
+        final WinningPrizes winningPrizes = readWinningPrizes(playerCount);
         OutputView.printPlayerAll(players);
         OutputView.printLadder(players, ladder);
-        OutputView.printWinningPrizeAll(winningPrizes);
+        OutputView.printWinningPrizeAll(winningPrizes, players);
+
+        return new LadderGame(players, ladder, winningPrizes);
     }
 
     private Players readPlayers() {
@@ -55,13 +49,6 @@ public class GameController {
             OutputView.printMessage(e.getMessage());
             return readWinningPrizes(playerCount);
         }
-    }
-
-    private void playGame() {
-        final LadderGame ladderGame = new LadderGame();
-        final List<Player> gameResult = ladderGame.playGame(players.getPlayers(), ladder.getLadder());
-        final GameResult result = new GameResult(gameResult, winningPrizes);
-        matchPlayerPrize(result);
     }
 
     private void matchPlayerPrize(final GameResult gameResult) {
