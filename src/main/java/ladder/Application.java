@@ -82,9 +82,8 @@ public class Application {
     private static boolean isAll(boolean proceed, String input) {
         if (proceed && Command.isAll(input)) {
             OutputView.printAllResult(players.getPlayerNames(), results.findAllResult(ladder));
-            return FINISH;
         }
-        return PROCEED;
+        return FINISH;
     }
 
     private static void isSingleResult(boolean proceed, String playerName) {
