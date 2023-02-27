@@ -10,18 +10,23 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(final BlockGenerator blockGenerator, final int playerNumber, final int height) {
-        validateLadderLength(playerNumber, height);
-        this.lines = makeLines(blockGenerator, playerNumber, height);
+    private Ladder(final List<Line> lines) {
+        this.lines = lines;
     }
 
-    private void validateLadderLength(final int playerNumber, final int height) {
+    public static Ladder of(final BlockGenerator blockGenerator, final int playerNumber, final int height) {
+        validateLadderLength(playerNumber, height);
+        List<Line> lines = makeLines(blockGenerator, playerNumber, height);
+        return new Ladder(lines);
+    }
+
+    private static void validateLadderLength(final int playerNumber, final int height) {
         if (height < playerNumber - 1) {
             throw new LadderLengthException();
         }
     }
 
-    private List<Line> makeLines(final BlockGenerator blockGenerator, final int playerNumber, final int height) {
+    private static List<Line> makeLines(final BlockGenerator blockGenerator, final int playerNumber, final int height) {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {

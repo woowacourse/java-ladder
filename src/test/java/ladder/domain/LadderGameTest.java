@@ -50,7 +50,7 @@ public class LadderGameTest {
                         Block.EXIST, Block.EMPTY,
                         Block.EMPTY, Block.EXIST,
                         Block.EXIST, Block.EXIST));
-        return new Ladder(blockGenerator, playerNumber, height);
+        return Ladder.of(blockGenerator, playerNumber, height);
     }
 
     @Test
