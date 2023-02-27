@@ -36,7 +36,6 @@ public class Line {
         if (points.size() <= index) {
             throw new ArrayIndexOutOfBoundsException();
         }
-
         return points.get(index);
     }
 }
