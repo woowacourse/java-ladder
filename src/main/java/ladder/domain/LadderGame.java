@@ -25,15 +25,15 @@ public class LadderGame {
     }
 
     private List<Player> makePlayers(final List<String> names) {
-        List<Player> players= new ArrayList<>();
-        for(int startIndex = 0; startIndex < names.size(); startIndex++) {
+        List<Player> players = new ArrayList<>();
+        for (int startIndex = 0; startIndex < names.size(); startIndex++) {
             players.add(new Player(names.get(startIndex), startIndex));
         }
         return players;
     }
 
     public void start() {
-        for (Player player: players.getPlayers()) {
+        for (Player player : players.getPlayers()) {
             String playerName = player.getName();
             int startIndex = player.getStartIndex();
 
