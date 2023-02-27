@@ -81,9 +81,7 @@ public class LadderGameController implements LadderGame {
 
     @Override
     public Map<String, String> calculateResult() {
-        validatePlayerState();
-        validateLadderState();
-        validateResultState();
+        validateRequiredStates();
         Map<String, Position> playerNameAndResultPosition = players.calculateResult(ladder);
         //그냥 바로 collect toMap 만 호출하면 순서가 보장이 되지 않아서 LinkedHashMap 으로 감싸준다
         return playerNameAndResultPosition.entrySet()
@@ -93,5 +91,11 @@ public class LadderGameController implements LadderGame {
                         entry -> result.findByPosition(entry.getValue()),
                         (x, y) -> y,
                         LinkedHashMap::new));
+    }
+
+    private void validateRequiredStates() {
+        validatePlayerState();
+        validateLadderState();
+        validateResultState();
     }
 }
