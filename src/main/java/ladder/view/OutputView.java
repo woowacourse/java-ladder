@@ -18,35 +18,35 @@ public class OutputView {
     private static final String LADDER_GAME_MESSAGE = "실행 결과";
     private static final String LADDER_GAME_RESULT_FRAME = "%s : %s\n";
 
-    public static void printExceptionMessage(String message) {
+    public void printExceptionMessage(String message) {
         System.out.println(message);
     }
 
-    public static void printGameResultHeader() {
+    public void printGameResultHeader() {
         System.out.println();
         System.out.println(LADDER_MAKE_MESSAGE);
         System.out.println();
     }
 
-    public static void printOneGameResult(Map.Entry<Player, String> gameResult) {
+    public void printOneGameResult(Map.Entry<Player, String> gameResult) {
         System.out.println(LADDER_GAME_MESSAGE);
         System.out.println(gameResult.getValue());
     }
 
-    public static void printAllGameResult(Map<Player, String> gameResult) {
+    public void printAllGameResult(Map<Player, String> gameResult) {
         System.out.println(LADDER_GAME_MESSAGE);
 
         gameResult.forEach((k, v) -> System.out.printf(LADDER_GAME_RESULT_FRAME, k.getPlayerName().getName(), v));
     }
 
-    public static void printWithFormat(final List<String> playersName) {
+    public void printWithFormat(final List<String> playersName) {
         for (String name : playersName) {
             System.out.print(name + " ");
         }
         System.out.println();
     }
 
-    public static void printLadder(final Ladder ladder) {
+    public void printLadder(final Ladder ladder) {
         List<Line> lines = ladder.getLines();
 
         for (Line line : lines) {
@@ -55,7 +55,7 @@ public class OutputView {
         }
     }
 
-    private static void printOneLine(final Line line) {
+    private void printOneLine(final Line line) {
         printLadderFrame();
         for (Stool stool : line.getStools()) {
             printBlock(stool);
@@ -63,7 +63,7 @@ public class OutputView {
         }
     }
 
-    private static void printBlock(final Stool stool) {
+    private void printBlock(final Stool stool) {
         if (stool.isExistStool()) {
             System.out.print(LADDER_BLOCK);
             return;
@@ -71,7 +71,7 @@ public class OutputView {
         System.out.print(LADDER_EMPTY_BLOCK);
     }
 
-    private static void printLadderFrame() {
+    private void printLadderFrame() {
         System.out.print(LADDER_FRAME);
     }
 }

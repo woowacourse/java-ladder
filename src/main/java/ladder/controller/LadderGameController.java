@@ -13,9 +13,17 @@ import java.util.stream.Collectors;
 
 public class LadderGameController {
 
+    private final InputView inputView;
+    private final OutputView outputView;
     private final FrontExceptionController frontExceptionController;
 
-    public LadderGameController(FrontExceptionController frontExceptionController) {
+    public LadderGameController(
+            InputView inputView,
+            OutputView outputView,
+            FrontExceptionController frontExceptionController
+    ) {
+        this.inputView = inputView;
+        this.outputView = outputView;
         this.frontExceptionController = frontExceptionController;
     }
 
@@ -39,7 +47,7 @@ public class LadderGameController {
 
     private Players initPlayers() {
         try {
-            List<String> playerNames = InputView.inputPlayer();
+            List<String> playerNames = inputView.inputPlayer();
             return new Players(playerNames);
         } catch (CustomException e) {
             frontExceptionController.handle(e);
@@ -49,7 +57,7 @@ public class LadderGameController {
 
     private Ladder initLadder(int playerNumber) {
         try {
-            final int height = InputView.inputLadderHeight();
+            final int height = inputView.inputLadderHeight();
             return new Ladder(playerNumber, height, new RandomStoolGenerator());
         } catch (CustomException e) {
             frontExceptionController.handle(e);
@@ -59,7 +67,7 @@ public class LadderGameController {
 
     private LadderGame initLadderGame(Players players, Ladder ladder) {
         try {
-            List<String> destinations = InputView.inputLadderDestination();
+            List<String> destinations = inputView.inputLadderDestination();
             return new LadderGame(players, ladder, destinations);
         } catch (CustomException e) {
             frontExceptionController.handle(e);
@@ -68,10 +76,10 @@ public class LadderGameController {
     }
 
     private void showLadder(LadderGame ladderGame) {
-        OutputView.printGameResultHeader();
-        OutputView.printWithFormat(mapPlayersToPlayersName(ladderGame.getPlayers()));
-        OutputView.printLadder(ladderGame.getLadder());
-        OutputView.printWithFormat(ladderGame.getDestinations());
+        outputView.printGameResultHeader();
+        outputView.printWithFormat(mapPlayersToPlayersName(ladderGame.getPlayers()));
+        outputView.printLadder(ladderGame.getLadder());
+        outputView.printWithFormat(ladderGame.getDestinations());
     }
 
     private List<String> mapPlayersToPlayersName(Players players) {
@@ -81,12 +89,12 @@ public class LadderGameController {
     }
 
     private void startGameResultLoop(LadderGame ladderGame) {
-        String playerName = InputView.inputPlayerWhoNeedsGameResult();
+        String playerName = inputView.inputPlayerWhoNeedsGameResult();
 
         while (!playerName.equals("all")) {
-            OutputView.printOneGameResult(ladderGame.getOneLadderGameResult(playerName));
-            playerName = InputView.inputPlayerWhoNeedsGameResult();
+            outputView.printOneGameResult(ladderGame.getOneLadderGameResult(playerName));
+            playerName = inputView.inputPlayerWhoNeedsGameResult();
         }
-        OutputView.printAllGameResult(ladderGame.getAllLadderGameResult());
+        outputView.printAllGameResult(ladderGame.getAllLadderGameResult());
     }
 }

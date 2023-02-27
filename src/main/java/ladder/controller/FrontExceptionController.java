@@ -16,7 +16,10 @@ public class FrontExceptionController {
 
     private static final Map<Class<? extends RuntimeException>, String> messageSelector = new HashMap<>();
 
-    public FrontExceptionController() {
+    private final OutputView outputView;
+
+    public FrontExceptionController(OutputView outputView) {
+        this.outputView = outputView;
         init();
     }
 
@@ -29,6 +32,6 @@ public class FrontExceptionController {
     }
 
     public void handle(CustomException e) {
-        OutputView.printExceptionMessage(messageSelector.get(e.getClass()));
+        outputView.printExceptionMessage(messageSelector.get(e.getClass()));
     }
 }
