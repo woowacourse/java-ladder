@@ -1,6 +1,7 @@
 package techcourse.jcf.mission;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public class SimpleArrayList implements SimpleList {
     private static final int INITIAL_CAPACITY = 10;
@@ -84,18 +85,23 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public int indexOf(String value) {
-        return 0;
+        for (int index = 0; index < size(); index++) {
+            if (values[index].equals(value)) {
+                return index;
+            }
+        }
+        throw new NoSuchElementException();
     }
 
     @Override
     public int size() {
-        int currentSize = 0;
+        int size = 0;
         for (String element : values) {
             if (element != null) {
-                currentSize++;
+                size++;
             }
         }
-        return currentSize;
+        return size;
     }
 
     @Override
@@ -116,6 +122,7 @@ public class SimpleArrayList implements SimpleList {
         for (int i = index; i < size() - 1; i++) {
             values[i] = currentValues[i + 1];
         }
+        values[size() - 1] = null;
         return removeValue;
     }
 
