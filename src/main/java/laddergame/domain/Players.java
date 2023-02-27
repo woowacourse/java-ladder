@@ -42,6 +42,22 @@ public class Players {
                 .orElseThrow(() -> new IllegalStateException("일치하는 플레이어가 없습니다"));
     }
 
+    public void rideLadder(List<Line> lines) {
+        for (Line line : lines) {
+            players.forEach(player -> checkLadderStepAndMove(line, player));
+        }
+    }
+
+    public void matchRewards(List<String> rewards) {
+        players.forEach(player -> player.matchReward(rewards));
+    }
+
+    private static void checkLadderStepAndMove(Line line, Player player) {
+        boolean isLeftStep = line.isStep(player.getPosition() - 1);
+        boolean isRightStep = line.isStep(player.getPosition());
+        player.move(isLeftStep, isRightStep);
+    }
+
     private void checkPlayerCount(List<String> players) {
         if (players.size() < PLAYER_MIN_COUNT || players.size() > PLAYER_MAX_COUNT) {
             throw new IllegalArgumentException("플레이어 수는 2~12명만 입력 가능합니다.");
@@ -52,7 +68,7 @@ public class Players {
         if (players.stream()
                 .anyMatch(player -> player.length() >
                         PLAYER_NAME_MAX_SIZE || player.replaceAll(BLANK, NON_BLANK).isEmpty())) {
-            throw new IllegalArgumentException("플레이어 이름음 1~5글자만 가능합니다.");
+            throw new IllegalArgumentException("플레이어 이름은 1~5글자만 가능합니다.");
         }
     }
 
