@@ -34,7 +34,7 @@ public class Names {
 
     private void validateDuplicateNames(List<String> names) {
         if (names.size() != names.stream().distinct().count()) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATION.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NAMES.getMessage());
         }
     }
 

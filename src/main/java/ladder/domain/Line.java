@@ -18,8 +18,8 @@ public class Line {
         createLine(countOfParticipants);
     }
 
-    private void createLine(int personCount) {
-        for (int cell = FIRST_CELL_INDEX; cell < personCount - 1; cell++) {
+    private void createLine(int countOfParticipants) {
+        for (int cell = FIRST_CELL_INDEX; cell < countOfParticipants - 1; cell++) {
             createDiscontinuousLineAtCell(cell);
         }
     }
@@ -37,8 +37,15 @@ public class Line {
         return cellIndex != FIRST_CELL_INDEX && line.get(cellIndex - 1);
     }
 
+    public boolean existLineAtCell(int cellIndex){
+        return line.get(cellIndex);
+    }
+
     public List<Boolean> getLine() {
         return Collections.unmodifiableList(line);
     }
 
+    public int size(){
+        return line.size();
+    }
 }
