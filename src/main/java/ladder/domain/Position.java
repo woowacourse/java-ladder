@@ -16,11 +16,11 @@ public class Position {
     private final int index;
 
     private Position(int index) {
+        validateMinimumIndex(index);
         this.index = index;
     }
 
     public static Position valueOf(int index) {
-        validateMinimumIndex(index);
         Position exist = CACHE.get(index);
         if (exist != null) {
             return exist;
@@ -28,7 +28,7 @@ public class Position {
         return CACHE.computeIfAbsent(index, Position::new);
     }
 
-    private static void validateMinimumIndex(int index) {
+    private void validateMinimumIndex(int index) {
         if (index < MIN_POSITION) {
             throw new IllegalArgumentException("index 는 " + MIN_POSITION + " 이상이어야 합니다.");
         }
