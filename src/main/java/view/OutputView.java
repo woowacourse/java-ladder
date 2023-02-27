@@ -2,8 +2,6 @@ package view;
 
 import domain.model.Ladder;
 import domain.model.Layer;
-import domain.vo.Names;
-import domain.vo.Results;
 
 import java.util.List;
 
@@ -18,26 +16,26 @@ public class OutputView {
     private static final String NAME_SPACE = " ";
     private static final String GAME_RESULT_MESSAGE = "\n실행 결과";
 
-    public void printLadder(final Names names, final Ladder ladder, final Results results) {
+    public void printLadder(final List<String> names, final Ladder ladder, final List<String> results) {
         System.out.println(RESULT_ANNOUNCEMENT);
         printNames(names);
         printLadder(ladder);
         printResult(results);
     }
 
-    private void printResult(final Results results) {
+    private void printResult(final List<String> results) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (String result : results.mapToStrings()) {
+        for (String result : results) {
             stringBuilder.append(NAME_SPACE.repeat(4));
             stringBuilder.append(result);
         }
         System.out.println(stringBuilder);
     }
 
-    private void printNames(final Names names) {
+    private void printNames(final List<String> names) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\n");
-        names.mapToString().forEach(name -> {
+        names.forEach(name -> {
             int difference = INTERVAL_UNIT - name.length();
             stringBuilder.append(name).append(NAME_SPACE.repeat(difference));
         });
@@ -65,10 +63,10 @@ public class OutputView {
         return UNCONNECTED_LINE;
     }
 
-    public void printGameResult(final Names viewers, final Results viewResult) {
+    public void printGameResult(final List<String> viewers, final List<String> viewResult) {
         System.out.println(GAME_RESULT_MESSAGE);
         for (int i = 0; i < viewers.size(); i++) {
-            System.out.println(viewers.get(i).getValue() + " : " + viewResult.get(i).getValue());
+            System.out.println(viewers.get(i) + " : " + viewResult.get(i));
         }
     }
 }

@@ -4,12 +4,14 @@ import domain.model.Ladder;
 import domain.model.Players;
 import domain.service.LadderGame;
 import domain.service.LadderMaker;
-import domain.service.PlayerMaker;
 import domain.vo.Names;
 import domain.vo.Results;
+import dto.LadderParameter;
 import validator.dto.InputRepeatableDTO;
 import view.InputView;
 import view.OutputView;
+
+import java.util.List;
 
 public class LadderController {
 
@@ -32,14 +34,21 @@ public class LadderController {
     }
 
     private LadderGame initLadderGame() {
-        Names inputNames = inputView.inputNames();
-        Results inputResult = inputView.inputResults();
-        Ladder ladder = inputView.inputLadder(ladderMaker, inputNames.size());
+        List<String> inputNames = inputView.inputNames();
+        List<String> inputResult = inputView.inputResults();
+
+        Ladder ladder = initLadder(inputNames.size());
 
         outputView.printLadder(inputNames, ladder, inputResult);
 
-        Players players = PlayerMaker.make(inputNames);
-        return new LadderGame(ladder, players, inputResult);
+        Players players = Players.from(inputNames);
+        Results results = Results.from(inputResult);
+        return new LadderGame(ladder, players, results);
+    }
+
+    private Ladder initLadder(final int size) {
+        LadderParameter ladderParameter = inputView.inputLadder(size);
+        return ladderMaker.make(ladderParameter.getHeight(), ladderParameter.getWidth());
     }
 
     private void repeatViewResult(final LadderGame ladderGame) {
@@ -51,12 +60,14 @@ public class LadderController {
     }
 
     private boolean repeatableViewResult(final LadderGame ladderGame) {
-        InputRepeatableDTO inputRepeatableDTO = inputView.inputResultViewersName(ladderGame.allPlayersName());
+        Names allPlayersName = ladderGame.allPlayersName();
+        InputRepeatableDTO inputRepeatableDTO = inputView.inputResultViewersName(allPlayersName.mapToString());
         if (!inputRepeatableDTO.isRepeatable()) {
             return false;
         }
-        Names viewers = inputRepeatableDTO.getNames();
-        Results viewResult = ladderGame.resultsByNames(viewers);
+        List<String> viewers = inputRepeatableDTO.getNames();
+        Names viewersName = Names.from(viewers);
+        List<String> viewResult = ladderGame.resultsByNames(viewersName).mapToString();
 
         outputView.printGameResult(viewers, viewResult);
         return true;

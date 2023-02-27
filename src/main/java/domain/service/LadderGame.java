@@ -3,7 +3,6 @@ package domain.service;
 import domain.model.Ladder;
 import domain.model.Players;
 import domain.vo.Names;
-import domain.vo.Result;
 import domain.vo.Results;
 
 import java.util.ArrayList;
@@ -28,11 +27,11 @@ public class LadderGame {
 
     public Results resultsByNames(Names names) {
         List<Integer> order = names.orderByName(players);
-        List<Result> orderedResults = new ArrayList<>();
+        List<String> orderedResults = new ArrayList<>();
         for (Integer integer : order) {
-            orderedResults.add(results.get(integer));
+            orderedResults.add(results.get(integer).getValue());
         }
-        return new Results(orderedResults);
+        return Results.from(orderedResults);
     }
 
     public Players getPlayers() {

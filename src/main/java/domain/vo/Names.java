@@ -1,6 +1,5 @@
 package domain.vo;
 
-import domain.model.Player;
 import domain.model.Players;
 
 import java.util.List;
@@ -12,6 +11,16 @@ public class Names {
 
     public Names(List<Name> names) {
         this.names = List.copyOf(names);
+    }
+
+    public static Names from(List<String> input) {
+        return new Names(toName(input));
+    }
+
+    private static List<Name> toName(List<String> input) {
+        return input.stream()
+                .map(Name::new)
+                .collect(Collectors.toList());
     }
 
     public boolean contains(Name name) {
@@ -31,12 +40,6 @@ public class Names {
     public List<String> mapToString() {
         return names.stream()
                 .map(Name::getValue)
-                .collect(Collectors.toList());
-    }
-
-    public List<Player> mapToPlayers() {
-        return names.stream()
-                .map(Player::new)
                 .collect(Collectors.toList());
     }
 

@@ -4,7 +4,9 @@ import domain.model.Ladder;
 import domain.model.Layer;
 import domain.model.Player;
 import domain.model.Players;
-import domain.vo.*;
+import domain.vo.Name;
+import domain.vo.Names;
+import domain.vo.Results;
 import domain.wrapper.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,13 +24,9 @@ class LadderGameTest {
 
     @BeforeEach
     void setUp() {
-        Player player1 = new Player(new Name("p1"));
-        Player player2 = new Player(new Name("p2"));
-        Player player3 = new Player(new Name("p3"));
-        Player player4 = new Player(new Name("p4"));
-        players = new Players(List.of(player1, player2, player3, player4));
+        players = Players.from(List.of("p1", "p2", "p3", "p4"));
 
-        ladder = new Ladder(new Height(3), new Width(4));
+        ladder = new Ladder(3, 4);
 
         Layer layer1 = new Layer();
         layer1.makeLine(true);
@@ -49,12 +47,7 @@ class LadderGameTest {
         ladder.addLayer(layer2);
         ladder.addLayer(layer3);
 
-        Result result1 = new Result("꽝");
-        Result result2 = new Result("1000");
-        Result result3 = new Result("2000");
-        Result result4 = new Result("3000");
-
-        results = new Results(List.of(result1, result2, result3, result4));
+        results = Results.from(List.of("꽝", "1000", "2000", "3000"));
     }
 
     @ParameterizedTest(name = "{0}이 사다리 높이 만큼 이동했을 때의 위치는 ({1}, 3)")

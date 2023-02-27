@@ -2,8 +2,6 @@ package domain.service;
 
 import domain.model.Ladder;
 import domain.model.Layer;
-import domain.vo.Height;
-import domain.vo.Width;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,9 +19,7 @@ public class LadderMakerTest {
     @DisplayName("사다리를 생성한다")
     void ladderMake() {
         ladderMaker = new LadderMaker(new RandomBooleanGenerator());
-        Height height = new Height(5);
-        Width width = new Width(5);
-        Ladder ladder = ladderMaker.make(height, width);
+        Ladder ladder = ladderMaker.make(5, 5);
 
         assertThat(ladder.getHeight()).isEqualTo(5);
         assertThat(ladder.getWidth()).isEqualTo(5);
@@ -33,9 +29,7 @@ public class LadderMakerTest {
     @DisplayName("생성조건이 TRUE이면 다리가 연속으로 연결되 않게 사다리를 생성한다.")
     void ladderMakerAlwaysTrueTest() {
         ladderMaker = new LadderMaker(TRUE_BOOLEAN_GENERATOR);
-        Height height = new Height(5);
-        Width width = new Width(5);
-        Ladder ladder = ladderMaker.make(height, width);
+        Ladder ladder = ladderMaker.make(5, 5);
 
         List<Layer> layers = ladder.getLayers();
         for (Layer layer : layers) {
@@ -47,9 +41,7 @@ public class LadderMakerTest {
     @DisplayName("생성조건이 FALSE이면 모든 다리가 연결되지 않게 사다리를 생성한다.")
     void ladderMakerAlwaysFalseTest() {
         ladderMaker = new LadderMaker(FALSE_BOOLEAN_GENERATOR);
-        Height height = new Height(5);
-        Width width = new Width(5);
-        Ladder ladder = ladderMaker.make(height, width);
+        Ladder ladder = ladderMaker.make(5, 5);
 
         List<Layer> layers = ladder.getLayers();
         for (Layer layer : layers) {

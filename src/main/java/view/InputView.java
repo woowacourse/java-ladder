@@ -1,8 +1,6 @@
 package view;
 
-import domain.model.Ladder;
-import domain.service.LadderMaker;
-import domain.vo.*;
+import dto.LadderParameter;
 import validator.InputValidator;
 import validator.dto.InputRepeatableDTO;
 import validator.dto.InputValidationRequest;
@@ -29,24 +27,25 @@ public class InputView {
         this.validator = inputValidator;
     }
 
-    public Names inputNames() {
+    public List<String> inputNames() {
         System.out.println(INPUT_NAMES_MESSAGE);
         List<String> names = List.of(scanner.nextLine().split(NAME_DELIMITER));
         validateNames(names);
-        return new Names(mapToName(trimNames(names)));
+        return trimNames(names);
     }
 
-    public Results inputResults() {
+    public List<String> inputResults() {
         System.out.println(INPUT_RESULTS_MESSAGE);
         List<String> results = List.of(scanner.nextLine().split(NAME_DELIMITER));
-        return new Results(mapToResult(trimNames(results)));
+        return trimNames(results);
+//        return new Results(mapToResult(trimNames(results)));
     }
 
-    public InputRepeatableDTO inputResultViewersName(final Names allPlayersName) {
+    public InputRepeatableDTO inputResultViewersName(final List<String> allPlayersName) {
         System.out.println(INPUT_RESULT_VIEWER_NAME_MESSAGE);
         List<String> inputNames = List.of(scanner.nextLine().split(NAME_DELIMITER));
 
-        Names names = new Names(mapToName(trimNames(inputNames)));
+        List<String> names = trimNames(inputNames);
 
         if (inputNames.contains(QUIT_MESSAGE)) {
             return InputRepeatableDTO.unrepeatable(names);
@@ -75,7 +74,7 @@ public class InputView {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public Height inputLadderHeight() {
+    public int inputLadderHeight() {
         System.out.println(INPUT_LADDER_HEIGHT_MESSAGE);
         String input = scanner.nextLine();
         validator.validate(
@@ -84,25 +83,13 @@ public class InputView {
                         input
                 )
         );
-        return new Height(Integer.parseInt(input));
+        return Integer.parseInt(input);
     }
 
-    public Ladder inputLadder(LadderMaker ladderMaker, int inputNameSize) {
-        Height height = inputLadderHeight();
-        Width width = new Width(inputNameSize - 1);
-        return ladderMaker.make(height, width);
-    }
-
-    private List<Result> mapToResult(final List<String> result) {
-        return result.stream()
-                .map(Result::new)
-                .collect(Collectors.toList());
-    }
-
-    private List<Name> mapToName(List<String> names) {
-        return names.stream()
-                .map(Name::new)
-                .collect(Collectors.toList());
+    public LadderParameter inputLadder(int inputNameSize) {
+        int height = inputLadderHeight();
+        int width = inputNameSize - 1;
+        return new LadderParameter(height, width);
     }
 
 }

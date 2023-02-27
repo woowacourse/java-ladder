@@ -12,9 +12,20 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(final List<Player> players) {
+    private Players(final List<Player> players) {
         this.players = List.copyOf(players);
-        initPosition();
+    }
+
+    public static Players from(final List<String> players) {
+        Players p = new Players(toPlayer(players));
+        p.initPosition();
+        return p;
+    }
+
+    private static List<Player> toPlayer(final List<String> input) {
+        return input.stream()
+                .map(Player::new)
+                .collect(Collectors.toList());
     }
 
     public void initPosition() {

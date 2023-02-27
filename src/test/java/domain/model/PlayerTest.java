@@ -1,8 +1,5 @@
 package domain.model;
 
-import domain.vo.Height;
-import domain.vo.Name;
-import domain.vo.Width;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -16,7 +13,7 @@ class PlayerTest {
 
     @BeforeEach
     void setUp() {
-        ladder = new Ladder(new Height(3), new Width(4));
+        ladder = new Ladder(3, 4);
 
         Layer layer1 = new Layer();
         layer1.makeLine(true);
@@ -40,15 +37,17 @@ class PlayerTest {
 
     @DisplayName("플레이어가 이동하면 position 1씩 증가한다.")
     @Nested
-    class move{
+    class move {
 
         Player player;
+
         @BeforeEach
         void setUp() {
-            player = new Player(new Name("name1"));
+            player = new Player("name1");
             player.initPosition(0);
 
         }
+
         @DisplayName("플레이어가 1회 이동했을 때 position의 x가 1만큼 증가한다.")
         @Test
         void move1() {

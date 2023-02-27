@@ -1,8 +1,6 @@
 package domain.model;
 
-import domain.vo.Height;
 import domain.vo.Name;
-import domain.vo.Width;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -18,13 +16,9 @@ class PlayersTest {
 
     @BeforeEach
     void setUp() {
-        Player player1 = new Player(new Name("p1"));
-        Player player2 = new Player(new Name("p2"));
-        Player player3 = new Player(new Name("p3"));
-        Player player4 = new Player(new Name("p4"));
-        players = new Players(List.of(player1, player2, player3, player4));
+        players = Players.from(List.of("p1", "p2", "p3", "p4"));
 
-        ladder = new Ladder(new Height(3), new Width(4));
+        ladder = new Ladder(3, 4);
 
         Layer layer1 = new Layer();
         layer1.makeLine(true);

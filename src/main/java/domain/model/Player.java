@@ -8,8 +8,8 @@ public class Player {
     private final Name name;
     private Position position;
 
-    public Player(Name name) {
-        this.name = name;
+    public Player(String name) {
+        this.name = new Name(name);
     }
 
     public void initPosition(final int index) {

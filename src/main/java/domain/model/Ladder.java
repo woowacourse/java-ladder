@@ -15,9 +15,9 @@ public class Ladder {
     private final Width width;
     private final List<Layer> layers = new ArrayList<>();
 
-    public Ladder(final Height height, final Width width) {
-        this.height = height;
-        this.width = width;
+    public Ladder(final int height, final int width) {
+        this.height = new Height(height);
+        this.width = new Width(width);
     }
 
     public boolean hasLeftAt(final Position position) {
