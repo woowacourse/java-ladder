@@ -47,8 +47,9 @@ public class OutputView {
 
     private static void printLine(Line line) {
         System.out.print(startSpaces);
-        for (Bar bar : line.getBars()) {
-            printBar(bar);
+        List<Bar> bars = line.getBars();
+        for (int i = 1; i < bars.size() - 1; i++) {
+            printBar(bars.get(i));
         }
         System.out.println(WIDTH_SUFFIX);
     }
@@ -59,6 +60,14 @@ public class OutputView {
             return;
         }
         System.out.print(IMMOVABLE_BAR);
+    }
+
+    public static void printResults(List<String> contents) {
+        System.out.print(contents.get(0));
+        for (int i = 1; i < contents.size(); i++) {
+            printNameOnSquares(contents.get(i));
+        }
+        System.out.println();
     }
 
     public static void announceExecution() {
