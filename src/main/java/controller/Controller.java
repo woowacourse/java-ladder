@@ -5,7 +5,6 @@ import dto.LadderDTO;
 import dto.LineDTO;
 import view.InputView;
 import view.OutputView;
-import view.ResultView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +18,10 @@ public class Controller {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final ResultView resultView;
 
-    public Controller(final InputView inputView, final OutputView outputView, final ResultView resultView) {
+    public Controller(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.resultView = resultView;
     }
 
     public void run() {
@@ -89,11 +86,11 @@ public class Controller {
         try {
             final String input = readResultInput(users);
             final Map<String, WinningResult> gameResult = result.getResult(input);
-            resultView.printResult(gameResult);
+            outputView.printResult(gameResult);
             if (isPrintAllResult(users, gameResult)) return;
             showResult(users, result);
         } catch (IllegalArgumentException e) {
-            resultView.printNonExistUser();
+            outputView.printExceptionMessage(e.getMessage());
             showResult(users, result);
         }
     }
@@ -107,10 +104,6 @@ public class Controller {
     }
 
     private boolean isPrintAllResult(final Users users, final Map<String, WinningResult> gameResult) {
-        if (users.getCount() == gameResult.size()) {
-            resultView.printGameExitMessage();
-            return true;
-        }
-        return false;
+        return users.getCount() == gameResult.size();
     }
 }

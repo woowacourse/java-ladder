@@ -6,14 +6,17 @@ import dto.LineDTO;
 import dto.UsersDTO;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
 
     private static final String LADDER_FORMAT = "    |%s|%n";
-    private static final String RESULT_MESSAGE = "\n실행결과\n";
+    private static final String RESULT_MESSAGE = "\n실행결과";
     private static final String USER_NAME_FORMAT = "%5s ";
     private static final String BRIDGE_DELIMITER = "|";
+    private static final String PRINT_RESULT_FORMAT = "%s : %s";
+    private static final String GAME_EXIT_MESSAGE = "모든 결과를 출력하고 종료합니다.";
 
     public void printUsers(final UsersDTO usersDTO) {
         System.out.println(RESULT_MESSAGE);
@@ -37,5 +40,16 @@ public class OutputView {
 
     public void printExceptionMessage(final String errorMessage) {
         System.out.println(errorMessage);
+    }
+
+    public void printResult(final Map<String, WinningResult> result) {
+        System.out.println(RESULT_MESSAGE);
+        for (Map.Entry<String, WinningResult> gameResult : result.entrySet()) {
+            System.out.printf(PRINT_RESULT_FORMAT, gameResult.getKey(), gameResult.getValue().getWinningResult());
+            System.out.println();
+        }
+        if (result.size() > 1) {
+            System.out.println(GAME_EXIT_MESSAGE);
+        }
     }
 }
