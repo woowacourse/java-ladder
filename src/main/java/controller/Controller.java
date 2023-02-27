@@ -79,14 +79,14 @@ public class Controller {
         for (LineDTO lineDTO : ladderDTO.getLadderDTO()) {
             outputView.printLadder(lineDTO);
         }
-        outputView.printResult(winningResults.getWinningResults());
+        outputView.printWinningResult(winningResults.getWinningResults());
     }
 
     private void showResult(final Users users, final Result result) {
         try {
             final String input = readResultInput(users);
             final Map<String, WinningResult> gameResult = result.getResult(input);
-            outputView.printResult(gameResult);
+            outputView.printGameResult(gameResult);
             if (isPrintAllResult(users, gameResult)) return;
             showResult(users, result);
         } catch (IllegalArgumentException e) {
