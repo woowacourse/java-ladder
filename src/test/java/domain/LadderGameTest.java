@@ -48,4 +48,37 @@ public class LadderGameTest {
         // then
         assertThat(result).isEqualTo(expected);
     }
+
+    @DisplayName("사다리 게임을 두 번 이상 하더라도 사다리 게임의 결과값이 변하지 않는다.")
+    @Test
+    void runTest2() {
+        // given
+        String kong = "kong";
+        String odo = "odo";
+        String gray = "gray";
+        String kiara = "kiara";
+
+        String prize1 = "꽝";
+        String prize2 = "1000";
+        String prize3 = "2000";
+        String prize4 = "1000";
+
+        Ladder ladder = Ladder.of(4, 4, new TestBooleanGenerator(Lists.newArrayList(true, false, false, false, true, false, true, false, true, false, false, false)));
+        Players players = new Players(List.of(kong, odo, gray, kiara));
+        Prizes prizes = Prizes.of(List.of(prize1, prize2, prize3, prize4), 4);
+
+        Results expected = new Results();
+        expected.addResult(Player.from(kong), new Prize(prize4));
+        expected.addResult(Player.from(odo), new Prize(prize2));
+        expected.addResult(Player.from(gray), new Prize(prize1));
+        expected.addResult(Player.from(kiara), new Prize(prize3));
+
+        // when
+        LadderGame ladderGame = new LadderGame(ladder, players, prizes);
+        ladderGame.run();
+        Results result = ladderGame.run();
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
 }
