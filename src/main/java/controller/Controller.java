@@ -87,7 +87,9 @@ public class Controller {
             final String input = readResultInput(users);
             final Map<String, WinningResult> gameResult = result.getResult(input);
             outputView.printGameResult(gameResult);
-            if (isPrintAllResult(users, gameResult)) return;
+            if (input.equals(ALL_USER_RESULT)) {
+                return;
+            }
             showResult(users, result);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
@@ -101,9 +103,5 @@ public class Controller {
             throw new IllegalArgumentException(WRONG_RESULT_INPUT_MESSAGE);
         }
         return input;
-    }
-
-    private boolean isPrintAllResult(final Users users, final Map<String, WinningResult> gameResult) {
-        return users.getCount() == gameResult.size();
     }
 }
