@@ -15,6 +15,9 @@ public class Mission {
 
     private void validateMission(String mission) {
         // TODO: `NullPointerException`을 `String.isBlank()`로 잡을 수가 없다..!
+        if (mission == null) {
+            throw new IllegalArgumentException("null을 입력할 수 없습니다.");
+        }
         if (mission.isBlank()) {
             throw new IllegalArgumentException("공백으로 미션을 생성할 수 없습니다.");
         }

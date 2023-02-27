@@ -45,12 +45,12 @@ class MissionTest {
                         .isThrownBy(() -> new Mission(input));
             }
 
-    /*        @DisplayName("null 값은 미션을 생성할 수 없다.")
+            @DisplayName("null 값은 미션을 생성할 수 없다.")
             @Test
             void nullSourceTest() {
                 assertThatIllegalArgumentException()
                         .isThrownBy(() -> new Mission(null));
-            }*/
+            }
         }
     }
 
