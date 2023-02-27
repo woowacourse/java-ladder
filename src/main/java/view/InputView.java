@@ -2,7 +2,7 @@ package view;
 
 import dto.LadderParameter;
 import validator.InputValidator;
-import validator.dto.InputRepeatableDTO;
+import dto.InputRepeatableDTO;
 import validator.dto.InputValidationRequest;
 import validator.type.ValidateType;
 

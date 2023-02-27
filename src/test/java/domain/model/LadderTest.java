@@ -1,7 +1,5 @@
 package domain.model;
 
-import domain.vo.Height;
-import domain.vo.Width;
 import domain.wrapper.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,9 +15,7 @@ public class LadderTest {
     @Test
     @DisplayName("사다리는 input 높이의 층들을 갖는다")
     void ladder() {
-        final Height height = new Height(5);
-        final Width width = new Width(4);
-        Ladder ladder = new Ladder(height, width);
+        Ladder ladder = new Ladder(5, 4);
         assertThat(ladder.getHeight()).isEqualTo(5);
     }
 
@@ -29,7 +25,7 @@ public class LadderTest {
         Layer layer = new Layer();
         layer.makeLine(true);
 
-        Ladder ladder = new Ladder(new Height(5), new Width(5));
+        Ladder ladder = new Ladder(5, 5);
 
         ladder.addLayer(layer);
 
@@ -57,7 +53,7 @@ public class LadderTest {
             layer.makeLine(true);
             layer.makeLine(false);
             layer.makeLine(true);
-            ladder = new Ladder(new Height(2), new Width(3));
+            ladder = new Ladder(2, 3);
             ladder.addLayer(layer);
             Layer layer2 = new Layer();
             layer2.makeLine(false);

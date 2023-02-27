@@ -7,7 +7,7 @@ import domain.service.LadderMaker;
 import domain.vo.Names;
 import domain.vo.Results;
 import dto.LadderParameter;
-import validator.dto.InputRepeatableDTO;
+import dto.InputRepeatableDTO;
 import view.InputView;
 import view.OutputView;
 

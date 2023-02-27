@@ -1,4 +1,4 @@
-package validator.dto;
+package dto;
 
 import java.util.List;
 
