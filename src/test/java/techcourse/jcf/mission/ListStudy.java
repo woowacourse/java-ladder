@@ -1,6 +1,6 @@
 package techcourse.jcf.mission;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import techcourse.jcf.mission.SimleList.SimpleArrayList;
 import techcourse.jcf.mission.SimleList.SimpleList;
 
