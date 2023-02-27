@@ -10,12 +10,12 @@ import java.util.List;
 public class Ladder {
     private final List<Line> lines;
     private final Height height;
-    private final Items items;
+    private final Rewards rewards;
 
-    public Ladder(int height, List<String> items) {
+    public Ladder(int height, List<String> rewards) {
         this.height = new Height(height);
         this.lines = new ArrayList<>();
-        this.items = new Items(items);
+        this.rewards = new Rewards(rewards);
     }
 
     public void assignLines(LineStrategy lineStrategy, int sectionCount) {
@@ -28,7 +28,7 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public Item getItemOfPlayer(Player player) {
+    public Reward getItemOfPlayer(Player player) {
         Position nextPosition = player.getStartPosition();
         for (Line line : lines) {
             nextPosition = line.findNextPosition(nextPosition);
@@ -36,11 +36,11 @@ public class Ladder {
         return findSamePositionItem(nextPosition);
     }
 
-    private Item findSamePositionItem(Position position) {
-        return items.findItem(position);
+    private Reward findSamePositionItem(Position position) {
+        return rewards.findItem(position);
     }
 
-    public List<String> getItems() {
-        return items.getItems();
+    public List<String> getRewards() {
+        return rewards.getRewards();
     }
 }

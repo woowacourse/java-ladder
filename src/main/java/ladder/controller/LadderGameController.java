@@ -18,10 +18,10 @@ public class LadderGameController {
 
     private void makeLadderGame(LineStrategy lineStrategy) {
         List<String> names = InputView.readNames();
-        List<String> items = InputView.readItems();
+        List<String> rewards = InputView.readRewards();
         int height = InputView.readLadderHeight();
-        this.ladderGame = new LadderGame(names, items, height, lineStrategy);
-        OutputView.printLadder(ladderGame.getPlayerNames(), ladderGame.getLines(), ladderGame.getItems(), ladderGame.getNameMaxLength());
+        this.ladderGame = new LadderGame(names, rewards, height, lineStrategy);
+        OutputView.printLadder(ladderGame.getPlayerNames(), ladderGame.getLines(), ladderGame.getRewards(), ladderGame.getNameMaxLength());
     }
 
     private void findPlayerResult() {

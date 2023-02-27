@@ -1,18 +1,18 @@
 package ladder.domain;
 
-import ladder.domain.ladder.Item;
+import ladder.domain.ladder.Reward;
 import ladder.domain.player.Player;
 
 import java.util.Map;
 
 public class LadderResult {
-    private final Map<Player, Item> result;
+    private final Map<Player, Reward> result;
 
-    public LadderResult(Map<Player, Item> result) {
+    public LadderResult(Map<Player, Reward> result) {
         this.result = result;
     }
 
-    public Item getItemOfPlayer(Player player) {
+    public Reward getItemOfPlayer(Player player) {
         validateNotExistPlayer(player);
         validateNullItem(player);
         return result.get(player);
@@ -30,7 +30,7 @@ public class LadderResult {
         }
     }
 
-    public Map<Player, Item> getResult() {
+    public Map<Player, Reward> getResult() {
         return result;
     }
 }

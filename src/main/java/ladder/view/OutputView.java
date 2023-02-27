@@ -10,12 +10,12 @@ public class OutputView {
     private static final String BLANK_PART = " ";
     private static final String GAME_RESULT_MESSAGE = "실행 결과";
 
-    public static void printLadder(List<String> names, List<List<Boolean>> lines, List<String> items, int nameMaxLength) {
+    public static void printLadder(List<String> names, List<List<Boolean>> lines, List<String> rewards, int nameMaxLength) {
         System.out.println("사다리 결과");
         System.out.println();
         printNames(names, nameMaxLength);
         printLines(lines, nameMaxLength);
-        printItems(items, nameMaxLength);
+        printRewards(rewards, nameMaxLength);
         System.out.println();
     }
 
@@ -42,11 +42,11 @@ public class OutputView {
         return BLANK_PART.repeat(partWidth);
     }
 
-    private static void printItems(List<String> ladderGameItems, int nameMaxLength) {
-        String items = ladderGameItems.stream()
-                .map(item -> String.format("%" + (nameMaxLength + 1) + "s", item))
+    private static void printRewards(List<String> ladderGameRewards, int nameMaxLength) {
+        String rewards = ladderGameRewards.stream()
+                .map(reward -> String.format("%" + (nameMaxLength + 1) + "s", reward))
                 .collect(Collectors.joining());
-        System.out.println(items);
+        System.out.println(rewards);
     }
 
     public static void printPlayerResult(String result) {

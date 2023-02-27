@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.ladder.Item;
+import ladder.domain.ladder.Reward;
 import ladder.domain.player.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,14 +16,14 @@ class LadderResultTest {
     @DisplayName("플레이어는 하나의 결과를 갖는다.")
     void ladderResult_playerGetOneResult() {
         // given
-        Map<Player, Item> result = new HashMap<>();
+        Map<Player, Reward> result = new HashMap<>();
         Player player = new Player("vero", 0);
-        Item item = new Item("꽝", 0);
-        result.put(player, item);
+        Reward reward = new Reward("꽝", 0);
+        result.put(player, reward);
         LadderResult ladderResult = new LadderResult(result);
 
         // expected
-        assertThat(ladderResult.getItemOfPlayer(player)).isEqualTo(item);
+        assertThat(ladderResult.getItemOfPlayer(player)).isEqualTo(reward);
     }
 
     @Test
@@ -41,7 +41,7 @@ class LadderResultTest {
     @DisplayName("플레이어의 결과가 null이면 예외를 던진다.")
     void ladderResult_throwException_notExistItem() {
         // given
-        Map<Player, Item> result = new HashMap<>();
+        Map<Player, Reward> result = new HashMap<>();
         Player player = new Player("vero", 0);
         result.put(player, null);
         LadderResult ladderResult = new LadderResult(result);

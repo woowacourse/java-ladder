@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.ladder.Item;
+import ladder.domain.ladder.Reward;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 import ladder.domain.ladder.LineStrategy;
@@ -17,25 +17,25 @@ public class LadderGame {
     private final Players players;
     private final LadderResult result;
 
-    public LadderGame(List<String> names, List<String> items, int height, LineStrategy lineStrategy) {
-        validateNameItemSizeEquality(names, items);
+    public LadderGame(List<String> names, List<String> rewards, int height, LineStrategy lineStrategy) {
+        validateNameItemSizeEquality(names, rewards);
         this.players = new Players(names);
-        this.ladder = new Ladder(height, items);
+        this.ladder = new Ladder(height, rewards);
         ladder.assignLines(lineStrategy, names.size() - 1);
         this.result = new LadderResult(makeLadderResult());
     }
 
-    private void validateNameItemSizeEquality(List<String> names, List<String> items) {
-        if (names.size() != items.size()) {
+    private void validateNameItemSizeEquality(List<String> names, List<String> rewards) {
+        if (names.size() != rewards.size()) {
             throw new IllegalArgumentException("이름과 실행 결과의 개수가 맞지 않습니다.");
         }
     }
 
-    private Map<Player, Item> makeLadderResult() {
-        Map<Player, Item> result = new LinkedHashMap<>();
+    private Map<Player, Reward> makeLadderResult() {
+        Map<Player, Reward> result = new LinkedHashMap<>();
         for (Player player : players.getPlayers()) {
-            Item item = ladder.getItemOfPlayer(player);
-            result.put(player, item);
+            Reward reward = ladder.getItemOfPlayer(player);
+            result.put(player, reward);
         }
         return result;
     }
@@ -56,7 +56,7 @@ public class LadderGame {
     }
 
     public Map<String, String> getGameResult() {
-        Map<Player, Item> gameResult = result.getResult();
+        Map<Player, Reward> gameResult = result.getResult();
         Map<String, String> result = new LinkedHashMap<>();
         for (Player player : gameResult.keySet()) {
             result.put(player.getName().getValue(), gameResult.get(player).getName());
@@ -70,7 +70,7 @@ public class LadderGame {
                 .getName();
     }
 
-    public List<String> getItems() {
-        return ladder.getItems();
+    public List<String> getRewards() {
+        return ladder.getRewards();
     }
 }
