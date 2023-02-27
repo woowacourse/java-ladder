@@ -3,7 +3,6 @@ package validator.dto;
 import validator.type.ValidateType;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class InputValidationRequest {
@@ -17,7 +16,7 @@ public class InputValidationRequest {
     }
 
     public List<ValidateType> getValidateTypes() {
-        return Collections.unmodifiableList(validateTypes);
+        return List.copyOf(validateTypes);
     }
 
     public String getTarget() {
