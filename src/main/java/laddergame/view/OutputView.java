@@ -1,10 +1,9 @@
 package laddergame.view;
 
 
-import java.util.Map;
+import java.util.List;
 import laddergame.domain.LadderResultItem;
-import laddergame.domain.PersonalName;
-import laddergame.domain.game.NamesWithItem;
+import laddergame.domain.game.GameResult;
 
 public class OutputView {
     public void printLadderForm(final String ladderFrom) {
@@ -17,12 +16,12 @@ public class OutputView {
         System.out.println(item.getName());
     }
 
-    public void printTotalResult(final NamesWithItem namesWithItem) {
+    public void printTotalResult(final GameResult gameResult) {
         System.out.println("실행결과");
-        final Map<PersonalName, LadderResultItem> nameToItem = namesWithItem.getNameToItem();
-        for (PersonalName name : nameToItem.keySet()) {
-            System.out.printf("%s : %s%n", name.getValue(), nameToItem.get(name).getName());
-        }
+
+        final List<List<String>> nameAndResultItems = gameResult.getResultItemsWithName();
+        nameAndResultItems.forEach(nameAndResultItem ->
+                System.out.printf("%s : %s%n", nameAndResultItem.get(0), nameAndResultItem.get(1)));
     }
 
     public static void printExceptionMessage(final String message) {

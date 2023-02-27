@@ -4,18 +4,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.Map;
-import laddergame.domain.game.NamesWithItem;
+import laddergame.domain.game.GameResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class NamesWithItemTest {
+class GameResultTest {
     @DisplayName("생성된다.")
     @Test
     void create() {
         PersonalName personalName = PersonalName.valueOf("name");
         LadderResultItem ladderResultItem = new LadderResultItem("item");
-        assertDoesNotThrow(() -> new NamesWithItem(Map.of(personalName, ladderResultItem)));
+        assertDoesNotThrow(() -> new GameResult(Map.of(personalName, ladderResultItem)));
     }
 
     @DisplayName("이름으로 결과를 검색할 수 있다.")
@@ -26,10 +26,10 @@ class NamesWithItemTest {
         LadderResultItem ladderResultItem1 = new LadderResultItem("item1");
         PersonalName personalName2 = PersonalName.valueOf("bye");
         LadderResultItem ladderResultItem2 = new LadderResultItem("item2");
-        NamesWithItem namesWithItem = new NamesWithItem(
+        GameResult gameResult = new GameResult(
                 Map.of(personalName1, ladderResultItem1, personalName2, ladderResultItem2));
         //when
-        LadderResultItem searchResult = namesWithItem.searchBy("hi");
+        LadderResultItem searchResult = gameResult.searchBy("hi");
         //then
         assertThat(searchResult).isEqualTo(ladderResultItem1);
     }
@@ -38,10 +38,10 @@ class NamesWithItemTest {
     @Test
     void throwExceptionWhenNameNotFound() {
         //given
-        NamesWithItem namesWithItem = new NamesWithItem(Map.of());
+        GameResult gameResult = new GameResult(Map.of());
         //when
         //then
-        Assertions.assertThatThrownBy(() -> namesWithItem.searchBy("no"))
+        Assertions.assertThatThrownBy(() -> gameResult.searchBy("no"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -49,14 +49,12 @@ class NamesWithItemTest {
     @Test
     void getNameToItem() {
         //given
-        NamesWithItem namesWithItem = new NamesWithItem(
+        GameResult gameResult = new GameResult(
                 Map.of(PersonalName.valueOf("first"), new LadderResultItem("item1"),
                         PersonalName.valueOf("second"), new LadderResultItem("item2"))
         );
 
-        Map<PersonalName, LadderResultItem> nameToItem = namesWithItem.getNameToItem();
+        Map<PersonalName, LadderResultItem> nameToItem = gameResult.getNameToItem();
         assertThat(nameToItem.keySet()).contains(PersonalName.valueOf("first"), PersonalName.valueOf("second"));
     }
-
-//    @DisplayName("반환된 결과는 수정할 수 없다.")
 }

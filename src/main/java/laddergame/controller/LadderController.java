@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.function.Supplier;
 import laddergame.domain.LadderResult;
 import laddergame.domain.PersonalNames;
+import laddergame.domain.game.GameResult;
 import laddergame.domain.game.LadderGame;
-import laddergame.domain.game.NamesWithItem;
 import laddergame.domain.ladder.Height;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.Width;
@@ -53,7 +53,7 @@ public class LadderController {
 
     private void playGame(PersonalNames names, LadderResult ladderResult, Ladder ladder) {
         final LadderGame ladderGame = new LadderGame(names, ladderResult);
-        final NamesWithItem result = ladderGame.moveAndGetResult(ladder);
+        final GameResult result = ladderGame.moveAndGetResult(ladder);
         searchResultItemByNameFrom(result);
     }
 
@@ -85,7 +85,7 @@ public class LadderController {
         throw new IllegalStateException("재시도 횟수를 넘었습니다.");
     }
 
-    private void searchResultItemByNameFrom(NamesWithItem t) {
+    private void searchResultItemByNameFrom(GameResult t) {
         int count = 0;
         while (count++ < RETRY_LIMIT) {
             try {
@@ -98,15 +98,15 @@ public class LadderController {
         throw new IllegalStateException("재시도 횟수를 넘었습니다.");
     }
 
-    private void printResultForName(NamesWithItem namesWithItem) {
+    private void printResultForName(GameResult gameResult) {
         int count = 0;
         while (count++ < RETRY_LIMIT) {
             String name = inputView.readNameToCheckResult();
             if (isAll(name)) {
-                outputView.printTotalResult(namesWithItem);
+                outputView.printTotalResult(gameResult);
                 break;
             }
-            outputView.printResult(namesWithItem.searchBy(name));
+            outputView.printResult(gameResult.searchBy(name));
         }
         throw new IllegalStateException("재시도 횟수를 넘었습니다.");
     }
