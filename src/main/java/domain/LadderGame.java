@@ -56,13 +56,13 @@ public class LadderGame {
         }
     }
 
-    private static void calculateLine(People people, Line line) {
+    private void calculateLine(People people, Line line) {
         for (Person person : people.getPeople()) {
             movePerson(person, line, people.getPeople().size());
         }
     }
 
-    private static void movePerson(Person person, Line line, int peopleSize) {
+    private void movePerson(Person person, Line line, int peopleSize) {
         MoveCommand command = decisionPersonPosition(person, line, peopleSize);
         if (command == MoveCommand.LEFT) {
             person.goLeft();
@@ -74,7 +74,7 @@ public class LadderGame {
         }
     }
 
-    private static MoveCommand decisionPersonPosition(Person person, Line line, int peopleSize) {
+    private MoveCommand decisionPersonPosition(Person person, Line line, int peopleSize) {
         int i = person.getPosition();
         if (person.getPosition() != peopleSize - 1 && line.getPoints().get(person.getPosition()).status()) {
             return MoveCommand.RIGHT;
