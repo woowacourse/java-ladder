@@ -81,8 +81,12 @@ public class Floor {
         return lines.size() + LINE_EDGE_HAVE_ONE_MORE_THAN_LINE;
     }
 
+    public int size(){
+        return this.lines.size();
+    }
+
     public List<Line> getLines() {
-        return lines;
+        return new ArrayList<>(lines);
     }
 
 }

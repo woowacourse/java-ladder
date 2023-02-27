@@ -85,4 +85,11 @@ public class FloorTest {
         );
     }
 
+    @Test
+    @DisplayName("size 테스트")
+    void floorSizeTest() {
+        final Floor floor = new Floor(3);
+        assertThat(floor.size()).isEqualTo(3);
+    }
+
 }
