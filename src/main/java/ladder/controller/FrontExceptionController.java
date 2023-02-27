@@ -31,7 +31,7 @@ public class FrontExceptionController {
         messageSelector.put(NoSuchPlayerException.class, MESSAGE_PREFIX + "해당하는 플레이어를 찾을 수 없습니다.");
     }
 
-    public void handle(CustomException e) {
+    public void handle(RuntimeException e) {
         outputView.printExceptionMessage(messageSelector.get(e.getClass()));
     }
 }

@@ -34,7 +34,7 @@ public class LadderGameController {
             ladderGame.letPlayersToGoDown();
             showLadder(ladderGame);
             startGameResultLoop(ladderGame);
-        } catch (CustomException e) {
+        } catch (RuntimeException e) {
             frontExceptionController.handle(e);
         }
     }
@@ -49,7 +49,7 @@ public class LadderGameController {
         try {
             List<String> playerNames = inputView.inputPlayer();
             return new Players(playerNames);
-        } catch (CustomException e) {
+        } catch (RuntimeException e) {
             frontExceptionController.handle(e);
             return initPlayers();
         }
@@ -59,7 +59,7 @@ public class LadderGameController {
         try {
             final int height = inputView.inputLadderHeight();
             return new Ladder(playerNumber, height, new RandomStoolGenerator());
-        } catch (CustomException e) {
+        } catch (RuntimeException e) {
             frontExceptionController.handle(e);
             return initLadder(playerNumber);
         }
@@ -69,7 +69,7 @@ public class LadderGameController {
         try {
             List<String> destinations = inputView.inputLadderDestination();
             return new LadderGame(players, ladder, destinations);
-        } catch (CustomException e) {
+        } catch (RuntimeException e) {
             frontExceptionController.handle(e);
             return initLadderGame(players, ladder);
         }
