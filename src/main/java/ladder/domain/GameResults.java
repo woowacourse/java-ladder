@@ -1,13 +1,13 @@
 package ladder.domain;
 
 import ladder.domain.ladder.Bar;
-import ladder.util.MoveDirection;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 import ladder.domain.people.Position;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GameResults {
     private final List<String> names;
@@ -20,8 +20,8 @@ public class GameResults {
         this.ladder = ladder;
     }
 
-    public HashMap<String, String> calculateGameResults() {
-        HashMap<String, String> gameResults = new HashMap<>();
+    public Map<String, String> calculateGameResults() {
+        Map<String, String> gameResults = new HashMap<>();
         for (int i = 0; i < names.size(); i++) {
             Position position = new Position(i);
             goDownLadder(ladder, position);
@@ -34,7 +34,17 @@ public class GameResults {
         for (Line line : ladder.getLines()) {
             Bar leftBar = line.getIndexBar(position.getPosition());
             Bar rightBar = line.getIndexBar(position.getPosition() + 1);
-            position.movePosition(MoveDirection.directMove(leftBar, rightBar));
+            position.movePosition(directMove(leftBar, rightBar));
         }
+    }
+
+    private int directMove(Bar leftBar, Bar rightBar) {
+        if (leftBar == Bar.TRUE) {
+            return -1;
+        }
+        if (rightBar == Bar.TRUE) {
+            return 1;
+        }
+        return 0;
     }
 }
