@@ -42,7 +42,7 @@ public class LadderGameController {
 
     private void showLadderRunResult(List<String> playerNames, Players players) {
         Target target = requestTarget(playerNames);
-        if (isKeyword(playerNames, players, target)) {
+        if (checkShowAllOrQuit(playerNames, players, target)) {
             return;
         }
         Player targetPlayer = players.getTargetPlayer(target.getName());
@@ -50,7 +50,7 @@ public class LadderGameController {
         showLadderRunResult(playerNames, players);
     }
 
-    private boolean isKeyword(List<String> playerNames, Players players, Target target) {
+    private boolean checkShowAllOrQuit(List<String> playerNames, Players players, Target target) {
         if (target.isQuit()) {
             return true;
         }
