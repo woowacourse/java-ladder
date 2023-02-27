@@ -1,9 +1,9 @@
 package ladder;
 
 import java.util.Scanner;
-import ladder.client.LadderGameClient;
+import ladder.client.LadderClientController;
 import ladder.client.view.InputView;
-import ladder.domain.LadderGame;
+import ladder.domain.LadderGameController;
 import ladder.domain.RandomConnectionJudgement;
 import ladder.repository.LadderRepositoryImpl;
 
@@ -11,16 +11,16 @@ public class Application {
 
     public static void main(String[] args) {
         try (InputView inputView = getInputView()) {
-            LadderGameClient ladderGameClient = new LadderGameClient(
+            LadderClientController ladderClientController = new LadderClientController(
                     inputView,
                     getLadderGame()
             );
-            ladderGameClient.play();
+            ladderClientController.play();
         }
     }
 
-    private static LadderGame getLadderGame() {
-        return new LadderGame(new RandomConnectionJudgement(), new LadderRepositoryImpl());
+    private static LadderGameController getLadderGame() {
+        return new LadderGameController(new RandomConnectionJudgement(), new LadderRepositoryImpl());
     }
 
     private static InputView getInputView() {

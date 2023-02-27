@@ -3,7 +3,7 @@ package ladder.client;
 import java.util.Map;
 import ladder.client.view.InputView;
 import ladder.client.view.OutputView;
-import ladder.server.LadderGameController;
+import ladder.domain.LadderGameController;
 
 /**
  * 이 클래스는 사다리 게임을 실행하는 클라이언트 클래스입니다

@@ -1,16 +1,10 @@
-package ladder.server;
+package ladder.domain;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import ladder.common.LadderGame;
-import ladder.server.domain.ConnectionJudgement;
-import ladder.server.domain.Ladder;
-import ladder.server.domain.LadderRepository;
-import ladder.server.domain.Players;
-import ladder.server.domain.Position;
-import ladder.server.domain.Result;
 
 /**
  * 이 클래스는 사다리 게임에 대한 실제 로직을 담당하는 클래스 입니다
