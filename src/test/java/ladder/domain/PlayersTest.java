@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class PlayersTest {
 
     @Test
-    @DisplayName("Players에 플레이어 이름이 정확히 들어갔는지 테스트")
+    @DisplayName("Players에 플레이어 이름이 정확히 들어가야 한다.")
     void containsTest() {
         List<Player> rawPlayers = List.of(
                 new Player("pobi", 0),
