@@ -11,6 +11,7 @@ public class InputView {
     }
 
     public static String readResults() {
+        System.out.println();
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         return SCANNER.nextLine();
     }
@@ -21,5 +22,11 @@ public class InputView {
         int countOfLines = SCANNER.nextInt();
         SCANNER.nextLine();
         return countOfLines;
+    }
+
+    public static String readPlayerName() {
+        System.out.println();
+        System.out.println("결과를 보고 싶은 사람은?");
+        return SCANNER.nextLine();
     }
 }

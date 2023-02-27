@@ -3,6 +3,8 @@ package ladder.view;
 import java.util.List;
 import ladder.domain.Bar;
 import ladder.domain.Line;
+import ladder.domain.Player;
+import ladder.domain.Result;
 
 public class OutputView {
     private static String startSpaces;
@@ -31,6 +33,11 @@ public class OutputView {
             return;
         }
         startSpaces = BLANK.repeat(nameLength);
+    }
+
+    public static void announceCreateLadder() {
+        System.out.println();
+        System.out.println("사다리 결과");
     }
 
     private static void printNameOnSquares(String playerName) {
@@ -70,8 +77,13 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void announceExecution() {
+    private static void announceExecution() {
         System.out.println();
-        System.out.println("실행결과");
+        System.out.println("실행 결과");
+    }
+
+    public static void printResultOfPlayer(String content) {
+        announceExecution();
+        System.out.println(content);
     }
 }
