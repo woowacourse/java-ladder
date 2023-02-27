@@ -54,7 +54,7 @@ public class LadderController {
     private void playGame(PersonalNames names, LadderResult ladderResult, Ladder ladder) {
         final LadderGame ladderGame = new LadderGame(names, ladderResult);
         final GameResult result = ladderGame.moveAndGetResult(ladder);
-        printSearchedResultFrom(result);
+        printSearchedResultFrom(result, RETRY_LIMIT);
     }
 
     private void printLadder(PersonalNames names, LadderResult ladderResult, Ladder ladder) {
@@ -85,9 +85,8 @@ public class LadderController {
         throw new IllegalStateException("재시도 횟수를 넘었습니다.");
     }
 
-    private void printSearchedResultFrom(GameResult gameResult) {
-        int count = 0;
-        while (count++ < RETRY_LIMIT) {
+    private void printSearchedResultFrom(GameResult gameResult, int tryCount) {
+        while (tryCount-- > 0) {
             String name = inputView.readNameToCheckResult();
             if (isAll(name)) {
                 outputView.printTotalResult(gameResult);
