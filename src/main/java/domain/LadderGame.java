@@ -18,15 +18,15 @@ public class LadderGame {
         int startPosition = 0;
         Map<String, Integer> gameResult = new HashMap<>();
         for (User user : users.getUsers()) {
-            int finalPosition = startPosition;
-            finalPosition = calculateFinalPosition(finalPosition);
+            int finalPosition = calculateFinalPosition(startPosition);
             gameResult.put(user.getName(), finalPosition);
             startPosition++;
         }
         return Result.of(winningResults, gameResult);
     }
 
-    private int calculateFinalPosition(int finalPosition) {
+    private int calculateFinalPosition(final int startPosition) {
+        int finalPosition = startPosition;
         for (Line line : ladder.getLadder()) {
             final Direction nextDirection = line.calculateNextPosition(finalPosition);
             finalPosition += nextDirection.getDirectionWeight();
