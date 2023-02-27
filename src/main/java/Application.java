@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import ui.input.InputView;
 import ui.output.OutputView;
+import util.RandomBooleanGenerator;
 
 /**
  * @author 최원용
@@ -17,10 +18,10 @@ public class Application {
     public static void main(String[] args) {
         LadderGame ladderGame = new LadderGame();
         inputPeople(ladderGame);
-        inputRewards(ladderGame, ladderGame.getPeople().getPeople().size());
+        inputRewards(ladderGame);
         int ladderHeight = InputView.inputLadderHeight();
-        ladderGame.createLines(ladderGame.getPeople().getPeople().size(), ladderHeight);
-        ladderGame.processResult(ladderGame.getPeople(), ladderGame.getLines());
+        ladderGame.createLines(ladderHeight, new RandomBooleanGenerator());
+        ladderGame.processResult();
         OutputView.printLadderResult(ladderGame.getPeople(), ladderGame.getLines(), ladderGame.getRewards());
         repeatPrintPeopleResultUntilAll(ladderGame.getRewards(), ladderGame.getPeople());
     }
@@ -37,7 +38,8 @@ public class Application {
         }
     }
 
-    private static void inputRewards(LadderGame ladderGame, int peopleNum) {
+    private static void inputRewards(LadderGame ladderGame) {
+        int peopleNum = ladderGame.getPeople().getPeople().size();
         while (true) {
             try {
                 List<String> names = InputView.inputRewards(peopleNum);

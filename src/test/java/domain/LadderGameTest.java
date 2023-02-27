@@ -55,8 +55,8 @@ class LadderGameTest {
     @Test
     void LINES_객체_생성() {
         final int height = 3;
-        final int width = 3;
-        ladderGame.createLines(width, height);
+        ladderGame.createPeople(Arrays.asList("a", "b", "c"));
+        ladderGame.createLines(height, new TestFlapValueBooleanGenerator());
 
         Assertions.assertAll(
                 () -> {
@@ -88,13 +88,12 @@ class LadderGameTest {
     @DisplayName("Person과 Line을 주고 이동 테스트")
     @Test
     void Person_이동_테스트() {
-        People people = new People(Arrays.asList(new Person("aa", 0), new Person("bb", 1)));
-        Lines lines = new Lines(Arrays.asList(Line.newInstanceWithPersonCount(people.getPeople().size(),
-                new TestFlapValueBooleanGenerator())));
-        ladderGame.processResult(people, lines);
+        ladderGame.createPeople(Arrays.asList("a", "b", "c"));
+        ladderGame.createLines(3, new TestFlapValueBooleanGenerator());
+        ladderGame.processResult();
 
-        Assertions.assertEquals(1, people.getPeople().get(0).getPosition());
-        Assertions.assertEquals(0, people.getPeople().get(1).getPosition());
+        Assertions.assertEquals(1, ladderGame.getPeople().getPeople().get(0).getPosition());
+        Assertions.assertEquals(0, ladderGame.getPeople().getPeople().get(1).getPosition());
     }
 
     class TestFlapValueBooleanGenerator implements RandomValueGenerator {

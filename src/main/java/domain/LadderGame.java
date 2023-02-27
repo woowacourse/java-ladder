@@ -32,8 +32,8 @@ public class LadderGame {
         }
     }
 
-    public void createLines(int width, int height) {
-        RandomValueGenerator generator = new RandomBooleanGenerator();
+    public void createLines(int height, RandomValueGenerator generator) {
+        int width = people.getPeople().size();
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             lines.add(Line.newInstanceWithPersonCount(width, generator));
@@ -50,7 +50,7 @@ public class LadderGame {
         this.rewards = new Rewards(rewards, peopleNum);
     }
 
-    public void processResult(People people, Lines lines) {
+    public void processResult() {
         for (Line line : lines.getLines()) {
             calculateLine(people, line);
         }
