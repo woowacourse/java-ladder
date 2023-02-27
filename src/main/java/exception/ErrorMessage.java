@@ -1,4 +1,4 @@
-package view.input;
+package exception;
 
 public enum ErrorMessage {
     EMPTY_INPUT("입력값이 없습니다. 다시 입력해주세요"),
@@ -6,7 +6,10 @@ public enum ErrorMessage {
     INVALID_LADDER_HEIGHT("사다리의 높이는 1이상 10이하의 숫자입니다. 다시 입력해주세요."),
     INVALID_PARTICIPANT_COUNT("참가자는 1명이상 10이하입니다. 다시 입력해주세요."),
     INVALID_PERSON_NAME("참가자의 이름은 1이상 5이하입니다. 다시 입력해주세요."),
-    DUPLICATE_NAME("중복되는 이름이 존재합니다. 다시 입력해주세요");
+    DUPLICATE_NAME("중복되는 이름이 존재합니다. 다시 입력해주세요"),
+    INVALID_RESULT_NAME("결과의 길이는 1이상 5이하입니다. 다시 입력해주세요."),
+    INVALID_RESULT_COUNT("결과 개수가 참여자 수와 다릅니다. 다시 입력해주세요."),
+    NOT_FIND_PERSON("해당 이름의 참가자를 찾을 수 없습니다. 다시 입력해주세요.");
 
     private final String message;
 

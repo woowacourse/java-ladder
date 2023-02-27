@@ -1,15 +1,19 @@
-import controller.RadderGameController;
+import controller.LadderGameController;
 import util.RandomBooleanGenerator;
-import view.input.InputView;
-import view.output.OutputView;
+import view.InputView;
+import view.OutputView;
+
+import java.util.Scanner;
 
 public class Application {
 
     public static void main(String[] args) {
-        InputView inputView = new InputView();
+        InputView inputView = new InputView(new Scanner(System.in));
         OutputView outputView = new OutputView();
         RandomBooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator();
-        RadderGameController radderGameController = new RadderGameController();
-        radderGameController.play(inputView, outputView, randomBooleanGenerator);
+
+        LadderGameController ladderGameController =
+                new LadderGameController(inputView, outputView, randomBooleanGenerator);
+        ladderGameController.play();
     }
 }

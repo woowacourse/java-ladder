@@ -6,7 +6,6 @@ import exception.InvalidParticipantsCountException;
 import util.StringUtil;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Participants {
 
@@ -56,9 +55,11 @@ public class Participants {
         return people.size();
     }
 
-    public List<String> getParticipantNames() {
-        return people.stream()
-                     .map(Person::getName)
-                     .collect(Collectors.toList());
+    public List<Person> getParticipantNames() {
+        return people;
+    }
+
+    public Person getByIndex(int index) {
+        return people.get(index);
     }
 }

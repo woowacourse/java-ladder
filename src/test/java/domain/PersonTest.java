@@ -13,14 +13,23 @@ class PersonTest {
     @Test
     void nameSuccess() {
         Person person = new Person("abcde");
-        Assertions.assertThat(person.getName()).isEqualTo("abcde");
+        Assertions.assertThat(person.getName())
+                  .isEqualTo("abcde");
+    }
+
+    @DisplayName("사람 이름 옆에 공백이 있는 경우 제거하고 저장한다.")
+    @Test
+    void nameWithBlank() {
+        Person person = new Person(" abcde ");
+        Assertions.assertThat(person.getName())
+                  .isEqualTo("abcde");
     }
 
     @DisplayName("사람이름이 5글자보다 많을 경우 오류를 던진다.")
     @Test
     void nameOver5() {
         Assertions.assertThatThrownBy(() -> new Person("abcdef"))
-            .isExactlyInstanceOf(InvalidPersonNameException.class);
+                  .isExactlyInstanceOf(InvalidPersonNameException.class);
     }
 
     @DisplayName("사람이름이 빈문자열일 경우 오류를 던진다.")
@@ -28,13 +37,13 @@ class PersonTest {
     @NullAndEmptySource
     void nameNullOrEmpty(String input) {
         Assertions.assertThatThrownBy(() -> new Person(input))
-            .isExactlyInstanceOf(InvalidPersonNameException.class);
+                  .isExactlyInstanceOf(InvalidPersonNameException.class);
     }
 
     @DisplayName("사람이름이 띄어쓰기로만 이루어진 경우 오류를 던진다.")
     @Test
     void nameBlank() {
         Assertions.assertThatThrownBy(() -> new Person("     "))
-            .isExactlyInstanceOf(InvalidPersonNameException.class);
+                  .isExactlyInstanceOf(InvalidPersonNameException.class);
     }
 }
