@@ -47,7 +47,7 @@ public class LadderGameController {
     private Results initPrizes(final int playerNumber) {
         try {
             List<String> prizeNames = InputView.inputPrize();
-            return new Results(playerNumber, prizeNames);
+            return Results.of(playerNumber, prizeNames);
         } catch (CustomException e) {
             OutputView.printErrorMessage(e);
             return initPrizes(playerNumber);

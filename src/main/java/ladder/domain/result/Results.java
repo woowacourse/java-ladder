@@ -9,15 +9,19 @@ public class Results {
 
     private final List<Result> results;
 
-    public Results(int playerNumber, List<String> names) {
-        validatePrizeCount(playerNumber, names.size());
-
-        this.results = names.stream()
-                .map(Result::from)
-                .collect(Collectors.toUnmodifiableList());
+    private Results(List<Result> results) {
+        this.results = results;
     }
 
-    private void validatePrizeCount(int playerNumber, int prizeNumber) {
+    public static Results of(int playerNumber, List<String> names) {
+        validatePrizeCount(playerNumber, names.size());
+        List<Result> results = names.stream()
+                .map(Result::from)
+                .collect(Collectors.toUnmodifiableList());
+        return new Results(results);
+    }
+
+    private static void validatePrizeCount(int playerNumber, int prizeNumber) {
         if (playerNumber != prizeNumber) {
             throw new ResultNumberException();
         }

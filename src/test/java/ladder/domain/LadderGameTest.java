@@ -36,7 +36,7 @@ public class LadderGameTest {
     @BeforeEach
     void setup() {
         players = Players.from(List.of("pobi", "honux", "crong", "jk"));
-        results = new Results(players.size(), List.of("꽝", "5000", "꽝", "3000"));
+        results = Results.of(players.size(), List.of("꽝", "5000", "꽝", "3000"));
         int playerNumber = players.size();
         int height = 5;
         Ladder ladder = setLadder(playerNumber, height);
