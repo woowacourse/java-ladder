@@ -20,4 +20,10 @@ public class Prizes {
     public Prize query(final int position){
         return prizes.get(position);
     }
+
+    public List<String> getPrizeNames(){
+        return prizes.stream()
+                .map(Prize::getPrize)
+                .collect(Collectors.toList());
+    }
 }
