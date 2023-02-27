@@ -47,11 +47,20 @@ public class LadderController {
 
     private GameCommand printResultByInput(String playerNameInput) {
         if (playerNameInput.equals("all")) {
-//            printResultsOfAllPlayers();
+            calculateResultOfAllPlayer();
+            printResultsOfAllPlayers();
             return END;
         }
         printResultOnePlayer(playerNameInput);
         return CONTINUE;
+    }
+
+    private void calculateResultOfAllPlayer() {
+        this.players.getPlayers().forEach(this::calculateResultOfPlayer);
+    }
+
+    private void printResultsOfAllPlayers() {
+        OutputView.printResultsOfAllPlayers(this.players.getPlayers());
     }
 
     private void printResultOnePlayer(String playerNameInput) {

@@ -4,9 +4,9 @@ import java.util.List;
 import ladder.domain.Bar;
 import ladder.domain.Line;
 import ladder.domain.Player;
-import ladder.domain.Result;
 
 public class OutputView {
+    public static final String DELIMITER_PREFIX = " : ";
     private static String startSpaces;
 
     private static final String WIDTH_SUFFIX = "|";
@@ -85,5 +85,14 @@ public class OutputView {
     public static void printResultOfPlayer(String content) {
         announceExecution();
         System.out.println(content);
+    }
+
+    public static void printResultsOfAllPlayers(List<Player> players) {
+        announceExecution();
+        players.forEach(OutputView::printPlayerAndResult);
+    }
+
+    private static void printPlayerAndResult(Player player) {
+        System.out.println(player.getNameValue() + DELIMITER_PREFIX + player.getContentOfResult());
     }
 }

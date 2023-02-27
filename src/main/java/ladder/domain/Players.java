@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -65,5 +66,9 @@ public class Players {
                 .filter(player -> player.haveNameOf(nameValue))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어의 이름입니다."));
+    }
+
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(this.players);
     }
 }
