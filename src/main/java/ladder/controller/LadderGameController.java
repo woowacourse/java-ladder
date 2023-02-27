@@ -1,6 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.game.LadderGame;
+import ladder.domain.player.Player;
 import ladder.domain.rule.RandomStoolGenerator;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Players;
@@ -85,7 +86,7 @@ public class LadderGameController {
 
     private List<String> mapPlayersToPlayersName(Players players) {
         return players.getPlayers().stream()
-                .map(player -> player.getPlayerName().getName())
+                .map(Player::getName)
                 .collect(Collectors.toUnmodifiableList());
     }
 

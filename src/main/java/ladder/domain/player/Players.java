@@ -45,7 +45,7 @@ public class Players {
 
     public Map.Entry<Player, String> getGameRecordFor(String playerName) {
         return gameRecords.entrySet().stream()
-                .filter((entry -> entry.getKey().getPlayerName().getName().equals(playerName)))
+                .filter((entry -> entry.getKey().getName().equals(playerName)))
                 .findFirst()
                 .orElseThrow(NoSuchPlayerException::new);
     }

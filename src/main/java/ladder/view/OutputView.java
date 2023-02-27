@@ -36,7 +36,7 @@ public class OutputView {
     public void printAllGameResult(Map<Player, String> gameResult) {
         System.out.println(LADDER_GAME_MESSAGE);
 
-        gameResult.forEach((k, v) -> System.out.printf(LADDER_GAME_RESULT_FRAME, k.getPlayerName().getName(), v));
+        gameResult.forEach((k, v) -> System.out.printf(LADDER_GAME_RESULT_FRAME, k.getName(), v));
     }
 
     public void printWithFormat(final List<String> playersName) {

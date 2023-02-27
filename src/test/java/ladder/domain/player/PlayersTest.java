@@ -32,6 +32,6 @@ class PlayersTest {
 
         Map<Player, String> ladderGameResult = players.getAllGameRecords();
 
-        ladderGameResult.forEach((k, v) -> assertThat(k.getPlayerName().getName() + "result").isEqualTo(v));
+        ladderGameResult.forEach((k, v) -> assertThat(k.getName() + "result").isEqualTo(v));
     }
 }
