@@ -15,14 +15,14 @@ public class LadderHeight {
         this.ladderHeight = ladderHeight;
     }
 
-    public int getLadderHeight() {
-        return ladderHeight;
-    }
-
     private void validate(int ladderHeight) {
         if (ladderHeight < MIN_LADDER_HEIGHT || ladderHeight > MAX_LADDER_HEIGHT) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_HEIGHT_RANGE.getMessage());
         }
+    }
+
+    public int getLadderHeight() {
+        return ladderHeight;
     }
 
     @Override

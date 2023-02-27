@@ -1,10 +1,6 @@
 package ladder.controller;
 
-import java.util.List;
-
-import ladder.domain.Ladder;
-import ladder.domain.LadderHeight;
-import ladder.domain.Names;
+import ladder.service.LadderService;
 import ladder.util.BooleanGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -12,52 +8,64 @@ import ladder.view.OutputView;
 public class LadderController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final BooleanGenerator generator;
+    private final LadderService ladderService;
 
     public LadderController(BooleanGenerator generator) {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.generator = generator;
+        this.ladderService = new LadderService(generator);
     }
 
     public void execute() {
-        Names names = createNames();
-        LadderHeight ladderHeight = createLadderHeight();
-        Ladder ladder = createLadder(names, ladderHeight);
+        readNames();
+        readResults();
+        readLadderHeight();
+        outputView.printLadderShape(ladderService.createLadder());
 
-        outputView.printResult(names, ladder);
+        ladderService.matchNamesWithResults();
+
+        searchResult();
     }
 
-    private Names createNames() {
+    private void readNames() {
         try {
-            return new Names(readNames());
+            ladderService.readNames(inputView.requestNames());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return createNames();
+            readNames();
         }
     }
 
-    private LadderHeight createLadderHeight() {
+    private void readResults() {
         try {
-            return new LadderHeight(readLadderHeight());
+            ladderService.readResults(inputView.requestResults());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return createLadderHeight();
+            readResults();
         }
     }
 
-    private Ladder createLadder(Names names, LadderHeight ladderHeight) {
-        Ladder ladder = new Ladder();
-        ladder.drawLine(names.size(), ladderHeight.getLadderHeight(), generator);
-        return ladder;
+    private void readLadderHeight() {
+        try {
+            ladderService.readLadderHeight(inputView.requestLadderHeight());
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            readLadderHeight();
+        }
     }
 
-    private List<String> readNames() {
-        return inputView.requestNames();
+    private void searchResult() {
+        try {
+            printResult();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            searchResult();
+        }
     }
 
-    private int readLadderHeight() {
-        return inputView.requestLadderHeight();
+    private void printResult() {
+        while (!ladderService.isAllResultChecked()) {
+            outputView.printMatchResult(ladderService.findMatchResult(inputView.requestNameWantToKnowResult()));
+        }
     }
-
 }

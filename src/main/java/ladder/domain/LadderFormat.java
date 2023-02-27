@@ -3,8 +3,8 @@ package ladder.domain;
 import java.util.Arrays;
 
 public enum LadderFormat {
-    LINE(Boolean.TRUE, "-"),
-    BLANK(Boolean.FALSE, " ");
+    FOOT_BAR(Boolean.TRUE, "-"),
+    EMPTY(Boolean.FALSE, " ");
 
     private final Boolean condition;
     private final String component;

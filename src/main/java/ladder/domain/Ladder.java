@@ -1,41 +1,42 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
 
 import ladder.util.BooleanGenerator;
 
-public class Ladder implements Iterable<Line> {
-    private final List<Line> ladder;
+public class Ladder {
+    private final List<FootBars> ladder;
 
-    public Ladder() {
-        ladder = new ArrayList<>();
+    public Ladder(List<FootBars> ladder) {
+        this.ladder = ladder;
     }
 
-    public void drawLine(int numberOfPeople, int ladderHeight, BooleanGenerator generator) {
+    public void createLadder(int numberOfPeople, BooleanGenerator generator) {
         do {
-            createLadder(numberOfPeople, ladderHeight, generator);
-        } while (hasNoLine());
+            addFootBars(ladder, numberOfPeople, generator);
+        }
+        while (!hasAnyFootBar(ladder));
     }
 
-    private boolean hasNoLine() {
-        return ladder.stream().noneMatch(this::hasLine);
-    }
-
-    private boolean hasLine(Line line) {
-        return line.getLine().stream().anyMatch(condition -> condition == Boolean.TRUE);
-    }
-
-    private void createLadder(int numberOfPeople, int ladderHeight, BooleanGenerator generator) {
-        ladder.clear();
-        for (int i = 0; i < ladderHeight; i++) {
-            ladder.add(new Line(numberOfPeople, generator));
+    private void addFootBars(List<FootBars> ladder, int numberOfPeople, BooleanGenerator generator) {
+        for (int i = 0; i < ladder.size(); i++) {
+            FootBars footBars = new FootBars(new ArrayList<>());
+            footBars.createFootBars(generator, numberOfPeople);
+            ladder.set(i, footBars);
         }
     }
 
-    @Override
-    public Iterator<Line> iterator() {
-        return ladder.iterator();
+    private boolean hasAnyFootBar(List<FootBars> ladder) {
+        return ladder.stream().anyMatch(this::hasFootBar);
+    }
+
+    private boolean hasFootBar(FootBars footBars) {
+        return footBars.getFootBars().stream().anyMatch(condition -> condition == Boolean.TRUE);
+    }
+
+    public List<FootBars> getLadder() {
+        return Collections.unmodifiableList(ladder);
     }
 }

@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 import ladder.error.ErrorMessage;
 
 public class Name {
@@ -13,18 +15,17 @@ public class Name {
         this.name = name;
     }
 
-    public int length() {
-        return name.length();
-    }
-
-    public String getName() {
-        return name;
-    }
-
     private void validate(String name) {
         validateNotNull(name);
         validateDoesNotContainComma(name);
         validateLength(name);
+        validateNameIsNotall(name);
+    }
+
+    private void validateNotNull(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException(ErrorMessage.NAME_IS_NULL.getMessage());
+        }
     }
 
     private void validateDoesNotContainComma(String name) {
@@ -39,10 +40,28 @@ public class Name {
         }
     }
 
-    private void validateNotNull(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException(ErrorMessage.NAME_IS_NULL.getMessage());
+    private void validateNameIsNotall(String name) {
+        if (name.equals("all")) {
+            throw new IllegalArgumentException(ErrorMessage.NAME_IS_ALL.getMessage());
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Name name1 = (Name)o;
+        return Objects.equals(name, name1.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }
