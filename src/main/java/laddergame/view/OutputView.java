@@ -3,6 +3,7 @@ package laddergame.view;
 import laddergame.domain.ladder.Line;
 import laddergame.domain.ladder.Rung;
 import laddergame.domain.participant.Participant;
+import laddergame.domain.participant.ParticipantName;
 import laddergame.domain.result.Result;
 
 import java.util.List;
@@ -12,13 +13,14 @@ import java.util.stream.Collectors;
 public class OutputView {
 
     private static final String LADDER_FRAME = "|";
-    private static final String LADDER_RUNG = "-----";
-    private static final String LADDER_BLANK = "     ";
+    private static final String LADDER_RUNG = "-".repeat(ParticipantName.MAX_LENGTH);
+    private static final String LADDER_BLANK = " ".repeat(ParticipantName.MAX_LENGTH);
     private static final String LADDER_PADDING = " ";
     private static final String NEW_LINE = System.lineSeparator();
-    private static final String PADDING_FORMAT_FOR_PARTICIPANTS = "%6s";
-    private static final String PADDING_FORMAT_FOR_RESULTS = "%-6s";
-    private static final String DELIMITER = " : ";
+    private static final String PADDING_FORMAT_FOR_PARTICIPANTS = String.format("%%%ds", ParticipantName.MAX_LENGTH);
+    private static final String PADDING_FORMAT_FOR_RESULTS = String.format("%%-%ds", ParticipantName.MAX_LENGTH);
+    private static final String NAME_DELIMITER = " ";
+    private static final String RESULT_DELIMITER = " : ";
     private static final int MINIMUM = 1;
 
     public static void print(final String message) {
@@ -32,7 +34,7 @@ public class OutputView {
     public void printParticipantNames(final List<Participant> participants) {
         final String paddedParticipantNames = participants.stream()
                 .map(participant -> pad(PADDING_FORMAT_FOR_PARTICIPANTS, participant.getName()))
-                .collect(Collectors.joining()).trim();
+                .collect(Collectors.joining(NAME_DELIMITER)).trim();
         print(paddedParticipantNames);
     }
 
@@ -45,7 +47,7 @@ public class OutputView {
     public void printResultNames(final List<Result> results) {
         final String paddedResultNames = results.stream()
                 .map(result -> pad(PADDING_FORMAT_FOR_RESULTS, result.getResultName()))
-                .collect(Collectors.joining()).trim();
+                .collect(Collectors.joining(NAME_DELIMITER)).trim();
         print(paddedResultNames);
     }
 
@@ -94,7 +96,7 @@ public class OutputView {
                     .orElseThrow(IllegalStateException::new);
         }
         return participants.stream()
-                .map(participant -> String.join(DELIMITER, participant.getName(), getResultName(requestByParticipants, participant)))
+                .map(participant -> String.join(RESULT_DELIMITER, participant.getName(), getResultName(requestByParticipants, participant)))
                 .collect(Collectors.joining(NEW_LINE));
     }
 

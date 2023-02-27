@@ -6,8 +6,8 @@ import static laddergame.domain.game.UserRequestedParticipants.ALL_PARTICIPANTS_
 
 public class ParticipantName {
 
+    public static final int MAX_LENGTH = 5;
     private static final String INVALID_INCLUSION = " ";
-    private static final int MAX_LENGTH = 5;
 
     private final String name;
 
