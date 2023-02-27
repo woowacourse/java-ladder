@@ -1,7 +1,6 @@
 package domain.Ladder;
 
 import domain.util.PointGenerator;
-import domain.util.SequenceSwapper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,19 +28,6 @@ public class Line {
         if ( line.size() == ladderWidth ) return;
         if ( point.isPresent() ) {
             line.add(Point.ABSENCE);
-        }
-    }
-    
-    public void readPoints( SequenceSwapper swapper ) {
-        final int size = this.points.size();
-        for ( int i = 0; i < size; i++ ) {
-            this.swapIfPresent(i, swapper);
-        }
-    }
-    
-    private void swapIfPresent( int index, SequenceSwapper swapper ) {
-        if ( this.points.get(index).isPresent() ) {
-            swapper.swap(index);
         }
     }
     

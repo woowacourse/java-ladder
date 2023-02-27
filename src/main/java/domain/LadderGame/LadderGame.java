@@ -5,7 +5,6 @@ import domain.Collection.Participants;
 import domain.Collection.Result;
 import domain.Collection.Results;
 import domain.Ladder.Ladder;
-import domain.util.SequenceSwapper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +16,6 @@ public class LadderGame {
     private final Ladder ladder;
     
     private final Results results;
-    private final SequenceSwapper swapper;
     
     private final Map<Participant, Result> gameResult = new HashMap<>();
     
@@ -26,19 +24,16 @@ public class LadderGame {
         this.participants = participants;
         this.results = results;
         this.ladder = ladder;
-        this.swapper = SequenceSwapper.initialize(participants.getParticipantsNum());
     }
+    
     
     public void run() {
-        this.ladder.readLines(this.swapper);
-        this.setGameResult();
+        List<Integer> sequence = this.ladder.getSwappedSequence(this.participants.getParticipantsNum());
+        this.makeGameResult(sequence);
     }
     
-    
-    private void setGameResult() {
-        List<Integer> sequence = this.swapper.getSequence();
-        int sequenceSize = sequence.size();
-        for ( int i = 0; i < sequenceSize; i++ ) {
+    private void makeGameResult( List<Integer> sequence ) {
+        for ( int i = 0; i < sequence.size(); i++ ) {
             int changedRank = sequence.get(i);
             this.gameResult.put(this.participants.get(changedRank), this.results.get(i));
         }
