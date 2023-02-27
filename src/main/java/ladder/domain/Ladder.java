@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.error.ErrorMessage;
 import ladder.util.BooleanGenerator;
 
 import java.util.*;
@@ -14,13 +15,20 @@ public class Ladder {
     }
 
     public Result perform(Names names, Bets bets) {
-        List<Bet> performedBets = new ArrayList<>(bets.getBets());
+        validateToPerform(names, bets);
 
+        List<Bet> performedBets = new ArrayList<>(bets.getBets());
         for (int i = ladder.size() - 1; i >= 0; i--) {
             performByLine(ladder.get(i), performedBets);
         }
 
         return makeResult(names, performedBets);
+    }
+
+    private void validateToPerform(Names names, Bets bets) {
+        if (names.size() != bets.size()) {
+            throw new IllegalArgumentException(ErrorMessage.DIFFERENT_PARTICIPANTS_AND_BETS_COUNT.getMessage());
+        }
     }
 
     private void performByLine(Line line, List<Bet> bets) {
