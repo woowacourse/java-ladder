@@ -23,12 +23,16 @@ public class Participants {
         this.participants.add(name);
     }
     
-    public int getParticipantsNum() {
+    public int getSize() {
         return this.participants.size();
     }
     
     public Participant get( int index ) {
         return this.participants.get(index);
+    }
+    
+    public boolean contains( Participant participant ) {
+        return this.participants.contains(participant);
     }
     
     public List<Participant> getParticipants() {
