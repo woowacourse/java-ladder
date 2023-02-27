@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 /**
  * name의 null check의 경우 Name생성자를 호출하는 Names 클래스에 구현되어 있기 때문에 생략하였습니다.
  */
@@ -31,11 +33,24 @@ class Name {
         return value.length() > MAX_NAME_LENGTH;
     }
 
-    boolean isEqual(String value) {
-        return this.value.equals(value);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Name name = (Name) o;
+        return Objects.equals(value, name.value);
     }
 
-    String toDto() {
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    String getValue() {
         return value;
     }
 }

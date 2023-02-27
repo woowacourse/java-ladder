@@ -3,7 +3,6 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import ladder.dto.LadderDto;
 
 /**
  * 사다리타기 로직을 구현할 때 사다리의 가로 행 하나를 하나의 Row로 추상화하고 전체 사다리를 Row의 집합인 Rows로 추상화하였습니다. 직관적인 사다리의 형태에서 양 끝의
@@ -36,9 +35,9 @@ public class Ladder {
     }
 
 
-    public LadderDto toDto() {
-        return new LadderDto(rows.stream()
+    public List<List<Step>> getRows() {
+        return rows.stream()
             .map(Row::toDto)
-            .collect(Collectors.toList()), rows.size());
+            .collect(Collectors.toList());
     }
 }

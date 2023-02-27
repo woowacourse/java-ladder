@@ -3,7 +3,6 @@ package ladder.domain;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import ladder.dto.NamesDto;
 import ladder.util.StringSplitter;
 
 public class Names {
@@ -59,16 +58,17 @@ public class Names {
         return names.get(index);
     }
 
-    public Name findName(String name) throws IllegalArgumentException {
-        return names.stream()
-            .filter((el) -> el.isEqual(name))
-            .findFirst().orElseThrow(
-                () -> new IllegalArgumentException("찾으려는 이름이 이름 목록에 존재하지 않습니다."));
+    public Name findName(String rawName) throws IllegalArgumentException {
+        final Name name = new Name(rawName);
+        if (!names.contains(name)) {
+            throw new IllegalArgumentException("찾으려는 이름이 이름 목록에 존재하지 않습니다.");
+        }
+        return name;
     }
 
-    public NamesDto toDto() {
-        return new NamesDto(names.stream()
-            .map(Name::toDto)
-            .collect(Collectors.toList()));
+    public List<String> getNames() {
+        return names.stream()
+            .map(Name::getValue)
+            .collect(Collectors.toList());
     }
 }

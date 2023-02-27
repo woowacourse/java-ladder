@@ -1,23 +1,21 @@
 package ladder.view;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import ladder.domain.Step;
-import ladder.dto.ResultDto;
-import ladder.dto.LadderDto;
-import ladder.dto.NamesDto;
 
 public class ResultView {
 
     private ResultView() {
     }
 
-    public static void printResult(NamesDto playerNamesDto, LadderDto ladderDto,
-        NamesDto rewardNamesDto) {
+    public static void printResult(List<String> playerNames, List<List<Step>> ladder,
+        List<String> rewardNames) {
         printResultTitle();
-        printNames(playerNamesDto);
-        printRows(ladderDto);
-        printNames(rewardNamesDto);
+        printNames(playerNames);
+        printRows(ladder);
+        printNames(rewardNames);
         System.out.println();
     }
 
@@ -26,8 +24,8 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void printNames(NamesDto namesDto) {
-        namesDto.getNames().forEach(ResultView::printName);
+    private static void printNames(List<String> names) {
+        names.forEach(ResultView::printName);
         System.out.println();
     }
 
@@ -35,9 +33,8 @@ public class ResultView {
         System.out.printf("%6s", name);
     }
 
-    private static void printRows(LadderDto ladderDto) {
-        List<List<Step>> lines = ladderDto.getLines();
-        lines.forEach(ResultView::printRow);
+    private static void printRows(List<List<Step>> ladder) {
+        ladder.forEach(ResultView::printRow);
     }
 
     private static void printRow(List<Step> steps) {
@@ -63,10 +60,10 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printAllResult(ResultDto resultDto) {
+    public static void printAllResult(Map<String, String> results) {
         System.out.println();
         System.out.println("실행 결과");
-        for (Entry<String, String> result : resultDto.getResults().entrySet()) {
+        for (Entry<String, String> result : results.entrySet()) {
             System.out.println(result.getKey() + " : " + result.getValue());
         }
         System.out.println();

@@ -31,14 +31,14 @@ public class LadderGameTest {
          * |----|    |----|
          * 꽝 5000   꽝   3000
          */
-        Assertions.assertThat(ladderGame.getReward(players.findNameByIndex(0)))
-            .isEqualTo(rewards.findNameByIndex(1).toDto());
-        Assertions.assertThat(ladderGame.getReward(players.findNameByIndex(1)))
-            .isEqualTo(rewards.findNameByIndex(0).toDto());
-        Assertions.assertThat(ladderGame.getReward(players.findNameByIndex(2)))
-            .isEqualTo(rewards.findNameByIndex(3).toDto());
-        Assertions.assertThat(ladderGame.getReward(players.findNameByIndex(3)))
-            .isEqualTo(rewards.findNameByIndex(2).toDto());
+        Assertions.assertThat(ladderGame.findRewardByName(players.findNameByIndex(0)))
+            .isEqualTo(rewards.findNameByIndex(1).getValue());
+        Assertions.assertThat(ladderGame.findRewardByName(players.findNameByIndex(1)))
+            .isEqualTo(rewards.findNameByIndex(0).getValue());
+        Assertions.assertThat(ladderGame.findRewardByName(players.findNameByIndex(2)))
+            .isEqualTo(rewards.findNameByIndex(3).getValue());
+        Assertions.assertThat(ladderGame.findRewardByName(players.findNameByIndex(3)))
+            .isEqualTo(rewards.findNameByIndex(2).getValue());
     }
 
     @Test
@@ -53,13 +53,13 @@ public class LadderGameTest {
          * |    |    |    |
          * 꽝 5000   꽝   3000
          */
-        Assertions.assertThat(ladderGame.getReward(players.findNameByIndex(0)))
-            .isEqualTo(rewards.findNameByIndex(0).toDto());
-        Assertions.assertThat(ladderGame.getReward(players.findNameByIndex(1)))
-            .isEqualTo(rewards.findNameByIndex(1).toDto());
-        Assertions.assertThat(ladderGame.getReward(players.findNameByIndex(2)))
-            .isEqualTo(rewards.findNameByIndex(2).toDto());
-        Assertions.assertThat(ladderGame.getReward(players.findNameByIndex(3)))
-            .isEqualTo(rewards.findNameByIndex(3).toDto());
+        Assertions.assertThat(ladderGame.findRewardByName(players.findNameByIndex(0)))
+            .isEqualTo(rewards.findNameByIndex(0).getValue());
+        Assertions.assertThat(ladderGame.findRewardByName(players.findNameByIndex(1)))
+            .isEqualTo(rewards.findNameByIndex(1).getValue());
+        Assertions.assertThat(ladderGame.findRewardByName(players.findNameByIndex(2)))
+            .isEqualTo(rewards.findNameByIndex(2).getValue());
+        Assertions.assertThat(ladderGame.findRewardByName(players.findNameByIndex(3)))
+            .isEqualTo(rewards.findNameByIndex(3).getValue());
     }
 }
