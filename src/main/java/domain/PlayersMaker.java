@@ -1,7 +1,5 @@
-package util;
+package domain;
 
-import domain.Player;
-import domain.Players;
 import java.util.List;
 import java.util.stream.Collectors;
 

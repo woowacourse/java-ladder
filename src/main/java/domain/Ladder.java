@@ -2,15 +2,15 @@ package domain;
 
 public class Ladder {
 
-    private final Lines lines;
+    private final Lines ladder;
     private final Height height;
 
-    public Ladder(Lines lines, Height height) {
-        this.lines = lines;
+    public Ladder(Lines ladder, Height height) {
+        this.ladder = ladder;
         this.height = height;
     }
 
-    public Lines getLines() {
-        return this.lines;
+    public Lines getLadder() {
+        return this.ladder;
     }
 }

@@ -1,25 +1,29 @@
 package controller;
 
 import domain.Height;
-import domain.Ladder;
-import domain.Line;
-import domain.Lines;
+import domain.LadderGame;
 import domain.Players;
-import java.util.ArrayList;
+import domain.PlayersMaker;
+import domain.Results;
 import java.util.List;
-import util.LineGenerator;
-import util.PlayersMaker;
-import util.RandomLineGenerator;
+import java.util.Map;
 import view.InputView;
 import view.OutputView;
 
 public class LadderController {
 
+    private static final String DELIMITER_WITH_BLANK = "\\s*,\\s*";
+
     public void run() {
         Players players = makePlayers();
-        int height = inputHeight();
-        Ladder ladder = makeLadder(new Height(height), players.getNumberOfPlayers());
-        printLadder(players, ladder);
+        Results results = makeResult(players.getNumberOfPlayers());
+        Height height = new Height(inputHeight());
+
+        LadderGame ladderGame = new LadderGame(players, results);
+        ladderGame.makeLadder(height, players.getNumberOfPlayers());
+
+        playLadderGame(ladderGame);
+        getResult(players, ladderGame);
     }
 
     private Players makePlayers() {
@@ -33,11 +37,30 @@ public class LadderController {
     }
 
     private String inputPlayers() {
-        try{
+        try {
             return InputView.receivePlayer();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
             return inputPlayers();
+        }
+    }
+
+    private Results makeResult(int playerCount) {
+        try {
+            String results = inputResults();
+            return new Results(makeResults(results), playerCount);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return makeResult(playerCount);
+        }
+    }
+
+    private String inputResults() {
+        try {
+            return InputView.receiveResults();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return inputResults();
         }
     }
 
@@ -50,27 +73,29 @@ public class LadderController {
         }
     }
 
-    private Ladder makeLadder(Height height, int numberOfWalls) {
-        LineGenerator lineGenerator = new RandomLineGenerator();
-        Lines lines = makeLines(height, numberOfWalls, lineGenerator);
-
-        return new Ladder(lines, height);
+    private List<String> makeResults(String results) {
+        return List.of(results.split(DELIMITER_WITH_BLANK));
     }
 
-    private Lines makeLines(Height height, int numberOfWalls, LineGenerator lineGenerator) {
-        List<Line> lines = new ArrayList<>();
-        int numberOfLine = numberOfWalls - 1;
+    private void playLadderGame(LadderGame ladderGame) {
+        ladderGame.printLadder();
+        ladderGame.playGame();
+    }
 
-        for (int i = 0; i < height.getHeight(); i++) {
-            lines.add(new Line(numberOfLine, lineGenerator));
+    private void getResult(Players players, LadderGame ladderGame) {
+        Map<String, String> ladderGameResult = ladderGame.getLadderGameResult();
+        String playerNameWantToSeeResult = inputPlayerNameWantToSeeResult(players);
+        OutputView.printResult(ladderGameResult, players, playerNameWantToSeeResult);
+    }
+
+    private String inputPlayerNameWantToSeeResult(Players players) {
+        try {
+            String playerName = InputView.receivePlayerName();
+            players.validateExistPlayer(playerName);
+            return playerName;
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return inputPlayerNameWantToSeeResult(players);
         }
-
-        return new Lines(lines);
-    }
-
-    private void printLadder(Players players, Ladder ladder) {
-        OutputView.printResultMessage();
-        OutputView.printPlayers(players);
-        OutputView.printLadder(ladder);
     }
 }
