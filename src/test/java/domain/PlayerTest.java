@@ -51,4 +51,23 @@ class PlayerTest {
                     .isEqualTo(1);
         }
     }
+
+    @Nested
+    @DisplayName("이름이")
+    class EqualsCase {
+        @Test
+        @DisplayName("같다면 위치가 달라도 같다고 판단한다.")
+        void equalsTest() {
+            //given
+            Player player1 = new Player(new Name("Pobi"), new Position(0));
+            Player player2 = new Player(new Name("Pobi"), new Position(1));
+
+            //then
+            boolean isSamePlayer = player1.equals(player2);
+
+            //then
+            assertThat(isSamePlayer)
+                    .isTrue();
+        }
+    }
 }
