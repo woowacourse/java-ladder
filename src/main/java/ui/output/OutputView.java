@@ -15,7 +15,7 @@ public class OutputView {
 
     private static final String LADDER_RESULT = "사다리 결과";
     private static final String EXECUTE_RESULT = "실행 결과";
-    private static final String VIEW_RESULT_ALL = "all";
+
     private static final int NON_ENGLISH_CHAR_SIZE = 2;
     private static final int ENGLISH_AND_NUMBER_CHAR_SIZE = 1;
 

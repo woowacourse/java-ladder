@@ -14,6 +14,7 @@ import util.RandomBooleanGenerator;
  * @Created by 최원용 on 2023. 02. 14.
  */
 public class Application {
+    private static final String VIEW_RESULT_ALL = "all";
     public static void main(String[] args) {
         LadderGame ladderGame = new LadderGame();
         inputPeople(ladderGame);
@@ -65,7 +66,7 @@ public class Application {
     private static void validateNameInPeople(String name, People people) {
         List<Person> findPerson = people.getPeople().stream().filter(p -> p.getName().getPersonName().equals(name))
                 .collect(Collectors.toList());
-        if (name.equals("all")) {
+        if (name.equals(VIEW_RESULT_ALL)) {
             return;
         }
         if (findPerson.size() != 1) {
@@ -76,7 +77,7 @@ public class Application {
     public static void repeatPrintPeopleResultUntilAll(Rewards inputRewards, People processedPeople) {
         while (true) {
             String targetName = inputTargetPerson(processedPeople);
-            if (targetName.equals("all")) {
+            if (targetName.equals(VIEW_RESULT_ALL)) {
                 OutputView.printRewardResultAll(inputRewards, processedPeople);
                 return;
             }
