@@ -2,8 +2,8 @@ package ladder.view;
 
 import ladder.domain.ConnectionStatus;
 import ladder.domain.Line;
-import ladder.domain.ResultDto;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -65,34 +65,36 @@ public class ResultView {
         }
     }
 
-    public static void printResults(final List<String> results) {
-        StringJoiner ExecutionResult = new StringJoiner(RESULT_DELIMITER);
-        for (String result : results) {
-            ExecutionResult.add(formatWithSpace(result));
+    public static void printPrizes(final List<String> prizes) {
+        StringJoiner gamePrizes = new StringJoiner(RESULT_DELIMITER);
+        for (String prize : prizes) {
+            gamePrizes.add(formatWithSpace(prize));
         }
-        System.out.println(ExecutionResult);
+        System.out.println(gamePrizes);
     }
 
-    public static void printGameResult(final ResultDto resultDto) {
-        if (resultDto.getPlayerNames().size() == 1) {
-            printOnePlayerGameResult(resultDto);
+    public static void printGameResult(final HashMap<String, String> result) {
+        if (result.size() == 1) {
+            printOnePlayerGameResult(result);
             return;
         }
-        printManyPlayersGameResult(resultDto);
+        printManyPlayersGameResult(result);
     }
 
-    private static void printManyPlayersGameResult(final ResultDto resultDto) {
+    private static void printManyPlayersGameResult(final HashMap<String, String> result) {
         StringBuilder gameResult = new StringBuilder();
-        for (int index = 0; index < resultDto.getPlayerNames().size(); index++) {
+        for (String playerName : result.keySet()) {
             StringJoiner eachGameResult = new StringJoiner(GAME_RESULT_DELIMITER);
-            eachGameResult.add(resultDto.getPlayerNames().get(index));
-            eachGameResult.add(resultDto.getGameResult().get(index));
+            eachGameResult.add(playerName);
+            eachGameResult.add(result.get(playerName));
             gameResult.append(eachGameResult + System.lineSeparator());
         }
         System.out.print(gameResult);
     }
 
-    private static void printOnePlayerGameResult(final ResultDto resultDto) {
-        System.out.println(resultDto.getGameResult().get(0));
+    private static void printOnePlayerGameResult(final HashMap<String, String> result) {
+        for (String playerName : result.keySet()) {
+            System.out.println(result.get(playerName));
+        }
     }
 }
