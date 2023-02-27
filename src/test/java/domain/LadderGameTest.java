@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import domain.ladder.Ladder;
 import domain.ladder.LadderGame;
@@ -8,8 +9,8 @@ import domain.ladder.LadderGenerator;
 import domain.player.Names;
 import domain.player.Player;
 import domain.player.Players;
+import domain.result.Prizes;
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -40,7 +41,7 @@ class LadderGameTest {
         @DisplayName("사다리, 플레이어 목록, 상품 목록을 받아 생성된다.")
         void generateLadderGameCase() {
             //then
-            Assertions.assertDoesNotThrow(() -> new LadderGame(ladder, players, prizes));
+            assertDoesNotThrow(() -> new LadderGame(ladder, players, prizes));
         }
     }
 
@@ -65,4 +66,31 @@ class LadderGameTest {
                     .isEqualTo(targetPosition);
         }
     }
+
+    @Nested
+    @DisplayName("플레이를")
+    class ResultTest {
+
+        @Test
+        @DisplayName("하면 결과를 리턴받을 수 있다.")
+        void ladderGameResultTest() {
+            //when
+            ladderGame.play();
+
+            //then
+            assertDoesNotThrow(() -> ladderGame.getResult());
+        }
+
+        @Test
+        @DisplayName("하지 않고 결과를 받으면 익셉션이 발생한다.")
+        void invalidLadderGameResultTest() {
+            //when
+            //ladderGame.play();
+
+            //then
+            assertThatThrownBy(() -> ladderGame.getResult())
+                    .isInstanceOf(IllegalStateException.class);
+        }
+    }
+
 }
