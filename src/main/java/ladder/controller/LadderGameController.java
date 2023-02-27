@@ -32,7 +32,7 @@ public class LadderGameController {
         try {
             LadderGame ladderGame = initLadderGame();
 
-            ladderGame.letPlayersToGoDown();
+            ladderGame.makeGameResult();
             showLadder(ladderGame);
             startGameResultLoop(ladderGame);
         } catch (RuntimeException e) {

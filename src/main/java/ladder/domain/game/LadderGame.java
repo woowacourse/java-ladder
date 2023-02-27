@@ -20,12 +20,11 @@ public class LadderGame {
         this.destinations = List.copyOf(destinations);
     }
 
-    public void letPlayersToGoDown() {
+    public void makeGameResult() {
         List<String> gameRecord = new ArrayList<>();
-        int location = 0;
 
-        for (int i = 0; i < players.size(); i++) {
-            int finalDestination = ladder.getDestinationOf(location++);
+        for (int location = 0; location < players.size(); location++) {
+            int finalDestination = ladder.getDestinationOf(location);
             String gameResultForOneLocation = destinations.get(finalDestination);
             gameRecord.add(gameResultForOneLocation);
         }
