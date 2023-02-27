@@ -9,10 +9,10 @@ public class LadderApplication {
     public static void main(String[] args) {
         LadderController ladderController = new LadderController(
                 new InputView(), new OutputView(), new RandomBooleanGenerator());
-        runWithAlert(ladderController);
+        run(ladderController);
     }
 
-    private static void runWithAlert(LadderController ladderController) {
+    private static void run(LadderController ladderController) {
         try {
             ladderController.run();
         } catch (Exception e) {
