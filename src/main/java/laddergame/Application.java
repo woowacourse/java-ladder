@@ -17,6 +17,8 @@ public class Application {
             ladderGameController.run();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

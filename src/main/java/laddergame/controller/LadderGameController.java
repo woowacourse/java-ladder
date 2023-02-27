@@ -7,15 +7,13 @@ import laddergame.ladder.LadderWidth;
 import laddergame.player.Player;
 import laddergame.player.Players;
 import laddergame.result.GameResult;
-import laddergame.result.GameResultViewScope;
 import laddergame.result.Prizes;
+import laddergame.util.NullChecker;
 import laddergame.view.InputView;
 import laddergame.view.ResultView;
 import laddergame.vo.Position;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class LadderGameController {
     private final InputView inputView;
@@ -72,8 +70,7 @@ public class LadderGameController {
         Optional<GameResultViewScope> scope = GameResultViewScope.from(scopeOrName);
 
         while (isScopeOnePerson(scope)) {
-            String result = gameResult.fetchResultByName(scopeOrName);
-            resultView.printResultOfOnePerson(result);
+            printResultOf(scopeOrName, gameResult);
             scopeOrName = inputView.readScopeOfResultChecking();
             scope = GameResultViewScope.from(scopeOrName);
         }
@@ -82,5 +79,29 @@ public class LadderGameController {
 
     private boolean isScopeOnePerson(Optional<GameResultViewScope> scope) {
         return scope.isEmpty();
+    }
+
+    private void printResultOf(String playerName, GameResult gameResult) {
+        String result = gameResult.fetchResultByName(playerName);
+        resultView.printResultOfOnePerson(result);
+    }
+
+    private enum GameResultViewScope {
+        ALL("all"),
+        ;
+
+        private final String command;
+
+        GameResultViewScope(String command) {
+            this.command = command;
+        }
+
+        public static Optional<GameResultViewScope> from(String command) {
+            NullChecker.checkNull(command, "잘못된 명령어입니다");
+
+            return Arrays.stream(values())
+                         .filter(gameResultViewScope -> Objects.equals(gameResultViewScope.command, command))
+                         .findAny();
+        }
     }
 }
