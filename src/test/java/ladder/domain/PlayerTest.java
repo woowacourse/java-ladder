@@ -5,18 +5,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class PlayerNamesTest {
+class PlayerTest {
 
     @Test
     @DisplayName("참여자의 이름이 1자 이상 5자 이하가 아니면 예외를 던진다.")
     void validateLengthTest() {
-        List<String> names = List.of("pobiss", "crong");
+        String name = "pobiiiii";
 
-        assertThrows(IllegalArgumentException.class, () -> new PlayerNames(names))
+        assertThrows(IllegalArgumentException.class, () -> new Player(name, 0))
                 .getMessage()
                 .equals("[ERROR] 참여자의 이름은 1자 이상 5자 이하여야 합니다.");
     }
@@ -25,10 +23,7 @@ class PlayerNamesTest {
     @ValueSource(strings = {" ", ""})
     @DisplayName("참여자의 이름이 빈 값이면 예외를 던진다.")
     void validateBlankTest(String name) {
-
-        List<String> names = List.of(name, "pobi");
-
-        assertThrows(IllegalArgumentException.class, () -> new PlayerNames(names))
+        assertThrows(IllegalArgumentException.class, () -> new Player(name, 0))
                 .getMessage()
                 .equals("[ERROR] 참여자의 이름은 빈 값일 수 없습니다.");
     }
