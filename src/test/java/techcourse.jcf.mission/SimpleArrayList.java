@@ -4,18 +4,21 @@ import java.util.Arrays;
 
 public class SimpleArrayList implements SimpleList {
     private static final int INITIAL_CAPACITY = 10;
+
     private String[] values;
+    private final int capacity;
+
 
     public SimpleArrayList() {
         this.values = new String[INITIAL_CAPACITY];
+        this.capacity = values.length;
     }
 
     @Override
     public boolean add(String value) {
-        int capacity = calculateCapacity();
         int size = calculateSize();
         if (size >= capacity) {
-            increaseCapacity(capacity);
+            increaseCapacity();
             values[size] = value;
             return true;
         }
@@ -23,8 +26,25 @@ public class SimpleArrayList implements SimpleList {
         return true;
     }
 
-    private int calculateCapacity() {
-        return values.length;
+    @Override
+    public void add(int index, String value) {
+        int size = calculateSize();
+        if (size >= capacity) {
+            increaseCapacity();
+        }
+        String[] currentValues = copyCurrentValues();
+        values[index] = value;
+        for (int i = index + 1; i <= size; i++) {
+            values[i] = currentValues[i - 1];
+        }
+    }
+
+    private String[] copyCurrentValues() {
+        String[] currentValues = new String[capacity];
+        for (int i = 0; i < calculateSize(); i++) {
+            currentValues[i] = values[i];
+        }
+        return currentValues;
     }
 
     private int calculateSize() {
@@ -37,17 +57,12 @@ public class SimpleArrayList implements SimpleList {
         return currentSize;
     }
 
-    private void increaseCapacity(int capacity) {
+    private void increaseCapacity() {
         String[] currentValues = values;
         values = new String[capacity * 2];
-        for (int index = 0; index < calculateCapacity(); index++) {
+        for (int index = 0; index < capacity; index++) {
             values[index] = currentValues[index];
         }
-    }
-
-    @Override
-    public void add(int index, String value) {
-
     }
 
     @Override
