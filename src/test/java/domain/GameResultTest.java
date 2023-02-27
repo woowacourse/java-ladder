@@ -14,11 +14,12 @@ import java.util.Map;
 
 class GameResultTest {
 
+    Participants participants;
     GameResult gameResult;
 
     @BeforeEach
     void setUp() {
-        Participants participants = new Participants("pobi,honux,crong,jk");
+        participants = new Participants("pobi,honux,crong,jk");
         Ladder ladder = new Ladder(new Height("3"), new Weight(4), () -> true);
         Results results = new Results("a,b,c,d", 4);
         final Map<Person, Result> ladderResult = new HashMap<>();
@@ -30,19 +31,26 @@ class GameResultTest {
         gameResult = new GameResult(ladderResult);
     }
 
-//    @DisplayName("요청 값으로 all을 전달한 경우 전체 결과를 반환한다.")
-//    @Test
-//    void getAllResult() {
-//        Assertions.assertThat(gameResult.getAllResult().get("pobi").getResult()).isEqualTo("b");
-//        Assertions.assertThat(gameResult.getAllResult().get("honux").getResult()).isEqualTo("a");
-//        Assertions.assertThat(gameResult.getAllResult().get("crong").getResult()).isEqualTo("d");
-//        Assertions.assertThat(gameResult.getAllResult().get("jk").getResult()).isEqualTo("c");
-//    }
+    @DisplayName("요청 값으로 all을 전달한 경우 전체 결과를 반환한다.")
+    @Test
+    void getAllResult() {
+        Map<Person, Result> allResult = gameResult.getAllResult();
+
+        Assertions.assertThat(allResult.get(participants.getByIndex(0)).equals(new Result("b")))
+                  .isTrue();
+        Assertions.assertThat(allResult.get(participants.getByIndex(1)).equals(new Result("a")))
+                  .isTrue();
+        Assertions.assertThat(allResult.get(participants.getByIndex(2)).equals(new Result("d")))
+                  .isTrue();
+        Assertions.assertThat(allResult.get(participants.getByIndex(3)).equals(new Result("c")))
+                  .isTrue();
+    }
 
     @DisplayName("요청 값으로 존재하는 사람의 이름을 전달한 경우 해당 사람의 결과를 반환한다.")
     @Test
     void getResultByName() {
-        Assertions.assertThat(gameResult.getResultByName("pobi").getResult()).isEqualTo("b");
+        Assertions.assertThat(gameResult.getResultByName("pobi").getResult())
+                  .isEqualTo("b");
     }
 
     @DisplayName("요청 값으로 존재하지 않는 사람의 이름을 전달한 경우 오류를 반환한다.")
