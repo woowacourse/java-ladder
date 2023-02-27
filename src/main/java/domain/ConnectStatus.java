@@ -1,7 +1,7 @@
 package domain;
 
 public enum ConnectStatus {
-    CONNECT(true), DISCCONECT(false);
+    CONNECT(true), DISCONNECT(false);
 
     private final boolean status;
 
@@ -13,7 +13,7 @@ public enum ConnectStatus {
         if(status){
             return CONNECT;
         }
-        return DISCCONECT;
+        return DISCONNECT;
     }
 
     public boolean status(){

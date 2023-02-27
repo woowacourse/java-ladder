@@ -37,6 +37,6 @@ public class Line {
             line.add(ConnectStatus.valueOf(generator.generate()));
             return;
         }
-        line.add(ConnectStatus.DISCCONECT);
+        line.add(ConnectStatus.DISCONNECT);
     }
 }
