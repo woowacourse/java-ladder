@@ -29,7 +29,7 @@ public class Application {
 
     private static void showPlayersLadderResults(Players players, Results results) {
         String playerName = getPlayer();
-        if (!players.isIncludePlayerName(playerName)) {
+        if (!playerName.equals("all") && !players.isIncludePlayerName(playerName)) {
             throw new IllegalArgumentException(VALIDATE_INPUT_PLAYER);
         }
         OutputView.printExecuteResult(players, results, playerName);

@@ -12,10 +12,6 @@ public enum LadderShape {
 
     private final String shape;
 
-    public String getShape() {
-        return shape;
-    }
-
     public static StringBuilder getLadderForm(List<Boolean> points, int maxNameLength) {
         StringBuilder sb = new StringBuilder();
         sb.append(DISCONNECT.shape.repeat(maxNameLength - 1)).append(WALL.shape);

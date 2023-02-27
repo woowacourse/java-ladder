@@ -34,7 +34,7 @@ public class Players {
 
     public boolean isIncludePlayerName(String playerName) {
         return players.stream()
-                .anyMatch(player -> player.getName().equals(playerName) || playerName.equals("all"));
+                .anyMatch(player -> player.getName().equals(playerName));
     }
 
 }
