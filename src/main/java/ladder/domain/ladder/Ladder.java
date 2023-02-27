@@ -25,7 +25,6 @@ public class Ladder {
 
     private List<Line> generateEachLines(final int playerNumber, final int height) {
         List<Line> lines = new ArrayList<>();
-
         for (int i = 0; i < height; i++) {
             lines.add(new Line(playerNumber, stoolGenerator));
         }
@@ -33,11 +32,11 @@ public class Ladder {
     }
 
     public int getDestinationOf(int startingLocation) {
-        int currentLocation = startingLocation;
+        int destination = startingLocation;
         for (Line line : lines) {
-            currentLocation = line.getWentDownLocation(currentLocation);
+            destination = line.getWentDownLocation(destination);
         }
-        return currentLocation;
+        return destination;
     }
 
     public List<Line> getLines() {
