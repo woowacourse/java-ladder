@@ -52,12 +52,12 @@ public class LadderGame {
         return this.participants;
     }
     
-    public void validateNameToFind( String name ) {
+    public ResultCommand validateNameToFind( String name ) {
         if ( name.equals("all") ) {
-            return;
+            return ResultCommand.ALL;
         }
         if ( this.participants.contains(name) ) {
-            return;
+            return ResultCommand.NAME;
         }
         throw new IllegalArgumentException(CANNOT_FIND_PARTICIPANT_MESSAGE);
     }

@@ -8,6 +8,7 @@ import domain.Ladder.Ladder;
 import domain.Ladder.LadderHeight;
 import domain.Ladder.LadderWidth;
 import domain.LadderGame.LadderGame;
+import domain.LadderGame.ResultCommand;
 import domain.util.PointGenerator;
 import view.*;
 
@@ -16,6 +17,7 @@ import java.util.List;
 public class LadderGameController {
     
     private final LadderGame ladderGame;
+    private ResultCommand command;
     
     public LadderGameController( PointGenerator pointGenerator ) {
         this.ladderGame = this.buildLadderGame(pointGenerator);
@@ -42,11 +44,13 @@ public class LadderGameController {
     
     private void displayResult() {
         String name = this.retrieveNameToFind();
-        while ( !name.equals("all") ) {
+        while ( this.command == ResultCommand.NAME ) {
             this.displayGameResult(name);
             name = this.retrieveNameToFind();
         }
-        this.displayAllGameResults();
+        if ( this.command == ResultCommand.ALL ) {
+            this.displayAllGameResults();
+        }
     }
     
     private Participants retrieveParticipants() {
@@ -86,7 +90,7 @@ public class LadderGameController {
     private String retrieveNameToFind() {
         try {
             String name = InputView.readNameToFind();
-            this.ladderGame.validateNameToFind(name);
+            this.command = this.ladderGame.validateNameToFind(name);
             return name;
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
