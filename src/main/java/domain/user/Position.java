@@ -12,12 +12,17 @@ public class Position {
 
     public void movePosition(Line nextLine) {
         List<Boolean> nextLineValues = nextLine.getLine();
+        this.position += checkDirection(position, nextLineValues);
+    }
+
+    private int checkDirection(int position, List<Boolean> nextLineValues) {
         if (nextLineValues.get(position)) {
-            this.position--;
+            return -1;
         }
-        else if (position + 1 < nextLineValues.size() && nextLineValues.get(position + 1)) {
-            this.position++;
+        if (position + 1 < nextLineValues.size() && nextLineValues.get(position + 1)) {
+            return 1;
         }
+        return 0;
     }
 
     public int getValue() {

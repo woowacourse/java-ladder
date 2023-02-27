@@ -24,7 +24,6 @@ public class LadderGameController {
     private Users users;
     private Ladder ladder;
     private Prizes prizes;
-    private Search search;
     private Result result;
 
     public LadderGameController(InputView inputView, OutputView outputView) {
@@ -45,7 +44,7 @@ public class LadderGameController {
     }
 
     private void searchResult() {
-        search = initializeSearch(UsersDto.from(users));
+        Search search = initializeSearch(UsersDto.from(users));
         String searchName = search.getSearchName();
 
         if (!searchName.equals("all")) {
