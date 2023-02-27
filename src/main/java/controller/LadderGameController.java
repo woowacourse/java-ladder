@@ -9,71 +9,82 @@ public class LadderGameController {
 
     private static final String GET_RESULT_ALL = "all";
 
-    public void play(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
-        Participants participants = setParticipants(inputView);
-        Results results = setResults(inputView, participants);
-        Ladder ladder = generateLadder(inputView, participants, booleanGenerator);
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final BooleanGenerator booleanGenerator;
 
-        LadderGame ladderGame = new LadderGame(participants, results, ladder);
-        printLadder(outputView, ladderGame);
-
-        printResult(inputView, outputView, ladderGame);
+    public LadderGameController(InputView inputView, OutputView outputView,
+                                BooleanGenerator booleanGenerator) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.booleanGenerator = booleanGenerator;
     }
 
-    private Participants setParticipants(InputView inputView) {
+    public void play() {
+        Participants participants = setParticipants();
+        Results results = setResults(participants);
+        Ladder ladder = generateLadder(participants, booleanGenerator);
+
+        LadderGame ladderGame = new LadderGame(participants, results, ladder);
+        printLadder(ladderGame);
+
+        printResult(ladderGame);
+    }
+
+    private Participants setParticipants() {
         try {
             String participantNames = inputView.enterParticipantNames();
             return new Participants(participantNames);
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception);
-            return setParticipants(inputView);
+            return setParticipants();
         }
     }
 
-    private Results setResults(InputView inputView, Participants participants) {
+    private Results setResults(Participants participants) {
         try {
             String results = inputView.enterResults();
             return new Results(results, participants.getParticipantCount());
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception);
-            return setResults(inputView, participants);
+            return setResults(participants);
         }
     }
 
-    private Ladder generateLadder(InputView inputView, Participants participants, BooleanGenerator booleanGenerator) {
+    private Ladder generateLadder(Participants participants, BooleanGenerator booleanGenerator) {
         try {
             Height height = new Height(inputView.enterHeight());
             Weight weight = new Weight(participants.getParticipantCount());
             return new Ladder(height, weight, booleanGenerator);
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception);
-            return generateLadder(inputView, participants, booleanGenerator);
+            return generateLadder(participants, booleanGenerator);
         }
     }
 
-    private void printLadder(OutputView outputView, LadderGame ladderGame) {
+    private void printLadder(LadderGame ladderGame) {
         outputView.printLadder(ladderGame.getParticipants(), ladderGame.getLadder(),
                 ladderGame.getResults());
     }
 
-    private void printResult(InputView inputView, OutputView outputView, LadderGame ladderGame) {
+    private void printResult(LadderGame ladderGame) {
         boolean isContinue = true;
         while (isContinue) {
-            isContinue = getResult(inputView, outputView, ladderGame);
+            isContinue = getResult(ladderGame);
         }
     }
 
-    private boolean getResult(InputView inputView, OutputView outputView, LadderGame ladderGame) {
+    private boolean getResult(LadderGame ladderGame) {
         try {
             String inputResult = inputView.enterGetResult();
-            return getResultByInput(outputView, ladderGame, inputResult);
+            return getResultByInput(ladderGame, inputResult);
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception);
             return true;
         }
     }
 
-    private boolean getResultByInput(OutputView outputView, LadderGame ladderGame, String inputValue) {
+    private boolean getResultByInput(LadderGame ladderGame, String inputValue) {
         if (GET_RESULT_ALL.equals(inputValue)) {
             outputView.printMatchAllResult(ladderGame.getGameAllResult(),
                     ladderGame.getParticipants());

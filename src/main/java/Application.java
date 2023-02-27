@@ -9,7 +9,9 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         RandomBooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator();
-        LadderGameController ladderGameController = new LadderGameController();
-        ladderGameController.play(inputView, outputView, randomBooleanGenerator);
+
+        LadderGameController ladderGameController =
+                new LadderGameController(inputView, outputView, randomBooleanGenerator);
+        ladderGameController.play();
     }
 }

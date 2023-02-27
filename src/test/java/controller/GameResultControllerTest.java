@@ -19,7 +19,7 @@ class GameResultControllerTest {
 
     @BeforeEach
     void before() {
-        ladderGameController = new LadderGameController();
+        ladderGameController = new LadderGameController(new InputView(), new OutputView(), () -> true);
     }
 
     void setInput(String input) {
@@ -36,7 +36,7 @@ class GameResultControllerTest {
     void playSuccess() {
         setInput("pobi,honux,crong,jk\na,b,c,d\n5\nall\n");
         setOutput();
-        ladderGameController.play(new InputView(), new OutputView(), () -> true);
+        ladderGameController.play();
         Assertions.assertThat(byteArrayOutputStream.toString())
                   .contains(
                           "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)\n"
@@ -62,7 +62,7 @@ class GameResultControllerTest {
     void makeParticipantsFail() {
         setInput("abcdef,abcde\nsplit,jamie\na,b\n5\nall");
         setOutput();
-        ladderGameController.play(new InputView(), new OutputView(), () -> true);
+        ladderGameController.play();
         Assertions.assertThat(byteArrayOutputStream.toString())
                   .contains(ErrorMessage.INVALID_PERSON_NAME.getMessage());
     }
@@ -72,7 +72,7 @@ class GameResultControllerTest {
     void makeResultsFail() {
         setInput("split,jamie\na,b,c\na,b\n5\nall");
         setOutput();
-        ladderGameController.play(new InputView(), new OutputView(), () -> true);
+        ladderGameController.play();
         Assertions.assertThat(byteArrayOutputStream.toString())
                   .contains(ErrorMessage.INVALID_RESULT_COUNT.getMessage());
     }
@@ -82,7 +82,7 @@ class GameResultControllerTest {
     void makeLadderFail() {
         setInput("split,jamie,pobi\na,b,c\n11\n3\nall");
         setOutput();
-        ladderGameController.play(new InputView(), new OutputView(), () -> true);
+        ladderGameController.play();
         Assertions.assertThat(byteArrayOutputStream.toString())
                   .contains(ErrorMessage.INVALID_LADDER_HEIGHT.getMessage());
     }
