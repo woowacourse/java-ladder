@@ -36,7 +36,7 @@ public class Players {
     }
 
     private void validateDuplicatedName(List<String> nameValues) {
-        Set namesDeduplicated = new HashSet<>(nameValues);
+        Set<String> namesDeduplicated = new HashSet<>(nameValues);
         if (nameValues.size() != namesDeduplicated.size()) {
             throw new IllegalArgumentException("플레이어의 이름은 중복될 수 없습니다.");
         }
