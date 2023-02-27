@@ -38,22 +38,22 @@ public class Line {
         return isExisting;
     }
 
-    public int move(final int presentPosition) {
-        if (isLeftConnectionExist(presentPosition)) {
-            return presentPosition - 1;
+    public Position move(final Position position) {
+        if (isLeftConnectionExist(position)) {
+            return position.moveLeft();
         }
-        if (isRightConnectionExist(presentPosition)) {
-            return presentPosition + 1;
+        if (isRightConnectionExist(position)) {
+            return position.moveRight();
         }
-        return presentPosition;
+        return position;
     }
 
-    private boolean isLeftConnectionExist(final int presentPosition) {
-        return (presentPosition != 0) && connections.get(presentPosition - 1);
+    private boolean isLeftConnectionExist(final Position position) {
+        return (position.getValue() != 0) && connections.get(position.moveLeft().getValue());
     }
 
-    private boolean isRightConnectionExist(final int presentPosition) {
-        return (presentPosition != connections.size()) && connections.get(presentPosition);
+    private boolean isRightConnectionExist(final Position position) {
+        return (position.getValue() != connections.size()) && connections.get(position.getValue());
     }
 
     public List<Boolean> getConnections() {

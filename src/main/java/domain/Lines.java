@@ -26,13 +26,13 @@ public class Lines {
     }
 
     public int goDown(final int namePosition) {
-        int presentPosition = namePosition;
+        Position presentPosition = new Position(namePosition);
 
         for (Line line : this.lines) {
             presentPosition = line.move(presentPosition);
         }
 
-        return presentPosition;
+        return presentPosition.getValue();
     }
 
     public List<Line> getLines() {
