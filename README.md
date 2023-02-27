@@ -9,9 +9,9 @@
   (Players.getPlayers.get(i) 로 얻은 클래스에 setter로 결과를 주입하는 것과 현재 코드의 차이)
   - [x] players.getPlayers 를 필수적인 getter 사용으로 볼 수 있을까요?
 - [ ] 원시값 다 포장하기
-  - [ ] Name
+  - [x] Name
   - [ ] Position
-  - [ ] Reward
+  - [x] Reward
   - [ ] Point
 - [x] 개행 확인(stream)
 
