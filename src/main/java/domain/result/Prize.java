@@ -45,8 +45,6 @@ public class Prize {
 
     @Override
     public String toString() {
-        return "Prize{" +
-                "prize='" + prize + '\'' +
-                '}';
+        return prize;
     }
 }
