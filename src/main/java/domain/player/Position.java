@@ -26,10 +26,6 @@ public class Position {
         return position == other;
     }
 
-    public int doSomething(int value) {
-        return position - value;
-    }
-
     public int getPosition() {
         return position;
     }

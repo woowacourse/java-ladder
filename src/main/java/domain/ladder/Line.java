@@ -29,7 +29,7 @@ public class Line {
     }
 
     public boolean isRightSidePassable(Position position) {
-        return !isLastPosition(position) && isPassable(position.getPosition()- RIGHT_POINT_CONSTANT);
+        return !isLastPosition(position) && isPassable(position.getPosition() - RIGHT_POINT_CONSTANT);
     }
 
     private boolean isLastPosition(Position position) {

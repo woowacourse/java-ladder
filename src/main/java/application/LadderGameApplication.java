@@ -22,7 +22,6 @@ import view.OutputView;
 
 public class LadderGameApplication {
 
-    private static final String RETRY_COUNT_OVER_EXCEPTION = "재시도 횟수를 초과하여, 어플리케이션을 종료합니다.";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -78,7 +77,7 @@ public class LadderGameApplication {
 
     private void throwIfRetryCountOver(RetryCount retryCount) {
         if (retryCount.isLimit()) {
-            throw new IllegalStateException(RETRY_COUNT_OVER_EXCEPTION);
+            throw new IllegalStateException("재시도 횟수를 초과하여, 어플리케이션을 종료합니다.");
         }
     }
 
