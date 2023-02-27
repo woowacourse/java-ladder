@@ -1,8 +1,8 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Ladder 는 Row 를 가지고 있습니다
@@ -11,29 +11,26 @@ import java.util.stream.Collectors;
  */
 class Ladder {
 
-    private static final String MINIMUM_SIZE_MESSAGE = "최소 가로는 2, 세로는 1이어야 합니다. 현재 가로 : %s, 세로 : %s";
-    private static final int MINIMUM_WIDTH = 2;
+    private static final String MINIMUM_SIZE_MESSAGE = "최소 세로는 1보다 커야 합니다 합니다. 현재 세로 : 0";
     private static final int MINIMUM_HEIGHT = 1;
 
     private final List<Row> rows;
 
     private Ladder(List<Row> rows) {
+        validateMinimumHeight(rows);
         this.rows = rows;
     }
 
     static Ladder of(int width, int height, ConnectionJudgement connectionJudgement) {
-        validateMinimumSize(width, height);
-        List<Row> rows = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            rows.add(Row.valueOf(width, connectionJudgement));
-        }
+        List<Row> rows = Stream.generate(() -> Row.valueOf(width, connectionJudgement))
+                .limit(height)
+                .collect(Collectors.toList());
         return new Ladder(rows);
     }
 
-    private static void validateMinimumSize(int width, int height) {
-        if (width < MINIMUM_WIDTH || height < MINIMUM_HEIGHT) {
-            throw new IllegalArgumentException(
-                    String.format(MINIMUM_SIZE_MESSAGE, width, height));
+    private void validateMinimumHeight(List<Row> rows) {
+        if (rows.size() < MINIMUM_HEIGHT) {
+            throw new IllegalArgumentException(MINIMUM_SIZE_MESSAGE);
         }
     }
 
