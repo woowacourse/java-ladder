@@ -18,14 +18,14 @@ public class Line {
         createPoints(playerCount, booleanGenerator);
     }
 
-    public Position findNext(Position position) {
+    public Direction findNext(Position position) {
         if (canMoveLeft(position)) {
-            return position.moveDirection(Direction.LEFT);
+            return Direction.LEFT;
         }
         if (canMoveRight(position)) {
-            return position.moveDirection(Direction.RIGHT);
+            return Direction.RIGHT;
         }
-        return position.moveDirection(Direction.STRAIGHT);
+        return Direction.STRAIGHT;
     }
 
     private void validate(int playerCount) {

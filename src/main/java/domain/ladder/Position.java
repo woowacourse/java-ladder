@@ -11,8 +11,26 @@ public class Position {
         this.value = value;
     }
 
-    public Position moveDirection(Direction direction) {
-        return new Position(value + direction.getMovement());
+    public Position moveTo(Direction direction) {
+        if (direction.equals(Direction.LEFT)) {
+            return left();
+        }
+        if (direction.equals(Direction.RIGHT)) {
+            return right();
+        }
+        return straight();
+    }
+
+    private Position left() {
+        return new Position(value - 1);
+    }
+
+    private Position right() {
+        return new Position(value + 1);
+    }
+
+    private Position straight() {
+        return new Position(value);
     }
 
     public int getValue() {

@@ -25,7 +25,7 @@ class PositionTest {
         int initialValue = 0;
         Position position = new Position(initialValue);
 
-        Position movedPosition = position.moveDirection(Direction.RIGHT);
+        Position movedPosition = position.moveTo(Direction.RIGHT);
 
         assertThat(movedPosition.getValue()).isEqualTo(initialValue + 1);
     }
@@ -36,7 +36,7 @@ class PositionTest {
         int initialValue = 5;
         Position position = new Position(initialValue);
 
-        Position movedPosition = position.moveDirection(Direction.LEFT);
+        Position movedPosition = position.moveTo(Direction.LEFT);
 
         assertThat(movedPosition.getValue()).isEqualTo(initialValue - 1);
     }
@@ -47,7 +47,7 @@ class PositionTest {
         int initialValue = 0;
         Position position = new Position(initialValue);
 
-        Position movedPosition = position.moveDirection(Direction.STRAIGHT);
+        Position movedPosition = position.moveTo(Direction.STRAIGHT);
 
         assertThat(movedPosition.getValue()).isEqualTo(initialValue);
     }

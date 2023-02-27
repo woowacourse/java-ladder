@@ -25,19 +25,17 @@ public class LadderGame {
     public Map<String, String> start() {
         Map<String, String> gameResult = new HashMap<>();
 
-        for (int playerIndex = 0; playerIndex < players.getSize(); playerIndex++) {
-            Player player = players.findByIndex(playerIndex);
+        for (Player player : players.getPlayers()) {
+            ladder.movePosition(player);
 
-            Position playerLastPosition = ladder.findLastPosition(new Position(playerIndex));
-
-            addPlayerResult(gameResult, player, playerLastPosition.getValue());
+            addPlayerResult(gameResult, player);
         }
         return gameResult;
     }
 
-    private void addPlayerResult(Map<String, String> gameResult, Player player, int playerLastPosition) {
+    private void addPlayerResult(Map<String, String> gameResult, Player player) {
         String playerName = player.getName();
-        String playerPrize = prizes.findByIndex(playerLastPosition);
+        String playerPrize = prizes.findByIndex(player.getPosition().getValue());
         gameResult.put(playerName, playerPrize);
     }
 
