@@ -1,13 +1,15 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ResultStorage {
-    private final List<String> resultStorage;
+    private final Map<String, String> result;
 
     public ResultStorage() {
-        resultStorage = new ArrayList<>();
+        result = new LinkedHashMap<>();
     }
 
     public void add(final String result) {
