@@ -32,6 +32,6 @@ public class InputView {
 
     public String inputSearchName() {
         System.out.println(INPUT_SEARCH_NAME);
-        return "";
+        return sc.next();
     }
 }
