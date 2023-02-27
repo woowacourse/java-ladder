@@ -11,7 +11,6 @@ public enum Point {
 
     private final boolean status;
 
-
     Point(boolean status) {
         this.status = status;
     }
