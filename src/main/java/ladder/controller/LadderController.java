@@ -13,25 +13,25 @@ public class LadderController {
     private final InputView inputView;
     private final ResultView resultView;
     private final BooleanGenerator generator;
+    private boolean isContinue;
 
     public LadderController(BooleanGenerator generator) {
         this.inputView = new InputView();
         this.resultView = new ResultView();
         this.generator = generator;
+        this.isContinue = true;
     }
 
     public void execute() {
         Names names = createNames();
-        Result result = createResult(names);
+        Bets bets = createBets(names.size());
         Height height = createHeight();
         Ladder ladder = new Ladder(names.size(), height, generator);
 
-        resultView.printForm(names, ladder, result);
+        resultView.printForm(names, ladder, bets);
+        Result result = ladder.perform(names, bets);
 
-        result.perform(ladder);
-
-        while (response(result)) {
-        }
+        responseAboutUserRequest(result);
     }
 
     private Names createNames() {
@@ -47,25 +47,12 @@ public class LadderController {
         return inputView.requestNames();
     }
 
-    private String readName() {
-        return inputView.requestName();
-    }
-
-    private Result createResult(Names names) {
+    private Bets createBets(int countOfParticipants) {
         try {
-            return new Result(names, createBets());
+            return new Bets(readBets(), countOfParticipants);
         } catch (IllegalArgumentException | NullPointerException e) {
             resultView.printErrorMessage(e.getMessage());
-            return createResult(names);
-        }
-    }
-
-    private Bets createBets() {
-        try {
-            return new Bets(readBets());
-        } catch (IllegalArgumentException e) {
-            resultView.printErrorMessage(e.getMessage());
-            return createBets();
+            return createBets(countOfParticipants);
         }
     }
 
@@ -86,25 +73,33 @@ public class LadderController {
         return inputView.requestLadderHeight();
     }
 
-    private boolean response(Result result) {
-        String name = readName();
+    private void responseAboutUserRequest(Result result) {
+        while (isContinue) {
+            String name = readName();
 
-        try {
-            return printGameResult(result, name);
-        } catch (IllegalArgumentException e) {
-            resultView.printErrorMessage(e.getMessage());
-            return response(result);
+            printGameResult(result, name);
         }
     }
 
-    private boolean printGameResult(Result result, String name) {
-        if (ALL.equals(name)) {
-            resultView.printGameAllResult(result);
-            return false;
-        }
+    private String readName() {
+        return inputView.requestName();
+    }
 
-        resultView.printGameResult(result, new Name(name));
-        return true;
+    private void printGameResult(Result result, String name) {
+        if (ALL.equals(name)) {
+            printGameAllResult(result);
+            return;
+        }
+        try {
+            resultView.printGameResult(result, new Name(name));
+        } catch (IllegalArgumentException e) {
+            resultView.printErrorMessage(e.getMessage());
+        }
+    }
+
+    private void printGameAllResult(Result result) {
+        resultView.printGameAllResult(result);
+        isContinue = false;
     }
 
 }
