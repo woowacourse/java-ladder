@@ -2,11 +2,11 @@ package ladder.controller;
 
 import ladder.domain.LadderGame;
 import ladder.domain.RandomBooleanGenerator;
-import ladder.domain.ResultDto;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 import ladder.view.ResultView;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -60,7 +60,7 @@ public class LadderGameController {
         ResultView.printExecutionMessage();
         ResultView.printPlayerNames(ladderGame.getNames());
         ResultView.printLadder(ladderGame.getLines());
-        ResultView.printResults(ladderGame.getPrizes());
+        ResultView.printPrizes(ladderGame.getPrizes());
     }
 
     private void process() {
@@ -77,10 +77,10 @@ public class LadderGameController {
         OutputView.printWantToSeeWhomMessage();
         String playerName = InputView.readTargetPlayer();
         OutputView.printResultAfterExecutionMessage();
-        ResultDto gameResult = ladderGame.getGameResult(playerName);
-        ResultView.printGameResult(gameResult);
 
-        if(gameResult.isStop()) {
+        HashMap<String, String> gameResult = ladderGame.getGameResult(playerName);
+        ResultView.printGameResult(gameResult);
+        if (!ladderGame.continueGame(playerName)) {
             return;
         }
         printPlayerResult();
