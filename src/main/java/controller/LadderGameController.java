@@ -18,17 +18,29 @@ public class LadderGameController {
     private final LadderGame ladderGame;
     
     public LadderGameController( PointGenerator pointGenerator ) {
+        this.ladderGame = this.buildLadderGame(pointGenerator);
+    }
+    
+    private LadderGame buildLadderGame( PointGenerator pointGenerator ) {
         Participants participants = this.retrieveParticipants();
         Results results = this.retrieveResults(participants.getParticipantsNum());
+        Ladder ladder = this.buildLadder(pointGenerator, participants);
+        return new LadderGame(participants, results, ladder);
+    }
+    
+    private Ladder buildLadder( PointGenerator pointGenerator, Participants participants ) {
         LadderHeight ladderHeight = this.retrieveHeight();
         LadderWidth ladderWidth = this.retrieveWidth(participants);
-        Ladder ladder = Ladder.create(ladderHeight, ladderWidth, pointGenerator);
-        this.ladderGame = new LadderGame(participants, results, ladder);
+        return Ladder.create(ladderHeight, ladderWidth, pointGenerator);
     }
     
     public void runGame() {
         this.displayLadder();
         this.ladderGame.run();
+        this.displayResult();
+    }
+    
+    private void displayResult() {
         String name = this.retrieveNameToFind();
         while ( !name.equals("all") ) {
             this.displayGameResult(name);
