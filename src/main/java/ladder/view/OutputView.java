@@ -3,8 +3,10 @@ package ladder.view;
 import java.util.List;
 import ladder.domain.Bar;
 import ladder.domain.Line;
+import ladder.domain.Player;
 
 public class OutputView {
+    public static final String DELIMITER_PREFIX = " : ";
     private static String startSpaces;
 
     private static final String WIDTH_SUFFIX = "|";
@@ -33,6 +35,11 @@ public class OutputView {
         startSpaces = BLANK.repeat(nameLength);
     }
 
+    public static void announceCreateLadder() {
+        System.out.println();
+        System.out.println("사다리 결과");
+    }
+
     private static void printNameOnSquares(String playerName) {
         int nameLength = playerName.length();
         System.out.print(BLANK.repeat(DEFAULT_NAME_LENGTH - nameLength));
@@ -47,8 +54,9 @@ public class OutputView {
 
     private static void printLine(Line line) {
         System.out.print(startSpaces);
-        for (Bar bar : line.getBars()) {
-            printBar(bar);
+        List<Bar> bars = line.getBars();
+        for (int i = 1; i < bars.size() - 1; i++) {
+            printBar(bars.get(i));
         }
         System.out.println(WIDTH_SUFFIX);
     }
@@ -61,8 +69,30 @@ public class OutputView {
         System.out.print(IMMOVABLE_BAR);
     }
 
-    public static void announceExecution() {
+    public static void printResults(List<String> contents) {
+        System.out.print(contents.get(0));
+        for (int i = 1; i < contents.size(); i++) {
+            printNameOnSquares(contents.get(i));
+        }
         System.out.println();
-        System.out.println("실행결과");
+    }
+
+    private static void announceExecution() {
+        System.out.println();
+        System.out.println("실행 결과");
+    }
+
+    public static void printResultOfPlayer(String content) {
+        announceExecution();
+        System.out.println(content);
+    }
+
+    public static void printResultsOfAllPlayers(List<Player> players) {
+        announceExecution();
+        players.forEach(OutputView::printPlayerAndResult);
+    }
+
+    private static void printPlayerAndResult(Player player) {
+        System.out.println(player.getNameValue() + DELIMITER_PREFIX + player.getContentOfResult());
     }
 }
