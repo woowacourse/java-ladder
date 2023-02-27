@@ -30,7 +30,7 @@ public class MainController {
             OutputView.printReward(ladderGame.getRewardOf(userName));
             return;
         }
-        OutputView.printResult(ladderGame.getGameResult());
+        OutputView.printResult(ladderGame.getGameResultDto());
     }
 
     private static LadderGame makeLadderGameByConsole() {

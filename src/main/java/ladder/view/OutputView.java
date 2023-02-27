@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.domain.*;
-import ladder.dto.BridgeGameResult;
+import ladder.dto.BridgeGameResultDto;
 
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -94,15 +94,15 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printResult(BridgeGameResult result) {
-        final Map<User, String> userAndReward = result.getUserAndReward();
-        for (User user : userAndReward.keySet()) {
+    public static void printResult(BridgeGameResultDto result) {
+        final Map<String, String> userAndReward = result.getUserAndReward();
+        for (String user : userAndReward.keySet()) {
             printUserReward(user, userAndReward);
         }
     }
 
-    private static void printUserReward(final User user, final Map<User, String> userAndReward) {
-        System.out.println(user.getName() + " : " + userAndReward.get(user));
+    private static void printUserReward(final String user, final Map<String, String> userAndReward) {
+        System.out.println(user + " : " + userAndReward.get(user));
     }
 
     public static void printErrorMessage(String message) {

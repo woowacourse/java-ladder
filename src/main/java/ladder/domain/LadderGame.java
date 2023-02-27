@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.dto.BridgeGameResult;
+import ladder.dto.BridgeGameResultDto;
 
 import java.util.HashMap;
 
@@ -10,12 +10,14 @@ public class LadderGame {
     private final Ladder ladder;
     private final Users users;
     private final Reward reward;
+    private final BridgeGameResult gameResult;
 
     public LadderGame(Ladder ladder, Users users, Reward reward) {
         validateLength(ladder, users, reward);
         this.ladder = ladder;
         this.users = users;
         this.reward = reward;
+        this.gameResult = makeGameResult();
     }
 
     private void validateLength(final Ladder ladder, final Users users, final Reward reward) {
@@ -34,12 +36,7 @@ public class LadderGame {
         return size1 == size2;
     }
 
-    public String getRewardOf(final String userName) {
-        final int userOrder = users.getOrderByName(userName);
-        return reward.getRewardOf(ladder.resultPositionOf(userOrder));
-    }
-
-    public BridgeGameResult getGameResult() {
+    private BridgeGameResult makeGameResult() {
         final HashMap<User, String> userAndReward = new HashMap<>();
         for (User user : users.getUsers()) {
             final int userIndex = getOrderOf(user);
@@ -47,6 +44,18 @@ public class LadderGame {
             userAndReward.put(user, reward.getRewardOf(rewardIndex));
         }
         return new BridgeGameResult(userAndReward);
+    }
+
+    public String getRewardOf(final String userName) {
+        return gameResult.getRewardOf(userName);
+    }
+
+    public BridgeGameResult getGameResult() {
+        return new BridgeGameResult(gameResult.getUserAndReward());
+    }
+
+    public BridgeGameResultDto getGameResultDto() {
+        return gameResult.getBridgeGameResultDto();
     }
 
     private int getOrderOf(final User user) {

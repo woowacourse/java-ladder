@@ -1,10 +1,11 @@
 package ladder.domain;
 
-import ladder.dto.BridgeGameResult;
+import ladder.dto.BridgeGameResultDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -167,6 +168,39 @@ class LadderGameTest {
         })
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리, 보상, 유저 수의 크기는 같아야 합니다.");
+
+    }
+
+    @Test
+    @DisplayName("LadderGame의 getGameResultDto 값 존재 테스트 ")
+    void getGameResultDtoTest() {
+        final BridgeGameResultDto gameResultDto = DEFAULT_LADDER_GAME.getGameResultDto();
+        final Map<String, String> userAndReward = gameResultDto.getUserAndReward();
+
+        final Set<String> strings = userAndReward.keySet();
+        final Collection<String> values = userAndReward.values();
+
+        assertThat(strings).containsExactly("a", "b", "c");
+        assertThat(values).containsExactly("1", "2", "3");
+    }
+
+    @Test
+    @DisplayName("LadderGame의 getGameResultDto 값 검증 테스트 ")
+    void getGameResultDtoValueTest() {
+        final BridgeGameResultDto gameResultDto = DEFAULT_LADDER_GAME.getGameResultDto();
+        final Map<String, String> userAndReward = gameResultDto.getUserAndReward();
+
+        assertAll(
+                () -> {
+                    assertThat(userAndReward.get("a")).isEqualTo("1");
+                },
+                () -> {
+                    assertThat(userAndReward.get("b")).isEqualTo("2");
+                },
+                () -> {
+                    assertThat(userAndReward.get("c")).isEqualTo("3");
+                }
+        );
 
     }
 
