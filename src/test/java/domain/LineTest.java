@@ -14,14 +14,14 @@ public class LineTest {
     @Test
     void shouldMakePoint() {
         FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator(1);
-        Assertions.assertThat(fixedNumberGenerator.isPoint()).isTrue();
+        Assertions.assertThat(fixedNumberGenerator.isPoint(true)).isTrue();
     }
 
     @DisplayName("생성한 값이 0이면 point가 생성되지 않는다.")
     @Test
     void shouldNotMakePoint() {
         FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator(0);
-        Assertions.assertThat(fixedNumberGenerator.isPoint()).isFalse();
+        Assertions.assertThat(fixedNumberGenerator.isPoint(false)).isFalse();
     }
 
     @DisplayName("라인 생성 확인 테스트")
