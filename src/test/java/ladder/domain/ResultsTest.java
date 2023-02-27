@@ -32,4 +32,13 @@ class ResultsTest {
         Results results = new Results(resultValuesRaw, 3);
         assertThat(results.getContents()).containsExactly("꽝", "5000", "당첨");
     }
+
+    @Test
+    @DisplayName("인덱스를 받아 해당하는 결과를 반환한다.")
+    void shouldReturnResultWhenInputIndex() {
+        String resultValuesRaw = "꽝,5000,당첨";
+        Results results = new Results(resultValuesRaw, 3);
+        Result result = results.getResultByIndex(2);
+        assertThat(result.getContent()).isEqualTo("당첨");
+    }
 }

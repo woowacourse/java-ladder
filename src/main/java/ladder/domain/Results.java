@@ -35,4 +35,8 @@ public class Results {
                 .map(Result::new)
                 .collect(Collectors.toList());
     }
+
+    public Result getResultByIndex(int columnIndex) {
+        return this.results.get(columnIndex);
+    }
 }
