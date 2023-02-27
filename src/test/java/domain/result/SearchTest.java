@@ -1,6 +1,7 @@
 package domain.result;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -17,6 +18,13 @@ class SearchTest {
             String searchName = "abc";
             assertThatThrownBy(() -> new Search(searchName, List.of("test", "mango", "toney"))).isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(Search.SEARCH_NAME_ERROR_MESSAGE);
+        }
+
+        @DisplayName("검색하는 이름이 저장된 이름이면 성공한다.")
+        @Test
+        void shouldSuccessSavedName() {
+            String searchName = "mango";
+            assertDoesNotThrow(() -> new Search(searchName, List.of("test", "mango", "toney")));
         }
     }
 }
