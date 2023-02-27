@@ -6,7 +6,6 @@ public class Prize {
 
     private static final String COUNT_NOT_MATCH_MESSAGE = "[ERROR] 플레이어의 수와 결과의 수를 동일하게 입력하세요.";
     private static final String WRONG_PRIZE_LENGTH_MESSAGE = "[ERROR] 각각의 실행 결과의 1자이상 5자이하로 입력하세요.";
-
     private static final int MAX_PRIZE_LENGTH = 5;
     private static final int MIN_PRIZE_LENGTH = 1;
 
@@ -36,6 +35,10 @@ public class Prize {
         if (countOverMaxLength > 0) {
             throw new IllegalArgumentException(WRONG_PRIZE_LENGTH_MESSAGE);
         }
+    }
+
+    public String getPrizeByIndex(int playerPrizeIndex) {
+        return prizes.get(playerPrizeIndex);
     }
 
     public List<String> getPrizes() {
