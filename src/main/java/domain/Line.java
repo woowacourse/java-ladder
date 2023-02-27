@@ -21,25 +21,13 @@ public class Line {
     }
 
     public int getNextX(int currentXIndex) {
-        if (isRightPointExist(currentXIndex) || isLeftPointExist(currentXIndex)) {
-            return getMovingPosition(currentXIndex);
+        if (isRightPointExist(currentXIndex)) {
+            return currentXIndex + RIGHT_MOVING_POSITION;
         }
-        return MOVING_NONE;
-    }
-
-    public Point getPointAt(final int index) {
-        return points.get(index);
-    }
-
-    public List<Point> getPoints() {
-        return Collections.unmodifiableList(points);
-    }
-
-    private int getMovingPosition(int currentXIndex) {
-        if (currentXIndex < points.size() && points.get(currentXIndex).isExist()) {
-            return RIGHT_MOVING_POSITION;
+        if (isLeftPointExist(currentXIndex)) {
+            return currentXIndex + LEFT_MOVING_POSITION;
         }
-        return LEFT_MOVING_POSITION;
+        return currentXIndex + MOVING_NONE;
     }
 
     private boolean isRightPointExist(final int currentXPosition) {
@@ -54,6 +42,14 @@ public class Line {
             return NOT_EXIST;
         }
         return points.get(currentXPosition - 1).isExist();
+    }
+
+    public Point getPointAt(final int index) {
+        return points.get(index);
+    }
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
     private void validate(final List<Point> points) {

@@ -19,7 +19,7 @@ public class Ladder {
     public int getGameResultOrderOf(Player player) {
         int currentXIndex = player.getStartPosition();
         for (Line line : lines) {
-            currentXIndex += line.getNextX(currentXIndex);
+            currentXIndex = line.getNextX(currentXIndex);
         }
         return currentXIndex;
     }
