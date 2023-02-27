@@ -46,7 +46,7 @@ public class MainController {
 
     private Missions receiveMissions(Names names) {
         try {
-            return Missions.of(inputView.readMissions(), names.size());
+            return Missions.createWithSize(inputView.readMissions(), names.size());
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception);
             return receiveMissions(names);

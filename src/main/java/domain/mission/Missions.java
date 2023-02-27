@@ -12,7 +12,7 @@ public class Missions {
         this.missions = formatMissions(missions);
     }
 
-    public static Missions of(List<String> missions, int size) {
+    public static Missions createWithSize(List<String> missions, int size) {
         validateSize(missions, size);
         return new Missions(missions);
     }
