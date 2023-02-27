@@ -39,6 +39,6 @@ class ResultsTest {
         String resultValuesRaw = "꽝,5000,당첨";
         Results results = new Results(resultValuesRaw, 3);
         Result result = results.getResultByIndex(2);
-        assertThat(result.getContent()).isEqualTo("당첨");
+        assertThat(result.content()).isEqualTo("당첨");
     }
 }

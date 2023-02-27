@@ -42,4 +42,8 @@ public class Player {
     public boolean haveNameOf(String nameValue) {
         return this.name.haveSameValueWith(nameValue);
     }
+
+    public String getContentOfResult() {
+        return getResult().content();
+    }
 }

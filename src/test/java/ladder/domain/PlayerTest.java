@@ -88,5 +88,22 @@ class PlayerTest {
         Player player = new Player("name", 0);
         assertThat(player.haveNameOf(differentNameValue)).isFalse();
     }
+
+    @Test
+    @DisplayName("Player가 가지고 있는 결과의 내용을 반환한다.")
+    void shouldReturnContentOfResultWhenRequest() {
+        Player player = new Player("name", 3);
+        player.saveResult(new Result("content"));
+        assertThat(player.getContentOfResult()).isEqualTo("content");
+    }
+
+    @Test
+    @DisplayName("결과가 저장되지 않은 Player의 결과 내용을 요청하면 예외가 발생한다.")
+    void shou() {
+        Player player = new Player("name", 3);
+        assertThatThrownBy(player::getContentOfResult)
+                .isInstanceOf(NoSuchElementException.class)
+                .hasMessage("플레이어의 결과가 존재하지 않습니다.");
+    }
 }
 

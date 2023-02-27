@@ -21,6 +21,6 @@ class ResultTest {
     @DisplayName("내용을 반환한다")
     void shouldReturnContentWhenRequest() {
         Result result = new Result("테스트");
-        assertThat(result.getContent()).isEqualTo("테스트");
+        assertThat(result.content()).isEqualTo("테스트");
     }
 }

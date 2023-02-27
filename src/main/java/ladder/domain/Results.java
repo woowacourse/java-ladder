@@ -15,7 +15,7 @@ public class Results {
 
     public List<String> getContents() {
         return this.results.stream()
-                .map(Result::getContent)
+                .map(Result::content)
                 .collect(Collectors.toList());
     }
 

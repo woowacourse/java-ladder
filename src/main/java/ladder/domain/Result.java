@@ -7,7 +7,7 @@ public class Result {
         this.content = content;
     }
 
-    public String getContent() {
+    public String content() {
         return content;
     }
 }
