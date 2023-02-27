@@ -14,7 +14,8 @@ public class Ladder {
 
     public Ladder(int height, int width) {
         validateSize(height, width);
-        makeLadder(height, width - DIFFERENCE_BETWEEN_WIDTH_AND_LINE);
+        final int lineCount = width - DIFFERENCE_BETWEEN_WIDTH_AND_LINE;
+        makeLadder(height, lineCount);
     }
 
     private void validateSize(final int height, final int width) {
@@ -34,9 +35,9 @@ public class Ladder {
         }
     }
 
-    private void makeLadder(final int height, final int width) {
+    private void makeLadder(final int height, final int lineCount) {
         for (int i = 0; i < height; i++) {
-            floors.add(new Floor(width));
+            floors.add(new Floor(lineCount));
         }
     }
 
