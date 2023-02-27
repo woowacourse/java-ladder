@@ -36,10 +36,16 @@ public class GameResultTest {
     @DisplayName("실행 결과를 가져올 수 있다.")
     @ParameterizedTest
     @ValueSource(strings = {"꽝", "3000", "20000"})
-    void getGameResult(String resultInput) {
-        GameResult gameResult = new GameResult(resultInput);
-        assertThat(gameResult.getGameResultName())
-                .isEqualTo(resultInput);
+    void getGameResult(String expectedResult) {
+        // given
+        GameResult gameResult = new GameResult(expectedResult);
+
+        // when
+        String gameResultName = gameResult.getGameResultName();
+
+        // then
+        assertThat(gameResultName)
+                .isEqualTo(expectedResult);
     }
 
 }

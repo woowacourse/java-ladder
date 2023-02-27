@@ -1,6 +1,8 @@
-package domain;
+package factory;
 
-import factory.LineFactory;
+import domain.Line;
+import domain.Point;
+import domain.RandomBasedStrategy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;

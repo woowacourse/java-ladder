@@ -17,11 +17,14 @@ public class LadderTest {
     @DisplayName("사다리의 최대 높이는 30을 넘을 수 없다.")
     @Test
     void lineSizeNotMoreThan30() {
+        // given
         int lineSize = 31;
         List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < lineSize; i++) {
+        for (int lineIndex = 0; lineIndex < lineSize; lineIndex++) {
             lines.add(new Line(List.of(Point.EXIST, Point.NOT_EXIST, Point.NOT_EXIST)));
         }
+
+        // when, then
         Assertions.assertThatThrownBy(() -> new Ladder(lines))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("사다리의 높이는 1이상 30이하여야 합니다.");
@@ -30,7 +33,10 @@ public class LadderTest {
     @DisplayName("사다리의 최대 높이는 1보다 작을 수 없다.")
     @Test
     void lineSizeNotLessThan1() {
+        // given
         List<Line> lines = Collections.emptyList();
+
+        // when, then
         Assertions.assertThatThrownBy(() -> new Ladder(lines))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("사다리의 높이는 1이상 30이하여야 합니다.");
@@ -40,12 +46,18 @@ public class LadderTest {
     @ValueSource(ints = {1, 10, 30})
     @ParameterizedTest
     void lineSizeTest(int lineSize) {
+        // given
         List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < lineSize; i++) {
+        for (int lineIndex = 0; lineIndex < lineSize; lineIndex++) {
             lines.add(new Line(List.of(Point.EXIST, Point.NOT_EXIST, Point.NOT_EXIST)));
         }
         Ladder ladder = new Ladder(lines);
-        assertThat(ladder.getLines().size()).isEqualTo(lineSize);
+
+        // when
+        int ladderSize = ladder.getLines().size();
+
+        //
+        assertThat(ladderSize).isEqualTo(lineSize);
     }
 
 }
