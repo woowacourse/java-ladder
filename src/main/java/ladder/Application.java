@@ -67,8 +67,8 @@ public class Application {
         while (proceed) {
             String input = InputView.readTargetName();
             proceed = isQuit(input);
-            proceed = isAll(proceed, input);
-            isSingleResult(proceed, input);
+            proceed = checkAllAndPrint(proceed, input);
+            printSingleResult(input);
         }
     }
 
@@ -79,16 +79,18 @@ public class Application {
         return PROCEED;
     }
 
-    private static boolean isAll(boolean proceed, String input) {
-        if (proceed && Command.isAll(input)) {
-            OutputView.printAllResult(players.getPlayerNames(), results.findAllResult(ladder));
+    private static boolean checkAllAndPrint(boolean proceed, String input) {
+        if (!proceed) {
+            return FINISH;
         }
-        return FINISH;
+        if (Command.isAll(input)) {
+            OutputView.printAllResult(players.getPlayerNames(), results.findAllResult(ladder));
+            return FINISH;
+        }
+        return PROCEED;
     }
 
-    private static void isSingleResult(boolean proceed, String playerName) {
-        if (proceed) {
-            OutputView.printSingleResult(results.findResult(ladder, players.findPosition(playerName)));
-        }
+    private static void printSingleResult(String playerName) {
+        OutputView.printSingleResult(results.findResult(ladder, players.findPosition(playerName)));
     }
 }
