@@ -8,7 +8,7 @@ import view.OutputView;
 
 public class LadderGameController {
 
-    private static final String GET_RESULT_ALL = "all";
+    private static final String RESULT_ALL = "all";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -77,7 +77,7 @@ public class LadderGameController {
     }
 
     private boolean getResultByInput(LadderGame ladderGame, String inputValue) {
-        if (GET_RESULT_ALL.equals(inputValue)) {
+        if (RESULT_ALL.equals(inputValue)) {
             outputView.printMatchAllResult(ladderGame.getGameAllResult(),
                     ladderGame.getParticipants());
             return false;
