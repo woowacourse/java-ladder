@@ -49,7 +49,7 @@ public class Players {
                 .orElseThrow(() -> new IllegalArgumentException(NO_PLAYER_ERROR_MESSAGE));
     }
 
-    public List<String> mapToString() {
+    public List<String> nameToString() {
         return players.stream()
                 .map(Player::getName)
                 .map(Name::getValue)

@@ -37,8 +37,4 @@ public class LadderGame {
     public Players getPlayers() {
         return players;
     }
-
-    public List<String> allPlayersName() {
-        return players.mapToString();
-    }
 }
