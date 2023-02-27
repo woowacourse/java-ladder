@@ -25,8 +25,8 @@ class ResultTest {
         Result result = new Result(players, prizes);
 
         //then
-        assertThat(result.queryByPlayer(new Player(new Name("pobi"))))
-                .isEqualTo(new Prize("꽝"));
+        assertThat(result.queryByPlayer("pobi"))
+                .isEqualTo(new Prize("꽝").toString());
     }
 
 
@@ -41,7 +41,7 @@ class ResultTest {
         Result result = new Result(players, prizes);
 
         //then
-        assertThatThrownBy(()-> result.queryByPlayer(new Player(new Name("pobz"))))
+        assertThatThrownBy(()-> result.queryByPlayer("pobz"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("pobz란, 플레이어는 없습니다.");
 
