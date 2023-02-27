@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @SuppressWarnings("NonAsciiCharacters")
@@ -45,13 +46,29 @@ public class PositionTest {
                 .hasMessage(INVALID_VALUE_MESSAGE);
     }
 
+    @ParameterizedTest
+    @CsvSource({"1,true", "0,false"})
+    void 이전값이_올바른_값이라면_참_올바르지_않다면_거짓을_반환한다(final int value, final boolean result) {
+        final Position position = Position.valueOf(value);
+
+        assertThat(position.hasPrevious()).isEqualTo(result);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"18,true", "19,false"})
+    void 다음값이_올바른_값이라면_참_올바르지_않다면_거짓을_반환한다(final int value, final boolean result) {
+        final Position position = Position.valueOf(value);
+
+        assertThat(position.hasNext()).isEqualTo(result);
+    }
+
     @Test
-    void 이전_값이_존재하지_않는_경우_사용할_수_없는_위치값을_반환한다() {
+    void 이전_값이_올바른_값이_아닌_경우_예외를_던진다() {
         final Position position = Position.valueOf(0);
 
-        final Position previousPosition = position.getPrevious();
-
-        assertThat(previousPosition.getValue()).isEqualTo(Integer.MIN_VALUE);
+        assertThatThrownBy(position::getPrevious)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_VALUE_MESSAGE);
     }
 
     @Test
@@ -62,12 +79,12 @@ public class PositionTest {
     }
 
     @Test
-    void 다음_값이_존재하지_않는_경우_사용할_수_없는_위치값을_반환한다() {
+    void 다음_값이_올바른_값이_아닌_경우_예외를_던진다() {
         final Position position = Position.valueOf(19);
 
-        final Position nextPosition = position.getNext();
-
-        assertThat(nextPosition.getValue()).isEqualTo(Integer.MIN_VALUE);
+        assertThatThrownBy(position::getNext)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_VALUE_MESSAGE);
     }
 
     @Test

@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import static ladder.domain.LineStatus.DISCONNECTED;
+import static ladder.domain.LineStatus.from;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -24,7 +27,10 @@ public class Line {
     }
 
     private static LineStatus getPreviousLineStatus(final Map<Position, LineStatus> statuses, final Position position) {
-        return statuses.getOrDefault(position.getPrevious(), LineStatus.DISCONNECTED);
+        if (position.hasPrevious()) {
+            return statuses.get(position.getPrevious());
+        }
+        return DISCONNECTED;
     }
 
     private static LineStatus generateLineStatus(
@@ -33,25 +39,35 @@ public class Line {
     ) {
         final boolean status = booleanGenerator.generate();
         if (previousLineStatus.isDisconnected()) {
-            return LineStatus.from(status);
+            return from(status);
         }
-        return LineStatus.DISCONNECTED;
+        return DISCONNECTED;
     }
 
     public Position play(final Position position) {
-        if (isConnected(position.getPrevious())) {
+        if (isPreviousConnected(position)) {
             return position.getPrevious();
         }
 
-        if (isConnected(position)) {
+        if (isNextConnected(position)) {
             return position.getNext();
         }
 
         return position;
     }
 
-    private boolean isConnected(final Position position) {
-        return statuses.getOrDefault(position, LineStatus.DISCONNECTED).isConnected();
+    private boolean isPreviousConnected(final Position position) {
+        if (position.hasPrevious()) {
+            return statuses.getOrDefault(position.getPrevious(), DISCONNECTED).isConnected();
+        }
+        return false;
+    }
+
+    private boolean isNextConnected(final Position position) {
+        if (position.hasNext()) {
+            return statuses.getOrDefault(position, DISCONNECTED).isConnected();
+        }
+        return false;
     }
 
     public List<LineStatus> getLine() {

@@ -48,12 +48,28 @@ public class Position {
                 .collect(Collectors.toList());
     }
 
+    public boolean hasPrevious() {
+        return !isInvalidPosition(value - MOVE_COUNT);
+    }
+
+    public boolean hasNext() {
+        return !isInvalidPosition(value + MOVE_COUNT);
+    }
+
     public Position getPrevious() {
-        return CACHE.getOrDefault(value - MOVE_COUNT, NULL);
+        final Position position = CACHE.get(value - MOVE_COUNT);
+        if (position == null) {
+            throw new IllegalArgumentException(INVALID_VALUE_MESSAGE);
+        }
+        return position;
     }
 
     public Position getNext() {
-        return CACHE.getOrDefault(value + MOVE_COUNT, NULL);
+        final Position position = CACHE.get(value + MOVE_COUNT);
+        if (position == null) {
+            throw new IllegalArgumentException(INVALID_VALUE_MESSAGE);
+        }
+        return position;
     }
 
     public int getValue() {
