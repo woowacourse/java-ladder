@@ -26,5 +26,12 @@ class SearchTest {
             String searchName = "mango";
             assertDoesNotThrow(() -> new Search(searchName, List.of("test", "mango", "toney")));
         }
+
+        @DisplayName("검색하는 이름이 all이면 성공한다.")
+        @Test
+        void shouldSuccessWithAll() {
+            String searchName = "all";
+            assertDoesNotThrow(() -> new Search(searchName, List.of("test", "mango", "toney")));
+        }
     }
 }
