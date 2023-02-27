@@ -2,9 +2,9 @@ package techcourse.jcf.mission;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.Test;
-
 import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
 
 public class ListStudy {
     @Test

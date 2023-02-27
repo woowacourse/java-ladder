@@ -18,20 +18,18 @@ public class Line {
         List<Boolean> connections = new ArrayList<>();
         int numberOfConnection = numberOfPlayer - 1;
 
-        connections.add(connectionGenerator.generate());
-        makeOtherConnections(connectionGenerator, connections, numberOfConnection);
+        for (int i = 0; i < numberOfConnection; i++) {
+            connections.add(isConnectionValidWithoutOverLap(connections, i, connectionGenerator.generate()));
+        }
 
         return connections;
     }
 
-    private void makeOtherConnections(final ConnectionGenerator connectionGenerator, final List<Boolean> connections,
-                                      final int numberOfPoint) {
-        for (int i = 1; i < numberOfPoint; i++) {
-            connections.add(makeConnectionExceptFirst(connections, i, connectionGenerator.generate()));
+    private boolean isConnectionValidWithoutOverLap(final List<Boolean> connections, final int index,
+                                                    final boolean isExisting) {
+        if (index == 0) {
+            return isExisting;
         }
-    }
-
-    private boolean makeConnectionExceptFirst(final List<Boolean> connections, final int index, final boolean isExisting) {
         if (connections.get(index - 1) && isExisting) {
             return false;
         }

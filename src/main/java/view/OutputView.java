@@ -41,16 +41,17 @@ public class OutputView {
         return namesOutput;
     }
 
+    private static String findFirstPlayerName(final Names names) {
+        return names.getNames().get(0).getValue();
+    }
+
+
     private static int findLongestLengthOfName(final Names names) {
         return names.getNames()
                 .stream()
                 .mapToInt(player -> player.getValue().length())
                 .max()
                 .orElseThrow(IllegalArgumentException::new);
-    }
-
-    private static String findFirstPlayerName(final Names names) {
-        return names.getNames().get(0).getValue();
     }
 
     private static void appendPlayerNames(final int longestName, final Name name) {
