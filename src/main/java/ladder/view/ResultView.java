@@ -13,19 +13,20 @@ public class ResultView {
     private static final String NAME_FORMAT = "%-5s";
     private static final String BET_FORMAT = "%-5s";
     private static final String RESULT_FORMAT = "%s : %s";
+    private static final String RESULT_MESSAGE = "실행결과";
 
 
     public void printErrorMessage(String message) {
         System.out.println(message);
     }
 
-    public void printForm(Names names, Ladder ladder, Result result) {
+    public void printForm(Names names, Ladder ladder, Bets bets) {
         int lengthOfFirstName = names.lengthOfFirstName();
 
-        System.out.println("실행결과" + System.lineSeparator());
+        System.out.println(RESULT_MESSAGE + System.lineSeparator());
         printNames(names);
         printLadder(ladder, lengthOfFirstName);
-        printBets(result, lengthOfFirstName);
+        printBets(bets, lengthOfFirstName);
     }
 
     private void printNames(Names names) {
@@ -53,9 +54,9 @@ public class ResultView {
                 .collect(Collectors.joining());
     }
 
-    private void printBets(Result result, int lengthOfFirstName) {
+    private void printBets(Bets bets, int lengthOfFirstName) {
         String resultMessage = BLANK.repeat(lengthOfFirstName - 1);
-        resultMessage += result.getResult().values()
+        resultMessage += bets.getBets()
                 .stream()
                 .map(bet -> String.format(BET_FORMAT, bet.getBet()) + BLANK)
                 .collect(Collectors.joining());
@@ -63,12 +64,13 @@ public class ResultView {
     }
 
     public void printGameResult(Result result, Name name) {
-        System.out.println("실행결과");
-        System.out.println(result.getBetByName(name).getBet());
+        String resultMessage = RESULT_MESSAGE + System.lineSeparator() + result.getBetByName(name).getBet();
+
+        System.out.println(resultMessage);
     }
 
     public void printGameAllResult(Result result) {
-        System.out.println("실행결과");
+        System.out.println(RESULT_MESSAGE);
         List<Name> names = List.copyOf(result.getResult().keySet());
         List<Bet> bets = List.copyOf(result.getResult().values());
 
