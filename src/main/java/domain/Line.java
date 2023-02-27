@@ -40,17 +40,18 @@ public class Line {
 
     private void makeFirstRandomStep() {
         if (booleanGenerator.generate()) {
-            line.set(0, LineStep.EXIST);
+            line.set(0, LineStep.findBy(true));
         }
     }
 
     private void makeNextRandomSteps(int stepIndex) {
-        if (!isExistPrevStep(stepIndex) && booleanGenerator.generate()) {
-            line.set(stepIndex, LineStep.EXIST);
+        boolean randomBoolean = booleanGenerator.generate();
+        if (!isExistPrevStep(stepIndex) && randomBoolean) {
+            line.set(stepIndex, LineStep.findBy(true));
             return;
         }
-        if (isExistPrevStep(stepIndex)) {
-            line.set(stepIndex, LineStep.NON_EXIST);
+        if (isExistPrevStep(stepIndex) || !randomBoolean) {
+            line.set(stepIndex, LineStep.findBy(false));
         }
     }
 
