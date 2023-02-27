@@ -1,8 +1,8 @@
 package domain.model;
 
 import domain.vo.Name;
-import domain.vo.Names;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,14 +38,10 @@ public class Players {
         players.forEach(player -> player.move(ladder));
     }
 
-    public int orderByName(final Name name) {
-        Player player = findByName(name);
-        return player.getXPosition();
-    }
-
-    public Player findByName(final Name name) {
+    public int orderByName(final String name) {
         return players.stream()
-                .filter(player -> player.getName().equals(name))
+                .filter(player -> player.getName().getValue().equals(name))
+                .map(Player::getXPosition)
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(NO_PLAYER_ERROR_MESSAGE));
     }
@@ -57,8 +53,8 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public boolean containsAll(Names names) {
-        return Names.from(nameToString()).containsAll(names);
+    public boolean containsAll(List<String> names) {
+        return new HashSet<>(nameToString()).containsAll(names);
 
     }
 }

@@ -2,7 +2,6 @@ package domain.service;
 
 import domain.model.Ladder;
 import domain.model.Players;
-import domain.vo.Names;
 import domain.vo.Results;
 import dto.ViewResultParameter;
 import view.Command;
@@ -38,23 +37,20 @@ public class LadderGame {
         if (viewers.contains(Command.ALL.getName())) {
             return new ViewResultParameter(players.nameToString(), results.mapToString());
         }
-        Names viewersName = Names.from(viewers);
-        checkPlayersContainsAll(viewersName);
-        List<String> orderedResults = orderResultsByName(viewersName);
+
+        if (!players.containsAll(viewers)) {
+            throw new IllegalArgumentException(NO_PLAYER_ERROR_MESSAGE);
+        }
+
+        List<String> orderedResults = orderResultsByName(viewers);
         return new ViewResultParameter(viewers, orderedResults);
     }
 
-    private void checkPlayersContainsAll(Names viewersName) {
-        if (!players.containsAll(viewersName)) {
-            throw new IllegalArgumentException(NO_PLAYER_ERROR_MESSAGE);
-        }
-    }
-
-    private List<String> orderResultsByName(Names viewersName) {
-        List<Integer> order = viewersName.orderByName(players);
+    private List<String> orderResultsByName(List<String> viewersName) {
         List<String> orderedResults = new ArrayList<>();
-        for (Integer integer : order) {
-            orderedResults.add(results.get(integer).getValue());
+        for (String viewer : viewersName) {
+            int order = players.orderByName(viewer);
+            orderedResults.add(results.get(order).getValue());
         }
         return orderedResults;
     }

@@ -2,11 +2,8 @@ package domain.service;
 
 import domain.model.Ladder;
 import domain.model.Layer;
-import domain.model.Player;
 import domain.model.Players;
-import domain.vo.Name;
 import domain.vo.Results;
-import domain.wrapper.Position;
 import dto.ViewResultParameter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -59,9 +56,9 @@ class LadderGameTest {
 
         players = ladderGame.getPlayers();
 
-        Player player = players.findByName(new Name(name));
+        int order = players.orderByName(name);
 
-        assertThat(player.getPosition()).isEqualTo(Position.of(xPosition, 3));
+        assertThat(order).isEqualTo(xPosition);
     }
 
 

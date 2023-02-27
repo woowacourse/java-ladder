@@ -1,6 +1,5 @@
 package domain.model;
 
-import domain.vo.Name;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -40,14 +39,13 @@ class PlayersTest {
         ladder.addLayer(layer3);
     }
 
-    @ParameterizedTest(name = "{0}이 1회 이동했을때의 좌표는({1},{2}) ")
-    @CsvSource(value = {"p1:1:1", "p2:0:1", "p3:3:1", "p4:2:1"}, delimiter = ':')
-    void moveAll(String name, int expectedX, int expectedY) {
+    @ParameterizedTest(name = "{0}이 1회 이동했을때의 순서는 {1} ")
+    @CsvSource(value = {"p1:1", "p2:0", "p3:3", "p4:2"}, delimiter = ':')
+    void moveAll(String name, int expectedX) {
         players.moveAll(ladder);
 
-        Player player = players.findByName(new Name(name));
-        assertThat(player.getXPosition()).isEqualTo(expectedX);
-        assertThat(player.getYPosition()).isEqualTo(expectedY);
+        int order = players.orderByName(name);
+        assertThat(order).isEqualTo(expectedX);
     }
 
     @ParameterizedTest(name = "사다리를 모두 이동했을 때 {0}의 위치는 {1}")
@@ -57,6 +55,6 @@ class PlayersTest {
             players.moveAll(ladder);
         }
 
-        assertThat(players.orderByName(new Name(name))).isEqualTo(expected);
+        assertThat(players.orderByName(name)).isEqualTo(expected);
     }
 }
