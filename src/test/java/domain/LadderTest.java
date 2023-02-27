@@ -27,8 +27,9 @@ class LadderTest {
         }
         Players players = new Players(list);
         Results results = new Results(list);
-        Ladder ladder = new RandomLadderGenerator()
-                .generate(players, results, maxHeight);
+        Lines lines = new RandomLadderGenerator()
+                .generate(players, maxHeight);
+        Ladder ladder = new Ladder(players, results, lines);
         assertThat(ladder.getWidth()).isEqualTo(personCount - 1);
         assertThat(ladder.getHeight()).isEqualTo(maxHeight);
     }
@@ -40,7 +41,7 @@ class LadderTest {
         Players players = new Players(List.of("a", "b", "c"));
         Results results = new Results(List.of("1", "2", "3"));
         assertThatThrownBy(() -> new RandomLadderGenerator()
-                .generate(players, results, height))
+                .generate(players, height))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리 높이는 1 이상 10 이하여야 합니다.");
     }

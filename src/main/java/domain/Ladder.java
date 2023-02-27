@@ -1,33 +1,21 @@
 package domain;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Ladder {
 
     public static final String ALL = "all";
 
-    public static final int MIN_RANGE = 1;
-    public static final int MAX_RANGE = 10;
-
     private final Players players;
     private final Lines lines;
     private final Results results;
 
-    public Ladder(Players players, Results results, List<Line> lines) {
-        validateHeight(lines);
+    public Ladder(Players players, Results results, Lines lines) {
         this.players = players;
-        this.lines = new Lines(lines);
+        this.lines = lines;
         validateResultsCount(results);
         this.results = results;
-    }
-
-    private void validateHeight(List<Line> lines) {
-        if (lines.size() < MIN_RANGE || lines.size() > MAX_RANGE) {
-            throw new IllegalArgumentException(
-                    String.format("사다리 높이는 %d 이상 %d 이하여야 합니다.", MIN_RANGE, MAX_RANGE));
-        }
     }
 
     private void validateResultsCount(Results results) {

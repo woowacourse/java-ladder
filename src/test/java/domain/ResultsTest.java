@@ -36,11 +36,9 @@ public class ResultsTest {
     void fail(String results, String people) {
         List<String> names = Arrays.stream(people.split(",")).collect(Collectors.toList());
         List<String> resultList = Arrays.stream(results.split(",")).collect(Collectors.toList());
-        assertThatThrownBy(() -> new RandomLadderGenerator().generate(
-                new Players(names),
-                new Results(resultList),
-                5
-        ))
+        Lines lines = new RandomLadderGenerator().generate(new Players(names), 5);
+
+        assertThatThrownBy(() -> new Ladder(new Players(names), new Results(resultList), lines))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("실행 결과의 수는 사람 수와 같아야 합니다.");
     }

@@ -28,7 +28,7 @@ public class LadderGameTest {
                 new Line(List.of(FALSE, TRUE, FALSE)),
                 new Line(List.of(TRUE, FALSE, TRUE))
         );
-        ladder = new Ladder(players, results, customizedLines);
+        ladder = new Ladder(players, results, new Lines(customizedLines));
     }
 
     @DisplayName("단일 사용자의 결과 출력")
