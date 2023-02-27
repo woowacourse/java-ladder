@@ -8,11 +8,15 @@ public class WinningResult {
 
     public WinningResult(final String winningResult) {
         validate(winningResult);
-        validateIsBlank(winningResult);
         this.winningResult = winningResult;
     }
 
     private void validate(final String winningResult) {
+        validateWinningResultLength(winningResult);
+        validateIsBlank(winningResult);
+    }
+
+    private void validateWinningResultLength(final String winningResult) {
         if (winningResult.length() < 1 || winningResult.length() > 5) {
             throw new IllegalArgumentException(INVALID_RESULT_LENGTH_MESSAGE);
         }
