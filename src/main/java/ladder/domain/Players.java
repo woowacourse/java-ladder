@@ -18,7 +18,7 @@ public class Players {
 
     public List<String> getNames() {
         return players.stream()
-                .map(player -> player.getName())
+                .map(Player::getName)
                 .collect(Collectors.toUnmodifiableList());
     }
 
