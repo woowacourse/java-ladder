@@ -2,6 +2,7 @@ package controller;
 
 import domain.*;
 import util.BooleanGenerator;
+import util.Task;
 import view.InputView;
 import view.OutputView;
 
@@ -32,34 +33,25 @@ public class LadderGameController {
     }
 
     private Participants setParticipants() {
-        try {
+        return Task.retryUntilSuccess(() -> {
             String participantNames = inputView.enterParticipantNames();
             return new Participants(participantNames);
-        } catch (IllegalArgumentException exception) {
-            inputView.printErrorMessage(exception);
-            return setParticipants();
-        }
+        }, outputView);
     }
 
     private Results setResults(Participants participants) {
-        try {
+        return Task.retryUntilSuccess(() -> {
             String results = inputView.enterResults();
             return new Results(results, participants.getParticipantCount());
-        } catch (IllegalArgumentException exception) {
-            inputView.printErrorMessage(exception);
-            return setResults(participants);
-        }
+        }, outputView);
     }
 
     private Ladder generateLadder(Participants participants, BooleanGenerator booleanGenerator) {
-        try {
+        return Task.retryUntilSuccess(() -> {
             Height height = new Height(inputView.enterHeight());
             Weight weight = new Weight(participants.getParticipantCount());
             return new Ladder(height, weight, booleanGenerator);
-        } catch (IllegalArgumentException exception) {
-            inputView.printErrorMessage(exception);
-            return generateLadder(participants, booleanGenerator);
-        }
+        }, outputView);
     }
 
     private void printLadder(LadderGame ladderGame) {
@@ -79,7 +71,7 @@ public class LadderGameController {
             String inputResult = inputView.enterGetResult();
             return getResultByInput(ladderGame, inputResult);
         } catch (IllegalArgumentException exception) {
-            inputView.printErrorMessage(exception);
+            outputView.printErrorMessage(exception);
             return true;
         }
     }
