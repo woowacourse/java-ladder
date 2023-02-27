@@ -90,7 +90,7 @@ class UserTest {
         void shouldSuccessMoveLowerLeft() {
             User user = new User("test", 1);
             Line nextLine = new Line(4, new FixedBooleanGenerator(true));
-            user.getPosition().movePosition(nextLine);
+            user.getPosition().movePosition(nextLine.getLine());
             assertThat(user.getPosition().getValue()).isEqualTo(0);
         }
 
@@ -99,7 +99,7 @@ class UserTest {
         void shouldSuccessMoveLowerRight() {
             User user = new User("test", 0);
             Line nextLine = new Line(4, new FixedBooleanGenerator(true));
-            user.getPosition().movePosition(nextLine);
+            user.getPosition().movePosition(nextLine.getLine());
             assertThat(user.getPosition().getValue()).isEqualTo(1);
         }
 
@@ -108,7 +108,7 @@ class UserTest {
         void shouldSuccessMoveDown() {
             User user = new User("test", 0);
             Line nextLine = new Line(4, new FixedBooleanGenerator(false));
-            user.getPosition().movePosition(nextLine);
+            user.getPosition().movePosition(nextLine.getLine());
             assertThat(user.getPosition().getValue()).isEqualTo(0);
         }
     }
