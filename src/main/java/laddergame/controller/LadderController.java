@@ -54,20 +54,19 @@ public class LadderController {
     }
 
     private PersonalNames createPersonalNames() {
-        return createInstance(() -> new PersonalNames(inputView.readNames()));
+        return createInstance(() -> new PersonalNames(inputView.readNames()), RETRY_LIMIT);
     }
 
     private LadderResult createLadderResult(PersonalNames names) {
-        return createInstance(() -> LadderResult.of(names, inputView.readResults()));
+        return createInstance(() -> LadderResult.of(names, inputView.readResults()), RETRY_LIMIT);
     }
 
     private Height createHeight() {
-        return createInstance(() -> new Height(inputView.readHeight()));
+        return createInstance(() -> new Height(inputView.readHeight()), RETRY_LIMIT);
     }
 
-    private <T> T createInstance(Supplier<T> supplier) {
-        int count = 0;
-        while (count++ < RETRY_LIMIT) {
+    private <T> T createInstance(Supplier<T> supplier, int tryCount) {
+        while (tryCount-- > 0) {
             try {
                 return supplier.get();
             } catch (RuntimeException e) {
