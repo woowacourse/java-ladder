@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import domain.ladder.Ladder;
 import domain.booleangenerator.RandomBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

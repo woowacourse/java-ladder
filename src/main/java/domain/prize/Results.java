@@ -23,7 +23,6 @@ public class Results {
         return results.size() == size;
     }
 
-
     public Set<Player> getPlayers() {
         return results.keySet();
     }

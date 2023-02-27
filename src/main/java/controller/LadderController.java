@@ -1,8 +1,8 @@
 package controller;
 
 import domain.LadderGame;
-import domain.ladder.Ladder;
 import domain.booleangenerator.BooleanGenerator;
+import domain.ladder.Ladder;
 import domain.player.Players;
 import domain.prize.Prizes;
 import domain.prize.Results;

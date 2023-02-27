@@ -1,7 +1,7 @@
 package domain;
 
-import domain.ladder.Ladder;
 import domain.booleangenerator.TestBooleanGenerator;
+import domain.ladder.Ladder;
 import domain.player.Player;
 import domain.player.Players;
 import domain.prize.Prize;

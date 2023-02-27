@@ -1,7 +1,7 @@
 package domain.player;
 
-import domain.ladder.Line;
 import domain.booleangenerator.TestBooleanGenerator;
+import domain.ladder.Line;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

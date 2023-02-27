@@ -1,7 +1,5 @@
 package domain.ladder;
 
-import domain.ladder.Line;
-import domain.ladder.Point;
 import domain.booleangenerator.TestBooleanGenerator;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;

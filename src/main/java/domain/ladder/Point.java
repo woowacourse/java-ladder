@@ -16,11 +16,11 @@ public enum Point {
         this.status = status;
     }
 
-    public boolean getStatus() {
-        return status;
-    }
-
     public static boolean isGenerated(BooleanGenerator booleanGenerator) {
         return booleanGenerator.generate() == GENERATE_VALUE;
+    }
+
+    public boolean getStatus() {
+        return status;
     }
 }
