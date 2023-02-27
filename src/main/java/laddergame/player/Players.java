@@ -1,7 +1,6 @@
 package laddergame.player;
 
 import laddergame.ladder.Ladder;
-import laddergame.vo.Name;
 import laddergame.vo.Position;
 
 import java.util.*;
@@ -15,7 +14,7 @@ public class Players {
 
     private final List<Player> players;
 
-    private Players(List<Player> players) {
+    public Players(List<Player> players) {
         validate(players);
         this.players = new ArrayList<>(players);
     }
@@ -23,10 +22,7 @@ public class Players {
     public static Players from(List<String> names) {
         List<Player> players = new ArrayList<>();
         for (int i = 0; i < names.size(); i++) {
-            Name name = new Name(names.get(i));
-            Position position = new Position(i);
-            Player nextPlayer = new Player(name, position);
-
+            Player nextPlayer = new Player(names.get(i), i);
             players.add(nextPlayer);
         }
         return new Players(players);
@@ -57,10 +53,6 @@ public class Players {
 
     public int getCount() {
         return players.size();
-    }
-
-    public Player get(int index) {
-        return players.get(index);
     }
 
     public List<String> getNames() {
