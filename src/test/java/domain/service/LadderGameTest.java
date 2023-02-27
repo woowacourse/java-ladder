@@ -71,11 +71,7 @@ class LadderGameTest {
         LadderGame ladderGame = new LadderGame(ladder, players, results);
 
         ladderGame.play();
-        Name p1 = new Name("p1");
-        Name p2 = new Name("p2");
-        Name p3 = new Name("p3");
-        Name p4 = new Name("p4");
-        Names wantResult = new Names(List.of(p1, p2, p3, p4));
+        Names wantResult = Names.from(List.of("p1", "p2", "p3", "p4"));
         Results resultsByNames = ladderGame.resultsByNames(wantResult);
 
         assertThat(resultsByNames.get(index).getValue()).isEqualTo(expected);
@@ -87,7 +83,7 @@ class LadderGameTest {
         LadderGame ladderGame = new LadderGame(ladder, players, results);
 
         ladderGame.play();
-        Names wantResult = new Names(List.of(new Name("p3"), new Name("p4")));
+        Names wantResult = Names.from(List.of("p3", "p4"));
         Results resultsByNames = ladderGame.resultsByNames(wantResult);
 
         assertThat(resultsByNames.get(index).getValue()).isEqualTo(expected);

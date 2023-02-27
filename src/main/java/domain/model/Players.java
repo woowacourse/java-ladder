@@ -1,7 +1,6 @@
 package domain.model;
 
 import domain.vo.Name;
-import domain.vo.Names;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,10 +49,11 @@ public class Players {
                 .orElseThrow(() -> new IllegalArgumentException(NO_PLAYER_ERROR_MESSAGE));
     }
 
-    public Names mapToNames() {
-        return new Names(players.stream()
+    public List<String> mapToString() {
+        return players.stream()
                 .map(Player::getName)
-                .collect(Collectors.toList()));
+                .map(Name::getValue)
+                .collect(Collectors.toList());
     }
 
 }

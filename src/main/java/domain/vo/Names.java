@@ -9,7 +9,7 @@ public class Names {
 
     private final List<Name> names;
 
-    public Names(List<Name> names) {
+    private Names(List<Name> names) {
         this.names = List.copyOf(names);
     }
 
@@ -34,12 +34,6 @@ public class Names {
     public List<Integer> orderByName(Players players) {
         return names.stream()
                 .map(players::orderByName)
-                .collect(Collectors.toList());
-    }
-
-    public List<String> mapToString() {
-        return names.stream()
-                .map(Name::getValue)
                 .collect(Collectors.toList());
     }
 

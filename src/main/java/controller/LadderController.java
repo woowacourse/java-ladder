@@ -60,8 +60,8 @@ public class LadderController {
     }
 
     private boolean repeatableViewResult(final LadderGame ladderGame) {
-        Names allPlayersName = ladderGame.allPlayersName();
-        InputRepeatableDTO inputRepeatableDTO = inputView.inputResultViewersName(allPlayersName.mapToString());
+        List<String> allPlayersName = ladderGame.allPlayersName();
+        InputRepeatableDTO inputRepeatableDTO = inputView.inputResultViewersName(allPlayersName);
         if (!inputRepeatableDTO.isRepeatable()) {
             return false;
         }
