@@ -16,7 +16,7 @@ public class PersonTest {
         //given
         //when
         //then
-        assertThatThrownBy(() -> new Person(name))
+        assertThatThrownBy(() -> Person.of(name, 0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -27,6 +27,6 @@ public class PersonTest {
         //given
         //when
         //then
-        assertDoesNotThrow(() -> new Person(name));
+        assertDoesNotThrow(() -> Person.of(name, 0));
     }
 }

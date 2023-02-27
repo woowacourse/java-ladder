@@ -3,17 +3,36 @@ package domain;
 import exception.ErrorCode;
 
 public class Height {
-    private static final int HEIGHT_LIMIT = 2;
+    private static final int MIN_HEIGHT = 2;
+    private static final int MAX_HEIGHT = 100;
+
     private final int height;
 
-    public Height(int height) {
-        validate(height);
+    private Height(int height) {
         this.height = height;
     }
 
-    private void validate(int height) {
-        if (height < HEIGHT_LIMIT) {
-            throw new IllegalArgumentException(ErrorCode.NEGATIVE_NUMBER.getMessage());
+    public static Height from(String height) {
+        return new Height(validate(height));
+    }
+
+    private static int validate(String height) {
+        int integerNumber = getIntegerNumber(height);
+        validateNumberRange(integerNumber);
+        return integerNumber;
+    }
+
+    private static int getIntegerNumber(String height) {
+        try {
+            return Integer.parseInt(height);
+        } catch (IllegalArgumentException exception) {
+            throw new IllegalArgumentException(ErrorCode.NUMBER_NOT_INTEGER.getMessage());
+        }
+    }
+
+    private static void validateNumberRange(int integerNumber) {
+        if (integerNumber < MIN_HEIGHT || MAX_HEIGHT < integerNumber) {
+            throw new IllegalArgumentException(ErrorCode.NUMBER_NOT_RANGE.getMessage());
         }
     }
 

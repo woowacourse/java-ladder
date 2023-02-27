@@ -5,5 +5,4 @@ public class Application {
         LadderGameController controller = new LadderGameController();
         controller.play();
     }
-
 }

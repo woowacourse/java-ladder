@@ -3,22 +3,44 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import util.BridgeGenerator;
+import util.BooleanGenerator;
 
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(Height height, int personCount) {
-        this.lines = new ArrayList<>();
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
+    public static Ladder of(Height height, int personCount) {
+        List<Line> lines = new ArrayList<>();
         for (int index = 0; index < height.getHeight(); index++) {
-            lines.add(new Line(personCount));
+            lines.add(Line.from(personCount));
+        }
+        return new Ladder(lines);
+    }
+
+    public void generate(BooleanGenerator booleanGenerator) {
+        for (Line line : lines) {
+            line.generate(booleanGenerator);
         }
     }
 
-    public void generate(BridgeGenerator bridgeGenerator) {
+    public int findFinalPosition(int position) {
         for (Line line : lines) {
-            line.generate(bridgeGenerator);
+            position = finalPosition(position, line);
         }
+        return position;
+    }
+
+    private int finalPosition(int position, Line line) {
+        if (line.hasBridgeInRight(position)) {
+            return position + 1;
+        }
+        if (line.hasBridgeInLeft(position)) {
+            return position - 1;
+        }
+        return position;
     }
 
     public int calculateTotalHeight() {
