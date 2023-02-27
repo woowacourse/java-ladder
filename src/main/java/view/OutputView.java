@@ -6,18 +6,21 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    private static final String RESULT_HEAD = "\n실행결과";
+    private static final int BRIDGE_SIZE = 5;
+    private static final String RESULT_HEAD = "실행결과";
     private static final String BLANK = " ";
     private static final String LADDER_UNIT = "|";
     private static final String BRIDGE_UNIT = "-";
     private static final String DELIMITER = " : ";
-    private static final int BRIDGE_SIZE = 5;
+    private static final String NAME_MESSAGE_FORMAT = String.format("%%%ds", BRIDGE_SIZE + 1);
+    private static final String PRIZE_MESSAGE_FORMAT = String.format("%%%ds", -(BRIDGE_SIZE + 1));
+
 
     public OutputView() {
     }
 
     public void printLadderResult(List<String> persons, List<List<Bridge>> ladder, List<String> prizes) {
-        System.out.println(RESULT_HEAD + "\n");
+        System.out.println(System.lineSeparator() + RESULT_HEAD + System.lineSeparator());
         int firstNameLength = printPersons(persons);
         printLadder(ladder, firstNameLength);
         printPrizes(prizes);
@@ -26,7 +29,7 @@ public class OutputView {
     private int printPersons(List<String> names) {
         String firstName = names.remove(0);
         System.out.print(BLANK + firstName);
-        names.forEach(name -> System.out.printf(String.format("%%%ds", BRIDGE_SIZE + 1), name));
+        names.forEach(name -> System.out.printf(NAME_MESSAGE_FORMAT, name));
         System.out.println();
         return firstName.length();
     }
@@ -55,7 +58,7 @@ public class OutputView {
     }
 
     private void printPrizes(List<String> results) {
-        results.forEach(result -> System.out.printf(String.format("%%%ds", -(BRIDGE_SIZE + 1)), result));
+        results.forEach(result -> System.out.printf(PRIZE_MESSAGE_FORMAT, result));
         System.out.println();
     }
 
