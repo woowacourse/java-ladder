@@ -4,33 +4,18 @@ import java.util.Collections;
 import java.util.List;
 
 public class LadderRow {
-    private final List<Boolean> bars;
+    private final List<Point> points;
 
-    public LadderRow(List<Boolean> bars) {
-        validate(bars);
-        this.bars = bars;
+    public LadderRow(List<Point> points) {
+        this.points = points;
     }
 
-    private void validate(List<Boolean> bars) {
-        int limit = bars.size() - 1;
-        for (int i = 0; i < limit; i++) {
-            Boolean current = bars.get(i);
-            Boolean next = bars.get(i + 1);
-            checkIsTruContinuously(current, next);
-        }
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
-    private void checkIsTruContinuously(Boolean current, Boolean next) {
-        if (isAllTrue(current, next)) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private boolean isAllTrue(Boolean current, Boolean next) {
-        return current == next && current;
-    }
-
-    public List<Boolean> getBars() {
-        return Collections.unmodifiableList(bars);
+    public int calculateNextSummand(int index) {
+        Point point = points.get(index);
+        return point.getMoveValue();
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import utils.LadderRowGenerator;
+import domain.ladderRowGenerator.LadderRowGenerator;
 
 public class Ladder {
     private final List<LadderRow> ladderRows = new ArrayList<>();
@@ -21,9 +21,21 @@ public class Ladder {
         }
     }
 
-    public List<List<Boolean>> getLadderMap() {
-        return ladderRows.stream()
-                .map(LadderRow::getBars)
+    public List<LadderRow> getLadderRows() {
+        return ladderRows;
+    }
+
+    public int calculateEndIndex(int index) {
+        for (LadderRow ladderRow : ladderRows) {
+            int nextSummand = ladderRow.calculateNextSummand(index);
+            index += nextSummand;
+        }
+        return index;
+    }
+
+    public List<Integer> calculateEndIndex(List<Integer> startIndexes) {
+        return startIndexes.stream()
+                .map(this::calculateEndIndex)
                 .collect(Collectors.toUnmodifiableList());
     }
 }

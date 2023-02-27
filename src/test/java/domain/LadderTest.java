@@ -4,33 +4,41 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-import utils.LadderRowGenerator;
+class LadderTest {
+    Ladder ladder;
 
-public class LadderTest {
+    @BeforeEach
+    void setUp() {
+        ladder = new Ladder(new TestLadderRowGenerator());
+        ladder.create(5, 4);
+    }
+
+//    생성한 사다라의 모양은 다음과 같다.
+//      |-----|     |-----|
+//      |     |-----|     |
+//      |-----|     |     |
+//      |     |-----|     |
+//      |-----|     |-----|
+
+    @ParameterizedTest(name = "startIndex({0}) 을 입력하면 endIndex({1})을 반환한다")
+    @CsvSource({"0,0", "1,3", "2,2", "3,1"})
+    void calculateEndIndexTest(int startIndex, int expected) {
+        int result = ladder.calculateEndIndex(startIndex);
+
+        assertThat(result).isEqualTo(expected);
+    }
 
     @Test
-    @DisplayName("parseLadderToString은 사다리의 정보를 문자열로 변환한다.")
-    void parseLadderToStringTest() {
-//        아래와 같은 모양의 사다리가 생성되는 지 확인
-//            |-----|     |-----|
-//            |     |-----|     |
-//            |-----|     |     |
-//            |     |-----|     |
-//            |-----|     |-----|
+    @DisplayName("startIndexes를 입력하면 endIndexes를 반환한다")
+    void calculateEndIndexesTest() {
+        List<Integer> result = ladder.calculateEndIndex(List.of(1, 3));
 
-        LadderRowGenerator ladderRowGenerator = new TestLadderRowGenerator();
-        Ladder ladder = new Ladder(ladderRowGenerator);
-
-        ladder.create(5, 4);
-
-        assertThat(ladder.getLadderMap())
-                .containsExactly(List.of(true, false, true),
-                        List.of(false, true, false),
-                        List.of(true, false, false),
-                        List.of(false, true, false),
-                        List.of(true, false, true));
+        assertThat(result).containsExactly(3, 1);
     }
 }

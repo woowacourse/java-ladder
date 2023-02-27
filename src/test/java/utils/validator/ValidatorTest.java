@@ -11,6 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import domain.ErrorMessages;
+import domain.validator.Validator;
 
 class ValidatorTest {
 
