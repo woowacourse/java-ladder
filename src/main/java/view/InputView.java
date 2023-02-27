@@ -37,7 +37,7 @@ public class InputView {
         return height;
     }
 
-    public List<String> inputResult(){
+    public List<String> inputResult() {
         String names = scanner.nextLine();
 
         if (!names.contains(DELIMITER)) {
@@ -48,7 +48,7 @@ public class InputView {
             .collect(Collectors.toUnmodifiableList());
     }
 
-    public String inputTargetName(){
+    public String inputTargetName() {
         scanner.nextLine();
         return scanner.nextLine();
     }

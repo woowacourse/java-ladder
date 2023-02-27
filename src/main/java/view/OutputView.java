@@ -37,10 +37,10 @@ public class OutputView {
     }
 
     private void printNamesOrResults(List<String> namesOrResults) {
-        String nameOrresult = namesOrResults.stream()
-            .map(nameOrResult -> String.format("%-5s ", nameOrResult))
+        String nameOrResult = namesOrResults.stream()
+            .map(name -> String.format("%-5s ", name))
             .collect(Collectors.joining());
-        System.out.println(nameOrresult);
+        System.out.println(nameOrResult);
     }
 
     public void noticeInputResults() {
@@ -55,11 +55,18 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public void printWinningInfo(Map<String, Integer> resultBoard, List<String> results) {
+    public void printWinningInfo(Map<String, String> resultBoard, String targetName) {
         noticeTargetResult();
-        for (String player : resultBoard.keySet()) {
-            System.out.println(player+ " : " + results.get(resultBoard.get(player)));
+        if (!resultBoard.containsKey(targetName)) {
+            throw new IllegalArgumentException("해당 참가자의 결과가 없습니다");
         }
+        if (targetName.equals("all")) {
+            for (String player : resultBoard.keySet()) {
+                System.out.println(player + " : " + resultBoard.get(player));
+            }
+            return;
+        }
+        System.out.println(targetName + " : " + resultBoard.get(targetName));
     }
 
     private String joinLine(List<String> line) {
