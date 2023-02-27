@@ -13,7 +13,7 @@ public class Results {
         validatePrizeCount(playerNumber, names.size());
 
         this.results = names.stream()
-                .map(Result::new)
+                .map(Result::from)
                 .collect(Collectors.toUnmodifiableList());
     }
 
