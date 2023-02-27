@@ -17,20 +17,16 @@ public class LadderGame {
     private Lines lines;
     private Rewards rewards;
 
-    public void createPeople(List<String> names) {
-        validateDuplicateName(names);
+    public void createPeople(List<String> inputNames) {
+        Names names = new Names(inputNames);
         List<Person> people = new ArrayList<>();
-        for (int i = 0; i < names.size(); i++) {
-            people.add(new Person(names.get(i), i));
+        for (int i = 0; i < names.getNames().size(); i++) {
+            people.add(new Person(names.getNames().get(i), i));
         }
         this.people = new People(people);
     }
 
-    private void validateDuplicateName(List<String> names) {
-        if (names.size() != new HashSet<>(names).size()) {
-            throw new IllegalArgumentException("참가지 이름은 중복일 수 없습니다.");
-        }
-    }
+
 
     public void createLines(int height, RandomValueGenerator generator) {
         int width = people.getPeople().size();

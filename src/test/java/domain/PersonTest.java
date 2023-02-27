@@ -1,7 +1,9 @@
 package domain;
 
+import domain.LadderGameTest.TestFlapValueBooleanGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -39,5 +41,17 @@ class PersonTest {
         }
 
         Assertions.assertEquals(person.getPosition(), expected);
+    }
+
+    @DisplayName("Person 객체 위치 이동 테스트")
+    @Test
+    void Line을_주고_Person_객체_위치_이동_테스트() {
+        Line line = Line.newInstanceWithPersonCount(2, new TestFlapValueBooleanGenerator());
+        Person person1 = new Person("p1", 0);
+        Person person2 = new Person("p2", 1);
+
+        person1.move(line, 2);
+
+        Assertions.assertEquals(1, person1.getPosition());
     }
 }

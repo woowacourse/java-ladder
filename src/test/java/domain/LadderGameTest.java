@@ -96,7 +96,7 @@ class LadderGameTest {
         Assertions.assertEquals(0, ladderGame.getPeople().getPeople().get(1).getPosition());
     }
 
-    class TestFlapValueBooleanGenerator implements RandomValueGenerator {
+    static class TestFlapValueBooleanGenerator implements RandomValueGenerator {
 
         boolean flag = false;
 
