@@ -16,7 +16,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean add(String value) {
-        int size = calculateSize();
+        int size = size();
         if (size >= capacity) {
             increaseCapacity();
             values[size] = value;
@@ -28,7 +28,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void add(int index, String value) {
-        int size = calculateSize();
+        int size = size();
         if (size >= capacity) {
             increaseCapacity();
         }
@@ -41,20 +41,10 @@ public class SimpleArrayList implements SimpleList {
 
     private String[] copyCurrentValues() {
         String[] currentValues = new String[capacity];
-        for (int i = 0; i < calculateSize(); i++) {
+        for (int i = 0; i < size(); i++) {
             currentValues[i] = values[i];
         }
         return currentValues;
-    }
-
-    private int calculateSize() {
-        int currentSize = 0;
-        for (String element : values) {
-            if (element != null) {
-                currentSize++;
-            }
-        }
-        return currentSize;
     }
 
     private void increaseCapacity() {
@@ -87,7 +77,13 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public int size() {
-        return calculateSize();
+        int currentSize = 0;
+        for (String element : values) {
+            if (element != null) {
+                currentSize++;
+            }
+        }
+        return currentSize;
     }
 
     @Override
