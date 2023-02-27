@@ -33,8 +33,4 @@ public class InputView {
         System.out.println(ENTER_GET_RESULT);
         return readLine();
     }
-
-    public void printErrorMessage(IllegalArgumentException exception) {
-        System.out.println(exception.getMessage() + System.lineSeparator());
-    }
 }

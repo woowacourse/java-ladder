@@ -16,6 +16,10 @@ public class OutputView {
     private static final String MATCH_RESULT_MESSAGE = System.lineSeparator() + "실행 결과" + System.lineSeparator();
     private static final String MATCH_RESULT_ALL_FORMAT = "%s : %s" + System.lineSeparator();
 
+    public void printErrorMessage(IllegalArgumentException exception) {
+        System.out.println(exception.getMessage() + System.lineSeparator());
+    }
+
     public void printLadder(List<String> participants, List<List<Boolean>> ladder,
                             List<String> results) {
         System.out.println(RESULT_MESSAGE);
