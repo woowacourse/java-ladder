@@ -9,13 +9,11 @@ import ladder.domain.RandomConnectionJudgement;
 public class Application {
 
     public static void main(String[] args) {
-        try (InputView inputView = getInputView()) {
-            LadderClientController ladderClientController = new LadderClientController(
-                    inputView,
-                    getLadderGame()
-            );
-            ladderClientController.play();
-        }
+        LadderClientController ladderClientController = new LadderClientController(
+                getInputView(),
+                getLadderGame()
+        );
+        ladderClientController.play();
     }
 
     private static LadderGameController getLadderGame() {
