@@ -7,7 +7,6 @@ public class Participant {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String BLANK_PARTICIPANT_NAME_ERROR_MSG = "참가자의 이름은 공백일 수 없습니다.";
     private static final String NAME_LENGTH_ERROR_MSG = "참가자의 이름은 1글자 이상 5글자 이하여야 한다.";
-    private static final String CANNOT_FIND_PARTICIPANT_MESSAGE = "해당 이름의 참가자는 없습니다.";
     
     private final String name;
     

@@ -23,7 +23,7 @@ public class LadderGameController {
     
     private LadderGame buildLadderGame( PointGenerator pointGenerator ) {
         Participants participants = this.retrieveParticipants();
-        Results results = this.retrieveResults(participants.getParticipantsNum());
+        Results results = this.retrieveResults(participants.getSize());
         Ladder ladder = this.buildLadder(pointGenerator, participants);
         return new LadderGame(participants, results, ladder);
     }
@@ -80,16 +80,13 @@ public class LadderGameController {
     }
     
     private LadderWidth retrieveWidth( Participants participants ) {
-        return LadderWidth.from(participants.getParticipantsNum() - 1);
+        return LadderWidth.from(participants.getSize() - 1);
     }
     
     private String retrieveNameToFind() {
         try {
             String name = InputView.readNameToFind();
-            if ( name.equals("all") ) {
-                return name;
-            }
-            Participant.contains(name);
+            this.ladderGame.validateNameToFind(name);
             return name;
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());

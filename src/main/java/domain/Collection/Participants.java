@@ -31,8 +31,8 @@ public class Participants {
         return this.participants.get(index);
     }
     
-    public boolean contains( Participant participant ) {
-        return this.participants.contains(participant);
+    public boolean contains( String name ) {
+        return this.participants.contains(Participant.from(name));
     }
     
     public List<Participant> getParticipants() {

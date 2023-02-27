@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class LadderGame {
+    private static final String CANNOT_FIND_PARTICIPANT_MESSAGE = "해당 이름의 참가자는 없습니다.";
     
     private final Participants participants;
     private final Ladder ladder;
@@ -28,7 +29,7 @@ public class LadderGame {
     
     
     public void run() {
-        List<Integer> sequence = this.ladder.getSwappedSequence(this.participants.getParticipantsNum());
+        List<Integer> sequence = this.ladder.getSwappedSequence(this.participants.getSize());
         this.makeGameResult(sequence);
     }
     
@@ -49,6 +50,16 @@ public class LadderGame {
     
     public Participants getParticipants() {
         return this.participants;
+    }
+    
+    public void validateNameToFind( String name ) {
+        if ( name.equals("all") ) {
+            return;
+        }
+        if ( this.participants.contains(name) ) {
+            return;
+        }
+        throw new IllegalArgumentException(CANNOT_FIND_PARTICIPANT_MESSAGE);
     }
     
     public Ladder getLadder() {
