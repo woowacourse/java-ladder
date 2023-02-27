@@ -74,8 +74,7 @@ public class OutputView {
     private static void printLadder(Lines lines, int maxLine) {
         lines.getLines()
                 .forEach(line -> {
-                    StringBuilder lineForm = LadderShape.getLineForm(line.getPoints(), maxLine);
-                    System.out.println(lineForm);
+                    System.out.println(LadderShape.getLineForm(line.getPoints(), maxLine));
                 });
     }
 
