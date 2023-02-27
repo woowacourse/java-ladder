@@ -3,7 +3,6 @@ package laddergame.ladder;
 import laddergame.vo.Position;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.stream.Collectors.toUnmodifiableList;
@@ -37,13 +36,18 @@ public class Ladder {
         return currentPosition;
     }
 
-    public List<Row> getRows() {
-        return Collections.unmodifiableList(rows);
-    }
-
     public List<List<Foothold>> getFootholdsMap() {
         return rows.stream()
                    .map(Row::getFootholds)
                    .collect(toUnmodifiableList());
+    }
+
+    public int getHeight() {
+        return rows.size();
+    }
+
+    public int getWidth() {
+        return rows.get(0)
+                   .getWidth();
     }
 }
