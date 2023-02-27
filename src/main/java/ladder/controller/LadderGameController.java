@@ -13,6 +13,12 @@ import java.util.stream.Collectors;
 
 public class LadderGameController {
 
+    private final FrontExceptionController frontExceptionController;
+
+    public LadderGameController(FrontExceptionController frontExceptionController) {
+        this.frontExceptionController = frontExceptionController;
+    }
+
     public void run() {
         try {
             LadderGame ladderGame = initLadderGame();
@@ -21,7 +27,7 @@ public class LadderGameController {
             showLadder(ladderGame);
             startGameResultLoop(ladderGame);
         } catch (CustomException e) {
-            OutputView.printErrorMessage(e);
+            frontExceptionController.handle(e);
         }
     }
 
@@ -36,7 +42,7 @@ public class LadderGameController {
             List<String> playerNames = InputView.inputPlayer();
             return new Players(playerNames);
         } catch (CustomException e) {
-            OutputView.printErrorMessage(e);
+            frontExceptionController.handle(e);
             return initPlayers();
         }
     }
@@ -46,7 +52,7 @@ public class LadderGameController {
             final int height = InputView.inputLadderHeight();
             return new Ladder(playerNumber, height, new RandomStoolGenerator());
         } catch (CustomException e) {
-            OutputView.printErrorMessage(e);
+            frontExceptionController.handle(e);
             return initLadder(playerNumber);
         }
     }
@@ -56,7 +62,7 @@ public class LadderGameController {
             List<String> destinations = InputView.inputLadderDestination();
             return new LadderGame(players, ladder, destinations);
         } catch (CustomException e) {
-            OutputView.printErrorMessage(e);
+            frontExceptionController.handle(e);
             return initLadderGame(players, ladder);
         }
     }

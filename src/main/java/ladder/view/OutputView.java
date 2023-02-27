@@ -1,6 +1,5 @@
 package ladder.view;
 
-import ladder.domain.exception.CustomException;
 import ladder.domain.ladder.Stool;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
@@ -19,9 +18,8 @@ public class OutputView {
     private static final String LADDER_GAME_MESSAGE = "실행 결과";
     private static final String LADDER_GAME_RESULT_FRAME = "%s : %s\n";
 
-    public static void printErrorMessage(CustomException exception) {
-        MessageSelector messageSelector = new MessageSelector();
-        messageSelector.printMessageFor(exception);
+    public static void printExceptionMessage(String message) {
+        System.out.println(message);
     }
 
     public static void printGameResultHeader() {

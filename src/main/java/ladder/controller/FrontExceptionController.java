@@ -1,4 +1,4 @@
-package ladder.view;
+package ladder.controller;
 
 import ladder.domain.exception.CustomException;
 import ladder.domain.exception.LadderLengthException;
@@ -6,17 +6,18 @@ import ladder.domain.exception.NoSuchPlayerException;
 import ladder.domain.exception.NotIntegerException;
 import ladder.domain.exception.PlayerNameLengthException;
 import ladder.domain.exception.PlayerNumberException;
+import ladder.view.OutputView;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MessageSelector {
+public class FrontExceptionController {
 
     private static final String MESSAGE_PREFIX = "[ERROR]";
 
-    private final Map<Class<? extends CustomException>, String> messageSelector = new HashMap<>();
+    private static final Map<Class<? extends CustomException>, String> messageSelector = new HashMap<>();
 
-    public MessageSelector() {
+    public FrontExceptionController() {
         init();
     }
 
@@ -28,7 +29,7 @@ public class MessageSelector {
         messageSelector.put(NoSuchPlayerException.class, MESSAGE_PREFIX + "해당하는 플레이어를 찾을 수 없습니다.");
     }
 
-    public void printMessageFor(CustomException e) {
-        System.out.println(messageSelector.get(e.getClass()));
+    public void handle(CustomException e) {
+        OutputView.printExceptionMessage(messageSelector.get(e.getClass()));
     }
 }
