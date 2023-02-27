@@ -5,7 +5,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static laddergame.domain.TestFixture.ERROR_MESSAGE_HEAD;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -24,7 +23,7 @@ class ResultTest {
     void throws_exception_if_result_is_null_or_empty(String invalidResult) {
         assertThatThrownBy(() -> new Result(invalidResult))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE_HEAD);
+                .hasMessageContaining("[ERROR] 실행 결과는 null 이거나 빈 값일 수 없습니다.");
     }
 
     @ParameterizedTest
@@ -33,6 +32,6 @@ class ResultTest {
     void throws_exception_if_result_has_blank(String invalidResult) {
         assertThatThrownBy(() -> new Result(invalidResult))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE_HEAD);
+                .hasMessageContaining(String.format("[ERROR] 실행 결과에 공백이 포함될 수 없습니다. 입력된 값 : %s", invalidResult));
     }
 }

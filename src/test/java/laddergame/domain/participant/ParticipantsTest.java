@@ -7,29 +7,37 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static laddergame.domain.TestFixture.ERROR_MESSAGE_HEAD;
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ParticipantsTest {
 
-    @ParameterizedTest
-    @ValueSource(strings = {"pobi,pobi"})
-    @DisplayName("입력받은 이름에 중복값이 존재하면, 예외가 발생한다.")
-    void throws_exception_if_names_contain_duplicates(String names) {
-        assertThatThrownBy(() -> Participants.create(names))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE_HEAD);
-    }
+    private static final String NAME_DELIMITER = ",";
 
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 10_001, 10_002})
     @DisplayName("입력받은 참여자의 수가 1명 미만 10,000명 초과이면, 예외가 발생한다.")
     void throws_exception_if_names_size_is_out_of_range(int repeatCount) {
         String sampleNames = "pobi,".repeat(repeatCount);
+
+        int namesCount = (int) Arrays.stream(sampleNames.split(NAME_DELIMITER)).count();
+
         assertThatThrownBy(() -> Participants.create(sampleNames))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE_HEAD);
+                .hasMessageContaining(String.format("[ERROR] 참여자는 최소 2 명부터 최대 10000 명 입니다. 입력된 참여자 수 : %d", namesCount));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi"})
+    @DisplayName("입력받은 이름에 중복값이 존재하면, 예외가 발생한다.")
+    void throws_exception_if_names_contain_duplicates(String name) {
+        String duplicateNames = name + NAME_DELIMITER + name;
+
+        assertThatThrownBy(() -> Participants.create(duplicateNames))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(String.format("[ERROR] 중복된 이름을 입력할 수 없습니다.%n중복된 이름 : %s%n", name));
     }
 
     @ParameterizedTest
@@ -77,7 +85,7 @@ public class ParticipantsTest {
         void throws_exception_if_request_content_is_not_included_in_participants(String requestContent) {
             assertThatThrownBy(() -> participants.findParticipant(requestContent))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ERROR_MESSAGE_HEAD);
+                    .hasMessageContaining(String.format("[ERROR] %s은 존재하지 않는 이름입니다.", requestContent));
         }
     }
 }
