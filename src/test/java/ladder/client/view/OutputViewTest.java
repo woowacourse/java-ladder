@@ -6,7 +6,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
 import java.util.Map;
-import ladder.dto.LadderInfoDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -31,26 +30,43 @@ class OutputViewTest {
     }
 
     @Test
-    void 사다리_결과를_출력한다() {
-        //given
-        LadderInfoDto ladderInfoDto = new LadderInfoDto(
-                List.of("a", "b"),
-                List.of(
-                        List.of(false, false),
-                        List.of(true, false)),
-                List.of("c", "d"));
-
+    void 사다리_타이틀을_출력한다() {
         //when
-        OutputView.printLadder(ladderInfoDto);
+        OutputView.printLadderTitle();
 
         //then
         assertThat(printResult)
                 .hasToString("사다리 결과" + System.lineSeparator()
-                        + System.lineSeparator()
-                        + "a     b     " + System.lineSeparator()
-                        + "    |     |     " + System.lineSeparator()
-                        + "    |-----|     " + System.lineSeparator()
-                        + "c     d     " + System.lineSeparator());
+                        + System.lineSeparator());
+    }
+
+    @Test
+    void 사다리_행들을_출력한다() {
+        //given
+        List<List<Boolean>> ladderRows = List.of(
+                List.of(false, false),
+                List.of(true, false));
+
+        //when
+        OutputView.printLadderRows(ladderRows);
+
+        //then
+        assertThat(printResult)
+                .hasToString("    |     |     " + System.lineSeparator()
+                        + "    |-----|     " + System.lineSeparator());
+    }
+
+    @Test
+    void 사다리_플레이어를_출력한다() {
+        //given
+        List<String> playerNames = List.of("a", "b");
+
+        //when
+        OutputView.printPlayerNames(playerNames);
+
+        //then
+        assertThat(printResult)
+                .hasToString("a     b     " + System.lineSeparator());
     }
 
     @Test
