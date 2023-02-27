@@ -1,7 +1,7 @@
 package view;
 
 import domain.ladder.Line;
-import domain.user.User;
+import domain.user.Name;
 import dto.ladder.LadderDto;
 import dto.ladder.LineDto;
 import dto.prize.PrizesDto;
@@ -30,7 +30,7 @@ public class OutputView {
     }
 
     private String convertName(String name) {
-        if (name.length() == User.MAX_NAME_LENGTH) {
+        if (name.length() == Name.MAX_NAME_LENGTH) {
             return name;
         }
         return insertBlank(name);
@@ -38,7 +38,7 @@ public class OutputView {
 
     private String insertBlank(String name) {
         StringBuilder nameBuilder = new StringBuilder(name + " ");
-        while (nameBuilder.length() < User.MAX_NAME_LENGTH) {
+        while (nameBuilder.length() < Name.MAX_NAME_LENGTH) {
             nameBuilder.insert(0, " ");
         }
         return nameBuilder.toString();
@@ -58,7 +58,7 @@ public class OutputView {
     }
 
     private void printLineByStatus(boolean status) {
-        System.out.print(LineStatus.printStatus(status, User.MAX_NAME_LENGTH));
+        System.out.print(LineStatus.printStatus(status, Name.MAX_NAME_LENGTH));
         System.out.print(LINE_DELIMITER);
     }
 

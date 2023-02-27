@@ -34,7 +34,7 @@ class UserTest {
         void shouldFailNameLengthOver() {
             String name = "abcdef";
             assertThatThrownBy(() -> new User(name, 0)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(User.NAME_LENGTH_ERROR_MESSAGE);
+                    .hasMessageContaining(Name.NAME_LENGTH_ERROR_MESSAGE);
         }
 
         @DisplayName("사람 이름이 0글자일 때 실패한다.")
@@ -42,7 +42,7 @@ class UserTest {
         void shouldFailNameLengthZero() {
             String name = "";
             assertThatThrownBy(() -> new User(name, 0)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(User.NAME_LENGTH_ERROR_MESSAGE);
+                    .hasMessageContaining(Name.NAME_LENGTH_ERROR_MESSAGE);
         }
     }
 
@@ -54,7 +54,7 @@ class UserTest {
         void shouldFailNameWithSpecialCharacter() {
             String name = "ab#c";
             assertThatThrownBy(() -> new User(name, 0)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
+                    .hasMessageContaining(Name.NAME_FORMAT_ERROR_MESSAGE);
         }
 
         @DisplayName("사람 이름에 숫자가 포함되면 실패한다.")
@@ -62,7 +62,7 @@ class UserTest {
         void shouldFailNameWithNumber() {
             String name = "ab23c";
             assertThatThrownBy(() -> new User(name, 0)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
+                    .hasMessageContaining(Name.NAME_FORMAT_ERROR_MESSAGE);
         }
 
         @DisplayName("사람 이름에 한글이 포함되면 실패한다.")
@@ -70,7 +70,7 @@ class UserTest {
         void shouldFailNameWithKorean() {
             String name = "ab가c";
             assertThatThrownBy(() -> new User(name, 0)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
+                    .hasMessageContaining(Name.NAME_FORMAT_ERROR_MESSAGE);
         }
 
         @DisplayName("사람 이름에 공백이 포함되면 실패한다.")
@@ -78,7 +78,7 @@ class UserTest {
         void shouldFailNameWithBlank() {
             String name = "ab c";
             assertThatThrownBy(() -> new User(name, 0)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
+                    .hasMessageContaining(Name.NAME_FORMAT_ERROR_MESSAGE);
         }
     }
 
