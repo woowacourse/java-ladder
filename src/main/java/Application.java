@@ -16,20 +16,21 @@ import ui.output.OutputView;
 public class Application {
     public static void main(String[] args) {
         LadderGame ladderGame = new LadderGame();
-        People people = inputPeople(ladderGame);
-        Rewards rewards = inputRewards(ladderGame, people.getPeople().size());
+        inputPeople(ladderGame);
+        Rewards rewards = inputRewards(ladderGame, ladderGame.getPeople().getPeople().size());
         int ladderHeight = InputView.inputLadderHeight();
-        Lines lines = ladderGame.createLines(people.getPeople().size(), ladderHeight);
-        ladderGame.processResult(people, lines);
-        OutputView.printLadderResult(people, lines, rewards);
-        repeatPrintPeopleResultUntilAll(rewards, people);
+        Lines lines = ladderGame.createLines(ladderGame.getPeople().getPeople().size(), ladderHeight);
+        ladderGame.processResult(ladderGame.getPeople(), lines);
+        OutputView.printLadderResult(ladderGame.getPeople(), lines, rewards);
+        repeatPrintPeopleResultUntilAll(rewards, ladderGame.getPeople());
     }
 
-    private static People inputPeople(LadderGame ladderGame) {
+    private static void inputPeople(LadderGame ladderGame) {
         while (true) {
             try {
                 List<String> names = InputView.inputPersonName();
-                return ladderGame.createPeople(names);
+                ladderGame.createPeople(names);
+                return;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

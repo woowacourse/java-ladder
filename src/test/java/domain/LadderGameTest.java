@@ -28,12 +28,12 @@ class LadderGameTest {
     @Test
     void PEOPLE_객체_생성() {
         List<String> names = List.of("p1", "p2", "p3");
-        People people = ladderGame.createPeople(names);
+        ladderGame.createPeople(names);
 
         Assertions.assertAll(
                 () -> {
                     for (int i = 0; i < names.size(); i++) {
-                        assertEquals(people.getPeople().get(i).getName().getPersonName(), names.get(i));
+                        assertEquals(ladderGame.getPeople().getPeople().get(i).getName().getPersonName(), names.get(i));
                     }
                 }
         );

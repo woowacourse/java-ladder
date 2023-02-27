@@ -13,13 +13,17 @@ import util.RandomValueGenerator;
  */
 public class LadderGame {
 
-    public People createPeople(List<String> names) {
+    private People people;
+    private Lines lines;
+    private Rewards rewards;
+
+    public void createPeople(List<String> names) {
         validateDuplicateName(names);
         List<Person> people = new ArrayList<>();
         for (int i = 0; i < names.size(); i++) {
             people.add(new Person(names.get(i), i));
         }
-        return new People(people);
+        this.people = new People(people);
     }
 
     private void validateDuplicateName(List<String> names) {
@@ -81,4 +85,7 @@ public class LadderGame {
         return MoveCommand.NONE;
     }
 
+    public People getPeople(){
+        return people;
+    }
 }
