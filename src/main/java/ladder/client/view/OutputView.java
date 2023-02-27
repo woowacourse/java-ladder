@@ -15,69 +15,69 @@ public class OutputView {
     private static final String NEXT_LINE = System.lineSeparator();
     private static final String NAME_MESSAGE = "%-6s";
 
-    private OutputView() {
+    public OutputView() {
     }
 
-    public static void printLadderTitle() {
+    public void printLadderTitle() {
         System.out.println(generateTitleMessage());
     }
 
-    public static void printPlayerNames(List<String> playerNames) {
+    public void printPlayerNames(List<String> playerNames) {
         System.out.println(generatePlayerNamesMessage(playerNames));
     }
 
-    public static void printLadderRows(List<List<Boolean>> ladderRows) {
+    public void printLadderRows(List<List<Boolean>> ladderRows) {
         System.out.println(generateLadderMessage(ladderRows));
     }
 
-    public static void printResultNames(List<String> resultNames) {
+    public void printResultNames(List<String> resultNames) {
         System.out.println(generateResultNamesMessage(resultNames));
     }
 
-    private static String generateTitleMessage() {
+    private String generateTitleMessage() {
         return "사다리 결과" + NEXT_LINE;
     }
 
-    private static String generatePlayerNamesMessage(List<String> playerNames) {
+    private String generatePlayerNamesMessage(List<String> playerNames) {
         return playerNames.stream()
-                .map(OutputView::generatePlayerNameMessage)
+                .map(this::generatePlayerNameMessage)
                 .collect(Collectors.joining());
     }
 
-    private static String generatePlayerNameMessage(String playerName) {
+    private String generatePlayerNameMessage(String playerName) {
         return String.format(NAME_MESSAGE, playerName);
     }
 
-    private static String generateLadderMessage(List<List<Boolean>> ladderInfo) {
+    private String generateLadderMessage(List<List<Boolean>> ladderInfo) {
         return ladderInfo.stream()
-                .map(OutputView::generateRowMessage)
+                .map(this::generateRowMessage)
                 .collect(Collectors.joining(NEXT_LINE));
     }
 
-    private static String generateRowMessage(List<Boolean> rowInfo) {
+    private String generateRowMessage(List<Boolean> rowInfo) {
         return ROW_START_SPACE + rowInfo.stream()
-                .map(OutputView::generatePointMessage)
+                .map(this::generatePointMessage)
                 .collect(Collectors.joining());
     }
 
-    private static String generatePointMessage(boolean pointInfo) {
+    private String generatePointMessage(boolean pointInfo) {
         if (pointInfo) {
             return "|-----";
         }
         return "|     ";
     }
 
-    private static String generateResultNamesMessage(List<String> resultNames) {
+    private String generateResultNamesMessage(List<String> resultNames) {
         return resultNames.stream()
-                .map(OutputView::generateResultNameMessage)
+                .map(this::generateResultNameMessage)
                 .collect(Collectors.joining());
     }
 
-    private static String generateResultNameMessage(String resultName) {
+    private String generateResultNameMessage(String resultName) {
         return String.format(NAME_MESSAGE, resultName);
     }
 
-    public static void printResult(String result) {
+    public void printResult(String result) {
         System.out.println("실행 결과");
         if (result == null) {
             System.out.println("결과가 없는 사람입니다");
@@ -86,23 +86,23 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public static void printResults(Map<String, String> results) {
+    public void printResults(Map<String, String> results) {
         System.out.println("실행 결과");
         System.out.println(generateResultsMessage(results));
     }
 
-    private static String generateResultsMessage(Map<String, String> results) {
+    private String generateResultsMessage(Map<String, String> results) {
         return results.entrySet()
                 .stream()
-                .map(OutputView::generateResultMessage)
+                .map(this::generateResultMessage)
                 .collect(Collectors.joining(NEXT_LINE));
     }
 
-    private static String generateResultMessage(Map.Entry<String, String> result) {
+    private String generateResultMessage(Map.Entry<String, String> result) {
         return result.getKey() + " : " + result.getValue();
     }
 
-    public static void printError(Exception e) {
+    public void printError(Exception e) {
         System.err.println(e.getMessage());
     }
 }

@@ -17,10 +17,12 @@ public class LadderClientController {
     private static final String ALL_RESULT = "all";
 
     private final InputView inputView;
+    private final OutputView outputView;
     private final LadderGameController ladderGame;
 
-    public LadderClientController(InputView inputView, LadderGameController ladderGame) {
+    public LadderClientController(InputView inputView, OutputView outputView, LadderGameController ladderGame) {
         this.inputView = inputView;
+        this.outputView = outputView;
         this.ladderGame = ladderGame;
     }
 
@@ -50,10 +52,10 @@ public class LadderClientController {
     }
 
     private void printLadderInfo() {
-        OutputView.printLadderTitle();
-        OutputView.printPlayerNames(ladderGame.getPlayerNames());
-        OutputView.printLadderRows(ladderGame.getLadderRows());
-        OutputView.printResultNames(ladderGame.getResultNames());
+        outputView.printLadderTitle();
+        outputView.printPlayerNames(ladderGame.getPlayerNames());
+        outputView.printLadderRows(ladderGame.getLadderRows());
+        outputView.printResultNames(ladderGame.getResultNames());
     }
 
 
@@ -67,17 +69,17 @@ public class LadderClientController {
 
     private void printResult(Map<String, String> ladderGameResult, String targetPlayerName) {
         if (ALL_RESULT.equals(targetPlayerName)) {
-            OutputView.printResults(ladderGameResult);
+            outputView.printResults(ladderGameResult);
             return;
         }
-        OutputView.printResult(ladderGameResult.get(targetPlayerName));
+        outputView.printResult(ladderGameResult.get(targetPlayerName));
     }
 
     private void repeatIfError(Runnable runnable) {
         try {
             runnable.run();
         } catch (IllegalArgumentException e) {
-            OutputView.printError(e);
+            outputView.printError(e);
             repeatIfError(runnable);
         }
     }

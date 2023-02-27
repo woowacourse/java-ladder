@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 class OutputViewTest {
 
     private final ByteArrayOutputStream printResult = new ByteArrayOutputStream();
+    private final OutputView outputView = new OutputView();
 
     @BeforeEach
     void setSystemOut() {
@@ -32,7 +33,7 @@ class OutputViewTest {
     @Test
     void 사다리_타이틀을_출력한다() {
         //when
-        OutputView.printLadderTitle();
+        outputView.printLadderTitle();
 
         //then
         assertThat(printResult)
@@ -48,7 +49,7 @@ class OutputViewTest {
                 List.of(true, false));
 
         //when
-        OutputView.printLadderRows(ladderRows);
+        outputView.printLadderRows(ladderRows);
 
         //then
         assertThat(printResult)
@@ -62,7 +63,7 @@ class OutputViewTest {
         List<String> playerNames = List.of("a", "b");
 
         //when
-        OutputView.printPlayerNames(playerNames);
+        outputView.printPlayerNames(playerNames);
 
         //then
         assertThat(printResult)
@@ -71,7 +72,7 @@ class OutputViewTest {
 
     @Test
     void 결과_하나_출력() {
-        OutputView.printResult("book");
+        outputView.printResult("book");
         assertThat(printResult)
                 .hasToString("실행 결과" + System.lineSeparator()
                         + "book" + System.lineSeparator());
@@ -79,7 +80,7 @@ class OutputViewTest {
 
     @Test
     void 결과_하나_출력시_없는_사용자이면_없다는_메시지_출력() {
-        OutputView.printResult(null);
+        outputView.printResult(null);
         assertThat(printResult)
                 .hasToString("실행 결과" + System.lineSeparator()
                         + "결과가 없는 사람입니다" + System.lineSeparator());
@@ -87,7 +88,7 @@ class OutputViewTest {
 
     @Test
     void 결과_여러개_출력() {
-        OutputView.printResults(Map.of("name", "book"));
+        outputView.printResults(Map.of("name", "book"));
         assertThat(printResult)
                 .hasToString("실행 결과" + System.lineSeparator() +
                         "name : book" + System.lineSeparator());
