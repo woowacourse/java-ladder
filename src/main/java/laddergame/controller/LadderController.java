@@ -33,15 +33,12 @@ public class LadderController {
     }
 
     public void run() {
-        final PersonalNames names = retryOnInvalidInputWithAlert(
-                () -> new PersonalNames(inputView.readNames()));
-        final LadderResult ladderResult = retryOnInvalidInputWithAlert(
-                () -> LadderResult.of(names, inputView.readResults()));
-        final Height ladderHeight = retryOnInvalidInputWithAlert(
-                () -> new Height(inputView.readHeight()));
+        final PersonalNames names = createPersonalNames();
+        final LadderResult ladderResult = createLadderResult(names);
+        final Height ladderHeight = createHeight();
         final Ladder ladder = new Ladder(new Width(names.getSize()), ladderHeight, booleanGenerator);
 
-        showGeneratedLadder(names, ladderResult, ladder);
+        printLadder(names, ladderResult, ladder);
         playGame(names, ladderResult, ladder);
     }
 
@@ -51,12 +48,24 @@ public class LadderController {
         searchResultItemByNameFrom(result);
     }
 
-    private void showGeneratedLadder(PersonalNames names, LadderResult ladderResult, Ladder ladder) {
+    private void printLadder(PersonalNames names, LadderResult ladderResult, Ladder ladder) {
         final List<Line> lines = ladder.getLines();
         outputView.printLadderForm(ladderFormGenerator.generate(names, ladderResult, lines));
     }
 
-    private <T> T retryOnInvalidInputWithAlert(Supplier<T> supplier) {
+    private PersonalNames createPersonalNames() {
+        return createInstance(() -> new PersonalNames(inputView.readNames()));
+    }
+
+    private LadderResult createLadderResult(PersonalNames names) {
+        return createInstance(() -> LadderResult.of(names, inputView.readResults()));
+    }
+
+    private Height createHeight() {
+        return createInstance(() -> new Height(inputView.readHeight()));
+    }
+
+    private <T> T createInstance(Supplier<T> supplier) {
         int count = 0;
         while (count++ < RETRY_LIMIT) {
             try {
