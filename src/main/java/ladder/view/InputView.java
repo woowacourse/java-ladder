@@ -40,7 +40,7 @@ public class InputView {
         CommonValidator.validateBlank(ladderHeight);
         InputValidator.validateNonNumber(ladderHeight);
 
-        return Integer.parseInt(ladderHeight);
+        return InputValidator.validateLadderHeightRange(Integer.parseInt(ladderHeight));
     }
 
     public static String inputWantGameResults(List<String> namesList) {
