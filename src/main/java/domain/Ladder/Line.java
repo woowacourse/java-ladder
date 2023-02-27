@@ -45,6 +45,21 @@ public class Line {
         }
     }
     
+    public List<Integer> getPresentIndexes() {
+        ArrayList<Integer> indexes = new ArrayList<>();
+        for ( int i = 0; i < this.points.size(); i++ ) {
+            this.addIndexIfPresent(indexes, i);
+        }
+        return indexes;
+    }
+    
+    private void addIndexIfPresent( ArrayList<Integer> indexes, int i ) {
+        if ( this.points.get(i).isPresent() ) {
+            indexes.add(i);
+        }
+    }
+    
+    
     public List<Point> getPoints() {
         return Collections.unmodifiableList(this.points);
     }
