@@ -1,11 +1,7 @@
 package laddergame.domain;
 
-import javax.swing.text.Position;
-import java.util.List;
-
 public class Player {
-    private Name name;
-    private String reward;
+    private final Name name;
     private int position;
 
     public Player(String name, int position) {
@@ -21,10 +17,6 @@ public class Player {
         return name.getName();
     }
 
-    public String getReward() {
-        return reward;
-    }
-
     public void move(boolean isLeftStep, boolean isRightStep) {
         if (isLeftStep) {
             position--;
@@ -33,10 +25,6 @@ public class Player {
         if (isRightStep) {
             position++;
         }
-    }
-
-    public void matchReward(List<String> rewards) {
-        this.reward = rewards.get(position);
     }
 
     public boolean isTarget(String name) {

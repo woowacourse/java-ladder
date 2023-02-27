@@ -1,28 +1,17 @@
 package laddergame.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Rewards {
-    private static final String FAIL_MESSAGE = "꽝";
-    private static final String WRONG_REWARD_NAME_ERROR_MESSAGE = "플레이어의 이름은 중복이 불가능합니다.";
-
-    List<String> rewards;
+    private final List<Reward> rewards = new ArrayList<>();
 
     public Rewards(List<String> rewards) {
-        checkNotFailMessageOrNotDigit(rewards);
-        this.rewards = rewards;
+        rewards.forEach(reward -> this.rewards.add(new Reward(reward)));
     }
 
-    public List<String> getRewards() {
+    public List<Reward> getRewards() {
         return Collections.unmodifiableList(rewards);
-    }
-
-    private void checkNotFailMessageOrNotDigit(List<String> rewards) {
-        if (rewards.stream()
-                .filter(e -> (!e.equals(FAIL_MESSAGE) && !e.chars().allMatch(Character::isDigit)))
-                .count() != 0) {
-            throw new IllegalArgumentException(WRONG_REWARD_NAME_ERROR_MESSAGE);
-        }
     }
 }

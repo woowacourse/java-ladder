@@ -61,17 +61,10 @@ class LadderGameTest {
                 new TestTrueOrFalseGenerator(new ArrayList<>(List.of(true, false, false, true, false, true, true, false, false, false))));
         Rewards rewards = new Rewards(List.of("꽝", "3000", "60"));
 
-        List<Line> lines = ladder.getLines();
-        List<String> resultReward = new ArrayList<>();
-
         LadderGame ladderGame = new LadderGame(players, rewards, ladder);
         ladderGame.start();
 
-        for (Player player : players.getPlayers()) {
-            resultReward.add(player.getReward());
-        }
-
-        assertThat(resultReward).isEqualTo(List.of("꽝", "3000", "60"));
+        assertThat(ladderGame.getReward("jena").getRewardName()).isEqualTo("꽝");
     }
 
 }

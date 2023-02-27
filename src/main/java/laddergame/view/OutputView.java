@@ -1,8 +1,8 @@
 package laddergame.view;
 
+import laddergame.domain.LadderGame;
 import laddergame.domain.Line;
-import laddergame.domain.Player;
-import laddergame.domain.Players;
+import laddergame.domain.Reward;
 
 import java.util.List;
 
@@ -15,11 +15,11 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printResult(List<String> playersName, List<Line> lines, int maxPlayerNameLength, List<String> rewards) {
+    public void printResult(List<String> playersName, List<Line> lines, int maxPlayerNameLength, List<Reward> rewards) {
         playersName.forEach(name -> System.out.printf("%" + maxPlayerNameLength + "s ", name));
         System.out.println();
         lines.forEach(line -> System.out.println(changeFormat(line, maxPlayerNameLength)));
-        rewards.forEach(reward -> System.out.printf("%" + maxPlayerNameLength + "s ", reward));
+        rewards.forEach(reward -> System.out.printf("%" + maxPlayerNameLength + "s ", reward.getRewardName()));
         System.out.println();
     }
 
@@ -27,18 +27,18 @@ public class OutputView {
         System.out.println(ERROR_PREFIX + errorMessage);
     }
 
-    public void printPlayerResult(Player player) {
+    public void printPlayerResult(String rewardName) {
         System.out.println("실행 결과");
-        System.out.println(player.getReward());
+        System.out.println(rewardName);
     }
 
-    public void printAllResult(Players players) {
+    public void printAllResult(List<String> playerNames, LadderGame ladderGame) {
         System.out.println("실행 결과");
-        players.getPlayers().stream()
-                .forEach(player -> {
-                    System.out.printf("%s : %s", player.getName(), player.getReward());
-                    System.out.print(System.lineSeparator());
-                });
+        playerNames.forEach(playerName ->
+        {
+            System.out.printf("%s : %s", playerName, ladderGame.getReward(playerName).getRewardName());
+            System.out.print(System.lineSeparator());
+        });
     }
 
     private String changeFormat(Line line, int maxPlayerNameLength) {

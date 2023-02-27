@@ -35,31 +35,28 @@ public class LadderGameController {
         Ladder ladder = makeLadder(players, height, trueOrFalseGenerator);
         LadderGame ladderGame = new LadderGame(players, rewards, ladder);
         ladderGame.start();
-        List<String> playerNames = players.getPlayers()
-                .stream()
-                .map(Player::getName)
-                .collect(Collectors.toList());
+        List<String> playerNames = makePlayerNames(players);
         outputView.printResult(playerNames, ladder.getLines(), players.getMaxPlayerNameLength(), rewards.getRewards());
-        showLadderRunResult(playerNames, players);
+        showLadderRunResult(playerNames, ladderGame);
     }
 
-    private void showLadderRunResult(List<String> playerNames, Players players) {
+    private void showLadderRunResult(List<String> playerNames, LadderGame ladderGame) {
         Target target = requestTarget(playerNames);
-        if (checkShowAllOrQuit(playerNames, players, target)) {
+        if (checkShowAllOrQuit(playerNames, ladderGame, target)) {
             return;
         }
-        Player targetPlayer = players.getTargetPlayer(target.getName());
-        outputView.printPlayerResult(targetPlayer);
-        showLadderRunResult(playerNames, players);
+        Reward reward = ladderGame.getReward(target.getName());
+        outputView.printPlayerResult(reward.getRewardName());
+        showLadderRunResult(playerNames, ladderGame);
     }
 
-    private boolean checkShowAllOrQuit(List<String> playerNames, Players players, Target target) {
+    private boolean checkShowAllOrQuit(List<String> playerNames, LadderGame ladderGame, Target target) {
         if (target.isQuit()) {
             return true;
         }
         if (target.isAll()) {
-            outputView.printAllResult(players);
-            showLadderRunResult(playerNames, players);
+            outputView.printAllResult(playerNames, ladderGame);
+            showLadderRunResult(playerNames, ladderGame);
             return true;
         }
         return false;
@@ -91,8 +88,8 @@ public class LadderGameController {
         try {
             outputView.printMessage(REWARD_INPUT_REQUEST);
             List<String> rewardNames = inputView.readRewards();
-            validator.validateRewards(rewardNames, playerCount);
             Rewards rewards = new Rewards(rewardNames);
+            validator.validateRewards(rewards, playerCount);
             return rewards;
         } catch (IllegalArgumentException e) {
             outputView.printErrormessage(e.getMessage());
@@ -121,5 +118,12 @@ public class LadderGameController {
         } catch (LadderStateException e) {
             return makeLadder(players, height, trueOrFalseGenerator);
         }
+    }
+
+    private List<String> makePlayerNames(Players players) {
+        return players.getPlayers()
+                .stream()
+                .map(Player::getName)
+                .collect(Collectors.toList());
     }
 }

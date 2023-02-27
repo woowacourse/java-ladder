@@ -2,6 +2,7 @@ package laddergame.util;
 
 import laddergame.domain.Ladder;
 import laddergame.domain.Line;
+import laddergame.domain.Rewards;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +10,6 @@ import java.util.List;
 public class Validator {
     private static final String INPUT_NULL_ERROR_MESSAGE = "입력에는 공백이 들어올 수 없습니다";
     private static final String WRONG_LADDER_ERROR_MESSAGE = "잘못된 사다리가 만들어졌습니다.";
-    private static final String REWARD_NAME_BLANK_ERROR_MESSAGE = "reward 목록에 공백이 입력될 수 없습니다.";
     private static final String REWARD_COUNT_ERROR_MESSAGE = "reward 개수는 플레이어의 수와 같아야 합니다.";
     private static final String WRONG_HEIGHT_ERROR_MESSAGE = "양의 정수만 입력해주세요.";
 
@@ -33,13 +33,8 @@ public class Validator {
         }
     }
 
-    public void validateRewards(List<String> rewardNames, int playerCount) {
-        if (rewardNames.stream()
-                .filter(rewardName -> rewardName.isBlank())
-                .count() != 0) {
-            throw new IllegalArgumentException(REWARD_NAME_BLANK_ERROR_MESSAGE);
-        }
-        if (rewardNames.size() != playerCount) {
+    public void validateRewards(Rewards rewards, int playerCount) {
+        if (rewards.getRewards().size() != playerCount) {
             throw new IllegalArgumentException(REWARD_COUNT_ERROR_MESSAGE);
         }
 
