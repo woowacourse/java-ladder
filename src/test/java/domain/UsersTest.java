@@ -1,5 +1,6 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -34,5 +35,31 @@ public class UsersTest {
 
         assertThatCode(() -> new Users(users))
                 .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("이름으로 User를 찾을 수 있다.")
+    void findByNameTest1() {
+        User kodak = new User("kodak");
+        User polo = new User("polo");
+        User poz = new User("poz");
+
+        Users users = new Users(List.of(kodak, polo, poz));
+        User findedUser = users.findByName("kodak");
+
+        assertThat(findedUser).isEqualTo(kodak);
+    }
+
+    @Test
+    @DisplayName("User를 찾을 수 없다면 예외를 던진다.")
+    void findByNameTest2() {
+        User kodak = new User("kodak");
+        User polo = new User("polo");
+        User poz = new User("poz");
+
+        Users users = new Users(List.of(kodak, polo, poz));
+
+        assertThatThrownBy(() -> users.findByName("kadak"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -6,6 +6,7 @@ public class User {
 
     private static final String INVALID_NAME_ERROR = "[ERROR] 이름의 길이는 1 ~ 5글자 사이여야 합니다.";
     private static final int NAME_LENGTH_UPPER_BOUND = 5;
+
     private final String name;
 
     public User(final String name) {

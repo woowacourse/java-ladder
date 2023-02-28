@@ -7,6 +7,8 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class LadderRowTest {
 
@@ -26,5 +28,14 @@ public class LadderRowTest {
 
         Assertions.assertThatCode(() -> new LadderRow(lines))
                 .doesNotThrowAnyException();
+    }
+
+    @ParameterizedTest(name = "사다리의 N번째 세로 줄 기준으로, 주변에 존재하는 Line의 인덱스를 반환한다.")
+    @CsvSource({"0,0", "1,0", "2,-100", "3,3", "4,3"})
+    void getExistingLineIndexTest(int index, int existingLineIndex) {
+        List<Line> lines = List.of(EXIST, NOT_EXIST, NOT_EXIST, EXIST);
+        LadderRow ladderRow = new LadderRow(lines);
+
+        Assertions.assertThat(ladderRow.getExistingLineIndex(index)).isEqualTo(existingLineIndex);
     }
 }

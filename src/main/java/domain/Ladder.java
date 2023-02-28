@@ -21,6 +21,10 @@ public class Ladder {
         }
     }
 
+    public int getLadderHeight() {
+        return ladderRows.size();
+    }
+
     public List<LadderRow> getLadderRows() {
         return Collections.unmodifiableList(ladderRows);
     }

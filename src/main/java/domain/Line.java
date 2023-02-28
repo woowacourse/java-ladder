@@ -5,7 +5,7 @@ public enum Line {
     EXIST,
     NOT_EXIST;
 
-    public static Line from(boolean isExist) {
+    public static Line from(final boolean isExist) {
         if (isExist) {
             return EXIST;
         }
