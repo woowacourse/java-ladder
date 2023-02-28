@@ -1,12 +1,13 @@
 package laddergame.domain.participant;
 
-import static laddergame.domain.message.ErrorMessage.INVALID_NAME_BLANK;
-import static laddergame.domain.message.ErrorMessage.INVALID_NANE_LENGTH;
+import java.util.Objects;
+
+import static laddergame.domain.game.UserRequestedParticipants.ALL_PARTICIPANTS_COMMAND;
 
 public class ParticipantName {
 
-    private static final char INVALID_INCLUSION = ' ';
-    private static final int MAX_LENGTH = 5;
+    public static final int MAX_LENGTH = 5;
+    private static final String INVALID_INCLUSION = " ";
 
     private final String name;
 
@@ -14,6 +15,7 @@ public class ParticipantName {
         validateNameNullOrEmpty(name);
         validateNameBlank(name);
         validateNameLength(name);
+        validateNameByCommand(name);
         this.name = name;
     }
 
@@ -21,22 +23,56 @@ public class ParticipantName {
         return new ParticipantName(name);
     }
 
+    public boolean isSameName(final String otherName) {
+        return name.equals(otherName);
+    }
+
     private void validateNameNullOrEmpty(final String name) {
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("[ERROR]");
+        if (Objects.isNull(name) || name.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 이름을 입력하셔아 합니다.");
         }
     }
 
     private void validateNameBlank(final String name) {
-        if (name.indexOf(INVALID_INCLUSION) != -1) {
-            throw new IllegalArgumentException(INVALID_NAME_BLANK.getMessage());
+        if (name.contains(INVALID_INCLUSION)) {
+            throw new IllegalArgumentException(String.format("[ERROR] 이름에 공백이 포함될 수 없습니다. 입력된 이름 : %s", name));
         }
     }
 
     private void validateNameLength(final String name) {
         if (name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException(INVALID_NANE_LENGTH.getMessage());
+            throw new IllegalArgumentException(String.format("[ERROR] 이름은 %d 글자를 초과할 수 없습니다. 입력된 이름 : %s", MAX_LENGTH, name));
         }
+    }
+
+    private void validateNameByCommand(final String name) {
+        if (name.equals(ALL_PARTICIPANTS_COMMAND)) {
+            throw new IllegalArgumentException(String.format("[ERROR] 이름은 \"%s\"일 수 없습니다.", ALL_PARTICIPANTS_COMMAND));
+        }
+    }
+
+    @Override
+    public boolean equals(final Object diffParticipantName) {
+        if (this == diffParticipantName) {
+            return true;
+        }
+        if (diffParticipantName == null || getClass() != diffParticipantName.getClass()) {
+            return false;
+        }
+        ParticipantName that = (ParticipantName) diffParticipantName;
+        return name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return "ParticipantName{" +
+                "name='" + name + '\'' +
+                '}';
     }
 
     public String getName() {

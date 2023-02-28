@@ -1,10 +1,10 @@
-package laddergame.domain.rung;
+package laddergame.domain.ladder;
 
 import laddergame.util.BooleanGenerator;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class RungBooleanGenerator implements BooleanGenerator {
+public class RandomBooleanGenerator implements BooleanGenerator {
 
     @Override
     public boolean generate() {

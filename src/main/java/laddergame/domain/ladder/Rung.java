@@ -1,4 +1,4 @@
-package laddergame.domain.rung;
+package laddergame.domain.ladder;
 
 import java.util.Objects;
 

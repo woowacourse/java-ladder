@@ -4,8 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static laddergame.domain.message.ErrorMessage.INVALID_HEIGHT_RANGE;
-import static laddergame.domain.message.ErrorMessage.INVALID_HEIGHT_TYPE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -24,7 +22,7 @@ class LadderHeightTest {
     void throws_exception_if_height_is_not_integer_type(String height) {
         assertThatThrownBy(() -> new LadderHeight(height))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_HEIGHT_TYPE.getMessage());
+                .hasMessageContaining(String.format("[ERROR] 사다리 높이는 숫자를 입력해야 합니다. 입력된 값 : %s", height));
     }
 
     @ParameterizedTest
@@ -33,7 +31,7 @@ class LadderHeightTest {
     void throws_exception_if_height_is_less_than_1_or_greater_than_10000(String height) {
         assertThatThrownBy(() -> new LadderHeight(height))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_HEIGHT_RANGE.getMessage());
+                .hasMessageContaining("[ERROR] 사다리 높이는 1 ~ 10000 사이의 값만 가질 수 있습니다.");
     }
 
 }

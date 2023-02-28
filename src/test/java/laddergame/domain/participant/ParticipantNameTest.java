@@ -1,12 +1,11 @@
 package laddergame.domain.participant;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static laddergame.domain.message.ErrorMessage.INVALID_NAME_BLANK;
-import static laddergame.domain.message.ErrorMessage.INVALID_NANE_LENGTH;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -20,12 +19,12 @@ public class ParticipantNameTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"orange", "chanmin", "elephant"})
-    @DisplayName("이름이 다섯 글자를 초과하면, 예외가 발생한다.")
-    void throws_exception_if_name_is_greater_than_5(String invalidName) {
+    @NullAndEmptySource
+    @DisplayName("이름이 빈값이라면, 예외가 발생한다.")
+    void throws_exception_if_name_is_null_or_blank(String invalidName) {
         assertThatThrownBy(() -> ParticipantName.create(invalidName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_NANE_LENGTH.getMessage());
+                .hasMessageContaining("[ERROR] 이름을 입력하셔아 합니다.");
     }
 
     @ParameterizedTest
@@ -34,15 +33,25 @@ public class ParticipantNameTest {
     void throws_exception_if_name_contains_blank(String invalidName) {
         assertThatThrownBy(() -> ParticipantName.create(invalidName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_NAME_BLANK.getMessage());
+                .hasMessageContaining(String.format("[ERROR] 이름에 공백이 포함될 수 없습니다. 입력된 이름 : %s", invalidName));
     }
 
     @ParameterizedTest
-    @NullAndEmptySource
-    @DisplayName("이름이 빈값이라면, 예외가 발생한다.")
-    void throws_exception_if_name_is_null_or_blank(String invalidName) {
+    @ValueSource(strings = {"orange", "chanmin", "elephant"})
+    @DisplayName("이름이 다섯 글자를 초과하면, 예외가 발생한다.")
+    void throws_exception_if_name_is_greater_than_5(String invalidName) {
         assertThatThrownBy(() -> ParticipantName.create(invalidName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR]");
+                .hasMessageContaining(String.format("[ERROR] 이름은 5 글자를 초과할 수 없습니다. 입력된 이름 : %s", invalidName));
+    }
+
+    @Test
+    @DisplayName("이름이 \"all\" 이라면, 예외가 발생한다.")
+    void throws_exception_if_name_is_all() {
+        String invalidName = "all";
+
+        assertThatThrownBy(() -> ParticipantName.create(invalidName))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(String.format("[ERROR] 이름은 \"%s\"일 수 없습니다.", invalidName));
     }
 }
