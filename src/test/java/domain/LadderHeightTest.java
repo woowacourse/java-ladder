@@ -1,26 +1,26 @@
 package domain;
 
-import exception.InvalidLadderHeightException;
+import domain.ladder.LadderHeight;
+import exception.ladder.InvalidLadderHeightException;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
-import util.RandomBooleanGenerator;
 
-class LadderTest {
+class LadderHeightTest {
 
-    @DisplayName("사다리 높이가 요구사항에 충족한 경우")
+    @DisplayName("사다리 높이가 요구사항에 부합한 경우")
     @TestFactory
     Stream<DynamicTest> createSuccess() {
         return Stream.of(
-            DynamicTest.dynamicTest("높이 1만큼의 사다리를 생성한다.(최소)", () -> {
-                Ladder map = new Ladder("1", 2, new RandomBooleanGenerator());
-                Assertions.assertThat(map.getLines().size()).isEqualTo(1);
+            DynamicTest.dynamicTest("높이가 1인 경우", () -> {
+                LadderHeight ladderHeight = new LadderHeight("1");
+                Assertions.assertThat(ladderHeight.getHeight()).isEqualTo(1);
             }),
-            DynamicTest.dynamicTest("높이 10만큼의 사다리를 생성한다.(최대)", () -> {
-                Ladder map = new Ladder("10", 2, new RandomBooleanGenerator());
-                Assertions.assertThat(map.getLines().size()).isEqualTo(10);
+            DynamicTest.dynamicTest("높이가 10인 경우", () -> {
+                LadderHeight ladderHeight = new LadderHeight("10");
+                Assertions.assertThat(ladderHeight.getHeight()).isEqualTo(10);
             })
         );
     }
@@ -30,26 +30,27 @@ class LadderTest {
     Stream<DynamicTest> createFail() {
         return Stream.of(
             DynamicTest.dynamicTest("높이가 null 인 경우.",
-                () -> Assertions.assertThatThrownBy(() -> new Ladder(null, 2, new RandomBooleanGenerator()))
+                () -> Assertions.assertThatThrownBy(() -> new LadderHeight(null))
                     .isExactlyInstanceOf(InvalidLadderHeightException.class)),
             DynamicTest.dynamicTest("높이가 빈문자열 이루어진 경우.",
-                () -> Assertions.assertThatThrownBy(() -> new Ladder("", 2, new RandomBooleanGenerator()))
+                () -> Assertions.assertThatThrownBy(() -> new LadderHeight(""))
                     .isExactlyInstanceOf(InvalidLadderHeightException.class)),
             DynamicTest.dynamicTest("높이가 공백으로 이루어진 경우.",
-                () -> Assertions.assertThatThrownBy(() -> new Ladder("     ", 2, new RandomBooleanGenerator()))
+                () -> Assertions.assertThatThrownBy(() -> new LadderHeight("     "))
                     .isExactlyInstanceOf(InvalidLadderHeightException.class)),
             DynamicTest.dynamicTest("높이가 정수가 아닌 경우.",
-                () -> Assertions.assertThatThrownBy(() -> new Ladder("as", 2, new RandomBooleanGenerator()))
+                () -> Assertions.assertThatThrownBy(() -> new LadderHeight("as"))
                     .isExactlyInstanceOf(InvalidLadderHeightException.class)),
             DynamicTest.dynamicTest("높이가 음수인 경우.",
-                () -> Assertions.assertThatThrownBy(() -> new Ladder("-1", 2, new RandomBooleanGenerator()))
+                () -> Assertions.assertThatThrownBy(() -> new LadderHeight("-1"))
                     .isExactlyInstanceOf(InvalidLadderHeightException.class)),
             DynamicTest.dynamicTest("높이가 0인 경우.",
-                () -> Assertions.assertThatThrownBy(() -> new Ladder("0", 2, new RandomBooleanGenerator()))
+                () -> Assertions.assertThatThrownBy(() -> new LadderHeight("0"))
                     .isExactlyInstanceOf(InvalidLadderHeightException.class)),
             DynamicTest.dynamicTest("높이가 11인 경우.",
-                () -> Assertions.assertThatThrownBy(() -> new Ladder("11", 2, new RandomBooleanGenerator()))
+                () -> Assertions.assertThatThrownBy(() -> new LadderHeight("11"))
                     .isExactlyInstanceOf(InvalidLadderHeightException.class))
         );
     }
 }
+

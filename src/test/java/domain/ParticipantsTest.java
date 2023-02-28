@@ -2,8 +2,10 @@ package domain;
 
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-import exception.DuplicateNameException;
-import exception.InvalidParticipantsCountException;
+import domain.participants.Participants;
+import exception.participants.DuplicateNameException;
+import exception.participants.InvalidParticipantsCountException;
+import exception.view.EmptyInputException;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -17,11 +19,11 @@ class ParticipantsTest {
     Stream<DynamicTest> createSuccess() {
         return Stream.of(
             dynamicTest("참가자의 수가 2명인 경우 (최소)", () -> {
-                Participants participants = new Participants("split,jamie");
+                Participants participants = Participants.of("split,jamie");
                 Assertions.assertThat(participants.getCount()).isEqualTo(2);
             }),
             dynamicTest("참가자의 수가 10명인 경우 (최대)", () -> {
-                Participants participants = new Participants("a,b,c,d,e,f,g,h,i,j");
+                Participants participants = Participants.of("a,b,c,d,e,f,g,h,i,j");
                 Assertions.assertThat(participants.getCount()).isEqualTo(10);
             })
         );
@@ -31,13 +33,15 @@ class ParticipantsTest {
     @TestFactory
     Stream<DynamicTest> createFail() {
         return Stream.of(
-            dynamicTest("참가자의 수가 1명인 경우", () -> Assertions.assertThatThrownBy(() -> new Participants("split"))
+            dynamicTest("입력이 없는 경우", () -> Assertions.assertThatThrownBy(() -> Participants.of(""))
+                .isExactlyInstanceOf(EmptyInputException.class)),
+            dynamicTest("참가자의 수가 1명인 경우", () -> Assertions.assertThatThrownBy(() -> Participants.of("split"))
                 .isExactlyInstanceOf(InvalidParticipantsCountException.class)),
             dynamicTest("참가자의 수가 11명인 경우",
-                () -> Assertions.assertThatThrownBy(() -> new Participants("a,b,c,d,e,f,g,h,i,j,k"))
+                () -> Assertions.assertThatThrownBy(() -> Participants.of("a,b,c,d,e,f,g,h,i,j,k"))
                     .isExactlyInstanceOf(InvalidParticipantsCountException.class)),
             dynamicTest("중복된 이름이의 참가자가 있는 경우",
-                () -> Assertions.assertThatThrownBy(() -> new Participants("split,split"))
+                () -> Assertions.assertThatThrownBy(() -> Participants.of("split,split"))
                     .isExactlyInstanceOf(DuplicateNameException.class))
         );
     }

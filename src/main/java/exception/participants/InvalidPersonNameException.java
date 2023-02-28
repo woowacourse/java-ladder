@@ -1,4 +1,4 @@
-package exception;
+package exception.participants;
 
 public class InvalidPersonNameException extends IllegalArgumentException {
 
