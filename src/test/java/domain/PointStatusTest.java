@@ -1,6 +1,6 @@
 package domain;
 
-import static domain.PointStatus.printStatus;
+import static domain.ladder.PointStatus.printStatus;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

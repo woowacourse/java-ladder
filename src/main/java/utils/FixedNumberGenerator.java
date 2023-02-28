@@ -8,7 +8,7 @@ public class FixedNumberGenerator implements NumberGenerator {
     }
 
     @Override
-    public boolean isPoint() {
+    public boolean isPoint(boolean point) {
         return inputNum == 1;
     }
 }

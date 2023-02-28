@@ -1,4 +1,4 @@
-package domain;
+package domain.user;
 
 public class User {
     private static final int MIN_NAME_LENGTH = 1;
@@ -13,7 +13,7 @@ public class User {
     public User(String name) {
         validateNameLength(name);
         validateNameFormat(name);
-        this.name = convertName(name);
+        this.name = name;
     }
 
     private void validateNameLength(String name) {
@@ -30,21 +30,6 @@ public class User {
         if (!name.matches(NAME_REGEX_FORMAT)) {
             throw new IllegalArgumentException(NAME_FORMAT_ERROR_MESSAGE);
         }
-    }
-
-    private String convertName(String name) {
-        if (name.length() == MAX_NAME_LENGTH) {
-            return name;
-        }
-        return insertBlank(name);
-    }
-
-    private String insertBlank(String name) {
-        StringBuilder nameBuilder = new StringBuilder(name + " ");
-        while (nameBuilder.length() < MAX_NAME_LENGTH) {
-            nameBuilder.insert(0, " ");
-        }
-        return nameBuilder.toString();
     }
 
     public String getName() {
