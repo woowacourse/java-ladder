@@ -16,6 +16,14 @@ public class Player {
         return new Player(playerName, position);
     }
 
+    public void moveLeft() {
+        position.moveLeft();
+    }
+
+    public void moveRight() {
+        position.moveRight();
+    }
+
     public PlayerName getPlayerName() {
         return playerName;
     }
