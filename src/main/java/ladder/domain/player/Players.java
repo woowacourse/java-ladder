@@ -48,7 +48,7 @@ public class Players {
         return List.copyOf(players);
     }
 
-    public Player findByName(String name) {
+    public Player findByName(final String name) {
         return players.stream()
                 .filter(player -> player.getPlayerName().getName().equals(name))
                 .findFirst()
