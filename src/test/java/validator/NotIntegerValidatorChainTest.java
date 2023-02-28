@@ -1,6 +1,5 @@
 package validator;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -14,11 +13,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class NotIntegerValidatorChainTest {
     private static final InputValidator validator = new NotIntegerValidatorChain();
-
-    @BeforeAll
-    static void setUp() {
-        validator.setNext(new SuccessInputValidatorChain());
-    }
 
     @ParameterizedTest
     @ValueSource(strings = {"0", "q", "-1"})

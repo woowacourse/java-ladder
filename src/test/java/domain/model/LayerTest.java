@@ -13,7 +13,7 @@ public class LayerTest {
         Layer layer = new Layer();
         layer.makeLine(true);
         layer.makeLine(true);
-        assertThat(layer.getLines().get(1)).isFalse();
+        assertThat(layer.getLine(1)).isFalse();
     }
 
     @Test
@@ -21,6 +21,6 @@ public class LayerTest {
     void makeLineTest2() {
         Layer layer = new Layer();
         layer.makeLine(true);
-        assertThat(layer.getLines().get(0)).isTrue();
+        assertThat(layer.getLine(0)).isTrue();
     }
 }

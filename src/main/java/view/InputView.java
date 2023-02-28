@@ -1,5 +1,6 @@
 package view;
 
+import dto.LadderParameter;
 import validator.InputValidator;
 import validator.dto.InputValidationRequest;
 import validator.type.ValidateType;
@@ -9,9 +10,12 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class InputView {
+
     private static final String INPUT_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String INPUT_LADDER_HEIGHT_MESSAGE = "\n최대 사다리 높이는 몇 개인가요?";
     private static final String NAME_DELIMITER = ",";
+    private static final String INPUT_RESULTS_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String INPUT_RESULT_VIEWER_NAME_MESSAGE = "\n결과를 보고 싶은 사람은?(quit를 입력시 반복 종료)";
 
     private final InputValidator validator;
     private final Scanner scanner = new Scanner(System.in);
@@ -27,6 +31,18 @@ public class InputView {
         return trimNames(names);
     }
 
+    public List<String> inputResults() {
+        System.out.println(INPUT_RESULTS_MESSAGE);
+        List<String> results = List.of(scanner.nextLine().split(NAME_DELIMITER));
+        return trimNames(results);
+    }
+
+    public List<String> inputResultViewersName() {
+        System.out.println(INPUT_RESULT_VIEWER_NAME_MESSAGE);
+        List<String> inputNames = List.of(scanner.nextLine().split(NAME_DELIMITER));
+        return trimNames(inputNames);
+    }
+
     private void validateNames(final List<String> names) {
         for (String name : names) {
             validator.validate(
@@ -38,7 +54,7 @@ public class InputView {
         }
     }
 
-    private List<String> trimNames(List<String> names) {
+    private List<String> trimNames(final List<String> names) {
         return names.stream()
                 .map(String::trim)
                 .collect(Collectors.toUnmodifiableList());
@@ -55,4 +71,11 @@ public class InputView {
         );
         return Integer.parseInt(input);
     }
+
+    public LadderParameter inputLadder(int inputNameSize) {
+        int height = inputLadderHeight();
+        int width = inputNameSize - 1;
+        return LadderParameter.of(height, width);
+    }
+
 }
