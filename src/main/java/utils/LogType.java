@@ -1,15 +1,10 @@
 package utils;
 
-public enum LogType implements Log{
+public enum LogType implements Log {
 
-    ERROR_MESSAGE("[ERROR] ") {
+    ERROR_MESSAGE() {
         public void log(String message) {
-            System.out.println(ERROR_MESSAGE.messageType + message);
+            System.out.println("[ERROR] " + message);
         }
     };
-
-    private final String messageType;
-    LogType(String messageType) {
-        this.messageType = messageType;
-    }
 }
