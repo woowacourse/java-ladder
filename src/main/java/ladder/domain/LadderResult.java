@@ -1,15 +1,21 @@
 package ladder.domain;
 
+import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Reward;
 import ladder.domain.player.Player;
+import ladder.domain.player.Players;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LadderResult {
-    private final Map<Player, Reward> result;
+    private final Map<Player, Reward> result = new LinkedHashMap<>();
 
-    public LadderResult(Map<Player, Reward> result) {
-        this.result = result;
+    public LadderResult(Players players, Ladder ladder) {
+        for (Player player : players.getPlayers()) {
+            Reward reward = ladder.getItemOfPlayer(player);
+            this.result.put(player, reward);
+        }
     }
 
     public Reward getItemOfPlayer(Player player) {

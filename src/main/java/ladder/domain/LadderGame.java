@@ -22,22 +22,13 @@ public class LadderGame {
         this.players = new Players(names);
         this.ladder = new Ladder(height, rewards);
         ladder.assignLines(lineStrategy, names.size() - 1);
-        this.result = new LadderResult(makeLadderResult());
+        this.result = new LadderResult(players, ladder);
     }
 
     private void validateNameItemSizeNotEquality(List<String> names, List<String> rewards) {
         if (names.size() != rewards.size()) {
             throw new IllegalArgumentException("이름과 실행 결과의 개수가 맞지 않습니다.");
         }
-    }
-
-    private Map<Player, Reward> makeLadderResult() {
-        Map<Player, Reward> result = new LinkedHashMap<>();
-        for (Player player : players.getPlayers()) {
-            Reward reward = ladder.getItemOfPlayer(player);
-            result.put(player, reward);
-        }
-        return result;
     }
 
     public List<List<Boolean>> getLines() {
