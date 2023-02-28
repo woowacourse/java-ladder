@@ -27,7 +27,11 @@ public class Results {
         }
     }
 
-    public List<Result> getPrizes() {
+    public Result findByIndex(final int index) {
+        return results.get(index);
+    }
+
+    public List<Result> getResults() {
         return results;
     }
 }

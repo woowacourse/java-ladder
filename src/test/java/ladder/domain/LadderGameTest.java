@@ -66,16 +66,8 @@ public class LadderGameTest {
     @Test
     void 플레이어_개별_조회_결과가_정확한지_확인() {
         Player player = players.getPlayers().get(3);
-        Result result = results.getPrizes().get(1);
+        Result result = results.getResults().get(1);
 
-        assertThat(ladderGame.getSinglePlayerResult(player)).isEqualTo(result);
-    }
-
-    @Test
-    void 없는_플레이어_조회_시_예외_발생() {
-        Player player = Player.of("ditoo", 0);
-
-        assertThatThrownBy(() -> ladderGame.getSinglePlayerResult(player))
-                .isInstanceOf(NoSuchPlayerException.class);
+        assertThat(ladderGame.getPlayerResult(player)).isEqualTo(result);
     }
 }

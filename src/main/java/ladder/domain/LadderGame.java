@@ -5,78 +5,68 @@ import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
-import ladder.domain.player.exception.NoSuchPlayerException;
 import ladder.domain.result.Result;
 import ladder.domain.result.Results;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LadderGame {
 
-    private final Map<Player, Result> results;
+    private final Players players;
+    private final Results results;
+    private final Ladder ladder;
 
     public LadderGame(final Players players, final Results results, final Ladder ladder) {
-        this.results = makeResult(players, results, ladder);
-    }
-
-    private Map<Player, Result> makeResult(final Players players, final Results results, final Ladder ladder) {
-        List<Player> players1 = new ArrayList<>(players.getPlayers());
-        ladder.getLines().forEach(line -> moveOneLine(players1, line));
-        Map<Player, Result> unSortedResults = connectPlayerAndPrize(players1, results.getPrizes());
-        return sort(unSortedResults, players.getPlayers());
-    }
-
-    private void moveOneLine(List<Player> players, final Line line) {
-        for (int i = 0; i < line.getBlocks().size(); i++) {
-            Block block = line.getBlocks().get(i);
-            moveEachPlayer(players, i, block);
-        }
-    }
-
-    private void moveEachPlayer(List<Player> players, final int blockIndex, final Block block) {
-        if (block.isExistBlock()) {
-            int leftPlayerIndex = blockIndex;
-            int rightPlayerIndex = blockIndex + 1;
-            Collections.swap(players, leftPlayerIndex, rightPlayerIndex);
-        }
-    }
-
-    private Map<Player, Result> connectPlayerAndPrize(List<Player> players, final List<Result> results) {
-        Map<Player, Result> connection = new HashMap<>();
-        for (int i = 0; i < players.size(); i++) {
-            connection.put(players.get(i), results.get(i));
-        }
-        return connection;
-    }
-
-    private Map<Player, Result> sort(
-            final Map<Player, Result> unSortedResults, final List<Player> players) {
-        Map<Player, Result> sortedResults = new LinkedHashMap<>();
-        for (Player player : players) {
-            Result result = unSortedResults.get(player);
-            sortedResults.put(player, result);
-        }
-        return sortedResults;
+        this.players = players;
+        this.results = results;
+        this.ladder = ladder;
     }
 
     public Map<Player, Result> getAllResult() {
-        return results;
-    }
-
-    public Result getSinglePlayerResult(final Player player) {
-        Result result = results.get(player);
-        validatePlayerName(result);
-        return result;
-    }
-
-    private void validatePlayerName(final Result result) {
-        if (result == null) {
-            throw new NoSuchPlayerException();
+        Map<Player, Result> allResult = new LinkedHashMap<>();
+        for (Player player : players.getPlayers()) {
+            Result result = getPlayerResult(player);
+            allResult.put(player, result);
         }
+        return allResult;
+    }
+
+    public Result getPlayerResult(final Player player) {
+        for (Line line : ladder.getLines()) {
+            moveOnePoint(player, line);
+        }
+        int playerIndex = player.getPosition().getPosition();
+        return results.findByIndex(playerIndex);
+    }
+
+    private void moveOnePoint(final Player player, final Line line) {
+        int playerIndex = player.getPosition().getPosition();
+        if (isLeft(playerIndex, line)) {
+            player.moveLeft();
+            return;
+        }
+        if (isRight(playerIndex, line)) {
+            player.moveRight();
+        }
+    }
+
+    private Boolean isLeft(final int playerIndex, final Line line) {
+        if (playerIndex == 0) {
+            return false;
+        }
+        int blockIndex = playerIndex - 1;
+        Block block = line.getBlockByIndex(blockIndex);
+        return block.isExistBlock();
+    }
+
+    private Boolean isRight(final int playerIndex, final Line line) {
+        int lastPlayerIndex = players.size() - 1;
+        if (playerIndex == lastPlayerIndex) {
+            return false;
+        }
+        int blockIndex = playerIndex;
+        Block block = line.getBlockByIndex(blockIndex);
+        return block.isExistBlock();
     }
 }

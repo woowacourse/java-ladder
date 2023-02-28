@@ -101,7 +101,7 @@ public class LadderGameController {
     }
 
     private List<String> toPrizesName(Results results) {
-        return results.getPrizes().stream()
+        return results.getResults().stream()
                 .map(Result::getName)
                 .collect(Collectors.toUnmodifiableList());
     }
@@ -129,6 +129,13 @@ public class LadderGameController {
         showAllPlayersResult(ladderGame);
     }
 
+    private void showSinglePlayerResult(LadderGame ladderGame, Players players, String name) {
+        OutputView.printPlayerResultHeaderMessage();
+        Player player = players.findByName(name);
+        Result result = ladderGame.getPlayerResult(player);
+        OutputView.printSingleResult(result.getName());
+    }
+
     private void showAllPlayersResult(LadderGame ladderGame) {
         OutputView.printPlayerResultHeaderMessage();
         Map<String, String> resultForView = new LinkedHashMap<>();
@@ -138,12 +145,5 @@ public class LadderGameController {
             resultForView.put(player.getPlayerName().getName(), prizeName);
         }
         OutputView.printAllResults(resultForView);
-    }
-
-    private void showSinglePlayerResult(LadderGame ladderGame, Players players, String name) {
-        OutputView.printPlayerResultHeaderMessage();
-        Player player = players.findByName(name);
-        Result result = ladderGame.getSinglePlayerResult(player);
-        OutputView.printSingleResult(result.getName());
     }
 }

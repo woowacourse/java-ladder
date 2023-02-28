@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.ladder.generator.BlockGenerator;
+import ladder.domain.player.Position;
 
 import java.util.List;
 import java.util.Stack;
@@ -29,6 +30,10 @@ public class Line {
             return Block.EMPTY;
         }
         return blockGenerator.generate();
+    }
+
+    public Block getBlockByIndex(final int index) {
+        return blocks.get(index);
     }
 
     public List<Block> getBlocks() {
