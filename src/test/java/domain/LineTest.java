@@ -24,4 +24,5 @@ public class LineTest {
                 .forEach(i -> Assertions.assertThat(line.getPoints().get(i + 1))
                         .isFalse());
     }
+
 }

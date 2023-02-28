@@ -2,11 +2,11 @@ package domain;
 
 import util.RandomValueGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Line {
 
+    private static final String POINT_NUMBER_MESSAGE = "Point Number는 Points의 크기를 초과할 수 없습니다.";
     private final List<Boolean> points = new ArrayList<>();
 
     public Line(int personCount) {
@@ -15,6 +15,10 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return points;
+    }
+
+    public int getSize() {
+        return points.size();
     }
 
     private void calculatePoints(int personCount) {
@@ -27,5 +31,16 @@ public class Line {
             }
             points.add(false);
         }
+    }
+
+    public boolean isRightMovable(int pointNumber) {
+        if (pointNumber > points.size()) {
+            throw new IllegalArgumentException(POINT_NUMBER_MESSAGE);
+        }
+        return points.get(pointNumber);
+    }
+
+    public boolean isLeftMovable(int playerPosition) {
+        return points.get(playerPosition - 1);
     }
 }

@@ -1,7 +1,9 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Players {
 
@@ -9,11 +11,15 @@ public class Players {
 
     public Players(List<String> names) {
         validatePlayerCount(names);
-        this.players = createPlayer(names);
+        this.players = createPlayers(names);
     }
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public int getPlayersCount() {
+        return players.size();
     }
 
     private static void validatePlayerCount(List<String> names) {
@@ -22,11 +28,22 @@ public class Players {
         }
     }
 
-    private List<Player> createPlayer(List<String> names) {
-        List<Player> playerList = new ArrayList<>();
-        for (String name : names) {
-            playerList.add(new Player(name));
+    private List<Player> createPlayers(List<String> names) {
+        return names.stream()
+                .map(name -> new Player(name, names.indexOf(name)))
+                .collect(Collectors.toList());
+    }
+
+    public boolean contains(String name) {
+        return players.stream()
+                .anyMatch(player -> player.getName().equals(name));
+    }
+
+    public Map<String, Integer> calculatePosition(Lines lines) {
+        Map<String, Integer> playerPositionResults = new HashMap<>();
+        for (Player player : players) {
+            playerPositionResults.put(player.getName(), lines.calculateResults(player.getPosition()));
         }
-        return playerList;
+        return playerPositionResults;
     }
 }
