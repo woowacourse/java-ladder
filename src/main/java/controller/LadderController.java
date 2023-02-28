@@ -14,7 +14,6 @@ import domain.Results;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 import utils.NumberGenerator;
 import view.InputView;
@@ -93,10 +92,9 @@ public class LadderController {
     }
 
     private Map<String, String> getAllNamesAndResults(LadderGame ladderGame) {
-        Map<String, String> rawAllNamesAndResults = new LinkedHashMap<>();
         Map<Name, Result> allNamesAndResults = ladderGame.getAllNamesAndResults();
-        Set<Name> names = allNamesAndResults.keySet();
-        names.forEach(name -> rawAllNamesAndResults.put(name.value(), allNamesAndResults.get(name).value()));
+        Map<String, String> rawAllNamesAndResults = new LinkedHashMap<>();
+        allNamesAndResults.forEach((name, result) -> rawAllNamesAndResults.put(name.value(), result.value()));
         return rawAllNamesAndResults;
     }
 

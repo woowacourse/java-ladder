@@ -5,7 +5,6 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class OutputView {
 
@@ -72,8 +71,7 @@ public class OutputView {
     }
 
     public void printAllNamesAndResults(Map<String, String> allNamesAndResults) {
-        Set<String> names = allNamesAndResults.keySet();
-        names.forEach(name -> System.out.println(name + NAME_RESULT_DELIMITER + allNamesAndResults.get(name)));
+        allNamesAndResults.forEach((name, result) -> System.out.println(name + NAME_RESULT_DELIMITER + result));
     }
 
     public void printErrorMessage(String message) {
