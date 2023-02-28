@@ -14,7 +14,11 @@ public class Line {
         }
     }
 
-    private ConnectionStatus decideConnection(int position, BooleanGenerator booleanGenerator) {
+    public Line(Line line) {
+        this.points = List.copyOf(line.points);
+    }
+
+    private ConnectionStatus decideConnection(final int position, final BooleanGenerator booleanGenerator) {
         if (position == 0) {
             return ConnectionStatus.convertConnectionStatus(booleanGenerator.generate());
         }
@@ -26,5 +30,12 @@ public class Line {
 
     public List<ConnectionStatus> getLineStatus() {
         return List.copyOf(points);
+    }
+
+    public ConnectionStatus isConnectedAt(final int index) {
+        if (points.size() <= index) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        return points.get(index);
     }
 }

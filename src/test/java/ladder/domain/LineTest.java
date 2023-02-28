@@ -9,7 +9,7 @@ import java.util.List;
 public class LineTest {
 
     @Test
-    @DisplayName("연속되는 선이 없게 라인을 생성한다.")
+    @DisplayName("Line 내에서 연속되어 연결되지 않는다.")
     void generateLineTest() {
 
         class IntendedBooleanGenerator implements BooleanGenerator {
