@@ -16,7 +16,7 @@ class Row {
         connected = new ArrayList<>(Collections.nCopies(width + BUFFER_COUNT, Step.BLANK));
     }
 
-    void generateLeg(StepGenerator stepGenerator) {
+    void generateStep(StepGenerator stepGenerator) {
         for (int i = BUFFER_COUNT; i < connected.size(); i++) {
             connect(stepGenerator, i);
         }
@@ -32,6 +32,27 @@ class Row {
         int adjacentIndex = index - 1;
         return (stepGenerator.generate() == Step.CONNECTED) && (connected.get(adjacentIndex)
             == Step.BLANK);
+    }
+
+    public int findAdjacentIndex(int index) {
+        if (index >= connected.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (isAdjacent(index)) {
+            return index - 1;
+        }
+        if (isAdjacent(index + 1)) {
+            return index + 1;
+        }
+        return index;
+
+    }
+
+    private boolean isAdjacent(int index) {
+        if (index >= connected.size()) {
+            return false;
+        }
+        return connected.get(index) == Step.CONNECTED;
     }
 
     List<Step> toDto() {

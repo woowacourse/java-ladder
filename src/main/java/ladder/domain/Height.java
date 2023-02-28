@@ -2,12 +2,10 @@ package ladder.domain;
 
 class Height {
 
-    private final int height;
     private static final int HEIGHT_MIN_BOUND = 0;
 
-    Height(int height) {
-        validateHeight(height);
-        this.height = height;
+    Height(int value) {
+        validateHeight(value);
     }
 
     private void validateHeight(int height) {
@@ -15,9 +13,4 @@ class Height {
             throw new IllegalArgumentException(String.format("높이는 %d보다 커야합니다", HEIGHT_MIN_BOUND));
         }
     }
-
-    int getHeight() {
-        return height;
-    }
-
 }
