@@ -3,11 +3,15 @@ package controller;
 import static view.InputView.DELIMITER;
 
 import domain.Ladder;
+import domain.LadderGame;
+import domain.LadderResults;
 import domain.People;
 import domain.Person;
+import domain.Prizes;
 import domain.RandomLadderGenerator;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import view.InputView;
@@ -25,10 +29,13 @@ public class LadderController {
 
     public void run() {
         People people = repeat(this::nameRequest);
+        Prizes prizes = repeat(() -> prizesRequest(people.getCount()));
         Ladder ladder = repeat(() -> ladderRequest(people.getCount()));
+        LadderGame ladderGame = new LadderGame(people, prizes, ladder);
 
-        outputView.printNames(people.getNames());
-        outputView.printLadder(ladder);
+        showGameStatus(people, prizes, ladder);
+        ladderGame.start();
+        showResult(ladderGame);
     }
 
     private <T> T repeat(Supplier<T> inputReader) {
@@ -47,19 +54,44 @@ public class LadderController {
         String inputNames = inputView.readNames();
 
         List<String> names = convertToList(inputNames);
+
+        AtomicInteger index = new AtomicInteger();
         List<Person> people = names.stream()
-            .map(Person::new)
+            .map((name) -> new Person(name, index.getAndIncrement()))
             .collect(Collectors.toList());
         return new People(people);
     }
 
-    private List<String> convertToList(String inputNames) {
-        return Arrays.stream(inputNames.split(DELIMITER))
+    private List<String> convertToList(String inputs) {
+        return Arrays.stream(inputs.split(DELIMITER))
             .collect(Collectors.toList());
+    }
+
+    private Prizes prizesRequest(int peopleCount) {
+        String inputPrizes = inputView.readResults();
+
+        List<String> prizes = convertToList(inputPrizes);
+        return new Prizes(prizes, peopleCount);
     }
 
     private Ladder ladderRequest(int peopleCount) {
         int height = inputView.readLadderHeight();
         return Ladder.make(peopleCount, height, new RandomLadderGenerator());
+    }
+
+    private void showGameStatus(People people, Prizes prizes, Ladder ladder) {
+        outputView.printNames(people.getNames());
+        outputView.printLadder(ladder);
+        outputView.printNames(prizes.getPrizes());
+    }
+
+    private void showResult(LadderGame ladderGame) {
+        LadderResults result = repeat(() -> getLadderResults(ladderGame));
+        outputView.printResult(result);
+    }
+
+    private LadderResults getLadderResults(LadderGame ladderGame) {
+        String personName = repeat(inputView::readPersonName);
+        return ladderGame.searchResult(personName);
     }
 }

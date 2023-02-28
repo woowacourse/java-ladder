@@ -4,8 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LadderTest {
@@ -42,5 +44,26 @@ class LadderTest {
         Ladder ladder = Ladder.make(personCount, 3, new RandomLadderGenerator());
         assertThat(ladder.getWidth()).isEqualTo(personCount - 1);
 
+    }
+
+    @DisplayName("사람의 위치를 넣으면 어디로 갈지 정해주는 기능 테스트")
+    @ParameterizedTest(name = "{index} : ({0}, {1})은 {2} 로 가야한다.")
+    @CsvSource({
+        "0, 0, RIGHT", "1, 0, LEFT", "2, 0, RIGHT", "3, 0, LEFT",
+        "0, 1, NO", "1, 1, RIGHT", "2, 1, LEFT", "3, 1, NO"})
+    void findShiftType(int widthIndex, int heightIndex, ShiftType expected) {
+        //given
+        LadderGenerator testRadderGenerator = (width, height) -> List.of(
+            new Line(List.of(true, false, true)),
+            new Line(List.of(false, true, false)),
+            new Line(List.of(true, false, false)),
+            new Line(List.of(false, true, false)),
+            new Line(List.of(true, false, true)));
+
+        Ladder ladder = Ladder.make(4, 5, testRadderGenerator);
+        //when
+        ShiftType actual = ladder.findShiftType(widthIndex, heightIndex);
+        //then
+        assertThat(actual).isEqualTo(expected);
     }
 }

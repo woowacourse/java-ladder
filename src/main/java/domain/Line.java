@@ -21,6 +21,14 @@ public class Line {
         }
     }
 
+    public boolean canGoRight(int widthIndex) {
+        return movements.size() > widthIndex && movements.get(widthIndex);
+    }
+
+    public boolean canGoLeft(int widthIndex) {
+        return widthIndex >= 1 && movements.get(widthIndex - 1);
+    }
+
     private void validateSequential(Boolean previousMovement, Boolean currentMovement) {
         if (previousMovement & currentMovement) {
             throw new IllegalArgumentException("가로라인이 연속될 수 없습니다.");
