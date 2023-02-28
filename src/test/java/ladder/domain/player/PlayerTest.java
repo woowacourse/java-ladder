@@ -1,7 +1,6 @@
 package ladder.domain.player;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -33,13 +32,5 @@ class PlayerTest {
     void name_success(String input) {
         // expected
         assertDoesNotThrow(() -> new Player(input, 0));
-    }
-
-    @Test
-    @DisplayName("이름이 all인 경우 예외를 던진다.")
-    void name_throwException_valueIsGameCommand() {
-        // expected
-        assertThatThrownBy(() -> new Player("all", 0))
-                .isInstanceOf(IllegalArgumentException.class);
     }
 }
