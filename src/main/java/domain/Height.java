@@ -7,12 +7,12 @@ public class Height {
 
     private final int height;
 
-    public Height(int height) {
+    public Height(final int height) {
         validateHeightRange(height);
         this.height = height;
     }
 
-    private void validateHeightRange(int height) {
+    private void validateHeightRange(final int height) {
         if (height < LADDER_MIN_HEIGHT || height > LADDER_MAX_HEIGHT) {
             throw new IllegalArgumentException(INVALID_LADDER_HEIGHT_MESSAGE);
         }
