@@ -14,7 +14,7 @@ public class LadderTest {
     void givenOverOneHeight_thenSuccess(int input) {
         //given
         final Height height = new Height(input);
-        final Ladder ladder = new Ladder(height, 3);
+        final Ladder ladder = Ladder.of(height, 3, new RandomLinkGenerator());
 
         //then
         assertThat(ladder.getLadder()).hasSize(height.getHeight());

@@ -6,25 +6,32 @@ import java.util.List;
 
 public class Ladder {
 
+    private final Height height;
+    private final List<Layer> ladder;
 
-    private final List<Floor> lines;
-
-    public Ladder(final Height height, final int numberOfPlayers) {
-        this.lines = createLadder(height.getHeight(), numberOfPlayers);
+    private Ladder(final Height height, final List<Layer> ladder) {
+        this.height = height;
+        this.ladder = ladder;
     }
 
-    public List<Floor> getLadder() {
-        return Collections.unmodifiableList(lines);
+    public static Ladder of(final Height height, final int playerCount, final LinkGenerator linkGenerator) {
+        final List<Layer> ladder = createLadder(height, playerCount, linkGenerator);
+        return new Ladder(height, ladder);
     }
 
+    private static List<Layer> createLadder(final Height height, final int playerCount, final LinkGenerator linkGenerator) {
+        final List<Layer> ladder = new ArrayList<>();
 
-    private List<Floor> createLadder(final int height, final int playerCount) {
-        final List<Floor> lines = new ArrayList<>();
-
-        for (int i = 0; i < height; i++) {
-            lines.add(Floor.from(playerCount));
+        for (int i = 0; i < height.getHeight(); i++) {
+            ladder.add(Layer.of(playerCount, linkGenerator));
         }
 
-        return lines;
+        return ladder;
+    }
+
+    public List<Layer> getLadder() {
+        return Collections.unmodifiableList(ladder);
     }
 }
+
+
