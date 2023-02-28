@@ -39,7 +39,7 @@ public class LineTest {
     }
 
     @ParameterizedTest
-    @MethodSource("generateFlag")
+    @MethodSource("generatePointsAndOutcome")
     @DisplayName("가로 라인이 겹치지 않도록 참가자 수에 따라 Line을 생성한다.")
     void createLine(int personCount, List<Boolean> inputFlag, List<Boolean> expectedFlag) {
         booleanGenerator = new MockBooleanGenerator(inputFlag);
@@ -48,8 +48,7 @@ public class LineTest {
         assertThat(line.getPoints()).isEqualTo(expectedFlag);
     }
 
-
-    static Stream<Arguments> generateFlag() {
+    static Stream<Arguments> generatePointsAndOutcome() {
         return Stream.of(
                 Arguments.arguments(2, List.of(true), List.of(true)),
                 Arguments.arguments(3, List.of(true, false), List.of(true, false)),

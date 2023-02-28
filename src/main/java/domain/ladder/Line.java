@@ -13,31 +13,55 @@ public class Line {
 
     private final List<Boolean> points = new ArrayList<>();
 
-    public Line(int personCount, BooleanGenerator booleanGenerator) {
-        validate(personCount);
-        createPoints(personCount, booleanGenerator);
+    public Line(int playerCount, BooleanGenerator booleanGenerator) {
+        validate(playerCount);
+        createPoints(playerCount, booleanGenerator);
     }
 
-    private void validate(int personCount) {
-        int pointSize = personCount - 1;
-        if (pointSize < POINTS_MIN_SIZE || pointSize > POINTS_MAX_SIZE) {
+    public Direction findNext(Position position) {
+        if (canMoveLeft(position)) {
+            return Direction.LEFT;
+        }
+        if (canMoveRight(position)) {
+            return Direction.RIGHT;
+        }
+        return Direction.STRAIGHT;
+    }
+
+    private void validate(int playerCount) {
+        int pointCount = playerCount - 1;
+        if (pointCount < POINTS_MIN_SIZE || pointCount > POINTS_MAX_SIZE) {
             throw new IllegalArgumentException(PLAYER_SIZE_ERROR_MESSAGE);
         }
     }
 
-    private void createPoints(int personCount, BooleanGenerator booleanGenerator) {
-        int pointsSize = personCount - 1;
-        for (int index = 0; index < pointsSize; index++) {
-            addPoint(index, booleanGenerator.generate());
+    private void createPoints(int playerCount, BooleanGenerator booleanGenerator) {
+        int pointCount = playerCount - 1;
+        for (int index = 0; index < pointCount; index++) {
+            boolean createdPoint = createPoint(index, booleanGenerator);
+            points.add(createdPoint);
         }
     }
 
-    private void addPoint(int index, boolean flag) {
-        if (PointJudge.canMake(points, flag, index)) {
-            points.add(true);
-            return;
+    private boolean createPoint(int index, BooleanGenerator booleanGenerator) {
+        if (isFirstIndexOrLeftEmpty(index)) {
+            return booleanGenerator.generate();
         }
-        points.add(false);
+        return false;
+    }
+
+    private boolean canMoveLeft(Position position) {
+        int playerPosition = position.getValue();
+        return playerPosition > 0 && points.get(playerPosition - 1);
+    }
+
+    private boolean canMoveRight(Position position) {
+        int playerPosition = position.getValue();
+        return playerPosition < points.size() && points.get(playerPosition);
+    }
+
+    private boolean isFirstIndexOrLeftEmpty(int index) {
+        return index == 0 || points.get(index - 1) == false;
     }
 
     public List<Boolean> getPoints() {
