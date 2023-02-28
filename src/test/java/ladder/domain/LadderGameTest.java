@@ -5,7 +5,6 @@ import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.generator.BlockGenerator;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
-import ladder.domain.player.exception.NoSuchPlayerException;
 import ladder.domain.result.Result;
 import ladder.domain.result.Results;
 import org.junit.jupiter.api.BeforeEach;
@@ -50,7 +49,7 @@ public class LadderGameTest {
                         Block.EXIST, Block.EMPTY,
                         Block.EMPTY, Block.EXIST,
                         Block.EXIST, Block.EXIST));
-        return Ladder.of(blockGenerator, playerNumber, height);
+        return Ladder.createLadder(blockGenerator, playerNumber, height);
     }
 
     @Test

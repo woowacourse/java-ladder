@@ -25,7 +25,7 @@ class LineTest {
         List<Block> blocks = newArrayList(Block.EXIST, Block.EXIST);
         BlockGenerator blockGenerator = new TestBlockGenerator(blocks);
         int playerNumber = blocks.size() + 1;
-        Line line = Line.of(blockGenerator, playerNumber);
+        Line line = Line.createLine(blockGenerator, playerNumber);
 
         assertThat(line.getBlocks())
                 .isNotEqualTo(blocks);
@@ -37,7 +37,7 @@ class LineTest {
     void 올바른_개수의_블록이_생성되는지_확인(List<Block> blocks, int playerNumber) {
         BlockGenerator blockGenerator = new TestBlockGenerator(new ArrayList<>(blocks));
         int expectedPlayerNumber = blocks.size() + 1;
-        Line line = Line.of(blockGenerator, expectedPlayerNumber);
+        Line line = Line.createLine(blockGenerator, expectedPlayerNumber);
 
         assertThat(line.getBlocks().size())
                 .isEqualTo(playerNumber - 1);

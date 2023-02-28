@@ -1,7 +1,6 @@
 package ladder.domain.ladder;
 
 import ladder.domain.ladder.generator.BlockGenerator;
-import ladder.domain.player.Position;
 
 import java.util.List;
 import java.util.Stack;
@@ -14,7 +13,7 @@ public class Line {
         this.blocks = blocks;
     }
 
-    public static Line of(final BlockGenerator blockGenerator, final int playerNumber) {
+    public static Line createLine(final BlockGenerator blockGenerator, final int playerNumber) {
         final int blockCount = playerNumber - 1;
         Stack<Block> blocks = new Stack<>();
         blocks.push(blockGenerator.generate());

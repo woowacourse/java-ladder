@@ -14,7 +14,7 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(final BlockGenerator blockGenerator, final int playerNumber, final int height) {
+    public static Ladder createLadder(final BlockGenerator blockGenerator, final int playerNumber, final int height) {
         validateLadderLength(playerNumber, height);
         List<Line> lines = makeLines(blockGenerator, playerNumber, height);
         return new Ladder(lines);
@@ -30,7 +30,7 @@ public class Ladder {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            Line line = Line.of(blockGenerator, playerNumber);
+            Line line = Line.createLine(blockGenerator, playerNumber);
             lines.add(line);
         }
         return lines;

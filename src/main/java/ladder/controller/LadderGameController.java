@@ -58,7 +58,7 @@ public class LadderGameController {
         try {
             final int height = InputView.inputLadderHeight();
             BlockGenerator blockGenerator = new RandomBlockGenerator();
-            return Ladder.of(blockGenerator, playerNumber, height);
+            return Ladder.createLadder(blockGenerator, playerNumber, height);
         } catch (CustomException e) {
             OutputView.printErrorMessage(e);
             return initLadder(playerNumber);
