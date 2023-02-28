@@ -9,6 +9,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("사다리는 ")
 class LadderTest {
+	public static Ladder initLadder(int height, int participantSize) {
+		return Ladder.from(height, participantSize);
+	}
+
 	@DisplayName("1 이상 100 이하의 높이만 가능하다")
 	@ParameterizedTest
 	@ValueSource(ints = {1, 50, 100})
@@ -53,9 +57,5 @@ class LadderTest {
 		Ladder ladder = initLadder(4, 6);
 
 		assertThat(ladder.getLadder()).allMatch(level -> level.countStools() > 0);
-	}
-
-	private static Ladder initLadder(int height, int participantSize) {
-		return Ladder.from(height, participantSize);
 	}
 }

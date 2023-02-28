@@ -8,5 +8,6 @@ public class Application {
 
 		controller.init();
 		controller.showLadder();
+		controller.play();
 	}
 }
