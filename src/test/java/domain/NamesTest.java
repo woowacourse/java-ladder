@@ -1,0 +1,43 @@
+package domain;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+public class NamesTest {
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 11})
+    @DisplayName("사람의 수가 2명보다 작거나 10명 이상이면 예외를 던진다.")
+    void throws_exception_number_of_player_under_two(int numberOfNames) {
+        // given
+        List<String> playerNames = new ArrayList<>();
+        for (int i = 0; i < numberOfNames; i++) {
+            playerNames.add("abc" + i);
+        }
+
+        // when & then
+        assertThatThrownBy(() -> new Names(playerNames))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참여 가능한 플레이어의 수는 2명이상 10명이하 입니다.");
+    }
+
+    @Test
+    @DisplayName("중복된 사람의 이름이 있으면 예외를 던진다.")
+    void throws_exception_when_existing_duplicated_name() {
+        // given
+        String duplicatedName = "pobi";
+        List<String> playerNames = List.of(duplicatedName, duplicatedName);
+
+        // when & then
+        assertThatThrownBy(() -> new Names(playerNames))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참가한 플레이어의 이름 중 중복된 이름이 존재하면 안됩니다.");
+    }
+}

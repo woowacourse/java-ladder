@@ -6,12 +6,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import domain.generator.ExistConnectionGenerator;
-import domain.generator.ConnectionGenerator;
 import domain.generator.NonExistConnectionGenerator;
 import domain.generator.RandomConnectionGenerator;
 
 public class LineTest {
-    ConnectionGenerator randomConnectionGenerator = new RandomConnectionGenerator();
 
     @Test
     @DisplayName("Line은 사람 수 -1만큼의 길이로 생성된다.")
@@ -21,7 +19,7 @@ public class LineTest {
         int expectedLineNumber = numberOfPlayer - 1;
 
         // when
-        Line line = new Line(numberOfPlayer, randomConnectionGenerator);
+        Line line = new Line(numberOfPlayer, new RandomConnectionGenerator());
 
         // then
         assertThat(line.getConnections().size()).isEqualTo(expectedLineNumber);

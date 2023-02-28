@@ -5,24 +5,24 @@ public class Height {
     private static final int MINIMUM_LENGTH_OF_HEIGHT = 1;
     private static final int MAXIMUM_LENGTH_OF_HEIGHT = 10;
 
-    private final int height;
+    private final int value;
 
-    public Height(final int height) {
-        validateLengthOfHeight(height);
-        this.height = height;
+    public Height(final int value) {
+        validateLengthOfHeight(value);
+        this.value = value;
     }
 
-    private void validateLengthOfHeight(final int height) {
-        if (isNotPermittedLengthOfHeight(height)) {
+    private void validateLengthOfHeight(final int value) {
+        if (isNotPermittedLengthOfHeight(value)) {
             throw new IllegalArgumentException("사다리의 높이는 최소 1이상 최대 10이하입니다.");
         }
     }
 
-    private boolean isNotPermittedLengthOfHeight(int height) {
-        return (height < MINIMUM_LENGTH_OF_HEIGHT) || (height > MAXIMUM_LENGTH_OF_HEIGHT);
+    private boolean isNotPermittedLengthOfHeight(final int value) {
+        return (value < MINIMUM_LENGTH_OF_HEIGHT) || (value > MAXIMUM_LENGTH_OF_HEIGHT);
     }
 
-    public int getHeight() {
-        return height;
+    public int getValue() {
+        return this.value;
     }
 }
