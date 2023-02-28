@@ -10,9 +10,9 @@ class LadderTest {
     @DisplayName("입력한 높이에 맞게 생성된다")
     @Test
     void test() {
-        Height height = new Height(5);
+        Height height = Height.from(5);
         int userCount = 4;
-        Ladder ladder = new Ladder(height, userCount);
+        Ladder ladder = Ladder.of(height, userCount);
 
         Assertions.assertThat(ladder.getLines().size()).isEqualTo(height.getHeight());
     }

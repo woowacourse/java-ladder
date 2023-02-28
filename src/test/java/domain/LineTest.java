@@ -13,7 +13,7 @@ class LineTest {
     @DisplayName("연결선을 연속해서 가질 수 없다.")
     @Test
     void generateLineTest() {
-        Line line = new Line(new FixedLineMaker(), 5);
+        Line line = Line.of(new FixedLineMaker(), 5);
         assertThat(line.getPoints()).isEqualTo(List.of(true, false, false, true));
     }
 

@@ -6,25 +6,30 @@ import utils.RandomLineMaker;
 
 public class Ladder {
 
-    private final List<Line> lines;
+    private final List<Line> lines = new ArrayList<>();
     private final Height height;
-    private final int userCount;
 
-    public Ladder(Height height, int userCount) {
-        this.lines = new ArrayList<>();
+    private Ladder(Height height) {
         this.height = height;
-        this.userCount = userCount;
-        addLine();
     }
 
-    private void addLine() {
+    public static Ladder of(Height height, int userCount) {
+        Ladder ladder = new Ladder(height);
+        ladder.addLine(userCount);
+
+        return ladder;
+    }
+
+    private void addLine(int userCount) {
         RandomLineMaker randomLineMaker = new RandomLineMaker();
+
         for (int line = 0; line < height.getHeight(); line++) {
-            lines.add(new Line(randomLineMaker, userCount));
+            lines.add(Line.of(randomLineMaker, userCount));
         }
     }
 
     public List<Line> getLines() {
         return lines;
     }
+
 }

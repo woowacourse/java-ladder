@@ -6,11 +6,13 @@ import utils.LineMaker;
 
 public class Line {
 
-    private final List<Boolean> points;
+    private final List<Boolean> points = new ArrayList<>();
 
-    public Line(LineMaker lineMaker, int userCount) {
-        this.points = new ArrayList<>();
-        addPoint(lineMaker.generateLine(userCount));
+    public static Line of(LineMaker lineMaker, int userCount) {
+        Line line = new Line();
+        line.addPoint(lineMaker.generateLine(userCount));
+
+        return line;
     }
 
     private void addPoint(List<Boolean> randomPoints) {

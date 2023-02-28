@@ -2,15 +2,16 @@ package controller;
 
 import domain.Height;
 import domain.Ladder;
-import domain.Name;
-import domain.User;
+import domain.LadderGame;
+import domain.Rewards;
 import domain.Users;
 import java.util.List;
-import java.util.stream.Collectors;
 import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
+
+    private static final String TOTAL_RESULT_KEYWORD = "all";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -21,31 +22,94 @@ public class LadderGameController {
     }
 
     public void run() {
-        List<String> userNames = getUserNames();
-        Users users = new Users(generateUsers(userNames));
-        Height ladderHeight = new Height(getLadderHeight());
-        Ladder ladder = new Ladder(ladderHeight, userNames.size());
-        printResult(ladder, users);
+        Users users = getUsers();
+        Rewards rewards = getRewards(users.size());
+        Ladder ladder = getLadder(users.size());
+        LadderGame ladderGame = LadderGame.of(ladder, users, rewards);
+        ladderGame.moveUsers();
+
+        printLadderResult(ladder, users, rewards);
+        finalResult(users, ladderGame);
     }
 
-    private List<String> getUserNames() {
-        outputView.printEnterUserNotice();
-        return inputView.inputUserNames();
+    private void finalResult(Users users, LadderGame ladderGame) {
+        try {
+            confirmResult(users, ladderGame);
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
+            finalResult(users, ladderGame);
+        }
     }
 
-    private int getLadderHeight() {
+    private void confirmResult(Users users, LadderGame ladderGame) {
+        String name;
+        do {
+            name = getChoiceUser();
+            printFinalResult(ladderGame, users, name);
+        } while (!name.equals(TOTAL_RESULT_KEYWORD));
+    }
+
+    private String getChoiceUser() {
+        outputView.printEnterChoiceUserNotice();
+        return inputView.inputChoiceUser();
+    }
+
+    private Rewards getRewards(int userCount) {
+        try {
+            outputView.printEnterRewardNotice();
+            List<String> rewards = inputView.inputRewards();
+            return Rewards.of(rewards, userCount);
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
+            return getRewards(userCount);
+        }
+    }
+
+    private Ladder getLadder(int userCount) {
+        try {
+            Height ladderHeight = getLadderHeight();
+
+            return Ladder.of(ladderHeight, userCount);
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
+            return getLadder(userCount);
+        }
+    }
+
+    private Users getUsers() {
+        try {
+            outputView.printEnterUserNotice();
+            List<String> userNames = inputView.inputUsernames();
+            return Users.from(userNames);
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
+            return getUsers();
+        }
+    }
+
+    private Height getLadderHeight() {
         outputView.printEnterHeightNotice();
-        return inputView.inputHeight();
+        int height = inputView.inputHeight();
+
+        return Height.from(height);
     }
 
-    private List<User> generateUsers(List<String> userNames) {
-        return userNames.stream()
-                .map(Name::new)
-                .map(User::new)
-                .collect(Collectors.toUnmodifiableList());
+    private void printLadderResult(Ladder ladder, Users users, Rewards rewards) {
+        outputView.printGameResult(ladder, users, rewards);
     }
 
-    private void printResult(Ladder ladder, Users users) {
-        outputView.printGameResult(ladder, users);
+    private void printFinalResult(LadderGame ladderGame, Users users, String name) {
+        outputView.printFinalResultNotice();
+        printRewardResult(ladderGame, users, name);
     }
+
+    private void printRewardResult(LadderGame ladderGame, Users users, String name) {
+        if (name.equals(TOTAL_RESULT_KEYWORD)) {
+            outputView.printTotalRewards(users, ladderGame);
+            return;
+        }
+
+        outputView.printSingleReward(ladderGame, name);
+    }
+
 }

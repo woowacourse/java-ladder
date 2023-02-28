@@ -15,8 +15,8 @@ public class Main {
     private static void execute(LadderGameController controller) {
         try {
             controller.run();
-        } catch (IllegalArgumentException ie) {
-            System.out.println(ie.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }

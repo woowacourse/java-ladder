@@ -1,38 +1,33 @@
 package domain;
 
-import static utils.ErrorMessage.INVALID_LADDER_HEIGHT_BY_MAXIMUM_LIMIT;
-import static utils.ErrorMessage.INVALID_LADDER_HEIGHT_BY_MINIMUM_LIMIT;
+import static utils.ErrorMessage.*;
 
 public class Height {
 
-    private final int MINIMUM_HEIGHT_LIMIT = 1;
-    private final int MAXIMUM_HEIGHT_LIMIT = 100;
+    private static final int MINIMUM_HEIGHT = 1;
+    private static final int MAXIMUM_HEIGHT = 100;
+
     private final int height;
 
-    public Height(int height) {
-        validateHeightByMinimumLimit(height);
-        validateHeightByMaximumLimit(height);
-
+    private Height(int height) {
         this.height = height;
     }
 
-    private void validateHeightByMinimumLimit(int height) {
-        if (height < MINIMUM_HEIGHT_LIMIT) {
-            throw new IllegalArgumentException(
-                String.format(INVALID_LADDER_HEIGHT_BY_MINIMUM_LIMIT.getMessage(),
-                    MINIMUM_HEIGHT_LIMIT));
-        }
+    public static Height from(int height) {
+        validateHeight(height);
+        return new Height(height);
     }
 
-    private void validateHeightByMaximumLimit(int height) {
-        if (height > MAXIMUM_HEIGHT_LIMIT) {
+    private static void validateHeight(int height) {
+        if (height < MINIMUM_HEIGHT || height > MAXIMUM_HEIGHT) {
             throw new IllegalArgumentException(
-                String.format(INVALID_LADDER_HEIGHT_BY_MAXIMUM_LIMIT.getMessage(),
-                    MAXIMUM_HEIGHT_LIMIT));
+                String.format(INVALID_LADDER_HEIGHT.getMessage(),
+                        MINIMUM_HEIGHT, MAXIMUM_HEIGHT));
         }
     }
 
     public int getHeight() {
         return height;
     }
+
 }

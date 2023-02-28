@@ -13,7 +13,7 @@ class NameTest {
     @ValueSource(strings = {"j", "joy", "pobi", "crong"})
     public void nameTest_success(String name) {
         Assertions.assertDoesNotThrow(
-            () -> new Name(name));
+            () -> Name.from(name));
     }
 
     @DisplayName("1자 미만이거나 6자 이상이면 에러가 발생한다.")
@@ -22,13 +22,14 @@ class NameTest {
     public void nameTest_fail(String name) {
         Assertions.assertThrows(
             IllegalArgumentException.class,
-                () -> new Name(name));
+                () -> Name.from(name));
     }
 
-    @DisplayName("처음이나 끝에 공백이 있으면 공백을 제거한다")
+    @DisplayName("처음이나 끝에 공백이 있으면 공백을 제거한다.")
     @ParameterizedTest
     @ValueSource(strings = {" joy", " joy ", "joy "})
     public void trimNameTest(String name) {
-        Assertions.assertEquals(new Name(name).getName(), name.trim());
+        Assertions.assertEquals(Name.from(name).getName(), name.trim());
     }
+
 }
