@@ -1,5 +1,7 @@
 package domain;
 
+import static domain.Position.LEFT_MOST_POSITION;
+
 import java.util.ArrayList;
 import java.util.List;
 import utils.NumberGenerator;
@@ -36,6 +38,30 @@ public class Line {
 
     private static boolean isPreviousPointPassable(List<Point> points) {
         return points.get(points.size() - 1).isPassable();
+    }
+
+    public void tryMoveAt(Position position) {
+        if (isRightPassableAt(position)) {
+            position.moveToRight();
+            return;
+        }
+        if (isLeftPassableAt(position)) {
+            position.moveToLeft();
+        }
+    }
+
+    private boolean isRightPassableAt(Position position) {
+        if (position.equals(new Position(width()))) {
+            return false;
+        }
+        return points.get(position.value()).isPassable();
+    }
+
+    private boolean isLeftPassableAt(Position position) {
+        if (position.equals(LEFT_MOST_POSITION)) {
+            return false;
+        }
+        return points.get(position.value() - 1).isPassable();
     }
 
     public List<Point> points() {

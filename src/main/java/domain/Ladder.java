@@ -8,7 +8,6 @@ import utils.NumberGenerator;
 
 public class Ladder {
 
-    public static final int LEFTMOST_POSITION = 0;
     private final List<Line> lines;
     private final LadderHeight ladderHeight;
 
@@ -63,36 +62,12 @@ public class Ladder {
         }
     }
 
-    public int getResultPositionOf(int startPosition) {
-        Position position = new Position(startPosition);
+    public int getResultPositionOf(int inputPosition) {
+        Position position = new Position(inputPosition);
         for (Line line : lines) {
-            moveToNextLine(line, position);
+            line.tryMoveAt(position);
         }
         return position.value();
-    }
-
-    private void moveToNextLine(Line line, Position position) {
-        if (isRightPassable(line, position.value())) {
-            position.moveToRight();
-            return;
-        }
-        if (isLeftPassable(line, position.value())) {
-            position.moveToLeft();
-        }
-    }
-
-    private boolean isRightPassable(Line line, int position) {
-        if (position == line.width()) {
-            return false;
-        }
-        return line.points().get(position).isPassable();
-    }
-
-    private boolean isLeftPassable(Line line, int position) {
-        if (position == LEFTMOST_POSITION) {
-            return false;
-        }
-        return line.points().get(position - 1).isPassable();
     }
 
     public List<Line> lines() {
