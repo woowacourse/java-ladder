@@ -62,12 +62,11 @@ public class Ladder {
         }
     }
 
-    public int getResultPositionOf(int inputPosition) {
-        Position position = new Position(inputPosition);
+    public Position getResultPositionOf(Position position) {
         for (Line line : lines) {
             line.tryMoveAt(position);
         }
-        return position.value();
+        return position;
     }
 
     public List<Line> lines() {
@@ -78,7 +77,4 @@ public class Ladder {
         return ladderHeight.value();
     }
 
-    public List<Line> getValues() {
-        return List.copyOf(lines);
-    }
 }

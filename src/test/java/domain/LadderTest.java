@@ -34,8 +34,8 @@ class LadderTest {
     @Test
     void get_same_start_end_position() {
         Ladder ladder = createLadder(2, 3);
-        int first = ladder.getResultPositionOf(0);
-        int second = ladder.getResultPositionOf(0);
+        Position first = ladder.getResultPositionOf(new Position(0));
+        Position second = ladder.getResultPositionOf(new Position(0));
         assertThat(first).isEqualTo(second);
     }
 
@@ -43,9 +43,9 @@ class LadderTest {
     @Test
     void get_different_start_end_position() {
         Ladder ladder = createLadder(2, 3);
-        int firstResult = ladder.getResultPositionOf(0);
-        int secondResult = ladder.getResultPositionOf(1);
-        assertThat(firstResult).isNotEqualTo(secondResult);
+        Position first = ladder.getResultPositionOf(new Position(0));
+        Position second = ladder.getResultPositionOf(new Position(1));
+        assertThat(first).isNotEqualTo(second);
     }
 
     /** 0     1     2     3
@@ -57,15 +57,15 @@ class LadderTest {
      * **/
     @ParameterizedTest(name = "사다리의 결과에 맞는 시작, 결과 위치를 반환해주어야 한다. 시작: {0}, 결과: {1}")
     @CsvSource(value = {"0:3", "1:1", "2:2", "3:0"}, delimiter = ':')
-    void get_appropriate_position(int startPosition, int expectedResultPosition) {
+    void get_appropriate_position(int startPosition, int expectedResultPositionValue) {
         List<Integer> numberListToGenerate = List.of(PASSABLE_THRESHOLDS, PASSABLE_THRESHOLDS,
                 PASSABLE_THRESHOLDS - 1, PASSABLE_THRESHOLDS,
                 PASSABLE_THRESHOLDS, PASSABLE_THRESHOLDS);
         Ladder ladder = createLadder(3, 4, new MockNumberGenerator(numberListToGenerate));
 
-        int realResultPosition = ladder.getResultPositionOf(startPosition);
+        Position realResultPosition = ladder.getResultPositionOf(new Position(startPosition));
 
-        assertThat(realResultPosition).isEqualTo(expectedResultPosition);
+        assertThat(realResultPosition.value()).isEqualTo(expectedResultPositionValue);
     }
 
     private Ladder createLadder(int height, int numberOfPeople) {

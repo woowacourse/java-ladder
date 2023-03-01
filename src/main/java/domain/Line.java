@@ -1,7 +1,5 @@
 package domain;
 
-import static domain.Position.LEFT_MOST_POSITION;
-
 import java.util.ArrayList;
 import java.util.List;
 import utils.NumberGenerator;
@@ -51,14 +49,14 @@ public class Line {
     }
 
     private boolean isRightPassableAt(Position position) {
-        if (position.equals(new Position(width()))) {
+        if (position.value() == width()) {
             return false;
         }
         return points.get(position.value()).isPassable();
     }
 
     private boolean isLeftPassableAt(Position position) {
-        if (position.equals(LEFT_MOST_POSITION)) {
+        if (position.value() == Position.LEFTMOST_POSITION_VALUE) {
             return false;
         }
         return points.get(position.value() - 1).isPassable();

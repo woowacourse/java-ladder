@@ -2,13 +2,14 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Results {
 
     private final List<Result> results;
 
-    public Results(List<Result> results, Names names) {
-        validate(results, names.size());
+    public Results(List<Result> results, Players players) {
+        validate(results, players.size());
         this.results = new ArrayList<>(results);
     }
 
@@ -18,12 +19,12 @@ public class Results {
         }
     }
 
-    public Result get(int position) {
-        return results.get(position);
+    public Stream<Result> stream() {
+        return results.stream();
     }
 
-    public List<Result> getValues() {
-        return List.copyOf(results);
+    public Result get(int position) {
+        return results.get(position);
     }
 
 }

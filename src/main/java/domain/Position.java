@@ -3,9 +3,8 @@ package domain;
 import java.util.Objects;
 
 public class Position {
-    public static final int LEFTMOST_POSITION = 0;
 
-    public static Position LEFT_MOST_POSITION = new Position(LEFTMOST_POSITION);
+    public static final int LEFTMOST_POSITION_VALUE = 0;
 
     private int value;
 
