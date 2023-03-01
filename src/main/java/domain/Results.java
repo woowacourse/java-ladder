@@ -1,6 +1,9 @@
 package domain;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Results {
@@ -31,7 +34,7 @@ public class Results {
         Map<Player, Result> matchingResult = new LinkedHashMap<>();
         for (Player player : players.getPlayers()) {
             int playerFinalPosition = player.getPosition();
-            Result matchedResult  = results.get(playerFinalPosition);
+            Result matchedResult = results.get(playerFinalPosition);
             matchingResult.put(player, matchedResult);
         }
         return new MatchingResult(matchingResult);
