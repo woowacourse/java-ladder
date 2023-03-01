@@ -11,22 +11,54 @@ import org.junit.jupiter.api.Test;
 
 class LineTest {
 
-    @DisplayName("좌측 이동이 가능하면 true를 반환한다.")
+    @DisplayName("좌측 이동이 가능하면 Position을 1 감소 시킨다.")
     @Test
-    void left_passable_true() {
+    void left_move_decrease_position_one() {
         // given
         Position position = new Position(2);
         Player player = new Player(new Name("name"), position);
-        List<LinePoint> points = List.of(new LinePoint(Direction.RIGHT, new Position(1)),
+        List<LinePoint> points = List.of(
+                new LinePoint(Direction.RIGHT, new Position(1)),
                 new LinePoint(Direction.LEFT, new Position(2)));
         Line line = new Line(points);
-
         // when
         line.move(player);
-        int actualPosition = player.getPosition();
+        Position actualPosition = player.getPosition();
         // then
-        assertThat(actualPosition).isEqualTo(1);
-
+        assertThat(actualPosition).isEqualTo(new Position(1));
     }
 
+    @DisplayName("우측 이동이 가능하면 Position을 1 증가 시킨다.")
+    @Test
+    void right_move_increase_position_one() {
+        // given
+        Position position = new Position(1);
+        Player player = new Player(new Name("name"), position);
+        List<LinePoint> points = List.of(
+                new LinePoint(Direction.RIGHT, new Position(1)),
+                new LinePoint(Direction.LEFT, new Position(2)));
+        Line line = new Line(points);
+        // when
+        line.move(player);
+        Position actualPosition = player.getPosition();
+        // then
+        assertThat(actualPosition).isEqualTo(new Position(2));
+    }
+
+    @DisplayName("아래로 이동하면 Position이 변화하지 않는다 시킨다.")
+    @Test
+    void down_move_not_change_position() {
+        // given
+        Position position = new Position(1);
+        Player player = new Player(new Name("name"), position);
+        List<LinePoint> points = List.of(
+                new LinePoint(Direction.DOWN, new Position(1)),
+                new LinePoint(Direction.RIGHT, new Position(2)));
+        Line line = new Line(points);
+        // when
+        line.move(player);
+        Position actualPosition = player.getPosition();
+        // then
+        assertThat(actualPosition).isEqualTo(new Position(1));
+    }
 }

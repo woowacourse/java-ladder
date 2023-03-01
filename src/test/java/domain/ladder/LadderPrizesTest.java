@@ -1,12 +1,12 @@
 package domain.ladder;
 
 
-import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.Arrays;
+import domain.player.Position;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,8 +19,9 @@ class LadderPrizesTest {
     @Test
     void create_success_by_same_size() {
         // given
-        List<LadderPrize> ladderPrizes = List.of(new LadderPrize("any"), new LadderPrize("any"));
-
+        List<LadderPrize> ladderPrizes = List.of(
+                new LadderPrize("any", new Position(1)),
+                new LadderPrize("any", new Position(2)));
         // then
         assertThatNoException().isThrownBy(
                 () -> LadderPrizes.createWithSameSize(ladderPrizes, ladderPrizes.size()));
@@ -30,7 +31,9 @@ class LadderPrizesTest {
     @Test
     void create_fail_by_different_size() {
         // given
-        List<LadderPrize> ladderPrizes = List.of(new LadderPrize("any"), new LadderPrize("any"));
+        List<LadderPrize> ladderPrizes = List.of(
+                new LadderPrize("any", new Position(1)),
+                new LadderPrize("any", new Position(2)));
         // then
         assertThatThrownBy(() -> LadderPrizes.createWithSameSize(ladderPrizes, ladderPrizes.size() - 1))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -45,14 +48,15 @@ class LadderPrizesTest {
         // given
         LadderPrizes ladderPrizes = generateLadderPrizesByParameter("3000", "1000", "2000", "5000", "꽝");
         // when
-        LadderPrize ladderPrize = ladderPrizes.findPrizeByPosition(position);
+        LadderPrize ladderPrize = ladderPrizes.findPrizeByPosition(new Position(position));
         assertThat(ladderPrize.getPrize()).isEqualTo(expectedResult);
     }
 
     private LadderPrizes generateLadderPrizesByParameter(String... results) {
-        List<LadderPrize> ladderPrizes = Arrays.stream(results)
-                .map(LadderPrize::new)
-                .collect(toList());
+        List<LadderPrize> ladderPrizes = new ArrayList<>();
+        for (int i = 0; i < results.length; i++) {
+            ladderPrizes.add(new LadderPrize(results[i], new Position(i + 1)));
+        }
         return LadderPrizes.createWithSameSize(ladderPrizes, results.length);
     }
 }

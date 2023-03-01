@@ -11,6 +11,10 @@ public class Player {
         this.position = position;
     }
 
+    public void move(int value) {
+        position.calculate(value);
+    }
+
     public boolean isSamePosition(Position otherPosition) {
         return position.equals(otherPosition);
     }
@@ -23,11 +27,8 @@ public class Player {
         return name.getName();
     }
 
-    public int getPosition() {
-        return position.getPosition();
-    }
-
-    public void move(int value) {
-        position.calculate(value);
+    public Position getPosition() {
+        return position;
     }
 }
+

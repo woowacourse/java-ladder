@@ -95,10 +95,10 @@ public class LadderGameApplication {
         while (!retryCount.isLimit()) {
             try {
                 List<String> rawLadderPrizes = inputView.readLadderPrizes();
-                List<LadderPrize> ladderPrizes = rawLadderPrizes.stream()
-                        .map(LadderPrize::new)
-                        .collect(toList());
-
+                List<LadderPrize> ladderPrizes = new ArrayList<>();
+                for (int index = 0; index < rawLadderPrizes.size(); index++) {
+                    ladderPrizes.add(new LadderPrize(rawLadderPrizes.get(index), new Position(index + 1)));
+                }
                 return LadderPrizes.createWithSameSize(ladderPrizes, size);
             } catch (IllegalArgumentException e) {
 

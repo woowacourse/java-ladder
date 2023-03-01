@@ -16,7 +16,7 @@ public class Line {
         LinePoint findPoint = points.stream()
                 .filter(point -> player.isSamePosition(point.getPosition()))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalStateException("Line이 잘못된 값으로 생성되었습니다."));
 
         player.move(findPoint.getDirectionValue());
     }

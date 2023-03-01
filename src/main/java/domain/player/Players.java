@@ -3,7 +3,6 @@ package domain.player;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Players {
 
@@ -47,10 +46,6 @@ public class Players {
 
     public int size() {
         return players.size();
-    }
-
-    public Stream<Player> stream() {
-        return players.stream();
     }
 
     public List<Player> getPlayers() {

@@ -32,9 +32,9 @@ class LadderTest {
         Player player = new Player(new Name("name"), position);
         // when
         ladder.play(player);
-        int actualPosition = player.getPosition();
+        Position actualPosition = player.getPosition();
         // then
-        assertThat(actualPosition).isEqualTo(expectedPosition);
+        assertThat(actualPosition).isEqualTo(new Position(expectedPosition));
     }
 
     private List<Line> createLines() {
