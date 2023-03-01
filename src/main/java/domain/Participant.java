@@ -6,7 +6,7 @@ public class Participant {
 
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
-    public static final String NAME_LENGTH_EXCEPTION_MESSAGE = String.format("이름은 %d글자 이상 %d글자 이하여야 합니다",
+    private static final String NAME_LENGTH_EXCEPTION_MESSAGE = String.format("이름은 %d글자 이상 %d글자 이하여야 합니다",
             MIN_NAME_LENGTH, MAX_NAME_LENGTH);
 
     private final String name;
