@@ -46,7 +46,7 @@ public class OutputView {
     }
 
     private String printPoint(Point point) {
-        return LineSymbol.findByBool(point.getRightIsBoolean()).getSymbol();
+        return LineSymbol.findByBool(point.isRightConnect()).getSymbol();
     }
 
     private void printPrizes(Prizes prizes) {

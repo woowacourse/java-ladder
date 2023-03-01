@@ -10,10 +10,10 @@ public class Point {
     }
 
     public int moveDirection(int position) {
-        if (getRightIsBoolean()) {
+        if (isRightConnect()) {
             return position + 1;
         }
-        if (getLeftIsBoolean()) {
+        if (isLeftConnect()) {
             return position - 1;
         }
         return position;
@@ -27,11 +27,11 @@ public class Point {
         return this.right;
     }
 
-    public boolean getLeftIsBoolean() {
-        return getLeft().isDirection();
+    public boolean isLeftConnect() {
+        return getLeft().isConnect();
     }
 
-    public boolean getRightIsBoolean() {
-        return getRight().isDirection();
+    public boolean isRightConnect() {
+        return getRight().isConnect();
     }
 }

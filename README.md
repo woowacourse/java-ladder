@@ -113,11 +113,11 @@
 
 
 - 네이밍
-  - [x]  isResultType 메서드 네이밍 변경
+  - [x]  isResultType 메서드 네이밍 변경 → `printResultByType`
   - [x]  Ladder class의 size() 메서드 네이밍 변경
-  - [ ]  Line class의 isPrerightPoint 메서드 네이밍 변경
-  - [ ]  Line class의 getRightIsBoolean, getLeftIsBoolean 메서드 네이밍 변경
-  - [ ]  Direction class의 isDirection 메서드 네이밍 변경
+  - [x]  Line class의 `isPreRightPoint` 메서드 네이밍 변경 → `isPreRightConnect`
+  - [x]  Line class의 `getRightIsBoolean`, `getLeftIsBoolean` 메서드 네이밍 변경 → `is~Connect`
+  - [x]  Direction class의 `isDirection` 메서드 네이밍 변경 → `isConnect`
   - [x]  Ladder class의 필드명
   - [x]  Line class의 필드명
   - [ ]  People class의 `MIN_PERSON_LENGTH` → `MIN_PEOPLE_COUNT`

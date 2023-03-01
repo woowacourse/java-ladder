@@ -22,7 +22,7 @@ public class Line {
         List<Point> points = new ArrayList<>();
         points.add(makeFirstPoint());
         for (int i = 1; i < personCount - 1; i++) {
-            points.add(makePoint(isPreRightPoint(points.get(i - 1))));
+            points.add(makePoint(isPreRightConnect(points.get(i - 1))));
         }
         points.add(makeEndPoint(personCount - 2, points));
         return points;
@@ -43,13 +43,13 @@ public class Line {
     }
 
     private static Point makeEndPoint(int index, List<Point> points) {
-        Direction left = new Direction(isPreRightPoint(points.get(index)));
+        Direction left = new Direction(isPreRightConnect(points.get(index)));
         Direction right = new Direction(false);
         return new Point(left, right);
     }
 
-    private static boolean isPreRightPoint(Point prePoint) {
-        return prePoint.getRightIsBoolean();
+    private static boolean isPreRightConnect(Point prePoint) {
+        return prePoint.isRightConnect();
     }
 
     private static void validateLine(List<Point> line) {
@@ -59,7 +59,7 @@ public class Line {
     }
 
     private static void validatePoints(Point point1, Point point2) {
-        if (point1.getRightIsBoolean() && point2.getRightIsBoolean()) {
+        if (point1.isRightConnect() && point2.isRightConnect()) {
             throw new IllegalArgumentException("사다리가 연속되게 이어질 수 없습니다.");
         }
     }

@@ -60,7 +60,7 @@ public class LadderGameController {
     }
 
     private void retryPrintResult(Results results, boolean isRetry) {
-        while(isRetry){
+        while (isRetry) {
             String resultType = inputView.readResultType();
             isRetry = outputView.printResultByType(results, resultType);
         }

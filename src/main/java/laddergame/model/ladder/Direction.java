@@ -7,7 +7,7 @@ public class Direction {
         this.direction = direction;
     }
 
-    public boolean isDirection() {
+    public boolean isConnect() {
         return direction;
     }
 }
