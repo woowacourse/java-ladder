@@ -23,6 +23,17 @@ public class Players {
         if (hasDuplicateName(players)) {
             throw new IllegalArgumentException("플레이어의 이름은 중복 될 수 없습니다.");
         }
+
+        if (hasDuplicatePosition(players)) {
+            throw new IllegalArgumentException("중복된 위치가 존재합니다.");
+        }
+    }
+
+    private static boolean hasDuplicatePosition(List<Player> players) {
+        return players.size() != players.stream()
+                .map(Player::getPosition)
+                .distinct()
+                .count();
     }
 
     private boolean hasDuplicateName(List<Player> players) {

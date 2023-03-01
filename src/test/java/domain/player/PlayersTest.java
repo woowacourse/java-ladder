@@ -1,11 +1,10 @@
 package domain.player;
 
-import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,6 +40,18 @@ class PlayersTest {
         assertThatThrownBy(() -> new Players(players))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("플레이어의 이름은 중복 될 수 없습니다.");
+    }
+
+    @DisplayName("포지션이 중복되면 예외를 반환한다.")
+    @Test
+    void create_fail_by_duplicate_position() {
+        // given
+        List<Player> players = generateRawPlayersByNames("neo", "pobi");
+        players.add(new Player(new Name("asd"), new Position(1)));
+        // then
+        assertThatThrownBy(() -> new Players(players))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("중복된 위치가 존재합니다.");
     }
 
     @DisplayName("size()를 통해서 Player의 숫자를 정확하게 반환한다.")
@@ -105,9 +116,10 @@ class PlayersTest {
     }
 
     private List<Player> generateRawPlayersByNames(String... names) {
-        return Arrays.stream(names)
-                .map(Name::new)
-                .map(name -> new Player(name, new Position(1)))
-                .collect(toList());
+        List<Player> players = new ArrayList<>();
+        for (int i = 0; i < names.length; i++) {
+            players.add(new Player(new Name(names[i]), new Position(i + 1)));
+        }
+        return players;
     }
 }

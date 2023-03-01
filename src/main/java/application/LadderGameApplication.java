@@ -37,7 +37,7 @@ public class LadderGameApplication {
     public void run() {
         Players players = createPlayers(new RetryCount(5));
         LadderHeight ladderHeight = createLadderHeight(new RetryCount(5));
-        LadderPrizes ladderPrizes = createLadderPrizes(players.size(), new RetryCount(5));
+        LadderPrizes ladderPrizes = createLadderPrizes(new RetryCount(5));
 
         Ladder ladder = ladderGenerator.generate(players.size(), ladderHeight);
         LadderGame ladderGame = new LadderGame(ladder, players, ladderPrizes);
@@ -91,7 +91,7 @@ public class LadderGameApplication {
         throw new IllegalStateException(RETRY_COUNT_OVER_EXCEPTION_MESSAGE);
     }
 
-    private LadderPrizes createLadderPrizes(int size, RetryCount retryCount) {
+    private LadderPrizes createLadderPrizes(RetryCount retryCount) {
         while (!retryCount.isLimit()) {
             try {
                 List<String> rawLadderPrizes = inputView.readLadderPrizes();
@@ -99,7 +99,7 @@ public class LadderGameApplication {
                 for (int index = 0; index < rawLadderPrizes.size(); index++) {
                     ladderPrizes.add(new LadderPrize(rawLadderPrizes.get(index), new Position(index + 1)));
                 }
-                return LadderPrizes.createWithSameSize(ladderPrizes, size);
+                return new LadderPrizes(ladderPrizes);
             } catch (IllegalArgumentException e) {
 
                 outputView.printErrorMessage(e.getMessage());

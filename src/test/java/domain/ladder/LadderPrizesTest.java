@@ -24,20 +24,20 @@ class LadderPrizesTest {
                 new LadderPrize("any", new Position(2)));
         // then
         assertThatNoException().isThrownBy(
-                () -> LadderPrizes.createWithSameSize(ladderPrizes, ladderPrizes.size()));
+                () -> new LadderPrizes(ladderPrizes));
     }
 
     @DisplayName("입력받은 크기와 LadderPrizes의 크기가 다르면 생성시 예외를 반환한다.")
     @Test
-    void create_fail_by_different_size() {
+    void create_fail_by_duplicate_position() {
         // given
         List<LadderPrize> ladderPrizes = List.of(
                 new LadderPrize("any", new Position(1)),
-                new LadderPrize("any", new Position(2)));
+                new LadderPrize("any", new Position(1)));
         // then
-        assertThatThrownBy(() -> LadderPrizes.createWithSameSize(ladderPrizes, ladderPrizes.size() - 1))
+        assertThatThrownBy(() -> new LadderPrizes(ladderPrizes))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("크기가 일치하지 않습니다.");
+                .hasMessage("중복된 위치가 존재합니다.");
     }
 
     @DisplayName("입력받은 Position에 따라 적합한 result를 반환한다.")
@@ -57,6 +57,6 @@ class LadderPrizesTest {
         for (int i = 0; i < results.length; i++) {
             ladderPrizes.add(new LadderPrize(results[i], new Position(i + 1)));
         }
-        return LadderPrizes.createWithSameSize(ladderPrizes, results.length);
+        return new LadderPrizes(ladderPrizes);
     }
 }

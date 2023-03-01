@@ -8,18 +8,24 @@ public class LadderPrizes {
 
     private final List<LadderPrize> ladderPrizes;
 
-    private LadderPrizes(List<LadderPrize> ladderPrizes) {
+    public LadderPrizes(List<LadderPrize> ladderPrizes) {
+        validate(ladderPrizes);
         this.ladderPrizes = ladderPrizes;
     }
 
-    //TODO: size 비교가 어떤 객체의 책임인지 생각 & 중복 Position 예외처리
-    public static LadderPrizes createWithSameSize(List<LadderPrize> ladderPrizes, int size) {
-        if (ladderPrizes.size() != size) {
-            throw new IllegalArgumentException("크기가 일치하지 않습니다.");
+    private void validate(List<LadderPrize> ladderPrizes) {
+        if (hasDuplicatePosition(ladderPrizes)) {
+            throw new IllegalArgumentException("중복된 위치가 존재합니다.");
         }
-
-        return new LadderPrizes(ladderPrizes);
     }
+
+    private boolean hasDuplicatePosition(List<LadderPrize> ladderPrizes) {
+        return ladderPrizes.size() != ladderPrizes.stream()
+                .map(LadderPrize::getPosition)
+                .distinct()
+                .count();
+    }
+
 
     public LadderPrize findPrizeByPosition(Position position) {
         return ladderPrizes.stream()

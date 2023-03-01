@@ -30,6 +30,10 @@ public class LadderPrize {
         return prize;
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
     public boolean isSamePosition(Position otherPosition) {
         return position.equals(otherPosition);
     }

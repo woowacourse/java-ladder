@@ -1,6 +1,8 @@
 package domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.player.Name;
 import domain.player.Player;
@@ -11,12 +13,35 @@ import org.junit.jupiter.api.Test;
 
 class LineTest {
 
+    @DisplayName("객체를 정상적으로 생성한다.")
+    @Test
+    void create_success() {
+        // given
+        List<LinePoint> points = List.of(
+                new LinePoint(Direction.RIGHT, new Position(1)),
+                new LinePoint(Direction.LEFT, new Position(2)));
+        // then
+        assertThatNoException().isThrownBy(() -> new Line(points));
+    }
+
+    @DisplayName("중복된 위치가 존재하면 예외를 반환한다.")
+    @Test
+    void create_fail_by_duplicate_position() {
+        // given
+        List<LinePoint> points = List.of(
+                new LinePoint(Direction.RIGHT, new Position(1)),
+                new LinePoint(Direction.LEFT, new Position(1)));
+        // then
+        assertThatThrownBy(() -> new Line(points))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("중복된 위치가 존재합니다.");
+    }
+
     @DisplayName("좌측 이동이 가능하면 Position을 1 감소 시킨다.")
     @Test
     void left_move_decrease_position_one() {
         // given
-        Position position = new Position(2);
-        Player player = new Player(new Name("name"), position);
+        Player player = new Player(new Name("name"), new Position(2));
         List<LinePoint> points = List.of(
                 new LinePoint(Direction.RIGHT, new Position(1)),
                 new LinePoint(Direction.LEFT, new Position(2)));
@@ -32,8 +57,7 @@ class LineTest {
     @Test
     void right_move_increase_position_one() {
         // given
-        Position position = new Position(1);
-        Player player = new Player(new Name("name"), position);
+        Player player = new Player(new Name("name"), new Position(1));
         List<LinePoint> points = List.of(
                 new LinePoint(Direction.RIGHT, new Position(1)),
                 new LinePoint(Direction.LEFT, new Position(2)));
@@ -49,8 +73,7 @@ class LineTest {
     @Test
     void down_move_not_change_position() {
         // given
-        Position position = new Position(1);
-        Player player = new Player(new Name("name"), position);
+        Player player = new Player(new Name("name"), new Position(1));
         List<LinePoint> points = List.of(
                 new LinePoint(Direction.DOWN, new Position(1)),
                 new LinePoint(Direction.RIGHT, new Position(2)));
