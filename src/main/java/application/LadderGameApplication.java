@@ -22,6 +22,7 @@ import view.OutputView;
 
 public class LadderGameApplication {
 
+    public static final String RETRY_COUNT_OVER_EXCEPTION_MESSAGE = "재시도 횟수를 초과하여, 어플리케이션을 종료합니다.";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -47,16 +48,17 @@ public class LadderGameApplication {
     }
 
     private Players createPlayers(RetryCount retryCount) {
-        try {
-            List<Name> names = createNames();
-            List<Player> players = createRawPlayers(names);
-            return new Players(players);
-        } catch (IllegalArgumentException e) {
-            throwIfRetryCountOver(retryCount);
-
-            outputView.printErrorMessage(e.getMessage());
-            return createPlayers(retryCount);
+        while (retryCount.isLimit()) {
+            try {
+                List<Name> names = createNames();
+                List<Player> players = createRawPlayers(names);
+                return new Players(players);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+                retryCount.decrease();
+            }
         }
+        throw new IllegalStateException(RETRY_COUNT_OVER_EXCEPTION_MESSAGE);
 
     }
 
@@ -75,38 +77,36 @@ public class LadderGameApplication {
         return players;
     }
 
-    private void throwIfRetryCountOver(RetryCount retryCount) {
-        if (retryCount.isLimit()) {
-            throw new IllegalStateException("재시도 횟수를 초과하여, 어플리케이션을 종료합니다.");
-        }
-    }
-
     private LadderHeight createLadderHeight(RetryCount retryCount) {
-        try {
-            int height = inputView.readLadderHeight();
-            return new LadderHeight(height);
-        } catch (IllegalArgumentException e) {
-            throwIfRetryCountOver(retryCount);
+        while (retryCount.isLimit()) {
+            try {
+                int height = inputView.readLadderHeight();
+                return new LadderHeight(height);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+                retryCount.decrease();
 
-            outputView.printErrorMessage(e.getMessage());
-            return createLadderHeight(retryCount);
+            }
         }
+        throw new IllegalStateException(RETRY_COUNT_OVER_EXCEPTION_MESSAGE);
     }
 
     private LadderPrizes createLadderPrizes(int size, RetryCount retryCount) {
-        try {
-            List<String> rawLadderPrizes = inputView.readLadderPrizes();
-            List<LadderPrize> ladderPrizes = rawLadderPrizes.stream()
-                    .map(LadderPrize::new)
-                    .collect(toList());
+        while (retryCount.isLimit()) {
+            try {
+                List<String> rawLadderPrizes = inputView.readLadderPrizes();
+                List<LadderPrize> ladderPrizes = rawLadderPrizes.stream()
+                        .map(LadderPrize::new)
+                        .collect(toList());
 
-            return LadderPrizes.createWithSameSize(ladderPrizes, size);
-        } catch (IllegalArgumentException e) {
-            throwIfRetryCountOver(retryCount);
+                return LadderPrizes.createWithSameSize(ladderPrizes, size);
+            } catch (IllegalArgumentException e) {
 
-            outputView.printErrorMessage(e.getMessage());
-            return createLadderPrizes(size, retryCount);
+                outputView.printErrorMessage(e.getMessage());
+                retryCount.decrease();
+            }
         }
+        throw new IllegalStateException(RETRY_COUNT_OVER_EXCEPTION_MESSAGE);
     }
 
     private void printResult(LadderGame ladderGame) {

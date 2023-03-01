@@ -12,7 +12,10 @@ public class RetryCount {
         if (count == 0) {
             return true;
         }
-        count--;
         return false;
+    }
+
+    public void decrease() {
+        count--;
     }
 }
