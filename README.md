@@ -107,8 +107,8 @@
 ---
 ## 2단계 미션 추가 리팩토링
 - [x]  출력 결과를 판단하는 로직 `controller`에서 `view`로 변경하기
-- [ ]  Line class의 makeLine 메서드 분리하기
-  - [ ]  가장 왼쪽과 가장 오른쪽 Point 생성 하는 메소드 분리하기
+- [x]  Line class의 makeLine 메서드 분리하기
+  - [x]  가장 왼쪽과 가장 오른쪽 Point 생성 하는 메소드 분리하기
 - [ ]  Results class findResultOfPerson 메서드 key result 사용하기
 
 

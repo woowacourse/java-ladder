@@ -20,12 +20,18 @@ public class Line {
 
     private static List<Point> makeLine(int personCount) {
         List<Point> points = new ArrayList<>();
-        points.add(new Point(new Direction(false), new Direction(random.nextBoolean())));
+        points.add(makeFirstPoint());
         for (int i = 1; i < personCount - 1; i++) {
             points.add(makePoint(isPreRightPoint(points.get(i - 1))));
         }
-        points.add(new Point(new Direction(isPreRightPoint(points.get(personCount - 2))), new Direction(false)));
+        points.add(makeEndPoint(personCount - 2, points));
         return points;
+    }
+
+    private static Point makeFirstPoint() {
+        Direction left = new Direction(false);
+        Direction right = new Direction(random.nextBoolean());
+        return new Point(left, right);
     }
 
     private static Point makePoint(boolean preRightPoint) {
@@ -34,6 +40,12 @@ public class Line {
             return new Point(left, new Direction(false));
         }
         return new Point(left, new Direction(random.nextBoolean()));
+    }
+
+    private static Point makeEndPoint(int index, List<Point> points) {
+        Direction left = new Direction(isPreRightPoint(points.get(index)));
+        Direction right = new Direction(false);
+        return new Point(left, right);
     }
 
     private static boolean isPreRightPoint(Point prePoint) {
