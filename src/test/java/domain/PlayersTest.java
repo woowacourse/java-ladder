@@ -46,4 +46,16 @@ public class PlayersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 중복된 이름을 입력할 수 없습니다.");
     }
+
+    @Test
+    @DisplayName("결과를 보고 싶은 사람 입력값이 Player 이름과 일치하지 않을 때 예외 발생")
+    void throwExceptionWhenSelectedNameDoesNotMatchWithPlayerName() {
+        Players players = Players.from(new String[]{"roy", "hoy", "joy", "poy"});
+
+        String selectedName = "pobi";
+
+        assertThatThrownBy(() -> players.findPlayer(selectedName))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 존재하지 않는 사람입니다.");
+    }
 }
