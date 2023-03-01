@@ -7,14 +7,15 @@ import static view.InputView.inputSearchTarget;
 import static view.OutputView.printLadder;
 import static view.OutputView.printResults;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import common.exception.handler.IllegalArgumentExceptionHandler;
 import domain.Ladder;
 import domain.LadderGame;
 import domain.Participants;
 import domain.Prizes;
+import dto.Result;
 import view.SearchTarget;
 
 public class LadderEngine {
@@ -59,19 +60,21 @@ public class LadderEngine {
         });
     }
 
-    private Map<String, String> getResults(LadderGame ladderGame, SearchTarget searchTarget) {
+    private List<Result> getResults(LadderGame ladderGame, SearchTarget searchTarget) {
         if (searchTarget.isAll()) {
             return getAllResultsOf(ladderGame);
         }
         String searchTargetName = searchTarget.getName();
-        return Map.of(searchTargetName, ladderGame.findPrizeFor(searchTargetName));
+        Result result = new Result(searchTargetName, ladderGame.findPrizeFor(searchTargetName));
+        return List.of(result);
     }
 
-    private Map<String, String> getAllResultsOf(LadderGame ladderGame) {
-        Map<String, String> prizes = new HashMap<>();
-        for (String name : ladderGame.getParticipantNames()) {
-            prizes.put(name, ladderGame.findPrizeFor(name));
+    private List<Result> getAllResultsOf(LadderGame ladderGame) {
+        List<Result> results = new ArrayList<>();
+        for (var name : ladderGame.getParticipantNames()) {
+            Result result = new Result(name, ladderGame.findPrizeFor(name));
+            results.add(result);
         }
-        return prizes;
+        return results;
     }
 }

@@ -7,6 +7,7 @@ import domain.Bridge;
 import domain.Ladder;
 import domain.LadderGame;
 import domain.Line;
+import dto.Result;
 
 public class OutputView {
 
@@ -25,12 +26,12 @@ public class OutputView {
         System.out.println(EXCEPTION_PREFIX + exception.getMessage());
     }
 
-    public static void printResults(Map<String, String> results) {
-        for (var result : results.entrySet()) {
+    public static void printResults(List<Result> results) {
+        for (var result : results) {
             if (results.size() > 1) {
-                System.out.print(result.getKey() + " : ");
+                System.out.print(result.getParticipantName() + " : ");
             }
-            System.out.println(result.getValue());
+            System.out.println(result.getPrize());
         }
     }
 
