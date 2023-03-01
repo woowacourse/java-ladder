@@ -19,14 +19,33 @@ public class Players {
         initiatePlayers(names);
     }
 
+    private void validateDuplicateNames(List<String> names) {
+        if (isDuplicated(names)) {
+            throw new IllegalArgumentException(DUPLICATE_NAME_MESSAGE);
+        }
+    }
+
+    private boolean isDuplicated(List<String> names) {
+        return names.size() != names.stream().distinct().count();
+    }
+
+    private void validateNumberOfPlayer(List<String> names) {
+        if (names.size() < MIN_NUMBER_OF_PLAYERS || names.size() > MAX_NUMBER_OF_PLAYERS) {
+            throw new IllegalArgumentException(
+                    String.format(INVALID_NUMBER_OF_PLAYER_MESSAGE, MIN_NUMBER_OF_PLAYERS, MAX_NUMBER_OF_PLAYERS));
+        }
+    }
+
+    private void initiatePlayers(List<String> names) {
+        for (String name : names) {
+            players.add(new Player(name));
+        }
+    }
+
     public List<String> getNames() {
         return players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toList());
-    }
-
-    public int getCount() {
-        return players.size();
     }
 
     public int getOrder(String name) {
@@ -37,27 +56,8 @@ public class Players {
         return order;
     }
 
-    private void validateDuplicateNames(List<String> names) {
-        if (isDuplicated(names)) {
-            throw new IllegalArgumentException(DUPLICATE_NAME_MESSAGE);
-        }
-    }
-
-    private void validateNumberOfPlayer(List<String> names) {
-        if (names.size() < MIN_NUMBER_OF_PLAYERS || names.size() > MAX_NUMBER_OF_PLAYERS) {
-            throw new IllegalArgumentException(
-                    String.format(INVALID_NUMBER_OF_PLAYER_MESSAGE, MIN_NUMBER_OF_PLAYERS, MAX_NUMBER_OF_PLAYERS));
-        }
-    }
-
-    private boolean isDuplicated(List<String> names) {
-        return names.size() != names.stream().distinct().count();
-    }
-
-    private void initiatePlayers(List<String> names) {
-        for (String name : names) {
-            players.add(new Player(name));
-        }
+    public int getCount() {
+        return players.size();
     }
 
 }

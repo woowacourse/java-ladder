@@ -12,18 +12,6 @@ public class Line {
         addPoints(width, generator);
     }
 
-    public List<Boolean> getPoints() {
-        return points;
-    }
-
-    public int getPointsSize() {
-        return points.size();
-    }
-
-    public boolean isMovablePoint(int pointIndex) {
-        return points.get(pointIndex);
-    }
-
     private void addPoints(int width, RandomGenerator generator) {
         addRandomPoint(generator);
         for (int pointIndex = 1; pointIndex < width; pointIndex++) {
@@ -50,6 +38,18 @@ public class Line {
 
     private void addPoint(boolean state) {
         points.add(state);
+    }
+
+    public boolean isMovablePoint(int pointIndex) {
+        return points.get(pointIndex);
+    }
+
+    public List<Boolean> getPoints() {
+        return points;
+    }
+
+    public int getPointsSize() {
+        return points.size();
     }
 
 }

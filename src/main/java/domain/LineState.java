@@ -16,10 +16,6 @@ public enum LineState {
         this.state = state;
     }
 
-    public boolean getState() {
-        return state;
-    }
-
     public static LineState of(int value) {
         return Arrays.stream(LineState.values())
                 .filter(s -> s.value == value)
@@ -28,4 +24,7 @@ public enum LineState {
                         String.format(CAN_NOT_FIND_STATE_FROM_VALUE_MESSAGE, value)));
     }
 
+    public boolean getState() {
+        return state;
+    }
 }

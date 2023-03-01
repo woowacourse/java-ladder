@@ -15,8 +15,17 @@ public class Ladder {
         addLine(height, width, generator);
     }
 
-    public List<Line> getLines() {
-        return lines;
+    private void validateHeight(int height) {
+        if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
+            throw new IllegalArgumentException(
+                    String.format(INVALID_HEIGHT_MESSAGE, MIN_HEIGHT, MAX_HEIGHT));
+        }
+    }
+
+    private void addLine(int height, int width, RandomGenerator generator) {
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line(width, generator));
+        }
     }
 
     public Position move(Line line, Position position) {
@@ -37,7 +46,6 @@ public class Ladder {
         }
         return false;
     }
-
     private boolean moveLeft(Line line, Position position) {
         if (position.getIndex() == 0) {
             return false;
@@ -49,17 +57,8 @@ public class Ladder {
         return false;
     }
 
-    private void addLine(int height, int width, RandomGenerator generator) {
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(width, generator));
-        }
-    }
-
-    private void validateHeight(int height) {
-        if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
-            throw new IllegalArgumentException(
-                    String.format(INVALID_HEIGHT_MESSAGE, MIN_HEIGHT, MAX_HEIGHT));
-        }
+    public List<Line> getLines() {
+        return lines;
     }
 
 }

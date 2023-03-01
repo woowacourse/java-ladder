@@ -16,16 +16,16 @@ public class PlayerName {
         this.name = name;
     }
 
-    private void validateNameBlank(String name) {
-        if (name.isBlank()) {
-            throw new IllegalArgumentException(BLANK_NAME_MESSAGE);
-        }
-    }
-
     private void validateNameLength(String name) {
         if (name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(
                     String.format(INVALID_NAME_LENGTH_MESSAGE, MAX_LENGTH));
+        }
+    }
+
+    private void validateNameBlank(String name) {
+        if (name.isBlank()) {
+            throw new IllegalArgumentException(BLANK_NAME_MESSAGE);
         }
     }
 

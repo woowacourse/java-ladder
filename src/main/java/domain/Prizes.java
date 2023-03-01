@@ -13,26 +13,26 @@ public class Prizes {
         initiate(names);
     }
 
-    private void initiate(List<String> names) {
-        for (String name : names) {
-            prizes.add(new Prize(name));
-        }
-    }
-
     private void validateCount(List<String> names, Players players) {
         if (names.size() != players.getCount()) {
             throw new IllegalArgumentException(INVALID_COUNT_MESSAGE);
         }
     }
 
-    public String getName(int index) {
-        return prizes.get(index).getName();
+    private void initiate(List<String> names) {
+        for (String name : names) {
+            prizes.add(new Prize(name));
+        }
     }
 
     public List<String> getNames() {
         return prizes.stream()
                 .map(Prize::getName)
                 .collect(Collectors.toList());
+    }
+
+    public String getName(int index) {
+        return prizes.get(index).getName();
     }
 
 }
