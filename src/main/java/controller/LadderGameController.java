@@ -6,13 +6,12 @@ import factory.PlayersFactory;
 import view.InputView;
 import view.OutputView;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderGameController {
 
-    private static final String END_CONDITION = "all";
+    private static final String ALL_PLAYERS = "all";
 
     private LadderGame ladderGame;
 
@@ -22,29 +21,35 @@ public class LadderGameController {
         printResults();
     }
 
+    private void printResults() {
+        String playerName;
+        do {
+            playerName = InputView.readPlayerName();
+            printResults(playerName);
+        } while (!playerName.equals(ALL_PLAYERS));
+    }
+
+    private void printResults(String playerName) {
+        if (playerName.equals(ALL_PLAYERS)) {
+            OutputView.printGameResultsOfAllPlayers(ladderGame.getGameResults());
+            return;
+        }
+        OutputView.printGameResultOfSinglePlayer(ladderGame.getGameResultOf(playerName));
+    }
+
     private void ready() {
         List<String> playerNames = InputView.readPlayerNames();
         Players players = PlayersFactory.of(playerNames);
         List<String> gameResultNames = InputView.readGameResultNames();
-        GameResults gameResults = createGameResults(playerNames.size(), gameResultNames);
         int ladderHeight = InputView.readLadderHeight();
         Ladder ladder = LadderFactory.of(playerNames.size(), ladderHeight, new RandomBasedStrategy());
-        ladderGame = new LadderGame(players, ladder, gameResults);
+        ladderGame = new LadderGame(players, ladder, gameResultNames);
     }
 
     private void printGeneratedLadder() {
         List<List<Boolean>> pointValues = getLadder();
         List<String> gameGameResultNames = getGameResults();
         OutputView.printGeneratedLadder(ladderGame.getPlayerNames(), pointValues, gameGameResultNames);
-    }
-
-    private void printResults() {
-        String playerName;
-        do {
-            playerName = InputView.readPlayerName();
-            LinkedHashMap<Player, GameResult> gameResults = ladderGame.getGameResultOf(playerName);
-            OutputView.printGameResults(gameResults);
-        } while (!playerName.equals(END_CONDITION));
     }
 
     private List<List<Boolean>> getLadder() {
@@ -58,13 +63,6 @@ public class LadderGameController {
         return gameResults.stream()
                 .map(GameResult::getGameResultName)
                 .collect(Collectors.toList());
-    }
-
-    private GameResults createGameResults(final int playersSize, final List<String> gameResultNames) {
-        return new GameResults(
-                playersSize,
-                gameResultNames.stream().map(GameResult::new).collect(Collectors.toList())
-        );
     }
 
     private List<List<Boolean>> getPointValues(final List<Line> lines) {

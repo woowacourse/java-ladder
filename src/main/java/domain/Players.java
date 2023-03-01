@@ -35,10 +35,6 @@ public class Players {
         }
     }
 
-    public List<Player> get() {
-        return Collections.unmodifiableList(players);
-    }
-
     public Player get(final String playerName) {
         return players.stream()
                 .filter(player -> player.getName().equals(playerName))
@@ -52,4 +48,7 @@ public class Players {
                 .collect(Collectors.toUnmodifiableList());
     }
 
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
+    }
 }

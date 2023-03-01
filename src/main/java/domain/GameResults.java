@@ -27,4 +27,10 @@ public class GameResults {
         return gameResults.get(order);
     }
 
+    public GameResult getGameResultOf(Player player) {
+        return gameResults.stream()
+                .filter(gameResult -> gameResult.getPlayer().equals(player))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어입니다."));
+    }
 }

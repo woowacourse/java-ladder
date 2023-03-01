@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
@@ -41,7 +40,7 @@ public class LadderGameTest {
 
     @BeforeEach
     void before() {
-        List<String> gameResultNames = List.of("당첨", "꽝", "꽝", "당첨", "꽝");
+        List<String> gameResultNames = List.of("당첨", "꽝", "당첨", "꽝", "꽝");
         List<String> playerNames = List.of("a", "b", "c", "d", "e");
         players = PlayersFactory.of(playerNames);
         Line pointsOfFirstLine = new Line(List.of(Point.EXIST, Point.NOT_EXIST, Point.NOT_EXIST, Point.EXIST));
@@ -58,8 +57,7 @@ public class LadderGameTest {
     @CsvSource(value = {"a:당첨", "b:꽝", "c:꽝", "d:당첨", "e:꽝"}, delimiter = ':')
     void getResultOfPlayer(String playerName, String expectedGameResult) {
         // when
-        LinkedHashMap<Player, GameResult> gameResultMappingPlayer = ladderGame.getGameResultOf(playerName);
-        GameResult gameResult = gameResultMappingPlayer.get(players.get(playerName));
+        GameResult gameResult = ladderGame.getGameResultOf(playerName);
 
         // then
         assertThat(gameResult.getGameResultName())
@@ -84,12 +82,10 @@ public class LadderGameTest {
         String playerName = player.getName();
 
         // when
-        LinkedHashMap<Player, GameResult> gameResults = ladderGameWithNoPointsLadder
-                .getGameResultOf(playerName);
-        String gameResult = gameResults.get(player).getGameResultName();
+        GameResult gameResult = ladderGameWithNoPointsLadder.getGameResultOf(playerName);
 
         // then
-        assertThat(gameResult)
+        assertThat(gameResult.getGameResultName())
                 .isEqualTo(expectedGameResult);
     }
 
@@ -97,14 +93,14 @@ public class LadderGameTest {
     @Test
     void getResultsOfAllPlayers_sizeTest() {
         // given
-        LinkedHashMap<Player, GameResult> gameResultMappingPlayer = ladderGame.getGameResultOf("all");
+        GameResults gameResults = ladderGame.getGameResults();
 
         // when
         int expectedResultSize = 5;
 
         // then
-        assertThat(gameResultMappingPlayer.size())
-                .isEqualTo(expectedResultSize);
+        assertThat(gameResults.getGameResults())
+                .hasSize(expectedResultSize);
     }
 
     @DisplayName("모든 Player의 실행 결과를 반환한다.")
@@ -112,10 +108,10 @@ public class LadderGameTest {
     @CsvSource(value = {"a:당첨", "b:꽝", "c:꽝", "d:당첨", "e:꽝"}, delimiter = ':')
     void getResultsOfAllPlayers(String playerName, String expectedGameResult) {
         // given
-        LinkedHashMap<Player, GameResult> gameResultMappingPlayer = ladderGame.getGameResultOf("all");
+        GameResults gameResults = ladderGame.getGameResults();
 
         // when
-        GameResult gameResult = gameResultMappingPlayer.get(players.get(playerName));
+        GameResult gameResult = gameResults.getGameResultOf(players.get(playerName));
 
         // then
         assertThat(gameResult.getGameResultName())

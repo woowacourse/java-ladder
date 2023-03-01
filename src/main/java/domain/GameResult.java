@@ -37,8 +37,8 @@ public class GameResult {
         return result;
     }
 
-    public String getPlayerName() {
-        return player.getName();
+    public Player getPlayer() {
+        return player;
     }
 
 }

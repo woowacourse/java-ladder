@@ -1,10 +1,9 @@
 package view;
 
 import domain.GameResult;
-import domain.Player;
+import domain.GameResults;
 
 import java.util.Comparator;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 public class OutputView {
@@ -13,7 +12,6 @@ public class OutputView {
     private static final String POINT_SEPARATOR = "|";
     private static final String GENERATED_LADDER_TITLE = "사다리 결과";
     private static final String RESULT_DELIMITER = " : ";
-    private static final int GAME_RESULT_OF_SINGLE_PLAYER = 1;
 
     public static void printGeneratedLadder(
             final List<String> playerNames,
@@ -73,28 +71,18 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
-    public static void printGameResults(final LinkedHashMap<Player, GameResult> gameResults) {
-        if (gameResults.size() == GAME_RESULT_OF_SINGLE_PLAYER) {
-            printGameResultOfSinglePlayer(gameResults);
-            return;
-        }
-        printGameResultsOfAllPlayers(gameResults);
-    }
-
-    private static void printGameResultsOfAllPlayers(final LinkedHashMap<Player, GameResult> gameResults) {
+    public static void printGameResultsOfAllPlayers(final GameResults gameResults) {
         printEmptyLine();
         printLine(RESULT_TITLE);
-        for (Player player : gameResults.keySet()) {
-            printLine(player.getName() + RESULT_DELIMITER + gameResults.get(player).getGameResultName());
+        for (GameResult gameResult : gameResults.getGameResults()) {
+            printLine(gameResult.getPlayer().getName() + RESULT_DELIMITER + gameResult.getGameResultName());
         }
     }
 
-    public static void printGameResultOfSinglePlayer(final LinkedHashMap<Player, GameResult> gameResults) {
+    public static void printGameResultOfSinglePlayer(final GameResult gameResult) {
         printEmptyLine();
         printLine(RESULT_TITLE);
-        for (Player player : gameResults.keySet()) {
-            printLine(gameResults.get(player).getGameResultName());
-        }
+        printLine(gameResult.getGameResultName());
         printEmptyLine();
     }
 
