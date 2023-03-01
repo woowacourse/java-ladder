@@ -10,11 +10,12 @@ public class Position {
         this.position = position;
     }
 
-    public void moveRight() {
+
+    public void increase() {
         position++;
     }
 
-    public void moveLeft() {
+    public void decrease() {
         position--;
     }
 
@@ -41,13 +42,5 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(position);
-    }
-
-    public void increase() {
-        position++;
-    }
-
-    public void decrease() {
-        position--;
     }
 }

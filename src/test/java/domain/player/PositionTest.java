@@ -8,24 +8,24 @@ import org.junit.jupiter.api.Test;
 class PositionTest {
 
 
-    @DisplayName("moveLeft를 하면 Position 내부의 값이 1 감소한다.")
+    @DisplayName("decrease를 하면 Position 내부의 값이 1 감소한다.")
     @Test
     void move_left_value_minus_one() {
         // given
         Position position = new Position(2);
         // when
-        position.moveLeft();
+        position.decrease();
         // then
         assertThat(position.getPosition()).isEqualTo(1);
     }
 
-    @DisplayName("moveRight를 하면 Position 내부의 값이 1 증가한다.")
+    @DisplayName("increase를 하면 Position 내부의 값이 1 증가한다.")
     @Test
     void move_right_value_plus_one() {
         // given
         Position position = new Position(2);
         // when
-        position.moveRight();
+        position.increase();
         // then
         assertThat(position.getPosition()).isEqualTo(3);
     }
