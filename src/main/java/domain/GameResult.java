@@ -8,9 +8,11 @@ public class GameResult {
     public static final int MAX_RESULT_NAME_SIZE = 5;
 
     private final String result;
+    private final Player player;
 
-    public GameResult(final String result) {
+    public GameResult(final Player player, final String result) {
         validate(result);
+        this.player = player;
         this.result = result;
     }
 
@@ -33,6 +35,10 @@ public class GameResult {
 
     public String getGameResultName() {
         return result;
+    }
+
+    public String getPlayerName() {
+        return player.getName();
     }
 
 }

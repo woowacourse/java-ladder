@@ -10,10 +10,10 @@ public class LadderGame {
     private final Ladder ladder;
     private final GameResults gameResults;
 
-    public LadderGame(final Players players, final Ladder ladder, final GameResults gameResults) {
+    public LadderGame(final Players players, final Ladder ladder, final List<String> gameResultNames) {
         this.players = players;
         this.ladder = ladder;
-        this.gameResults = gameResults;
+        this.gameResults = matchGameResults(gameResultNames);
     }
 
     public LinkedHashMap<Player, GameResult> getGameResultOf(final String playerName) {
@@ -45,6 +45,16 @@ public class LadderGame {
 
     public Ladder getLadder() {
         return ladder;
+    }
+
+    public GameResults matchGameResults(List<String> gameResultNames) {
+        List<GameResult> gameResults = new ArrayList<>();
+        for (Player player : players.getPlayers()) {
+            String gameResultName = gameResultNames.get(ladder.getGameResultOrderOf(player));
+            GameResult gameResult = new GameResult(player, gameResultName);
+            gameResults.add(gameResult);
+        }
+        return new GameResults(gameResults);
     }
 
 }

@@ -41,19 +41,16 @@ public class LadderGameTest {
 
     @BeforeEach
     void before() {
+        List<String> gameResultNames = List.of("당첨", "꽝", "꽝", "당첨", "꽝");
         List<String> playerNames = List.of("a", "b", "c", "d", "e");
         players = PlayersFactory.of(playerNames);
-        GameResults gameResults = new GameResults(
-                playerNames.size(),
-                List.of(new GameResult("당첨"), new GameResult("꽝"), new GameResult("당첨"), new GameResult("꽝"), new GameResult("꽝"))
-        );
         Line pointsOfFirstLine = new Line(List.of(Point.EXIST, Point.NOT_EXIST, Point.NOT_EXIST, Point.EXIST));
         Line pointsOfSecondLine = new Line(List.of(Point.NOT_EXIST, Point.EXIST, Point.NOT_EXIST, Point.EXIST));
         Line pointsOfThirdLine = new Line(List.of(Point.NOT_EXIST, Point.EXIST, Point.NOT_EXIST, Point.NOT_EXIST));
         Line pointsOfFourthLine = new Line(List.of(Point.EXIST, Point.NOT_EXIST, Point.EXIST, Point.NOT_EXIST));
 
         Ladder ladder = new Ladder(List.of(pointsOfFirstLine, pointsOfSecondLine, pointsOfThirdLine, pointsOfFourthLine));
-        ladderGame = new LadderGame(players, ladder, gameResults);
+        ladderGame = new LadderGame(players, ladder, gameResultNames);
     }
 
     @DisplayName("지정한 플레이어의 게임 실행 결과를 반환한다.")
@@ -137,19 +134,16 @@ public class LadderGameTest {
     }
 
     private static Stream<Arguments> provideLadderGameWithNoPointsLadder() {
+        List<String> gameResultNames = List.of("꽝", "꽝", "당첨");
         List<String> playerNames = List.of("a", "b", "c");
         Players players = PlayersFactory.of(playerNames);
-        GameResults gameResults = new GameResults(
-                3,
-                List.of(new GameResult("꽝"), new GameResult("꽝"), new GameResult("당첨"))
-        );
         Line pointsOfFirstLine = new Line(List.of(Point.NOT_EXIST, Point.NOT_EXIST));
         Ladder ladder = new Ladder(List.of(pointsOfFirstLine));
 
         return Stream.of(
-                Arguments.of(new LadderGame(players, ladder, gameResults), players.get("a"), "꽝"),
-                Arguments.of(new LadderGame(players, ladder, gameResults), players.get("b"), "꽝"),
-                Arguments.of(new LadderGame(players, ladder, gameResults), players.get("c"), "당첨")
+                Arguments.of(new LadderGame(players, ladder, gameResultNames), players.get("a"), "꽝"),
+                Arguments.of(new LadderGame(players, ladder, gameResultNames), players.get("b"), "꽝"),
+                Arguments.of(new LadderGame(players, ladder, gameResultNames), players.get("c"), "당첨")
         );
     }
 
