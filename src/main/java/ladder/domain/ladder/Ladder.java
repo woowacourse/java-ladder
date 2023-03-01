@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.RandomGenerator;
+import ladder.domain.ladderGame.Position;
 
 import java.util.Collections;
 import java.util.List;
@@ -11,30 +12,26 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    private Ladder(List<Line> lines) {
-        this.lines = lines;
+    public Ladder(final int heightOfLadder, final int widthOfLadder, final RandomGenerator randomBooleanGenerator) {
+
+        this.lines = IntStream.range(0, heightOfLadder)
+                .mapToObj(i -> new Line(widthOfLadder, randomBooleanGenerator))
+                .collect(Collectors.toList());
     }
 
-    public static Ladder of(final int numberOfPlayers, final int heightOfLadder, final RandomGenerator randomGenerator) {
-        int widthOfLadder = numberOfPlayers - 1;
+    //방법2. 플레이어의 포지션 넣어주면, 반환하는 경우
+    public Position findEndPositionOf(Position position) {
+        Position endPosition = position;
 
-        return new Ladder(IntStream.range(0, heightOfLadder)
-                .mapToObj(i -> Line.of(widthOfLadder, randomGenerator))
-                .collect(Collectors.toList())
-        );
+        for (Line line : lines) {
+            endPosition = line.findNextPosition(position);
+        }
+        return endPosition;
     }
+
 
     public List<Line> getLinesOfLadder() {
         return Collections.unmodifiableList(lines);
-    }
-
-    public int findEndPositionFrom(int startIndex) {
-        int currentPosition = startIndex;
-
-        for (Line line : lines) {
-            currentPosition += line.findNextMovingOf(currentPosition);
-        }
-        return currentPosition;
     }
 
 }

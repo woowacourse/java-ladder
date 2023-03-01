@@ -1,7 +1,7 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Line;
+import ladder.domain.MockRandomBooleanGenerator;
+import ladder.domain.ladderGame.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,16 +12,14 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderTest {
-    private int heightOfLadder;
-    private int playerCount;
+class LadderTest {
+    private final int heightOfLadder = 5;
+    private final int playerCount = 5;
     private Ladder ladder;
 
     @BeforeEach
     void setup() {
-        heightOfLadder = 5;
-        playerCount = 5;
-        ladder = Ladder.of(playerCount, heightOfLadder, new MockRandomBarGenerator());
+        ladder = new Ladder(heightOfLadder, playerCount, new MockRandomBooleanGenerator());
     }
 
     /**
@@ -32,22 +30,26 @@ public class LadderTest {
      * true,false,true,false,
      */
     @Test
-    @DisplayName("4*5 사이즈의 사다리가 생성되는지 확인한다")
+    @DisplayName("5*5 사이즈의 사다리가 생성되는지 확인한다")
     void ladderInitiatorTest() {
         List<Line> lines = ladder.getLinesOfLadder();
 
         int rowSize = lines.size();
         int columnSize = lines.get(0).getLine().size();
 
-        assertThat(rowSize == heightOfLadder && columnSize == playerCount - 1).isTrue();
+        assertThat(rowSize == heightOfLadder && columnSize == playerCount).isTrue();
     }
+
 
     @ParameterizedTest
     @CsvSource(value = {"0,1", "1,0", "2,3", "3,2", "4,4"})
     @DisplayName("사다리에 출발점을 넣으면 예상된 도착점을 반환한다")
-    void traceThePathTest(int start, int end) {
-        assertThat(ladder.findEndPositionFrom(start))
-                .isEqualTo(end);
+    void findEndPositionOf_Test(int start, int end) {
+        Position startPosition = new Position(start);
+        Position endPosition = new Position(end);
+
+        assertThat(ladder.findEndPositionOf(startPosition))
+                .isEqualTo(endPosition);
     }
 
 }
