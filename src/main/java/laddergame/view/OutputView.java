@@ -32,9 +32,9 @@ public class OutputView {
     }
 
     public void printLadder(Ladder ladder) {
-        for (int i = 0; i < ladder.size(); i++) {
+        for (int i = 0; i < ladder.getHeight(); i++) {
             System.out.print(LineSymbol.BLANK_LINE.getSymbol());
-            printLine(ladder.getLineToListPoint(i));
+            printLine(ladder.getLine(i).getPoints());
             System.out.println();
         }
     }

@@ -114,12 +114,11 @@
 
 - 네이밍
   - [x]  isResultType 메서드 네이밍 변경
-  - [ ]  Ladder class의 size() 메서드 네이밍에 대한 고민
-    - [ ]  추후 `Ladder`클래스의 구성이 `List<Line>`이 아닌 다른 형태로 변경되면 `size()`메서드도 함께 영향을 받을 것 같아요.
+  - [x]  Ladder class의 size() 메서드 네이밍 변경
   - [ ]  Line class의 isPrerightPoint 메서드 네이밍 변경
   - [ ]  Line class의 getRightIsBoolean, getLeftIsBoolean 메서드 네이밍 변경
   - [ ]  Direction class의 isDirection 메서드 네이밍 변경
-  - [ ]  Ladder class의 필드명
-  - [ ]  Line class의 필드명
+  - [x]  Ladder class의 필드명
+  - [x]  Line class의 필드명
   - [ ]  People class의 `MIN_PERSON_LENGTH` → `MIN_PEOPLE_COUNT`
 - [ ]  테스트에 사용되는 공용 변수 `@BeforeEach`  사용하기

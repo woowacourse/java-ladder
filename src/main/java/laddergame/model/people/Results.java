@@ -23,8 +23,8 @@ public class Results {
     }
 
     private static int getPrizeIndex(Ladder ladder, int index) {
-        for (int j = 0; j < ladder.size(); j++) {
-            index = ladder.getLine(j).getLineToPoint(index).moveDirection(index);
+        for (int j = 0; j < ladder.getHeight(); j++) {
+            index = ladder.getLine(j).getPoint(index).moveDirection(index);
         }
         return index;
     }

@@ -7,25 +7,25 @@ import java.util.Random;
 public class Line {
     private static final Random random = new Random();
 
-    private final List<Point> line;
+    private final List<Point> points;
 
     public Line(int personCount) {
         this(makeLine(personCount));
     }
 
-    public Line(List<Point> line) {
-        validateLine(line);
-        this.line = line;
+    public Line(List<Point> points) {
+        validateLine(points);
+        this.points = points;
     }
 
     private static List<Point> makeLine(int personCount) {
-        List<Point> line = new ArrayList<>();
-        line.add(new Point(new Direction(false), new Direction(random.nextBoolean())));
+        List<Point> points = new ArrayList<>();
+        points.add(new Point(new Direction(false), new Direction(random.nextBoolean())));
         for (int i = 1; i < personCount - 1; i++) {
-            line.add(makePoint(isPreRightPoint(line.get(i - 1))));
+            points.add(makePoint(isPreRightPoint(points.get(i - 1))));
         }
-        line.add(new Point(new Direction(isPreRightPoint(line.get(personCount - 2))), new Direction(false)));
-        return line;
+        points.add(new Point(new Direction(isPreRightPoint(points.get(personCount - 2))), new Direction(false)));
+        return points;
     }
 
     private static Point makePoint(boolean preRightPoint) {
@@ -42,25 +42,25 @@ public class Line {
 
     private static void validateLine(List<Point> line) {
         for (int i = 0; i < line.size() - 1; i++) {
-            validatePoint(line.get(i), line.get(i + 1));
+            validatePoints(line.get(i), line.get(i + 1));
         }
     }
 
-    private static void validatePoint(Point point1, Point point2) {
+    private static void validatePoints(Point point1, Point point2) {
         if (point1.getRightIsBoolean() && point2.getRightIsBoolean()) {
             throw new IllegalArgumentException("사다리가 연속되게 이어질 수 없습니다.");
         }
     }
 
-    public int size() {
-        return line.size();
+    public int getLength() {
+        return points.size();
     }
 
-    public List<Point> getLine() {
-        return line;
+    public List<Point> getPoints() {
+        return points;
     }
 
-    public Point getLineToPoint(int i) {
-        return line.get(i);
+    public Point getPoint(int i) {
+        return points.get(i);
     }
 }

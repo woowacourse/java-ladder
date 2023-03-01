@@ -12,7 +12,7 @@ class LineTest {
     @DisplayName("참여자의 개수와 생성되는 포인터의 개수가 같다.")
     void Should_Success_When_MakeLine() {
         int personCount = 4;
-        assertThat(new Line(personCount).size()).isEqualTo(personCount);
+        assertThat(new Line(personCount).getLength()).isEqualTo(personCount);
     }
 
     @Test

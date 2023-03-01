@@ -22,6 +22,6 @@ class LadderTest {
     void Should_EqualTo_When_MakeLadder() {
         Height height = new Height(4);
         People people = new People(List.of("aa", "bb"));
-        assertThat(new Ladder(height, people).size()).isEqualTo(height.getHeight());
+        assertThat(new Ladder(height, people).getHeight()).isEqualTo(height.getHeight());
     }
 }
