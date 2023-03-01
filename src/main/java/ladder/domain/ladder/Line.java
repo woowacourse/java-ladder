@@ -1,57 +1,43 @@
 package ladder.domain.ladder;
 
 import ladder.domain.RandomGenerator;
+import ladder.domain.ladderGame.Position;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Line {
+    private final List<Direction> line;
 
-    private static final int MOVING_RIGHT = 1;
-    private static final int MOVING_LEFT = -1;
-    private static final int MOVING_DOWN = 0;
-    private final List<Bar> bars;
-
-
-    private Line(List<Bar> bars) {
-        this.bars = bars;
+    public Line(final int widthOfLine, RandomGenerator randomBooleanGenerator) {
+        this.line = createLine(widthOfLine, randomBooleanGenerator);
     }
 
-    public static Line of(final int widthOfLadder, final RandomGenerator randomGenerator) {
-        List<Bar> bars = new ArrayList<>();
+    private List<Direction> createLine(int widthOfLine, RandomGenerator randomBooleanGenerator) {
+        List<Direction> line = new ArrayList<>();
+        Direction previous = Direction.STAY;
 
-        IntStream.range(0, widthOfLadder)
-                .forEach(i -> bars.add(createBar(bars, i, randomGenerator)));
-
-        return new Line(bars);
-    }
-
-    private static Bar createBar(List<Bar> bars, int index, RandomGenerator randomGenerator) {
-        if (bars.isEmpty() || bars.get(index - 1) == Bar.UNCONNECTED) {
-            return randomGenerator.generate();
+        for(int i=0; i<widthOfLine-1 ; i++) {
+            Direction newDirection = previous.next(randomBooleanGenerator);
+            line.add(newDirection);
+            previous = newDirection;
         }
+        line.add(previous.last());
 
-        return Bar.UNCONNECTED;
+        return line;
     }
 
-    public List<Bar> getLine() {
-        return Collections.unmodifiableList(bars);
+    public Position findNextPosition(Position position) {
+        int current = position.getValue();
+
+        return line.get(current).move(position);
     }
 
 
-    public int findNextMovingOf(int currentIndex) {
-        int left = currentIndex - 1;
-
-        if (left >= 0 && bars.get(left).getValue()) {
-            return MOVING_LEFT;
-        }
-        if (currentIndex < bars.size() && bars.get(currentIndex).getValue()) {
-            return MOVING_RIGHT;
-        }
-
-        return MOVING_DOWN;
+    public List<Direction> getLine() {
+        return Collections.unmodifiableList(line);
     }
+
+
 }
-
