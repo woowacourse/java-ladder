@@ -63,14 +63,14 @@ public class Line {
 
     private void movePlayerToLeft(Player player, int leftStepPositionOfPlayer) {
         if (leftStepPositionOfPlayer >= FIRST_POSITION_OF_STEP
-                && line.get(leftStepPositionOfPlayer).equals(LineStep.EXIST)) {
+                && LineStep.EXIST.equals(line.get(leftStepPositionOfPlayer))) {
             player.moveToLeft();
         }
     }
 
     private void movePlayerToRight(Player player, int rightStepPositionOfPlayer) {
         if (rightStepPositionOfPlayer < this.line.size()
-                && line.get(rightStepPositionOfPlayer).equals(LineStep.EXIST)) {
+                && LineStep.EXIST.equals(line.get(rightStepPositionOfPlayer))) {
             player.moveToRight();
         }
     }
