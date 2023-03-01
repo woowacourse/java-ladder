@@ -8,13 +8,9 @@ public class Prize {
     private final String name;
 
     public Prize(String name) {
-        this.name = name;
         validateNameBlank(name);
         validateNameLength(name);
-    }
-
-    public String getName() {
-        return name;
+        this.name = name;
     }
 
     private void validateNameBlank(String name) {
@@ -28,6 +24,10 @@ public class Prize {
             throw new IllegalArgumentException(
                     String.format(INVALID_NAME_LENGTH_MESSAGE, MAX_LENGTH));
         }
+    }
+
+    public String getName() {
+        return name;
     }
 
 }
