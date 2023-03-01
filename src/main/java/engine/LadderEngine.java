@@ -19,6 +19,7 @@ import domain.LadderGame;
 import domain.Line;
 import domain.Participant;
 import domain.Participants;
+import domain.Prizes;
 import generator.LineGenerator;
 import generator.RandomBridgeGenerator;
 import view.SearchTarget;
@@ -53,7 +54,10 @@ public class LadderEngine {
 
     private LadderGame makeGameWith(Participants participants, Ladder ladder) {
         return IllegalArgumentExceptionHandler.handleExceptionByRepeating(
-                () -> new LadderGame(participants, ladder, inputPrizes())
+                () -> {
+                    Prizes prizes = new Prizes(inputPrizes());
+                    return new LadderGame(participants, ladder, prizes);
+                }
         );
     }
 
