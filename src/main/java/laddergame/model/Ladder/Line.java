@@ -1,21 +1,22 @@
-package laddergame.model;
+package laddergame.model.Ladder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-//TODO: 추후 랜덤값 검사하는 테스트에 맞춰 리팩토링하기
 public class Line {
-    static final Random random = new Random();
+    private static final Random random = new Random();
+
     private final List<Boolean> line;
+
+    public Line(int personCount) {
+        this(makeLine(personCount));
+    }
 
     public Line(List<Boolean> line) {
         validateLine(line);
         this.line = line;
-    }
-
-    public Line(int personCount) {
-        this(makeLine(personCount));
     }
 
     private static void validateLine(List<Boolean> line) {
@@ -46,11 +47,15 @@ public class Line {
         return random.nextBoolean();
     }
 
-    public int getSize() {
+    public int getNumber() {
         return line.size();
     }
 
     public List<Boolean> getLine() {
-        return line;
+        return Collections.unmodifiableList(line);
+    }
+
+    public boolean hasLine(int i) {
+        return line.get(i);
     }
 }

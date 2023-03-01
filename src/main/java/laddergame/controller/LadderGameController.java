@@ -1,38 +1,69 @@
 package laddergame.controller;
 
-import laddergame.model.Height;
-import laddergame.model.Ladder;
-import laddergame.model.Persons;
+import java.util.function.Function;
+import java.util.function.Supplier;
+
+import laddergame.model.Ladder.Height;
+import laddergame.model.Ladder.Ladder;
+import laddergame.model.LadderGame;
+import laddergame.model.Participants;
+import laddergame.model.Rewards;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
+import laddergame.view.Power;
 
 public class LadderGameController {
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
     public void run() {
-        Persons persons = makePersons();
-        Height height = makeLadderHeight();
-        Ladder ladder = new Ladder(height, persons);
-        outputView.printResult(ladder, persons);
-        inputView.closeScanner();
+        Participants participants = generate(inputView::readParticipants, Participants::new);
+        Rewards rewards = makeRewards(participants);
+        Height height = generate(inputView::readLadderHeight, Height::new);
+        Ladder ladder = new Ladder(height, participants);
+        outputView.printResult(ladder, participants, rewards);
+        LadderGame ladderGame = new LadderGame(ladder, rewards, participants);
+        printReward(ladderGame);
     }
 
-    private Persons makePersons() {
+    private <T, R> R generate(Supplier<T> supplier, Function<T, R> function) {
         try {
-            return new Persons(inputView.readPersonNames());
+            return function.apply(supplier.get());
         } catch (IllegalArgumentException e) {
             inputView.printErrorMsg(e.getMessage());
-            return makePersons();
+            return generate(supplier, function);
         }
     }
 
-    private Height makeLadderHeight() {
+    private Rewards makeRewards(Participants participants) {
         try {
-            return new Height(inputView.readLadderHeight());
+            return new Rewards(inputView.readRewards(), participants);
         } catch (IllegalArgumentException e) {
             inputView.printErrorMsg(e.getMessage());
-            return makeLadderHeight();
+            return makeRewards(participants);
+        }
+    }
+
+    private void printReward(LadderGame ladderGame) {
+        String name = inputView.readParticipantWantToSee();
+        try {
+            ladderGame.checkParticipant(name);
+        } catch (IllegalArgumentException e) {
+            inputView.printErrorMsg(e.getMessage());
+            printReward(ladderGame);
+        }
+        outputView.printReward(ladderGame, name);
+        reGame(ladderGame);
+    }
+
+    private void reGame(LadderGame ladderGame) {
+        Power power = inputView.readReGame();
+        if (power == Power.RE_GAME) {
+            run();
+        } else if (power == Power.PRINT) {
+            printReward(ladderGame);
+        } else {
+            inputView.closeScanner();
         }
     }
 }
