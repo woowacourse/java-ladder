@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import domain.Ladder;
 import domain.Players;
@@ -72,28 +71,25 @@ public class LadderGameController {
     }
 
     private void printPlayerResult(Players players, Prizes prizes, LadderGame ladderGame) {
-        List<Integer> indexs = getPlayerResultIndex(ladderGame);
-        while (isSingleResult(indexs)) {
-            String result = prizes.getName(indexs.get(0));
-            outputView.printSinglePlayerResult(result);
-            indexs = getPlayerResultIndex(ladderGame);
+        List<String> results = getPlayerResult(ladderGame, prizes);
+        while (isSingleResult(results)) {
+            outputView.printSinglePlayerResult(results.get(0));
+            results = getPlayerResult(ladderGame, prizes);
         }
-        List<String> results = indexs.stream()
-                .map(prizes::getName).collect(Collectors.toList());
         outputView.printAllPlayerResult(players, results);
     }
 
-    private boolean isSingleResult(List<Integer> indexes) {
-        return indexes.size() == SINGLE_RESULT_SIZE;
+    private boolean isSingleResult(List<String> results) {
+        return results.size() == SINGLE_RESULT_SIZE;
     }
 
-    private List<Integer> getPlayerResultIndex(LadderGame ladderGame) {
+    private List<String> getPlayerResult(LadderGame ladderGame, Prizes prizes) {
         try {
             String name = inputView.readCheckPlayer();
-            return ladderGame.getResult(name);
+            return ladderGame.getResult(name, prizes);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return getPlayerResultIndex(ladderGame);
+            return getPlayerResult(ladderGame, prizes);
         }
     }
 

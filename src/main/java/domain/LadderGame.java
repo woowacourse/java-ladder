@@ -14,13 +14,14 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public List<Integer> getResult(String name) {
+    public List<String> getResult(String name, Prizes prizes) {
         if (name.equals(ALL_RESULT)) {
             return players.getNames().stream()
-                    .map(this::getResultIndex).collect(Collectors.toList());
+                    .map(this::getResultIndex)
+                    .map(prizes::getName)
+                    .collect(Collectors.toList());
         }
-        return new ArrayList<>(
-                List.of(getResultIndex(name)));
+        return List.of(prizes.getName(getResultIndex(name)));
     }
 
     private int getResultIndex(String name) {
