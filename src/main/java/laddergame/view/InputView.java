@@ -26,7 +26,7 @@ public class InputView {
         return List.of(input.split(DELIMITER));
     }
 
-    public String readLadderGameResult() {
+    public String readResultType() {
         System.out.println(System.lineSeparator() + READ_RESULT_TYPE_MSG);
         String input = scanner.nextLine();
         validateIsBlank(input);
