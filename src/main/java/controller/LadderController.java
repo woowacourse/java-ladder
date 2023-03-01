@@ -58,7 +58,7 @@ public class LadderController {
     }
 
     private MatchingResult playLadderGame(Ladder ladder, Players players, Results results) {
-        ladder.movePlayer(players);
+        ladder.movePlayers(players);
         return results.matchResults(players);
     }
 

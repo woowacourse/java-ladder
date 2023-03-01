@@ -31,7 +31,7 @@ public class MatchingResultTest {
         Ladder ladder = Ladder.makeDefaultLadder(4, 1, booleanGenerator);
 
         ladder.generateRandomLadder();
-        ladder.movePlayer(players);
+        ladder.movePlayers(players);
         MatchingResult matchingResult = results.matchResults(players);
 
         String[] playerToKnow = {"roy"};

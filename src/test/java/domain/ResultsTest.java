@@ -43,7 +43,7 @@ public class ResultsTest {
         Ladder ladder = Ladder.makeDefaultLadder(4, 1, booleanGenerator);
 
         ladder.generateRandomLadder();
-        ladder.movePlayer(players);
+        ladder.movePlayers(players);
         MatchingResult matchingResult = results.matchResults(players);
 
         assertThat(matchingResult.getMatchingResult().get(players.getPlayers().get(0))).isEqualTo(results.getResults().get(1));
