@@ -26,7 +26,6 @@ public class LadderPrizes {
                 .count();
     }
 
-
     public LadderPrize findPrizeByPosition(Position position) {
         return ladderPrizes.stream()
                 .filter(ladderPrize -> ladderPrize.isSamePosition(position))

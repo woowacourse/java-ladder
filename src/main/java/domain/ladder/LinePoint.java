@@ -13,12 +13,12 @@ public class LinePoint {
         this.position = position;
     }
 
-    public Direction getDirection() {
-        return direction;
-    }
-
     public int getDirectionValue() {
         return direction.getValue();
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 
     public Position getPosition() {

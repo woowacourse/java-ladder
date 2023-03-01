@@ -26,15 +26,15 @@ public class LadderPrize {
         }
     }
 
+    public boolean isSamePosition(Position otherPosition) {
+        return position.equals(otherPosition);
+    }
+
     public String getPrize() {
         return prize;
     }
 
     public Position getPosition() {
         return position;
-    }
-
-    public boolean isSamePosition(Position otherPosition) {
-        return position.equals(otherPosition);
     }
 }

@@ -14,45 +14,19 @@ public class LineGenerator {
     }
 
     public Line generate(int countOfPoint) {
-        List<LineBridge> linePoints = new ArrayList<>();
+        List<LineBridge> lineBridges = new ArrayList<>();
         int width = countOfPoint - 1;
         while (width-- > 0) {
-            addPoint(numberGenerator, linePoints);
+            addLineBridge(numberGenerator, lineBridges);
         }
 
-        List<LinePoint> points = mapLinePointsToPoints(linePoints);
-        addLastPoint(countOfPoint, points);
+        List<LinePoint> linePoints = mapBridgeToPoint(lineBridges);
+        addLastPoint(countOfPoint, linePoints);
 
-        return new Line(points);
+        return new Line(linePoints);
     }
 
-    private  int addPoint(LineBridge linePoint, List<LinePoint> points, int index) {
-        if (linePoint.isPassable()) {
-            points.add(new LinePoint(Direction.RIGHT, new Position(index +1)));
-            points.add(new LinePoint(Direction.LEFT, new Position(index +2)));
-            return ++index;
-        }
-
-        points.add(new LinePoint(Direction.DOWN, new Position(index +1)));
-        return index;
-    }
-
-    private List<LinePoint> mapLinePointsToPoints(List<LineBridge> linePoints) {
-        List<LinePoint> points = new ArrayList<>();
-        for (int i = 0; i < linePoints.size(); i++) {
-            LineBridge linePoint = linePoints.get(i);
-            i = addPoint(linePoint, points, i);
-        }
-        return points;
-    }
-
-    private static void addLastPoint(int countOfPoint, List<LinePoint> points) {
-        if (points.size() != countOfPoint) {
-            points.add(new LinePoint(Direction.DOWN, new Position(countOfPoint)));
-        }
-    }
-
-    private void addPoint(NumberGenerator numberGenerator, List<LineBridge> points) {
+    private void addLineBridge(NumberGenerator numberGenerator, List<LineBridge> points) {
         if (points.isEmpty()) {
             points.add(LineBridge.from(numberGenerator.generate()));
             return;
@@ -68,5 +42,31 @@ public class LineGenerator {
 
     private boolean isLastPointPassable(List<LineBridge> points) {
         return points.get(points.size() - 1).isPassable();
+    }
+
+    private List<LinePoint> mapBridgeToPoint(List<LineBridge> linePoints) {
+        List<LinePoint> points = new ArrayList<>();
+        for (int index = 0; index < linePoints.size(); index++) {
+            LineBridge linePoint = linePoints.get(index);
+            index = addLinePoint(linePoint, points, index);
+        }
+        return points;
+    }
+
+    private int addLinePoint(LineBridge linePoint, List<LinePoint> points, int index) {
+        if (linePoint.isPassable()) {
+            points.add(new LinePoint(Direction.RIGHT, new Position(index + 1)));
+            points.add(new LinePoint(Direction.LEFT, new Position(index +2)));
+            return ++index;
+        }
+
+        points.add(new LinePoint(Direction.DOWN, new Position(index +1)));
+        return index;
+    }
+
+    private static void addLastPoint(int countOfPoint, List<LinePoint> points) {
+        if (points.size() != countOfPoint) {
+            points.add(new LinePoint(Direction.DOWN, new Position(countOfPoint)));
+        }
     }
 }
