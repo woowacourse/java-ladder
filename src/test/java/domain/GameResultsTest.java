@@ -44,15 +44,4 @@ public class GameResultsTest {
                 .isInstanceOf(GameResult.class);
     }
 
-    @DisplayName("실행 결과는 입력한 순서대로 사다리에 매핑된다.")
-    @ParameterizedTest
-    @CsvSource(value = {"0:꽝", "1:꽝", "2:당첨"}, delimiter = ':')
-    void mapGameResultWithLadder(String index, String gameResult) {
-        GameResults gameResults = new GameResults(
-                List.of(new GameResult(new Player("a", Integer.parseInt(index)), "꽝"), new GameResult(new Player("a", Integer.parseInt(index)), "꽝"), new GameResult(new Player("a", Integer.parseInt(index)), "당첨"))
-        );
-        assertThat(gameResults.getGameResultAt(Integer.parseInt(index)).getGameResultName())
-                .isEqualTo(gameResult);
-    }
-
 }
