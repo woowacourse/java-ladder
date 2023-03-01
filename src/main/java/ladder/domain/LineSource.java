@@ -1,11 +1,17 @@
 package ladder.domain;
 
-import java.util.Arrays;
-
 public enum LineSource {
-    MAKE_LINE,
-    MAKE_BLANK;
+    MAKE_LINE(true),
+    MAKE_BLANK(false);
 
-    LineSource() {
+    private boolean makeLineTo;
+
+
+    LineSource(boolean value) {
+        this.makeLineTo = value;
+    }
+
+    public boolean makeLine(){
+        return makeLineTo;
     }
 }

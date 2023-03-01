@@ -13,6 +13,9 @@ public class TestLineSourceGenerator implements LineSourceGenerator {
 
     @Override
     public LineSource generate() {
+        if (index == lineSources.size()) {
+            return LineSource.MAKE_BLANK;
+        }
         return lineSources.get(index++);
     }
 

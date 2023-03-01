@@ -11,7 +11,7 @@ public class LineTest {
     private Line line;
 
     @BeforeEach
-    void setting(){
+    void setting() {
         line = new Line();
     }
 
@@ -27,7 +27,7 @@ public class LineTest {
 
     @Test
     @DisplayName("Line.make에 MAKE_BLANK를 넣으면 아무 변화가 없다.")
-    void makeLineBlankTest(){
+    void makeLineBlankTest() {
         line.make(LineSource.MAKE_BLANK);
         assertThat(line)
                 .extracting("isExist")
