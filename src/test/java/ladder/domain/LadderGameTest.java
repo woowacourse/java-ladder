@@ -5,8 +5,8 @@ import static ladder.domain.Direction.STAY;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import ladder.domain.generator.DirectionGenerator;
-import ladder.domain.generator.TestDirectionGenerator;
+import ladder.util.generator.DirectionGenerator;
+import ladder.util.generator.TestDirectionGenerator;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

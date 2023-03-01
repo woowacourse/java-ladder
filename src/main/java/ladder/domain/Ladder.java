@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import ladder.domain.generator.DirectionGenerator;
+import ladder.util.generator.DirectionGenerator;
 
 public class Ladder {
 

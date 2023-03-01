@@ -6,9 +6,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.Stream;
-import ladder.domain.generator.DirectionGenerator;
-import ladder.domain.generator.RandomDirectionGenerator;
-import ladder.domain.generator.TestDirectionGenerator;
+import ladder.util.generator.DirectionGenerator;
+import ladder.util.generator.RandomDirectionGenerator;
+import ladder.util.generator.TestDirectionGenerator;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

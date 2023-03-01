@@ -1,4 +1,4 @@
-package ladder.domain.generator;
+package ladder.util.generator;
 
 import java.util.Random;
 import ladder.domain.Direction;

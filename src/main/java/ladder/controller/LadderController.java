@@ -9,7 +9,7 @@ import ladder.domain.LadderResult;
 import ladder.domain.Players;
 import ladder.domain.Prizes;
 import ladder.domain.Retry;
-import ladder.domain.generator.RandomDirectionGenerator;
+import ladder.util.generator.RandomDirectionGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -19,16 +19,18 @@ public class LadderController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final Retry retry;
 
-    public LadderController(final InputView inputView, final OutputView outputView) {
+    public LadderController(final InputView inputView, final OutputView outputView, final Retry retry) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.retry = retry;
     }
 
     public void run() {
-        final Players players = createPlayers(new Retry(5));
-        final Prizes prizes = createPrizes(new Retry(5), players);
-        final Height height = createHeight(new Retry(5));
+        final Players players = createPlayers(retry.renew());
+        final Prizes prizes = createPrizes(retry.renew(), players);
+        final Height height = createHeight(retry.renew());
         final Ladder ladder = Ladder.of(new RandomDirectionGenerator(), players, height);
         outputView.printLadderGame(players, ladder, prizes);
         final LadderGame ladderGame = new LadderGame(players, ladder, prizes);
@@ -37,7 +39,6 @@ public class LadderController {
     }
 
     private Players createPlayers(final Retry retry) {
-        retry.checkCount();
         final Optional<Players> players = readPlayers();
         if (players.isEmpty()) {
             retry.decrease();
@@ -57,7 +58,6 @@ public class LadderController {
     }
 
     private Prizes createPrizes(final Retry retry, final Players players) {
-        retry.checkCount();
         final Optional<Prizes> prizes = readPrizes(players);
         if (prizes.isEmpty()) {
             retry.decrease();
@@ -77,7 +77,6 @@ public class LadderController {
     }
 
     private Height createHeight(final Retry retry) {
-        retry.checkCount();
         final Optional<Height> height = readHeight();
         if (height.isEmpty()) {
             retry.decrease();
@@ -97,7 +96,6 @@ public class LadderController {
     }
 
     private String createTarget(final Retry retry, final LadderResult ladderResult) {
-        retry.checkCount();
         final Optional<String> target = readTarget(ladderResult);
         if (target.isEmpty()) {
             retry.decrease();

@@ -7,10 +7,10 @@ import java.util.Map;
 import java.util.StringJoiner;
 import ladder.domain.Direction;
 import ladder.domain.Ladder;
+import ladder.domain.LadderResult;
 import ladder.domain.Line;
 import ladder.domain.Players;
 import ladder.domain.Prizes;
-import ladder.domain.LadderResult;
 
 public class OutputView {
 

@@ -1,7 +1,8 @@
-package ladder.domain.generator;
+package ladder.util.generator;
 
 import java.util.List;
 import ladder.domain.Direction;
+import ladder.util.generator.DirectionGenerator;
 
 public class TestDirectionGenerator implements DirectionGenerator {
 

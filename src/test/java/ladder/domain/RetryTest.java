@@ -16,17 +16,15 @@ class RetryTest {
     void possible_retry_count_more_1(final int value) {
         final Retry retry = new Retry(value);
 
-        assertThatNoException().isThrownBy(() -> retry.checkCount());
+        assertThatNoException().isThrownBy(() -> retry.decrease());
     }
 
     @Test
     @DisplayName("재시도 횟수를 감소시킨다.")
     void decrease_retry_count() {
-        final Retry retry = new Retry(1);
+        final Retry retry = new Retry(0);
 
-        retry.decrease();
-
-        assertThatThrownBy(() -> retry.checkCount())
+        assertThatThrownBy(() -> retry.decrease())
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("재입력 횟수를 초과하였습니다.");
     }
