@@ -16,6 +16,7 @@ public class LadderGameTest {
     private static LadderGame ladderGame;
     private static Players players;
     private static Ladder ladder;
+    private static Prizes prizes;
 
     @BeforeAll
     static void set() {
@@ -25,23 +26,25 @@ public class LadderGameTest {
         );
         ladder = new Ladder(4, players.getCount() - 1, randomDigitsGenerator);
         ladderGame = new LadderGame(players, ladder);
+        prizes = new Prizes(
+                List.of("야근하기", "5000원", "퇴근하기", "꽝"), players);
     }
 
-    @DisplayName("플레이어의 이름을 통해 사다리 최종 위치를 반환한다.")
+    @DisplayName("플레이어의 이름을 통해 사다리 최종 결과를 반환한다.")
     @ParameterizedTest
-    @CsvSource(value = {"a,0", "b,2", "c,3", "d,1"})
-    void get_result_of_player(String name, int expected) {
-        List<Integer> result = ladderGame.getResult(name);
+    @CsvSource(value = {"a,야근하기", "b,퇴근하기", "c,꽝", "d,5000원"})
+    void get_result_of_player(String name, String expected) {
+        List<String> result = ladderGame.getResult(name, prizes);
 
         assertThat(result).isEqualTo(List.of(expected));
     }
 
-    @DisplayName("all 인경우 모든 플레이어들의 사다리 최종 위치를 반환한다.")
+    @DisplayName("all 인경우 모든 플레이어들의 사다리 최종 결과를 반환한다.")
     @Test
     void get_result_of_All() {
-        List<Integer> result = ladderGame.getResult("all");
+        List<String> result = ladderGame.getResult("all", prizes);
 
-        assertThat(result).isEqualTo(List.of(0, 2, 3, 1));
+        assertThat(result).isEqualTo(List.of("야근하기", "퇴근하기", "꽝", "5000원"));
     }
 
 }
