@@ -6,7 +6,7 @@ import util.RandomBooleanGenerator;
 import view.InputView;
 import view.OutputView;
 
-import java.util.Map;
+import java.util.Collections;
 
 public class LadderController {
 
@@ -65,8 +65,7 @@ public class LadderController {
     private void printMatchingResult(MatchingResult matchingResult, Players players) {
         try {
             String[] matchingNames = InputView.receiveMatchingName();
-            Map<Player, Result> finalMatchingResult = matchingResult.getFinalResult(players, matchingNames);
-            OutputView.printFinalResult(finalMatchingResult);
+            OutputView.printFinalResult(Collections.unmodifiableMap(matchingResult.getMatchingResult()), players, matchingNames);
         } catch (IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
             printMatchingResult(matchingResult, players);

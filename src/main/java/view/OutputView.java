@@ -2,6 +2,7 @@ package view;
 
 import domain.*;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,14 +42,6 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printFinalResult(Map<Player, Result> finalMatchingResult) {
-        System.out.println("\n실행 결과");
-        for (Map.Entry<Player, Result> finalResult : finalMatchingResult.entrySet()) {
-            System.out.println(finalResult.getKey().getName() + COLON + finalResult.getValue().getResult());
-        }
-        System.out.println();
-    }
-
     private static String getLineStatus(List<LineStep> line) {
         StringBuilder sb = new StringBuilder();
 
@@ -68,6 +61,28 @@ public class OutputView {
             sb.append(NON_EXIST_LINE);
         }
         sb.append(WALL);
+    }
+
+    public static void printFinalResult(Map<Player, Result> finalMatchingResult, Players players, String[] matchingNames) {
+        System.out.println("\n실행 결과");
+        Map<Player, Result> finalResults = selectResultToPrint(finalMatchingResult, players, matchingNames);
+        for (Map.Entry<Player, Result> finalResult : finalResults.entrySet()) {
+            System.out.println(finalResult.getKey().getName() + COLON + finalResult.getValue().getResult());
+        }
+        System.out.println();
+    }
+
+    private static Map<Player, Result> selectResultToPrint(Map<Player, Result> finalResults, Players players, String[] matchingNames) {
+        if (matchingNames[0].equals("all")) {
+            return finalResults;
+        }
+        Map<Player, Result> finalMatchingResult = new LinkedHashMap<>();
+        for (String matchingName : matchingNames) {
+            Player player = players.findPlayer(matchingName);
+            Result result = finalResults.get(player);
+            finalMatchingResult.put(player, result);
+        }
+        return finalMatchingResult;
     }
 
     public static void printMessage(String message) {
