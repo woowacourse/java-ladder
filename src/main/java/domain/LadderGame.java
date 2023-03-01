@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderGame {
-    private final String ALL_RESULT = "all";
+    private final static String ALL_RESULT = "all";
     private final Players players;
     private final Ladder ladder;
 
