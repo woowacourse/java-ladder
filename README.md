@@ -105,3 +105,21 @@
 - [x] 메소드 순서 정렬
 
 ---
+## 2단계 미션 추가 리팩토링
+- [ ]  출력 결과를 판단하는 로직 `controller`에서 `view`로 변경하기
+- [ ]  Line class의 makeLine 메서드 분리하기
+  - [ ]  가장 왼쪽과 가장 오른쪽 Point 생성 하는 메소드 분리하기
+- [ ]  Results class findResultOfPerson 메서드 key result 사용하기
+
+
+- 네이밍
+  - [ ]  isResultType 메서드 네이밍 변경
+  - [ ]  Ladder class의 size() 메서드 네이밍에 대한 고민
+    - [ ]  추후 `Ladder`클래스의 구성이 `List<Line>`이 아닌 다른 형태로 변경되면 `size()`메서드도 함께 영향을 받을 것 같아요.
+  - [ ]  Line class의 isPrerightPoint 메서드 네이밍 변경
+  - [ ]  Line class의 getRightIsBoolean, getLeftIsBoolean 메서드 네이밍 변경
+  - [ ]  Direction class의 isDirection 메서드 네이밍 변경
+  - [ ]  Ladder class의 필드명
+  - [ ]  Line class의 필드명
+  - [ ]  People class의 `MIN_PERSON_LENGTH` → `MIN_PEOPLE_COUNT`
+- [ ]  테스트에 사용되는 공용 변수 `@BeforeEach`  사용하기
