@@ -1,10 +1,16 @@
-package ladder.domain;
+package ladder.domain.player;
 
-import java.util.*;
+import ladder.domain.Name;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
+    private final static int PLAYERS_MINIMUM_SIZE = 2;
     private final List<Player> players;
 
     public Players(List<String> names) {
@@ -25,24 +31,28 @@ public class Players {
     }
 
     private void validateTooLessPlayer(List<String> names) {
-        if (names.size() < 2) {
+        if (names.size() < PLAYERS_MINIMUM_SIZE) {
             throw new IllegalArgumentException("플레이어는 2명 이상이어야 합니다.");
         }
+    }
+
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
     }
 
     public List<String> getPlayerNames() {
         return players.stream()
                 .map(Player::getName)
-                .map(Name::getName)
+                .map(Name::getValue)
                 .collect(Collectors.toList());
     }
 
-    public int getNameMaxLength() {
-        return this.players.stream()
-                .map(Player::getName)
-                .map(Name::getName)
-                .map(String::length)
-                .max(Integer::compareTo)
-                .orElseThrow(() -> new IllegalStateException("플레이어가 존재하지 않습니다."));
+    public Player findPlayerByName(String name) {
+        return players.stream()
+                .filter(
+                        player -> player.getName().getValue().equals(name)
+                )
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("같은 이름의 플레이어가 존재하지 않습니다."));
     }
 }

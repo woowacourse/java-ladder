@@ -5,9 +5,13 @@ public class Name {
     private final String name;
 
     public Name(String name) {
+        validate(name);
+        this.name = name;
+    }
+
+    private void validate(String name) {
         validateEmpty(name);
         validateOutOfLengthRange(name);
-        this.name = name;
     }
 
     private void validateEmpty(String name) {
@@ -22,7 +26,7 @@ public class Name {
         }
     }
 
-    public String getName() {
+    public String getValue() {
         return name;
     }
 }

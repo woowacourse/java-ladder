@@ -1,6 +1,7 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 public class Height {
+    private final static int MINIMUM_HEIGHT = 2;
     private final int height;
 
     public Height(int height) {
@@ -16,7 +17,7 @@ public class Height {
     }
 
     private void validateTooSmall(int height) {
-        if (height <= 1) {
+        if (height < MINIMUM_HEIGHT) {
             throw new IllegalArgumentException("높이는 2 이상이어야 합니다.");
         }
     }

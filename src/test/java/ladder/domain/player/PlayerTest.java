@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.player;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,7 +22,7 @@ class PlayerTest {
     @DisplayName("이름은 6글자 이상이면 예외가 발생해야 한다.")
     void name_throwExceptionOver6(String input) {
         // expected
-        assertThatThrownBy(() -> new Player(input, 0 ))
+        assertThatThrownBy(() -> new Player(input, 0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
