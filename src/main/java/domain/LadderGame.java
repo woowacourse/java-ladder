@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderGame {
+    private final String ALL_RESULT = "all";
     private final Players players;
     private final Ladder ladder;
 
@@ -14,7 +15,7 @@ public class LadderGame {
     }
 
     public List<Integer> getResult(String name) {
-        if (name.equals("all")) {
+        if (name.equals(ALL_RESULT)) {
             return players.getNames().stream()
                     .map(this::getResultIndex).collect(Collectors.toList());
         }

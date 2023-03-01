@@ -13,6 +13,8 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
+
+    private static final int SINGLE_RESULT_SIZE = 1;
     private final InputView inputView;
     private final OutputView outputView;
     private final RandomDigitsGenerator generator;
@@ -82,7 +84,7 @@ public class LadderGameController {
     }
 
     private boolean isSingleResult(List<Integer> indexes) {
-        return indexes.size() == 1;
+        return indexes.size() == SINGLE_RESULT_SIZE;
     }
 
     private List<Integer> getPlayerResultIndex(LadderGame ladderGame) {
