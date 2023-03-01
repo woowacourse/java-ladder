@@ -23,7 +23,7 @@ public class Line {
 
     private void validateNotSerial(final Bridge currentBridge, final Bridge nextBridge) {
         if (currentBridge.isSerialWith(nextBridge)) {
-            throw new IllegalArgumentException("연속된 가로 라인이 존재합니다");
+            throw new IllegalArgumentException("연속인 다리가 있습니다");
         }
     }
 
