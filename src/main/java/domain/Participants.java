@@ -1,6 +1,7 @@
 package domain;
 
 import static java.util.List.copyOf;
+import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 import java.util.Collection;
@@ -19,6 +20,12 @@ public class Participants {
         this.participants = copyOf(participants);
         validateSizeOf(participants);
         validateDistinct(participants);
+    }
+
+    public static Participants of(final List<String> names) {
+        return new Participants(names.stream()
+                .map(Participant::new)
+                .collect(toList()));
     }
 
     private void validateSizeOf(final List<Participant> participants) {

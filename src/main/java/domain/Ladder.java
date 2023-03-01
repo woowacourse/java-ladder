@@ -2,7 +2,11 @@ package domain;
 
 import static java.util.List.copyOf;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import generator.LineGenerator;
+import generator.RandomBridgeGenerator;
 
 public class Ladder {
 
@@ -14,6 +18,16 @@ public class Ladder {
         validateHeightOf(lines);
         validateEvenWidth(lines);
         this.lines = copyOf(lines);
+    }
+
+    public static Ladder of(final int width, final int height) {
+        LineGenerator lineGenerator = new LineGenerator(new RandomBridgeGenerator());
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            Line line = lineGenerator.generate(width);
+            lines.add(line);
+        }
+        return new Ladder(lines);
     }
 
     private void validateHeightOf(final List<Line> lines) {
