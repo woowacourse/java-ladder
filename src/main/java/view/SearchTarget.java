@@ -1,20 +1,20 @@
 package view;
 
+import constant.Command;
+
 public class SearchTarget {
 
-    private static final String ALL = "all";
+    private final String target;
 
-    private final String inquiry;
-
-    public SearchTarget(String inquiry) {
-        this.inquiry = inquiry;
+    public SearchTarget(String target) {
+        this.target = target;
     }
 
     public boolean isAll() {
-        return inquiry.equals(ALL);
+        return Command.isAll(target);
     }
 
     public String getName() {
-        return inquiry;
+        return target;
     }
 }
