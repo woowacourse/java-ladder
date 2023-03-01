@@ -12,8 +12,7 @@ public class Results {
     }
 
     public static Results of(String[] result, int numberOfPlayers) {
-        List<Result> results;
-        results = Arrays.stream(result)
+        List<Result> results = Arrays.stream(result)
                 .map(Result::new)
                 .collect(Collectors.toList());
 
