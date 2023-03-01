@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -48,9 +49,25 @@ public class LineTest {
     @ParameterizedTest
     @MethodSource("providePoints")
     void validatePointExistContinuous(List<Point> points) {
+        // then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Line(points))
                 .withMessageContaining("사다리는 같은 라인에서 연속되는 포인트를 가질 수 없습니다.");
+    }
+
+    @DisplayName("현재 위치가 주어지면 다음 라인에서 이동가능한 위치를 알 수 있다.")
+    @ParameterizedTest
+    @CsvSource(value = {"0:1", "1:0", "2:3", "3:2", "4:4", "5:5"}, delimiter = ':')
+    void getNextX(String providedCurrentX, String expectedX) {
+        // given
+        Line line = new Line(List.of(Point.EXIST, Point.NOT_EXIST, Point.EXIST, Point.NOT_EXIST, Point.NOT_EXIST));
+        int currentX = Integer.parseInt(providedCurrentX);
+
+        // when
+        int nextX = line.getNextX(currentX);
+
+        // then
+        assertThat(nextX).isEqualTo(Integer.parseInt(expectedX));
     }
 
     private static Stream<Arguments> providePoints() {
