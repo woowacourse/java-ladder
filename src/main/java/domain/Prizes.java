@@ -9,7 +9,7 @@ public class Prizes {
     private final List<Prize> prizes = new ArrayList<>();
 
     public Prizes(List<String> names, Players players) {
-        validate(names, players);
+        validateCount(names, players);
         initiate(names);
     }
 
@@ -19,7 +19,7 @@ public class Prizes {
         }
     }
 
-    private void validate(List<String> names, Players players) {
+    private void validateCount(List<String> names, Players players) {
         if (names.size() != players.getCount()) {
             throw new IllegalArgumentException(INVALID_COUNT_MESSAGE);
         }

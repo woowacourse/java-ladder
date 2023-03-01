@@ -10,10 +10,10 @@ public class PlayerName {
     private final String name;
 
     public PlayerName(String name) {
-        this.name = name;
         validateNameLength(name);
         validateNameBlank(name);
         validateName(name);
+        this.name = name;
     }
 
     private void validateNameBlank(String name) {
