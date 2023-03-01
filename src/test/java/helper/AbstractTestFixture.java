@@ -9,7 +9,6 @@ import domain.Bridge;
 import domain.Ladder;
 import domain.Line;
 import domain.Participant;
-import domain.Participants;
 import domain.Prizes;
 
 public abstract class AbstractTestFixture {
@@ -23,10 +22,6 @@ public abstract class AbstractTestFixture {
                     return Bridge.EMPTY;
                 })
                 .collect(Collectors.toList());
-    }
-
-    public Participants createDefaultParticipants() {
-        return new Participants(createParticipantsFrom("aa", "bb"));
     }
 
     public List<Participant> createParticipantsFrom(String... names) {
