@@ -8,25 +8,14 @@ public class GameResults {
 
     private final List<GameResult> gameResults;
 
-    public GameResults(final int playerSize, final List<GameResult> gameResults) {
-        validate(playerSize, gameResults);
-        this.gameResults = Collections.unmodifiableList(gameResults);
-    }
-
-    private void validate(final int playerSize, final List<GameResult> gameResults) {
+    public GameResults(final List<GameResult> gameResults) {
         validateNullAndEmpty(gameResults);
-        validateSize(playerSize, gameResults);
+        this.gameResults = Collections.unmodifiableList(gameResults);
     }
 
     private void validateNullAndEmpty(final List<GameResult> results) {
         if (Objects.isNull(results) || results.isEmpty()) {
             throw new IllegalArgumentException("실행 결과를 입력하세요.");
-        }
-    }
-
-    private static void validateSize(final int playerSize, final List<GameResult> results) {
-        if (results.size() != playerSize) {
-            throw new IllegalArgumentException("실행 결과 개수는 플레이어 수와 일치해야 합니다.");
         }
     }
 
