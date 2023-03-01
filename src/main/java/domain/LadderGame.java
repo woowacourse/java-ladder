@@ -19,7 +19,7 @@ public class LadderGame {
 
     private void validatePrizesSize(int participantsCount, List<String> prizes) {
         if (prizes.size() != participantsCount) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("참가자 수와 상품 수는 같아야 합니다");
         }
     }
 
