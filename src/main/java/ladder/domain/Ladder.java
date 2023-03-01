@@ -1,30 +1,41 @@
 package ladder.domain;
 
+import ladder.domain.ladderNode.Position;
 import ladder.utils.LineStrategy;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Line> lines;
     private final Height maxHeight;
 
-    public Ladder(final int columnCount, final int height, final LineStrategy lineStrategy) {
+    public Ladder(final int width, final int height, final LineStrategy lineStrategy) {
         this.maxHeight = new Height(height);
-        this.lines = assignLines(columnCount, lineStrategy);
+        this.lines = assignLines(width, lineStrategy);
     }
 
-    private List<Line> assignLines(final int columnCount, final LineStrategy lineStrategy) {
+    private List<Line> assignLines(final int width, final LineStrategy lineStrategy) {
         List<Line> lines = new ArrayList<>();
 
         IntStream.range(0, maxHeight.getHeight())
-                .forEach(i -> lines.add(new Line(lineStrategy, columnCount - 1)));
+                .forEach(i -> lines.add(new Line(lineStrategy, width - 1)));
         return lines;
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    public Position moveThrough(final Position startPoint) {
+        Position position = startPoint;
+        for (Line line : lines) {
+            position = line.moveFrom(position);
+        }
+        return position;
+    }
+
+    public List<List<Boolean>> getLines() {
+        return lines.stream()
+                .map(Line::getLine)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

@@ -10,7 +10,7 @@ public class Height {
     }
 
     private void validateRange(int height) {
-        if (height < MIN_SIZE ) {
+        if (height < MIN_SIZE) {
             throw new IllegalArgumentException("높이는 2 이상이어야 합니다.");
         }
     }

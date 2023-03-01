@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.ladderNode.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,16 +29,5 @@ class PlayersTest {
         // expected
         assertThatThrownBy(() -> new Players(duplicateNames))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("플레이어들의 이름 최대 길이를 구한다.")
-    void players_getMaxNameLength() {
-        // given
-        Players players = new Players(List.of("aaa", "bb", "c"));
-
-        // expected
-        assertThat(players.getNameMaxLength())
-                .isEqualTo(3);
     }
 }

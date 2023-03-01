@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.ladderNode.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -15,7 +16,7 @@ class PlayerTest {
         // expected
         assertThatThrownBy(() -> new Player(input, 0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 빈 문자일 수 없습니다.");
+                .hasMessage("이름과 실행결과는 빈 문자일 수 없습니다.");
     }
 
     @ParameterizedTest
@@ -25,7 +26,7 @@ class PlayerTest {
         // expected
         assertThatThrownBy(() -> new Player(input, 0 ))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 최대 5글자이어야 합니다.");
+                .hasMessage("이름과 실행결과는 최대 5글자이어야 합니다.");
     }
 
     @ParameterizedTest

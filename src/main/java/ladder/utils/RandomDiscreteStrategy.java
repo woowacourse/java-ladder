@@ -1,35 +1,32 @@
 package ladder.utils;
 
-import java.util.*;
-import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class RandomDiscreteStrategy implements LineStrategy {
     private final Random random = new Random();
 
     @Override
-    public List<Boolean> generate(int sectionCount) {
-        List<Boolean> line = makeRandomLine(sectionCount);
-
-        IntStream.range(0, sectionCount - 1)
-                .forEach(idx -> {convertDiscontinuous(line, idx);});
-        return line;
+    public List<Boolean> generate(int bridgeCount) {
+        return makeRandomLine(bridgeCount);
     }
 
-    private void convertDiscontinuous(List<Boolean> line, int idx) {
-        if (isContinuous(line, idx)) {
-            line.set(idx + 1, false);
-        }
-    }
-
-    public boolean isContinuous(List<Boolean> line, int idx) {
-        return line.get(idx) && line.get(idx + 1);
-    }
-
-    private List<Boolean> makeRandomLine(int sectionCount) {
+    private List<Boolean> makeRandomLine(int bridgeCount) {
         List<Boolean> line = new ArrayList<>();
-        for (int i = 0; i < sectionCount; i++) {
-            line.add(random.nextBoolean());
+
+        boolean currentBridge = false;
+        for (int i = 0; i < bridgeCount; i++) {
+            currentBridge = getRandomBridge(currentBridge);
+            line.add(currentBridge);
         }
         return line;
+    }
+
+    private boolean getRandomBridge(boolean previous) {
+        if (previous == true) {
+            return false;
+        }
+        return random.nextBoolean();
     }
 }

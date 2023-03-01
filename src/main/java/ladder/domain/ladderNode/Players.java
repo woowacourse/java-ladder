@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.domain.ladderNode;
+
+import ladder.domain.Ladder;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -17,6 +19,31 @@ public class Players {
                 .forEach(i -> players.add(new Player(names.get(i), i)));
     }
 
+    public Map<Position, String> moveToLadderEnd(Name playerName, Ladder ladder) {
+        Map<Position, String> result = new HashMap<>();
+
+        Player player = getPlayerByName(playerName);
+        Position destination = player.moveThroughLadder(ladder);
+        result.put(destination, player.getName());
+        return Collections.unmodifiableMap(result);
+    }
+
+    public Map<Position, String> moveAllToLadderEnd(Ladder ladder) {
+        Map<Position, String> results = new HashMap<>();
+
+        for (Player player : players) {
+            results.put(player.moveThroughLadder(ladder), player.getName());
+        }
+        return Collections.unmodifiableMap(results);
+    }
+
+    private Player getPlayerByName(Name name) {
+        return players.stream()
+                .filter(player -> player.isEqualName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어 입니다."));
+    }
+
     private void validateDuplicateNames(List<String> names) {
         int distinctNameSize = new HashSet<>(names).size();
         int size = names.size();
@@ -31,16 +58,13 @@ public class Players {
         }
     }
 
+    public int size() {
+        return players.size();
+    }
+
     public List<String> getPlayerNames() {
         return players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toList());
-    }
-
-    public int getNameMaxLength() {
-        return this.players.stream()
-                .map(Player::getNameLength)
-                .max(Integer::compareTo)
-                .orElseThrow(() -> new IllegalStateException("플레이어가 존재하지 않습니다."));
     }
 }
