@@ -26,21 +26,6 @@ public class Players {
         return new Players(players);
     }
 
-    public Player findPlayer(String name) {
-        return players.stream()
-                .filter(player -> player.getName().equals(name))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 사람입니다."));
-    }
-
-    public int getNumberOfPlayers() {
-        return this.players.size();
-    }
-
-    public List<Player> getPlayers() {
-        return players;
-    }
-
     private void validateNumberOfPlayers(List<Player> players) {
         if (players.size() < MINIMUM_NUMBER_OF_PLAYERS) {
             throw new IllegalArgumentException("[ERROR] 두 명 이상 입력해야 합니다.");
@@ -56,5 +41,20 @@ public class Players {
         if (isDuplicated) {
             throw new IllegalArgumentException("[ERROR] 중복된 이름을 입력할 수 없습니다.");
         }
+    }
+
+    public Player findPlayer(String name) {
+        return players.stream()
+                .filter(player -> player.getName().equals(name))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 사람입니다."));
+    }
+
+    public int getNumberOfPlayers() {
+        return this.players.size();
+    }
+
+    public List<Player> getPlayers() {
+        return players;
     }
 }

@@ -32,18 +32,6 @@ public class Line {
         }
     }
 
-    public void movePlayerInLine(Player player) {
-        int leftStepPositionOfPlayer = player.getPosition() - 1;
-        int rightStepPositionOfPlayer = player.getPosition();
-
-        movePlayerToRight(player, leftStepPositionOfPlayer);
-        movePlayerToLeft(player, rightStepPositionOfPlayer);
-    }
-
-    public List<LineStep> getLine() {
-        return this.line;
-    }
-
     private void makeFirstRandomStep() {
         if (booleanGenerator.generate()) {
             line.set(0, LineStep.findBy(true));
@@ -61,6 +49,18 @@ public class Line {
         }
     }
 
+    private boolean isExistPrevStep(int stepIndex) {
+        return this.line.get(stepIndex - 1).equals(LineStep.EXIST);
+    }
+
+    public void movePlayerInLine(Player player) {
+        int leftStepPositionOfPlayer = player.getPosition() - 1;
+        int rightStepPositionOfPlayer = player.getPosition();
+
+        movePlayerToRight(player, leftStepPositionOfPlayer);
+        movePlayerToLeft(player, rightStepPositionOfPlayer);
+    }
+
     private void movePlayerToRight(Player player, int leftStepPositionOfPlayer) {
         if (leftStepPositionOfPlayer >= FIRST_POSITION_OF_STEP
                 && line.get(leftStepPositionOfPlayer).equals(LineStep.EXIST)) {
@@ -75,7 +75,7 @@ public class Line {
         }
     }
 
-    private boolean isExistPrevStep(int stepIndex) {
-        return this.line.get(stepIndex - 1).equals(LineStep.EXIST);
+    public List<LineStep> getLine() {
+        return this.line;
     }
 }

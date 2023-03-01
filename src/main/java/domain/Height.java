@@ -11,13 +11,13 @@ public class Height {
         this.height = height;
     }
 
-    public int getHeight() {
-        return this.height;
-    }
-
     private static void validatePositiveNumber(int height) {
         if (height < MINIMUM_HEIGHT) {
             throw new IllegalArgumentException("[ERROR] 높이는 양수만 가능합니다.");
         }
+    }
+
+    public int getHeight() {
+        return this.height;
     }
 }

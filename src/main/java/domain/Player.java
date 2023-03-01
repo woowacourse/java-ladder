@@ -13,6 +13,12 @@ public class Player {
         this.position = position;
     }
 
+    private void validateNameLength(String name) {
+        if (name.length() > MAXIMUM_LENGTH_OF_LETTERS) {
+            throw new IllegalArgumentException("[ERROR] 사람 이름은 최대 5글자 입니다.");
+        }
+    }
+
     public void moveToRight() {
         this.position++;
     }
@@ -27,11 +33,5 @@ public class Player {
 
     public int getPosition() {
         return position;
-    }
-
-    private void validateNameLength(String name) {
-        if (name.length() > MAXIMUM_LENGTH_OF_LETTERS) {
-            throw new IllegalArgumentException("[ERROR] 사람 이름은 최대 5글자 입니다.");
-        }
     }
 }
