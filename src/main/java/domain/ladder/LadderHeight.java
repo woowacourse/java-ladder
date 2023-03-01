@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 public class LadderHeight {
 	private static final int MIN_HEIGHT = 1;
@@ -11,8 +11,8 @@ public class LadderHeight {
 		this.height = height;
 	}
 
-	private void validateHeight(final int number) {
-		if (number < MIN_HEIGHT || number > MAX_HEIGHT) {
+	private void validateHeight(final int height) {
+		if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
 			throw new IllegalArgumentException(LADDER_HEIGHT_NOT_IN_RANGE_MSG);
 		}
 	}

@@ -1,10 +1,10 @@
-package domain.util;
+package domain.ladder;
 
 public enum Point {
 	PRESENCE(true),
 	ABSENCE(false);
 
-	private boolean presence;
+	private final boolean presence;
 
 	Point(final boolean presence){
 		this.presence = presence;
@@ -14,7 +14,7 @@ public enum Point {
 		return presence;
 	}
 
-	public static Point from(boolean present) {
+	public static Point from(final boolean present) {
 		if (present) {
 			return Point.PRESENCE;
 		}
