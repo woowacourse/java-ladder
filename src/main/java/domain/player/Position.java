@@ -10,10 +10,6 @@ public class Position {
         this.position = position;
     }
 
-    public Position createSame() {
-        return new Position(position);
-    }
-
     public void moveRight() {
         position++;
     }
@@ -22,7 +18,7 @@ public class Position {
         position--;
     }
 
-    public boolean isSamePosition(int other) {
+    public boolean same(int other) {
         return position == other;
     }
 
@@ -45,5 +41,13 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(position);
+    }
+
+    public void increase() {
+        position++;
+    }
+
+    public void decrease() {
+        position--;
     }
 }

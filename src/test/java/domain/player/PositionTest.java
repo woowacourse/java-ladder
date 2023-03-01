@@ -36,7 +36,7 @@ class PositionTest {
         // given
         Position position = new Position(1);
         // when
-        boolean result = position.isSamePosition(1);
+        boolean result = position.same(1);
         // then
         assertThat(result).isTrue();
     }
@@ -47,7 +47,7 @@ class PositionTest {
         // given
         Position position = new Position(1);
         // when
-        boolean result = position.isSamePosition(2);
+        boolean result = position.same(2);
         // then
         assertThat(result).isFalse();
     }

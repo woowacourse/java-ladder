@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import domain.player.Position;
+import domain.player.Player;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,24 +16,24 @@ public class Line {
         this.points = new ArrayList<>(points);
     }
 
-    public boolean isLeftSidePassable(Position position) {
-        return !isLeftEnd(position) && isPassable(position.getPosition() - LEFT_POINT_CONSTANT);
+    public boolean isLeftSidePassable(Player player) {
+        return !isLeftEnd(player) && isPassable(player.getPosition() - LEFT_POINT_CONSTANT);
     }
 
-    private boolean isLeftEnd(Position position) {
-        return position.isSamePosition(1) ;
+    private boolean isLeftEnd(Player player) {
+        return player.isSamePosition(1);
     }
 
     private boolean isPassable(int index) {
         return points.get(index).isPassable();
     }
 
-    public boolean isRightSidePassable(Position position) {
-        return !isLastPosition(position) && isPassable(position.getPosition() - RIGHT_POINT_CONSTANT);
+    public boolean isRightSidePassable(Player player) {
+        return !isLastPosition(player) && isPassable(player.getPosition() - RIGHT_POINT_CONSTANT);
     }
 
-    private boolean isLastPosition(Position position) {
-        return position.isSamePosition(points.size() + 1);
+    private boolean isLastPosition(Player player) {
+        return player.isSamePosition(points.size() + 1);
     }
 
     public List<LinePoint> getPoints() {

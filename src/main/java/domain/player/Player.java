@@ -1,7 +1,5 @@
 package domain.player;
 
-import domain.ladder.Ladder;
-
 public class Player {
 
     private final Name name;
@@ -12,8 +10,16 @@ public class Player {
         this.position = position;
     }
 
-    public Position move(Ladder ladder) {
-        return ladder.play(position.createSame());
+    public void moveRight() {
+        position.increase();
+    }
+
+    public void moveLeft() {
+        position.decrease();
+    }
+
+    public boolean isSamePosition(int other) {
+        return position.same(other);
     }
 
     public boolean isSameName(String otherName) {
@@ -22,5 +28,9 @@ public class Player {
 
     public String getName() {
         return name.getName();
+    }
+
+    public int getPosition() {
+        return position.getPosition();
     }
 }

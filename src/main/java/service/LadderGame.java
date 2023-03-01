@@ -5,7 +5,6 @@ import domain.ladder.LadderPrize;
 import domain.ladder.LadderPrizes;
 import domain.player.Player;
 import domain.player.Players;
-import domain.player.Position;
 import dto.GameResultDto;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +29,8 @@ public class LadderGame {
         List<GameResultDto> gameResultDtos = new ArrayList<>();
 
         for (Player player : players.getPlayers()) {
-            Position position = player.move(ladder);
-            LadderPrize prize = ladderPrizes.findPrizeByPosition(position);
+            ladder.play(player);
+            LadderPrize prize = ladderPrizes.findPrizeByPosition(player.getPosition());
             gameResultDtos.add(GameResultDto.of(player, prize));
         }
 
@@ -40,8 +39,8 @@ public class LadderGame {
 
     public LadderPrize findResultByName(String name) {
         Player findPlayer = players.findPlayerByName(name);
-        Position position = findPlayer.move(ladder);
+        ladder.play(findPlayer);
 
-        return ladderPrizes.findPrizeByPosition(position);
+        return ladderPrizes.findPrizeByPosition(findPlayer.getPosition());
     }
 }

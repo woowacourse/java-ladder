@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import domain.player.Position;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -20,9 +19,9 @@ public class LadderPrizes {
         return new LadderPrizes(ladderPrizes);
     }
 
-    public LadderPrize findPrizeByPosition(Position position) {
+    public LadderPrize findPrizeByPosition(int position) {
 
-        return ladderPrizes.get(position.getPosition() - 1);
+        return ladderPrizes.get(position - 1);
     }
 
     public Stream<LadderPrize> stream() {

@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import domain.player.Position;
+import domain.player.Player;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,25 +13,24 @@ public class Ladder {
         this.lines = new ArrayList<>(lines);
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
-    }
-
-    public Position play(Position position) {
+    public void play(Player player) {
         for (Line line : lines) {
-            move(position, line);
+            move(player, line);
         }
-        return position;
     }
 
-    private void move(Position position, Line line) {
-        if (line.isLeftSidePassable(position)) {
-            position.moveLeft();
+    private void move(Player player, Line line) {
+        if (line.isLeftSidePassable(player)) {
+            player.moveLeft();
             return;
         }
 
-        if (line.isRightSidePassable(position)) {
-            position.moveRight();
+        if (line.isRightSidePassable(player)) {
+            player.moveRight();
         }
+    }
+
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }

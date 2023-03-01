@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import domain.player.Position;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -46,7 +45,7 @@ class LadderPrizesTest {
         // given
         LadderPrizes ladderPrizes = generateLadderPrizesByParameter("3000", "1000", "2000", "5000", "꽝");
         // when
-        LadderPrize ladderPrize = ladderPrizes.findPrizeByPosition(new Position(position));
+        LadderPrize ladderPrize = ladderPrizes.findPrizeByPosition(position);
         assertThat(ladderPrize.getPrize()).isEqualTo(expectedResult);
     }
 

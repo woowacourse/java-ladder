@@ -2,6 +2,8 @@ package domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.player.Name;
+import domain.player.Player;
 import domain.player.Position;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -14,9 +16,10 @@ class LineTest {
     void left_passable_true() {
         // given
         Position position = new Position(2);
+        Player player = new Player(new Name("name"), position);
         Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
         // when
-        boolean result = line.isLeftSidePassable(position);
+        boolean result = line.isLeftSidePassable(player);
         // then
         assertThat(result).isTrue();
 
@@ -27,8 +30,10 @@ class LineTest {
         // given
         Position position = new Position(1);
         Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
+        Player player = new Player(new Name("name"), position);
+
         // when
-        boolean result = line.isLeftSidePassable(position);
+        boolean result = line.isLeftSidePassable(player);
         // then
         assertThat(result).isFalse();
     }
@@ -39,8 +44,9 @@ class LineTest {
         // given
         Position position = new Position(2);
         Line line = new Line(List.of(LinePoint.BLOCKED, LinePoint.PASSABLE));
+        Player player = new Player(new Name("name"), position);
         // when
-        boolean result = line.isLeftSidePassable(position);
+        boolean result = line.isLeftSidePassable(player);
         // then
         assertThat(result).isFalse();
     }
@@ -51,8 +57,10 @@ class LineTest {
         // given
         Position position = new Position(2);
         Line line = new Line(List.of(LinePoint.BLOCKED, LinePoint.PASSABLE));
+        Player player = new Player(new Name("name"), position);
+
         // when
-        boolean result = line.isRightSidePassable(position);
+        boolean result = line.isRightSidePassable(player);
         // then
         assertThat(result).isTrue();
     }
@@ -63,8 +71,9 @@ class LineTest {
         // given
         Position position = new Position(3);
         Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
+        Player player = new Player(new Name("name"), position);
         // when
-        boolean result = line.isLeftSidePassable(position);
+        boolean result = line.isRightSidePassable(player);
         // then
         assertThat(result).isFalse();
     }
@@ -75,8 +84,9 @@ class LineTest {
         // given
         Position position = new Position(2);
         Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
+        Player player = new Player(new Name("name"), position);
         // when
-        boolean result = line.isRightSidePassable(position);
+        boolean result = line.isRightSidePassable(player);
         // then
         assertThat(result).isFalse();
     }

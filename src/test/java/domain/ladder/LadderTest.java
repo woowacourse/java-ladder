@@ -4,6 +4,8 @@ import static domain.ladder.LinePoint.BLOCKED;
 import static domain.ladder.LinePoint.PASSABLE;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.player.Name;
+import domain.player.Player;
 import domain.player.Position;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +14,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class LadderTest {
 
-    //TODO 검증할것이 Player와 똑같다.
     /**
      * |-----|     |-----|     |
      * |     |-----|     |-----|
@@ -26,10 +27,12 @@ class LadderTest {
         // given
         Ladder ladder = new Ladder(createLine());
         Position position = new Position(startPosition);
+        Player player = new Player(new Name("name"), position);
         // when
-        Position actualPosition = ladder.play(position);
+        ladder.play(player);
+        int actualPosition = player.getPosition();
         // then
-        assertThat(actualPosition).isEqualTo(new Position(expectedPosition));
+        assertThat(actualPosition).isEqualTo(expectedPosition);
     }
 
     private List<Line> createLine() {
