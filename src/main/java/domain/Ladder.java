@@ -24,14 +24,14 @@ public class Ladder {
 
     private void validateEvenWidth(final List<Line> lines) {
         Line firstLine = lines.get(0);
-        if (!isWidthEven(firstLine, lines)) {
+        if (isWidthNotSame(firstLine, lines)) {
             throw new IllegalArgumentException("사다리 너비는 균일해야 합니다");
         }
     }
 
-    private boolean isWidthEven(Line firstLine, List<Line> lines) {
+    private boolean isWidthNotSame(Line firstLine, List<Line> lines) {
         return lines.stream()
-                .allMatch(line -> line.hasSameWidthWith(firstLine));
+                .anyMatch(line -> line.hasDifferentWidthWith(firstLine));
     }
 
     public Position findDestinationFrom(final Position start) {

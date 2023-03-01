@@ -52,11 +52,11 @@ public class Line {
         return Bridge.EMPTY;
     }
 
-    public List<Bridge> getBridges() {
-        return bridges;
+    public boolean hasDifferentWidthWith(Line other) {
+        return other.bridges.size() != bridges.size();
     }
 
-    public boolean hasSameWidthWith(Line line) {
-        return line.bridges.size() == bridges.size();
+    public List<Bridge> getBridges() {
+        return bridges;
     }
 }
