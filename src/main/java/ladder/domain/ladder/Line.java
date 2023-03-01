@@ -1,38 +1,64 @@
 package ladder.domain.ladder;
 
-import ladder.domain.rule.BlockGenerator;
+import ladder.domain.rule.StoolGenerator;
 
 import java.util.List;
 import java.util.Stack;
 
 public class Line {
 
-    private final BlockGenerator blockGenerator;
-    private final List<Block> blocks;
+    private final StoolGenerator stoolGenerator;
+    private final List<Stool> stools;
 
-    public Line(final int playerNumber, final BlockGenerator blockGenerator) {
-        this.blockGenerator = blockGenerator;
-        this.blocks = makeBlocks(playerNumber - 1);
+    public Line(final int playerNumber, final StoolGenerator stoolGenerator) {
+        this.stoolGenerator = stoolGenerator;
+        this.stools = makeStools(playerNumber - 1);
     }
 
-    private List<Block> makeBlocks(final int blockCount) {
-        Stack<Block> temporaryBlocks = new Stack<>();
-        temporaryBlocks.push(blockGenerator.generate());
-        while (temporaryBlocks.size() != blockCount) {
-            Block block = generateBlock(temporaryBlocks.peek());
-            temporaryBlocks.push(block);
+    private List<Stool> makeStools(final int blockCount) {
+        Stack<Stool> temporaryStools = new Stack<>();
+        temporaryStools.push(stoolGenerator.generate());
+        while (temporaryStools.size() != blockCount) {
+            Stool stool = generateStools(temporaryStools.peek());
+            temporaryStools.push(stool);
         }
-        return List.copyOf(temporaryBlocks);
+        return List.copyOf(temporaryStools);
     }
 
-    private Block generateBlock(final Block previousBlock) {
-        if (previousBlock.isExistBlock()) {
-            return Block.EMPTY;
+    private Stool generateStools(final Stool previousStool) {
+        if (previousStool.isExistStool()) {
+            return Stool.EMPTY;
         }
-        return blockGenerator.generate();
+        return stoolGenerator.generate();
     }
 
-    public List<Block> getBlocks() {
-        return List.copyOf(blocks);
+    public int getWentDownLocation(final int currentLocation) {
+        int newLocation = currentLocation;
+        if (hasWayToGo(currentLocation)) {
+            newLocation = getUpdatedLocation(currentLocation);
+        }
+        return newLocation;
+    }
+
+    private boolean hasWayToGo(final int location) {
+        return isStoolExistAt(location - 1) || isStoolExistAt(location);
+    }
+
+    private boolean isStoolExistAt(final int location) {
+        if (location < 0 || location >= stools.size()) {
+            return false;
+        }
+        return stools.get(location) == Stool.EXIST;
+    }
+
+    private int getUpdatedLocation(final int location) {
+        if (isStoolExistAt(location)) {
+            return location + 1;
+        }
+        return location - 1;
+    }
+
+    public List<Stool> getStools() {
+        return List.copyOf(stools);
     }
 }

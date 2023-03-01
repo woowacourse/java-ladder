@@ -1,9 +1,10 @@
 package ladder.controller;
 
-import ladder.domain.rule.RandomBlockGenerator;
+import ladder.domain.game.LadderGame;
+import ladder.domain.player.Player;
+import ladder.domain.rule.RandomStoolGenerator;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Players;
-import ladder.exception.CustomException;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -12,43 +13,90 @@ import java.util.stream.Collectors;
 
 public class LadderGameController {
 
+    private static final String EXIST_SIGNAL = "all";
+
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final FrontExceptionController frontExceptionController;
+
+    public LadderGameController(
+            InputView inputView,
+            OutputView outputView,
+            FrontExceptionController frontExceptionController
+    ) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.frontExceptionController = frontExceptionController;
+    }
+
     public void run() {
+        try {
+            LadderGame ladderGame = initLadderGame();
+
+            ladderGame.makeGameResult();
+            showLadder(ladderGame);
+            startGameResultLoop(ladderGame);
+        } catch (RuntimeException e) {
+            frontExceptionController.handle(e);
+        }
+    }
+
+    private LadderGame initLadderGame() {
         Players players = initPlayers();
         Ladder ladder = initLadder(players.size());
-
-        showResult(players, ladder);
+        return initLadderGame(players, ladder);
     }
 
     private Players initPlayers() {
         try {
-            List<String> playerNames = InputView.inputPlayer();
+            List<String> playerNames = inputView.inputPlayer();
             return new Players(playerNames);
-        } catch (CustomException e) {
-            OutputView.printErrorMessage(e);
+        } catch (RuntimeException e) {
+            frontExceptionController.handle(e);
             return initPlayers();
         }
     }
 
     private Ladder initLadder(int playerNumber) {
         try {
-            final int height = InputView.inputLadderHeight();
-            return new Ladder(playerNumber, height, new RandomBlockGenerator());
-        } catch (CustomException e) {
-            OutputView.printErrorMessage(e);
+            final int height = inputView.inputLadderHeight();
+            return new Ladder(playerNumber, height, new RandomStoolGenerator());
+        } catch (RuntimeException e) {
+            frontExceptionController.handle(e);
             return initLadder(playerNumber);
         }
     }
 
-    private void showResult(Players players, Ladder ladder) {
-        List<String> playersName = mapPlayersToPlayersName(players);
-        OutputView.printGameResultHeader();
-        OutputView.printPlayersName(playersName);
-        OutputView.printLadder(ladder);
+    private LadderGame initLadderGame(Players players, Ladder ladder) {
+        try {
+            List<String> destinations = inputView.inputLadderDestination();
+            return new LadderGame(players, ladder, destinations);
+        } catch (RuntimeException e) {
+            frontExceptionController.handle(e);
+            return initLadderGame(players, ladder);
+        }
+    }
+
+    private void showLadder(LadderGame ladderGame) {
+        outputView.printGameResultHeader();
+        outputView.printWithFormat(mapPlayersToPlayersName(ladderGame.getPlayers()));
+        outputView.printLadder(ladderGame.getLadder());
+        outputView.printWithFormat(ladderGame.getDestinations());
     }
 
     private List<String> mapPlayersToPlayersName(Players players) {
         return players.getPlayers().stream()
-                .map(player -> player.getPlayerName().getName())
+                .map(Player::getName)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    private void startGameResultLoop(LadderGame ladderGame) {
+        String playerName = inputView.inputPlayerWhoNeedsGameResult();
+
+        while (!playerName.equals(EXIST_SIGNAL)) {
+            outputView.printOneGameResult(ladderGame.getOneLadderGameResult(playerName));
+            playerName = inputView.inputPlayerWhoNeedsGameResult();
+        }
+        outputView.printAllGameResult(ladderGame.getAllLadderGameResult());
     }
 }
