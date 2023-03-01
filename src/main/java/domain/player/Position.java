@@ -10,21 +10,12 @@ public class Position {
         this.position = position;
     }
 
-
-    public void increase() {
-        position++;
-    }
-
-    public void decrease() {
-        position--;
-    }
-
-    public boolean same(int other) {
-        return position == other;
-    }
-
     public int getPosition() {
         return position;
+    }
+
+    public int calculate(int value) {
+        return position += value;
     }
 
     @Override

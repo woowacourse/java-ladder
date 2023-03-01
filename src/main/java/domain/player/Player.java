@@ -1,5 +1,6 @@
 package domain.player;
 
+
 public class Player {
 
     private final Name name;
@@ -10,16 +11,8 @@ public class Player {
         this.position = position;
     }
 
-    public void moveRight() {
-        position.increase();
-    }
-
-    public void moveLeft() {
-        position.decrease();
-    }
-
-    public boolean isSamePosition(int other) {
-        return position.same(other);
+    public boolean isSamePosition(Position otherPosition) {
+        return position.equals(otherPosition);
     }
 
     public boolean isSameName(String otherName) {
@@ -32,5 +25,9 @@ public class Player {
 
     public int getPosition() {
         return position.getPosition();
+    }
+
+    public void move(int value) {
+        position.calculate(value);
     }
 }

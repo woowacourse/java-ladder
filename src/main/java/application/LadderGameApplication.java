@@ -48,7 +48,7 @@ public class LadderGameApplication {
     }
 
     private Players createPlayers(RetryCount retryCount) {
-        while (retryCount.isLimit()) {
+        while (!retryCount.isLimit()) {
             try {
                 List<Name> names = createNames();
                 List<Player> players = createRawPlayers(names);
@@ -78,7 +78,7 @@ public class LadderGameApplication {
     }
 
     private LadderHeight createLadderHeight(RetryCount retryCount) {
-        while (retryCount.isLimit()) {
+        while (!retryCount.isLimit()) {
             try {
                 int height = inputView.readLadderHeight();
                 return new LadderHeight(height);
@@ -92,7 +92,7 @@ public class LadderGameApplication {
     }
 
     private LadderPrizes createLadderPrizes(int size, RetryCount retryCount) {
-        while (retryCount.isLimit()) {
+        while (!retryCount.isLimit()) {
             try {
                 List<String> rawLadderPrizes = inputView.readLadderPrizes();
                 List<LadderPrize> ladderPrizes = rawLadderPrizes.stream()

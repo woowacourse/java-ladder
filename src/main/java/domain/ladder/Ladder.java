@@ -15,18 +15,7 @@ public class Ladder {
 
     public void play(Player player) {
         for (Line line : lines) {
-            move(player, line);
-        }
-    }
-
-    private void move(Player player, Line line) {
-        if (line.isLeftSidePassable(player)) {
-            player.moveLeft();
-            return;
-        }
-
-        if (line.isRightSidePassable(player)) {
-            player.moveRight();
+            line.move(player);
         }
     }
 

@@ -2,6 +2,7 @@ package view;
 
 import static java.util.stream.Collectors.joining;
 
+import domain.ladder.Direction;
 import domain.ladder.Ladder;
 import domain.ladder.LadderPrize;
 import domain.ladder.LadderPrizes;
@@ -44,11 +45,11 @@ public class OutputView {
 
     private void printLine(Line line) {
         line.getPoints().forEach(this::printPoint);
-        System.out.println(EDGE_OF_POINT);
+        System.out.println();
     }
 
     private void printPoint(LinePoint point) {
-        if (point.isPassable()) {
+        if (point.getDirection().equals(Direction.RIGHT)) {
             System.out.print(EDGE_OF_POINT + PASSABLE_POINT);
             return;
         }

@@ -17,77 +17,16 @@ class LineTest {
         // given
         Position position = new Position(2);
         Player player = new Player(new Name("name"), position);
-        Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
-        // when
-        boolean result = line.isLeftSidePassable(player);
-        // then
-        assertThat(result).isTrue();
-
-    }
-    @DisplayName("position이 좌측 끝이면 좌측 이동이 불가능하다..")
-    @Test
-    void left_passable_false_by_left_end() {
-        // given
-        Position position = new Position(1);
-        Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
-        Player player = new Player(new Name("name"), position);
+        List<LinePoint> points = List.of(new LinePoint(Direction.RIGHT, new Position(1)),
+                new LinePoint(Direction.LEFT, new Position(2)));
+        Line line = new Line(points);
 
         // when
-        boolean result = line.isLeftSidePassable(player);
+        line.move(player);
+        int actualPosition = player.getPosition();
         // then
-        assertThat(result).isFalse();
+        assertThat(actualPosition).isEqualTo(1);
+
     }
 
-    @DisplayName("좌측 point가 block이라면 좌측 이동이 불가능하다.")
-    @Test
-    void left_passable_false_by_left_point_block() {
-        // given
-        Position position = new Position(2);
-        Line line = new Line(List.of(LinePoint.BLOCKED, LinePoint.PASSABLE));
-        Player player = new Player(new Name("name"), position);
-        // when
-        boolean result = line.isLeftSidePassable(player);
-        // then
-        assertThat(result).isFalse();
-    }
-
-    @DisplayName("우측 이동이 가능하면 true를 반환한다.")
-    @Test
-    void right_passable_true() {
-        // given
-        Position position = new Position(2);
-        Line line = new Line(List.of(LinePoint.BLOCKED, LinePoint.PASSABLE));
-        Player player = new Player(new Name("name"), position);
-
-        // when
-        boolean result = line.isRightSidePassable(player);
-        // then
-        assertThat(result).isTrue();
-    }
-
-    @DisplayName("position이 우측 끝이면 우측 이동이 불가능하다.")
-    @Test
-    void right_passable_false_by_right_end() {
-        // given
-        Position position = new Position(3);
-        Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
-        Player player = new Player(new Name("name"), position);
-        // when
-        boolean result = line.isRightSidePassable(player);
-        // then
-        assertThat(result).isFalse();
-    }
-
-    @DisplayName("우측 point가 block이라면 우측 이동이 불가능하다.")
-    @Test
-    void right_passable_false_by_right_point_block() {
-        // given
-        Position position = new Position(2);
-        Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
-        Player player = new Player(new Name("name"), position);
-        // when
-        boolean result = line.isRightSidePassable(player);
-        // then
-        assertThat(result).isFalse();
-    }
 }

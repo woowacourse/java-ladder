@@ -2,6 +2,7 @@ package domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.player.Position;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ class LineGeneratorTest {
         assertThat(points.size()).isEqualTo(width);
     }
 
-    @DisplayName("LinePoint 들은 연속된 PASSABLE 을 가질 수 없다.")
+    @DisplayName("Line은 연속적으로 연결될 수 없다.")
     @Test
     void points_can_not_have_two_consecutive_PASSABLE() {
         // given
@@ -35,6 +36,9 @@ class LineGeneratorTest {
         // when
         List<LinePoint> points = line.getPoints();
         // then
-        assertThat(points).containsExactly(LinePoint.PASSABLE, LinePoint.BLOCKED, LinePoint.PASSABLE);
+        assertThat(points).containsExactly(
+                new LinePoint(Direction.RIGHT, new Position(1)),
+                new LinePoint(Direction.LEFT, new Position(2)),
+                new LinePoint(Direction.DOWN, new Position(3)));
     }
 }
