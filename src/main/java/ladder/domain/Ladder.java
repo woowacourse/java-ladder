@@ -1,31 +1,36 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Ladder {
-    private static final int MAX_HEIGHT_RATIO = 2;
-
     private final List<Line> lines;
 
-    public Ladder(List<Line> lines, int playerCount) {
-        validatePlayersCount(lines.size(), playerCount);
+    public Ladder(List<Line> lines, int playersCount) {
+        validateLinesWidth(lines, playersCount);
         this.lines = lines;
     }
 
-    private void validatePlayersCount(int height, int playersCount) {
-        if (isProperRange(height, playersCount)) {
-            throw new IllegalArgumentException("[ERROR] 사다리의 높이는 사람 수보다 크거나, 사람 수의 두 배 보다 작아야 합니다.");
+    private void validateLinesWidth(List<Line> lines, int playerCount) {
+        for (Line line : lines) {
+            validateLineWidth(line, playerCount);
         }
     }
 
-    private static boolean isProperRange(int height, int playersCount) {
-        return playersCount * MAX_HEIGHT_RATIO < height || height < playersCount;
+    private void validateLineWidth(Line line, int playerCount) {
+        if (line.getWidth() != playerCount) {
+            throw new IllegalArgumentException("[ERROR] 사다리의 너비는 사람의 수와 같아야 합니다.");
+        }
     }
 
-    public List<String> asString() {
-        return lines.stream()
-                .map(Line::asString)
-                .collect(Collectors.toList());
+    public int getLadderIndexResult(int index) {
+        for (Line line : lines) {
+            index = line.nextLineIndex(index);
+        }
+        return index;
+    }
+
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }

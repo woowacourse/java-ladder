@@ -1,7 +1,9 @@
 package ladder.domain;
 
+import static ladder.domain.Direction.*;
+
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Line {
     private final List<Step> steps;
@@ -18,22 +20,44 @@ public class Line {
     }
 
     private void checkContinuous(List<Step> steps, int index) {
-        if (isContinuous(steps, index)) {
+        if (isContinuous(steps.get(index - 1), steps.get(index))) {
             throw new IllegalArgumentException("[ERROR] 라인에 Step이 연속될 수 없습니다.");
         }
     }
 
-    private boolean isContinuous(List<Step> steps, int index) {
-        return steps.get(index) == Step.EXIST && steps.get(index - 1) == Step.EXIST;
+    private boolean isContinuous(Step leftStep, Step rightStep) {
+        return leftStep == Step.EXIST && rightStep == Step.EXIST;
     }
 
-    public String asString() {
-        return "|" + steps.stream()
-                .map(Step::getShape)
-                .collect(Collectors.joining("|")) + "|";
+    public int nextLineIndex(int index) {
+        if (isLeftStepExist(index)) {
+            return LEFT.move(index);
+        }
+        if (isRightStepExist(index)) {
+            return RIGHT.move(index);
+        }
+        return STRAIGHT.move(index);
     }
 
-    public int getSize() {
-        return steps.size();
+    private boolean isLeftStepExist(int index) {
+        if (index <= 0) {
+            return false;
+        }
+        return steps.get(index - 1) == Step.EXIST;
+    }
+
+    private boolean isRightStepExist(int index) {
+        if (index >= steps.size()) {
+            return false;
+        }
+        return steps.get(index) == Step.EXIST;
+    }
+
+    public List<Step> getSteps() {
+        return Collections.unmodifiableList(steps);
+    }
+
+    public int getWidth() {
+        return steps.size() + 1;
     }
 }

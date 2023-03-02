@@ -1,4 +1,4 @@
-package ladder.util;
+package ladder.service;
 
 import ladder.domain.Line;
 

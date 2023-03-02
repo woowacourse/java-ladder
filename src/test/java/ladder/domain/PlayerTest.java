@@ -2,7 +2,6 @@ package ladder.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import ladder.domain.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -47,5 +46,14 @@ class PlayerTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Player("123456");
         }).withMessage("[ERROR] 이름이 5글자를 초과할 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("사용자의 이름이 블랙리스트에 있으면 예외가 발생한다.")
+    void create_blacklist() {
+        // expect
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            new Player("all");
+        }).withMessage("[ERROR] 해당 이름으로 만들 수 없습니다.");
     }
 }
