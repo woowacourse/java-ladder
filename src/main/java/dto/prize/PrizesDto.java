@@ -6,7 +6,7 @@ import java.util.List;
 public class PrizesDto {
     private final List<String> prizeNames;
 
-    public PrizesDto(List<String> prizeNames) {
+    private PrizesDto(List<String> prizeNames) {
         this.prizeNames = prizeNames;
     }
 

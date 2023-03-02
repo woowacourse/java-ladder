@@ -6,7 +6,7 @@ import java.util.List;
 public class LineDto {
     private final List<Boolean> line;
 
-    public LineDto(List<Boolean> line) {
+    private LineDto(List<Boolean> line) {
         this.line = line;
     }
 
