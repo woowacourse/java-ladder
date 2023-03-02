@@ -120,5 +120,5 @@
   - [x]  Direction class의 `isDirection` 메서드 네이밍 변경 → `isConnect`
   - [x]  Ladder class의 필드명
   - [x]  Line class의 필드명
-  - [ ]  People class의 `MIN_PERSON_LENGTH` → `MIN_PEOPLE_COUNT`
+  - [x]  People class의 `MIN_PERSON_LENGTH` → `MIN_PEOPLE_COUNT`
 - [ ]  테스트에 사용되는 공용 변수 `@BeforeEach`  사용하기

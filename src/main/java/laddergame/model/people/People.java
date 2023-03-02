@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class People {
-    private static final int MIN_PERSON_LENGTH = 2;
+    private static final int MIN_PEOPLE_COUNT = 2;
 
     private final List<Person> people;
 
@@ -17,8 +17,8 @@ public class People {
     }
 
     private static void validatePeopleSize(List<String> names) {
-        if (names.size() < MIN_PERSON_LENGTH) {
-            throw new IllegalArgumentException("최소 참여자의 수는 " + MIN_PERSON_LENGTH + "명 이상이어야 합니다.");
+        if (names.size() < MIN_PEOPLE_COUNT) {
+            throw new IllegalArgumentException("최소 참여자의 수는 " + MIN_PEOPLE_COUNT + "명 이상이어야 합니다.");
         }
     }
 
