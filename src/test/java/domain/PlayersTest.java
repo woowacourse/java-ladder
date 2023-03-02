@@ -1,9 +1,9 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.*;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,6 +40,24 @@ public class PlayersTest {
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참여자 수는 2부터 100까지 입니다.");
+    }
+
+    @DisplayName("플레이어의 인덱스 가져오기")
+    @Test
+    void getOrder() {
+        Players players = new Players(List.of("a", "b", "c", "d"));
+
+        assertThat(players.getOrder("c")).isEqualTo(2);
+    }
+
+    @DisplayName("플레이어의 인덱스 가져올떄 해당되는 이름이 존재하지 않는경우 예외 발생")
+    @Test
+    void createExceptionWhenCanNotFindName() {
+        Players players = new Players(List.of("a", "b", "c", "d"));
+
+        assertThatThrownBy(() -> players.getOrder("e"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("해당 참여자가 존재하지 않습니다.");
     }
 
 }
