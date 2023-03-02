@@ -1,4 +1,4 @@
-package ladder.domain.ladderGame;
+package ladder.domain.laddergame;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package ladder.domain.ladderGame;
+package ladder.domain.laddergame;
 
 import java.util.Objects;
 
@@ -9,12 +9,12 @@ public class Position {
     private static final String ERROR_OF_POSITION = String.format("%d보다 작은 숫자로 이동할 수 없습니다", MINIMUM_POSITION);
     private final int value;
 
-    public Position(int value) {
+    public Position(final int value) {
         validateValueOfPosition(value);
         this.value = value;
     }
 
-    private void validateValueOfPosition(int value) {
+    private void validateValueOfPosition(final int value) {
         if (value < 0) {
             throw new IllegalArgumentException(ERROR_OF_POSITION);
         }
@@ -33,10 +33,14 @@ public class Position {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Position position = (Position) o;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Position position = (Position) o;
         return value == position.value;
     }
 
