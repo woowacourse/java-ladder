@@ -2,22 +2,20 @@ package domain;
 
 public class LadderHeight {
 
-    private static final int MIN_LADDER_HEIGHT = 1;
+    private final int value;
 
-    private final int ladderHeight;
-
-    public LadderHeight(int ladderHeight) {
-        validate(ladderHeight);
-        this.ladderHeight = ladderHeight;
+    public LadderHeight(int value, int numberOfPeople) {
+        validate(value, numberOfPeople);
+        this.value = value;
     }
 
-    private void validate(int ladderHeight) {
-        if (ladderHeight < MIN_LADDER_HEIGHT) {
-            throw new IllegalArgumentException(String.format("다리 길이는 양수여야합니다. 입력값 : %s", ladderHeight));
+    private void validate(int value, int numberOfPeople) {
+        if (value < numberOfPeople - 1) {
+            throw new IllegalArgumentException(String.format("사다리의 높이는 (참여할 사람 수 - 1) 보다 커야합니다. 입력값 : %s", value));
         }
     }
 
-    public int getLadderHeight() {
-        return this.ladderHeight;
+    public int value() {
+        return this.value;
     }
 }

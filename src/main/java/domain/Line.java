@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import utils.NumberGenerator;
 
@@ -39,7 +38,35 @@ public class Line {
         return points.get(points.size() - 1).isPassable();
     }
 
-    public List<Point> getPoints() {
-        return Collections.unmodifiableList(points);
+    public void tryMoveAt(Position position) {
+        if (isRightPassableAt(position)) {
+            position.moveToRight();
+            return;
+        }
+        if (isLeftPassableAt(position)) {
+            position.moveToLeft();
+        }
+    }
+
+    private boolean isRightPassableAt(Position position) {
+        if (position.value() == width()) {
+            return false;
+        }
+        return points.get(position.value()).isPassable();
+    }
+
+    private boolean isLeftPassableAt(Position position) {
+        if (position.value() == Position.LEFTMOST_POSITION_VALUE) {
+            return false;
+        }
+        return points.get(position.value() - 1).isPassable();
+    }
+
+    public List<Point> points() {
+        return List.copyOf(points);
+    }
+
+    public int width() {
+        return points.size();
     }
 }
