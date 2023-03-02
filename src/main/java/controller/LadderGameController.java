@@ -87,7 +87,6 @@ public class LadderGameController {
         }
     }
 
-
     private Names getNames() {
         try {
             return new Names(InputView.getNames());
