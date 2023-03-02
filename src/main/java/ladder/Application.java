@@ -1,15 +1,16 @@
 package ladder;
 
-import ladder.controller.LadderController;
-import ladder.domain.RandomBarGenerator;
+import ladder.controller.LadderGameController;
+import ladder.domain.RandomBooleanGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class Application {
 
-    public static void main(String[] args) {
-        LadderController ladderController = new LadderController(
-                new InputView(), new OutputView(), new RandomBarGenerator());
+    public static void main(final String[] args) {
+        final LadderGameController ladderController = new LadderGameController(
+                new InputView(), new OutputView(), new RandomBooleanGenerator()
+        );
         ladderController.run();
     }
 
