@@ -1,7 +1,6 @@
 package factory;
 
 import domain.Ladder;
-import domain.RandomBasedStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,10 +15,9 @@ class LadderFactoryTest {
         // given
         int playerSize = 5;
         int ladderHeight = 3;
-        RandomBasedStrategy randomBasedStrategy = new RandomBasedStrategy();
 
         // when
-        Ladder ladder = LadderFactory.of(playerSize, ladderHeight, randomBasedStrategy);
+        Ladder ladder = LadderFactory.of(playerSize, ladderHeight);
 
         // then
         assertThat(ladder.getLines().size())

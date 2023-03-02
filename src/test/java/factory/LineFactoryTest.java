@@ -2,7 +2,6 @@ package factory;
 
 import domain.Line;
 import domain.Point;
-import domain.RandomBasedStrategy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
@@ -16,7 +15,7 @@ public class LineFactoryTest {
     @Test
     void generateLine() {
         int maxPoint = 5;
-        Line line = LineFactory.of(maxPoint, new RandomBasedStrategy());
+        Line line = LineFactory.of(maxPoint);
         assertThat(line.getPoints().size())
                 .isEqualTo(maxPoint);
     }
@@ -25,7 +24,7 @@ public class LineFactoryTest {
     @RepeatedTest(5)
     void generateNotContinuousTrue() {
         int maxPoint = 5;
-        Line line = LineFactory.of(maxPoint, new RandomBasedStrategy());
+        Line line = LineFactory.of(maxPoint);
         Point previousPoint = line.getPointAt(0);
 
         for (int pointIndex = 1; pointIndex < line.getPoints().size(); pointIndex++) {
