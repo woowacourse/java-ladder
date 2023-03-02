@@ -20,7 +20,7 @@ class LadderTest {
         int playerNumber = 5;
         int height = 3;
 
-        assertThatThrownBy(() -> new Ladder(blockGenerator, playerNumber, height))
+        assertThatThrownBy(() -> Ladder.createLadder(blockGenerator, playerNumber, height))
                 .isInstanceOf(LadderLengthException.class);
     }
 
@@ -29,7 +29,7 @@ class LadderTest {
         int playerNumber = 5;
         int height = 5;
 
-        assertThatCode(() -> new Ladder(blockGenerator, playerNumber, height))
+        assertThatCode(() -> Ladder.createLadder(blockGenerator, playerNumber, height))
                 .doesNotThrowAnyException();
     }
 }
