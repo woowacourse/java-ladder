@@ -1,8 +1,9 @@
 package ladder.view;
 
-import ladder.domain.ladder.Bar;
+import ladder.domain.ladder.Direction;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
+import ladder.domain.player.Players;
 import ladder.domain.reward.Rewards;
 import ladder.view.constant.LadderOutputSymbol;
 
@@ -26,18 +27,17 @@ public class OutputView {
         System.out.println(ERROR_PREFIX + errorMessage);
     }
 
-    public void printLadder(List<String> playerNames, Ladder ladder, Rewards rewards) {
+    public void printLadder(Players players, Ladder ladder, Rewards rewards) {
         System.out.println(OUTPUT_LADDER_MESSAGE);
-        System.out.println(convertAssignedGroupOfLadder(playerNames));
+        System.out.println(convertAssignedGroupOfLadder(players.findPlayerNames()));
         System.out.println(convertLadderToSymbol(ladder));
-        System.out.println(convertAssignedGroupOfLadder(rewards.findRewards()));
+        System.out.println(convertAssignedGroupOfLadder(rewards.findRewardNames()));
     }
 
-    public void printResultOfAll(List<String> playerNames, Map<String, String> resultOfAll) {
+    public void printResultOfAll(Map<String, String> resultOfAll) {
         System.out.println(OUTPUT_RESULT_MESSAGE);
-        playerNames
-                .forEach(playerName -> {
-                    String resultOfPlayer = playerName + PATTERN_OF_RESULT + resultOfAll.get(playerName);
+        resultOfAll.forEach((playerName, rewardName) -> {
+                    String resultOfPlayer = playerName + PATTERN_OF_RESULT + rewardName;
                     System.out.println(resultOfPlayer);
                 });
     }
@@ -70,8 +70,8 @@ public class OutputView {
                 );
     }
 
-    private String convertBarToSymbol(Bar bar) {
-        return LadderOutputSymbol.decideLadderSymbol(bar)
+    private String convertBarToSymbol(Direction secondDirection) {
+        return LadderOutputSymbol.decideLadderSymbol(secondDirection)
                 .repeat(LENGTH_OF_ONE_BLOCK);
     }
 

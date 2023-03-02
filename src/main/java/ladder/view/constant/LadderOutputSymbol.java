@@ -1,6 +1,6 @@
 package ladder.view.constant;
 
-import ladder.domain.ladder.Bar;
+import ladder.domain.ladder.Direction;
 
 public enum LadderOutputSymbol {
 
@@ -14,8 +14,8 @@ public enum LadderOutputSymbol {
         this.symbol = symbolValue;
     }
 
-    public static String decideLadderSymbol(Bar input) {
-        if (input.getValue()) {
+    public static String decideLadderSymbol(Direction input) {
+        if (input == Direction.RIGHT) {
             return CONNECTED_BAR_SYMBOL.symbol;
         }
 
