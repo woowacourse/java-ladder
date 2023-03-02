@@ -1,7 +1,7 @@
 package ladder.domain.player;
 
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladderGame.Position;
+import ladder.domain.laddergame.Position;
 
 import java.util.Objects;
 

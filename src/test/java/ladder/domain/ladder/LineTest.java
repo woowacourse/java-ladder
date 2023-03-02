@@ -1,7 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.MockRandomBooleanGenerator;
-import ladder.domain.ladderGame.Position;
+import ladder.domain.laddergame.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,7 +27,8 @@ class LineTest {
     @Test
     @DisplayName("widthOfLadder 크기의 라인이 생성되는지 확인한다.")
     void generateLineSizeTest() {
-        assertThat(line.getLine().size()).isEqualTo(widthOfLine);
+        assertThat(line.getLine()
+                .size()).isEqualTo(widthOfLine);
     }
 
     /**
@@ -37,9 +38,9 @@ class LineTest {
     @ParameterizedTest
     @CsvSource(value = {"0,1", "1,0", "2,3", "3,2", "4,4"})
     @DisplayName("제공된 출발위치가 Line을 통과한 후, 예상한대로 이동하는지 확인한다")
-    void findNextPositionTest(int startIndex, int movedIndex) {
-        Position startPosition = new Position(startIndex);
-        Position movedPosition = new Position(movedIndex);
+    void findNextPositionTest(final int startIndex, final int movedIndex) {
+        final Position startPosition = new Position(startIndex);
+        final Position movedPosition = new Position(movedIndex);
 
         assertThat(line.findNextPosition(startPosition))
                 .isEqualTo(movedPosition);
@@ -48,7 +49,7 @@ class LineTest {
     @Test
     @DisplayName("Line이 예상한대로 생성되었는지 확인한다")
     void getLine() {
-        List<Direction> directions = List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT, Direction.STAY);
+        final List<Direction> directions = List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT, Direction.STAY);
 
         assertThat(line.getLine())
                 .isEqualTo(directions);

@@ -1,7 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.RandomGenerator;
-import ladder.domain.ladderGame.Position;
+import ladder.domain.laddergame.Position;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,7 +24,7 @@ public class Ladder {
         Position endPosition = position;
 
         for (Line line : lines) {
-            endPosition = line.findNextPosition(position);
+            endPosition = line.findNextPosition(endPosition);
         }
         return endPosition;
     }

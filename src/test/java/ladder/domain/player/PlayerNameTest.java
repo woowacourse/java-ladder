@@ -1,6 +1,5 @@
-package ladder.domain;
+package ladder.domain.player;
 
-import ladder.domain.player.PlayerName;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -11,14 +10,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class PlayerNameTest {
+class PlayerNameTest {
 
     @Test
     @DisplayName("Name 객체 equals 테스트")
     void equalsTest() {
-        String nameValue = "pobi";
+        final String nameValue = "pobi";
 
-        PlayerName other = new PlayerName(nameValue);
+        final PlayerName other = new PlayerName(nameValue);
         assertThat(new PlayerName(nameValue)).isEqualTo(other);
     }
 
@@ -29,14 +28,14 @@ public class PlayerNameTest {
         @ParameterizedTest(name = "inputName = {0}")
         @ValueSource(strings = {"가", "가나", "가나다라마"})
         @DisplayName("플레이어의 이름이 1자 이상 5자 이하인 경우, 정상 생성된다.")
-        void createCorrectPlayerNameTest(String name) {
+        void createCorrectPlayerNameTest(final String name) {
             Assertions.assertDoesNotThrow(() -> new PlayerName(name));
         }
 
         @ParameterizedTest(name = "inputName = {0}")
         @ValueSource(strings = {"", "    ", "가나다라마바", "가나다라마바사아자차"})
         @DisplayName("플레이어의 이름이 공백, 빈문자열이거나 5자 초과하면 예외가 발생한다.")
-        void createPlayerNameLengthExceptionTest(String name) {
+        void createPlayerNameLengthExceptionTest(final String name) {
             assertThatThrownBy(() -> new PlayerName(name))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("플레이어의 이름은 5자 이하여야 합니다.");
@@ -45,7 +44,7 @@ public class PlayerNameTest {
         @Test
         @DisplayName("플레이어의 이름이 명령어에 해당하는 경우 예외가 발생한다.")
         void createPlayerNameCommandExceptionTest() {
-            String commandAll = "all";
+            final String commandAll = "all";
 
             assertThatThrownBy(() -> new PlayerName(commandAll))
                     .isInstanceOf(IllegalArgumentException.class)

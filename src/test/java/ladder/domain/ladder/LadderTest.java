@@ -1,7 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.MockRandomBooleanGenerator;
-import ladder.domain.ladderGame.Position;
+import ladder.domain.laddergame.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,7 +39,6 @@ class LadderTest {
 
         assertThat(rowSize == heightOfLadder && columnSize == playerCount).isTrue();
     }
-
 
     @ParameterizedTest
     @CsvSource(value = {"0,1", "1,0", "2,3", "3,2", "4,4"})

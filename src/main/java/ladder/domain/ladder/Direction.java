@@ -1,7 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.RandomGenerator;
-import ladder.domain.ladderGame.Position;
+import ladder.domain.laddergame.Position;
 
 import java.util.Arrays;
 import java.util.function.Function;
@@ -15,7 +15,7 @@ public enum Direction {
     private final boolean right;
     private final Function<Position, Position> movingFunction;
 
-    Direction(boolean left, boolean right, Function<Position, Position> movingFunction) {
+    Direction(final boolean left, final boolean right, final Function<Position, Position> movingFunction) {
         this.left = left;
         this.right = right;
         this.movingFunction = movingFunction;
@@ -28,11 +28,11 @@ public enum Direction {
                 .orElseThrow(() -> new IllegalArgumentException("양쪽이 연결되어 있습니다."));
     }
 
-    public Direction next(RandomGenerator randomBooleanGenerator) {
+    public Direction next(final RandomGenerator randomBooleanGenerator) {
         if (this == RIGHT) {
             return LEFT;
         }
-        return Direction.from(this.right, randomBooleanGenerator.generate());
+        return Direction.from(right, randomBooleanGenerator.generate());
     }
 
     public Direction last() {
@@ -42,8 +42,8 @@ public enum Direction {
         return STAY;
     }
 
-    public Position move(Position currentPosition) {
-        return this.movingFunction.apply(currentPosition);
+    public Position move(final Position currentPosition) {
+        return movingFunction.apply(currentPosition);
     }
 
 }
