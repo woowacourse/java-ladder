@@ -1,28 +1,32 @@
 package ladder.domain.player;
 
-import ladder.domain.reward.Reward;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladderGame.Position;
 
 import java.util.Objects;
 
 public class Player {
 
     private final PlayerName name;
-    private Reward reward;
+    private Position position;
 
-    public Player(PlayerName name) {
+    public Player(PlayerName name, Position position) {
         this.name = name;
+        this.position = position;
     }
 
-    public String getName() {
-        return name.getName();
+    public Position traceThePath(Ladder ladder) {
+        position = ladder.findEndPositionOf(position);
+
+        return position;
     }
 
-    public String getReward() {
-        return reward.getName();
+    public PlayerName getName() {
+        return name;
     }
 
-    public void determineReward(final Reward reward) {
-        this.reward = reward;
+    public Position getPosition() {
+        return position;
     }
 
     @Override
