@@ -49,7 +49,7 @@ class PrizesTest {
             Prize prize = prizes.query(index);
 
             //then
-            assertThat(prize.equals(new Prize(prizeName)))
+            assertThat(prize.getPrize().equals(prizeName))
                     .isTrue();
         }
     }
