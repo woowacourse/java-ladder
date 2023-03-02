@@ -1,4 +1,4 @@
-package ladder.domain.ladderGame;
+package ladder.domain.laddergame;
 
 import ladder.domain.MockRandomBooleanGenerator;
 import ladder.domain.ladder.Ladder;
@@ -17,22 +17,22 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class ResultTest {
+class ResultOfLadderGameTest {
 
     private static final int heightOfLadder = 3;
     private static final List<String> playerNames = List.of("pobi", "crong", "honux");
     private static final List<String> rewardNames = List.of("꽝", "1000원", "2000원");
-    private static Result result;
+    private static ResultOfLadderGame result;
 
     @BeforeAll
     static void setup() {
-        Players players = new Players(playerNames);
-        Ladder ladder = new Ladder(heightOfLadder, players.findNumberOfPlayers(), new MockRandomBooleanGenerator());
-        Rewards rewards = new Rewards(players.findNumberOfPlayers(), rewardNames);
+        final Players players = new Players(playerNames);
+        final Ladder ladder = new Ladder(heightOfLadder, players.findNumberOfPlayers(), new MockRandomBooleanGenerator());
+        final Rewards rewards = new Rewards(players.findNumberOfPlayers(), rewardNames);
 
         players.movePlayers(ladder);
 
-        result = new Result(players.findResultOfPlayersWith(rewards));
+        result = new ResultOfLadderGame(players.findResultOfPlayersWith(rewards));
     }
 
     @Nested
@@ -49,7 +49,7 @@ class ResultTest {
         @Test
         @DisplayName("all 이나 PlayerNames에 있는 이름이 아닐 때, 예외가 발생한다")
         void findValidRequestWhenInputErrorTest() {
-            String invalidRequest = "ire";
+            final String invalidRequest = "ire";
             assertThatThrownBy(() -> result.findValidRequest(invalidRequest))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("해당하는 플레이어의 이름이 없습니다.");
@@ -58,7 +58,7 @@ class ResultTest {
         @ParameterizedTest
         @CsvSource(value = {"all,all", "pobi,pobi", "crong,crong", "honux,honux"})
         @DisplayName("all 이나 PlayerNames에 있는 이름이면, 해당 request를 반환한다")
-        void findValidRequestWhenInputVaildTest(String input, String validRequest) {
+        void findValidRequestWhenInputVaildTest(final String input, final String validRequest) {
             assertThat(result.findValidRequest(input))
                     .isEqualTo(validRequest);
         }
@@ -78,7 +78,7 @@ class ResultTest {
         @DisplayName("all일 때, 모든 플레이어의 매칭 결과를 반환한다")
         void getResultOfAllTest() {
 
-            Map<String, String> resultOfAll = result.findResultByRequest("all");
+            final Map<String, String> resultOfAll = result.findResultByRequest("all");
 
             assertThat(resultOfAll.get("pobi")).isEqualTo("1000원");
             assertThat(resultOfAll.get("crong")).isEqualTo("꽝");
@@ -88,8 +88,8 @@ class ResultTest {
         @ParameterizedTest
         @CsvSource(value = {"pobi,1000원", "crong,꽝", "honux,2000원"})
         @DisplayName("플레이어일 때, 해당 플레이어의 매칭 결과를 반환한다")
-        void getResultByNameTest(String name, String reward) {
-            Map<String, String> resultOfOnePlayer = result.findResultByRequest(name);
+        void getResultByNameTest(final String name, final String reward) {
+            final Map<String, String> resultOfOnePlayer = result.findResultByRequest(name);
 
             assertThat(resultOfOnePlayer.get(name)).isEqualTo(reward);
         }

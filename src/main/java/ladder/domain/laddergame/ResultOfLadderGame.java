@@ -1,4 +1,4 @@
-package ladder.domain.ladderGame;
+package ladder.domain.laddergame;
 
 import ladder.constant.Command;
 import ladder.domain.player.PlayerName;
@@ -7,12 +7,11 @@ import ladder.domain.reward.RewardName;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class Result {
+public class ResultOfLadderGame {
 
     private final Map<PlayerName, RewardName> result;
 
-    public Result(Map<PlayerName, RewardName> result) {
-        //null체크 하기
+    public ResultOfLadderGame(final Map<PlayerName, RewardName> result) {
         this.result = result;
     }
 
@@ -24,7 +23,7 @@ public class Result {
         return request;
     }
 
-    public Map<String, String> findResultByRequest(String request) {
+    public Map<String, String> findResultByRequest(final String request) {
 
         if (request.equals(Command.REQUEST_TO_GET_ALL_RESULT)) {
             return findResultOfAllPlayers();
@@ -33,7 +32,7 @@ public class Result {
     }
 
     private Map<String, String> findResultOfAllPlayers() {
-        Map<String, String> resultOfAllPlayers = new LinkedHashMap<>();
+        final Map<String, String> resultOfAllPlayers = new LinkedHashMap<>();
 
         result.forEach((playerName, rewardName) ->
                 resultOfAllPlayers.put(playerName.getName(), rewardName.getName()));
@@ -41,11 +40,12 @@ public class Result {
         return resultOfAllPlayers;
     }
 
-    private Map<String, String> findResultOfOnePlayer(String onePlayer) {
-        Map<String, String> resultOfOnePlayer = new LinkedHashMap<>();
-        PlayerName playerName = new PlayerName(onePlayer);
+    private Map<String, String> findResultOfOnePlayer(final String onePlayer) {
+        final Map<String, String> resultOfOnePlayer = new LinkedHashMap<>();
+        final PlayerName playerName = new PlayerName(onePlayer);
 
-        resultOfOnePlayer.put(onePlayer, result.get(playerName).getName());
+        resultOfOnePlayer.put(onePlayer, result.get(playerName)
+                .getName());
         return resultOfOnePlayer;
     }
 }
