@@ -121,4 +121,4 @@
   - [x]  Ladder class의 필드명
   - [x]  Line class의 필드명
   - [x]  People class의 `MIN_PERSON_LENGTH` → `MIN_PEOPLE_COUNT`
-- [ ]  테스트에 사용되는 공용 변수 `@BeforeEach`  사용하기
+- [x]  테스트에 사용되는 공용 변수 `@BeforeEach`  사용하기

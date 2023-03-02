@@ -4,12 +4,18 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class PrizesTest {
-    People people = new People(List.of("tori", "pobi", "9mak"));
+    private People people;
+
+    @BeforeEach
+    void createPeople() {
+        people = new People(List.of("tori", "pobi", "9mak"));
+    }
 
     @Test
     @DisplayName("문자열 분리 테스트")
