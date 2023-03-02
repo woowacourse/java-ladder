@@ -47,17 +47,17 @@ public class LadderGameController {
 
     private void searchResult(UsersDto usersDto) {
         Search search = initializeSearch(usersDto);
-        String searchName = search.getSearchName();
-        checkAllKeyword(usersDto, searchName);
+        checkAllKeyword(usersDto, search);
     }
 
-    private void checkAllKeyword(UsersDto usersDto, String searchName) {
-        if (!searchName.equals("all")) {
+    private void checkAllKeyword(UsersDto usersDto, Search search) {
+        if (!search.isAllKeyword()) {
+            String searchName = search.getSearchName();
             checkMoved(searchName);
             outputView.printOneResult(result.findOneResult(searchName));
             searchResult(usersDto);
         }
-        if (searchName.equals("all")) {
+        if (search.isAllKeyword()) {
             List<String> searchNames = UsersDto.from(users).getUserNames();
             outputView.printAllResult(searchNames, moveAllUser(searchNames));
         }
