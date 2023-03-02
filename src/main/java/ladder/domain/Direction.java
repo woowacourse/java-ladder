@@ -4,31 +4,31 @@ import java.util.Arrays;
 
 public enum Direction {
 
-    LEFT(-1, "-----"),
-    STAY(0, "     "),
-    RIGHT(1, "     "),
+    LEFT(-1, true),
+    STAY(0, false),
+    RIGHT(1, false),
     ;
 
-    private final int move;
-    private final String foothold;
+    private final int value;
+    private final boolean footholdStatus;
 
-    Direction(final int move, final String foothold) {
-        this.move = move;
-        this.foothold = foothold;
+    Direction(final int value, final boolean footholdStatus) {
+        this.value = value;
+        this.footholdStatus = footholdStatus;
     }
 
     public static Direction from(final int value) {
         return Arrays.stream(Direction.values())
-                .filter(direction -> direction.getMove() == value)
+                .filter(direction -> direction.getValue() == value)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 값입니다."));
     }
 
-    public int getMove() {
-        return move;
+    public int getValue() {
+        return value;
     }
 
-    public String getFoothold() {
-        return foothold;
+    public boolean getFootholdStatus() {
+        return footholdStatus;
     }
 }

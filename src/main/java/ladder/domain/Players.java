@@ -12,54 +12,49 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(final List<String> names) {
-        final List<Player> players = generatePlayers(names);
+    public Players(final List<Player> players) {
         validate(players);
         this.players = players;
     }
 
-    private List<Player> generatePlayers(final List<String> names) {
+    public static Players from(final List<String> names) {
+        return new Players(generatePlayers(names));
+    }
+
+    private static List<Player> generatePlayers(final List<String> names) {
         return names.stream()
                 .map(Player::new)
                 .collect(Collectors.toList());
     }
 
     private void validate(final List<Player> players) {
-        validatePlayerSize(players);
+        validateSize(players);
         validateDuplicatePlayer(players);
     }
 
-    private void validatePlayerSize(final List<Player> players) {
-        if (hasSmallSize(players) || hasLargeSize(players)) {
+    private void validateSize(final List<Player> players) {
+        if (isInvalidSize(players)) {
             throw new IllegalArgumentException(
                     "플레이어는 " + MINIMUM_PLAYER_SIZE + "명 이상, " + MAXIMUM_PLAYER_SIZE + "명 이하만 가능합니다."
                             + " 현재 입력한 플레이어 수는 " + players.size() + "명 입니다.");
         }
     }
 
-    private boolean hasSmallSize(final List<Player> players) {
-        return players.size() < MINIMUM_PLAYER_SIZE;
-    }
-
-    private boolean hasLargeSize(final List<Player> players) {
-        return MAXIMUM_PLAYER_SIZE < players.size();
+    private boolean isInvalidSize(final List<Player> players) {
+        return players.size() < MINIMUM_PLAYER_SIZE || MAXIMUM_PLAYER_SIZE < players.size();
     }
 
     private void validateDuplicatePlayer(final List<Player> players) {
         final Set<Player> uniquePlayers = new HashSet<>(players);
 
-        if (isDuplicate(players, uniquePlayers)) {
+        if (players.size() != uniquePlayers.size()) {
             throw new IllegalArgumentException("플레이어 이름은 중복되면 안됩니다.");
         }
     }
 
-    private boolean isDuplicate(final List<Player> players, final Set<Player> uniquePlayers) {
-        return players.size() != uniquePlayers.size();
-    }
-
     public List<String> getPlayerNames() {
         return players.stream()
-                .map(Player::getName)
+                .map(Player::getValue)
                 .collect(Collectors.toUnmodifiableList());
     }
 
