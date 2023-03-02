@@ -1,12 +1,7 @@
-package domain;
+package domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import domain.ladder.Ladder;
-import domain.ladder.LadderGenerator;
-import domain.ladder.LadderHeight;
-import domain.ladder.Line;
-import domain.ladder.LineGenerator;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
@@ -23,16 +18,13 @@ class LadderGeneratorTest {
     void create_success() {
         // given
         Ladder ladder = ladderGenerator.generate(3, new LadderHeight(3));
-
         // when
         List<Line> lines = ladder.getLines();
         int numberOfPoint = lines.stream()
                 .map(line -> line.getPoints().size())
                 .collect(Collectors.toSet())
                 .size();
-
         // then
         assertThat(numberOfPoint).isEqualTo(1);
     }
-
 }

@@ -1,21 +1,44 @@
 package domain.ladder;
 
-public enum LinePoint {
-    PASSABLE,
-    BLOCKED;
+import domain.player.Position;
+import java.util.Objects;
 
-    public static LinePoint from(int number) {
-        if (canGeneratePassable(number)) {
-            return PASSABLE;
+public class LinePoint {
+
+    private final Direction direction;
+    private final Position position;
+
+    public LinePoint(Direction direction, Position position) {
+        this.direction = direction;
+        this.position = position;
+    }
+
+    public int getDirectionValue() {
+        return direction.getValue();
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
         }
-        return BLOCKED;
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
+        LinePoint otherLinePoint = (LinePoint) other;
+        return direction == otherLinePoint.direction && Objects.equals(position, otherLinePoint.position);
     }
 
-    private static boolean canGeneratePassable(int number) {
-        return number >= 4;
-    }
-
-    public boolean isPassable() {
-        return this.equals(PASSABLE);
+    @Override
+    public int hashCode() {
+        return Objects.hash(direction, position);
     }
 }

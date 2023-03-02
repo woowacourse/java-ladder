@@ -1,33 +1,34 @@
 package domain.player;
 
-import java.util.Objects;
 
 public class Player {
 
     private final Name name;
+    private final Position position;
 
-    public Player(Name name) {
+    public Player(Name name, Position position) {
         this.name = name;
+        this.position = position;
+    }
+
+    public void move(int value) {
+        position.calculate(value);
+    }
+
+    public boolean isSamePosition(Position otherPosition) {
+        return position.equals(otherPosition);
+    }
+
+    public boolean isSameName(String otherName) {
+        return name.isSame(otherName);
     }
 
     public String getName() {
         return name.getName();
     }
 
-    @Override
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (other == null || getClass() != other.getClass()) {
-            return false;
-        }
-        Player otherPlayer = (Player) other;
-        return Objects.equals(this.name, otherPlayer.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
+    public Position getPosition() {
+        return position;
     }
 }
+

@@ -27,14 +27,24 @@ public class Name {
         }
     }
 
+    public boolean isSame(String otherName) {
+        return name.equals(otherName);
+    }
+
+    public String getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (this == other) {
             return true;
         }
+
         if (other == null || getClass() != other.getClass()) {
             return false;
         }
+
         Name otherName = (Name) other;
         return Objects.equals(name, otherName.name);
     }
@@ -42,9 +52,5 @@ public class Name {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    public String getName() {
-        return name;
     }
 }

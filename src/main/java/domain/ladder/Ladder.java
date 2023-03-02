@@ -1,5 +1,6 @@
 package domain.ladder;
 
+import domain.player.Player;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,11 +8,15 @@ import java.util.List;
 public class Ladder {
 
     private final List<Line> lines;
-    private final LadderHeight ladderHeight;
 
-    public Ladder(List<Line> lines, LadderHeight ladderHeight) {
+    public Ladder(List<Line> lines) {
         this.lines = new ArrayList<>(lines);
-        this.ladderHeight = ladderHeight;
+    }
+
+    public void play(Player player) {
+        for (Line line : lines) {
+            line.move(player);
+        }
     }
 
     public List<Line> getLines() {

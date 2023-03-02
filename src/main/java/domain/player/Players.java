@@ -17,18 +17,42 @@ public class Players {
 
     private void validate(List<Player> players) {
         if (players.size() < MIN_NAME_SIZE) {
-            throw new IllegalArgumentException(String.format("이름은 최소 2개 이상이여햡니다. 입력값 : %d", players.size()));
+            throw new IllegalArgumentException(String.format("플레이어는 최소 2명 이상이여햡니다. 입력값 : %d", players.size()));
         }
 
         if (hasDuplicateName(players)) {
-            throw new IllegalArgumentException("이름은 중복 될 수 없습니다.");
+            throw new IllegalArgumentException("플레이어의 이름은 중복 될 수 없습니다.");
         }
+
+        if (hasDuplicatePosition(players)) {
+            throw new IllegalArgumentException("중복된 위치가 존재합니다.");
+        }
+    }
+
+    private static boolean hasDuplicatePosition(List<Player> players) {
+        return players.size() != players.stream()
+                .map(Player::getPosition)
+                .distinct()
+                .count();
     }
 
     private boolean hasDuplicateName(List<Player> players) {
         return players.stream()
+                .map(Player::getName)
                 .distinct()
                 .count() != players.size();
+    }
+
+    public boolean containName(String name) {
+        return players.stream()
+                .anyMatch(player -> player.isSameName(name));
+    }
+
+    public Player findPlayerByName(String name) {
+        return players.stream()
+                .filter(player -> player.isSameName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("해당하는 이름을 가진 Player는 존재하지 않습니다."));
     }
 
     public int size() {
