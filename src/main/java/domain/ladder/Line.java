@@ -2,30 +2,29 @@ package domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import utils.RandomBooleanGenerator;
+import utils.BooleanGenerator;
 
 public class Line {
     private final List<Boolean> line;
-    private final RandomBooleanGenerator randomNumberGenerator = new RandomBooleanGenerator();
 
-    public Line(int personCount) {
-        this.line = createLine(personCount);
+    public Line(int width, BooleanGenerator booleanGenerator) {
+        this.line = createLine(width, booleanGenerator);
     }
 
-    private List<Boolean> createLine(int personCount) {
+    private List<Boolean> createLine(int width, BooleanGenerator booleanGenerator) {
         List<Boolean> line = new ArrayList<>();
         line.add(false);
-        for (int i = 1; i < personCount; i++) {
-            line.add(isContinuousTrue(line.get(i - 1)));
+        for (int i = 1; i < width; i++) {
+            line.add(isContinuousTrue(line.get(i - 1), booleanGenerator));
         }
         return line;
     }
 
-    private boolean isContinuousTrue(boolean lastStatus) {
+    private boolean isContinuousTrue(boolean lastStatus, BooleanGenerator booleanGenerator) {
         if (lastStatus) {
             return false;
         }
-        return randomNumberGenerator.isMovable();
+        return booleanGenerator.isMovable();
     }
 
     public List<Boolean> getLine() {

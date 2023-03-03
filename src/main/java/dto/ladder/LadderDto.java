@@ -1,13 +1,12 @@
 package dto.ladder;
 
 import domain.ladder.Ladder;
-import domain.ladder.Line;
 import java.util.List;
 
 public class LadderDto {
-    private final List<Line> lines;
+    private final List<LineDto> lines;
 
-    public LadderDto(List<Line> lines) {
+    private LadderDto(List<LineDto> lines) {
         this.lines = lines;
     }
 
@@ -15,7 +14,7 @@ public class LadderDto {
         return new LadderDto(ladder.getLines());
     }
 
-    public List<Line> getLines() {
+    public List<LineDto> getLines() {
         return lines;
     }
 }
