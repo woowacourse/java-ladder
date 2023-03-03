@@ -8,8 +8,8 @@ public class Prizes {
 
     private final List<Prize> prizes;
 
-    public Prizes(List<String> prizeNames, int size) {
-        validatePrizesSize(prizeNames, size);
+    public Prizes(List<String> prizeNames, int userSize) {
+        validatePrizesSize(prizeNames, userSize);
         this.prizes = new ArrayList<>();
         for (String prizeName : prizeNames) {
             this.prizes.add(new Prize(prizeName));
@@ -24,8 +24,8 @@ public class Prizes {
         return prizeNames;
     }
 
-    private void validatePrizesSize(List<String> prizes, int size) {
-        if (prizes.size() != size) {
+    private void validatePrizesSize(List<String> prizes, int userSize) {
+        if (prizes.size() != userSize) {
             throw new IllegalArgumentException(PRIZE_SIZE_ERROR_MESSAGE);
         }
     }
