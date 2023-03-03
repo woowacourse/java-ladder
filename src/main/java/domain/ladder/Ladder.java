@@ -6,16 +6,20 @@ import java.util.List;
 import utils.BooleanGenerator;
 
 public class Ladder {
-    private final List<LineDto> lines;
+    private final List<Line> lines;
 
     public Ladder(int width, Height height, BooleanGenerator booleanGenerator) {
         this.lines = new ArrayList<>();
         for (int i = 0; i < height.getHeight(); i++) {
-            this.lines.add(LineDto.from(new Line(width, booleanGenerator)));
+            this.lines.add(new Line(width, booleanGenerator));
         }
     }
 
     public List<LineDto> getLines() {
-        return lines;
+        List<LineDto> lineDtos = new ArrayList<>();
+        for (Line line : lines) {
+            lineDtos.add(LineDto.from(line));
+        }
+        return lineDtos;
     }
 }
