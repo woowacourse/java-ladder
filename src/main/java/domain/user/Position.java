@@ -3,6 +3,9 @@ package domain.user;
 import java.util.List;
 
 public class Position {
+    private static final int LOWER_LEFT_MOVE_INDEX = -1;
+    private static final int LOWER_RIGHT_MOVE_INDEX = 1;
+    private static final int DIRECT_DOWN_MOVE_INDEX = 0;
     private int position;
 
     public Position(int position) {
@@ -10,17 +13,25 @@ public class Position {
     }
 
     public void movePosition(List<Boolean> nextLine) {
-        this.position += checkDirection(position, nextLine);
+        this.position += decideMovablePosition(position, nextLine);
     }
 
-    private int checkDirection(int position, List<Boolean> nextLine) {
-        if (nextLine.get(position)) {
-            return -1;
+    private int decideMovablePosition(int position, List<Boolean> nextLine) {
+        if (isLowerLeftMovable(position, nextLine)) {
+            return LOWER_LEFT_MOVE_INDEX;
         }
-        if (position + 1 < nextLine.size() && nextLine.get(position + 1)) {
-            return 1;
+        if (isLowerRightMovable(position, nextLine)) {
+            return LOWER_RIGHT_MOVE_INDEX;
         }
-        return 0;
+        return DIRECT_DOWN_MOVE_INDEX;
+    }
+
+    private static boolean isLowerRightMovable(int position, List<Boolean> nextLine) {
+        return position + 1 < nextLine.size() && nextLine.get(position + 1);
+    }
+
+    private static Boolean isLowerLeftMovable(int position, List<Boolean> nextLine) {
+        return nextLine.get(position);
     }
 
     public int getValue() {
