@@ -2,7 +2,6 @@ package controller;
 
 import domain.ladder.Height;
 import domain.ladder.Ladder;
-import domain.prize.Prize;
 import domain.prize.Prizes;
 import domain.result.Result;
 import domain.result.Search;
@@ -122,19 +121,11 @@ public class LadderGameController {
     private Prizes initializePrizes(int width) {
         try {
             List<String> prizeNames = inputView.inputPrizeName();
-            return new Prizes(createPrizes(prizeNames), width);
+            return new Prizes(prizeNames, width);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return initializePrizes(width);
         }
-    }
-
-    private List<Prize> createPrizes(List<String> prizeNames) {
-        List<Prize> prizes = new ArrayList<>();
-        for (String prizeName : prizeNames) {
-            prizes.add(new Prize(prizeName));
-        }
-        return prizes;
     }
 
     private Search initializeSearch(UsersDto usersDto) {
