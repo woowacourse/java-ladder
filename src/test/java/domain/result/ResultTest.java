@@ -19,7 +19,7 @@ class ResultTest {
             Result result = new Result(List.of("test", "mango"));
 
             result.saveResult(userName, prizeName);
-            assertThat(result.getResult().get(userName)).isEqualTo(prizeName);
+            assertThat(result.getResults().get(userName)).isEqualTo(prizeName);
         }
     }
 
@@ -48,7 +48,7 @@ class ResultTest {
                 result.saveResult(searchNames.get(i), prizeNames.get(i));
             }
 
-            assertThat(result.findAllResult()).isEqualTo(prizeNames);
+            assertThat(result.findAllResults()).isEqualTo(prizeNames);
         }
     }
 }

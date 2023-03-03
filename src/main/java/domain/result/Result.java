@@ -6,31 +6,31 @@ import java.util.List;
 import java.util.Map;
 
 public class Result {
-    private final Map<String, String> result;
+    private final Map<String, String> results;
 
     public Result(List<String> userNames) {
-        this.result = new HashMap<>();
+        this.results = new HashMap<>();
         for (String userName : userNames) {
-            this.result.put(userName, null);
+            this.results.put(userName, null);
         }
     }
 
-    public Map<String, String> getResult() {
-        return result;
+    public Map<String, String> getResults() {
+        return results;
     }
 
     public void saveResult(String userName, String prizeName) {
-        this.result.replace(userName, prizeName);
+        this.results.replace(userName, prizeName);
     }
 
     public String findOneResult(String searchName) {
-        return result.get(searchName);
+        return results.get(searchName);
     }
 
-    public List<String> findAllResult() {
+    public List<String> findAllResults() {
         List<String> results = new ArrayList<>();
-        for (String searchName : result.keySet()) {
-            results.add(result.get(searchName));
+        for (String searchName : this.results.keySet()) {
+            results.add(this.results.get(searchName));
         }
         return results;
     }
