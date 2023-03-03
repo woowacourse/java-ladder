@@ -94,19 +94,11 @@ public class LadderGameController {
     private Users initializeUsers() {
         try {
             List<String> userNames = inputView.inputUserName();
-            return new Users(createUsers(userNames));
+            return new Users(userNames);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return initializeUsers();
         }
-    }
-
-    private List<User> createUsers(List<String> userNames) {
-        List<User> users = new ArrayList<>();
-        for (int i = 0; i < userNames.size(); i++) {
-            users.add(new User(userNames.get(i), i));
-        }
-        return users;
     }
 
     private Height initializeHeight() {

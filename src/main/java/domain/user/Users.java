@@ -6,8 +6,11 @@ import java.util.List;
 public class Users {
     private final List<User> users;
 
-    public Users(List<User> users) {
-        this.users = users;
+    public Users(List<String> userNames) {
+        this.users = new ArrayList<>();
+        for (int i = 0; i < userNames.size(); i++) {
+            users.add(new User(userNames.get(i), i));
+        }
     }
 
     public int getPersonCount() {
