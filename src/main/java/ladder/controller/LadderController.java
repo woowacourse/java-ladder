@@ -8,20 +8,17 @@ import ladder.domain.people.Names;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LadderController {
 
     public void run() {
-        Names names = InputView.repeat(() -> new Names(InputView.inputPeopleNames()));
-        List<String> namesList = names.getNames();
+        List<String> namesList = (InputView.repeat(() -> new Names(InputView.inputPeopleNames()))).getNames();
 
-        Results results = InputView.repeat(() -> new Results(InputView.inputResults(), namesList.size()));
-        List<String> resultsList = results.getResults();
+        List<String> resultsList = (InputView.repeat(() -> new Results(InputView.inputResults(), namesList.size()))).getResults();
 
-        int ladderHeight = InputView.repeat(InputView::inputLadderHeight);
-        Ladder ladder = new Ladder(new RandomBarGenerator(), ladderHeight, namesList.size());
+        Ladder ladder = new Ladder(new RandomBarGenerator(), InputView.repeat(InputView::inputLadderHeight), namesList.size());
         GameResults gameResults = new GameResults(namesList, resultsList, ladder);
 
         OutputView.printLadderResultMessage();
@@ -31,11 +28,11 @@ public class LadderController {
 
     private void printLadder(Ladder ladder, List<String> namesList, List<String> resultsList) {
         OutputView.printInputString(namesList);
-        OutputView.printLadder(ladder, namesList.get(0).length());
+        OutputView.printLadder(ladder);
         OutputView.printInputString(resultsList);
     }
 
-    private void viewGameResults(HashMap<String, String> gameResults, List<String> namesList) {
+    private void viewGameResults(Map<String, String> gameResults, List<String> namesList) {
         String name = InputView.repeat(() -> InputView.inputWantGameResults(namesList));
         if ("all" .equals(name)) {
             printGameResultsAll(gameResults);
@@ -46,11 +43,11 @@ public class LadderController {
         viewGameResults(gameResults, namesList);
     }
 
-    private void printGameResultsAll(HashMap<String, String> gameResults) {
+    private void printGameResultsAll(Map<String, String> gameResults) {
         OutputView.printGameResultsAll(gameResults);
     }
 
-    private void printGameResultsUnique(HashMap<String, String> gameResults, String name) {
+    private void printGameResultsUnique(Map<String, String> gameResults, String name) {
         OutputView.printGameResultsUnique(gameResults, name);
     }
 }
