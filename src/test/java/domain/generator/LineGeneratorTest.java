@@ -1,7 +1,10 @@
-package generator;
+package domain.generator;
 
 import domain.Bridge;
 import domain.Line;
+import domain.generator.BridgeGenerator;
+import domain.generator.LineGenerator;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

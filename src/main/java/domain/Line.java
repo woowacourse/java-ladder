@@ -23,8 +23,37 @@ public class Line {
 
     private void validateNotSerial(final Bridge currentBridge, final Bridge nextBridge) {
         if (currentBridge.isSerialWith(nextBridge)) {
-            throw new IllegalArgumentException("연속인 브릿지가 존재합니다");
+            throw new IllegalArgumentException("연속인 다리가 있습니다");
         }
+    }
+
+    public Direction findDirectionFrom(final Position position) {
+        if (getLeftBridgeFrom(position).doesExist()) {
+            return Direction.LEFT;
+        }
+        if (getRightBridgeFrom(position).doesExist()) {
+            return Direction.RIGHT;
+        }
+        return Direction.STAY;
+    }
+
+    private Bridge getLeftBridgeFrom(Position position) {
+        return getBridgeAt(position.left());
+    }
+
+    private Bridge getRightBridgeFrom(Position position) {
+        return getBridgeAt(position);
+    }
+
+    private Bridge getBridgeAt(Position position) {
+        if (position.isInBetween(0, bridges.size())) {
+            return bridges.get(position.getPosition());
+        }
+        return Bridge.EMPTY;
+    }
+
+    public boolean hasDifferentWidthWith(Line other) {
+        return other.bridges.size() != bridges.size();
     }
 
     public List<Bridge> getBridges() {

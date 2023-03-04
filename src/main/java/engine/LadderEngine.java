@@ -1,51 +1,80 @@
 package engine;
 
+import static view.InputView.inputMaxLadderHeight;
+import static view.InputView.inputNames;
+import static view.InputView.inputPrizes;
+import static view.InputView.inputSearchTarget;
+import static view.OutputView.printLadder;
+import static view.OutputView.printResults;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import common.exception.handler.IllegalArgumentExceptionHandler;
 import domain.Ladder;
-import domain.Line;
-import domain.Participant;
+import domain.LadderGame;
 import domain.Participants;
-import generator.LineGenerator;
-import generator.RandomBridgeGenerator;
-import view.InputView;
-import view.OutputView;
+import domain.Prizes;
+import dto.Result;
+import view.SearchTarget;
 
 public class LadderEngine {
 
     public void start() {
-        Ladder ladder = IllegalArgumentExceptionHandler.handleExceptionByRepeating(() -> {
+        LadderGame ladderGame = IllegalArgumentExceptionHandler.handleExceptionByRepeating(() -> {
             Participants participants = gatherParticipants();
-            int height = InputView.inputMaxLadderHeight();
-            List<Line> lines = makeLines(participants.count(), height);
-            return new Ladder(participants, lines);
+            Ladder ladder = Ladder.of(participants.count(), inputMaxLadderHeight());
+            return makeGameWith(participants, ladder);
         });
-        OutputView.printLadder(ladder);
+        printLadder(ladderGame);
+        repeatQueryPrizes(ladderGame);
     }
 
     private Participants gatherParticipants() {
         return IllegalArgumentExceptionHandler.handleExceptionByRepeating(
-                () -> createParticipantsWith(InputView.inputNames())
+                () -> Participants.of(inputNames())
         );
     }
 
-    private List<Line> makeLines(final int participantsCount, final int height) {
-        List<Line> lines = new ArrayList<>();
-        LineGenerator lineGenerator = new LineGenerator(new RandomBridgeGenerator());
-        for (int i = 0; i < height; i++) {
-            Line line = lineGenerator.generate(participantsCount);
-            lines.add(line);
-        }
-        return lines;
+    private LadderGame makeGameWith(Participants participants, Ladder ladder) {
+        return IllegalArgumentExceptionHandler.handleExceptionByRepeating(
+                () -> {
+                    Prizes prizes = new Prizes(inputPrizes());
+                    return new LadderGame(participants, ladder, prizes);
+                }
+        );
     }
 
-    private Participants createParticipantsWith(final List<String> names) {
-        List<Participant> participants = names.stream()
-                .map(Participant::new)
-                .collect(Collectors.toList());
-        return new Participants(participants);
+    private void repeatQueryPrizes(LadderGame ladderGame) {
+        boolean isTargetAll;
+        do {
+            isTargetAll = queryPrizes(ladderGame).isAll();
+        } while (!isTargetAll);
+    }
+
+    private SearchTarget queryPrizes(LadderGame ladderGame) {
+        return IllegalArgumentExceptionHandler.handleExceptionByRepeating(() -> {
+            SearchTarget searchTarget = inputSearchTarget();
+            printResults(getResults(ladderGame, searchTarget));
+            return searchTarget;
+        });
+    }
+
+    private List<Result> getResults(LadderGame ladderGame, SearchTarget searchTarget) {
+        if (searchTarget.isAll()) {
+            return getAllResultsOf(ladderGame);
+        }
+        String searchTargetName = searchTarget.getName();
+        Result result = new Result(searchTargetName, ladderGame.findPrizeFor(searchTargetName));
+        return List.of(result);
+    }
+
+    private List<Result> getAllResultsOf(LadderGame ladderGame) {
+        List<Result> results = new ArrayList<>();
+        for (String name : ladderGame.getParticipantNames()) {
+            Result result = new Result(name, ladderGame.findPrizeFor(name));
+            results.add(result);
+        }
+        return results;
     }
 }
