@@ -13,15 +13,15 @@ public enum Command {
     }
 
     public static boolean isAll(String input) {
-        if (isNotCommand(input)) {
-            return false;
+        if (isCommand(input)) {
+            return ALL.hasCommand(input);
         }
-        return ALL.hasCommand(input);
+        return false;
     }
 
-    private static boolean isNotCommand(String input) {
+    public static boolean isCommand(String input) {
         return Arrays.stream(values())
-                .noneMatch(command -> command.hasCommand(input));
+                .anyMatch(command -> command.hasCommand(input));
     }
 
     private boolean hasCommand(String command) {
