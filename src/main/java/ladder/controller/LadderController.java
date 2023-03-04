@@ -15,10 +15,10 @@ public class LadderController {
 
     public void run() {
         List<String> namesList = (InputView.repeat(() -> new Names(InputView.inputPeopleNames()))).getNames();
-
         List<String> resultsList = (InputView.repeat(() -> new Results(InputView.inputResults(), namesList.size()))).getResults();
 
-        Ladder ladder = new Ladder(new RandomBarGenerator(), InputView.repeat(InputView::inputLadderHeight), namesList.size());
+        int ladderHeight = InputView.repeat(InputView::inputLadderHeight);
+        Ladder ladder = new Ladder(new RandomBarGenerator(), ladderHeight, namesList.size());
         GameResults gameResults = new GameResults(namesList, resultsList, ladder);
 
         OutputView.printLadderResultMessage();
