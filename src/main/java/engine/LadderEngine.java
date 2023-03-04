@@ -71,7 +71,7 @@ public class LadderEngine {
 
     private List<Result> getAllResultsOf(LadderGame ladderGame) {
         List<Result> results = new ArrayList<>();
-        for (var name : ladderGame.getParticipantNames()) {
+        for (String name : ladderGame.getParticipantNames()) {
             Result result = new Result(name, ladderGame.findPrizeFor(name));
             results.add(result);
         }
