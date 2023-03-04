@@ -1,4 +1,4 @@
-package generator;
+package domain.generator;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,8 +5,8 @@ import static java.util.List.copyOf;
 import java.util.ArrayList;
 import java.util.List;
 
-import generator.LineGenerator;
-import generator.RandomBridgeGenerator;
+import domain.generator.LineGenerator;
+import domain.generator.RandomBridgeGenerator;
 
 public class Ladder {
 

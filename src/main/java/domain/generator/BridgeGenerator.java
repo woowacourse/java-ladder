@@ -1,4 +1,4 @@
-package generator;
+package domain.generator;
 
 import domain.Bridge;
 
