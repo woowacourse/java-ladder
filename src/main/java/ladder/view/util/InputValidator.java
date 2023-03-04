@@ -5,7 +5,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputValidator {
-    private static final Pattern notNumberPattern = Pattern.compile("\\D");
+    private static final String NOT_NUMBER = "\\D";
+    private static final Pattern CHARACTER_SET_NOT_NUMBER = Pattern.compile(NOT_NUMBER);
+
+    private InputValidator() {
+    }
 
     public static void validateContainName(List<String> namesList, String inputWantGameResults) {
         if (!namesList.contains(inputWantGameResults) && !inputWantGameResults.equals("all")) {
@@ -14,7 +18,7 @@ public class InputValidator {
     }
 
     public static void validateNonNumber(String ladderHeight) {
-        Matcher matcher = notNumberPattern.matcher(ladderHeight);
+        Matcher matcher = CHARACTER_SET_NOT_NUMBER.matcher(ladderHeight);
         if (matcher.find()) {
             throw new IllegalArgumentException("숫자가 아닌 값은 입력할 수 없습니다.");
         }
