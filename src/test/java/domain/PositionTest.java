@@ -2,12 +2,13 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
-
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class PositionTest {
 
     @Test
@@ -26,10 +27,10 @@ public class PositionTest {
 
     @ParameterizedTest
     @CsvSource({"-1,false", "0,true", "2,true", "3,false"})
-    void 컬렉션의_범위에_있는지_알_수_있다(int position, boolean isInRange) {
+    void 위치가_특정_범위_사이에_있는지_알_수_있다(int position, boolean isInRange) {
         Position currentPosition = new Position(position);
 
-        assertThat(currentPosition.isInRangeOf(List.of(0, 0, 0))).isEqualTo(isInRange);
+        assertThat(currentPosition.isInBetween(0, 3)).isEqualTo(isInRange);
     }
 
     @ParameterizedTest

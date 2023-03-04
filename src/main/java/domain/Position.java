@@ -32,8 +32,8 @@ class Position {
         return new Position(position);
     }
 
-    public boolean isInRangeOf(Collection<?> collection) {
-        return 0 <= position && position < collection.size();
+    public boolean isInBetween(int fromInclusive, int toExclusive) {
+        return fromInclusive <= position && position < toExclusive;
     }
 
     @Override
