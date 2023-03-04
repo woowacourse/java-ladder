@@ -9,7 +9,8 @@ public class Line {
     private static final int FIRST_BAR = 1;
 
     public Line() {
-        bars = new ArrayList<>(List.of(Bar.FALSE));
+        bars = new ArrayList<>();
+        bars.add(Bar.FALSE);
     }
 
     public Bar getIndexBar(int index) {
