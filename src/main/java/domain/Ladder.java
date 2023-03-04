@@ -38,12 +38,12 @@ public class Ladder {
 
     private void validateEvenWidth(final List<Line> lines) {
         Line firstLine = lines.get(0);
-        if (isWidthNotSame(firstLine, lines)) {
+        if (isWidthDifferent(firstLine, lines)) {
             throw new IllegalArgumentException("사다리 너비는 균일해야 합니다");
         }
     }
 
-    private boolean isWidthNotSame(Line firstLine, List<Line> lines) {
+    private boolean isWidthDifferent(Line firstLine, List<Line> lines) {
         return lines.stream()
                 .anyMatch(line -> line.hasDifferentWidthWith(firstLine));
     }
