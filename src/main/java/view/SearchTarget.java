@@ -1,7 +1,5 @@
 package view;
 
-import constant.Command;
-
 public class SearchTarget {
 
     private final String target;

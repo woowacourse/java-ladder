@@ -2,7 +2,6 @@ package view;
 
 import java.util.List;
 
-import constant.Command;
 import utils.ScannerUtil;
 
 public class InputView {
