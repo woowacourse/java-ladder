@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.ladder.Ladder;
 import ladder.validator.CommonValidator;
 import ladder.view.util.InputValidator;
 import ladder.view.util.OutputViewHelper;
@@ -19,7 +20,7 @@ public class InputView {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String inputPeopleNames = sc.nextLine();
 
-        CommonValidator.validateBlank(inputPeopleNames);
+        CommonValidator.validateNullOrBlank(inputPeopleNames);
 
         return inputPeopleNames;
     }
@@ -28,7 +29,7 @@ public class InputView {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String inputResults = sc.nextLine();
 
-        CommonValidator.validateBlank(inputResults);
+        CommonValidator.validateNullOrBlank(inputResults);
 
         return inputResults;
     }
@@ -37,8 +38,8 @@ public class InputView {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String ladderHeight = sc.nextLine();
 
-        CommonValidator.validateBlank(ladderHeight);
-        InputValidator.validateNonNumber(ladderHeight);
+        CommonValidator.validateNullOrBlank(ladderHeight);
+        Ladder.validateNonNumber(ladderHeight);
 
         return InputValidator.validateLadderHeightRange(Integer.parseInt(ladderHeight));
     }
@@ -47,7 +48,7 @@ public class InputView {
         System.out.println(INPUT_PRINT_WANT_RESULT);
         String inputWantGameResults = sc.nextLine();
 
-        CommonValidator.validateBlank(inputWantGameResults);
+        CommonValidator.validateNullOrBlank(inputWantGameResults);
         InputValidator.validateContainName(namesList, inputWantGameResults);
 
         return inputWantGameResults;

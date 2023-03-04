@@ -3,7 +3,6 @@ package ladder.view;
 import ladder.domain.ladder.Ladder;
 import ladder.view.util.OutputViewHelper;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,14 +12,14 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printGameResultsAll(HashMap<String, String> gameResults) {
+    public static void printGameResultsAll(Map<String, String> gameResults) {
         println(PRINT_GAME_RESULT);
         for (Map.Entry<String, String> entrySet : gameResults.entrySet()) {
             println(entrySet.getKey() + " : " + entrySet.getValue());
         }
     }
 
-    public static void printGameResultsUnique(HashMap<String, String> gameResults, String name) {
+    public static void printGameResultsUnique(Map<String, String> gameResults, String name) {
         println(PRINT_GAME_RESULT);
         println(gameResults.get(name));
     }
@@ -33,8 +32,8 @@ public class OutputView {
         println(OutputViewHelper.parseDisplayInputStrings(inputString));
     }
 
-    public static void printLadder(Ladder ladder, int firstNameLength) {
-        println(OutputViewHelper.parseLadder(ladder, firstNameLength));
+    public static void printLadder(Ladder ladder) {
+        println(OutputViewHelper.parseLadder(ladder));
     }
 
     private static void println(String message) {

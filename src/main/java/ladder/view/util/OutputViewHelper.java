@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class OutputViewHelper {
+    OutputViewHelper() {
+    }
 
     // 사람, 결과 출력 메소드
     public static String parseDisplayInputStrings(List<String> inputString) {
@@ -22,7 +24,7 @@ public class OutputViewHelper {
     }
 
     // 사다리 출력 메소드
-    public static String parseLadder(Ladder ladder, int firstNameLength) {
+    public static String parseLadder(Ladder ladder) {
         return ladder.getLines().stream()
                 .map(OutputViewHelper::parseLine)
                 .collect(Collectors.joining("\n"));
