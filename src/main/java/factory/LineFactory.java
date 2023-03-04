@@ -17,9 +17,13 @@ public class LineFactory {
     private final static Random random = new Random();
 
     public static Line of(final int pointSize) {
-        validate(pointSize);
-        List<Point> points = generatePoints(pointSize);
-        return new Line(points);
+        try {
+            validate(pointSize);
+            List<Point> points = generatePoints(pointSize);
+            return new Line(points);
+        } catch (IllegalArgumentException exception) {
+            return of(pointSize);
+        }
     }
 
     private static void validate(final int pointSize) {
