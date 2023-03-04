@@ -1,5 +1,6 @@
 package ladder.view.util;
 
+import ladder.domain.ladder.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -40,7 +41,7 @@ class InputValidatorTest {
     void test_3(String input) {
         // then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> InputValidator.validateNonNumber(input))
+                .isThrownBy(() -> Ladder.validateNonNumber(input))
                 .withMessage("숫자가 아닌 값은 입력할 수 없습니다.");
     }
 }
