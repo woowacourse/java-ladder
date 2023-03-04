@@ -13,7 +13,7 @@ class CommonValidatorTest {
     void test_1(String input) {
         // then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> CommonValidator.validateBlank(input))
+                .isThrownBy(() -> CommonValidator.validateNullOrBlank(input))
                 .withMessage("빈 값을 입력할 수 없습니다.");
     }
 }
