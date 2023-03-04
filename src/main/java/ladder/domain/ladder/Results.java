@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Results {
-    private static final Pattern INPUT_NAMES_PATTERN = Pattern.compile("([a-zA-Z]{1,5})(,[a-zA-Z]{1,5})*");
+    private static final Pattern CHARACTER_SET_BETWEEN_1_AND_5_WITH_COMMA = Pattern.compile("(^.{1,5})(,[^.]{1,5})*");
 
     private final List<String> results;
 
@@ -33,7 +33,7 @@ public class Results {
     }
 
     private void validateNamesInputForm(String names) {
-        Matcher matcher = INPUT_NAMES_PATTERN.matcher(names);
+        Matcher matcher = CHARACTER_SET_BETWEEN_1_AND_5_WITH_COMMA.matcher(names);
         if (!matcher.matches()) {
             throw new IllegalArgumentException("입력된 실행결과의 형식이 올바르지 않습니다.");
         }
