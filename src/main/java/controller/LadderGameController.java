@@ -1,10 +1,10 @@
 package controller;
 
-import domain.game.LadderGame;
 import domain.ladder.Ladder;
 import domain.ladder.LadderGenerator;
 import domain.player.Names;
 import domain.player.Players;
+import domain.player.Position;
 import domain.result.Prizes;
 import domain.result.Result;
 import util.RandomBooleanGenerator;
@@ -42,10 +42,14 @@ public class LadderGameController {
 
     private Result playGame() {
         Players players = new Players(names);
-        LadderGame game = new LadderGame(ladder, players, prizes);
-        game.play();
 
-        return game.getResult();
+        players.getPlayers()
+                .forEach((player -> {
+                    Position endPosition = ladder.ride(player);
+                    player.move(endPosition);
+                }));
+
+        return new Result(players, prizes);
     }
 
     private Ladder buildLadder() {

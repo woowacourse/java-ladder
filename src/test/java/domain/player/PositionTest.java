@@ -24,7 +24,7 @@ public class PositionTest {
         int direction = 1;
 
         //when
-        position.move(direction);
+        position = position.move(direction);
 
         //then
         assertThat(position.getPosition())

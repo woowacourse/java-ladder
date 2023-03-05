@@ -1,12 +1,11 @@
 package domain.player;
 
-import domain.ladder.Step;
 import java.util.Objects;
 
 public class Player {
 
     private final Name name;
-    private final Position position;
+    private Position position;
 
     public Player(final Name name) {
         this(name, new Position(0));
@@ -17,12 +16,12 @@ public class Player {
         this.position = position;
     }
 
-    public void move(final Step step) {
-        step.step(position);
+    public void move(final Position position) {
+        this.position = position;
     }
 
-    public int getPosition() {
-        return position.getPosition();
+    public Position getPosition() {
+        return position;
     }
 
     @Override

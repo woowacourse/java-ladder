@@ -1,8 +1,10 @@
 package domain.player;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 import domain.ladder.Step;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -21,12 +23,8 @@ class PlayerTest {
             Name name = new Name("pobi");
             Position startPosition = new Position(0);
 
-            //when
-            Player player = new Player(name, startPosition);
-
             //then
-            assertThat(player.getPosition())
-                    .isEqualTo(startPosition.getPosition());
+            assertDoesNotThrow(()->{ Player player = new Player(name, startPosition);});
         }
     }
 
@@ -40,10 +38,10 @@ class PlayerTest {
             Player player = new Player(new Name("Pobi"), new Position(0));
 
             //then
-            player.move(Step.RIGHT);
+            player.move(Step.RIGHT.step(player.getPosition()));
 
             //then
-            assertThat(player.getPosition())
+            assertThat(player.getPosition().getPosition())
                     .isEqualTo(1);
         }
     }

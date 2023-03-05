@@ -25,7 +25,8 @@ public class Line {
                 .collect(Collectors.toList()));
     }
 
-    public void ride(final Player player) {
-        player.move(steps.get(player.getPosition()));
+    public Position ride(final Position position) {
+        Step step = steps.get(position.getPosition());
+        return step.step(position);
     }
 }

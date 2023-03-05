@@ -1,5 +1,6 @@
 package domain.result;
 
+import domain.player.Position;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,8 +18,8 @@ public class Prizes {
                 .collect(Collectors.toList());
     }
 
-    public Prize query(final int position) {
-        return prizes.get(position);
+    public Prize query(final Position position) {
+        return prizes.get(position.getPosition());
     }
 
     public List<String> getPrizeNames() {

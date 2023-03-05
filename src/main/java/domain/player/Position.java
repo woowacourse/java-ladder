@@ -13,9 +13,8 @@ public class Position {
         this.position = position;
     }
 
-    public void move(final int direction) {
-        validatePosition(position + direction);
-        this.position += direction;
+    public Position move(final int direction) {
+        return new Position(this.position+direction);
     }
 
     private void validatePosition(final int position) {

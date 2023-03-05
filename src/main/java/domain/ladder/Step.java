@@ -17,7 +17,7 @@ public enum Step {
         return this == RIGHT;
     }
 
-    public void step(final Position currentPosition) {
-        currentPosition.move(direction);
+    public Position step(final Position currentPosition) {
+        return currentPosition.move(direction);
     }
 }

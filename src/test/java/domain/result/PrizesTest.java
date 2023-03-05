@@ -3,6 +3,7 @@ package domain.result;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import domain.player.Position;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -46,7 +47,7 @@ class PrizesTest {
             Prizes prizes = new Prizes(prizeNames);
 
             //when
-            Prize prize = prizes.query(index);
+            Prize prize = prizes.query(new Position(index));
 
             //then
             assertThat(prize.getPrize().equals(prizeName))

@@ -1,6 +1,7 @@
 package domain.ladder;
 
 import domain.player.Player;
+import domain.player.Position;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,8 +9,8 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(final List<Line> liens) {
-        this.lines = liens;
+    public Ladder(final List<Line> lines) {
+        this.lines = lines;
     }
 
     public List<List<Boolean>> getLadderShape() {
@@ -18,9 +19,13 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public void ride(Player player) {
+    public Position ride(Player player) {
+        Position playerPosition = player.getPosition();
+
         for (Line line : lines) {
-            line.ride(player);
+            playerPosition = line.ride(playerPosition);
         }
+
+        return playerPosition;
     }
 }
