@@ -13,7 +13,6 @@ public class OutputView {
     private static final String GAME_RESULT_MSG = "실행 결과";
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String RESULT_DELIMITER = " : ";
-    private static final String RESULT_TYPE_ALL = "all";
 
     public void printErrorMessage(String errorMessage) {
         System.out.println(ERROR_PREFIX + errorMessage);
@@ -52,15 +51,6 @@ public class OutputView {
     private void printPrizes(Prizes prizes) {
         prizes.getPrizes().forEach(prize -> System.out.printf("%6s", prize.getPrize()));
         System.out.println();
-    }
-
-    public boolean printResultByType(Results results, String resultType) {
-        if (resultType.equals(RESULT_TYPE_ALL)) {
-            printAllResult(results);
-            return false;
-        }
-        printPersonalResult(results.findResultOfPerson(resultType).getPrizeToString());
-        return true;
     }
 
     public void printAllResult(Results results) {
