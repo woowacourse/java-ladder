@@ -130,6 +130,5 @@
   - [x] `getPersonToName()` 메서드 네이밍 변경 → `getPersonNameToString()`
   - [ ] Results 클래스 findResultOfPerson 메서드 → Map 컬렉션
   - [x] `printResultByType` 한가지의 기능만 하도록 기능 분리
-  - [ ] 검증 로직의 위치 변경화
   - [x] `all` 입력 시 실행 결과 출력 메소드 끝내도록 변경
   - [x] 오류 메세지 출력 시 상수가 사용되어 길어지는 부분 수정
