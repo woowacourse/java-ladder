@@ -14,33 +14,33 @@ public class PlayerName {
             "플레이어의 이름은 %d자 이하여야 합니다.", NAME_MAXIMUM_LENGTH);
     private final String name;
 
-    public PlayerName(String name) {
+    public PlayerName(final String name) {
         validateNameLength(name);
         validateCommandName(name);
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    private void validateNameLength(String name) {
+    private void validateNameLength(final String name) {
         if (name.isBlank() || name.length() > NAME_MAXIMUM_LENGTH) {
             throw new IllegalArgumentException(ERROR_LENGTH_OF_NAME);
         }
     }
 
-    private void validateCommandName(String name) {
+    private void validateCommandName(final String name) {
         if (name.equals(COMMAND)) {
             throw new IllegalArgumentException(ERROR_SAME_AS_COMMAND);
         }
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PlayerName name1 = (PlayerName) o;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final PlayerName name1 = (PlayerName) o;
         return Objects.equals(name, name1.name);
     }
 
@@ -48,4 +48,9 @@ public class PlayerName {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    public String getName() {
+        return name;
+    }
+
 }

@@ -15,27 +15,31 @@ public class Height {
         this.height = height;
     }
 
-    public int getHeight() {
-        return height;
-    }
-
-    private void validateHeight(int inputHeight) {
+    private void validateHeight(final int inputHeight) {
         if (inputHeight < MINIMUM_HEIGHT || inputHeight > MAXIMUM_HEIGHT) {
             throw new IllegalArgumentException(ERROR_OF_HEIGHT);
         }
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Height height1 = (Height) o;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Height height1 = (Height) o;
         return height == height1.height;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(height);
+    }
+
+    public int getHeight() {
+        return height;
     }
 
 }

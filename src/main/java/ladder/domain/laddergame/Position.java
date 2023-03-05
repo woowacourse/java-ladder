@@ -28,10 +28,6 @@ public class Position {
         return new Position(value + MOVING_LEFT);
     }
 
-    public int getValue() {
-        return value;
-    }
-
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -47,5 +43,9 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    public int getValue() {
+        return value;
     }
 }
