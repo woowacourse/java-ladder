@@ -57,10 +57,10 @@ public class OutputView {
     public boolean printResultByType(Results results, String resultType) {
         if (resultType.equals(RESULT_TYPE_ALL)) {
             printAllResult(results);
-            return true;
+            return false;
         }
         printPersonalResult(results.findResultOfPerson(resultType).getPrizeToString());
-        return false;
+        return true;
     }
 
     public void printAllResult(Results results) {
