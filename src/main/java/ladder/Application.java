@@ -1,15 +1,17 @@
 package ladder;
 
-import ladder.controller.LadderController;
-import ladder.domain.RandomMovableGenerator;
+import ladder.controller.LadderGameController;
+import ladder.domain.RandomBooleanGenerator;
 import ladder.view.InputView;
-import ladder.view.ResultView;
+import ladder.view.OutputView;
 
 public class Application {
 
-    public static void main(String[] args) {
-        LadderController ladderController = new LadderController(
-                new InputView(), new ResultView(), new RandomMovableGenerator());
+    public static void main(final String[] args) {
+        final LadderGameController ladderController = new LadderGameController(
+                new InputView(), new OutputView(), new RandomBooleanGenerator()
+        );
         ladderController.run();
     }
+
 }
