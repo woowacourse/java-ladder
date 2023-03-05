@@ -2,6 +2,7 @@ package ladder.controller;
 
 import ladder.domain.GameResults;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
 import ladder.domain.ladder.RandomBarGenerator;
 import ladder.domain.ladder.Results;
 import ladder.domain.people.Names;
@@ -22,13 +23,13 @@ public class LadderController {
         GameResults gameResults = new GameResults(namesList, resultsList, ladder);
 
         OutputView.printLadderResultMessage();
-        printLadder(ladder, namesList, resultsList);
+        printLadder(ladder.getLines(), namesList, resultsList);
         viewGameResults(gameResults.calculateGameResults(), namesList);
     }
 
-    private void printLadder(Ladder ladder, List<String> namesList, List<String> resultsList) {
+    private void printLadder(List<Line> lines, List<String> namesList, List<String> resultsList) {
         OutputView.printInputString(namesList);
-        OutputView.printLadder(ladder);
+        OutputView.printLadder(lines);
         OutputView.printInputString(resultsList);
     }
 

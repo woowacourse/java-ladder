@@ -1,7 +1,6 @@
 package ladder.view.util;
 
 import ladder.domain.ladder.Bar;
-import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 
 import java.util.List;
@@ -24,8 +23,8 @@ public class OutputViewHelper {
     }
 
     // 사다리 출력 메소드
-    public static String parseLadder(Ladder ladder) {
-        return ladder.getLines().stream()
+    public static String parseLadder(List<Line> lines) {
+        return lines.stream()
                 .map(OutputViewHelper::parseLine)
                 .collect(Collectors.joining("\n"));
     }

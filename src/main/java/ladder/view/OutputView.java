@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
 import ladder.view.util.OutputViewHelper;
 
 import java.util.List;
@@ -32,8 +32,8 @@ public class OutputView {
         println(OutputViewHelper.parseDisplayInputStrings(inputString));
     }
 
-    public static void printLadder(Ladder ladder) {
-        println(OutputViewHelper.parseLadder(ladder));
+    public static void printLadder(List<Line> lines) {
+        println(OutputViewHelper.parseLadder(lines));
     }
 
     private static void println(String message) {
