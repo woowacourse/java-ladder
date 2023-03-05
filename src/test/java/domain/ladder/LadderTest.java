@@ -5,14 +5,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import domain.player.Name;
 import domain.player.Player;
 import domain.player.Position;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import util.FixBooleanGenerator;
-import util.RandomBooleanGenerator;
 
 @DisplayName("사다리는 ")
 class LadderTest {
@@ -24,7 +22,9 @@ class LadderTest {
 
         @BeforeEach
         void setUp() {
-            ladder = new LadderGenerator(new FixBooleanGenerator(true, true, false, true, true, false)).build(2, 3);
+            Line line1 = new Line(List.of(Step.RIGHT, Step.LEFT, Step.NONE));
+            Line line2 = new Line(List.of(Step.NONE, Step.RIGHT, Step.LEFT));
+            ladder = new Ladder(List.of(line1, line2));
         }
 
 
@@ -36,10 +36,10 @@ class LadderTest {
             Player player = new Player(new Name("pobi"), new Position(startPosition));
 
             //when
-            ladder.ride(player);
+            Position endPosition = ladder.ride(player);
 
             //then
-            assertThat(player.getPosition()).isEqualTo(targetPosition);
+            assertThat(endPosition.getPosition()).isEqualTo(targetPosition);
         }
     }
 }

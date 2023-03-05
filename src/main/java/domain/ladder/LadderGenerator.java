@@ -11,7 +11,6 @@ public class LadderGenerator {
             "사다리 길이는 " + MIN_HEIGHT + "에서 " + MAX_HEIGHT + "사이여야 합니다.";
 
     private final LineGenerator lineGenerator;
-    private final List<Line> lines = new ArrayList<>();
 
     private int targetHeight;
 
@@ -23,21 +22,23 @@ public class LadderGenerator {
 
     public Ladder build(final int targetHeight, final int targetWidth) {
         setUp(targetHeight, targetWidth);
-        buildLines();
-        return new Ladder(new ArrayList<>(lines));
+        return new Ladder(buildLines());
     }
 
     private void setUp(final int targetHeight, final int targetWidth) {
-        this.lines.clear();
         validateLadderHeight(targetHeight);
         this.targetHeight = targetHeight;
         this.targetWidth = targetWidth;
     }
 
-    private void buildLines() {
+    private List<Line> buildLines() {
+        final List<Line> lines = new ArrayList<>();
+
         for (int currentHeight = 0; currentHeight < targetHeight; currentHeight++) {
             lines.add(lineGenerator.build(targetWidth));
         }
+
+        return lines;
     }
 
     private static void validateLadderHeight(final int height) {
