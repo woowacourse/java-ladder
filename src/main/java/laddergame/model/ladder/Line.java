@@ -24,7 +24,8 @@ public class Line {
         for (int i = 1; i < personCount - 1; i++) {
             points.add(makePoint(isPreRightConnect(points.get(i - 1))));
         }
-        points.add(makeEndPoint(personCount - 2, points));
+        points.add(makeEndPoint(isPreRightConnect(points.get(personCount-2))));
+//        points.add(makeEndPoint(personCount - 2, points));
         return points;
     }
 
@@ -42,8 +43,8 @@ public class Line {
         return new Point(left, new Direction(random.nextBoolean()));
     }
 
-    private static Point makeEndPoint(int index, List<Point> points) {
-        Direction left = new Direction(isPreRightConnect(points.get(index)));
+    private static Point makeEndPoint(boolean preRightPoint) {
+        Direction left = new Direction(preRightPoint);
         Direction right = new Direction(false);
         return new Point(left, right);
     }
