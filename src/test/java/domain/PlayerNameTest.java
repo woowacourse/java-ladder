@@ -3,10 +3,10 @@ package domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatNoException;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 public class PlayerNameTest {
 
@@ -19,9 +19,10 @@ public class PlayerNameTest {
     }
 
     @DisplayName("참여자 이름은 빈 문자열일 수 없다.")
-    @Test
-    void playerNameNotBlank() {
-        assertThatThrownBy(() -> new Player(""))
+    @ParameterizedTest
+    @NullAndEmptySource
+    void playerNameNotBlank(String playerName) {
+        assertThatThrownBy(() -> new PlayerName(playerName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("참여자 이름은 공백일 수 없습니다.");
     }
@@ -31,7 +32,15 @@ public class PlayerNameTest {
     @ParameterizedTest
     void generatePlayerName(String playerName) {
         assertThatNoException()
-                .isThrownBy(() -> new Player(playerName));
+                .isThrownBy(() -> new PlayerName(playerName));
+    }
+
+
+    @DisplayName("참여자 이름은 all일 수 없다.")
+    @Test
+    void validatePlayerNameNotAll() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new PlayerName("all"));
     }
 
 }

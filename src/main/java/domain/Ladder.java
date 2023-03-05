@@ -16,14 +16,22 @@ public class Ladder {
         this.lines = new ArrayList<>(lines);
     }
 
-    public static void validate(final List<Line> lines) {
-        if (lines.size() < LINE_MIN_SIZE || lines.size() > LINE_MAX_SIZE) {
-            throw new IllegalArgumentException("사다리의 높이는 1이상 30이하여야 합니다.");
+    public int getGameResultOrderOf(Player player) {
+        int currentXIndex = player.getStartPosition();
+        for (Line line : lines) {
+            currentXIndex = line.getNextX(currentXIndex);
         }
+        return currentXIndex;
     }
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    private void validate(final List<Line> lines) {
+        if (lines.size() < LINE_MIN_SIZE || lines.size() > LINE_MAX_SIZE) {
+            throw new IllegalArgumentException("사다리의 높이는 1이상 30이하여야 합니다.");
+        }
     }
 
 }

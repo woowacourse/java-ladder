@@ -1,6 +1,7 @@
-package domain;
+package factory;
 
-import factory.LineFactory;
+import domain.Line;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,7 @@ public class LineFactoryTest {
     @Test
     void generateLine() {
         int maxPoint = 5;
-        Line line = LineFactory.of(maxPoint, new RandomBasedStrategy());
+        Line line = LineFactory.of(maxPoint);
         assertThat(line.getPoints().size())
                 .isEqualTo(maxPoint);
     }

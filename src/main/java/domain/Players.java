@@ -1,8 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Players {
@@ -17,18 +15,18 @@ public class Players {
         this.players = new ArrayList<>(players);
     }
 
-    public static void validate(final List<Player> players) {
+    public void validate(final List<Player> players) {
         validatePlayerSize(players);
         validateDuplication(players);
     }
 
-    private static void validatePlayerSize(final List<Player> players) {
+    private void validatePlayerSize(final List<Player> players) {
         if (players.size() < PLAYER_MIN_SIZE || players.size() > PLAYER_MAX_SIZE) {
             throw new IllegalArgumentException("참여자 수는 1명 이상 20명 이하입니다.");
         }
     }
 
-    private static void validateDuplication(final List<Player> players) {
+    private void validateDuplication(final List<Player> players) {
         List<String> playerNames = players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toUnmodifiableList());
@@ -37,10 +35,21 @@ public class Players {
         }
     }
 
+    public Player get(final String playerName) {
+        return players.stream()
+                .filter(player -> player.getName().equals(playerName))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("찾는 플레이어가 없습니다."));
+    }
+
     public List<String> getPlayerNames() {
         return players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
     }
 
 }
