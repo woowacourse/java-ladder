@@ -1,27 +1,54 @@
 package ladder.controller;
 
-import ladder.domain.Ladder;
-import ladder.domain.Names;
-import ladder.domain.RandomBasedBarGenerator;
+import ladder.domain.GameResults;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
+import ladder.domain.ladder.RandomBarGenerator;
+import ladder.domain.ladder.Results;
+import ladder.domain.people.Names;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 
 public class LadderController {
 
     public void run() {
-        Names names = InputView.repeat(() -> new Names(InputView.inputPeopleNames()));
-        List<String> namesList = names.getNames();
+        List<String> namesList = (InputView.repeat(() -> new Names(InputView.inputPeopleNames()))).getNames();
+        List<String> resultsList = (InputView.repeat(() -> new Results(InputView.inputResults(), namesList.size()))).getResults();
+
         int ladderHeight = InputView.repeat(InputView::inputLadderHeight);
+        Ladder ladder = new Ladder(new RandomBarGenerator(), ladderHeight, namesList.size());
+        GameResults gameResults = new GameResults(namesList, resultsList, ladder);
 
-        Ladder ladder = new Ladder(new RandomBasedBarGenerator(), ladderHeight, namesList.size());
-
-        printResult(ladder, namesList);
+        OutputView.printLadderResultMessage();
+        printLadder(ladder.getLines(), namesList, resultsList);
+        viewGameResults(gameResults.calculateGameResults(), namesList);
     }
 
-    private void printResult(Ladder ladder, List<String> namesList) {
-        OutputView.printNames(namesList);
-        OutputView.printLadder(ladder, namesList.get(0).length());
+    private void printLadder(List<Line> lines, List<String> namesList, List<String> resultsList) {
+        OutputView.printInputString(namesList);
+        OutputView.printLadder(lines);
+        OutputView.printInputString(resultsList);
+    }
+
+    private void viewGameResults(Map<String, String> gameResults, List<String> namesList) {
+        String name = InputView.repeat(() -> InputView.inputWantGameResults(namesList));
+        if ("all" .equals(name)) {
+            printGameResultsAll(gameResults);
+            return;
+        }
+
+        printGameResultsUnique(gameResults, name);
+        viewGameResults(gameResults, namesList);
+    }
+
+    private void printGameResultsAll(Map<String, String> gameResults) {
+        OutputView.printGameResultsAll(gameResults);
+    }
+
+    private void printGameResultsUnique(Map<String, String> gameResults, String name) {
+        OutputView.printGameResultsUnique(gameResults, name);
     }
 }

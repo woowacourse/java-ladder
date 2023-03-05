@@ -1,62 +1,39 @@
 package ladder.view;
 
-import ladder.domain.Bar;
-import ladder.domain.Ladder;
-import ladder.domain.Line;
+import ladder.domain.ladder.Line;
+import ladder.view.util.OutputViewHelper;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.Map;
 
 public class OutputView {
-    private static final int PER_NAME_SPACE = 6;
+    private static final String PRINT_GAME_RESULT = "\n실행 결과";
 
-    private OutputView(){}
-
-    public static void printNames(List<String> names) {
-        println(parseDisplayNames(names));
+    private OutputView() {
     }
 
-    private static String parseDisplayNames(List<String> names) {
-        return IntStream.range(0, names.size())
-                .mapToObj(nameIndex -> parseDisplayName(names, nameIndex))
-                .collect(Collectors.joining());
-    }
-
-    private static String parseDisplayName(List<String> names, int nameIndex) {
-        if (nameIndex == 0) {
-            return names.get(nameIndex);
+    public static void printGameResultsAll(Map<String, String> gameResults) {
+        println(PRINT_GAME_RESULT);
+        for (Map.Entry<String, String> entrySet : gameResults.entrySet()) {
+            println(entrySet.getKey() + " : " + entrySet.getValue());
         }
-        return String.format("%6s", names.get(nameIndex));
     }
 
-    public static void printLadder(Ladder ladder, int firstNameLength) {
-        println(parseLadder(ladder, firstNameLength));
+    public static void printGameResultsUnique(Map<String, String> gameResults, String name) {
+        println(PRINT_GAME_RESULT);
+        println(gameResults.get(name));
     }
 
-    private static String parseLadder(Ladder ladder, int firstNameLength) {
-        return ladder.getLines().stream()
-                .map(OutputView::parseLine)
-                .map(lineDisplay -> lineDisplay.substring(PER_NAME_SPACE - firstNameLength))
-                .collect(Collectors.joining("\n"));
+    public static void printLadderResultMessage() {
+        System.out.println("\n사다리 결과\n");
     }
 
-    private static String parseLine(Line line) {
-        return line.getBars().stream()
-                .map(OutputView::parseBar)
-                .collect(Collectors.joining("|", "", "|"));
+    public static void printInputString(List<String> inputString) {
+        println(OutputViewHelper.parseDisplayInputStrings(inputString));
     }
 
-    private static String parseBar(Bar bar) {
-        return parseBarMatcher(bar).getBarDisplay();
-    }
-
-    private static BarMatcher parseBarMatcher(Bar bar) {
-        return BarMatcher.valueOfBarMatcher(bar);
-    }
-
-    public static void printExceptionMessage(IllegalArgumentException illegalArgumentException) {
-        println(illegalArgumentException.getMessage());
+    public static void printLadder(List<Line> lines) {
+        println(OutputViewHelper.parseLadder(lines));
     }
 
     private static void println(String message) {

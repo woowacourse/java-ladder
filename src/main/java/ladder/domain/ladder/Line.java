@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,19 +6,25 @@ import java.util.stream.IntStream;
 
 public class Line {
     private final List<Bar> bars;
-    private final int SUBTRACT_FIRST_BAR = -1;
+    private static final int FIRST_BAR = 1;
 
     public Line() {
-        bars = new ArrayList<>(List.of(new Bar(false)));
+        bars = new ArrayList<>();
+        bars.add(Bar.FALSE);
+    }
+
+    public Bar getIndexBar(int index) {
+        return this.bars.get(index);
     }
 
     public void addBars(int peopleSize, BarGenerator barGenerator) {
-        IntStream.range(0, peopleSize + SUBTRACT_FIRST_BAR)
+        IntStream.range(0, peopleSize - FIRST_BAR)
                 .forEach(count -> addBar(barGenerator));
+        addFalseBar();
     }
 
     private void addBar(BarGenerator barGenerator) {
-        if (lastBar().isExistBar()) {
+        if (lastBar() == Bar.TRUE) {
             addFalseBar();
             return;
         }
@@ -35,11 +41,11 @@ public class Line {
     }
 
     private void addRandomBar(BarGenerator barGenerator) {
-        bars.add(new Bar(barGenerator));
+        bars.add(barGenerator.generateBar());
     }
 
     private void addFalseBar() {
-        bars.add(new Bar(false));
+        bars.add(Bar.FALSE);
     }
 
     public List<Bar> getBars() {
