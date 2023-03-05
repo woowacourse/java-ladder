@@ -10,32 +10,18 @@ public class LadderGenerator {
     public static final String INVALID_LADDER_HEIGHT_ERROR_MESSAGE =
             "사다리 길이는 " + MIN_HEIGHT + "에서 " + MAX_HEIGHT + "사이여야 합니다.";
 
-    private final LineGenerator lineGenerator;
+    private LadderGenerator(){}
 
-    private int targetHeight;
-
-    private int targetWidth;
-
-    public LadderGenerator(final BooleanGenerator generator) {
-        this.lineGenerator = new LineGenerator(generator);
-    }
-
-    public Ladder build(final int targetHeight, final int targetWidth) {
-        setUp(targetHeight, targetWidth);
-        return new Ladder(buildLines());
-    }
-
-    private void setUp(final int targetHeight, final int targetWidth) {
+    public static Ladder build(final int targetHeight, final int targetWidth, final BooleanGenerator generator) {
         validateLadderHeight(targetHeight);
-        this.targetHeight = targetHeight;
-        this.targetWidth = targetWidth;
+        return new Ladder(buildLines(targetHeight, targetWidth, generator));
     }
 
-    private List<Line> buildLines() {
+    private static List<Line> buildLines(final int targetHeight, final int targetWidth, final BooleanGenerator generator) {
         final List<Line> lines = new ArrayList<>();
 
         for (int currentHeight = 0; currentHeight < targetHeight; currentHeight++) {
-            lines.add(lineGenerator.build(targetWidth));
+            lines.add(LineGenerator.build(targetWidth, generator));
         }
 
         return lines;

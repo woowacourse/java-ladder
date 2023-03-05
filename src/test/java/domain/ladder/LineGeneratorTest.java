@@ -15,10 +15,10 @@ class LineGeneratorTest {
     void generateLine() {
         //given
         int width = 5;
-        BooleanGenerator fixGenerator = new RandomBooleanGenerator();
+        BooleanGenerator generator = new RandomBooleanGenerator();
 
         //when
-        Line line = new LineGenerator(fixGenerator).build(5);
+        Line line = LineGenerator.build(5, generator);
 
         //then
         assertThat(line.getWidth()).isEqualTo(width);

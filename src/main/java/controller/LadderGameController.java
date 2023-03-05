@@ -55,7 +55,7 @@ public class LadderGameController {
     private Ladder buildLadder() {
         try {
             int height = getHeight();
-            return new LadderGenerator(new RandomBooleanGenerator()).build(height, names.count());
+            return LadderGenerator.build(height, names.count(), new RandomBooleanGenerator());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return buildLadder();

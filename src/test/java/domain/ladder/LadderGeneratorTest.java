@@ -20,7 +20,7 @@ class LadderGeneratorTest {
         int width = 5;
 
         //when
-        Ladder ladder = new LadderGenerator(generator).build(height, width);
+        Ladder ladder = LadderGenerator.build(height, width, generator);
 
         //then
         int generatedLadderHeight = ladder.getLadderShape().size();
