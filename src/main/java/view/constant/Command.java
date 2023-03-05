@@ -18,8 +18,7 @@ public enum Command {
     }
 
     public static boolean isCommand(final String doubtWord) {
-        return Arrays.stream(Command
-                        .values())
+        return Arrays.stream(Command.values())
                 .filter(command -> command.getCommand().equals(doubtWord))
                 .collect(Collectors.toList())
                 .isEmpty();
