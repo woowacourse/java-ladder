@@ -22,9 +22,9 @@ public class Line {
         List<Point> points = new ArrayList<>();
         points.add(makeFirstPoint());
         for (int i = 1; i < personCount - 1; i++) {
-            points.add(makePoint(isPreRightConnect(points.get(i - 1))));
+            points.add(makePoint(isCurrentPointPreRightConnect(points.get(i - 1))));
         }
-        points.add(makeEndPoint(isPreRightConnect(points.get(personCount-2))));
+        points.add(makeEndPoint(isCurrentPointPreRightConnect(points.get(personCount-2))));
 //        points.add(makeEndPoint(personCount - 2, points));
         return points;
     }
@@ -49,7 +49,7 @@ public class Line {
         return new Point(left, right);
     }
 
-    private static boolean isPreRightConnect(Point prePoint) {
+    private static boolean isCurrentPointPreRightConnect(Point prePoint) {
         return prePoint.isRightConnect();
     }
 
