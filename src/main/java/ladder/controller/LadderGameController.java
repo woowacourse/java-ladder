@@ -28,7 +28,7 @@ public class LadderGameController {
         final Players players = createPlayersUntilNoException();
         final Rewards rewards = createRewardsUntilNoException(players.findNumberOfPlayers());
         final Ladder ladder = createLadder(players);
-        outputView.printLadder(players, ladder, rewards);
+        printLadder(players, ladder, rewards);
 
         final ResultOfLadderGame result = playLadderGame(players, ladder, rewards);
         printResult(result);
@@ -36,19 +36,19 @@ public class LadderGameController {
 
     private Players createPlayersUntilNoException() {
         return IllegalArgumentExceptionHandler.repeatUntilNoException(
-                inputView::inputPlayerNames, Players::new, outputView
+                inputView::inputPlayerNames, Players::from, outputView::printError
         );
     }
 
     private Rewards createRewardsUntilNoException(final int numberOfPlayers) {
         return IllegalArgumentExceptionHandler.repeatUntilNoException(
                 inputView::inputRewards, inputRewards -> new Rewards(numberOfPlayers, inputRewards)
-                , outputView);
+                , outputView::printError);
     }
 
     private Height createHeightUntilNoException() {
         return IllegalArgumentExceptionHandler.repeatUntilNoException(
-                inputView::inputHeightOfLadder, Height::new, outputView
+                inputView::inputHeightOfLadder, Height::new, outputView::printError
         );
     }
 
@@ -56,7 +56,11 @@ public class LadderGameController {
         final int numberOfPlayers = players.findNumberOfPlayers();
         final int heightOfLadder = createHeightUntilNoException().getHeight();
 
-        return new Ladder(heightOfLadder, numberOfPlayers, randomGenerator);
+        return Ladder.from(heightOfLadder, numberOfPlayers, randomGenerator);
+    }
+
+    private void printLadder(final Players players, final Ladder ladder, final Rewards rewards) {
+        outputView.printLadder(players.findPlayerNames(), ladder.getLadder(), rewards.findRewardNames());
     }
 
     private ResultOfLadderGame playLadderGame(final Players players, final Ladder ladder, final Rewards rewards) {
@@ -66,7 +70,7 @@ public class LadderGameController {
 
     private String inputRequestUntilNoException(final ResultOfLadderGame resultOfLadderGame) {
         return IllegalArgumentExceptionHandler.repeatUntilNoException(
-                inputView::inputRequestForResult, resultOfLadderGame::findValidRequest, outputView);
+                inputView::inputRequestForResult, resultOfLadderGame::findValidRequest, outputView::printError);
     }
 
     private void printResult(final ResultOfLadderGame resultOfLadderGame) {
