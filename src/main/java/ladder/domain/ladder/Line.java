@@ -8,36 +8,43 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    private final List<Direction> line;
 
-    public Line(final int widthOfLine, final RandomGenerator randomBooleanGenerator) {
-        line = createLine(widthOfLine, randomBooleanGenerator);
+    private final List<Direction> directions;
+
+    private Line(final List<Direction> directions) {
+        validateDirections(directions);
+        this.directions = directions;
     }
 
-    private List<Direction> createLine(final int widthOfLine, final RandomGenerator randomBooleanGenerator) {
-        final List<Direction> line = new ArrayList<>();
+    public static Line from(final int widthOfLine, final RandomGenerator randomBooleanGenerator) {
+        final List<Direction> directions = new ArrayList<>();
         Direction previous = Direction.STAY;
 
         for (int i = 0; i < widthOfLine - 1; i++) {
             final Direction newDirection = previous.next(randomBooleanGenerator);
-            line.add(newDirection);
+            directions.add(newDirection);
             previous = newDirection;
         }
-        line.add(previous.last());
+        directions.add(previous.last());
 
-        return line;
+        return new Line(directions);
+    }
+
+    private void validateDirections(final List<Direction> directions) {
+        if (directions == null) {
+            throw new IllegalArgumentException("사다리 라인에 연결이 존재하지 않습니다.");
+        }
     }
 
     public Position findNextPosition(final Position position) {
         final int current = position.getValue();
 
-        return line.get(current)
+        return directions.get(current)
                 .move(position);
     }
 
-
-    public List<Direction> getLine() {
-        return Collections.unmodifiableList(line);
+    public List<Direction> getDirections() {
+        return Collections.unmodifiableList(directions);
     }
 
 

@@ -1,17 +1,12 @@
 package ladder.view;
 
-import ladder.domain.ladder.Direction;
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Line;
-import ladder.domain.player.Players;
-import ladder.domain.reward.Rewards;
+import static ladder.view.constant.LadderOutputSymbol.LADDER_VERTICAL_SYMBOL;
+
 import ladder.view.constant.LadderOutputSymbol;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import static ladder.view.constant.LadderOutputSymbol.LADDER_VERTICAL_SYMBOL;
 
 public class OutputView {
 
@@ -23,46 +18,28 @@ public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String PATTERN_OF_RESULT = " : ";
 
-    public void printError(String errorMessage) {
+    public void printError(final String errorMessage) {
         System.out.println(ERROR_PREFIX + errorMessage);
     }
 
-    public void printLadder(Players players, Ladder ladder, Rewards rewards) {
+    public void printLadder(final List<String> playerNames,
+                            final List<List<Boolean>> ladder,
+                            final List<String> rewardNames) {
         System.out.println(OUTPUT_LADDER_MESSAGE);
-        System.out.println(convertAssignedGroupOfLadder(players.findPlayerNames()));
+        System.out.println(convertAssignedGroupOfLadder(playerNames));
         System.out.println(convertLadderToSymbol(ladder));
-        System.out.println(convertAssignedGroupOfLadder(rewards.findRewardNames()));
+        System.out.println(convertAssignedGroupOfLadder(rewardNames));
     }
 
-    public void printResultOfAll(Map<String, String> resultOfAll) {
-        System.out.println(OUTPUT_RESULT_MESSAGE);
-        resultOfAll.forEach((playerName, rewardName) -> {
-                    String resultOfPlayer = playerName + PATTERN_OF_RESULT + rewardName;
-                    System.out.println(resultOfPlayer);
-                });
-    }
+    private String convertLadderToSymbol(final List<List<Boolean>> ladder) {
 
-    public void printResultOfPlayer(String rewardOfPlayer) {
-        System.out.println(OUTPUT_RESULT_MESSAGE);
-        System.out.println(rewardOfPlayer);
-    }
-
-    private String convertAssignedGroupOfLadder(List<String> assignedGroupOfLadder) {
-
-        return assignedGroupOfLadder.stream()
-                .map(name -> String.format(PATTERN_OF_LADDER, name))
-                .collect(Collectors.joining(BLANK_BETWEEN_NAMES));
-    }
-
-    private String convertLadderToSymbol(Ladder ladder) {
-
-        return ladder.getLinesOfLadder().stream()
+        return ladder.stream()
                 .map(this::convertLineToSymbol)
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    private String convertLineToSymbol(Line line) {
-        return line.getLine().stream()
+    private String convertLineToSymbol(final List<Boolean> line) {
+        return line.stream()
                 .map(this::convertBarToSymbol)
                 .collect(Collectors.joining(LADDER_VERTICAL_SYMBOL.getSymbol(),
                         String.format(PATTERN_OF_LADDER, LADDER_VERTICAL_SYMBOL.getSymbol()),
@@ -70,9 +47,30 @@ public class OutputView {
                 );
     }
 
-    private String convertBarToSymbol(Direction secondDirection) {
-        return LadderOutputSymbol.decideLadderSymbol(secondDirection)
+    private String convertBarToSymbol(final Boolean isRightConnected) {
+        return LadderOutputSymbol.decideLadderSymbol(isRightConnected)
                 .repeat(LENGTH_OF_ONE_BLOCK);
+    }
+
+    public void printResultOfAll(final Map<String, String> resultOfAll) {
+        System.out.println(OUTPUT_RESULT_MESSAGE);
+
+        resultOfAll.forEach((playerName, rewardName) -> {
+            final String resultOfPlayer = playerName + PATTERN_OF_RESULT + rewardName;
+            System.out.println(resultOfPlayer);
+        });
+    }
+
+    public void printResultOfPlayer(final String rewardOfPlayer) {
+        System.out.println(OUTPUT_RESULT_MESSAGE);
+        System.out.println(rewardOfPlayer);
+    }
+
+    private String convertAssignedGroupOfLadder(final List<String> assignedGroupOfLadder) {
+
+        return assignedGroupOfLadder.stream()
+                .map(name -> String.format(PATTERN_OF_LADDER, name))
+                .collect(Collectors.joining(BLANK_BETWEEN_NAMES));
     }
 
 }

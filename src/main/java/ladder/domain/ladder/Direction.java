@@ -4,7 +4,7 @@ import ladder.domain.RandomGenerator;
 import ladder.domain.laddergame.Position;
 
 import java.util.Arrays;
-import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 public enum Direction {
     LEFT(true, false, Position::decrease),
@@ -13,9 +13,9 @@ public enum Direction {
 
     private final boolean left;
     private final boolean right;
-    private final Function<Position, Position> movingFunction;
+    private final UnaryOperator<Position> movingFunction;
 
-    Direction(final boolean left, final boolean right, final Function<Position, Position> movingFunction) {
+    Direction(final boolean left, final boolean right, final UnaryOperator<Position> movingFunction) {
         this.left = left;
         this.right = right;
         this.movingFunction = movingFunction;
@@ -44,6 +44,10 @@ public enum Direction {
 
     public Position move(final Position currentPosition) {
         return movingFunction.apply(currentPosition);
+    }
+
+    public boolean isRightConnected() {
+        return right;
     }
 
 }

@@ -1,5 +1,8 @@
 package ladder.domain.laddergame;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import ladder.domain.MockRandomBooleanGenerator;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Players;
@@ -14,9 +17,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.List;
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 class ResultOfLadderGameTest {
 
     private static final int heightOfLadder = 3;
@@ -26,8 +26,8 @@ class ResultOfLadderGameTest {
 
     @BeforeAll
     static void setup() {
-        final Players players = new Players(playerNames);
-        final Ladder ladder = new Ladder(heightOfLadder, players.findNumberOfPlayers(), new MockRandomBooleanGenerator());
+        final Players players = Players.from(playerNames);
+        final Ladder ladder = Ladder.from(heightOfLadder, players.findNumberOfPlayers(), new MockRandomBooleanGenerator());
         final Rewards rewards = new Rewards(players.findNumberOfPlayers(), rewardNames);
 
         players.movePlayers(ladder);
@@ -80,9 +80,9 @@ class ResultOfLadderGameTest {
 
             final Map<String, String> resultOfAll = result.findResultByRequest("all");
 
-            assertThat(resultOfAll.get("pobi")).isEqualTo("1000원");
-            assertThat(resultOfAll.get("crong")).isEqualTo("꽝");
-            assertThat(resultOfAll.get("honux")).isEqualTo("2000원");
+            assertThat(resultOfAll).containsEntry("pobi", "1000원")
+                    .containsEntry("crong", "꽝")
+                    .containsEntry("honux", "2000원");
         }
 
         @ParameterizedTest
@@ -91,7 +91,7 @@ class ResultOfLadderGameTest {
         void getResultByNameTest(final String name, final String reward) {
             final Map<String, String> resultOfOnePlayer = result.findResultByRequest(name);
 
-            assertThat(resultOfOnePlayer.get(name)).isEqualTo(reward);
+            assertThat(resultOfOnePlayer).containsEntry(name, reward);
         }
     }
 

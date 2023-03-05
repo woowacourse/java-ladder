@@ -1,7 +1,5 @@
 package ladder.view.constant;
 
-import ladder.domain.ladder.Direction;
-
 public enum LadderOutputSymbol {
 
     CONNECTED_BAR_SYMBOL("-"),
@@ -10,12 +8,12 @@ public enum LadderOutputSymbol {
 
     private final String symbol;
 
-    LadderOutputSymbol(String symbolValue) {
-        this.symbol = symbolValue;
+    LadderOutputSymbol(final String symbolValue) {
+        symbol = symbolValue;
     }
 
-    public static String decideLadderSymbol(Direction input) {
-        if (input == Direction.RIGHT) {
+    public static String decideLadderSymbol(final boolean isRightConnected) {
+        if (isRightConnected) {
             return CONNECTED_BAR_SYMBOL.symbol;
         }
 

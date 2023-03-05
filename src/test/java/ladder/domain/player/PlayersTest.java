@@ -1,5 +1,9 @@
 package ladder.domain.player;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import ladder.domain.MockRandomBooleanGenerator;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.reward.RewardName;
@@ -14,10 +18,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
 class PlayersTest {
 
     /**
@@ -27,8 +27,8 @@ class PlayersTest {
 
     private static final List<String> correctPlayerNames = List.of("pobi", "crong", "honux");
     private static final List<String> rewardNames = List.of("꽝", "성공", "실패");
-    private static final Ladder ladder = new Ladder(2, 3, new MockRandomBooleanGenerator());
-    private static final Players players = new Players(correctPlayerNames);
+    private static final Ladder ladder = Ladder.from(2, 3, new MockRandomBooleanGenerator());
+    private static final Players players = Players.from(correctPlayerNames);
     private static final Rewards rewards = new Rewards(correctPlayerNames.size(), rewardNames);
 
 
@@ -43,8 +43,7 @@ class PlayersTest {
         players.movePlayers(ladder);
         final Map<PlayerName, RewardName> result = players.findResultOfPlayersWith(rewards);
 
-        assertThat(result.get(new PlayerName(player)))
-                .isEqualTo(new RewardName(reward));
+        assertThat(result).containsEntry(new PlayerName(player), new RewardName(reward));
 
     }
 
@@ -75,7 +74,7 @@ class PlayersTest {
         void validateOnePlayer() {
             final List<String> onePlayerName = List.of("pobi");
 
-            assertThatThrownBy(() -> new Players(onePlayerName))
+            assertThatThrownBy(() -> Players.from(onePlayerName))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -84,7 +83,7 @@ class PlayersTest {
         void validateZeroPlayer() {
             final List<String> zeroPlayerName = Collections.emptyList();
 
-            assertThatThrownBy(() -> new Players(zeroPlayerName))
+            assertThatThrownBy(() -> Players.from(zeroPlayerName))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -93,7 +92,7 @@ class PlayersTest {
         void validateOverTenPlayers() {
             final List<String> overTenPlayersName = List.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11");
 
-            assertThatThrownBy(() -> new Players(overTenPlayersName))
+            assertThatThrownBy(() -> Players.from(overTenPlayersName))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -102,7 +101,7 @@ class PlayersTest {
         void validateDuplicatedName() {
             final List<String> duplicatedPlayers = List.of("pobi", "pobi", "crong");
 
-            assertThatThrownBy(() -> new Players(duplicatedPlayers))
+            assertThatThrownBy(() -> Players.from(duplicatedPlayers))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -110,7 +109,7 @@ class PlayersTest {
         @DisplayName("모든 조건을 충족한 경우 Players 객체가 생성된다.")
         void playersInitiatorTest() {
 
-            assertDoesNotThrow(() -> new Players(correctPlayerNames));
+            assertDoesNotThrow(() -> Players.from(correctPlayerNames));
         }
 
     }

@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import ladder.domain.MockRandomBooleanGenerator;
 import ladder.domain.laddergame.Position;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,8 +12,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 class LineTest {
     private final int widthOfLine = 5;
     private Line line;
@@ -21,14 +21,14 @@ class LineTest {
      */
     @BeforeEach
     void setup() {
-        line = new Line(widthOfLine, new MockRandomBooleanGenerator());
+        line = Line.from(widthOfLine, new MockRandomBooleanGenerator());
     }
 
     @Test
     @DisplayName("widthOfLadder 크기의 라인이 생성되는지 확인한다.")
     void generateLineSizeTest() {
-        assertThat(line.getLine()
-                .size()).isEqualTo(widthOfLine);
+        assertThat(line.getDirections())
+                .hasSize(widthOfLine);
     }
 
     /**
@@ -51,31 +51,24 @@ class LineTest {
     void getLine() {
         final List<Direction> directions = List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT, Direction.STAY);
 
-        assertThat(line.getLine())
+        assertThat(line.getDirections())
                 .isEqualTo(directions);
     }
 
 
-//    @Test
-//    @DisplayName("생성된 Line의 가로가 겹치지 않는지 확인한다.")
-//    void generateLineTest() {
-//
-//        List<Direction> directions = line.getLine();
-//
-//        for (int i = 0; i < widthOfLine - 1; i++) {
-//            Direction currentDirection = directions.get(i);
-//            Direction nextDirection = directions.get(i + 1);
-//
-//            if((currentDirection == Direction.LEFT || currentDirection == Direction.STAY)
-//                    && nextDirection == Direction.LEFT) {
-//                throw new IllegalArgumentException();
-//            }
-//            if(currentDirection == Direction.RIGHT
-//                    && (nextDirection == Direction.RIGHT || nextDirection == Direction.STAY)) {
-//                throw new IllegalArgumentException();
-//
-//            }
-//        }
-//    }
+    @Test
+    @DisplayName("생성된 Line의 가로가 겹치지 않는지 확인한다.")
+    void generateLineTest() {
+
+        final List<Direction> directions = line.getDirections();
+
+        for (int i = 0; i < widthOfLine - 1; i++) {
+            final Direction currentDirection = directions.get(i);
+            final Direction nextDirection = directions.get(i + 1);
+
+            assertThat(currentDirection.isRightConnected() && nextDirection.isRightConnected())
+                    .isFalse();
+        }
+    }
 
 }
