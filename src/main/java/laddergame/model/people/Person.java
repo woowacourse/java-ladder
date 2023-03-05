@@ -23,8 +23,9 @@ public class Person {
 
     private static void validateTrimLength(String name) {
         if (name.trim().length() < MIN_NAME_LENGTH || name.trim().length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(
-                    "공백이 제거된 참여자 이름의 길이는 " + MIN_NAME_LENGTH + "보다 크고 " + MAX_NAME_LENGTH + "보다 작아야 합니다.");
+            String message = String.format("공백이 제거된 참여자 이름의 길이는 %d보다 크고 %d보다 작아야 합니다."
+                    , MIN_NAME_LENGTH, MAX_NAME_LENGTH);
+            throw new IllegalArgumentException(message);
         }
     }
 

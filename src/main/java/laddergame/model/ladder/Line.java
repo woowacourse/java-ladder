@@ -24,8 +24,7 @@ public class Line {
         for (int i = 1; i < personCount - 1; i++) {
             points.add(makePoint(isCurrentPointPreRightConnect(points.get(i - 1))));
         }
-        points.add(makeEndPoint(isCurrentPointPreRightConnect(points.get(personCount-2))));
-//        points.add(makeEndPoint(personCount - 2, points));
+        points.add(makeEndPoint(isCurrentPointPreRightConnect(points.get(personCount - 2))));
         return points;
     }
 

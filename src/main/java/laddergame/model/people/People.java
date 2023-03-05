@@ -18,7 +18,8 @@ public class People {
 
     private static void validatePeopleSize(List<String> names) {
         if (names.size() < MIN_PEOPLE_COUNT) {
-            throw new IllegalArgumentException("최소 참여자의 수는 " + MIN_PEOPLE_COUNT + "명 이상이어야 합니다.");
+            String message = String.format("최소 참여자의 수는 %d명 이상이어야 합니다.", MIN_PEOPLE_COUNT);
+            throw new IllegalArgumentException(message);
         }
     }
 
