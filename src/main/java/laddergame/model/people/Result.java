@@ -9,7 +9,7 @@ public class Result {
         this.prize = prize;
     }
 
-    public String getPersonToName() {
+    public String getPersonNameToString() {
         return person.getName();
     }
 

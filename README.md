@@ -127,7 +127,7 @@
 - 2차 리팩토링
   - [x] Line class의 makePoint 메소드와 makeEndPoint 통일시키기
   - [x] `isPreRightConnect()` 메서드 네이밍 변경(네이밍에서 무엇에 대한 "이전"인지 알면 더 좋을거 같아요.) → `isCurrentPointPreRightConnect()`
-  - [ ] `getPersonToName()` 메서드 네이밍 변경 → `getPersonNameToString()`
+  - [x] `getPersonToName()` 메서드 네이밍 변경 → `getPersonNameToString()`
   - [ ] Results 클래스 findResultOfPerson 메서드 → Map 컬렉션
   - [ ] `printResultByType` 한가지의 기능만 하도록 기능 분리
   - [ ] 검증 로직의 위치 변경화

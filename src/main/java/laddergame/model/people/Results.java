@@ -31,7 +31,7 @@ public class Results {
 
     public Result findResultOfPerson(String name) {
         Optional<Result> findResult = results.stream()
-                .filter(result -> result.getPersonToName().equals(name))
+                .filter(result -> result.getPersonNameToString().equals(name))
                 .findAny();
         if (findResult.isPresent()) {
             return findResult.get();
