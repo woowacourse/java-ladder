@@ -1,8 +1,6 @@
-package domain;
+package domain.player;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Name {
 
@@ -14,11 +12,6 @@ public class Name {
     public Name(final String name) {
         validateName(name);
         this.name = name;
-    }
-
-    public static List<Name> of(final List<String> names) {
-        return names.stream().map(Name::new)
-                .collect(Collectors.toList());
     }
 
     private void validateName(final String name) {
@@ -38,14 +31,18 @@ public class Name {
         }
     }
 
-    public String getValue(){
+    public String getValue() {
         return this.name;
     }
 
     @Override
-    public boolean equals(Object name) {
-        if (this == name) return true;
-        if (name == null || getClass() != name.getClass()) return false;
+    public boolean equals(final Object name) {
+        if (this == name) {
+            return true;
+        }
+        if (name == null || getClass() != name.getClass()) {
+            return false;
+        }
         Name anotherName = (Name) name;
         return this.name.equals(anotherName.name);
     }
@@ -57,8 +54,6 @@ public class Name {
 
     @Override
     public String toString() {
-        return "Name{" +
-                "name='" + name + '\'' +
-                '}';
+        return this.name;
     }
 }

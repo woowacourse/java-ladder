@@ -1,39 +1,56 @@
 package view;
 
-import domain.Ladder;
-import domain.Names;
-import java.util.Collections;
-import view.constant.Sign;
+import static view.constant.LadderShapes.BLANK;
+import static view.constant.LadderShapes.FOOTSTEP;
+import static view.constant.LadderShapes.PILLAR;
 
+import domain.ladder.Ladder;
+import domain.player.Name;
+import domain.player.Names;
+import domain.result.Prizes;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static view.constant.LadderShapes.*;
-
 public class OutputView {
 
-    public static final String REQUEST_NAME_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 %s(%s)로 구분하세요)%n";
-    public static final String REQUEST_LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
-    public static final String RESULT_MESSAGE = "실행결과";
+    private static final String LADDER_RESULT_MESSAGE = "\n사다리 결과";
+    private static final String RESULT_MESSAGE = "\n실행 결과";
 
-    private OutputView(){}
-
-    public static void printRequestNames() {
-        System.out.printf(REQUEST_NAME_MESSAGE, Sign.COMMA.getKorean(), Sign.COMMA.getShape());
+    private OutputView() {
     }
 
-    public static void printRequestLadderHeight() {
-        System.out.println(REQUEST_LADDER_HEIGHT_MESSAGE);
-    }
 
-    public static void printResult(final Names names, final Ladder ladder) {
+    public static void printResult(final Names names, final Ladder ladder, final Prizes prizes) {
+        final int intervalSize = getMaxNameLength(names);
+
         printResultMessage();
-        printParticipantNames(getMaxNameLength(names), names.getNames());
-        printGeneratedLadder(ladder.getLadderShape(), getMaxNameLength(names));
+        printParticipantNames(intervalSize, getNames(names));
+        printGeneratedLadder(ladder.getLadderShape(), intervalSize);
+        printPrizes(intervalSize, prizes.getPrizeNames());
+    }
+
+    private static void printPrizes(final int intervalSize, final List<String> prizeNames) {
+        prizeNames.stream().map(prize -> alignLeft(prize, intervalSize))
+                .collect(Collectors.toList())
+                .forEach(System.out::print);
+        System.out.println();
+    }
+
+    private static List<String> getNames(final Names names) {
+        return names.getNames()
+                .stream()
+                .map(Name::getValue)
+                .collect(Collectors.toList());
     }
 
     private static void printResultMessage() {
+        System.out.println(LADDER_RESULT_MESSAGE);
+    }
+
+    public static void printPlayerResult(final String result) {
         System.out.println(RESULT_MESSAGE);
+        System.out.println(result);
     }
 
     private static void printParticipantNames(final int maxNameLength, final List<String> names) {
@@ -58,7 +75,7 @@ public class OutputView {
             printSteppableLine(maxLength, isSteppable);
             printUnSteppableLine(maxLength, isSteppable);
         }
-        System.out.println(PILLAR.getShape());
+        System.out.println();
     }
 
     private static void printUnSteppableLine(final int maxLength, final Boolean isSteppable) {
@@ -74,7 +91,7 @@ public class OutputView {
     }
 
     private static int getMaxNameLength(final Names names) {
-        return Collections.max(names.getNames()
+        return Collections.max(getNames(names)
                 .stream()
                 .map(String::length)
                 .collect(Collectors.toList()));

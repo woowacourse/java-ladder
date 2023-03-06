@@ -1,21 +1,19 @@
-package domain;
-
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+package domain.player;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 
 @DisplayName("이름들은 ")
 class NamesTest {
 
     private Names getNamesInstance(String... names) {
         return new Names(Stream.of(names)
-                .map(Name::new)
                 .collect(Collectors.toList()));
     }
 

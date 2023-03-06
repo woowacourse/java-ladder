@@ -7,7 +7,7 @@ public enum LadderShapes {
 
     private final String shape;
 
-    LadderShapes(String shape) {
+    LadderShapes(final String shape) {
         this.shape = shape;
     }
 
