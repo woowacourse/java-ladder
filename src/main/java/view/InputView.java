@@ -7,7 +7,7 @@ public class InputView {
     private static final String DELIMITER = ",";
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static String[] receivePlayer() {
+    public static String[] receivePlayers() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
         String playerNames = input();
@@ -15,6 +15,16 @@ public class InputView {
         validaDelimiter(playerNames);
 
         return playerNames.split(DELIMITER);
+    }
+
+    public static String[] receiveResults() {
+        System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+        String results = input();
+        validateBlank(results);
+        validaDelimiter(results);
+
+        return results.split(DELIMITER);
     }
 
     public static int receiveHeight() {
@@ -25,6 +35,15 @@ public class InputView {
         validateDigit(height);
 
         return Integer.parseInt(height);
+    }
+
+    public static String[] receiveMatchingName() {
+        System.out.println("결과를 보고 싶은 사람은?");
+
+        String matchingName = input();
+        validateBlank(matchingName);
+
+        return matchingName.split(",");
     }
 
     private static void validateBlank(String input) {

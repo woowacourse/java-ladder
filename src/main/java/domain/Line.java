@@ -7,6 +7,8 @@ import java.util.List;
 
 public class Line {
 
+    private static final int FIRST_POSITION_OF_STEP = 0;
+
     private final List<LineStep> line;
     private final BooleanGenerator booleanGenerator;
 
@@ -15,7 +17,7 @@ public class Line {
         this.booleanGenerator = booleanGenerator;
     }
 
-    public static Line of(int numberOfHorizontalSteps, BooleanGenerator booleanGenerator) {
+    public static Line makeDefaultLine(int numberOfHorizontalSteps, BooleanGenerator booleanGenerator) {
         List<LineStep> line = new ArrayList<>();
         for (int horizontalStep = 0; horizontalStep < numberOfHorizontalSteps; horizontalStep++) {
             line.add(LineStep.NON_EXIST);
@@ -32,21 +34,45 @@ public class Line {
 
     private void makeFirstRandomStep() {
         if (booleanGenerator.generate()) {
-            line.set(0, LineStep.EXIST);
+            line.set(0, LineStep.findBy(true));
         }
     }
 
     private void makeNextRandomSteps(int stepIndex) {
-        if (!isExistPrevStep(stepIndex) && booleanGenerator.generate()) {
-            line.set(stepIndex, LineStep.EXIST);
+        boolean randomBoolean = booleanGenerator.generate();
+        if (!isExistPrevStep(stepIndex) && randomBoolean) {
+            line.set(stepIndex, LineStep.findBy(true));
+            return;
         }
-        if (isExistPrevStep(stepIndex)) {
-            line.set(stepIndex, LineStep.NON_EXIST);
+        if (isExistPrevStep(stepIndex) || !randomBoolean) {
+            line.set(stepIndex, LineStep.findBy(false));
         }
     }
 
     private boolean isExistPrevStep(int stepIndex) {
         return this.line.get(stepIndex - 1).equals(LineStep.EXIST);
+    }
+
+    public void movePlayerInLine(Player player) {
+        int leftStepPositionOfPlayer = player.getPosition() - 1;
+        int rightStepPositionOfPlayer = player.getPosition();
+
+        movePlayerToLeft(player, leftStepPositionOfPlayer);
+        movePlayerToRight(player, rightStepPositionOfPlayer);
+    }
+
+    private void movePlayerToLeft(Player player, int leftStepPositionOfPlayer) {
+        if (leftStepPositionOfPlayer >= FIRST_POSITION_OF_STEP
+                && LineStep.EXIST.equals(line.get(leftStepPositionOfPlayer))) {
+            player.moveToLeft();
+        }
+    }
+
+    private void movePlayerToRight(Player player, int rightStepPositionOfPlayer) {
+        if (rightStepPositionOfPlayer < this.line.size()
+                && LineStep.EXIST.equals(line.get(rightStepPositionOfPlayer))) {
+            player.moveToRight();
+        }
     }
 
     public List<LineStep> getLine() {

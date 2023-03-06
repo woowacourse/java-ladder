@@ -17,7 +17,7 @@ public class LineTest {
         int numberOfLineStep = 3;
 
         BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
-        Line line = Line.of(numberOfLineStep, booleanGenerator);
+        Line line = Line.makeDefaultLine(numberOfLineStep, booleanGenerator);
 
         assertThat(line.getLine().size()).isEqualTo(numberOfLineStep);
     }
@@ -28,7 +28,7 @@ public class LineTest {
         int numberOfHorizontalSteps = 2;
         BooleanGenerator booleanGenerator = new TrueGenerator();
 
-        Line line = Line.of(numberOfHorizontalSteps, booleanGenerator);
+        Line line = Line.makeDefaultLine(numberOfHorizontalSteps, booleanGenerator);
         line.generateRandomLine();
 
         org.junit.jupiter.api.Assertions.assertAll(
@@ -41,7 +41,7 @@ public class LineTest {
     @DisplayName("충분히 많은 RandomLineStep을 생성했을 때도 라인이 겹치는 경우는 존재하지 않음")
     void NoneDuplicationOfLineStepStatus() {
         int numberOfLineStep = 1000;
-        Line line = Line.of(numberOfLineStep, new RandomBooleanGenerator());
+        Line line = Line.makeDefaultLine(numberOfLineStep, new RandomBooleanGenerator());
 
         line.generateRandomLine();
 
@@ -51,5 +51,46 @@ public class LineTest {
                 Assertions.assertThat(line.getLine().get(rightLineStepsIndex)).isEqualTo(LineStep.NON_EXIST);
             }
         }
+    }
+
+    @Test
+    @DisplayName("라인의 첫 번째에 위치한 플레이어는 오른쪽으로만 이동할 수 있다")
+    void movePlayerToRightDirection() {
+        Player player = new Player("roy", 0);
+        int numberOfSteps = 3;
+        BooleanGenerator booleanGenerator = new TrueGenerator();
+        Line line = Line.makeDefaultLine(numberOfSteps, booleanGenerator);
+        line.generateRandomLine();
+
+        line.movePlayerInLine(player);
+
+        assertThat(player.getPosition()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("라인의 마지막에 위치한 플레이어는 왼쪽으로만 이동할 수 있다.")
+    void movePlayerToLeftDirection() {
+        Player player = new Player("roy", 3);
+        int numberOfSteps = 3;
+        BooleanGenerator booleanGenerator = new TrueGenerator();
+        Line line = Line.makeDefaultLine(numberOfSteps, booleanGenerator);
+        line.generateRandomLine();
+
+        line.movePlayerInLine(player);
+
+        assertThat(player.getPosition()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("플레이의의 양쪽 다리가 모두 끊어진 경우 플레이어는 움직이지 않는다.")
+    void stayPlayerWhenBothSideOfStepsAreNonExist() {
+        Player player = new Player("roy", 1);
+        int numberOfSteps = 2;
+        BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
+        Line line = Line.makeDefaultLine(numberOfSteps, booleanGenerator);
+
+        line.movePlayerInLine(player);
+
+        assertThat(player.getPosition()).isEqualTo(1);
     }
 }

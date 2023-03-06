@@ -44,17 +44,36 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("default 사다리를 이용하여 random 사다리를 생성하면 사다리 라인은 일부 연결됨")
+    @DisplayName("default 사다리를 이용하여 random 사다리를 생성함")
     void makeRandomLadderUsingDefaultLadder() {
         int numberOfPlayers = 4;
         int height = new Height(5).getHeight();
         BooleanGenerator booleanGenerator = new TrueGenerator();
-        Ladder randomLadder = Ladder.makeDefaultLadder(numberOfPlayers, height, booleanGenerator);
+        Ladder ladder = Ladder.makeDefaultLadder(numberOfPlayers, height, booleanGenerator);
 
-        randomLadder.generateRandomLadder();
+        ladder.generateRandomLadder();
 
-        for (Line line : randomLadder.getLines()) {
+        for (Line line : ladder.getLines()) {
             assertThat(line.getLine()).containsAnyOf(LineStep.EXIST);
         }
+    }
+
+    @Test
+    @DisplayName("player 그룹을 입력하면 사다리 타기가 진행되고 개별 Line에서 player의 위치(position)가 변경됨")
+    void movePlayersInLines() {
+        Ladder ladder = Ladder.makeDefaultLadder(4, 5, new TrueGenerator());
+        ladder.generateRandomLadder();
+        Players players = Players.from(new String[]{"roy", "hoy", "joy", "poy"});
+
+        ladder.movePlayers(players);
+        Player roy = players.getPlayers().get(0);
+        Player hoy = players.getPlayers().get(1);
+        Player joy = players.getPlayers().get(2);
+        Player coy = players.getPlayers().get(3);
+
+        assertThat(roy.getPosition()).isEqualTo(1);
+        assertThat(hoy.getPosition()).isEqualTo(0);
+        assertThat(joy.getPosition()).isEqualTo(3);
+        assertThat(coy.getPosition()).isEqualTo(2);
     }
 }
