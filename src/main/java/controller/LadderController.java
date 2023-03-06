@@ -6,7 +6,8 @@ import util.RandomBooleanGenerator;
 import view.InputView;
 import view.OutputView;
 
-import java.util.Collections;
+import java.util.Arrays;
+import java.util.Map;
 
 public class LadderController {
 
@@ -65,10 +66,24 @@ public class LadderController {
     private void printMatchingResult(MatchingResult matchingResult, Players players) {
         try {
             String[] matchingNames = InputView.receiveMatchingName();
-            OutputView.printFinalResult(Collections.unmodifiableMap(matchingResult.getMatchingResult()), players, matchingNames);
+            printAllResults(matchingResult, matchingNames);
+            printFinalResult(matchingResult, players, matchingNames);
         } catch (IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
             printMatchingResult(matchingResult, players);
+        }
+    }
+
+    private void printAllResults(MatchingResult matchingResult, String[] matchingNames) {
+        if (matchingNames[0].equals("all")) {
+            OutputView.printAllResults(matchingResult);
+        }
+    }
+
+    private void printFinalResult(MatchingResult matchingResult, Players players, String[] matchingNames) {
+        if (Arrays.stream(matchingNames).noneMatch(name -> name.equals("all"))) {
+            Map<Player, Result> finalResult = matchingResult.getFinalResult(players, matchingNames);
+            OutputView.printFinalResult(finalResult);
         }
     }
 }
