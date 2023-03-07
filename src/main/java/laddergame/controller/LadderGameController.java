@@ -1,8 +1,10 @@
 package laddergame.controller;
 
-import laddergame.model.Height;
-import laddergame.model.Ladder;
-import laddergame.model.Persons;
+import laddergame.model.ladder.Height;
+import laddergame.model.ladder.Ladder;
+import laddergame.model.people.People;
+import laddergame.model.people.Prizes;
+import laddergame.model.people.Results;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -11,18 +13,30 @@ public class LadderGameController {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        Persons persons = makePersons();
+        People people = makePeople();
+        Prizes prizes = makePrizes(people);
         Height height = makeLadderHeight();
-        Ladder ladder = new Ladder(height, persons);
-        outputView.printResult(ladder, persons);
+        Ladder ladder = new Ladder(height, people);
+        Results results = Results.from(people, ladder, prizes);
+        outputView.printLadderResult(people, ladder, prizes);
+        ladderGameResult(results);
     }
 
-    private Persons makePersons() {
+    private People makePeople() {
         try {
-            return new Persons(inputView.readPersonNames());
+            return new People(inputView.readPersonNames());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            return makePersons();
+            return makePeople();
+        }
+    }
+
+    private Prizes makePrizes(People people) {
+        try {
+            return Prizes.from(inputView.readPrizes(), people);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return makePrizes(people);
         }
     }
 
@@ -33,5 +47,25 @@ public class LadderGameController {
             outputView.printErrorMessage(e.getMessage());
             return makeLadderHeight();
         }
+    }
+
+    private void ladderGameResult(Results results) {
+        try {
+            getResultByResultType(results);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            ladderGameResult(results);
+        }
+    }
+
+    private void getResultByResultType(Results results) {
+        String resultType = inputView.readResultType();
+        if (results.isResultTypeAll(resultType)) {
+            outputView.printAllResult(results);
+            return;
+        }
+        String resultOfPerson = results.findResultOfPerson(resultType).getPrizeToString();
+        outputView.printPersonalResult(resultOfPerson);
+        getResultByResultType(results);
     }
 }

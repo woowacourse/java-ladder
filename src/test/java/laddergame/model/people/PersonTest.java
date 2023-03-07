@@ -1,4 +1,4 @@
-package laddergame.model;
+package laddergame.model.people;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
