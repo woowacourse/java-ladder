@@ -6,6 +6,8 @@ import java.util.Optional;
 import laddergame.model.ladder.Ladder;
 
 public class Results {
+    private static final String RESULT_TYPE_ALL = "all";
+
     private final List<Result> results;
 
     public Results(List<Result> results) {
@@ -37,6 +39,10 @@ public class Results {
             return findResult.get();
         }
         throw new IllegalArgumentException("결과를 확인하고 싶은 참여자의 이름을 다시 확인해주세요.");
+    }
+
+    public boolean isResultTypeAll(String resultType) {
+        return resultType.equals(RESULT_TYPE_ALL);
     }
 
     public List<Result> getResults() {

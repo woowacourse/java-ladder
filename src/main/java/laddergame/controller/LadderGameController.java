@@ -9,8 +9,6 @@ import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
 public class LadderGameController {
-    private static final String RESULT_TYPE_ALL = "all";
-
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
@@ -62,16 +60,12 @@ public class LadderGameController {
 
     private void getResultByResultType(Results results) {
         String resultType = inputView.readResultType();
-        if (isResultTypeAll(resultType)) {
+        if (results.isResultTypeAll(resultType)) {
             outputView.printAllResult(results);
             return;
         }
         String resultOfPerson = results.findResultOfPerson(resultType).getPrizeToString();
         outputView.printPersonalResult(resultOfPerson);
         getResultByResultType(results);
-    }
-
-    private boolean isResultTypeAll(String resultType) {
-        return resultType.equals(RESULT_TYPE_ALL);
     }
 }
