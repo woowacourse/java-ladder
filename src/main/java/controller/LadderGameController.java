@@ -1,8 +1,8 @@
 package controller;
 
 import model.domain.Ladder;
+import model.domain.LadderGame;
 import model.vo.LadderHeight;
-import model.domain.Line;
 import model.vo.Name;
 import model.domain.Players;
 import model.vo.Result;
@@ -10,7 +10,6 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class LadderGameController {
     public InputView inputView;
@@ -26,8 +25,8 @@ public class LadderGameController {
         List<Result> results = setResults(players.size());
         Ladder ladder = new Ladder(players, setLadderHeight());
         showCreateLadderResult(players, results, ladder);
-        playGame(players, ladder, results);
-        showGameResult(players);
+        LadderGame ladderGame = new LadderGame(players, ladder, results);
+        showGameResult(ladderGame.getPlayersAfterPlay());
     }
 
     private void showCreateLadderResult(Players players, List<Result> results, Ladder ladder) {
@@ -60,16 +59,6 @@ public class LadderGameController {
     private Name getDesirousResultName() {
         outputView.printDesirousResultNameMessage();
         return inputView.readDesirousResultName();
-    }
-
-    private void playGame(Players players, Ladder ladder, List<Result> results) {
-        IntStream.range(0, ladder.getHeight())
-                .forEach(index -> playOneLine(players, ladder.getLine(index)));
-        players.saveAllResults(results);
-    }
-
-    private void playOneLine(Players players, Line line) {
-        players.moveAllPlayersByLinePoints(line.getPoints());
     }
 
     private List<Result> setResults(int playerCount) {
