@@ -1,5 +1,6 @@
 package model.vo;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,5 +37,18 @@ public class Name {
         if (!matcher.matches()) {
             throw new IllegalArgumentException(NAME_HAS_NON_ALPHABETIC_ERROR);
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (other == null || getClass() != other.getClass()) return false;
+        Name otherName = (Name) other;
+        return Objects.equals(name, otherName.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
