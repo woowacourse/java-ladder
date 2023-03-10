@@ -1,15 +1,19 @@
-package model;
+package model.vo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+/**
+ * 플레이어 이름을 Wrapping하는 클래스.
+ * 원시타입 데이터의 getter는 테스트하지 않는다.
+ */
 public class NameTest {
     private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final String MAXIMUM_NAME_LENGTH_ERROR = "[ERROR] 사람 최대 이름 길이는 %d 이하로만 가능합니다.";
@@ -32,25 +36,24 @@ public class NameTest {
     @ParameterizedTest
     @ValueSource(strings = {"1234", " ", "@#$@", "abs@#"})
     @DisplayName("사람 이름은 문자로만 이루어져 있는지 확인하는 기능 테스트")
-    void validateNameHasOnlyCharacters(String inputName) {
+    void validateNameHasOnlyCharactersTest(String inputName) {
         assertThatThrownBy(() -> new Name(inputName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NAME_HAS_NON_ALPHABETIC_ERROR);
     }
 
-    @Test
-    @Disabled("단순 getter 메서드는 테스트하지 않는다.")
-    void getValueTest() {
-    }
-
-    @Test
-    @DisplayName("사람 이름 간 비교하는 기능 테스트")
-    void compareNameTest() {
+    @ParameterizedTest
+    @CsvSource(value = {"pobi:pobi:true", "pobi:neo:false"}, delimiter = ':')
+    @DisplayName("사람 이름 간 비교 기능 테스트")
+    void isSameTest(String name1, String name2, boolean answer) {
         //given
-        Name name = new Name("pobi");
+        Name name = new Name(name1);
+        Name otherName = new Name(name2);
+
+        //when
+        boolean result = name.isSame(otherName);
 
         //then
-        assertThat(name).isEqualTo(new Name("pobi"));
-        assertThat(name).isNotEqualTo(new Name("neo"));
+        assertThat(result).isEqualTo(answer);
     }
 }

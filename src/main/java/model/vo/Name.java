@@ -1,4 +1,4 @@
-package model;
+package model.vo;
 
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -13,42 +13,42 @@ public class Name {
     private final String name;
 
     public Name(String name) {
-        validateNameLength(name);
-        validateNameHasOnlyCharacters(name);
+        validateLength(name);
+        validateHasOnlyCharacters(name);
         this.name = name;
     }
 
-    public String getValue() {
+    public String getName() {
         return name;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
+    public boolean isSame(Name other) {
+        return this.name.equals(other.name);
     }
 
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (object == null || getClass() != object.getClass()) {
-            return false;
-        }
-        Name otherName = (Name) object;
-        return Objects.equals(name, otherName.getValue());
-    }
-
-    private void validateNameLength(String name) {
+    private void validateLength(String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(String.format(MAXIMUM_NAME_LENGTH_ERROR, MAXIMUM_NAME_LENGTH));
         }
     }
 
-    private void validateNameHasOnlyCharacters(String name) {
+    private void validateHasOnlyCharacters(String name) {
         Matcher matcher = pattern.matcher(name);
         if (!matcher.matches()) {
             throw new IllegalArgumentException(NAME_HAS_NON_ALPHABETIC_ERROR);
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (other == null || getClass() != other.getClass()) return false;
+        Name otherName = (Name) other;
+        return Objects.equals(name, otherName.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

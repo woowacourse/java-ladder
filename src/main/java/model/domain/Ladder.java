@@ -1,4 +1,6 @@
-package model;
+package model.domain;
+
+import model.vo.LadderHeight;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,7 @@ public class Ladder {
     }
 
     private void makeLadderLines(int playersSize, int height) {
-        IntStream.range(0, height).forEach(index -> lines.add(new Line(new RandomPointGenerator(), playersSize)));
+        PointGenerator pointGenerator = new RandomPointGenerator();
+        IntStream.range(0, height).forEach(index -> lines.add(new Line(pointGenerator, playersSize)));
     }
 }
