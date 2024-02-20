@@ -27,4 +27,10 @@ public class Players {
                 .map(Player::new)
                 .collect(collectingAndThen(toList(), Players::new));
     }
+
+    public List<String> getPlayerNames() {
+        return players.stream()
+                .map(Player::getName)
+                .toList();
+    }
 }

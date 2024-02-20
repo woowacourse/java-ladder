@@ -16,4 +16,8 @@ public class Player {
             throw new IllegalArgumentException(INVALID_LENGTH_OF_NAME);
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
