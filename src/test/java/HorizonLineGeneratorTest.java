@@ -20,4 +20,14 @@ public class HorizonLineGeneratorTest {
 
         Assertions.assertThat(horizonLine).isEqualTo(HorizonLine.EMPTY);
     }
+
+    @DisplayName("1을 입력하면 EXIST 라인을 반환한다.")
+    @Test
+    void generateExistLine() {
+        HorizonLineGenerator horizonLineGenerator = new HorizonLineGenerator();
+
+        HorizonLine horizonLine = horizonLineGenerator.generate(1);
+
+        Assertions.assertThat(horizonLine).isEqualTo(HorizonLine.EXIST);
+    }
 }

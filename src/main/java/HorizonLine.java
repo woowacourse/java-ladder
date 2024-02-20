@@ -1,3 +1,3 @@
 public enum HorizonLine {
-    EMPTY
+    EXIST, EMPTY
 }
