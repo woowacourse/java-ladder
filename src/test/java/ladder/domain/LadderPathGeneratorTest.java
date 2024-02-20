@@ -16,7 +16,7 @@ public class LadderPathGeneratorTest {
         LadderPathGenerator ladderPathGenerator = new TestLadderPathGenerator(path);
 
         // when & then
-        assertThatThrownBy(() -> ladderPathGenerator.generate(4))
+        assertThatThrownBy(() -> ladderPathGenerator.generateValidPath(4))
                 .isInstanceOf(RuntimeException.class);
     }
 
@@ -28,7 +28,7 @@ public class LadderPathGeneratorTest {
         LadderPathGenerator ladderPathGenerator = new TestLadderPathGenerator(path);
 
         // when & then
-        assertThatThrownBy(() -> ladderPathGenerator.generate(4))
+        assertThatThrownBy(() -> ladderPathGenerator.generateValidPath(4))
                 .isInstanceOf(RuntimeException.class);
     }
 
