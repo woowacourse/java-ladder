@@ -7,8 +7,8 @@ import java.util.List;
 
 public class HorizontalLine {
 
-    public static final int MIN_PLAYER_COUNT = 2;
-    public static final int MAX_PLAYER_COUNT = 10;
+    private static final int MIN_PLAYER_COUNT = 2;
+    private static final int MAX_PLAYER_COUNT = 10;
 
     private final int playerCount;
     private final List<Integer> crossingLineIndices;
