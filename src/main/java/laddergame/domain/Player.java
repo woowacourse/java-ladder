@@ -1,6 +1,7 @@
 package laddergame.domain;
 
 public class Player {
+    private static final int NAME_MAX_LENGTH = 5;
     private final String name;
 
     public Player(final String name) {
@@ -8,8 +9,8 @@ public class Player {
         this.name = name;
     }
 
-    private void validate(final String name){
-        if(name.length() > 5){
+    private void validate(final String name) {
+        if (name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
