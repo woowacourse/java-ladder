@@ -18,7 +18,7 @@ class UsersTest {
     }
 
     @Test
-    @DisplayName(" 갖는 Users를 생성한다.")
+    @DisplayName("User 리스트를 갖는 Users를 생성한다.")
     void createUsersByNames() {
         //given
         String userNames = "pobi,honux,crong,jk";
