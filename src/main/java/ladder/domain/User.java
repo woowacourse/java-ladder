@@ -7,10 +7,14 @@ public class User {
     private final String userName;
 
     public User(String userName) {
+        validateUserName(userName);
+        this.userName = userName;
+    }
+
+    private void validateUserName(String userName) {
         validateNameLength(userName);
         validateNameEngFormat(userName);
         validateBlankInName(userName);
-        this.userName = userName;
     }
 
     private void validateNameLength(String name) {
