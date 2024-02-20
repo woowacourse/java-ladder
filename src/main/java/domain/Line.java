@@ -17,7 +17,7 @@ public class Line {
         return points;
     }
 
-    public boolean hasPoint() {
+    public boolean hasPoint(int position) {
         return false;
     }
 

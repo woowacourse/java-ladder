@@ -38,16 +38,17 @@ class LineTest {
         //when
         line.putPoint(position);
         //then
-        Assertions.assertThat(line.hasPoint()).isTrue();
+        Assertions.assertThat(line.hasPoint(position)).isTrue();
     }
 
-    @DisplayName("주어진 위치에 point가 있다.")
+    @DisplayName("주어진 위치에 point가 없다.")
     @Test
     void hasPoint(){
         //given
         int size = 4;
+        int position = 0;
         final Line line = new Line(size);
         //when & then
-        Assertions.assertThat(line.hasPoint()).isTrue();
+        Assertions.assertThat(line.hasPoint(position)).isFalse();
     }
 }
