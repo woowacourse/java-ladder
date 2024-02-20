@@ -6,7 +6,6 @@ public class Name {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String FORMAT_NAME = "^[A-Za-z0-9]+$";
 
-
     private final String name;
 
     public Name(String name) {
@@ -36,5 +35,9 @@ public class Name {
         if (!name.matches(FORMAT_NAME)) {
             throw new IllegalArgumentException("이름은 알파벳과 숫자만 허용합니다.");
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }
