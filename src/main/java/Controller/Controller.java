@@ -16,6 +16,7 @@ public class Controller {
 
     public void run() {
         List<String> players = inputView.inputPlayers();
+        int height = inputView.inputHeight();
 
     }
 }

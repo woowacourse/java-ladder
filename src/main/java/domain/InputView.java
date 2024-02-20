@@ -19,4 +19,10 @@ public class InputView {
         String[] players = input.split(",");
         return Arrays.asList(players);
     }
+
+    public int inputHeight() {
+        String input = scanner.nextLine();
+        inputValidator.validateHeight(input);
+        return Integer.parseInt(input);
+    }
 }

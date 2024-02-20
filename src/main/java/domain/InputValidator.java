@@ -31,4 +31,23 @@ public class InputValidator {
             throw new IllegalArgumentException();
         }
     }
+
+    public void validateHeight(String input) {
+        validateNumeric(input);
+        validateRange(input);
+    }
+
+    private void validateRange(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateNumeric(String input) {
+        if (!input.matches("-?\\d+")){
+            throw new IllegalArgumentException();
+        }
+    }
 }
