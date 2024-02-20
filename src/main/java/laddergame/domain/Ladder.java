@@ -8,18 +8,24 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    private Ladder(final LadderHeight height, final BooleanGenerator booleanGenerator) {
-        List<Line> lines = new ArrayList<>();
+    private Ladder(final LadderHeight height, final Names names) {
+        final BooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator(calculateSize(names));
+
+        final List<Line> lines = new ArrayList<>();
 
         while (height.isNot(lines.size())) {
-            lines.add(createLine(booleanGenerator));
+            lines.add(createLine(randomBooleanGenerator));
         }
 
         this.lines = lines;
     }
 
-    public static Ladder create(final LadderHeight height, final BooleanGenerator booleanGenerator) {
-        return new Ladder(height, booleanGenerator);
+    public static Ladder create(final LadderHeight height, final Names names) {
+        return new Ladder(height, names);
+    }
+
+    private int calculateSize(final Names names) {
+        return names.size() - 1;
     }
 
     private Line createLine(final BooleanGenerator booleanGenerator) {

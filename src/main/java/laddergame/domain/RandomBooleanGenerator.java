@@ -16,6 +16,7 @@ public class RandomBooleanGenerator implements BooleanGenerator {
 
     @Override
     public List<Boolean> generate() {
+        // TODO : stream 변환
         List<Boolean> booleans = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             booleans.add(random.nextBoolean());

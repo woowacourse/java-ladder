@@ -35,10 +35,6 @@ public class Names {
                 .orElse(0);
     }
 
-    public int getLastLength() {
-        return names.get(names.size() - 1).getLength();
-    }
-
     public int size() {
         return names.size();
     }
@@ -51,5 +47,9 @@ public class Names {
 
     public int getFirstNameLength() {
         return names.get(0).getLength();
+    }
+
+    public int getLastLength() {
+        return names.get(names.size() - 1).getLength();
     }
 }
