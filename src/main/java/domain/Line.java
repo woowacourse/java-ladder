@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import util.RandomGenerator;
 
 public class Line {
 
@@ -11,10 +12,13 @@ public class Line {
         legs = new ArrayList<>();
     }
 
-    //TODO: 파라미터 이름 변경
     public void makeLeg(int legCount) {
         for (int i = 0; i < legCount; i++) {
-            legs.add(true);
+            legs.add(RandomGenerator.generateRandomBoolean());
         }
+    }
+
+    public List<Boolean> getLegs() {
+        return legs;
     }
 }
