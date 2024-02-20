@@ -20,7 +20,7 @@ public class Ladder {
 
     public void generate() {
         IntStream.range(0, maxHeight)
-                .forEach(iterator -> ladder.add(new Line(personCount)));
+                .forEach(iterator -> ladder.add(new Line(personCount, new RandomGenerator())));
     }
 
     public int getPersonCount() {

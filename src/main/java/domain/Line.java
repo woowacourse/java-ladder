@@ -10,22 +10,27 @@ public class Line {
     public Line() {
     }
 
-    public Line(List<Boolean> points) {
-        for(int i=1; i< points.size(); i++){
-            if (points.get(i - 1).equals(points.get(i)) && points.get(i).equals(true)) {
-                throw new IllegalArgumentException("가로 길이는 겹칠 수 없습니다.");
+    public Line(int personCount, Generator generator) {
+        generateRandomPoint(personCount, generator);
+    }
+
+
+    private void generateRandomPoint(int personCount, Generator generator) {
+        boolean firstBoolean = generator.generate();
+
+        points.add(firstBoolean);
+
+        for (int i = 1; i < personCount - 1; i++) {
+            boolean before = points.get(i - 1);
+            if (before == true) {
+                points.add(false);
+                continue;
             }
+            points.add(generator.generate());
         }
     }
 
-    public Line(int personCount) {
-        for (int i = 0; i < personCount-1; i++) {
-            points.add(false);
-        }
-    }
-
-    public List<Boolean> generateRandomPoint(Generator generator) {
-        points = points.stream().map(r -> generator.generate()).toList();
+    public List<Boolean> getPoints() {
         return points;
     }
 }

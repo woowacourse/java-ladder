@@ -1,5 +1,5 @@
 import domain.Line;
-import org.assertj.core.api.Assertions;
+import domain.RandomGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ public class LineTest {
     @Test
     @DisplayName("라인을 생성한다.")
     void createLine() {
-        assertThatCode(Line::new).doesNotThrowAnyException();
+        assertThatCode(() -> new Line()).doesNotThrowAnyException();
     }
 
     @Test
@@ -22,34 +22,19 @@ public class LineTest {
         int personCount = 4;
         //when
         //then
-        assertThatCode(() -> new Line(personCount)).doesNotThrowAnyException();
+        assertThatCode(() -> new Line(personCount, new RandomGenerator())).doesNotThrowAnyException();
     }
 
     @Test
-    @DisplayName("무작위로 가로 라인을 생성한다.")
+    @DisplayName("가로 라인은 겹치지 않는다.")
     void createRandomLine() {
         //given
         int personCount = 4;
-        List<Boolean> expectedPoint = List.of(true, true, true);
+        List<Boolean> expectedPoint = List.of(true, false, true);
         //when
-        Line line = new Line(personCount);
+        Line line = new Line(personCount, () -> true);
 
-        List<Boolean> line2 = line.generateRandomPoint(() -> true);
         //then
-        assertThat(line2).isEqualTo(expectedPoint);
+        assertThat(line.getPoints()).isEqualTo(expectedPoint);
     }
-
-    @Test
-    @DisplayName("가로 라인은 겹치지 않는다. ")
-    void validateNearPosition() {
-        //given
-        int personCount = 4;
-        //when
-        List<Boolean> nearPosition = List.of(true, true, false);
-        //then
-        assertThatThrownBy(() -> new Line(nearPosition))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-
 }
