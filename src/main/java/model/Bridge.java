@@ -1,7 +1,7 @@
 package model;
 
 public class Bridge {
-    private Boolean isConnected;
+    private final Boolean isConnected;
 
     public Bridge(Boolean isConnected) {
         this.isConnected = isConnected;
