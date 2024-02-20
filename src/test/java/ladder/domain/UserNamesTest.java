@@ -2,6 +2,8 @@ package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -46,4 +48,13 @@ class UserNamesTest {
                 ));
     }
 
+    @DisplayName("중복된 이름이 입력되면 예외가 발생한다.")
+    @Test()
+    void createNameByDuplicated() {
+        List<UserName> userNames = List.of(new UserName("kelly"), new UserName("kelly"));
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new UserNames(userNames))
+                .withMessage("중복된 이름은 허용되지 않습니다.");
+    }
 }
