@@ -1,8 +1,8 @@
 package domain;
 
-public class Bridge {
+public class Bridges {
 
-    public Bridge(int height) {
+    public Bridges(int height) {
         validate(height);
     }
 

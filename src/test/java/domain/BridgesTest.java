@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class BridgeTest {
+public class BridgesTest {
     //TODO 더 적합한 클래스 이름 고민하기
 
     @DisplayName("객체가 정상적으로 생성된다.")
     @Test
     void constructSuccessTest() {
         assertThatNoException()
-                .isThrownBy(() -> new Bridge(5));
+                .isThrownBy(() -> new Bridges(5));
     }
 
     @DisplayName("높이가 자연수가 아니라면 예외가 발생한다.")
@@ -23,7 +23,7 @@ public class BridgeTest {
     @ValueSource(ints = {-10, 0})
     void constructFailWithNotPositive(int height){
         //TODO 더 적합한 메서드 이름 고민
-        assertThatThrownBy(() -> new Bridge(height))
+        assertThatThrownBy(() -> new Bridges(height))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
