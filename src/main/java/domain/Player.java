@@ -12,8 +12,15 @@ public class Player {
     }
 
     private void validate(String name) {
-        validateNameSize(name);
+        validateNameBlank(name);
         validateNameLanguage(name);
+        validateNameSize(name);
+    }
+
+    private void validateNameBlank(String name) {
+        if(name.isBlank()){
+            throw new IllegalArgumentException("[Error] 플레이어 이름을 입력해야 합니다.");
+        }
     }
 
     private void validateNameLanguage(String name) {
