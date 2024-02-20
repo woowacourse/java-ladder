@@ -1,10 +1,13 @@
 package laddergame;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import ladder.BooleanGenerator;
 import ladder.Line;
 import ladder.RandomBooleanGenerator;
+import ladder.exception.LadderLineOverlappedException;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,4 +27,14 @@ public class LineTest {
         //then
         assertThat(line.getSize()).isEqualTo(personSize - 1);
     }
+
+    @DisplayName("가로 라인이 겹치면 예외를 발생시킨다.")
+    @Test
+    void overlapLine() {
+        assertThatThrownBy(() -> new Line(4, () -> true))
+                .isInstanceOf(LadderLineOverlappedException.class)
+                .hasMessage("[ERROR] 가로 라인이 겹치면 안됩니다.");
+    }
+
+
 }
