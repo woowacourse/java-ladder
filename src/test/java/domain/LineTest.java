@@ -17,4 +17,13 @@ public class LineTest {
 
         assertThat(line.getPoints()).isEqualTo(List.of(true, false, true));
     }
+
+    @Test
+    @DisplayName("해당 위치에 가로 라인이 있는지 확인한다.")
+    void isPointExistTest() {
+        Line line = new Line(3, new TrueGenerator());
+
+        assertThat(line.isExistPoint(1)).isFalse();
+    }
+
 }
