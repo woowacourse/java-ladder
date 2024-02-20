@@ -1,12 +1,10 @@
 package ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -26,5 +24,15 @@ public class UserNameTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new UserName(name))
                 .withMessage("이름에는 한글, 영문, 숫자, `-`, `_`, `&`만 포함될 수 있습니다.");
+    }
+
+    @DisplayName("공백을 입력하면 예외가 발생한다.")
+    @NullAndEmptySource
+    @ValueSource(strings = {" ", "  ", "\t", "\n"})
+    @ParameterizedTest
+    void createNameByEmpty(final String name) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new UserName(name))
+                .withMessage("이름에 공백을 입력할 수 없습니다");
     }
 }
