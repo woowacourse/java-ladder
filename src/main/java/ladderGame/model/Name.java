@@ -11,7 +11,7 @@ public class Name {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() > MAXIMUM_NAME_LENGTH) {
+        if (name.isBlank() || name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_OVER_THAN_MAXIMUM);
         }
     }
