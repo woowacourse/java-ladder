@@ -3,9 +3,9 @@ package view;
 import domain.Ladder;
 import domain.Line;
 
-import java.util.List;
-
 public class ResultView {
+
+    private static final String BAR = "|";
 
     public static void printNames(String[] userNames) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -22,17 +22,21 @@ public class ResultView {
     public static void printResult(Ladder ladder) {
         for (Line line : ladder.getLadder()) {
             System.out.print("    ");
-            System.out.print("|");
-            for (Boolean point : line.getPoints()) {
-                if(point){
-                    System.out.print("-".repeat(5));
-                    System.out.print("|");
-                    continue;
-                }
-                System.out.print(" ".repeat(5));
-                System.out.print("|");
-            }
+            System.out.print(BAR);
+            printSingleLine(line);
             System.out.println();
         }
+    }
+
+    private static void printSingleLine(Line line) {
+        for (Boolean point : line.getPoints()) {
+            System.out.print(convert(point).repeat(5));
+            System.out.print(BAR);
+        }
+    }
+
+    private static String convert(boolean point) {
+        if (point) return "-";
+        return " ";
     }
 }

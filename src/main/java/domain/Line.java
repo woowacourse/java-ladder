@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.*;
-import java.util.stream.IntStream;
 
 public class Line {
 
@@ -21,13 +20,17 @@ public class Line {
         points.add(firstBoolean);
 
         for (int i = 1; i < personCount - 1; i++) {
-            boolean before = points.get(i - 1);
-            if (before == true) {
-                points.add(false);
-                continue;
-            }
-            points.add(generator.generate());
+            addPoint(generator, i);
         }
+    }
+
+    private void addPoint(Generator generator, int i) {
+        boolean before = points.get(i - 1);
+        if (before == true) {
+            points.add(false);
+            return;
+        }
+        points.add(generator.generate());
     }
 
     public List<Boolean> getPoints() {
