@@ -39,5 +39,17 @@ public class LineTest {
         assertThat(line2).isEqualTo(expectedPoint);
     }
 
+    @Test
+    @DisplayName("가로 라인은 겹치지 않는다. ")
+    void validateNearPosition() {
+        //given
+        int personCount = 4;
+        //when
+        List<Boolean> nearPosition = List.of(true, true, false);
+        //then
+        assertThatThrownBy(() -> new Line(nearPosition))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }

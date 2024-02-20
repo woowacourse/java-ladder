@@ -10,6 +10,14 @@ public class Line {
     public Line() {
     }
 
+    public Line(List<Boolean> points) {
+        for(int i=1; i< points.size(); i++){
+            if (points.get(i - 1).equals(points.get(i)) && points.get(i).equals(true)) {
+                throw new IllegalArgumentException("가로 길이는 겹칠 수 없습니다.");
+            }
+        }
+    }
+
     public Line(int personCount) {
         for (int i = 0; i < personCount-1; i++) {
             points.add(false);
@@ -20,4 +28,5 @@ public class Line {
         Collections.fill(points, true);
         return points;
     }
+
 }
