@@ -1,9 +1,8 @@
-package ladder;
+package laddergame;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import ladder.exception.LadderLineOverlappedException;
+import laddergame.exception.LadderLineOverlappedException;
 
 public class Line {
 

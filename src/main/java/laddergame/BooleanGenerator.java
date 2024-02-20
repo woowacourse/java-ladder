@@ -1,4 +1,4 @@
-package ladder;
+package laddergame;
 
 public interface BooleanGenerator {
 

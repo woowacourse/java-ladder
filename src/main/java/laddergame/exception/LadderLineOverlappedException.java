@@ -1,4 +1,4 @@
-package ladder.exception;
+package laddergame.exception;
 
 public class LadderLineOverlappedException extends RuntimeException {
 

@@ -2,8 +2,6 @@ package laddergame;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import ladder.Ladder;
-import ladder.RandomBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,5 +20,4 @@ public class LadderTest {
         // then
         assertThat(ladder.getHeight()).isEqualTo(height);
     }
-
 }

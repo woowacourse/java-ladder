@@ -1,8 +1,7 @@
-package ladder;
+package laddergame;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.Line;
 
 public class Ladder {
 
