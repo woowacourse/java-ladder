@@ -2,20 +2,35 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.IntStream;
 
 public class Line {
     private static final int MIN_PERSON_COUNT = 2;
 
-    private final List<Boolean> points;
+    private final List<Boolean> paths;
 
     public Line(int personCount) {
-        // TODO 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가 (???)
         validatePersonCount(personCount);
-        // TODO: 우리 코드의 의미를 이해 가능??
-        points = new ArrayList<>(personCount - 1);
-        for (int i= 0; i < personCount - 1; i++) {
-            points.add(true);
+        paths = generatePaths(personCount - 1);
+    }
+
+    // TODO : 끝내주는 이름 생각하기
+    private List<Boolean> generatePaths(int pathsSize) {
+        int index = 0;
+        Random random = new Random();
+        List<Boolean> paths = new ArrayList<>();
+        IntStream.range(0, pathsSize).forEach((i) -> paths.add(false));
+
+        while (index < pathsSize) {
+            if (random.nextBoolean()) {
+                paths.set(index, true);
+                index += 2;
+                continue;
+            }
+            index++;
         }
+        return paths;
     }
 
     private void validatePersonCount(int personCount) {
@@ -25,10 +40,10 @@ public class Line {
     }
 
     public int getSize() {
-        return points.size();
+        return paths.size();
     }
 
     public boolean get(int index) {
-        return true;
+        return paths.get(index);
     }
 }
