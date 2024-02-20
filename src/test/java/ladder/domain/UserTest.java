@@ -16,7 +16,7 @@ class UserTest {
         //when, then
         assertThatThrownBy(() -> new User(userName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 사용자 이름의 길이는 1~5글자여야 합니다.");
+                .hasMessage("[ERROR] 사용자 이름의 길이는 1~5글자여야 합니다.");
     }
 
     @DisplayName("사용자의 이름의 길이가 5글자 초과인 경우 예외가 발생한다.")
@@ -28,7 +28,7 @@ class UserTest {
         //when, then
         assertThatThrownBy(() -> new User(userName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 사용자 이름의 길이는 1~5글자여야 합니다.");
+                .hasMessage("[ERROR] 사용자 이름의 길이는 1~5글자여야 합니다.");
     }
 
     @DisplayName("사용자의 이름이 영문 대소문자가 아닌 경우 예외가 발생한다.")
