@@ -1,5 +1,6 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -31,5 +32,17 @@ public class LadderTest {
     void constructFailWithNotPositiveWidth(int personCount) {
         assertThatThrownBy(() -> new Ladder(personCount, 5))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void ladderContainsRightLength() {
+        //given
+        int personCount = 5;
+
+        //when
+        Ladder ladder = new Ladder(personCount, 4);
+
+        //then
+        assertThat(ladder.getBridge()).hasSize(personCount - 1);
     }
 }
