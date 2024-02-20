@@ -21,4 +21,8 @@ public class Point {
     public int hashCode() {
         return Objects.hash(hasStep);
     }
+
+    public boolean isHasStep() {
+        return hasStep;
+    }
 }

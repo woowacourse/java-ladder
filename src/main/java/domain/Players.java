@@ -17,6 +17,10 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
+    public int getCount() {
+        return players.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -28,5 +32,9 @@ public class Players {
     @Override
     public int hashCode() {
         return Objects.hash(players);
+    }
+
+    public List<Player> getPlayers() {
+        return players;
     }
 }

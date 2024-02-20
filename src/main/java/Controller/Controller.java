@@ -1,8 +1,6 @@
 package Controller;
 
-import domain.InputView;
-import domain.OutputView;
-import domain.Players;
+import domain.*;
 
 import java.util.List;
 
@@ -19,5 +17,11 @@ public class Controller {
         List<String> rawPlayers = inputView.inputPlayers();
         int height = inputView.inputHeight();
         Players players = new Players(rawPlayers);
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+
+        LinesFactory linesFactory = new LinesFactory(height, players.getCount(), numberGenerator);
+        List<Line> lines = linesFactory.generateLines();
+
+        outputView.printResult(players, lines);
     }
 }
