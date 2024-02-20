@@ -2,9 +2,9 @@ package domain.model;
 
 public class Person {
 
-    private String name;
+    private final String name;
 
-    public Person(String name) {
+    public Person(final String name) {
         this.name = name;
         validateNameLength();
         validateNonBlank();
