@@ -3,7 +3,7 @@ package laddergame.view;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import laddergame.Ladder;
+import laddergame.domain.Ladder;
 
 public class OutputView {
 
@@ -17,7 +17,7 @@ public class OutputView {
             System.out.print(formattedName);
         }
 
-        System.out.printf("%" + width + "s", names.get(names.size() - 1));
+        System.out.printf("%" + width + "s%n", names.get(names.size() - 1));
     }
 
     public void printLadder(final Ladder ladder, final int width, final int firstWidth) {

@@ -3,6 +3,8 @@ package laddergame;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import laddergame.domain.BooleanGenerator;
+import laddergame.domain.Line;
 import laddergame.exception.LadderLineOverlappedException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,7 +33,7 @@ public class LineTest {
                 .hasMessage("[ERROR] 가로 라인이 겹치면 안됩니다.");
     }
 
-    private static class RotationBooleanGenerator implements BooleanGenerator{
+    private static class RotationBooleanGenerator implements BooleanGenerator {
         private static boolean value = true;
 
         @Override

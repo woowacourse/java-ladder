@@ -1,4 +1,4 @@
-package laddergame;
+package laddergame.domain;
 
 public class LadderHeight {
     private final int value;
