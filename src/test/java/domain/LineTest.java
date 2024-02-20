@@ -2,17 +2,24 @@ package domain;
 
 import java.util.List;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LineTest {
-    private final PointGenerator pointGenerator = new PickedPointGenerator();
+    private PointGenerator pointGenerator;
+    private final int PERSON_COUNT = 3;
+
+    @BeforeEach
+    void init(){
+        pointGenerator = new PickedPointGenerator();
+    }
 
     @DisplayName("라인을 생성한다.")
     @Test
     void createLine() {
         //given
-        int personCount = 4;
+        int personCount = PERSON_COUNT;
         //when
         Line line = Line.create(personCount, pointGenerator);
         //then
