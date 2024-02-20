@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class PlayerTest {
     @DisplayName("참여자 이름이 5자 초과면 예외가 발생한다")
     @ParameterizedTest
-    @CsvSource({"pobii", "doraa", "jojojo"})
+    @CsvSource({"pobiii", "dooraaa", "jojojojojojo"})
     void testInvalidLengthOfPlayerName(String name) {
         assertThatThrownBy(() -> new Player(name))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -18,9 +18,8 @@ public class PlayerTest {
 
     @DisplayName("참여자 이름이 5자 이하면 예외가 발생하지 않는다")
     @ParameterizedTest
-    @CsvSource({"p", "dora", "joj"})
+    @CsvSource({"p", "dora", "joj", "doraa"})
     void testValidLengthOfPlayerName(String name) {
-        assertDoesNotThrow(() -> new Player(name))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertDoesNotThrow(() -> new Player(name));
     }
 }
