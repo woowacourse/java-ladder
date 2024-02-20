@@ -37,6 +37,6 @@ public class BridgesTest {
         Bridges bridges = new Bridges(length);
 
         //then
-        assertThat(bridges.getBridges()).isSize(length);
+        assertThat(bridges.getBridges()).hasSize(length);
     }
 }
