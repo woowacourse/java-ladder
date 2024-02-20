@@ -6,9 +6,12 @@ public class UserNames {
     static final int MIN_SIZE = 2;
     static final int MAX_SIZE = 7;
 
+    private final List<UserName> userNames;
+
     public UserNames(List<UserName> userNames) {
         validateSize(userNames);
         validateDuplicate(userNames);
+        this.userNames = userNames;
     }
 
     private void validateSize(final List<UserName> userNames) {
@@ -27,5 +30,9 @@ public class UserNames {
         if (userNames.size() != unique) {
             throw new IllegalArgumentException("중복된 이름은 허용되지 않습니다.");
         }
+    }
+
+    public int getUserCount() {
+        return userNames.size();
     }
 }
