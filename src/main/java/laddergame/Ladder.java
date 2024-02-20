@@ -1,7 +1,6 @@
 package laddergame;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import laddergame.exception.LadderLineOverlappedException;
 
@@ -35,9 +34,14 @@ public class Ladder {
         return lines.size();
     }
 
-    public int getWidth(Names names) {
-        final List<Integer> nameSizes = names.getNameSizes();
+    public int getWidth(final Names names) {
+        final int maxLengthSkipFirst = names.getMaxLengthSkipFirst();
+        final int lastLength = names.getLastLength();
 
-        return nameSizes.stream().skip(1).max(Comparator.naturalOrder()).orElse(0);
+        if (maxLengthSkipFirst == lastLength) {
+            return lastLength + 1;
+        }
+
+        return maxLengthSkipFirst;
     }
 }

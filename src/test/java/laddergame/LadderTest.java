@@ -38,4 +38,21 @@ public class LadderTest {
         // then
         assertThat(width).isEqualTo(5);
     }
+
+    @DisplayName("마지막 참여자의 이름길이가 최대값일때 사디리 폭의 길이는 (최대값+1)이다.")
+    @Test
+    void lastNameMax() {
+        // given
+        Ladder ladder = Ladder.create(5, 4, new RandomBooleanGenerator());
+        Names names = new Names(List.of(new Name("pobi"),
+                new Name("honux"),
+                new Name("jk"),
+                new Name("crong")));
+
+        // when
+        final int width = ladder.getWidth(names);
+
+        // then
+        assertThat(width).isEqualTo(6);
+    }
 }

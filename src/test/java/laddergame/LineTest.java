@@ -15,10 +15,9 @@ public class LineTest {
     void create() {
         //given
         int personSize = 4;
-        BooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator();
 
         //when
-        Line line = Line.create(personSize, randomBooleanGenerator);
+        Line line = Line.create(personSize, new RotationBooleanGenerator());
 
         //then
         assertThat(line.getSize()).isEqualTo(personSize - 1);
@@ -32,5 +31,12 @@ public class LineTest {
                 .hasMessage("[ERROR] 가로 라인이 겹치면 안됩니다.");
     }
 
+    private static class RotationBooleanGenerator implements BooleanGenerator{
+        private static boolean value = true;
 
+        @Override
+        public Boolean generate() {
+            return value = !value;
+        }
+    }
 }

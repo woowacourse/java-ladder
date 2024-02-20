@@ -1,8 +1,8 @@
 package laddergame;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Names {
 
@@ -13,8 +13,16 @@ public class Names {
         this.names = names;
     }
 
-    public List<Integer> getNameSizes() {
-        return names.stream().map(Name::getLength).collect(Collectors.toList());
+    public int getMaxLengthSkipFirst() {
+        return names.stream()
+                .map(Name::getLength)
+                .skip(1)
+                .max(Comparator.naturalOrder())
+                .orElse(0);
+    }
+
+    public int getLastLength(){
+        return names.get(names.size() - 1).getLength();
     }
 
     private void validateDuplication(final List<Name> names) {
