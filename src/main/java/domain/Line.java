@@ -18,7 +18,7 @@ public class Line {
     }
 
     public boolean hasPoint(int position) {
-        return false;
+        return points.get(position);
     }
 
     public void putPoint(final int position) {
