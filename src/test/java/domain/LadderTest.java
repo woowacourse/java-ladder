@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -45,5 +47,25 @@ public class LadderTest {
 
         //then
         assertThat(ladder.getBridge()).hasSize(personCount - 1);
+    }
+
+    @Test
+    void ladderHasNoContinuousBridge() {
+        //given
+        Ladder ladder = new Ladder(3, 5);
+
+        //when
+        List<Bridges> bridge = ladder.getBridge();
+
+        //then
+        for (int height = 0; height < 5; height++) {
+            boolean hasBridge = bridge.get(0).getBridges().get(height);
+            for (int index = 1; index < 2; index++) {
+                boolean nextBridge = bridge.get(index).getBridges().get(height);
+                assertThat(hasBridge && nextBridge).isFalse();
+                hasBridge = nextBridge;
+            }
+        }
+
     }
 }
