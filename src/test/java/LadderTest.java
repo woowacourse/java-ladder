@@ -9,7 +9,7 @@ public class LadderTest {
 
     @DisplayName("사다리의 행은 최대 사다리의 높이의 개수와 같다.")
     @Test
-    void ladderTest() {
+    void ladderHeight() {
         int maximumHeight = 5;
         Ladder ladder = new Ladder(maximumHeight);
         assertThat(ladder.height()).isEqualTo(maximumHeight);
