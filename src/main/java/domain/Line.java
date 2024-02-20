@@ -21,6 +21,10 @@ public class Line {
         }
     }
 
+    boolean isExistPoint(int index) {
+        return points.get(index);
+    }
+
     List<Boolean> getPoints() {
         return points;
     }
