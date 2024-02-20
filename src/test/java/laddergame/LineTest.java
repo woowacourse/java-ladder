@@ -18,7 +18,7 @@ public class LineTest {
         BooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator();
 
         //when
-        Line line = new Line(personSize, randomBooleanGenerator);
+        Line line = Line.create(personSize, randomBooleanGenerator);
 
         //then
         assertThat(line.getSize()).isEqualTo(personSize - 1);
@@ -27,7 +27,7 @@ public class LineTest {
     @DisplayName("가로 라인이 겹치면 예외를 발생시킨다.")
     @Test
     void overlapLine() {
-        assertThatThrownBy(() -> new Line(4, () -> true))
+        assertThatThrownBy(() -> Line.create(4, () -> true))
                 .isInstanceOf(LadderLineOverlappedException.class)
                 .hasMessage("[ERROR] 가로 라인이 겹치면 안됩니다.");
     }
