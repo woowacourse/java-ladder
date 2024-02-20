@@ -1,17 +1,16 @@
 package ladder.domain.ladder;
 
-import ladder.domain.generator.RandomRungGenerator;
-import ladder.domain.generator.RungGenerator;
+import ladder.domain.generator.BooleanGenerator;
 
 public class Ladder {
     private final int playerCount;
     private final Height height;
-    private final RungGenerator rungGenerator;
+    private final BooleanGenerator booleanGenerator;
 
-    public Ladder(int playerCount, int height, RungGenerator rungGenerator) {
+    public Ladder(int playerCount, int height, BooleanGenerator booleanGenerator) {
         this.playerCount = playerCount;
         this.height = new Height(height);
-        this.rungGenerator = rungGenerator;
+        this.booleanGenerator = booleanGenerator;
     }
 
     public int getHeight() {
