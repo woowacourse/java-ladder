@@ -1,5 +1,6 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -25,5 +26,17 @@ public class BridgesTest {
         //TODO 더 적합한 메서드 이름 고민
         assertThatThrownBy(() -> new Bridges(height))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void bridgesLengthTest() {
+        //given
+        int length = 5;
+
+        //when
+        Bridges bridges = new Bridges(length);
+
+        //then
+        assertThat(bridges.getBridges()).isSize(length);
     }
 }
