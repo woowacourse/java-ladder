@@ -16,4 +16,10 @@ public class InputView {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         return List.of(bufferedReader.readLine().split(","));
     }
+
+    public int readLadderHeight() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        return Integer.parseInt(bufferedReader.readLine());
+    }
 }

@@ -8,6 +8,7 @@ public class Application {
         try {
             InputView inputView = new InputView();
             System.out.println(inputView.readPlayersName());
+            System.out.println(inputView.readLadderHeight());
         } catch (IOException exception) {
 
         }
