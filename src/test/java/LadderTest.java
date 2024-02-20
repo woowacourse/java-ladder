@@ -1,5 +1,7 @@
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +12,15 @@ public class LadderTest {
     void ladderTest() {
         int maximumHeight = 5;
         Ladder ladder = new Ladder(maximumHeight);
-        Assertions.assertThat(ladder.height()).isEqualTo(maximumHeight);
+        assertThat(ladder.height()).isEqualTo(maximumHeight);
+    }
+
+    @DisplayName("최대 사다리의 높이는 양수가 되어야 한다.")
+    @Test
+    void ladderHeightIsPositive() {
+        int maximumHeight = -1;
+        assertThatThrownBy(() -> new Ladder(maximumHeight))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("최대 사다리의 높이는 양수가 되어야 합니다");
     }
 }
