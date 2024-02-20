@@ -50,7 +50,7 @@ public class BridgesTest {
     @MethodSource("provier")
     @ParameterizedTest
     void getBridgeTest(List<Boolean> expectedBridges) {
-        Bridges bridges = new Bridges(4);
+        Bridges bridges = new Bridges(expectedBridges);
 
         Assertions.assertThat(bridges.getBridges())
                 .isEqualTo(expectedBridges);

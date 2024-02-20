@@ -8,6 +8,10 @@ public class Bridges {
 
     private final List<Boolean> brides;
 
+    public Bridges(List<Boolean> brides) {
+        this.brides = brides;
+    }
+
     public Bridges(int height) {
         validate(height);
         brides = IntStream.range(0, height)
