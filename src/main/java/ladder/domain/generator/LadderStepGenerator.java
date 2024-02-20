@@ -1,5 +1,7 @@
 package ladder.domain.generator;
 
+import ladder.domain.LadderStep;
+
 import java.util.List;
 
 public abstract class LadderStepGenerator {
@@ -9,11 +11,11 @@ public abstract class LadderStepGenerator {
         this.stepWidth = stepWidth;
     }
 
-    public List<Boolean> generateValidStep() {
+    public LadderStep generateValidStep() {
         List<Boolean> path = generate();
         validateStepWidth(path);
         validateContinuousPath(path);
-        return path;
+        return new LadderStep(path);
     }
 
     private void validateStepWidth(final List<Boolean> path) {
