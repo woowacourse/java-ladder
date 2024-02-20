@@ -17,4 +17,8 @@ public class LadderHeight {
     private boolean isNaturalNumber(int height) {
         return height > 0;
     }
+
+    public int getHeight() {
+        return height;
+    }
 }

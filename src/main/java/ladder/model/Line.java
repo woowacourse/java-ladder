@@ -16,6 +16,7 @@ public class Line {
         List<Boolean> row = new ArrayList<>();
 
         for (int i = 0; i < length; i++) {
+            // TODO: 왼쪽 경로를 확인해서 겹치지 않게 생성해야 함
             row.add(bg.generate());
         }
 
