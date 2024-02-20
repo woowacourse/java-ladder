@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class BridgesTest {
     //TODO 더 적합한 클래스 이름 고민하기
@@ -39,7 +38,7 @@ public class BridgesTest {
         assertThat(bridges.getBridges()).hasSize(length);
     }
 
-    @MethodSource("provier")
+    @MethodSource("getBridgeTestProvider")
     @ParameterizedTest
     void getBridgeTest(List<Boolean> expectedBridges) {
         Bridges bridges = new Bridges(expectedBridges);
@@ -48,8 +47,7 @@ public class BridgesTest {
                 .isEqualTo(expectedBridges);
     }
 
-
-    static Stream<Arguments> provier() {
+    static Stream<Arguments> getBridgeTestProvider() {
         return Stream.of(
                 Arguments.of(List.of(true, false, false, true))
         );
