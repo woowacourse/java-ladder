@@ -2,7 +2,7 @@ package laddergame.util;
 
 import java.util.Random;
 
-public class RandomBooleanGenerator {
+public class RandomBooleanGenerator implements NumberGenerator {
     private static final RandomBooleanGenerator generator = new RandomBooleanGenerator();
     private final Random random;
 
@@ -10,6 +10,7 @@ public class RandomBooleanGenerator {
         this.random = new Random();
     }
 
+    @Override
     public Integer generate() {
         return random.nextInt(2);
     }
