@@ -1,5 +1,6 @@
 package controller;
 
+import domain.LadderHeight;
 import domain.PlayerName;
 import view.InputView;
 
@@ -16,7 +17,7 @@ public class LadderGame {
 
     public void start() {
         List<PlayerName> playerNames = readPlayerNames();
-        System.out.println(playerNames);
+        LadderHeight ladderHeight = readLadderHeight();
     }
 
 
@@ -36,5 +37,9 @@ public class LadderGame {
         return Arrays.stream(playerNameInput.split(","))
                 .map(PlayerName::new)
                 .toList();
+    }
+
+    public LadderHeight readLadderHeight() {
+        return new LadderHeight(inputView.readLadderHeight());
     }
 }
