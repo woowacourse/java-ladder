@@ -9,12 +9,16 @@ public class UserName {
     private final String name;
 
     public UserName(final String name) {
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("이름에 공백을 입력할 수 없습니다");
-        }
+        validateNotEmpty(name);
         validateNameLength(name);
         validateNamePattern(name);
         this.name = name;
+    }
+
+    private void validateNotEmpty(final String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("이름에 공백을 입력할 수 없습니다");
+        }
     }
 
     private static void validateNamePattern(final String name) {
