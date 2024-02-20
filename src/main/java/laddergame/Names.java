@@ -2,6 +2,7 @@ package laddergame;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Names {
 
@@ -10,6 +11,10 @@ public class Names {
     public Names(final List<Name> names) {
         validateDuplication(names);
         this.names = names;
+    }
+
+    public List<Integer> getNameSizes() {
+        return names.stream().map(Name::getLength).collect(Collectors.toList());
     }
 
     private void validateDuplication(final List<Name> names) {

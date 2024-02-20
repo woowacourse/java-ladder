@@ -27,6 +27,10 @@ public class Name {
         return value;
     }
 
+    public int getLength() {
+        return value.length();
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
