@@ -33,7 +33,7 @@ class PlayersTest {
         List<String> names = List.of("켬미");
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참여자의 이름은 두 개 이상이어야 한다.");
+                .hasMessage("참여자의 이름은 두 개 이상이어야 합니다.");
     }
 
 }
