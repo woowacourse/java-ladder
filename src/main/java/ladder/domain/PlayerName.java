@@ -1,6 +1,7 @@
 package ladder.domain;
 
 public class PlayerName {
+    private static final int MAX_LENGTH = 5;
     private final String name;
 
     public PlayerName(String name) {
@@ -20,7 +21,7 @@ public class PlayerName {
     }
 
     private void validateMaxLength(String name) {
-        if (name.length() > 5) {
+        if (name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException("이름은 5글자를 넘을 수 없습니다.");
         }
     }
