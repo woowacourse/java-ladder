@@ -11,7 +11,7 @@ public class LadderTest {
 
     @DisplayName("사다리를 생성한다.")
     @Test
-    void test() {
+    void createLadder() {
         // given
         int height = 5;
         int personSize = 4;
