@@ -16,7 +16,7 @@ class LadderTest {
         int lineCount = 51;
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < lineCount; i++) {
-             lines.add(new Line());
+             lines.add(LineGenerator.generate(5));
         }
 
         //when, then
