@@ -12,12 +12,10 @@ class CrossingIndicesTest {
     void ignoreContinuousIndicesTest() {
         // given
         CrossingIndices indices = new CrossingIndices();
-
         // when
         for (int i = 0; i < 10; i++) {
             indices.add(i);
         }
-
         // then
         List<Integer> expected = List.of(0, 2, 4, 6, 8);
         List<Integer> actual = indices.getCopyOfIndices();

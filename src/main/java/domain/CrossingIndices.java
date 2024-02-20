@@ -13,11 +13,15 @@ public class CrossingIndices {
         }
     }
 
-    private boolean isLastElementNotSameAs(int value) {
-        return indices.get(indices.size() - 1) != value - 1;
+    public void clear() {
+        indices.clear();
     }
 
     public List<Integer> getCopyOfIndices() {
         return List.copyOf(indices);
+    }
+
+    private boolean isLastElementNotSameAs(int value) {
+        return indices.get(indices.size() - 1) != value - 1;
     }
 }
