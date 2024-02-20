@@ -24,9 +24,8 @@ public class Line {
         }
     }
 
-    public List<Boolean> generateRandomPoint() {
-        Collections.fill(points, true);
+    public List<Boolean> generateRandomPoint(Generator generator) {
+        points = points.stream().map(r -> generator.generate()).toList();
         return points;
     }
-
 }

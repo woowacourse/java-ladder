@@ -12,7 +12,7 @@ public class LineTest {
     @Test
     @DisplayName("라인을 생성한다.")
     void createLine() {
-        assertThatCode(() -> new Line()).doesNotThrowAnyException();
+        assertThatCode(Line::new).doesNotThrowAnyException();
     }
 
     @Test
@@ -34,7 +34,7 @@ public class LineTest {
         //when
         Line line = new Line(personCount);
 
-        List<Boolean> line2 = line.generateRandomPoint();
+        List<Boolean> line2 = line.generateRandomPoint(() -> true);
         //then
         assertThat(line2).isEqualTo(expectedPoint);
     }
