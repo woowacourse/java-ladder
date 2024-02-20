@@ -8,11 +8,6 @@ public class RandomGenerator implements Generator {
 
     @Override
     public boolean generate() {
-        int randomNumber = RANDOM.nextInt(0, 2);
-
-        if (randomNumber == 0) {
-            return false;
-        }
-        return true;
+        return RANDOM.nextBoolean();
     }
 }

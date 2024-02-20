@@ -15,6 +15,10 @@ public class Ladder {
                 .forEach(iterator -> ladder.add(new Line(personCount, new RandomGenerator())));
     }
 
+    public List<Line> getLadder() {
+        return ladder;
+    }
+
     public int getHeight() {
         return ladder.size();
     }

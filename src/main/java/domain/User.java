@@ -6,6 +6,7 @@ public class User {
     public User() {
     }
 
+
     public User(String username) {
         validate(username);
         this.username = username;
