@@ -28,6 +28,8 @@ public class BridgesTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    //TODO : DisplayName 에서 자료형 제거
+    @DisplayName("Bridges 가 올바른 길이의 List 를 반환해야 한다.")
     @Test
     void bridgesLengthTest() {
         //given

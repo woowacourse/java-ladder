@@ -1,9 +1,11 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class Bridges {
+
     private final List<Boolean> brides;
 
     public Bridges(int height) {
@@ -21,6 +23,6 @@ public class Bridges {
     }
 
     public List<Boolean> getBridges() {
-        return brides;
+        return Collections.unmodifiableList(brides);
     }
 }
