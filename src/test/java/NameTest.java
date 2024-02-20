@@ -19,7 +19,7 @@ public class NameTest {
     @ParameterizedTest
     @DisplayName("이름이 없을 때 예외가 발생한다.")
     @NullAndEmptySource
-    void noNameException(String name) {
+    void noNameExceptionTest(String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 이름이 없습니다.");
