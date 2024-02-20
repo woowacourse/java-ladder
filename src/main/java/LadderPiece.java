@@ -6,6 +6,7 @@ public class LadderPiece {
     public Direction getDirection() {
         return direction;
     }
-
-
+    public boolean isRightDirection(){
+        return direction.equals(Direction.RIGHT);
+    }
 }
