@@ -1,9 +1,11 @@
 package ladder;
 
 public class PlayerName {
+    private final String name;
 
     public PlayerName(String name) {
         validate(name);
+        this.name = name;
     }
 
     private void validate(String name) {
@@ -21,5 +23,9 @@ public class PlayerName {
         if (name.length() > 5) {
             throw new IllegalArgumentException("이름은 5글자를 넘을 수 없습니다.");
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }
