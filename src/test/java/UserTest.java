@@ -45,8 +45,4 @@ class UserTest {
         //then
         assertThatThrownBy(() -> new User(userName)).isInstanceOf(IllegalArgumentException.class);
     }
-
-
-
-
 }
