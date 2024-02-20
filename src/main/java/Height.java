@@ -2,8 +2,8 @@ public class Height {
 
     private int height;
 
-    public Height(int inputNumber){
-        this.height = inputNumber;
+    public Height(String inputNumber){
+        this.height = Integer.parseInt(inputNumber);
     }
 
     public int getHeight() {

@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class HeightTest {
 
     @Test
-    @DisplayName("숫자를 통해 Height를 생성한다.")
+    @DisplayName("입력된 숫자 문자열을 통해 Height를 생성한다.")
     public void createHeight(){
 
-        Integer value = 5;
+        String value = "5";
 
         Height height = new Height(value);
 
