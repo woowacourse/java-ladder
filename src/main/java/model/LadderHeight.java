@@ -16,4 +16,8 @@ public class LadderHeight {
             throw new IllegalArgumentException(INVALID_VALUE_OF_HEIGHT);
         }
     }
+
+    public int getValue() {
+        return value;
+    }
 }
