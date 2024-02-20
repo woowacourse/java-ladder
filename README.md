@@ -28,3 +28,7 @@
 
 ## 사다리 높이
 - [ ] 입력값이 자연수임을 검증한다.
+
+# Git commit 메세지
+접두어로 `docs`, `test`, `feat`, `fix`, `refactor`, `chore` 사용
+example feat: 사용자 입력 후 도메인 사용
