@@ -8,11 +8,18 @@ import static java.util.Collections.unmodifiableList;
 public class Lines {
     private final List<Line> lines;
 
-    public Lines(final int ladderHeight, final int personCount) {
-        List<Line> lines = IntStream.rangeClosed(1, ladderHeight)
+    private Lines(final List<Line> lines) {
+        this.lines = lines;
+    }
+
+    public static Lines of(final int ladderHeight, final int personCount) {
+        return new Lines(createLines(ladderHeight, personCount));
+    }
+
+    private static List<Line> createLines(final int ladderHeight, final int personCount) {
+        return IntStream.rangeClosed(1, ladderHeight)
                 .mapToObj(i -> new Line(personCount))
                 .toList();
-        this.lines = lines;
     }
 
     public List<Line> getLines() {

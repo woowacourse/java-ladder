@@ -9,7 +9,7 @@ public class LinesTest {
     @DisplayName("사다리 높이 만큼의 Line을 생성한다.")
     @Test
     void createLines() {
-        assertThat(new Lines(3, 4).getLines().size())
+        assertThat(Lines.of(3, 4).getLines().size())
                 .isEqualTo(3);
     }
 }
