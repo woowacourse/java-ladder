@@ -9,7 +9,7 @@ public class Players {
     public Players(List<String> names) {
         players = new ArrayList<>();
         for(String name : names) {
-            players.add(new Player(new Name(name)));
+            players.add(new Player(name));
         }
     }
 }

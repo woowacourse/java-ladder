@@ -11,7 +11,6 @@ class PlayerTest {
     @Test
     @DisplayName("Name을 인자로 받아서 객체를 생성할 수 있다.")
     void createPlayer() {
-        Name name = new Name("이름");
-        assertThatCode(() -> new Player(name));
+        assertThatCode(() -> new Player("초롱"));
     }
 }
