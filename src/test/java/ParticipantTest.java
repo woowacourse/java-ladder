@@ -1,4 +1,4 @@
-import java.util.List;
+import model.Participant;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
