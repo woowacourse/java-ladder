@@ -1,6 +1,8 @@
 package controller;
 
+import domain.Ladder;
 import domain.LadderHeight;
+import domain.Line;
 import domain.PlayerName;
 import view.InputView;
 
@@ -18,6 +20,13 @@ public class LadderGame {
     public void start() {
         List<PlayerName> playerNames = readPlayerNames();
         LadderHeight ladderHeight = readLadderHeight();
+
+        Ladder ladder = createLadder(playerNames, ladderHeight);
+    }
+
+    private Ladder createLadder(List<PlayerName> playerNames, LadderHeight ladderHeight) {
+        int pointCount = playerNames.size() - 1;
+        return Ladder.of(ladderHeight, pointCount);
     }
 
 
