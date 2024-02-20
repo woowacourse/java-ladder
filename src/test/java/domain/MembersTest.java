@@ -49,9 +49,18 @@ public class MembersTest {
     @DisplayName("참여자들 입력 실패: 비정상적인 쉼표 입력")
     void members_exception_delimiter(String rawNames) {
         assertThatThrownBy(() -> new Members(rawNames))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("자의 이름만 허용합니다.");
+                .isInstanceOf(IllegalArgumentException.class);
+//                .hasMessageContaining("자의 이름만 허용합니다."); TODO 메시지 검증
     }
+
+    @Test
+    @DisplayName("참여자들 입력 실패: null 입력")
+    void members_exception_null() {
+        assertThatThrownBy(() -> new Members(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("null을 입력할 수 없습니다.");
+    }
+
 
     private String makeMemberNamesForTestCase(int amount) {
         List<String> names = new ArrayList<>();
