@@ -25,4 +25,8 @@ public class Names {
                 .distinct()
                 .count();
     }
+
+    public List<Name> getNames() {
+        return names;
+    }
 }
