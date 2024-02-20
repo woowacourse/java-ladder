@@ -1,16 +1,15 @@
 package ladder.domain;
 
-import java.util.ArrayList;
+import ladder.util.BooleanListGenerator;
+
 import java.util.List;
 
 public class Line {
 
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points;
 
-    public Line(int personCount) {
-        for (int i = 0; i < personCount - 1; i++) {
-            this.points.add(false);
-        }
+    public Line(int personCount, BooleanListGenerator booleanListGenerator) {
+        this.points = booleanListGenerator.generate(personCount - 1);
     }
 
     public List<Boolean> getPoints() {

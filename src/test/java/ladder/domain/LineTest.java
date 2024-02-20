@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.util.RandomBooleanListGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ public class LineTest {
         int personCount = 5;
 
         // when
-        Line line = new Line(personCount);
+        Line line = new Line(personCount, new RandomBooleanListGenerator());
         int pointsSize = line.getPoints().size();
 
         // then
