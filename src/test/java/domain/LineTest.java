@@ -2,6 +2,7 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import utils.SwitchBooleanGenerator;
 
 import java.util.List;
 
@@ -14,6 +15,6 @@ public class LineTest {
     void makeLineTest() {
         Line line = new Line(3, new SwitchBooleanGenerator());
 
-        assertThat(line.gerPoints()).isEqualsTo(List.of(true, false, true));
+        assertThat(line.getPoints()).isEqualTo(List.of(true, false, true));
     }
 }
