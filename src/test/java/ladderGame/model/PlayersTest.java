@@ -27,4 +27,13 @@ class PlayersTest {
                 .hasMessage("참여자들의 이름은 중복될 수 없습니다.");
     }
 
+    @Test
+    @DisplayName("이름이 두 명보다 적으면 예외처리 된다.")
+    void validateLessThanMinimum() {
+        List<String> names = List.of("켬미");
+        assertThatThrownBy(() -> new Players(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("참여자의 이름은 두 개 이상이어야 한다.");
+    }
+
 }
