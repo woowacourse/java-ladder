@@ -20,7 +20,7 @@ public class UserNameTest {
     }
 
     @DisplayName("유효하지 않은 특수문자가 포함된 이름이 입력되면 예외가 발생한다.")
-    @ValueSource(strings = {"kel!", "liv#", "liv,k"})
+    @ValueSource(strings = {"kel!", "liv#", "liv,k", "liv\\k"})
     @ParameterizedTest()
     void createNameByInvalidCharacter(final String name) {
         assertThatIllegalArgumentException()
