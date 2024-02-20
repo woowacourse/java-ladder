@@ -14,15 +14,22 @@ public class LadderTest {
     @Test
     void constructSuccessTest() {
         assertThatNoException()
-                .isThrownBy(() -> new Ladder(5));
+                .isThrownBy(() -> new Ladder(4, 5));
     }
 
     @DisplayName("높이가 자연수가 아니라면 예외가 발생한다.")
     @ParameterizedTest(name = "높이가 {0}인 경우 예외가 발생한다.")
     @ValueSource(ints = {-11, 0})
-    void constructFailWithNotPositive(int height){
+    void constructFailWithNotPositiveHeight(int height){
         //TODO 더 적합한 메서드 이름 고민
-        assertThatThrownBy(() -> new Ladder(height))
+        assertThatThrownBy(() -> new Ladder(4, height))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-3, 0})
+    void constructFailWithNotPositiveWidth(int personCount) {
+        assertThatThrownBy(() -> new Ladder(personCount, 5))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
