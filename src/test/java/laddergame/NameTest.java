@@ -27,7 +27,7 @@ public class NameTest {
         Name name = new Name(value);
 
         // then
-        Assertions.assertThat(name.getValue()).isEqualTo(value);
+        Assertions.assertThat(name.getName()).isEqualTo(value);
     }
 
     @DisplayName("이름값에 빈문자열이나 공백을 입력하면 예외를 발생시킨다.")

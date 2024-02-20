@@ -25,7 +25,7 @@ public class LadderHeightTest {
         final LadderHeight ladderHeight = new LadderHeight(value);
 
         // then
-        Assertions.assertThat(ladderHeight.getValue()).isEqualTo(value);
+        Assertions.assertThat(ladderHeight.getHeight()).isEqualTo(value);
 
     }
 }

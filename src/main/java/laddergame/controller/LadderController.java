@@ -2,6 +2,7 @@ package laddergame.controller;
 
 import laddergame.domain.Ladder;
 import laddergame.domain.LadderHeight;
+import laddergame.domain.LadderWidth;
 import laddergame.domain.Names;
 import laddergame.domain.RandomBooleanGenerator;
 import laddergame.view.InputView;
@@ -19,12 +20,12 @@ public class LadderController {
 
     public void run() {
         final Names names = new Names(inputView.readNames());
-        final LadderHeight ladderHeight = new LadderHeight(inputView.readLadderHeight());
+        final LadderHeight height = new LadderHeight(inputView.readLadderHeight());
 
-        final Ladder ladder = Ladder.create(ladderHeight.getValue(), names.size(), new RandomBooleanGenerator());
-        final int width = ladder.getWidth(names);
+        final Ladder ladder = Ladder.create(height.getHeight(), names.size(), new RandomBooleanGenerator());
+        final LadderWidth width = LadderWidth.from(names);
 
-        outputView.printNames(names.getNames(), width);
-        outputView.printLadder(ladder, width, names.getFirstNameLength());
+        outputView.printNames(names.getNames(), width.getWidth());
+        outputView.printLadder(ladder, width.getWidth(), names.getFirstNameLength());
     }
 }

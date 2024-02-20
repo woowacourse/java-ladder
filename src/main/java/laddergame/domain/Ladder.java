@@ -38,15 +38,4 @@ public class Ladder {
     public int getHeight() {
         return lines.size();
     }
-
-    public int getWidth(final Names names) {
-        final int maxLengthSkipFirst = names.getMaxLengthSkipFirst();
-        final int lastLength = names.getLastLength();
-
-        if (maxLengthSkipFirst == lastLength) {
-            return lastLength + 1;
-        }
-
-        return maxLengthSkipFirst;
-    }
 }

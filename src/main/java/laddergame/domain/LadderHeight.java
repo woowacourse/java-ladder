@@ -1,20 +1,20 @@
 package laddergame.domain;
 
 public class LadderHeight {
-    private final int value;
+    private final int height;
 
-    public LadderHeight(final int value) {
-        validatePositive(value);
-        this.value = value;
+    public LadderHeight(final int input) {
+        validatePositive(input);
+        this.height = input;
     }
 
-    public int getValue() {
-        return value;
-    }
-
-    private void validatePositive(final int value) {
-        if (value <= 0) {
+    private void validatePositive(final int input) {
+        if (input <= 0) {
             throw new IllegalArgumentException("[ERROR] 입력값은 양수만 가능합니다.");
         }
+    }
+
+    public int getHeight() {
+        return height;
     }
 }

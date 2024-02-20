@@ -9,12 +9,22 @@ public class Names {
     private final List<Name> names;
 
     public Names(final List<String> input) {
-        final List<Name> names = input.stream()
+        final List<Name> names = convertToNames(input);
+        validateDuplication(names);
+
+        this.names = names;
+    }
+
+    private List<Name> convertToNames(final List<String> input) {
+        return input.stream()
                 .map(Name::new)
                 .toList();
+    }
 
-        validateDuplication(names);
-        this.names = names;
+    private void validateDuplication(final List<Name> names) {
+        if (names.size() != Set.copyOf(names).size()) {
+            throw new IllegalArgumentException("[ERROR] 이름은 중복 될 수 없습니다.");
+        }
     }
 
     public int getMaxLengthSkipFirst() {
@@ -29,19 +39,13 @@ public class Names {
         return names.get(names.size() - 1).getLength();
     }
 
-    private void validateDuplication(final List<Name> names) {
-        if (names.size() != Set.copyOf(names).size()) {
-            throw new IllegalArgumentException("[ERROR] 이름은 중복 될 수 없습니다.");
-        }
-    }
-
     public int size() {
         return names.size();
     }
 
     public List<String> getNames() {
         return names.stream()
-                .map(Name::getValue)
+                .map(Name::getName)
                 .toList();
     }
 

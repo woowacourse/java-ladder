@@ -3,32 +3,35 @@ package laddergame.domain;
 import java.util.Objects;
 
 public class Name {
-    private final String value;
 
-    public Name(final String value) {
-        validateBlank(value);
-        validateLength(value);
-        this.value = value;
+    private static final int MAX_LENGTH = 5;
+
+    private final String name;
+
+    public Name(final String input) {
+        validateBlank(input);
+        validateLength(input);
+        this.name = input;
     }
 
-    private void validateBlank(final String value) {
-        if (value == null || value.isBlank()) {
+    private void validateBlank(final String input) {
+        if (input == null || input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 이름에 빈값을 입력할 수 없습니다.");
         }
     }
 
-    private void validateLength(final String value) {
-        if (value.length() > 5) {
+    private void validateLength(final String input) {
+        if (input.length() > MAX_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 이름길이는 5글자를 넘을 수 없습니다.");
         }
     }
 
-    public String getValue() {
-        return value;
+    public int getLength() {
+        return name.length();
     }
 
-    public int getLength() {
-        return value.length();
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -39,11 +42,11 @@ public class Name {
         if (!(o instanceof final Name name)) {
             return false;
         }
-        return Objects.equals(getValue(), name.getValue());
+        return Objects.equals(getName(), name.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getValue());
+        return Objects.hash(getName());
     }
 }
