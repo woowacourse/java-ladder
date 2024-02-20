@@ -18,13 +18,13 @@ public class InputView {
 
     private static void validateEmpty(String inputString) {
         if (inputString == null || inputString.isBlank()) {
-            throw new IllegalArgumentException("null 혹은 비 문자열을 입력할 수 없습니다.");
+            throw new IllegalArgumentException("null 혹은 빈 문자열을 입력할 수 없습니다.");
         }
     }
 
     private static void validateEndedWithComma(String inputString) {
         if (inputString.endsWith(",")){
-            throw new IllegalArgumentException("null 혹은 비 문자열을 입력할 수 없습니다.");
+            throw new IllegalArgumentException("null 혹은 빈 문자열을 입력할 수 없습니다.");
         }
     }
 }
