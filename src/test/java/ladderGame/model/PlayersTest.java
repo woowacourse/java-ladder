@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayersTest {
@@ -16,4 +17,14 @@ class PlayersTest {
         List<String> names = List.of("켬미", "초롱");
         assertThatCode(() -> new Players(names));
     }
+
+    @Test
+    @DisplayName("중복된 이름이 있을 시 예외처리 된다.")
+    void validateDuplicationName() {
+        List<String> names = List.of("초롱","초롱");
+        assertThatThrownBy(() -> new Players(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("참여자들의 이름은 중복될 수 없습니다.");
+    }
+
 }
