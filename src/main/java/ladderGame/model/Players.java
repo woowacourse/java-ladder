@@ -36,4 +36,8 @@ public class Players {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_LESS_THAN_MINIMUM);
         }
     }
+
+    public int getPlayerSize() {
+        return players.size();
+    }
 }
