@@ -11,10 +11,10 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder fromHeightAndBridgeCount(LadderHeight height, int bridgeCount) {
+    public static Ladder fromHeightAndBridgeCount(LadderHeight height, LineGenerator lineGenerator) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height.getValue(); i++) {
-            lines.add(Line.fromBridgeCount(bridgeCount));
+            lines.add(lineGenerator.generateLine());
         }
         return new Ladder(lines);
     }

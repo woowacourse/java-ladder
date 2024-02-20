@@ -11,7 +11,7 @@ public class LadderTest {
     @Test
     void testSizeOfLadderLines() {
         LadderHeight ladderHeight = new LadderHeight(5);
-        Ladder ladder = Ladder.fromHeightAndBridgeCount(ladderHeight, 3);
+        Ladder ladder = Ladder.fromHeightAndBridgeCount(ladderHeight, new LineGenerator(1));
         assertThat(ladder.getLines().size())
                 .isEqualTo(5);
     }
