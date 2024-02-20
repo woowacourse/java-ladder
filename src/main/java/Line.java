@@ -11,6 +11,14 @@ public class Line {
         this.points = new ArrayList<>();
     }
 
+
+    public void cross(boolean existPoint) {
+    }
+
+    public int size() {
+        return points.size();
+    }
+
     public int getMaxSize() {
         return maxSize;
     }
