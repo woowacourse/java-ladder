@@ -14,7 +14,7 @@ class UserTest {
     }
 
     @Test
-    @DisplayName("사용자의 이름은 최대 5글자이다.")
+    @DisplayName("이름을 갖는 사용자를 생성한다.")
     void userNameTest() throws Exception {
         //given
         String userName = "pobia";
