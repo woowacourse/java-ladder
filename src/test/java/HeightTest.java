@@ -16,4 +16,14 @@ class HeightTest {
         assertEquals(height.getHeight(), value);
     }
 
+    @Test
+    @DisplayName("입력된 문자열이 숫자가 아니면 예외를 발생한다.")
+    public void throwExceptionWhenInputStringIsNotNumber(){
+
+        String value = "five";
+        
+        assertThrows(IllegalArgumentException.class, () -> new Height(value));
+
+    }
+
 }
