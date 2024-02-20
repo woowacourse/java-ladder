@@ -27,4 +27,8 @@ public class Player {
             throw new IllegalArgumentException("[Error] 플레이어 이름은 5자 이하여야 합니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
