@@ -3,15 +3,19 @@ import java.util.List;
 
 public class Line {
 
+    private final int maxSize;
     private final List<Boolean> points;
-    public Line(int participantSize) {
+
+    public Line(int participantsSize) {
+        this.maxSize = participantsSize - 1;
         this.points = new ArrayList<>();
-        for (int i = 0; i < participantSize-1; i++) {
-            points.add(false);
-        }
     }
 
-    public int size() {
-        return points.size();
+    public int getMaxSize() {
+        return maxSize;
+    }
+
+    public List<Boolean> getPoints() {
+        return points;
     }
 }
