@@ -1,6 +1,7 @@
 package view;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -13,5 +14,12 @@ public class ParserTest {
         String input = "pobi,crong,honux";
         List<String> names = Parser.splitName(input);
         assertEquals(List.of("pobi", "crong", "honux"), names);
+    }
+
+    @Test
+    @DisplayName("사다리 높이는 정수만 허용한다.")
+    void isHeightInteger() {
+        String input = "1개";
+        assertThrows(NumberFormatException.class, () -> Parser.parseHeight(input));
     }
 }
