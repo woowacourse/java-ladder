@@ -15,13 +15,25 @@ class UserTest {
 
     @Test
     @DisplayName("이름을 갖는 사용자를 생성한다.")
-    void userNameTest() throws Exception {
+    void userNameTest() {
         //given
         String userName = "pobia";
         //when
+        //then
         Assertions.assertThatCode(() -> new User(userName))
                 .doesNotThrowAnyException();
     }
+
+    @Test
+    @DisplayName("사용자 이름은 5글자 이하이다.")
+    void userNameLengthTest() {
+        //given
+        String userName = "rushrush";
+        //when
+        //then
+        Assertions.assertThatThrownBy(() -> new User(userName)).isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 
 }
