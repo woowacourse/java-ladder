@@ -6,18 +6,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class NameTest {
-    @DisplayName("이름 생성 테스트")
-    @Test
-    void createName() {
-        Assertions.assertThatCode(() -> new Name("이름"))
-                .doesNotThrowAnyException();
-    }
-
     @Nested
     @DisplayName("이름은 최대 5자여야 한다.")
     class NameLength {
 
-        @DisplayName("이름이 1~5자이이면 성공한다.")
+        @DisplayName("이름이 1~5자이면 성공한다.")
         @ParameterizedTest
         @ValueSource(strings = {"1", "12345"})
         void nameLengthValidateSuccess(String source) {
