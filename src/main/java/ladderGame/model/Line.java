@@ -12,14 +12,17 @@ public class Line {
     }
 
     private void draw(int number) {
-        isDrawn.add(new Random().nextBoolean());
-        for(int i = 1; i < number-1; i++) {
-            if(isDrawn.get(i - 1)) {
-                isDrawn.add(false);
-                continue;
-            }
-            isDrawn.add(new Random().nextBoolean());
+        for(int i = 0; i < number-1; i++) {
+            drawSpace(i);
         }
+    }
+
+    private void drawSpace(int index) {
+        if(index == 0 || !isDrawn.get(index - 1)) {
+            isDrawn.add(new Random().nextBoolean());
+            return;
+        }
+        isDrawn.add(false);
     }
 
     public List<Boolean> getIsDrawn() {
