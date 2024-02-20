@@ -6,10 +6,10 @@ class Players {
     private final List<Player> players;
 
     public Players(String input) {
-        this.players = parsePersonName(input);
+        this.players = parsePlayerName(input);
     }
 
-    public List<Player> parsePersonName(String input) {
+    public List<Player> parsePlayerName(String input) {
         return Arrays.stream(input.split(","))
                 .map(name -> new Player(name.trim()))
                 .toList();
