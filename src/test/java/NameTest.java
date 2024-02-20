@@ -1,5 +1,8 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.common.input.LineSeparatorDetector;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,9 +23,17 @@ class NameTest {
 
     @Test
     @DisplayName("다섯글자를 초과한 문자열을 통한 생성은 예외를 발생한다.")
-    public void throwExceptionWhenInputIsOverThan5(){
+    public void throwExceptionWhenInputStringIsOverThan5(){
         String value = "longName";
 
         assertThrows(IllegalArgumentException.class,() -> new Name(value));
     }
+
+    @ParameterizedTest
+    @DisplayName("눈에 보이지 않는 공백들로 이루어진 생성은 예외를 발생한다.")
+    @ValueSource(strings = {""," "})
+    public void throwExceptionWhenInputStringHasBlank(String value){
+        assertThrows(IllegalArgumentException.class,() -> new Name(value));
+    }
+
 }

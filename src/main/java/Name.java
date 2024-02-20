@@ -9,12 +9,19 @@ public class Name {
         return value;
     }
     private void validate(String inputName){
-        isAvailableLength(inputName);
-
+        validateAvailableLength(inputName);
+        validateBlank(inputName);
+        vaildateContainSpaceInName(inputName);
     }
-    private void isAvailableLength(String inputName) {
+    private void validateAvailableLength(String inputName) {
         if (inputName.length() > 5) {
             throw new IllegalArgumentException();
         }
     }
+    private void validateBlank(String initialInput) {
+        if(initialInput.isBlank()) {
+            throw new IllegalArgumentException("공백으로 이루어진 이름은 사용할 수 없습니다.");
+        }
+    }
+
 }
