@@ -3,6 +3,7 @@ package laddergame;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import laddergame.domain.Ladder;
+import laddergame.domain.LadderHeight;
 import laddergame.domain.RandomBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,13 +14,13 @@ public class LadderTest {
     @Test
     void createLadder() {
         // given
-        int height = 5;
+        final LadderHeight height = new LadderHeight(5);
         int personSize = 4;
 
         // when
-        Ladder ladder = Ladder.create(height, personSize, new RandomBooleanGenerator());
+        Ladder ladder = Ladder.create(height, new RandomBooleanGenerator(personSize-1));
 
         // then
-        assertThat(ladder.getHeight()).isEqualTo(height);
+        assertThat(ladder.getHeight()).isEqualTo(height.getHeight());
     }
 }

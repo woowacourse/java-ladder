@@ -1,6 +1,5 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import laddergame.exception.LadderLineOverlappedException;
 
@@ -8,19 +7,15 @@ public class Line {
 
     private final List<Boolean> points;
 
-    private Line(final int personSize, final BooleanGenerator booleanGenerator) {
-        List<Boolean> points = new ArrayList<>();
-        for (int i = 0; i < personSize - 1; i++) {
-            points.add(booleanGenerator.generate());
-        }
-
+    private Line(final BooleanGenerator booleanGenerator) {
+        final List<Boolean> points = booleanGenerator.generate();
         validateOverlap(points);
 
         this.points = points;
     }
 
-    public static Line create(final int personSize, final BooleanGenerator booleanGenerator) {
-        return new Line(personSize, booleanGenerator);
+    public static Line create(final BooleanGenerator booleanGenerator) {
+        return new Line(booleanGenerator);
     }
 
     public List<Boolean> getPoints() {

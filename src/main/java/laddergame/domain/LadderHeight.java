@@ -14,6 +14,10 @@ public class LadderHeight {
         }
     }
 
+    public boolean isNot(final int value) {
+        return value != height;
+    }
+
     public int getHeight() {
         return height;
     }

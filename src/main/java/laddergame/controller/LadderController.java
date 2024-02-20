@@ -22,7 +22,7 @@ public class LadderController {
         final Names names = new Names(inputView.readNames());
         final LadderHeight height = new LadderHeight(inputView.readLadderHeight());
 
-        final Ladder ladder = Ladder.create(height.getHeight(), names.size(), new RandomBooleanGenerator());
+        final Ladder ladder = Ladder.create(height, new RandomBooleanGenerator(names.size() - 1));
         final LadderWidth width = LadderWidth.from(names);
 
         outputView.printNames(names.getNames(), width.getWidth());
