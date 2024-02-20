@@ -13,12 +13,14 @@ public class Names {
     }
 
     private void validateDuplicateName(List<Name> names) {
-        long distinctCount = names.stream()
-                .distinct()
-                .count();
-
-        if (distinctCount != names.size()) {
+        if (getUniqueNameSize(names) != names.size()) {
             throw new IllegalArgumentException(DUPLICATE_EXCEPTION_MESSAGE);
         }
+    }
+
+    private long getUniqueNameSize(final List<Name> names) {
+        return names.stream()
+                .distinct()
+                .count();
     }
 }
