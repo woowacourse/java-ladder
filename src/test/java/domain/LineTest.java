@@ -3,7 +3,6 @@ package domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import javax.sound.sampled.Line;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,10 +17,11 @@ public class LineTest {
         List<Boolean> points = line.getPoints();
         Boolean prevPoint = points.get(0);
         for (Boolean point : points.subList(1, points.size())) {
-            if (!prevPoint || prevPoint == point) {
+            if (prevPoint && point) {
                 isNotNextToLine = false;
             }
+            prevPoint = point;
         }
-        assertEquals(isNotNextToLine, true);
+        assertEquals(true, isNotNextToLine);
     }
 }
