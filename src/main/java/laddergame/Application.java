@@ -7,7 +7,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             InputView inputView = new InputView();
-            inputView.readPlayersName();
+            System.out.println(inputView.readPlayersName());
         } catch (IOException exception) {
 
         }
