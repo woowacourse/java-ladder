@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 import java.util.List;
 import ladder.domain.generator.BooleanGenerator;
@@ -25,5 +26,25 @@ class LadderTest {
                 .isEqualTo(5);
         assertThat(ladder).extracting("booleanGenerator")
                 .isInstanceOf(RandomBooleanGenerator.class);
+    }
+
+    @Test
+    @DisplayName("사다리를 생성한다.")
+    void testGenerateLadder() {
+        int playerCount = 4;
+        int height = 3;
+        List<Boolean> rungExist = List.of(true, false, true, false, true, false, true, false, false);
+
+        Ladder ladder = new Ladder(playerCount, height, new MockBooleanGenerator(rungExist));
+        List<Line> lines = ladder.getLines();
+
+        assertSoftly(softly -> {
+            softly.assertThat(lines.get(0).getRungs())
+                    .containsExactly(Rung.EXIST, Rung.EMPTY, Rung.EXIST);
+            softly.assertThat(lines.get(1).getRungs())
+                    .containsExactly(Rung.EMPTY, Rung.EXIST, Rung.EMPTY);
+            softly.assertThat(lines.get(2).getRungs())
+                    .containsExactly(Rung.EXIST, Rung.EMPTY, Rung.EMPTY);
+        });
     }
 }
