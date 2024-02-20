@@ -13,6 +13,14 @@ public class Line {
 
 
     public void cross(boolean existPoint) {
+        if (points.size() == maxSize - 1 && existPoint) {
+            points.add(existPoint);
+            return;
+        }
+        points.add(existPoint);
+        if (existPoint) {
+            points.add(!existPoint);
+        }
     }
 
     public int size() {
