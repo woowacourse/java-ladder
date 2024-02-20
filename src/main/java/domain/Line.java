@@ -7,8 +7,8 @@ public class Line {
 
     List<Boolean> points = new ArrayList<>();
 
-    public Line(final int size) {
-        for (int i = 0; i < size; i++) {
+    public Line(final int personCount) {
+        for (int i = 0; i < personCount; i++) {
             points.add(false);
         }
     }

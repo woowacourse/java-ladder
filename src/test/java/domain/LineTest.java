@@ -11,9 +11,9 @@ class LineTest {
     @Test
     void createLine() {
         // given
-        int size = 4;
+        int personCount = 4;
         // when
-        final Line line = new Line(size);
+        final Line line = new Line(personCount);
         // then
         Assertions.assertThat(line.getPoints()).containsAll(List.of(false, false, false, false));
     }
@@ -22,8 +22,8 @@ class LineTest {
     @Test
     void notConsecutivePoints() {
         // given
-        int size = 4;
-        final Line line = new Line(size);
+        int personCount = 4;
+        final Line line = new Line(personCount);
         // when & then
         Assertions.assertThat(line.getPoints()).containsAll(List.of(false, false, false, false));
     }
@@ -32,9 +32,9 @@ class LineTest {
     @Test
     void hasPoint(){
         //given
-        int size = 4;
+        int personCount = 4;
         int position = 0;
-        final Line line = new Line(size);
+        final Line line = new Line(personCount);
         //when & then
         Assertions.assertThat(line.hasPoint(position)).isFalse();
     }
@@ -43,9 +43,9 @@ class LineTest {
     @Test
     void putPoint(){
         //given
-        int size = 4;
+        int personCount = 4;
         int position = 0;
-        final Line line = new Line(size);
+        final Line line = new Line(personCount);
         //when
         line.putPoint(position);
         //then
