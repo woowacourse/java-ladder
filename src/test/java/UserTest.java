@@ -13,4 +13,15 @@ class UserTest {
                 .doesNotThrowAnyException();
     }
 
+    @Test
+    @DisplayName("사용자의 이름은 최대 5글자이다.")
+    void userNameTest() throws Exception {
+        //given
+        String userName = "pobia";
+        //when
+        Assertions.assertThatCode(() -> new User(userName))
+                .doesNotThrowAnyException();
+    }
+
+
 }
