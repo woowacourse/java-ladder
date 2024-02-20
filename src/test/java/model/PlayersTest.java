@@ -15,7 +15,7 @@ public class PlayersTest {
     @ParameterizedTest
     @MethodSource("provideInvalidPlayerNames")
     void testInvalidSizeOfPlayers(List<String> names) {
-        assertThatThrownBy(() -> Players.fromNames(names))
+        assertThatThrownBy(() -> Players.create(names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -30,7 +30,7 @@ public class PlayersTest {
     @ParameterizedTest
     @MethodSource("provideValidPlayerNames")
     void testValidSizeOfPlayers(List<String> names) {
-        assertDoesNotThrow(() -> Players.fromNames(names));
+        assertDoesNotThrow(() -> Players.create(names));
     }
 
     private static Stream<Arguments> provideValidPlayerNames() {

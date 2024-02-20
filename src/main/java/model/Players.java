@@ -22,7 +22,7 @@ public class Players {
         }
     }
 
-    public static Players fromNames(List<String> names) {
+    public static Players create(List<String> names) {
         return names.stream()
                 .map(Player::new)
                 .collect(collectingAndThen(toList(), Players::new));
