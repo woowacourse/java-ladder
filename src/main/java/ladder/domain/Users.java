@@ -9,9 +9,13 @@ public class Users {
     private final List<User> users;
 
     public Users(List<User> users) {
+        validateUsers(users);
+        this.users = users;
+    }
+
+    private void validateUsers(List<User> users) {
         validateUsersSize(users);
         validateDuplicatedUserName(users);
-        this.users = users;
     }
 
     private void validateUsersSize(List<User> users) {
