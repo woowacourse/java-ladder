@@ -1,7 +1,7 @@
 package domain;
 
-public class Name {
-    public Name(String name) {
+public class Player {
+    public Player(String name) {
         validate(name);
     }
 

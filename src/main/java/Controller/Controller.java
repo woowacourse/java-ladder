@@ -2,6 +2,7 @@ package Controller;
 
 import domain.InputView;
 import domain.OutputView;
+import domain.Players;
 
 import java.util.List;
 
@@ -15,8 +16,8 @@ public class Controller {
     }
 
     public void run() {
-        List<String> players = inputView.inputPlayers();
+        List<String> rawPlayers = inputView.inputPlayers();
         int height = inputView.inputHeight();
-
+        Players players = new Players(rawPlayers);
     }
 }
