@@ -13,9 +13,20 @@ class NamesTest {
         List<String> value = List.of("도비","조이썬");
 
         //When
-        Names names = Names.from(value);
+        Names names = new Names(value);
 
         //Then
         assertInstanceOf(Names.class,names);
+    }
+
+    @Test
+    @DisplayName("중복된 플레이어의 이름이 포함된 목록은 예외를 발생한다.")
+    public void throwExceptionWhenDuplicatedNameInput(){
+
+        List<String> value = List.of("도비", "도비", "조이썬");
+
+        assertThrows(IllegalArgumentException.class, () ->{
+            new Names(value);
+        });
     }
 }
