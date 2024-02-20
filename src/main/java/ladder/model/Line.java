@@ -1,5 +1,7 @@
 package ladder.model;
 
+import ladder.utils.BooleanGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,18 +12,17 @@ public class Line {
         this.row = row;
     }
 
-    public static Line of(int playerCount) {
-        List<Boolean> randomRow = new ArrayList<>();
+    public static Line of(int length, BooleanGenerator bg) {
+        List<Boolean> row = new ArrayList<>();
 
-        // TODO: Random 선택을 기반으로 생성해야 함.
-        for (int i = 0; i < playerCount; i++) {
-            randomRow.add(true);
+        for (int i = 0; i < length; i++) {
+            row.add(bg.generate());
         }
 
-        return new Line(randomRow);
+        return new Line(row);
     }
 
-    public boolean isLeftLadderExist(int position) {
+    public boolean isLeftPathExist(int position) {
         if (position == 0) {
             return false;
         }
