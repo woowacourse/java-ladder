@@ -13,11 +13,11 @@ public class LadderTest {
     void createLadderTest() {
         // given
         int stepWidth = 3;
-        int stepCount = 4;
+        int stepHeight = 4;
         LadderStepGenerator ladderStepGenerator = new RandomLadderStepGenerator(stepWidth);
 
         // when & then
-        assertThatCode(() -> new Ladder(ladderStepGenerator, stepCount))
+        assertThatCode(() -> new Ladder(ladderStepGenerator, stepHeight))
                 .doesNotThrowAnyException();
     }
 }
