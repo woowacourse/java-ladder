@@ -14,4 +14,11 @@ public class StepStatusTest {
         assertThat(StepStatus.getStepStatus(true))
                 .isEqualTo(EXIST);
     }
+
+    @DisplayName("EXIST면 true를 반환한다.")
+    @Test
+    void cheRckIsExist() {
+        assertThat(EXIST.isExist())
+                .isTrue();
+    }
 }
