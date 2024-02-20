@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.exception.InvalidNameLengthException;
+import ladder.exception.NonAlphabeticNameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,7 +30,7 @@ public class ParticipantTest {
     void checkNameLengthTest(String name) {
         // when & then
         assertThatThrownBy(() -> new Participant(name))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(InvalidNameLengthException.class);
     }
 
     @ParameterizedTest
@@ -37,6 +39,6 @@ public class ParticipantTest {
     void checkAlphabeticNameTest(String name) {
         // when & then
         assertThatThrownBy(() -> new Participant(name))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NonAlphabeticNameException.class);
     }
 }
