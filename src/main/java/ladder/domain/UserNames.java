@@ -8,6 +8,13 @@ public class UserNames {
 
     public UserNames(List<UserName> userNames) {
         validateSize(userNames);
+        long unique = userNames.stream()
+                .distinct()
+                .count();
+
+        if (userNames.size() != unique) {
+            throw new IllegalArgumentException("중복된 이름은 허용되지 않습니다.");
+        }
     }
 
     private void validateSize(final List<UserName> userNames) {
@@ -17,4 +24,6 @@ public class UserNames {
             ));
         }
     }
+
+
 }
