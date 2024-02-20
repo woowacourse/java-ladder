@@ -18,4 +18,8 @@ public class Name {
     public String getName() {
         return name;
     }
+
+    public int getLength() {
+        return name.length();
+    }
 }

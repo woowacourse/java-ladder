@@ -2,19 +2,19 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Line {
     private final List<Boolean> points = new ArrayList<>();
+    private final BooleanGenerator generator;
 
-    public Line(int personCount) {
+    public Line(final int personCount, final BooleanGenerator generator) {
+        this.generator = generator;
         createLine(personCount);
     }
 
     private void createLine(int personCount) {
-        Random random = new Random();
-        for (int i = 0; i < personCount -1; i++) {
-            boolean nextBoolean = random.nextBoolean();
+        for (int i = 0; i < personCount - 1; i++) {
+            boolean nextBoolean = generator.generate();
             boolean nextPoint = getNextPoint(nextBoolean);
             points.add(nextPoint);
         }
@@ -24,13 +24,15 @@ public class Line {
         if (points.isEmpty()) {
             return nextBoolean;
         }
+
         if (isLastPointTrue()) {
             return false;
         }
+        
         return nextBoolean;
     }
 
-    private Boolean isLastPointTrue() {
+    private boolean isLastPointTrue() {
         return points.get(points.size() - 1);
     }
 

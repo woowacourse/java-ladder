@@ -1,10 +1,10 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Names {
     private final List<Name> names;
+
     public Names(List<String> rawNames) {
         validateNameDuplication(rawNames);
         this.names = createNames(rawNames);
@@ -17,7 +17,7 @@ public class Names {
     private void validateNameDuplication(List<String> rawNames) {
         if (hasDuplicatedName(rawNames)) {
             throw new IllegalArgumentException();
-        };
+        }
     }
 
     private boolean hasDuplicatedName(List<String> rawNames) {
@@ -32,5 +32,13 @@ public class Names {
 
     public List<Name> getNames() {
         return names;
+    }
+
+    public Name getFirstName() {
+        return names.get(0);
+    }
+
+    public String getName(int index) {
+        return names.get(index).getName();
     }
 }

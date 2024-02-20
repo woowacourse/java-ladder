@@ -23,6 +23,7 @@ public class InputView {
     }
 
     private static void printHeightInputGuide() {
+        System.out.println();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
     }
 }
