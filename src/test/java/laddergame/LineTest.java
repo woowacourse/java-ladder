@@ -1,3 +1,5 @@
+package laddergame;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import ladder.BooleanGenerator;
