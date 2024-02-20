@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class LineTest {
 
-    @DisplayName("false로 초기화된 가로 라인을 생성한다.")
+    @DisplayName("false로 초기화된 라인을 생성한다.")
     @Test
     void createLine() {
         // given
@@ -18,4 +18,23 @@ class LineTest {
         Assertions.assertThat(line.getPoints()).containsAll(List.of(false, false, false, false));
     }
 
+    @DisplayName("point는 연속될 수 없다.")
+    @Test
+    void notConsecutivePoints() {
+        // given
+        int size = 4;
+        final Line line = new Line(size);
+        // when & then
+        Assertions.assertThat(line.getPoints()).containsAll(List.of(false, false, false, false));
+    }
+
+    @DisplayName("주어진 위치에 point가 있다.")
+    @Test
+    void hasPoint(){
+        //given
+        int size = 4;
+        final Line line = new Line(size);
+        //when & then
+        Assertions.assertThat(line.hasPoint()).isTrue();
+    }
 }

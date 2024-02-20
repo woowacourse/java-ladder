@@ -16,4 +16,8 @@ public class Line {
     public List<Boolean> getPoints() {
         return points;
     }
+
+    public boolean hasPoint() {
+        return false;
+    }
 }
