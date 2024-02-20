@@ -9,7 +9,7 @@ public class Names {
     private final List<Name> names;
 
     public Names(final List<String> input) {
-        final List<Name> names = (List<Name>) input.stream()
+        final List<Name> names = input.stream()
                 .map(Name::new)
                 .toList();
 

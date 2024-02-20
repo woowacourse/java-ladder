@@ -28,7 +28,7 @@ public class OutputView {
         List<String> convertedPoints = new ArrayList<>();
 
         // TODO : 인뎁스 줄이기
-        for(int i=0; i<points.size(); i++) {
+        for (int i = 0; i < points.size(); i++) {
             if (points.get(i)) {
                 convertedPoints.add("-".repeat(width));
             } else {
