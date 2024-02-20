@@ -25,7 +25,7 @@ public class Names {
     private void validateDuplicated(List<String> value) {
         Set<String> duplicateSize = new HashSet<>(value);
         if (duplicateSize.size() != value.size()) {
-            throw new IllegalArgumentException("중복된 이름들이 있습니다.");
+            throw new IllegalArgumentException("중복된 이름이 포함되어 있습니다.");
         }
     }
 
