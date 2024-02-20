@@ -7,35 +7,35 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-public class LadderPathGeneratorTest {
+public class LadderStepGeneratorTest {
     @Test
     @DisplayName("연속된 사다리 발판(true)가 생성될 경우 예외가 발생한다.")
     void checkContinuousPathTest() {
         // given
         List<Boolean> path = List.of(true, true, false, true);
-        LadderPathGenerator ladderPathGenerator = new TestLadderPathGenerator(path);
+        LadderStepGenerator ladderStepGenerator = new TestLadderStepGenerator(path);
 
         // when & then
-        assertThatThrownBy(() -> ladderPathGenerator.generateValidPath(4))
+        assertThatThrownBy(() -> ladderStepGenerator.generateValidStep(4))
                 .isInstanceOf(RuntimeException.class);
     }
 
     @Test
     @DisplayName("입력된 참가자 수와 사다리 폭이 다를 경우 예외가 발생한다.")
-    void checkPathWidthTest() {
+    void checkStepWidthTest() {
         // given
         List<Boolean> path = List.of(true, false, true);
-        LadderPathGenerator ladderPathGenerator = new TestLadderPathGenerator(path);
+        LadderStepGenerator ladderStepGenerator = new TestLadderStepGenerator(path);
 
         // when & then
-        assertThatThrownBy(() -> ladderPathGenerator.generateValidPath(4))
+        assertThatThrownBy(() -> ladderStepGenerator.generateValidStep(4))
                 .isInstanceOf(RuntimeException.class);
     }
 
-    private static class TestLadderPathGenerator extends LadderPathGenerator {
+    private static class TestLadderStepGenerator extends LadderStepGenerator {
         private final List<Boolean> path;
 
-        public TestLadderPathGenerator(final List<Boolean> path) {
+        public TestLadderStepGenerator(final List<Boolean> path) {
             this.path = path;
         }
 
