@@ -1,10 +1,10 @@
 import java.util.Objects;
 
-public class Person {
+public class Player {
 
     private final Name name;
 
-    public Person(String name) {
+    public Player(String name) {
         this.name = new Name(name);
     }
 
@@ -12,8 +12,8 @@ public class Person {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return Objects.equals(name, person.name);
+        Player player = (Player) o;
+        return Objects.equals(name, player.name);
     }
 
     @Override
