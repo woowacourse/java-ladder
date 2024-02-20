@@ -1,6 +1,7 @@
 package domain;
 
 public class Height {
+    private static final int MIN_HEIGHT = 1;
     private final int height;
 
     public Height(final int value) {
@@ -9,7 +10,7 @@ public class Height {
     }
 
     private void validateHeight(int value) {
-        if (value < 1) {
+        if (value < MIN_HEIGHT) {
             throw new IllegalArgumentException();
         }
     }
