@@ -31,4 +31,11 @@ public class PlayerTest {
         assertThatThrownBy(()-> new Player(invalidName))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("플레이어의 이름이 빈 문자열인 경우 예외가 발생한다.")
+    @Test
+    void createPlayerWithBlank() {
+        assertThatThrownBy(()-> new Player(""))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
