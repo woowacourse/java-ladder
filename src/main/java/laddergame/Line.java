@@ -23,6 +23,10 @@ public class Line {
         return new Line(personSize, booleanGenerator);
     }
 
+    public List<Boolean> getPoints() {
+        return points;
+    }
+
     private void validateOverlap(final List<Boolean> points) {
         // TODO : 인뎁스 줄이기
         for (int i = 0; i < points.size() - 1; i++) {

@@ -2,6 +2,7 @@ package laddergame;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import laddergame.exception.LadderLineOverlappedException;
 
 public class Ladder {
@@ -20,6 +21,10 @@ public class Ladder {
 
     public static Ladder create(final int height, final int personSize, final BooleanGenerator booleanGenerator) {
         return new Ladder(height, personSize, booleanGenerator);
+    }
+
+    public List<List<Boolean>> getLines() {
+        return lines.stream().map(Line::getPoints).collect(Collectors.toList());
     }
 
     private Line createLine(final int personSize, final BooleanGenerator booleanGenerator) {
