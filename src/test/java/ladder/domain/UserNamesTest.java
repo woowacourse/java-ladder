@@ -9,6 +9,16 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 class UserNamesTest {
 
+    @DisplayName("사용자가 2명 미만이면 예외가 발생한다.")
+    @Test
+    void createUserNamesByLowerSize() {
+        List<UserName> userNames = List.of(new UserName("a"));
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new UserNames(userNames))
+                .withMessage("사용자는 7명 이하여야 합니다");
+    }
+
     @DisplayName("사용자가 7명을 초과하면 예외가 발생한다.")
     @Test
     void createUserNamesByOverSize() {
