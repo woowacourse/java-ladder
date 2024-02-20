@@ -4,8 +4,12 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Line {
+    private final List<Boolean> line;
+    
     public Line(List<Boolean> line) {
         validate(line);
+
+        this.line = line;
     }
 
     private void validate(List<Boolean> line) {
