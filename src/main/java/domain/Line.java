@@ -22,5 +22,6 @@ public class Line {
     }
 
     public void putPoint(final int position) {
+        points.set(position, true);
     }
 }
