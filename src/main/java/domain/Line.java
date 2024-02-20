@@ -10,12 +10,18 @@ public class Line {
     private List<Boolean> points = new ArrayList<>();
 
     public Line(int count, BooleanGenerator booleanGenerator) {
-        for (int i = 0; i < count; i++) {
-            points.add(booleanGenerator.generate());
-        }
-     }
+        points.add(booleanGenerator.generate());
+        for (int i = 1; i < count; i++) {
+            if (!points.get(i - 1)) {
+                points.add(booleanGenerator.generate());
+                continue;
+            }
+            points.add(false);
 
-     List<Boolean> getPoints() {
+        }
+    }
+
+    List<Boolean> getPoints() {
         return points;
-     }
+    }
 }
