@@ -8,7 +8,7 @@ public class UserNames {
     }
 
     private void validateSize(final List<UserName> userNames) {
-        if (userNames.size() > 7) {
+        if (userNames.size() < 2 || userNames.size() > 7) {
             throw new IllegalArgumentException("사용자는 7명 이하여야 합니다");
         }
     }
