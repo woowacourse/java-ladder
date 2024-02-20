@@ -6,8 +6,9 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@DisplayName("사람")
 public class PersonTest {
-    @DisplayName("올바른 이름을 가진 사람을 생성한다.")
+    @DisplayName("이름이 올바르면 생성한다.")
     @Test
     void createTest() {
         // given
@@ -22,7 +23,7 @@ public class PersonTest {
     }
 
     @Test
-    @DisplayName("사람의 이름이 5글자를 넘으면 예외가 발생한다.")
+    @DisplayName("이름이 5글자를 넘으면 예외가 발생한다.")
     void nameLengthExceptionTest() {
         assertThatThrownBy(() -> new Person("naknak"))
                 .isInstanceOf(IllegalArgumentException.class);
