@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.List;
 
-public class Players {
+class Players {
 
     private final List<Player> players;
 

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class PlayersTest {
+class PlayersTest {
 
     @DisplayName("생성 테스트")
     @Test

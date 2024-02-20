@@ -1,4 +1,4 @@
-public class Game {
+class Game {
 
     public Game(String s) {
     }

@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Player {
+class Player {
 
     private final Name name;
 
