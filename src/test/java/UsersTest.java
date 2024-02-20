@@ -11,6 +11,16 @@ class UsersTest {
     @DisplayName("Users 생성")
     void createUsers() {
         //given
+        //when
+        //then
+        assertThatCode(() -> new Users())
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName(" 갖는 Users를 생성한다.")
+    void createUsersByNames() {
+        //given
         String userNames = "pobi,honux,crong,jk";
         //when
         //then
