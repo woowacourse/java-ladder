@@ -22,4 +22,12 @@ public class PlayerTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("참여자 이름에 영문자와 숫자가 아닌 문자가 포함될 경우 예외가 발생한다.")
+    void nameFormatTest() {
+        String name = "test!";
+        assertThatThrownBy(() -> new Player(name))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
