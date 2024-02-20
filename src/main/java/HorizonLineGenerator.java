@@ -4,6 +4,9 @@ public class HorizonLineGenerator {
         if (i == 0) {
             return HorizonLine.EMPTY;
         }
+        if (i == 1) {
+            return HorizonLine.EXIST;
+        }
         return null;
     }
 }
