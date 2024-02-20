@@ -2,9 +2,9 @@ package controller;
 
 import domain.Ladder;
 import domain.LadderHeight;
-import domain.Line;
 import domain.PlayerName;
 import view.InputView;
+import view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,9 +12,11 @@ import java.util.regex.Pattern;
 
 public class LadderGame {
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public LadderGame(InputView inputView) {
+    public LadderGame(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void start() {
@@ -22,6 +24,7 @@ public class LadderGame {
         LadderHeight ladderHeight = readLadderHeight();
 
         Ladder ladder = createLadder(playerNames, ladderHeight);
+        outputView.printResult(playerNames, ladder);
     }
 
     private Ladder createLadder(List<PlayerName> playerNames, LadderHeight ladderHeight) {

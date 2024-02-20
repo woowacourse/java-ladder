@@ -5,14 +5,13 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import view.InputView;
+import view.OutputView;
 
 import java.util.List;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderGameTest {
 
@@ -26,7 +25,8 @@ class LadderGameTest {
             //given
             String playerNameInfos = "aa,bb,cc";
             InputView inputView = new InputView(new Scanner(System.in));
-            LadderGame ladderGame = new LadderGame(inputView);
+            OutputView outputView = new OutputView();
+            LadderGame ladderGame = new LadderGame(inputView, outputView);
             //when
             List<PlayerName> playerNames = ladderGame.createPlayerNames(playerNameInfos);
             //then
