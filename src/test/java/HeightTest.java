@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,9 +23,14 @@ class HeightTest {
     public void throwExceptionWhenInputStringIsNotNumber(){
 
         String value = "five";
-        
+
         assertThrows(IllegalArgumentException.class, () -> new Height(value));
 
     }
-
+    @ParameterizedTest
+    @DisplayName("1보다 작은 값이면 예외를 발생한다.")
+    @ValueSource(strings = {"-1","0"})
+    public void throwExceptionWhenInputNumberIsSmallerThanOne(String value){
+        assertThrows(IllegalArgumentException.class,()->new Height(value));
+    }
 }
