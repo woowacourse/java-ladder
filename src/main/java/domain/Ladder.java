@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -25,6 +26,6 @@ public class Ladder {
     }
 
     public List<Bridges> getBridge() {
-        return bridges;
+        return Collections.unmodifiableList(bridges);
     }
 }

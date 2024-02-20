@@ -34,6 +34,7 @@ public class LadderTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("Ladder 가 사람 수 - 1 개 만큼의 Bridges 를 가진다.")
     @Test
     void ladderContainsRightLength() {
         //given
