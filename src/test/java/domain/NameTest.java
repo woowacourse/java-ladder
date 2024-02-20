@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NameTest {
 
@@ -14,6 +15,22 @@ class NameTest {
         Name name = new Name(nameA);
 
         assertThat(name).isEqualTo(new Name(nameA));
+    }
+
+    @Test
+    @DisplayName("이름의 길이가 1 보다 작다면 예외가 발생한다")
+    void name_length_less_than_one_throw_exception() {
+        assertThatThrownBy(() -> new Name(""))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름의 길이는 1 ~ 5 자 이어야 합니다.");
+    }
+
+    @Test
+    @DisplayName("이름의 길이가 5 보다 크다면 예외가 발생한다")
+    void name_length_more_than_five_throw_exception() {
+        assertThatThrownBy(() -> new Name("123456"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름의 길이는 1 ~ 5 자 이어야 합니다.");
     }
 
 }
