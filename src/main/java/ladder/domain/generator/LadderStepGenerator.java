@@ -3,15 +3,21 @@ package ladder.domain.generator;
 import java.util.List;
 
 public abstract class LadderStepGenerator {
-    public List<Boolean> generateValidStep(final int participantCount) {
-        List<Boolean> path = generate(participantCount);
-        validateStepWidth(path, participantCount);
+    protected final int stepWidth;
+
+    public LadderStepGenerator(final int stepWidth) {
+        this.stepWidth = stepWidth;
+    }
+
+    public List<Boolean> generateValidStep() {
+        List<Boolean> path = generate();
+        validateStepWidth(path);
         validateContinuousPath(path);
         return path;
     }
 
-    private void validateStepWidth(final List<Boolean> path, final int participantCount) {
-        if (path.size() != participantCount) {
+    private void validateStepWidth(final List<Boolean> path) {
+        if (path.size() != stepWidth) {
             throw new RuntimeException();
         }
     }
@@ -25,5 +31,5 @@ public abstract class LadderStepGenerator {
         });
     }
 
-    protected abstract List<Boolean> generate(final int participantCount);
+    protected abstract List<Boolean> generate();
 }

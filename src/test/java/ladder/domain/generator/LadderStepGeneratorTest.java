@@ -13,10 +13,10 @@ public class LadderStepGeneratorTest {
     void checkContinuousPathTest() {
         // given
         List<Boolean> path = List.of(true, true, false, true);
-        LadderStepGenerator ladderStepGenerator = new TestLadderStepGenerator(path);
+        LadderStepGenerator ladderStepGenerator = new TestLadderStepGenerator(path, 4);
 
         // when & then
-        assertThatThrownBy(() -> ladderStepGenerator.generateValidStep(4))
+        assertThatThrownBy(ladderStepGenerator::generateValidStep)
                 .isInstanceOf(RuntimeException.class);
     }
 
@@ -25,22 +25,23 @@ public class LadderStepGeneratorTest {
     void checkStepWidthTest() {
         // given
         List<Boolean> path = List.of(true, false, true);
-        LadderStepGenerator ladderStepGenerator = new TestLadderStepGenerator(path);
+        LadderStepGenerator ladderStepGenerator = new TestLadderStepGenerator(path, 4);
 
         // when & then
-        assertThatThrownBy(() -> ladderStepGenerator.generateValidStep(4))
+        assertThatThrownBy(ladderStepGenerator::generateValidStep)
                 .isInstanceOf(RuntimeException.class);
     }
 
     private static class TestLadderStepGenerator extends LadderStepGenerator {
         private final List<Boolean> path;
 
-        public TestLadderStepGenerator(final List<Boolean> path) {
+        public TestLadderStepGenerator(final List<Boolean> path, final int stepWidth) {
+            super(stepWidth);
             this.path = path;
         }
 
         @Override
-        protected List<Boolean> generate(int participantCount) {
+        protected List<Boolean> generate() {
             return path;
         }
     }

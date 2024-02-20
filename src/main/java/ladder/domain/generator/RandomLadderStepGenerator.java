@@ -1,7 +1,5 @@
 package ladder.domain.generator;
 
-import ladder.domain.generator.LadderStepGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -9,11 +7,15 @@ import java.util.Random;
 public class RandomLadderStepGenerator extends LadderStepGenerator {
     private final Random random = new Random();
 
+    public RandomLadderStepGenerator(int stepWidth) {
+        super(stepWidth);
+    }
+
     @Override
-    protected List<Boolean> generate(final int participantCount) {
+    protected List<Boolean> generate() {
         List<Boolean> ladderStep = new ArrayList<>();
         Boolean isPrevExist = false;
-        for (int currentCount = 0; currentCount < participantCount; currentCount++) {
+        for (int currentCount = 0; currentCount < stepWidth; currentCount++) {
             Boolean isCurrentExist = generatePath(isPrevExist);
             ladderStep.add(isCurrentExist);
             isPrevExist = isCurrentExist;

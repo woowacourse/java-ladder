@@ -13,10 +13,10 @@ public class RandomLadderStepGeneratorTest {
     @DisplayName("올바르게 랜덤한 사다리 스텝을 생성한다.")
     void createRandomLadderStepTest(int participantCount) {
         // given
-        LadderStepGenerator randomLadderStepGenerator = new RandomLadderStepGenerator();
+        LadderStepGenerator randomLadderStepGenerator = new RandomLadderStepGenerator(participantCount);
 
         // when & then
-        assertThatCode(() -> randomLadderStepGenerator.generate(participantCount))
+        assertThatCode(randomLadderStepGenerator::generate)
                 .doesNotThrowAnyException();
     }
 }
