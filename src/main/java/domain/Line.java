@@ -13,9 +13,22 @@ public class Line {
     }
 
     public void makeLeg(int legCount) {
-        for (int i = 0; i < legCount; i++) {
-            legs.add(RandomGenerator.generateRandomBoolean());
+        legs.add(generate());
+        for (int i = 1; i < legCount; i++) {
+            decideLegExist(i);
         }
+    }
+
+    private void decideLegExist(int legIndex) {
+        if(legs.get(legIndex - 1)){
+            legs.add(false);
+            return;
+        }
+        legs.add(generate());
+    }
+
+    public Boolean generate(){
+        return RandomGenerator.generateRandomBoolean();
     }
 
     public List<Boolean> getLegs() {

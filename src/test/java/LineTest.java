@@ -2,6 +2,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import domain.Line;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,5 +23,23 @@ public class LineTest {
         line.makeLeg(3);
 
         assertThat(line.getLegs().size()).isEqualTo(3);
+    }
+
+    @DisplayName("라인을 이루는 다리는 겹치지 않는다")
+    @Test
+    void makeLegWithUnOverlap() {
+        Line line = new Line() {
+            @Override
+            public Boolean generate() {
+                return true;
+            }
+        };
+
+        line.makeLeg(3);
+        List<Boolean> legs = line.getLegs();
+
+        for (int i = 1; i < legs.size(); i++) {
+            assertThat(legs.get(i)).isNotEqualTo(legs.get(i - 1));
+        }
     }
 }
