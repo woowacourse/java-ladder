@@ -3,8 +3,6 @@ package domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ParticipantsTest {
@@ -20,7 +18,7 @@ class ParticipantsTest {
 
     @Test
     @DisplayName("참가자가 50명 초과면 예외가 발생한다.")
-    void lessThanTwoExceptionTest() {
+    void moreThanTwoExceptionTest() {
         String[] names = {
                 "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
                 "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
