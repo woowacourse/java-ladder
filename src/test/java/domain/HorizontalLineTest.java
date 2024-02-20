@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import generator.BooleanGenerator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,16 +43,10 @@ class HorizontalLineTest {
     @DisplayName("가로줄을 항상 생성한다면, 바로 다음 가로줄은 생성하지 않는다.")
     void createCrossingLinesTest() {
         // given
-        class TestBooleanGenerator implements BooleanGenerator {
-            @Override
-            public boolean generate() {
-                return true;
-            }
-        }
         HorizontalLine horizontalLine = new HorizontalLine(5);
 
         // when
-        horizontalLine.createCrossingLines(new TestBooleanGenerator());
+        horizontalLine.createCrossingLines(() -> true);
         List<Integer> actual = horizontalLine.getCrossingLineIndices();
 
         // then
