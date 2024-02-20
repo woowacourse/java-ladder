@@ -25,4 +25,14 @@ class LineTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참여할 사람은 최소 2명이어야 합니다.");
     }
+
+    @Test
+    @DisplayName("사다리의 경로는 연달아 있을 수 없다.")
+    void createPathThrowException() {
+        int personCount = 4;
+        Line line = new Line(personCount);
+        for (int i = 0; i < personCount - 1; i++) {
+            assertThat(line.get(i)).isNotEqualTo(line.get(i + 1));
+        }
+    }
 }

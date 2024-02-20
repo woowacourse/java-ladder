@@ -27,4 +27,8 @@ public class Line {
     public int getSize() {
         return points.size();
     }
+
+    public boolean get(int index) {
+        return true;
+    }
 }
