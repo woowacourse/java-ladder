@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import laddergame.domain.Ladder;
-import laddergame.domain.Name;
 import laddergame.domain.Names;
 import laddergame.domain.RandomBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
@@ -31,10 +30,7 @@ public class LadderTest {
     void ladderWidth() {
         // given
         Ladder ladder = Ladder.create(5, 4, new RandomBooleanGenerator());
-        Names names = new Names(List.of(new Name("pobi"),
-                new Name("honux"),
-                new Name("crong"),
-                new Name("jk")));
+        Names names = new Names(List.of("pobi", "honux", "crong", "jk"));
 
         // when
         final int width = ladder.getWidth(names);
@@ -48,10 +44,7 @@ public class LadderTest {
     void lastNameMax() {
         // given
         Ladder ladder = Ladder.create(5, 4, new RandomBooleanGenerator());
-        Names names = new Names(List.of(new Name("pobi"),
-                new Name("honux"),
-                new Name("jk"),
-                new Name("crong")));
+        Names names = new Names(List.of("pobi", "honux", "jk", "crong"));
 
         // when
         final int width = ladder.getWidth(names);
