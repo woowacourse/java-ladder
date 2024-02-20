@@ -10,7 +10,7 @@ public class Player {
     }
 
     private void validate(final String name) {
-        if (name.length() > NAME_MAX_LENGTH) {
+        if (name.length() > NAME_MAX_LENGTH || name.isBlank()) {
             throw new IllegalArgumentException();
         }
     }
