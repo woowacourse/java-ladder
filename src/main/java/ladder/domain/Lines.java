@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
 import static java.util.Collections.unmodifiableList;
@@ -12,13 +13,13 @@ public class Lines {
         this.lines = lines;
     }
 
-    public static Lines of(final int ladderHeight, final int personCount) {
-        return new Lines(createLines(ladderHeight, personCount));
+    public static Lines of(final Supplier<Boolean> generator, final int ladderHeight, final int personCount) {
+        return new Lines(createLines(generator, ladderHeight, personCount));
     }
 
-    private static List<Line> createLines(final int ladderHeight, final int personCount) {
+    private static List<Line> createLines(final Supplier<Boolean> generator, final int ladderHeight, final int personCount) {
         return IntStream.rangeClosed(1, ladderHeight)
-                .mapToObj(i -> new Line(personCount))
+                .mapToObj(i -> new Line(generator, personCount))
                 .toList();
     }
 
