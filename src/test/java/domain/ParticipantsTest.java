@@ -29,4 +29,14 @@ class ParticipantsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 참가자는 50명 이하여야 합니다.");
     }
+
+    @Test
+    @DisplayName("참가자 이름에 중복이 있으면 예외가 발생한다.")
+    void duplicateExceptionTest() {
+        String[] names = {"siso", "siso"};
+
+        assertThatThrownBy(() -> new Participants(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 참가자 이름은 중복될 수 없습니다.");
+    }
 }
