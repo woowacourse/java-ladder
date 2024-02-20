@@ -5,11 +5,11 @@ import java.util.List;
 
 public class PointFactory {
     private final NumberGenerator randomNumberGenerator;
-    private final int count;
+    private final int playerCount;
 
-    public PointFactory(NumberGenerator randomNumberGenerator, int count) {
+    public PointFactory(NumberGenerator randomNumberGenerator, int playerCount) {
         this.randomNumberGenerator = randomNumberGenerator;
-        this.count = count;
+        this.playerCount = playerCount;
     }
 
     public boolean canBuild() {
@@ -26,12 +26,12 @@ public class PointFactory {
        return new Point(false);
     }
 
-    public List<Point> generatePoints() {
+    public Line generatePoints() {
         List<Point> points = new ArrayList<>();
         Point truePoint = new Point(true);
         Point falsePoint = new Point(false);
         points.add(generate());
-        for (int i = 1; i < count - 1; i++) {
+        for (int i = 1; i < playerCount - 1; i++) {
             if (points.get(i-1).equals(truePoint)) {
                 points.add(falsePoint);
             }
@@ -40,6 +40,6 @@ public class PointFactory {
             }
         }
         points.add(falsePoint);
-        return points;
+        return new Line(points);
     }
 }
