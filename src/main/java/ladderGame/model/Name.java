@@ -1,4 +1,4 @@
-package ladderGame;
+package ladderGame.model;
 
 public class Name {
     private final String name;
