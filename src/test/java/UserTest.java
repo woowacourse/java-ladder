@@ -3,13 +3,15 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.*;
+
 class UserTest {
 
     @Test
     @DisplayName("사용자를 생성한다.")
     void createUser() {
         User user = new User();
-        Assertions.assertThatCode(() -> new User())
+        assertThatCode(() -> new User())
                 .doesNotThrowAnyException();
     }
 
@@ -20,7 +22,7 @@ class UserTest {
         String userName = "pobia";
         //when
         //then
-        Assertions.assertThatCode(() -> new User(userName))
+        assertThatCode(() -> new User(userName))
                 .doesNotThrowAnyException();
     }
 
@@ -31,8 +33,19 @@ class UserTest {
         String userName = "rushrush";
         //when
         //then
-        Assertions.assertThatThrownBy(() -> new User(userName)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new User(userName)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("사용자 이름은 비어 있을 수 없다")
+    void userNameEmptyTest() {
+        //given
+        String userName = "";
+        //when
+        //then
+        assertThatThrownBy(() -> new User(userName)).isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 
 
