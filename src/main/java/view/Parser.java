@@ -9,4 +9,8 @@ public class Parser {
     public static List<String> splitName(String input) {
         return Arrays.asList(input.split(DELIMITER));
     }
+
+    public static int parseHeight(String input) {
+        return Integer.parseInt(input);
+    }
 }
