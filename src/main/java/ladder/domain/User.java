@@ -15,6 +15,10 @@ public class User {
         this.userName = userName;
     }
 
+    public String getUserName() {
+        return this.userName;
+    }
+
     private void validateUserName(String userName) {
         validateNameLength(userName);
         validateNameEngFormat(userName);

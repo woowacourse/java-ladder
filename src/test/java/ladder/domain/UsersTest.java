@@ -42,4 +42,18 @@ class UsersTest {
                 .hasMessage("[ERROR] 사용자는 2~10명 까지만 등록 가능합니다.");
     }
 
+
+    @DisplayName("사용자의 이름이 중복된다면 예외로 처리한다.")
+    @Test
+    void newUsersTestByDuplicatedUserName() {
+        //given
+        List<User> users = List.of(new User("ted"),
+                new User("mason"),
+                new User("ted"));
+
+        //when, then
+        assertThatThrownBy(() -> new Users(users))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 중복된 사용자명이 존재합니다.");
+    }
 }
