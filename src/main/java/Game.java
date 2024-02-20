@@ -2,10 +2,13 @@ import java.util.List;
 
 class Game {
 
-    public Game(String s) {
+    private final Players players;
+
+    public Game(String input) {
+        this.players = new Players(input);
     }
 
     public List<Player> getPlayers() {
-        return null;
+        return this.players.getPlayers();
     }
 }
