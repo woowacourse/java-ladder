@@ -2,6 +2,7 @@ package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ public class LadderTest {
     @Test
     void testSizeOfLadderLines() {
         LadderHeight ladderHeight = new LadderHeight(5);
-        Ladder ladder = Ladder.create(ladderHeight, 3, () -> true);
+        Ladder ladder = Ladder.create(ladderHeight, 3, (count) -> List.of(true, false, true));
         assertThat(ladder.getLines().size())
                 .isEqualTo(5);
     }
