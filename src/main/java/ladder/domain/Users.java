@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 public class Users {
 
     private final List<User> users;
+    private final int MIN_USER_SIZE = 2;
+    private final int MAX_USER_SIZE = 10;
 
     public Users(List<User> users) {
         validateUsers(users);
@@ -19,7 +21,7 @@ public class Users {
     }
 
     private void validateUsersSize(List<User> users) {
-        if (users.size() < 2 || users.size() > 10) {
+        if (users.size() < MIN_USER_SIZE || users.size() > MAX_USER_SIZE) {
             throw new IllegalArgumentException("[ERROR] 사용자는 2~10명 까지만 등록 가능합니다.");
         }
     }
