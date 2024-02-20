@@ -4,13 +4,13 @@ import java.util.regex.Pattern;
 
 public class User {
 
-    private final String name;
+    private final String userName;
 
-    public User(String name) {
-        validateNameLength(name);
-        validateNameEngFormat(name);
-        validateBlankInName(name);
-        this.name = name;
+    public User(String userName) {
+        validateNameLength(userName);
+        validateNameEngFormat(userName);
+        validateBlankInName(userName);
+        this.userName = userName;
     }
 
     private void validateNameLength(String name) {
