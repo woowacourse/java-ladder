@@ -11,7 +11,7 @@ public class Name {
     private void validate(String inputName){
         validateAvailableLength(inputName);
         validateBlank(inputName);
-        vaildateContainSpaceInName(inputName);
+        validateContainBlankInName(inputName);
     }
     private void validateAvailableLength(String inputName) {
         if (inputName.length() > 5) {
@@ -21,6 +21,11 @@ public class Name {
     private void validateBlank(String initialInput) {
         if(initialInput.isBlank()) {
             throw new IllegalArgumentException("공백으로 이루어진 이름은 사용할 수 없습니다.");
+        }
+    }
+    private void validateContainBlankInName(String inputName) {
+        if(inputName.contains(" ")) {
+            throw new IllegalArgumentException();
         }
     }
 

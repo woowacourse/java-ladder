@@ -36,4 +36,10 @@ class NameTest {
         assertThrows(IllegalArgumentException.class,() -> new Name(value));
     }
 
+    @ParameterizedTest
+    @DisplayName("공백이 포함된 문자열을 이용한 생성은 예외를 발생한다.")
+    @ValueSource(strings = {"d obby","j o y", "도  비"})
+    public void throwExceptionWhenInputStringContainsBlank(String value){
+        assertThrows(IllegalArgumentException.class,() -> new Name(value));
+    }
 }
