@@ -17,4 +17,12 @@ class NameTest {
         assertInstanceOf(Name.class,name);
         assertEquals(name.getValue(),value);
     }
+
+    @Test
+    @DisplayName("다섯글자를 초과한 문자열을 통한 생성은 예외를 발생한다.")
+    public void throwExceptionWhenInputIsOverThan5(){
+        String value = "longName";
+
+        assertThrows(IllegalArgumentException.class,() -> new Name(value));
+    }
 }
