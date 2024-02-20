@@ -20,4 +20,7 @@ public class Line {
     public boolean hasPoint() {
         return false;
     }
+
+    public void putPoint(final int position) {
+    }
 }

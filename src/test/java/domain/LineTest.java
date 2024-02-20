@@ -28,6 +28,19 @@ class LineTest {
         Assertions.assertThat(line.getPoints()).containsAll(List.of(false, false, false, false));
     }
 
+    @DisplayName("주어진 위치에 point를 놓는다.")
+    @Test
+    void putPoint(){
+        //given
+        int size = 4;
+        int position = 0;
+        final Line line = new Line(size);
+        //when
+        line.putPoint(position);
+        //then
+        Assertions.assertThat(line.hasPoint()).isTrue();
+    }
+
     @DisplayName("주어진 위치에 point가 있다.")
     @Test
     void hasPoint(){
