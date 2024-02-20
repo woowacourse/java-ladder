@@ -21,12 +21,12 @@ public class LadderTest {
     @ParameterizedTest(name = "높이가 {0}인 경우 예외가 발생한다.")
     @ValueSource(ints = {-11, 0})
     void constructFailWithNotPositiveHeight(int height){
-        //TODO 더 적합한 메서드 이름 고민
         assertThatThrownBy(() -> new Ladder(4, height))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest
+    @DisplayName("사람 수가 자연수가 아니라면 예외가 발생한다.")
+    @ParameterizedTest(name = "사람 수가 {0}인 경우 예외가 발생한다.")
     @ValueSource(ints = {-3, 0})
     void constructFailWithNotPositiveWidth(int personCount) {
         assertThatThrownBy(() -> new Ladder(personCount, 5))
