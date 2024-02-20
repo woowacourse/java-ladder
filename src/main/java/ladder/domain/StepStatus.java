@@ -9,4 +9,8 @@ public enum StepStatus {
         }
         return NONE;
     }
+
+    public boolean isExist() {
+        return this == EXIST;
+    }
 }
