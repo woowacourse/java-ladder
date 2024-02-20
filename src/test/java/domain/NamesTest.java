@@ -18,9 +18,17 @@ class NamesTest {
     @ParameterizedTest
     @ValueSource(strings = {",abc,ab", "abc,ab,", ",abc,ab,"})
     @DisplayName("구분자가 맨 앞이나 맨 뒤에 있는지 확인")
-    void validate(String names) {
+    void validateSeparator(String names) {
         Assertions.assertThatThrownBy(() -> new Names(names))
                 .isInstanceOf(RuntimeException.class)
                 .hasMessage("구분자가 맨 앞이나 맨 뒤에 있으면 안됩니다.");
+    }
+
+    @Test
+    @DisplayName("사람은 최대 10명까지 받을 수 있다.")
+    void validateNameCount() {
+        Assertions.assertThatThrownBy(() -> new Names("a,b,c,d,e,f,g,h,i,j,k"))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("사람은 최대 10명까지 받을 수 있습니다.");
     }
 }

@@ -15,5 +15,9 @@ public class Names {
         if (distinctCount != splitNames.size()) {
             throw new RuntimeException("이름은 중복될 수 없습니다.");
         }
+
+        if (splitNames.size() > 10) {
+            throw new RuntimeException("사람은 최대 10명까지 받을 수 있습니다.");
+        }
     }
 }
