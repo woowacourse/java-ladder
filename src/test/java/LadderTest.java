@@ -1,3 +1,4 @@
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.Ladder;
@@ -11,7 +12,8 @@ public class LadderTest {
     @DisplayName("사다리 객체를 정상적으로 생성한다.")
     @Test
     void createLadder() {
-        Ladder ladder = new Ladder(5);
+        assertThatCode(()->new Ladder(5))
+                .doesNotThrowAnyException();
     }
 
     @DisplayName("사다리 높이가 0이하면 예외가 발생한다.")
