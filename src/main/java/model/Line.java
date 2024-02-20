@@ -22,4 +22,10 @@ public class Line {
             preBridge = currentBridge;
         }
     }
+
+    public List<Boolean> getBridges() {
+        return bridges.stream()
+                .map(Bridge::getIsConnected)
+                .toList();
+    }
 }

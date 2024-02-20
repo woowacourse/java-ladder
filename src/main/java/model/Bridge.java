@@ -6,4 +6,8 @@ public class Bridge {
     public Bridge(Boolean isConnected) {
         this.isConnected = isConnected;
     }
+
+    public Boolean getIsConnected() {
+        return isConnected;
+    }
 }
