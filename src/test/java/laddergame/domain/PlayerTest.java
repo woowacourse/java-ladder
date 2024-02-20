@@ -29,6 +29,8 @@ public class PlayerTest {
         final String actualName = "nameTest";
 
         //when&then
-        assertThrows(IllegalArgumentException.class, () -> {new Player(actualName);});
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Player(actualName);
+        });
     }
 }
