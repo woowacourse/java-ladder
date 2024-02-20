@@ -10,15 +10,18 @@ public class ResultView {
     public static void printNames(String[] userNames) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (String name : userNames) {
-            stringBuilder.append(String.format("%5s", name));
+        stringBuilder.append(String.format("%-5s", userNames[0]));
+
+        for (int i = 1; i < userNames.length - 1; i++) {
+            stringBuilder.append(String.format("%6s", userNames[i]));
         }
+        stringBuilder.append(String.format("%5s", userNames[userNames.length - 1]));
         System.out.println(stringBuilder);
-        System.out.println();
     }
 
     public static void printResult(Ladder ladder) {
         for (Line line : ladder.getLadder()) {
+            System.out.print("    ");
             System.out.print("|");
             for (Boolean point : line.getPoints()) {
                 if(point){
