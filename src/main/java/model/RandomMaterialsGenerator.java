@@ -9,9 +9,17 @@ public class RandomMaterialsGenerator implements MaterialsGenerator {
     public List<Boolean> pickMaterials(int count) {
         List<Boolean> materials = new ArrayList<>();
         while (materials.size() == count) {
-            boolean material = new Random().nextBoolean();
+            boolean material = false;
+            if (isPossibleToMake(materials)) {
+                material = new Random().nextBoolean();
+            }
             materials.add(material);
         }
         return materials;
+    }
+
+    private boolean isPossibleToMake(List<Boolean> materials) {
+        boolean isExistMaterial = materials.get(materials.size() - 1);
+        return !isExistMaterial;
     }
 }
