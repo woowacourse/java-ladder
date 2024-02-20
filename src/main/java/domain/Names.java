@@ -1,9 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Names {
     private final List<Name> names;
@@ -13,12 +11,16 @@ public class Names {
     }
 
     private void validateNameDuplication(List<String> rawNames) {
-        if (getDistinctCount(rawNames) != rawNames.size()) {
+        if (hasDuplicatedName(rawNames)) {
             throw new IllegalArgumentException();
         };
     }
 
-    private static int getDistinctCount(List<String> names) {
+    private boolean hasDuplicatedName(List<String> rawNames) {
+        return getDistinctCount(rawNames) != rawNames.size();
+    }
+
+    private int getDistinctCount(List<String> names) {
         return (int) names.stream()
                 .distinct()
                 .count();
