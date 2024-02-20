@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class PlayerNameTest {
+class PlayerNameTest {
     private static final String nullString = null;
 
     @DisplayName("이름은 5글자를 넘을 수 없다")
@@ -25,7 +25,7 @@ public class PlayerNameTest {
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = " ")
-    void validateTest_WhenNameIsEmpty(String name){
+    void validateTest_WhenNameIsEmpty(String name) {
         assertThatThrownBy(() -> new PlayerName(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 한글자 이상이어야 합니다.");
