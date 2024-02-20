@@ -21,7 +21,7 @@ public class UserName {
         }
     }
 
-    private static void validateNamePattern(final String name) {
+    private void validateNamePattern(final String name) {
         Matcher matcher = NAME_PATTERN.matcher(name);
         if (matcher.find()) {
             throw new IllegalArgumentException("이름에는 한글, 영문, 숫자, `-`, `_`, `&`만 포함될 수 있습니다.");
