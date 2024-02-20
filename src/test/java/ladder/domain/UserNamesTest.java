@@ -7,8 +7,8 @@ import java.util.List;
 
 import static ladder.domain.UserNames.MAX_SIZE;
 import static ladder.domain.UserNames.MIN_SIZE;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
 
 class UserNamesTest {
 
