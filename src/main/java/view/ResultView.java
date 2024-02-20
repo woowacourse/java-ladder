@@ -24,11 +24,12 @@ public class ResultView {
                     System.out.print(UNMOVABLE_LINE);
                 }
             }
+            System.out.println();
         }
     }
 
     private static void printNames(Names names) {
-        String firstName = String.format("%-5s", names.getNames().get(0));
+        String firstName = String.format("%-5s", names.getNames().get(0).getName());
         String nextLine = "";
         for (int i = 1; i<names.getNames().size(); i++) {
             nextLine += String.format("%6s", names.getNames().get(i).getName());

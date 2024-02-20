@@ -7,7 +7,11 @@ public class Names {
     private final List<Name> names;
     public Names(List<String> rawNames) {
         validateNameDuplication(rawNames);
-        this.names = new ArrayList<>();
+        this.names = createNames(rawNames);
+    }
+
+    private List<Name> createNames(List<String> names) {
+        return names.stream().map(Name::new).toList();
     }
 
     private void validateNameDuplication(List<String> rawNames) {
