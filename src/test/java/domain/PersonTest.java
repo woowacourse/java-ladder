@@ -24,14 +24,7 @@ public class PersonTest {
     @Test
     @DisplayName("사람의 이름이 5글자를 넘으면 예외가 발생한다.")
     void nameLengthExceptionTest() {
-        // given
-        String name = "pobipo";
-
-        // when
-        Person person = new Person(name);
-
-        // then
-        assertThatThrownBy(() -> new Person(name))
+        assertThatThrownBy(() -> new Person("naknak"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
