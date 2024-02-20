@@ -15,7 +15,8 @@ public class PeopleTest {
     void createTest() {
         // given
         String names = "pobi,nakna,seyan";
-        List<String> expected = List.of("pobi", "nakna", "seyan");
+        List<Person> expected =
+                List.of(new Person("pobi"), new Person("nakna"), new Person("seyan"));
 
         // when
         People people = People.from(names);
