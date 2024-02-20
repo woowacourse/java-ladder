@@ -3,6 +3,8 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class LineTest {
 
     @DisplayName("인원수 -1 개수 만큼의 포인트를 가진 Line 인스턴스를 생성한다.")
@@ -11,6 +13,6 @@ public class LineTest {
         final Line line = new Line(4);
 
         assertThat(line.getPoints().size())
-                .isEqual(4 - 1);
+                .isEqualTo(4 - 1);
     }
 }
