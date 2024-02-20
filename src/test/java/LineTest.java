@@ -1,3 +1,4 @@
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import domain.Line;
@@ -13,12 +14,13 @@ public class LineTest {
                 .doesNotThrowAnyException();
     }
 
-    @DisplayName("라인은 다리를 생성한다.")
+    @DisplayName("라인은 다리 숫자에 맞게 다리를 생성한다.")
     @Test
     void makeLeg() {
         Line line = new Line();
 
-        assertThatCode(()->line.makeLeg(3))
-                .doesNotThrowAnyException();
+        line.makeLeg(3);
+
+        assertThat(line.getLegs().size()).isEqualTo(3);
     }
 }
