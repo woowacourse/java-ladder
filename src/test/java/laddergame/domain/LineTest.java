@@ -3,8 +3,7 @@ package laddergame.domain;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import laddergame.util.NumberGenerator;
-import laddergame.util.RandomBooleanGenerator;
+import laddergame.util.BooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +30,7 @@ public class LineTest {
         final int position = 1;
         Line line = new Line(personCount);
 
-        NumberGenerator alwaysTrueGenerator = () -> 1;
+        BooleanGenerator alwaysTrueGenerator = () -> true;
 
         //when
         line.buildBridge(position, alwaysTrueGenerator);

@@ -3,7 +3,7 @@ package laddergame.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import laddergame.util.NumberGenerator;
+import laddergame.util.BooleanGenerator;
 
 public class Line {
     private final List<Boolean> points;
@@ -12,8 +12,8 @@ public class Line {
         this.points = new ArrayList<>(Collections.nCopies(playerCount, Boolean.FALSE));
     }
 
-    public void buildBridge(final int position, final NumberGenerator numberGenerator) {
-        if (numberGenerator.generate() == 1) {
+    public void buildBridge(final int position, final BooleanGenerator booleanGenerator) {
+        if (booleanGenerator.generate()) {
             points.set(position, Boolean.TRUE);
         }
     }
