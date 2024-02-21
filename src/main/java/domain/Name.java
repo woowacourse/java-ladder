@@ -2,6 +2,8 @@ package domain;
 
 public class Name {
     private static final int MAX_NAME_LENGTH = 5;
+    private static final int MIN_NAME_LENGTH = 2;
+
     private final String name;
 
     public Name(String value) {
@@ -14,7 +16,7 @@ public class Name {
             throw new IllegalArgumentException();
         }
 
-        if (value.length() < 2) {
+        if (value.length() < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
