@@ -5,10 +5,10 @@ import ladder.domain.generator.BooleanGenerator;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Players;
-import ladder.dto.LadderDto;
-import ladder.dto.PlayersDto;
 import ladder.dto.request.LadderHeightRequest;
 import ladder.dto.request.PlayerNamesRequest;
+import ladder.dto.response.LadderResponse;
+import ladder.dto.response.PlayersResponse;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -47,8 +47,8 @@ public class LadderController {
 
     private void printLadder(final Players players, final Ladder ladder) {
         outputView.printLadderResultMessage();
-        outputView.printPlayerNames(PlayersDto.from(players));
-        outputView.printLadder(LadderDto.from(ladder));
+        outputView.printPlayerNames(PlayersResponse.from(players));
+        outputView.printLadder(LadderResponse.from(ladder));
     }
 
     private <T> T retryOnException(final Supplier<T> supplier) {

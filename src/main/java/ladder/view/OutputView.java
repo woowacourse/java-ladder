@@ -1,14 +1,14 @@
 package ladder.view;
 
-import ladder.dto.LadderDto;
-import ladder.dto.PlayersDto;
+import ladder.dto.response.LadderResponse;
+import ladder.dto.response.PlayersResponse;
 
 public interface OutputView {
     void printErrorMessage(String message);
 
     void printLadderResultMessage();
 
-    void printPlayerNames(final PlayersDto playersDto);
+    void printPlayerNames(PlayersResponse playersResponse);
 
-    void printLadder(final LadderDto ladderDto);
+    void printLadder(LadderResponse ladderResponse);
 }

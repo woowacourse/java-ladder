@@ -2,9 +2,10 @@ package ladder.view.console;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import ladder.dto.LadderDto;
-import ladder.dto.LineDto;
-import ladder.dto.PlayersDto;
+import ladder.dto.response.LadderResponse;
+import ladder.dto.response.LineResponse;
+import ladder.dto.response.PlayerResponse;
+import ladder.dto.response.PlayersResponse;
 import ladder.view.OutputView;
 
 public class ConsoleOutputView implements OutputView {
@@ -24,8 +25,10 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printPlayerNames(final PlayersDto playersDto) {
-        final List<String> playerNames = playersDto.playerNames();
+    public void printPlayerNames(final PlayersResponse playersResponse) {
+        final List<String> playerNames = playersResponse.playerResponses().stream()
+                .map(PlayerResponse::name)
+                .toList();
 
         System.out.println();
         System.out.println(generatePlayerNamesMessage(playerNames));
@@ -42,13 +45,13 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printLadder(final LadderDto ladderDto) {
-        final String ladderMessage = generateLadderMessage(ladderDto.lineDtos());
+    public void printLadder(final LadderResponse ladderResponse) {
+        final String ladderMessage = generateLadderMessage(ladderResponse.lineResponses());
         System.out.println(ladderMessage);
     }
 
-    private String generateLadderMessage(final List<LineDto> lineDtos) {
-        return lineDtos.stream()
+    private String generateLadderMessage(final List<LineResponse> lineResponses) {
+        return lineResponses.stream()
                 .map(lineDto -> generateLadderLine(lineDto.rungsExist()))
                 .collect(Collectors.joining(System.lineSeparator()));
     }
