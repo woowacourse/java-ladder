@@ -25,5 +25,15 @@ class LineTest {
                 .hasMessage("가로 라인이 이어지면 안된다.");
     }
 
+    @Test
+    @DisplayName("해당 위치에 가로 라인이 존재하는 지 테스트")
+    void isExistTest() {
+        Line line = new Line(List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE, Stick.EXISTENCE));
+
+        Assertions.assertThat(line.isExist(1)).isTrue();
+        Assertions.assertThat(line.isExist(2)).isFalse();
+        Assertions.assertThat(line.isExist(3)).isTrue();
+    }
+
 
 }

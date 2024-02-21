@@ -33,4 +33,8 @@ public class Line {
         return IntStream.range(1, line.size())
                 .anyMatch(i -> line.get(i).isExist() && line.get(i - 1).isExist());
     }
+
+    public boolean isExist(int position) {
+        return line.get(position - 1).isExist();
+    }
 }
