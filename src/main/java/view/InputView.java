@@ -7,9 +7,10 @@ public class InputView {
     private final Scanner scanner;
 
     public static final Pattern PLAYER_NAMES_INPUT_PATTERN = Pattern.compile("[가-힣a-zA-Z]{1,5}(,[가-힣a-zA-Z]{1,5})*");
+    public static final String PLAYER_NAMES_INPUT_DELIMITER = ",";
     public static final String BLANK_SPACE = " ";
     public static final String BLANK_EMPTY = "";
-    public static final String PLAYER_NAMES_INPUT_DELIMITER = ",";
+    public static final int READ_LIMIT = 10;
 
     public InputView(Scanner scanner) {
         this.scanner = scanner;

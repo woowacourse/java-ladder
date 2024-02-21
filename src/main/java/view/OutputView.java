@@ -17,6 +17,11 @@ public class OutputView {
         printLadder(ladder);
     }
 
+    public void printErrorMessage(Exception exception) {
+        System.out.println(exception.getMessage());
+    }
+
+
     private void printPlayerNames(PlayerNames playerNames) {
         StringJoiner playerNamesJoiner = new StringJoiner(" ");
         int leftNameCount = playerNames.getCount() / 2;
@@ -32,6 +37,7 @@ public class OutputView {
         System.out.println(playerNamesJoiner);
     }
 
+    // TODO : indent depth 처리
     private void printLadder(Ladder ladder) {
         StringJoiner ladderJoiner = new StringJoiner(LADDER_FRAME, LADDER_FRAME, LADDER_FRAME);
         for (Line line : ladder.getLines()) {
