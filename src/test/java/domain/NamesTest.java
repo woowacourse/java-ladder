@@ -25,7 +25,7 @@ class NamesTest {
     }
 
     @Test
-    @DisplayName("사람은 최대 10명까지 받을 수 있다.")
+    @DisplayName("사람이름 개수 검사")
     void validateNameCount() {
         Assertions.assertThatThrownBy(() -> new Names("a,b,c,d,e,f,g,h,i,j,k"))
                 .isInstanceOf(RuntimeException.class)
