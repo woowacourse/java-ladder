@@ -23,9 +23,25 @@ public class InputView {
         return names;
     }
 
-    public String readHeight() {
+    public int readHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String rawHeight = scanner.nextLine();
-        return rawHeight;
+        return convert(rawHeight);
+    }
+
+    private int convert(String rawHeight) {
+        try {
+            validatePositiveNumber(rawHeight);
+            return Integer.parseInt(rawHeight);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException(); //TODO: 예외메시지
+        }
+    }
+
+    private void validatePositiveNumber(String rawHeight) {
+        int height = Integer.parseInt(rawHeight);
+        if (height <= 0) {
+            throw new IllegalArgumentException();
+        }
     }
 }
