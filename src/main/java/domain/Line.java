@@ -3,6 +3,7 @@ package domain;
 import util.BooleanGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -36,6 +37,6 @@ public class Line {
     }
 
     public List<Boolean> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
     }
 }

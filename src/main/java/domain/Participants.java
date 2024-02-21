@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -23,5 +24,13 @@ public class Participants {
         for (String name : names) {
             participants.add(new Participant(name));
         }
+    }
+
+    public int getParticipantsCount() {
+        return participants.size();
+    }
+
+    public List<Participant> getParticipants() {
+        return Collections.unmodifiableList(participants);
     }
 }
