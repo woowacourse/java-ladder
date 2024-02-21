@@ -7,14 +7,15 @@ import view.ResultView;
 
 import java.util.List;
 
-public class Controller {
+public class LadderGame {
 
     public void run() {
         List<String> userNames = InputView.inputUserNames();
         Users users = new Users(userNames);
         int height = InputView.inputHeight();
         Ladder ladder = new Ladder(height, users.gerPersonCount());
-        ResultView.printNames(userNames);
+        ResultView.printResultMessage();
+        ResultView.printNames(users);
         ResultView.printResult(ladder);
     }
 }

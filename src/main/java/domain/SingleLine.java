@@ -12,8 +12,11 @@ public enum SingleLine {
     }
 
     public static String generateSingleLine(final Line line) {
+        return "    " + drawLine(line);
+    }
+
+    private static String drawLine(Line line) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("    ");
         for (Boolean point : line.getPoints()) {
             stringBuilder.append(convert(point));
         }
@@ -22,7 +25,9 @@ public enum SingleLine {
     }
 
     private static String convert(final boolean point) {
-        if (point) return BAR.singleLine;
+        if (point) {
+            return BAR.singleLine;
+        }
         return NON_BAR.singleLine;
     }
 }

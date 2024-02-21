@@ -30,7 +30,6 @@ class LineTest {
         List<Boolean> expectedPoint = List.of(true, false, true);
         //when
         Line line = new Line(personCount, () -> true);
-
         //then
         assertThat(line.getPoints()).isEqualTo(expectedPoint);
     }

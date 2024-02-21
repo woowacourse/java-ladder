@@ -10,6 +10,11 @@ public class UserName {
         this.userName = userName;
     }
 
+    @Override
+    public String toString() {
+        return userName;
+    }
+
     private void validate(final String userName) {
         validateLength(userName);
         validateEmpty(userName);
