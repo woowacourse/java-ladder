@@ -13,4 +13,8 @@ public class Player {
             throw new IllegalArgumentException();
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
