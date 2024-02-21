@@ -19,4 +19,8 @@ public class Name {
             throw new IllegalArgumentException();   // TODO 예외 메시지 넣어주기
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
