@@ -2,6 +2,7 @@ package domain;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 class RowInfoRandomGenerator implements RowInfoGenerator {
@@ -15,7 +16,7 @@ class RowInfoRandomGenerator implements RowInfoGenerator {
     private static List<Boolean> generateRowInfos(int width, Random random) {
         return IntStream.range(0, width)
                 .mapToObj(value -> random.nextBoolean())
-                .toList();
+                .collect(Collectors.toList());
     }
 
     private static void fixRowInfo(int width, List<Boolean> rowInfos) {
