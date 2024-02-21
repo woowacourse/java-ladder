@@ -8,15 +8,17 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class LadderGame {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        final Participants participants = createParticipants();
+        final Participants participants = retryOnException(this::createParticipants);
         final int stepWidth = participants.getCount() - 1;
-        final Ladder ladder = createLadder(stepWidth);
+        final Ladder ladder = retryOnException(this::createLadder, stepWidth);
         printLadder(participants, ladder);
         inputView.closeResource();
     }
@@ -36,5 +38,23 @@ public class LadderGame {
         outputView.printResultPrefix();
         outputView.printParticipants(participants);
         outputView.printLadder(ladder);
+    }
+
+    private <T> T retryOnException(Supplier<T> retryOperation) {
+        try {
+            return retryOperation.get();
+        } catch (RuntimeException e) {
+            outputView.printException(e);
+            return retryOnException(retryOperation);
+        }
+    }
+
+    private <T, R> R retryOnException(Function<T, R> retryOperation, T input) {
+        try {
+            return retryOperation.apply(input);
+        } catch (RuntimeException e) {
+            outputView.printException(e);
+            return retryOnException(retryOperation, input);
+        }
     }
 }

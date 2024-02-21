@@ -14,6 +14,7 @@ public class OutputView {
     private static final String NAME_FORMAT = "%6s";
     private static final String LADDER_STEP_FORMAT = "     |%s|";
     private static final String STEP_DELIMITER = "|";
+    private static final String EXCEPTION_PREFIX = "[ERROR] ";
 
     public void printResultPrefix() {
         System.out.println(RESULT_PREFIX);
@@ -46,5 +47,9 @@ public class OutputView {
                 .map(Path::getShape)
                 .collect(Collectors.joining(STEP_DELIMITER));
         return String.format(LADDER_STEP_FORMAT, ladderStepShape);
+    }
+
+    public void printException(RuntimeException exception) {
+        System.out.println(EXCEPTION_PREFIX + exception.getMessage());
     }
 }
