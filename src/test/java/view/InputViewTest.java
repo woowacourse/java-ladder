@@ -37,7 +37,7 @@ class InputViewTest {
         // when & then
         assertThatThrownBy(inputView::readLadderHeight)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사다리 높이는 1 이상 10 이하의 정수여야 합니다.");
+                .hasMessage("사다리 높이는 정수로 입력해야 합니다.");
     }
 
     @ParameterizedTest
