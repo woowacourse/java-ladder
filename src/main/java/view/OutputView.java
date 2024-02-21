@@ -40,6 +40,10 @@ public class OutputView {
                 .forEach(this::printHorizontalLine);
     }
 
+    public void printErrorMessage(String message) {
+        System.out.println(message + System.lineSeparator());
+    }
+
     private void printHorizontalLine(List<Boolean> indices) {
         StringBuilder builder = new StringBuilder();
 
