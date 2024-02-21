@@ -28,5 +28,6 @@ public class LadderController {
     public void printResult() {
         OutputView.printResultDescription();
         OutputView.printPlayerNames(ladderPlayers.stream().map(Player::getName).toList());
+        OutputView.printLadder(ladder.toLineDtoList());
     }
 }

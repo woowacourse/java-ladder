@@ -1,6 +1,7 @@
 package ladder.model;
 
 import ladder.constant.LadderPath;
+import ladder.dto.LineDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,5 +56,11 @@ public class Ladder {
 
     public LadderSize getSize() {
         return new LadderSize(ladder.size(), ladder.get(0).size());
+    }
+
+    public List<LineDto> toLineDtoList() {
+        return ladder.stream()
+                .map(LineDto::from)
+                .toList();
     }
 }

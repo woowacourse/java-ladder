@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.dto.LineDto;
 import java.util.List;
 
 public class OutputView {
@@ -18,8 +19,12 @@ public class OutputView {
         System.out.println(sb);
     }
 
-    public static void printLadder() {
-
+    public static void printLadder(List<LineDto> ladder) {
+        StringBuilder sb = new StringBuilder();
+        for (LineDto ld : ladder) {
+            sb.append(LineStringFormatter.create(ld));
+        }
+        System.out.println(sb);
     }
 
     private static String padName(String name) {

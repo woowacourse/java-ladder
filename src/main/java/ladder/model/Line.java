@@ -50,4 +50,8 @@ public class Line {
     public int size() {
         return row.size();
     }
+
+    public List<LadderPath> getRow() {
+        return row;
+    }
 }
