@@ -25,4 +25,13 @@ public class LineTest {
         assertThat(line.getStepStatuses().get(1))
                 .isEqualTo(NONE);
     }
+
+    @DisplayName("List<StepStatus>를 LineResult 형태로 가공해서 반환한다.")
+    @Test
+    void getLineResult() {
+        final Line line = new Line(() -> true, 4);
+
+        assertThat(line.getLineResult().value())
+                .containsExactly(EXIST, NONE, EXIST, NONE);
+    }
 }
