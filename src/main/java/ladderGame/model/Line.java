@@ -23,7 +23,7 @@ public class Line {
     }
 
     private DrawnStatus decideDrawnStatus() {
-        if(new Random().nextBoolean()) {
+        if (new Random().nextBoolean()) {
             return DrawnStatus.DRAWN;
         }
         return DrawnStatus.NON_DRAWN;
