@@ -10,4 +10,8 @@ public enum ConnectionStatus {
     ConnectionStatus(boolean connect) {
         this.connect = connect;
     }
+
+    public boolean isConnect() {
+        return connect;
+    }
 }
