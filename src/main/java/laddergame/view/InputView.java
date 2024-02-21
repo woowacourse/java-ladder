@@ -10,18 +10,27 @@ public class InputView {
     public InputView() {
     }
 
-    public List<String> readPlayersName() throws IOException {
+    public List<String> readPlayersName() {
+
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        try {
+            return Arrays.stream(bufferedReader.readLine().split(","))
+                    .map(String::trim)
+                    .toList();
+        } catch (IOException exception) {
+            throw new IllegalArgumentException();
+        }
 
-        return Arrays.stream(bufferedReader.readLine().split(","))
-                .map(String::trim)
-                .toList();
     }
 
-    public int readLadderHeight() throws IOException {
+    public int readLadderHeight() {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return Integer.parseInt(bufferedReader.readLine());
+        try {
+            return Integer.parseInt(bufferedReader.readLine());
+        } catch (IOException exception) {
+            throw new IllegalArgumentException();
+        }
     }
 }

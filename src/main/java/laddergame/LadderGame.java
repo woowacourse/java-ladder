@@ -1,7 +1,7 @@
 package laddergame;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.IntStream;
 import laddergame.domain.Ladder;
 import laddergame.domain.Players;
@@ -13,31 +13,36 @@ import laddergame.view.OutputView;
 public class LadderGame {
 
     public void run() {
-        try {
-            InputView inputView = new InputView();
-            Players players = Players.from(inputView.readPlayersName());
-            System.out.println();
-            int height = inputView.readLadderHeight();
+        InputView inputView = new InputView();
+        Players players = requestUntilValidated(() -> Players.from(inputView.readPlayersName()));
+        System.out.println();
+        int height = requestUntilValidated(inputView::readLadderHeight);
 
-            Ladder ladder = new Ladder(players.getPlayerNames().size(), height);
+        Ladder ladder = new Ladder(players.getPlayerNames().size(), height);
 
-            CanBuildStrategy randomBuildStrategy = new RandomBuildStrategy();
-            List<List<Boolean>> randomResult = IntStream.range(0, height)
-                    .mapToObj(i -> randomBuildStrategy.canBuildBridges(players.getPlayerNames().size() - 1))
-                    .toList();
+        CanBuildStrategy randomBuildStrategy = new RandomBuildStrategy();
+        List<List<Boolean>> randomResult = IntStream.range(0, height)
+                .mapToObj(i -> randomBuildStrategy.canBuildBridges(players.getPlayerNames().size() - 1))
+                .toList();
 
-            ladder.build(randomResult);
+        ladder.build(randomResult);
 
-            OutputView outputView = new OutputView();
-            printLadderResult(players, ladder, outputView);
-        } catch (IOException exception) {
-
-        }
+        OutputView outputView = new OutputView();
+        printLadderResult(players, ladder, outputView);
     }
 
     private static void printLadderResult(Players players, Ladder ladder, OutputView outputView) {
         outputView.writeResultTitle();
         outputView.writePlayersName(players.getPlayerNames());
         outputView.writeLadder(ladder);
+    }
+
+    private <T> T requestUntilValidated(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            OutputView.writeErrorMessage("입력이 잘못되었습니다. 다시 입력해주세요.");
+            return requestUntilValidated(supplier);
+        }
     }
 }

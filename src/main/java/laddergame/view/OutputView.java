@@ -7,6 +7,7 @@ import laddergame.domain.Ladder;
 import laddergame.domain.Line;
 
 public class OutputView {
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
     public OutputView() {
 
@@ -38,5 +39,9 @@ public class OutputView {
         System.out.println();
         System.out.println("실행결과");
         System.out.println();
+    }
+
+    public static void writeErrorMessage(final String message) {
+        System.out.println(ERROR_PREFIX + message);
     }
 }
