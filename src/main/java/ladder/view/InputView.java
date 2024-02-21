@@ -19,11 +19,7 @@ public class InputView {
     public static int readLadderHeight(Supplier<String> reader) {
         String input = reader.get();
         validateEmpty(input);
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("사다리 높이는 2 ~ 10 사이의 숫자로 입력해야 합니다.");
-        }
+        return parseLadderHeight(input);
     }
 
     private static void validateEmpty(final String input) {
@@ -35,5 +31,13 @@ public class InputView {
     private static List<String> parseNames(String names) {
         return stream(names.split(","))
                 .toList();
+    }
+
+    private static int parseLadderHeight(final String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("사다리 높이는 2 ~ 10 사이의 숫자로 입력해야 합니다.");
+        }
     }
 }
