@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.function.IntFunction;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-@DisplayName("라인")
+@DisplayName("사다리 라인")
 public class LineTest {
     @DisplayName("랜덤 생성 테스트")
     @Test
@@ -25,5 +26,12 @@ public class LineTest {
         assertThat(actual)
                 .extracting("scaffold")
                 .isEqualTo(expected);
+    }
+
+    @DisplayName("연속으로 발판이 있는 경우 예외를 발생시킨다.")
+    @Test
+    void continueScaffoldExceptionTest() {
+        assertThatThrownBy(() -> Line.create(count -> List.of(true, true, false), 3))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
