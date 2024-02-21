@@ -2,20 +2,14 @@ package ladder.domain;
 
 public class Height {
 
+    //todo: 변수명 & 메서드명 변경
     private final int value;
 
     public Height(int value) {
-        validate(value);
         this.value = value;
     }
 
-    private void validate(int value) {
-        if (value <= 0) {
-            throw new IllegalArgumentException("사다리 높이는 1이상 입니다.");
-        }
-    }
-
-    public boolean equals(int value) {
-        return this.value == value;
+    public boolean isSame(int size) {
+        return size == value;
     }
 }
