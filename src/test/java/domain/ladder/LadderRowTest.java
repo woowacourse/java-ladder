@@ -3,17 +3,21 @@ package domain.ladder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import domain.BooleanGenerator;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import support.TrueGenerator;
 
 public class LadderRowTest {
+    private final BooleanGenerator trueGenerator = new TrueGenerator();
+
     @Test
     void 플레이어_수만큼_가로대를_생성한다() {
         // given
         final int playerSize = 5;
 
         // when
-        LadderRow ladderRow = LadderRow.create(playerSize, () -> true);
+        LadderRow ladderRow = LadderRow.create(playerSize, trueGenerator);
 
         // then
         assertThat(ladderRow.getRungs()).hasSize(playerSize);
@@ -25,7 +29,7 @@ public class LadderRowTest {
         final int playerSize = 4;
 
         // when
-        LadderRow ladderRow = LadderRow.create(playerSize, () -> true);
+        LadderRow ladderRow = LadderRow.create(playerSize, trueGenerator);
 
         // then
         List<LadderRung> rungs = ladderRow.getRungs();
