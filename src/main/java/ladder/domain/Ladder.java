@@ -15,6 +15,8 @@ public class Ladder {
             BiFunction<Integer, Integer, List<Line>> generator,
             People people,
             LadderHeight ladderHeight) {
-        return new Ladder(generator.apply(people.getCount(), ladderHeight.getValue()));
+
+        // TODO: -1에 대한 의미 전달
+        return new Ladder(generator.apply(people.getCount() - 1, ladderHeight.getValue()));
     }
 }
