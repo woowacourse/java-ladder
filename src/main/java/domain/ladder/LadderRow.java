@@ -13,10 +13,10 @@ class LadderRow {
         this.rungs = rungs;
     }
 
-    static LadderRow create(int playerSize, BooleanGenerator booleanGenerator) {
+    static LadderRow create(int size, BooleanGenerator booleanGenerator) {
         final List<LadderRung> rungs = new ArrayList<>();
         boolean lastConnected = Connection.IS_NOT_CONNECTED.getValue();
-        for (int i = 0; i < playerSize; i++) {
+        for (int i = 0; i < size; i++) {
             LadderRung ladderRung = createRung(booleanGenerator, lastConnected);
             rungs.add(ladderRung);
             lastConnected = ladderRung.isConnected();

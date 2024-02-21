@@ -14,8 +14,8 @@ public class Ladder {
 
     public static Ladder create(final Height height, final int playerSize, BooleanGenerator booleanGenerator) {
         List<LadderRow> rows = new ArrayList<>();
-        for (int i = 0; i < height.getValue(); i++) {
-            final LadderRow ladderRow = LadderRow.create(playerSize, booleanGenerator);
+        for (int i = 0; i < height.getValue(); i++) { // TODO 매직넘버 변수 설정
+            final LadderRow ladderRow = LadderRow.create(playerSize - 1, booleanGenerator);
             rows.add(ladderRow);
         }
         return new Ladder(rows);
