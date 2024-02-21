@@ -9,18 +9,10 @@ public class Ladder {
     private final int height;
     private final List<LadderRow> ladderRows;
 
-    public Ladder(int height, int participantsSize) {
+    public Ladder(int height, List<LadderRow> ladderRows) {
         validateHeightIsPositive(height);
-        this.ladderRows = makeEmptyLadder(height, participantsSize);
+        this.ladderRows = new ArrayList<>(ladderRows);
         this.height = height;
-    }
-
-    private List<LadderRow> makeEmptyLadder(int height, int participantsSize){
-        List<LadderRow> emptyLadderRows = new ArrayList<>();
-        for(int i = 0; i < height; i++){
-            emptyLadderRows.add(new LadderRow(participantsSize));
-        }
-        return new ArrayList<>(emptyLadderRows);
     }
 
     private void validateHeightIsPositive(int height) {
@@ -38,6 +30,10 @@ public class Ladder {
     private void createRow(LadderRow ladderRow) {
         while (ladderRow.currentWidthSize() < ladderRow.getMaxWidth()) {
             ladderRow.crossLine(new Random().nextBoolean());
+        }
+        if(!ladderRow.getLines().contains(true)){
+            ladderRow.clear();
+            createRow(ladderRow);
         }
     }
 

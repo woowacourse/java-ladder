@@ -25,6 +25,9 @@ public class LadderRow {
         }
     }
 
+    public void clear() {
+        lines.clear();
+    }
     public int getMaxWidth() {
         return maxWidth;
     }
