@@ -1,3 +1,11 @@
+## 페어와 지킨 컨벤션
+### 전체 클래스
+- 클래스를 정의한 뒤, 다음 줄은 공백으로 한다.
+### 테스트
+- 메서드 어노테이션은 `@Test (@ParameterizedTest)` - (`@ValueSource`) - `@DisplayName` 순으로 한다.
+- 테스트 메서드는 _static import_ 한다.
+- 테스트할 때에는 `AssertJ` 메서드를 활용한다. 단, 예외가 발생하지 않는 테스트의 경우 `JUnit5`의 `assertDoesNotThrow` 메서드를 사용한다.
+
 # 요구사항 분석
 
 ## 가로줄 (한 층)
