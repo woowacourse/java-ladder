@@ -24,6 +24,12 @@ public class Ladder {
         lines.forEach(line -> line.createCrossingLines(generator));
     }
 
+    public List<HorizontalLineStatus> createStatuses() {
+        return lines.stream()
+                .map(HorizontalLine::createStatus)
+                .toList();
+    }
+
     private void validateHeight(int height) {
         if (isHeightOutOfRange(height)) {
             throw new IllegalArgumentException("사다리의 높이는 1 이상 10 이하여야 합니다.");
