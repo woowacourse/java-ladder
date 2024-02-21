@@ -9,7 +9,6 @@ public enum ErrorMessage {
     INVALID_PLAYER_NAME_SIZE_EXCEPTION("플레이어 이름은 5자 이하여야 합니다."),
     INVALID_PLAYER_COUNT_EXCEPTION("플레이어의 숫자는 2명 이상이어야 합니다.");
 
-
     private final String message;
 
     ErrorMessage(String message) {

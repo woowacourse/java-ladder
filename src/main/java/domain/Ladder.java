@@ -1,7 +1,5 @@
 package domain;
 
-import static message.ErrorMessage.*;
-
 import java.util.ArrayList;
 import java.util.List;
 

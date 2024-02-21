@@ -1,9 +1,8 @@
 package domain;
 
-import static message.ErrorMessage.*;
+import static message.ErrorMessage.INVALID_PLAYER_COUNT_EXCEPTION;
 
 import java.util.List;
-import message.ErrorMessage;
 
 public class Players {
 
@@ -16,7 +15,7 @@ public class Players {
     }
 
     private static void validatePlayerSize(List<Player> players) {
-        if(players.size() < MINIMUM_PLAYER_COUNT) {
+        if (players.size() < MINIMUM_PLAYER_COUNT) {
             throw new IllegalArgumentException(INVALID_PLAYER_COUNT_EXCEPTION.getMessage());
         }
     }

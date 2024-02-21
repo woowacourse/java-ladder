@@ -5,6 +5,7 @@ import static message.ErrorMessage.INVALID_PLAYER_NAME_SIZE_EXCEPTION;
 import static message.ErrorMessage.NO_PLAYER_NAME_EXCEPTION;
 
 public class Name {
+
     private final String name;
 
     public Name(String name) {
@@ -19,19 +20,19 @@ public class Name {
     }
 
     private void validateNameBlank(String name) {
-        if(name.isBlank()){
+        if (name.isBlank()) {
             throw new IllegalArgumentException(NO_PLAYER_NAME_EXCEPTION.getMessage());
         }
     }
 
     private void validateNameLanguage(String name) {
-        if(!name.matches("^[A-Za-z]*$")){
+        if (!name.matches("^[A-Za-z]*$")) {
             throw new IllegalArgumentException(INVALID_PLAYER_NAME_LANGUAGE_EXCEPTION.getMessage());
         }
     }
 
     private void validateNameSize(String name) {
-        if(name.length() > 5) {
+        if (name.length() > 5) {
             throw new IllegalArgumentException(INVALID_PLAYER_NAME_SIZE_EXCEPTION.getMessage());
         }
     }

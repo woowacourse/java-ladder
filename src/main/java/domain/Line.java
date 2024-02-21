@@ -20,14 +20,14 @@ public class Line {
     }
 
     private void decideLegExist(int legIndex) {
-        if(legs.get(legIndex - 1)){
+        if (legs.get(legIndex - 1)) {
             legs.add(false);
             return;
         }
         legs.add(generateLegRandomly());
     }
 
-    protected boolean generateLegRandomly(){
+    protected boolean generateLegRandomly() {
         return RandomGenerator.generateRandomBoolean();
     }
 

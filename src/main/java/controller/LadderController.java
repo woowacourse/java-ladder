@@ -22,12 +22,10 @@ public class LadderController {
     private Ladder readLadder() {
         try {
             return new Ladder(InputView.readLadderHeight());
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println(INVALID_LADDER_LANGUAGE_EXCEPTION.getMessage());
             return readLadder();
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readLadder();
         }

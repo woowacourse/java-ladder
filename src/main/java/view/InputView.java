@@ -19,7 +19,7 @@ public class InputView {
                 .toList();
     }
 
-    public static int readLadderHeight() throws NumberFormatException{
+    public static int readLadderHeight() throws NumberFormatException {
         System.out.println(MESSAGE_LADDER_HEIGHT);
         return Integer.parseInt(scanner.nextLine());
     }
