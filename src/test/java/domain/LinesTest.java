@@ -11,6 +11,7 @@ class LinesTest {
     void createLines() {
         int height = 5;
         int personCount = 4;
+        
         Lines lines = new Lines(height, personCount);
         assertEquals(height, lines.getLines().size());
     }

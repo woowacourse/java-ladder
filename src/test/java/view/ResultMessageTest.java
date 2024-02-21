@@ -14,6 +14,7 @@ class ResultMessageTest {
         Line line = new Line(3, new FixedGenerator(true));
         String expected = "-----|     |\n";
         String actual = ResultMessage.of(line);
+        
         assertEquals(expected, actual);
     }
 
