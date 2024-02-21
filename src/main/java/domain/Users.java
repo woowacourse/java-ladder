@@ -21,6 +21,6 @@ public class Users {
 
     public Users(String userNames) {
         String[] splitUserNames = userNames.split(",");
-        users = Arrays.stream(splitUserNames).map(User::new).toList();
+        users = Arrays.stream(splitUserNames).map(name -> new User(new UserName(name))).toList();
     }
 }
