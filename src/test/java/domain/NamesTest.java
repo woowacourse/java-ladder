@@ -4,6 +4,11 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class NamesTest {
     @Test
@@ -11,7 +16,7 @@ class NamesTest {
     void isNameDuplicate() {
         List<String> rawNames = List.of("pobi", "pobi");
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Names(rawNames));
+        assertThrows(IllegalArgumentException.class, () -> new Names(rawNames));
     }
 
     @Test
@@ -20,7 +25,7 @@ class NamesTest {
         List<String> rawNames = List.of("pobi", "crong", "honux");
         Names names = new Names(rawNames);
 
-        Assertions.assertEquals(3, names.size());
+        assertEquals(3, names.size());
     }
 
     @Test
@@ -28,7 +33,7 @@ class NamesTest {
     void isNameListEmptyReturnZero() {
         Names names = new Names(List.of());
 
-        Assertions.assertEquals(0, names.size());
+        assertEquals(0, names.size());
     }
 
     @Test
@@ -37,7 +42,7 @@ class NamesTest {
         List<String> rawNames = List.of("pobi", "crong", "honux");
         Names names = new Names(rawNames);
 
-        Assertions.assertEquals("pobi", names.firstName());
+        assertEquals("pobi", names.firstName());
     }
 
     @Test
@@ -47,6 +52,15 @@ class NamesTest {
         Names names = new Names(rawNames);
 
         int testIndex = 2;
-        Assertions.assertEquals("honux",names.nameOf(testIndex));
+        assertEquals("honux", names.nameOf(testIndex));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi", ",", ""})
+    @DisplayName("사람 이름은 최소 개수는 2개이다.")
+    void isValidNamesCount(String values) {
+        List<String> rawNames = List.of(values.split(","));
+
+        assertThrows(IllegalArgumentException.class, () -> new Names(rawNames));
     }
 }
