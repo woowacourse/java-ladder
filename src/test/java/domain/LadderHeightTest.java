@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,5 +16,12 @@ class LadderHeightTest {
         assertThatThrownBy(() -> new LadderHeight(height))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리의 높이는 1 이상 10 이하여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
+    @DisplayName("사다리의 높이가 올바른 경우 예외를 발생시키지 않는다.")
+    void ladderCreationTest(int height) {
+        assertDoesNotThrow(() -> new LadderHeight(height));
     }
 }
