@@ -3,7 +3,7 @@ package domain;
 import java.util.Objects;
 
 public class Name {
-    private String name;
+    private final String name;
 
     public Name(String name) {
         validateNameLength(name);
@@ -38,5 +38,9 @@ public class Name {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public String getName() {
+        return name;
     }
 }

@@ -4,11 +4,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Names {
+    private final List<Name> names;
+
     public Names(String names) {
         validateSeparator(names);
         List<String> splitNames = splitName(names);
         validateDuplicateName(splitNames);
         validateNameCount(splitNames);
+        this.names = splitNames.stream().map(Name::new).toList();
     }
 
     private static List<String> splitName(String names) {
@@ -34,5 +37,9 @@ public class Names {
         if (startsWith || endsWith) {
             throw new RuntimeException("구분자가 맨 앞이나 맨 뒤에 있으면 안됩니다.");
         }
+    }
+
+    public List<Name> getNames() {
+        return names;
     }
 }
