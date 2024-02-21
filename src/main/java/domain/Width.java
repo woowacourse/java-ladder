@@ -1,6 +1,9 @@
 package domain;
 
 class Width {
+    static final int MIN = 2;
+    static final int MAX = 10;
+
     private final int length;
 
     Width(int length) {
@@ -9,7 +12,7 @@ class Width {
     }
 
     private void validate(int width) {
-        if (width < 2 || width > 10) {
+        if (width < MIN || width > MAX) {
             throw new LadderGameException(ExceptionType.WIDTH_RANGE);
         }
     }

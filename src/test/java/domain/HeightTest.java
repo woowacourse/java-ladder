@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class HeightTest {
     @ParameterizedTest
-    @ValueSource(ints = {4, 11})
+    @ValueSource(ints = {Height.MIN - 1, Height.MAX + 1})
     @DisplayName("높이 검증")
     void validateHeight(int length) {
         assertThatThrownBy(() -> new Height(length))

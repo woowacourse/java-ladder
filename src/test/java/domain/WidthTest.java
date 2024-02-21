@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class WidthTest {
     @ParameterizedTest
-    @ValueSource(ints = {1, 11})
+    @ValueSource(ints = {Width.MIN - 1, Width.MAX + 1})
     @DisplayName("폭 검증")
     void validateWidth(int length) {
         assertThatThrownBy(() -> new Width(length))

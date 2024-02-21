@@ -1,10 +1,15 @@
 package domain;
 
+import static domain.Names.MAX_NAMES_COUNT;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
 class Row {
+    static final int MIN_ROW_COUNT = 1;
+    static final int MAX_ROW_COUNT = MAX_NAMES_COUNT - 1;
+
     private final List<Boolean> rowInfos;
 
     Row(List<Boolean> rowInfos) {
@@ -15,7 +20,7 @@ class Row {
     }
 
     private static void validateRowInfosCount(List<Boolean> rowInfos) {
-        if (rowInfos.size() < 1 || rowInfos.size() > 9) {
+        if (rowInfos.size() < MIN_ROW_COUNT || rowInfos.size() > MAX_ROW_COUNT) {
             throw new LadderGameException(ExceptionType.ROW_COUNT);
         }
     }

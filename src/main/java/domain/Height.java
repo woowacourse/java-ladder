@@ -1,6 +1,9 @@
 package domain;
 
 class Height {
+    static final int MIN = 5;
+    static final int MAX = 10;
+
     private final int length;
 
     Height(int length) {
@@ -9,7 +12,7 @@ class Height {
     }
 
     private void validate(int length) {
-        if (length < 5 || length > 10) {
+        if (length < MIN || length > MAX) {
             throw new LadderGameException(ExceptionType.HEIGHT_RANGE);
         }
     }

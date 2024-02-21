@@ -18,7 +18,7 @@ class RowTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 10})
+    @ValueSource(ints = {Row.MIN_ROW_COUNT - 1, Row.MAX_ROW_COUNT + 1})
     @DisplayName("가로 라인 개수 확인")
     void validateRowInfoSize(int infoSize) {
         List<Boolean> rowInfos = IntStream.range(0, infoSize).mapToObj(value -> false).toList();

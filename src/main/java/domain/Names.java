@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Names {
+    static final int MAX_NAMES_COUNT = 10;
+    private static final String SEPARATOR = ",";
     private final List<Name> names;
 
     Names(String names) {
@@ -15,11 +17,11 @@ public class Names {
     }
 
     private static List<String> splitName(String names) {
-        return Arrays.stream(names.split(",")).toList();
+        return Arrays.stream(names.split(SEPARATOR)).toList();
     }
 
     private static void validateNameCount(List<String> splitNames) {
-        if (splitNames.size() > 10) {
+        if (splitNames.size() > MAX_NAMES_COUNT) {
             throw new LadderGameException(ExceptionType.NAMES_COUNT);
         }
     }
@@ -32,8 +34,8 @@ public class Names {
     }
 
     private void validateSeparator(String names) {
-        boolean startsWith = names.startsWith(",");
-        boolean endsWith = names.endsWith(",");
+        boolean startsWith = names.startsWith(SEPARATOR);
+        boolean endsWith = names.endsWith(SEPARATOR);
         if (startsWith || endsWith) {
             throw new LadderGameException(ExceptionType.NAMES_SEPARATOR);
         }

@@ -3,6 +3,7 @@ package domain;
 import java.util.Objects;
 
 class Name {
+    static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
     Name(String name) {
@@ -18,7 +19,7 @@ class Name {
     }
 
     private static void validateNameLength(String name) {
-        if (name.isEmpty() || name.length() > 5) {
+        if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
             throw new LadderGameException(ExceptionType.NAME_LENGTH_RANGE);
         }
     }
