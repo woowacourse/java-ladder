@@ -33,4 +33,8 @@ public class OutputView {
         }
         return " ".repeat(5);
     }
+
+    public static void printException(Exception exception) {
+        System.out.println(exception.getMessage());
+    }
 }
