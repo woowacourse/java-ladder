@@ -19,6 +19,10 @@ public class Layer {
         this.steps = setUp;
     }
 
+    public List<Boolean> getSteps() {
+        return steps;
+    }
+
     public int getLayerSize() {
         return steps.size();
     }
