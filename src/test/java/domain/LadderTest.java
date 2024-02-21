@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.bridgeConstructstrategy.BridgeConstructStrategy;
+import domain.bridgeConstructstrategy.RandomBridgeConstructStrategy;
 import java.util.List;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
@@ -51,7 +53,7 @@ public class LadderTest {
     }
 }
 
-class ContinuousBridgeConstructStrategy implements  BridgeConstructStrategy{
+class ContinuousBridgeConstructStrategy implements BridgeConstructStrategy {
 
     @Override
     public Bridges generate(int count) {

@@ -1,5 +1,6 @@
 package domain;
 
+import domain.bridgeConstructstrategy.BridgeConstructStrategy;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;

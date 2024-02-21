@@ -1,5 +1,7 @@
-package domain;
+package domain.bridgeConstructstrategy;
 
+import domain.BridgeStatus;
+import domain.Bridges;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

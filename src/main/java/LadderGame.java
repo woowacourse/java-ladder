@@ -1,7 +1,7 @@
 import domain.Height;
 import domain.Ladder;
 import domain.Names;
-import domain.RandomBridgeConstructStrategy;
+import domain.bridgeConstructstrategy.RandomBridgeConstructStrategy;
 import view.InputView;
 import view.OutputView;
 
