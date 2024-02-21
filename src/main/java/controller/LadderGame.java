@@ -1,5 +1,6 @@
 package controller;
 
+import constant.Exception;
 import domain.Ladder;
 import domain.Participants;
 import view.InputView;
@@ -18,7 +19,7 @@ public class LadderGame {
         try {
             play();
         } catch (StackOverflowError e) {
-            System.out.println("[ERROR] 잘못된 입력의 반복으로 프로그램을 종료합니다.");
+            System.out.println(Exception.EXIT.getExceptionMessage());
         }
     }
 

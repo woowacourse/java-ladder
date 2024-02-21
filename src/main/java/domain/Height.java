@@ -1,5 +1,7 @@
 package domain;
 
+import constant.Exception;
+
 public class Height {
 
     public static final int MIN_OF_HEIGHT = 1;
@@ -11,9 +13,7 @@ public class Height {
 
     private void validate(int height) {
         if (height < MIN_OF_HEIGHT || height > MAX_OF_HEIGHT) {
-            throw new IllegalArgumentException(
-                    "[ERROR] 높이는 " + MIN_OF_HEIGHT + "개 이상 "
-                            + MAX_OF_HEIGHT + "개 이하여야 합니다.");
+            throw new IllegalArgumentException(Exception.OUT_OF_RANGE_HEIGHT.getExceptionMessage());
         }
     }
 }

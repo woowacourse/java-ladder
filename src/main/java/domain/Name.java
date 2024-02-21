@@ -1,5 +1,7 @@
 package domain;
 
+import constant.Exception;
+
 public class Name {
 
     public static final int MAX_OF_NAME_LENGTH = 5;
@@ -13,14 +15,13 @@ public class Name {
 
     private void validateNoName(String name) {
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 이름이 없습니다.");
+            throw new IllegalArgumentException(Exception.NO_NAME.getExceptionMessage());
         }
     }
 
     private void validateNameLength(String name) {
         if (name.length() > MAX_OF_NAME_LENGTH) {
-            throw new IllegalArgumentException(
-                    "[ERROR] 이름의 길이는 " + MAX_OF_NAME_LENGTH + "글자를 초과할 수 없습니다.");
+            throw new IllegalArgumentException(Exception.OUT_OF_RANGE_NAME_LENGTH.getExceptionMessage());
         }
     }
 

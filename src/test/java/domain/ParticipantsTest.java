@@ -1,5 +1,6 @@
 package domain;
 
+import constant.Exception;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,8 +16,7 @@ class ParticipantsTest {
         List<String> names = List.of("a");
         assertThatThrownBy(() -> new Participants(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 참가자는 " + Participants.MIN_OF_PARTICIPANTS_COUNT + "명 이상 "
-                        + Participants.MAX_OF_PARTICIPANTS_COUNT + "명 이하여야 합니다.");
+                .hasMessage(Exception.OUT_OF_RANGE_PARTICIPANTS_COUNT.getExceptionMessage());
     }
 
     @Test
@@ -30,8 +30,7 @@ class ParticipantsTest {
 
         assertThatThrownBy(() -> new Participants(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 참가자는 " + Participants.MIN_OF_PARTICIPANTS_COUNT + "명 이상 "
-                        + Participants.MAX_OF_PARTICIPANTS_COUNT + "명 이하여야 합니다.");
+                .hasMessage(Exception.OUT_OF_RANGE_PARTICIPANTS_COUNT.getExceptionMessage());
     }
 
     @Test
@@ -41,6 +40,6 @@ class ParticipantsTest {
 
         assertThatThrownBy(() -> new Participants(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 참가자 이름은 중복될 수 없습니다.");
+                .hasMessage(Exception.DUPLICATE_PARTICIPANTS.getExceptionMessage());
     }
 }

@@ -1,5 +1,7 @@
 package domain;
 
+import constant.Exception;
+
 import java.util.List;
 
 public class Participants {
@@ -18,15 +20,13 @@ public class Participants {
 
     private void validateCount(List<String> names) {
         if (names.size() < MIN_OF_PARTICIPANTS_COUNT || names.size() > MAX_OF_PARTICIPANTS_COUNT) {
-            throw new IllegalArgumentException(
-                    "[ERROR] 참가자는 " + MIN_OF_PARTICIPANTS_COUNT + "명 이상 "
-                            + MAX_OF_PARTICIPANTS_COUNT + "명 이하여야 합니다.");
+            throw new IllegalArgumentException(Exception.OUT_OF_RANGE_PARTICIPANTS_COUNT.getExceptionMessage());
         }
     }
 
     private void validateDuplicate(List<String> names) {
         if (names.stream().distinct().count() != names.size()) {
-            throw new IllegalArgumentException("[ERROR] 참가자 이름은 중복될 수 없습니다.");
+            throw new IllegalArgumentException(Exception.DUPLICATE_PARTICIPANTS.getExceptionMessage());
         }
     }
 

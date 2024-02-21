@@ -1,5 +1,6 @@
 package domain;
 
+import constant.Exception;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,8 +15,7 @@ public class NameTest {
     void longNameExceptionTest() {
         assertThatThrownBy(() -> new Name("zangsu"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(
-                        "[ERROR] 이름의 길이는 " + Name.MAX_OF_NAME_LENGTH + "글자를 초과할 수 없습니다.");
+                .hasMessage(Exception.OUT_OF_RANGE_NAME_LENGTH.getExceptionMessage());
     }
 
     @ParameterizedTest
@@ -24,7 +24,7 @@ public class NameTest {
     void noNameExceptionTest(String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 이름이 없습니다.");
+                .hasMessage(Exception.NO_NAME.getExceptionMessage());
 
     }
 }

@@ -1,5 +1,6 @@
 package domain;
 
+import constant.Exception;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,9 +13,7 @@ public class HeightTest {
     void lessThanOneExceptionTest() {
         assertThatThrownBy(() -> new Height(0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(
-                        "[ERROR] 높이는 "+ Height.MIN_OF_HEIGHT + "개 이상 "
-                                + Height.MAX_OF_HEIGHT + "개 이하여야 합니다.");
+                .hasMessage(Exception.OUT_OF_RANGE_HEIGHT.getExceptionMessage());
     }
 
     @Test
@@ -22,9 +21,7 @@ public class HeightTest {
     void moreThanHundredExceptionTest() {
         assertThatThrownBy(() -> new Height(101))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(
-                        "[ERROR] 높이는 "+ Height.MIN_OF_HEIGHT + "개 이상 "
-                                + Height.MAX_OF_HEIGHT + "개 이하여야 합니다.");
+                .hasMessage(Exception.OUT_OF_RANGE_HEIGHT.getExceptionMessage());
     }
 
 }
