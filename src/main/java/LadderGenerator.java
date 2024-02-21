@@ -20,4 +20,16 @@ public class LadderGenerator {
                                       .toList());
     }
 
+    public LadderLeg generateLadderLeg(LadderLeg previousLadderLeg, DirectionGenerator directionGenerator) {
+        return new LadderLeg(IntStream.range(0, height.getHeight())
+                                      .mapToObj(index -> {
+                                          if (previousLadderLeg.hasRightDirectionAtIndex(index)) {
+                                              return Direction.LEFT;
+                                          }
+                                          return directionGenerator.generate();
+                                      })
+                                      .map(LadderPiece::new)
+                                      .toList());
+    }
+
 }
