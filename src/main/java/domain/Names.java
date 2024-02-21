@@ -5,6 +5,7 @@ import java.util.List;
 public class Names {
     private static final int EMPTY_NAME_COUNT = 0;
     private static final int FIRST_INDEX = 0;
+    private static final int MIN_NAMES_COUNT = 2;
 
     private final List<Name> names;
 
@@ -15,7 +16,7 @@ public class Names {
     }
 
     private void validateNameCount(List<String> rawNames) {
-        if (rawNames.size() < 2) {
+        if (rawNames.size() < MIN_NAMES_COUNT) {
             throw new IllegalArgumentException();
         }
     }
