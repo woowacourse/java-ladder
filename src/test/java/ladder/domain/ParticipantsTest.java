@@ -9,6 +9,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParticipantsTest {
 
@@ -37,5 +38,19 @@ public class ParticipantsTest {
         // when & then
         assertThatThrownBy(() -> new Participants(names))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("참가자 수를 조회한다.")
+    void getParticipantsCountTest() {
+        // given
+        String names = "mia, pota, dora";
+        Participants participants = new Participants(names);
+
+        // when
+        int count = participants.getCount();
+
+        // then
+        assertEquals(3, count);
     }
 }
