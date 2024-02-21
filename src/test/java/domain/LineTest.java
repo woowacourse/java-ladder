@@ -1,7 +1,6 @@
 package domain;
 
-import domain.point.PointGenerator;
-import domain.point.strategy.FakePointGenerator;
+import domain.point.strategy.PointGeneratorStub;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,8 @@ public class LineTest {
     void createLineSuccessWithNoneSerialPoints() {
         int playerCount = 4;
         List<Boolean> points = List.of(true, false, true);
-        PointGenerator pointGenerator = new FakePointGenerator(points);
+        PointGeneratorStub pointGenerator = new PointGeneratorStub();
+        pointGenerator.setPoints(points);
 
         Line line = new Line(pointGenerator.generate(playerCount - 1));
         Assertions.assertThat(line.getPoints()).containsExactlyElementsOf(points);

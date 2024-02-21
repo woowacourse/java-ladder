@@ -4,10 +4,10 @@ import domain.point.PointGenerator;
 
 import java.util.List;
 
-public class FakePointGenerator implements PointGenerator {
-    private final List<Boolean> points;
+public class PointGeneratorStub implements PointGenerator {
+    private List<Boolean> points;
 
-    public FakePointGenerator(List<Boolean> points) {
+    public void setPoints(List<Boolean> points) {
         this.points = points;
     }
 
