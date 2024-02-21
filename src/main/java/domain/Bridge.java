@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Bridge {
 
     private final int from;
@@ -23,5 +25,30 @@ public class Bridge {
         this.from = from;
         this.to = to;
         this.height = height;
+    }
+
+    public boolean isAdjacent(Bridge bridge) {
+        if (height != bridge.height) {
+            return false;
+        }
+
+        return to == bridge.from || from == bridge.to;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Bridge bridge = (Bridge) o;
+        return from == bridge.from && to == bridge.to && height == bridge.height;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(from, to, height);
     }
 }

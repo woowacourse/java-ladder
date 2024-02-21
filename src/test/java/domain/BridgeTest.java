@@ -1,9 +1,11 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -24,5 +26,24 @@ class BridgeTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("잘못된 연결을 하면 예외가 발생한다");
     }
+
+    @Test
+    @DisplayName("인접한 다리면 true를 반환한다")
+    void adjacent_bridge_return_true() {
+        Bridge bridgeA = new Bridge(0, 1, 0);
+        Bridge bridgeB = new Bridge(1, 2, 0);
+        assertThat(bridgeA.isAdjacent(bridgeB)).isTrue();
+        assertThat(bridgeB.isAdjacent(bridgeA)).isTrue();
+    }
+
+    @Test
+    @DisplayName("인접한 다리가 아니면 false를 반환한다")
+    void not_adjacent_bridge_return_false() {
+        Bridge bridgeA = new Bridge(0, 1, 1);
+        Bridge bridgeB = new Bridge(1, 2, 0);
+        assertThat(bridgeA.isAdjacent(bridgeB)).isFalse();
+    }
+
+
 
 }
