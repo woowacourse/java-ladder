@@ -15,7 +15,7 @@ public class Bridges {
     private void validate(List<Boolean> bridges) {
         boolean before = false;
         for (Boolean bridge : bridges) {
-            if (before && bridge) {
+            if (before && bridge) { // TODO 인텐트 처리
                 throw new IllegalArgumentException();
             }
             before = bridge;

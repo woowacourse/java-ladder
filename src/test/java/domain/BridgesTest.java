@@ -23,6 +23,7 @@ public class BridgesTest {
                 .isThrownBy(() -> new Bridges(List.of()));
     }
 
+    @DisplayName("연속되는 브릿지가 존재하면 예외가 발생한다.")
     @Test
     void constructFailWithContinuousBridge() {
         assertThatThrownBy(() -> new Bridges(List.of(true, true, false, false)))
