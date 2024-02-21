@@ -1,7 +1,5 @@
 package domain;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -18,5 +16,17 @@ class PlayersTest {
         final Players players = new Players(names);
         //then
         Assertions.assertThat(players.getPlayers()).hasSize(4);
+    }
+
+    @DisplayName("참가자의 수를 반환한다.")
+    @Test
+    void getPlayersCount() {
+        //given
+        final List<String> names = List.of("pobi", "honux", "crong", "jk");
+        final Players players = new Players(names);
+        //when
+        int playersCount = players.count();
+        //then
+        Assertions.assertThat(playersCount).isEqualTo(names.size());
     }
 }
