@@ -1,7 +1,13 @@
 package ladder.domain;
 
+import java.util.List;
+
 public class Ladder {
-    public Ladder(int height) {
+
+    List<Line> lines;
+
+    public Ladder(int peopleCount, int height) {
+        validate(peopleCount);
         validate(height);
     }
 
