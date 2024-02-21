@@ -14,9 +14,12 @@ public class InputView {
     public List<String> readPlayersName() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String rawNames = scanner.nextLine();
+        if (rawNames == null || rawNames.trim().isEmpty()) {
+            // TODO: 예외 메시지
+            throw new IllegalArgumentException();
+        }
 
         List<String> names = List.of(rawNames.split(","));
-
         return names;
     }
 }
