@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserNames {
     static final int MIN_SIZE = 2;
@@ -8,10 +9,16 @@ public class UserNames {
 
     private final List<UserName> userNames;
 
-    public UserNames(List<UserName> userNames) {
+    private UserNames(List<UserName> userNames) {
         validateSize(userNames);
         validateDuplicate(userNames);
         this.userNames = userNames;
+    }
+
+    public static UserNames of(List<String> names) {
+        return names.stream()
+                .map(UserName::new)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), UserNames::new));
     }
 
     private void validateSize(final List<UserName> userNames) {

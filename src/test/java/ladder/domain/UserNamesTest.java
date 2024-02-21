@@ -15,10 +15,8 @@ class UserNamesTest {
     @DisplayName("사용자가 2명 미만이면 예외가 발생한다.")
     @Test
     void createUserNamesByLowerSize() {
-        List<UserName> userNames = List.of(new UserName("a"));
-
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new UserNames(userNames))
+                .isThrownBy(() -> UserNames.of(List.of("a")))
                 .withMessage(String.format(
                         "사용자는 %d명 이상 %d명 이하여야 합니다", MIN_SIZE, MAX_SIZE
                 ));
@@ -28,20 +26,10 @@ class UserNamesTest {
     @Test
     void createUserNamesByOverSize() {
         // Given
-        List<UserName> userNames = List.of(
-                new UserName("a"),
-                new UserName("b"),
-                new UserName("c"),
-                new UserName("d"),
-                new UserName("e"),
-                new UserName("f"),
-                new UserName("g"),
-                new UserName("h"),
-                new UserName("i")
-        );
+        List<String> userNames = List.of("a", "b", "c", "d", "e", "f", "g", "h");
 
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new UserNames(userNames))
+                .isThrownBy(() -> UserNames.of(userNames))
                 .withMessage(String.format(
                         "사용자는 %d명 이상 %d명 이하여야 합니다", MIN_SIZE, MAX_SIZE
                 ));
@@ -50,17 +38,15 @@ class UserNamesTest {
     @DisplayName("중복된 이름이 입력되면 예외가 발생한다.")
     @Test()
     void createNameByDuplicated() {
-        List<UserName> userNames = List.of(new UserName("kelly"), new UserName("kelly"));
-
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new UserNames(userNames))
+                .isThrownBy(() -> UserNames.of(List.of("kelly", "kelly")))
                 .withMessage("중복된 이름은 허용되지 않습니다.");
     }
 
     @DisplayName("사용자 수를 반환한다.")
     @Test
     void getUserCount() {
-        final UserNames userNames = new UserNames(List.of(new UserName("aaa"), new UserName("bbb")));
+        final UserNames userNames = UserNames.of(List.of("aaa", "bbb"));
 
         assertThat(userNames.getUserCount())
                 .isEqualTo(2);
