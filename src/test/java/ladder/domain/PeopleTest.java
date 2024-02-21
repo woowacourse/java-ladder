@@ -1,54 +1,40 @@
 package ladder.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 class PeopleTest {
 
-    private List<Name> names;
-
-    @BeforeEach
-    void setUp() {
-        Name pobi = new Name("pobi");
-        Name honux = new Name("honux");
-        Name crong = new Name("crong");
-        Name jk = new Name("jk");
-        names = new ArrayList<>(List.of(pobi, honux, crong, jk));
-    }
-
     @Test
-    @DisplayName("사람 이름이 중복이라면 예외가 발생한다.")
-    void createDuplicatedNames() {
-        names.add(new Name("pobi"));
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new People(names));
-    }
-
-    @Test
-    @DisplayName("이름이 2개 이하라면 예외가 발생한다.")
-    void nameLengthExceptionTest() {
-        List<Name> towNames = names.subList(0, 2);
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new People(towNames));
-    }
-
-    @Test
-    @DisplayName("가장 긴 이름의 길이를 찾을 수 있다.")
-    void findMaxNameLength() {
+    @DisplayName("사람 이름은 쉼표(,)를 기준으로 구분한다.")
+    void createNames() {
         // given
-        People people = new People(names);
+        People people = new People("pobi,honux,crong,jk");
 
         // when
-        int maxNameLength = people.findMaxNameLength();
+        int count = people.count();
 
         // then
-        assertThat(maxNameLength).isEqualTo(5);
+        assertThat(count).isEqualTo(4);
+    }
+
+    @Test
+    @DisplayName("이름이 5글자를 초과하면 예외가 발생한다.")
+    void createInvalidNames() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new People("pobipobi,honux,crong,jk"));
+    }
+
+    @Test
+    @DisplayName("이름에 공백은 포함하지 않는다.")
+    void createValidNames() {
+        // given
+        String name = "  jk  ";
+
+        // when & then
+        assertThatCode(() -> new People(name))
+                .doesNotThrowAnyException();
     }
 }
