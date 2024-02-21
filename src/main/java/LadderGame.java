@@ -9,6 +9,6 @@ public class LadderGame {
                 .stream()
                 .map(Name::new)
                 .toList();
-
+        int height = InputView.readHeight();
     }
 }
