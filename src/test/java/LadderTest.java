@@ -29,8 +29,8 @@ public class LadderTest {
     @RepeatedTest(100)
     void makeLines() {
         Ladder ladder = new Ladder(1, List.of(new LadderRow(5)));
-        ladder.makeLine();
-        assertThat(ladder.getLines().get(0).size()).isEqualTo(4);
+        ladder.createRows();
+        assertThat(ladder.getRow(0).currentWidthSize()).isEqualTo(4);
     }
 
 }

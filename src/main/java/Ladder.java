@@ -12,29 +12,28 @@ public class Ladder {
         this.ladderRows = new ArrayList<>(ladderRows);
         this.height = height;
     }
-    public void makeLine() {
-        for (int i = 0; i < height; i++) {
-            makeOneLines(ladderRows.get(i));
-        }
-    }
-
-    private void makeOneLines(LadderRow ladderRow) {
-        while (ladderRow.size() < ladderRow.getMaxSize()) {
-            ladderRow.cross(new Random().nextBoolean());
-        }
-    }
 
     private void validateHeightIsPositive(int height) {
         if (height < 0) {
             throw new IllegalArgumentException("최대 사다리의 높이는 양수가 되어야 합니다");
         }
     }
+    public void createRows() {
+        for (int i = 0; i < height; i++) {
+            createRow(ladderRows.get(i));
+        }
+    }
+
+    private void createRow(LadderRow ladderRow) {
+        while (ladderRow.currentWidthSize() < ladderRow.getMaxWidth()) {
+            ladderRow.crossLine(new Random().nextBoolean());
+        }
+    }
 
     public int height() {
         return height;
     }
-
-    public List<LadderRow> getLines() {
-        return ladderRows;
+    public LadderRow getRow(int index){
+        return ladderRows.get(index);
     }
 }
