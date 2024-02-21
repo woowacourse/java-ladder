@@ -10,7 +10,14 @@ public class Parser {
     }
 
     public static List<String> splitName(String input) {
+        validateInput(input);
         return Arrays.asList(input.split(DELIMITER));
+    }
+
+    private static void validateInput(String input) {
+        if (input.endsWith(",")) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public static int parseHeight(String input) {
