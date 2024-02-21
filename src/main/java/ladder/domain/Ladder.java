@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.util.BooleanListGenerator;
 import ladder.util.RandomBooleanListGenerator;
 
 import java.util.ArrayList;
@@ -12,9 +13,11 @@ public class Ladder {
 
 
     public Ladder(int height, int personCount) {
+        BooleanListGenerator booleanListGenerator = new RandomBooleanListGenerator();
+
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(personCount, new RandomBooleanListGenerator()));
+            lines.add(new Line(personCount, booleanListGenerator));
         }
         this.lines = lines;
     }
