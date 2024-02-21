@@ -1,8 +1,9 @@
+package domain;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import domain.Height;
 
 public class HeightTest {
 
@@ -11,7 +12,7 @@ public class HeightTest {
     void lessThanOneExceptionTest() {
         assertThatThrownBy(() -> new Height(0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 높이는 1개 이상이어야 합니다.");
+                .hasMessage("[ERROR] 높이는 1개 이상 100개 이하여야 합니다.");
     }
 
     @Test
@@ -19,7 +20,7 @@ public class HeightTest {
     void moreThanHundredExceptionTest() {
         assertThatThrownBy(() -> new Height(101))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 높이는 100개 이하여야 합니다.");
+                .hasMessage("[ERROR] 높이는 1개 이상 100개 이하여야 합니다.");
     }
 
 }
