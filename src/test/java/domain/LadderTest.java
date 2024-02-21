@@ -29,7 +29,7 @@ class LadderTest {
     void ladderHasLines() {
         int height = 3;
         Ladder ladder = new Ladder(height, 9);
-        List<Line> lines = ladder.getLine();
+        List<Line> lines = ladder.getLines();
 
         assertThat(lines).hasSize(height);
     }
