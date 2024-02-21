@@ -46,10 +46,10 @@ public class Names {
         if (names == null || names.isEmpty()) {
             return "";
         }
-        return names.get(FIRST_INDEX).getName();
+        return names.get(FIRST_INDEX).getValue();
     }
 
     public String nameOf(int index) {
-        return names.get(index).getName();
+        return names.get(index).getValue();
     }
 }
