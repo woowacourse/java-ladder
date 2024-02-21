@@ -13,6 +13,10 @@ public class Name {
         if (value.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
+
+        if (value.length() < 2) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public String getValue() {
