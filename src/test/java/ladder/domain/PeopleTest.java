@@ -17,4 +17,12 @@ public class PeopleTest {
         ))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("이름이 1~5글자 범위를 벗어나면 예외를 발생한다.")
+    @Test
+    void nameTest() {
+        String name = "우아한테크코스";
+        assertThatThrownBy(() -> new People(List.of(name)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
