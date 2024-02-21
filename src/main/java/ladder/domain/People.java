@@ -5,13 +5,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Names {
+public class People {
 
     private static final int MAX_NAME_LENGTH = 5;
 
     private final List<String> names;
 
-    public Names(String rawNames) {
+    public People(String rawNames) {
         List<String> names = parse(rawNames);
         validate(names);
         this.names = new ArrayList<>(names);

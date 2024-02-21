@@ -5,16 +5,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-class NamesTest {
+class PeopleTest {
 
     @Test
     @DisplayName("사람 이름은 쉼표(,)를 기준으로 구분한다.")
     void createNames() {
         // given
-        Names names = new Names("pobi,honux,crong,jk");
+        People people = new People("pobi,honux,crong,jk");
 
         // when
-        int count = names.count();
+        int count = people.count();
 
         // then
         assertThat(count).isEqualTo(4);
@@ -24,7 +24,7 @@ class NamesTest {
     @DisplayName("이름이 5글자를 초과하면 예외가 발생한다.")
     void createInvalidNames() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Names("pobipobi,honux,crong,jk"));
+                .isThrownBy(() -> new People("pobipobi,honux,crong,jk"));
     }
 
     @Test
@@ -34,7 +34,7 @@ class NamesTest {
         String name = "  jk  ";
 
         // when & then
-        assertThatCode(() -> new Names(name))
+        assertThatCode(() -> new People(name))
                 .doesNotThrowAnyException();
     }
 }
