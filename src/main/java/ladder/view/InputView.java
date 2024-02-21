@@ -13,9 +13,26 @@ public class InputView {
         return input;
     }
 
+    public int readLadderHeight() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        String input = SCANNER.nextLine();
+
+        return parseToInt(input);
+    }
+
     private void validateInputBlank(String input) {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException("입력은 비어있을 수 없습니다.");
+        }
+    }
+
+    private int parseToInt(String input) {
+        validateInputBlank(input);
+
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("입력은 숫자여야 합니다.");
         }
     }
 }
