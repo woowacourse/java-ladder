@@ -1,5 +1,7 @@
 package view;
 
+import model.Ladder;
+import model.LadderRow;
 import model.Participant;
 
 import java.util.List;
@@ -24,6 +26,20 @@ public class OutputView {
         stringBuilder.append(" ".repeat(4 - nameLength));
         stringBuilder.append(name).append("  ");
         return stringBuilder.toString();
+    }
+
+    public void printLadder(Ladder ladder) {
+        for(int i = 0; i < ladder.height(); i++){
+            printRow(ladder.getRow(i));
+        }
+    }
+
+    private void printRow(LadderRow ladderRow){
+        for (boolean line : ladderRow.getLines()){
+            System.out.println(LadderStructure.DIVISION.getOutput());
+            System.out.println(LadderStructure.match(line).getOutput());
+        }
+        System.out.println(LadderStructure.DIVISION.getOutput());
     }
 
 }
