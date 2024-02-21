@@ -6,6 +6,7 @@ import static ladder.domain.Direction.RIGHT;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class LadderLevel {
     private final List<Direction> ladderLevel;
@@ -38,7 +39,7 @@ public class LadderLevel {
         }
     }
 
-    public Direction getDirectionAt(int index) {
-        return ladderLevel.get(index);
+    public Stream<Direction> stream() {
+        return ladderLevel.stream();
     }
 }
