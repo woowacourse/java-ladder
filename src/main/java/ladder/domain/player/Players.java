@@ -9,7 +9,6 @@ public class Players {
     private static final int MINIMUM_PLAYER_SIZE = 2;
     private final List<Player> players;
 
-
     public Players(List<String> playerNames) {
         validatePlayers(playerNames);
         this.players = createPlayers(playerNames);
