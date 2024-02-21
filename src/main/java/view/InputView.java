@@ -34,7 +34,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("사다리 높이는 1 이상 10 이하의 정수여야 합니다.");
+            throw new IllegalArgumentException("사다리 높이는 정수로 입력해야 합니다.");
         }
     }
 }
