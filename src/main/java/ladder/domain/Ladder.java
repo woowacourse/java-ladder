@@ -24,7 +24,7 @@ public class Ladder {
     }
 
     public void initialize(LineGenerator lineGenerator) {
-        lines = new ArrayList<>();
+        lines.clear();
         for (int i = 0; i < height; i++) {
             lines.add(new Line(peopleCount, lineGenerator));
         }
