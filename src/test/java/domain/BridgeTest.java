@@ -17,7 +17,7 @@ class BridgeTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"0, 0, 0", "0, 1, -1"})
+    @CsvSource({"0, 0, 0", "0, 1, -1", "0, 2, 0"})
     @DisplayName("다리를 잘못 연결하면 예외가 발생한다")
     void invalid_bridge_throws_exception(int from, int to, int height) {
         Assertions.assertThatThrownBy(() -> new Bridge(from, to, height))
