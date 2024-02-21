@@ -9,21 +9,19 @@ import java.util.stream.Collectors;
 
 public class Ladder {
 
-    private final List<Line> lines;
+    private final List<Line> lines = new ArrayList<>();
 
 
-    public Ladder(int height, int personCount) {
+    public Ladder(Height height, People people) {
         BooleanListGenerator booleanListGenerator = new RandomBooleanListGenerator();
 
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(personCount, booleanListGenerator));
+        while (!height.isSame(getLinesSize())) {
+            lines.add(new Line(people.count(), booleanListGenerator));
         }
-        this.lines = lines;
     }
 
-    public List<Line> getLines() {
-        return lines;
+    protected int getLinesSize() {
+        return lines.size();
     }
 
     @Override
