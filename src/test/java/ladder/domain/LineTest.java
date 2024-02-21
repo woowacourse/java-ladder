@@ -5,8 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static ladder.domain.Direction.LEFT;
 import static ladder.domain.Direction.RIGHT;
 
-import java.util.List;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +17,9 @@ class LineTest {
 
         Line line = new Line(4, lineGenerator);
 
-        assertThat(line.line).isEqualTo(List.of(RIGHT, LEFT, RIGHT, LEFT));
+        assertThat(line.getDirectionAt(0)).isEqualTo(RIGHT);
+        assertThat(line.getDirectionAt(1)).isEqualTo(LEFT);
+        assertThat(line.getDirectionAt(2)).isEqualTo(RIGHT);
+        assertThat(line.getDirectionAt(3)).isEqualTo(LEFT);
     }
 }

@@ -13,9 +13,7 @@ public class PeopleTest {
     @Test
     void peopleTest() {
         assertThatThrownBy(() -> new People(
-                List.of(
-                        "명오", "명오"
-                )
+                List.of("명오", "명오")
         ))
                 .isInstanceOf(IllegalArgumentException.class);
     }

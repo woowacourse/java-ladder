@@ -4,7 +4,7 @@ import java.util.List;
 
 public class People {
 
-    List<String> people;
+    private final List<String> people;
 
     public People(List<String> names) {
         validate(names);

@@ -51,4 +51,5 @@ pobi  honux crong   jk
 ## 리팩토링 목록
 
 - [X] People 객체만으로 충분하므로 Person 삭제
-- [ ] 인스턴스 변수를 private으로 변경
+- [X] 인스턴스 변수를 private으로 변경
+- [ ]

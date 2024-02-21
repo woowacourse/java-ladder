@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    List<Direction> line;
+    private final List<Direction> line;
 
     public Line(int size, LineGenerator lineGenerator) {
+        line = new ArrayList<>();
         initialize(size);
         for (int index = 0; index < size - 1; index++) {
             setDirections(lineGenerator, index);
@@ -18,7 +19,6 @@ public class Line {
     }
 
     private void initialize(int size) {
-        line = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             line.add(NONE);
         }
@@ -38,5 +38,7 @@ public class Line {
         }
     }
 
-
+    public Direction getDirectionAt(int index) {
+        return line.get(index);
+    }
 }
