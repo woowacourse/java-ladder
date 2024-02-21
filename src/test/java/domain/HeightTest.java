@@ -1,5 +1,6 @@
 package domain;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
@@ -12,5 +13,14 @@ class HeightTest {
         int inputValue = 0;
 
         assertThrows(IllegalArgumentException.class, () -> new Height(inputValue));
+    }
+
+    @Test
+    @DisplayName("사다리 높이를 반환한다.")
+    void getLadderHeight() {
+        int rawHeight = 10;
+        Height height = new Height(rawHeight);
+
+        assertEquals(rawHeight, height.getValue());
     }
 }
