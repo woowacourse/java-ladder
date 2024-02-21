@@ -3,6 +3,8 @@ package domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class StickGeneratorTest {
 
@@ -31,5 +33,15 @@ class StickGeneratorTest {
         Stick stick = stickGenerator.generate(1);
 
         Assertions.assertThat(stick).isEqualTo(Stick.FILLED);
+    }
+
+    @DisplayName("0과 1이 아닌 값은 허용하지 않는다.")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 2})
+    void validateZeroOrOne(int source) {
+        StickGenerator stickGenerator = new StickGenerator();
+
+        Assertions.assertThatThrownBy(() -> stickGenerator.generate(source))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
