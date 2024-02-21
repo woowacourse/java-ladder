@@ -6,17 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class LadderTest {
-    @Test
-    @DisplayName("Ladder를 생성한다")
-    void createLadder() {
-        //given
-
-        //when
-
-        //then
-        assertThatCode(() -> new Ladder()).doesNotThrowAnyException();
-    }
+class LadderTest {
 
     @Test
     @DisplayName("사람 수와 높이로 Ladder 생성")

@@ -1,7 +1,7 @@
 package view;
 
 import domain.Ladder;
-import domain.LadderPrinter;
+import domain.SingleLine;
 import domain.Line;
 
 public class ResultView {
@@ -23,7 +23,7 @@ public class ResultView {
 
     public static void printResult(Ladder ladder) {
         for (Line line : ladder.getLadder()) {
-            System.out.println(LadderPrinter.generateSingleLine(line));
+            System.out.println(SingleLine.generateSingleLine(line));
         }
     }
 }

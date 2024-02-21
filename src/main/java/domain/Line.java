@@ -6,9 +6,6 @@ public class Line {
 
     List<Boolean> points = new ArrayList<>();
 
-    public Line() {
-    }
-
     public Line(int personCount, Generator generator) {
         generateRandomPoint(personCount, generator);
     }

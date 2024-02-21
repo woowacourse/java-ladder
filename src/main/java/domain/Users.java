@@ -16,10 +16,6 @@ public class Users {
         return users.size();
     }
 
-    public Users() {
-
-    }
-
     public Users(String userNames) {
         List<String> names = Arrays.stream(userNames.split(",")).map(String::trim).toList();
         users = names.stream()

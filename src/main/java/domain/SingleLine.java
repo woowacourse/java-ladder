@@ -1,13 +1,13 @@
 package domain;
 
-public enum LadderPrinter {
+public enum SingleLine {
 
     BAR("|-----"),
     NON_BAR("|     ");
 
     private final String singleLine;
 
-    LadderPrinter(String singleLine) {
+    SingleLine(String singleLine) {
         this.singleLine = singleLine;
     }
 
