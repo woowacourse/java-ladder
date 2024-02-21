@@ -1,6 +1,7 @@
 package ladder.view;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import ladder.dto.LadderDto;
 import ladder.dto.LineDto;
 import ladder.dto.PlayersDto;
@@ -20,12 +21,18 @@ public class OutputView {
         List<String> playerNames = playersDto.playerNames();
 
         System.out.println();
-        for (String playerName : playerNames) {
-            System.out.printf("%5s ", playerName);
-        }
-        System.out.println();
+        System.out.println(generatePlayerNamesMessage(playerNames));
     }
 
+    private String generatePlayerNamesMessage(List<String> playerNames) {
+        return playerNames.stream()
+                .map(this::generatePlayerNameMessage)
+                .collect(Collectors.joining());
+    }
+
+    private String generatePlayerNameMessage(String playerName) {
+        return String.format("%5s ", playerName);
+    }
 
     public void printLadder(LadderDto ladderDto) {
         List<LineDto> lineDtos = ladderDto.lineDtos();

@@ -26,8 +26,9 @@ public class LadderController {
     public void run() {
         Players players = retryOnException(this::readPlayers);
         Height height = retryOnException(this::readLadderHeight);
+        int columnSize = players.countPlayers();
 
-        Ladder ladder = new Ladder(players.countPlayers(), height, booleanGenerator);
+        Ladder ladder = new Ladder(columnSize, height, booleanGenerator);
 
         printLadder(players, ladder);
     }
