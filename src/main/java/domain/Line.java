@@ -11,14 +11,15 @@ public class Line {
 
     public Line(int count, BooleanGenerator booleanGenerator) {
         points.add(booleanGenerator.generate());
-        for (int i = 1; i < count; i++) {
-            if (!points.get(i - 1)) {
-                points.add(booleanGenerator.generate());
-                continue;
-            }
-            points.add(false);
-
+        for (int index = 1; index < count; index++) {
+            points.add(makeOnePoint(index, booleanGenerator));
         }
+    }
+    private boolean makeOnePoint(int index, BooleanGenerator booleanGenerator) {
+        if (!points.get(index - 1)) {
+            return booleanGenerator.generate();
+        }
+        return false;
     }
 
     public boolean isExistPoint(int index) {
