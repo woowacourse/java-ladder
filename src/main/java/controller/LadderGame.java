@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Ladder;
 import domain.Participants;
 import view.InputView;
 
@@ -15,6 +16,7 @@ public class LadderGame {
 
     public void start() {
         Participants participants = makeParticipants(inputName());
+        Ladder ladder = new Ladder(inputHeight());
     }
 
     private List<String> inputName() {
@@ -25,5 +27,9 @@ public class LadderGame {
 
     private Participants makeParticipants(List<String> names) {
         return new Participants(names);
+    }
+
+    private String inputHeight() {
+        return inputView.inputHeight();
     }
 }
