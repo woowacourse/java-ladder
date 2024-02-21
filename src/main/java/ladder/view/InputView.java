@@ -1,5 +1,7 @@
 package ladder.view;
 
+import ladder.exception.InvalidHeightNumberException;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -13,9 +15,18 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public String readLadderHeight() {
+    public int readLadderHeight() {
         System.out.println(REQUEST_LADDER_HEIGHT);
-        return scanner.nextLine();
+        final String input = scanner.nextLine();
+        return convertToHeight(input);
+    }
+
+    private int convertToHeight(final String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new InvalidHeightNumberException();
+        }
     }
 
     public void closeResource() {
