@@ -26,7 +26,7 @@ public class ResultView {
         StringBuilder nameLine = new StringBuilder();
 
         for (int i = 1; i < names.size(); i++) {
-            nameLine.append(String.format("%6s", names.getName(i)));
+            nameLine.append(String.format("%6s", names.nameOf(i)));
         }
         System.out.println(firstName + nameLine);
     }

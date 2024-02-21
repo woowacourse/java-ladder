@@ -49,7 +49,7 @@ public class Names {
         return names.get(FIRST_INDEX).getName();
     }
 
-    public String getName(int index) {
+    public String nameOf(int index) {
         return names.get(index).getName();
     }
 }
