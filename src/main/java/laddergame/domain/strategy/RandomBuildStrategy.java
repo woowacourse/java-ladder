@@ -12,7 +12,7 @@ public class RandomBuildStrategy implements CanBuildStrategy {
     public List<Boolean> canBuildBridges(final int count) {
         List<Boolean> list = new ArrayList<>();
         list.add(generator.generate());
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count - 1; i++) {
             if (list.get(list.size() - 1)) {
                 list.add(Boolean.FALSE);
                 continue;
