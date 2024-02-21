@@ -15,12 +15,12 @@ public class Line {
 
     private void generate(int playerCount, BooleanGenerator booleanGenerator) {
         for (int index = 0; index < playerCount; index++) {
-            index = makePoint(index, booleanGenerator.generate());
+            index = makePoint(index, playerCount, booleanGenerator.generate());
         }
     }
 
-    private int makePoint(int index, boolean isHorizon) {
-        if (isHorizon) {
+    private int makePoint(int index, int playerCount, boolean isHorizon) {
+        if (isHorizon && index < playerCount - 1) {
             generateHorizon();
             return index + 1;
         }

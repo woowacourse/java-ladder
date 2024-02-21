@@ -14,4 +14,8 @@ public class Ladder {
             height.decrease();
         }
     }
+
+    public List<Line> getLines() {
+        return this.lines;
+    }
 }
