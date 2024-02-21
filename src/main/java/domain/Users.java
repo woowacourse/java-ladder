@@ -7,16 +7,15 @@ public class Users {
     private final List<UserName> users;
 
     public Users(final List<String> userNames) {
+        validate(userNames);
         users = userNames.stream()
                 .map(UserName::new)
                 .toList();
-        validate();
     }
 
     public int gerPersonCount() {
         return users.size();
     }
-
 
     public UserName getFirst() {
         return users.get(0);
@@ -30,12 +29,12 @@ public class Users {
         return users.subList(1, users.size() - 1);
     }
 
-    private void validate() {
-        if (users.size() == 1) {
-            throw new IllegalArgumentException(String.format("입력된 값: %d, 사용자는 두명 이상이여야 합니다.", users.size()));
+    private void validate(final List<String> userNames) {
+        if (userNames.size() == 1) {
+            throw new IllegalArgumentException(String.format("입력된 값: %d, 사용자는 두명 이상이여야 합니다.", userNames.size()));
         }
-        if (users.size() > 50) {
-            throw new IllegalArgumentException(String.format("입력된 값: %d, 사용자는 최대 50명입니다.", users.size()));
+        if (userNames.size() > 50) {
+            throw new IllegalArgumentException(String.format("입력된 값: %d, 사용자는 최대 50명입니다.", userNames.size()));
         }
     }
 }

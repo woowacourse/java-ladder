@@ -10,10 +10,6 @@ public class UserName {
         this.userName = userName;
     }
 
-    @Override
-    public String toString() {
-        return userName;
-    }
 
     private void validate(final String userName) {
         validateLength(userName);
@@ -39,5 +35,10 @@ public class UserName {
         if (specialCharacter.matcher(userName).find()) {
             throw new IllegalArgumentException(String.format("입력 된 값: %s, 특수기호는 들어갈 수 없습니다.", userName));
         }
+    }
+
+    @Override
+    public String toString() {
+        return userName;
     }
 }
