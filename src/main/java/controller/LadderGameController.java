@@ -42,7 +42,7 @@ public class LadderGameController {
         try {
             return retryOperation.get();
         } catch (IllegalArgumentException e) {
-            // TODO: 오류 메시지 출력
+            OutputView.printExceptionMessage(e.getMessage());
             return retryOnException(retryOperation);
         }
     }
