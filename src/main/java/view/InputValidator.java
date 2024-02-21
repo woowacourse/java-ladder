@@ -1,4 +1,4 @@
-package domain;
+package view;
 
 public class InputValidator {
     public void validatePlayers(String input) {
@@ -33,6 +33,7 @@ public class InputValidator {
     }
 
     public void validateHeight(String input) {
+        validateBlank(input);
         validateNumeric(input);
         validateRange(input);
     }

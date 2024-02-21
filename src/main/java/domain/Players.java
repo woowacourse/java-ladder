@@ -11,7 +11,7 @@ public class Players {
         this.players = convertToPlayer(players);
     }
 
-    private List<Player> convertToPlayer(List<String> players) {
+    private List<Player> convertToPlayer(List<String> players) { // todo: DTOd에서?
         return players.stream()
                 .map(Player::new)
                 .collect(Collectors.toList());

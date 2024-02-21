@@ -1,8 +1,10 @@
 package Controller;
 
 import domain.*;
-
-import java.util.List;
+import dto.HeightRequest;
+import dto.PlayersRequest;
+import view.InputView;
+import view.OutputView;
 
 public class Controller {
     private final InputView inputView;
@@ -14,14 +16,15 @@ public class Controller {
     }
 
     public void run() {
-        List<String> rawPlayers = inputView.inputPlayers();
-        int height = inputView.inputHeight();
-        Players players = new Players(rawPlayers);
+        PlayersRequest playersRequest = inputView.inputPlayers();
+        Players players = playersRequest.toPlayers();
+        HeightRequest heightRequest = inputView.inputHeight();
+        Height height = heightRequest.toHegith();
+
         NumberGenerator numberGenerator = new RandomNumberGenerator();
+        Carpenter carpenter = new Carpenter(height, new PlayerCount(players), numberGenerator);
+        Ladder ladder = carpenter.makeLadder();
 
-        LinesFactory linesFactory = new LinesFactory(height, players.getCount(), numberGenerator);
-        List<Line> lines = linesFactory.generateLines();
-
-        outputView.printResult(players, lines);
+        outputView.printResult(players, ladder);
     }
 }

@@ -3,10 +3,10 @@ package domain;
 import java.util.Objects;
 
 public class Point {
-    private final boolean hasStep;
+    private final Step step;
 
-    public Point(boolean hasStep) {
-        this.hasStep = hasStep;
+    public Point(Step step) {
+        this.step = step;
     }
 
     @Override
@@ -14,15 +14,15 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return hasStep == point.hasStep;
+        return step == point.step;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(hasStep);
+        return Objects.hash(step);
     }
 
-    public boolean isHasStep() {
-        return hasStep;
+    public Step getStep() {
+        return step;
     }
 }
