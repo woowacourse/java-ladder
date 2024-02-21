@@ -23,10 +23,6 @@ public class Ladder {
                 .toList();
     }
 
-    public int getHeight() {
-        return ladderHeight.getHeight();
-    }
-
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }

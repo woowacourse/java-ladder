@@ -1,5 +1,6 @@
 package ladder.domain.player;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 import ladder.exception.ErrorMessage;
 import ladder.exception.InvalidInputException;
@@ -29,6 +30,23 @@ public class Player {
         if (!NAME_VALID_FORMAT.matcher(name).matches()) {
             throw new InvalidInputException(ErrorMessage.INVALID_PLAYER_NAME_FORMAT);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Player player = (Player) o;
+        return Objects.equals(name, player.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     public String getName() {
