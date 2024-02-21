@@ -5,7 +5,7 @@ import java.util.List;
 public class Names {
     private static final int EMPTY_NAME_COUNT = 0;
     private static final int FIRST_INDEX = 0;
-    
+
     private final List<Name> names;
 
     public Names(List<String> rawNames) {
@@ -42,8 +42,11 @@ public class Names {
         return names.size();
     }
 
-    public Name getFirstName() {
-        return names.get(FIRST_INDEX);
+    public String firstName() {
+        if (names == null || names.isEmpty()) {
+            return "";
+        }
+        return names.get(FIRST_INDEX).getName();
     }
 
     public String getName(int index) {

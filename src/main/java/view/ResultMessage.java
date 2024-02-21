@@ -30,6 +30,6 @@ public enum ResultMessage {
     }
 
     public static String ladderPadding(final Names names) {
-        return " ".repeat(names.getFirstName().getLength()) + "|";
+        return " ".repeat(names.firstName().length()) + "|";
     }
 }

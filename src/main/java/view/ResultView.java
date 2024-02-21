@@ -22,7 +22,7 @@ public class ResultView {
     }
 
     private static void printNames(Names names) {
-        String firstName = String.format("%-5s", names.getFirstName().getName());
+        String firstName = String.format("%-5s", names.firstName());
         StringBuilder nameLine = new StringBuilder();
 
         for (int i = 1; i < names.size(); i++) {
