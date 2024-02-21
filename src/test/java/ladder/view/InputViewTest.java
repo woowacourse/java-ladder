@@ -1,16 +1,14 @@
 package ladder.view;
 
-import ladder.view.InputView;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class InputViewTest {
 
@@ -18,7 +16,8 @@ public class InputViewTest {
     @Test
     void parseNamesWithDelimiter() {
         List<String> names = InputView.readNames(() -> "a,b,c");
-        assertThat(names).containsExactly("a", "b", "c");
+        assertThat(names)
+                .containsExactly("a", "b", "c");
     }
 
     @DisplayName("사용자 이름으로 공백이 입력되면 예외를 던진다.")
