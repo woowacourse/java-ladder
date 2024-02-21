@@ -7,9 +7,13 @@ public class Name {
     private final String name;
 
     public Name(String name) {
+        validate(name);
+        this.name = name;
+    }
+
+    private void validate(String name) {
         validateNameLength(name);
         validateNotBlank(name);
-        this.name = name;
     }
 
     private void validateNameLength(String name) {
