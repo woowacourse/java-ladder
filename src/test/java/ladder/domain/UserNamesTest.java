@@ -51,4 +51,13 @@ class UserNamesTest {
         assertThat(userNames.getUserCount())
                 .isEqualTo(2);
     }
+
+    @DisplayName("사용자 이름들을 List<String> 형태로 가공하여 반환한다.")
+    @Test
+    void getUserNames() {
+        final UserNames userNames = UserNames.of(List.of("kelly", "liv"));
+
+        assertThat(userNames.getUserNames())
+                .containsExactly("kelly", "liv");
+    }
 }
