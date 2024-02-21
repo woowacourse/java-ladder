@@ -1,6 +1,10 @@
 package ladder.domain;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public enum NameFormat {
+    DEFAULT(0, "%s "),
     ONE(1, "  %s  "),
     TWO(2, "  %s "),
     THREE(3, " %s "),
@@ -15,13 +19,12 @@ public enum NameFormat {
         this.format = format;
     }
 
-    //TODO 출력문에서도 catch문 유의하기
     public static String findFormat(int nameLength) {
-        for (NameFormat nameFormat : values()) {
-            if (nameLength == nameFormat.nameLength) {
-                return nameFormat.format;
-            }
-        }
-        throw new IllegalArgumentException("참여자 이름은 1이상 5이하의 단어만 가능합니다.");
+        Optional<String> optionalString = Arrays.stream(values())
+                .filter(f -> f.nameLength == nameLength)
+                .map(f -> f.format)
+                .findFirst();
+
+        return optionalString.orElseGet(() -> DEFAULT.format);
     }
 }
