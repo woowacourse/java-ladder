@@ -1,36 +1,57 @@
 package ladder.model;
 
-import ladder.utils.BooleanGenerator;
-import ladder.utils.FixedBooleanGenerator;
+import ladder.constant.LadderPath;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static ladder.constant.LadderPath.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
     @Test
-    @DisplayName("지정된 수 만큼의 길이를 갖는 한 행이 생성된다.")
-    void createLineByLengthTest() {
-        BooleanGenerator bg = new FixedBooleanGenerator(true);
+    @DisplayName("연속된 경로가 있다면 가로줄 생성에서 예외가 발생한다.")
+    void throwsExceptionWhenContinuousPathExistTest() {
+        List<LadderPath> continuousPath = List.of(RIGHT, LEFT, RIGHT, RIGHT, STAY);
 
-        Line line = Line.of(5, bg);
-
-        int actual = line.size();
-        int expected = 5;
-
-        assertThat(actual).isEqualTo(expected);
+        assertThatThrownBy(() -> new Line(continuousPath))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("동일한 가로줄에는 연속된 경로가 없다.")
-    void continuousPathNotExistInSameLine() {
-        Line line = Line.of(5, new FixedBooleanGenerator(true));
+    @DisplayName("오른쪽 경로 오른쪽에 왼쪽 경로가 없다면 예외가 발생한다.")
+    void throwsExceptionWhenNotRL() {
+        List<LadderPath> notRLPath = List.of(STAY, STAY, RIGHT, STAY, STAY);
 
-        List<Boolean> actual = line.getRow();
-        List<Boolean> expected = List.of(true, false, true, false, true);
+        assertThatThrownBy(() -> new Line(notRLPath))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
-        assertThat(actual).isEqualTo(expected);
+    @Test
+    @DisplayName("왼쪽 경로 왼쪽에 오른쪽 경로가 없다면 예외가 발생한다.")
+    void throwsExceptionWhenNotLR() {
+        List<LadderPath> notLRPath = List.of(STAY, STAY, LEFT, STAY, STAY);
+
+        assertThatThrownBy(() -> new Line(notLRPath))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("첫 번째 경로가 왼쪽이라면 예외가 발생한다.")
+    void throwsExceptionWhenLeftFirst() {
+        List<LadderPath> leftFirstPath = List.of(LEFT, STAY, STAY, STAY, STAY);
+
+        assertThatThrownBy(() -> new Line(leftFirstPath))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("마지막 경로가 오른쪽이라면 예외가 발생한다.")
+    void throwsExceptionWhenRightLast() {
+        List<LadderPath> rightLastPath = List.of(STAY, STAY, STAY, STAY, RIGHT);
+
+        assertThatThrownBy(() -> new Line(rightLastPath))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

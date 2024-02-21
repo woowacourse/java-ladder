@@ -1,47 +1,49 @@
 package ladder.model;
 
-import ladder.utils.BooleanGenerator;
+import ladder.constant.LadderPath;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Line {
-    private static List<Boolean> row = null;
+    private final List<LadderPath> row;
 
-    private Line(List<Boolean> row) {
+    public Line(List<LadderPath> row) {
+        validate(row);
         this.row = row;
     }
 
-    public static Line of(int length, BooleanGenerator bg) {
-        List<Boolean> row = new ArrayList<>();
-
-        for (int i = 0; i < length; i++) {
-            row.add(makePath(row, i, bg));
+    private void validate(List<LadderPath> row) {
+        if (!isRLPatternAllMatched(row) || !isLRPatternAllMatched(row)) {
+            throw new IllegalArgumentException("유효한 가로줄이 아닙니다.");
         }
-
-        return new Line(row);
-    }
-
-    public static boolean isLeftPathExist(List<Boolean> row, int position) {
-        if (position == 0) {
-            return false;
+        if (isLeftOnFirst(row) || isRightOnEnd(row)) {
+            throw new IllegalArgumentException("유효한 가로줄이 아닙니다.");
         }
-        return row.get(position - 1);
     }
 
-    private static boolean makePath(List<Boolean> row, int position, BooleanGenerator bg) {
-        if (isLeftPathExist(row, position)) {
-            return false;
+    private boolean isRLPatternAllMatched(List<LadderPath> row) {
+        for (int i = 0; i < row.size() - 1; i++) {
+            if (row.get(i) == LadderPath.RIGHT && row.get(i + 1) != LadderPath.LEFT) {
+                return false;
+            }
         }
-        return bg.generate();
+        return true;
     }
 
-    public int size() {
-        return row.size();
+    private boolean isLRPatternAllMatched(List<LadderPath> row) {
+        for (int i = row.size() - 1; i > 0; i--) {
+            if (row.get(i) == LadderPath.LEFT && row.get(i - 1) != LadderPath.RIGHT) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    public List<Boolean> getRow() {
-        return row;
+    private boolean isLeftOnFirst(List<LadderPath> row) {
+        return row.get(0) == LadderPath.LEFT;
+    }
+
+    private boolean isRightOnEnd(List<LadderPath> row) {
+        return row.get(row.size() - 1) == LadderPath.RIGHT;
     }
 }
