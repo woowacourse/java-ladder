@@ -27,6 +27,10 @@ public class Participants {
                 .toList();
     }
 
+    public int getCount() {
+        return participants.size();
+    }
+
     public List<Participant> getValues() {
         return participants;
     }
