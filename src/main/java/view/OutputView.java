@@ -7,6 +7,11 @@ import java.util.List;
 
 public class OutputView {
 
+
+    public static final String START_OF_LINE = "    |";
+    public static final String EXIST_POINT = "-----|";
+    public static final String EMPTY_POINT = "     |";
+
     public void printResult(List<String> participantsName, Ladder ladder) {
         System.out.println("\n실행결과\n");
         printNames(participantsName);
@@ -29,7 +34,7 @@ public class OutputView {
 
     private void printOneLine(Line line) {
         List<Boolean> points = line.getPoints();
-        System.out.print("    |");
+        System.out.print(START_OF_LINE);
         for (Boolean point : points) {
             printOnePoint(point);
         }
@@ -38,9 +43,9 @@ public class OutputView {
 
     private void printOnePoint(Boolean point) {
         if (point) {
-            System.out.print("-----|");
+            System.out.print(EXIST_POINT);
             return;
         }
-        System.out.print("     |");
+        System.out.print(EMPTY_POINT);
     }
 }
