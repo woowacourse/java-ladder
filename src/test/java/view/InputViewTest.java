@@ -40,4 +40,13 @@ public class InputViewTest {
                 .isThrownBy(() -> InputView.readLadderHeight(() -> input))
                 .withMessage("공백을 넣을 수 없습니다.");
     }
+
+    @DisplayName("사다리 높이에 숫자가 아닌 값이 들어오면 예외를 던진다.")
+    @ValueSource(strings = {"a", "!"})
+    @ParameterizedTest
+    void readLadderHeightByNotNumber(final String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputView.readLadderHeight(() -> input))
+                .withMessage("사다리 높이는 2 ~ 10 사이의 숫자로 입력해야 합니다.");
+    }
 }
