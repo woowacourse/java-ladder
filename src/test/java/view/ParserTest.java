@@ -24,4 +24,12 @@ class ParserTest {
 
         assertThrows(NumberFormatException.class, () -> Parser.parseHeight(input));
     }
+
+    @Test
+    @DisplayName("입력은 콤마(,)로 끝날 수 없다.")
+    void isNotEndWithComma() {
+        String input = "pobi,gugu,";
+
+        assertThrows(IllegalArgumentException.class, () -> Parser.splitName(input));
+    }
 }
