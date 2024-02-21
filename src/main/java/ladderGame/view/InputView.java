@@ -11,6 +11,7 @@ public class InputView {
     private static final String INPUT_MESSAGE_PLAYER_NAMES = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String INPUT_MESSAGE_MAX_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
     private static final String EXCEPTION_MESSAGE_NOT_NATURAL_NUMBER = "최대 사다리 높이는 자연수여야 합니다.";
+    private static final String EXCEPTION_MESSAGE_OVER_INT_RANGE = "최대 사다리 높이는 int범위를 넘지 않아야 합니다.";
 
     public InputView() {
         scanner = new Scanner(System.in);
@@ -26,13 +27,26 @@ public class InputView {
     public int inputMaxLadderHeight() {
         System.out.println(System.lineSeparator() + INPUT_MESSAGE_MAX_LADDER_HEIGHT);
         String height = scanner.nextLine();
-        validateNaturalNumber(height);
+        validate(height);
         return Integer.parseInt(height);
     }
 
-    private void validateNaturalNumber(String input) {
-        if (!NUMERIC_PATTERN.matcher(input).matches()) {
+    private void validate(String height) {
+        validateNaturalNumber(height);
+        validateInIntRange(height);
+    }
+
+    private void validateNaturalNumber(String height) {
+        if (!NUMERIC_PATTERN.matcher(height).matches()) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_NOT_NATURAL_NUMBER);
+        }
+    }
+
+    private void validateInIntRange(String height) {
+        try {
+            Integer.parseInt(height);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_OVER_INT_RANGE);
         }
     }
 }
