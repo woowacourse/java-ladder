@@ -35,24 +35,22 @@ public class OutputView {
     }
 
     public void printLadder(LadderDto ladderDto) {
-        List<LineDto> lineDtos = ladderDto.lineDtos();
-        StringBuilder ladderBuilder = new StringBuilder();
-
-        for (LineDto lineDto : lineDtos) {
-            List<Boolean> rungsExist = lineDto.rungsExist();
-            printLadderLine(rungsExist, ladderBuilder);
-            ladderBuilder.append("\n");
-        }
-        System.out.println(ladderBuilder);
+        String ladderMessage = generateLadderMessage(ladderDto.lineDtos());
+        System.out.println(ladderMessage);
     }
 
-    private void printLadderLine(List<Boolean> rungsExist, StringBuilder ladderBuilder) {
-        ladderBuilder.append(LADDER_RUNG_EMPTY).append(LADDER_SIDE_RAIL);
+    private String generateLadderMessage(List<LineDto> lineDtos) {
+        return lineDtos.stream()
+                .map(lineDto -> generateLadderLine(lineDto.rungsExist()))
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
 
-        for (Boolean rungExist : rungsExist) {
-            String rungMessage = generateRungMessage(rungExist);
-            ladderBuilder.append(rungMessage).append(LADDER_SIDE_RAIL);
-        }
+    private String generateLadderLine(List<Boolean> rungsExist) {
+        String message = rungsExist.stream()
+                .map(this::generateRungMessage)
+                .collect(Collectors.joining(LADDER_SIDE_RAIL, LADDER_SIDE_RAIL, LADDER_SIDE_RAIL));
+
+        return LADDER_RUNG_EMPTY.concat(message);
     }
 
     private String generateRungMessage(boolean rungExist) {
