@@ -11,33 +11,32 @@ public class Line {
     private final BooleanListGenerator booleanListGenerator;
 
     public Line(int personCount, BooleanListGenerator booleanListGenerator) {
-        List<Boolean> points = booleanListGenerator.generate(personCount - 1);
         this.booleanListGenerator = booleanListGenerator;
-        this.points = temp(points);
-
+        this.points = createValidPoints(personCount - 1);
     }
 
-    private List<Boolean> temp(List<Boolean> points) {
+    private List<Boolean> createValidPoints(int size) {
+        List<Boolean> points = booleanListGenerator.generate(size);
         if (!points.contains(true)) {
-            return temp(booleanListGenerator.generate(points.size()));
+            return createValidPoints(size);
         }
         for (int i = 1; i < points.size(); i++) {
-            if (points.get(i - 1)) {
-                points.set(i, false);
-            }
+            replaceValidPoint(points, i);
         }
         return points;
     }
 
-    public void generate(BooleanListGenerator booleanListGenerator) {
-
+    private void replaceValidPoint(List<Boolean> points, int i) {
+        if (points.get(i - 1)) {
+            points.set(i, false);
+        }
     }
 
     public List<Boolean> getPoints() {
         return points;
     }
 
-    public String temp(boolean point) {
+    public String createValidPoints(boolean point) {
         if (point) {
             return "-".repeat(5);
         }
@@ -47,7 +46,8 @@ public class Line {
     @Override
     public String toString() {
         return points.stream()
-                .map(this::temp)
+                .map(this::createValidPoints)
                 .collect(Collectors.joining("|", "    |", "|"));
     }
+
 }
