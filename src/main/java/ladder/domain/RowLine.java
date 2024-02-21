@@ -12,7 +12,7 @@ public class RowLine {
         validatePeopleNumber(peopleNumber);
         List<Boolean> generatedConnection = generator.getLine(peopleNumber);
         validateSuccessiveLine(generatedConnection);
-        Collections.copy( this.connection,generatedConnection);
+        this.connection.addAll(generatedConnection);
     }
 
     private static void validatePeopleNumber(int peopleNumber) {
