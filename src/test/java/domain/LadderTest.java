@@ -55,9 +55,9 @@ class ContinuousBridgeConstructStrategy implements  BridgeConstructStrategy{
 
     @Override
     public Bridges generate(int count) {
-        List<Boolean> booleans = IntStream.range(0, count)
-                .mapToObj((i) -> true)
+        List<BridgeStatus> bridgeStatuses = IntStream.range(0, count)
+                .mapToObj((i) -> BridgeStatus.BUILT)
                 .toList();
-        return new Bridges(booleans);
+        return new Bridges(bridgeStatuses);
     }
 }

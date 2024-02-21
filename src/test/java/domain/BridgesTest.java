@@ -26,28 +26,14 @@ public class BridgesTest {
     @DisplayName("연속되는 브릿지가 존재하면 예외가 발생한다.")
     @Test
     void constructFailWithContinuousBridge() {
-        assertThatThrownBy(() -> new Bridges(List.of(true, true, false, false)))
+        assertThatThrownBy(() -> new Bridges(List.of(BridgeStatus.BUILT, BridgeStatus.BUILT)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    //TODO : DisplayName 에서 자료형 제거
-    @DisplayName("Bridges 가 올바른 길이의 List 를 반환해야 한다.")
-    @Test
-    void bridgesLengthTest() {
-        //given
-        List<Boolean> booleans = List.of(false, false, false, false, false);
-
-        //when
-        int length = booleans.size();
-        Bridges bridges = new Bridges(booleans);
-
-        //then
-        assertThat(bridges.getBridges()).hasSize(length);
-    }
-
+    @DisplayName("Bridges 가 올바른 List 를 반환해야 한다.")
     @MethodSource("getBridgeTestProvider")
     @ParameterizedTest
-    void getBridgeTest(List<Boolean> expectedBridges) {
+    void getBridgeTest(List<BridgeStatus> expectedBridges) {
         Bridges bridges = new Bridges(expectedBridges);
 
         Assertions.assertThat(bridges.getBridges())
@@ -56,7 +42,7 @@ public class BridgesTest {
 
     static Stream<Arguments> getBridgeTestProvider() {
         return Stream.of(
-                Arguments.of(List.of(true, false, false, true))
+                Arguments.of(List.of(BridgeStatus.BUILT, BridgeStatus.EMPTY, BridgeStatus.EMPTY, BridgeStatus.BUILT))
         );
     }
 }
