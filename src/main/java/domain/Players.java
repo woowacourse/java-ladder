@@ -2,13 +2,25 @@ package domain;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Players {
     private final List<Player> players;
 
     public Players(List<String> players) {
+        validate(players);
         this.players = convertToPlayer(players);
+    }
+
+    private void validate(List<String> players) {
+        if (hasDuplicate(players)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean hasDuplicate(List<String> players) {
+        return Set.copyOf(players).size() != players.size();
     }
 
     private List<Player> convertToPlayer(List<String> players) { // todo: DTOd에서?
