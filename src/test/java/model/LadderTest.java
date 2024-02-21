@@ -15,7 +15,7 @@ public class LadderTest {
     @Test
     void ladderHeight() {
         int maximumHeight = 5;
-        Ladder ladder = new Ladder(maximumHeight, List.of());
+        Ladder ladder = new Ladder(maximumHeight, 1);
         assertThat(ladder.height()).isEqualTo(maximumHeight);
     }
 
@@ -23,7 +23,7 @@ public class LadderTest {
     @Test
     void ladderHeightIsPositive() {
         int maximumHeight = -1;
-        assertThatThrownBy(() -> new Ladder(maximumHeight, List.of()))
+        assertThatThrownBy(() -> new Ladder(maximumHeight, 1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("최대 사다리의 높이는 양수가 되어야 합니다");
     }
@@ -31,7 +31,7 @@ public class LadderTest {
     @DisplayName("사다리의 행 내부의 라인은 랜덤하게 결정한다.")
     @RepeatedTest(100)
     void makeLines() {
-        Ladder ladder = new Ladder(1, List.of(new LadderRow(5)));
+        Ladder ladder = new Ladder(1, 5);
         ladder.createRows();
         assertThat(ladder.getRow(0).currentWidthSize()).isEqualTo(4);
     }
