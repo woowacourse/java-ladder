@@ -1,12 +1,9 @@
 package ladder.domain;
 
-import ladder.dto.LineResult;
-
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
-
-import static java.util.Collections.unmodifiableList;
+import ladder.dto.LineResult;
 
 public class Lines {
     private final List<Line> lines;
