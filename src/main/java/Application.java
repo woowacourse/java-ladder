@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Scanner;
+import model.Height;
 import model.Ladder;
 import model.Players;
 import view.InputView;
@@ -13,7 +14,7 @@ public class Application {
         InputView inputView = new InputView(scanner);
         List<String> names = inputView.readPlayersName();
         Players players = new Players(names);
-        int height = inputView.readHeight();
+        Height height = new Height(inputView.readHeight());
 
         Ladder ladder = new Ladder(height, players.size());
 

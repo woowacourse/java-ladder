@@ -9,13 +9,13 @@ public class LadderTest {
     @DisplayName("사다리 높이가 사다리 객체의 크기가 된다.")
     void createLadder() {
         // given
-        int height = 5;
+        Height height = new Height(5);
         int personCount = 7;
 
         // when
         Ladder ladder = new Ladder(height, personCount);
 
         // when
-        Assertions.assertThat(ladder.size()).isEqualTo(height);
+        Assertions.assertThat(ladder.size()).isEqualTo(height.getValue());
     }
 }
