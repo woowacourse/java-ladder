@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
@@ -7,9 +8,13 @@ public class Line {
 
     public Line (List<Integer> numbers) {
         validateRange(numbers.size());
-        this.line = numbers.stream()
-                .map(this::hasConnection)
-                .toList();
+        List<Boolean> line = new ArrayList<>();
+        line.add(false);
+        for (int index = 1; index < numbers.size(); index++) {
+            line.add(line.get(index - 1).equals(false)
+                    && hasConnection(numbers.get(index)));
+        }
+        this.line = line;
     }
 
     public boolean getValue(int index) {

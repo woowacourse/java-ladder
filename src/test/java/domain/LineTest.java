@@ -40,4 +40,15 @@ public class LineTest {
                 .toList()
         ).isEqualTo(List.of(false, true, false, true, false, true));
     }
+
+    @DisplayName("한 사다리가 결정되면 다음 사다리가 없도록 생성된다.")
+    @Test
+    void doubleBridgeTest() {
+        Line line = new Line(List.of(1,9,2,8,5,5));
+        Assertions.assertThat(
+                IntStream.rangeClosed(0,5)
+                        .mapToObj(line::getValue)
+                        .toList()
+        ).isEqualTo(List.of(false, true, false, true, false, true));
+    }
 }
