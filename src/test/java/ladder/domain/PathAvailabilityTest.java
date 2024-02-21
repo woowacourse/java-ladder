@@ -13,4 +13,12 @@ public class PathAvailabilityTest {
         assertEquals("     ", PathAvailability.EMPTY.getShape());
         assertEquals("-----", PathAvailability.EXIST.getShape());
     }
+
+    @Test
+    @DisplayName("")
+    void convertPathAvailabilityTest() {
+        // when & then
+        assertEquals(PathAvailability.EMPTY, PathAvailability.from(false));
+        assertEquals(PathAvailability.EXIST, PathAvailability.from(true));
+    }
 }
