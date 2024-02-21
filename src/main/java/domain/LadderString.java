@@ -14,7 +14,7 @@ public class LadderString {
                         }
                         return "     ";
                     }).collect(Collectors.joining("|"));
-                    return "|%s|".formatted(rawRowString);
+                    return "    |%s|".formatted(rawRowString);
                 })
                 .collect(Collectors.joining("\n"));
 

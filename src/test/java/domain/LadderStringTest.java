@@ -13,12 +13,8 @@ class LadderStringTest {
         Width width = new Width(2);
         Ladder ladder = new Ladder(height, width, width1 -> List.of(true));
         String actual = LadderString.from(ladder);
-        String expected = """
-                |-----|
-                |-----|
-                |-----|
-                |-----|
-                |-----|""";
+        String expected = "    |-----|\n".repeat(height.getLength());
+        expected = expected.substring(0, expected.length() - 1);
         Assertions.assertThat(actual)
                 .isEqualTo(expected);
     }
