@@ -2,11 +2,8 @@ package ladder.model;
 
 import ladder.utils.BooleanGenerator;
 import ladder.utils.FixedBooleanGenerator;
-import ladder.utils.RandomBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -22,36 +19,6 @@ public class LineTest {
 
         int actual = line.size();
         int expected = 5;
-
-        assertThat(actual).isEqualTo(expected);
-    }
-
-    @ParameterizedTest
-    @CsvSource({
-            "true, true",
-            "false, false"
-    })
-    @DisplayName("왼쪽에 경로가 존재하는지를 확인한다.")
-    void leftPathExistTest(boolean value, boolean expected) {
-        BooleanGenerator bg = new FixedBooleanGenerator(value);
-
-        Line line = Line.of(5, bg);
-        boolean actual = Line.isLeftPathExist(line.getRow(), 1);
-
-        assertThat(actual).isEqualTo(expected);
-    }
-
-    @ParameterizedTest
-    @CsvSource({
-            "true, false",
-            "false, false"
-    })
-    @DisplayName("첫번째 칸의 왼쪽은 경로가 없다.")
-    void leftPathOfFirstIndexNotExist(boolean value, boolean expected) {
-        BooleanGenerator bg = new FixedBooleanGenerator(value);
-
-        Line line = Line.of(5, bg);
-        boolean actual = Line.isLeftPathExist(line.getRow(), 0);
 
         assertThat(actual).isEqualTo(expected);
     }

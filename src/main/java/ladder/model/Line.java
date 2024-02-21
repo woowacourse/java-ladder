@@ -4,6 +4,7 @@ import ladder.utils.BooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Line {
     private static List<Boolean> row = null;
@@ -16,11 +17,7 @@ public class Line {
         List<Boolean> row = new ArrayList<>();
 
         for (int i = 0; i < length; i++) {
-            if (isLeftPathExist(row, i)) {
-                row.add(false);
-                continue;
-            }
-            row.add(bg.generate());
+            row.add(makePath(row, i, bg));
         }
 
         return new Line(row);
@@ -31,6 +28,13 @@ public class Line {
             return false;
         }
         return row.get(position - 1);
+    }
+
+    private static boolean makePath(List<Boolean> row, int position, BooleanGenerator bg) {
+        if (isLeftPathExist(row, position)) {
+            return false;
+        }
+        return bg.generate();
     }
 
     public int size() {
