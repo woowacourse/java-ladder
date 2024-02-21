@@ -1,6 +1,6 @@
 package domain;
 
-public class StickGenerator {
+class StickGenerator {
 
     public Stick generate(int i) {
         if (i == 0) {

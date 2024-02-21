@@ -1,6 +1,6 @@
 package domain;
 
-public enum Stick {
+enum Stick {
 
     FILLED, EMPTY
 }
