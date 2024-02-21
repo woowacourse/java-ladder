@@ -8,5 +8,6 @@ public class Application {
     public static void main(String[] args) throws IOException {
         LadderController ladderController = new LadderController();
         ladderController.init();
+        ladderController.printResult();
     }
 }

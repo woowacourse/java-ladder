@@ -35,4 +35,8 @@ public class Player {
     private boolean isNameFormatValid(String name) {
         return name.matches(NAME_PATTERN);
     }
+
+    public String getName() {
+        return name;
+    }
 }
