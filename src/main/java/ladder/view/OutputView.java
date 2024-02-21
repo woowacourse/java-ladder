@@ -7,26 +7,47 @@ import ladder.dto.PlayerNamesDto;
 public class OutputView {
 
 
+    private static final String LINE_PREFIX = "    |";
+    private static final String EXIST_STICK = "-----|";
+    private static final String BLANK_STICK = "     |";
+
     public void printResult(LadderDto ladderDto, PlayerNamesDto playerNamesDto) {
+        printResultTitle();
+        printPlayerNames(playerNamesDto);
+        printLadder(ladderDto);
+    }
+
+    private void printResultTitle() {
         System.out.println("실행결과");
         System.out.println();
+    }
 
-        for (String playerName : playerNamesDto.playerNames()) {
+    private void printPlayerNames(PlayerNamesDto playerNames) {
+        for (String playerName : playerNames.playerNames()) {
             System.out.printf("%5s ", playerName);
         }
         System.out.println();
+    }
 
-        for (LineDto line : ladderDto.lines()) {
-            System.out.printf("    |");
-            for (Boolean isExist : line.sticks()) {
-                if (isExist) {
-                    System.out.print("-----|");
-                }
-                if (!isExist) {
-                    System.out.print("     |");
-                }
-            }
-            System.out.println();
+    private void printLadder(LadderDto ladder) {
+        for (LineDto line : ladder.lines()) {
+            printLine(line);
         }
+    }
+
+    private void printLine(LineDto line) {
+        System.out.printf(LINE_PREFIX);
+        for (Boolean isExist : line.sticks()) {
+            printStick(isExist);
+        }
+        System.out.println();
+    }
+
+    private void printStick(Boolean isExist) {
+        if (isExist) {
+            System.out.print(EXIST_STICK);
+            return;
+        }
+        System.out.print(BLANK_STICK);
     }
 }
