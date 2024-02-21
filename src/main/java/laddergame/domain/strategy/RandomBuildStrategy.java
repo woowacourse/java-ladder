@@ -1,9 +1,8 @@
 package laddergame.domain.strategy;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.Queue;
 import laddergame.util.BooleanGenerator;
 import laddergame.util.RandomBooleanGenerator;
 
@@ -12,8 +11,16 @@ public class RandomBuildStrategy implements CanBuildStrategy {
 
     @Override
     public List<Boolean> canBuildBridges(final int count) {
-        return IntStream.range(0, count)
-                .mapToObj(i -> generator.generate())
-                .collect(Collectors.toList());
+        Queue<Boolean> list = new LinkedList<>();
+
+        for (int i = 0; i < count; i++){
+            if (Boolean.TRUE.equals(list.peek())) {
+                list.add(Boolean.FALSE);
+                continue;
+            }
+            list.add(generator.generate());
+        }
+
+        return list.stream().toList();
     }
 }

@@ -7,6 +7,7 @@ import laddergame.domain.Ladder;
 import laddergame.domain.strategy.CanBuildStrategy;
 import laddergame.domain.strategy.RandomBuildStrategy;
 import laddergame.view.InputView;
+import laddergame.view.OutputView;
 
 public class LadderGame {
 
@@ -24,6 +25,10 @@ public class LadderGame {
                     randomBuildStrategy.canBuildBridges(players.size() - 1)).toList();
 
             ladder.build(randomResult);
+
+            OutputView outputView = new OutputView();
+            outputView.writePlayersName(players);
+            outputView.writeLadder(ladder);
         } catch (IOException exception) {
 
         }
