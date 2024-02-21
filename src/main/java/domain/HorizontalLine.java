@@ -11,7 +11,7 @@ public class HorizontalLine {
     private static final int MAX_PLAYER_COUNT = 10;
 
     private final int playerCount;
-    private final List<Boolean> crossingLineIndices = new ArrayList<>();
+    private final List<Boolean> ladderConnections = new ArrayList<>();
 
     public HorizontalLine(int playerCount) {
         validatePlayerCount(playerCount);
@@ -19,15 +19,15 @@ public class HorizontalLine {
     }
 
     public void createCrossingLines(BooleanGenerator generator) {
-        crossingLineIndices.clear();
+        ladderConnections.clear();
 
         Stream.generate(generator::generate)
                 .limit(playerCount - 1)
-                .forEach(crossingLineIndices::add);
+                .forEach(ladderConnections::add);
     }
 
     public HorizontalLineStatus createStatus() {
-        List<Boolean> placeStatuses = List.copyOf(crossingLineIndices);
+        List<Boolean> placeStatuses = List.copyOf(ladderConnections);
         return new HorizontalLineStatus(placeStatuses);
     }
 
