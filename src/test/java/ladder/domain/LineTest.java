@@ -32,10 +32,10 @@ public class LineTest {
         int personCount = 5;
 
         // when
-        Line line = new Line(personCount, size -> new ArrayList<>(List.of(true, true, true, true)));
+        Line line = new Line(personCount, size -> new ArrayList<>(List.of(Point.ON, Point.ON, Point.ON, Point.ON)));
 
         // then
-        assertThat(line.getPoints()).isEqualTo(List.of(true, false, true, false));
+        assertThat(line.getPoints()).isEqualTo(List.of(Point.ON, Point.OFF, Point.ON, Point.OFF));
     }
 
 }
