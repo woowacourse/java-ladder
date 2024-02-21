@@ -2,6 +2,8 @@ package ladder.domain.generator;
 
 import ladder.domain.LadderStep;
 import ladder.domain.Path;
+import ladder.exception.ContinuousPathException;
+import ladder.exception.InvalidStepWidthException;
 
 import java.util.List;
 
@@ -23,14 +25,14 @@ public abstract class LadderStepGenerator {
 
     private void validateStepWidth(final List<Path> paths) {
         if (paths.size() != stepWidth) {
-            throw new RuntimeException();
+            throw new InvalidStepWidthException();
         }
     }
 
     private void validateContinuousPath(final List<Path> paths) {
         paths.stream().reduce(EMPTY, (prevPath, currentPath) -> {
             if (prevPath.isExist() && currentPath.isExist()) {
-                throw new RuntimeException();
+                throw new ContinuousPathException();
             }
             return currentPath;
         });

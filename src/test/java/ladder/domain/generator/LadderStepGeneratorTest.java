@@ -1,6 +1,8 @@
 package ladder.domain.generator;
 
 import ladder.domain.Path;
+import ladder.exception.ContinuousPathException;
+import ladder.exception.InvalidStepWidthException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,11 +22,11 @@ public class LadderStepGeneratorTest {
 
         // when & then
         assertThatThrownBy(ladderStepGenerator::generateValidStep)
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(ContinuousPathException.class);
     }
 
     @Test
-    @DisplayName("입력된 참가자 수와 사다리 폭이 다를 경우 예외가 발생한다.")
+    @DisplayName("입력된 값과 생성된 사다리 너비가 다를 경우 예외가 발생한다.")
     void checkStepWidthTest() {
         // given
         List<Path> ladderStep = List.of(EXIST, EMPTY, EXIST);
@@ -32,7 +34,7 @@ public class LadderStepGeneratorTest {
 
         // when & then
         assertThatThrownBy(ladderStepGenerator::generateValidStep)
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(InvalidStepWidthException.class);
     }
 
     private static class TestLadderStepGenerator extends LadderStepGenerator {
