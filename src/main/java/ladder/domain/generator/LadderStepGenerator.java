@@ -1,8 +1,11 @@
 package ladder.domain.generator;
 
 import ladder.domain.LadderStep;
+import ladder.domain.PathAvailability;
 
 import java.util.List;
+
+import static ladder.domain.PathAvailability.EMPTY;
 
 public abstract class LadderStepGenerator {
     protected final int stepWidth;
@@ -12,27 +15,26 @@ public abstract class LadderStepGenerator {
     }
 
     public LadderStep generateValidStep() {
-        List<Boolean> path = generate();
+        List<PathAvailability> path = generate();
         validateStepWidth(path);
         validateContinuousPath(path);
-        // Boolean -> Availability
         return new LadderStep(path);
     }
 
-    private void validateStepWidth(final List<Boolean> path) {
-        if (path.size() != stepWidth) {
+    private void validateStepWidth(final List<PathAvailability> paths) {
+        if (paths.size() != stepWidth) {
             throw new RuntimeException();
         }
     }
 
-    private void validateContinuousPath(final List<Boolean> path) {
-        path.stream().reduce(false, (isPrevExist, isCurrentExist) -> {
-            if (isPrevExist && isCurrentExist) {
+    private void validateContinuousPath(final List<PathAvailability> paths) {
+        paths.stream().reduce(EMPTY, (prevPath, currentPath) -> {
+            if (prevPath.isAvailable() && currentPath.isAvailable()) {
                 throw new RuntimeException();
             }
-            return isCurrentExist;
+            return currentPath;
         });
     }
 
-    protected abstract List<Boolean> generate();
+    protected abstract List<PathAvailability> generate();
 }
