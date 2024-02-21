@@ -30,6 +30,14 @@ public class Ladder {
         }
     }
 
+    public int getPeopleCount() {
+        return peopleCount;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     public Direction getDirection(int height, int index) {
         Line line = lines.get(height);
         return line.getDirectionAt(index);
