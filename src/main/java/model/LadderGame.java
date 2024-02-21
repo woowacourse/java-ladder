@@ -1,3 +1,5 @@
+package model;
+
 public class LadderGame {
 
     private final int ladderHeight;

@@ -1,3 +1,5 @@
+package model;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
@@ -7,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 public class LadderTest {
 
-    @DisplayName("Ladder 객체를 생성한다.")
+    @DisplayName("model.Ladder 객체를 생성한다.")
     @Test
     void createLadder() {
         assertThatCode(Ladder::new)

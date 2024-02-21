@@ -1,3 +1,5 @@
+package model;
+
 public enum LineState {
     START("start"),
     END("end"),

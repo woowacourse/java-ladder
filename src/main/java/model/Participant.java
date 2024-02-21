@@ -1,3 +1,5 @@
+package model;
+
 public class Participant {
     private final String name;
 
