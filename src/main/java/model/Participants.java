@@ -3,6 +3,7 @@ package model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import model.dto.ParticipantName;
 
 public class Participants {
     private static final int MIN_PARTICIPANT_NAME = 2;
@@ -30,8 +31,8 @@ public class Participants {
         }
     }
 
-    public List<Participant> getParticipants() {
-        return participants;
+    public List<ParticipantName> captureParticipantsName() {
+        return participants.stream().map(ParticipantName::new).toList();
     }
 
     public int getParticipantsSize() {

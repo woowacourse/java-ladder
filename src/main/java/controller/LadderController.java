@@ -5,7 +5,6 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import model.Ladder;
 import model.Participants;
-import model.dto.ParticipantsName;
 import view.InputView;
 import view.OutputView;
 
@@ -21,7 +20,7 @@ public class LadderController {
     public void run() {
         Participants participants = repeatUntilSuccess(this::prepareParticipants);
         Ladder ladder = repeatUntilSuccess(this::prepareLadder, participants);
-        outputView.printParticipantsName(new ParticipantsName(participants));
+        outputView.printParticipantsName(participants.captureParticipantsName());
     }
 
     private Participants prepareParticipants() {
