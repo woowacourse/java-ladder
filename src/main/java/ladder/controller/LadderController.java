@@ -1,15 +1,14 @@
 package ladder.controller;
 
-import java.util.List;
 import java.util.function.Supplier;
 import ladder.domain.generator.BooleanGenerator;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.dto.LadderDto;
 import ladder.dto.PlayersDto;
-import ladder.utils.Converter;
+import ladder.dto.request.LadderHeightRequest;
+import ladder.dto.request.PlayerNamesRequest;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -37,19 +36,13 @@ public class LadderController {
     }
 
     public Players readPlayers() {
-        final String input = inputView.readPlayerNames();
-        final List<String> playerNames = Converter.stringToList(input);
-        final List<Player> players = playerNames.stream()
-                .map(Player::new)
-                .toList();
-
-        return new Players(players);
+        final PlayerNamesRequest dto = inputView.readPlayerNames();
+        return dto.toPlayers();
     }
 
     public Height readLadderHeight() {
-        final int height = inputView.readLadderHeight();
-
-        return new Height(height);
+        final LadderHeightRequest dto = inputView.readLadderHeight();
+        return dto.toHeight();
     }
 
     private void printLadder(final Players players, final Ladder ladder) {

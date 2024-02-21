@@ -1,7 +1,10 @@
 package ladder.view;
 
-public interface InputView {
-    String readPlayerNames();
+import ladder.dto.request.LadderHeightRequest;
+import ladder.dto.request.PlayerNamesRequest;
 
-    int readLadderHeight();
+public interface InputView {
+    PlayerNamesRequest readPlayerNames();
+
+    LadderHeightRequest readLadderHeight();
 }
