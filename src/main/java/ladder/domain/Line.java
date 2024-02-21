@@ -26,7 +26,7 @@ public class Line {
 
     private void setDirections(LineGenerator lineGenerator, int index) {
         if (line.get(index) == NONE) {
-            Direction direction = lineGenerator.getDirection();
+            Direction direction = lineGenerator.generate();
             setDirectionAt(index, direction);
         }
     }
