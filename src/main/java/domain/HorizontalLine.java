@@ -1,8 +1,9 @@
 package domain;
 
 import generator.BooleanGenerator;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class HorizontalLine {
 
@@ -10,24 +11,24 @@ public class HorizontalLine {
     private static final int MAX_PLAYER_COUNT = 10;
 
     private final int playerCount;
-    private final CrossingIndices crossingLineIndices;
+    private final List<Boolean> crossingLineIndices = new ArrayList<>();
 
     public HorizontalLine(int playerCount) {
         validatePlayerCount(playerCount);
         this.playerCount = playerCount;
-        this.crossingLineIndices = new CrossingIndices();
     }
 
     public void createCrossingLines(BooleanGenerator generator) {
         crossingLineIndices.clear();
 
-        IntStream.range(0, playerCount - 1)
-                .filter(i -> generator.generate())
+        Stream.generate(generator::generate)
+                .limit(playerCount - 1)
                 .forEach(crossingLineIndices::add);
     }
 
-    public List<Integer> getCrossingLineIndices() {
-        return crossingLineIndices.getCopyOfIndices();
+    public HorizontalLineStatus createStatus() {
+        List<Boolean> placeStatuses = List.copyOf(crossingLineIndices);
+        return new HorizontalLineStatus(placeStatuses);
     }
 
     private void validatePlayerCount(int playerCount) {

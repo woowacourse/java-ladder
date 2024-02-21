@@ -34,23 +34,22 @@ class HorizontalLineTest {
         // given
         HorizontalLine horizontalLine = new HorizontalLine(5);
         // when
-        List<Integer> actual = horizontalLine.getCrossingLineIndices();
+        HorizontalLineStatus status = horizontalLine.createStatus();
+        List<Boolean> actual = status.placedStatuses();
         // then
         assertThat(actual).isEmpty();
     }
 
     @Test
-    @DisplayName("가로줄을 항상 생성한다면, 바로 다음 가로줄은 생성하지 않는다.")
-    void createCrossingLinesTest() {
+    @DisplayName("플레이어 수보다 1 작은 사다리 가로줄 설치 여부를 반환한다.")
+    void generateHorizontalLadderTest() {
         // given
         HorizontalLine horizontalLine = new HorizontalLine(5);
-
         // when
         horizontalLine.createCrossingLines(() -> true);
-        List<Integer> actual = horizontalLine.getCrossingLineIndices();
-
+        HorizontalLineStatus status = horizontalLine.createStatus();
+        List<Boolean> actual = status.placedStatuses();
         // then
-        List<Integer> expected = List.of(0, 2);
-        assertThat(actual).containsExactlyElementsOf(expected);
+        assertThat(actual).hasSize(4);
     }
 }
