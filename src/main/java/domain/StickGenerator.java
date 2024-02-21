@@ -9,6 +9,6 @@ class StickGenerator {
         if (i == 1) {
             return Stick.FILLED;
         }
-        return null;
+        throw new IllegalArgumentException("0과 1이 아닌 값은 허용하지 않습니다.");
     }
 }
