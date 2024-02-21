@@ -12,7 +12,7 @@ class NameTest {
     @ValueSource(strings = {"", "abcdef"})
     @DisplayName("사람 이름 길이 검증")
     void validateNameLength(String name) {
-        assertThatThrownBy(() -> new Name(""))
+        assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(LadderGameException.class)
                 .hasMessage(ExceptionType.NAME_LENGTH_RANGE.getMessage());
     }
