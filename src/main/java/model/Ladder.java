@@ -14,7 +14,7 @@ public class Ladder {
     public static Ladder create(LadderHeight height, Players players, MaterialsGenerator materialsGenerator) {
         int bridgeCount = players.getSizeOfPlayers() - 1;
         List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height.getValue(); i++) {
+        for (int i = 0; i < height.value(); i++) {
             Line line = new Line(materialsGenerator.pickMaterials(bridgeCount));
             lines.add(line);
         }
