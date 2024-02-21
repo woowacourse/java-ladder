@@ -14,19 +14,19 @@ import java.util.stream.Stream;
 
 public class LineTest {
 
-    @DisplayName("입력받은 숫자가 1 이상 50 이하가 아닌 경우 예외를 발생한다.")
+    @DisplayName("입력받은 숫자가 2 이상 10 이하가 아닌 경우 예외를 발생한다.")
     @ParameterizedTest
     @MethodSource("heightRangeTestMethod")
     void heightRangeTest(List<Integer> input) {
         Assertions.assertThatThrownBy(() -> new Line(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("숫자는 1 이상 50 이하여야 합니다.");
+                .hasMessage("숫자는 2 이상 10 이하여야 합니다.");
     }
 
     private static Stream<Arguments> heightRangeTestMethod() {
         return Stream.of(
-                Arguments.arguments(List.of()),
-                Arguments.arguments(Collections.nCopies(51, 1))
+                Arguments.arguments(List.of(1)),
+                Arguments.arguments(Collections.nCopies(11, 1))
         );
     }
 
