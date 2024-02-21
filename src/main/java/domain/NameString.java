@@ -1,7 +1,7 @@
 package domain;
 
-public class NameString {
-    public static String from(Name name) {
+class NameString {
+    static String from(Name name) {
         String nameString = name.getName();
 
         if (nameString.length() < 5) {

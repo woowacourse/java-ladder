@@ -3,8 +3,8 @@ package domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RowString {
-    public static String from(Row row) {
+class RowString {
+    static String from(Row row) {
         List<Boolean> rowInfos = row.getRowInfos();
         String rawRowString = rowInfos.stream().map(RowString::makeBridge)
                 .collect(Collectors.joining("|"));

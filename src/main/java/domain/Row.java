@@ -4,10 +4,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Row {
+class Row {
     private final List<Boolean> rowInfos;
 
-    public Row(List<Boolean> rowInfos) {
+    Row(List<Boolean> rowInfos) {
         if (rowInfos.size() < 1 || rowInfos.size() > 9) {
             throw new RuntimeException("가로 라인 개수는 1이상 9 이하여야 합니다.");
         }
@@ -22,7 +22,7 @@ public class Row {
         }
     }
 
-    public List<Boolean> getRowInfos() {
+    List<Boolean> getRowInfos() {
         return rowInfos;
     }
 }

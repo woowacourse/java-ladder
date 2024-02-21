@@ -6,7 +6,7 @@ import java.util.List;
 public class Names {
     private final List<Name> names;
 
-    public Names(String names) {
+    Names(String names) {
         validateSeparator(names);
         List<String> splitNames = splitName(names);
         validateDuplicateName(splitNames);
@@ -39,7 +39,11 @@ public class Names {
         }
     }
 
-    public List<Name> getNames() {
+    List<Name> getNames() {
         return names;
+    }
+
+    int getNameCount() {
+        return names.size();
     }
 }

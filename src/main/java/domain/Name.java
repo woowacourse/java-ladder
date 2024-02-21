@@ -2,10 +2,10 @@ package domain;
 
 import java.util.Objects;
 
-public class Name {
+class Name {
     private final String name;
 
-    public Name(String name) {
+    Name(String name) {
         validateNameLength(name);
         validateNameCharacters(name);
         this.name = name;
@@ -40,7 +40,7 @@ public class Name {
         return Objects.hash(name);
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 }

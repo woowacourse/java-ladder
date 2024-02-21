@@ -1,9 +1,9 @@
 package domain;
 
-public class Width {
+class Width {
     private final int length;
 
-    public Width(int length) {
+    Width(int length) {
         validate(length);
         this.length = length;
     }
@@ -14,7 +14,7 @@ public class Width {
         }
     }
 
-    public int getLength() {
+    int getLength() {
         return length;
     }
 }

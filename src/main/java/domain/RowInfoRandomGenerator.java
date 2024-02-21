@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class RowInfoRandomGenerator implements RowInfoGenerator {
+class RowInfoRandomGenerator implements RowInfoGenerator {
     public List<Boolean> generate(int width) {
         List<Boolean> rowInfos = new ArrayList<>();
         Random random = new Random();
