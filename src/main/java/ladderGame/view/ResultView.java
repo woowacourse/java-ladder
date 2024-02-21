@@ -1,5 +1,6 @@
 package ladderGame.view;
 
+import ladderGame.model.DrawnStatus;
 import ladderGame.model.Line;
 import ladderGame.model.Player;
 
@@ -32,18 +33,18 @@ public class ResultView {
     }
 
     private String makeLineToString(Line line) {
-        List<Boolean> isDrawns = line.getIsDrawns();
+        List<DrawnStatus> isDrawns = line.getIsDrawns();
         StringBuilder sb = new StringBuilder();
 
         sb.append(BLANK_MARK + LINE_MARK);
-        for (Boolean isDrawn : isDrawns) {
+        for (DrawnStatus isDrawn : isDrawns) {
             sb.append(checkDrawnMark(isDrawn)).append(LINE_MARK);
         }
         return sb.toString();
     }
 
-    private String checkDrawnMark(Boolean isDrawn) {
-        if (isDrawn) {
+    private String checkDrawnMark(DrawnStatus isDrawn) {
+        if (isDrawn.checkDrawn()) {
             return DRAWN_MARK;
         }
         return NOT_DRAWN_MARK;

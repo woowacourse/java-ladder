@@ -21,11 +21,11 @@ class LineTest {
     void notConsecutiveDraw() {
         Line line = new Line(5);
 
-        List<Boolean> isDrawns = line.getIsDrawns();
+        List<DrawnStatus> isDrawns = line.getIsDrawns();
 
         boolean isConsecutive = false;
         for(int i = 1; i < isDrawns.size(); i++) {
-            if(isDrawns.get(i) && isDrawns.get(i - 1)) {
+            if(isDrawns.get(i).checkDrawn() && isDrawns.get(i - 1).checkDrawn()) {
                 isConsecutive = true;
                 break;
             }

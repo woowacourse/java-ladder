@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
-    private final List<Boolean> isDrawns;
+    private final List<DrawnStatus> isDrawns;
 
     public Line(int number) {
         isDrawns = new ArrayList<>();
@@ -19,14 +19,22 @@ public class Line {
     }
 
     private void drawSpace(int index) {
-        if (index == 0 || !isDrawns.get(index - 1)) {
-            isDrawns.add(new Random().nextBoolean());
+        if (index == 0 || !isDrawns.get(index - 1).checkDrawn()) {
+            // TODO: 사다리 그려지는 확률 생각해보기
+            isDrawns.add(decideDrawnStatus());
             return;
         }
-        isDrawns.add(false);
+        isDrawns.add(DrawnStatus.NON_DRAWN);
     }
 
-    public List<Boolean> getIsDrawns() {
+    private DrawnStatus decideDrawnStatus() {
+        if(new Random().nextBoolean()) {
+            return DrawnStatus.DRAWN;
+        }
+        return DrawnStatus.NON_DRAWN;
+    }
+
+    public List<DrawnStatus> getIsDrawns() {
         return new ArrayList<>(isDrawns);
     }
 
