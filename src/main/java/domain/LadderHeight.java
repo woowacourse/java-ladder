@@ -3,10 +3,10 @@ package domain;
 public class LadderHeight {
 
     private static final int MIN_HEIGHT = 1;
-    
+
     private final int value;
 
-    public LadderHeight(int value) {
+    private LadderHeight(int value) {
         this.value = value;
         validateMin(value);
     }
