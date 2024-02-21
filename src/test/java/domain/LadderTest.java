@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -34,6 +36,12 @@ public class LadderTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void constructFailWithContinuousBridge() {
+        assertThatThrownBy(() -> new Ladder(new ContinuousBridgeConstructStrategy(), 5, 5))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("Ladder 가 사람 수 - 1 개 만큼의 Bridges 를 가진다.")
     @Test
     void ladderContainsRightLength() {
@@ -45,5 +53,16 @@ public class LadderTest {
 
         //then
         assertThat(ladder.getBridge()).hasSize(personCount - 1);
+    }
+}
+
+class ContinuousBridgeConstructStrategy implements  BridgeConstructStrategy{
+
+    @Override
+    public Bridges generate(int count) {
+        List<Boolean> booleans = IntStream.range(0, count)
+                .mapToObj((i) -> true)
+                .toList();
+        return new Bridges(booleans);
     }
 }
