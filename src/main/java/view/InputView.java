@@ -19,8 +19,16 @@ public class InputView {
             throw new IllegalArgumentException();
         }
 
-        List<String> names = List.of(rawNames.split(","));
+        validateSeparators(rawNames);
+        List<String> names = List.of(rawNames.split(",", -1));
+
         return names;
+    }
+
+    private void validateSeparators(String rawNames) {
+        if(rawNames.startsWith(",") || rawNames.endsWith(",") || rawNames.contains(",,")) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public int readHeight() {
