@@ -15,13 +15,14 @@ public class InputView {
     public InputView() {
         scanner = new Scanner(System.in);
     }
+
     public List<String> inputPlayerNames() {
         System.out.println(INPUT_MESSAGE_PLAYER_NAMES);
         return Arrays.stream(scanner.nextLine().split(",", -1)).toList();
     }
 
     public int inputMaxLadderHeight() {
-        System.out.println(INPUT_MESSAGE_MAX_LADDER_HEIGHT);
+        System.out.println(System.lineSeparator() + INPUT_MESSAGE_MAX_LADDER_HEIGHT);
         String height = scanner.nextLine();
         validateNotNaturalNumber(height);
         return Integer.parseInt(height);
