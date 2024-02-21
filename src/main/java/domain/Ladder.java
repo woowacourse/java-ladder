@@ -15,10 +15,12 @@ public class Ladder {
 
     public static Ladder of(LadderHeight height, int pointCount) {
         RandomPointGenerator randomPointGenerator = new RandomPointGenerator();
+
         List<Line> lines = new ArrayList<>();
-        for(int i = 0; i < height.getValue(); i++) {
+        for (int i = 0; i < height.getValue(); i++) {
             lines.add(new Line(randomPointGenerator.generate(pointCount)));
         }
+
         return new Ladder(lines);
     }
 
