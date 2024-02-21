@@ -1,18 +1,28 @@
 package ladder.controller;
 
 import ladder.domain.LadderHeight;
+import ladder.domain.Lines;
 import ladder.domain.UserNames;
+import ladder.dto.LadderResult;
 import ladder.util.ConsoleReader;
+import ladder.util.RandomBooleanGenerator;
 import ladder.view.InputView;
+import ladder.view.OutputView;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class LadderGameMachine {
     private static final ConsoleReader CONSOLE = new ConsoleReader();
 
     public void run() {
-        initNames();
-        initLadderHeight();
+        UserNames userNames = initNames();
+        LadderHeight ladderHeight = initLadderHeight();
+        LadderResult ladderResult = createLadderResult(
+                new RandomBooleanGenerator(),
+                ladderHeight.getLadderHeight(),
+                userNames);
+        OutputView.printLadderResult(ladderResult);
     }
 
     private UserNames initNames() {
@@ -20,7 +30,7 @@ public class LadderGameMachine {
             List<String> input = InputView.readNames(CONSOLE);
             return UserNames.of(input);
         } catch (IllegalArgumentException e) {
-            // TODO: 예외 메시지 출력
+            OutputView.printErrorMessage(e.getMessage());
             return initNames();
         }
     }
@@ -30,8 +40,13 @@ public class LadderGameMachine {
             int input = InputView.readLadderHeight(CONSOLE);
             return new LadderHeight(input);
         } catch (IllegalArgumentException e) {
-            // TODO: 예외 메시지 출력
+            OutputView.printErrorMessage(e.getMessage());
             return initLadderHeight();
         }
+    }
+
+    private LadderResult createLadderResult(final Supplier<Boolean> generator, final int ladderHeight, final UserNames userNames) {
+        Lines lines = Lines.of(generator, ladderHeight, userNames.getUserCount());
+        return new LadderResult(userNames.getUserNames(), lines.getLineResults());
     }
 }
