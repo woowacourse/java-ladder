@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class ParticipantsTest {
 
     @Test
-    @DisplayName("참가자가 2명 미만이면 예외가 발생한다.")
+    @DisplayName("참가자가 " + Participants.MIN_OF_PARTICIPANTS_COUNT + "명 미만이면 예외가 발생한다.")
     void lessThanTwoExceptionTest() {
         String[] names = {"a"};
         assertThatThrownBy(() -> new Participants(names))
@@ -18,7 +18,7 @@ class ParticipantsTest {
     }
 
     @Test
-    @DisplayName("참가자가 50명 초과면 예외가 발생한다.")
+    @DisplayName("참가자가 " + Participants.MAX_OF_PARTICIPANTS_COUNT +"명 초과면 예외가 발생한다.")
     void moreThanFiftyExceptionTest() {
         String[] names = {
                 "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
