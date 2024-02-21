@@ -4,6 +4,7 @@ import common.exception.message.ExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -40,7 +41,7 @@ class PlayerNamesTest {
         void createPlayerNamesFailByRange(List<PlayerName> playerNames) {
             Assertions.assertThatThrownBy(() -> new PlayerNames(playerNames))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(ExceptionMessage.PLAYER_NAMES_RANGE_ERROR);
+                    .hasMessage(ExceptionMessage.PLAYER_NAMES_RANGE);
         }
 
         private static Stream<Arguments> createPlayerNamesFailByRangeArguments() {
@@ -53,4 +54,31 @@ class PlayerNamesTest {
         }
     }
 
+    @Nested
+    @DisplayName("참가자 이름 중복 테스트")
+    class PlayerNamesDuplicationTest {
+
+        @Test
+        @DisplayName("참가자 이름에 중복이 없으면 정상적으로 생성된다")
+        void createPlayerNamesSuccessWithDuplication() {
+            // given
+            List<PlayerName> playerNames = List.of(new PlayerName("a"), new PlayerName("b"));
+
+            // then
+            Assertions.assertThatCode(() -> new PlayerNames(playerNames))
+                    .doesNotThrowAnyException();
+        }
+
+        @Test
+        @DisplayName("참가자 이름에 중복이 있으면 예외가 발생한다")
+        void createPlayerNamesFailByDuplication() {
+            // given
+            List<PlayerName> playerNames = List.of(new PlayerName("a"), new PlayerName("a"));
+
+            // then
+            Assertions.assertThatThrownBy(() -> new PlayerNames(playerNames))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(ExceptionMessage.PLAYER_NAMES_DUPLICATION);
+        }
+    }
 }
