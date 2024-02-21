@@ -3,7 +3,8 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static ladder.domain.StepStatus.*;
+import static ladder.domain.StepStatus.EXIST;
+import static ladder.domain.StepStatus.NONE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
@@ -13,7 +14,7 @@ public class LineTest {
     void createLine() {
         final Line line = new Line(() -> true, 4);
 
-        assertThat(line.getStepStatuses().size())
+        assertThat(line.getLineResult().value().size())
                 .isEqualTo(4 - 1);
     }
 
@@ -22,7 +23,7 @@ public class LineTest {
     void notExistBetweenNextAndCurrent() {
         final Line line = new Line(() -> true, 4);
 
-        assertThat(line.getStepStatuses().get(1))
+        assertThat(line.getLineResult().value().get(1))
                 .isEqualTo(NONE);
     }
 
@@ -32,6 +33,6 @@ public class LineTest {
         final Line line = new Line(() -> true, 4);
 
         assertThat(line.getLineResult().value())
-                .containsExactly(EXIST, NONE, EXIST, NONE);
+                .containsExactly(EXIST, NONE, EXIST);
     }
 }
