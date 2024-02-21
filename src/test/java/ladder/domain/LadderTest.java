@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -14,4 +15,16 @@ public class LadderTest {
         assertThatThrownBy(() -> new Ladder(1, -1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("입력받은 인원수와 높이의 사다리를 만든다.")
+    @Test
+    void ladderTest() {
+        int peopleCount = 5;
+        int height = 4;
+        Ladder ladder = new Ladder(peopleCount, height);
+
+        assertThat(ladder.lines.size()).isEqualTo(height);
+        assertThat(ladder.lines.get(0).line.size()).isEqualTo(peopleCount);
+    }
+
 }
