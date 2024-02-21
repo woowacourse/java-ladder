@@ -15,7 +15,7 @@ public class Parser {
     }
 
     private static void validateInput(String input) {
-        if (input.endsWith(",")) {
+        if (input.endsWith(DELIMITER)) {
             throw new IllegalArgumentException();
         }
     }
