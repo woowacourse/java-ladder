@@ -1,17 +1,24 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
 class RowInfoRandomGenerator implements RowInfoGenerator {
     public List<Boolean> generate(int width) {
-        List<Boolean> rowInfos = new ArrayList<>();
         Random random = new Random();
-        for (int i = 0; i < width; i++) {
-            rowInfos.add(random.nextBoolean());
-        }
+        List<Boolean> rowInfos = generateRowInfos(width, random);
+        fixRowInfo(width, rowInfos);
+        return rowInfos;
+    }
+
+    private static List<Boolean> generateRowInfos(int width, Random random) {
+        return IntStream.range(0, width)
+                .mapToObj(value -> random.nextBoolean())
+                .toList();
+    }
+
+    private static void fixRowInfo(int width, List<Boolean> rowInfos) {
         IntStream.range(1, width).forEach(
                 index -> {
                     if (rowInfos.get(index) && rowInfos.get(index - 1)) {
@@ -19,6 +26,5 @@ class RowInfoRandomGenerator implements RowInfoGenerator {
                     }
                 }
         );
-        return rowInfos;
     }
 }

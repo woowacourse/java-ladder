@@ -1,21 +1,19 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 class Ladder {
-    private final List<Row> rows = new ArrayList<>();
+    private final List<Row> rows;
 
     Ladder(Height height, Width width, RowInfoGenerator rowInfoGenerator) {
-        for (int index = 0; index < height.getLength(); index++) {
-            List<Boolean> rowInfo = rowInfoGenerator.generate(width.getLength() - 1);
-            Row row = new Row(rowInfo);
-            rows.add(row);
-        }
+        rows = IntStream.range(0, height.getLength())
+                .mapToObj(value -> rowInfoGenerator.generate(width.getLength() - 1))
+                .map(Row::new)
+                .toList();
     }
 
     List<Row> getRows() {
-        return Collections.unmodifiableList(rows);
+        return rows;
     }
 }
