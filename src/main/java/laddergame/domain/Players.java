@@ -15,6 +15,11 @@ public class Players {
     }
 
     private static void validate(final List<String> playerNames) {
+        for (String name : playerNames) {
+            if (name.isBlank()) {
+                throw new IllegalArgumentException();
+            }
+        }
         if (hasDuplicateName(playerNames)) {
             throw new IllegalArgumentException();
         }
