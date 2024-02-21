@@ -10,6 +10,7 @@ public class OutputView {
     private static final String LINE_PREFIX = "    |";
     private static final String EXIST_STICK = "-----|";
     private static final String BLANK_STICK = "     |";
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
     public void printResult(LadderDto ladderDto, PlayerNamesDto playerNamesDto) {
         printResultTitle();
@@ -49,5 +50,9 @@ public class OutputView {
             return;
         }
         System.out.print(BLANK_STICK);
+    }
+
+    public void printErrorMessage(Exception e) {
+        System.out.println(ERROR_PREFIX + e.getMessage());
     }
 }

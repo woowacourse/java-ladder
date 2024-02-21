@@ -18,12 +18,9 @@ public class LadderGameController {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        List<String> names = inputView.inputPlayerNames();
-        List<PlayerName> playerNames = names.stream()
-                .map(PlayerName::new)
-                .toList();
+        List<PlayerName> playerNames = inputPlayerNames();
+        Height height = inputHeight();
 
-        Height height = new Height(inputView.inputHeight());
         LinePatternGenerator lineGenerator = new LinePatternGenerator(new RandomBinarySupplier());
         Ladder ladder = new Ladder(height, playerNames.size(), lineGenerator);
 
@@ -32,7 +29,29 @@ public class LadderGameController {
         outputView.printResult(ladderDto, playerNamesDto);
     }
 
-    private static PlayerNamesDto toPlayerDto(List<PlayerName> playerNames) {
+    private List<PlayerName> inputPlayerNames() {
+        try {
+            List<String> names = inputView.inputPlayerNames();
+
+            return names.stream()
+                    .map(PlayerName::new)
+                    .toList();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return inputPlayerNames();
+        }
+    }
+
+    private Height inputHeight() {
+        try {
+            return new Height(inputView.inputHeight());
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return inputHeight();
+        }
+    }
+
+    private PlayerNamesDto toPlayerDto(List<PlayerName> playerNames) {
         List<String> resultPlayerNames = playerNames.stream()
                 .map(PlayerName::getName)
                 .toList();
@@ -47,12 +66,10 @@ public class LadderGameController {
         return new LadderDto(lineDtos);
     }
 
-
     private LineDto toLineDto(Ladder ladder, int height) {
         List<Boolean> sticks = IntStream.range(0, ladder.getWidth())
                 .mapToObj(width -> ladder.isExist(height, width))
                 .toList();
         return new LineDto(sticks);
     }
-
 }
