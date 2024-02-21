@@ -11,18 +11,32 @@ public class Line {
     List<Direction> line;
 
     public Line(int size, LineGenerator lineGenerator) {
+        initialize(size);
+        for (int index = 0; index < size - 1; index++) {
+            setDirections(lineGenerator, index);
+        }
+    }
+
+    private void initialize(int size) {
         line = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             line.add(NONE);
         }
-        for (int i = 0; i < size - 1; i++) {
-            if (line.get(i) == NONE) {
-                Direction direction = lineGenerator.getDirection();
-                line.set(i, direction);
-                if (direction == RIGHT) {
-                    line.set(i + 1, LEFT);
-                }
-            }
+    }
+
+    private void setDirections(LineGenerator lineGenerator, int index) {
+        if (line.get(index) == NONE) {
+            Direction direction = lineGenerator.getDirection();
+            setDirectionAt(index, direction);
         }
     }
+
+    private void setDirectionAt(int index, Direction direction) {
+        if (direction == RIGHT) {
+            line.set(index, RIGHT);
+            line.set(index + 1, LEFT);
+        }
+    }
+
+
 }
