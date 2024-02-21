@@ -10,7 +10,7 @@ public class Player {
 
     private static void validate(String name) {
         if ((name.isBlank() || name.length() > 5)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("참가자 이름은 1~5자 이내로 입력해야합니다.");
         }
     }
 

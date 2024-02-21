@@ -15,7 +15,7 @@ public class Players {
 
     private void validate(List<String> players) {
         if (hasDuplicate(players)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("중복된 참가자를 입력할 수 없습니다.");
         }
     }
 
