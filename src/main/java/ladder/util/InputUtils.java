@@ -12,7 +12,6 @@ public class InputUtils {
     }
 
     public static int parseToInt(final String input) {
-
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

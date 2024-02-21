@@ -1,8 +1,8 @@
 package ladder.config;
 
 import ladder.controller.LadderController;
-import ladder.domain.generator.BooleanGenerator;
-import ladder.domain.generator.RandomBooleanGenerator;
+import ladder.domain.ladder.generator.BooleanGenerator;
+import ladder.domain.ladder.generator.RandomBooleanGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 import ladder.view.console.ConsoleInputView;

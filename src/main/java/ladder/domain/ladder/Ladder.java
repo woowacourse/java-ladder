@@ -3,17 +3,17 @@ package ladder.domain.ladder;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
-import ladder.domain.generator.BooleanGenerator;
+import ladder.domain.ladder.generator.BooleanGenerator;
 
 public class Ladder {
     private final int playerCount;
-    private final Height height;
+    private final LadderHeight ladderHeight;
     private final List<Line> lines;
 
-    public Ladder(final int playerCount, final Height height, final BooleanGenerator booleanGenerator) {
+    public Ladder(final int playerCount, final LadderHeight ladderHeight, final BooleanGenerator booleanGenerator) {
         this.playerCount = playerCount;
-        this.height = height;
-        this.lines = generateLines(playerCount, height.getHeight(), booleanGenerator);
+        this.ladderHeight = ladderHeight;
+        this.lines = generateLines(playerCount, ladderHeight.getHeight(), booleanGenerator);
 
     }
 
@@ -24,7 +24,7 @@ public class Ladder {
     }
 
     public int getHeight() {
-        return height.getHeight();
+        return ladderHeight.getHeight();
     }
 
     public List<Line> getLines() {

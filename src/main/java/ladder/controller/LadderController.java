@@ -1,9 +1,9 @@
 package ladder.controller;
 
 import java.util.function.Supplier;
-import ladder.domain.generator.BooleanGenerator;
-import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderHeight;
+import ladder.domain.ladder.generator.BooleanGenerator;
 import ladder.domain.player.Players;
 import ladder.dto.request.LadderHeightRequest;
 import ladder.dto.request.PlayerNamesRequest;
@@ -27,10 +27,9 @@ public class LadderController {
 
     public void run() {
         final Players players = retryOnException(this::readPlayers);
-        final Height height = retryOnException(this::readLadderHeight);
-        final int columnSize = players.getSize();
+        final LadderHeight ladderHeight = retryOnException(this::readLadderHeight);
 
-        final Ladder ladder = new Ladder(columnSize, height, booleanGenerator);
+        final Ladder ladder = new Ladder(players.getSize(), ladderHeight, booleanGenerator);
 
         printLadder(players, ladder);
     }
@@ -40,7 +39,7 @@ public class LadderController {
         return dto.toPlayers();
     }
 
-    public Height readLadderHeight() {
+    public LadderHeight readLadderHeight() {
         final LadderHeightRequest dto = inputView.readLadderHeight();
         return dto.toHeight();
     }

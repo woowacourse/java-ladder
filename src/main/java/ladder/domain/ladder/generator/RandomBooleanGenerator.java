@@ -1,4 +1,4 @@
-package ladder.domain.generator;
+package ladder.domain.ladder.generator;
 
 import java.security.SecureRandom;
 import java.util.Random;

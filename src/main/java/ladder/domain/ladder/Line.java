@@ -3,7 +3,7 @@ package ladder.domain.ladder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import ladder.domain.generator.BooleanGenerator;
+import ladder.domain.ladder.generator.BooleanGenerator;
 
 public class Line {
     private final BooleanGenerator booleanGenerator;

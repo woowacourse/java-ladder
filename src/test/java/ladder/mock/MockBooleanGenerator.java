@@ -2,7 +2,7 @@ package ladder.mock;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.domain.generator.BooleanGenerator;
+import ladder.domain.ladder.generator.BooleanGenerator;
 
 public class MockBooleanGenerator implements BooleanGenerator {
     private final List<Boolean> rungs;

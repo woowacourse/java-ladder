@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 import java.util.List;
-import ladder.domain.generator.BooleanGenerator;
-import ladder.domain.generator.RandomBooleanGenerator;
+import ladder.domain.ladder.generator.BooleanGenerator;
+import ladder.domain.ladder.generator.RandomBooleanGenerator;
 import ladder.mock.MockBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,24 +16,24 @@ class LadderTest {
     @DisplayName("사다리 생성자 테스트")
     void testConstruct() {
         int playerCount = 4;
-        Height height = new Height(5);
+        LadderHeight ladderHeight = new LadderHeight(5);
         BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
-        Ladder ladder = new Ladder(playerCount, height, booleanGenerator);
+        Ladder ladder = new Ladder(playerCount, ladderHeight, booleanGenerator);
 
         assertThat(ladder).extracting("playerCount")
                 .isEqualTo(4);
-        assertThat(ladder).extracting("height")
-                .isEqualTo(5);
+        assertThat(ladder).extracting("ladderHeight")
+                .isEqualTo(ladderHeight);
     }
 
     @Test
     @DisplayName("사다리를 생성한다.")
     void testGenerateLadder() {
         int playerCount = 4;
-        Height height = new Height(3);
+        LadderHeight ladderHeight = new LadderHeight(3);
         List<Boolean> rungExist = List.of(true, false, true, false, true, false, true, false, false);
 
-        Ladder ladder = new Ladder(playerCount, height, new MockBooleanGenerator(rungExist));
+        Ladder ladder = new Ladder(playerCount, ladderHeight, new MockBooleanGenerator(rungExist));
         List<Line> lines = ladder.getLines();
 
         assertSoftly(softly -> {

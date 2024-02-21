@@ -8,6 +8,7 @@ public record LadderResponse(List<LineResponse> lineResponses) {
         final List<LineResponse> lineResponses = ladder.getLines().stream()
                 .map(LineResponse::from)
                 .toList();
+
         return new LadderResponse(lineResponses);
     }
 }

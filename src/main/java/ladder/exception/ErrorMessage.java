@@ -1,6 +1,6 @@
 package ladder.exception;
 
-import static ladder.domain.ladder.Height.MINIMUM_HEIGHT;
+import static ladder.domain.ladder.LadderHeight.MINIMUM_HEIGHT;
 import static ladder.domain.player.Player.MAXIMUM_NAME_RANGE;
 import static ladder.domain.player.Players.MAXIMUM_PLAYER_SIZE;
 import static ladder.domain.player.Players.MINIMUM_PLAYER_SIZE;

@@ -3,11 +3,11 @@ package ladder.domain.ladder;
 import ladder.exception.ErrorMessage;
 import ladder.exception.InvalidInputException;
 
-public class Height {
+public class LadderHeight {
     public static final int MINIMUM_HEIGHT = 1;
     private final int height;
 
-    public Height(final int height) {
+    public LadderHeight(final int height) {
         validateHeightRange(height);
         this.height = height;
     }
