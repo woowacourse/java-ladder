@@ -18,7 +18,9 @@ public class InputView {
 
     public List<String> inputPlayerNames() {
         System.out.println(INPUT_MESSAGE_PLAYER_NAMES);
-        return Arrays.stream(scanner.nextLine().split(",", -1)).toList();
+        return Arrays.stream(scanner.nextLine().split(",", -1))
+                .map(String::trim)
+                .toList();
     }
 
     public int inputMaxLadderHeight() {
