@@ -5,15 +5,15 @@ import model.Ladder;
 import model.Line;
 
 public class LadderResponse {
-    private List<Line> lines;
+    private final List<Line> lines;
 
     public LadderResponse(List<Line> lines) {
         this.lines = lines;
     }
 
-    public static LadderResponse from( Ladder ladder) {
+    public static LadderResponse from(Ladder ladder) {
         List<Line> lines = ladder.getLines();
-        return new LadderResponse( lines);
+        return new LadderResponse(lines);
     }
 
     public List<Line> getLadder() {

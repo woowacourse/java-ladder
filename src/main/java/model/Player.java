@@ -1,7 +1,7 @@
 package model;
 
 public class Player {
-    private String name;
+    private final String name;
 
     public Player(String name) {
         validate(name);
@@ -9,7 +9,7 @@ public class Player {
     }
 
     private void validate(String name) {
-        if(name.length() > 5) {
+        if (name.length() > 5) {
             throw new IllegalArgumentException();
         }
     }
