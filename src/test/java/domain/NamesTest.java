@@ -13,4 +13,13 @@ class NamesTest {
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Names(rawNames));
     }
+
+    @Test
+    @DisplayName("전체 사람 수를 반환한다.")
+    void getTotalPersonNumber() {
+        List<String> rawNames = List.of("pobi", "crong", "honux");
+        Names names = new Names(rawNames);
+
+        Assertions.assertEquals(3, names.size());
+    }
 }
