@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.List;
-import java.util.Scanner;
 import model.Height;
 import model.Ladder;
 import model.Players;
