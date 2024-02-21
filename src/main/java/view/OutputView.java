@@ -7,9 +7,7 @@ import view.dto.LadderResponse;
 
 public class OutputView {
     public void printResult(List<String> names, LadderResponse ladderResponse) {
-        System.out.println();
-        System.out.println("실행결과");
-        System.out.println();
+        System.out.printf("%n실행결과%n%n");
         printPlayers(names);
         printLadder(names.get(0).length(), ladderResponse);
     }
