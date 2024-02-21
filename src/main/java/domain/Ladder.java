@@ -8,17 +8,14 @@ public class Ladder {
 
     private final List<Bridges> bridges;
 
-    public Ladder(BridgeConstructStrategy bridgeConstructStrategy, int personCount, int height) {
-        validate(personCount, height);
-        bridges = IntStream.range(0, height)
+    public Ladder(BridgeConstructStrategy bridgeConstructStrategy, int personCount, Height height) {
+        validate(personCount);
+        bridges = IntStream.range(0, height.getIntValue())
                 .mapToObj((index) -> bridgeConstructStrategy.generate(personCount - 1))
                 .toList();
     }
 
-    private void validate(int personCount, int height) {
-        if (height <= 0) {
-            throw new IllegalArgumentException(); // TODO 예외 메시지
-        }
+    private void validate(int personCount) {
         if (personCount <= 0) {
             throw new IllegalArgumentException(); // TODO 예외 메시지
         }

@@ -17,29 +17,21 @@ public class LadderTest {
     @Test
     void constructSuccessTest() {
         assertThatNoException()
-                .isThrownBy(() -> new Ladder(new RandomBridgeConstructStrategy(), 4, 5));
-    }
-
-    @DisplayName("높이가 자연수가 아니라면 예외가 발생한다.")
-    @ParameterizedTest(name = "높이가 {0}인 경우 예외가 발생한다.")
-    @ValueSource(ints = {-11, 0})
-    void constructFailWithNotPositiveHeight(int height){
-        assertThatThrownBy(() -> new Ladder(new RandomBridgeConstructStrategy(), 4, height))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isThrownBy(() -> new Ladder(new RandomBridgeConstructStrategy(), 4, new Height(5)));
     }
 
     @DisplayName("사람 수가 자연수가 아니라면 예외가 발생한다.")
     @ParameterizedTest(name = "사람 수가 {0}인 경우 예외가 발생한다.")
     @ValueSource(ints = {-3, 0})
     void constructFailWithNotPositiveWidth(int personCount) {
-        assertThatThrownBy(() -> new Ladder(new RandomBridgeConstructStrategy(), personCount, 5))
+        assertThatThrownBy(() -> new Ladder(new RandomBridgeConstructStrategy(), personCount, new Height(5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("연속된 브릿지가 존재하면 예외가 발생한다.")
     @Test
     void constructFailWithContinuousBridge() {
-        assertThatThrownBy(() -> new Ladder(new ContinuousBridgeConstructStrategy(), 5, 5))
+        assertThatThrownBy(() -> new Ladder(new ContinuousBridgeConstructStrategy(), 5, new Height(5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -50,7 +42,7 @@ public class LadderTest {
         int personCount = 5;
 
         //when
-        Ladder ladder = new Ladder(new RandomBridgeConstructStrategy(), personCount, 4);
+        Ladder ladder = new Ladder(new RandomBridgeConstructStrategy(), personCount, new Height(4));
 
         //then
         assertThat(ladder.getBridge()).hasSize(personCount - 1);

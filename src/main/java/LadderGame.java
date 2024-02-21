@@ -1,3 +1,4 @@
+import domain.Height;
 import domain.Ladder;
 import domain.Name;
 import domain.RandomBridgeConstructStrategy;
@@ -9,7 +10,7 @@ public class LadderGame {
 
     public static void run() {
         List<Name> names = readNames();
-        int height = readHeight();
+        Height height = readHeight();
 
         Ladder ladder = new Ladder(new RandomBridgeConstructStrategy(), names.size(), height);
 
@@ -29,9 +30,9 @@ public class LadderGame {
         }
 
     }
-    private static int readHeight() {
+    private static Height readHeight() {
         try {
-            return InputView.readHeight();
+            return new Height(InputView.readHeight());
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
             return readHeight();
