@@ -11,7 +11,7 @@ public class OutputView {
         System.out.println("실행결과");
         System.out.println();
         printPlayers(names);
-        printLadder(ladderResponse);
+        printLadder(names.get(0).length(), ladderResponse);
     }
 
     private void printPlayers(List<String> names) {
@@ -34,12 +34,11 @@ public class OutputView {
         System.out.println(stringBuilder);
     }
 
-    private void printLadder(LadderResponse ladderResponse) {
+    private void printLadder(int paddingSize, LadderResponse ladderResponse) {
         List<Line> lines = ladderResponse.getLadder();
         for (Line line : lines) {
             StringBuilder stringBuilder = new StringBuilder();
 
-            int paddingSize = ladderResponse.getPaddingSize();
             stringBuilder.append(" ".repeat(paddingSize));
 
             stringBuilder.append(LadderElement.COLUMN.getSymbol());
