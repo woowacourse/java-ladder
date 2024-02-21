@@ -36,6 +36,7 @@ public class LadderTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("연속된 브릿지가 존재하면 예외가 발생한다.")
     @Test
     void constructFailWithContinuousBridge() {
         assertThatThrownBy(() -> new Ladder(new ContinuousBridgeConstructStrategy(), 5, 5))
