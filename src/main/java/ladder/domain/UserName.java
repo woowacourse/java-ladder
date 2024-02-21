@@ -31,11 +31,4 @@ public record UserName(String value) {
             throw new IllegalArgumentException("이름의 길이는 5 이하여야 합니다.");
         }
     }
-
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (!(o instanceof UserName userName)) return false;
-        return Objects.equals(value, userName.value);
-    }
 }
