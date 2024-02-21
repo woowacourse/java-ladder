@@ -30,4 +30,9 @@ public class Ladder {
         ladderLegs.add(ladderLegGenerator.generateLadderLeg(ladderLeg, () -> Direction.DOWN));
     }
 
+    public List<Direction> getDirectionAtHorizontalIndex(Integer index) {
+        return ladderLegs.stream()
+                         .map(ladderLeg -> ladderLeg.getDirectionAtIndex(index))
+                         .toList();
+    }
 }
