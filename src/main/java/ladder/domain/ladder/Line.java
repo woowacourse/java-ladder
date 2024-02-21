@@ -4,6 +4,7 @@ import java.util.List;
 import ladder.domain.direction.Direction;
 
 public class Line {
+
     private final List<Direction> directionsInfo;
 
     public Line(List<Direction> directionsInfo) {

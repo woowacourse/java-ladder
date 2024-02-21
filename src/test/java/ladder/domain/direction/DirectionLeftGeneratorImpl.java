@@ -17,6 +17,11 @@ public class DirectionLeftGeneratorImpl implements DirectionGenerator {
         return generateRightOrNeutral();
     }
 
+    @Override
+    public Direction generateLastValue(Direction priorDirection) {
+        return null;
+    }
+
     private Direction generateRightOrNeutral() {
         int randomNumber = (int) (Math.random() * 2);
         return Direction.getDirection(randomNumber);

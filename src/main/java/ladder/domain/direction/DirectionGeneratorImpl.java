@@ -1,6 +1,7 @@
 package ladder.domain.direction;
 
 public class DirectionGeneratorImpl implements DirectionGenerator{
+
     @Override
     public Direction generateInitialValue() {
         return generateRightOrNeutral();
@@ -12,6 +13,14 @@ public class DirectionGeneratorImpl implements DirectionGenerator{
             return Direction.LEFT;
         }
         return generateRightOrNeutral();
+    }
+
+    @Override
+    public Direction generateLastValue(Direction priorDirection) {
+        if (priorDirection == Direction.RIGHT) {
+            return Direction.LEFT;
+        }
+        return Direction.NEUTRAL;
     }
 
     private Direction generateRightOrNeutral() {

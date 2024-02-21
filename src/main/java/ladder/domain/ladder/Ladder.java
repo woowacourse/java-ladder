@@ -11,6 +11,10 @@ public class Ladder {
         this.lines = lines;
     }
 
+    public List<Line> getLines() {
+        return lines;
+    }
+
     private void validateLinesSize(List<Line> lines) {
         if (lines.size() > 50)  {
             throw new IllegalArgumentException("[ERROR] 사다리의 최대 높이는 50이하만 가능합니다.");

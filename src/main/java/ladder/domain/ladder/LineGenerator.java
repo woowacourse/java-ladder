@@ -25,9 +25,15 @@ public class LineGenerator {
         if (index == 0) {
             directions.add(directionGenerator.generateInitialValue());
         }
+
         if (index != 0) {
             Direction priorDirection = directions.get(index - 1);
             directions.add(directionGenerator.generateValue(priorDirection));
         }
+
+//        if (index == directions.size() - 1) {
+//            Direction priorDirection = directions.get(index - 1);
+//            directions.add(directionGenerator.generateLastValue(priorDirection));
+//        }
     }
 }
