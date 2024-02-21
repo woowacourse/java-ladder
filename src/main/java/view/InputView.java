@@ -15,4 +15,18 @@ public class InputView {
     private List<String> splitName(String input) {
         return List.of(input.split(","));
     }
+
+    public int requestLadderHeight() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        String input = scanner.nextLine();
+        return parseNumeric(input);
+    }
+
+    private int parseNumeric(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("사다리 높이는 숫자이어야한다");
+        }
+    }
 }

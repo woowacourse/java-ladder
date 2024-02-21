@@ -29,4 +29,8 @@ public class Participants {
             throw new IllegalArgumentException("이름은 중복될 수 없다");
         }
     }
+
+    public int getParticipantsSize() {
+        return participants.size();
+    }
 }
