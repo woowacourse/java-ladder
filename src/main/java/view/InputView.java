@@ -11,4 +11,8 @@ public class InputView {
         String text = scanner.next();
         return NameParser.parse(text);
     }
+
+    public int inputHeight() {
+        return scanner.nextInt();
+    }
 }
