@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class People {
 
@@ -19,8 +20,8 @@ public class People {
     }
 
     private void validateNameLength(List<String> names) {
-        if (names.stream().anyMatch(name -> name.length() > 5)) {
-            throw new IllegalArgumentException("이름은 5글자 이하로 입력해주세요.");
+        if (names.stream().anyMatch(name -> name.isEmpty() || name.length() > 5)) {
+            throw new IllegalArgumentException("이름은 1~5글자로 입력해주세요.");
         }
     }
 
@@ -30,4 +31,11 @@ public class People {
         }
     }
 
+    public int count() {
+        return people.size();
+    }
+
+    public Stream<String> stream() {
+        return people.stream();
+    }
 }
