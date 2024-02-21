@@ -28,8 +28,7 @@ public class NameTest {
 
     @DisplayName("이름이 5글자를 넘어가면 예외가 발생한다.")
     @Test
-    void constructFailBecauseNameLength(){
-        //TODO : 테스트 이름 변경
+    void constructFailWithTooLongName(){
         assertThatThrownBy(() -> new Name("zangsu"))
                 .isInstanceOf(IllegalArgumentException.class);
     }

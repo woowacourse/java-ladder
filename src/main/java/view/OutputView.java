@@ -16,6 +16,10 @@ public class OutputView {
         System.out.println();
     }
 
+    public static void printNewLine() {
+        System.out.println();
+    }
+
     public static void printLadder(Ladder ladder) {
         List<Bridges> bridge = ladder.getBridge();
         for (Bridges bridges : bridge) {

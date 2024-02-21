@@ -14,7 +14,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class BridgesTest {
-    //TODO 더 적합한 클래스 이름 고민하기
 
     @DisplayName("객체가 정상적으로 생성된다.")
     @Test
