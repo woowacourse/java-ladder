@@ -15,6 +15,10 @@ public class Users {
         this.users = users;
     }
 
+    public int getNumberOfUsers() {
+        return users.size();
+    }
+
     private void validateUsers(List<User> users) {
         validateUsersSize(users);
         validateDuplicatedUserName(users);
