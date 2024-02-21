@@ -1,6 +1,7 @@
 package controller;
 
 import common.exception.message.ExceptionMessage;
+import common.exception.model.ValidationException;
 import domain.Ladder;
 import domain.LadderHeight;
 import domain.PlayerName;
@@ -45,7 +46,7 @@ public class LadderGame {
 
         Pattern regex = Pattern.compile("[가-힣a-zA-Z]{1,5}(,[가-힣a-zA-Z]{1,5})*");
         if (!regex.matcher(playerNameInput).matches()) {
-            throw new IllegalArgumentException(ExceptionMessage.PLAYER_NAMES_INPUT_FORMAT);
+            throw new ValidationException(ExceptionMessage.PLAYER_NAMES_INPUT_FORMAT);
         }
 
         List<PlayerName> playerNames = Arrays.stream(playerNameInput.split(","))

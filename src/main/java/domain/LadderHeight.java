@@ -1,6 +1,7 @@
 package domain;
 
 import common.exception.message.ExceptionMessage;
+import common.exception.model.ValidationException;
 
 public class LadderHeight {
     private final int value;
@@ -13,12 +14,12 @@ public class LadderHeight {
         try {
             Integer.parseInt(value);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ExceptionMessage.INTEGER_FORMAT);
+            throw new ValidationException(ExceptionMessage.INTEGER_FORMAT);
         }
         int height = Integer.parseInt(value);
 
         if (height < HEIGHT_MIN_RANGE || height > HEIGHT_MAX_RANGE) {
-            throw new IllegalArgumentException(ExceptionMessage.LADDER_HEIGHT_RANGE);
+            throw new ValidationException(ExceptionMessage.LADDER_HEIGHT_RANGE);
         }
         this.value = height;
     }
