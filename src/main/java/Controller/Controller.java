@@ -29,7 +29,7 @@ public class Controller {
 
     private Carpenter makeCarpenter(Height height, Players players) {
         final NumberGenerator numberGenerator = new RandomNumberGenerator();
-        return new Carpenter(height, PlayerCount.fromPlayers(players), numberGenerator);
+        return new Carpenter(height, PlayerCount.fromPlayers(players), numberGenerator); // TODO: 파라미터 3개 걸림
     }
 
     private Players getPlayers() {

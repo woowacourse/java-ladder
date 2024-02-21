@@ -23,7 +23,7 @@ public class Players {
         return Set.copyOf(players).size() != players.size();
     }
 
-    private List<Player> convertToPlayer(List<String> players) { // todo: DTOd에서?
+    private List<Player> convertToPlayer(List<String> players) {
         return players.stream()
                 .map(Player::new)
                 .collect(Collectors.toList());

@@ -30,7 +30,9 @@
 - [x] 예외 메시지 작성
 - [x] enum 적용
 - [x] 예외 발생시 재입력
-- [ ] TODO
+- [ㅇ] WoodWorkMachine 랜덤 책임 문제
+- [ ] WoodWorkMachine.makeLine() 갖고 들어가지 않는 방식으로 수정
+- [ ] outputView 개선 - 커비
 
 ## 고민점
 - [ ] 일반 메서드의 파라미터에도 final 키워드가 효과적일까?

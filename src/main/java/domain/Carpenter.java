@@ -7,9 +7,9 @@ public class Carpenter {
     private final Height height;
     private final WoodWorkMachine woodWorkMachine;
 
-    public Carpenter(final Height height, final PlayerCount playerCount, final NumberGenerator randomNumberGenerator) {
+    public Carpenter(final Height height, final PlayerCount playerCount) {
         this.height = height;
-        this.woodWorkMachine = new WoodWorkMachine(randomNumberGenerator, playerCount);
+        this.woodWorkMachine = new WoodWorkMachine(playerCount);
     }
 
     public Ladder makeLadder() {
