@@ -20,23 +20,23 @@ public class Name {
 
     private void validateNotContainsSpecialCharacters(String name) {
         if (isContainsSpecialCharacters(name)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름은 특수문자를 포함할 수 없습니다.");
         }
     }
 
     private void validateNameLength(String name) {
         if (name.length() > 5) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름의 길이는 최대 5글자 까지 가능합니다.");
         }
     }
 
     private void validateNameIsNotBlank(String name) {
         if (name.isBlank()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름은 공백을 허용하지 않습니다.");
         }
     }
 
     private boolean isContainsSpecialCharacters(String name) {
-        return specialCharactersFilter.matcher(name).matches();
+        return specialCharactersFilter.matcher(name).find();
     }
 }
