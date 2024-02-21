@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static ladder.domain.PathAvailability.EMPTY;
+import static ladder.domain.PathAvailability.EXIST;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 public class LadderStepTest {
@@ -12,10 +14,10 @@ public class LadderStepTest {
     @DisplayName("사다리 스탭을 생성한다.")
     void createLadderStepTest() {
         // given
-        List<Boolean> ladderPaths = List.of(true, false, true, false);
+        List<PathAvailability> ladderStep = List.of(EXIST, EMPTY, EXIST, EMPTY);
 
         // when & then
-        assertThatCode(() -> new LadderStep(ladderPaths))
+        assertThatCode(() -> new LadderStep(ladderStep))
                 .doesNotThrowAnyException();
     }
 }

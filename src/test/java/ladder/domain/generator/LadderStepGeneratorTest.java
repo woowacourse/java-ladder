@@ -1,10 +1,13 @@
 package ladder.domain.generator;
 
+import ladder.domain.PathAvailability;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static ladder.domain.PathAvailability.EMPTY;
+import static ladder.domain.PathAvailability.EXIST;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class LadderStepGeneratorTest {
@@ -12,8 +15,8 @@ public class LadderStepGeneratorTest {
     @DisplayName("연속된 사다리 발판(true)가 생성될 경우 예외가 발생한다.")
     void checkContinuousPathTest() {
         // given
-        List<Boolean> path = List.of(true, true, false, true);
-        LadderStepGenerator ladderStepGenerator = new TestLadderStepGenerator(path, 4);
+        List<PathAvailability> ladderStep = List.of(EXIST, EXIST, EXIST, EMPTY);
+        LadderStepGenerator ladderStepGenerator = new TestLadderStepGenerator(ladderStep, 4);
 
         // when & then
         assertThatThrownBy(ladderStepGenerator::generateValidStep)
@@ -24,8 +27,8 @@ public class LadderStepGeneratorTest {
     @DisplayName("입력된 참가자 수와 사다리 폭이 다를 경우 예외가 발생한다.")
     void checkStepWidthTest() {
         // given
-        List<Boolean> path = List.of(true, false, true);
-        LadderStepGenerator ladderStepGenerator = new TestLadderStepGenerator(path, 4);
+        List<PathAvailability> ladderStep = List.of(EXIST, EMPTY, EXIST);
+        LadderStepGenerator ladderStepGenerator = new TestLadderStepGenerator(ladderStep, 4);
 
         // when & then
         assertThatThrownBy(ladderStepGenerator::generateValidStep)
@@ -33,16 +36,16 @@ public class LadderStepGeneratorTest {
     }
 
     private static class TestLadderStepGenerator extends LadderStepGenerator {
-        private final List<Boolean> path;
+        private final List<PathAvailability> ladderStep;
 
-        public TestLadderStepGenerator(final List<Boolean> path, final int stepWidth) {
+        public TestLadderStepGenerator(final List<PathAvailability> ladderStep, final int stepWidth) {
             super(stepWidth);
-            this.path = path;
+            this.ladderStep = ladderStep;
         }
 
         @Override
-        protected List<Boolean> generate() {
-            return path;
+        protected List<PathAvailability> generate() {
+            return ladderStep;
         }
     }
 }

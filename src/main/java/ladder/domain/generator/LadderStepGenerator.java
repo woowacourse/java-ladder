@@ -15,6 +15,7 @@ public abstract class LadderStepGenerator {
         List<Boolean> path = generate();
         validateStepWidth(path);
         validateContinuousPath(path);
+        // Boolean -> Availability
         return new LadderStep(path);
     }
 
