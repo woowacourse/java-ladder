@@ -4,6 +4,7 @@ import ladder.util.RandomBooleanListGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
 
@@ -20,5 +21,12 @@ public class Ladder {
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    @Override
+    public String toString() {
+        return lines.stream()
+                .map(Line::toString)
+                .collect(Collectors.joining("\n"));
     }
 }
