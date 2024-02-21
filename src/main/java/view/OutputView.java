@@ -19,7 +19,7 @@ public class OutputView {
         String firstPlayer = names.get(0);
 
         stringBuilder.append(firstPlayer);
-        stringBuilder.append(" ".repeat(5 - firstPlayer.length()));
+        stringBuilder.append(" ");
 
         for (String name : names.subList(1, names.size() - 1)) {
             stringBuilder.append(" ".repeat(6 - name.length()));
@@ -45,7 +45,7 @@ public class OutputView {
             stringBuilder.append(LadderElement.COLUMN.getSymbol());
 
             List<Boolean> points = line.getPoints();
-            for(boolean point : points) {
+            for (boolean point : points) {
                 stringBuilder.append(getElement(point));
                 stringBuilder.append(LadderElement.COLUMN.getSymbol());
 
@@ -55,7 +55,7 @@ public class OutputView {
     }
 
     private String getElement(boolean point) {
-        if(point) {
+        if (point) {
             return LadderElement.ROW.getSymbol();
         }
         return LadderElement.EMPTY.getSymbol();
