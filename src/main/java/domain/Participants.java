@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Participants {
@@ -9,24 +8,24 @@ public class Participants {
     public static final int MAX_OF_PARTICIPANTS_COUNT = 50;
     private final List<Person> participants;
 
-    public Participants(String[] names) {
+    public Participants(List<String> names) {
         validateCount(names);
         validateDuplicate(names);
-        this.participants = Arrays.stream(names)
+        this.participants = names.stream()
                 .map(Person::new)
                 .toList();
     }
 
-    private void validateCount(String[] names) {
-        if (names.length < MIN_OF_PARTICIPANTS_COUNT || names.length > MAX_OF_PARTICIPANTS_COUNT) {
+    private void validateCount(List<String> names) {
+        if (names.size() < MIN_OF_PARTICIPANTS_COUNT || names.size() > MAX_OF_PARTICIPANTS_COUNT) {
             throw new IllegalArgumentException(
                     "[ERROR] 참가자는 " + MIN_OF_PARTICIPANTS_COUNT + "명 이상 "
                             + MAX_OF_PARTICIPANTS_COUNT + "명 이하여야 합니다.");
         }
     }
 
-    private void validateDuplicate(String[] names) {
-        if (Arrays.stream(names).distinct().count() != names.length) {
+    private void validateDuplicate(List<String> names) {
+        if (names.stream().distinct().count() != names.size()) {
             throw new IllegalArgumentException("[ERROR] 참가자 이름은 중복될 수 없습니다.");
         }
     }

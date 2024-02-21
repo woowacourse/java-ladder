@@ -1,5 +1,6 @@
 package view;
 
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -9,11 +10,11 @@ public class InputView {
     private static final Pattern FINISH_WITH_DELIMITER_REGEX = Pattern.compile(".*,$");
     private final Scanner scanner = new Scanner(System.in);
 
-    public String[] readNames() {
+    public List<String> readNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String names = scanner.nextLine();
         validateNames(names);
-        return names.split(DELIMITER);
+        return List.of(names.split(DELIMITER));
     }
 
     private void validateNames(String names) {

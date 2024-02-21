@@ -5,6 +5,8 @@ import domain.Participants;
 import view.InputView;
 import view.OutputView;
 
+import java.util.List;
+
 public class LadderGame {
 
     private static final InputView inputView = new InputView();
@@ -28,7 +30,7 @@ public class LadderGame {
 
     private static Participants recruitParticipants() {
         try {
-            String[] names = inputView.readNames();
+            List<String> names = inputView.readNames();
             return new Participants(names);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
