@@ -1,5 +1,6 @@
 package domain;
 
+import common.exception.message.ExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -27,7 +28,8 @@ public class LadderHeightTest {
         @DisplayName("정수형태가 아니라면 예외가 발생한다")
         void createLadderHeightFailByFormat() {
             Assertions.assertThatThrownBy(() -> new LadderHeight("a"))
-                    .isInstanceOf(IllegalArgumentException.class);
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(ExceptionMessage.INTEGER_FORMAT);
         }
     }
 
@@ -54,7 +56,8 @@ public class LadderHeightTest {
         @DisplayName("높이가 2 미만, 10 초과라면 예외가 발생한다")
         void createLadderHeightFailByRange(String value) {
             Assertions.assertThatThrownBy(() -> new LadderHeight(value))
-                    .isInstanceOf(IllegalArgumentException.class);
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(ExceptionMessage.LADDER_HEIGHT_RANGE);
         }
     }
 }

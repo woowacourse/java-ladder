@@ -1,5 +1,7 @@
 package domain;
 
+import common.exception.message.ExceptionMessage;
+
 public class PlayerName {
     private String name;
 
@@ -7,7 +9,7 @@ public class PlayerName {
         this.name = name;
 
         if (name.isBlank()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.PLAYER_NAME_BLANK);
         }
     }
 

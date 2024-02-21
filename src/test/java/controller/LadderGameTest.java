@@ -1,6 +1,7 @@
 package controller;
 
 import domain.PlayerName;
+import domain.PlayerNames;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -28,13 +29,13 @@ class LadderGameTest {
             OutputView outputView = new OutputView();
             LadderGame ladderGame = new LadderGame(inputView, outputView);
             //when
-            List<PlayerName> playerNames = ladderGame.createPlayerNames(playerNameInfos);
+            PlayerNames playerNames = ladderGame.createPlayerNames(playerNameInfos);
             //then
             assertAll(
-                    () -> Assertions.assertThat(playerNames).hasSize(3),
-                    () -> Assertions.assertThat(playerNames.get(0).getName()).isEqualTo("aa"),
-                    () -> Assertions.assertThat(playerNames.get(1).getName()).isEqualTo("bb"),
-                    () -> Assertions.assertThat(playerNames.get(2).getName()).isEqualTo("cc")
+                    () -> Assertions.assertThat(playerNames.getCount()).isEqualTo(3),
+                    () -> Assertions.assertThat(playerNames.getNameOfIndex(0)).isEqualTo("aa"),
+                    () -> Assertions.assertThat(playerNames.getNameOfIndex(1)).isEqualTo("bb"),
+                    () -> Assertions.assertThat(playerNames.getNameOfIndex(2)).isEqualTo("cc")
             );
         }
 

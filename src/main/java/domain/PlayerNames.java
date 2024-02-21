@@ -22,4 +22,12 @@ public class PlayerNames {
         }
         this.playerNames = playerNames;
     }
+
+    public int getCount() {
+        return playerNames.size();
+    }
+
+    public String getNameOfIndex(int index) {
+        return playerNames.get(index).getName();
+    }
 }

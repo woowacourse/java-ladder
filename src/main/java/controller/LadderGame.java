@@ -1,8 +1,10 @@
 package controller;
 
+import common.exception.message.ExceptionMessage;
 import domain.Ladder;
 import domain.LadderHeight;
 import domain.PlayerName;
+import domain.PlayerNames;
 import view.InputView;
 import view.OutputView;
 
@@ -20,35 +22,37 @@ public class LadderGame {
     }
 
     public void start() {
-        List<PlayerName> playerNames = readPlayerNames();
+        PlayerNames playerNames = readPlayerNames();
         LadderHeight ladderHeight = readLadderHeight();
 
         Ladder ladder = createLadder(playerNames, ladderHeight);
         outputView.printResult(playerNames, ladder);
     }
 
-    private Ladder createLadder(List<PlayerName> playerNames, LadderHeight ladderHeight) {
-        int pointCount = playerNames.size() - 1;
+    private Ladder createLadder(PlayerNames playerNames, LadderHeight ladderHeight) {
+        int pointCount = playerNames.getCount() - 1;
         return Ladder.of(ladderHeight, pointCount);
     }
 
 
-    public List<PlayerName> readPlayerNames() {
+    public PlayerNames readPlayerNames() {
         return createPlayerNames(inputView.readPlayerNames());
     }
 
 
-    public List<PlayerName> createPlayerNames(String playerNameInput) {
+    public PlayerNames createPlayerNames(String playerNameInput) {
         playerNameInput = playerNameInput.replace(" ", "");
 
         Pattern regex = Pattern.compile("[가-힣a-zA-Z]{1,5}(,[가-힣a-zA-Z]{1,5})*");
         if (!regex.matcher(playerNameInput).matches()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.PLAYER_NAMES_INPUT_FORMAT);
         }
 
-        return Arrays.stream(playerNameInput.split(","))
+        List<PlayerName> playerNames = Arrays.stream(playerNameInput.split(","))
                 .map(PlayerName::new)
                 .toList();
+
+        return new PlayerNames(playerNames);
     }
 
     public LadderHeight readLadderHeight() {
