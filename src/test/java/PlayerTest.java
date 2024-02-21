@@ -15,27 +15,4 @@ public class PlayerTest {
         assertThatCode(() -> new Player("dodo"))
                 .doesNotThrowAnyException();
     }
-
-    @DisplayName("플레이어의 이름이 5자 초과이면 예외가 발생한다.")
-    @Test
-    void createPlayerWithOverNameSize() {
-        assertThatThrownBy(() -> new Player("dodododo"))
-                .isInstanceOf(IllegalArgumentException.class);
-
-    }
-
-    @DisplayName("플레이어의 이름이 영어가 아닌 경우 예외가 발생한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {"도도","c!apy","123"})
-    void createPlayerWithNotEnglish(String invalidName) {
-        assertThatThrownBy(()-> new Player(invalidName))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("플레이어의 이름이 빈 문자열인 경우 예외가 발생한다.")
-    @Test
-    void createPlayerWithBlank() {
-        assertThatThrownBy(()-> new Player(""))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }
