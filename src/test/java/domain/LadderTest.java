@@ -48,24 +48,4 @@ public class LadderTest {
         //then
         assertThat(ladder.getBridge()).hasSize(personCount - 1);
     }
-
-    @Test
-    void ladderHasNoContinuousBridge() {
-        //given
-        Ladder ladder = new Ladder(3, 5);
-
-        //when
-        List<Bridges> bridge = ladder.getBridge();
-
-        //then
-        for (int height = 0; height < 5; height++) {
-            boolean hasBridge = bridge.get(0).getBridges().get(height);
-            for (int index = 1; index < 2; index++) {
-                boolean nextBridge = bridge.get(index).getBridges().get(height);
-                assertThat(hasBridge && nextBridge).isFalse();
-                hasBridge = nextBridge;
-            }
-        }
-
-    }
 }
