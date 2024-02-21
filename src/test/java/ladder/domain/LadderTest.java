@@ -3,6 +3,9 @@ package ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import static ladder.domain.Direction.NONE;
+import static ladder.domain.Direction.RIGHT;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,15 +19,19 @@ public class LadderTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("입력받은 인원수와 높이의 사다리를 만든다.")
+    @DisplayName("입력받은 위치의 방향을 찾는다.")
     @Test
     void ladderTest() {
         int peopleCount = 5;
         int height = 4;
         Ladder ladder = new Ladder(peopleCount, height);
+        ladder.initialize(() -> RIGHT);
 
-        assertThat(ladder.lines.size()).isEqualTo(height);
-        assertThat(ladder.lines.get(0).line.size()).isEqualTo(peopleCount);
+        assertThat(ladder.getDirection(0, 0)).isEqualTo(RIGHT);
+        
+        ladder.initialize(() -> NONE);
+
+        assertThat(ladder.getDirection(0, 0)).isEqualTo(NONE);
     }
 
 }
