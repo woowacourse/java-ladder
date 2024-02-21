@@ -13,7 +13,7 @@ public class Line {
     }
 
     public void makeLeg(int legCount) {
-        legs.add(generate());
+        legs.add(generateLegRandomly());
         for (int i = 1; i < legCount; i++) {
             decideLegExist(i);
         }
@@ -24,10 +24,10 @@ public class Line {
             legs.add(false);
             return;
         }
-        legs.add(generate());
+        legs.add(generateLegRandomly());
     }
 
-    protected Boolean generate(){
+    protected Boolean generateLegRandomly(){
         return RandomGenerator.generateRandomBoolean();
     }
 
