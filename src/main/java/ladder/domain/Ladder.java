@@ -1,24 +1,24 @@
 package ladder.domain;
 
+import ladder.util.RandomBooleanListGenerator;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
 
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
 
-    public Ladder(People people, Height height) {
-        RandomPointsGenerator randomPointsGenerator = new RandomPointsGenerator();
-        int personCount = people.count();
 
-        while (!height.equals(lines.size())) {
-            Line line = new Line(personCount, randomPointsGenerator);
-            lines.add(line);
+    public Ladder(int height, int personCount) {
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line(personCount, new RandomBooleanListGenerator()));
         }
+        this.lines = lines;
     }
 
-    public List<Line> getLadder() {
-        return Collections.unmodifiableList(lines);
+    public List<Line> getLines() {
+        return lines;
     }
 }
