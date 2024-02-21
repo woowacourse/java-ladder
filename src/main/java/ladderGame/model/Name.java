@@ -23,7 +23,7 @@ public class Name {
     }
 
     private void validateNotBlank(String name) {
-        if(name.isBlank()) {
+        if (name.isBlank()) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_NOT_BLANK);
         }
     }

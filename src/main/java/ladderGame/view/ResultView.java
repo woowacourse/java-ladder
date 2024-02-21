@@ -36,14 +36,14 @@ public class ResultView {
         StringBuilder sb = new StringBuilder();
 
         sb.append(BLANK_MARK + LINE_MARK);
-        for(Boolean isDrawn : isDrawns) {
+        for (Boolean isDrawn : isDrawns) {
             sb.append(checkDrawnMark(isDrawn)).append(LINE_MARK);
         }
         return sb.toString();
     }
 
     private String checkDrawnMark(Boolean isDrawn) {
-        if(isDrawn) {
+        if (isDrawn) {
             return DRAWN_MARK;
         }
         return NOT_DRAWN_MARK;
