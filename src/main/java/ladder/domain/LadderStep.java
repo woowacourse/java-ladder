@@ -9,4 +9,8 @@ public class LadderStep {
     public LadderStep(final List<Path> ladderPaths) {
         this.ladderPaths = Collections.unmodifiableList(ladderPaths);
     }
+
+    public List<Path> getLadderPaths() {
+        return ladderPaths;
+    }
 }

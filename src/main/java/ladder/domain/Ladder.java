@@ -17,4 +17,8 @@ public class Ladder {
         }
         ladderSteps = Collections.unmodifiableList(generatedLadderSteps);
     }
+
+    public List<LadderStep> getLadderSteps() {
+        return ladderSteps;
+    }
 }
