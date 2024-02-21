@@ -23,7 +23,7 @@ public class ResultView {
 
     public static void printResult(Ladder ladder) {
         for (Line line : ladder.getLadder()) {
-            System.out.println(LadderPrinter.printSingleLine(line));
+            System.out.println(LadderPrinter.generateSingleLine(line));
         }
     }
 }

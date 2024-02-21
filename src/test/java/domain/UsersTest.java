@@ -5,6 +5,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 class UsersTest {
@@ -51,6 +54,21 @@ class UsersTest {
 
         //then
         assertThatCode(() -> new Users(userNames)).doesNotThrowAnyException();
+    }
+
+
+    @Test
+    @DisplayName("사용자는 최대 50명이다")
+    void maxUsers() {
+        //given
+        StringBuilder names = new StringBuilder();
+        for (int i = 1; i <= 50; i++) {
+            names.append(i).append(",");
+        }
+        names.append(51);
+        //when
+        //then
+        assertThatThrownBy(() -> new Users(names.toString())).isInstanceOf(IllegalArgumentException.class);
     }
 
 

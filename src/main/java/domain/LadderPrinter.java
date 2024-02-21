@@ -11,7 +11,7 @@ public enum LadderPrinter {
         this.singleLine = singleLine;
     }
 
-    public static String printSingleLine(Line line) {
+    public static String generateSingleLine(Line line) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("    ");
         for (Boolean point : line.getPoints()) {

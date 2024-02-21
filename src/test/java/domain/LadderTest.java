@@ -40,4 +40,16 @@ public class LadderTest {
         //then
         assertThat(maxHeight).isEqualTo(ladder.getHeight());
     }
+
+    @Test
+    @DisplayName("사다리 최대 높이는 100이다.")
+    void maxHeight() {
+        //given
+        int maxHeight = 101;
+        int personCount = 4;
+        //when
+        //then
+        assertThatThrownBy(() -> new Ladder(maxHeight, personCount))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

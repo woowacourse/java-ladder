@@ -30,7 +30,10 @@ public class Users {
 
     private void validate() {
         if (users.size() == 1) {
-            throw new IllegalArgumentException("사용자는 두명 이상이여야 합니다.");
+            throw new IllegalArgumentException(String.format("입력된 값: %d, 사용자는 두명 이상이여야 합니다.", users.size()));
+        }
+        if (users.size() > 50) {
+            throw new IllegalArgumentException(String.format("입력된 값: %d, 사용자는 최대 50명입니다.", users.size()));
         }
     }
 }
