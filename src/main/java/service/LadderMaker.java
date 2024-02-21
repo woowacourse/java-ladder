@@ -6,7 +6,7 @@ import domain.RandomPointGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LadderGame {
+public class LadderMaker {
 
     public Ladder createLadder(final int personCount, final int height) {
         final List<Line> lines = new ArrayList<>();

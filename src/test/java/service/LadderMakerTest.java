@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LadderGameTest {
+class LadderMakerTest {
     private static final int PERSON_COUNT = 3;
     private static final int HEIGHT = 5;
 
@@ -15,9 +15,9 @@ class LadderGameTest {
         //given
         final int personCount = PERSON_COUNT;
         final int height = HEIGHT;
-        final LadderGame ladderGame = new LadderGame();
+        final LadderMaker ladderMaker = new LadderMaker();
         //when
-        Ladder ladder = ladderGame.createLadder(personCount, height);
+        Ladder ladder = ladderMaker.createLadder(personCount, height);
         //then
         Assertions.assertThat(ladder.getLines().size()).isEqualTo(height);
     }
