@@ -27,7 +27,7 @@ public class Line {
         legs.add(generate());
     }
 
-    public Boolean generate(){
+    protected Boolean generate(){
         return RandomGenerator.generateRandomBoolean();
     }
 
