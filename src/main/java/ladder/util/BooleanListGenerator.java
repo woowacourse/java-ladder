@@ -1,9 +1,11 @@
 package ladder.util;
 
+import ladder.domain.Point;
+
 import java.util.List;
 
 public interface BooleanListGenerator {
 
-    List<Boolean> generate(int size);
+    List<Point> generate(int size);
 
 }

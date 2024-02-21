@@ -1,17 +1,18 @@
 package ladder.util;
 
+import ladder.domain.Point;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class RandomBooleanListGenerator implements BooleanListGenerator {
 
     @Override
-    public List<Boolean> generate(int size) {
-        List<Boolean> list = new ArrayList<>();
+    public List<Point> generate(int size) {
+        List<Point> list = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            boolean value = new Random().nextBoolean();
-            list.add(value);
+            Point point = Point.getRandomPoint();
+            list.add(point);
         }
         return list;
     }

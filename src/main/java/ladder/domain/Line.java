@@ -2,12 +2,13 @@ package ladder.domain;
 
 import ladder.util.BooleanListGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Line {
 
-    private final List<Boolean> points;
+    private final List<Point> points;
     private final BooleanListGenerator booleanListGenerator;
 
     public Line(int personCount, BooleanListGenerator booleanListGenerator) {
@@ -15,39 +16,47 @@ public class Line {
         this.points = createValidPoints(personCount - 1);
     }
 
-    private List<Boolean> createValidPoints(int size) {
-        List<Boolean> points = booleanListGenerator.generate(size);
-        if (!points.contains(true)) {
+    private List<Point> createValidPoints(int size) {
+        List<Point> rawPoints = booleanListGenerator.generate(size);
+        if (!rawPoints.contains(Point.ON)) {
             return createValidPoints(size);
         }
-        for (int i = 1; i < points.size(); i++) {
-            replaceValidPoint(points, i);
+
+        return makePoints(size, rawPoints);
+    }
+
+    private List<Point> makePoints(int size, List<Point> rawPoints) {
+        List<Point> points = init(rawPoints.get(0));
+        for (int i = 1; i < size; i++) {
+            Point previous = points.get(i - 1);
+            Point current = rawPoints.get(i);
+            Point point = replaceValidPoint(previous, current);
+            points.add(point);
         }
         return points;
     }
 
-    private void replaceValidPoint(List<Boolean> points, int i) {
-        if (points.get(i - 1)) {
-            points.set(i, false);
-        }
-    }
-
-    public List<Boolean> getPoints() {
+    private List<Point> init(Point point) {
+        List<Point> points = new ArrayList<>();
+        points.add(point);
         return points;
     }
 
-    public String createValidPoints(boolean point) {
-        if (point) {
-            return "-".repeat(5);
+    private Point replaceValidPoint(Point previous, Point current) {
+        if (previous == Point.ON) {
+            return Point.OFF;
         }
-        return " ".repeat(5);
+        return current;
+    }
+
+    public List<Point> getPoints() {
+        return points;
     }
 
     @Override
     public String toString() {
         return points.stream()
-                .map(this::createValidPoints)
+                .map(Point::getSymbol)
                 .collect(Collectors.joining("|", "    |", "|"));
     }
-
 }
