@@ -2,11 +2,12 @@ package game;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import generator.BooleanGenerator;
+import generator.FloorGenerator;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,7 +39,7 @@ class LadderGameTest {
         // given
         InputView inputView = createInputView("a,b,c", "2");
         OutputView outputView = new OutputView();
-        BooleanGenerator generator = () -> false;
+        FloorGenerator generator = (size) -> List.of(true, false);
         LadderGame ladderGame = new LadderGame(inputView, outputView, generator);
         // when
         ladderGame.play();
@@ -60,7 +61,7 @@ class LadderGameTest {
         // given
         InputView inputView = createInputView("hello,my,name,is,sangdol", "a,b,c", "20", "2");
         OutputView outputView = new OutputView();
-        BooleanGenerator generator = () -> false;
+        FloorGenerator generator = (size) -> List.of(false, false);
         LadderGame ladderGame = new LadderGame(inputView, outputView, generator);
         // when
         ladderGame.play();

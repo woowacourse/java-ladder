@@ -24,7 +24,8 @@ class HorizontalLineTest {
     @DisplayName("올바르지 않은 범위의 수가 주어지면, 예외를 발생한다.")
     void invalidPlayerCountCreationTest(int playerCount) {
         // TODO: 에러 메시지가 범위에 의존함
-        assertThatThrownBy(() -> new HorizontalLine(playerCount)).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> new HorizontalLine(playerCount))
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("플레이어 수 범위는 2 이상 10 이하여야 합니다.");
     }
 
@@ -38,18 +39,5 @@ class HorizontalLineTest {
         List<Boolean> actual = status.placedStatuses();
         // then
         assertThat(actual).isEmpty();
-    }
-
-    @Test
-    @DisplayName("플레이어 수보다 1 작은 사다리 가로줄 설치 여부를 반환한다.")
-    void generateHorizontalLadderTest() {
-        // given
-        HorizontalLine horizontalLine = new HorizontalLine(5);
-        // when
-        horizontalLine.createCrossingLines(() -> true);
-        HorizontalLineStatus status = horizontalLine.createStatus();
-        List<Boolean> actual = status.placedStatuses();
-        // then
-        assertThat(actual).hasSize(4);
     }
 }

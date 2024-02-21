@@ -1,10 +1,8 @@
 package domain;
 
-import generator.BooleanGenerator;
-import generator.LadderBooleanGenerator;
+import generator.FloorGenerator;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class HorizontalLine {
 
@@ -12,24 +10,20 @@ public class HorizontalLine {
     private static final int MAX_PLAYER_COUNT = 10;
 
     private final int playerCount;
-    private final List<Boolean> ladderConnections = new ArrayList<>();
+    private final List<Boolean> floor = new ArrayList<>();
 
     public HorizontalLine(int playerCount) {
         validatePlayerCount(playerCount);
         this.playerCount = playerCount;
     }
 
-    public void createCrossingLines(BooleanGenerator generator) {
-        ladderConnections.clear();
-
-        LadderBooleanGenerator ladderBooleanGenerator = new LadderBooleanGenerator(generator);
-        Stream.generate(ladderBooleanGenerator::generate)
-                .limit(playerCount - 1)
-                .forEach(ladderConnections::add);
+    public void createCrossingLines(FloorGenerator floorGenerator) {
+        List<Boolean> generatedFloor = floorGenerator.generate(playerCount - 1);
+        floor.addAll(generatedFloor);
     }
 
     public HorizontalLineStatus createStatus() {
-        List<Boolean> placeStatuses = List.copyOf(ladderConnections);
+        List<Boolean> placeStatuses = List.copyOf(floor);
         return new HorizontalLineStatus(placeStatuses);
     }
 

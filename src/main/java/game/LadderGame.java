@@ -4,7 +4,7 @@ import domain.HorizontalLineStatus;
 import domain.Ladder;
 import domain.LadderHeight;
 import domain.Name;
-import generator.BooleanGenerator;
+import generator.FloorGenerator;
 import java.util.List;
 import java.util.function.Supplier;
 import view.InputView;
@@ -14,12 +14,12 @@ public class LadderGame {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final BooleanGenerator booleanGenerator;
+    private final FloorGenerator floorGenerator;
 
-    public LadderGame(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
+    public LadderGame(InputView inputView, OutputView outputView, FloorGenerator floorGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.booleanGenerator = booleanGenerator;
+        this.floorGenerator = floorGenerator;
     }
 
     public void play() {
@@ -27,7 +27,7 @@ public class LadderGame {
         LadderHeight height = retryOnException(this::getHeight);
 
         Ladder ladder = Ladder.of(names.size(), height.value());
-        ladder.drawLines(booleanGenerator);
+        ladder.drawLines(floorGenerator);
         List<HorizontalLineStatus> statuses = ladder.createStatuses();
 
         printLadderResult(names, statuses);

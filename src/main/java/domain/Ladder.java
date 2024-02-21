@@ -1,6 +1,6 @@
 package domain;
 
-import generator.BooleanGenerator;
+import generator.FloorGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class Ladder {
         return new Ladder(playerCount, height);
     }
 
-    public void drawLines(BooleanGenerator generator) {
+    public void drawLines(FloorGenerator generator) {
         lines.forEach(line -> line.createCrossingLines(generator));
     }
 
