@@ -15,12 +15,18 @@ public class Players {
     }
 
     private static void validate(final List<String> playerNames) {
-        for (String name : playerNames) {
-            if (name.isBlank()) {
-                throw new IllegalArgumentException();
-            }
-        }
+        checkBlankName(playerNames);
+        checkDuplicated(playerNames);
+    }
+
+    private static void checkDuplicated(List<String> playerNames) {
         if (hasDuplicateName(playerNames)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void checkBlankName(List<String> playerNames) {
+        if (playerNames.stream().anyMatch(String::isBlank)) {
             throw new IllegalArgumentException();
         }
     }
