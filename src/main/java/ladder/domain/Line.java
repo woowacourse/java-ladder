@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.stream.IntStream;
 import ladder.dto.LineResult;
 
 import java.util.ArrayList;
@@ -14,14 +15,13 @@ public class Line {
 
     public Line(final Supplier<Boolean> generator, final int userCount) {
         this.generator = generator;
-        this.stepStatuses = initStepStatuses(userCount);
+        this.stepStatuses = createStepStatuses(userCount);
     }
 
-    private List<StepStatus> initStepStatuses(final int userCount) {
+    private List<StepStatus> createStepStatuses(final int userCount) {
         final List<StepStatus> stepStatuses = new ArrayList<>(userCount - 1);
-        for (int i = 0; i < userCount - 1; i++) {
-            stepStatuses.add(generateStepStatus(stepStatuses, i));
-        }
+        IntStream.range(0, userCount - 1)
+                .forEach(i -> stepStatuses.add(generateStepStatus(stepStatuses, i)));
         return stepStatuses;
     }
 
