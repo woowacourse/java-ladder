@@ -29,4 +29,12 @@ public class ParticipantTest {
                 .hasMessage("참가자의 이름은 null 이거나 공백일 수 없습니다.");
     }
 
+    @DisplayName("참가자의 이름은 공백일 수 없다")
+    @Test
+    void participantNameIsBlank() {
+        assertThatThrownBy(() -> new Participant(" "))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("참가자의 이름은 null 이거나 공백일 수 없습니다.");
+    }
+
 }
