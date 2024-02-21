@@ -9,8 +9,8 @@ import java.util.stream.IntStream;
 
 public class RandomLinesGenerator {
     public static List<Line> generate(int width, int height) {
-        return IntStream.range(0, width)
-                .mapToObj(i -> new Line(generateRandomLine(height)))
+        return IntStream.range(0, height)
+                .mapToObj(i -> new Line(generateRandomLine(width)))
                 .toList();
     }
 
