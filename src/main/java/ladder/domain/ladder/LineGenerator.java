@@ -16,14 +16,18 @@ public class LineGenerator {
     public Line generate(int width) {
         List<Direction> directions = new ArrayList<>();
         for (int i = 0; i < width; i++) {
-            if (i == 0) {
-                directions.add(directionGenerator.generateInitialValue());
-            }
-            if (i != 0) {
-                Direction priorDirection = directions.get(i - 1);
-                directions.add(directionGenerator.generateValue(priorDirection));
-            }
+            addDirection(i, directions);
         }
         return new Line(directions);
+    }
+
+    private void addDirection(int index, List<Direction> directions) {
+        if (index == 0) {
+            directions.add(directionGenerator.generateInitialValue());
+        }
+        if (index != 0) {
+            Direction priorDirection = directions.get(index - 1);
+            directions.add(directionGenerator.generateValue(priorDirection));
+        }
     }
 }
