@@ -22,7 +22,7 @@ public class OutputView {
     }
 
     private static void printRowLine(RowLine rowLine){
-        StringBuilder stringBuilder = new StringBuilder("|");
+        StringBuilder stringBuilder = new StringBuilder("    |");
 
         //TODO depth 줄이기
         for (Boolean isConnected : rowLine.getLine()) {
