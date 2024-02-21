@@ -5,10 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import domain.BooleanGenerator;
 import domain.Line;
 import domain.Names;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 class ResultMessageTest {
     @Test
@@ -17,7 +16,7 @@ class ResultMessageTest {
         Line line = new Line(3, new FixedGenerator(true));
         String expected = "-----|     |\n";
         String actual = ResultMessage.of(line);
-        
+
         assertEquals(expected, actual);
     }
 
@@ -28,7 +27,7 @@ class ResultMessageTest {
         Names names = new Names(rawNames);
         String paddedLine = ResultMessage.ladderPadding(names);
 
-        assertEquals("    |",paddedLine);
+        assertEquals("    |", paddedLine);
     }
 
     static class FixedGenerator implements BooleanGenerator {
