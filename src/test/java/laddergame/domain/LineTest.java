@@ -55,11 +55,13 @@ public class LineTest {
     @DisplayName("연속으로 랜덤 결과가 true면 에러를 발생한다.")
     public void checkSequenceBuildBridge() {
         //given
-        final int playerCount = 4;
-        final List<Boolean> canBuild = List.of(Boolean.TRUE, Boolean.TRUE, Boolean.FALSE);
+        final int playerCount = 5;
+        final List<Boolean> canBuild1 = List.of(Boolean.TRUE, Boolean.TRUE, Boolean.FALSE, Boolean.FALSE);
+        final List<Boolean> canBuild2 = List.of(Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE);
 
         //when & then
-        assertThrows(IllegalStateException.class, () -> new Line(playerCount).buildBridge(canBuild));
+        assertThrows(IllegalStateException.class, () -> new Line(playerCount).buildBridge(canBuild1));
+        assertThrows(IllegalStateException.class, () -> new Line(playerCount).buildBridge(canBuild2));
     }
 
 }

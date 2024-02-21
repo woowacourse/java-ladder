@@ -13,7 +13,22 @@ public class Line {
     }
 
     public void buildBridge(List<Boolean> isBridgeBuilt) {
+        validate(isBridgeBuilt);
         this.points = isBridgeBuilt;
+    }
+
+    private void validate(final List<Boolean> isBridgeBuilt) {
+        boolean isTrue = false;
+        for (Boolean previous : isBridgeBuilt) {
+            if (previous && isTrue) {
+                throw new IllegalStateException();
+            }
+            if (previous) {
+                isTrue = true;
+                continue;
+            }
+            isTrue = false;
+        }
     }
 
     public boolean isBuilt(final int position) {
