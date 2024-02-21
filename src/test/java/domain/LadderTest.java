@@ -11,7 +11,7 @@ public class LadderTest {
     @ParameterizedTest
     @ValueSource(ints = {0, 51})
     void heightRangeTest(int input) {
-        Assertions.assertThatThrownBy(() -> new Ladder(input, 5))
+        Assertions.assertThatThrownBy(() -> new Ladder(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리의 높이는 1 이상 50 이하여야 합니다.");
     }
