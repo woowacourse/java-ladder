@@ -8,7 +8,7 @@ public class People {
     private static final String NAME_RULE = "[a-zA-Z0-9]{1,5}";
     private static final int MIN_PEOPLE_NUMBERS = 1;
     private static final int MAX_PEOPLE_NUMBERS = 100;
-    private final List<String> names;
+    private final List<String> names = new ArrayList<>();
 
     public People(List<String> names) {
         validatePeopleNumber(names);

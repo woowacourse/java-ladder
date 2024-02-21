@@ -1,8 +1,9 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-//TODO package 이동
+
 public class RowLine {
     private static final int MIN_PEOPLE_NUMBER=1;
     private static final int MAX_PEOPLE_NUMBER=100;
