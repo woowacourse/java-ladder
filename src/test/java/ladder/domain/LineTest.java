@@ -18,7 +18,7 @@ class LineTest {
     @Test
     @DisplayName("가로 라인이 겹칠 경우, 예외 발생")
     void validateOverlappedRowLine() {
-        List<Boolean> rowLines = List.of(true, true, false);
+        List<Stick> rowLines = List.of(Stick.EXISTENCE, Stick.EXISTENCE, Stick.NON_EXISTENCE);
 
         Assertions.assertThatThrownBy(() -> new Line(rowLines))
                 .isInstanceOf(IllegalArgumentException.class)
