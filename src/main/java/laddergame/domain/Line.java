@@ -9,7 +9,7 @@ public class Line {
     private final List<Boolean> points;
 
     public Line(final int playerCount) {
-        this.points = new ArrayList<>(Collections.nCopies(playerCount, Boolean.FALSE));
+        this.points = new ArrayList<>(Collections.nCopies(playerCount - 1, Boolean.FALSE));
     }
 
     public void buildBridge(final int position, final BooleanGenerator booleanGenerator) {
