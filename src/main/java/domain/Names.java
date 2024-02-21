@@ -11,7 +11,9 @@ public class Names {
     }
 
     private List<Name> createNames(List<String> names) {
-        return names.stream().map(Name::new).toList();
+        return names.stream()
+                .map(Name::new)
+                .toList();
     }
 
     private void validateNameDuplication(List<String> rawNames) {
