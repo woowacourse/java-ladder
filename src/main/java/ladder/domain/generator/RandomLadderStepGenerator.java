@@ -1,13 +1,13 @@
 package ladder.domain.generator;
 
-import ladder.domain.PathAvailability;
+import ladder.domain.Path;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static ladder.domain.PathAvailability.EMPTY;
-import static ladder.domain.PathAvailability.EXIST;
+import static ladder.domain.Path.EMPTY;
+import static ladder.domain.Path.EXIST;
 
 public class RandomLadderStepGenerator extends LadderStepGenerator {
     private final Random random = new Random();
@@ -17,22 +17,22 @@ public class RandomLadderStepGenerator extends LadderStepGenerator {
     }
 
     @Override
-    protected List<PathAvailability> generate() {
-        List<PathAvailability> ladderStep = new ArrayList<>();
-        PathAvailability isPrevAvailable = EMPTY;
-        while (ladderStep.size() < stepWidth) {
-            PathAvailability isCurrentAvailable = generatePath(isPrevAvailable);
-            ladderStep.add(isCurrentAvailable);
-            isPrevAvailable = isCurrentAvailable;
+    protected List<Path> generate() {
+        List<Path> ladderPaths = new ArrayList<>();
+        Path prevPath = EMPTY;
+        while (ladderPaths.size() < stepWidth) {
+            Path currentPath = generatePath(prevPath);
+            ladderPaths.add(currentPath);
+            prevPath = currentPath;
         }
-        return ladderStep;
+        return ladderPaths;
     }
 
-    private PathAvailability generatePath(final PathAvailability isPrevAvailable) {
-        if (isPrevAvailable.equals(EXIST)) {
+    private Path generatePath(final Path prevPath) {
+        if (prevPath.equals(EXIST)) {
             return EMPTY;
         }
         final boolean isAvailable = random.nextBoolean();
-        return PathAvailability.from(isAvailable);
+        return Path.from(isAvailable);
     }
 }

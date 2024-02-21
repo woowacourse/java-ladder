@@ -5,20 +5,20 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PathAvailabilityTest {
+public class PathTest {
     @Test
     @DisplayName("사다리 경로 형태를 올바르게 반환한다.")
     void getPathAvailabilityShapeTest() {
         // when & then
-        assertEquals("     ", PathAvailability.EMPTY.getShape());
-        assertEquals("-----", PathAvailability.EXIST.getShape());
+        assertEquals("     ", Path.EMPTY.getShape());
+        assertEquals("-----", Path.EXIST.getShape());
     }
 
     @Test
     @DisplayName("")
     void convertPathAvailabilityTest() {
         // when & then
-        assertEquals(PathAvailability.EMPTY, PathAvailability.from(false));
-        assertEquals(PathAvailability.EXIST, PathAvailability.from(true));
+        assertEquals(Path.EMPTY, Path.from(false));
+        assertEquals(Path.EXIST, Path.from(true));
     }
 }
