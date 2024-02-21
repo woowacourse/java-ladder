@@ -1,9 +1,9 @@
 package ladder.domain;
 
-public class DirectionGeneratorImpl implements DirectionGenerator{
+public class DirectionRightGeneratorImpl implements DirectionGenerator{
     @Override
     public Direction generateInitialValue() {
-        return generateRightOrNeutral();
+        return Direction.getDirection(0);
     }
 
     @Override
@@ -13,6 +13,7 @@ public class DirectionGeneratorImpl implements DirectionGenerator{
         }
         return generateRightOrNeutral();
     }
+
     private Direction generateRightOrNeutral() {
         int randomNumber = (int) (Math.random() * 2);
         return Direction.getDirection(randomNumber);
