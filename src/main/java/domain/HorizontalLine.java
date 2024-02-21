@@ -1,6 +1,7 @@
 package domain;
 
 import generator.BooleanGenerator;
+import generator.LadderBooleanGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -21,7 +22,8 @@ public class HorizontalLine {
     public void createCrossingLines(BooleanGenerator generator) {
         ladderConnections.clear();
 
-        Stream.generate(generator::generate)
+        LadderBooleanGenerator ladderBooleanGenerator = new LadderBooleanGenerator(generator);
+        Stream.generate(ladderBooleanGenerator::generate)
                 .limit(playerCount - 1)
                 .forEach(ladderConnections::add);
     }
