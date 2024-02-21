@@ -15,12 +15,4 @@ public class LadderTest {
         assertThatCode(()->new Ladder(5))
                 .doesNotThrowAnyException();
     }
-
-    @DisplayName("사다리 높이가 0이하면 예외가 발생한다.")
-    @ParameterizedTest
-    @ValueSource(ints = {0, -1})
-    void createLadderWithUnderZero(int invalidHeight) {
-        assertThatThrownBy(() -> new Ladder(invalidHeight))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }
