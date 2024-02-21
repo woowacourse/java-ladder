@@ -3,6 +3,7 @@ package ladder.domain.ladder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 import ladder.domain.generator.BooleanGenerator;
 
 public class Ladder {
@@ -18,14 +19,9 @@ public class Ladder {
     }
 
     private List<Line> generateLines(int playerCount, int height, BooleanGenerator booleanGenerator) {
-        List<Line> lines = new ArrayList<>();
-
-        for (int currentHeight = 0; currentHeight < height; currentHeight++) {
-            Line line = new Line(playerCount, booleanGenerator);
-            lines.add(line);
-        }
-
-        return lines;
+        return Stream.generate(() -> new Line(playerCount, booleanGenerator))
+                .limit(height)
+                .toList();
     }
 
     public int getHeight() {

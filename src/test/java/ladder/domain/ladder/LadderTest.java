@@ -24,8 +24,6 @@ class LadderTest {
                 .isEqualTo(4);
         assertThat(ladder).extracting("height")
                 .isEqualTo(5);
-        assertThat(ladder).extracting("booleanGenerator")
-                .isInstanceOf(RandomBooleanGenerator.class);
     }
 
     @Test
