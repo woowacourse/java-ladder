@@ -17,12 +17,20 @@ class NameTest {
         assertThatCode(() -> new Name("이름"));
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"", "aaaaaa"})
+    @Test
     @DisplayName("이름은 6글자 이상일 시 예외처리 된다.")
     void validateNameLength(String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 최대 5글자까지 가능합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " "})
+    @DisplayName("이름은 공백일 시 예외처리 된다.")
+    void validateNotBlank(String name) {
+        assertThatThrownBy(() -> new Name(name))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 공백일 수 없습니다.");
     }
 }
