@@ -27,16 +27,16 @@ public class ResultView {
 
     private void printLines(List<Line> lines) {
         for(Line line : lines) {
-            List<Boolean> isDrawn = line.getIsDrawn();
-            printLine(isDrawn);
+            List<Boolean> isDrawns = line.getIsDrawns();
+            printLine(isDrawns);
         }
     }
 
-    private void printLine(List<Boolean> isDrawn) {
+    private void printLine(List<Boolean> isDrawns) {
         System.out.print("     ");
-        for(Boolean space : isDrawn) {
+        for(Boolean isDrawn : isDrawns) {
             System.out.print("|");
-            if(space) {
+            if(isDrawn) {
                 System.out.print("-----");
                 continue;
             }

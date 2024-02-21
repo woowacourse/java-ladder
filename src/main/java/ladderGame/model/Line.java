@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
-    private final List<Boolean> isDrawn;
+    private final List<Boolean> isDrawns;
     public Line(int number) {
-        isDrawn = new ArrayList<>();
+        isDrawns = new ArrayList<>();
         draw(number);
     }
 
@@ -18,15 +18,15 @@ public class Line {
     }
 
     private void drawSpace(int index) {
-        if(index == 0 || !isDrawn.get(index - 1)) {
-            isDrawn.add(new Random().nextBoolean());
+        if(index == 0 || !isDrawns.get(index - 1)) {
+            isDrawns.add(new Random().nextBoolean());
             return;
         }
-        isDrawn.add(false);
+        isDrawns.add(false);
     }
 
-    public List<Boolean> getIsDrawn() {
-        return new ArrayList<>(isDrawn);
+    public List<Boolean> getIsDrawns() {
+        return new ArrayList<>(isDrawns);
     }
 
 }
