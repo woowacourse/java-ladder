@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import ladder.model.LadderSize;
 import ladder.model.Player;
 import ladder.view.InputView;
 
@@ -12,5 +13,8 @@ public class LadderController {
         List<Player> ladderPlayers = playerNames.stream()
                 .map(Player::new)
                 .toList();
+
+        int height = InputView.inputLadderHeight();
+        LadderSize ladderSize = new LadderSize(height, playerNames.size());
     }
 }
