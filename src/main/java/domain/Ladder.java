@@ -14,10 +14,10 @@ public class Ladder {
         this.lines = new ArrayList<>();
     }
 
-    public void makeLines(int playerCount) {
+    public void makeLines(int width) {
         for (int i = 0; i < height; i++) {
             Line line = new Line();
-            line.makeLeg(playerCount-1);
+            line.makeLeg(width);
             lines.add(line);
         }
     }
