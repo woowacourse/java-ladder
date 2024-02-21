@@ -11,7 +11,7 @@ public class LadderRowTest {
     void lengthOfLine() {
         int participantSize = 5;
         LadderRow ladderRow = new LadderRow(participantSize);
-        assertThat(ladderRow.getMaxSize())
+        assertThat(ladderRow.getMaxWidth())
                 .isEqualTo(participantSize - 1);
     }
 
@@ -20,10 +20,10 @@ public class LadderRowTest {
     @Test
     void cross() {
         LadderRow ladderRow = new LadderRow(6);
-        ladderRow.cross(true);
-        ladderRow.cross(true);
-        ladderRow.cross(true);
-        assertThat(ladderRow.getLadderStep()).isEqualTo(List.of(true,false,true,false,true));
+        ladderRow.crossLine(true);
+        ladderRow.crossLine(true);
+        ladderRow.crossLine(true);
+        assertThat(ladderRow.getLines()).isEqualTo(List.of(true,false,true,false,true));
     }
 
 

@@ -3,35 +3,35 @@ import java.util.List;
 
 public class LadderRow {
 
-    private final int maxSize;
-    private final List<Boolean> ladderStep;
+    private final int maxWidth;
+    private final List<Boolean> lines;
 
     public LadderRow(int participantsSize) {
-        this.maxSize = participantsSize - 1;
-        this.ladderStep = new ArrayList<>();
+        this.maxWidth = participantsSize - 1;
+        this.lines = new ArrayList<>();
     }
 
 
-    public void cross(boolean existPoint) {
-        if (ladderStep.size() == maxSize - 1 && existPoint) {
-            ladderStep.add(existPoint);
+    public void crossLine(boolean line) {
+        if (lines.size() == maxWidth - 1 && line) {
+            lines.add(true);
             return;
         }
-        ladderStep.add(existPoint);
-        if (existPoint) {
-            ladderStep.add(!existPoint);
+        lines.add(line);
+        if (line) {
+            lines.add(false);
         }
     }
 
-    public int size() {
-        return ladderStep.size();
+    public int getMaxWidth() {
+        return maxWidth;
     }
 
-    public int getMaxSize() {
-        return maxSize;
+    public int currentWidthSize() {
+        return lines.size();
     }
 
-    public List<Boolean> getLadderStep() {
-        return ladderStep;
+    public List<Boolean> getLines() {
+        return lines;
     }
 }
