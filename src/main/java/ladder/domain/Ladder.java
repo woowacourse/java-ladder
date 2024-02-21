@@ -2,44 +2,28 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Ladder {
 
-    private final int peopleCount;
-    private final int height;
+    private final People people;
+    private final Height height;
     private final List<LadderLevel> ladderLevels;
 
-    public Ladder(int peopleCount, int height) {
-        validate(peopleCount);
-        validate(height);
-        this.peopleCount = peopleCount;
+    public Ladder(People people, Height height) {
+        this.people = people;
         this.height = height;
         ladderLevels = new ArrayList<>();
     }
 
-    private void validate(int number) {
-        if (number <= 0) {
-            throw new IllegalArgumentException("자연수가 아닙니다.");
-        }
-    }
-
     public void initialize(LineGenerator lineGenerator) {
         ladderLevels.clear();
-        for (int i = 0; i < height; i++) {
-            ladderLevels.add(new LadderLevel(peopleCount, lineGenerator));
+        for (int i = 0; i < height.value(); i++) {
+            ladderLevels.add(new LadderLevel(people.count(), lineGenerator));
         }
     }
 
-    public int getPeopleCount() {
-        return peopleCount;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public Direction getDirection(int height, int index) {
-        LadderLevel ladderLevel = ladderLevels.get(height);
-        return ladderLevel.getDirectionAt(index);
+    public Stream<LadderLevel> stream() {
+        return ladderLevels.stream();
     }
 }
