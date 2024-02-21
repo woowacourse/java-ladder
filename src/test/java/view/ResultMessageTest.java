@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import domain.BooleanGenerator;
 import domain.Line;
+import domain.Names;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 class ResultMessageTest {
     @Test
@@ -16,6 +19,16 @@ class ResultMessageTest {
         String actual = ResultMessage.of(line);
         
         assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("첫번째 이름 길이만큼 라인 앞 공백을 추가한다.")
+    void addPaddingAsFirstNameLength() {
+        List<String> rawNames = List.of("pobi", "honux");
+        Names names = new Names(rawNames);
+        String paddedLine = ResultMessage.ladderPadding(names);
+
+        assertEquals("    |",paddedLine);
     }
 
     static class FixedGenerator implements BooleanGenerator {
