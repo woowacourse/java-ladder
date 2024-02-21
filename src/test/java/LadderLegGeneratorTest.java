@@ -5,25 +5,23 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LadderGeneratorTest {
+class LadderLegGeneratorTest {
 
     @Test
-    @DisplayName("Ladder의 높이와 Player 수를 통해 Ladder 생성기를 생성한다.")
+    @DisplayName("Ladder의 높이를 통해 LadderLeg 생성기를 생성한다.")
     public void createLadderGenerator() {
         Height height = new Height("5");
-        Integer playerCount = 5;
 
-        LadderGenerator ladder = new LadderGenerator(height, playerCount);
+        LadderLegGenerator ladder = new LadderLegGenerator(height);
 
-        assertInstanceOf(LadderGenerator.class, ladder);
+        assertInstanceOf(LadderLegGenerator.class, ladder);
     }
 
     @Test
     @DisplayName("가지가 없는 빈 LadderLeg 를 생성한다.")
     public void generateDownLadderLeg() {
         Height height = new Height("5");
-        Integer playerCount = 5;
-        LadderGenerator ladder = new LadderGenerator(height, playerCount);
+        LadderLegGenerator ladder = new LadderLegGenerator(height);
 
         LadderLeg ladderLeg = ladder.generateDownLadderLeg();
 
@@ -35,14 +33,14 @@ class LadderGeneratorTest {
     @Test
     @DisplayName("전 LadderLeg 와 DirectionGenerator 를 통해 가지를 가지는 LadderLeg 를 생성한다.")
     public void generateLadderLeg() {
-        LadderGenerator ladderGenerator = 사다리_생성기_생성();
+        LadderLegGenerator ladderLegGenerator = 사다리_생성기_생성();
         List<Direction> fixedDirectionList = List
                 .of(Direction.RIGHT, Direction.DOWN, Direction.RIGHT, Direction.DOWN, Direction.RIGHT);
 
-        LadderLeg downLadderLeg = ladderGenerator.generateDownLadderLeg();
-        LadderLeg ladderLeg = ladderGenerator
+        LadderLeg downLadderLeg = ladderLegGenerator.generateDownLadderLeg();
+        LadderLeg ladderLeg = ladderLegGenerator
                 .generateLadderLeg(downLadderLeg,
-                        new FixedDirectionGenerator(fixedDirectionList));
+                        ()->new FixedDirectionGenerator(fixedDirectionList).generate());
         for (int i = 0; i < 5; i++) {
             assertEquals(ladderLeg.getDirectionAtIndex(i), fixedDirectionList.get(i));
         }
@@ -51,29 +49,28 @@ class LadderGeneratorTest {
     @Test
     @DisplayName("전 LadderLeg의 동일 index가 오른쪽 가지를 가질때, 왼쪽 가지를 가지는 LadderLeg 를 생성한다.")
     public void generateLeftDirectionLadderLeg() {
-        LadderGenerator ladderGenerator = 사다리_생성기_생성();
+        LadderLegGenerator ladderLegGenerator = 사다리_생성기_생성();
         List<Direction> fixedDirectionList = List
                 .of(Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT);
 
         LadderLeg rightLadderLeg =
-                ladderGenerator.generateLadderLeg(
-                        ladderGenerator.generateDownLadderLeg(),
-                        new FixedDirectionGenerator(fixedDirectionList));
+                ladderLegGenerator.generateLadderLeg(
+                        ladderLegGenerator.generateDownLadderLeg(),
+                        () -> new FixedDirectionGenerator(fixedDirectionList).generate());
 
         LadderLeg testLeftLadderLeg =
-                ladderGenerator.generateLadderLeg(
+                ladderLegGenerator.generateLadderLeg(
                         rightLadderLeg,
-                        new FixedDirectionGenerator(fixedDirectionList));
+                        () -> new FixedDirectionGenerator(fixedDirectionList).generate());
 
         for (int i = 0; i < 5; i++) {
-            assertEquals(testLeftLadderLeg.getDirectionAtIndex(i),Direction.LEFT);
+            assertEquals(testLeftLadderLeg.getDirectionAtIndex(i), Direction.LEFT);
         }
     }
 
-    private LadderGenerator 사다리_생성기_생성() {
+    private LadderLegGenerator 사다리_생성기_생성() {
         Height height = new Height("5");
-        Integer playerCount = 5;
-        return new LadderGenerator(height, playerCount);
+        return new LadderLegGenerator(height);
     }
 
     private class FixedDirectionGenerator implements DirectionGenerator {
