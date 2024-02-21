@@ -1,7 +1,5 @@
 package domain;
 
-import domain.Users;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +17,7 @@ class UsersTest {
         String userNames = "pobi,honux,crong,jk";
         //when
         //then
-        assertThatCode(() -> new Users(userNames))
+        assertThatCode(() -> new Users(List.of(userNames.split(","))))
                 .doesNotThrowAnyException();
     }
 
@@ -30,36 +28,21 @@ class UsersTest {
         String userNames = "pobi";
         //when
         //then
-        assertThatThrownBy(() -> new Users(userNames))
+        assertThatThrownBy(() -> new Users(List.of(userNames.split(","))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-
-    @Test
-    @DisplayName("구분자 사이에 공백을 허용한다")
-    void allowSpaceBetweenDelimiter() {
-        //given
-        String userNames = "pobi , rush";
-        //when
-
-        //then
-        assertThatCode(() -> new Users(userNames)).doesNotThrowAnyException();
-    }
-
 
     @Test
     @DisplayName("사용자는 최대 50명이다")
     void maxUsers() {
         //given
-        StringBuilder names = new StringBuilder();
+        List<String> userNames = new ArrayList<>();
         for (int i = 1; i <= 50; i++) {
-            names.append(i).append(",");
+            userNames.add(String.valueOf(i));
         }
-        names.append(51);
+        userNames.add("51");
         //when
         //then
-        assertThatThrownBy(() -> new Users(names.toString())).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Users(userNames)).isInstanceOf(IllegalArgumentException.class);
     }
-
-
 }

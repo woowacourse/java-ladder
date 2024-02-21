@@ -15,7 +15,7 @@ class UserNameTest {
         String userName = "pobia";
         //when
         //then
-        assertThatCode(() -> new User(new UserName(userName)))
+        assertThatCode(() -> new UserName(userName))
                 .doesNotThrowAnyException();
     }
 
@@ -26,7 +26,7 @@ class UserNameTest {
         String userName = "rushrush";
         //when
         //then
-        assertThatThrownBy(() -> new User(new UserName(userName))).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new UserName(userName)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -36,7 +36,7 @@ class UserNameTest {
         String userName = "";
         //when
         //then
-        assertThatThrownBy(() -> new User(new UserName(userName))).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new UserName(userName)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -46,6 +46,6 @@ class UserNameTest {
         String userName = "pobi!";
         //when
         //then
-        assertThatThrownBy(() -> new User(new UserName(userName))).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new UserName(userName)).isInstanceOf(IllegalArgumentException.class);
     }
 }

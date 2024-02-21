@@ -1,27 +1,20 @@
 package domain;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Users {
 
-    private List<User> users;
+    private final List<UserName> users;
 
-    public List<User> getUsers() {
-        return users;
+    public Users(final List<String> userNames) {
+        users = userNames.stream()
+                .map(UserName::new)
+                .toList();
+        validate();
     }
 
     public int gerPersonCount() {
         return users.size();
-    }
-
-    public Users(String userNames) {
-        List<String> names = Arrays.stream(userNames.split(",")).map(String::trim).toList();
-        users = names.stream()
-                .map(name -> new User(new UserName(name)))
-                .toList();
-        validate();
     }
 
     private void validate() {

@@ -7,11 +7,11 @@ public enum SingleLine {
 
     private final String singleLine;
 
-    SingleLine(String singleLine) {
+    SingleLine(final String singleLine) {
         this.singleLine = singleLine;
     }
 
-    public static String generateSingleLine(Line line) {
+    public static String generateSingleLine(final Line line) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("    ");
         for (Boolean point : line.getPoints()) {
@@ -21,7 +21,7 @@ public enum SingleLine {
         return stringBuilder.toString();
     }
 
-    private static String convert(boolean point) {
+    private static String convert(final boolean point) {
         if (point) return BAR.singleLine;
         return NON_BAR.singleLine;
     }
