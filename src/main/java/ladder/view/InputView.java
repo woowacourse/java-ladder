@@ -19,7 +19,11 @@ public class InputView {
     public static int readLadderHeight(Supplier<String> reader) {
         String input = reader.get();
         validateEmpty(input);
-        return 0;
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("사다리 높이는 2 ~ 10 사이의 숫자로 입력해야 합니다.");
+        }
     }
 
     private static void validateEmpty(final String input) {
