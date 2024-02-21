@@ -16,10 +16,14 @@ public class Line {
     private void validateBridges(List<Boolean> bridges) {
         Boolean preBridge = false;
         for (Boolean currentBridge : bridges) {
-            if (preBridge && currentBridge) {
-                throw new IllegalArgumentException(INVALID_BRIDGES);
-            }
+            checkBridge(preBridge, currentBridge);
             preBridge = currentBridge;
+        }
+    }
+
+    private void checkBridge(Boolean preBridge, Boolean currentBridge) {
+        if (preBridge && currentBridge) {
+            throw new IllegalArgumentException(INVALID_BRIDGES);
         }
     }
 
