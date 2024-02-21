@@ -5,28 +5,44 @@ import ladder.domain.People;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.List;
-
 public class LadderGameController {
 
     private LadderGameController(){
     }
     public static void run() {
+        People people = null;
+        while (people == null) {
+            people = makePeople();
+        }
 
-        //TODO 메소드 분리 생각하기
-        //TODO try-catch 생각
-        //1단계 : 입력받기
-        List<String> names = InputView.readNames();
-        int height = InputView.readHeight(); //NFE 고려하기
-
-        //2단계 : domain.People, 사다리 생성
-        People people = new People(names);
-        Ladder ladder = new Ladder(height, names.size());
+        Ladder ladder = null;
+        while (ladder == null) {
+            ladder = makeLadder(people);
+        }
 
         //3단계
         OutputView.printNames(people);
         OutputView.printLadder(ladder);
+    }
 
+    private static People makePeople() {
+        try {
+            return new People(InputView.readNames());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 
+    private static Ladder makeLadder(People people) {
+        try {
+            int peopleNumber = people.getNames().size();
+            return new Ladder(InputView.readHeight(), peopleNumber);
+        } catch (NumberFormatException e) {
+            System.out.println("사다리의 높이는 1이상 100이하의 자연수여야 합니다");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }
