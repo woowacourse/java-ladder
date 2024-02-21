@@ -31,7 +31,7 @@ public class LadderRow {
         return maxSize;
     }
 
-    public List<Boolean> getPoints() {
+    public List<Boolean> getLadderStep() {
         return ladderStep;
     }
 }

@@ -23,7 +23,7 @@ public class LadderRowTest {
         ladderRow.cross(true);
         ladderRow.cross(true);
         ladderRow.cross(true);
-        assertThat(ladderRow.getPoints()).isEqualTo(List.of(true,false,true,false,true));
+        assertThat(ladderRow.getLadderStep()).isEqualTo(List.of(true,false,true,false,true));
     }
 
 
