@@ -2,10 +2,13 @@ package ladder.model;
 
 import ladder.utils.BooleanGenerator;
 import ladder.utils.FixedBooleanGenerator;
+import ladder.utils.RandomBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -33,7 +36,7 @@ public class LineTest {
         BooleanGenerator bg = new FixedBooleanGenerator(value);
 
         Line line = Line.of(5, bg);
-        boolean actual = line.isLeftPathExist(1);
+        boolean actual = Line.isLeftPathExist(line.getRow(), 1);
 
         assertThat(actual).isEqualTo(expected);
     }
@@ -48,7 +51,18 @@ public class LineTest {
         BooleanGenerator bg = new FixedBooleanGenerator(value);
 
         Line line = Line.of(5, bg);
-        boolean actual = line.isLeftPathExist(0);
+        boolean actual = Line.isLeftPathExist(line.getRow(), 0);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("동일한 가로줄에는 연속된 경로가 없다.")
+    void continuousPathNotExistInSameLine() {
+        Line line = Line.of(5, new FixedBooleanGenerator(true));
+
+        List<Boolean> actual = line.getRow();
+        List<Boolean> expected = List.of(true, false, true, false, true);
 
         assertThat(actual).isEqualTo(expected);
     }
