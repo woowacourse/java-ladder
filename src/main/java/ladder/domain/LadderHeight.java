@@ -1,10 +1,10 @@
 package ladder.domain;
 
-public record LadderHeight(int ladderHeight) {
+public record LadderHeight(int value) {
     static final int MIN_LADDER_HEIGHT = 2;
 
     public LadderHeight {
-        validateRange(ladderHeight);
+        validateRange(value);
     }
 
     private void validateRange(final int ladderHeight) {

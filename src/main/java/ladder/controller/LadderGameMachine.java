@@ -20,7 +20,7 @@ public class LadderGameMachine {
         LadderHeight ladderHeight = initLadderHeight();
         LadderResult ladderResult = createLadderResult(
                 new RandomBooleanGenerator(),
-                ladderHeight.getLadderHeight(),
+                ladderHeight.value(),
                 userNames);
         OutputView.printLadderResult(ladderResult);
     }
@@ -45,7 +45,10 @@ public class LadderGameMachine {
         }
     }
 
-    private LadderResult createLadderResult(final Supplier<Boolean> generator, final int ladderHeight, final UserNames userNames) {
+    private LadderResult createLadderResult(
+            final Supplier<Boolean> generator,
+            final int ladderHeight,
+            final UserNames userNames) {
         Lines lines = Lines.of(generator, ladderHeight, userNames.getUserCount());
         return new LadderResult(userNames.getUserNames(), lines.getLineResults());
     }
