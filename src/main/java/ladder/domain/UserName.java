@@ -4,13 +4,13 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public record UserName(String name) {
+public record UserName(String value) {
     private static final Pattern NAME_PATTERN = Pattern.compile("[^ㄱ-ㅎ가-힣a-zA-Z0-9_\\-&]");
 
     public UserName {
-        validateNotEmpty(name);
-        validateNameLength(name);
-        validateNamePattern(name);
+        validateNotEmpty(value);
+        validateNameLength(value);
+        validateNamePattern(value);
     }
 
     private void validateNotEmpty(final String name) {
@@ -36,6 +36,6 @@ public record UserName(String name) {
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof UserName userName)) return false;
-        return Objects.equals(name, userName.name);
+        return Objects.equals(value, userName.value);
     }
 }

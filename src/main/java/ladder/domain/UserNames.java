@@ -42,4 +42,10 @@ public class UserNames {
     public int getUserCount() {
         return userNames.size();
     }
+
+    public List<String> getUserNames() {
+        return userNames.stream()
+                .map(UserName::value)
+                .toList();
+    }
 }
