@@ -8,7 +8,7 @@ public class RandomMaterialsGenerator implements MaterialsGenerator {
     @Override
     public List<Boolean> pickMaterials(int count) {
         List<Boolean> materials = new ArrayList<>();
-        while (materials.size() == count) {
+        while (materials.size() < count) {
             boolean material = false;
             if (isPossibleToMake(materials)) {
                 material = new Random().nextBoolean();
@@ -19,7 +19,9 @@ public class RandomMaterialsGenerator implements MaterialsGenerator {
     }
 
     private boolean isPossibleToMake(List<Boolean> materials) {
-        boolean isExistMaterial = materials.get(materials.size() - 1);
-        return !isExistMaterial;
+        if (materials.isEmpty()) {
+            return true;
+        }
+        return !materials.get(materials.size() - 1);
     }
 }
