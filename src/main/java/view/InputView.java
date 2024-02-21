@@ -33,11 +33,10 @@ public class InputView {
     }
 
     private static void validateDelimiter(final String userNames) {
-        if (userNames.endsWith(",")) {
-            throw new IllegalArgumentException(String.format("입력된 값: %s, 구분자로 끝날 수 없습니다.", userNames));
-        }
-
         if (userNames.startsWith(",")) {
+            throw new IllegalArgumentException(String.format("입력된 값: %s, 구분자로 시작할 수 없습니다.", userNames));
+        }
+        if (userNames.endsWith(",")) {
             throw new IllegalArgumentException(String.format("입력된 값: %s, 구분자로 끝날 수 없습니다.", userNames));
         }
     }
