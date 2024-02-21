@@ -29,7 +29,7 @@ public class PeopleTest {
 
     @DisplayName("콤마로 구분된 이름이 2개 이상이 아니라면 예외를 발생시킨다.")
     @Test
-    void exceptionTest() {
+    void peopleCountExceptionTest() {
         assertThatThrownBy(() -> People.from("pobi"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
