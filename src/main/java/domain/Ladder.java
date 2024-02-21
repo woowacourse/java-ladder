@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Ladder {
 
-    private int height;
-    private List<Line> lines;
+    private final int height;
+    private final List<Line> lines;
 
     public Ladder(int height) {
         validate(height);
