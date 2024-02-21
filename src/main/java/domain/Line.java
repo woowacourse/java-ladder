@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -13,7 +14,7 @@ public class Line {
 
     public static Line create(final int personCount, final PointGenerator pointGenerator) {
         List<Boolean> points = new ArrayList<>();
-        while(points.size()!=personCount){
+        while(points.size()!=personCount - 1){
             final boolean point = pointGenerator.generate();
             if(points.size()==0) {
                 points.add(point);
