@@ -9,4 +9,8 @@ public class InputView {
     public String readNames() {
         return scanner.nextLine();
     }
+
+    public int readHeight() {
+        return scanner.nextInt();
+    }
 }
