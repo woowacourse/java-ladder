@@ -17,10 +17,6 @@ public class Ladder {
         return lines.size();
     }
 
-    public int width() {
-        return lines.get(0).size();
-    }
-
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
