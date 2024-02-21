@@ -18,4 +18,23 @@ public class ResultView {
         System.out.println();
     }
 
+    public void printLadder(List<Line> lines) {
+        for(Line line : lines) {
+            List<Boolean> isDrawn = line.getIsDrawn();
+            printLine(isDrawn);
+        }
+    }
+
+    private void printLine(List<Boolean> isDrawn) {
+        System.out.print("     ");
+        for(Boolean space : isDrawn) {
+            System.out.print("|");
+            if(space) {
+                System.out.print("-----");
+                continue;
+            }
+            System.out.print("     ");
+        }
+        System.out.println("|");
+    }
 }
