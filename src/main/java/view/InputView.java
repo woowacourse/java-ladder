@@ -26,7 +26,7 @@ public class InputView {
     }
 
     private void validateSeparators(String rawNames) {
-        if(rawNames.startsWith(",") || rawNames.endsWith(",") || rawNames.contains(",,")) {
+        if (rawNames.startsWith(",") || rawNames.endsWith(",") || rawNames.contains(",,")) {
             throw new IllegalArgumentException();
         }
     }
@@ -35,7 +35,7 @@ public class InputView {
         System.out.println();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String rawHeight = scanner.nextLine();
-        if(rawHeight == null || rawHeight.trim().isEmpty()) {
+        if (rawHeight == null || rawHeight.trim().isEmpty()) {
             throw new IllegalArgumentException();
         }
         return convert(rawHeight);
@@ -43,17 +43,9 @@ public class InputView {
 
     private int convert(String rawHeight) {
         try {
-            validatePositiveNumber(rawHeight);
             return Integer.parseInt(rawHeight);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(); //TODO: 예외메시지
-        }
-    }
-
-    private void validatePositiveNumber(String rawHeight) {
-        int height = Integer.parseInt(rawHeight);
-        if (height <= 0) {
-            throw new IllegalArgumentException();
         }
     }
 }
