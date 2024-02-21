@@ -4,6 +4,9 @@ public class Participant {
     private final String name;
 
     public Participant(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("참가자의 이름은 null 이거나 공백일 수 없습니다.");
+        }
         validateNameLength(name);
         this.name = name;
     }
