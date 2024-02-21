@@ -1,6 +1,5 @@
 package laddergame.domain;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -27,14 +26,6 @@ public class Names {
         }
     }
 
-    public int getMaxLengthSkipFirst() {
-        return names.stream()
-                .map(Name::getLength)
-                .skip(1)
-                .max(Comparator.naturalOrder())
-                .orElse(0);
-    }
-
     public int size() {
         return names.size();
     }
@@ -43,13 +34,5 @@ public class Names {
         return names.stream()
                 .map(Name::getName)
                 .toList();
-    }
-
-    public int getFirstNameLength() {
-        return names.get(0).getLength();
-    }
-
-    public int getLastLength() {
-        return names.get(names.size() - 1).getLength();
     }
 }
