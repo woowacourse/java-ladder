@@ -7,14 +7,14 @@ public class Ladder {
 
     private final int peopleCount;
     private final int height;
-    private List<Line> lines;
+    private final List<LadderLevel> ladderLevels;
 
     public Ladder(int peopleCount, int height) {
         validate(peopleCount);
         validate(height);
         this.peopleCount = peopleCount;
         this.height = height;
-        this.lines = new ArrayList<>();
+        ladderLevels = new ArrayList<>();
     }
 
     private void validate(int number) {
@@ -24,9 +24,9 @@ public class Ladder {
     }
 
     public void initialize(LineGenerator lineGenerator) {
-        lines.clear();
+        ladderLevels.clear();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(peopleCount, lineGenerator));
+            ladderLevels.add(new LadderLevel(peopleCount, lineGenerator));
         }
     }
 
@@ -39,7 +39,7 @@ public class Ladder {
     }
 
     public Direction getDirection(int height, int index) {
-        Line line = lines.get(height);
-        return line.getDirectionAt(index);
+        LadderLevel ladderLevel = ladderLevels.get(height);
+        return ladderLevel.getDirectionAt(index);
     }
 }

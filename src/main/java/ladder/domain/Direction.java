@@ -1,10 +1,5 @@
 package ladder.domain;
 
 public enum Direction {
-    LEFT,
-    RIGHT,
-    NONE;
-
-    Direction() {
-    }
+    LEFT, RIGHT, NONE
 }
