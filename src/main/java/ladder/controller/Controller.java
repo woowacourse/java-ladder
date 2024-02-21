@@ -17,7 +17,7 @@ public class Controller {
     public void run() {
         Names names = createNames();
         int height = inputView.readHeight();
-        Ladder ladder = new Ladder(height, names.getSize());
+        Ladder ladder = new Ladder(height, names.count());
 
         outputView.printResult(names, ladder);
     }
