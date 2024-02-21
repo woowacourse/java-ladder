@@ -19,7 +19,7 @@ public class Line {
     }
 
     private Boolean generate(List<Boolean> points, int index) {
-        if(index > 1 && points.get(index - 1)) {
+        if(index >= 1 && points.get(index - 1)) {
             return false;
         }
         return random.nextBoolean();
