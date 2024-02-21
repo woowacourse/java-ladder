@@ -39,4 +39,14 @@ class NamesTest {
 
         Assertions.assertEquals("pobi", names.firstName());
     }
+
+    @Test
+    @DisplayName("주어진 인덱스에 해당하는 사람 이름을 반환한다.")
+    void findNameByIndex() {
+        List<String> rawNames = List.of("pobi", "crong", "honux");
+        Names names = new Names(rawNames);
+
+        int testIndex = 2;
+        Assertions.assertEquals("honux",names.nameOf(testIndex));
+    }
 }
