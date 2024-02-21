@@ -2,6 +2,7 @@ package laddergame.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -48,6 +49,17 @@ public class LineTest {
 
         //then
         assertFalse(line.isBuilt(position));
+    }
+
+    @Test
+    @DisplayName("연속으로 랜덤 결과가 true면 에러를 발생한다.")
+    public void checkSequenceBuildBridge() {
+        //given
+        final int playerCount = 4;
+        final List<Boolean> canBuild = List.of(Boolean.TRUE, Boolean.TRUE, Boolean.FALSE);
+
+        //when & then
+        assertThrows(IllegalStateException.class, () -> new Line(playerCount).buildBridge(canBuild));
     }
 
 }
