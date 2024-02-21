@@ -46,4 +46,8 @@ public class Line {
     private boolean isRightOnEnd(List<LadderPath> row) {
         return row.get(row.size() - 1) == LadderPath.RIGHT;
     }
+
+    public int size() {
+        return row.size();
+    }
 }
