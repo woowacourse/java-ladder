@@ -30,4 +30,13 @@ class NamesTest {
 
         Assertions.assertEquals(0, names.size());
     }
+
+    @Test
+    @DisplayName("전체 사람 중, 첫 번째 사람의 이름을 반환한다.")
+    void getFirstName() {
+        List<String> rawNames = List.of("pobi", "crong", "honux");
+        Names names = new Names(rawNames);
+
+        Assertions.assertEquals("pobi", names.firstName());
+    }
 }
