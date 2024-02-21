@@ -21,6 +21,11 @@ public class Players {
     }
 
     public List<String> getNames() {
-        return null;
+        final List<String> names = new ArrayList<>();
+        for (final Player player : players) {
+            names.add(player.getName());
+        }
+
+        return names;
     }
 }

@@ -14,4 +14,8 @@ public class Player {
             throw new IllegalArgumentException("이름은 5자를 초과할 수 없습니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
