@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import ladder.domain.Height;
 import ladder.domain.People;
 
 public class InputView {
@@ -16,9 +17,9 @@ public class InputView {
         return new People(names);
     }
 
-    public static int inputHeight() {
+    public static Height inputHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return Integer.parseInt(readLine());
+        return new Height(Integer.parseInt(readLine()));
     }
 
     private static String readLine() {

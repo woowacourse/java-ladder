@@ -53,7 +53,6 @@ pobi  honux crong   jk
 
 - [X] People 객체만으로 충분하므로 Person 삭제
 - [X] 인스턴스 변수를 private으로 변경
-- [ ] 원시 자료형을 래퍼 클래스로 변경
-    - [ ] Person 생성
-    - [ ] Height 생성
+- [X] 원시 자료형을 래퍼 클래스로 변경
+    - [X] Height 생성
 - [ ] 매직넘버를 상수로 변경
