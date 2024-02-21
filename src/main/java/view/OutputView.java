@@ -3,15 +3,15 @@ package view;
 import domain.BridgeStatus;
 import domain.Bridges;
 import domain.Ladder;
-import domain.Name;
+import domain.Names;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
 
-    public static void printNames(List<Name> names) {
-        for (Name name : names) {
-            System.out.printf("%5s ", name.getName());
+    public static void printNames(Names names) {
+        for (String name : names.getNames()) {
+            System.out.printf("%5s ", name);
         }
         System.out.println();
     }
@@ -27,9 +27,8 @@ public class OutputView {
         }
     }
 
-
-    private static String getBridgeMessage(BridgeStatus bridgeStatus){
-        if(bridgeStatus == BridgeStatus.BUILT){
+    private static String getBridgeMessage(BridgeStatus bridgeStatus) {
+        if (bridgeStatus == BridgeStatus.BUILT) {
             return "-".repeat(5);
         }
         return " ".repeat(5);

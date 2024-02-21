@@ -1,15 +1,14 @@
 import domain.Height;
 import domain.Ladder;
-import domain.Name;
+import domain.Names;
 import domain.RandomBridgeConstructStrategy;
-import java.util.List;
 import view.InputView;
 import view.OutputView;
 
 public class LadderGame {
 
     public static void run() {
-        List<Name> names = readNames();
+        Names names = readNames();
         Height height = readHeight();
 
         Ladder ladder = new Ladder(new RandomBridgeConstructStrategy(), names.size(), height);
@@ -18,12 +17,9 @@ public class LadderGame {
         OutputView.printLadder(ladder);
     }
 
-    private static List<Name> readNames() {
+    private static Names readNames() {
         try {
-            return InputView.readPersonNames()
-                    .stream()
-                    .map(Name::new)
-                    .toList();
+            return new Names(InputView.readPersonNames());
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
             return readNames();
