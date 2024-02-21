@@ -1,17 +1,16 @@
 package view;
 
 import ladder.view.InputView;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
-import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class InputViewTest {
 
@@ -29,6 +28,16 @@ public class InputViewTest {
     void validateNamesWithNullOrEmpty(final String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputView.readNames(() -> input))
-                .withMessage("사용자 이름으로 공백을 넣을 수 없습니다.");
+                .withMessage("공백을 넣을 수 없습니다.");
+    }
+
+    @DisplayName("사다리 높이에 공백이 입력되면 예외를 던진다.")
+    @NullAndEmptySource
+    @ParameterizedTest
+    @ValueSource(strings = {" ", "  ", "\t", "\n"})
+    void validateLadderHeightWithNullOrEmpty(final String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputView.readLadderHeight(() -> input))
+                .withMessage("공백을 넣을 수 없습니다.");
     }
 }
