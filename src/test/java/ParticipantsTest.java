@@ -1,3 +1,4 @@
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -45,4 +46,16 @@ class ParticipantsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("참여자 수를 반환한다.")
+    @Test
+    void getParticipantsSize() {
+        List<Participant> given = List.of(
+                new Participant("daon"),
+                new Participant("ash")
+        );
+        Participants participants = new Participants(given);
+        int result = participants.getSize();
+
+        assertThat(result).isEqualTo(given.size());
+    }
 }

@@ -13,4 +13,8 @@ public class Participants {
             throw new IllegalArgumentException();
         }
     }
+
+    public int getSize() {
+        return participants.size();
+    }
 }
