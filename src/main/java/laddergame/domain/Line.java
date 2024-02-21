@@ -3,7 +3,6 @@ package laddergame.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import laddergame.util.BooleanGenerator;
 
 public class Line {
     private List<Boolean> points;
