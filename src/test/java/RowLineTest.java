@@ -54,4 +54,6 @@ public class RowLineTest {
         List<Boolean> connection = new RowLine(n, new RandomLineGenerator()).getConnection();
         assertThat(connection).hasSize(n - 1);
     }
+
+    //TODO 테스트케이스 추가 : 전략패턴(allFalseLineGenerator)
 }
