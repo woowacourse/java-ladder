@@ -4,6 +4,9 @@ import ladder.util.RandomBooleanListGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
@@ -20,6 +23,19 @@ public class LineTest {
 
         // then
         assertThat(pointsSize).isEqualTo(personCount - 1);
+    }
+
+    @Test
+    @DisplayName("사다리 라인이 겹치지 않도록 해야 한다.")
+    void createNonOverlappingLine() {
+        // given
+        int personCount = 5;
+
+        // when
+        Line line = new Line(personCount, size -> new ArrayList<>(List.of(true, true, true, true)));
+
+        // then
+        assertThat(line.getPoints()).isEqualTo(List.of(true, false, true, false));
     }
 
 }
