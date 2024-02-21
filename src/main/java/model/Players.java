@@ -33,4 +33,8 @@ public class Players {
                 .map(Player::getName)
                 .toList();
     }
+
+    public int getSizeOfPlayers() {
+        return players.size();
+    }
 }

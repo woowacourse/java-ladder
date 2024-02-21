@@ -8,6 +8,7 @@ import model.Player;
 import model.Players;
 
 public class OutputView {
+    private static final String GAME_RESULT_INTRO = "\n실행결과\n";
     private static final String PLAYER_NAMES_FORMAT = "%" + Player.MAX_LENGTH_OF_NAME + "s";
     private static final String PLAYER_NAMES_DELIMITER = " ";
     private static final int BRIDGE_LENGTH = Player.MAX_LENGTH_OF_NAME;
@@ -15,6 +16,10 @@ public class OutputView {
     private static final String IS_UNCONNECTED_BRIDGE = " ";
     private static final String BRIDGE_DELIMITER = "|";
     private static final String BRIDGE_PREFIX = "    |";
+
+    public static void printGameResultIntro() {
+        System.out.println(GAME_RESULT_INTRO);
+    }
 
     public static void printPlayerNames(Players players) {
         List<String> names = players.getPlayerNames()
