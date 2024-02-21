@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class PlayerNameTest {
 
     @Nested
-    @DisplayName("플레이어 이름 공백 테스트")
+    @DisplayName("참가자 이름 공백 테스트")
     class PlayerNameBlankTest {
 
         @ParameterizedTest
