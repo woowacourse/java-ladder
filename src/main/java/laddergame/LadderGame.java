@@ -26,7 +26,9 @@ public class LadderGame {
 
             ladder.build(randomResult);
 
+            System.out.println();
             OutputView outputView = new OutputView();
+            outputView.writeResultTitle();
             outputView.writePlayersName(players);
             outputView.writeLadder(ladder);
         } catch (IOException exception) {
