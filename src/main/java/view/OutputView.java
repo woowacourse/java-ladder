@@ -1,6 +1,7 @@
 package view;
 
 import java.util.List;
+import model.LadderElement;
 import model.Line;
 import view.dto.LadderResponse;
 
@@ -40,8 +41,23 @@ public class OutputView {
 
             int paddingSize = ladderResponse.getPaddingSize();
             stringBuilder.append(" ".repeat(paddingSize));
-            stringBuilder.append("|");
+
+            stringBuilder.append(LadderElement.COLUMN.getSymbol());
+
+            List<Boolean> points = line.getPoints();
+            for(boolean point : points) {
+                stringBuilder.append(getElement(point));
+                stringBuilder.append(LadderElement.COLUMN.getSymbol());
+
+            }
             System.out.println(stringBuilder);
         }
+    }
+
+    private String getElement(boolean point) {
+        if(point) {
+            return LadderElement.ROW.getSymbol();
+        }
+        return LadderElement.EMPTY.getSymbol();
     }
 }
