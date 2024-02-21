@@ -11,7 +11,6 @@ import view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class LadderGame {
     private final InputView inputView;
@@ -41,19 +40,22 @@ public class LadderGame {
     }
 
 
-    public PlayerNames createPlayerNames(String playerNameInput) {
-        playerNameInput = playerNameInput.replace(" ", "");
+    public PlayerNames createPlayerNames(String playerNamesInput) {
+        playerNamesInput = playerNamesInput.replace(InputView.BLANK_SPACE, InputView.BLANK_EMPTY);
 
-        Pattern regex = Pattern.compile("[가-힣a-zA-Z]{1,5}(,[가-힣a-zA-Z]{1,5})*");
-        if (!regex.matcher(playerNameInput).matches()) {
-            throw new ValidationException(ExceptionMessage.PLAYER_NAMES_INPUT_FORMAT);
-        }
+        validatePlayerNamesInput(playerNamesInput);
 
-        List<PlayerName> playerNames = Arrays.stream(playerNameInput.split(","))
+        List<PlayerName> playerNames = Arrays.stream(playerNamesInput.split(","))
                 .map(PlayerName::new)
                 .toList();
 
         return new PlayerNames(playerNames);
+    }
+
+    private void validatePlayerNamesInput(String playerNamesInput) {
+        if (!InputView.PLAYER_NAMES_INPUT_PATTERN.matcher(playerNamesInput).matches()) {
+            throw new ValidationException(ExceptionMessage.PLAYER_NAMES_INPUT_FORMAT);
+        }
     }
 
     public LadderHeight readLadderHeight() {

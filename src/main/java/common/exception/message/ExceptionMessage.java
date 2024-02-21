@@ -2,6 +2,7 @@ package common.exception.message;
 
 import domain.LadderHeight;
 import domain.PlayerNames;
+import view.InputView;
 
 public class ExceptionMessage {
 
@@ -12,5 +13,6 @@ public class ExceptionMessage {
             LadderHeight.HEIGHT_MIN_RANGE, LadderHeight.HEIGHT_MAX_RANGE);
     public static final String INTEGER_FORMAT = "정수 형태만 입력 가능합니다";
     public static final String PLAYER_NAME_BLANK = "참가자 이름으로 공백을 사용할 수 없습니다";
-    public static final String PLAYER_NAMES_INPUT_FORMAT = "참가자 이름 형식이 올바르지 않습니다";
+    public static final String PLAYER_NAMES_INPUT_FORMAT = String.format("참가자 이름은 %s로 구분하여 입력해야합니다",
+            InputView.PLAYER_NAMES_INPUT_PATTERN);
 }

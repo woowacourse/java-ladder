@@ -2,10 +2,8 @@ package view;
 
 import domain.Ladder;
 import domain.Line;
-import domain.PlayerName;
 import domain.PlayerNames;
 
-import java.util.List;
 import java.util.StringJoiner;
 
 public class OutputView {

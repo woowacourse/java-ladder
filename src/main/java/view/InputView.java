@@ -1,21 +1,27 @@
 package view;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class InputView {
-    private final Scanner sc;
+    private final Scanner scanner;
 
-    public InputView(Scanner sc) {
-        this.sc = sc;
+    public static final Pattern PLAYER_NAMES_INPUT_PATTERN = Pattern.compile("[가-힣a-zA-Z]{1,5}(,[가-힣a-zA-Z]{1,5})*");
+    public static final String BLANK_SPACE = " ";
+    public static final String BLANK_EMPTY = "";
+    private static final String PLAYER_NAMES_INPUT_DELIMITER = ",";
+
+    public InputView(Scanner scanner) {
+        this.scanner = scanner;
     }
 
     public String readPlayerNames() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return sc.nextLine();
+        System.out.println(String.format("참여할 사람 이름을 입력하세요. (%s)로 구분하세요)", PLAYER_NAMES_INPUT_DELIMITER));
+        return scanner.nextLine();
     }
 
     public String readLadderHeight() {
         System.out.println("\n최대 사다리 높이는 몇 개인가요?");
-        return sc.nextLine();
+        return scanner.nextLine();
     }
 }
