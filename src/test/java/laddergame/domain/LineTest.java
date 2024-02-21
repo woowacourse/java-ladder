@@ -14,12 +14,13 @@ public class LineTest {
     public void createLineTest() {
         //given
         final int personCount = 4;
+        final int expectedSize = personCount - 1;
 
         //when
         Line line = new Line(personCount);
 
         //then
-        assertEquals(line.getPoints().size(), personCount);
+        assertEquals(line.getPoints().size(), expectedSize);
     }
 
     @Test
