@@ -9,15 +9,20 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class PlayersTest {
+    private Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
 
     @Test
     @DisplayName("참가자들을 생성한다.")
     void testConstruct() {
-        List<String> playerNames = List.of("pobi", "honux", "crong", "jk");
-        Players players = new Players(playerNames);
-
         assertThat(players.getPlayers()).extracting("name")
                 .containsExactly("pobi", "honux", "crong", "jk");
+    }
+
+    @Test
+    @DisplayName("참가자들의 수를 셀 수 있다.")
+    void countPlayers() {
+        int actual = players.countPlayers();
+        assertThat(actual).isEqualTo(4);
     }
 
     @Nested
