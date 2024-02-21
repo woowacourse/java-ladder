@@ -6,6 +6,9 @@ import java.util.List;
 public class Parser {
     private static final String DELIMITER = ",";
 
+    private Parser() {
+    }
+
     public static List<String> splitName(String input) {
         return Arrays.asList(input.split(DELIMITER));
     }

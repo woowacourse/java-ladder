@@ -5,6 +5,9 @@ import domain.Lines;
 import domain.Names;
 
 public class ResultView {
+    private ResultView() {
+    }
+
     public static void printResult(Names names, Lines lines) {
         printResultNotice();
         printNames(names);
