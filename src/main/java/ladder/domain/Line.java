@@ -10,22 +10,23 @@ import java.util.function.Supplier;
 import static java.util.Collections.unmodifiableList;
 
 public class Line {
-    private final Supplier<Boolean> generator;
     private final List<StepStatus> stepStatuses;
 
-    public Line(final Supplier<Boolean> generator, final int userCount) {
-        this.generator = generator;
-        this.stepStatuses = createStepStatuses(userCount);
+    public Line(Supplier<Boolean> generator, final int userCount) {
+        this.stepStatuses = createStepStatuses(generator, userCount);
     }
 
-    private List<StepStatus> createStepStatuses(final int userCount) {
+    private List<StepStatus> createStepStatuses(Supplier<Boolean> generator, final int userCount) {
         final List<StepStatus> stepStatuses = new ArrayList<>(userCount - 1);
         IntStream.range(0, userCount - 1)
-                .forEach(i -> stepStatuses.add(generateStepStatus(stepStatuses, i)));
+                .forEach(i -> stepStatuses.add(generateStepStatus(generator, stepStatuses, i)));
         return stepStatuses;
     }
 
-    private StepStatus generateStepStatus(final List<StepStatus> stepStatuses, final int index) {
+    private StepStatus generateStepStatus(
+            Supplier<Boolean> generator,
+            final List<StepStatus> stepStatuses,
+            final int index) {
         if (index > 0 && stepStatuses.get(index - 1).isExist()) {
             return StepStatus.getStepStatus(false);
         }
