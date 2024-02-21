@@ -24,11 +24,11 @@ public class InputView {
     public int inputMaxLadderHeight() {
         System.out.println(System.lineSeparator() + INPUT_MESSAGE_MAX_LADDER_HEIGHT);
         String height = scanner.nextLine();
-        validateNotNaturalNumber(height);
+        validateNaturalNumber(height);
         return Integer.parseInt(height);
     }
 
-    private void validateNotNaturalNumber(String input) {
+    private void validateNaturalNumber(String input) {
         if (!NUMERIC_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_NOT_NATURAL_NUMBER);
         }

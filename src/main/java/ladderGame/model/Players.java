@@ -21,17 +21,17 @@ public class Players {
     }
 
     private void validate(List<String> names) {
-        validateDuplicationName(names);
-        validateLessThanMinimum(names);
+        validateNotDuplicationName(names);
+        validatePlayerCount(names);
     }
 
-    private void validateDuplicationName(List<String> names) {
+    private void validateNotDuplicationName(List<String> names) {
         if(new HashSet<>(names).size() != names.size()) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_DUPLICATION_NAME);
         }
     }
 
-    private void validateLessThanMinimum(List<String> names) {
+    private void validatePlayerCount(List<String> names) {
         if(names.size() < MINIMUM_NAMES) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_LESS_THAN_MINIMUM);
         }
