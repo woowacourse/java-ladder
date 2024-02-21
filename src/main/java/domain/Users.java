@@ -20,7 +20,8 @@ public class Users {
     }
 
     public Users(String userNames) {
-        String[] splitUserNames = userNames.split(",");
-        users = Arrays.stream(splitUserNames).map(name -> new User(new UserName(name))).toList();
+        users = Arrays.stream(userNames.split(","))
+                .map(name -> new User(new UserName(name)))
+                .toList();
     }
 }

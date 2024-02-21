@@ -1,13 +1,15 @@
 package view;
 
 import domain.Ladder;
+import domain.LadderPrinter;
 import domain.Line;
 
 public class ResultView {
 
-    private static final String BAR = "|";
-
     public static void printNames(String[] userNames) {
+        System.out.println("실행결과");
+        System.out.println();
+
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(String.format("%-5s", userNames[0]));
@@ -21,22 +23,7 @@ public class ResultView {
 
     public static void printResult(Ladder ladder) {
         for (Line line : ladder.getLadder()) {
-            System.out.print("    ");
-            System.out.print(BAR);
-            printSingleLine(line);
-            System.out.println();
+            System.out.println(LadderPrinter.printSingleLine(line));
         }
-    }
-
-    private static void printSingleLine(Line line) {
-        for (Boolean point : line.getPoints()) {
-            System.out.print(convert(point).repeat(5));
-            System.out.print(BAR);
-        }
-    }
-
-    private static String convert(boolean point) {
-        if (point) return "-";
-        return " ";
     }
 }

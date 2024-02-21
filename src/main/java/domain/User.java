@@ -6,7 +6,6 @@ public class User {
     public User() {
     }
 
-
     public User(UserName userName) {
         this.userName = userName;
     }
