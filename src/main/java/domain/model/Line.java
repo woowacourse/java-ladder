@@ -3,23 +3,32 @@ package domain.model;
 import utils.RandomGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import static domain.model.Direction.LEFT;
-import static domain.model.Direction.findDirection;
 
 public class Line {
 
     private final List<Boolean> points;
 
-    public Line(final int personCount) {
-        points= new ArrayList<>(personCount);;
+    public Line(RandomGenerator randomGenerator, final int personCount) {
+        points = new ArrayList<>(personCount);
+        draw(randomGenerator, personCount);
+    }
+
+    public List<Integer> findHorizontal() {
+        return IntStream.range(0, points.size())
+                .sequential()
+                .filter(points::get)
+                .mapToObj(index -> index)
+                .toList();
     }
 
     void draw(RandomGenerator generator, int personCount) {
-        IntStream.range(0, personCount)
+        IntStream.range(0, personCount - 1)
                 .forEach(index -> makeHorizontalLine(generator, index));
+
     }
 
     private void makeHorizontalLine(RandomGenerator generator, int index) {
@@ -30,9 +39,10 @@ public class Line {
     }
 
     public boolean hasLeftConnectedLine(int index) {
-        if (index == 0){
+        if (index == 0) {
             return false;
         }
-        return points.get(index -1);
+        return points.get(index - 1);
     }
+
 }
