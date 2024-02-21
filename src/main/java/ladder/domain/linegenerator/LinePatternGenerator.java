@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.IntSupplier;
 import ladder.domain.Stick;
 
-public class LinePatternGenerator {
+public class LinePatternGenerator implements LineGenerator {
 
     private static final int MIN_LINE_SIZE = 2;
     private final IntSupplier supplier;
@@ -14,6 +14,7 @@ public class LinePatternGenerator {
         this.supplier = supplier;
     }
 
+    @Override
     public List<Stick> generate(int size) {
         validate(size);
         List<Stick> line = new ArrayList<>();
