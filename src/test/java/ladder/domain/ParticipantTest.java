@@ -21,7 +21,7 @@ public class ParticipantTest {
         Participant mia = new Participant(name);
 
         // then
-        assertEquals(mia.getName(), "mia");
+        assertEquals("mia", mia.getName());
     }
 
     @ParameterizedTest
