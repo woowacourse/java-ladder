@@ -19,7 +19,7 @@ public class Player {
 
     private void validateFormat(String name) {
         if (isInvalidFormat(name)) {
-            throw new IllegalArgumentException("참가자들의 이름은 영어, 숫자가 아니라면 예외가 발생한다.");
+            throw new IllegalArgumentException("참가자들의 이름은 영어, 숫자여야 합니다.");
         }
     }
 
