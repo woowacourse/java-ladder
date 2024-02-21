@@ -3,7 +3,9 @@ package view;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.Name;
 import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,8 +20,10 @@ class InputViewTest {
         // given
         InputView inputView = new InputView(() -> "a,b,c,d");
         // when
-        List<String> actual = inputView.readNames();
-        List<String> expected = List.of("a", "b", "c", "d");
+        List<Name> actual = inputView.readNames();
+        List<Name> expected = Stream.of("a", "b", "c", "d")
+                .map(Name::new)
+                .toList();
         // then
         assertThat(actual).containsExactlyElementsOf(expected);
     }
@@ -43,7 +47,7 @@ class InputViewTest {
         // given
         InputView inputView = new InputView(() -> input);
         // when
-        int actual = inputView.readLadderHeight();
+        int actual = inputView.readLadderHeight().value();
         int expected = Integer.parseInt(input);
         // then
         assertThat(actual).isEqualTo(expected);

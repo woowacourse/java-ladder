@@ -2,6 +2,8 @@ package game;
 
 import domain.HorizontalLineStatus;
 import domain.Ladder;
+import domain.LadderHeight;
+import domain.Name;
 import generator.BooleanGenerator;
 import java.util.List;
 import java.util.function.Supplier;
@@ -21,28 +23,27 @@ public class LadderGame {
     }
 
     public void play() {
-        // TODO: 올바른 예외 처리를 위해 names/height 래핑
-        List<String> names = retryOnException(this::getNames);
-        int height = retryOnException(this::getHeight);
+        List<Name> names = retryOnException(this::getNames);
+        LadderHeight height = retryOnException(this::getHeight);
 
-        Ladder ladder = Ladder.of(names.size(), height);
+        Ladder ladder = Ladder.of(names.size(), height.value());
         ladder.drawLines(booleanGenerator);
         List<HorizontalLineStatus> statuses = ladder.createStatuses();
 
         printLadderResult(names, statuses);
     }
 
-    private List<String> getNames() {
+    private List<Name> getNames() {
         outputView.printReadNames();
         return inputView.readNames();
     }
 
-    private int getHeight() {
+    private LadderHeight getHeight() {
         outputView.printReadLadderHeight();
         return inputView.readLadderHeight();
     }
 
-    private void printLadderResult(List<String> names, List<HorizontalLineStatus> statuses) {
+    private void printLadderResult(List<Name> names, List<HorizontalLineStatus> statuses) {
         outputView.printResultMessage();
         outputView.printNames(names);
         outputView.printLadder(statuses);

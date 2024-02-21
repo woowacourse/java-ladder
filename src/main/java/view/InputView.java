@@ -1,5 +1,7 @@
 package view;
 
+import domain.LadderHeight;
+import domain.Name;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,16 +15,19 @@ public class InputView {
         this.reader = reader;
     }
 
-    public List<String> readNames() {
+    public List<Name> readNames() {
         String names = reader.readLine();
         String[] splitNames = names.split(NAME_SPLIT_DELIMITER);
 
-        return Arrays.asList(splitNames);
+        return Arrays.stream(splitNames)
+                .map(Name::new)
+                .toList();
     }
 
-    public int readLadderHeight() {
+    public LadderHeight readLadderHeight() {
         String input = reader.readLine();
-        return convertToInteger(input);
+        int value = convertToInteger(input);
+        return new LadderHeight(value);
     }
 
     private int convertToInteger(String input) {
