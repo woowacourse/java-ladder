@@ -27,6 +27,8 @@ public class LadderController {
         int numberOfUsers = users.getNumberOfUsers();
 
         Ladder ladder = createLadder(numberOfUsers);
+
+        outputView.printLadderGameResult(users, ladder);
     }
 
     private Users createUsers() {
@@ -52,6 +54,4 @@ public class LadderController {
 
         return lines;
     }
-
-
 }

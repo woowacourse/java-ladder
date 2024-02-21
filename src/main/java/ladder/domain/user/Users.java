@@ -15,6 +15,10 @@ public class Users {
         this.users = users;
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
     public int getNumberOfUsers() {
         return users.size();
     }
