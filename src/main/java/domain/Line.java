@@ -1,10 +1,11 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-public class Line {
+public class Line implements Iterable<Boolean>{
     private final List<Boolean> line;
 
     @Override
@@ -20,6 +21,11 @@ public class Line {
         return Objects.hash(line);
     }
 
+    @Override
+    public Iterator<Boolean> iterator() {
+        return line.iterator();
+    }
+
     public Line (List<Integer> numbers) {
         validateRange(numbers.size());
         List<Boolean> line = new ArrayList<>();
@@ -29,10 +35,6 @@ public class Line {
                     && hasConnection(numbers.get(index)));
         }
         this.line = line;
-    }
-
-    public boolean getValue(int index) {
-        return line.get(index);
     }
 
     private void validateRange(int height) {
