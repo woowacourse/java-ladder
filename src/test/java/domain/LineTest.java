@@ -1,3 +1,5 @@
+package domain;
+
 import domain.Line;
 import domain.RandomGenerator;
 import org.junit.jupiter.api.DisplayName;

@@ -1,3 +1,5 @@
+package domain;
+
 import domain.Users;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -27,5 +29,29 @@ class UsersTest {
         assertThatCode(() -> new Users(userNames))
                 .doesNotThrowAnyException();
     }
+
+    @Test
+    @DisplayName("사용자가 두명 이상 있어야 한다.")
+    void createOnlyUsers() {
+        //given
+        String userNames = "pobi";
+        //when
+        //then
+        assertThatThrownBy(() -> new Users(userNames))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
+    @Test
+    @DisplayName("구분자 사이에 공백을 허용한다")
+    void allowSpaceBetweenDelimiter() {
+        //given
+        String userNames = "pobi , rush";
+        //when
+
+        //then
+        assertThatCode(() -> new Users(userNames)).doesNotThrowAnyException();
+    }
+
 
 }

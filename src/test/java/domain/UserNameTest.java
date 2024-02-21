@@ -39,4 +39,13 @@ class UserNameTest {
         assertThatThrownBy(() -> new User(new UserName(userName))).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("사용자 이름에 특수기호는 들어갈 수 없다")
+    void userNameSpecialCharacter() {
+        //given
+        String userName = "pobi!";
+        //when
+        //then
+        assertThatThrownBy(() -> new User(new UserName(userName))).isInstanceOf(IllegalArgumentException.class);
+    }
 }
