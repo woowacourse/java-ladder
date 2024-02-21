@@ -8,17 +8,20 @@ public class RandomLineGenerator implements LineGenerator {
     public List<Boolean> getLine(int peopleNumber) {
 
         List<Boolean> line = new ArrayList<>();
-        Boolean before = Boolean.FALSE;
-        //TODO depth 줄이기
+        boolean before = false;
         for (int i = 0; i < peopleNumber - 1; i++) {
-            if (before) {
-                line.add(false);
-            }
-            if (!before) {
-                line.add(Math.random() >= 0.5);
-            }
+            addBoolean(before, line);
             before = line.get(i);
         }
         return line;
+    }
+
+    private void addBoolean(boolean before, List<Boolean> line) {
+        if (before) {
+            line.add(false);
+        }
+        if (!before) {
+            line.add(Math.random() >= 0.5);
+        }
     }
 }
