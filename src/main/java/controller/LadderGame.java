@@ -41,15 +41,19 @@ public class LadderGame {
 
 
     public PlayerNames createPlayerNames(String playerNamesInput) {
-        playerNamesInput = playerNamesInput.replace(InputView.BLANK_SPACE, InputView.BLANK_EMPTY);
-
-        validatePlayerNamesInput(playerNamesInput);
-
-        List<PlayerName> playerNames = Arrays.stream(playerNamesInput.split(","))
+        String[] splitPlayerNames = splitPlayerNames(playerNamesInput);
+        List<PlayerName> playerNames = Arrays.stream(splitPlayerNames)
                 .map(PlayerName::new)
                 .toList();
 
         return new PlayerNames(playerNames);
+    }
+
+    private String[] splitPlayerNames(String playerNamesInput) {
+        playerNamesInput = playerNamesInput.replace(InputView.BLANK_SPACE, InputView.BLANK_EMPTY);
+        validatePlayerNamesInput(playerNamesInput);
+
+        return playerNamesInput.split(InputView.PLAYER_NAMES_INPUT_DELIMITER);
     }
 
     private void validatePlayerNamesInput(String playerNamesInput) {
