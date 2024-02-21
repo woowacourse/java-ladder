@@ -25,10 +25,6 @@ public class Lines {
                 .toList();
     }
 
-    public List<Line> getLines() {
-        return unmodifiableList(lines);
-    }
-
     public List<LineResult> getLineResults() {
         return lines.stream()
                 .map(Line::getLineResult)
