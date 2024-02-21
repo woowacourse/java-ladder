@@ -12,8 +12,7 @@ public class LadderResponse {
     }
 
     public static LadderResponse from(Ladder ladder) {
-        List<Line> lines = ladder.getLines();
-        return new LadderResponse(lines);
+        return new LadderResponse(ladder.getLines());
     }
 
     public List<Line> getLadder() {

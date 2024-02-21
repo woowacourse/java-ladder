@@ -12,9 +12,13 @@ public class Height {
     }
 
     private void validate(int value) {
-        if (value <= 0 || value > UPPER_BOUND) {
+        if (isOutOfRange(value)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    boolean isOutOfRange(int value) {
+        return value <= 0 || value > UPPER_BOUND;
     }
 
     public int getValue() {
