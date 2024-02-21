@@ -1,7 +1,5 @@
 package util;
 
-import domain.Direction;
-
-public interface DirectionGenerator {
-    Direction generate();
+public interface BooleanGenerator {
+    Boolean generate();
 }
