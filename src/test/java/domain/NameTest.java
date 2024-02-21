@@ -1,6 +1,8 @@
 package domain;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -17,14 +19,14 @@ class NameTest {
         @ParameterizedTest
         @ValueSource(strings = {"1", "12345"})
         void nameLengthValidateSuccess(String source) {
-            Assertions.assertThatCode(() -> new Name(source))
+            assertThatCode(() -> new Name(source))
                     .doesNotThrowAnyException();
         }
 
         @DisplayName("이름이 6자 이상이면 실패한다.")
         @Test
         void nameLengthValidateFail() {
-            Assertions.assertThatThrownBy(() -> new Name("123456"))
+            assertThatThrownBy(() -> new Name("123456"))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
