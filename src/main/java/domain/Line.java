@@ -15,12 +15,12 @@ public class Line {
     private void createLine(int personCount) {
         for (int i = 0; i < personCount - 1; i++) {
             boolean nextBoolean = generator.generate();
-            boolean nextPoint = getNextPoint(nextBoolean);
+            boolean nextPoint = selectNextPoint(nextBoolean);
             points.add(nextPoint);
         }
     }
 
-    private boolean getNextPoint(boolean nextBoolean) {
+    private boolean selectNextPoint(boolean nextBoolean) {
         if (points.isEmpty()) {
             return nextBoolean;
         }
