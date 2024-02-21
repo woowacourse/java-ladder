@@ -11,13 +11,32 @@ public class LadderController {
     }
 
     public void run() {
-        Players players = new Players(InputView.readPlayerNames());
-        Ladder ladder = new Ladder(InputView.readLadderHeight());
+        Players players = readPlayers();
+        Ladder ladder = readLadder();
         ladder.makeLines(getWidth(players));
         OutputView.printResult(players, ladder);
     }
 
-    private int getWidth(Players players){
-        return players.getPlayers().size()-1;
+    private Ladder readLadder() {
+        try {
+            return new Ladder(InputView.readLadderHeight());
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return readLadder();
+        }
+    }
+
+    private Players readPlayers() {
+        try {
+            return new Players(InputView.readPlayerNames());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readPlayers();
+        }
+    }
+
+    private int getWidth(Players players) {
+        return players.getPlayers().size() - 1;
     }
 }
