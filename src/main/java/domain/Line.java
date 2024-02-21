@@ -2,7 +2,6 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.IntFunction;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -18,9 +17,5 @@ public class Line {
                 .anyMatch(i -> scaffold.get(i) && scaffold.get(i + 1))) {
             throw new IllegalArgumentException("[ERROR] 좌우 연속해서 발판이 존재할 수 없습니다.");
         }
-    }
-
-    public static Line create(IntFunction<List<Boolean>> generator, int count) {
-        return new Line(generator.apply(count));
     }
 }
