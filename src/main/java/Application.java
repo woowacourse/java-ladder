@@ -9,5 +9,7 @@ public class Application {
         InputView inputView = new InputView(scanner);
         List<String> name = inputView.readPlayersName();
         System.out.println("name = " + name);
+
+        inputView.readHeight();
     }
 }
