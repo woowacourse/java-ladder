@@ -13,18 +13,22 @@ public class RandomPointGenerator implements PointGenerator {
     public List<Boolean> generate(int pointCount) {
         List<Boolean> points = new ArrayList<>(pointCount);
         for (int i = 0; i < pointCount; i++) {
-            boolean point = random.nextBoolean();
-            if(i == 0) {
-                points.add(point);
-                continue;
-            }
-            points.add(generatePoint(point, points.get(i-1)));
+            addPoint(i, points, random.nextBoolean());
         }
+
         return points;
     }
 
+    private void addPoint(int index, List<Boolean> points, boolean point) {
+        if (index == 0) {
+            points.add(point);
+            return;
+        }
+        points.add(generatePoint(point, points.get(index - 1)));
+    }
+
     private boolean generatePoint(boolean now, boolean before) {
-        while(now == true && before == true) {
+        while (now == true && before == true) {
             now = random.nextBoolean();
         }
 
