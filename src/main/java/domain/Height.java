@@ -3,7 +3,7 @@ package domain;
 public class Height {
     private final int height;
 
-    public Height(int height) {
+    public Height(final int height) {
         validate(height);
         this.height = height;
     }

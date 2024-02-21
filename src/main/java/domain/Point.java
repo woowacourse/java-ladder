@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Point {
     private final Step step;
 
-    public Point(Step step) {
+    public Point(final Step step) {
         this.step = step;
     }
 

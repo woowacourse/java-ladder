@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Players {
     private final List<Player> players;
 
-    public Players(List<String> players) {
+    public Players(final List<String> players) {
         validate(players);
         this.players = convertToPlayer(players);
     }

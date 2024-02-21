@@ -16,14 +16,14 @@ public class Controller {
     }
 
     public void run() {
-        PlayersRequest playersRequest = inputView.inputPlayers();
-        Players players = playersRequest.toPlayers();
-        HeightRequest heightRequest = inputView.inputHeight();
-        Height height = heightRequest.toHegith();
+        final PlayersRequest playersRequest = inputView.inputPlayers();
+        final Players players = playersRequest.toPlayers();
+        final HeightRequest heightRequest = inputView.inputHeight();
+        final Height height = heightRequest.toHegith();
 
-        NumberGenerator numberGenerator = new RandomNumberGenerator();
-        Carpenter carpenter = new Carpenter(height, PlayerCount.fromPlayers(players), numberGenerator);
-        Ladder ladder = carpenter.makeLadder();
+        final NumberGenerator numberGenerator = new RandomNumberGenerator();
+        final Carpenter carpenter = new Carpenter(height, PlayerCount.fromPlayers(players), numberGenerator);
+        final Ladder ladder = carpenter.makeLadder();
 
         outputView.printResult(players, ladder);
     }

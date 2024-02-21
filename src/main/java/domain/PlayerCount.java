@@ -1,9 +1,9 @@
 package domain;
 
 public class PlayerCount {
-    private int count;
+    private final int count;
 
-    private PlayerCount(int count) {
+    private PlayerCount(final int count) {
         this.count = count;
     }
 

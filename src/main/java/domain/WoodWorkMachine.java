@@ -7,7 +7,7 @@ public class WoodWorkMachine {
     private final NumberGenerator randomNumberGenerator;
     private final PlayerCount playerCount;
 
-    public WoodWorkMachine(NumberGenerator randomNumberGenerator, PlayerCount playerCount) {
+    public WoodWorkMachine(final NumberGenerator randomNumberGenerator, final PlayerCount playerCount) {
         this.randomNumberGenerator = randomNumberGenerator;
         this.playerCount = playerCount;
     }

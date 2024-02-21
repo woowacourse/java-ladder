@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Ladder {
     private final List<Line> lines;
-    public Ladder(List<Line> lines) {
+    public Ladder(final List<Line> lines) {
         this.lines = lines;
     }
 
