@@ -30,4 +30,15 @@ class LadderTest {
 
         assertThat(actual).isEqualTo(2);
     }
+
+    @Test
+    @DisplayName("특정 좌표에 스틱이 존재하는지 알 수 있다")
+    void isExistTest() {
+        LineGenerator lineGenerator = size -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
+        Ladder ladder = new Ladder(new Height(3), 2, lineGenerator);
+
+        boolean actual = ladder.isExist(2, 2);
+
+        assertThat(actual).isFalse();
+    }
 }

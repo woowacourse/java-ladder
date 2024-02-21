@@ -22,4 +22,8 @@ public class Ladder {
     public int getWidth() {
         return lines.get(0).size() - 1;
     }
+
+    public boolean isExist(int height, int width) {
+        return lines.get(height).isExist(width);
+    }
 }
