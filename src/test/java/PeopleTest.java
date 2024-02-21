@@ -1,3 +1,4 @@
+import ladder.domain.People;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,7 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PeopleTest {
-    @DisplayName("참여자 이름에 예외적인 입력값이 들어왔을 때, People 객체를 생성할 수 없다.")
+    @DisplayName("참여자 이름에 예외적인 입력값이 들어왔을 때, domain.People 객체를 생성할 수 없다.")
     @ParameterizedTest
     @ValueSource(strings = {
             "abcdef", // 5글자 이상의 이름이 주어질 때
@@ -22,7 +23,7 @@ public class PeopleTest {
                 , () -> new People(List.of(name)));
     }
 
-    @DisplayName("참여자 이름에 Null이 들어왔을 때, People 객체를 생성할 수 없다.")
+    @DisplayName("참여자 이름에 Null이 들어왔을 때, domain.People 객체를 생성할 수 없다.")
     @ParameterizedTest
     @NullSource
     void peopleNamesNullInput(String name) {
@@ -34,7 +35,7 @@ public class PeopleTest {
                 });
     }
 
-    @DisplayName("참여자 이름에 정상적인 입력값이 들어왔을 때, People 객체를 생성할 수 있다.")
+    @DisplayName("참여자 이름에 정상적인 입력값이 들어왔을 때, domain.People 객체를 생성할 수 있다.")
     @Test
     void peopleNamesValidInput() {
         List<String> names = List.of("abcde", "a1234", "12345", "a");
@@ -44,7 +45,7 @@ public class PeopleTest {
                 });
     }
 
-    @DisplayName("참여자 수가 1이상 100이하가 아닐 때, People 객체를 생성할 수 없다.")
+    @DisplayName("참여자 수가 1이상 100이하가 아닐 때, domain.People 객체를 생성할 수 없다.")
     @Test
     void peopleNumbersInvalidInput(){
         List<String> zeroNames= new ArrayList<>();
@@ -63,7 +64,7 @@ public class PeopleTest {
 
     }
 
-    @DisplayName("참여자 수가 1이상 100이하 일 때, People 객체를 생성할 수 있다.")
+    @DisplayName("참여자 수가 1이상 100이하 일 때, domain.People 객체를 생성할 수 있다.")
     @Test
     void peopleNumbersValidInput(){
         List<String> validNames= new ArrayList<>();

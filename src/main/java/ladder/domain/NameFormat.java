@@ -1,3 +1,5 @@
+package ladder.domain;
+
 public enum NameFormat {
     ONE(1, "  %s  "),
     TWO(2, "  %s "),

@@ -1,10 +1,12 @@
+package ladder.domain;
+
 import java.util.Collections;
 import java.util.List;
 //TODO package 이동
 public class RowLine {
     private final List<Boolean> connection;
 
-    RowLine(int peopleNumber, LineGenerator generator) {
+    public RowLine(int peopleNumber, LineGenerator generator) {
         // TODO Validate로 빽;
         // TODO MIN, MAX값 상수화
         // TODO  deepcopy로 안전성 높이기
