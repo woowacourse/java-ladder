@@ -1,9 +1,13 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 import java.util.List;
+import ladder.domain.direction.DirectionGeneratorImpl;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
+import ladder.domain.ladder.LineGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

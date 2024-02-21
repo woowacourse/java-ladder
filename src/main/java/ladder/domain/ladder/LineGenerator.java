@@ -1,7 +1,9 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import ladder.domain.direction.Direction;
+import ladder.domain.direction.DirectionGenerator;
 
 public class LineGenerator {
 

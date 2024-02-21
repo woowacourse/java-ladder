@@ -1,6 +1,7 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.List;
+import ladder.domain.direction.Direction;
 
 public class Line {
     private final List<Direction> directionsInfo;
