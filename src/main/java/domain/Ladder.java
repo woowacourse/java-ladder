@@ -13,4 +13,8 @@ public class Ladder {
             lines.add(new Line(participantsCount - 1, new RandomBooleanGenerator()));
         }
     }
+
+    public List<Line> getLines() {
+        return lines;
+    }
 }

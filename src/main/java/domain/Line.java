@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Line {
 
-    private List<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points = new ArrayList<>();
 
     public Line(int count, BooleanGenerator booleanGenerator) {
         points.add(booleanGenerator.generate());
@@ -21,11 +21,11 @@ public class Line {
         }
     }
 
-    boolean isExistPoint(int index) {
+    public boolean isExistPoint(int index) {
         return points.get(index);
     }
 
-    List<Boolean> getPoints() {
+    public List<Boolean> getPoints() {
         return points;
     }
 }
