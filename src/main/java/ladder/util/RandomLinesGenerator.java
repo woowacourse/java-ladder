@@ -1,6 +1,6 @@
-package util;
+package ladder.util;
 
-import domain.Line;
+import ladder.domain.Line;
 
 import java.util.ArrayList;
 import java.util.List;

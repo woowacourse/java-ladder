@@ -1,4 +1,4 @@
-package view;
+package ladder.view;
 
 public class OutputView {
     private OutputView() {
