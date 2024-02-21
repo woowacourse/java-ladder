@@ -18,7 +18,7 @@ class LineDtoTest {
         Line line = new Line(2, booleanGenerator);
 
         LineDto lineDto = LineDto.from(line);
-        List<Boolean> rungsExist = lineDto.getRungsExist();
+        List<Boolean> rungsExist = lineDto.rungsExist();
 
         assertThat(rungsExist).containsExactly(true);
     }
