@@ -25,6 +25,10 @@ public class Line {
         return random.nextBoolean();
     }
 
+    public int size() {
+        return points.size();
+    }
+
     public List<Boolean> getPoints() {
         return points;
     }

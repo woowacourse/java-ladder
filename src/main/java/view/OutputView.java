@@ -1,14 +1,15 @@
 package view;
 
 import java.util.List;
+import view.dto.LadderResponse;
 
 public class OutputView {
-    public void printResult(List<String> names) {
+    public void printResult(List<String> names, LadderResponse ladderResponse) {
         System.out.println();
         System.out.println("실행결과");
         System.out.println();
         printPlayers(names);
-        printLadder();
+        printLadder(ladderResponse);
     }
 
     private void printPlayers(List<String> names) {

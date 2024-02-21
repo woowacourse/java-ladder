@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -14,5 +15,13 @@ public class Ladder {
 
     public int size() {
         return lines.size();
+    }
+
+    public int width() {
+        return lines.get(0).size();
+    }
+
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }

@@ -1,8 +1,10 @@
 import java.util.List;
 import java.util.Scanner;
+import model.Ladder;
 import model.Players;
 import view.InputView;
 import view.OutputView;
+import view.dto.LadderResponse;
 
 public class Application {
 
@@ -11,11 +13,11 @@ public class Application {
         InputView inputView = new InputView(scanner);
         List<String> names = inputView.readPlayersName();
         Players players = new Players(names);
-        System.out.println("name = " + names);
+        int height = inputView.readHeight();
 
-        inputView.readHeight();
+        Ladder ladder = new Ladder(height, players.size());
 
         OutputView outputView = new OutputView();
-        outputView.printResult(players.getNames());
+        outputView.printResult(players.getNames(), LadderResponse.from(ladder));
     }
 }
