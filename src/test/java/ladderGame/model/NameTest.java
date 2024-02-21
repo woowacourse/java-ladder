@@ -19,8 +19,8 @@ class NameTest {
 
     @Test
     @DisplayName("이름은 6글자 이상일 시 예외처리 된다.")
-    void validateNameLength(String name) {
-        assertThatThrownBy(() -> new Name(name))
+    void validateNameLength() {
+        assertThatThrownBy(() -> new Name("켬미켬미켬미"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 최대 5글자까지 가능합니다.");
     }
