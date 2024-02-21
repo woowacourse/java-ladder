@@ -1,6 +1,9 @@
 package domain;
 
+import static message.ErrorMessage.*;
+
 import java.util.List;
+import message.ErrorMessage;
 
 public class Players {
 
@@ -14,7 +17,7 @@ public class Players {
 
     private static void validatePlayerSize(List<Player> players) {
         if(players.size() < MINIMUM_PLAYER_COUNT) {
-            throw new IllegalArgumentException("[Error] 플레이어의 숫자는 2명 이상이어야 합니다.");
+            throw new IllegalArgumentException(INVALID_PLAYER_COUNT_EXCEPTION.getMessage());
         }
     }
 

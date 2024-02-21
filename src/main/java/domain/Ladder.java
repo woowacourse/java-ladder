@@ -1,5 +1,7 @@
 package domain;
 
+import static message.ErrorMessage.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class Ladder {
 
     private void validate(int height) {
         if (height <= 0) {
-            throw new IllegalArgumentException("[Error] 사다리 높이는 1이상 이어야 합니다.");
+            throw new IllegalArgumentException(INVALID_LADDER_HEIGHT_EXCEPTION.getMessage());
         }
     }
     public List<Line> getLines() {
