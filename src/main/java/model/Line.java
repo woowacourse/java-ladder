@@ -46,4 +46,8 @@ public class Line {
     public boolean get(int index) {
         return paths.get(index);
     }
+
+    public List<Boolean> getPaths() {
+        return paths;
+    }
 }

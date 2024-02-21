@@ -25,5 +25,13 @@ public class People {
         return new People(personGroup);
     }
 
+    public List<String> getNames() {
+        return personGroup.stream()
+                .map(Person::getName)
+                .toList();
+    }
 
+    public int getPersonCount() {
+        return personGroup.size();
+    }
 }
