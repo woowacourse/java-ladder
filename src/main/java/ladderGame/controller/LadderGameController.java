@@ -18,8 +18,6 @@ public class LadderGameController {
         Players players = new Players(inputView.inputPlayerNames());
         Ladder ladder = new Ladder(inputView.inputMaxLadderHeight(), players.getPlayerSize());
 
-        resultView.printResultPrompt();
-        resultView.printPlayerNames(players.getPlayers());
-        resultView.printLadder(ladder.getLines());
+        resultView.printLadder(players.getPlayers(), ladder.getLines());
     }
 }

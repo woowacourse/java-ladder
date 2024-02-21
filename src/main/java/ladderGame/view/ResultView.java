@@ -7,18 +7,25 @@ import java.util.List;
 
 public class ResultView {
     private static final String RESULT_PROMPT = "실행 결과";
-    public void printResultPrompt() {
+
+    public void printLadder(List<Player> players, List<Line> lines) {
+        printResultPrompt();
+        printPlayerNames(players);
+        printLines(lines);
+    }
+
+    private void printResultPrompt() {
         System.out.println(System.lineSeparator() + RESULT_PROMPT + System.lineSeparator());
     }
 
-    public void printPlayerNames(List<Player> players) {
+    private void printPlayerNames(List<Player> players) {
         for (Player player : players) {
             System.out.printf("%6s", player.getName());
         }
         System.out.println();
     }
 
-    public void printLadder(List<Line> lines) {
+    private void printLines(List<Line> lines) {
         for(Line line : lines) {
             List<Boolean> isDrawn = line.getIsDrawn();
             printLine(isDrawn);
