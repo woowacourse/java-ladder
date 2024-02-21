@@ -7,6 +7,8 @@ import ladder.domain.generator.RandomLadderStepGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import java.util.List;
+
 public class LadderGame {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
@@ -19,7 +21,7 @@ public class LadderGame {
     }
 
     private Participants createParticipants() {
-        final String participantsName = inputView.readParticipantsName();
+        final List<String> participantsName = inputView.readParticipantsName();
         return new Participants(participantsName);
     }
 
