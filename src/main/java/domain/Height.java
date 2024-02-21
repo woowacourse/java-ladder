@@ -10,7 +10,7 @@ public class Height {
 
     private void validate(int intValue) {
         if (intValue <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("높이는 자연수를 입력해주세요.");
         }
     }
 

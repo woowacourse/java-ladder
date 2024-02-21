@@ -22,7 +22,7 @@ public class Bridges {
 
     private void validateNotContinuousBridge(boolean before, Boolean bridge) {
         if (before && bridge) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("다리는 연속해서 놓을 수 없습니다.");
         }
     }
 

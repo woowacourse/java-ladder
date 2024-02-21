@@ -13,10 +13,10 @@ public class Name {
 
     private void validate(String name) {
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException(""); // TODO 예외 메시지 넣어주기
+            throw new IllegalArgumentException("빈 값을 이름으로 사용할 수 없습니다.");
         }
-        if (name.length() > MAX_NAME_LENGTH) { // TODO 상수 처리
-            throw new IllegalArgumentException();   // TODO 예외 메시지 넣어주기
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("이름은 5글자를 넘을 수 없습니다.");
         }
     }
 

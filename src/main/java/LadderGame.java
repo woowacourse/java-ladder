@@ -28,8 +28,8 @@ public class LadderGame {
             OutputView.printException(exception);
             return readNames();
         }
-
     }
+
     private static Height readHeight() {
         try {
             return new Height(InputView.readHeight());

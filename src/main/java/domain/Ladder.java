@@ -17,9 +17,8 @@ public class Ladder {
 
     private void validate(int personCount) {
         if (personCount <= 0) {
-            throw new IllegalArgumentException(); // TODO 예외 메시지
+            throw new IllegalArgumentException("사람을 1 명 이상 입력해 주세요.");
         }
-
     }
 
     public List<Bridges> getBridge() {
