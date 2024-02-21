@@ -7,6 +7,10 @@ import java.util.List;
 
 public class ResultView {
     private static final String RESULT_PROMPT = "실행 결과";
+    private static final String BLANK_MARK = "     ";
+    private static final String NOT_DRAWN_MARK = "     ";
+    private static final String DRAWN_MARK = "-----";
+    private static final String LINE_MARK = "|";
 
     public void printLadder(List<Player> players, List<Line> lines) {
         printResultPrompt();
@@ -19,29 +23,29 @@ public class ResultView {
     }
 
     private void printPlayerNames(List<Player> players) {
-        for (Player player : players) {
-            System.out.printf("%6s", player.getName());
-        }
+        players.forEach(player -> System.out.printf("%6s", player.getName()));
         System.out.println();
     }
 
     private void printLines(List<Line> lines) {
-        for(Line line : lines) {
-            List<Boolean> isDrawns = line.getIsDrawns();
-            printLine(isDrawns);
-        }
+        lines.forEach(line -> System.out.println(makeLineToString(line)));
     }
 
-    private void printLine(List<Boolean> isDrawns) {
-        System.out.print("     ");
+    private String makeLineToString(Line line) {
+        List<Boolean> isDrawns = line.getIsDrawns();
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(BLANK_MARK + LINE_MARK);
         for(Boolean isDrawn : isDrawns) {
-            System.out.print("|");
-            if(isDrawn) {
-                System.out.print("-----");
-                continue;
-            }
-            System.out.print("     ");
+            sb.append(checkDrawnMark(isDrawn)).append(LINE_MARK);
         }
-        System.out.println("|");
+        return sb.toString();
+    }
+
+    private String checkDrawnMark(Boolean isDrawn) {
+        if(isDrawn) {
+            return DRAWN_MARK;
+        }
+        return NOT_DRAWN_MARK;
     }
 }
