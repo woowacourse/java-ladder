@@ -1,32 +1,41 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import ladder.domain.dto.LadderStatusDto;
 
 public class Ladder {
 
-    private final List<Boolean> steps;
+    private static final boolean DEFAULT_NO_DUPLICATED_STEP = false;
 
-    public Ladder(int personCount) {
-        this.steps = new ArrayList<>(Collections.nCopies(personCount - 1, false));
+    private final List<Step> steps;
+
+    public Ladder(final int personCount) {
+        this.steps = makeSteps(personCount);
     }
 
-    public List<Boolean> getSteps() {
+    private List<Step> makeSteps(int stepCount) {
+        List<Step> steps = new ArrayList<>();
+
+        for (int i = 0; i < stepCount; i++) {
+            steps.add(new Step());
+        }
         return steps;
     }
 
+    public LadderStatusDto getSteps() {
+        return new LadderStatusDto(steps);
+    }
+
     public void buildSteps(int currentPosition) {
-        steps.set(currentPosition, true);
+        steps.get(currentPosition).changeStatus();
     }
 
     public boolean hasStepDuplicated(int currentPosition) {
-        boolean bool = false;
-
         if (currentPosition > 0) {
-            bool = steps.get(currentPosition - 1);
+            Step step = steps.get(currentPosition - 1);
+            return step.getBuildStatus();
         }
-
-        return bool;
+        return DEFAULT_NO_DUPLICATED_STEP;
     }
 }
