@@ -13,25 +13,27 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class LadderTest {
 
+    private static final Height DEFAULT_HEIGHT = new Height(4);
+
     @DisplayName("객체가 정상적으로 생성된다.")
     @Test
     void constructSuccessTest() {
         assertThatNoException()
-                .isThrownBy(() -> new Ladder(new RandomBridgeConstructStrategy(), 4, new Height(5)));
+                .isThrownBy(() -> new Ladder(new RandomBridgeConstructStrategy(), 4, DEFAULT_HEIGHT));
     }
 
     @DisplayName("사람 수가 자연수가 아니라면 예외가 발생한다.")
     @ParameterizedTest(name = "사람 수가 {0}인 경우 예외가 발생한다.")
     @ValueSource(ints = {-3, 0})
     void constructFailWithNotPositiveWidth(int personCount) {
-        assertThatThrownBy(() -> new Ladder(new RandomBridgeConstructStrategy(), personCount, new Height(5)))
+        assertThatThrownBy(() -> new Ladder(new RandomBridgeConstructStrategy(), personCount, DEFAULT_HEIGHT))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("연속된 브릿지가 존재하면 예외가 발생한다.")
     @Test
     void constructFailWithContinuousBridge() {
-        assertThatThrownBy(() -> new Ladder(new ContinuousBridgeConstructStrategy(), 5, new Height(5)))
+        assertThatThrownBy(() -> new Ladder(new ContinuousBridgeConstructStrategy(), 5, DEFAULT_HEIGHT))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -42,7 +44,7 @@ public class LadderTest {
         int personCount = 5;
 
         //when
-        Ladder ladder = new Ladder(new RandomBridgeConstructStrategy(), personCount, new Height(4));
+        Ladder ladder = new Ladder(new RandomBridgeConstructStrategy(), personCount, DEFAULT_HEIGHT);
 
         //then
         assertThat(ladder.getBridge()).hasSize(personCount - 1);
