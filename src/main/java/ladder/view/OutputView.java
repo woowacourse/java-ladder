@@ -1,6 +1,8 @@
 package ladder.view;
 
+import ladder.domain.StepStatus;
 import ladder.dto.LadderResult;
+import ladder.dto.LineResult;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +14,7 @@ public class OutputView {
         System.out.println("실행결과");
         System.out.println();
         System.out.println(makeNameMessage(ladderResult.names()));
+        System.out.println(drawRadder(ladderResult.lines()));
     }
 
     private static String makeNameMessage(List<String> userNames) {
@@ -29,5 +32,27 @@ public class OutputView {
         return IntStream.range(start, end)
                 .mapToObj(i -> formatName(type, userNames.get(i)))
                 .collect(Collectors.joining(" "));
+    }
+
+    private static String drawRadder(List<LineResult> lineResults) {
+        return lineResults.stream()
+                .map(OutputView::drawLine)
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    private static String drawLine(LineResult lineResult) {
+        String prefix = "    |";
+        String steps = lineResult.value()
+                .stream()
+                .map(OutputView::drawStep)
+                .collect(Collectors.joining());
+        return prefix + steps;
+    }
+
+    private static String drawStep(StepStatus stepStatus) {
+        if (stepStatus.isExist()) {
+            return "-----|";
+        }
+        return "     |";
     }
 }
