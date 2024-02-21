@@ -10,6 +10,13 @@ public enum PathAvailability {
         this.shape = shape;
     }
 
+    public static PathAvailability from(Boolean isAvailable) {
+        if (isAvailable) {
+            return EXIST;
+        }
+        return EMPTY;
+    }
+
     public String getShape() {
         return shape;
     }
