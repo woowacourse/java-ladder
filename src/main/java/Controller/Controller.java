@@ -6,6 +6,8 @@ import dto.PlayersRequest;
 import view.InputView;
 import view.OutputView;
 
+import java.util.function.Supplier;
+
 public class Controller {
     private final InputView inputView;
     private final OutputView outputView;
@@ -16,15 +18,36 @@ public class Controller {
     }
 
     public void run() {
-        final PlayersRequest playersRequest = inputView.inputPlayers();
-        final Players players = playersRequest.toPlayers();
-        final HeightRequest heightRequest = inputView.inputHeight();
-        final Height height = heightRequest.toHegith();
+        final Players players = readWithRetry(this::getPlayers);
+        final Height height = readWithRetry(this::getHeight);
 
-        final NumberGenerator numberGenerator = new RandomNumberGenerator();
-        final Carpenter carpenter = new Carpenter(height, PlayerCount.fromPlayers(players), numberGenerator);
+        final Carpenter carpenter = makeCarpenter(height, players);
         final Ladder ladder = carpenter.makeLadder();
 
         outputView.printResult(players, ladder);
+    }
+
+    private Carpenter makeCarpenter(Height height, Players players) {
+        final NumberGenerator numberGenerator = new RandomNumberGenerator();
+        return new Carpenter(height, PlayerCount.fromPlayers(players), numberGenerator);
+    }
+
+    private Players getPlayers() {
+        final PlayersRequest playersRequest = readWithRetry(inputView::inputPlayers);
+        return playersRequest.toPlayers();
+    }
+
+    private Height getHeight() {
+        final HeightRequest heightRequest = readWithRetry(inputView::inputHeight);
+        return heightRequest.toHegith();
+    }
+
+    private <T> T readWithRetry(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readWithRetry(supplier);
+        }
     }
 }
