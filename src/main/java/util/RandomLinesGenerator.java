@@ -1,12 +1,20 @@
 package util;
 
+import domain.Line;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class RandomScaffoldsGenerator {
-    public static List<Boolean> generate(int count) {
+public class RandomLinesGenerator {
+    public static List<Line> generate(int width, int height) {
+        return IntStream.range(0, width)
+                .mapToObj(i -> new Line(generateRandomLine(height)))
+                .toList();
+    }
+
+    private static List<Boolean> generateRandomLine(int count) {
         List<Boolean> result = new ArrayList<>();
         Random random = new Random();
 
@@ -25,4 +33,5 @@ public class RandomScaffoldsGenerator {
         Random random = new Random();
         return random.nextInt(2) == 0;
     }
+
 }
