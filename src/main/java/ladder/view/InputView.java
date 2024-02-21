@@ -8,6 +8,7 @@ import static java.util.Arrays.stream;
 public class InputView {
 
     private InputView() {
+        throw new AssertionError();
     }
 
     public static List<String> readNames(Supplier<String> reader) {

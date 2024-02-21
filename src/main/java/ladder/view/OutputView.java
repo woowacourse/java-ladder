@@ -1,14 +1,18 @@
 package ladder.view;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import ladder.domain.StepStatus;
 import ladder.dto.LadderResult;
 import ladder.dto.LineResult;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 public class OutputView {
+    private static final String SPACE = " ";
+
+    private OutputView() {
+        throw new AssertionError();
+    }
 
     public static void printLadderResult(LadderResult ladderResult) {
         System.out.println("실행결과");
@@ -18,13 +22,13 @@ public class OutputView {
     }
 
     private static String makeNameMessage(final List<String> userNames) {
-        return String.join(" ", makeName(userNames.size(), userNames));
+        return String.join(SPACE, makeName(userNames.size(), userNames));
     }
 
     private static String makeName(final int end, final List<String> userNames) {
         return IntStream.range(0, end)
                 .mapToObj(i -> formatName(userNames.get(i)))
-                .collect(Collectors.joining(" "));
+                .collect(Collectors.joining(SPACE));
     }
 
     private static String formatName(final String name) {
