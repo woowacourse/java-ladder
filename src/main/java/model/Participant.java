@@ -16,4 +16,8 @@ public class Participant {
             throw new IllegalArgumentException();
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
