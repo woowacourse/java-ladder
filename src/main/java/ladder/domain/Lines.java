@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.dto.LineResult;
+
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
@@ -25,5 +27,11 @@ public class Lines {
 
     public List<Line> getLines() {
         return unmodifiableList(lines);
+    }
+
+    public List<LineResult> getLineResults() {
+        return lines.stream()
+                .map(Line::getLineResult)
+                .toList();
     }
 }
