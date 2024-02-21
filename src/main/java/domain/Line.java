@@ -6,7 +6,7 @@ import util.RandomGenerator;
 
 public class Line {
 
-    private List<Boolean> legs;
+    private final List<Boolean> legs;
 
     public Line() {
         legs = new ArrayList<>();
