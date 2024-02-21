@@ -1,20 +1,17 @@
 package ladder.domain;
 
-public class LadderHeight {
-    private final int ladderHeight;
+public record LadderHeight(int ladderHeight) {
+    static final int MIN_LADDER_HEIGHT = 2;
 
-    public LadderHeight(final int ladderHeight) {
+    public LadderHeight {
         validateRange(ladderHeight);
-        this.ladderHeight = ladderHeight;
     }
 
     private void validateRange(final int ladderHeight) {
-        if (ladderHeight < 2 || ladderHeight > 10) {
-            throw new IllegalArgumentException("사다리 크기는 2 ~ 10 범위만 가능합니다.");
+        if (ladderHeight < MIN_LADDER_HEIGHT) {
+            throw new IllegalArgumentException(
+                    String.format("사다리 크기는 %d 이상이어야 합니다.", MIN_LADDER_HEIGHT)
+            );
         }
-    }
-
-    public int getLadderHeight() {
-        return ladderHeight;
     }
 }
