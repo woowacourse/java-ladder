@@ -6,6 +6,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("랜덤전략")
 public class RandomBuildStrategyTest {
     @Test
     @DisplayName("주어진 횟수만큼 다리가 생성되는지 확인한다.")

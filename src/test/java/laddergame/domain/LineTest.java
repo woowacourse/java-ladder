@@ -1,9 +1,11 @@
 package laddergame.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
+import laddergame.domain.strategy.CanBuildStrategy;
 import laddergame.util.BooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,13 +34,20 @@ public class LineTest {
         final int position = 1;
         Line line = new Line(personCount);
 
-        BooleanGenerator alwaysTrueGenerator = () -> true;
-        List<Boolean> isBridgeBuilt = List.of(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE);
+        CanBuildStrategy canBuildStrategy = new CanBuildStrategy() {
+            @Override
+            public List<Boolean> canBuildBridges(int count) {
+                return List.of(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE);
+            }
+        };
+
+        List<Boolean> isBridgeBuilt = canBuildStrategy.canBuildBridges(personCount);
+
         //when
         line.buildBridge(isBridgeBuilt);
 
         //then
-        assertTrue(line.isBuilt(position));
+        assertFalse(line.isBuilt(position));
     }
 
 }
