@@ -29,7 +29,7 @@ class HorizontalLineTest {
     }
 
     @Test
-    @DisplayName("초기에 생성했을 때, 가로줄은 없다")
+    @DisplayName("초기에 생성했을 때, 가로줄은 없다.")
     void initialCreationEmptyCrossingLinesTest() {
         // given
         HorizontalLine horizontalLine = new HorizontalLine(5);

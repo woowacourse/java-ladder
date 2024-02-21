@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -14,7 +15,7 @@ class NameTest {
     @ValueSource(strings = {"a", "ab", "pobi", "abcde"})
     @DisplayName("이름이 주어지면, 올바르게 생성된다.")
     void validNameCreationTest(String name) {
-        Assertions.assertDoesNotThrow(() -> new Name(name));
+        assertDoesNotThrow(() -> new Name(name));
     }
 
     @ParameterizedTest

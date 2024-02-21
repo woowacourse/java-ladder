@@ -56,7 +56,7 @@ class LadderGameTest {
     }
     
     @Test
-    @DisplayName("올바르지 않은 입력의 경우, 재입력을 받는다")
+    @DisplayName("올바르지 않은 입력의 경우, 재입력을 받는다.")
     void invalidGameTest() {
         // given
         InputView inputView = createInputView("hello,my,name,is,sangdol", "a,b,c", "20", "2");
