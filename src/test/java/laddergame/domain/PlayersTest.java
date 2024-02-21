@@ -15,7 +15,7 @@ public class PlayersTest {
         final String name = "name";
 
         // when & then
-        assertThrows(IllegalArgumentException.class, () -> new Players(List.of(name, name)));
+        assertThrows(IllegalArgumentException.class, () -> Players.from(List.of(name, name)));
 
     }
 }

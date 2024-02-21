@@ -1,20 +1,33 @@
 package laddergame.domain;
 
 import java.util.List;
-import java.util.Set;
 
 public class Players {
     private final List<String> playerNames;
 
-    public Players(final List<String> playerNames) {
-        validate(playerNames);
+    private Players(final List<String> playerNames) {
         this.playerNames = playerNames;
     }
 
-    private void validate(final List<String> playerNames) {
-        if (playerNames.size() != Set.of(playerNames).size()) {
+    public static Players from(final List<String> playerNames) {
+        validate(playerNames);
+        return new Players(playerNames);
+    }
+
+    private static void validate(final List<String> playerNames) {
+        if (hasDuplicateName(playerNames)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private static boolean hasDuplicateName(final List<String> carNames) {
+        return carNames.size() != getDistinctNamesCount(carNames);
+    }
+
+    private static long getDistinctNamesCount(final List<String> playerNames) {
+        return playerNames.stream()
+                .distinct()
+                .count();
     }
 
     public List<String> getPlayerNames() {

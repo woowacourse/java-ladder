@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.IntStream;
 import laddergame.domain.Ladder;
+import laddergame.domain.Players;
 import laddergame.domain.strategy.CanBuildStrategy;
 import laddergame.domain.strategy.RandomBuildStrategy;
 import laddergame.view.InputView;
@@ -14,25 +15,29 @@ public class LadderGame {
     public void run() {
         try {
             InputView inputView = new InputView();
-            List<String> players = inputView.readPlayersName();
+            Players players = Players.from(inputView.readPlayersName());
             System.out.println();
             int height = inputView.readLadderHeight();
 
-            Ladder ladder = new Ladder(players.size(), height);
+            Ladder ladder = new Ladder(players.getPlayerNames().size(), height);
 
             CanBuildStrategy randomBuildStrategy = new RandomBuildStrategy();
-            List<List<Boolean>> randomResult = IntStream.range(0, height).mapToObj(i ->
-                    randomBuildStrategy.canBuildBridges(players.size() - 1)).toList();
+            List<List<Boolean>> randomResult = IntStream.range(0, height)
+                    .mapToObj(i -> randomBuildStrategy.canBuildBridges(players.getPlayerNames().size() - 1))
+                    .toList();
 
             ladder.build(randomResult);
 
-            System.out.println();
             OutputView outputView = new OutputView();
-            outputView.writeResultTitle();
-            outputView.writePlayersName(players);
-            outputView.writeLadder(ladder);
+            printLadderResult(players, ladder, outputView);
         } catch (IOException exception) {
 
         }
+    }
+
+    private static void printLadderResult(Players players, Ladder ladder, OutputView outputView) {
+        outputView.writeResultTitle();
+        outputView.writePlayersName(players.getPlayerNames());
+        outputView.writeLadder(ladder);
     }
 }
