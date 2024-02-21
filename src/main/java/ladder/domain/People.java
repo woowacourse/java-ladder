@@ -1,38 +1,36 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class People {
 
-    private static final int MIN_PEOPLE_COUNT = 3;
+    private static final int MAX_NAME_LENGTH = 5;
 
-    private final List<Name> names;
+    private final List<String> names;
 
-    public People(List<Name> names) {
+    public People(String rawNames) {
+        List<String> names = parse(rawNames);
         validate(names);
         this.names = new ArrayList<>(names);
     }
 
-    private void validate(List<Name> names) {
-        validateDuplication(names);
-        validateCount(names);
+    private List<String> parse(String rawNames) {
+        String[] names = rawNames.split(",");
+        return Arrays.stream(names)
+                .map(String::trim)
+                .toList();
     }
 
-    private void validateDuplication(List<Name> names) {
-        long uniqueCount = names.stream()
-                .distinct()
+    private void validate(List<String> names) {
+        long count = names.stream()
+                .filter(name -> name.length() > MAX_NAME_LENGTH)
                 .count();
 
-        if (uniqueCount != names.size()) {
-            throw new IllegalArgumentException("이름은 중복일 수 없습니다.");
-        }
-    }
-
-    private void validateCount(List<Name> names) {
-        if (names.size() < MIN_PEOPLE_COUNT) {
-            throw new IllegalArgumentException("최소 인원은 세명입니다.");
+        if (count > 0) {
+            throw new IllegalArgumentException("이름은 최대 5글자까지 부여할 수 있습니다.");
         }
     }
 
@@ -40,14 +38,12 @@ public class People {
         return names.size();
     }
 
-    public int findMaxNameLength() {
-        return names.stream()
-                .mapToInt(Name::getLength)
-                .max()
-                .orElse(0);
-    }
+    //todo : 가장 긴 이름의 길아 반환하는 메서드
 
-    public List<Name> getNames() {
-        return Collections.unmodifiableList(names);
+    @Override
+    public String toString() {
+        return names.stream()
+                .map(name -> String.format("%-7s", name))
+                .collect(Collectors.joining());
     }
 }
