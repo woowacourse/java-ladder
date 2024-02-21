@@ -48,6 +48,28 @@ class LadderGeneratorTest {
         }
     }
 
+    @Test
+    @DisplayName("전 LadderLeg의 동일 index가 오른쪽 가지를 가질때, 왼쪽 가지를 가지는 LadderLeg 를 생성한다.")
+    public void generateLeftDirectionLadderLeg() {
+        LadderGenerator ladderGenerator = 사다리_생성기_생성();
+        List<Direction> fixedDirectionList = List
+                .of(Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT);
+
+        LadderLeg rightLadderLeg =
+                ladderGenerator.generateLadderLeg(
+                        ladderGenerator.generateDownLadderLeg(),
+                        new FixedDirectionGenerator(fixedDirectionList));
+
+        LadderLeg testLeftLadderLeg =
+                ladderGenerator.generateLadderLeg(
+                        rightLadderLeg,
+                        new FixedDirectionGenerator(fixedDirectionList));
+
+        for (int i = 0; i < 5; i++) {
+            assertEquals(testLeftLadderLeg.getDirectionAtIndex(i),Direction.LEFT);
+        }
+    }
+
     private LadderGenerator 사다리_생성기_생성() {
         Height height = new Height("5");
         Integer playerCount = 5;
