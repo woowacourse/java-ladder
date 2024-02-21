@@ -28,8 +28,7 @@ public class LadderGameController {
     }
 
     public Ladder makeLadder(Players players, LadderHeight ladderHeight) {
-        int bridgeCount = players.getSizeOfPlayers() - 1;
-        return Ladder.create(ladderHeight, bridgeCount, new RandomMaterialsGenerator());
+        return Ladder.create(ladderHeight, players, new RandomMaterialsGenerator());
     }
 
     public void end(Players players, Ladder ladder) {
