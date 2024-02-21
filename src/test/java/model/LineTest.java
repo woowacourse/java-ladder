@@ -26,11 +26,14 @@ class LineTest {
         List<Boolean> points = line.getPoints();
 
         //when
+        boolean isOverlap = false;
         for (int i = 0; i < points.size() - 1; i++) {
-            if (points.get(i) == points.get(i + 1)) {
-
+            if (points.get(i) && points.get(i + 1)) {
+                isOverlap = true;
             }
         }
+
         //then
+        Assertions.assertThat(isOverlap).isEqualTo(false);
     }
 }
