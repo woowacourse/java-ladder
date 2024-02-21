@@ -17,14 +17,14 @@ public class LadderTest {
     @DisplayName("생성에 성공한다.")
     public void createLadderTest() {
         //given
-        final int height = 4;
+        final String height = "4";
         final int playerCount = 4;
 
         //when
         Ladder ladder = new Ladder(playerCount, height);
 
         //then
-        assertEquals(ladder.getLines().size(), height);
+        assertEquals(ladder.getLines().size(), Integer.parseInt(height));
         assertEquals(ladder.getLines().get(0).getPoints().size(), playerCount - 1);
     }
 
@@ -32,7 +32,7 @@ public class LadderTest {
     @DisplayName("사다리 다리 건설 생성에 성공하는지 테스트한다.")
     public void buildLadderBridge() {
         //given
-        final int height = 1;
+        final String height = "1";
         final int playerCount = 4;
         List<List<Boolean>> buildResult = new ArrayList<>();
         CanBuildStrategy canBuildStrategy = new CanBuildStrategy() {

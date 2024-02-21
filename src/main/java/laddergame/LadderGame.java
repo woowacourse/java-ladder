@@ -16,12 +16,12 @@ public class LadderGame {
         InputView inputView = new InputView();
         Players players = requestUntilValidated(() -> Players.from(inputView.readPlayersName()));
         System.out.println();
-        int height = requestUntilValidated(inputView::readLadderHeight);
+        String height = requestUntilValidated(inputView::readLadderHeight);
 
         Ladder ladder = new Ladder(players.getPlayerNames().size(), height);
 
         CanBuildStrategy randomBuildStrategy = new RandomBuildStrategy();
-        List<List<Boolean>> randomResult = IntStream.range(0, height)
+        List<List<Boolean>> randomResult = IntStream.range(0, ladder.getHeight())
                 .mapToObj(i -> randomBuildStrategy.canBuildBridges(players.getPlayerNames().size() - 1))
                 .toList();
 

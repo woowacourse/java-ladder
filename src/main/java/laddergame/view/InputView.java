@@ -24,11 +24,11 @@ public class InputView {
 
     }
 
-    public int readLadderHeight() {
+    public String readLadderHeight() {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         try {
-            return Integer.parseInt(bufferedReader.readLine());
+            return bufferedReader.readLine();
         } catch (IOException exception) {
             throw new IllegalArgumentException();
         }
