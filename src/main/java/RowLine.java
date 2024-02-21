@@ -2,7 +2,7 @@ import java.util.Collections;
 import java.util.List;
 //TODO package 이동
 public class RowLine {
-    private final List<Boolean> line;
+    private final List<Boolean> connection;
 
     RowLine(int peopleNumber, LineGenerator generator) {
         // TODO Validate로 빽;
@@ -13,11 +13,11 @@ public class RowLine {
         }
         List<Boolean> line = generator.getLine(peopleNumber);
         validateSuccessiveLine(line);
-        this.line = line;
+        this.connection = line;
     }
 
-    public List<Boolean> getLine() {
-        return Collections.unmodifiableList(line);
+    public List<Boolean> getConnection() {
+        return Collections.unmodifiableList(connection);
     }
 
     private void validateSuccessiveLine(List<Boolean> booleans) {
