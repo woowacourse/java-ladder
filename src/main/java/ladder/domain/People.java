@@ -31,7 +31,9 @@ public class People {
         return values.size();
     }
 
-    public List<Person> getValues() {
-        return values;
+    public List<String> getNames() {
+        return values.stream()
+                .map(Person::getName)
+                .toList();
     }
 }
