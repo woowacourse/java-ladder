@@ -6,6 +6,7 @@ import ladder.dto.LineDto;
 import ladder.dto.PlayersDto;
 
 public class OutputView {
+    private static final String ERROR_PREFIX = "[ERROR]";
     private static final String LADDER_RUNG_EMPTY = "     ";
     private static final String LADDER_RUNG_EXIST = "-----";
     private static final String LADDER_SIDE_RAIL = "|";
@@ -56,8 +57,6 @@ public class OutputView {
 
 
     public void printErrorMessage(String message) {
-        System.out.println(message);
+        System.out.printf("%s %s%n", ERROR_PREFIX, message);
     }
-
-
 }
