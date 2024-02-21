@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import java.util.Set;
 
 public class Players {
 
@@ -14,14 +15,24 @@ public class Players {
     }
 
     private void validate(List<String> players) {
+        validateSize(players);
+        validateDuplicates(players);
+    }
+
+    private void validateSize(List<String> players) {
         if (players.size() < 2) {
             throw new IllegalArgumentException();
         }
     }
 
-    public int firstPlayerNameLength() {
-        // TODO: 이거맞아???
-        return players.get(0).getName().length();
+    private void validateDuplicates(List<String> players) {
+        if(isDuplicated(players)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean isDuplicated(List<String> players) {
+        return Set.copyOf(players).size() != players.size();
     }
 
     public List<String> getNames() {
