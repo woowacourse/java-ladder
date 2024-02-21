@@ -18,6 +18,7 @@ public class LadderGame {
         final int stepWidth = participants.getCount() - 1;
         final Ladder ladder = createLadder(stepWidth);
         printLadder(participants, ladder);
+        inputView.closeResource();
     }
 
     private Participants createParticipants() {
