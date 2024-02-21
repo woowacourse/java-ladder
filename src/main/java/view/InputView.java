@@ -16,7 +16,7 @@ public class InputView {
     public List<String> readNames() {
         String names = reader.readLine();
         String[] splitNames = names.split(NAME_SPLIT_DELIMITER);
-        
+
         return Arrays.asList(splitNames);
     }
 

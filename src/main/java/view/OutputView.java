@@ -47,7 +47,7 @@ public class OutputView {
         builder.append(VERTICAL_LADDER_CHARACTER);
         indices.forEach(isPlaced ->
                 builder.append(getHorizontalLadderCharacterIfPlaced(isPlaced))
-                       .append(VERTICAL_LADDER_CHARACTER)
+                        .append(VERTICAL_LADDER_CHARACTER)
         );
 
         System.out.println(builder.toString());

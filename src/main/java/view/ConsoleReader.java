@@ -10,7 +10,7 @@ public class ConsoleReader implements Reader {
     public ConsoleReader(InputStream in) {
         this.scanner = new Scanner(in);
     }
-    
+
     @Override
     public String readLine() {
         return scanner.nextLine();
