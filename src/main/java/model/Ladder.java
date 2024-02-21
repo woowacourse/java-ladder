@@ -5,12 +5,18 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private List<Line> lines;
-    public Ladder(Height height, int personCount) {
-        lines = new ArrayList<>();
+    private final List<Line> lines;
+
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
+    public static Ladder of(Height height, int width) {
+        List<Line> lines = new ArrayList<>();
         for(int i = 0; i < height.getValue(); i++) {
-            lines.add(new Line(personCount));
+            lines.add(new Line(width));
         }
+        return new Ladder(lines);
     }
 
     public int size() {

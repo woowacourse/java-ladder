@@ -13,7 +13,7 @@ class LadderTest {
         int personCount = 7;
 
         // when
-        Ladder ladder = new Ladder(height, personCount);
+        Ladder ladder = Ladder.of(height, personCount);
 
         // when
         Assertions.assertThat(ladder.size()).isEqualTo(height.getValue());
