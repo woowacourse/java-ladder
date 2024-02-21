@@ -8,10 +8,10 @@ public class Ladder {
 
     private final List<Bridges> bridges;
 
-    public Ladder(int personCount, int height) {
+    public Ladder(BridgeConstructStrategy bridgeConstructStrategy, int personCount, int height) {
         validate(personCount, height);
         bridges = IntStream.range(0, height)
-                .mapToObj((index) -> new Bridges(List.of(false, false, false, false, false)))
+                .mapToObj((index) -> bridgeConstructStrategy.generate(personCount - 1))
                 .toList();
     }
 
