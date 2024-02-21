@@ -1,5 +1,6 @@
 package controller;
 
+import model.Participants;
 import view.InputView;
 import view.OutputView;
 
@@ -14,6 +15,7 @@ public class LadderGameController {
     }
 
     public void run() {
-
+        Participants participants = inputView.readParticipantNames();
+        int ladderHeight = inputView.readLadderHeight();
     }
 }
