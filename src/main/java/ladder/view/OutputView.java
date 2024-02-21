@@ -1,13 +1,13 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
-import ladder.domain.Names;
+import ladder.domain.People;
 
 public class OutputView {
 
-    public void printResult(Names names, Ladder ladder) {
+    public void printResult(People people, Ladder ladder) {
         System.out.println("실행결과");
-        System.out.println(names);
+        System.out.println(people);
         System.out.println(ladder);
     }
 
