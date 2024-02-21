@@ -13,7 +13,8 @@ class ParticipantsTest {
         String[] names = {"a"};
         assertThatThrownBy(() -> new Participants(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 참가자는 2명 이상이어야 합니다.");
+                .hasMessage("[ERROR] 참가자는 " + Participants.MIN_OF_PARTICIPANTS_COUNT + "명 이상 "
+                        + Participants.MAX_OF_PARTICIPANTS_COUNT + "명 이하여야 합니다.");
     }
 
     @Test
@@ -27,7 +28,8 @@ class ParticipantsTest {
 
         assertThatThrownBy(() -> new Participants(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 참가자는 50명 이하여야 합니다.");
+                .hasMessage("[ERROR] 참가자는 " + Participants.MIN_OF_PARTICIPANTS_COUNT + "명 이상 "
+                        + Participants.MAX_OF_PARTICIPANTS_COUNT + "명 이하여야 합니다.");
     }
 
     @Test

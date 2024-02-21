@@ -23,7 +23,7 @@ public class LadderGame {
     private static void play() {
         participants = recruitParticipants();
         ladder = makeLadder();
-        outputView.printResult(participants.getPeopleName(), ladder);
+        outputView.printResult(participants.getParticipantsName(), ladder);
     }
 
     private static Participants recruitParticipants() {
@@ -39,7 +39,7 @@ public class LadderGame {
     private static Ladder makeLadder() {
         try {
             int height = inputView.readHeight();
-            return new Ladder(height, participants.getPeopleCount());
+            return new Ladder(height, participants.getParticipantsCount());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return makeLadder();
