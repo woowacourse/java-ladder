@@ -10,7 +10,7 @@ public class Ladder {
 
     public Ladder(int personCount, int height) {
         validate(personCount, height);
-        bridges = IntStream.range(0, personCount - 1)
+        bridges = IntStream.range(0, height)
                 .mapToObj((index) -> new Bridges(List.of(false, false, false, false, false)))
                 .toList();
     }
