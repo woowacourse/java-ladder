@@ -4,10 +4,11 @@ import ladder.constant.LadderPath;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Random;
 
 public class Ladder {
-    List<Line> ladder;
+    private static final Random random = new Random();
+    private final List<Line> ladder;
 
     public Ladder(List<Line> ladder) {
         this.ladder = ladder;
@@ -20,18 +21,39 @@ public class Ladder {
         int width = ladderSize.getWidth();
 
         for (int i = 0; i < height; i++) {
-            Line line = new Line(IntStream.range(0, width)
-                    .mapToObj(unused -> LadderPath.STAY)
-                    .toList());
+            Line line = new Line(makeRandomPaths(width));
             ladder.add(line);
         }
 
         return new Ladder(ladder);
     }
 
+    private static List<LadderPath> makeRandomPaths(int width) {
+        List<LadderPath> randomPath = new ArrayList<>();
+
+        while (randomPath.size() < width - 1) {
+            LadderPath temp = generateRandomPath();
+            randomPath.add(temp);
+            if (temp.equals(LadderPath.RIGHT)) {
+                randomPath.add(LadderPath.LEFT);
+            }
+        }
+
+        if (randomPath.size() < width) {
+            randomPath.add(LadderPath.STAY);
+        }
+
+        return randomPath;
+    }
+
+    private static LadderPath generateRandomPath() {
+        if (random.nextBoolean()) {
+            return LadderPath.RIGHT;
+        }
+        return LadderPath.STAY;
+    }
+
     public LadderSize getSize() {
         return new LadderSize(ladder.size(), ladder.get(0).size());
     }
-
-
 }
