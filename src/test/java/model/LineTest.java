@@ -34,8 +34,8 @@ class LineTest {
         for (int i = 0; i < pathSize - 1; i++) {
             boolean left = line.get(i);
             boolean right = line.get(i + 1);
-            boolean isContinuous = left && right;
-            assertThat(isContinuous).isFalse();
+            boolean isConnected = left && right;
+            assertThat(isConnected).isFalse();
         }
     }
 }
