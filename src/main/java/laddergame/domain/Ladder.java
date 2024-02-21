@@ -2,47 +2,34 @@ package laddergame.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import laddergame.exception.LadderLineOverlappedException;
 
 public class Ladder {
 
     private final List<Line> lines;
 
-    private Ladder(final LadderHeight height, final Names names) {
-        final BooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator(calculateSize(names));
-
-        final List<Line> lines = new ArrayList<>();
-
-        while (height.isNot(lines.size())) {
-            lines.add(createLine(randomBooleanGenerator));
-        }
-
+    private Ladder(final List<Line> lines) {
         this.lines = lines;
     }
 
-    public static Ladder create(final LadderHeight height, final Names names) {
-        return new Ladder(height, names);
-    }
+    public static Ladder create(final int lineSize, final LadderHeight height,
+            final BooleanGenerator booleanGenerator) {
 
-    private int calculateSize(final Names names) {
-        return names.size() - 1;
-    }
+        final List<Line> lines = new ArrayList<>();
 
-    private Line createLine(final BooleanGenerator booleanGenerator) {
-        try {
-            return Line.create(booleanGenerator);
-        } catch (LadderLineOverlappedException exception) {
-            return createLine(booleanGenerator);
+        while (isNotCompleted(lines, height)) {
+            lines.add(Line.create(lineSize, booleanGenerator));
         }
+
+        return new Ladder(lines);
+    }
+
+    private static boolean isNotCompleted(final List<Line> lines, final LadderHeight height) {
+        return height.isNot(lines.size());
     }
 
     public List<List<Boolean>> getLines() {
         return lines.stream()
                 .map(Line::getPoints)
                 .toList();
-    }
-
-    public int getHeight() {
-        return lines.size();
     }
 }

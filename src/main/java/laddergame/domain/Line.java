@@ -1,39 +1,42 @@
 package laddergame.domain;
 
 import java.util.List;
-import java.util.stream.IntStream;
-import laddergame.exception.LadderLineOverlappedException;
 
 public class Line {
 
     private final List<Boolean> points;
-
-    private Line(final BooleanGenerator booleanGenerator) {
-        final List<Boolean> points = booleanGenerator.generate();
-        validateOverlap(points);
-
+    
+    private Line(final List<Boolean> points) {
         this.points = points;
     }
 
-    public static Line create(final BooleanGenerator booleanGenerator) {
-        return new Line(booleanGenerator);
-    }
+    public static Line create(final int size, final BooleanGenerator booleanGenerator) {
+        List<Boolean> points = createPoints(size, booleanGenerator);
 
-    private void validateOverlap(final List<Boolean> points) {
-        if (isOverlap(points)) {
-            throw new LadderLineOverlappedException("[ERROR] 가로 라인이 겹치면 안됩니다.");
+        Boolean temp = false;
+
+        // TODO : 인댑스 줄이기
+        for (int i = 0; i < size; i++) {
+            Boolean now = points.get(i);
+            if (now && temp) {
+                points.set(i, !now);
+                temp = !now;
+                continue;
+            }
+
+            temp = now;
         }
+
+        return new Line(points);
     }
 
-    private static boolean isOverlap(final List<Boolean> points) {
-        return IntStream.range(0, points.size() - 1)
-                .anyMatch(i -> points.get(i) && points.get(i + 1));
+    private static List<Boolean> createPoints(final int size, final BooleanGenerator booleanGenerator) {
+        return booleanGenerator.generateUntil(size);
     }
 
     public List<Boolean> getPoints() {
         return points;
     }
-
 
 
     public int getSize() {
