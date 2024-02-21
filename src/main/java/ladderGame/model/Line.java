@@ -9,10 +9,6 @@ public class Line {
 
     public Line(int number) {
         isDrawns = new ArrayList<>();
-        draw(number);
-    }
-
-    private void draw(int number) {
         for (int i = 0; i < number - 1; i++) {
             drawSpace(i);
         }
@@ -20,7 +16,6 @@ public class Line {
 
     private void drawSpace(int index) {
         if (index == 0 || !isDrawns.get(index - 1).checkDrawn()) {
-            // TODO: 사다리 그려지는 확률 생각해보기
             isDrawns.add(decideDrawnStatus());
             return;
         }
