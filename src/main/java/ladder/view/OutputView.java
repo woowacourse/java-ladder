@@ -17,24 +17,21 @@ public class OutputView {
         System.out.println(drawRadder(ladderResult.lines()));
     }
 
-    private static String makeNameMessage(List<String> userNames) {
-        int middle = userNames.size() / 2;
-        String s1 = makeName(0, middle, "%5s", userNames);
-        String s2 = makeName(middle, userNames.size(), "%-5s", userNames);
-        return String.join(" ", s1, s2);
+    private static String makeNameMessage(final List<String> userNames) {
+        return String.join(" ", makeName(userNames.size(), userNames));
     }
 
-    private static String formatName(String type, String name) {
-        return String.format(type, name);
-    }
-
-    private static String makeName(int start, int end, String type, List<String> userNames) {
-        return IntStream.range(start, end)
-                .mapToObj(i -> formatName(type, userNames.get(i)))
+    private static String makeName(final int end, final List<String> userNames) {
+        return IntStream.range(0, end)
+                .mapToObj(i -> formatName(userNames.get(i)))
                 .collect(Collectors.joining(" "));
     }
 
-    private static String drawRadder(List<LineResult> lineResults) {
+    private static String formatName(final String name) {
+        return String.format("%5s", name);
+    }
+
+    private static String drawRadder(final List<LineResult> lineResults) {
         return lineResults.stream()
                 .map(OutputView::drawLine)
                 .collect(Collectors.joining(System.lineSeparator()));
@@ -56,7 +53,7 @@ public class OutputView {
         return "     |";
     }
 
-    public static void printErrorMessage(String message) {
+    public static void printErrorMessage(final String message) {
         System.out.println(message);
     }
 }
