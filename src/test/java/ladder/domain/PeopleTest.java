@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -11,7 +12,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class PeopleTest {
 
-    @DisplayName("중복된 이름은 입력할 수 없다.")
+    @DisplayName("이름을 입력하여 People을 생성한다.")
+    @Test
+    void validPeopleTest() {
+        assertThatCode(() -> new People(List.of("명오", "제우스")))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("중복된 이름이 입력되면 예외가 발생한다.")
     @Test
     void peopleTest() {
         assertThatThrownBy(() -> new People(
