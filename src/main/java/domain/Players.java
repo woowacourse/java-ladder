@@ -12,11 +12,15 @@ public class Players {
         }
     }
 
+    public int count() {
+        return players.size();
+    }
+
     public List<Player> getPlayers() {
         return players;
     }
 
-    public int count() {
-        return players.size();
+    public List<String> getNames() {
+        return null;
     }
 }

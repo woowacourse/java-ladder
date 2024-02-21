@@ -23,10 +23,23 @@ class PlayersTest {
     void getPlayersCount() {
         //given
         final List<String> names = List.of("pobi", "honux", "crong", "jk");
+        //when
         final Players players = new Players(names);
         //when
         int playersCount = players.count();
         //then
         Assertions.assertThat(playersCount).isEqualTo(names.size());
+    }
+
+    @DisplayName("참가자들의 이름 목록을 반환한다.")
+    @Test
+    void getPlayerNames() {
+        //given
+        final List<String> names = List.of("pobi", "honux", "crong", "jk");
+        final Players players = new Players(names);
+        //when
+        List<String> returnedNames = players.getNames();
+        //then
+        Assertions.assertThat(returnedNames).containsAll(names);
     }
 }
