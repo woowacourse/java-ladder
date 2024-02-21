@@ -73,18 +73,5 @@ class LadderLegGeneratorTest {
         return new LadderLegGenerator(height);
     }
 
-    private class FixedDirectionGenerator implements DirectionGenerator {
-        List<Direction> fixedList;
-        Integer index = 0;
-
-        FixedDirectionGenerator(List<Direction> fixedList) {
-            this.fixedList = fixedList;
-        }
-
-        @Override
-        public Direction generate() {
-            return fixedList.get(index++);
-        }
-    }
 
 }
