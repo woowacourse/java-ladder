@@ -14,8 +14,8 @@ public class LadderController {
 
         Names names = new Names(rawNames);
         Height height = new Height(rawHeight);
-        Lines lines = new Lines(height.getValue(), names.getNames().size());
-        
+        Lines lines = new Lines(height.getValue(), names.size());
+
         ResultView.printResult(names, lines);
     }
 }
