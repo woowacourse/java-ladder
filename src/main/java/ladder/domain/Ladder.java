@@ -18,4 +18,8 @@ public class Ladder {
     public int getHeight() {
         return lines.size();
     }
+
+    public int getWidth() {
+        return lines.get(0).size() - 1;
+    }
 }

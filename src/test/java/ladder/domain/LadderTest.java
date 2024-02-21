@@ -19,4 +19,15 @@ class LadderTest {
 
         assertThat(actual).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("사다리의 길이를 구할 수 있다")
+    void getWidthTest() {
+        LineGenerator lineGenerator = size -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
+        Ladder ladder = new Ladder(new Height(3), 2, lineGenerator);
+
+        int actual = ladder.getWidth();
+
+        assertThat(actual).isEqualTo(2);
+    }
 }
