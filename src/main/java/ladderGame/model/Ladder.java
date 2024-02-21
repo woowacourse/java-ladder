@@ -12,4 +12,8 @@ public class Ladder {
             lines.add(new Line(personNumber));
         }
     }
+
+    public List<Line> getLines() {
+        return new ArrayList<>(lines);
+    }
 }
