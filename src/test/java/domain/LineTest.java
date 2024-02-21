@@ -3,9 +3,8 @@ package domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import javax.sound.sampled.Line;
 import java.util.List;
-import java.util.function.Function;
+import java.util.function.IntFunction;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,7 +15,7 @@ public class LineTest {
     void randomCreateTest() {
         // given
         int count = 3;
-        Function<Integer, List<Boolean>> generator = number -> List.of(true, false, true);
+        IntFunction<List<Boolean>> generator = number -> List.of(true, false, true);
         List<Boolean> expected = List.of(true, false, true);
 
         // when
