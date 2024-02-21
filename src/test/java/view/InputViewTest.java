@@ -25,7 +25,7 @@ public class InputViewTest {
     @DisplayName("사용자 이름으로 공백이 입력되면 예외를 던진다.")
     @NullAndEmptySource
     @ParameterizedTest
-    @ValueSource(strings = {" ", "  ", "\b", "\n"})
+    @ValueSource(strings = {" ", "  ", "\t", "\n"})
     void validateNamesWithNullOrEmpty(final String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputView.readNames(() -> input))
