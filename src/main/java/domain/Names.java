@@ -10,7 +10,14 @@ public class Names {
 
     public Names(List<String> rawNames) {
         validateNameDuplication(rawNames);
+        validateNameCount(rawNames);
         this.names = createNames(rawNames);
+    }
+
+    private void validateNameCount(List<String> rawNames) {
+        if (rawNames.size() < 2) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private List<Name> createNames(List<String> names) {
