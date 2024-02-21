@@ -8,7 +8,7 @@ import java.util.List;
 
 public class OutputView {
 
-    private static final String RESULT = "실행결과\n";
+    private static final String RESULT = "\n실행결과\n";
     private static final String STICK = "|";
     private static final String LEG_UNIT = "-";
     private static final String FORMAT_NAME = "%6s";
