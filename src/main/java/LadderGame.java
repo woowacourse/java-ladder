@@ -7,6 +7,9 @@ import view.OutputView;
 
 public class LadderGame {
 
+    private LadderGame() {
+    }
+
     public static void run() {
         Names names = readNames();
         OutputView.printNewLine();

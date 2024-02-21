@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
+    private OutputView() {
+    }
+
     public static void printNames(Names names) {
         for (String name : names.getNames()) {
             System.out.printf("%5s ", name);
