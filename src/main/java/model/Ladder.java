@@ -11,11 +11,11 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder create(LadderHeight height, Players players, MaterialsGenerator materialsGenerator) {
+    public static Ladder create(LadderHeight height, Players players, BridgesGenerator bridgesGenerator) {
         int bridgeCount = players.getSizeOfPlayers() - 1;
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height.value(); i++) {
-            Line line = new Line(materialsGenerator.pickMaterials(bridgeCount));
+            Line line = new Line(bridgesGenerator.pickBridges(bridgeCount));
             lines.add(line);
         }
         return new Ladder(lines);

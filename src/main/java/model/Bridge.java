@@ -1,13 +1,29 @@
 package model;
 
-public class Bridge {
-    private final Boolean isConnected;
+import java.util.Arrays;
+import java.util.Optional;
 
-    public Bridge(Boolean isConnected) {
-        this.isConnected = isConnected;
+public enum Bridge {
+    CONNECTED(1),
+    UNCONNECTED(0);
+
+    private final int code;
+
+    Bridge(int code) {
+        this.code = code;
     }
 
-    public Boolean getIsConnected() {
-        return isConnected;
+    public static Optional<Bridge> findBridgeByCode(int code) {
+        return Arrays.stream(Bridge.values())
+                .filter(bridge -> code == bridge.code)
+                .findFirst();
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public boolean isConnected() {
+        return this == CONNECTED;
     }
 }

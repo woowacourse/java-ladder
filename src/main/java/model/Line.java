@@ -1,35 +1,33 @@
 package model;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
     private static final String INVALID_BRIDGES = "겹치는 다리가 존재합니다.";
+
     private final List<Bridge> bridges;
 
-    public Line(List<Boolean> bridges) {
+    public Line(List<Bridge> bridges) {
         validateBridges(bridges);
-        this.bridges = bridges.stream()
-                .map(Bridge::new)
-                .toList();
+        this.bridges = bridges;
     }
 
-    private void validateBridges(List<Boolean> bridges) {
-        Boolean preBridge = false;
-        for (Boolean currentBridge : bridges) {
+    private void validateBridges(List<Bridge> bridges) {
+        Bridge preBridge = Bridge.UNCONNECTED;
+        for (Bridge currentBridge : bridges) {
             checkBridge(preBridge, currentBridge);
             preBridge = currentBridge;
         }
     }
 
-    private void checkBridge(Boolean preBridge, Boolean currentBridge) {
-        if (preBridge && currentBridge) {
+    private void checkBridge(Bridge preBridge, Bridge currentBridge) {
+        if (preBridge.isConnected() && currentBridge.isConnected()) {
             throw new IllegalArgumentException(INVALID_BRIDGES);
         }
     }
 
-    public List<Boolean> getBridges() {
-        return bridges.stream()
-                .map(Bridge::getIsConnected)
-                .toList();
+    public List<Bridge> getBridges() {
+        return Collections.unmodifiableList(bridges);
     }
 }

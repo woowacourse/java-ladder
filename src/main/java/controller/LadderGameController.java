@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 import model.Ladder;
 import model.LadderHeight;
 import model.Players;
-import model.RandomMaterialsGenerator;
+import model.RandomBridgesGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -28,7 +28,7 @@ public class LadderGameController {
     }
 
     public Ladder makeLadder(Players players, LadderHeight ladderHeight) {
-        return Ladder.create(ladderHeight, players, new RandomMaterialsGenerator());
+        return Ladder.create(ladderHeight, players, new RandomBridgesGenerator());
     }
 
     public void end(Players players, Ladder ladder) {

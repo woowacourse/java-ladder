@@ -2,6 +2,7 @@ package view;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import model.Bridge;
 import model.Ladder;
 import model.Line;
 import model.Player;
@@ -34,7 +35,7 @@ public class OutputView {
     public static void printLadder(Ladder ladder) {
         List<Line> lines = ladder.getLines();
         for (Line line : lines) {
-            List<Boolean> bridges = line.getBridges();
+            List<Bridge> bridges = line.getBridges();
             String result = bridges.stream()
                     .map(OutputView::formatBridge)
                     .collect(Collectors.joining(BRIDGE_DELIMITER));
@@ -42,8 +43,8 @@ public class OutputView {
         }
     }
 
-    private static String formatBridge(Boolean isConnected) {
-        if (isConnected) {
+    private static String formatBridge(Bridge bridge) {
+        if (bridge.isConnected()) {
             return IS_CONNECTED_BRIDGE.repeat(BRIDGE_LENGTH);
         }
         return IS_UNCONNECTED_BRIDGE.repeat(BRIDGE_LENGTH);

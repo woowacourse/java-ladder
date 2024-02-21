@@ -12,8 +12,14 @@ public class LadderTest {
     void testSizeOfLadderLines() {
         Players players = Players.create(List.of("pobi", "lala"));
         LadderHeight ladderHeight = new LadderHeight(5);
-        Ladder ladder = Ladder.create(ladderHeight, players, (count) -> List.of(true, false, true));
+        Ladder ladder = Ladder.create(ladderHeight, players, (count) -> createBridges(List.of(1, 0)));
         assertThat(ladder.getLines().size())
                 .isEqualTo(5);
+    }
+
+    private static List<Bridge> createBridges(List<Integer> codes) {
+        return codes.stream()
+                .map(code -> Bridge.findBridgeByCode(code).orElse(null))
+                .toList();
     }
 }
