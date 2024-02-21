@@ -20,6 +20,6 @@ public class LadderTest {
 
         //then
         assertEquals(ladder.getLines().size(), height);
-        assertEquals(ladder.getLines().getPoints().size(), playerCount - 1);
+        assertEquals(ladder.getLines().get(0).getPoints().size(), playerCount - 1);
     }
 }
