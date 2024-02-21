@@ -30,6 +30,10 @@ public class Participants {
         }
     }
 
+    public List<Participant> getParticipants() {
+        return participants;
+    }
+
     public int getParticipantsSize() {
         return participants.size();
     }

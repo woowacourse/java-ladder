@@ -14,4 +14,8 @@ public class Participant {
             throw new IllegalArgumentException("이름은 최대 다섯글자까지 입력 가능하다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
