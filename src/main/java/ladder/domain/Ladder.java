@@ -20,7 +20,7 @@ public class Ladder {
     }
 
     public int getWidth() {
-        return lines.get(0).size() - 1;
+        return lines.get(0).getWidth();
     }
 
     public boolean isExist(int height, int width) {

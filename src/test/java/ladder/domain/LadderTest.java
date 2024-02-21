@@ -37,7 +37,7 @@ class LadderTest {
         LineGenerator lineGenerator = size -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
         Ladder ladder = new Ladder(new Height(3), 2, lineGenerator);
 
-        boolean actual = ladder.isExist(2, 2);
+        boolean actual = ladder.isExist(2, 1);
 
         assertThat(actual).isFalse();
     }

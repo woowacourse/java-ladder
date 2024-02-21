@@ -30,8 +30,8 @@ class LineTest {
     void isExistTest() {
         Line line = new Line(List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE, Stick.EXISTENCE));
 
-        Assertions.assertThat(line.isExist(1)).isTrue();
-        Assertions.assertThat(line.isExist(2)).isFalse();
+        Assertions.assertThat(line.isExist(0)).isTrue();
+        Assertions.assertThat(line.isExist(1)).isFalse();
     }
 
     @Test
@@ -39,6 +39,6 @@ class LineTest {
     void sizeTest() {
         Line line = new Line(List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE, Stick.EXISTENCE));
 
-        Assertions.assertThat(line.size()).isEqualTo(4);
+        Assertions.assertThat(line.getWidth()).isEqualTo(3);
     }
 }

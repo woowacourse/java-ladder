@@ -35,10 +35,10 @@ public class Line {
     }
 
     public boolean isExist(int position) {
-        return sticks.get(position - 1).isExist();
+        return sticks.get(position).isExist();
     }
 
-    public int size() {
-        return sticks.size() + 1;
+    public int getWidth() {
+        return sticks.size();
     }
 }
