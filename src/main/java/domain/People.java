@@ -26,4 +26,8 @@ public class People {
                 .map(Person::new)
                 .toList());
     }
+
+    public int getCount() {
+        return values.size();
+    }
 }

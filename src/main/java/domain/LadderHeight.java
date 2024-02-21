@@ -20,4 +20,8 @@ public class LadderHeight {
     public static LadderHeight from(String height) {
         return new LadderHeight(Integer.valueOf(height));
     }
+
+    public int getValue() {
+        return value;
+    }
 }
