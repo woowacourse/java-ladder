@@ -1,6 +1,8 @@
 package ladder.view.console;
 
 import java.util.Scanner;
+import ladder.exception.ErrorMessage;
+import ladder.exception.InvalidInputException;
 import ladder.view.InputView;
 
 public class ConsoleInputView implements InputView {
@@ -26,7 +28,7 @@ public class ConsoleInputView implements InputView {
 
     private void validateInputBlank(final String input) {
         if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException("입력은 비어있을 수 없습니다.");
+            throw new InvalidInputException(ErrorMessage.INPUT_NOT_BLANK);
         }
     }
 
@@ -36,7 +38,7 @@ public class ConsoleInputView implements InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("입력은 숫자여야 합니다.");
+            throw new InvalidInputException(ErrorMessage.INPUT_NOT_A_NUMBER);
         }
     }
 }

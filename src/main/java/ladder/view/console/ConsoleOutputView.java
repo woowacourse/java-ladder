@@ -8,14 +8,13 @@ import ladder.dto.PlayersDto;
 import ladder.view.OutputView;
 
 public class ConsoleOutputView implements OutputView {
-    private static final String ERROR_PREFIX = "[ERROR]";
     private static final String LADDER_RUNG_EMPTY = "     ";
     private static final String LADDER_RUNG_EXIST = "-----";
     private static final String LADDER_SIDE_RAIL = "|";
 
     @Override
-    public void printErrorMessage(String message) {
-        System.out.printf("%s %s%n", ERROR_PREFIX, message);
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
     }
 
     @Override

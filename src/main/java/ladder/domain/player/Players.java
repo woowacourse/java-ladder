@@ -3,10 +3,12 @@ package ladder.domain.player;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import ladder.exception.ErrorMessage;
+import ladder.exception.InvalidInputException;
 
 public class Players {
-    private static final int MAXIMUM_PLAYER_SIZE = 10;
-    private static final int MINIMUM_PLAYER_SIZE = 2;
+    public static final int MAXIMUM_PLAYER_SIZE = 10;
+    public static final int MINIMUM_PLAYER_SIZE = 2;
     private final List<Player> players;
 
     public Players(final List<String> playerNames) {
@@ -29,14 +31,13 @@ public class Players {
         final int playerSize = playerNames.size();
 
         if (playerSize > MAXIMUM_PLAYER_SIZE || playerSize < MINIMUM_PLAYER_SIZE) {
-            throw new IllegalArgumentException(
-                    String.format("참가자들의 수는 %d~%d여야 합니다.", MINIMUM_PLAYER_SIZE, MAXIMUM_PLAYER_SIZE));
+            throw new InvalidInputException(ErrorMessage.INVALID_PLAYER_SIZE);
         }
     }
 
     private void validateDuplicatedName(final List<String> playerNames) {
         if (playerNames.size() != new HashSet<>(playerNames).size()) {
-            throw new IllegalArgumentException("참가자들의 이름은 중복될 수 없습니다.");
+            throw new InvalidInputException(ErrorMessage.DUPLICATED_PLAYER_NAME);
         }
     }
 
