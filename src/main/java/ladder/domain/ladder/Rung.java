@@ -8,7 +8,7 @@ public enum Rung {
         return this == EXIST;
     }
 
-    public static Rung of(boolean exist) {
+    public static Rung of(final boolean exist) {
         if (exist) {
             return EXIST;
         }

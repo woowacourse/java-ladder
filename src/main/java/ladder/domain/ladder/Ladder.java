@@ -10,7 +10,7 @@ public class Ladder {
     private final Height height;
     private final List<Line> lines;
 
-    public Ladder(int playerCount, Height height, BooleanGenerator booleanGenerator) {
+    public Ladder(final int playerCount, final Height height, final BooleanGenerator booleanGenerator) {
         this.playerCount = playerCount;
         this.height = height;
         this.lines = generateLines(playerCount, height.getHeight(), booleanGenerator);

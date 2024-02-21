@@ -9,19 +9,19 @@ public class Line {
     private final BooleanGenerator booleanGenerator;
     private final List<Rung> rungs;
 
-    public Line(int playerCount, BooleanGenerator booleanGenerator) {
+    public Line(final int playerCount, final BooleanGenerator booleanGenerator) {
         this.booleanGenerator = booleanGenerator;
         this.rungs = generateRungs(playerCount);
     }
 
-    public List<Rung> generateRungs(int playerCount) {
-        List<Rung> rungs = new ArrayList<>();
+    public List<Rung> generateRungs(final int playerCount) {
+        final List<Rung> rungs = new ArrayList<>();
 
         for (int currentPlayerCount = 0; currentPlayerCount < playerCount - 1; currentPlayerCount++) {
-            boolean previousRungExist = currentPlayerCount > 0 && rungs.get(currentPlayerCount - 1).isExist();
-            boolean currentRungExist = booleanGenerator.generate();
+            final boolean previousRungExist = currentPlayerCount > 0 && rungs.get(currentPlayerCount - 1).isExist();
+            final boolean currentRungExist = booleanGenerator.generate();
 
-            Rung rung = Rung.of(!previousRungExist && currentRungExist);
+            final Rung rung = Rung.of(!previousRungExist && currentRungExist);
             rungs.add(rung);
         }
 

@@ -6,9 +6,9 @@ import ladder.domain.ladder.Rung;
 
 public record LineDto(List<Boolean> rungsExist) {
 
-    public static LineDto from(Line line) {
-        List<Rung> rungs = line.getRungs();
-        List<Boolean> rungExist = rungs.stream()
+    public static LineDto from(final Line line) {
+        final List<Rung> rungs = line.getRungs();
+        final List<Boolean> rungExist = rungs.stream()
                 .map(Rung::isExist)
                 .toList();
 

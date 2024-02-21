@@ -9,7 +9,7 @@ public class Converter {
     private Converter() {
     }
 
-    public static List<String> stringToList(String input) {
+    public static List<String> stringToList(final String input) {
         return Arrays.stream(input.split(DELIMITER, -1))
                 .map(String::strip)
                 .toList();

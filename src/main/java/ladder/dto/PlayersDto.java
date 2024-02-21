@@ -7,8 +7,8 @@ import ladder.domain.player.Players;
 
 public record PlayersDto(List<String> playerNames) {
 
-    public static PlayersDto from(Players players) {
-        List<Player> playerNames = players.getPlayers();
+    public static PlayersDto from(final Players players) {
+        final List<Player> playerNames = players.getPlayers();
 
         return playerNames.stream()
                 .map(Player::getName)

@@ -4,8 +4,8 @@ import ladder.domain.player.Player;
 
 public record PlayerDto(String name) {
 
-    public static PlayerDto from(Player player) {
-        String name = player.getName();
+    public static PlayerDto from(final Player player) {
+        final String name = player.getName();
 
         return new PlayerDto(name);
     }
