@@ -5,14 +5,24 @@ import java.util.List;
 
 public class Bridges {
 
-    private final List<Boolean> brides;
+    private final List<Boolean> bridges;
 
-    public Bridges(List<Boolean> brides) {
-        // TODO 추후 검증
-        this.brides = brides;
+    public Bridges(List<Boolean> bridges) {
+        validate(bridges);
+        this.bridges = bridges;
+    }
+
+    private void validate(List<Boolean> bridges) {
+        boolean before = false;
+        for (Boolean bridge : bridges) {
+            if (before && bridge) {
+                throw new IllegalArgumentException();
+            }
+            before = bridge;
+        }
     }
 
     public List<Boolean> getBridges() {
-        return Collections.unmodifiableList(brides);
+        return Collections.unmodifiableList(bridges);
     }
 }
