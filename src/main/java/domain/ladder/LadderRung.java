@@ -1,5 +1,6 @@
 package domain.ladder;
 
+import domain.BooleanGenerator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,8 +18,8 @@ class LadderRung {
         this.isConnected = isConnected;
     }
 
-    static LadderRung create(boolean isConnected) {
-        return CACHE.get(isConnected);
+    static LadderRung create(BooleanGenerator booleanGenerator) {
+        return CACHE.get(booleanGenerator.generate());
     }
 
     boolean isConnected() {
