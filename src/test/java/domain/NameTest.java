@@ -1,4 +1,5 @@
-import domain.Name;
+package domain;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,5 +26,4 @@ public class NameTest {
                 .hasMessage("[ERROR] 이름이 없습니다.");
 
     }
-
 }
