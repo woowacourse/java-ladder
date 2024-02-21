@@ -15,11 +15,11 @@ public class Lines {
         this.lines = lines;
     }
 
-    public static Lines of(final Supplier<Boolean> generator, final int ladderHeight, final int personCount) {
+    public static Lines of(Supplier<Boolean> generator, final int ladderHeight, final int personCount) {
         return new Lines(createLines(generator, ladderHeight, personCount));
     }
 
-    private static List<Line> createLines(final Supplier<Boolean> generator, final int ladderHeight, final int personCount) {
+    private static List<Line> createLines(Supplier<Boolean> generator, final int ladderHeight, final int personCount) {
         return IntStream.rangeClosed(1, ladderHeight)
                 .mapToObj(i -> new Line(generator, personCount))
                 .toList();
