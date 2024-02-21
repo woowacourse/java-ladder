@@ -1,6 +1,9 @@
+package domain;
+
 import java.util.Objects;
 
 class Name {
+
     private final String name;
 
     public Name(String name) {

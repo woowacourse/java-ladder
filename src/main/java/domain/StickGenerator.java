@@ -1,3 +1,5 @@
+package domain;
+
 public class StickGenerator {
 
     public Stick generate(int i) {
