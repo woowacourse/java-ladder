@@ -6,6 +6,7 @@ import static message.ErrorMessage.NO_PLAYER_NAME_EXCEPTION;
 
 public class Name {
 
+    private static final String NAME_LANGUAGE_FORMAT = "^[A-Za-z]*$";
     private final String name;
 
     public Name(String name) {
@@ -26,7 +27,7 @@ public class Name {
     }
 
     private void validateNameLanguage(String name) {
-        if (!name.matches("^[A-Za-z]*$")) {
+        if (!name.matches(NAME_LANGUAGE_FORMAT)) {
             throw new IllegalArgumentException(INVALID_PLAYER_NAME_LANGUAGE_EXCEPTION.getMessage());
         }
     }
