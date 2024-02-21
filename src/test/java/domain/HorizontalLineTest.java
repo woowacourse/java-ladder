@@ -23,7 +23,6 @@ class HorizontalLineTest {
     @ValueSource(ints = {-1, 0, 1, 11, 100})
     @DisplayName("올바르지 않은 범위의 수가 주어지면, 예외를 발생한다.")
     void invalidPlayerCountCreationTest(int playerCount) {
-        // TODO: 에러 메시지가 범위에 의존함
         assertThatThrownBy(() -> new HorizontalLine(playerCount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("플레이어 수 범위는 2 이상 10 이하여야 합니다.");
