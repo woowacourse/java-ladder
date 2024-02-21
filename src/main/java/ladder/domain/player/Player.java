@@ -2,12 +2,12 @@ package ladder.domain.player;
 
 import java.util.regex.Pattern;
 
-public class Name {
+public class Player {
     private static final int MAXIMUM_NAME_RANGE = 5;
     private static final Pattern NAME_VALID_FORMAT = Pattern.compile("[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]+");
     private final String name;
 
-    public Name(String name) {
+    public Player(String name) {
         validateName(name);
         this.name = name;
     }
