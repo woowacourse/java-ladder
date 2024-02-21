@@ -32,6 +32,7 @@ public class InputView {
     }
 
     public int readHeight() {
+        System.out.println();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String rawHeight = scanner.nextLine();
         if(rawHeight == null || rawHeight.trim().isEmpty()) {
