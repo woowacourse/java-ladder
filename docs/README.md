@@ -15,10 +15,15 @@
 
 5. Direction
     - LEFT, RIGHT, DOWN 세 방향을 갖는 enum.
+    - 1/2 확률로 RIGHT와 DOwN을 생성하도록 한다.
 
 6. Line
     - Point들을 가지는 일급 컬렉션.
-    - 각 Point에서 Direction(LEFT, RIGHT) 값을 가질 수 있는지 반환한다.
+    - 각 Point가 가질 수 있는 Direction을 지정하며 생성한다.
+    - 이전 Point가 RIGHT면 LEFT를 할당한다.
+    - 이전 Point가 RIGHT가 아니면 1/2 확률로 RIGHT 또는 DOWN을 할당한다.
+    - 쳣번째 Point면, 1/2 확률로 RIGHT 또는 DOWN을 할당한다.
+    - 마지막 Point면, 이전이 RIGHT면 LEFT, 아니면 DOWN,
 
 7. Ladder
     - Line들을 가지는 일급 컬렉션.
