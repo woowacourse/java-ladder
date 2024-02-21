@@ -20,7 +20,7 @@ class PlayerTest {
     }
 
     @Nested
-    @DisplayName("유효하지 않은 참가자 이름")
+    @DisplayName("참가자 이름이 유효하지 않을 경우 예외가 발생한다.")
     class InvalidNameTest {
 
         @ParameterizedTest
