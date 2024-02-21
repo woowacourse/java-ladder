@@ -41,7 +41,7 @@ public class OutputView {
     }
 
     public void printErrorMessage(String message) {
-        System.out.println(message + System.lineSeparator());
+        System.out.println("[ERROR] " + message + System.lineSeparator());
     }
 
     private void printHorizontalLine(List<Boolean> indices) {
