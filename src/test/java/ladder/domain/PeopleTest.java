@@ -24,6 +24,7 @@ public class PeopleTest {
         // then
         assertThat(people)
                 .extracting("values")
+                .usingRecursiveComparison()
                 .isEqualTo(expected);
     }
 
