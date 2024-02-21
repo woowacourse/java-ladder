@@ -12,7 +12,7 @@ public class Players {
     private final List<Player> players;
 
     public Players(final List<String> playerNames) {
-        validatePlayers(playerNames);
+        validate(playerNames);
         this.players = createPlayers(playerNames);
     }
 
@@ -22,7 +22,7 @@ public class Players {
                 .toList();
     }
 
-    private void validatePlayers(final List<String> playerNames) {
+    private void validate(final List<String> playerNames) {
         validateSize(playerNames);
         validateDuplicatedName(playerNames);
     }
