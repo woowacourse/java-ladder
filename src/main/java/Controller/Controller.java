@@ -22,7 +22,7 @@ public class Controller {
         Height height = heightRequest.toHegith();
 
         NumberGenerator numberGenerator = new RandomNumberGenerator();
-        Carpenter carpenter = new Carpenter(height, new PlayerCount(players), numberGenerator);
+        Carpenter carpenter = new Carpenter(height, PlayerCount.fromPlayers(players), numberGenerator);
         Ladder ladder = carpenter.makeLadder();
 
         outputView.printResult(players, ladder);

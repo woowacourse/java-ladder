@@ -12,6 +12,16 @@ public class WoodWorkMachine {
         this.playerCount = playerCount;
     }
 
+    public Line makeLine() {
+        List<Point> points = new ArrayList<>();
+
+        addFirstPoint(points);
+        addMiddlePoint(points);
+        addLastPoint(points);
+
+        return new Line(points);
+    }
+
     private boolean canBuild() {
         if (randomNumberGenerator.generate() == 0) {
             return false;
@@ -24,16 +34,6 @@ public class WoodWorkMachine {
            return new Point(Step.EXIST);
        }
        return new Point(Step.EMPTY);
-    }
-
-    public Line makeLine() {
-        List<Point> points = new ArrayList<>();
-
-        addFirstPoint(points);
-        addMiddlePoint(points);
-        addLastPoint(points);
-
-        return new Line(points);
     }
 
     private void addLastPoint(List<Point> points) {

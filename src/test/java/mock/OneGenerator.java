@@ -1,3 +1,5 @@
+package mock;
+
 import domain.NumberGenerator;
 
 public class OneGenerator implements NumberGenerator {
