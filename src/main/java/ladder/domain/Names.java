@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Names {
 
@@ -26,4 +27,12 @@ public class Names {
         }
     }
 
+    public int getSize() {
+        return names.size();
+    }
+
+    @Override
+    public String toString() {
+        return names.stream().map(name -> String.format("%-7s", name)).collect(Collectors.joining());
+    }
 }
