@@ -8,14 +8,22 @@ import java.util.List;
 public class Ladder {
 
     private final List<Line> ladder;
+    private final int height;
 
     public Ladder(int height) {
         validateHeight(height);
-        this.ladder = new ArrayList<>(height);
+        this.height = height;
+        this.ladder = new ArrayList<>();
     }
 
     public void init(int personCount, Generator generator) {
-        ladder.replaceAll(ignored -> new Line(generator.generate(personCount)));
+        for (int index = 0; index < height; ++index) {
+            ladder.add(index, new Line(generator.generate(personCount)));
+        }
+    }
+
+    public Line getLine(int index) {
+        return ladder.get(index);
     }
 
     private void validateHeight(int height) {
