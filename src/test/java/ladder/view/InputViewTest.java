@@ -1,4 +1,4 @@
-package view;
+package ladder.view;
 
 import ladder.view.InputView;
 import org.junit.jupiter.api.DisplayName;
