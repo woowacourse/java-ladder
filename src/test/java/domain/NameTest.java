@@ -2,6 +2,8 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -32,5 +34,15 @@ class NameTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름의 길이는 1 ~ 5 자 이어야 합니다.");
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"망크", "+"})
+    @DisplayName("이름이 영어와 숫자가 아니라면 예외가 발생한다")
+    void name_not_alphanumeric_throw_exception(String name) {
+        assertThatThrownBy(() -> new Name(name))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름이 영어와 숫자가 아니라면 예외가 발생한다");
+    }
+
 
 }
