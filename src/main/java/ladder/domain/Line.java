@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.util.BooleanListGenerator;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Line {
 
@@ -34,5 +35,19 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return points;
+    }
+
+    public String temp(boolean point) {
+        if (point) {
+            return "-".repeat(5);
+        }
+        return " ".repeat(5);
+    }
+
+    @Override
+    public String toString() {
+        return points.stream()
+                .map(this::temp)
+                .collect(Collectors.joining("|", "    |", "|"));
     }
 }
