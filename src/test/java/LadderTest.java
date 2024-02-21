@@ -28,7 +28,7 @@ public class LadderTest {
     @DisplayName("사다리의 행 내부의 라인은 랜덤하게 결정한다.")
     @RepeatedTest(100)
     void makeLines() {
-        Ladder ladder = new Ladder(1, List.of(new Line(5)));
+        Ladder ladder = new Ladder(1, List.of(new LadderRow(5)));
         ladder.makeLine();
         assertThat(ladder.getLines().get(0).size()).isEqualTo(4);
     }

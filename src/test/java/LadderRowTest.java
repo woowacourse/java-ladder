@@ -4,14 +4,14 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LineTest {
+public class LadderRowTest {
 
     @DisplayName("사다리의 열은 참가자의 수보다 하나 적다.")
     @Test
     void lengthOfLine() {
         int participantSize = 5;
-        Line line = new Line(participantSize);
-        assertThat(line.getMaxSize())
+        LadderRow ladderRow = new LadderRow(participantSize);
+        assertThat(ladderRow.getMaxSize())
                 .isEqualTo(participantSize - 1);
     }
 
@@ -19,11 +19,11 @@ public class LineTest {
     @DisplayName("행 내부의 라인이 겹치지 않도록 사다리를 생성할 수 있다.")
     @Test
     void cross() {
-        Line line = new Line(6);
-        line.cross(true);
-        line.cross(true);
-        line.cross(true);
-        assertThat(line.getPoints()).isEqualTo(List.of(true,false,true,false,true));
+        LadderRow ladderRow = new LadderRow(6);
+        ladderRow.cross(true);
+        ladderRow.cross(true);
+        ladderRow.cross(true);
+        assertThat(ladderRow.getPoints()).isEqualTo(List.of(true,false,true,false,true));
     }
 
 

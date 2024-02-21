@@ -5,22 +5,22 @@ import java.util.Random;
 public class Ladder {
 
     private final int height;
-    private final List<Line> lines;
+    private final List<LadderRow> ladderRows;
 
-    public Ladder(int height, List<Line> lines) {
+    public Ladder(int height, List<LadderRow> ladderRows) {
         validateHeightIsPositive(height);
-        this.lines = new ArrayList<>(lines);
+        this.ladderRows = new ArrayList<>(ladderRows);
         this.height = height;
     }
     public void makeLine() {
         for (int i = 0; i < height; i++) {
-            makeOneLines(lines.get(i));
+            makeOneLines(ladderRows.get(i));
         }
     }
 
-    private void makeOneLines(Line line) {
-        while (line.size() < line.getMaxSize()) {
-            line.cross(new Random().nextBoolean());
+    private void makeOneLines(LadderRow ladderRow) {
+        while (ladderRow.size() < ladderRow.getMaxSize()) {
+            ladderRow.cross(new Random().nextBoolean());
         }
     }
 
@@ -34,7 +34,7 @@ public class Ladder {
         return height;
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public List<LadderRow> getLines() {
+        return ladderRows;
     }
 }
