@@ -10,30 +10,25 @@ public class Player {
     private final String name;
 
     public Player(final String name) {
-        validateName(name);
+        validate(name);
         this.name = name;
     }
 
-    private void validateName(final String name) {
-        validateRange(name);
-        validateFormat(name);
+    private void validate(final String name) {
+        validateNameRange(name);
+        validateNameFormat(name);
     }
 
-    private void validateFormat(final String name) {
-        if (isInvalidFormat(name)) {
-            throw new InvalidInputException(ErrorMessage.INVALID_PLAYER_NAME_FORMAT);
-        }
-    }
-
-    private void validateRange(final String name) {
+    private void validateNameRange(final String name) {
         if (name.isBlank() || name.length() > MAXIMUM_NAME_RANGE) {
             throw new InvalidInputException(ErrorMessage.INVALID_PLAYER_NAME_RANGE);
         }
     }
 
-    private boolean isInvalidFormat(final String name) {
-        return !NAME_VALID_FORMAT.matcher(name)
-                .matches();
+    private void validateNameFormat(final String name) {
+        if (!NAME_VALID_FORMAT.matcher(name).matches()) {
+            throw new InvalidInputException(ErrorMessage.INVALID_PLAYER_NAME_FORMAT);
+        }
     }
 
     public String getName() {

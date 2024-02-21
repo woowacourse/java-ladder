@@ -11,38 +11,35 @@ public class Players {
     public static final int MINIMUM_PLAYER_SIZE = 2;
     private final List<Player> players;
 
-    public Players(final List<String> playerNames) {
-        validate(playerNames);
-        this.players = createPlayers(playerNames);
+    public Players(final List<Player> players) {
+        validate(players);
+        this.players = players;
     }
 
-    private static List<Player> createPlayers(final List<String> playerNames) {
-        return playerNames.stream()
-                .map(Player::new)
-                .toList();
+    private void validate(final List<Player> players) {
+        validateSize(players);
+        validateDuplicatedName(players);
     }
 
-    private void validate(final List<String> playerNames) {
-        validateSize(playerNames);
-        validateDuplicatedName(playerNames);
-    }
-
-    private void validateSize(final List<String> playerNames) {
-        final int playerSize = playerNames.size();
+    private void validateSize(final List<Player> players) {
+        final int playerSize = players.size();
 
         if (playerSize > MAXIMUM_PLAYER_SIZE || playerSize < MINIMUM_PLAYER_SIZE) {
             throw new InvalidInputException(ErrorMessage.INVALID_PLAYER_SIZE);
         }
     }
 
-    private void validateDuplicatedName(final List<String> playerNames) {
+    private void validateDuplicatedName(final List<Player> players) {
+        final List<String> playerNames = players.stream()
+                .map(Player::getName)
+                .toList();
+
         if (playerNames.size() != new HashSet<>(playerNames).size()) {
             throw new InvalidInputException(ErrorMessage.DUPLICATED_PLAYER_NAME);
         }
     }
 
-
-    public int countPlayers() {
+    public int getSize() {
         return players.size();
     }
 
