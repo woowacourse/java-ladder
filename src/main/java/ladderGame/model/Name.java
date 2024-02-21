@@ -15,4 +15,8 @@ public class Name {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_OVER_THAN_MAXIMUM);
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

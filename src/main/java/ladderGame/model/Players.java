@@ -40,4 +40,8 @@ public class Players {
     public int getPlayerSize() {
         return players.size();
     }
+
+    public List<Player> getPlayers() {
+        return new ArrayList<>(players);
+    }
 }
