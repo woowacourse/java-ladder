@@ -8,16 +8,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LadderTest {
 
     @Test
-    @DisplayName("라인의 수는 입력받은 최대 사다리 높이다.")
+    @DisplayName("입력받은 높이만큼 사다리를 생성한다.")
     void createLadder() {
         // given
-        int height = 5;
+        Height height = new Height(5);
+        People people = new People("pobi,honux,crong,jk");
 
         // when
-        Ladder ladder = new Ladder(height, 4);
+        Ladder ladder = new Ladder(height, people);
 
         // then
-        assertThat(ladder.getLines().size()).isEqualTo(height);
+        assertThat(height.isSame(ladder.getLinesSize())).isTrue();
     }
 
 }
