@@ -3,6 +3,7 @@ package laddergame.domain;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
 import laddergame.util.BooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,9 +33,9 @@ public class LineTest {
         Line line = new Line(personCount);
 
         BooleanGenerator alwaysTrueGenerator = () -> true;
-
+        List<Boolean> isBridgeBuilt = List.of(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE);
         //when
-        line.buildBridge(position, alwaysTrueGenerator);
+        line.buildBridge(isBridgeBuilt);
 
         //then
         assertTrue(line.isBuilt(position));
