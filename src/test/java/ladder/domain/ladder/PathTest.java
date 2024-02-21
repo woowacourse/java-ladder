@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ public class PathTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("boolean을 입력받으면 올바른 타입의 Path를 반환한다.")
     void convertPathAvailabilityTest() {
         // when & then
         assertEquals(Path.EMPTY, Path.from(false));

@@ -1,13 +1,13 @@
 package ladder.domain.generator;
 
-import ladder.domain.Path;
+import ladder.domain.ladder.Path;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static ladder.domain.Path.EMPTY;
-import static ladder.domain.Path.EXIST;
+import static ladder.domain.ladder.Path.EMPTY;
+import static ladder.domain.ladder.Path.EXIST;
 
 public class RandomLadderStepGenerator extends LadderStepGenerator {
     private final Random random = new Random();

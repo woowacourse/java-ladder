@@ -1,7 +1,7 @@
 package ladder.controller;
 
-import ladder.domain.Ladder;
-import ladder.domain.Participants;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.participant.Participants;
 import ladder.domain.generator.LadderStepGenerator;
 import ladder.domain.generator.RandomLadderStepGenerator;
 import ladder.view.InputView;

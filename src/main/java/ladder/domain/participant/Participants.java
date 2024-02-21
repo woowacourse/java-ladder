@@ -1,5 +1,6 @@
-package ladder.domain;
+package ladder.domain.participant;
 
+import ladder.domain.participant.Participant;
 import ladder.exception.DelimiterBoundaryException;
 
 import java.util.Arrays;

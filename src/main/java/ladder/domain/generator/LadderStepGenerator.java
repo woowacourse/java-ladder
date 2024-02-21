@@ -1,13 +1,13 @@
 package ladder.domain.generator;
 
-import ladder.domain.LadderStep;
-import ladder.domain.Path;
+import ladder.domain.ladder.LadderStep;
+import ladder.domain.ladder.Path;
 import ladder.exception.ContinuousPathException;
 import ladder.exception.InvalidStepWidthException;
 
 import java.util.List;
 
-import static ladder.domain.Path.EMPTY;
+import static ladder.domain.ladder.Path.EMPTY;
 
 public abstract class LadderStepGenerator {
     protected final int stepWidth;

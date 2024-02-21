@@ -1,6 +1,6 @@
 package ladder.domain.generator;
 
-import ladder.domain.Path;
+import ladder.domain.ladder.Path;
 import ladder.exception.ContinuousPathException;
 import ladder.exception.InvalidStepWidthException;
 import org.junit.jupiter.api.DisplayName;
@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static ladder.domain.Path.EMPTY;
-import static ladder.domain.Path.EXIST;
+import static ladder.domain.ladder.Path.EMPTY;
+import static ladder.domain.ladder.Path.EXIST;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class LadderStepGeneratorTest {

@@ -1,6 +1,10 @@
 package ladder.view;
 
-import ladder.domain.*;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderStep;
+import ladder.domain.ladder.Path;
+import ladder.domain.participant.Participant;
+import ladder.domain.participant.Participants;
 
 import java.util.List;
 import java.util.stream.Collectors;
