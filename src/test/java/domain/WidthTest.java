@@ -12,7 +12,7 @@ class WidthTest {
     @DisplayName("폭 검증")
     void validateWidth(int length) {
         assertThatThrownBy(() -> new Width(length))
-                .isInstanceOf(RuntimeException.class)
-                .hasMessage("폭은 2이상 10 이하여야 합니다.");
+                .isInstanceOf(LadderGameException.class)
+                .hasMessage(ExceptionType.WIDTH_RANGE.getMessage());
     }
 }

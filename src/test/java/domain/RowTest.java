@@ -13,8 +13,8 @@ class RowTest {
     @DisplayName("연속해서 가로 라인이 등장하는지 확인")
     void validateNearInfo() {
         Assertions.assertThatThrownBy(() -> new Row(List.of(true, true)))
-                .isInstanceOf(RuntimeException.class)
-                .hasMessage("연속해서 가로 라인이 등장할 수 없습니다.");
+                .isInstanceOf(LadderGameException.class)
+                .hasMessage(ExceptionType.ROW_NEAR.getMessage());
     }
 
     @ParameterizedTest
@@ -23,7 +23,7 @@ class RowTest {
     void validateRowInfoSize(int infoSize) {
         List<Boolean> rowInfos = IntStream.range(0, infoSize).mapToObj(value -> false).toList();
         Assertions.assertThatThrownBy(() -> new Row(rowInfos))
-                .isInstanceOf(RuntimeException.class)
-                .hasMessage("가로 라인 개수는 1이상 9 이하여야 합니다.");
+                .isInstanceOf(LadderGameException.class)
+                .hasMessage(ExceptionType.ROW_COUNT.getMessage());
     }
 }

@@ -13,13 +13,13 @@ class Name {
 
     private static void validateNameCharacters(String name) {
         if (name.matches("^[^a-zA-Z]+$")) {
-            throw new RuntimeException("이름은 알파벳 대소문자로만 이루어져있어야 합니다.");
+            throw new LadderGameException(ExceptionType.NAME_CHARACTER);
         }
     }
 
     private static void validateNameLength(String name) {
         if (name.isEmpty() || name.length() > 5) {
-            throw new RuntimeException("이름의 길이는 1자 이상 5자 이하여야 합니다.");
+            throw new LadderGameException(ExceptionType.NAME_LENGTH_RANGE);
         }
     }
 

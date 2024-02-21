@@ -16,13 +16,13 @@ class Row {
 
     private static void validateRowInfosCount(List<Boolean> rowInfos) {
         if (rowInfos.size() < 1 || rowInfos.size() > 9) {
-            throw new RuntimeException("가로 라인 개수는 1이상 9 이하여야 합니다.");
+            throw new LadderGameException(ExceptionType.ROW_COUNT);
         }
     }
 
     private static void validateNearInfo(List<Boolean> rowInfos, int index) {
         if (rowInfos.get(index) && rowInfos.get(index - 1)) {
-            throw new RuntimeException("연속해서 가로 라인이 등장할 수 없습니다.");
+            throw new LadderGameException(ExceptionType.ROW_NEAR);
         }
     }
 

@@ -12,7 +12,7 @@ class HeightTest {
     @DisplayName("높이 검증")
     void validateHeight(int length) {
         assertThatThrownBy(() -> new Height(length))
-                .isInstanceOf(RuntimeException.class)
-                .hasMessage("높이는 5이상 10 이하여야 합니다.");
+                .isInstanceOf(LadderGameException.class)
+                .hasMessage(ExceptionType.HEIGHT_RANGE.getMessage());
     }
 }

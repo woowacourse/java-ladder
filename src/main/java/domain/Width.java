@@ -10,7 +10,7 @@ class Width {
 
     private void validate(int width) {
         if (width < 2 || width > 10) {
-            throw new RuntimeException("폭은 2이상 10 이하여야 합니다.");
+            throw new LadderGameException(ExceptionType.WIDTH_RANGE);
         }
     }
 

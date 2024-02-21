@@ -20,14 +20,14 @@ public class Names {
 
     private static void validateNameCount(List<String> splitNames) {
         if (splitNames.size() > 10) {
-            throw new RuntimeException("사람은 최대 10명까지 받을 수 있습니다.");
+            throw new LadderGameException(ExceptionType.NAMES_COUNT);
         }
     }
 
     private void validateDuplicateName(List<String> splitNames) {
         long distinctCount = splitNames.stream().distinct().count();
         if (distinctCount != splitNames.size()) {
-            throw new RuntimeException("이름은 중복될 수 없습니다.");
+            throw new LadderGameException(ExceptionType.NAMES_DUPLICATE);
         }
     }
 
@@ -35,7 +35,7 @@ public class Names {
         boolean startsWith = names.startsWith(",");
         boolean endsWith = names.endsWith(",");
         if (startsWith || endsWith) {
-            throw new RuntimeException("구분자가 맨 앞이나 맨 뒤에 있으면 안됩니다.");
+            throw new LadderGameException(ExceptionType.NAMES_SEPARATOR);
         }
     }
 

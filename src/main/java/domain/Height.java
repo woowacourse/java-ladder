@@ -10,7 +10,7 @@ class Height {
 
     private void validate(int length) {
         if (length < 5 || length > 10) {
-            throw new RuntimeException("높이는 5이상 10 이하여야 합니다.");
+            throw new LadderGameException(ExceptionType.HEIGHT_RANGE);
         }
     }
 
