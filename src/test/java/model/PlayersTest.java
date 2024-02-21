@@ -39,4 +39,33 @@ public class PlayersTest {
                 Arguments.of(List.of("pobi", "doraa", "jojo"))
         );
     }
+
+    @DisplayName("참여자 이름이 중복되면 예외가 발생한다")
+    @ParameterizedTest
+    @MethodSource("provideDuplicatedPlayerNames")
+    void testInvalidPlayerNamesUnique(List<String> names) {
+        assertThatThrownBy(() -> Players.create(names))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    private static Stream<Arguments> provideDuplicatedPlayerNames() {
+        return Stream.of(
+                Arguments.of(List.of("pobi", "pobi")),
+                Arguments.of(List.of("dora", "jojo", "dora"))
+        );
+    }
+
+    @DisplayName("참여자 이름이 중복되지 않으면 예외가 발생하지 않는다")
+    @ParameterizedTest
+    @MethodSource("provideUniquePlayerNames")
+    void testValidPlayerNamesUnique(List<String> names) {
+        assertDoesNotThrow(() -> Players.create(names));
+    }
+
+    private static Stream<Arguments> provideUniquePlayerNames() {
+        return Stream.of(
+                Arguments.of(List.of("pobi", "dora")),
+                Arguments.of(List.of("pobi", "doraa", "jojo"))
+        );
+    }
 }
