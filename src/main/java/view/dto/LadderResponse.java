@@ -5,16 +5,26 @@ import model.Ladder;
 import model.Line;
 
 public class LadderResponse {
+    private int paddingSize;
     private int playerCount;
     private List<Line> lines;
 
-    public LadderResponse(int playerCount, List<Line> lines) {
+    public LadderResponse(int paddingSize, int playerCount, List<Line> lines) {
+        this.paddingSize = paddingSize;
         this.playerCount = playerCount;
         this.lines = lines;
     }
 
-    public static LadderResponse from(Ladder ladder) {
+    public static LadderResponse from(int paddingSize, Ladder ladder) {
         List<Line> lines = ladder.getLines();
-        return new LadderResponse(ladder.width(), lines);
+        return new LadderResponse(paddingSize, ladder.width(), lines);
+    }
+
+    public List<Line> getLadder() {
+        return lines;
+    }
+
+    public int getPaddingSize() {
+        return paddingSize;
     }
 }

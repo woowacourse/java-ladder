@@ -19,6 +19,11 @@ public class Players {
         }
     }
 
+    public int firstPlayerNameLength() {
+        // TODO: 이거맞아???
+        return players.get(0).getName().length();
+    }
+
     public List<String> getNames() {
         return players.stream()
                 .map(Player::getName)

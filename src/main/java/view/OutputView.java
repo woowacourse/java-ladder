@@ -1,6 +1,7 @@
 package view;
 
 import java.util.List;
+import model.Line;
 import view.dto.LadderResponse;
 
 public class OutputView {
@@ -32,7 +33,15 @@ public class OutputView {
         System.out.println(stringBuilder);
     }
 
-    private void printLadder() {
+    private void printLadder(LadderResponse ladderResponse) {
+        List<Line> lines = ladderResponse.getLadder();
+        for (Line line : lines) {
+            StringBuilder stringBuilder = new StringBuilder();
 
+            int paddingSize = ladderResponse.getPaddingSize();
+            stringBuilder.append(" ".repeat(paddingSize));
+            stringBuilder.append("|");
+            System.out.println(stringBuilder);
+        }
     }
 }

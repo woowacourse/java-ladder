@@ -18,6 +18,6 @@ public class Application {
         Ladder ladder = new Ladder(height, players.size());
 
         OutputView outputView = new OutputView();
-        outputView.printResult(players.getNames(), LadderResponse.from(ladder));
+        outputView.printResult(players.getNames(), LadderResponse.from(players.firstPlayerNameLength(), ladder));
     }
 }
