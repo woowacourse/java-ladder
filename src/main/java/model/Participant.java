@@ -1,3 +1,5 @@
+package model;
+
 public class Participant {
     private static final int MAX_NAME_LENGTH = 5;
 
@@ -19,5 +21,9 @@ public class Participant {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("참여자의 이름은 최대 5글자입니다.");
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }

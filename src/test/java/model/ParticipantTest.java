@@ -1,3 +1,5 @@
+package model;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +22,7 @@ public class ParticipantTest {
 
     static Stream<Arguments> inputName() {
         return Stream.of(
-                Arguments.of("abcdef", "참가자의 이름은 최대 5글자까지 부여할 수 있다.","참여자의 이름은 최대 5글자입니다."),
+                Arguments.of("abcdef", "참가자의 이름은 최대 5글자까지 부여할 수 있다.", "참여자의 이름은 최대 5글자입니다."),
                 Arguments.of(null, "참가자의 이름은 null일 수 없다.", "참가자의 이름은 null 이거나 공백일 수 없습니다."),
                 Arguments.of(" ", "참가자의 이름은 공백일 수 없다", "참가자의 이름은 null 이거나 공백일 수 없습니다."),
                 Arguments.of("", "참가자의 이름은 빈 문자일 수 없다", "참가자의 이름은 null 이거나 공백일 수 없습니다.")

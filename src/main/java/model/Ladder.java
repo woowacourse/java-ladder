@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -18,6 +20,7 @@ public class Ladder {
             throw new IllegalArgumentException("최대 사다리의 높이는 양수가 되어야 합니다");
         }
     }
+
     public void createRows() {
         for (int i = 0; i < height; i++) {
             createRow(ladderRows.get(i));
@@ -33,7 +36,8 @@ public class Ladder {
     public int height() {
         return height;
     }
-    public LadderRow getRow(int index){
+
+    public LadderRow getRow(int index) {
         return ladderRows.get(index);
     }
 }

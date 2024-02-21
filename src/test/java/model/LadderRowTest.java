@@ -1,8 +1,11 @@
-import static org.assertj.core.api.Assertions.assertThat;
+package model;
 
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderRowTest {
 
@@ -23,7 +26,7 @@ public class LadderRowTest {
         ladderRow.crossLine(true);
         ladderRow.crossLine(true);
         ladderRow.crossLine(true);
-        assertThat(ladderRow.getLines()).isEqualTo(List.of(true,false,true,false,true));
+        assertThat(ladderRow.getLines()).isEqualTo(List.of(true, false, true, false, true));
     }
 
 
