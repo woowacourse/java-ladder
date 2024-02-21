@@ -4,11 +4,15 @@ public class Participant {
     private final String name;
 
     public Participant(String name) {
+        validateNameNullAndBlank(name);
+        validateNameLength(name);
+        this.name = name;
+    }
+
+    private static void validateNameNullAndBlank(String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("참가자의 이름은 null 이거나 공백일 수 없습니다.");
         }
-        validateNameLength(name);
-        this.name = name;
     }
 
     private void validateNameLength(String name) {
