@@ -3,6 +3,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -42,5 +45,13 @@ public class RowLineTest {
                 () -> {
                     new RowLine(5, new RandomLineGenerator());
                 });
+    }
+
+    @DisplayName("참여자의 수가 n일 때, RowLine의 connection 길이는 n-1이다")
+    @ParameterizedTest
+    @ValueSource(ints = {100, 1, 2})
+    void rowLineConnectionSizeTest(int n) {
+        List<Boolean> connection = new RowLine(n, new RandomLineGenerator()).getConnection();
+        assertThat(connection).hasSize(n - 1);
     }
 }
