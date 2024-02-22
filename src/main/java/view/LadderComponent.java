@@ -1,15 +1,14 @@
 package view;
 
-public enum LadderStructure {
+public enum LadderComponent {
     DIVISION("|"),
     LINE("-----"),
     EMPTY_LINE("     "),
     ;
 
-
     private final String output;
 
-    LadderStructure(String output) {
+    LadderComponent(String output) {
         this.output = output;
     }
 
@@ -17,8 +16,8 @@ public enum LadderStructure {
         return output;
     }
 
-    public static LadderStructure match(boolean line){
-        if(line){
+    public static LadderComponent match(boolean lineStatus){
+        if(lineStatus){
             return LINE;
         }
         return EMPTY_LINE;
