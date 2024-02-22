@@ -8,6 +8,7 @@ import ladder.domain.randomGenerator.NumberGenerator;
 
 public class Carpenter {
 
+    private static final int LOOP_START_INDEX = 0;
     private final List<Ladder> ladders;
     private final Energy energy;
 
@@ -23,16 +24,16 @@ public class Carpenter {
     private List<Ladder> makeLadder(Height height, int personCount) {
         List<Ladder> ladders = new ArrayList<>();
 
-        for (int currentHeight = 0; currentHeight < height.getHeight(); currentHeight++) {
+        for (int currentHeight = LOOP_START_INDEX; currentHeight < height.getHeight(); currentHeight++) {
             ladders.add(new Ladder(personCount));
-            System.out.println(ladders);
         }
         return ladders;
     }
 
     private void tryBuildLadder(int personCount, Ladder ladder) {
-        int workableSteps = personCount - 1;
-        for (int currentPosition = 0; currentPosition < workableSteps; currentPosition++) {
+        int workableStepCount = personCount - 1;
+
+        for (int currentPosition = LOOP_START_INDEX; currentPosition < workableStepCount; currentPosition++) {
             tryBuildLadderStep(ladder, currentPosition);
         }
     }
