@@ -3,16 +3,14 @@ package ladder.domain.direction;
 import java.util.Arrays;
 
 public enum Direction {
-    RIGHT(0, "R"),
-    NEUTRAL(1, "N"),
-    LEFT(2, "L");
+    RIGHT(0),
+    NEUTRAL(1),
+    LEFT(2);
 
     private final int id;
-    private final String sign;
 
-    Direction(int id, String sign) {
+    Direction(int id) {
         this.id = id;
-        this.sign = sign;
     }
 
     public static Direction getDirection(int id) {
