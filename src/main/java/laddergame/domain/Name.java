@@ -35,10 +35,10 @@ public class Name {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof final Name name)) {
+        if (!(o instanceof final Name other)) {
             return false;
         }
-        return Objects.equals(getName(), name.getName());
+        return Objects.equals(getName(), other.getName());
     }
 
     @Override
