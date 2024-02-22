@@ -1,17 +1,14 @@
-package ladder.domain.ladder;
+package ladder.domain.line;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
 import ladder.domain.direction.Direction;
 import ladder.domain.direction.DirectionGeneratorImpl;
 import ladder.domain.direction.DirectionNeutralGeneratorImpl;
 import ladder.domain.direction.DirectionRightGeneratorImpl;
-import ladder.domain.ladder.Line;
-import ladder.domain.ladder.LineGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineGeneratorTest {
 
@@ -32,9 +29,10 @@ public class LineGeneratorTest {
     @Test
     void lineGenerateTestByFirstValue() {
         //given
+        int width = 1;
         int firstIndex = 0;
         LineGenerator lineGenerator = new LineGenerator(new DirectionGeneratorImpl());
-        Line line = lineGenerator.generate(1);
+        Line line = lineGenerator.generate(width);
         List<Direction> directionsInfo = line.getDirectionsInfo();
 
         //when
@@ -48,10 +46,11 @@ public class LineGeneratorTest {
     @Test
     void lineGenerateTestByRightBeforeLeft() {
         //given
+        int width = 2;
         int firstIndex = 0;
         int secondIndex = 1;
         LineGenerator lineGenerator = new LineGenerator(new DirectionRightGeneratorImpl());
-        Line line = lineGenerator.generate(2);
+        Line line = lineGenerator.generate(width);
         List<Direction> directionsInfo = line.getDirectionsInfo();
 
         //when
@@ -63,14 +62,15 @@ public class LineGeneratorTest {
         assertThat(secondLineDirection).isEqualTo(Direction.LEFT);
     }
 
-    @DisplayName("라인에서 이전 값이 '왼쪽'이라면 다음 값은 '오른쪽' 또는 '중립'이 되어야 한다.")
+    @DisplayName("라인에서 두번째 값 부터는 이전 값이 '왼쪽'이라면 다음 값은 '오른쪽' 또는 '중립'이 되어야 한다.")
     @Test
     void lineGenerateTestByRNBeforeLeft() {//수정 필요
         //given
+        int width = 3;
         int secondIndex = 1;
         int thirdIndex = 2;
         LineGenerator lineGenerator = new LineGenerator(new DirectionRightGeneratorImpl());
-        Line line = lineGenerator.generate(3);
+        Line line = lineGenerator.generate(width);
         List<Direction> directionsInfo = line.getDirectionsInfo();
 
         //when
@@ -84,14 +84,15 @@ public class LineGeneratorTest {
         assertThat(isDirectionRN).isTrue();
     }
 
-    @DisplayName("라인에서 이전 값이 '중립'이라면 다음 값은 '오른쪽' 또는 '중립'이 되어야 한다.")
+    @DisplayName("라인에서 두번째 값 부터는 이전 값이 '중립'이라면 다음 값은 '오른쪽' 또는 '중립'이 되어야 한다.")
     @Test
     void lineGenerateTestByRNBeforeNeutral() {
         //given
+        int width = 2;
         int firstIndex = 0;
         int secondIndex = 1;
         LineGenerator lineGenerator = new LineGenerator(new DirectionNeutralGeneratorImpl());
-        Line line = lineGenerator.generate(2);
+        Line line = lineGenerator.generate(width);
         List<Direction> directionsInfo = line.getDirectionsInfo();
 
         //when
@@ -103,5 +104,68 @@ public class LineGeneratorTest {
         //then
         assertThat(firstLineDirection).isEqualTo(Direction.NEUTRAL);
         assertThat(isDirectionRN).isTrue();
+    }
+
+    @DisplayName("라인에서 마지막 값의 직전 값이 '오른쪽'이라면 마지막 값은 '왼쪽'이 되어야 한다.")
+    @Test
+    void lineGenerateTestByLastBeforeRight() {
+        //given
+        int width = 2;
+        int firstIndex = 0;
+        int secondIndex = 1;
+        LineGenerator lineGenerator = new LineGenerator(new DirectionRightGeneratorImpl());
+        Line line = lineGenerator.generate(width);
+        List<Direction> directionsInfo = line.getDirectionsInfo();
+
+        //when
+        Direction firstLineDirection = directionsInfo.get(firstIndex);
+        Direction secondLineDirection = directionsInfo.get(secondIndex);
+
+        //then
+        assertThat(firstLineDirection).isEqualTo(Direction.RIGHT);
+        assertThat(secondLineDirection).isEqualTo(Direction.LEFT);
+    }
+
+    @DisplayName("라인에서 마지막 값의 직전 값이 '왼쪽'이라면 마지막 값은 '중립'이 되어야 한다.")
+    @Test
+    void lineGenerateTestByLastBeforeLeft() {
+        //given
+        int width = 3;
+        int firstIndex = 0;
+        int secondIndex = 1;
+        int thirdIndex = 2;
+        LineGenerator lineGenerator = new LineGenerator(new DirectionRightGeneratorImpl());
+        Line line = lineGenerator.generate(width);
+        List<Direction> directionsInfo = line.getDirectionsInfo();
+
+        //when
+        Direction firstLineDirection = directionsInfo.get(firstIndex);
+        Direction secondLineDirection = directionsInfo.get(secondIndex);
+        Direction thirdLineDirection = directionsInfo.get(thirdIndex);
+
+        //then
+        assertThat(firstLineDirection).isEqualTo(Direction.RIGHT);
+        assertThat(secondLineDirection).isEqualTo(Direction.LEFT);
+        assertThat(thirdLineDirection).isEqualTo(Direction.NEUTRAL);
+    }
+
+    @DisplayName("라인에서 마지막 값의 직전 값이 '중립'이라면 마지막 값은 '중립'이 되어야 한다.")
+    @Test
+    void lineGenerateTestByLastBeforeNeutral() {
+        //given
+        int width = 2;
+        int firstIndex = 0;
+        int secondIndex = 1;
+        LineGenerator lineGenerator = new LineGenerator(new DirectionNeutralGeneratorImpl());
+        Line line = lineGenerator.generate(width);
+        List<Direction> directionsInfo = line.getDirectionsInfo();
+
+        //when
+        Direction firstLineDirection = directionsInfo.get(firstIndex);
+        Direction secondLineDirection = directionsInfo.get(secondIndex);
+
+        //then
+        assertThat(firstLineDirection).isEqualTo(Direction.NEUTRAL);
+        assertThat(secondLineDirection).isEqualTo(Direction.NEUTRAL);
     }
 }
