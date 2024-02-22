@@ -21,7 +21,7 @@ class LineTest {
     void notConsecutiveDraw() {
         Line line = new Line(5);
 
-        List<DrawnStatus> isDrawns = line.getSpaces();
+        List<DrawnStatus> isDrawns = line.getDrawnStatuses();
 
         boolean isConsecutive = false;
         for(int i = 1; i < isDrawns.size(); i++) {
