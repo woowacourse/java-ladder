@@ -28,13 +28,8 @@ public class OutputView {
     private void writeLine(final Line line) {
         StringJoiner stringJoiner = new StringJoiner("|", "\t|", "|");
         for (Boolean point : line.getPoints()) {
-            if (point) {
-                stringJoiner.add("-----");
-                continue;
-            }
-            stringJoiner.add("     ");
+            stringJoiner.add(BridgeSymbol.getSymbol(point));
         }
-
         System.out.println(stringJoiner);
     }
 
