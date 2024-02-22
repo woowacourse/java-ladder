@@ -17,7 +17,6 @@ public class Ladder {
 
     public static Ladder of(LadderSize ladderSize) {
         List<Line> ladder = new ArrayList<>();
-
         int height = ladderSize.getHeight();
         int width = ladderSize.getWidth();
 
@@ -33,13 +32,8 @@ public class Ladder {
         List<LadderPath> randomPath = new ArrayList<>();
 
         while (randomPath.size() < width - 1) {
-            LadderPath temp = generateRandomPath();
-            randomPath.add(temp);
-            if (temp.equals(LadderPath.RIGHT)) {
-                randomPath.add(LadderPath.LEFT);
-            }
+            randomPath.addAll(generateRandomPath());
         }
-
         if (randomPath.size() < width) {
             randomPath.add(LadderPath.STAY);
         }
@@ -47,11 +41,13 @@ public class Ladder {
         return randomPath;
     }
 
-    private static LadderPath generateRandomPath() {
+
+
+    private static List<LadderPath> generateRandomPath() {
         if (random.nextBoolean()) {
-            return LadderPath.RIGHT;
+            return List.of(LadderPath.RIGHT, LadderPath.LEFT);
         }
-        return LadderPath.STAY;
+        return List.of(LadderPath.STAY);
     }
 
     public LadderSize getSize() {
