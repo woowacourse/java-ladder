@@ -7,7 +7,7 @@ import model.Line;
 public class LadderResponse {
     private final List<Line> lines;
 
-    public LadderResponse(List<Line> lines) {
+    private LadderResponse(List<Line> lines) {
         this.lines = lines;
     }
 

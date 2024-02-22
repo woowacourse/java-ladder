@@ -29,6 +29,11 @@ public class Line {
         return points.size();
     }
 
+    //TODO: 이름 수정하기 bridge라는 건 한번도 등장 안했음!
+    public boolean hasBridge(int index) {
+        return points.get(index);
+    }
+
     public List<Boolean> getPoints() {
         return points;
     }
