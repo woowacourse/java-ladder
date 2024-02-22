@@ -21,10 +21,6 @@ public class Ladder {
         return new Ladder(rows);
     }
 
-    public int getHeight() {
-        return rows.size();
-    }
-
     public List<LadderRow> getRows() {
         return Collections.unmodifiableList(rows);
     }
