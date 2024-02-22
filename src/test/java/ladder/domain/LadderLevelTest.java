@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 import static ladder.domain.Direction.LEFT;
 import static ladder.domain.Direction.RIGHT;
@@ -12,46 +13,42 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LadderLevelTest {
+class LadderLevelTest {
 
-    static List<Direction> ladderLevelTest(int peopleCount) {
-        List<Direction> result = new ArrayList<>();
-        for (int i = 0; i < peopleCount; i++) {
-            if (i % 2 != 0) {
-                result.add(LEFT);
-                continue;
-            }
-            result.add(RIGHT);
-        }
-        return result;
+    @DisplayName("사다리 층 생성")
+    @Test
+    void ladderLevelConstructTest() {
+        assertThatCode(() -> new LadderLevel(5, new DefaultLineGenerator()))
+                .doesNotThrowAnyException();
     }
 
-    @DisplayName("가로줄은 연속으로 존재할 수 없다.")
+    /**
+     * Direction.RIGHT Direction.LEFT는 함께 생성된다. <br>
+     * RIGHT-LEFT 쌍은 가로줄 한 개를 의미한다.
+     */
+    @DisplayName("가로줄 검증")
     @Test
-    void ladderLevelTest() {
-        int peopleCount = 100;
-
-        LadderLevel ladderLevel = new LadderLevel(peopleCount, () -> RIGHT);
+    void ladderLevelIntegrityTest() {
+        // given
+        LadderLevel ladderLevel = new LadderLevel(100, new DefaultLineGenerator());
         List<Direction> directions = ladderLevel.stream().toList();
-        List<Direction> expected = ladderLevelTest(peopleCount);
 
-        assertThat(directions).isEqualTo(expected);
-    }
+        //when
+        List<Integer> rightIndices = new ArrayList<>();
+        List<Integer> leftIndices = new ArrayList<>();
 
-    @DisplayName("가로줄은 연속으로 존재할 수 없다.")
-    @Test
-    void laadderLevelTest() {
-        int peopleCount = 100;
-
-        LadderLevel ladderLevel = new LadderLevel(peopleCount, new DefaultLineGenerator());
-        List<Direction> directions = ladderLevel.stream().toList();
-        IntStream.range(0, peopleCount).forEach(index -> {
+        IntStream.range(0, directions.size()).forEach(index -> {
             if (directions.get(index) == RIGHT) {
-                assertThat(directions.get(index + 1)).isEqualTo(LEFT);
+                rightIndices.add(index);
             }
             if (directions.get(index) == LEFT) {
-                assertThat(directions.get(index + 1)).isNotEqualTo(LEFT);
+                leftIndices.add(index);
             }
         });
+
+        List<Integer> expected = rightIndices.stream().mapToInt(index -> index + 1).boxed().toList();
+
+        //then
+        assertThat(expected).containsExactlyElementsOf(leftIndices);
     }
 }

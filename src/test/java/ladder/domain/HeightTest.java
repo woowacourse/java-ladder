@@ -12,7 +12,7 @@ class HeightTest {
 
     @DisplayName("높이 생성")
     @Test
-    void validHeightTest() {
+    void heightConstructTest() {
         assertThatCode(() -> new Height(1))
                 .doesNotThrowAnyException();
     }

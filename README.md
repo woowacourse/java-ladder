@@ -49,6 +49,8 @@ pobi  honux crong   jk
 
 ```
 
+// TODO: Ladder-LadderLevel 설계 어떻게 했는지 설명 .
+
 ## 리팩토링 목록
 
 - [X] People 객체만으로 충분하므로 Person 삭제
@@ -56,13 +58,16 @@ pobi  honux crong   jk
 - [X] 원시 자료형을 래퍼 클래스로 변경
   - [X] Height 생성
 - [X] 매직넘버를 상수로 변경
-- [ ] 테스트 개선
-  - [ ] LadderLevelTest
-    - [ ] 생성 테스트 추가
-    - [ ] 테스트케이스 생성 메서드 들여쓰기 제거
-    - [ ] 테스트명 변경
-  - [ ] LadderTest
-    - [ ] 생성 테스트 추가
-    - [ ] 테스트명 변경
-  - [ ] PeopleTest
-    - [ ] count 테스트 추가
+- [X] 테스트 개선
+  - [X] LadderLevelTest
+    - [X] 생성 테스트 추가
+    - [X] 테스트케이스 생성 메서드 들여쓰기 제거
+    - [X] 테스트명 변경
+  - [X] LadderTest
+    - [X] 생성 테스트 추가
+    - [X] 테스트명 변경
+  - [X] PeopleTest
+    - [X] count 테스트 추가
+    - [X] 테스트명 변경
+  - [X] HeightTest
+    - [X] 테스트명 변경
