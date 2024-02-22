@@ -1,31 +1,29 @@
 package domain;
 
-import domain.point.strategy.RandomBridgeGenerator;
+import domain.bridge.BridgeGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private final List<Line> lines;
+    private final List<Floor> floors;
 
-    private Ladder(List<Line> lines) {
-        this.lines = lines;
+    private Ladder(List<Floor> floors) {
+        this.floors = floors;
     }
 
-    public static Ladder of(LadderHeight height, int pointCount) {
-        RandomBridgeGenerator randomPointGenerator = new RandomBridgeGenerator();
-
-        List<Line> lines = new ArrayList<>();
+    public static Ladder create(LadderHeight height, int pointCount, BridgeGenerator bridgeGenerator) {
+        List<Floor> floors = new ArrayList<>();
         for (int i = 0; i < height.getValue(); i++) {
-            List<LadderBridge> bridges = randomPointGenerator.generate(pointCount);
-            lines.add(new Line(bridges));
+            List<LadderBridge> bridges = bridgeGenerator.generate(pointCount);
+            floors.add(new Floor(bridges));
         }
 
-        return new Ladder(lines);
+        return new Ladder(floors);
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    public List<Floor> getFloors() {
+        return Collections.unmodifiableList(floors);
     }
 }

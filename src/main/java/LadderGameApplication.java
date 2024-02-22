@@ -1,4 +1,5 @@
 import controller.LadderController;
+import domain.Ladder;
 import view.InputView;
 import view.OutputView;
 
@@ -11,6 +12,6 @@ public class LadderGameApplication {
         OutputView outputView = new OutputView();
         LadderController ladderController = new LadderController(inputView, outputView);
 
-        ladderController.start();
+        Ladder ladder = ladderController.createLadder();
     }
 }

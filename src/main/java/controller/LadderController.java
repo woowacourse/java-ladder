@@ -6,6 +6,7 @@ import domain.Ladder;
 import domain.LadderHeight;
 import domain.PlayerName;
 import domain.PlayerNames;
+import domain.bridge.strategy.RandomBridgeGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -18,24 +19,22 @@ public class LadderController extends Controller {
         super(inputView, outputView);
     }
 
-    public void start() {
+    public Ladder createLadder() {
         PlayerNames playerNames = readPlayerNames();
         LadderHeight ladderHeight = readLadderHeight();
 
-        Ladder ladder = createLadder(playerNames, ladderHeight);
-        outputView.printResult(playerNames, ladder);
-    }
-
-    private Ladder createLadder(PlayerNames playerNames, LadderHeight ladderHeight) {
         int pointCount = calculatePointCount(playerNames);
-        return Ladder.of(ladderHeight, pointCount);
+        Ladder ladder = Ladder.create(ladderHeight, pointCount, new RandomBridgeGenerator());
+        outputView.printLadder(playerNames, ladder);
+
+        return ladder;
     }
 
     private int calculatePointCount(PlayerNames playerNames) {
         return playerNames.getCount() - 1;
     }
 
-    public PlayerNames readPlayerNames() {
+    private PlayerNames readPlayerNames() {
         return retry(() -> createPlayerNames(inputView.readPlayerNames()));
     }
 
@@ -61,7 +60,7 @@ public class LadderController extends Controller {
         }
     }
 
-    public LadderHeight readLadderHeight() {
+    private LadderHeight readLadderHeight() {
         return retry(() -> new LadderHeight(inputView.readLadderHeight()));
     }
 }

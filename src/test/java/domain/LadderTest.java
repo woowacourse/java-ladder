@@ -1,5 +1,7 @@
 package domain;
 
+import domain.bridge.strategy.BridgeGeneratorStub;
+import domain.bridge.strategy.RandomBridgeGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +16,11 @@ public class LadderTest {
         LadderHeight height = new LadderHeight("3");
         int pointCount = 3;
 
-        Ladder ladder = Ladder.of(height, pointCount);
-        List<Line> lines = ladder.getLines();
+        Ladder ladder = Ladder.create(height, pointCount, new RandomBridgeGenerator());
+        List<Floor> floors = ladder.getFloors();
         assertAll(
-                () -> Assertions.assertThat(lines.size()).isEqualTo(3),
-                () -> Assertions.assertThat(lines.get(0).getBridges().size()).isEqualTo(3)
+                () -> Assertions.assertThat(floors.size()).isEqualTo(3),
+                () -> Assertions.assertThat(floors.get(0).getBridges().size()).isEqualTo(3)
         );
 
     }

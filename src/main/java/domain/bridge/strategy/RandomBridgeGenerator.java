@@ -1,7 +1,7 @@
-package domain.point.strategy;
+package domain.bridge.strategy;
 
 import domain.LadderBridge;
-import domain.point.BridgeGenerator;
+import domain.bridge.BridgeGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +35,4 @@ public class RandomBridgeGenerator implements BridgeGenerator {
 
         return now;
     }
-
-
 }
