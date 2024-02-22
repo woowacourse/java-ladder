@@ -2,12 +2,12 @@ package domain.name;
 
 import java.util.List;
 
-public class Names {
+public class Players {
     private static final String DUPLICATE_EXCEPTION_MESSAGE = "[ERROR] 중복된 이름이 존재합니다.";
 
     private final List<Name> names;
 
-    public Names(final List<Name> names) {
+    public Players(final List<Name> names) {
         validateDuplicateName(names);
         this.names = names;
     }

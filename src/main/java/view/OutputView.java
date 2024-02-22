@@ -1,11 +1,11 @@
 package view;
 
-import domain.name.Names;
+import domain.name.Players;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    public static void printPlayerNames(Names players) {
+    public static void printPlayerNames(Players players) {
         int maxLength = players.findMaxNameLength();
         players.getNames().stream()
                 .map(name -> alignNameCenter(name, maxLength + 1))

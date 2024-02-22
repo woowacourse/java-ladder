@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-public class NamesTest {
+public class PlayersTest {
     @Test
     void 중복된_이름이_존재하면_예외가_발생한다() {
         // given
@@ -16,7 +16,7 @@ public class NamesTest {
         final List<Name> names = List.of(duplicateName1, duplicateName2, uniqueName);
 
         // when & then
-        assertThatThrownBy(() -> new Names(names))
+        assertThatThrownBy(() -> new Players(names))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
@@ -29,6 +29,6 @@ public class NamesTest {
         final List<Name> names = List.of(uniqueName1, uniqueName2, uniqueName3);
 
         // when & then
-        assertDoesNotThrow(() -> new Names(names));
+        assertDoesNotThrow(() -> new Players(names));
     }
 }
