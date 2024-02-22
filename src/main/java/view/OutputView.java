@@ -3,23 +3,30 @@ package view;
 import domain.Ladder;
 import domain.Line;
 import domain.Players;
+import view.printer.Printer;
 
 public class OutputView {
+    private final Printer printer;
     private final OutputFormatter outputFormatter;
 
-    public OutputView() {
-        this.outputFormatter = new OutputFormatter();
+    private OutputView(Printer printer, OutputFormatter outputFormatter) {
+        this.printer = printer;
+        this.outputFormatter = outputFormatter;
+    }
+
+    public static OutputView from(Printer printer) {
+        return new OutputView(printer, new OutputFormatter());
     }
 
     public void printResult(Players rawPlayers, Ladder ladder) {
-        System.out.println("실행결과");
+        printer.printLine("실행결과");
         printNames(rawPlayers);
         printLadder(ladder);
     }
 
     private void printNames(Players players) {
         String nameUnit = outputFormatter.toNameUnit(players);
-        System.out.println(nameUnit);
+        printer.printLine(nameUnit);
     }
 
     private void printLadder(Ladder ladder) {
@@ -28,6 +35,6 @@ public class OutputView {
 
     private void printLine(Line rawLine) {
         String line = outputFormatter.toLine(rawLine);
-        System.out.println(line);
+        printer.printLine(line);
     }
 }

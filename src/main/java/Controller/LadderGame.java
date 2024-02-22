@@ -8,11 +8,11 @@ import view.OutputView;
 
 import java.util.function.Supplier;
 
-public class Controller {
+public class LadderGame {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public Controller(InputView inputView, OutputView outputView) {
+    public LadderGame(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
