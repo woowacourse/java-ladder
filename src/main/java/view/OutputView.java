@@ -23,16 +23,19 @@ public class OutputView {
     public void printLadder(List<Line> lines) {
         StringJoiner lineJoiner = new StringJoiner(System.lineSeparator());
         for (final Line line : lines) {
-            StringJoiner pointJoiner = new StringJoiner("|", "    |", "|");
-            for (boolean points : line.getBridges()) {
-                if (points) {
-                    pointJoiner.add("-----");
-                    continue;
-                }
-                pointJoiner.add("     ");
-            }
-            lineJoiner.add(pointJoiner.toString());
+            lineJoiner.add(makeLineView(line));
         }
         System.out.println(lineJoiner);
+    }
+
+    private static String makeLineView(final Line line) {
+        StringJoiner bridgeJoiner = new StringJoiner(
+                LadderComponents.COLUMN.getViewName(),
+                LadderComponents.FIRST_COLUMN.getViewName(),
+                LadderComponents.COLUMN.getViewName());
+        for (boolean bridge : line.getBridges()) {
+            bridgeJoiner.add(LadderComponents.getComponent(bridge).getViewName());
+        }
+        return bridgeJoiner.toString();
     }
 }
