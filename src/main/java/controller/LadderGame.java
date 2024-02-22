@@ -18,9 +18,12 @@ public class LadderGame {
         final LadderMaker ladderMaker = new LadderMaker();
         final Ladder ladder = ladderMaker.createLadder(players.count(), height.getHeight());
 
+        printGameResult(players, ladder);
+    }
+
+    private void printGameResult(final Players players, final Ladder ladder) {
         outputView.printResultMessage();
         outputView.printPlayers(players.getNames());
         outputView.printLadder(ladder.getLines());
     }
-
 }
