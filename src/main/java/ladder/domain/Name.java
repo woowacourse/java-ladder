@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 
 public class Name {
 
+    private static final int MAXIMUM_NAME_LENGTH = 5;
     private final String name;
     private static final Pattern specialCharactersFilter = Pattern.compile("[^a-zA-Z0-9\\s]");
 
@@ -29,7 +30,7 @@ public class Name {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() > 5) {
+        if (name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException("이름의 길이는 최대 5글자 까지 가능합니다.");
         }
     }
