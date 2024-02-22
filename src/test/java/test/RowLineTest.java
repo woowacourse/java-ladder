@@ -1,6 +1,6 @@
 package test;
 
-import ladder.domain.RandomLineGenerator;
+import ladder.domain.linegenerator.RandomLineGenerator;
 import ladder.domain.RowLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

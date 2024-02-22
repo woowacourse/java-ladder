@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.domain.linegenerator.LineGenerator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
