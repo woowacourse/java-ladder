@@ -21,14 +21,13 @@ public class Ladder {
         int width = ladderSize.getWidth();
 
         for (int i = 0; i < height; i++) {
-            Line line = new Line(makeRandomPaths(width));
-            ladder.add(line);
+            ladder.add(new Line(makeRandomRow(width)));
         }
 
         return new Ladder(ladder);
     }
 
-    private static List<LadderPath> makeRandomPaths(int width) {
+    private static List<LadderPath> makeRandomRow(int width) {
         List<LadderPath> randomPath = new ArrayList<>();
 
         while (randomPath.size() < width - 1) {
@@ -40,8 +39,6 @@ public class Ladder {
 
         return randomPath;
     }
-
-
 
     private static List<LadderPath> generateRandomPath() {
         if (random.nextBoolean()) {
