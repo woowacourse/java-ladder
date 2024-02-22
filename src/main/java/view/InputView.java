@@ -10,7 +10,6 @@ public class InputView {
     public static final String PLAYER_NAMES_INPUT_DELIMITER = ",";
     public static final String BLANK_SPACE = " ";
     public static final String BLANK_EMPTY = "";
-    public static final int READ_LIMIT = 10;
 
     public InputView(Scanner scanner) {
         this.scanner = scanner;

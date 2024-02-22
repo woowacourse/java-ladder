@@ -1,5 +1,6 @@
 package common.exception.message;
 
+import controller.Controller;
 import domain.LadderHeight;
 import domain.PlayerNames;
 import view.InputView;
@@ -15,5 +16,5 @@ public class ExceptionMessage {
     public static final String PLAYER_NAME_BLANK = "참가자 이름으로 공백을 사용할 수 없습니다";
     public static final String PLAYER_NAMES_INPUT_FORMAT = String.format("참가자 이름은 %s로 구분하여 입력해야합니다",
             InputView.PLAYER_NAMES_INPUT_DELIMITER);
-    public static final String READ_LIMIT_OVER = String.format("입력 횟수 제한(%d)를 초과하였습니다", InputView.READ_LIMIT);
+    public static final String READ_LIMIT_OVER = String.format("입력 횟수 제한(%d)를 초과하였습니다", Controller.READ_LIMIT);
 }

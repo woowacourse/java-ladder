@@ -12,6 +12,8 @@ public class Controller {
     protected final OutputView outputView;
     private int retryCount;
 
+    public static final int READ_LIMIT = 10;
+
     public Controller(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
@@ -31,7 +33,7 @@ public class Controller {
     }
 
     private void validateRetryCountLimit() {
-        if (retryCount++ == InputView.READ_LIMIT) {
+        if (retryCount++ == READ_LIMIT) {
             throw new IOException(ExceptionMessage.READ_LIMIT_OVER);
         }
     }

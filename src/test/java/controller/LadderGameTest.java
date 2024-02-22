@@ -1,6 +1,5 @@
 package controller;
 
-import domain.PlayerName;
 import domain.PlayerNames;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
