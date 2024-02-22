@@ -5,8 +5,9 @@ import java.util.regex.Pattern;
 public class Name {
 
     private static final int MAXIMUM_NAME_LENGTH = 5;
-    private final String name;
     private static final Pattern specialCharactersFilter = Pattern.compile("[^a-zA-Z0-9\\s]");
+
+    private final String name;
 
     public Name(String name) {
         validate(name);
