@@ -10,6 +10,7 @@ public class PlayerTest {
     void invalidName() {
         assertThatIllegalArgumentException().isThrownBy(() -> new Player("abcdef"));
     }
+
     @Test
     @DisplayName("이름이 1~5자이내면 예외를 발생하지 않는다.")
     void validName() {

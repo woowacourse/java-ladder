@@ -6,13 +6,13 @@ import static org.assertj.core.api.Assertions.*;
 
 public class HeightTest {
     @Test
-    @DisplayName("다리길이에 0을 입력하면 예외가 발생한다.")
+    @DisplayName("다리 높이에 0을 입력하면 예외가 발생한다.")
     void invalidHeight() {
         assertThatThrownBy(() -> new Height(0)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("다리길이에 0보다 큰 수를 입력하면 정상적으로 다리길이를 생성한다.")
+    @DisplayName("다리 높이에 0보다 큰 수를 입력하면 정상적으로 다리길이를 생성한다.")
     void validHeight() {
         assertThatCode(() -> new Height(1)).doesNotThrowAnyException();
     }
@@ -20,14 +20,14 @@ public class HeightTest {
     @Test
     @DisplayName("입력보다 높이가 높으면 참을 반환한다.")
     void isBiggerThanTrue() {
-        final  Height height = new Height(2);
+        final Height height = new Height(2);
         assertThat(height.isBiggerThan(1)).isTrue();
     }
 
     @Test
     @DisplayName("입력보다 높이가 높지 않으면 거짓을 반환한다.")
     void isBiggerThanFalse() {
-        final  Height height = new Height(2);
+        final Height height = new Height(2);
         assertThat(height.isBiggerThan(2)).isFalse();
     }
 }
