@@ -24,7 +24,8 @@ class ParticipantTest {
     void validateNameLength() {
         String given = "123456";
         assertThatThrownBy(() -> new Participant(given))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 참여자 이름의 길이는 5자를 초과할 수 없다.");
     }
 
     @DisplayName("참여할 사람의 이름은 null이거나 공백이면 안된다.")
@@ -33,6 +34,7 @@ class ParticipantTest {
     @ValueSource(strings = {""})
     void validateNameNotNullAndNotBlank(String given) {
         assertThatThrownBy(() -> new Participant(given))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 참여자 이름은 null이거나 공백일 수 없다.");
     }
 }

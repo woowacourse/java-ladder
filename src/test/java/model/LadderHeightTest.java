@@ -34,6 +34,7 @@ public class LadderHeightTest {
     @ValueSource(ints = {-5, -1, 0})
     void validateLadderHeight(int given) {
         assertThatThrownBy(() -> new LadderHeight(given))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 사다리 높이는 1 이상의 정수이어야 한다.");
     }
 }

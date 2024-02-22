@@ -12,7 +12,7 @@ public class LadderHeight {
 
     private void validateLadderHeightRange(int ladderHeight) {
         if (ladderHeight < 1) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 사다리 높이는 1 이상의 정수이어야 한다.");
         }
     }
 

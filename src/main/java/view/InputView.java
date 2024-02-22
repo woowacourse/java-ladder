@@ -30,7 +30,7 @@ public class InputView {
 
     private void validateParticipantsNames(String input) {
         if (input == null || input.isBlank() || input.endsWith(",")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 입력값은 공백이거나 구분자(,)로 끝날 수 없다.");
         }
     }
 
@@ -38,7 +38,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 입력값은 숫자형식이어야 한다.");
         }
     }
 }
