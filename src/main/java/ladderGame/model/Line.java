@@ -5,21 +5,21 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
-    private final List<DrawnStatus> isDrawns;
+    private final List<DrawnStatus> spaces;
 
     public Line(int number) {
-        isDrawns = new ArrayList<>();
+        spaces = new ArrayList<>();
         for (int i = 0; i < number - 1; i++) {
             drawSpace(i);
         }
     }
 
     private void drawSpace(int index) {
-        if (index == 0 || !isDrawns.get(index - 1).checkDrawn()) {
-            isDrawns.add(decideDrawnStatus());
+        if (index == 0 || !spaces.get(index - 1).checkDrawn()) {
+            spaces.add(decideDrawnStatus());
             return;
         }
-        isDrawns.add(DrawnStatus.NON_DRAWN);
+        spaces.add(DrawnStatus.NON_DRAWN);
     }
 
     private DrawnStatus decideDrawnStatus() {
@@ -29,8 +29,8 @@ public class Line {
         return DrawnStatus.NON_DRAWN;
     }
 
-    public List<DrawnStatus> getIsDrawns() {
-        return new ArrayList<>(isDrawns);
+    public List<DrawnStatus> getSpaces() {
+        return new ArrayList<>(spaces);
     }
 
 }

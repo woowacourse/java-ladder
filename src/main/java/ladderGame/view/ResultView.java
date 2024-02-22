@@ -33,14 +33,14 @@ public class ResultView {
     }
 
     private String makeLineToString(Line line) {
-        List<DrawnStatus> isDrawns = line.getIsDrawns();
-        StringBuilder sb = new StringBuilder();
+        List<DrawnStatus> spaces = line.getSpaces();
+        StringBuilder stringBuilder = new StringBuilder();
 
-        sb.append(BLANK_MARK + LINE_MARK);
-        for (DrawnStatus isDrawn : isDrawns) {
-            sb.append(checkDrawnMark(isDrawn)).append(LINE_MARK);
+        stringBuilder.append(BLANK_MARK + LINE_MARK);
+        for (DrawnStatus space : spaces) {
+            stringBuilder.append(checkDrawnMark(space)).append(LINE_MARK);
         }
-        return sb.toString();
+        return stringBuilder.toString();
     }
 
     private String checkDrawnMark(DrawnStatus isDrawn) {
