@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class LadderTest {
 
-    @DisplayName("사다리 높이가 자연수가 아닐 경우 예외 처리 테스트")
+    @DisplayName("사다리 높이가 자연수가 아닐 경우 예외 처리")
     @ParameterizedTest
     @NullSource
     @ValueSource(strings = {"abc", "-1", "0", "", " "})

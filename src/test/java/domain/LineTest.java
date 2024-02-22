@@ -5,14 +5,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import util.TestBooleanGenerator;
-
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
 
-    @DisplayName("현재 위치에서 다리를 놓을 수 있는지에 대한 여부")
+    @DisplayName("현재 위치에서 다리를 놓을 수 있는지 확인")
     @ParameterizedTest
     @CsvSource(value = {"true,true,false", "false,true,true"}, delimiter = ',')
     void checkIsPossibleAddBridgeTest(boolean actual, boolean isConnectable, boolean expected) {
@@ -22,7 +21,7 @@ class LineTest {
         assertThat(line.decideConnectable(1, isConnectable)).isEqualTo(expected);
     }
 
-    @DisplayName("라인 생성 테스트")
+    @DisplayName("사다리 라인 생성")
     @Test
     void makeLineTest() {
         TestBooleanGenerator testDirectionGenerator = new TestBooleanGenerator(Boolean.TRUE);
