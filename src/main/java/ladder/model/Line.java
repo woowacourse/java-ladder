@@ -17,11 +17,11 @@ public class Line {
     }
 
     private void validate(List<LadderPath> row) {
-        if (isLeftOnFirst(row) || isRightOnEnd(row)) {
-            throw new IllegalArgumentException("유효한 가로줄이 아닙니다.");
+        if (isLeftOnFirst(row) || !isNotExistRightBeforeLeft(row)) {
+            throw new IllegalArgumentException("왼쪽 경로 왼쪽에 오른쪽 경로가 없습니다.");
         }
-        if (!isRLPatternAllMatched(row) || !isLRPatternAllMatched(row)) {
-            throw new IllegalArgumentException("유효한 가로줄이 아닙니다.");
+        if (isRightOnEnd(row) || !isNotExistLeftAfterRight(row)) {
+            throw new IllegalArgumentException("오른쪽 경로 오른쪽에 왼쪽 경로가 없습니다.");
         }
     }
 
@@ -33,18 +33,18 @@ public class Line {
         return row.get(row.size() - 1) == RIGHT;
     }
 
-    private boolean isRLPatternAllMatched(List<LadderPath> row) {
-        return IntStream.range(0, row.size())
-                .filter(i -> row.get(i).equals(RIGHT))
-                .map(idx -> idx + 1)
-                .allMatch(idx -> row.get(idx).equals(LEFT));
-    }
-
-    private boolean isLRPatternAllMatched(List<LadderPath> row) {
+    private boolean isNotExistRightBeforeLeft(List<LadderPath> row) {
         return IntStream.range(0, row.size())
                 .filter(i -> row.get(i).equals(LEFT))
                 .map(idx -> idx - 1)
                 .allMatch(idx -> row.get(idx).equals(RIGHT));
+    }
+
+    private boolean isNotExistLeftAfterRight(List<LadderPath> row) {
+        return IntStream.range(0, row.size())
+                .filter(i -> row.get(i).equals(RIGHT))
+                .map(idx -> idx + 1)
+                .allMatch(idx -> row.get(idx).equals(LEFT));
     }
 
     public int size() {

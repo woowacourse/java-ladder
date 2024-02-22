@@ -12,7 +12,8 @@ public class LadderSizeTest {
         int height = 0;
         int width = 5;
         assertThatThrownBy(() -> new LadderSize(height, width))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사다리 높이는 자연수여야 합니다.");
     }
 
     @Test
@@ -21,6 +22,7 @@ public class LadderSizeTest {
         int height = 5;
         int width = 0;
         assertThatThrownBy(() -> new LadderSize(height, width))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("사다리 너비는 자연수여야 합니다.");
     }
 }

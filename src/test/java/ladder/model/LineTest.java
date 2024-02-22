@@ -13,45 +13,49 @@ public class LineTest {
     @Test
     @DisplayName("연속된 경로가 있다면 가로줄 생성에서 예외가 발생한다.")
     void throwsExceptionWhenContinuousPathExistTest() {
-        List<LadderPath> continuousPath = List.of(RIGHT, LEFT, RIGHT, RIGHT, STAY);
+        List<LadderPath> row = List.of(RIGHT, LEFT, RIGHT, RIGHT, STAY);
 
-        assertThatThrownBy(() -> new Line(continuousPath))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("오른쪽 경로 오른쪽에 왼쪽 경로가 없다면 예외가 발생한다.")
-    void throwsExceptionWhenNotRL() {
-        List<LadderPath> notRLPath = List.of(STAY, STAY, RIGHT, STAY, STAY);
-
-        assertThatThrownBy(() -> new Line(notRLPath))
+        assertThatThrownBy(() -> new Line(row))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("왼쪽 경로 왼쪽에 오른쪽 경로가 없다면 예외가 발생한다.")
-    void throwsExceptionWhenNotLR() {
-        List<LadderPath> notLRPath = List.of(STAY, STAY, LEFT, STAY, STAY);
+    void throwsExceptionWhenNotExistRightBeforeLeft() {
+        List<LadderPath> row = List.of(STAY, STAY, LEFT, STAY, STAY);
 
-        assertThatThrownBy(() -> new Line(notLRPath))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Line(row))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("왼쪽 경로 왼쪽에 오른쪽 경로가 없습니다.");
     }
 
     @Test
-    @DisplayName("첫 번째 경로가 왼쪽이라면 예외가 발생한다.")
-    void throwsExceptionWhenLeftFirst() {
-        List<LadderPath> leftFirstPath = List.of(LEFT, STAY, STAY, STAY, STAY);
+    @DisplayName("왼쪽 경로 왼쪽이 없다면 예외가 발생한다.")
+    void throwsExceptionWhenLeftOnFirst() {
+        List<LadderPath> row = List.of(LEFT, STAY, STAY, STAY, STAY);
 
-        assertThatThrownBy(() -> new Line(leftFirstPath))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Line(row))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("왼쪽 경로 왼쪽에 오른쪽 경로가 없습니다.");
     }
 
     @Test
-    @DisplayName("마지막 경로가 오른쪽이라면 예외가 발생한다.")
-    void throwsExceptionWhenRightLast() {
-        List<LadderPath> rightLastPath = List.of(STAY, STAY, STAY, STAY, RIGHT);
+    @DisplayName("오른쪽 경로 오른쪽에 왼쪽 경로가 없다면 예외가 발생한다.")
+    void throwsExceptionWhenNotExistLeftAfterRight() {
+        List<LadderPath> row = List.of(STAY, STAY, RIGHT, STAY, STAY);
 
-        assertThatThrownBy(() -> new Line(rightLastPath))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Line(row))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("오른쪽 경로 오른쪽에 왼쪽 경로가 없습니다.");
+    }
+
+    @Test
+    @DisplayName("오른쪽 경로 오른쪽이 없다면 예외가 발생한다.")
+    void throwsExceptionWhenRightOnEnd() {
+        List<LadderPath> row = List.of(STAY, STAY, STAY, STAY, RIGHT);
+
+        assertThatThrownBy(() -> new Line(row))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("오른쪽 경로 오른쪽에 왼쪽 경로가 없습니다.");
     }
 }
