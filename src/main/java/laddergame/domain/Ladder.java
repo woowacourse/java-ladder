@@ -24,6 +24,7 @@ public class Ladder {
     }
 
     private static boolean isNotCompleted(final List<Line> lines, final LadderHeight height) {
+        // TODO : isNot 메소드 명 변경
         return height.isNot(lines.size());
     }
 

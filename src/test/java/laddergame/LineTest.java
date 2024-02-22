@@ -2,7 +2,6 @@ package laddergame;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.ArrayList;
 import java.util.List;
 import laddergame.domain.Line;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +14,7 @@ public class LineTest {
     @Test
     void create() {
         // given & when
-        Line line = Line.create(3, size -> new ArrayList<>(List.of(true, true, true)));
+        Line line = Line.create(3, () -> true);
 
         //then
         assertThat(line).extracting("points")

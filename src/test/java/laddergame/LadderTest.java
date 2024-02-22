@@ -21,7 +21,7 @@ public class LadderTest {
         final List<Boolean> line = List.of(true, false, true);
 
         // when
-        Ladder ladder = Ladder.create(3, height, size -> line);
+        Ladder ladder = Ladder.create(3, height, () -> true);
 
         // then
         assertThat(ladder).extracting("lines")
