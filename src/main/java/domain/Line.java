@@ -33,6 +33,6 @@ public class Line {
     }
 
     public List<Boolean> getLegs() {
-        return Collections.unmodifiableList(legs);
+        return List.copyOf(legs);
     }
 }
