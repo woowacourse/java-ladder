@@ -1,6 +1,8 @@
 package strategy;
 
+import domain.Point;
+
 public interface PointStrategy {
 
-    boolean generatePoint();
+    Point generatePoint();
 }

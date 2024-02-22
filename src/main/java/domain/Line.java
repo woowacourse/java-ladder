@@ -6,7 +6,7 @@ import strategy.PointStrategy;
 
 public class Line {
 
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<Point> points = new ArrayList<>();
     private final PointStrategy pointStrategy;
 
     public Line(int playerCount, PointStrategy pointStrategy) {
@@ -17,15 +17,18 @@ public class Line {
     private void generate(int playerCount) {
         points.add(pointStrategy.generatePoint());
         for (int i = 1; i < playerCount - 1; i++) {
-            if (points.get(i - 1)) {
-                points.add(false);
-                continue;
-            }
-            points.add(pointStrategy.generatePoint());
+            points.add(makeNextPointByPrevious(points.get(i - 1)));
         }
     }
 
-    public List<Boolean> getPoints() {
+    private Point makeNextPointByPrevious(Point previous) {
+        if (previous.equals(Point.CONNECTED)) {
+            return Point.DISCONNECTED;
+        }
+        return pointStrategy.generatePoint();
+    }
+
+    public List<Point> getPoints() {
         return points;
     }
 }

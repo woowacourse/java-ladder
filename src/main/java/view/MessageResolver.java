@@ -3,6 +3,7 @@ package view;
 import domain.Line;
 import domain.Lines;
 import domain.Members;
+import domain.Point;
 
 public class MessageResolver {
 
@@ -27,15 +28,15 @@ public class MessageResolver {
 
     private String resolveLine(Line line) {
         String result = " ".repeat(4);
-        for (Boolean point : line.getPoints()) {
+        for (Point point : line.getPoints()) {
             result += "|";
-            if (point) {
-                result += "-".repeat(5);
-            } else { // TODO
-                result += " ".repeat(5);
-            }
+            result += resolvePoint(point);
         }
         result += "|";
         return result;
+    }
+
+    private String resolvePoint(Point point) {
+        return point.getDisplayCharacter().repeat(5);
     }
 }
