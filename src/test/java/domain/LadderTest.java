@@ -13,13 +13,13 @@ public class LadderTest {
     void createLadderSuccessWithHeightAndPointCount() {
         LadderHeight height = new LadderHeight("3");
         int pointCount = 3;
-
-        Ladder ladder = Ladder.of(height, pointCount, new BridgeGeneratorStub());
+        BridgeGeneratorStub bridgeGeneratorStub = new BridgeGeneratorStub();
+        bridgeGeneratorStub.setBridges(List.of(LadderBridge.BRIDGE, LadderBridge.NONE, LadderBridge.BRIDGE));
+        Ladder ladder = Ladder.of(height, pointCount, bridgeGeneratorStub);
         List<Floor> floors = ladder.getFloors();
         assertAll(
                 () -> Assertions.assertThat(floors.size()).isEqualTo(3),
                 () -> Assertions.assertThat(floors.get(0).getBridges().size()).isEqualTo(3)
         );
-
     }
 }

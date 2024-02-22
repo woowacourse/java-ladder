@@ -2,7 +2,7 @@ package common.exception;
 
 public class CustomException extends RuntimeException {
 
-    public CustomException(String message) {
+    public CustomException(final String message) {
         super(message);
     }
 }

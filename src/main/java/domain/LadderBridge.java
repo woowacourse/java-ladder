@@ -11,12 +11,12 @@ public enum LadderBridge {
     private final String value;
     private final boolean exist;
 
-    LadderBridge(String value, boolean exist) {
+    LadderBridge(final String value, final boolean exist) {
         this.value = value;
         this.exist = exist;
     }
 
-    public static LadderBridge getByExist(boolean exist) {
+    public static LadderBridge getByExist(final boolean exist) {
         return Arrays.stream(values())
                 .filter(value -> value.exist == exist)
                 .findFirst()

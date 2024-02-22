@@ -6,7 +6,7 @@ import java.util.List;
 public class Floor {
     private final List<LadderBridge> bridges;
 
-    public Floor(List<LadderBridge> bridges) {
+    public Floor(final List<LadderBridge> bridges) {
         this.bridges = bridges;
     }
 

@@ -4,7 +4,7 @@ import common.exception.CustomException;
 
 public class IOException extends CustomException {
 
-    public IOException(String message) {
+    public IOException(final String message) {
         super(message);
     }
 }

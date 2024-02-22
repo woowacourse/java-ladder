@@ -35,7 +35,7 @@ public class LadderController extends Controller {
         return retry(() -> createPlayerNames(inputView.readPlayerNames()));
     }
 
-    public PlayerNames createPlayerNames(String playerNamesInput) {
+    public PlayerNames createPlayerNames(final String playerNamesInput) {
         String[] splitPlayerNames = splitPlayerNames(playerNamesInput);
         List<PlayerName> playerNames = Arrays.stream(splitPlayerNames)
                 .map(PlayerName::new)
@@ -51,7 +51,7 @@ public class LadderController extends Controller {
         return playerNamesInput.split(InputView.PLAYER_NAMES_INPUT_DELIMITER);
     }
 
-    private void validatePlayerNamesInput(String playerNamesInput) {
+    private void validatePlayerNamesInput(final String playerNamesInput) {
         if (!InputView.PLAYER_NAMES_INPUT_PATTERN.matcher(playerNamesInput).matches()) {
             throw new ValidationException(ExceptionMessage.PLAYER_NAMES_INPUT_FORMAT);
         }

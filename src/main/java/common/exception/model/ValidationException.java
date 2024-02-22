@@ -4,7 +4,7 @@ import common.exception.CustomException;
 
 public class ValidationException extends CustomException {
 
-    public ValidationException(String message) {
+    public ValidationException(final String message) {
         super(message);
     }
 }

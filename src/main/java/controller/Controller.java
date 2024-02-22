@@ -13,7 +13,7 @@ public class Controller {
 
     public static final int READ_LIMIT = 10;
 
-    public Controller(InputView inputView, OutputView outputView) {
+    public Controller(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.retryCount = 0;

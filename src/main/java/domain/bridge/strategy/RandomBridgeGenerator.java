@@ -10,7 +10,7 @@ public class RandomBridgeGenerator implements BridgeGenerator {
     private static final Random random = new Random();
 
     @Override
-    public List<LadderBridge> generate(int pointCount) {
+    public List<LadderBridge> generate(final int pointCount) {
         List<LadderBridge> bridges = new ArrayList<>(pointCount);
         for (int i = 0; i < pointCount; i++) {
             addPoint(i, bridges, LadderBridge.getByExist(random.nextBoolean()));
@@ -19,7 +19,7 @@ public class RandomBridgeGenerator implements BridgeGenerator {
         return bridges;
     }
 
-    private void addPoint(int index, List<LadderBridge> points, LadderBridge now) {
+    private void addPoint(final int index, final List<LadderBridge> points, final LadderBridge now) {
         if (index == 0) {
             points.add(now);
             return;
@@ -27,7 +27,7 @@ public class RandomBridgeGenerator implements BridgeGenerator {
         points.add(generatePoint(now, points.get(index - 1)));
     }
 
-    private LadderBridge generatePoint(LadderBridge now, LadderBridge before) {
+    private LadderBridge generatePoint(LadderBridge now, final LadderBridge before) {
         while (now.equals(LadderBridge.BRIDGE) && before.equals(LadderBridge.BRIDGE)) {
             now = LadderBridge.getByExist(random.nextBoolean());
         }
