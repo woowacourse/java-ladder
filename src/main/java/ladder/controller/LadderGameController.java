@@ -24,16 +24,14 @@ public class LadderGameController {
         LinePatternGenerator lineGenerator = new LinePatternGenerator(new RandomBinarySupplier());
         Ladder ladder = new Ladder(height, playerNames.size(), lineGenerator);
 
-        PlayerNamesDto playerNamesDto = toPlayerDto(playerNames);
-        LadderDto ladderDto = toLadderDto(ladder);
+        PlayerNamesDto playerNamesDto = toDto(playerNames);
+        LadderDto ladderDto = toDto(ladder);
         outputView.printResult(ladderDto, playerNamesDto);
     }
 
     private List<PlayerName> inputPlayerNames() {
         try {
-            List<String> names = inputView.inputPlayerNames();
-
-            return names.stream()
+            return inputView.inputPlayerNames().stream()
                     .map(PlayerName::new)
                     .toList();
         } catch (IllegalArgumentException e) {
@@ -51,15 +49,14 @@ public class LadderGameController {
         }
     }
 
-    private PlayerNamesDto toPlayerDto(List<PlayerName> playerNames) {
+    private PlayerNamesDto toDto(List<PlayerName> playerNames) {
         List<String> resultPlayerNames = playerNames.stream()
                 .map(PlayerName::getName)
                 .toList();
-        PlayerNamesDto playerNamesDto = new PlayerNamesDto(resultPlayerNames);
-        return playerNamesDto;
+        return new PlayerNamesDto(resultPlayerNames);
     }
 
-    private LadderDto toLadderDto(Ladder ladder) {
+    private LadderDto toDto(Ladder ladder) {
         List<LineDto> lineDtos = IntStream.range(0, ladder.getHeight())
                 .mapToObj(height -> toLineDto(ladder, height))
                 .toList();
