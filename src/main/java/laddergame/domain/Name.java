@@ -26,10 +26,6 @@ public class Name {
         }
     }
 
-    public int getLength() {
-        return name.length();
-    }
-
     public String getName() {
         return name;
     }

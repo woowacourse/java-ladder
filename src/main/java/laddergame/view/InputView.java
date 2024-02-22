@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class InputView {
 
+    private static final String DELIMITER = ",";
     private static final Scanner scanner = new Scanner(System.in);
 
     public List<String> readNames() {
@@ -13,7 +14,7 @@ public class InputView {
 
         final String input = scanner.nextLine();
 
-        return Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(DELIMITER))
                 .toList();
     }
 
