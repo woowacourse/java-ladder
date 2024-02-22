@@ -1,7 +1,6 @@
 package controller;
 
 import common.exception.message.ExceptionMessage;
-import common.exception.model.IOException;
 import common.exception.model.ValidationException;
 import domain.Ladder;
 import domain.LadderHeight;
@@ -12,15 +11,11 @@ import view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Supplier;
 
-public class LadderGame {
-    private final InputView inputView;
-    private final OutputView outputView;
+public class LadderGame extends Controller{
 
     public LadderGame(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+        super(inputView, outputView);
     }
 
     public void start() {
@@ -41,7 +36,7 @@ public class LadderGame {
     }
 
     public PlayerNames readPlayerNames() {
-        return retry(() -> createPlayerNames(inputView.readPlayerNames()), 0);
+        return retry(() -> createPlayerNames(inputView.readPlayerNames()), INIT_RETRY_COUNT);
     }
 
     public PlayerNames createPlayerNames(String playerNamesInput) {
@@ -67,18 +62,6 @@ public class LadderGame {
     }
 
     public LadderHeight readLadderHeight() {
-        return retry(() -> new LadderHeight(inputView.readLadderHeight()), 0);
-    }
-
-    public <R> R retry(final Supplier<R> supplier, final int retryCount) {
-        if (retryCount == InputView.READ_LIMIT) {
-            throw new IOException(ExceptionMessage.READ_LIMIT_OVER);
-        }
-        try {
-            return supplier.get();
-        } catch (Exception exception) {
-            outputView.printErrorMessage(exception);
-            return retry(supplier, retryCount + 1);
-        }
+        return retry(() -> new LadderHeight(inputView.readLadderHeight()), INIT_RETRY_COUNT);
     }
 }
