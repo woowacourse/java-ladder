@@ -3,7 +3,7 @@ package ladder.controller;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.LineGenerator;
-import ladder.domain.People;
+import ladder.domain.Players;
 import ladder.exception.ExceptionHandler;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -11,14 +11,14 @@ import ladder.view.ResultView;
 public class Controller {
 
     public void run() {
-        People people = createPeople();
+        Players players = createPeople();
         Height height = createHeight();
-        Ladder ladder = new Ladder(people, height);
+        Ladder ladder = new Ladder(players, height);
         ladder.initialize(new LineGenerator());
-        ResultView.printResult(people, ladder);
+        ResultView.printResult(players, ladder);
     }
 
-    private People createPeople() {
+    private Players createPeople() {
         return ExceptionHandler.run(InputView::inputNames);
     }
 

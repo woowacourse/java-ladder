@@ -7,7 +7,7 @@ import java.util.StringJoiner;
 import ladder.domain.Direction;
 import ladder.domain.Ladder;
 import ladder.domain.LadderLevel;
-import ladder.domain.People;
+import ladder.domain.Players;
 
 public class ResultView {
 
@@ -16,15 +16,15 @@ public class ResultView {
     private static final String LINE = "|-----";
     private static final String EMPTY_LINE = "|     ";
 
-    public static void printResult(People people, Ladder ladder) {
+    public static void printResult(Players players, Ladder ladder) {
         System.out.println("\n실행 결과\n");
-        printPeople(people);
+        printPeople(players);
         printLadder(ladder);
     }
 
-    private static void printPeople(People people) {
+    private static void printPeople(Players players) {
         StringJoiner stringJoiner = new StringJoiner(NAME_DELIMITER);
-        people.stream().forEach(person -> stringJoiner.add(NAME_FORMAT.formatted(person.name())));
+        players.stream().forEach(person -> stringJoiner.add(NAME_FORMAT.formatted(person.name())));
         System.out.println(stringJoiner);
     }
 

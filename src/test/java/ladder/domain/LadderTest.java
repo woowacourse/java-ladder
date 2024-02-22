@@ -11,19 +11,19 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LadderTest {
-    People people;
+    Players players;
     Height height;
 
     @BeforeEach
     void setUp() {
-        people = new People(List.of("poby", "honux", "crong", "jk"));
+        players = new Players(List.of("poby", "honux", "crong", "jk"));
         height = new Height(5);
     }
 
     @DisplayName("사다리 생성")
     @Test
     void ladderConstructTest() {
-        assertThatCode(() -> new Ladder(people, height))
+        assertThatCode(() -> new Ladder(players, height))
                 .doesNotThrowAnyException();
     }
 
@@ -31,7 +31,7 @@ class LadderTest {
     @Test
     void ladderSizeTest() {
         //given
-        Ladder ladder = new Ladder(people, height);
+        Ladder ladder = new Ladder(players, height);
 
         // when
         ladder.initialize(new LineGenerator());
@@ -44,7 +44,7 @@ class LadderTest {
         // then
         assertAll(
                 () -> assertThat(actualHeight).isEqualTo(height.value()),
-                () -> assertThat(actualPeopleCount).isEqualTo(people.count())
+                () -> assertThat(actualPeopleCount).isEqualTo(players.count())
         );
     }
 }

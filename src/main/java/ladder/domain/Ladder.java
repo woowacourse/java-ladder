@@ -6,12 +6,12 @@ import java.util.stream.Stream;
 
 public class Ladder {
 
-    private final People people;
+    private final Players players;
     private final Height height;
     private final List<LadderLevel> ladderLevels;
 
-    public Ladder(People people, Height height) {
-        this.people = people;
+    public Ladder(Players players, Height height) {
+        this.players = players;
         this.height = height;
         ladderLevels = new ArrayList<>();
     }
@@ -19,7 +19,7 @@ public class Ladder {
     public void initialize(LineGenerator lineGenerator) {
         ladderLevels.clear();
         for (int currentHeight = 0; currentHeight < height.value(); currentHeight++) {
-            ladderLevels.add(new LadderLevel(people.count(), lineGenerator));
+            ladderLevels.add(new LadderLevel(players.count(), lineGenerator));
         }
     }
 

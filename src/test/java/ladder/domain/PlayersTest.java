@@ -9,19 +9,19 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class PeopleTest {
+class PlayersTest {
 
     @DisplayName("이름을 입력하여 People을 생성한다.")
     @Test
     void peopleConstructTest() {
-        assertThatCode(() -> new People(List.of("명오", "제우스")))
+        assertThatCode(() -> new Players(List.of("명오", "제우스")))
                 .doesNotThrowAnyException();
     }
 
     @DisplayName("중복된 이름이 입력되면 예외가 발생한다.")
     @Test
     void duplicateNameTest() {
-        assertThatThrownBy(() -> new People(
+        assertThatThrownBy(() -> new Players(
                 List.of("명오", "명오")
         ))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -30,7 +30,7 @@ class PeopleTest {
     @DisplayName("사람 수를 반환한다.")
     @Test
     void peopleCountTest() {
-        People people = new People(List.of("명오", "제우스"));
-        assertThat(people.count()).isEqualTo(2);
+        Players players = new Players(List.of("명오", "제우스"));
+        assertThat(players.count()).isEqualTo(2);
     }
 }

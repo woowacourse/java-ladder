@@ -3,16 +3,16 @@ package ladder.domain;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class People {
+public class Players {
 
     private static final int MIN_PEOPLE_COUNT = 2;
 
-    private final List<Person> people;
+    private final List<Player> people;
 
-    public People(List<String> names) {
+    public Players(List<String> names) {
         validate(names);
         people = names.stream()
-                .map(Person::new)
+                .map(Player::new)
                 .toList();
     }
 
@@ -38,7 +38,7 @@ public class People {
         return people.size();
     }
 
-    public Stream<Person> stream() {
+    public Stream<Player> stream() {
         return people.stream();
     }
 }

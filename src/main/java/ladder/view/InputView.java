@@ -5,16 +5,16 @@ import java.util.List;
 import java.util.Scanner;
 
 import ladder.domain.Height;
-import ladder.domain.People;
+import ladder.domain.Players;
 
 public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static People inputNames() {
+    public static Players inputNames() {
         System.out.println("\n참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         List<String> names = Arrays.asList(readLine().split(","));
-        return new People(names);
+        return new Players(names);
     }
 
     public static Height inputHeight() {
