@@ -1,12 +1,12 @@
 package ladder.domain;
 
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class UserNameTest {
     @DisplayName("이름의 길이가 5를 초과하면 예외를 던진다")
