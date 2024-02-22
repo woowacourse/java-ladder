@@ -17,11 +17,11 @@ public class LineTest {
      */
 
     @RepeatedTest(1000)
-    @DisplayName("랜덤으로 만든 값이 true 또는 false이다.")
+    @DisplayName("랜덤으로 만든 값이 Point 클래스의 instance이다.")
     void test() {
         Line line = new Line(4, new RandomPointStrategy());
         line.getPoints().forEach(
-                point -> assertThat(point).isInstanceOf(Boolean.class));
+                point -> assertThat(point).isInstanceOf(Point.class));
     }
 
     @Test
