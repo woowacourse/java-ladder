@@ -7,15 +7,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    private final BooleanGenerator booleanGenerator;
     private final List<Rung> rungs;
 
     public Line(final int playerCount, final BooleanGenerator booleanGenerator) {
-        this.booleanGenerator = booleanGenerator;
-        this.rungs = generateRungs(playerCount);
+        this.rungs = generateRungs(playerCount, booleanGenerator);
     }
 
-    public List<Rung> generateRungs(final int playerCount) {
+    public List<Rung> generateRungs(final int playerCount, final BooleanGenerator booleanGenerator) {
         final List<Rung> rungs = new ArrayList<>();
 
         for (int currentPlayerCount = 0; currentPlayerCount < playerCount - 1; currentPlayerCount++) {
