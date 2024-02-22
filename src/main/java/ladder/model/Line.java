@@ -2,6 +2,7 @@ package ladder.model;
 
 import ladder.constant.LadderPath;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -51,6 +52,6 @@ public class Line {
     }
 
     public List<LadderPath> getRow() {
-        return row;
+        return Collections.unmodifiableList(row);
     }
 }
