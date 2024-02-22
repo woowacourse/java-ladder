@@ -28,7 +28,7 @@ public class LadderGameMachine {
     private UserNames initNames() {
         try {
             List<String> input = InputView.readNames(CONSOLE);
-            return UserNames.of(input);
+            return UserNames.from(input);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return initNames();

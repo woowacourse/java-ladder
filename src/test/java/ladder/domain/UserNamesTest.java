@@ -14,7 +14,7 @@ class UserNamesTest {
     @Test
     void createUserNamesByLowerSize() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> UserNames.of(List.of("a")))
+                .isThrownBy(() -> UserNames.from(List.of("a")))
                 .withMessage(String.format(
                         "참여자는 %d명 이상이어야 합니다.", MIN_SIZE
                 ));
@@ -24,14 +24,14 @@ class UserNamesTest {
     @Test()
     void createNameByDuplicated() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> UserNames.of(List.of("kelly", "kelly")))
+                .isThrownBy(() -> UserNames.from(List.of("kelly", "kelly")))
                 .withMessage("중복된 이름은 허용되지 않습니다.");
     }
 
     @DisplayName("사용자 수를 반환한다.")
     @Test
     void getUserCount() {
-        final UserNames userNames = UserNames.of(List.of("aaa", "bbb"));
+        final UserNames userNames = UserNames.from(List.of("aaa", "bbb"));
 
         assertThat(userNames.getUserCount())
                 .isEqualTo(2);
@@ -40,7 +40,7 @@ class UserNamesTest {
     @DisplayName("사용자 이름들을 List<String> 형태로 가공하여 반환한다.")
     @Test
     void getUserNames() {
-        final UserNames userNames = UserNames.of(List.of("kelly", "liv"));
+        final UserNames userNames = UserNames.from(List.of("kelly", "liv"));
 
         assertThat(userNames.getUserNames())
                 .containsExactly("kelly", "liv");

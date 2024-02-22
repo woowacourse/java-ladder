@@ -15,7 +15,7 @@ public class UserNames {
         this.userNames = userNames;
     }
 
-    public static UserNames of(final List<String> userNames) throws IllegalArgumentException {
+    public static UserNames from(final List<String> userNames) throws IllegalArgumentException {
         List<String> names = new ArrayList<>(userNames);
         return names.stream()
                 .map(UserName::new)
