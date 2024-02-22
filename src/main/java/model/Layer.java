@@ -7,16 +7,15 @@ public class Layer {
     private List<Boolean> steps;
 
     public Layer(int numberOfParticipants) {
-        List<Boolean> setUp = new ArrayList<>();
-        StepGenerator stepGenerator = new StepGenerator();
-        boolean beforeValue = false;
+        List<Boolean> steps = new ArrayList<>();
+        boolean previousStep = false;
 
         for (int i = 0; i < numberOfParticipants - 1; i++) {
-            boolean findValue = stepGenerator.generateStep(beforeValue);
-            beforeValue = findValue;
-            setUp.add(findValue);
+            boolean generatedStep = StepGenerator.generateStep(previousStep);
+            previousStep = generatedStep;
+            steps.add(generatedStep);
         }
-        this.steps = setUp;
+        this.steps = steps;
     }
 
     public List<Boolean> getSteps() {

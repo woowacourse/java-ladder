@@ -3,9 +3,9 @@ package model;
 import java.util.Random;
 
 public class StepGenerator {
-    Random random = new Random();
+    static Random random = new Random();
 
-    public boolean generateStep(boolean beforeValue) {
+    public static boolean generateStep(boolean beforeValue) {
         if (beforeValue) {
             return false;
         }
