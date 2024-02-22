@@ -3,6 +3,7 @@ package ladder.controller;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.People;
+import ladder.util.ExceptionHandler;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -18,28 +19,27 @@ public class Controller {
     public void run() {
         People people = createNames();
         Height height = createHeight();
-        Ladder ladder = new Ladder(height, people);
+
+        Ladder ladder = new Ladder(people, height);
 
         outputView.printResult(people, ladder);
     }
 
     private People createNames() {
+        return ExceptionHandler.run(this::readNames);
+    }
+
+    private People readNames() {
         String names = inputView.readNames();
-        try {
-            return new People(names);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return createNames();
-        }
+        return new People(names);
     }
 
     private Height createHeight() {
+        return ExceptionHandler.run(this::readHeight);
+    }
+
+    private Height readHeight() {
         int value = inputView.readHeight();
-        try {
-            return new Height(value);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return createHeight();
-        }
+        return new Height(value);
     }
 }
