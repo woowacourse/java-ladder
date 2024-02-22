@@ -2,7 +2,6 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.Height;
-import domain.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,7 +12,7 @@ public class HeightTest {
     @DisplayName("높이 객체를 정상적으로 생성한다.")
     @Test
     void createHeight() {
-        assertThatCode(()->new Height(5))
+        assertThatCode(() -> new Height(5))
                 .doesNotThrowAnyException();
     }
 
