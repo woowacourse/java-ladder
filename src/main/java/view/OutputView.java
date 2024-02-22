@@ -44,6 +44,6 @@ public class OutputView {
         if (rung.isConnected()) {
             return CONNECTED_RUNG.repeat(length);
         }
-        return " ".repeat(length);
+        return DISCONNECTED_RUNG.repeat(length);
     }
 }
