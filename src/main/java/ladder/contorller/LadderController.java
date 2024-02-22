@@ -2,6 +2,8 @@ package ladder.contorller;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import ladder.domain.direction.DirectionGeneratorImpl;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.line.Line;
 import ladder.domain.line.LineGenerator;
@@ -14,12 +16,10 @@ public class LadderController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final LineGenerator lineGenerator;
 
-    public LadderController(InputView inputView, OutputView outputView, LineGenerator lineGenerator) {
+    public LadderController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lineGenerator = lineGenerator;
     }
 
     public void run() {
@@ -48,6 +48,8 @@ public class LadderController {
     private List<Line> createLines(int numberOfUsers) {
         int ladderHeight = inputView.readLadderHeight();
         List<Line> lines = new ArrayList<>();
+        LineGenerator lineGenerator = new LineGenerator(new DirectionGeneratorImpl());
+
         for (int i = 0; i < ladderHeight; i++) {
             lines.add(lineGenerator.generate(numberOfUsers));
         }
