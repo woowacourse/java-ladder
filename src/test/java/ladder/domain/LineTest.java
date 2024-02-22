@@ -37,5 +37,4 @@ public class LineTest {
         // then
         assertThat(line.getPoints()).isEqualTo(List.of(Point.ON, Point.OFF, Point.ON, Point.OFF));
     }
-
 }
