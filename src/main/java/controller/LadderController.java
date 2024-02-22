@@ -5,7 +5,6 @@ import model.Ladder;
 import model.Players;
 import view.InputView;
 import view.OutputView;
-import view.dto.LadderResponse;
 
 public class LadderController {
     private final InputView inputView;
@@ -22,6 +21,6 @@ public class LadderController {
 
         Ladder ladder = Ladder.of(height, players.size());
 
-        outputView.printResult(players.getNames(), LadderResponse.from(ladder));
+        outputView.printResult(players.getNames(), ladder.getLines());
     }
 }

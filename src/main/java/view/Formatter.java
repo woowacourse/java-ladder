@@ -5,11 +5,14 @@ import model.LadderElement;
 import model.Line;
 
 /**
- * 1. Ladder : List<Line>을 String으로 변환
- * 2. Players : List<String>을 String으로 변환 (공백 포함) =
+ * 1. Ladder : List<Line>을 String으로 변환 2. Players : List<String>을 String으로 변환 (공백 포함) =
  */
 public class Formatter {
-    public String formatPlayers(List<String> names) {
+
+    private Formatter() {
+    }
+
+    public static String formatPlayers(List<String> names) {
         StringBuilder stringBuilder = new StringBuilder();
         String firstPlayer = names.get(0);
 
@@ -29,16 +32,17 @@ public class Formatter {
         return stringBuilder.toString();
     }
 
-    public String formatLadder(List<Line> lines) {
+    public static String formatLadder(int paddingSize, List<Line> lines) {
         StringBuilder stringBuilder = new StringBuilder();
-        for(Line line : lines) {
+        for (Line line : lines) {
+            stringBuilder.append(" ".repeat(paddingSize));
             stringBuilder.append(formatLine(line));
             stringBuilder.append("%n");
         }
         return stringBuilder.toString();
     }
 
-    private String formatLine(Line line) {
+    private static String formatLine(Line line) {
         StringBuilder lineBuilder = new StringBuilder();
         lineBuilder.append(LadderElement.COLUMN.getSymbol());
         for (int index = 0; index < line.size(); index++) {
