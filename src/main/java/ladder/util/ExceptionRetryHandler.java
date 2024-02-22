@@ -4,6 +4,9 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 public class ExceptionRetryHandler {
+    private ExceptionRetryHandler() {
+    }
+
     public static <T> T handle(Supplier<T> supplier) {
         Optional<T> result = Optional.empty();
         while (result.isEmpty()) {

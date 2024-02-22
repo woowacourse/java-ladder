@@ -8,6 +8,9 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 public class RandomLinesGenerator {
+    private RandomLinesGenerator() {
+    }
+
     public static List<Line> generate(int width, int height) {
         return IntStream.range(0, height)
                 .mapToObj(i -> new Line(generateRandomLine(width)))
@@ -33,5 +36,4 @@ public class RandomLinesGenerator {
         Random random = new Random();
         return random.nextInt(2) == 0;
     }
-
 }
