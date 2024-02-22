@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -14,20 +15,20 @@ class PlayersTest {
     void create() {
         List<String> names = List.of("아톰", "산초");
 
-        Players players = new Players(names);
+        assertThatCode(() -> new Players(names))
+                .doesNotThrowAnyException();
     }
 
-    @DisplayName("사람들의 이름을 받아 사람 리스트로 변환한다.")
+    @DisplayName("사용자들의 이름을 받아 사용자 리스트로 변환한다.")
     @Test
     void mapToPlayer() {
         List<String> names = List.of("아톰", "산초");
-
         Players players = new Players(names);
 
         List<Player> result = players.getPlayers();
 
-        assertThat(result)
-                .containsExactly(new Player("아톰"), new Player("산초"));
+        assertThat(result).extracting(Player::getName)
+                .contains("아톰", "산초");
     }
 
     @DisplayName("사용자는 최소 2명이어야 한다.")

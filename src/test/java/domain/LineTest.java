@@ -35,7 +35,7 @@ class LineTest {
 
         List<Stick> sticks = line.getSticks();
 
-        assertThat(sticks.get(playerSize - 2)).isEqualTo(Stick.EMPTY);
+        assertThat(sticks.get(playerSize - 2)).isEqualTo(Stick.NOT_FILLED);
     }
 
     private StickGenerator filledStickGenerator() {
