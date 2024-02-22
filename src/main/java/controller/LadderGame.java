@@ -21,9 +21,9 @@ public class LadderGame {
 
     public void run() {
         try {
-            PlayerNames playerNames = generatePlayers();
-            Height height = generateHeight();
-            Ladder ladder = generateLadder(playerNames, height);
+            final PlayerNames playerNames = generatePlayers();
+            final Height height = generateHeight();
+            final Ladder ladder = generateLadder(playerNames, height);
 
             OutputView.printPlayerNames(playerNames);
             OutputView.printLadder(playerNames.findMaxNameLength(), ladder);
@@ -33,18 +33,18 @@ public class LadderGame {
     }
 
     private PlayerNames generatePlayers() {
-        List<String> names = InputView.inputPlayerNames();
+        final List<String> names = InputView.inputPlayerNames();
         return names.stream()
                 .map(PlayerName::new)
                 .collect(collectingAndThen(toList(), PlayerNames::new));
     }
 
     private Height generateHeight() {
-        int height = InputView.inputHeight();
+        final int height = InputView.inputHeight();
         return new Height(height);
     }
 
     private Ladder generateLadder(PlayerNames playerNames, Height height) {
-        return Ladder.create(height, playerNames.getPlayerCount(), booleanGenerator);
+        return Ladder.create(booleanGenerator, height, playerNames.getPlayerCount());
     }
 }

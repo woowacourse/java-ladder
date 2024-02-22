@@ -12,7 +12,7 @@ public class LadderRow {
         this.rungs = rungs;
     }
 
-    static LadderRow create(int size, BooleanGenerator booleanGenerator) {
+    static LadderRow create(BooleanGenerator booleanGenerator, int size) {
         final List<LadderRung> rungs = new ArrayList<>();
         boolean lastConnected = LadderRung.NOT_CONNECTED.isConnected();
         for (int i = 0; i < size; i++) {
