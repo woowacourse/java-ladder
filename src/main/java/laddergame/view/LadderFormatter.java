@@ -8,7 +8,7 @@ public class LadderFormatter {
 
     private static final String LADDER_HEIGHT_UNIT = "|";
     private static final String LADDER_WIDTH_UNIT = "-";
-    private static final String BLANK_UNIT = "-";
+    private static final String BLANK_UNIT = " ";
 
     private LadderFormatter() {
     }
