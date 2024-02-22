@@ -68,5 +68,13 @@ class InputViewTest {
             Assertions.assertThat(InputView.readHeight(() -> "5"))
                     .isEqualTo(5);
         }
+
+        @DisplayName("숫자 외의 값을 입력받으면 예외를 발생한다.")
+        @Test
+        void notNumberTest() {
+            Assertions.assertThatThrownBy(() -> InputView.readHeight(() -> "무빈"))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("정수를 입력해야 합니다.");
+        }
     }
 }

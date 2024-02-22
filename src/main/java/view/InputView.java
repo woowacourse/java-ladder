@@ -31,6 +31,15 @@ public class InputView {
     public static int readHeight(Supplier<String> input) {
         String inputString = input.get();
         validateEmpty(inputString);
+        validateInteger(inputString);
         return Integer.parseInt(inputString);
+    }
+
+    private static void validateInteger(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("정수를 입력해야 합니다.");
+        }
     }
 }
