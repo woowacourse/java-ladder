@@ -1,36 +1,18 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.IntStream;
+import model.path.Path;
 
 public class Line {
     private static final int MIN_PERSON_COUNT = 2;
 
     private final List<Path> paths;
 
-    public Line(int personCount) {
+    public Line(List<Path> paths) {
+        int personCount = paths.size() + 1;
         validatePersonCount(personCount);
-        paths = generatePaths(personCount - 1);
-    }
-
-    // TODO : 끝내주는 이름 생각하기
-    private List<Path> generatePaths(int pathsSize) {
-        int index = 0;
-        Random random = new Random();
-        List<Path> paths = new ArrayList<>();
-        IntStream.range(0, pathsSize).forEach((i) -> paths.add(Path.NOT_EXIST));
-
-        while (index < pathsSize) {
-            if (random.nextBoolean()) {
-                paths.set(index, Path.EXIST);
-                index += 2;
-                continue;
-            }
-            index++;
-        }
-        return paths;
+        validateContinuousPaths(paths);
+        this.paths = paths;
     }
 
     private void validatePersonCount(int personCount) {
@@ -39,16 +21,17 @@ public class Line {
         }
     }
 
-    public int getSize() {
-        return paths.size();
+    private void validateContinuousPaths(List<Path> paths) {
+        for (int i = 0; i < paths.size() - 1; i++) {
+            Path left = paths.get(i);
+            Path right = paths.get(i + 1);
+            if (left == Path.EXIST && right == Path.EXIST) {
+                throw new IllegalArgumentException("사다리의 경로는 연달아 있을 수 없습니다.");
+            }
+        }
     }
 
-    public Path get(int index) {
-        return paths.get(index);
-    }
-
-    // TODO : 끝내주는 이름 필요
-    public List<Boolean> getLineInfo() {
+    public List<Boolean> getExistFlags() {
         return paths.stream()
                 .map(Path::isExist)
                 .toList();
