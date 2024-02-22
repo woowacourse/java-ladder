@@ -12,7 +12,7 @@ public class LadderController {
     private Players ladderPlayers;
     private Ladder ladder;
 
-    public void init(){
+    public void makeLadder(){
         ladderPlayers = Players.from(readPlayerNames());
 
         LadderSize ladderSize = new LadderSize(readLadderHeight(), ladderPlayers.getSize());
@@ -27,7 +27,7 @@ public class LadderController {
         return InputView.inputLadderHeight();
     }
 
-    public void printResult() {
+    public void showLadder() {
         OutputView.printResultDescription();
         OutputView.printPlayerNames(ladderPlayers.getPlayerNames());
         OutputView.printLadder(ladder.toLineDtoList());
