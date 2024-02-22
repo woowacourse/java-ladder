@@ -12,23 +12,19 @@ import java.util.List;
 import view.InputView;
 import view.OutputView;
 
-public class LadderGame extends Controller {
+public class LadderController extends Controller {
 
-    public LadderGame(InputView inputView, OutputView outputView) {
+    public LadderController(InputView inputView, OutputView outputView) {
         super(inputView, outputView);
     }
 
-    public void start() {
+    public Ladder createLadder() {
         PlayerNames playerNames = readPlayerNames();
         LadderHeight ladderHeight = readLadderHeight();
-
-        Ladder ladder = createLadder(playerNames, ladderHeight);
-        outputView.printResult(playerNames, ladder);
-    }
-
-    private Ladder createLadder(PlayerNames playerNames, LadderHeight ladderHeight) {
         int pointCount = calculatePointCount(playerNames);
-        return Ladder.of(ladderHeight, pointCount, new RandomBridgeGenerator());
+        Ladder ladder = Ladder.of(ladderHeight, pointCount, new RandomBridgeGenerator());
+        outputView.printLadder(playerNames, ladder);
+        return ladder;
     }
 
     private int calculatePointCount(PlayerNames playerNames) {

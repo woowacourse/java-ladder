@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import view.InputView;
 import view.OutputView;
 
-class LadderGameTest {
+class LadderControllerTest {
 
     @Nested
     @DisplayName("플레이어 이름 구분자 테스트")
@@ -24,9 +24,9 @@ class LadderGameTest {
             String playerNameInfos = "aa,bb,cc";
             InputView inputView = new InputView(new Scanner(System.in));
             OutputView outputView = new OutputView();
-            LadderGame ladderGame = new LadderGame(inputView, outputView);
+            LadderController ladderController = new LadderController(inputView, outputView);
             //when
-            PlayerNames playerNames = ladderGame.createPlayerNames(playerNameInfos);
+            PlayerNames playerNames = ladderController.createPlayerNames(playerNameInfos);
             //then
             assertAll(
                     () -> Assertions.assertThat(playerNames.getCount()).isEqualTo(3),

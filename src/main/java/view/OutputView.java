@@ -10,7 +10,7 @@ public class OutputView {
     private static final String LADDER_FRAME = "|";
     private static final String PLAYER_NAMES_FORMAT = "%5s";
 
-    public void printResult(PlayerNames playerNames, Ladder ladder) {
+    public void printLadder(PlayerNames playerNames, Ladder ladder) {
         System.out.println("\n실행 결과\n");
         printPlayerNames(playerNames);
         printLadder(ladder);
