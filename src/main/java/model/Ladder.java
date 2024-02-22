@@ -6,39 +6,46 @@ import java.util.Random;
 
 public class Ladder {
 
-    private final int height;
+    private final int maximumHeight;
     private final List<LadderRow> ladderRows;
 
-    public Ladder(int height, List<LadderRow> ladderRows) {
-        validateHeightIsPositive(height);
-        this.ladderRows = new ArrayList<>(ladderRows);
-        this.height = height;
+    public Ladder(int maximumHeight) {
+        validateHeightIsPositive(maximumHeight);
+        this.ladderRows = new ArrayList<>();
+        this.maximumHeight = maximumHeight;
     }
 
-    private void validateHeightIsPositive(int height) {
-        if (height < 0) {
+    private void validateHeightIsPositive(int maximumHeight) {
+        if (maximumHeight < 0) {
             throw new IllegalArgumentException("최대 사다리의 높이는 양수가 되어야 합니다");
         }
     }
 
-    public void createRows() {
-        for (int i = 0; i < height; i++) {
-            createRow(ladderRows.get(i));
+    public void build(int participantsSize) {
+        for (int i = 0; i < maximumHeight; i++) {
+            ladderRows.add(buildRow(participantsSize));
         }
     }
 
-    private void createRow(LadderRow ladderRow) {
-        while (ladderRow.currentWidthSize() < ladderRow.getMaxWidth()) {
-            ladderRow.crossLine(new Random().nextBoolean());
+    private LadderRow buildRow(int participantsSize){
+        List<Boolean> lineStatus = new ArrayList<>();
+        lineStatus.add(new Random().nextBoolean());
+        for (int i = lineStatus.size(); i < participantsSize-1; i++) {
+            fillLineStatus(lineStatus, new Random().nextBoolean());
         }
-        if(!ladderRow.getLines().contains(true)){
-            ladderRow.clear();
-            createRow(ladderRow);
+        return new LadderRow(lineStatus);
+    }
+
+    private void fillLineStatus(List<Boolean> lineStatus, boolean linesOrNoLine){
+        if (lineStatus.get(lineStatus.size()-1).equals(true) && linesOrNoLine){
+            lineStatus.add(!linesOrNoLine);
+            return;
         }
+        lineStatus.add(linesOrNoLine);
     }
 
     public int height() {
-        return height;
+        return ladderRows.size();
     }
 
     public LadderRow getRow(int index) {
