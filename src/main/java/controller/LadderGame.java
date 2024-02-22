@@ -23,7 +23,7 @@ public class LadderGame {
         try {
             Players players = generatePlayers();
             Height height = generateHeight();
-            Ladder ladder = generateLadder(players, height);
+            Ladder ladder = Ladder.create(height, players, ladderRungGenerator);
             OutputView.printPlayerNames(players);
             OutputView.printLadder(players.findMaxNameLength(), ladder);
         } catch (Exception e) {
@@ -41,9 +41,5 @@ public class LadderGame {
     private Height generateHeight() {
         int height = InputView.inputHeight();
         return new Height(height);
-    }
-
-    private Ladder generateLadder(Players players, Height height) {
-        return Ladder.create(height, players.getPlayerCount(), ladderRungGenerator);
     }
 }

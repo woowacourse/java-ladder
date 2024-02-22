@@ -1,6 +1,7 @@
 package domain.ladder;
 
 import domain.height.Height;
+import domain.player.Players;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,10 +13,10 @@ public class Ladder {
         this.rows = rows;
     }
 
-    public static Ladder create(final Height height, final int playerSize, LadderRungGenerator ladderRungGenerator) {
+    public static Ladder create(Height height, Players players, LadderRungGenerator ladderRungGenerator) {
         List<LadderRow> rows = new ArrayList<>();
         for (int i = 0; i < height.getValue(); i++) {
-            final LadderRow ladderRow = LadderRow.create(playerSize - 1, ladderRungGenerator);
+            final LadderRow ladderRow = LadderRow.create(players.getPlayerCount() - 1, ladderRungGenerator);
             rows.add(ladderRow);
         }
         return new Ladder(rows);
