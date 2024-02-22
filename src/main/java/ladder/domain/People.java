@@ -5,29 +5,28 @@ import java.util.stream.Stream;
 
 public class People {
 
-    private static final int MIN_NAME_LENGTH = 1;
-    private static final int MAX_NAME_LENGTH = 5;
+    private static final int MIN_PEOPLE_COUNT = 2;
 
-    private final List<String> people;
+    private final List<Person> people;
 
     public People(List<String> names) {
         validate(names);
         people = names.stream()
-                .map(String::new)
+                .map(Person::new)
                 .toList();
     }
 
     private void validate(List<String> names) {
-        validateNameLength(names);
+        validatePeopleCount(names);
         validateDuplicatedName(names);
     }
 
-    private void validateNameLength(List<String> names) {
-        if (names.stream().anyMatch(name -> name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH)) {
-            throw new IllegalArgumentException(
-                    "이름은 %d~%d글자로 입력해주세요.".formatted(MIN_NAME_LENGTH, MAX_NAME_LENGTH));
+    private void validatePeopleCount(List<String> names) {
+        if (names.size() < MIN_PEOPLE_COUNT) {
+            throw new IllegalArgumentException("참여자는 최소 %d명입니다.".formatted(MIN_PEOPLE_COUNT));
         }
     }
+
 
     private void validateDuplicatedName(List<String> names) {
         if (names.size() != names.stream().distinct().count()) {
@@ -39,7 +38,7 @@ public class People {
         return people.size();
     }
 
-    public Stream<String> stream() {
+    public Stream<Person> stream() {
         return people.stream();
     }
 }

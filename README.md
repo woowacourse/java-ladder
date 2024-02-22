@@ -71,3 +71,4 @@ pobi  honux crong   jk
     - [X] 테스트명 변경
   - [X] HeightTest
     - [X] 테스트명 변경
+- [X] Person 추가
