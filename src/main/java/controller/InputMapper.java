@@ -6,9 +6,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputMapper {
+    private static final String NAME_DELIMITER = ",";
 
     public Names mapToNames(String target) {
-        List<String> names = Arrays.asList(target.split(","));
+        List<String> names = Arrays.asList(target.split(NAME_DELIMITER));
         return Names.from(names);
     }
 
