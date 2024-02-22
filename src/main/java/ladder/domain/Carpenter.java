@@ -17,17 +17,16 @@ public class Carpenter {
         this.energy = new Energy(numberGenerator);
     }
 
-    public void buildLadders(int personCount) {
-        ladders.forEach(ladder -> tryBuildLadder(personCount, ladder));
+    public ResultLadderDto getResultLadders() {
+        List<BuiltLadderDto> builtLadderDtos = ladders.stream()
+                .map(Ladder::getSteps)
+                .toList();
+
+        return new ResultLadderDto(builtLadderDtos);
     }
 
-    private List<Ladder> makeLadder(Height height, int personCount) {
-        List<Ladder> ladders = new ArrayList<>();
-
-        for (int currentHeight = LOOP_START_INDEX; currentHeight < height.getHeight(); currentHeight++) {
-            ladders.add(new Ladder(personCount));
-        }
-        return ladders;
+    public void buildLadders(int personCount) {
+        ladders.forEach(ladder -> tryBuildLadder(personCount, ladder));
     }
 
     private void tryBuildLadder(int personCount, Ladder ladder) {
@@ -44,17 +43,18 @@ public class Carpenter {
         }
     }
 
-    private void buildLadderStep(Ladder ladder, int currentStep) {
+    private void buildLadderStep(Ladder ladder, int currentPosition) {
         if (energy.isEnergetic()) {
-            ladder.buildSteps(currentStep);
+            ladder.buildSteps(currentPosition);
         }
     }
 
-    public ResultLadderDto getResultLadders() {
-        List<BuiltLadderDto> builtLadderDtos = ladders.stream()
-                .map(Ladder::getSteps)
-                .toList();
+    private List<Ladder> makeLadder(Height height, int personCount) {
+        List<Ladder> ladders = new ArrayList<>();
 
-        return new ResultLadderDto(builtLadderDtos);
+        for (int currentHeight = LOOP_START_INDEX; currentHeight < height.getHeight(); currentHeight++) {
+            ladders.add(new Ladder(personCount));
+        }
+        return ladders;
     }
 }

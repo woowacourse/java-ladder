@@ -7,22 +7,12 @@ import ladder.domain.dto.BuiltLadderDto;
 public class Ladder {
 
     private static final int STEP_START_NUMBER = 0;
-
     private static final boolean DEFAULT_NO_DUPLICATED_STEP = false;
 
     private final List<Step> steps;
 
     public Ladder(final int personCount) {
         this.steps = makeSteps(personCount);
-    }
-
-    private List<Step> makeSteps(int stepCount) {
-        List<Step> steps = new ArrayList<>();
-
-        for (int currentStep = STEP_START_NUMBER; currentStep < stepCount; currentStep++) {
-            steps.add(new Step());
-        }
-        return steps;
     }
 
     public BuiltLadderDto getSteps() {
@@ -40,5 +30,14 @@ public class Ladder {
             return step.getBuildStatus();
         }
         return DEFAULT_NO_DUPLICATED_STEP;
+    }
+
+    private List<Step> makeSteps(int stepCount) {
+        List<Step> steps = new ArrayList<>();
+
+        for (int currentStep = STEP_START_NUMBER; currentStep < stepCount; currentStep++) {
+            steps.add(new Step());
+        }
+        return steps;
     }
 }
