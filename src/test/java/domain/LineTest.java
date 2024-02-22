@@ -16,7 +16,7 @@ class LineTest {
         //when
         Line line = Line.createByStrategy(bridgeGenerator, personCount);
         //then
-        Assertions.assertThat(line.getBridges()).containsExactly(false, true, false);
+        Assertions.assertThat(line.getBridges()).containsExactly(Bridge.NO_BRIDGE, Bridge.BRIDGE, Bridge.NO_BRIDGE);
     }
 
 }

@@ -13,8 +13,8 @@ public class RandomBridgeGenerator implements BridgeGenerator {
     }
 
     @Override
-    public boolean generate() {
+    public Bridge generate() {
         final Random random = new Random();
-        return random.nextBoolean();
+        return Bridge.getBy(random.nextBoolean());
     }
 }

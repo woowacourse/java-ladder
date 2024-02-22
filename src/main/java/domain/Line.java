@@ -6,42 +6,42 @@ import java.util.List;
 
 public class Line {
 
-    private final List<Boolean> bridges;
+    private final List<Bridge> bridges;
 
-    private Line(List<Boolean> bridges) {
+    private Line(List<Bridge> bridges) {
         this.bridges = bridges;
     }
 
     public static Line createByStrategy(final BridgeGenerator bridgeGenerator, final int personCount) {
-        List<Boolean> bridges = new ArrayList<>();
+        List<Bridge> bridges = new ArrayList<>();
         while (bridges.size() != personCount - 1) {
-            final boolean bridgeCandidate = bridgeGenerator.generate();
-            final boolean previousBridge = findPreviousBridge(bridges);
+            final Bridge bridgeCandidate = bridgeGenerator.generate();
+            final Bridge previousBridge = findPreviousBridge(bridges);
 
             bridges.add(createBridge(bridgeCandidate, previousBridge));
         }
         return new Line(bridges);
     }
 
-    private static boolean findPreviousBridge(List<Boolean> bridges) {
+    private static Bridge findPreviousBridge(List<Bridge> bridges) {
         if (bridges.size() == 0) {
-            return false;
+            return Bridge.NO_BRIDGE;
         }
         return bridges.get(bridges.size() - 1);
     }
 
-    private static boolean createBridge(final boolean bridgeCandidate, final boolean previousBridge) {
-        if (!bridgeCandidate) {
+    private static Bridge createBridge(final Bridge bridgeCandidate, final Bridge previousBridge) {
+        if (bridgeCandidate == Bridge.NO_BRIDGE) {
             return bridgeCandidate;
         }
-        if (previousBridge == false) {
+        if (previousBridge == Bridge.NO_BRIDGE) {
             return bridgeCandidate;
         }
-        return false;
+        return Bridge.NO_BRIDGE;
     }
 
 
-    public List<Boolean> getBridges() {
+    public List<Bridge> getBridges() {
         return Collections.unmodifiableList(bridges);
     }
 
