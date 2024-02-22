@@ -4,6 +4,7 @@ import dto.Result;
 import java.util.List;
 import model.Ladder;
 import model.People;
+import model.path.RandomPathGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -32,6 +33,6 @@ public class LadderGame {
 
     private Ladder initLadder(int personCount) {
         int height = inputView.inputHeight();
-        return Ladder.from(height, personCount);
+        return Ladder.from(height, personCount, new RandomPathGenerator());
     }
 }

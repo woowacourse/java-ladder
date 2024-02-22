@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
+import model.path.PathGenerator;
 
 public class Ladder {
     private final List<Line> lines;
@@ -11,11 +11,13 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder from(int height, int personCount) {
+    public static Ladder from(int height, int personCount, PathGenerator pathGenerator) {
         validateHeight(height);
         List<Line> lines = new ArrayList<>();
-        IntStream.range(0, height)
-                .forEach(i -> lines.add(new Line(personCount)));
+        for (int i = 0; i < height; i++) {
+            Line line = new Line(pathGenerator.generate(personCount - 1));
+            lines.add(line);
+        }
         return new Ladder(lines);
     }
 
