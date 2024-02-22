@@ -24,12 +24,12 @@ public class Line {
     }
 
     private void validateIsNotOverlapped(List<Stick> sticks) {
-        if (isRowLineOverlapped(sticks)) {
+        if (isStickOverlapped(sticks)) {
             throw new IllegalArgumentException("가로 라인이 이어지면 안된다.");
         }
     }
 
-    private boolean isRowLineOverlapped(List<Stick> sticks) {
+    private boolean isStickOverlapped(List<Stick> sticks) {
         return IntStream.range(1, sticks.size())
                 .anyMatch(i -> sticks.get(i).isExist() && sticks.get(i - 1).isExist());
     }
