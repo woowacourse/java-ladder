@@ -18,21 +18,18 @@ public class Line {
         for (int position = 0; position < columnLength - 1; position++) {
             Boolean isConnectable = booleanGenerator.generate();
 
-            if (checkIsPossibleAddBridge(position)) {
-                points.add(isConnectable);
-            }
-
-            if (!checkIsPossibleAddBridge(position)) {
-                points.add(false);
-            }
+            points.add(decideConnectable(position, isConnectable));
         }
 
         return points;
     }
 
-    public boolean checkIsPossibleAddBridge(int position) {
-        if (position == 0) return true;
-        return !points.get(position - 1);
+    public boolean decideConnectable(int position, Boolean isConnectable) {
+        if (position == 0 || !points.get(position - 1)) {
+            return isConnectable;
+        }
+
+        return false;
     }
 
     public List<Boolean> getPoints() {

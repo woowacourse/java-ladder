@@ -14,14 +14,12 @@ class LineTest {
 
     @DisplayName("현재 위치에서 다리를 놓을 수 있는지에 대한 여부")
     @ParameterizedTest
-    @CsvSource(value = {"true,false", "false,true"}, delimiter = ',')
-    void checkIsPossibleAddBridgeTest(boolean isConnectable, boolean expected) {
-        // given
+    @CsvSource(value = {"true,true,false", "false,true,true"}, delimiter = ',')
+    void checkIsPossibleAddBridgeTest(boolean actual, boolean isConnectable, boolean expected) {
         Line line = new Line(5);
-        line.getPoints().add(isConnectable);
+        line.getPoints().add(actual);
 
-        // when
-        assertThat(line.checkIsPossibleAddBridge(1)).isEqualTo(expected);
+        assertThat(line.decideConnectable(1, isConnectable)).isEqualTo(expected);
     }
 
     @DisplayName("라인 생성 테스트")
