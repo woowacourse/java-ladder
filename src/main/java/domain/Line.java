@@ -8,27 +8,36 @@ public class Line {
 
     private final List<Boolean> points;
 
-    private Line(List<Boolean> points){
+    private Line(List<Boolean> points) {
         this.points = points;
     }
 
     public static Line create(final int personCount, final PointGenerator pointGenerator) {
         List<Boolean> points = new ArrayList<>();
-        while(points.size()!=personCount - 1){
-            final boolean point = pointGenerator.generate();
-            if(points.size()==0) {
-                points.add(point);
-                continue;
-            }
-            if(!point){
-                points.add(point);
-                continue;
-            }
-            if(!points.get(points.size()-1)){
-                points.add(point);
-            }
+        while (points.size() != personCount - 1) {
+            final boolean pointCandidate = pointGenerator.generate();
+            final boolean previousPoint = findPreviousPoint(points);
+
+            points.add(createPoint(pointCandidate, previousPoint));
         }
         return new Line(points);
+    }
+
+    private static boolean findPreviousPoint(List<Boolean> points) {
+        if (points.size() == 0) {
+            return false;
+        }
+        return points.get(points.size() - 1);
+    }
+
+    private static boolean createPoint(final boolean pointCandidate, final boolean previousPoint) {
+        if (!pointCandidate) {
+            return pointCandidate;
+        }
+        if (previousPoint == false) {
+            return pointCandidate;
+        }
+        return false;
     }
 
 
