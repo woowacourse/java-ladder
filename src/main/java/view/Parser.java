@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Parser {
     private static final String DELIMITER = ",";
+    private static final String INVALID_INPUT = "입력은 쉼표(,)로 끝날 수 없습니다.";
 
     private Parser() {
     }
@@ -16,7 +17,7 @@ public class Parser {
 
     private static void validateInput(String input) {
         if (input.endsWith(DELIMITER)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_INPUT);
         }
     }
 

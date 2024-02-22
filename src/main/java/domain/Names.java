@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Names {
     private static final int EMPTY_NAME_COUNT = 0;
-    private static final int FIRST_INDEX = 0;
     private static final int MIN_NAMES_COUNT = 2;
+    private static final String INVALID_NAMES = "이름은 2개 이상의 중복되지 않은 값이어야 합니다.";
 
     private final List<Name> names;
 
@@ -17,7 +17,7 @@ public class Names {
 
     private void validateNameCount(List<String> rawNames) {
         if (rawNames.size() < MIN_NAMES_COUNT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_NAMES);
         }
     }
 
@@ -29,7 +29,7 @@ public class Names {
 
     private void validateNameDuplication(List<String> rawNames) {
         if (hasDuplicatedName(rawNames)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_NAMES);
         }
     }
 
