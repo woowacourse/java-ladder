@@ -1,6 +1,7 @@
 package ladder.controller;
 
 import java.util.List;
+import java.util.function.Supplier;
 import ladder.domain.Carpenter;
 import ladder.domain.Height;
 import ladder.domain.Participants;
@@ -22,17 +23,39 @@ public class LadderController {
     }
 
     public void run() {
-        List<String> inputNames = inputView.getNames();
-        String inputHeight = inputView.getHeight();
 
-        Height height = new Height(inputHeight);
-        Carpenter carpenter = new Carpenter(height, inputNames.size(), numberGenerator);
-        Participants participants = new Participants(inputNames);
+        Height height = repeatUntilValid(this::getHeight);
+        Participants participants = repeatUntilValid(this::getNames);
 
-        carpenter.buildLadders(inputNames.size());
-        ResultLadderDto resultLadderDto = carpenter.getResultLadders();
+        int participantsCount = participants.getParticipantsCount();
+
+        Carpenter carpenter = new Carpenter(height, participantsCount, numberGenerator);
+        ResultLadderDto resultLadderDto = buildLadder(carpenter, participantsCount);
 
         outputView.printResult(resultLadderDto, participants.getNames());
     }
 
+    private Participants getNames() {
+        List<String> inputNames = inputView.getNames();
+        return new Participants(inputNames);
+    }
+
+    private Height getHeight() {
+        String inputHeight = inputView.getHeight();
+        return new Height(inputHeight);
+    }
+
+    private ResultLadderDto buildLadder(Carpenter carpenter, int participantsCount) {
+        carpenter.buildLadders(participantsCount);
+        return carpenter.getResultLadders();
+    }
+
+    private <T> T repeatUntilValid(Supplier<T> function) {
+        try {
+            return function.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e);
+            return repeatUntilValid(function);
+        }
+    }
 }
