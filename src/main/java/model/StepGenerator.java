@@ -3,10 +3,10 @@ package model;
 import java.util.Random;
 
 public class StepGenerator {
-    static Random random = new Random();
+    private static Random random = new Random();
 
-    public static boolean generateStep(boolean beforeValue) {
-        if (beforeValue) {
+    public static boolean generateStep(boolean previousStep) {
+        if (previousStep) {
             return false;
         }
         return random.nextBoolean();
