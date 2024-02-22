@@ -7,10 +7,12 @@ public class InputView {
     private final Scanner scanner = new Scanner(System.in);
 
     public String readNames() {
+        System.out.println("\n참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         return scanner.nextLine();
     }
 
-    public int readHeight() {
-        return scanner.nextInt();
+    public String readHeight() {
+        System.out.println("\n최대 사다리 높이는 몇 개인가요?");
+        return scanner.nextLine();
     }
 }
