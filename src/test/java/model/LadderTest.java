@@ -20,49 +20,27 @@ public class LadderTest {
         ladder.build(3);
         assertThat(ladder.height()).isEqualTo(maximumHeight);
     }
-//
-//    @DisplayName("최대 사다리의 높이는 양수가 되어야 한다.")
-//    @Test
-//    void ladderHeightIsPositive() {
-//        int maximumHeight = -1;
-//        assertThatThrownBy(() -> new Ladder(maximumHeight, List.of()))
-//                .isInstanceOf(IllegalArgumentException.class)
-//                .hasMessage("최대 사다리의 높이는 양수가 되어야 합니다");
-//    }
-//
-//    @DisplayName("사다리의 행 내부의 라인은 랜덤하게 결정한다.")
-//    @RepeatedTest(100)
-//    void makeLines() {
-//        Ladder ladder = new Ladder(1, List.of());
-//        ladder.createRows();
-//        assertThat(ladder.getRow(0).currentWidthSize()).isEqualTo(4);
-//    }
-//
-//    @DisplayName("한 행에는 연속된 선이 존재하면 안된다.")
-//    @RepeatedTest(100)
-//    void makeNoDuplicatedLineRows() {
-//        Ladder ladder = new Ladder(1);
-//        ladder.create(5);
-//            LadderRow row = ladder.getRow(i);
-//        List<Boolean> lines = row.getLines();
-//        for (int j = 1; j < 5; j++) {
-//            Assertions.assertThat(lines.get(j) && lines.get(j - 1)).isFalse();
-//        }
-//    }
-//
-//
-//
-//    @DisplayName("사다리 행 내부의 라인은 1개 이상이다.")
-//    @Test
-//    void makeMoreThanOneLine() {
-//        LadderRow ladderRow = new LadderRow(4);
-//        ladderRow.cross(0, false);
-//        ladderRow.cross(0, false);
-//        ladderRow.cross(0, false);
-//        Ladder ladder = new Ladder(1, List.of(ladderRow));
-//        ladder.createRows();
-//        assertThat(ladder.getRow(0).getLines().contains(true)).isTrue();
-//    }
-//
-//}
+
+    @DisplayName("최대 사다리의 높이는 양수가 되어야 한다.")
+    @Test
+    void ladderHeightIsPositive() {
+        int maximumHeight = -1;
+        assertThatThrownBy(() -> new Ladder(maximumHeight))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("최대 사다리의 높이는 양수가 되어야 합니다");
+    }
+
+
+    @DisplayName("한 행에는 연속된 선이 존재하면 안된다.")
+    @RepeatedTest(100)
+    void makeNotContinuousLineInRows() {
+        int participantsSize = 5;
+        Ladder ladder = new Ladder(1);
+        ladder.build(participantsSize);
+        LadderRow row = ladder.getRow(0);
+        List<Boolean> lines = row.getLineStatus();
+        for (int i = 1; i < participantsSize-1; i++) {
+            Assertions.assertThat(lines.get(i) && lines.get(i - 1)).isFalse();
+        }
+    }
 }
