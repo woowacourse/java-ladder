@@ -5,7 +5,6 @@ import domain.Height;
 import domain.Lines;
 import domain.Members;
 import error.ErrorHandler;
-import strategy.PointStrategy;
 import strategy.RandomPointStrategy;
 import view.InputView;
 import view.OutputView;
