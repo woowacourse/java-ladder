@@ -15,4 +15,8 @@ public class Step {
     public boolean getBuildStatus() {
         return buildStatus;
     }
+
+    public String getStatusToSymbol() {
+        return LadderStepSymbol.changeStatusToSymbol(buildStatus);
+    }
 }
