@@ -25,4 +25,8 @@ public class Point {
     public Step getStep() {
         return step;
     }
+
+    public boolean isStepExist() {
+        return step.isExist();
+    }
 }

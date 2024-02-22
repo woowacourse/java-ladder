@@ -9,15 +9,13 @@ public class Carpenter {
 
     public Carpenter(final Height height, final PlayerCount playerCount) {
         this.height = height;
-        this.woodWorkMachine = new WoodWorkMachine(playerCount);
+        this.woodWorkMachine = new WoodWorkMachine(playerCount, new RandomBooleanGenerator());
     }
 
     public Ladder makeLadder() {
         List<Line> lines = new ArrayList<>();
-        int buildHeight = 0;
-        while (height.isBiggerThan(buildHeight)) {
+        while (height.isBiggerThan(lines.size())) {
             lines.add(woodWorkMachine.makeLine());
-            buildHeight++;
         }
         return new Ladder(lines);
     }
