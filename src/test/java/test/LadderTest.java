@@ -6,8 +6,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import test.linegenerator.AllFalseLineGenerator;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -31,4 +34,16 @@ public class LadderTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("사다리 생성 테스트 : 가로선이 없는 경우")
+    @Test
+    void makeLadderTest() {
+        Ladder testLadder = new Ladder(3, 5, new AllFalseLineGenerator());
+        Set<Boolean> connectionElement = testLadder.getRowLines()
+                .stream()
+                .map(RowLine::getConnection)
+                .flatMap(List::stream)
+                .collect(Collectors.toSet());
+
+        assertThat(connectionElement).containsExactly(Boolean.FALSE);
+    }
 }
