@@ -1,7 +1,5 @@
 package domain.ladder;
 
-import domain.BooleanGenerator;
-import domain.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,22 +11,22 @@ public class LadderRow {
         this.rungs = rungs;
     }
 
-    static LadderRow create(int size, BooleanGenerator booleanGenerator) {
+    static LadderRow create(int size, LadderRungGenerator ladderRungGenerator) {
         final List<LadderRung> rungs = new ArrayList<>();
-        boolean lastConnected = Connection.IS_NOT_CONNECTED.getValue();
+        LadderRung previousRung = LadderRung.DISCONNECTED;
         for (int i = 0; i < size; i++) {
-            LadderRung ladderRung = createRung(booleanGenerator, lastConnected);
+            LadderRung ladderRung = createRung(ladderRungGenerator, previousRung);
             rungs.add(ladderRung);
-            lastConnected = ladderRung.isConnected();
+            previousRung = ladderRung;
         }
         return new LadderRow(rungs);
     }
 
-    private static LadderRung createRung(final BooleanGenerator booleanGenerator, final boolean lastConnected) {
-        if (lastConnected) {
-            return LadderRung.create(Connection.IS_NOT_CONNECTED::getValue);
+    private static LadderRung createRung(final LadderRungGenerator ladderRungGenerator, final LadderRung previousRung) {
+        if (previousRung.isConnected()) {
+            return LadderRung.DISCONNECTED;
         }
-        return LadderRung.create(booleanGenerator);
+        return ladderRungGenerator.generate();
     }
 
     public List<LadderRung> getRungs() {

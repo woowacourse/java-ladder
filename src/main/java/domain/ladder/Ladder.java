@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import domain.BooleanGenerator;
 import domain.height.Height;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,10 +12,10 @@ public class Ladder {
         this.rows = rows;
     }
 
-    public static Ladder create(final Height height, final int playerSize, BooleanGenerator booleanGenerator) {
+    public static Ladder create(final Height height, final int playerSize, LadderRungGenerator ladderRungGenerator) {
         List<LadderRow> rows = new ArrayList<>();
-        for (int i = 0; i < height.getValue(); i++) { // TODO 매직넘버 변수 설정
-            final LadderRow ladderRow = LadderRow.create(playerSize - 1, booleanGenerator);
+        for (int i = 0; i < height.getValue(); i++) {
+            final LadderRow ladderRow = LadderRow.create(playerSize - 1, ladderRungGenerator);
             rows.add(ladderRow);
         }
         return new Ladder(rows);

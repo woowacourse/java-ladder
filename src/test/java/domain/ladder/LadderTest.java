@@ -2,13 +2,12 @@ package domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import domain.BooleanGenerator;
 import domain.height.Height;
 import org.junit.jupiter.api.Test;
-import support.TrueGenerator;
+import support.ConnectedLadderRungGenerator;
 
 public class LadderTest {
-    private final BooleanGenerator trueGenerator = new TrueGenerator();
+    private final LadderRungGenerator trueGenerator = new ConnectedLadderRungGenerator();
 
     @Test
     void 주어진_높이에_맞게_사다리가_생성된다() {

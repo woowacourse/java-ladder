@@ -3,9 +3,9 @@ package controller;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
-import domain.BooleanGenerator;
 import domain.height.Height;
 import domain.ladder.Ladder;
+import domain.ladder.LadderRungGenerator;
 import domain.player.Name;
 import domain.player.Players;
 import java.util.List;
@@ -13,10 +13,10 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGame {
-    private final BooleanGenerator booleanGenerator;
+    private final LadderRungGenerator ladderRungGenerator;
 
-    public LadderGame(BooleanGenerator booleanGenerator) {
-        this.booleanGenerator = booleanGenerator;
+    public LadderGame(LadderRungGenerator ladderRungGenerator) {
+        this.ladderRungGenerator = ladderRungGenerator;
     }
 
     public void run() {
@@ -44,6 +44,6 @@ public class LadderGame {
     }
 
     private Ladder generateLadder(Players players, Height height) {
-        return Ladder.create(height, players.getPlayerCount(), booleanGenerator);
+        return Ladder.create(height, players.getPlayerCount(), ladderRungGenerator);
     }
 }

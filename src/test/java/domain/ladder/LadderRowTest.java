@@ -3,13 +3,12 @@ package domain.ladder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import domain.BooleanGenerator;
 import java.util.List;
 import org.junit.jupiter.api.Test;
-import support.TrueGenerator;
+import support.ConnectedLadderRungGenerator;
 
 public class LadderRowTest {
-    private final BooleanGenerator trueGenerator = new TrueGenerator();
+    private final LadderRungGenerator trueGenerator = new ConnectedLadderRungGenerator();
 
     @Test
     void 플레이어_수만큼_가로대를_생성한다() {
