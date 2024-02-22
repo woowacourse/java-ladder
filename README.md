@@ -54,5 +54,15 @@ pobi  honux crong   jk
 - [X] People 객체만으로 충분하므로 Person 삭제
 - [X] 인스턴스 변수를 private으로 변경
 - [X] 원시 자료형을 래퍼 클래스로 변경
-    - [X] Height 생성
+  - [X] Height 생성
 - [X] 매직넘버를 상수로 변경
+- [ ] 테스트 개선
+  - [ ] LadderLevelTest
+    - [ ] 생성 테스트 추가
+    - [ ] 테스트케이스 생성 메서드 들여쓰기 제거
+    - [ ] 테스트명 변경
+  - [ ] LadderTest
+    - [ ] 생성 테스트 추가
+    - [ ] 테스트명 변경
+  - [ ] PeopleTest
+    - [ ] count 테스트 추가
