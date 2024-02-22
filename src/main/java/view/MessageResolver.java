@@ -7,6 +7,7 @@ import domain.RowLine;
 import java.util.stream.Collectors;
 
 public class MessageResolver {
+
     private static final String COLUMN_LINE = "|";
 
     public String resolveNamesMessage(Names names) {

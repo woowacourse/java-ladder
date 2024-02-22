@@ -1,6 +1,7 @@
 package domain;
 
 public class Height {
+
     private static final Integer MIN_VALUE = 1;
 
     private final Integer height;

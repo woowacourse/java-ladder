@@ -9,6 +9,7 @@ import view.MessageResolver;
 import view.ResultView;
 
 public class Config {
+
     public InputView inputView() {
         return new InputView();
     }
