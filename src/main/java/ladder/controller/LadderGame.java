@@ -49,6 +49,7 @@ public class LadderGame {
         try {
             return retryOperation.get();
         } catch (IllegalArgumentException e) {
+            outputView.printException(e);
             return retryOnException(retryOperation);
         }
     }
