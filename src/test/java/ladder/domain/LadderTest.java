@@ -11,14 +11,13 @@ class LadderTest {
     @DisplayName("입력받은 높이만큼 사다리를 생성한다.")
     void createLadder() {
         // given
-        int value = 5;
-        Height height = new Height(value);
+        Height height = new Height("5");
         People people = new People("pobi,honux,crong,jk");
 
         // when
         Ladder ladder = new Ladder(people, height);
 
         // then
-        assertThat(ladder.getLadder()).hasSize(value);
+        assertThat(ladder.getLadder()).hasSize(5);
     }
 }
