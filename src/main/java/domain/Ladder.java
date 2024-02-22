@@ -6,10 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    List<Line> lines = new ArrayList<>();
+
+    private final Height height;
+    private final List<Line> lines;
 
     public Ladder(int floor, int participantsCount) {
-        Height height = new Height(floor);
+        lines = new ArrayList<>();
+        height = new Height(floor);
         for (int i = 0; i < floor; i++) {
             lines.add(new Line(participantsCount - 1, new RandomBooleanGenerator()));
         }

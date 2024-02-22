@@ -15,6 +15,7 @@ public class Line {
             points.add(makeOnePoint(index, booleanGenerator));
         }
     }
+
     private boolean makeOnePoint(int index, BooleanGenerator booleanGenerator) {
         if (!points.get(index - 1)) {
             return booleanGenerator.generate();

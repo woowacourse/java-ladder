@@ -7,7 +7,6 @@ import java.util.List;
 
 public class OutputView {
 
-
     public static final String START_OF_LINE = "    |";
     public static final String EXIST_POINT = "-----|";
     public static final String EMPTY_POINT = "     |";

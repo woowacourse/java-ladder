@@ -14,6 +14,7 @@ class ParticipantsTest {
     @DisplayName("참가자가 " + Participants.MIN_OF_PARTICIPANTS_COUNT + "명 미만이면 예외가 발생한다.")
     void lessThanTwoExceptionTest() {
         List<String> names = List.of("a");
+
         assertThatThrownBy(() -> new Participants(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Exception.OUT_OF_RANGE_PARTICIPANTS_COUNT.getExceptionMessage());
@@ -42,4 +43,5 @@ class ParticipantsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Exception.DUPLICATE_PARTICIPANTS.getExceptionMessage());
     }
+
 }

@@ -25,6 +25,6 @@ public class NameTest {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Exception.NO_NAME.getExceptionMessage());
-
     }
+
 }
