@@ -5,6 +5,7 @@ import utils.RandomGenerator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -21,7 +22,7 @@ public class Line {
         return IntStream.range(0, points.size())
                 .sequential()
                 .filter(points::get)
-                .mapToObj(index -> index)
+                .boxed()
                 .toList();
     }
 
@@ -43,6 +44,16 @@ public class Line {
             return false;
         }
         return points.get(index - 1);
+    }
+
+    public Direction showDirection(int index){
+        if (points.get(index)){
+            return Direction.RIGHT;
+        }
+        if (index > 0 && points.get(index-1)){
+            return Direction.LEFT;
+        }
+        return Direction.NONE;
     }
 
 }
