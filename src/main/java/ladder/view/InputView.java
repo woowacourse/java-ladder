@@ -41,7 +41,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("사다리 높이는 2 ~ 10 사이의 숫자로 입력해야 합니다.");
+            throw new IllegalArgumentException("사다리 높이에는 숫자를 입력해야 합니다");
         }
     }
 }
