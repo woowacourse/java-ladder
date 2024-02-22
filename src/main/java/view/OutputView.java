@@ -8,8 +8,6 @@ import domain.PlayerNames;
 import java.util.StringJoiner;
 
 public class OutputView {
-    private static final String POINT = "-----";
-    private static final String NONE_POINT = "     ";
     private static final String LADDER_FRAME = "|";
 
     public void printResult(PlayerNames playerNames, Ladder ladder) {
@@ -25,13 +23,8 @@ public class OutputView {
 
     private void printPlayerNames(PlayerNames playerNames) {
         StringJoiner playerNamesJoiner = new StringJoiner(" ");
-        int leftNameCount = playerNames.getCount() / 2;
 
-        for (int i = 0; i < leftNameCount; i++) {
-            String playerName = String.format("%-5s", playerNames.getNameOfIndex(i));
-            playerNamesJoiner.add(playerName);
-        }
-        for (int i = leftNameCount; i < playerNames.getCount(); i++) {
+        for (int i = 0; i < playerNames.getCount(); i++) {
             String playerName = String.format("%5s", playerNames.getNameOfIndex(i));
             playerNamesJoiner.add(playerName);
         }
