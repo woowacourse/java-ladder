@@ -7,7 +7,7 @@ public class Players implements Iterable<Name> {
 
     private final List<Name> players;
 
-    Players (List<String> names) {
+    public Players (List<String> names) {
         validateNumber(names);
         this.players = names.stream()
                 .map(Name::new)
@@ -17,6 +17,10 @@ public class Players implements Iterable<Name> {
     @Override
     public Iterator<Name> iterator() {
         return players.iterator();
+    }
+
+    public int getPersonCount() {
+        return players.size();
     }
 
     private void validateNumber(List<String> names) {

@@ -2,11 +2,10 @@ package controller;
 
 import domain.Height;
 import domain.LadderGame;
+import domain.Players;
 import util.ConsoleReader;
 import view.InputView;
 import view.OutputView;
-
-import java.util.List;
 
 public class LadderController {
 
@@ -17,14 +16,14 @@ public class LadderController {
     }
 
     public void run() {
-        List<String> names = nameInput();
+        Players players = nameInput();
         Height height = heigthInput();
-        LadderGame ladderGame = new LadderGame(names, height);
+        LadderGame ladderGame = new LadderGame(players, height);
         OutputView.printResult(ladderGame.getResult());
     }
 
-    private List<String> nameInput() {
-        List<String> names = null;
+    private Players nameInput() {
+        Players names = null;
         for (int tryCount = 0; tryCount < 5 && names == null; tryCount++) {
             names = getName();
         }
@@ -34,9 +33,9 @@ public class LadderController {
         return names;
     }
 
-    private List<String> getName() {
+    private Players getName() {
         try {
-            return InputView.readNames(consoleReader);
+            return new Players(InputView.readNames(consoleReader));
         } catch (IllegalArgumentException e) {
             return null;
         }
