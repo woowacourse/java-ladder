@@ -4,7 +4,7 @@ import java.util.List;
 
 public class LineFormatter {
 
-    public static String format(List<Boolean> line) {
+    public static String format(final List<Boolean> line) {
         String formattedLine = " ".repeat(4) + "|";
         for (Boolean isPath : line) {
             formattedLine += formatPath(isPath);
@@ -12,7 +12,7 @@ public class LineFormatter {
         return formattedLine;
     }
 
-    private static String formatPath(Boolean isPath) {
+    private static String formatPath(final Boolean isPath) {
         if (isPath) {
             return "-".repeat(5) + "|";
         }

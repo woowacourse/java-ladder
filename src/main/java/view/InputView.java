@@ -9,7 +9,7 @@ public class InputView {
 
     public List<String> inputNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        String text = scanner.next();
+        final String text = scanner.next();
         return NameParser.parse(text);
     }
 

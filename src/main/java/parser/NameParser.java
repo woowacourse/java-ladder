@@ -5,7 +5,7 @@ import java.util.List;
 
 public class NameParser {
 
-    public static List<String> parse(String text) {
+    public static List<String> parse(final String text) {
         return Arrays.stream(text.split(","))
                 .map(String::trim)
                 .toList();

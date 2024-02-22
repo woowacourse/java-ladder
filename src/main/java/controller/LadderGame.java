@@ -12,27 +12,27 @@ public class LadderGame {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public LadderGame(InputView inputView, OutputView outputView) {
+    public LadderGame(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
     public void play() {
-        People people = initPeople();
-        Ladder ladder = initLadder(people.getPersonCount());
+        final People people = initPeople();
+        final Ladder ladder = initLadder(people.getPersonCount());
 
-        Result result = Result.from(people, ladder);
+        final Result result = Result.from(people, ladder);
         outputView.printResult(result);
     }
 
 
     private People initPeople() {
-        List<String> names = inputView.inputNames();
+        final List<String> names = inputView.inputNames();
         return People.from(names);
     }
 
-    private Ladder initLadder(int personCount) {
-        int height = inputView.inputHeight();
+    private Ladder initLadder(final int personCount) {
+        final int height = inputView.inputHeight();
         return Ladder.from(height, personCount, new RandomPathGenerator());
     }
 }

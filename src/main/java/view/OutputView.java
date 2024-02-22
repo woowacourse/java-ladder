@@ -8,25 +8,25 @@ import java.util.List;
 
 public class OutputView {
 
-    public void printResult(Result result) {
+    public void printResult(final Result result) {
         System.out.println();
         System.out.println("실행결과");
         System.out.println();
-        List<String> names = result.names();
+        final List<String> names = result.names();
         printNames(names);
         printLines(result.lines());
     }
 
-    public void printNames(List<String> names) {
+    public void printNames(final List<String> names) {
         System.out.println(NamesFormatter.format(names));
     }
 
-    public void printLines(List<LineInfo> lines) {
+    public void printLines(final List<LineInfo> lines) {
         lines.forEach(this::printLine);
     }
 
-    private void printLine(LineInfo line) {
-        List<Boolean> paths = line.lineInfo();
+    private void printLine(final LineInfo line) {
+        final List<Boolean> paths = line.lineInfo();
         System.out.println(LineFormatter.format(paths));
     }
 }

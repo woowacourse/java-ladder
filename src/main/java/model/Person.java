@@ -6,13 +6,13 @@ public class Person {
 
     private final String name;
 
-    public Person(String name) {
+    public Person(final String name) {
         validateNameLength(name);
         this.name = name;
     }
 
-    private void validateNameLength(String name) {
-        int length = name.length();
+    private void validateNameLength(final String name) {
+        final int length = name.length();
         if (length < MIN_NAME_LENGTH || length > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 최소 1글자 최대 5글자여야 합니다.");
         }

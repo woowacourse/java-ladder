@@ -6,7 +6,7 @@ public enum Path {
 
     private final boolean isExist;
 
-    Path(boolean isExist) {
+    Path(final boolean isExist) {
         this.isExist = isExist;
     }
 

@@ -7,19 +7,19 @@ public class People {
 
     private final List<Person> personGroup;
 
-    private People(List<Person> personGroup) {
+    private People(final List<Person> personGroup) {
         validatePersonCount(personGroup.size());
         this.personGroup = personGroup;
     }
 
-    private void validatePersonCount(int personCount) {
+    private void validatePersonCount(final int personCount) {
         if (personCount < MIN_PERSON_COUNT) {
             throw new IllegalArgumentException("사람은 최소 2명 참가해야 합니다.");
         }
     }
 
-    public static People from(List<String> names) {
-        List<Person> personGroup = names.stream()
+    public static People from(final List<String> names) {
+        final List<Person> personGroup = names.stream()
                 .map(Person::new)
                 .toList();
         return new People(personGroup);

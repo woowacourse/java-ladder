@@ -5,9 +5,9 @@ import model.Ladder;
 import model.People;
 
 public record Result(List<String> names, List<LineInfo> lines) {
-    public static Result from(People people, Ladder ladder) {
-        List<String> names = people.getNames();
-        List<LineInfo> lines = ladder.getLines()
+    public static Result from(final People people, final Ladder ladder) {
+        final List<String> names = people.getNames();
+        final List<LineInfo> lines = ladder.getLines()
                 .stream()
                 .map(LineInfo::from)
                 .toList();
