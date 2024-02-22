@@ -3,18 +3,19 @@ package domain;
 import domain.ladder.Ladder;
 import domain.ladder.common.Direction;
 import domain.player.Player;
+import domain.player.Players;
 
 import java.util.List;
 
 public class GameBoard {
-    private final List<Player> players;
+    private final Players players;
     private final Ladder ladder;
-    public GameBoard(List<Player> players, Ladder ladder){
+    public GameBoard(Players players, Ladder ladder){
         this.players = players;
         this.ladder = ladder;
     }
 
-    public List<Player> getPlayers() {
+    public Players getPlayers() {
         return players;
     }
     public int getLadderHeight(){
