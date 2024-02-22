@@ -12,14 +12,14 @@ public class Line {
 
     public Line(int personCount, RandomPointsGenerator randomPointsGenerator) {
         this.randomPointsGenerator = randomPointsGenerator;
-        this.points = createPoints(personCount - 1);
+        this.points = createRandomPoints(personCount - 1);
         ensurePoints();
     }
 
-    private List<Point> createPoints(int size) {
+    private List<Point> createRandomPoints(int size) {
         List<Point> points = randomPointsGenerator.generate(size);
         if (!points.contains(Point.ON)) {
-            return createPoints(size);
+            return createRandomPoints(size);
         }
         return points;
     }
