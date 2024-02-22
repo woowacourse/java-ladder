@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class LadderTest {
     private PointGenerator pointGenerator = new PickedPointGenerator();
-    private static final int PERSON_COUNT = 3;
+    private static final int PERSON_COUNT = 4;
 
     @DisplayName("주어진 line들로 사다리를 만든다.")
     @Test

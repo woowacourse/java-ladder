@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LadderMakerTest {
-    private static final int PERSON_COUNT = 3;
+    private static final int PERSON_COUNT = 4;
     private static final int HEIGHT = 5;
 
     @DisplayName("사다리의 높이만큼 Line을 만들어서 사다리를 완성한다")

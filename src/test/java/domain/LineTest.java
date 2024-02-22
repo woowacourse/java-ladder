@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class LineTest {
     private PointGenerator pointGenerator;
-    private final int PERSON_COUNT = 3;
+    private final int PERSON_COUNT = 4;
 
     @BeforeEach
     void init(){
