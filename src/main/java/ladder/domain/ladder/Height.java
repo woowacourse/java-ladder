@@ -2,6 +2,8 @@ package ladder.domain.ladder;
 
 import ladder.exception.InvalidHeightRangeException;
 
+import java.util.List;
+
 public class Height {
     private static final int MIN_HEIGHT = 1;
 
@@ -18,7 +20,7 @@ public class Height {
         }
     }
 
-    public int getValue() {
-        return value;
+    public boolean isGreaterThan(List<LadderStep> ladderSteps) {
+        return value > ladderSteps.size();
     }
 }

@@ -9,18 +9,18 @@ import java.util.List;
 public class Ladder {
     private final List<LadderStep> ladderSteps;
 
-    public Ladder(final LadderStepGenerator stepGenerator, final int stepHeight) {
-        final List<LadderStep> generatedLadderSteps = generateLadderSteps(stepGenerator, stepHeight);
+    public Ladder(final LadderStepGenerator stepGenerator, final Height height) {
+        final List<LadderStep> generatedLadderSteps = generateLadderSteps(stepGenerator, height);
         this.ladderSteps = Collections.unmodifiableList(generatedLadderSteps);
     }
 
-    private List<LadderStep> generateLadderSteps(final LadderStepGenerator stepGenerator, final int stepHeight) {
-        List<LadderStep> generatedLadderSteps = new ArrayList<>();
-        while (generatedLadderSteps.size() < stepHeight) {
+    private List<LadderStep> generateLadderSteps(final LadderStepGenerator stepGenerator, final Height height) {
+        List<LadderStep> ladderSteps = new ArrayList<>();
+        while (height.isGreaterThan(ladderSteps)) {
             LadderStep currentLadderStep = stepGenerator.generateValidStep();
-            generatedLadderSteps.add(currentLadderStep);
+            ladderSteps.add(currentLadderStep);
         }
-        return generatedLadderSteps;
+        return ladderSteps;
     }
 
     public List<LadderStep> getLadderSteps() {
