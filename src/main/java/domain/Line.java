@@ -11,7 +11,13 @@ class Line {
         List<Stick> sticks = new ArrayList<>();
 
         for (int i = 0; i < playerSize; i++) {
-            sticks.add(stickGenerator.generateOne());
+            Stick stick = stickGenerator.generateOne();
+
+            if (i != 0 && sticks.get(i - 1) == stick) {
+                stick = Stick.getOpposite(stick);
+            }
+
+            sticks.add(stick);
         }
 
         this.sticks = sticks;
