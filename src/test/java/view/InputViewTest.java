@@ -61,5 +61,12 @@ class InputViewTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("null 혹은 빈 문자열을 입력할 수 없습니다.");
         }
+
+        @DisplayName("입력받은 height를 정수로 반환한다.")
+        @Test
+        void stringToIntegerTest() {
+            Assertions.assertThat(InputView.readHeight(() -> "5"))
+                    .isEqualTo(5);
+        }
     }
 }
