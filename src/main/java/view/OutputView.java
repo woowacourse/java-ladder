@@ -10,34 +10,45 @@ public class OutputView {
     private static final String HORIZON_DELIMITER = "-";
     private static final String VERTICAL_DELIMITER = "|";
     private static final String SPACE = " ";
-    private static final String NEW_LINE = "\n";
 
-
-    public void printPlayer(List<String> names) {
-        System.out.println("실행 결과");
-        System.out.println();
-        names.forEach(name -> {
-            System.out.print(String.format("%6s", name));
-        });
+    private static void printLine(List<String> names, Line line, int maxPlayerNameLength) {
+        System.out.print(SPACE.repeat(6));
+        System.out.print(VERTICAL_DELIMITER);
+        for (Bridge bridge : line.getBridges()) {
+            printBridge(bridge, maxPlayerNameLength);
+        }
         System.out.println();
     }
 
-    public void printLadder(Ladder ladder, int maxPlayerNameLength, int length) {
-        List<Line> lines = ladder.getLines();
-
-        for (Line line : lines) {
-            System.out.print(SPACE.repeat(length));
+    private static void printBridge(Bridge bridge, int maxPlayerNameLength) {
+        if (bridge == Bridge.EXIST) {
+            System.out.print(HORIZON_DELIMITER.repeat(maxPlayerNameLength));
             System.out.print(VERTICAL_DELIMITER);
-            for (Bridge bridge : line.getBridges()) {
-                if (bridge == Bridge.EXIST) {
-                    System.out.print(HORIZON_DELIMITER.repeat(maxPlayerNameLength));
-                    System.out.print(VERTICAL_DELIMITER);
-                    continue;
-                }
-                System.out.print(SPACE.repeat(maxPlayerNameLength));
-                System.out.print(VERTICAL_DELIMITER);
-            }
-            System.out.println();
+            return;
+        }
+        System.out.print(SPACE.repeat(maxPlayerNameLength));
+        System.out.print(VERTICAL_DELIMITER);
+    }
+
+    public void printResult(Ladder ladder, List<String> names) {
+        System.out.println("실행결과\n");
+        printPlayer(names);
+        printLadder(ladder, names);
+    }
+
+    private void printPlayer(List<String> names) {
+        names.forEach(name -> System.out.print(String.format("%6s", name)));
+        System.out.println();
+    }
+
+    private void printLadder(Ladder ladder, List<String> names) {
+        List<Line> lines = ladder.getLines();
+        int maxPlayerNameLength = names.stream()
+                .mapToInt(String::length)
+                .max()
+                .orElseThrow();
+        for (Line line : lines) {
+            printLine(names, line, maxPlayerNameLength);
         }
     }
 }

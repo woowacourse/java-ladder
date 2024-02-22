@@ -9,19 +9,18 @@ import org.junit.jupiter.api.Test;
 
 public class LineTest {
 
-    @DisplayName("현재 생성된 Point의 갯수를 리턴하는 기능")
+    @DisplayName("현재 생성된 Bridge 갯수를 리턴하는 기능")
     @Test
     public void getPointCount() {
         assertThat(new Line(5, new FixedBooleanGenerator(true)).getBridgeCount())
-                .isEqualTo(0);
+                .isEqualTo(4);
     }
 
-    @DisplayName("랜덤값이 전부 true일 경우 RIGHT, LEFT Point를 가지는 Line을 생성한다.")
+    @DisplayName("연속으로 이어진 다리는 존재하지 않는다")
     @Test
-    public void createLineTrueCase() {
-        Line line = new Line(2, new FixedBooleanGenerator(true));
-        assertThat(line.getBridges()).isEqualTo(
-                List.of());
+    public void createLineNonContinuous() {
+        Line line = new Line(4, new FixedBooleanGenerator(true));
+        assertThat(line.getBridges()).isEqualTo(List.of(Bridge.EXIST, Bridge.BLANK, Bridge.EXIST));
     }
 
     static class FixedBooleanGenerator implements BooleanGenerator {

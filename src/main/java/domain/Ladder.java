@@ -8,9 +8,9 @@ public class Ladder {
 
     private final List<Line> lines = new ArrayList<>();
 
-    public Ladder(Players players, Height height, BooleanGenerator booleanGenerator) {
+    public Ladder(int playerCount, Height height, BooleanGenerator booleanGenerator) {
         while (height.isRemain()) {
-            lines.add(new Line(players.getSize(), booleanGenerator));
+            lines.add(new Line(playerCount, booleanGenerator));
             height.decrease();
         }
     }
