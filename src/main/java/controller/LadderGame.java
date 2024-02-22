@@ -3,7 +3,9 @@ package controller;
 import domain.Height;
 import domain.Ladder;
 import domain.Players;
-import service.LadderMaker;
+
+import domain.RandomPointGenerator;
+
 import view.InputView;
 import view.OutputView;
 
@@ -15,8 +17,8 @@ public class LadderGame {
         final Players players = new Players(inputView.readNames());
         final Height height = new Height(inputView.readHeight());
 
-        final LadderMaker ladderMaker = new LadderMaker();
-        final Ladder ladder = ladderMaker.createLadder(players.count(), height.getHeight());
+
+        final Ladder ladder = Ladder.createByStrategy(RandomPointGenerator.getInstance(), height.getHeight(), players.count());
 
         printGameResult(players, ladder);
     }

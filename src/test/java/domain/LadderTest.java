@@ -7,17 +7,16 @@ import org.junit.jupiter.api.Test;
 
 class LadderTest {
 
-    @DisplayName("주어진 line들로 사다리를 만든다.")
+    @DisplayName("전략을 정해서 사다리를 만든다.")
     @Test
     void createLadder() {
         //given
+        final int height = 5;
         final int personCount = 4;
         PointGenerator pointGenerator = new PickedPointGenerator(List.of(false, true, false));
-        Line line = Line.createByStrategy(pointGenerator, personCount);
-        List<Line> lines = List.of(line);
         //when
-        final Ladder ladder = new Ladder(lines);
+        final Ladder ladder = Ladder.createByStrategy(pointGenerator, height, personCount);
         //then
-        Assertions.assertThat(ladder.getLines()).isEqualTo(lines);
+        Assertions.assertThat(ladder.getLines()).hasSize(height);
     }
 }

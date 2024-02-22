@@ -1,9 +1,8 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
-class PickedPointGenerator implements PointGenerator{
+class PickedPointGenerator implements PointGenerator {
 
     private List<Boolean> test;
     private int index = 0;
@@ -14,6 +13,8 @@ class PickedPointGenerator implements PointGenerator{
 
     @Override
     public boolean generate() {
-        return test.get(index++);
+        final Boolean point = test.get(index % test.size());
+        index++;
+        return point;
     }
 }
