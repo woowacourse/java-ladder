@@ -6,6 +6,8 @@ import ladder.domain.dto.BuiltLadderDto;
 
 public class Ladder {
 
+    private static final int STEP_START_NUMBER = 0;
+
     private static final boolean DEFAULT_NO_DUPLICATED_STEP = false;
 
     private final List<Step> steps;
@@ -17,7 +19,7 @@ public class Ladder {
     private List<Step> makeSteps(int stepCount) {
         List<Step> steps = new ArrayList<>();
 
-        for (int i = 0; i < stepCount; i++) {
+        for (int currentStep = STEP_START_NUMBER; currentStep < stepCount; currentStep++) {
             steps.add(new Step());
         }
         return steps;
@@ -32,8 +34,9 @@ public class Ladder {
     }
 
     public boolean hasStepDuplicated(int currentPosition) {
-        if (currentPosition > 0) {
-            Step step = steps.get(currentPosition - 1);
+        if (currentPosition > STEP_START_NUMBER) {
+            int stepBeforePosition = currentPosition - 1;
+            Step step = steps.get(stepBeforePosition);
             return step.getBuildStatus();
         }
         return DEFAULT_NO_DUPLICATED_STEP;
