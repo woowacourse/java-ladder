@@ -13,20 +13,10 @@ public class Name {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     private void validate(String name) {
         validateNameLength(name);
         validateNameIsNotBlank(name);
         validateNotContainsSpecialCharacters(name);
-    }
-
-    private void validateNotContainsSpecialCharacters(String name) {
-        if (isContainsSpecialCharacters(name)) {
-            throw new IllegalArgumentException("이름은 특수문자를 포함할 수 없습니다.");
-        }
     }
 
     private void validateNameLength(String name) {
@@ -41,7 +31,17 @@ public class Name {
         }
     }
 
+    private void validateNotContainsSpecialCharacters(String name) {
+        if (isContainsSpecialCharacters(name)) {
+            throw new IllegalArgumentException("이름은 특수문자를 포함할 수 없습니다.");
+        }
+    }
+
     private boolean isContainsSpecialCharacters(String name) {
         return specialCharactersFilter.matcher(name).find();
+    }
+
+    public String getName() {
+        return name;
     }
 }

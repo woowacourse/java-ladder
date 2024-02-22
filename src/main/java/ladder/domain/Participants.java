@@ -15,20 +15,6 @@ public class Participants {
         this.names = inviteParticipants(inputNames);
     }
 
-    public List<Name> getNames() {
-        return names;
-    }
-
-    public int getParticipantsCount() {
-        return names.size();
-    }
-
-    private List<Name> inviteParticipants(List<String> names) {
-        return names.stream()
-                .map(Name::new)
-                .toList();
-    }
-
     private void validate(List<String> names) {
         validateIsNotOverMaximumReception(names);
         validateHasNotDuplicateName(names);
@@ -46,5 +32,19 @@ public class Participants {
         if (names.size() != uniqueNames.size()) {
             throw new IllegalArgumentException("참여자 이름은 중복을 허용하지 않습니다");
         }
+    }
+
+    private List<Name> inviteParticipants(List<String> names) {
+        return names.stream()
+                .map(Name::new)
+                .toList();
+    }
+
+    public int getParticipantsCount() {
+        return names.size();
+    }
+
+    public List<Name> getNames() {
+        return names;
     }
 }

@@ -17,12 +17,13 @@ public class Carpenter {
         this.energy = new Energy(numberGenerator);
     }
 
-    public ResultLadderDto getResultLadders() {
-        List<BuiltLadderDto> builtLadderDtos = ladders.stream()
-                .map(Ladder::getSteps)
-                .toList();
+    private List<Ladder> makeLadder(Height height, int personCount) {
+        List<Ladder> ladders = new ArrayList<>();
 
-        return new ResultLadderDto(builtLadderDtos);
+        for (int currentHeight = LOOP_START_INDEX; currentHeight < height.getHeight(); currentHeight++) {
+            ladders.add(new Ladder(personCount));
+        }
+        return ladders;
     }
 
     public void buildLadders(int personCount) {
@@ -49,12 +50,11 @@ public class Carpenter {
         }
     }
 
-    private List<Ladder> makeLadder(Height height, int personCount) {
-        List<Ladder> ladders = new ArrayList<>();
+    public ResultLadderDto getResultLadders() {
+        List<BuiltLadderDto> builtLadderDtos = ladders.stream()
+                .map(Ladder::getSteps)
+                .toList();
 
-        for (int currentHeight = LOOP_START_INDEX; currentHeight < height.getHeight(); currentHeight++) {
-            ladders.add(new Ladder(personCount));
-        }
-        return ladders;
+        return new ResultLadderDto(builtLadderDtos);
     }
 }

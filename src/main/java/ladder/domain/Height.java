@@ -13,17 +13,17 @@ public class Height {
         this.height = number;
     }
 
-    private void validateNumberIsIntRange(int number) {
-        if (number < MIN_HEIGHT_RANGE || number > MAX_HEIGHT_RANGE) {
-            throw new IllegalArgumentException("입력된 높이가 정해진 규칙에 맞지 않습니다.");
-        }
-    }
-
     private int changeInputToInteger(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new NumberFormatException("숫자로 입력을 변환할 수 없습니다.");
+        }
+    }
+
+    private void validateNumberIsIntRange(int number) {
+        if (number < MIN_HEIGHT_RANGE || number > MAX_HEIGHT_RANGE) {
+            throw new IllegalArgumentException("입력된 높이가 정해진 규칙에 맞지 않습니다.");
         }
     }
 
