@@ -1,5 +1,7 @@
 package ladder.util;
 
+import ladder.view.OutputView;
+
 import java.util.function.Supplier;
 
 public class ExceptionHandler {
@@ -8,7 +10,7 @@ public class ExceptionHandler {
         try {
             return callback.get();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printError(e.getMessage());
             return run(callback);
         }
     }
