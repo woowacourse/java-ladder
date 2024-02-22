@@ -9,13 +9,6 @@ import strategy.RandomPointStrategy;
 
 public class LineTest {
 
-    /* TODO: true 연속 2개 나오는 테스트 케이스 어떻게 만들지 생각해보기
-    @Test
-    @DisplayName("true-true 쌍이 발견될 경우 에러를 반환한다.")
-    void test_exception_findTrueTrue() {
-    }
-     */
-
     @RepeatedTest(1000)
     @DisplayName("랜덤으로 만든 값이 Point 클래스의 instance이다.")
     void test() {

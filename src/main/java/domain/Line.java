@@ -10,7 +10,7 @@ public class Line {
     private final PointStrategy pointStrategy;
 
     public Line(int playerCount, PointStrategy pointStrategy) {
-        this.pointStrategy = pointStrategy; // TODO: 여기서 그냥 new 해도 되지 않나?
+        this.pointStrategy = pointStrategy;
         generate(playerCount);
     }
 

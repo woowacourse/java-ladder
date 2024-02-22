@@ -31,22 +31,6 @@ public class Members {
                 .toList();
     }
 
-    private void validateVer2(String rawNames) { // TODO: 어느 방법이 더 좋은지
-        validateNull(rawNames);
-        List<String> names = addMembersVer2(rawNames);
-        validateDuplication(names);
-        validateCount(names);
-    }
-
-    private List<String> addMembersVer2(String rawNames) {
-        return Arrays.stream(rawNames.split(","))
-                .map(name -> {
-                    String trimmedName = name.trim();
-                    members.add(new Member(trimmedName));
-                    return trimmedName;
-                }).toList();
-    }
-
     private void validateNull(String rawNames) {
         if (rawNames == null) {
             throw new IllegalArgumentException("null을 입력할 수 없습니다.");

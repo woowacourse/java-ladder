@@ -12,10 +12,9 @@ public class Height {
         validateRange(value);
     }
 
-    // TODO: 변환과 검증 분리
     private int validateNonNumeric(String rawValue) {
         try {
-            return Integer.parseInt(rawValue); // TODO: 얘를 분리하고 싶다
+            return Integer.parseInt(rawValue);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("숫자를 입력해 주세요.");
         }
