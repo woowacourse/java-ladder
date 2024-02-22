@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-// TODO: Record 사용 고려
 public class Line {
     private final List<Boolean> scaffold;
 
