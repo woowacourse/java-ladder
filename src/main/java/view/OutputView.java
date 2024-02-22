@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
+    private static final int EMPTY_COUNT = 1;
     private static final String EMPTY_SPACE = " ";
     private static final String DISCONNECTED_RUNG_CHARACTER = " ";
     private static final String CONNECTED_RUNG_CHARACTER = "-";
@@ -16,7 +17,7 @@ public class OutputView {
     public static void printPlayerNames(Players players) {
         int maxLength = players.findMaxNameLength();
         players.getNames().stream()
-                .map(name -> alignNameCenter(name, maxLength + 1))
+                .map(name -> alignNameCenter(name, maxLength + EMPTY_COUNT))
                 .forEach(System.out::print);
         System.out.println();
     }
