@@ -10,7 +10,7 @@ public class OutputView {
         System.out.println("실행 결과\n");
 
         for (Name name : names) {
-            System.out.printf("%6s", name.getName());
+            System.out.printf("%6s", name.name());
         }
         System.out.println();
 
