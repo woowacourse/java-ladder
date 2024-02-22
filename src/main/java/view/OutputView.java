@@ -20,16 +20,9 @@ public class OutputView {
         String result = participants.getParticipants()
                 .stream()
                 .map(Participant::getName)
-                .map(OutputView::alignNameText)
+                .map(this::alignNameText)
                 .collect(Collectors.joining(" "));
         System.out.println(result);
-    }
-
-    private static String alignNameText(String name) {
-        if (name.length() < 5) {
-            return String.format("%4s ", name);
-        }
-        return name;
     }
 
     public void printLadder(Ladder ladder) {
@@ -39,6 +32,13 @@ public class OutputView {
             StringBuilder result = getStringBuilder(lineStates);
             System.out.println(result);
         }
+    }
+
+    private String alignNameText(String name) {
+        if (name.length() < 5) {
+            return String.format("%4s ", name);
+        }
+        return name;
     }
 
     private StringBuilder getStringBuilder(List<LineState> lineStates) {
