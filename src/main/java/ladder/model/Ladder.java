@@ -17,8 +17,8 @@ public class Ladder {
 
     public static Ladder of(LadderSize ladderSize) {
         List<Line> ladder = new ArrayList<>();
-        int height = ladderSize.getHeight();
-        int width = ladderSize.getWidth();
+        int height = ladderSize.height();
+        int width = ladderSize.width();
 
         for (int i = 0; i < height; i++) {
             ladder.add(new Line(makeRandomRow(width)));
