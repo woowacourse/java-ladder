@@ -10,9 +10,9 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder createFrom(RowLineGenerator rowLineGenerator, Height height) {
+    public static Ladder createFrom(RowLineGenerator rowLineGenerator, Integer personCount, Height height) {
         List<RowLine> lines = IntStream.range(0, height.getHeight())
-                .mapToObj(i -> rowLineGenerator.generate(height.getHeight()))
+                .mapToObj(i -> rowLineGenerator.generate(personCount))
                 .toList();
         return new Ladder(lines);
     }
