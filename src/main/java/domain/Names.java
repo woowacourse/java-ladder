@@ -35,4 +35,8 @@ public class Names {
             throw new IllegalArgumentException("[ERROR] 참여 인원은 " + MIN_COUNT + "명 이상이어야 합니다");
         }
     }
+
+    public List<Name> getNames() {
+        return List.copyOf(names);
+    }
 }
