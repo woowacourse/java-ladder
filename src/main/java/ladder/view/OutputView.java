@@ -18,9 +18,9 @@ public class OutputView {
     }
 
     private static String makeNameMessage(List<String> userNames) {
-        int middle = userNames.size() / 2;
-        String s1 = makeName(0, middle, "%5s", userNames);
-        String s2 = makeName(middle, userNames.size(), "%-5s", userNames);
+        int userNamesCount = userNames.size();
+        String s1 = makeName(0, userNamesCount - 1, "%-5s", userNames);
+        String s2 = makeName(userNamesCount - 1, userNamesCount, "%5s", userNames);
         return String.join(" ", s1, s2);
     }
 
