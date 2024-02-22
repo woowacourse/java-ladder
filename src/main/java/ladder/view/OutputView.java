@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 public class OutputView {
     private static final String RESULT_PREFIX = "실행결과\n";
     private static final String NAME_FORMAT = "%5s";
-    private static final String LADDER_STEP_FORMAT = "    |%s|";
     private static final String STEP_DELIMITER = "|";
     private static final String EXCEPTION_PREFIX = "[ERROR] ";
+    public static final String STEP_PREFIX = "    ";
 
     public void printResultPrefix() {
         System.out.println(RESULT_PREFIX);
@@ -45,8 +45,8 @@ public class OutputView {
         final String ladderStepShape = ladderStep.ladderPaths()
                 .stream()
                 .map(Path::getShape)
-                .collect(Collectors.joining(STEP_DELIMITER));
-        return String.format(LADDER_STEP_FORMAT, ladderStepShape);
+                .collect(Collectors.joining(STEP_DELIMITER, STEP_DELIMITER, STEP_DELIMITER));
+        return STEP_PREFIX + ladderStepShape;
     }
 
     public void printException(final RuntimeException exception) {
