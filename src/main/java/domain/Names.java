@@ -36,6 +36,10 @@ public class Names {
         }
     }
 
+    public Integer getNameCount() {
+        return names.size();
+    }
+
     public List<Name> getNames() {
         return List.copyOf(names);
     }
