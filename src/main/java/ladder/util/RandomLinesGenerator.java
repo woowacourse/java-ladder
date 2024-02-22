@@ -3,11 +3,14 @@ package ladder.util;
 import ladder.domain.Line;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
 public class RandomLinesGenerator {
+    private static Random RANDOM = new Random();
+
     private RandomLinesGenerator() {
     }
 
@@ -18,22 +21,34 @@ public class RandomLinesGenerator {
     }
 
     private static List<Boolean> generateRandomLine(int count) {
-        List<Boolean> result = new ArrayList<>();
-        Random random = new Random();
+        List<Boolean> line = new ArrayList<>(Collections.nCopies(count, false));
 
-        result.add(random.nextInt(2) == 0);
-        IntStream.range(1, count)
-                .forEach(i -> result.add(generateRandomScaffold(result.get(i - 1))));
+        shuffleOrder(count).forEach(index -> generateRandomScaffold(line, index));
 
-        return result;
+        return Collections.unmodifiableList(line);
     }
 
-    private static Boolean generateRandomScaffold(Boolean previous) {
-        if (previous) {
-            return false;
+    private static List<Integer> shuffleOrder(int count) {
+        List<Integer> order = new ArrayList<>(IntStream.range(0, count)
+                .boxed()
+                .toList());
+        Collections.shuffle(order);
+        return order;
+    }
+
+    private static void generateRandomScaffold(List<Boolean> line, int index) {
+        if (isLeftExist(line, index) || isRightExist(line, index)) {
+            return;
         }
 
-        Random random = new Random();
-        return random.nextInt(2) == 0;
+        line.set(index, RANDOM.nextBoolean());
+    }
+
+    private static boolean isLeftExist(List<Boolean> line, int index) {
+        return index - 1 >= 0 && line.get(index - 1);
+    }
+
+    private static boolean isRightExist(List<Boolean> line, int index) {
+        return index + 1 < line.size() && line.get(index + 1);
     }
 }
