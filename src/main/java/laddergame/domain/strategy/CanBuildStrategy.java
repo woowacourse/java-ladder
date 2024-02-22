@@ -1,8 +1,8 @@
 package laddergame.domain.strategy;
 
-import java.util.List;
+import laddergame.dto.LineBuildResult;
 
 public interface CanBuildStrategy {
-    List<Boolean> canBuildBridges(int count);
+    LineBuildResult canBuildBridges(int count);
 }
 

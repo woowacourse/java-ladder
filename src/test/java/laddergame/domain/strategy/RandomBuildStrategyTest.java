@@ -3,7 +3,7 @@ package laddergame.domain.strategy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import java.util.List;
+import laddergame.dto.LineBuildResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,10 +17,10 @@ public class RandomBuildStrategyTest {
         final int count = 4;
 
         //when
-        List<Boolean> canBuildBridges = randomBuildStrategy.canBuildBridges(count);
+        LineBuildResult canBuildBridges = randomBuildStrategy.canBuildBridges(count);
 
         //then
-        assertEquals(canBuildBridges.size(), count);
+        assertEquals(canBuildBridges.buildResults().size(), count);
     }
 
     @Test
@@ -31,12 +31,12 @@ public class RandomBuildStrategyTest {
         final int count = 5;
 
         //when
-        List<Boolean> canBuildBridges = randomBuildStrategy.canBuildBridges(count);
+        LineBuildResult canBuildBridges = randomBuildStrategy.canBuildBridges(count);
 
         //then
-        for (int i = 0; i < canBuildBridges.size() - 1; i++) {
-            if (canBuildBridges.get(i)) {
-                assertFalse(canBuildBridges.get(i + 1));
+        for (int i = 0; i < canBuildBridges.buildResults().size() - 1; i++) {
+            if (canBuildBridges.buildResults().get(i)) {
+                assertFalse(canBuildBridges.buildResults().get(i + 1));
             }
         }
     }

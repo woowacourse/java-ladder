@@ -3,6 +3,7 @@ package laddergame.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import laddergame.dto.LineBuildResult;
 
 public class Line {
     private List<Boolean> points;
@@ -11,14 +12,14 @@ public class Line {
         this.points = new ArrayList<>(Collections.nCopies(playerCount - 1, Boolean.FALSE));
     }
 
-    public void buildBridge(List<Boolean> isBridgeBuilt) {
+    public void buildBridge(LineBuildResult isBridgeBuilt) {
         validate(isBridgeBuilt);
-        this.points = isBridgeBuilt;
+        this.points = isBridgeBuilt.buildResults();
     }
 
-    private void validate(final List<Boolean> isBridgeBuilt) {
+    private void validate(final LineBuildResult isBridgeBuilt) {
         boolean isTrue = false;
-        for (Boolean previous : isBridgeBuilt) {
+        for (Boolean previous : isBridgeBuilt.buildResults()) {
             if (previous && isTrue) {
                 throw new IllegalStateException();
             }

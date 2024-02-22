@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import laddergame.dto.LineBuildResult;
 
 public class Ladder {
     private static final String NUMBER_REGEX = "^[\\d]*$";
@@ -36,7 +37,7 @@ public class Ladder {
         }
     }
 
-    public void build(final List<List<Boolean>> isBridgesBuilt) {
+    public void build(final List<LineBuildResult> isBridgesBuilt) {
         IntStream.range(0, lines.size())
                 .forEach(i -> lines.get(i).buildBridge(isBridgesBuilt.get(i)));
     }

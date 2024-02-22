@@ -2,6 +2,7 @@ package laddergame.domain.strategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import laddergame.dto.LineBuildResult;
 import laddergame.util.BooleanGenerator;
 import laddergame.util.RandomBooleanGenerator;
 
@@ -9,7 +10,7 @@ public class RandomBuildStrategy implements CanBuildStrategy {
     private final BooleanGenerator generator = RandomBooleanGenerator.getGenerator();
 
     @Override
-    public List<Boolean> canBuildBridges(final int count) {
+    public LineBuildResult canBuildBridges(final int count) {
         List<Boolean> list = new ArrayList<>();
         list.add(generator.generate());
         for (int i = 0; i < count - 1; i++) {
@@ -20,6 +21,6 @@ public class RandomBuildStrategy implements CanBuildStrategy {
             list.add(generator.generate());
         }
 
-        return list.stream().toList();
+        return new LineBuildResult(list.stream().toList());
     }
 }

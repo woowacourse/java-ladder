@@ -3,11 +3,10 @@ package laddergame.domain;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import laddergame.domain.strategy.CanBuildStrategy;
-import laddergame.util.BooleanGenerator;
+import laddergame.dto.LineBuildResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,12 +36,12 @@ public class LineTest {
 
         CanBuildStrategy canBuildStrategy = new CanBuildStrategy() {
             @Override
-            public List<Boolean> canBuildBridges(int count) {
-                return List.of(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE);
+            public LineBuildResult canBuildBridges(int count) {
+                return new LineBuildResult(List.of(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE));
             }
         };
 
-        List<Boolean> isBridgeBuilt = canBuildStrategy.canBuildBridges(personCount);
+        LineBuildResult isBridgeBuilt = canBuildStrategy.canBuildBridges(personCount);
 
         //when
         line.buildBridge(isBridgeBuilt);
@@ -56,8 +55,8 @@ public class LineTest {
     public void checkSequenceBuildBridge() {
         //given
         final int playerCount = 5;
-        final List<Boolean> canBuild1 = List.of(Boolean.TRUE, Boolean.TRUE, Boolean.FALSE, Boolean.FALSE);
-        final List<Boolean> canBuild2 = List.of(Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE);
+        final LineBuildResult canBuild1 = new LineBuildResult(List.of(Boolean.TRUE, Boolean.TRUE, Boolean.FALSE, Boolean.FALSE));
+        final LineBuildResult canBuild2 = new LineBuildResult(List.of(Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE));
 
         //when & then
         assertThrows(IllegalStateException.class, () -> new Line(playerCount).buildBridge(canBuild1));
