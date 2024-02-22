@@ -2,10 +2,13 @@ package domain;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -27,4 +30,16 @@ public class PlayersTest {
         );
     }
 
+    @DisplayName("갖고 있는 List를 iterator로 반환한다.")
+    @Test
+    void getNameFromIteratorTest() {
+        Players players = new Players(List.of("test1", "test2"));
+        Iterator<Name> iterator = players.iterator();
+        List<String> test = new ArrayList<>();
+        while (iterator.hasNext()) {
+            test.add(iterator.next().getName());
+        }
+        Assertions.assertThat(test)
+                .isEqualTo(List.of(new Name("test1").getName(), new Name("test2").getName()));
+    }
 }

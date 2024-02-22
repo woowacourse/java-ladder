@@ -1,8 +1,9 @@
 package domain;
 
+import java.util.Iterator;
 import java.util.List;
 
-public class Players {
+public class Players implements Iterable<Name> {
 
     private final List<Name> players;
 
@@ -11,6 +12,11 @@ public class Players {
         this.players = names.stream()
                 .map(Name::new)
                 .toList();
+    }
+
+    @Override
+    public Iterator<Name> iterator() {
+        return players.iterator();
     }
 
     private void validateNumber(List<String> names) {

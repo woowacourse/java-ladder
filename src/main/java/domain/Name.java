@@ -29,4 +29,8 @@ public class Name {
             throw new IllegalArgumentException("이름은 영어, 숫자, '_', '-'로만 이루어져야 합니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
