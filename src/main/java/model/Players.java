@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Players {
+    private static final int MIN_PLAYERS = 2;
 
     private final List<Player> players;
 
@@ -18,7 +19,7 @@ public class Players {
     }
 
     private void validateSize(List<String> players) {
-        if (players.size() < 2) {
+        if (players.size() < MIN_PLAYERS) {
             throw new IllegalArgumentException();
         }
     }
