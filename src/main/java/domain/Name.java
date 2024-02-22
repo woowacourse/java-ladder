@@ -29,4 +29,9 @@ class Name {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    //todo: 여차하면 삭제
+    public String getName(){
+        return this.name;
+    }
 }

@@ -3,14 +3,14 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-class Line {
+public class Line {
 
     private final List<Stick> sticks;
 
     public Line(StickGenerator stickGenerator, int playerSize) {
         List<Stick> sticks = new ArrayList<>();
 
-        for (int i = 0; i < playerSize; i++) {
+        for (int i = 0; i < playerSize - 1; i++) {
             sticks.add(getStick(stickGenerator, sticks));
         }
 
@@ -20,7 +20,9 @@ class Line {
     private Stick getStick(StickGenerator stickGenerator, List<Stick> sticks) {
         Stick stick = stickGenerator.generateOne();
         if (!sticks.isEmpty() && sticks.get(sticks.size() - 1) == stick) {
-            return Stick.getOpposite(stick);
+            if (stick == Stick.FILLED) {
+                return Stick.getOpposite(stick);
+            }
         }
 
         return stick;

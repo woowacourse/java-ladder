@@ -1,8 +1,14 @@
 package domain;
 
-enum Stick {
+public enum Stick {
 
-    FILLED, EMPTY;
+    FILLED("-"), EMPTY(" ");
+
+    private final String shape;
+
+    Stick(String shape) {
+        this.shape = shape;
+    }
 
     public static Stick getOpposite(Stick stick) {
         if (stick == FILLED) {
@@ -10,5 +16,9 @@ enum Stick {
         }
 
         return FILLED;
+    }
+
+    public String getShape() {
+        return shape;
     }
 }

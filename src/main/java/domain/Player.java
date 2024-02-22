@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-class Player {
+public class Player {
 
     private final Name name;
 
@@ -21,5 +21,10 @@ class Player {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    //todo: 여차하면 삭제
+    public String getName(){
+        return this.name.getName();
     }
 }

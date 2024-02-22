@@ -2,7 +2,7 @@ package domain;
 
 import java.util.List;
 
-class Players {
+public class Players {
 
     private static final int MIN_PLAYER_SIZE = 2;
 

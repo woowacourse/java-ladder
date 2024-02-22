@@ -17,7 +17,7 @@ class LineTest {
                 .doesNotThrowAnyException();
     }
 
-    @DisplayName("라인은 인원 수 만큼의 막대를 갖는다.")
+    @DisplayName("라인은 인원 수 -1 만큼의 막대를 갖는다.")
     @Test
     void lineHasStick() {
         int playerSize = 3;
@@ -25,18 +25,18 @@ class LineTest {
 
         List<Stick> sticks = line.getSticks();
 
-        assertThat(sticks).hasSize(playerSize);
+        assertThat(sticks).hasSize(playerSize - 1);
     }
 
     @DisplayName("라인에 연속된 막대는 있을 수 없다.")
     @Test
     void opposite() {
-        int playerSize = 2;
+        int playerSize = 3;
         Line line = new Line(filledStickGenerator(), playerSize);
 
         List<Stick> sticks = line.getSticks();
 
-        assertThat(sticks.get(playerSize - 1)).isEqualTo(Stick.EMPTY);
+        assertThat(sticks.get(playerSize - 2)).isEqualTo(Stick.EMPTY);
     }
 
     private StickGenerator filledStickGenerator() {
