@@ -11,24 +11,17 @@ public class OutputFormatter {
     private static final String SPACE = " ";
     private static final String BAR = "|";
 
+    public String toNameUnit(Players players) {
+        return players.getPlayers().stream()
+                .map(this::getNameUnit)
+                .collect(Collectors.joining());
+    }
+
     public String toLine(Line rawLine) {
         String line = rawLine.getPoints().stream()
                 .map(this::getStep)
                 .collect(Collectors.joining());
         return "    " + line;
-    }
-
-    private String getStep(Point point) {
-        if (point.getStep().equals(Step.EXIST)) {
-            return BAR + "-----";
-        }
-        return BAR + "     ";
-    }
-
-    public String toNameUnit(Players players) {
-        return players.getPlayers().stream()
-                .map(this::getNameUnit)
-                .collect(Collectors.joining());
     }
 
     private String getNameUnit(Player player) {
@@ -39,5 +32,12 @@ public class OutputFormatter {
             name = leftBlank + name + rightBlank;
         }
         return name + SPACE;
+    }
+
+    private String getStep(Point point) {
+        if (point.getStep().equals(Step.EXIST)) {
+            return BAR + "-----";
+        }
+        return BAR + "     ";
     }
 }

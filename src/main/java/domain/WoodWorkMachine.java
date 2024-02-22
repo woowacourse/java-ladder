@@ -24,6 +24,10 @@ public class WoodWorkMachine {
         return new Line(points);
     }
 
+    private boolean isInCountRange(PlayerCount playerCount, int buildCount) {
+        return playerCount.isBiggerThan(buildCount);
+    }
+
     private Point makePoint(int index, List<Point> points) {
         if (hasBeforeStep(index, points) || isLastPoint(index)) {
             return new Point(Step.EMPTY);
@@ -45,9 +49,5 @@ public class WoodWorkMachine {
 
     private boolean isFirstPoint(int index) {
         return index == 0;
-    }
-
-    private boolean isInCountRange(PlayerCount playerCount, int buildCount) {
-        return playerCount.isBiggerThan(buildCount);
     }
 }

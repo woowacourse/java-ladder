@@ -9,7 +9,7 @@ public class HeightRequest {
         this.height = height;
     }
 
-    public Height toHegith() {
+    public Height toHeight() {
         return new Height(height);
     }
 }

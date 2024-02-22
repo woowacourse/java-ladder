@@ -33,13 +33,15 @@
 - [ㅇ] WoodWorkMachine 랜덤 책임 문제
 - [x] outputView 개선 - 커비
 - [x] 컨트롤러 메소드 네이밍 정리 및 분리 개선
-- [ㅇ] 숫자 리터럴 상수화 (outputFormatter, inputView, inputValidator도)
-- [ ] 부생성자가 있는 경우 생성자의 접근제어자가 private인지
-- [ ] 이해를 위한 코드 전반의 공백 추가
-- [ ] 각 클래스 메소드 순서 점검하기
+- [x] 숫자 리터럴 상수화 (outputFormatter, inputView, inputValidator도)
+- [x] 부생성자가 있는 경우 생성자의 접근제어자가 private인지
+- [x] 이해를 위한 코드 전반의 공백 추가
+- [x] 각 클래스 메소드 순서 점검하기
 - [ ] 테스트 코드 리팩토링
 - [ ] getter 리스트 레퍼런스에 unmodifaible 추가
 - [ ] 메서드 순서 수정
+- [ ] record 처리
+- [ ] inputView 정리
 
 ## 고민점
 - [ ] 일반 메서드의 파라미터에도 final 키워드가 효과적일까?

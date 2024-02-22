@@ -8,22 +8,26 @@ import java.util.stream.Collectors;
 public class Players {
     private final List<Player> players;
 
-    public Players(final List<String> players) {
+    private Players(final List<Player> players) {
         validate(players);
-        this.players = convertToPlayer(players);
+        this.players = players;
     }
 
-    private void validate(List<String> players) {
+    public static Players from(List<String> players) {
+        return new Players(convertToPlayer(players));
+    }
+
+    private void validate(List<Player> players) {
         if (hasDuplicate(players)) {
             throw new IllegalArgumentException("중복된 참가자를 입력할 수 없습니다.");
         }
     }
 
-    private boolean hasDuplicate(List<String> players) {
+    private boolean hasDuplicate(List<Player> players) {
         return Set.copyOf(players).size() != players.size();
     }
 
-    private List<Player> convertToPlayer(List<String> players) {
+    private static List<Player> convertToPlayer(List<String> players) {
         return players.stream()
                 .map(Player::new)
                 .collect(Collectors.toList());

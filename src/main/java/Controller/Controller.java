@@ -27,10 +27,6 @@ public class Controller {
         outputView.printResult(players, ladder);
     }
 
-    private Carpenter hireCarpenter(Height height, Players players) {
-        return new Carpenter(height, PlayerCount.fromPlayers(players));
-    }
-
     private Players getPlayers() {
         final PlayersRequest playersRequest = readWithRetry(inputView::inputPlayers);
         return playersRequest.toPlayers();
@@ -38,7 +34,11 @@ public class Controller {
 
     private Height getHeight() {
         final HeightRequest heightRequest = readWithRetry(inputView::inputHeight);
-        return heightRequest.toHegith();
+        return heightRequest.toHeight();
+    }
+
+    private Carpenter hireCarpenter(Height height, Players players) {
+        return Carpenter.of(height, PlayerCount.fromPlayers(players));
     }
 
     private <T> T readWithRetry(Supplier<T> supplier) {
