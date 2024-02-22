@@ -60,4 +60,17 @@ class ParticipantsTest {
 
         assertThat(result).isEqualTo(given.size());
     }
+
+    @DisplayName("참여자 중 이름이 중복되어 있으면 예외를 반환한다.")
+    @Test
+    void validateDuplicatedParticipant() {
+        List<Participant> given = List.of(
+                new Participant("daon"),
+                new Participant("daon")
+        );
+
+        assertThatThrownBy(() -> new Participants(given))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 참여자 이름이 중복되었습니다.");
+    }
 }
