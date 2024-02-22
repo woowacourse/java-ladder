@@ -16,10 +16,10 @@ public enum Bridge {
     }
 
     public static Bridge getBy(final boolean exist) {
-       return Arrays.stream(values())
-               .filter(value -> value.exist == exist)
-               .findAny()
-               .orElseThrow();
+        return Arrays.stream(values())
+                .filter(value -> value.exist == exist)
+                .findAny()
+                .orElseThrow();
     }
 
     public String getShape() {
