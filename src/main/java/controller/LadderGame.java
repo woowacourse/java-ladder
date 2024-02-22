@@ -20,11 +20,15 @@ public class LadderGame {
     }
 
     public void run() {
-        Players players = generatePlayers();
-        Height height = generateHeight();
-        Ladder ladder = generateLadder(players, height);
-        OutputView.printPlayerNames(players);
-        OutputView.printLadder(players.findMaxNameLength(), ladder);
+        try {
+            Players players = generatePlayers();
+            Height height = generateHeight();
+            Ladder ladder = generateLadder(players, height);
+            OutputView.printPlayerNames(players);
+            OutputView.printLadder(players.findMaxNameLength(), ladder);
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e);
+        }
     }
 
     private Players generatePlayers() {

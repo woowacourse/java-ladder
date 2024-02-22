@@ -46,4 +46,8 @@ public class OutputView {
         }
         return DISCONNECTED_RUNG.repeat(length);
     }
+
+    public static void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
+    }
 }
