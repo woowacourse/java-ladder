@@ -8,9 +8,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private static final String DISCONNECTED_RUNG = " ";
-    private static final String CONNECTED_RUNG = "-";
-    private static final String LADDER_SIDE = "|";
+    private static final String EMPTY_SPACE = " ";
+    private static final String DISCONNECTED_RUNG_CHARACTER = " ";
+    private static final String CONNECTED_RUNG_CHARACTER = "-";
+    private static final String LADDER_SIDE_CHARACTER = "|";
 
     public static void printPlayerNames(Players players) {
         int maxLength = players.findMaxNameLength();
@@ -24,27 +25,29 @@ public class OutputView {
         int spaces = length - name.length();
         int left = spaces / 2;
         int right = spaces - left;
-        return " ".repeat(left) + name + " ".repeat(right);
+        return EMPTY_SPACE.repeat(left) + name + EMPTY_SPACE.repeat(right);
     }
 
     public static void printLadder(int length, Ladder ladder) {
         ladder.getRows()
                 .stream()
                 .map(LadderRow::getRungs)
-                .forEach(rungs -> System.out.println(makeMessage(rungs, length)));
+                .forEach(rungs ->
+                        System.out.printf("%s%s%n", EMPTY_SPACE.repeat(length), makeRungMessage(rungs, length))
+                );
     }
 
-    private static String makeMessage(List<LadderRung> rungs, int length) {
-        return " ".repeat(length) + rungs.stream()
-                .map(rung -> makeRung(length, rung))
-                .collect(Collectors.joining(LADDER_SIDE, LADDER_SIDE, LADDER_SIDE));
+    private static String makeRungMessage(List<LadderRung> rungs, int length) {
+        return rungs.stream()
+                .map(rung -> getRungCharacter(length, rung))
+                .collect(Collectors.joining(LADDER_SIDE_CHARACTER, LADDER_SIDE_CHARACTER, LADDER_SIDE_CHARACTER));
     }
 
-    private static String makeRung(int length, LadderRung rung) {
+    private static String getRungCharacter(int length, LadderRung rung) {
         if (rung.isConnected()) {
-            return CONNECTED_RUNG.repeat(length);
+            return CONNECTED_RUNG_CHARACTER.repeat(length);
         }
-        return DISCONNECTED_RUNG.repeat(length);
+        return DISCONNECTED_RUNG_CHARACTER.repeat(length);
     }
 
     public static void printErrorMessage(Exception e) {
