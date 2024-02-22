@@ -1,12 +1,8 @@
-package laddergame;
+package laddergame.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import laddergame.domain.Line;
-import laddergame.domain.LineSize;
-import laddergame.domain.Names;
-import laddergame.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

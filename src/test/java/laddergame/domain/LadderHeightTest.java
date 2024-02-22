@@ -1,6 +1,5 @@
-package laddergame;
+package laddergame.domain;
 
-import laddergame.domain.LadderHeight;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,7 +10,7 @@ public class LadderHeightTest {
     @DisplayName("사다리 높이가 양수가 아닐시 예외를 발생시킨다.")
     @ParameterizedTest
     @ValueSource(ints = {-1, 0})
-    void notPositive(int value) {
+    void validatePositive(int value) {
         Assertions.assertThatThrownBy(() -> new LadderHeight(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 입력값은 양수만 가능합니다.");

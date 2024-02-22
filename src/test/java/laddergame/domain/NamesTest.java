@@ -1,4 +1,4 @@
-package laddergame;
+package laddergame.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class NamesTest {
 
 
-    @DisplayName("이름은 중복될 수 없다.")
+    @DisplayName("이름이 중복되면 예외를 발생시킨다.")
     @Test
     void duplicatedName() {
         assertThatThrownBy(() -> new Names(List.of("zeze", "zeze")))
