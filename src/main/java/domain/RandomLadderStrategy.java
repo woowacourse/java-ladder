@@ -8,6 +8,6 @@ public class RandomLadderStrategy implements LadderStrategy {
 
     @Override
     public boolean creatable() {
-        return random.nextInt(0, 2) == 0;
+        return random.nextBoolean();
     }
 }
