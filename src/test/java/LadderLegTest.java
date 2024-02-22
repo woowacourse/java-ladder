@@ -1,3 +1,6 @@
+import domain.ladder.common.Direction;
+import domain.ladder.LadderLeg;
+import domain.ladder.LadderLegPiece;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,9 +13,9 @@ public class LadderLegTest {
     @DisplayName("사다리 조각을 통해 사다리 다리를 만든다.")
     public void createLadderLeg() {
         List<Direction> directions = List.of(Direction.LEFT, Direction.RIGHT);
-        List<LadderPiece> ladderPieces = 사다리_조각들_생성(directions);
+        List<LadderLegPiece> ladderLegPieces = 사다리_조각들_생성(directions);
 
-        LadderLeg ladderLeg = new LadderLeg(ladderPieces);
+        LadderLeg ladderLeg = new LadderLeg(ladderLegPieces);
 
         assertInstanceOf(LadderLeg.class, ladderLeg);
     }
@@ -21,9 +24,9 @@ public class LadderLegTest {
     @DisplayName("가지고 있는 특정 사다리 조각의 방향이 오른쪽인지 확인한다.")
     public void checkLadderPieceDirection() {
         List<Direction> directions = List.of(Direction.RIGHT, Direction.LEFT);
-        List<LadderPiece> ladderPieces = 사다리_조각들_생성(directions);
+        List<LadderLegPiece> ladderLegPieces = 사다리_조각들_생성(directions);
 
-        LadderLeg ladderLeg = new LadderLeg(ladderPieces);
+        LadderLeg ladderLeg = new LadderLeg(ladderLegPieces);
 
         assertTrue(ladderLeg.hasRightDirectionAtIndex(0));
         assertFalse(ladderLeg.hasRightDirectionAtIndex(1));
@@ -32,17 +35,17 @@ public class LadderLegTest {
     @DisplayName("가지고 있는 특정 사다리 조각의 방향을 알려준다.")
     public void getDirectionAtIndex(){
         List<Direction> directions = List.of(Direction.RIGHT, Direction.LEFT);
-        List<LadderPiece> ladderPieces = 사다리_조각들_생성(directions);
+        List<LadderLegPiece> ladderLegPieces = 사다리_조각들_생성(directions);
 
-        LadderLeg ladderLeg = new LadderLeg(ladderPieces);
+        LadderLeg ladderLeg = new LadderLeg(ladderLegPieces);
 
         assertEquals(ladderLeg.getDirectionAtIndex(0),Direction.RIGHT);
         assertEquals(ladderLeg.getDirectionAtIndex(1),Direction.LEFT);
     }
 
-    private List<LadderPiece> 사다리_조각들_생성(List<Direction> directions) {
+    private List<LadderLegPiece> 사다리_조각들_생성(List<Direction> directions) {
         return directions.stream()
-                         .map(LadderPiece::new)
+                         .map(LadderLegPiece::new)
                          .toList();
     }
 }

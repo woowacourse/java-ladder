@@ -1,3 +1,7 @@
+import domain.ladder.common.Direction;
+import domain.ladder.common.Height;
+import domain.ladder.LadderLeg;
+import domain.ladder.LadderLegGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LadderLegGeneratorTest {
 
     @Test
-    @DisplayName("Ladder의 높이를 통해 LadderLeg 생성기를 생성한다.")
+    @DisplayName("Ladder의 높이를 통해 domain.Ladder.LadderLeg 생성기를 생성한다.")
     public void createLadderGenerator() {
         Height height = new Height("5");
 
@@ -18,7 +22,7 @@ class LadderLegGeneratorTest {
     }
 
     @Test
-    @DisplayName("가지가 없는 빈 LadderLeg 를 생성한다.")
+    @DisplayName("가지가 없는 빈 domain.Ladder.LadderLeg 를 생성한다.")
     public void generateDownLadderLeg() {
         Height height = new Height("5");
         LadderLegGenerator ladder = new LadderLegGenerator(height);
@@ -31,7 +35,7 @@ class LadderLegGeneratorTest {
     }
 
     @Test
-    @DisplayName("전 LadderLeg 와 DirectionGenerator 를 통해 가지를 가지는 LadderLeg 를 생성한다.")
+    @DisplayName("전 domain.Ladder.LadderLeg 와 util.DirectionGenerator 를 통해 가지를 가지는 domain.Ladder.LadderLeg 를 생성한다.")
     public void generateLadderLeg() {
         LadderLegGenerator ladderLegGenerator = 사다리_생성기_생성();
         List<Direction> fixedDirectionList = List
@@ -47,7 +51,7 @@ class LadderLegGeneratorTest {
     }
 
     @Test
-    @DisplayName("전 LadderLeg의 동일 index가 오른쪽 가지를 가질때, 왼쪽 가지를 가지는 LadderLeg 를 생성한다.")
+    @DisplayName("전 LadderLeg의 동일 index가 오른쪽 가지를 가질때, 왼쪽 가지를 가지는 domain.Ladder.LadderLeg 를 생성한다.")
     public void generateLeftDirectionLadderLeg() {
         LadderLegGenerator ladderLegGenerator = 사다리_생성기_생성();
         List<Direction> fixedDirectionList = List

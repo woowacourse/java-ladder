@@ -1,3 +1,9 @@
+package domain.ladder;
+
+import domain.ladder.common.Direction;
+import util.DirectionGenerator;
+import domain.ladder.common.Height;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +13,7 @@ public class Ladder {
     private final List<LadderLeg> ladderLegs;
 
     //층 , 사용자 수
-    Ladder(Height height, Integer playerCount, DirectionGenerator directionGenerator) {
+    public Ladder(Height height, Integer playerCount, DirectionGenerator directionGenerator) {
         this.height = height;
         this.playerCount = playerCount;
         List<LadderLeg> ladderLegs = new ArrayList<>();

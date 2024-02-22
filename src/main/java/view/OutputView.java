@@ -1,3 +1,7 @@
+package view;
+
+import domain.ladder.common.Direction;
+
 public class OutputView {
 
     public static final void printDirection(Direction direction) {

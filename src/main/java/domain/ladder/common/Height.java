@@ -1,3 +1,5 @@
+package domain.ladder.common;
+
 public class Height {
 
     private final int height;

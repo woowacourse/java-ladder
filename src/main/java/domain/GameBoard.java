@@ -1,9 +1,15 @@
+package domain;
+
+import domain.ladder.Ladder;
+import domain.ladder.common.Direction;
+import domain.player.Player;
+
 import java.util.List;
 
 public class GameBoard {
     private final List<Player> players;
     private final Ladder ladder;
-    public GameBoard(List<Player> players,Ladder ladder){
+    public GameBoard(List<Player> players, Ladder ladder){
         this.players = players;
         this.ladder = ladder;
     }

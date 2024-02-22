@@ -1,4 +1,7 @@
 
+import domain.ladder.common.Direction;
+import util.DirectionGenerator;
+
 import java.util.List;
 
 public class FixedDirectionGenerator implements DirectionGenerator {

@@ -1,3 +1,8 @@
+package domain.ladder;
+
+import domain.ladder.common.Direction;
+import domain.ladder.common.Height;
+
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
@@ -12,7 +17,7 @@ public class LadderLegGenerator {
     public LadderLeg generateDownLadderLeg() {
         return new LadderLeg(IntStream.range(0, height.getHeight())
                                       .mapToObj(index -> Direction.DOWN)
-                                      .map(LadderPiece::new)
+                                      .map(LadderLegPiece::new)
                                       .toList());
     }
 
@@ -24,7 +29,7 @@ public class LadderLegGenerator {
                                           }
                                           return directionSupplier.get();
                                       })
-                                      .map(LadderPiece::new)
+                                      .map(LadderLegPiece::new)
                                       .toList());
     }
 

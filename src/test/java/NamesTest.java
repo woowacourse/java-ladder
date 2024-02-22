@@ -1,3 +1,4 @@
+import domain.player.Names;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

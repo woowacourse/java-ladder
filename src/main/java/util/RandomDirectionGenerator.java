@@ -1,3 +1,7 @@
+package util;
+
+import domain.ladder.common.Direction;
+
 import java.util.Random;
 
 public class RandomDirectionGenerator implements DirectionGenerator {
