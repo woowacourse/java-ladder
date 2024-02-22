@@ -38,11 +38,12 @@
 - [x] 이해를 위한 코드 전반의 공백 추가
 - [x] 각 클래스 메소드 순서 점검하기
 - [ ] 테스트 코드 리팩토링
-- [ ] getter 리스트 레퍼런스에 unmodifaible 추가
+- [x] getter 리스트 레퍼런스에 unmodifaible 추가 
 - [x] 메서드 순서 수정
 - [x] record 처리
 - [ ] inputView 정리
 - [ ] inputView, outputView 생성자
+- [x] 불변객체 
 
 ## 고민점
 - [ ] 일반 메서드의 파라미터에도 final 키워드가 효과적일까?
