@@ -17,13 +17,14 @@ public class ResultView {
     private static final String EMPTY_LINE = "|     ";
 
     public static void printResult(People people, Ladder ladder) {
+        System.out.println("\n실행 결과\n");
         printPeople(people);
         printLadder(ladder);
     }
 
     private static void printPeople(People people) {
         StringJoiner stringJoiner = new StringJoiner(NAME_DELIMITER);
-        people.stream().forEach(name -> stringJoiner.add(NAME_FORMAT.formatted(name)));
+        people.stream().forEach(person -> stringJoiner.add(NAME_FORMAT.formatted(person.name())));
         System.out.println(stringJoiner);
     }
 
