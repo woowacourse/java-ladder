@@ -17,14 +17,6 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public Integer getHeight() {
-        return lines.size();
-    }
-
-    public Integer getWidth() {
-        return lines.get(0).getConnections().size();
-    }
-
     public List<RowLine> getLines() {
         return List.copyOf(lines);
     }
