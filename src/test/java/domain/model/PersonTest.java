@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class PersonTest {
 
     @Test
-    @DisplayName(" 사람은 이름을 가진다.")
+    @DisplayName("사람은 이름을 가진다.")
     void personNameTest() {
         //given
         Person person = new Person("name1");
@@ -23,7 +23,6 @@ class PersonTest {
         Assertions.assertThatThrownBy(() -> new Person("namena"))
                 .isInstanceOf(IllegalStateException.class);
     }
-
 
     @Test
     @DisplayName("사람의 이름은 공백만 입력되면 예외를 발생시킨다.")
