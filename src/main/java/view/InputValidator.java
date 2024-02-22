@@ -1,6 +1,8 @@
 package view;
 
 public class InputValidator {
+    private static final String INPUT_NAMES_DELIMITER = InputView.INPUT_NAMES_DELIMITER;
+
     public void validatePlayers(String input) {
         validateBlank(input);
         validateDoubleDelimiter(input);
@@ -9,19 +11,19 @@ public class InputValidator {
     }
 
     private void validateEndWord(String input) {
-        if (input.endsWith(",")) {
+        if (input.endsWith(INPUT_NAMES_DELIMITER)) {
             throw new IllegalArgumentException("입력은 구분자로 끝날 수 없습니다.");
         }
     }
 
     private void validateStartWord(String input) {
-        if (input.startsWith(",")) {
+        if (input.startsWith(INPUT_NAMES_DELIMITER)) {
             throw new IllegalArgumentException("입력은 구분자로 시작할 수 없습니다.");
         }
     }
 
     private void validateDoubleDelimiter(String input) {
-        if (input.contains(",".repeat(2))) {
+        if (input.contains(INPUT_NAMES_DELIMITER.repeat(2))) {
             throw new IllegalArgumentException("올바른 형태로 구분자로 나뉘어 입력해주세요.");
         }
     }
