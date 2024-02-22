@@ -20,8 +20,17 @@ public class InputView {
 
     public int readLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
+        final String input = scanner.nextLine();
 
-        return scanner.nextInt();
+        return getParseInt(input);
+    }
+
+    private static int getParseInt(final String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("[ERROR] 숫자로 변환할 수 없습니다.");
+        }
     }
 
 }

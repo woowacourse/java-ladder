@@ -3,6 +3,7 @@ package laddergame.controller;
 import laddergame.domain.LadderHeight;
 import laddergame.domain.Names;
 import laddergame.domain.Result;
+import laddergame.exception.ExceptionHandler;
 import laddergame.service.LadderGame;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
@@ -20,13 +21,21 @@ public class LadderController {
     }
 
     public void run() {
-        final Names names = new Names(inputView.readNames());
-        final LadderHeight height = new LadderHeight(inputView.readLadderHeight());
+        final Names names = getNames();
+        final LadderHeight height = getLadderHeight();
 
         final Result result = ladderGame.createLadder(names, height);
 
         outputView.printResult(result);
     }
 
+    private Names getNames() {
+        return ExceptionHandler.retryUntilInputIsValid(() -> new Names(inputView.readNames()), outputView);
+    }
+
+    private LadderHeight getLadderHeight() {
+        return ExceptionHandler.retryUntilInputIsValid(() -> new LadderHeight(inputView.readLadderHeight()),
+                outputView);
+    }
 
 }
