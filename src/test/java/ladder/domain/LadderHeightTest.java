@@ -26,6 +26,13 @@ public class LadderHeightTest {
                 .isEqualTo(expected);
     }
 
+    @Test
+    @DisplayName("숫자가 아니면 예외를 발생시킨다.")
+    void numericHeightExceptionTest() {
+        assertThatThrownBy(() -> LadderHeight.from("one"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("1 이상이 아니라면 예외를 발생시킨다.")
     @Test
     void minHeightExceptionTest() {
