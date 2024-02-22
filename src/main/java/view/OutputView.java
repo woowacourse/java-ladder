@@ -1,8 +1,8 @@
 package view;
 
+import domain.Floor;
 import domain.Ladder;
 import domain.LadderBridge;
-import domain.Line;
 import domain.PlayerNames;
 import java.util.StringJoiner;
 
@@ -32,15 +32,15 @@ public class OutputView {
 
     private void printLadder(Ladder ladder) {
         StringJoiner ladderJoiner;
-        for (Line line : ladder.getLines()) {
+        for (Floor floor : ladder.getFloors()) {
             ladderJoiner = new StringJoiner(LADDER_FRAME, LADDER_FRAME, LADDER_FRAME);
-            printLadderLine(line, ladderJoiner);
+            printLadderLine(floor, ladderJoiner);
         }
     }
 
-    private void printLadderLine(Line line, StringJoiner ladderJoiner) {
+    private void printLadderLine(Floor floor, StringJoiner ladderJoiner) {
         System.out.print("\t");
-        for (LadderBridge bridge : line.getBridges()) {
+        for (LadderBridge bridge : floor.getBridges()) {
             addBridgeValue(bridge, ladderJoiner);
         }
         System.out.println(ladderJoiner);

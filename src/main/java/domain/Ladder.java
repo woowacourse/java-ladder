@@ -6,23 +6,23 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private final List<Line> lines;
+    private final List<Floor> floors;
 
-    private Ladder(List<Line> lines) {
-        this.lines = lines;
+    private Ladder(List<Floor> floors) {
+        this.floors = floors;
     }
 
     public static Ladder of(LadderHeight height, int pointCount, BridgeGenerator bridgeGenerator) {
-        List<Line> lines = new ArrayList<>();
+        List<Floor> floors = new ArrayList<>();
         for (int i = 0; i < height.getValue(); i++) {
             List<LadderBridge> bridges = bridgeGenerator.generate(pointCount);
-            lines.add(new Line(bridges));
+            floors.add(new Floor(bridges));
         }
 
-        return new Ladder(lines);
+        return new Ladder(floors);
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    public List<Floor> getFloors() {
+        return Collections.unmodifiableList(floors);
     }
 }

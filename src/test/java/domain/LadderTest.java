@@ -1,11 +1,11 @@
 package domain;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+
+import domain.bridge.strategy.BridgeGeneratorStub;
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class LadderTest {
 
@@ -14,11 +14,11 @@ public class LadderTest {
         LadderHeight height = new LadderHeight("3");
         int pointCount = 3;
 
-        Ladder ladder = Ladder.of(height, pointCount);
-        List<Line> lines = ladder.getLines();
+        Ladder ladder = Ladder.of(height, pointCount, new BridgeGeneratorStub());
+        List<Floor> floors = ladder.getFloors();
         assertAll(
-                () -> Assertions.assertThat(lines.size()).isEqualTo(3),
-                () -> Assertions.assertThat(lines.get(0).getBridges().size()).isEqualTo(3)
+                () -> Assertions.assertThat(floors.size()).isEqualTo(3),
+                () -> Assertions.assertThat(floors.get(0).getBridges().size()).isEqualTo(3)
         );
 
     }

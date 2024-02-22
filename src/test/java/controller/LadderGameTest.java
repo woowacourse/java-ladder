@@ -1,16 +1,15 @@
 package controller;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+
 import domain.PlayerNames;
+import java.util.Scanner;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import view.InputView;
 import view.OutputView;
-
-import java.util.Scanner;
-
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderGameTest {
 
