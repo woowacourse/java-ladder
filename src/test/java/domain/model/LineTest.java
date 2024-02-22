@@ -41,4 +41,17 @@ public class LineTest {
         Assertions.assertThat(expect).isEqualTo(actual);
     }
 
+    @Test
+    @DisplayName("특정 위치를 지정하면 이동할 방향을 정해준다.")
+    void showDirectionTest() {
+        //given
+        Line line = new Line(()-> 5, 4);
+        //when
+        Direction leftDirection = line.showDirection(1);
+        Direction rightDirection = line.showDirection(2);
+        //then
+        Assertions.assertThat(leftDirection).isEqualTo(Direction.LEFT);
+        Assertions.assertThat(rightDirection).isEqualTo(Direction.RIGHT);
+    }
+
 }
