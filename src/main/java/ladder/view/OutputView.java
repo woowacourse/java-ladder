@@ -39,12 +39,9 @@ public class OutputView {
     }
 
     private static void printPeopleNames(People people) {
-        // TODO: Optional Warning 체크
-        System.out.println(
-                people.getNames().stream()
-                        .map(name -> String.format("%5s", name))
-                        .reduce((a, b) -> a + " " + b)
-                        .get());
+        StringJoiner joiner = new StringJoiner(" ");
+        people.getNames().forEach(name -> joiner.add(String.format("%5s", name)));
+        System.out.println(joiner);
     }
 
     private static void printLadder(Ladder ladder) {
