@@ -32,6 +32,6 @@ public class Line {
     }
 
     public List<Boolean> getLegs() {
-        return legs;
+        return List.copyOf(legs);
     }
 }
