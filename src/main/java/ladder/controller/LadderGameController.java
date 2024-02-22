@@ -6,9 +6,10 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class LadderGameController {
-
-    private LadderGameController(){
+    private LadderGameController() {
     }
+
+    //TODO 메소드 10줄 이내로 작성
     public static void run() {
         People people = null;
         while (people == null) {
@@ -20,7 +21,6 @@ public class LadderGameController {
             ladder = makeLadder(people);
         }
 
-        //3단계
         OutputView.printNames(people);
         OutputView.printLadder(ladder);
     }

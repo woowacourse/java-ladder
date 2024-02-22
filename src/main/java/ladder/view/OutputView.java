@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class OutputView {
+    //TODO String 상수 Enum으로 변경 고민해보기
     private static final String BLANK = " ";
     private static final String VERTICAL_LINE = "|";
     private static final String HORIZONTAL_LINE = "-";
