@@ -19,6 +19,10 @@ public class Participants {
         return names;
     }
 
+    public int getParticipantsCount() {
+        return names.size();
+    }
+
     private List<Name> inviteParticipants(List<String> names) {
         return names.stream()
                 .map(Name::new)
