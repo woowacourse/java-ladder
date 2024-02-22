@@ -31,7 +31,7 @@ public class LadderGame {
     public List<String> getResult() {
         StringBuilder nameResult = new StringBuilder();
         for (Name player : players) {
-            nameResult.append("     ").append(player.getName());
+            nameResult.append(String.format("%6s", player.getName()));
         }
         List<String> results = new ArrayList<>();
         results.add(nameResult.toString());
