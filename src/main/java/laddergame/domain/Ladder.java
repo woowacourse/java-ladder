@@ -13,7 +13,6 @@ public class Ladder {
 
     public static Ladder create(final LineSize lineSize, final LadderHeight height,
             final BooleanGenerator booleanGenerator) {
-
         final List<Line> lines = new ArrayList<>();
 
         while (height.isBiggerThan(lines.size())) {

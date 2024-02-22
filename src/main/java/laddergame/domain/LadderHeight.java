@@ -1,6 +1,7 @@
 package laddergame.domain;
 
 public class LadderHeight {
+
     private final int height;
 
     public LadderHeight(final int input) {

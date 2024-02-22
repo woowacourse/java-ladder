@@ -6,7 +6,7 @@ import java.util.List;
 public class Line {
 
     private final List<Point> points;
-    
+
     private Line(final List<Point> points) {
         this.points = points;
     }

@@ -7,8 +7,8 @@ public class OutputView {
     public void printResult(final Result result) {
         System.out.println(
                 "실행결과" + System.lineSeparator() +
-                NameFormatter.formatNames(result.names()) + System.lineSeparator() +
-                LadderFormatter.formatLadder(result)
+                        NameFormatter.formatNames(result.names()) + System.lineSeparator() +
+                        LadderFormatter.formatLadder(result)
         );
     }
 
