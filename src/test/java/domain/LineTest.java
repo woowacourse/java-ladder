@@ -1,6 +1,6 @@
 package domain;
 
-import domain.point.strategy.BridgeGeneratorStub;
+import domain.bridge.strategy.BridgeGeneratorStub;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

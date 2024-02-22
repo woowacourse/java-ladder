@@ -1,6 +1,6 @@
 package domain;
 
-import domain.point.strategy.RandomBridgeGenerator;
+import domain.bridge.strategy.RandomBridgeGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
