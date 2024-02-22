@@ -12,10 +12,11 @@ public class UserNames {
     private UserNames(final List<UserName> userNames) {
         validateSize(userNames);
         validateDuplicate(userNames);
-        this.userNames = new ArrayList<>(userNames);
+        this.userNames = userNames;
     }
 
-    public static UserNames of(final List<String> names) throws IllegalArgumentException {
+    public static UserNames of(final List<String> userNames) throws IllegalArgumentException {
+        List<String> names = new ArrayList<>(userNames);
         return names.stream()
                 .map(UserName::new)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), UserNames::new));
