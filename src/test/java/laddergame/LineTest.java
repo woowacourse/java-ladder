@@ -6,6 +6,7 @@ import java.util.List;
 import laddergame.domain.Line;
 import laddergame.domain.LineSize;
 import laddergame.domain.Names;
+import laddergame.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +23,7 @@ public class LineTest {
         Line line = Line.create(lineSize, () -> true);
 
         //then
-        final List<Boolean> expectedLine = List.of(true, false, true);
+        final List<Point> expectedLine = List.of(Point.EXIST, Point.EMPTY, Point.EXIST);
 
         assertThat(line).extracting("points")
                 .isEqualTo(expectedLine);

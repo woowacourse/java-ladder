@@ -26,10 +26,10 @@ public class LadderTest {
         Ladder ladder = Ladder.create(lineSize, height, () -> true);
 
         // then
-        final List<Boolean> expectedLine = List.of(true, false, true);
+        final List<Boolean> expected = List.of(true, false, true);
 
-        assertThat(ladder).extracting("lines")
-                .isEqualTo(createLadder(expectedLine, value));
+        assertThat(ladder.getLinesState())
+                .isEqualTo(createLadder(expected, value));
     }
 
     public static List<List<Boolean>> createLadder(final List<Boolean> line, final int size) {

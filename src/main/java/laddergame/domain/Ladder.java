@@ -23,9 +23,9 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public List<List<Boolean>> getLines() {
+    public List<List<Boolean>> getLinesState() {
         return lines.stream()
-                .map(Line::getPoints)
+                .map(Line::getPointsState)
                 .toList();
     }
 }

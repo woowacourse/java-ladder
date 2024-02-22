@@ -5,20 +5,19 @@ import java.util.List;
 
 public class Line {
 
-    // TODO : Boolean 이 뭘 의지하는지 알기 쉽나? Enum 으로 상태를 나타내는 것은 어떨까?
-    private final List<Boolean> points;
+    private final List<Point> points;
     
-    private Line(final List<Boolean> points) {
+    private Line(final List<Point> points) {
         this.points = points;
     }
 
     public static Line create(final LineSize lineSize, final BooleanGenerator booleanGenerator) {
-        List<Boolean> points = new ArrayList<>();
+        List<Point> points = new ArrayList<>();
 
-        boolean temp = false;
+        Point temp = Point.EMPTY;
 
         while (lineSize.isBiggerThan(points.size())) {
-            final boolean point = generateBoolean(temp, booleanGenerator);
+            final Point point = generatePoint(temp, booleanGenerator);
             points.add(point);
             temp = point;
         }
@@ -26,15 +25,17 @@ public class Line {
         return new Line(points);
     }
 
-    private static boolean generateBoolean(final boolean before, final BooleanGenerator booleanGenerator) {
-        if (before) {
-            return false;
+    private static Point generatePoint(final Point before, final BooleanGenerator booleanGenerator) {
+        if (before.isExist()) {
+            return Point.EMPTY;
         }
 
-        return booleanGenerator.generate();
+        return Point.from(booleanGenerator.generate());
     }
 
-    public List<Boolean> getPoints() {
-        return points;
+    public List<Boolean> getPointsState() {
+        return points.stream()
+                .map(Point::isExist)
+                .toList();
     }
 }
