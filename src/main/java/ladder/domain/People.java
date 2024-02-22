@@ -3,7 +3,6 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class People {
 
@@ -38,12 +37,10 @@ public class People {
         return names.size();
     }
 
-    //todo : 가장 긴 이름의 길아 반환하는 메서드
-
-    @Override
-    public String toString() {
+    public int findMaxNameLength() {
         return names.stream()
-                .map(name -> String.format("%-7s", name))
-                .collect(Collectors.joining());
+                .mapToInt(String::length)
+                .max()
+                .orElse(0);
     }
 }
