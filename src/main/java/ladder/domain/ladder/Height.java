@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.exception.InvalidHeightRangeException;
+import ladder.exception.ladder.InvalidHeightRangeException;
 
 import java.util.List;
 

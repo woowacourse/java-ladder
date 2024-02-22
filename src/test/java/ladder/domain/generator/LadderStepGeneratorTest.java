@@ -1,8 +1,8 @@
 package ladder.domain.generator;
 
 import ladder.domain.ladder.Path;
-import ladder.exception.ContinuousPathException;
-import ladder.exception.InvalidStepWidthException;
+import ladder.exception.generator.ContinuousPathException;
+import ladder.exception.generator.InvalidStepWidthException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

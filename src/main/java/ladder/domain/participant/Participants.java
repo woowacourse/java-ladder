@@ -1,7 +1,7 @@
 package ladder.domain.participant;
 
-import ladder.exception.DuplicatedNamesException;
-import ladder.exception.InvalidParticipantsCountException;
+import ladder.exception.participant.DuplicatedNamesException;
+import ladder.exception.participant.InvalidParticipantsCountException;
 
 import java.util.List;
 import java.util.Set;

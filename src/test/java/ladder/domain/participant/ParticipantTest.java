@@ -1,7 +1,7 @@
 package ladder.domain.participant;
 
-import ladder.exception.InvalidNameLengthException;
-import ladder.exception.NonAlphabeticNameException;
+import ladder.exception.participant.InvalidNameLengthException;
+import ladder.exception.participant.NonAlphabeticNameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

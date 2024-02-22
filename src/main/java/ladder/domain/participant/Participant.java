@@ -1,7 +1,7 @@
 package ladder.domain.participant;
 
-import ladder.exception.InvalidNameLengthException;
-import ladder.exception.NonAlphabeticNameException;
+import ladder.exception.participant.InvalidNameLengthException;
+import ladder.exception.participant.NonAlphabeticNameException;
 
 public class Participant {
     private static final int MAX_NAME_LENGTH = 5;

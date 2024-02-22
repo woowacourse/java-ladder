@@ -1,7 +1,7 @@
 package ladder.view;
 
-import ladder.exception.DelimiterBoundaryException;
-import ladder.exception.InvalidHeightNumberException;
+import ladder.exception.participant.DelimiterBoundaryException;
+import ladder.exception.ladder.InvalidHeightNumberException;
 
 import java.util.Arrays;
 import java.util.List;

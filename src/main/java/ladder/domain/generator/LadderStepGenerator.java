@@ -2,8 +2,8 @@ package ladder.domain.generator;
 
 import ladder.domain.ladder.LadderStep;
 import ladder.domain.ladder.Path;
-import ladder.exception.ContinuousPathException;
-import ladder.exception.InvalidStepWidthException;
+import ladder.exception.generator.ContinuousPathException;
+import ladder.exception.generator.InvalidStepWidthException;
 
 import java.util.List;
 
