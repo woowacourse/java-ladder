@@ -24,7 +24,7 @@ public class OutputView {
         StringJoiner lineJoiner = new StringJoiner(System.lineSeparator());
         for (final Line line : lines) {
             StringJoiner pointJoiner = new StringJoiner("|", "    |", "|");
-            for (boolean points : line.getPoints()) {
+            for (boolean points : line.getBridges()) {
                 if (points) {
                     pointJoiner.add("-----");
                     continue;

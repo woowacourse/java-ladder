@@ -4,7 +4,7 @@ import domain.Height;
 import domain.Ladder;
 import domain.Players;
 
-import domain.RandomPointGenerator;
+import domain.RandomBridgeGenerator;
 
 import view.InputView;
 import view.OutputView;
@@ -18,7 +18,7 @@ public class LadderGame {
         final Height height = new Height(inputView.readHeight());
 
 
-        final Ladder ladder = Ladder.createByStrategy(RandomPointGenerator.getInstance(), height.getHeight(), players.count());
+        final Ladder ladder = Ladder.createByStrategy(RandomBridgeGenerator.getInstance(), height.getHeight(), players.count());
 
         printGameResult(players, ladder);
     }

@@ -12,11 +12,11 @@ class LineTest {
     void createLine() {
         //given
         int personCount = 4;
-        PointGenerator pointGenerator = new PickedPointGenerator(List.of(false, true, false));
+        BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(List.of(false, true, false));
         //when
-        Line line = Line.createByStrategy(pointGenerator, personCount);
+        Line line = Line.createByStrategy(bridgeGenerator, personCount);
         //then
-        Assertions.assertThat(line.getPoints()).containsExactly(false, true, false);
+        Assertions.assertThat(line.getBridges()).containsExactly(false, true, false);
     }
 
 }

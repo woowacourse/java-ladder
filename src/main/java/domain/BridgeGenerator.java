@@ -1,6 +1,6 @@
 package domain;
 
-public interface PointGenerator {
+public interface BridgeGenerator {
 
     boolean generate();
 }

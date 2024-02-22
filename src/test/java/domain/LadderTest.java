@@ -13,9 +13,9 @@ class LadderTest {
         //given
         final int height = 5;
         final int personCount = 4;
-        PointGenerator pointGenerator = new PickedPointGenerator(List.of(false, true, false));
+        BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(List.of(false, true, false));
         //when
-        final Ladder ladder = Ladder.createByStrategy(pointGenerator, height, personCount);
+        final Ladder ladder = Ladder.createByStrategy(bridgeGenerator, height, personCount);
         //then
         Assertions.assertThat(ladder.getLines()).hasSize(height);
     }
