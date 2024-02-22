@@ -15,7 +15,7 @@ public enum LadderComponents {
     }
 
     public static LadderComponents getComponent(final boolean bridge) {
-        if(bridge){
+        if (bridge) {
             return BRIDGE;
         }
         return NO_BRIDGE;

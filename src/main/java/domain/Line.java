@@ -11,6 +11,7 @@ public class Line {
     private Line(List<Boolean> bridges) {
         this.bridges = bridges;
     }
+
     public static Line createByStrategy(final BridgeGenerator bridgeGenerator, final int personCount) {
         List<Boolean> bridges = new ArrayList<>();
         while (bridges.size() != personCount - 1) {
