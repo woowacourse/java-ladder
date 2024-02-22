@@ -16,7 +16,7 @@ public class InputView {
 
     public List<String> readParticipantsName() {
         System.out.println(REQUEST_PARTICIPANTS_NAME);
-        String names = scanner.nextLine();
+        final String names = scanner.nextLine();
         validateNameDelimiterPosition(names);
         return splitNames(names);
     }

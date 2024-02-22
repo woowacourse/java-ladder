@@ -17,7 +17,7 @@ public abstract class LadderStepGenerator {
     }
 
     public LadderStep generateValidStep() {
-        List<Path> paths = generate();
+        final List<Path> paths = generate();
         validateStepWidth(paths);
         validateContinuousPath(paths);
         return new LadderStep(paths);

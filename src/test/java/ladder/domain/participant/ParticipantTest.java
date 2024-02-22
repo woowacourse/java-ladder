@@ -15,10 +15,10 @@ public class ParticipantTest {
     @DisplayName("참가자 이름의 앞뒤 공백을 제거한다.")
     void trimNameTest() {
         // given
-        String name = "mia ";
+        final String name = "mia ";
 
         // when
-        Participant mia = new Participant(name);
+        final Participant mia = new Participant(name);
 
         // then
         assertEquals("mia", mia.getName());
@@ -27,7 +27,7 @@ public class ParticipantTest {
     @ParameterizedTest
     @ValueSource(strings = {"miamia", "potato", ""})
     @DisplayName("참가자 이름이 1~5자가 아니면 예외가 발생한다.")
-    void checkNameLengthTest(String name) {
+    void checkNameLengthTest(final String name) {
         // when & then
         assertThatThrownBy(() -> new Participant(name))
                 .isInstanceOf(InvalidNameLengthException.class);
@@ -36,7 +36,7 @@ public class ParticipantTest {
     @ParameterizedTest
     @ValueSource(strings = {"감1자", "미아a", ".#a", "1234"})
     @DisplayName("참가자 이름이 영어가 아니면 예외가 발생한다.")
-    void checkAlphabeticNameTest(String name) {
+    void checkAlphabeticNameTest(final String name) {
         // when & then
         assertThatThrownBy(() -> new Participant(name))
                 .isInstanceOf(NonAlphabeticNameException.class);

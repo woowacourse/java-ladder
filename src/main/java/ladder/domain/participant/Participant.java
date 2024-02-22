@@ -16,13 +16,13 @@ public class Participant {
         this.name = name;
     }
 
-    private void validateNameLength(String name) {
+    private void validateNameLength(final String name) {
         if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
             throw new InvalidNameLengthException();
         }
     }
 
-    private static void validateIsAlphabetic(String name) {
+    private static void validateIsAlphabetic(final String name) {
         if (!name.matches(NAME_REGEX)) {
             throw new NonAlphabeticNameException();
         }

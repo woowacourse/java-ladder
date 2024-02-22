@@ -11,9 +11,9 @@ public class RandomLadderStepGeneratorTest {
     @ParameterizedTest
     @ValueSource(ints = {3, 4, 5})
     @DisplayName("올바르게 랜덤한 사다리 스텝을 생성한다.")
-    void createRandomLadderStepTest(int participantCount) {
+    void createRandomLadderStepTest(final int participantCount) {
         // given
-        LadderStepGenerator randomLadderStepGenerator = new RandomLadderStepGenerator(participantCount);
+        final LadderStepGenerator randomLadderStepGenerator = new RandomLadderStepGenerator(participantCount);
 
         // when & then
         assertThatCode(randomLadderStepGenerator::generate)

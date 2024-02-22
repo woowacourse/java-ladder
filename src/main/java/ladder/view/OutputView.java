@@ -20,36 +20,36 @@ public class OutputView {
         System.out.println(RESULT_PREFIX);
     }
 
-    public void printParticipants(Participants participants) {
-        String participantsName = participants.getValues()
+    public void printParticipants(final Participants participants) {
+        final String participantsName = participants.getValues()
                 .stream()
                 .map(this::getFormattedName)
                 .collect(Collectors.joining(" "));
         System.out.println(participantsName);
     }
 
-    private String getFormattedName(Participant participant) {
-        String name = participant.getName();
+    private String getFormattedName(final Participant participant) {
+        final String name = participant.getName();
         return String.format(NAME_FORMAT, name);
     }
 
     public void printLadder(final Ladder ladder) {
-        List<LadderStep> ladderSteps = ladder.getLadderSteps();
-        String ladderShape = ladderSteps.stream()
+        final List<LadderStep> ladderSteps = ladder.getLadderSteps();
+        final String ladderShape = ladderSteps.stream()
                 .map(this::getLadderStepShape)
                 .collect(Collectors.joining("\n"));
         System.out.println(ladderShape);
     }
 
     private String getLadderStepShape(final LadderStep ladderStep) {
-        String ladderStepShape = ladderStep.ladderPaths()
+        final String ladderStepShape = ladderStep.ladderPaths()
                 .stream()
                 .map(Path::getShape)
                 .collect(Collectors.joining(STEP_DELIMITER));
         return String.format(LADDER_STEP_FORMAT, ladderStepShape);
     }
 
-    public void printException(RuntimeException exception) {
+    public void printException(final RuntimeException exception) {
         System.out.println(EXCEPTION_PREFIX + exception.getMessage());
     }
 }

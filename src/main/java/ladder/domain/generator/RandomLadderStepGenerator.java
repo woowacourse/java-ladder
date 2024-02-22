@@ -12,16 +12,16 @@ import static ladder.domain.ladder.Path.EXIST;
 public class RandomLadderStepGenerator extends LadderStepGenerator {
     private final Random random = new Random();
 
-    public RandomLadderStepGenerator(int stepWidth) {
+    public RandomLadderStepGenerator(final int stepWidth) {
         super(stepWidth);
     }
 
     @Override
     protected List<Path> generate() {
-        List<Path> ladderPaths = new ArrayList<>();
+        final List<Path> ladderPaths = new ArrayList<>();
         Path prevPath = EMPTY;
         while (ladderPaths.size() < stepWidth) {
-            Path currentPath = generatePath(prevPath);
+            final Path currentPath = generatePath(prevPath);
             ladderPaths.add(currentPath);
             prevPath = currentPath;
         }

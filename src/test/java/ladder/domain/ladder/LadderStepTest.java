@@ -14,7 +14,7 @@ public class LadderStepTest {
     @DisplayName("사다리 스탭을 생성한다.")
     void createLadderStepTest() {
         // given
-        List<Path> ladderStep = List.of(EXIST, EMPTY, EXIST, EMPTY);
+        final List<Path> ladderStep = List.of(EXIST, EMPTY, EXIST, EMPTY);
 
         // when & then
         assertThatCode(() -> new LadderStep(ladderStep))

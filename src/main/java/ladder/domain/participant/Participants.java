@@ -26,7 +26,7 @@ public class Participants {
     }
 
     private void validateDuplicatedNames(final List<String> names) {
-        Set<String> uniqueNames = Set.copyOf(names);
+        final Set<String> uniqueNames = Set.copyOf(names);
         if (uniqueNames.size() < names.size()) {
             throw new DuplicatedNamesException();
         }

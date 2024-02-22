@@ -17,11 +17,11 @@ public class ParticipantsTest {
     @DisplayName("참가자들에게 필요한 사다리 너비를 계산한다.")
     void getParticipantsCountTest() {
         // given
-        List<String> names = List.of("mia", "pota", "dora");
-        Participants participants = new Participants(names);
+        final List<String> names = List.of("mia", "pota", "dora");
+        final Participants participants = new Participants(names);
 
         // when
-        int count = participants.getNecessaryLadderWidth();
+        final int count = participants.getNecessaryLadderWidth();
 
         // then
         assertEquals(2, count);
@@ -30,7 +30,7 @@ public class ParticipantsTest {
     @ParameterizedTest
     @MethodSource("getInvalidParticipantsNames")
     @DisplayName("참가자 수가 1명 이하일 경우 예외가 발생한다.")
-    void checkParticipantsCountTest(List<String> names) {
+    void checkParticipantsCountTest(final List<String> names) {
         // given & when
         assertThatThrownBy(() -> new Participants(names))
                 .isInstanceOf(InvalidParticipantsCountException.class);

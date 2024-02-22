@@ -17,8 +17,8 @@ public class LadderStepGeneratorTest {
     @DisplayName("연속된 사다리 발판(true)가 생성될 경우 예외가 발생한다.")
     void checkContinuousPathTest() {
         // given
-        List<Path> ladderStep = List.of(EXIST, EXIST, EXIST, EMPTY);
-        LadderStepGenerator ladderStepGenerator = new TestLadderStepGenerator(ladderStep, 4);
+        final List<Path> ladderStep = List.of(EXIST, EXIST, EXIST, EMPTY);
+        final LadderStepGenerator ladderStepGenerator = new TestLadderStepGenerator(ladderStep, 4);
 
         // when & then
         assertThatThrownBy(ladderStepGenerator::generateValidStep)
@@ -29,8 +29,8 @@ public class LadderStepGeneratorTest {
     @DisplayName("입력된 값과 생성된 사다리 너비가 다를 경우 예외가 발생한다.")
     void checkStepWidthTest() {
         // given
-        List<Path> ladderStep = List.of(EXIST, EMPTY, EXIST);
-        LadderStepGenerator ladderStepGenerator = new TestLadderStepGenerator(ladderStep, 4);
+        final List<Path> ladderStep = List.of(EXIST, EMPTY, EXIST);
+        final LadderStepGenerator ladderStepGenerator = new TestLadderStepGenerator(ladderStep, 4);
 
         // when & then
         assertThatThrownBy(ladderStepGenerator::generateValidStep)

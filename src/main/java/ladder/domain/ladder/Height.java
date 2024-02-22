@@ -20,7 +20,7 @@ public class Height {
         }
     }
 
-    public boolean isGreaterThan(List<LadderStep> ladderSteps) {
+    public boolean isGreaterThan(final List<LadderStep> ladderSteps) {
         return value > ladderSteps.size();
     }
 }

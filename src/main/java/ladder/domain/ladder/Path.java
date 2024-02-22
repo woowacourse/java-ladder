@@ -10,7 +10,7 @@ public enum Path {
         this.shape = shape;
     }
 
-    public static Path from(boolean isAvailable) {
+    public static Path from(final boolean isAvailable) {
         if (isAvailable) {
             return EXIST;
         }

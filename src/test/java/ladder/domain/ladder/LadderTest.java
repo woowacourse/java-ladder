@@ -12,9 +12,9 @@ public class LadderTest {
     @DisplayName("주어진 높이만큼 사다리를 생성한다.")
     void createLadderTest() {
         // given
-        int stepWidth = 3;
-        Height height = new Height(4);
-        LadderStepGenerator ladderStepGenerator = new RandomLadderStepGenerator(stepWidth);
+        final int stepWidth = 3;
+        final Height height = new Height(4);
+        final LadderStepGenerator ladderStepGenerator = new RandomLadderStepGenerator(stepWidth);
 
         // when & then
         assertThatCode(() -> new Ladder(ladderStepGenerator, height))

@@ -29,7 +29,7 @@ public class LadderGame {
     }
 
     private Ladder createLadder(final int stepWidth) {
-        Height height = retryOnException(this::readLadderHeight);
+        final Height height = retryOnException(this::readLadderHeight);
         final LadderStepGenerator ladderStepGenerator = new RandomLadderStepGenerator(stepWidth);
         return new Ladder(ladderStepGenerator, height);
     }
