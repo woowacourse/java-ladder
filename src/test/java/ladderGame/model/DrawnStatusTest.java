@@ -12,7 +12,7 @@ class DrawnStatusTest {
     void checkDrawnIsTrue() {
         DrawnStatus drawnStatus = DrawnStatus.DRAWN;
 
-        assertTrue(drawnStatus.checkDrawn());
+        assertTrue(drawnStatus.equals(DrawnStatus.DRAWN));
     }
 
     @Test
@@ -20,7 +20,7 @@ class DrawnStatusTest {
     void checkNonDrawnIsFalse() {
         DrawnStatus drawnStatus = DrawnStatus.NON_DRAWN;
 
-        assertFalse(drawnStatus.checkDrawn());
+        assertFalse(drawnStatus.equals(DrawnStatus.DRAWN));
     }
 
 }

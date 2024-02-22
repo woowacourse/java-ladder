@@ -44,7 +44,7 @@ public class ResultView {
     }
 
     private String checkDrawnMark(DrawnStatus isDrawn) {
-        if (isDrawn.checkDrawn()) {
+        if (isDrawn.equals(DrawnStatus.DRAWN)) {
             return DRAWN_MARK;
         }
         return NOT_DRAWN_MARK;

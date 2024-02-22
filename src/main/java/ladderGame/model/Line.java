@@ -1,6 +1,7 @@
 package ladderGame.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -15,7 +16,7 @@ public class Line {
     }
 
     private void drawSpace(int index) {
-        if (index == 0 || !spaces.get(index - 1).checkDrawn()) {
+        if (index == 0 || !spaces.get(index - 1).equals(DrawnStatus.DRAWN)) {
             spaces.add(decideDrawnStatus());
             return;
         }
