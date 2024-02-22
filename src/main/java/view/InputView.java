@@ -27,4 +27,10 @@ public class InputView {
             throw new IllegalArgumentException("null 혹은 빈 문자열을 입력할 수 없습니다.");
         }
     }
+
+    public static int readHeight(Supplier<String> input) {
+        String inputString = input.get();
+        validateEmpty(inputString);
+        return Integer.parseInt(inputString);
+    }
 }
