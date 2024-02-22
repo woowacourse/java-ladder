@@ -1,8 +1,13 @@
 package view;
 
 import domain.ladder.common.Direction;
+import domain.player.Name;
+
+import java.util.EnumMap;
+import java.util.List;
 
 public class OutputView {
+    private static final EnumMap<Direction, String> directionSymbols = initializedDirectionSymbol();
 
     private static final String RIGHT_DIRECTION_SYMBOL = "|---";
     private static final String LEFT_DIRECTION_SYMBOL = "---|      ";
