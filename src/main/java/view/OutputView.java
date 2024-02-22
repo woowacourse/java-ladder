@@ -20,20 +20,20 @@ public class OutputView {
         List<String> participantsName = participants.getParticipants().stream()
                 .map(Participant::getName)
                 .toList();
-        participantsName.forEach(name -> System.out.print(String.format(NAME_FORMAT, name)));
+        participantsName.forEach(name -> System.out.printf(NAME_FORMAT, name));
         System.out.println();
     }
 
     public void printLadder(Ladder ladder) {
-        for(int i = 0; i < ladder.height(); i++){
+        for (int i = 0; i < ladder.height(); i++) {
             printRow(ladder.getRow(i));
             System.out.println();
         }
     }
 
-    private void printRow(LadderRow ladderRow){
+    private void printRow(LadderRow ladderRow) {
         System.out.print(LadderComponent.EMPTY_LINE);
-        for (boolean line : ladderRow.getLineStatus()){
+        for (boolean line : ladderRow.getLineStatus()) {
             System.out.print(LadderComponent.DIVISION.getOutput());
             System.out.print(LadderComponent.match(line).getOutput());
         }

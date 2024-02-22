@@ -39,7 +39,7 @@ public class LadderTest {
         ladder.build(participantsSize);
         LadderRow row = ladder.getRow(0);
         List<Boolean> lines = row.getLineStatus();
-        for (int i = 1; i < participantsSize-1; i++) {
+        for (int i = 1; i < participantsSize - 1; i++) {
             Assertions.assertThat(lines.get(i) && lines.get(i - 1)).isFalse();
         }
     }

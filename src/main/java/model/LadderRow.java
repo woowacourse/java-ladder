@@ -11,15 +11,15 @@ public class LadderRow {
         checkContinuousLine(lineStatus);
         this.lineStatus = new ArrayList<>(lineStatus);
     }
-    
-    public void checkContinuousLine(List<Boolean> lineStatus){
+
+    public void checkContinuousLine(List<Boolean> lineStatus) {
         for (int i = 1; i < lineStatus.size(); i++) {
             removeContinuousLine(lineStatus, i);
         }
     }
 
-    private void removeContinuousLine (List<Boolean> lineStatus, int index) {
-        if(lineStatus.get(index) && lineStatus.get(index -1)){
+    private void removeContinuousLine(List<Boolean> lineStatus, int index) {
+        if (lineStatus.get(index) && lineStatus.get(index - 1)) {
             lineStatus.set(index, false);
         }
     }
