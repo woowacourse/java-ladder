@@ -20,8 +20,12 @@ class PlayersTest {
     @Test
     @DisplayName("참가자들을 생성한다.")
     void testConstruct() {
-        assertThat(players.getPlayers()).extracting("name")
-                .containsExactly("pobi", "honux", "crong", "jk");
+        assertThat(players.getPlayers()).containsExactly(
+                new Player("pobi"),
+                new Player("honux"),
+                new Player("crong"),
+                new Player("jk")
+        );
     }
 
     @Test

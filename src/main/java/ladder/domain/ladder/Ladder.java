@@ -6,13 +6,9 @@ import java.util.stream.Stream;
 import ladder.domain.ladder.generator.BooleanGenerator;
 
 public class Ladder {
-    private final int playerCount;
-    private final LadderHeight ladderHeight;
     private final List<Line> lines;
 
     public Ladder(final int playerCount, final LadderHeight ladderHeight, final BooleanGenerator booleanGenerator) {
-        this.playerCount = playerCount;
-        this.ladderHeight = ladderHeight;
         this.lines = generateLines(playerCount, ladderHeight.getHeight(), booleanGenerator);
 
     }

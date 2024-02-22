@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 import java.util.List;
@@ -13,17 +13,14 @@ import org.junit.jupiter.api.Test;
 class LadderTest {
 
     @Test
-    @DisplayName("사다리 생성자 테스트")
+    @DisplayName("사다리 생성 테스트")
     void testConstruct() {
         int playerCount = 4;
         LadderHeight ladderHeight = new LadderHeight(5);
         BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
-        Ladder ladder = new Ladder(playerCount, ladderHeight, booleanGenerator);
 
-        assertThat(ladder).extracting("playerCount")
-                .isEqualTo(4);
-        assertThat(ladder).extracting("ladderHeight")
-                .isEqualTo(ladderHeight);
+        assertThatCode(() -> new Ladder(playerCount, ladderHeight, booleanGenerator))
+                .doesNotThrowAnyException();
     }
 
     @Test
