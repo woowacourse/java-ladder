@@ -38,20 +38,27 @@ public class OutputView {
         System.out.println(playerNamesJoiner);
     }
 
-    // TODO : indent depth 처리
     private void printLadder(Ladder ladder) {
-        StringJoiner ladderJoiner = new StringJoiner(LADDER_FRAME, LADDER_FRAME, LADDER_FRAME);
+        StringJoiner ladderJoiner;
         for (Line line : ladder.getLines()) {
-            for (LadderBridge bridge : line.getBridges()) {
-                if (bridge.equals(LadderBridge.BRIDGE)) {
-                    ladderJoiner.add(bridge.getValue());
-                    continue;
-                }
-                ladderJoiner.add(bridge.getValue());
-            }
-            System.out.print("    ");
-            System.out.println(ladderJoiner);
             ladderJoiner = new StringJoiner(LADDER_FRAME, LADDER_FRAME, LADDER_FRAME);
+            printLadderLine(line, ladderJoiner);
         }
+    }
+
+    private void printLadderLine(Line line, StringJoiner ladderJoiner) {
+        System.out.print("\t");
+        for (LadderBridge bridge : line.getBridges()) {
+            addBridgeValue(bridge, ladderJoiner);
+        }
+        System.out.println(ladderJoiner);
+    }
+
+    private void addBridgeValue(LadderBridge bridge, StringJoiner ladderJoiner) {
+        if (bridge.equals(LadderBridge.BRIDGE)) {
+            ladderJoiner.add(bridge.getValue());
+            return;
+        }
+        ladderJoiner.add(bridge.getValue());
     }
 }
