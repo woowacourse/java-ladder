@@ -10,26 +10,26 @@ import java.util.List;
 
 public class LadderGame {
 
-    private static final InputView inputView = new InputView();
-    private static final OutputView outputView = new OutputView();
-    private static Participants participants;
-    private static Ladder ladder;
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private Participants participants;
+    private Ladder ladder;
 
-    public static void main(String[] args) {
+    public void play() {
         try {
-            play();
+            run();
         } catch (StackOverflowError e) {
             System.out.println(Exception.EXIT.getExceptionMessage());
         }
     }
 
-    private static void play() {
+    private void run() {
         participants = recruitParticipants();
         ladder = makeLadder();
         outputView.printResult(participants.getParticipantsName(), ladder);
     }
 
-    private static Participants recruitParticipants() {
+    private Participants recruitParticipants() {
         try {
             List<String> names = inputView.readNames();
             return new Participants(names);
@@ -39,7 +39,7 @@ public class LadderGame {
         }
     }
 
-    private static Ladder makeLadder() {
+    private Ladder makeLadder() {
         try {
             int height = inputView.readHeight();
             return new Ladder(height, participants.getParticipantsCount());
