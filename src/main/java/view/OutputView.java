@@ -6,19 +6,23 @@ import model.dto.LayerSteps;
 import model.dto.ParticipantName;
 
 public class OutputView {
+    private static final String NAME_FORMAT = "%5s";
+    private static final String LADDER_BASE = "|";
+    private static final String LEFT_LADDER_BASE = "   |";
+
     public void printErrorMessage(String message) {
         System.out.println("[ERROR] " + message);
     }
 
     public void printParticipantsName(List<ParticipantName> participantsNames) {
         List<String> formattedParticipantsName = participantsNames.stream()
-                .map(m -> String.format("%5s", m.name()))
+                .map(participantName -> String.format(NAME_FORMAT, participantName.name()))
                 .toList();
         System.out.println(String.join(" ", formattedParticipantsName));
     }
 
     public void printLadder(List<LayerSteps> layerSteps) {
-        layerSteps.stream().forEach(this::printEachLayer);
+        layerSteps.forEach(this::printEachLayer);
     }
 
     private void printEachLayer(LayerSteps layerSteps) {
@@ -26,8 +30,7 @@ public class OutputView {
                 .map(Step::valueOfStep)
                 .map(Step::getOutput)
                 .toList();
-        System.out.print("   |");
-        System.out.print(String.join("|", steps));
-        System.out.println("|");
+        String joinedSteps = String.join(LADDER_BASE, steps);
+        System.out.println(LEFT_LADDER_BASE + joinedSteps + LADDER_BASE);
     }
 }
