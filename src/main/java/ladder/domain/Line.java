@@ -18,8 +18,9 @@ public class Line {
 
     private List<StepStatus> createStepStatuses(Supplier<Boolean> generator, final int userCount) {
         final List<StepStatus> stepStatuses = new ArrayList<>(userCount - 1);
-        IntStream.range(0, userCount - 1)
-                .forEach(i -> stepStatuses.add(generateStepStatus(generator, stepStatuses, i)));
+        for (int i = 0; i < userCount - 1; i++) {
+            stepStatuses.add(generateStepStatus(generator, stepStatuses, i));
+        }
         return stepStatuses;
     }
 
