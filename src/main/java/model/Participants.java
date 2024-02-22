@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Set;
 
 public class Participants {
+
+    private static final String DUPLICATED_PARTICIPANT_NAME = "중복된 참가자들은 존재할 수 없습니다.";
+    private static final String UNDER_PARTICIPANT_SIZE = "참가자가 1명 이하인 경우는 존재할 수 없습니다.";
+    private static final int MINIMUM_PARTICIPANT_SIZE = 2;
     private final List<Participant> participants;
 
     public Participants(List<String> participantsName) {
@@ -13,21 +17,23 @@ public class Participants {
         this.participants = create(participantsName);
     }
 
-    private void validateNotDuplicateName(List<String> participantsName){
+    private void validateNotDuplicateName(List<String> participantsName) {
         Set<String> distinctNames = new HashSet<>(participantsName);
-        if(distinctNames.size() != participantsName.size()){
-            throw new IllegalArgumentException("중복된 참가자들은 존재할 수 없습니다.");
+        if (distinctNames.size() != participantsName.size()) {
+            throw new IllegalArgumentException(DUPLICATED_PARTICIPANT_NAME);
         }
     }
 
     private void validateParticipantSize(List<String> participantsName) {
-        if (participantsName.size() <= 1) {
-            throw new IllegalArgumentException("참가자가 1명 이하인 경우는 존재할 수 없습니다.");
+        if (participantsName.size() < MINIMUM_PARTICIPANT_SIZE) {
+            throw new IllegalArgumentException(UNDER_PARTICIPANT_SIZE);
         }
     }
 
-    private List<Participant> create(List<String> participantsName){
-        return participantsName.stream().map(Participant::new).toList();
+    private List<Participant> create(List<String> participantsName) {
+        return participantsName.stream()
+                .map(Participant::new)
+                .toList();
     }
 
     public int size() {

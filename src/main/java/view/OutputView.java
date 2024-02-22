@@ -9,15 +9,18 @@ import java.util.List;
 
 public class OutputView {
 
+    private static final String RESULT_MESSAGE = "실행결과\n";
+    private static final String NAME_FORMAT = "%5s ";
+
     public void printResult() {
-        System.out.println("실행결과\n");
+        System.out.println(RESULT_MESSAGE);
     }
 
     public void printParticipantsName(Participants participants) {
         List<String> participantsName = participants.getParticipants().stream()
                 .map(Participant::getName)
                 .toList();
-        participantsName.forEach(name -> System.out.print(String.format("%5s ", name)));
+        participantsName.forEach(name -> System.out.print(String.format(NAME_FORMAT, name)));
         System.out.println();
     }
 

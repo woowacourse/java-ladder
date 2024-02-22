@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class Ladder {
 
+    private static final String NOT_POSITIVE_HEIGHT =  "최대 사다리의 높이는 양수가 되어야 합니다";
     private final int maximumHeight;
     private final List<LadderRow> ladderRows;
 
@@ -17,7 +18,7 @@ public class Ladder {
 
     private void validateHeightIsPositive(int maximumHeight) {
         if (maximumHeight < 0) {
-            throw new IllegalArgumentException("최대 사다리의 높이는 양수가 되어야 합니다");
+            throw new IllegalArgumentException(NOT_POSITIVE_HEIGHT);
         }
     }
 
@@ -38,7 +39,7 @@ public class Ladder {
 
     private void fillLineStatus(List<Boolean> lineStatus, boolean linesOrNoLine){
         if (lineStatus.get(lineStatus.size()-1).equals(true) && linesOrNoLine){
-            lineStatus.add(!linesOrNoLine);
+            lineStatus.add(false);
             return;
         }
         lineStatus.add(linesOrNoLine);
