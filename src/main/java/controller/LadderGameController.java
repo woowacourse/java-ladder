@@ -2,10 +2,10 @@ package controller;
 
 import java.util.List;
 import java.util.function.Supplier;
-import model.Ladder;
-import model.LadderHeight;
-import model.Players;
-import model.RandomBridgesGenerator;
+import model.bridge.RandomBridgesGenerator;
+import model.ladder.Ladder;
+import model.ladder.LadderHeight;
+import model.player.Players;
 import view.InputView;
 import view.OutputView;
 

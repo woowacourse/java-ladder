@@ -1,4 +1,4 @@
-package model;
+package model.ladder;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
@@ -6,6 +6,9 @@ import static java.util.stream.Collectors.toList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
+import model.bridge.BridgesGenerator;
+import model.line.Line;
+import model.player.Players;
 
 public class Ladder {
     private final List<Line> lines;

@@ -2,11 +2,11 @@ package view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import model.Bridge;
-import model.Ladder;
-import model.Line;
-import model.Player;
-import model.Players;
+import model.bridge.Bridge;
+import model.ladder.Ladder;
+import model.line.Line;
+import model.player.Player;
+import model.player.Players;
 
 public class OutputView {
     private static final String GAME_RESULT_INTRO = "\n실행결과\n";

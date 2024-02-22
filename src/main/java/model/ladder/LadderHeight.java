@@ -1,4 +1,4 @@
-package model;
+package model.ladder;
 
 public record LadderHeight(int value) {
     private static final int MIN_VALUE_OF_HEIGHT = 1;

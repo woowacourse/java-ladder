@@ -1,4 +1,4 @@
-package model;
+package model.player;
 
 public record Player(String name) {
     public static final int MAX_LENGTH_OF_NAME = 5;

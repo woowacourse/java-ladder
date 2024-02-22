@@ -1,7 +1,8 @@
-package model;
+package model.line;
 
 import java.util.Collections;
 import java.util.List;
+import model.bridge.Bridge;
 
 public record Line(List<Bridge> bridges) {
     private static final String INVALID_BRIDGES = "겹치는 다리가 존재합니다.";
