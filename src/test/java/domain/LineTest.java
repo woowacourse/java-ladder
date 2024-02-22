@@ -27,7 +27,7 @@ public class LineTest {
     @Test
     @DisplayName("true가 나오면 그 다음은 무조건 false가 된다.")
     void test_ok_trueNextFalse() {
-        Line line = new Line(3, () -> true);
-        assertThat(line.getPoints().get(1)).isFalse();
+        Line line = new Line(3, () -> Point.CONNECTED);
+        assertThat(line.getPoints().get(1)).isEqualTo(Point.DISCONNECTED);
     }
 }
