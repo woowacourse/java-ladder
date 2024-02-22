@@ -17,15 +17,19 @@ public class Line {
     public List<Rung> generateRungs(final int playerCount) {
         final List<Rung> rungs = new ArrayList<>();
 
-        for (int currentPlayerCount = 0; currentPlayerCount < playerCount - 1; currentPlayerCount++) {
-            final boolean previousRungExist = currentPlayerCount > 0 && rungs.get(currentPlayerCount - 1).isExist();
-            final boolean currentRungExist = booleanGenerator.generate();
-
-            final Rung rung = Rung.of(!previousRungExist && currentRungExist);
+        for (int i = 0; i < playerCount - 1; i++) {
+            final Rung rung = generateRung(rungs, i);
             rungs.add(rung);
         }
 
         return rungs;
+    }
+
+    private Rung generateRung(List<Rung> rungs, int index) {
+        boolean previousRungExist = index > 0 && rungs.get(index - 1).isExist();
+        boolean canMakeRung = booleanGenerator.generate();
+
+        return Rung.of(!previousRungExist && canMakeRung);
     }
 
     public List<Rung> getRungs() {
