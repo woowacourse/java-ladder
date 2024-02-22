@@ -6,13 +6,15 @@ import java.util.Scanner;
 
 public class InputView {
 
+    private static final String COMMA = ",";
+
     private final Scanner scanner = new Scanner(System.in);
 
     public List<String> readUserNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String input = scanner.nextLine();
         validateInput(input);
-        return Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(COMMA))
                 .toList();
     }
 
@@ -28,7 +30,7 @@ public class InputView {
     }
 
     private void validateInput(String input) {
-        if (input.isEmpty() || input.endsWith(",")) {
+        if (input.isEmpty() || input.endsWith(COMMA)) {
             throw new IllegalArgumentException("[ERROR] 올바르지 않은 사용자 이름입니다.");
         }
     }

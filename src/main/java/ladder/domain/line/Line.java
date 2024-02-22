@@ -6,7 +6,7 @@ import ladder.domain.direction.Direction;
 
 public class Line {
 
-    private List<Direction> directionsInfo;
+    private final List<Direction> directionsInfo;
 
     Line() {
         this.directionsInfo = new ArrayList<>();
