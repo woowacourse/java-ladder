@@ -6,23 +6,21 @@ import static ladder.domain.Direction.RIGHT;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class LadderLevel {
+
     private final List<Direction> ladderLevel;
 
     public LadderLevel(int size, LineGenerator lineGenerator) {
         ladderLevel = new ArrayList<>();
         initialize(size);
-        for (int index = 0; index < size - 1; index++) {
-            setLines(lineGenerator, index);
-        }
+        IntStream.range(0, size - 1).forEach(index -> setLines(lineGenerator, index));
     }
 
     private void initialize(int size) {
-        for (int index = 0; index < size; index++) {
-            ladderLevel.add(NONE);
-        }
+        IntStream.range(0, size).forEach(index -> ladderLevel.add(NONE));
     }
 
     private void setLines(LineGenerator lineGenerator, int index) {
