@@ -1,23 +1,14 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 class LadderFactoryTest {
-
-    static class TestLadderStrategy implements LadderStrategy {
-
-        @Override
-        public boolean creatable() {
-            return true;
-        }
-    }
-
-    ;
 
     @Test
     @DisplayName("사다리가 정상적으로 생성되는가")
@@ -31,8 +22,16 @@ class LadderFactoryTest {
         List<Bridge> bridges = ladderFactory.create(width, height);
 
         // then
-        List<Bridge> expected = List.of(new Bridge(0, 1, 0));
+        List<Bridge> expected = List.of(new Bridge(0, 0));
         assertThat(expected).containsExactlyInAnyOrderElementsOf(bridges);
+    }
+
+    static class TestLadderStrategy implements LadderStrategy {
+
+        @Override
+        public boolean creatable() {
+            return true;
+        }
     }
 
 }
