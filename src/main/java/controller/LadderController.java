@@ -12,9 +12,9 @@ import view.OutputView;
 import java.util.Arrays;
 import java.util.List;
 
-public class LadderGame extends Controller {
+public class LadderController extends Controller {
 
-    public LadderGame(InputView inputView, OutputView outputView) {
+    public LadderController(InputView inputView, OutputView outputView) {
         super(inputView, outputView);
     }
 
