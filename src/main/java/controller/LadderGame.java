@@ -1,10 +1,13 @@
 package controller;
 
-import domain.*;
+import domain.Ladder;
+import domain.LadderItem;
+import domain.Line;
+import domain.Participant;
+import domain.Participants;
 import util.BooleanGenerator;
 import view.InputView;
 import view.OutputView;
-
 import java.util.ArrayList;
 import java.util.List;
 
