@@ -18,6 +18,14 @@ public class Name {
         }
     }
 
+    public String getValue() {
+        return this.name;
+    }
+
+    public int getLength() {
+        return this.name.length();
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

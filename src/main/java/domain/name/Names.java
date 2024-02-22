@@ -23,4 +23,21 @@ public class Names {
                 .distinct()
                 .count();
     }
+
+    public int findMaxNameLength() {
+        return names.stream()
+                .mapToInt(Name::getLength)
+                .max()
+                .orElse(0);
+    }
+
+    public List<String> getNames() {
+        return names.stream()
+                .map(Name::getValue)
+                .toList();
+    }
+
+    public int getPlayerCount() {
+        return names.size();
+    }
 }
