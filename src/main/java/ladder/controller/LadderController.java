@@ -9,6 +9,9 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class LadderController {
+    private LadderController() {
+    }
+
     public static void start() {
         People people = requestPeopleUntilValid();
         LadderHeight ladderHeight = requestLadderHeightUntilValid();
