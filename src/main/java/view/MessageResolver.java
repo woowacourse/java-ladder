@@ -7,10 +7,12 @@ import domain.Point;
 
 public class MessageResolver {
 
+    public static final int MAX_NAME_LENGTH = 5;
+
     public String resolveMembers(Members members) {
         String result = "";
         for (String name : members.getNames()) {
-            result += String.format("%5s ", name);
+            result += String.format("%" + MAX_NAME_LENGTH + "s ", name);
         }
         return result;
     }
@@ -25,7 +27,7 @@ public class MessageResolver {
     }
 
     private String resolveLine(Line line) {
-        String result = " ".repeat(4);
+        String result = " ".repeat(MAX_NAME_LENGTH - 1);
         for (Point point : line.getPoints()) {
             result += "|";
             result += resolvePoint(point);
@@ -35,6 +37,6 @@ public class MessageResolver {
     }
 
     private String resolvePoint(Point point) {
-        return point.getDisplayCharacter().repeat(5);
+        return point.getDisplayCharacter().repeat(MAX_NAME_LENGTH);
     }
 }
