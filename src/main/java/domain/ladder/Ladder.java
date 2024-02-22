@@ -1,7 +1,7 @@
 package domain.ladder;
 
 import domain.BooleanGenerator;
-import domain.Height;
+import domain.height.Height;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

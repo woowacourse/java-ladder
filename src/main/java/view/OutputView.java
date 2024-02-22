@@ -3,7 +3,7 @@ package view;
 import domain.ladder.Ladder;
 import domain.ladder.LadderRow;
 import domain.ladder.LadderRung;
-import domain.name.Players;
+import domain.player.Players;
 import java.util.List;
 import java.util.stream.Collectors;
 

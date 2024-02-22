@@ -4,10 +4,10 @@ import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 import domain.BooleanGenerator;
-import domain.Height;
+import domain.height.Height;
 import domain.ladder.Ladder;
-import domain.name.Name;
-import domain.name.Players;
+import domain.player.Name;
+import domain.player.Players;
 import java.util.List;
 import view.InputView;
 import view.OutputView;

@@ -1,4 +1,4 @@
-package domain.name;
+package domain.player;
 
 public class Name {
     private static final int MINIMUM_NAME_LENGTH = 1;

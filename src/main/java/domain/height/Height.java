@@ -1,4 +1,4 @@
-package domain;
+package domain.height;
 
 public class Height {
     private static final String RANGE_EXCEPTION_MESSAGE = "[ERROR] %d이상 %d이하의 숫자만 입력 가능합니다.";
