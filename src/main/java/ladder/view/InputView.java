@@ -23,9 +23,13 @@ public class InputView {
 
     }
 
+    public void closeScanner() {
+        scanner.close();
+    }
+
     private void validateInput(String input) {
         if (input.isEmpty() || input.endsWith(",")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 올바르지 않은 사용자 이름입니다.");
         }
     }
 
@@ -47,9 +51,5 @@ public class InputView {
         if (value < 1) {
             throw new IllegalArgumentException("[ERROR] 최대 사다리 높이는 양의 정수여야 합니다.");
         }
-    }
-
-    private void closeScanner() {
-        scanner.close();
     }
 }

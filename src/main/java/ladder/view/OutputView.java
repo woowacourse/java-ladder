@@ -9,10 +9,15 @@ import ladder.domain.user.Users;
 import java.util.List;
 
 public class OutputView {
+
     private static final String BLANK = " ";
     private static final String LINE_VERTICAL = "|";
     private static final String LINE_HORIZONTAL = "-----";
     private static final int MAX_NAME_LENGTH = 5;
+
+    public void printError(String message) {
+        System.out.println(message);
+    }
 
     public void printLadderGameResult(Users users, Ladder ladder) {
         System.out.println("\n실행결과\n");
@@ -48,7 +53,7 @@ public class OutputView {
 
     private void printLine(StringBuilder sb, List<Direction> directionsInfo) {
         sb.append(BLANK.repeat(4));
-        for(int i = 0; i < directionsInfo.size() - 1; i++) {
+        for (int i = 0; i < directionsInfo.size() - 1; i++) {
             sb.append(LINE_VERTICAL)
                     .append(printDirections(directionsInfo.get(i)));
         }

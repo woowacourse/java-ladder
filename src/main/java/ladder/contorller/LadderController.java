@@ -2,7 +2,6 @@ package ladder.contorller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import ladder.domain.direction.DirectionGeneratorImpl;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.line.Line;
@@ -27,31 +26,43 @@ public class LadderController {
         int numberOfUsers = users.getNumberOfUsers();
 
         Ladder ladder = createLadder(numberOfUsers);
+        inputView.closeScanner();
 
         outputView.printLadderGameResult(users, ladder);
     }
 
     private Users createUsers() {
-        List<String> userNames = inputView.readUserNames();
-        List<User> users = userNames.stream()
-                .map(User::new)
-                .toList();
+        try {
+            List<String> userNames = inputView.readUserNames();
+            List<User> users = userNames.stream()
+                    .map(User::new)
+                    .toList();
 
-        return new Users(users);
+            return new Users(users);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return createUsers();
+        }
     }
 
-    private Ladder createLadder(int numberOfUsers) {
-        List<Line> lines = createLines(numberOfUsers);
-        return new Ladder(lines);
+    private Ladder createLadder(int ladderWidth) {
+        try {
+            int ladderHeight = inputView.readLadderHeight();
+            List<Line> lines = createLines(ladderHeight,ladderWidth);
+
+            return new Ladder(lines);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return createLadder(ladderWidth);
+        }
     }
 
-    private List<Line> createLines(int numberOfUsers) {
-        int ladderHeight = inputView.readLadderHeight();
+    private List<Line> createLines(int ladderHeight, int ladderWidth) {
         List<Line> lines = new ArrayList<>();
         LineGenerator lineGenerator = new LineGenerator(new DirectionGeneratorImpl());
 
         for (int i = 0; i < ladderHeight; i++) {
-            lines.add(lineGenerator.generate(numberOfUsers));
+            lines.add(lineGenerator.generate(ladderWidth));
         }
 
         return lines;
