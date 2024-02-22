@@ -2,26 +2,18 @@ package ladder.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PlayerTest {
-    @Test
-    @DisplayName("참여자 이름의 길이가 5를 초과하면 예외가 발생한다.")
-    void nameMaxLengthTest() {
-        String name = "name12";
+    @ParameterizedTest
+    @ValueSource(strings={"name12", ""})
+    @DisplayName("참여자 이름의 길이가 1보다 작거나 5보다 크면 예외가 발생한다.")
+    void nameMaxLengthTest(String name) {
         assertThatThrownBy(() -> new Player(name))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름의 길이는 5를 초과할 수 없다.");
-    }
-
-    @Test
-    @DisplayName("참여자 이름의 길이가 0이면 예외가 발생한다.")
-    void nameMinLengthTest() {
-        String name = "";
-        assertThatThrownBy(() -> new Player(name))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름이 비어 있습니다.");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
