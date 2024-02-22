@@ -8,6 +8,9 @@ import domain.Step;
 import java.util.stream.Collectors;
 
 public class OutputFormatter {
+    private static final String SPACE = " ";
+    private static final String BAR = "|";
+
     public String toLine(Line rawLine) {
         String line = rawLine.getPoints().stream()
                 .map(this::getStep)
@@ -17,9 +20,9 @@ public class OutputFormatter {
 
     private String getStep(Point point) {
         if (point.getStep().equals(Step.EXIST)) {
-            return "|" + "-----";
+            return BAR + "-----";
         }
-        return "|" + "     ";
+        return BAR + "     ";
     }
 
     public String toNameUnit(Players players) {
@@ -31,10 +34,10 @@ public class OutputFormatter {
     private String getNameUnit(Player player) {
         String name = player.getName();
         if (name.length() < 5) {
-            String leftBlank = " ".repeat(4 - name.length());
-            String rightBlank = " ";
+            String leftBlank = SPACE.repeat(4 - name.length());
+            String rightBlank = SPACE;
             name = leftBlank + name + rightBlank;
         }
-        return name + " ";
+        return name + SPACE;
     }
 }

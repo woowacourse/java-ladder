@@ -1,6 +1,8 @@
 package domain;
 
 public class Player {
+    private static final int MAX_NAME_LENGTH = 5;
+
     private final String name;
 
     public Player(final String name) {
@@ -9,8 +11,8 @@ public class Player {
     }
 
     private static void validate(String name) {
-        if ((name.isBlank() || name.length() > 5)) {
-            throw new IllegalArgumentException("참가자 이름은 1~5자 이내로 입력해야합니다.");
+        if ((name.isBlank() || name.length() > MAX_NAME_LENGTH)) {
+            throw new IllegalArgumentException("참가자 이름은 1~%d자 이내로 입력해야합니다.".formatted(MAX_NAME_LENGTH));
         }
     }
 
