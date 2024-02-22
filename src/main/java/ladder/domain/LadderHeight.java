@@ -12,7 +12,7 @@ public class LadderHeight {
     }
 
     public static LadderHeight from(String height) {
-        return new LadderHeight(Integer.valueOf(height));
+        return new LadderHeight(Integer.parseInt(height));
     }
 
     private static void validateMin(int value) {
