@@ -40,7 +40,7 @@ public class Controller {
     }
 
     private Height readHeight() {
-        int value = inputView.readHeight();
+        String value = inputView.readHeight();
         return new Height(value);
     }
 }

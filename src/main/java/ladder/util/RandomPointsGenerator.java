@@ -16,8 +16,7 @@ public class RandomPointsGenerator {
     public List<Point> generate(int size) {
         List<Point> list = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            boolean randomBoolean = generateRandomBoolean();
-            Point point = Point.match(randomBoolean);
+            Point point = Point.match(generateRandomBoolean());
             list.add(point);
         }
         return list;
