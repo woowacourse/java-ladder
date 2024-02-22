@@ -26,15 +26,15 @@ public class LinePatternGenerator implements LineGenerator {
     }
 
     private void add(List<Stick> line) {
-        if (line.isEmpty()) {
+        if (isNotOverlapped(line)) {
             line.add(generateStick());
             return;
         }
-        if (line.get(line.size() - 1) == Stick.EXISTENCE) {
-            line.add(Stick.NON_EXISTENCE);
-            return;
-        }
-        line.add(generateStick());
+        line.add(Stick.NON_EXISTENCE);
+    }
+
+    private boolean isNotOverlapped(List<Stick> line) {
+        return line.isEmpty() || !line.get(line.size() - 1).isExist();
     }
 
     private void validate(int size) {
@@ -44,6 +44,7 @@ public class LinePatternGenerator implements LineGenerator {
     }
 
     public Stick generateStick() {
+        // TODO BooleanSupplier 로 바꾸기
         return supplier.getAsInt() == 0 ? Stick.NON_EXISTENCE : Stick.EXISTENCE;
     }
 }
