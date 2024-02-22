@@ -15,6 +15,10 @@ public class Participants {
         this.names = inviteParticipants(inputNames);
     }
 
+    public List<Name> getNames() {
+        return names;
+    }
+
     private List<Name> inviteParticipants(List<String> names) {
         return names.stream()
                 .map(Name::new)
