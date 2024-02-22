@@ -13,7 +13,7 @@ public class OutputView {
     }
 
     public void printPeople(People people) {
-        System.out.println("실행결과");
+        System.out.println("\n실행결과\n");
 
         String nameFormat = makeNameFormat(people);
 
@@ -31,15 +31,13 @@ public class OutputView {
 
     public void printLadder(Ladder ladder, People people) {
         ladder.getLadder()
-                .forEach(line -> printLine(line, people));
+                .forEach(line -> printLine(line, people.findMaxNameLength()));
     }
 
-    private void printLine(Line line, People people) {
-        String format = makeNameFormat(people);
-        String stringFormat = String.format(format, "|"); //" ".repeat(maxNameLength) + ;
-        String temp = line.getPoints().stream()
-                .map(point -> point.repeatSymbol(people.findMaxNameLength()))
-                .collect(Collectors.joining("|", stringFormat, "|"));
-        System.out.println(temp);
+    private void printLine(Line line, int maxNameLength) {
+        String points = line.getPoints().stream()
+                .map(point -> point.repeatSymbol(maxNameLength))
+                .collect(Collectors.joining("|", "    |", "|"));
+        System.out.println(points);
     }
 }
