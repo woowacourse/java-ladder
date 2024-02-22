@@ -4,9 +4,6 @@ import java.util.List;
 import model.LadderElement;
 import model.Line;
 
-/**
- * 1. Ladder : List<Line>을 String으로 변환 2. Players : List<String>을 String으로 변환 (공백 포함) =
- */
 public class Formatter {
 
     private Formatter() {
@@ -14,22 +11,17 @@ public class Formatter {
 
     public static String formatPlayers(List<String> names) {
         StringBuilder stringBuilder = new StringBuilder();
-        String firstPlayer = names.get(0);
-
-        stringBuilder.append(firstPlayer);
-        stringBuilder.append(" ");
-
+        stringBuilder.append(names.get(0)).append(" ");
         for (String name : names.subList(1, names.size() - 1)) {
-            stringBuilder.append(" ".repeat(6 - name.length()));
-            stringBuilder.append(name);
+            stringBuilder.append(getNameWithSpace(6 - name.length(), name));
         }
-
         String lastPlayer = names.get(names.size() - 1);
-
-        stringBuilder.append(" ".repeat(5 - lastPlayer.length()));
-        stringBuilder.append(lastPlayer);
-
+        stringBuilder.append(getNameWithSpace(5 - lastPlayer.length(), lastPlayer));
         return stringBuilder.toString();
+    }
+
+    private static String getNameWithSpace(int spaceRepeat, String name) {
+        return " ".repeat(spaceRepeat) + name;
     }
 
     public static String formatLadder(int paddingSize, List<Line> lines) {

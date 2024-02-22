@@ -18,6 +18,5 @@ public class OutputView {
     private void printLadder(int paddingSize, List<Line> lines) {
         String value = Formatter.formatLadder(paddingSize, lines);
         System.out.printf(value);
-        System.out.println();
     }
 }
