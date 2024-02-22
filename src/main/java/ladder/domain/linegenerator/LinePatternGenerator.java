@@ -2,15 +2,15 @@ package ladder.domain.linegenerator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.IntSupplier;
+import java.util.function.BooleanSupplier;
 import ladder.domain.Stick;
 
 public class LinePatternGenerator implements LineGenerator {
 
     private static final int MIN_LINE_SIZE = 2;
-    private final IntSupplier supplier;
+    private final BooleanSupplier supplier;
 
-    public LinePatternGenerator(IntSupplier supplier) {
+    public LinePatternGenerator(BooleanSupplier supplier) {
         this.supplier = supplier;
     }
 
@@ -44,7 +44,9 @@ public class LinePatternGenerator implements LineGenerator {
     }
 
     public Stick generateStick() {
-        // TODO BooleanSupplier 로 바꾸기
-        return supplier.getAsInt() == 0 ? Stick.NON_EXISTENCE : Stick.EXISTENCE;
+        if (supplier.getAsBoolean()) {
+            return Stick.EXISTENCE;
+        }
+        return Stick.NON_EXISTENCE;
     }
 }

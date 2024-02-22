@@ -6,7 +6,7 @@ import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.PlayerName;
 import ladder.domain.linegenerator.LinePatternGenerator;
-import ladder.domain.linegenerator.RandomBinarySupplier;
+import ladder.domain.linegenerator.RandomBooleanSupplier;
 import ladder.dto.LadderDto;
 import ladder.dto.LineDto;
 import ladder.dto.PlayerNamesDto;
@@ -21,7 +21,7 @@ public class LadderGameController {
         List<PlayerName> playerNames = inputPlayerNames();
         Height height = inputHeight();
 
-        LinePatternGenerator lineGenerator = new LinePatternGenerator(new RandomBinarySupplier());
+        LinePatternGenerator lineGenerator = new LinePatternGenerator(new RandomBooleanSupplier());
         Ladder ladder = new Ladder(height, playerNames.size(), lineGenerator);
 
         PlayerNamesDto playerNamesDto = toDto(playerNames);

@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import java.util.function.IntSupplier;
+import java.util.function.BooleanSupplier;
 import ladder.domain.Stick;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ class LinePatternGeneratorTest {
     @DisplayName("크기에 맞는 사다리 생성")
     @Test
     void generateTest() {
-        MockIntSupplier supplier = new MockIntSupplier(List.of(0, 1));
+        MockBooleanSupplier supplier = new MockBooleanSupplier(List.of(false, true));
         LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
 
         List<Stick> line = linePatternGenerator.generate(4);
@@ -27,7 +27,7 @@ class LinePatternGeneratorTest {
     @DisplayName("숫자가 1이 나왓을 경우, 해당 위치는 막대가 존재하고 다음 위치에는 막대가 없다")
     @Test
     void generateTest_whenReturnOne() {
-        MockIntSupplier supplier = new MockIntSupplier(List.of(1));
+        BooleanSupplier supplier = () -> true;
         LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
 
         List<Stick> line = linePatternGenerator.generate(3);
@@ -38,7 +38,7 @@ class LinePatternGeneratorTest {
     @DisplayName("숫자가 0이 나왓을 경우, 해당 위치에 막대가 존재하지 않는다")
     @Test
     void generateTest_whenReturnZero() {
-        MockIntSupplier supplier = new MockIntSupplier(List.of(0));
+        BooleanSupplier supplier = () -> false;
         LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
 
         List<Stick> line = linePatternGenerator.generate(2);
@@ -50,7 +50,7 @@ class LinePatternGeneratorTest {
     @ParameterizedTest
     @CsvSource({"1", "0", "-1"})
     void generateTest_whenSizeIsUnder2(int size) {
-        MockIntSupplier supplier = new MockIntSupplier(List.of(0));
+        BooleanSupplier supplier = () -> false;
         LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
 
         assertThatThrownBy(() -> linePatternGenerator.generate(size))
@@ -58,18 +58,19 @@ class LinePatternGeneratorTest {
                 .hasMessage("사다리의 크기는 2 이상입니다");
     }
 
-    class MockIntSupplier implements IntSupplier {
+    class MockBooleanSupplier implements BooleanSupplier {
 
-        private final List<Integer> mock;
+        private final List<Boolean> mock;
         private int index = 0;
 
-        MockIntSupplier(List<Integer> mock) {
+        MockBooleanSupplier(List<Boolean> mock) {
             this.mock = mock;
         }
 
+
         @Override
-        public int getAsInt() {
-            int answer = mock.get(index);
+        public boolean getAsBoolean() {
+            boolean answer = mock.get(index);
             index = (index + 1) % mock.size();
             return answer;
         }
