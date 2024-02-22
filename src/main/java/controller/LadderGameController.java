@@ -25,13 +25,7 @@ public class LadderGameController {
     public void run() {
         Names names = inputMapper.mapToNames(inputView.readNames());
         Height height = inputMapper.mapToHeight(inputView.readHeight());
-
-//        유저가 입력한 정보를 바탕으로 사다리를 만든다.
         Ladder ladder = Ladder.createFrom(rowLineGenerator, names.getNameCount(), height);
-
-        //사다리 정보 출력
         resultView.printLadder(ladder, names);
-
     }
-
 }
