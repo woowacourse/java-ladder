@@ -14,6 +14,13 @@ public class GameBoard {
         this.ladder = ladder;
     }
 
+    public List<Player> getPlayers() {
+        return players;
+    }
+    public int getLadderHeight(){
+        return ladder.getHeight();
+    }
+
     public Ladder getLadder() {
         return ladder;
     }

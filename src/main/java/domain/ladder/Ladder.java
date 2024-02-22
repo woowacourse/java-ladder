@@ -20,6 +20,9 @@ public class Ladder {
         generateFirstToLastLegs(ladderLegs, directionGenerator);
         this.ladderLegs = ladderLegs;
     }
+    public int getHeight(){
+        return height.getHeight();
+    }
 
     public List<LadderLeg> getLadderLegs() {
         return ladderLegs;
