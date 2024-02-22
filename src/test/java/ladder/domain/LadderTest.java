@@ -2,7 +2,7 @@ package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import ladder.domain.dto.LadderStatusDto;
+import ladder.domain.dto.BuiltLadderDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -54,8 +54,8 @@ public class LadderTest {
         void successfullyMakeStepTest(int currentSector) {
             ladder.buildSteps(currentSector);
 
-            LadderStatusDto ladderStatusDto = ladder.getSteps();
-            assertThat(ladderStatusDto.steps().get(currentSector).getBuildStatus()).isTrue();
+            BuiltLadderDto builtLadderDto = ladder.getSteps();
+            assertThat(builtLadderDto.builtLadder().get(currentSector)).isEqualTo("-----");
         }
     }
 }

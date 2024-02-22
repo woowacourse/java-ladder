@@ -3,6 +3,7 @@ package ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import ladder.domain.dto.BuiltLadderDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,8 +26,8 @@ public class CarpenterTest {
 
         carpenter.buildLadders(7);
 
-        List<Step> steps = getLadderOfCarpenter(carpenter);
-        assertThat(steps.get(0).getBuildStatus()).isTrue();
+        BuiltLadderDto builtLadderDto = getLadderOfCarpenter(carpenter);
+        assertThat(builtLadderDto.builtLadder().get(0)).isEqualTo("-----");
     }
 
     @ParameterizedTest
@@ -37,13 +38,13 @@ public class CarpenterTest {
 
         carpenter.buildLadders(7);
 
-        List<Step> steps = getLadderOfCarpenter(carpenter);
-        assertThat(steps.get(stepPosition).getBuildStatus()).isFalse();
+        BuiltLadderDto builtLadderDto = getLadderOfCarpenter(carpenter);
+        assertThat(builtLadderDto.builtLadder().get(stepPosition)).isEqualTo("     ");
     }
 
-    private List<Step> getLadderOfCarpenter(Carpenter carpenter) {
+    private BuiltLadderDto getLadderOfCarpenter(Carpenter carpenter) {
         List<Ladder> ladders = carpenter.getResultLadders().resultLadder();
         Ladder ladder = ladders.get(1);
-        return ladder.getSteps().steps();
+        return ladder.getSteps();
     }
 }
