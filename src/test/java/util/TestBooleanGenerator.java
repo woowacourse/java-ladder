@@ -2,14 +2,14 @@ package util;
 
 public class TestBooleanGenerator implements BooleanGenerator {
 
-    private final Boolean isConnectable;
+    private final boolean isConnectable;
 
-    public TestBooleanGenerator(Boolean isConnectable) {
+    public TestBooleanGenerator(boolean isConnectable) {
         this.isConnectable = isConnectable;
     }
 
     @Override
-    public Boolean generate() {
+    public boolean generate() {
         return isConnectable;
     }
 }

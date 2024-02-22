@@ -15,7 +15,7 @@ public class Line {
 
     public List<Boolean> makeLine(BooleanGenerator booleanGenerator) {
         for (int position = 0; position < columnLength - 1; position++) {
-            Boolean isConnectable = booleanGenerator.generate();
+            boolean isConnectable = booleanGenerator.generate();
 
             points.add(decideConnectable(position, isConnectable));
         }
@@ -23,7 +23,7 @@ public class Line {
         return points;
     }
 
-    public boolean decideConnectable(int position, Boolean isConnectable) {
+    public boolean decideConnectable(int position, boolean isConnectable) {
         if (position == 0 || !points.get(position - 1)) {
             return isConnectable;
         }

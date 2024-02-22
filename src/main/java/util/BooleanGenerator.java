@@ -1,5 +1,5 @@
 package util;
 
 public interface BooleanGenerator {
-    Boolean generate();
+    boolean generate();
 }

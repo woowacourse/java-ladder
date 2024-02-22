@@ -7,15 +7,15 @@ public enum LadderItem {
     CONNECTED(true, "-----|"),
     UNCONNECTED(false, "     |");
 
-    private final Boolean isConnected;
+    private final boolean isConnected;
     private final String shape;
 
-    LadderItem(Boolean isConnected, String shape) {
+    LadderItem(boolean isConnected, String shape) {
         this.isConnected = isConnected;
         this.shape = shape;
     }
 
-    public static String getShapeByIsConnected(Boolean isConnected) {
+    public static String getShapeByIsConnected(boolean isConnected) {
         return Arrays.stream(LadderItem.values())
                 .filter(ladderItem -> ladderItem.isConnected == isConnected)
                 .findAny()
