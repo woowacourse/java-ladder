@@ -20,7 +20,7 @@ public class LadderGameMachine {
         LadderHeight ladderHeight = initLadderHeight();
         LadderResult ladderResult = createLadderResult(
                 new RandomBooleanGenerator(),
-                ladderHeight.getLadderHeight(),
+                ladderHeight.ladderHeight(),
                 userNames);
         OutputView.printLadderResult(ladderResult);
     }
