@@ -35,16 +35,16 @@ public class Line {
 
     private boolean isNotExistRightBeforeLeft(List<LadderPath> row) {
         return IntStream.range(0, row.size())
-                .filter(i -> row.get(i).equals(LEFT))
+                .filter(i -> row.get(i).isLeftPath())
                 .map(idx -> idx - 1)
-                .allMatch(idx -> row.get(idx).equals(RIGHT));
+                .allMatch(idx -> row.get(idx).isRightPath());
     }
 
     private boolean isNotExistLeftAfterRight(List<LadderPath> row) {
         return IntStream.range(0, row.size())
-                .filter(i -> row.get(i).equals(RIGHT))
+                .filter(i -> row.get(i).isRightPath())
                 .map(idx -> idx + 1)
-                .allMatch(idx -> row.get(idx).equals(LEFT));
+                .allMatch(idx -> row.get(idx).isLeftPath());
     }
 
     public int size() {
