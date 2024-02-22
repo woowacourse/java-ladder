@@ -49,6 +49,6 @@ class LadderLevelTest {
         List<Integer> expected = rightIndices.stream().mapToInt(index -> index + 1).boxed().toList();
 
         //then
-        assertThat(expected).containsExactlyElementsOf(leftIndices);
+        assertThat(leftIndices).containsExactlyElementsOf(expected);
     }
 }
