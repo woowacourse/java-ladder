@@ -4,7 +4,7 @@ import java.util.List;
 import model.Line;
 
 public class OutputView {
-    private static final String FINAL_RESULT_FORMAT = "%n%s%n%n";
+    private static final String FINAL_RESULT_FORMAT = "%s%n%n";
     private static final String FINAL_RESULT_MESSAGE = "실행결과";
 
     public void printResult(List<String> names, List<Line> lines) {
