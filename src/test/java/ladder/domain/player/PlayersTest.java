@@ -36,11 +36,11 @@ class PlayersTest {
     }
 
     @Nested
-    @DisplayName("참가자들이 유효하지 않을 경우 예외가 발생한다.")
+    @DisplayName("참가자들의 수가")
     class InvalidPlayerNames {
 
         @Test
-        @DisplayName("참가자들의 수가 범위를 벗어난 경우 예외를 발생한다.")
+        @DisplayName("최소 범위보다 작을 경우 예외를 발생한다.")
         void testLessThanMinimumSize() {
             List<Player> players = List.of(new Player("pobi"));
 
@@ -49,7 +49,7 @@ class PlayersTest {
         }
 
         @Test
-        @DisplayName("참가자들의 수가 범위를 벗어난 경우 예외를 발생한다.")
+        @DisplayName("최대 범위보다 클 경우 예외를 발생한다.")
         void testGreaterThanMaximumSize() {
             List<Player> players = List.of(
                     new Player("1"), new Player("2"), new Player("3"), new Player("4"),

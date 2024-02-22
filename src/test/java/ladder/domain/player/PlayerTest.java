@@ -20,12 +20,12 @@ class PlayerTest {
     }
 
     @Nested
-    @DisplayName("참가자 이름이 유효하지 않을 경우 예외가 발생한다.")
+    @DisplayName("참가자들의 이름의")
     class InvalidNameTest {
 
         @ParameterizedTest
         @ValueSource(strings = {"", " ", "666666"})
-        @DisplayName("참가자들의 이름이 범위가 벗어나면 예외가 발생한다.")
+        @DisplayName("길이가 범위를 벗어나면 예외가 발생한다.")
         void testInvalidNameRange(String name) {
             assertThatThrownBy(() -> new Player(name))
                     .isInstanceOf(IllegalArgumentException.class);
@@ -33,7 +33,7 @@ class PlayerTest {
 
         @ParameterizedTest
         @ValueSource(strings = {"abc!", "!@#"})
-        @DisplayName("참가자들의 이름은 영어, 숫자가 아니라면 예외가 발생한다.")
+        @DisplayName("형식이 한글, 영어, 숫자가 아니라면 예외가 발생한다.")
         void testInvalidNameFormat(String name) {
             assertThatThrownBy(() -> new Player(name))
                     .isInstanceOf(IllegalArgumentException.class);
