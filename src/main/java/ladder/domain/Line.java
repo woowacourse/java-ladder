@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static ladder.constant.ErrorMessage.CONTINUE_SCAFFOLD;
+
 public class Line {
     private final List<Boolean> scaffold;
 
@@ -15,7 +17,7 @@ public class Line {
     private static void validateContinue(List<Boolean> scaffold) {
         if (IntStream.range(0, scaffold.size() - 1)
                 .anyMatch(i -> scaffold.get(i) && scaffold.get(i + 1))) {
-            throw new IllegalArgumentException("[ERROR] 좌우 연속해서 발판이 존재할 수 없습니다.");
+            throw new IllegalArgumentException(CONTINUE_SCAFFOLD.generate());
         }
     }
 

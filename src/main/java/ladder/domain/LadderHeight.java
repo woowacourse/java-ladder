@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import static ladder.constant.ErrorMessage.MIN_LADDER_HEIGHT;
+
 public class LadderHeight {
     private static final int MIN_HEIGHT = 1;
 
@@ -16,7 +18,7 @@ public class LadderHeight {
 
     private static void validateMin(int value) {
         if (value < MIN_HEIGHT) {
-            throw new IllegalArgumentException("[ERROR] 사다리의 높이는 1 이상의 정수이어야 합니다.");
+            throw new IllegalArgumentException(MIN_LADDER_HEIGHT.generate());
         }
     }
 
