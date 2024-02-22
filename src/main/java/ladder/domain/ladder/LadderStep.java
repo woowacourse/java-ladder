@@ -1,16 +1,12 @@
 package ladder.domain.ladder;
 
-import java.util.Collections;
 import java.util.List;
 
-public class LadderStep {
-    private final List<Path> ladderPaths;
+import static java.util.Collections.unmodifiableList;
 
-    public LadderStep(final List<Path> ladderPaths) {
-        this.ladderPaths = Collections.unmodifiableList(ladderPaths);
-    }
-
-    public List<Path> getLadderPaths() {
-        return ladderPaths;
+public record LadderStep(List<Path> ladderPaths) {
+    @Override
+    public List<Path> ladderPaths() {
+        return unmodifiableList(ladderPaths);
     }
 }
