@@ -65,4 +65,14 @@ public class Members {
             throw new IllegalArgumentException("참여자는 " + MIN_MEMBER_COUNT + "~" + MAX_MEMBER_COUNT + "명만 허용됩니다.");
         }
     }
+
+    public int getCount() {
+        return members.size();
+    }
+
+    public List<String> getNames() {
+        return members.stream()
+                .map(Member::getName)
+                .toList();
+    }
 }
