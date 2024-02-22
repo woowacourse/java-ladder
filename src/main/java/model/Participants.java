@@ -29,4 +29,12 @@ public class Participants {
     private List<Participant> create(List<String> participantsName){
         return participantsName.stream().map(Participant::new).toList();
     }
+
+    public int size() {
+        return this.participants.size();
+    }
+
+    public List<Participant> getParticipants() {
+        return List.copyOf(participants);
+    }
 }
