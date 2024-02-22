@@ -6,25 +6,15 @@ import ladder.model.Players;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.List;
-
 public class LadderController {
     private Players ladderPlayers;
     private Ladder ladder;
 
     public void makeLadder(){
-        ladderPlayers = Players.from(readPlayerNames());
+        ladderPlayers = Players.from(InputView.inputPlayerNames());
 
-        LadderSize ladderSize = new LadderSize(readLadderHeight(), ladderPlayers.getSize());
+        LadderSize ladderSize = new LadderSize(InputView.inputLadderHeight(), ladderPlayers.getSize());
         ladder = Ladder.of(ladderSize);
-    }
-
-    private List<String> readPlayerNames(){
-        return InputView.inputPlayerNames();
-    }
-
-    private int readLadderHeight() {
-        return InputView.inputLadderHeight();
     }
 
     public void showLadder() {
