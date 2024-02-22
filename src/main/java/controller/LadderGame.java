@@ -5,7 +5,7 @@ import domain.LadderItem;
 import domain.Line;
 import domain.Participant;
 import domain.Participants;
-import util.BooleanGenerator;
+import util.LadderItemGenerator;
 import view.InputView;
 import view.OutputView;
 import java.util.ArrayList;
@@ -15,19 +15,19 @@ public class LadderGame {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final BooleanGenerator booleanGenerator;
+    private final LadderItemGenerator ladderItemGenerator;
 
-    public LadderGame(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
+    public LadderGame(InputView inputView, OutputView outputView, LadderItemGenerator ladderItemGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.booleanGenerator = booleanGenerator;
+        this.ladderItemGenerator = ladderItemGenerator;
     }
 
     public void start() {
         Participants participants = makeParticipants(inputName());
         Ladder ladder = new Ladder(inputHeight());
 
-        ladder.makeLadder(participants.getParticipantsCount(), booleanGenerator);
+        ladder.makeLadder(participants.getParticipantsCount(), ladderItemGenerator);
         printLadder(ladder, participants);
     }
 

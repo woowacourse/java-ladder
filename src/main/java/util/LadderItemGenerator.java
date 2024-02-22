@@ -2,6 +2,6 @@ package util;
 
 import domain.LadderItem;
 
-public interface BooleanGenerator {
+public interface LadderItemGenerator {
     LadderItem generate();
 }

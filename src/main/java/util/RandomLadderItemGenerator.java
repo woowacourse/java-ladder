@@ -4,7 +4,7 @@ import domain.LadderItem;
 import java.util.List;
 import java.util.Random;
 
-public class RandomBooleanGenerator implements BooleanGenerator {
+public class RandomLadderItemGenerator implements LadderItemGenerator {
 
     private final Random random = new Random();
 

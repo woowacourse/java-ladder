@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import util.TestBooleanGenerator;
+import util.TestLadderItemGenerator;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -33,7 +33,7 @@ class LineTest {
     @DisplayName("사다리 라인 생성")
     @Test
     void makeLineTest() {
-        TestBooleanGenerator testDirectionGenerator = new TestBooleanGenerator(LadderItem.CONNECTED);
+        TestLadderItemGenerator testDirectionGenerator = new TestLadderItemGenerator(LadderItem.CONNECTED);
         Line line = new Line(4);
 
         assertThat(line.makeLine(testDirectionGenerator)).isEqualTo(List.of(LadderItem.CONNECTED, LadderItem.UNCONNECTED, LadderItem.CONNECTED));

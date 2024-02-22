@@ -2,11 +2,11 @@ package util;
 
 import domain.LadderItem;
 
-public class TestBooleanGenerator implements BooleanGenerator {
+public class TestLadderItemGenerator implements LadderItemGenerator {
 
     private final LadderItem isConnectable;
 
-    public TestBooleanGenerator(LadderItem isConnectable) {
+    public TestLadderItemGenerator(LadderItem isConnectable) {
         this.isConnectable = isConnectable;
     }
 

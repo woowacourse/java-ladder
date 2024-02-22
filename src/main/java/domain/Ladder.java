@@ -1,6 +1,6 @@
 package domain;
 
-import util.BooleanGenerator;
+import util.LadderItemGenerator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,10 +25,10 @@ public class Ladder {
         }
     }
 
-    public List<Line> makeLadder(int columnLength, BooleanGenerator booleanGenerator) {
+    public List<Line> makeLadder(int columnLength, LadderItemGenerator ladderItemGenerator) {
         for (int i = 0; i < height; i++) {
             Line line = new Line(columnLength);
-            line.makeLine(booleanGenerator);
+            line.makeLine(ladderItemGenerator);
 
             ladder.add(line);
         }

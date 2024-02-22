@@ -1,6 +1,6 @@
 package domain;
 
-import util.BooleanGenerator;
+import util.LadderItemGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +13,9 @@ public class Line {
         this.columnLength = columnLength;
     }
 
-    public List<LadderItem> makeLine(BooleanGenerator booleanGenerator) {
+    public List<LadderItem> makeLine(LadderItemGenerator ladderItemGenerator) {
         for (int position = 0; position < columnLength - 1; position++) {
-            LadderItem isConnectable = booleanGenerator.generate();
+            LadderItem isConnectable = ladderItemGenerator.generate();
 
             points.add(decideConnectable(position, isConnectable));
         }
