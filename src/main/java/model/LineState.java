@@ -3,7 +3,7 @@ package model;
 public enum LineState {
     START("start"),
     END("end"),
-    NOTHING("nothing");
+    NONE("none");
 
     private final String state;
 
@@ -15,7 +15,7 @@ public enum LineState {
         if (decision) {
             return START;
         }
-        return NOTHING;
+        return NONE;
     }
 
     public static LineState decideLineStateWithBeforeState(LineState beforeState, boolean decision) {

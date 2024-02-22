@@ -36,7 +36,7 @@ public class LineTest {
 
     @DisplayName("이전 상태가 S가 아닐 경우 true면 S false면 N이다.")
     @ParameterizedTest
-    @CsvSource(value = {"true,START", "false,NOTHING"})
+    @CsvSource(value = {"true,START", "false,NONE"})
     void initializeLineStateWhenBeforeStateNotStart(boolean given, LineState expected) {
         int peopleCount = 3;
         Line line = new Line(peopleCount, List.of(false, given, false));
