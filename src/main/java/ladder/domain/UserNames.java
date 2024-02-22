@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,13 +9,13 @@ public class UserNames {
 
     private final List<UserName> userNames;
 
-    private UserNames(List<UserName> userNames) {
+    private UserNames(final List<UserName> userNames) {
         validateSize(userNames);
         validateDuplicate(userNames);
-        this.userNames = userNames;
+        this.userNames = new ArrayList<>(userNames);
     }
 
-    public static UserNames of(List<String> names) throws IllegalArgumentException {
+    public static UserNames of(final List<String> names) throws IllegalArgumentException {
         return names.stream()
                 .map(UserName::new)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), UserNames::new));
