@@ -19,6 +19,10 @@ public class LadderHeight {
         }
     }
 
+    public int getHeight() {
+        return height;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -34,9 +38,5 @@ public class LadderHeight {
     @Override
     public int hashCode() {
         return Objects.hash(height);
-    }
-
-    public int getHeight() {
-        return height;
     }
 }

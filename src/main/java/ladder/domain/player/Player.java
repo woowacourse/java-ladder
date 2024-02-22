@@ -32,6 +32,10 @@ public class Player {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -47,9 +51,5 @@ public class Player {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    public String getName() {
-        return name;
     }
 }
