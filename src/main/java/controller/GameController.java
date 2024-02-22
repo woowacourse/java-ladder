@@ -4,6 +4,7 @@ import domain.Game;
 import domain.Height;
 import domain.Lines;
 import domain.Members;
+import error.ErrorHandler;
 import strategy.PointStrategy;
 import strategy.RandomPointStrategy;
 import view.InputView;
@@ -14,23 +15,30 @@ public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
     private final PointStrategy pointStrategy;
+    private final ErrorHandler errorHandler;
 
     public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.pointStrategy = new RandomPointStrategy();
+        this.errorHandler = new ErrorHandler();
     }
 
     public void run() {
-        String rawNames = inputView.readNames();
-        Members members = new Members(rawNames);
+        Members members = errorHandler.readUntilNoError(this::makeMembers);
+        Lines lines = errorHandler.readUntilNoError(() -> makeLines(members));
+        Game game = new Game(members, lines);
+        outputView.printResult(game);
+    }
 
+    private Members makeMembers() {
+        String rawNames = inputView.readNames();
+        return new Members(rawNames);
+    }
+
+    private Lines makeLines(Members members) {
         String rawHeight = inputView.readHeight();
         Height height = new Height(rawHeight);
-        Lines lines = new Lines(members.getCount(), height, pointStrategy);
-
-        Game game = new Game(members, lines);
-
-        outputView.printResult(game);
+        return new Lines(members.getCount(), height, pointStrategy);
     }
 }
