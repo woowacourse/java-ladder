@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.function.Supplier;
 import model.Ladder;
 import model.LadderGame;
 import model.LadderHeight;
@@ -19,8 +20,8 @@ public class LadderGameController {
     }
 
     public void run() {
-        Participants participants = inputView.readParticipantNames();
-        int height = inputView.readLadderHeight();
+        Participants participants = retryUntilSuccess(inputView::readParticipantNames);
+        int height = retryUntilSuccess(inputView::readLadderHeight);
 
         Ladder ladder = createLadder(height, participants);
 
@@ -38,5 +39,15 @@ public class LadderGameController {
         outputView.printResultHeader();
         outputView.printParticipantsNames(participants);
         outputView.printLadder(ladder);
+    }
+
+    private <T> T retryUntilSuccess(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }
