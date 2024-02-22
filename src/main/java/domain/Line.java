@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import util.RandomGenerator;
 
@@ -32,6 +33,6 @@ public class Line {
     }
 
     public List<Boolean> getLegs() {
-        return legs;
+        return Collections.unmodifiableList(legs);
     }
 }
