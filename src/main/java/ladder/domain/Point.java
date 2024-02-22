@@ -1,21 +1,23 @@
 package ladder.domain;
 
-import java.util.Random;
-
 public enum Point {
 
-    ON("-"),
-    OFF(" ");
+    ON(true, "-"),
+    OFF(false, " ");
 
+    private final boolean status;
     private final String symbol;
 
-    Point(String symbol) {
+    Point(boolean status, String symbol) {
+        this.status = status;
         this.symbol = symbol;
     }
 
-    public static Point getRandomPoint() {
-        Point[] points = values();
-        return points[new Random().nextInt(points.length)];
+    public static Point match(boolean status) {
+        if (status) {
+            return ON;
+        }
+        return OFF;
     }
 
     public String repeatSymbol(int count) {
