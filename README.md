@@ -63,38 +63,105 @@
 
 # 부록
 
-## 생각 로그
-
 ## 고민한 포인트
+
+( 피드백을 듣고 싶은 포인트는 ❓❓❓로 표시해뒀습니다. )
 
 ### primitive vs wrapper
 
 - primitive
-    - 장점
-        - 리터럴 값을 다루기 떄문에 속도가 빠르다.(+ 연산의 경우 literal 값을 사용하면 속도 더 빠름)
-        - 값 복사 시 편하다.
-    - 단점
-        - null 포함 못함 (예외 발생 가능)
+    - 장점)
+        - stack 메모리에 저장되어 접근이 쉽고 빠르다.
+        - 리터럴 값을 다루기 때문에(❓❓❓) 계산 속도가 빠르다.(+ 연산의 경우 literal 값을 사용하면 속도 더 빠름)
+        - 값 변경이 가능하다.
+    - 단점)
+        - null 저장할 수 없다.
+        - Collection, Generic 사용 시 wrapper로 변환해야 한다.
 - wrapper
-    - 장점
+    - 장점)
         - null을 포함할 수 있다.(null이 들어갔을 때 예외를 던지지 않는다.)
         - 클래스 메서드를 사용할 수 있다.
-    - 단점
-        - primitive 타입보다 성능이 느리다. 한 번 더 감싸기 때문에
+    - 단점)
+        - 한 번 더 감싸기 때문에 primitive 타입보다 성능이 느리다.
+        - 저장된 값을 변경할 수 없고, 값을 변경하려면 새 인스턴스를 생성해야 한다.
+        - 할당되는 메모리가 primitive 타입보다 크다.
         - 가독성이 좋지 않다.(특히 생성 로직)
-- 우리가 생각한 결론
-    - 도라: 로직상 not null인 상황에선 굳이 wrapper를 쓸 이유가 없지 않은가? 예를 들면
-    - 조조:
-    - 합한의견:
+- 우리가 생각한 결론)
+    - not null인 상황에선 primitive를 사용하는 걸 default로 가져가고,
+    - Collection이나 Generic 같은 문법을 사용해야 할 땐 wrapper 클래스로 변환해 사용하자.
+    - 왜냐하면, wrapper는 메모리, 속도 측면에서 불리하기 때문이다.
 
 ### literal 이란 무엇일까?
 
 - 정의) 프로그램에서 직접 표현한 값
 - 종류) 정수, 실수, 문자, 논리, 문자열 리터럴
-- 질문) 아래의 정의에 대한 반례는 없는가
+- 질문) 아래의 정의에 대한 반례는 없는가?
     - 원시타입은 정수, 실수, 문자, 논리 리터럴등의 실제 데이터 값을 '스택' 메모리에 그대로 저장하는 타입이다.
     - 참조타입은 객체의 메모리 주소값을 참조하는 타입이다.
+    - 반례) String은 원시타입의 성격을 가지는 참조타입이다. (리터럴 저장하기도 함)
+        - String은 literal과 new 키워드를 통해 생성하는 두 가지 방법이 존재한다.
+        - literal로 생성하는 경우,
+            - heap 영역의 String Constant Pool에 저장되기 때문에(불변이라 가능)
+            - literal이 같다면 동일한 객체를 반환하여 메모리 낭비를 줄일 수 있다.
+        - new 키워드로 생성하는 경우,
+            - heap 영역에 저장되어 동일한 문자열의 값이라도 각각의 객체가 생성된다.
+
+```
+String a = "hi";
+String b = "hi";
+a == b // true
+```
+
+```
+String a = new String("hi");
+String b = new String("hi");
+a == b // false
+```
+
+```
+// 번외편) String이 final 클래스라고 해서, 아래 코드의 a가 불변객체인 건 아님. 선언문 앞의 final만 관련 있다.
+String a = new String("hi"); // a는 불변아님
+a = new String("hi"); // 가능
+final String b = new String("hi"); // b는 불변임
+b = new String("hi"); // 컴파일 오류
+```
+
+### model을 record로 표현해도 될까?
+
+- record
+    - 장점
+        - 불변 객체를 쉽게 생성할 수 있게 해준다.
+        - 기본적인 메서드(equals, hashcode, toString)를 내장하고 있어 가독성이 좋다.
+    - 단점
+        - final 클래스라서, 상속과 abstract 선언이 불가하다.
+        - 필드값들이 final이라서, 필드값 수정이 불가하다.
+        - 불필요한 기본 메서드(equals, hashcode, toString)가 자동 정의된다.
+    - 특징
+        - 필드의 종류가 두 가지다.
+            - 상태 구성 요소 필드다.
+            - 정적 필드
+- 우리가 생각한 결론) 표현해도 된다
+    - 통상적으론 dto에서 사용하지만, 모델에서 사용하지 않을 이유는 없다(❓❓❓)
+
+```
+record Rectangle(double length, double width) { // length는 상태 구성 요소 필드
+    static double goldenRatio; // 정적 필드
+```
+
+[참고 문서](https://docs.oracle.com/en/java/javase/17/language/records.html)
+
+[참고 문서](https://openjdk.org/jeps/359)
 
 ### Controller static 붙일까?
 
-### model을 record로 표현해도 될까?
+- 붙인다)
+    - controller는 객체로 생성할 필요가 없고, 필드를 굳이 저장할 필요도 없어서 static 이어도 된다.
+    - 메서드 호출 시간이 짧아지기 떄문에 효율이 좋다.
+- 붙이지 않는다)
+    - 전역적으로 사용하려는 목적이 있는 것이 아나다.
+    - 자주 사용하지 않는 로직인데 GC의 관리 영역에서 배제되고, 메모리에 항상 상주하게 되는 것이 오히려 메모리 낭비가 된다.
+    - static은 추상화, 형성과 같은 개념을 사용할 수 없어, 객체 지향의 패러다임과 상반된다.
+- 우리가 생각한 결론)
+    - 서비스 볼륨에 따라 다르다.
+        - controller가 필드가 있는 경우(공유될 수 없는 경우)에는 static 키워드를 붙일 수 없다.
+        - controller가 필드가 없는 경우(공유 되더라도 문제가 없는 경우)는 static을 붙여도 된다.
