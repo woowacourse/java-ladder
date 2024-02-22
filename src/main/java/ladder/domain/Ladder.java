@@ -13,13 +13,17 @@ public class Ladder {
     private final List<RowLine> rowLines = new ArrayList<>();
 
     public Ladder(int height, int peopleNumber) {
+        this(height, peopleNumber, new RandomLineGenerator());
+    }
+
+    public Ladder(int height, int peopleNumber, LineGenerator lineGenerator) {
         validateLadderHeight(height);
 
-        LineGenerator lineGenerator = new RandomLineGenerator();
         for (int i = 0; i < height; i++) {
             this.rowLines.add(new RowLine(peopleNumber, lineGenerator));
         }
     }
+
 
     private static void validateLadderHeight(int height) {
         if (height < MIN_LADDER_HEIGHT || height > MAX_LADDER_HEIGHT) {
