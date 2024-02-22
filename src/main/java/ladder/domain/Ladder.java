@@ -16,15 +16,6 @@ public class Ladder {
         this.steps = makeSteps(personCount);
     }
 
-    private List<Step> makeSteps(int stepCount) {
-        List<Step> steps = new ArrayList<>();
-
-        for (int currentStep = STEP_START_NUMBER; currentStep < stepCount; currentStep++) {
-            steps.add(new Step());
-        }
-        return steps;
-    }
-
     public BuiltLadderDto getSteps() {
         return BuiltLadderDto.of(steps);
     }
@@ -40,5 +31,14 @@ public class Ladder {
             return step.getBuildStatus();
         }
         return DEFAULT_NO_DUPLICATED_STEP;
+    }
+
+    private List<Step> makeSteps(int stepCount) {
+        List<Step> steps = new ArrayList<>();
+
+        for (int currentStep = STEP_START_NUMBER; currentStep < stepCount; currentStep++) {
+            steps.add(new Step());
+        }
+        return steps;
     }
 }
