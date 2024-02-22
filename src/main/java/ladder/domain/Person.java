@@ -15,4 +15,8 @@ public class Person {
             throw new IllegalArgumentException("[ERROR] 사람 이름의 길이는 5자를 넘을 수 없습니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

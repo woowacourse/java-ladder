@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+// TODO: Record 사용 고려
 public class Line {
     private final List<Boolean> scaffold;
 
@@ -17,5 +18,10 @@ public class Line {
                 .anyMatch(i -> scaffold.get(i) && scaffold.get(i + 1))) {
             throw new IllegalArgumentException("[ERROR] 좌우 연속해서 발판이 존재할 수 없습니다.");
         }
+    }
+
+    // TODO: 방어적 복사
+    public List<Boolean> getScaffold() {
+        return scaffold;
     }
 }

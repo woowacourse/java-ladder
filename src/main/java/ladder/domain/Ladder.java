@@ -19,4 +19,10 @@ public class Ladder {
         // TODO: -1에 대한 의미 전달
         return new Ladder(generator.apply(people.getCount() - 1, ladderHeight.getValue()));
     }
+
+    public List<List<Boolean>> getScaffolds() {
+        return lines.stream()
+                .map(Line::getScaffold)
+                .toList();
+    }
 }
