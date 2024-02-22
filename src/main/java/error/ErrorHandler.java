@@ -10,7 +10,7 @@ public class ErrorHandler {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            System.out.println(ERROR_PREFIX + e.getMessage());
             return readUntilNoError(supplier);
         }
     }
