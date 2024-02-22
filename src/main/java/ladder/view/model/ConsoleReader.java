@@ -1,13 +1,14 @@
 package ladder.view.model;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class ConsoleReader implements Reader {
 
     private final Scanner scanner;
 
-    public ConsoleReader(Scanner scanner) {
-        this.scanner = scanner;
+    public ConsoleReader(InputStream in) {
+        this.scanner = new Scanner(in);
     }
 
     @Override
