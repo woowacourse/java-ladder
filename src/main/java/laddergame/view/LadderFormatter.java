@@ -2,7 +2,7 @@ package laddergame.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import laddergame.domain.Result;
+import laddergame.dto.Result;
 
 public class LadderFormatter {
 
@@ -26,6 +26,10 @@ public class LadderFormatter {
     }
 
     private static String formatLine(final List<Boolean> points, final int width) {
+        if (width == 0) {
+            return LADDER_HEIGHT_UNIT;
+        }
+
         return points.stream()
                 .map(point -> formatPoint(width, point))
                 .collect(Collectors.joining(LADDER_HEIGHT_UNIT, LADDER_HEIGHT_UNIT, LADDER_HEIGHT_UNIT));
@@ -35,6 +39,7 @@ public class LadderFormatter {
         if (point) {
             return LADDER_WIDTH_UNIT.repeat(width);
         }
+
         return BLANK_UNIT.repeat(width);
     }
 }

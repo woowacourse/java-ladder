@@ -21,6 +21,10 @@ public class NameFormatter {
     }
 
     private static String formatMiddleName(final List<String> names, final int width) {
+        if (names.size() == 1) {
+            return "";
+        }
+
         return names.stream()
                 .skip(1)
                 .limit(names.size() - 2)
@@ -29,6 +33,10 @@ public class NameFormatter {
     }
 
     private static String formatLastName(final List<String> names, final int width) {
+        if (names.size() == 1) {
+            return "";
+        }
+
         final String lastName = names.get(names.size() - 1);
         return String.format("%" + width + "s", lastName);
     }

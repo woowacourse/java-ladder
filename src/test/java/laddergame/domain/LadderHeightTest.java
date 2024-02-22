@@ -1,6 +1,8 @@
 package laddergame.domain;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -11,7 +13,7 @@ public class LadderHeightTest {
     @ParameterizedTest
     @ValueSource(ints = {-1, 0})
     void validatePositive(int value) {
-        Assertions.assertThatThrownBy(() -> new LadderHeight(value))
+        assertThatThrownBy(() -> new LadderHeight(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 입력값은 양수만 가능합니다.");
     }
@@ -24,7 +26,7 @@ public class LadderHeightTest {
         final LadderHeight ladderHeight = new LadderHeight(value);
 
         // then
-        Assertions.assertThat(ladderHeight.getHeight()).isEqualTo(value);
+        assertThat(ladderHeight.getHeight()).isEqualTo(value);
 
     }
 }
