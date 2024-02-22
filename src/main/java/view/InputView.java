@@ -1,5 +1,7 @@
 package view;
 
+import domain.Height;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
@@ -29,12 +31,12 @@ public class InputView {
         }
     }
 
-    public static int readHeight(Supplier<String> input) {
+    public static Height readHeight(Supplier<String> input) {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String inputString = input.get();
         validateEmpty(inputString);
         validateInteger(inputString);
-        return Integer.parseInt(inputString);
+        return new Height(Integer.parseInt(inputString));
     }
 
     private static void validateInteger(String input) {

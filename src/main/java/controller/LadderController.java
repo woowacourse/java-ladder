@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Height;
 import domain.LadderGame;
 import util.ConsoleReader;
 import view.InputView;
@@ -17,7 +18,7 @@ public class LadderController {
 
     public void run() {
         List<String> names = nameInput();
-        int height = heigthInput();
+        Height height = heigthInput();
         LadderGame ladderGame = new LadderGame(names, height);
         OutputView.printResult(ladderGame.getResult());
     }
@@ -41,8 +42,8 @@ public class LadderController {
         }
     }
 
-    private int heigthInput() {
-        Integer height = null;
+    private Height heigthInput() {
+        Height height = null;
         for (int tryCount = 0; tryCount < 5 && height == null; tryCount++) {
             height = getHeight();
         }
@@ -52,7 +53,7 @@ public class LadderController {
         return height;
     }
 
-    private Integer getHeight() {
+    private Height getHeight() {
         try {
             return InputView.readHeight(consoleReader);
         } catch (IllegalArgumentException e) {

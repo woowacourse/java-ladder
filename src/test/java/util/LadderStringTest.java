@@ -1,5 +1,6 @@
 package util;
 
+import domain.Height;
 import domain.Ladder;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +13,7 @@ public class LadderStringTest {
     @DisplayName("Ladder의 상태를 String으로 반환한다.")
     @Test
     void LadderToStringTest() {
-        Ladder ladder = new Ladder(5);
+        Ladder ladder = new Ladder(new Height(5));
         CustomGenerator customGenerator = new CustomGenerator(List.of(false, true, false, true, false));
         ladder.init(5, customGenerator);
         Assertions.assertThat(LadderString.from(ladder))

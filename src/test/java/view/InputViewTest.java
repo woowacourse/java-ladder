@@ -1,5 +1,6 @@
 package view;
 
+import domain.Height;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -66,7 +67,7 @@ class InputViewTest {
         @Test
         void stringToIntegerTest() {
             Assertions.assertThat(InputView.readHeight(() -> "5"))
-                    .isEqualTo(5);
+                    .isEqualTo(new Height(5));
         }
 
         @DisplayName("숫자 외의 값을 입력받으면 예외를 발생한다.")

@@ -12,7 +12,7 @@ public class LadderGame {
     Players players;
     Generator generator;
 
-    public LadderGame(List<String> names, int height) {
+    public LadderGame(List<String> names, Height height) {
         this.ladder = new Ladder(height);
         this.players = new Players(names);
         this.generator = new RandomGenerator();
@@ -20,7 +20,7 @@ public class LadderGame {
         this.ladder.init(names.size(), this.generator);
     }
 
-    LadderGame(List<String> names, int height, Generator generator) {
+    LadderGame(List<String> names, Height height, Generator generator) {
         this.ladder = new Ladder(height);
         this.players = new Players(names);
         this.generator = generator;

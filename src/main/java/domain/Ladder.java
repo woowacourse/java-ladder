@@ -9,16 +9,16 @@ import java.util.List;
 public class Ladder implements Iterable<Line> {
 
     private final List<Line> ladder;
-    private final int height;
+    private final Height height;
 
-    public Ladder(int height) {
+    public Ladder(Height height) {
         validateHeight(height);
         this.height = height;
         this.ladder = new ArrayList<>();
     }
 
     public void init(int personCount, Generator generator) {
-        for (int index = 0; index < height; ++index) {
+        for (int index = 0; index < height.getHeight(); ++index) {
             ladder.add(index, new Line(generator.generate(personCount)));
         }
     }
@@ -28,8 +28,8 @@ public class Ladder implements Iterable<Line> {
         return ladder.iterator();
     }
 
-    private void validateHeight(int height) {
-        if (height < 1 || height > 50) {
+    private void validateHeight(Height height) {
+        if (height.getHeight() < 1 || height.getHeight() > 50) {
             throw new IllegalArgumentException("사다리의 높이는 1 이상 50 이하여야 합니다.");
         }
     }
