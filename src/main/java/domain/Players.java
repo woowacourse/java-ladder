@@ -8,23 +8,27 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(List<String> names) {
-        validatePlayerSize(names);
-        validateDuplicated(names);
-        this.players = mapToPlayer(names);
+    public Players(List<String> playerNames) {
+        validatePlayerSize(playerNames);
+        validateDuplicated(playerNames);
+
+        this.players = mapToPlayer(playerNames);
     }
 
     private void validatePlayerSize(List<String> names) {
         if (names.size() < MIN_PLAYER_SIZE) {
-            throw new IllegalArgumentException("사용자는 최소 2명이여야 합니다.");
+            throw new IllegalArgumentException(String.format("사용자는 최소 %d명이어야 합니다.", MIN_PLAYER_SIZE));
         }
     }
 
     private void validateDuplicated(List<String> names) {
-        long uniqueSize = names.stream().distinct().count();
-        if (uniqueSize != names.size()) {
+        if (getUniqueSize(names) != names.size()) {
             throw new IllegalArgumentException("사용자는 중복될 수 없습니다.");
         }
+    }
+
+    private long getUniqueSize(List<String> names) {
+        return names.stream().distinct().count();
     }
 
     public List<Player> mapToPlayer(List<String> names) {
@@ -34,6 +38,10 @@ public class Players {
     }
 
     public List<Player> getPlayers() {
-        return players;
+        return this.players;
+    }
+
+    public int getPlayerSize() {
+        return this.players.size();
     }
 }

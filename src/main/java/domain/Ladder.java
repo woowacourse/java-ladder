@@ -5,14 +5,22 @@ import java.util.List;
 
 public class Ladder {
 
-    private List<Line> lines = new ArrayList<>();
+    private static final int MIN_LADDER_HEIGHT = 1;
+
+    private final List<Line> lines = new ArrayList<>();
 
     public Ladder(int height, int playerSize) {
-        if (height < 1) {
-            throw new IllegalArgumentException("사다리의 높이는 최소 1 이어야 합니다.");
-        }
+        validateLadderHeight(height);
+
+        RandomStickGenerator stickGenerator = new RandomStickGenerator();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(new RandomStickGenerator(), playerSize));
+            this.lines.add(new Line(stickGenerator, playerSize));
+        }
+    }
+
+    private void validateLadderHeight(int height) {
+        if (height < MIN_LADDER_HEIGHT) {
+            throw new IllegalArgumentException(String.format("사다리의 높이는 최소 %d 이어야 합니다.", MIN_LADDER_HEIGHT));
         }
     }
 

@@ -1,12 +1,11 @@
 package domain;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
+
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LineTest {
 
@@ -36,7 +35,7 @@ class LineTest {
 
         List<Stick> sticks = line.getSticks();
 
-        assertThat(sticks.get(playerSize - 2)).isEqualTo(Stick.EMPTY);
+        assertThat(sticks.get(playerSize - 2)).isEqualTo(Stick.NOT_FILLED);
     }
 
     private StickGenerator filledStickGenerator() {

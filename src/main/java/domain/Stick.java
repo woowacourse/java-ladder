@@ -2,7 +2,7 @@ package domain;
 
 public enum Stick {
 
-    FILLED("-"), EMPTY(" ");
+    FILLED("-"), NOT_FILLED(" ");
 
     private final String shape;
 
@@ -10,12 +10,8 @@ public enum Stick {
         this.shape = shape;
     }
 
-    public static Stick getOpposite(Stick stick) {
-        if (stick == FILLED) {
-            return EMPTY;
-        }
-
-        return FILLED;
+    public boolean isFilled() {
+        return this == FILLED;
     }
 
     public String getShape() {

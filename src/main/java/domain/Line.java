@@ -5,30 +5,35 @@ import java.util.List;
 
 public class Line {
 
-    private final List<Stick> sticks;
+    private final List<Stick> sticks = new ArrayList<>();
 
     public Line(StickGenerator stickGenerator, int playerSize) {
-        List<Stick> sticks = new ArrayList<>();
-
         for (int i = 0; i < playerSize - 1; i++) {
-            sticks.add(getStick(stickGenerator, sticks));
+            this.sticks.add(getStick(stickGenerator));
         }
-
-        this.sticks = sticks;
     }
 
-    private Stick getStick(StickGenerator stickGenerator, List<Stick> sticks) {
+    private Stick getStick(StickGenerator stickGenerator) {
         Stick stick = stickGenerator.generateOne();
-        if (!sticks.isEmpty() && sticks.get(sticks.size() - 1) == stick) {
-            if (stick == Stick.FILLED) {
-                return Stick.getOpposite(stick);
-            }
+
+        if (this.sticks.isEmpty()) {
+            return stick;
+        }
+
+        if (stick.isFilled() && isRepeat(stick)) {
+            return Stick.NOT_FILLED;
         }
 
         return stick;
     }
 
+    private boolean isRepeat(Stick stick) {
+        Stick lastStick = this.sticks.get(this.sticks.size() - 1);
+
+        return lastStick == stick;
+    }
+
     public List<Stick> getSticks() {
-        return sticks;
+        return this.sticks;
     }
 }
