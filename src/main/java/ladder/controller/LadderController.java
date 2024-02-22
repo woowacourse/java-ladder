@@ -14,20 +14,29 @@ public class LadderController {
     private Ladder ladder;
 
     public void init() throws IOException {
-        List<String> playerNames = InputView.inputPlayerNames();
-        ladderPlayers = playerNames.stream()
+        ladderPlayers = readPlayerNames().stream()
                 .map(Player::new)
                 .toList();
 
-        int height = InputView.inputLadderHeight();
-        LadderSize ladderSize = new LadderSize(height, playerNames.size());
-
+        LadderSize ladderSize = new LadderSize(readLadderHeight(), ladderPlayers.size());
         ladder = Ladder.of(ladderSize);
     }
 
+    private List<String> readPlayerNames() throws IOException {
+        return InputView.inputPlayerNames();
+    }
+
+    private int readLadderHeight() throws IOException {
+        return InputView.inputLadderHeight();
+    }
+
     public void printResult() {
+        List<String> playerNames = ladderPlayers.stream()
+                .map(Player::getName)
+                .toList();
+
         OutputView.printResultDescription();
-        OutputView.printPlayerNames(ladderPlayers.stream().map(Player::getName).toList());
+        OutputView.printPlayerNames(playerNames);
         OutputView.printLadder(ladder.toLineDtoList());
     }
 }
