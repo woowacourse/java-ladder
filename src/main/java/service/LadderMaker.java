@@ -11,7 +11,7 @@ public class LadderMaker {
     public Ladder createLadder(final int personCount, final int height) {
         final List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(Line.create(personCount, RandomPointGenerator.getInstance()));
+            lines.add(Line.createByStrategy(RandomPointGenerator.getInstance(), personCount));
         }
         return new Ladder(lines);
     }

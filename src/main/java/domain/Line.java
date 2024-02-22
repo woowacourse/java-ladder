@@ -11,8 +11,7 @@ public class Line {
     private Line(List<Boolean> points) {
         this.points = points;
     }
-
-    public static Line create(final int personCount, final PointGenerator pointGenerator) {
+    public static Line createByStrategy(final PointGenerator pointGenerator, final int personCount) {
         List<Boolean> points = new ArrayList<>();
         while (points.size() != personCount - 1) {
             final boolean pointCandidate = pointGenerator.generate();

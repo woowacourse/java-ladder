@@ -13,7 +13,7 @@ class LadderTest {
         //given
         final int personCount = 4;
         PointGenerator pointGenerator = new PickedPointGenerator(List.of(false, true, false));
-        Line line = Line.create(personCount, pointGenerator);
+        Line line = Line.createByStrategy(pointGenerator, personCount);
         List<Line> lines = List.of(line);
         //when
         final Ladder ladder = new Ladder(lines);
