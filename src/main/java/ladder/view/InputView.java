@@ -11,7 +11,7 @@ public class InputView {
         throw new AssertionError();
     }
 
-    public static List<String> readNames(Supplier<String> reader) {
+    public static List<String> readNames(Supplier<String> reader) throws IllegalArgumentException {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String input = reader.get();
         validateEmpty(input);
@@ -19,14 +19,14 @@ public class InputView {
         return parseNames(input);
     }
 
-    public static int readLadderHeight(Supplier<String> reader) {
+    public static int readLadderHeight(Supplier<String> reader) throws IllegalArgumentException {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String input = reader.get();
         validateEmpty(input);
         return parseLadderHeight(input);
     }
 
-    private static void validateEmpty(final String input) {
+    private static void validateEmpty(final String input) throws IllegalArgumentException {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException("공백을 넣을 수 없습니다.");
         }
@@ -37,7 +37,7 @@ public class InputView {
                 .toList();
     }
 
-    private static int parseLadderHeight(final String input) {
+    private static int parseLadderHeight(final String input) throws IllegalArgumentException {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

@@ -14,13 +14,13 @@ public class UserNames {
         this.userNames = userNames;
     }
 
-    public static UserNames of(List<String> names) {
+    public static UserNames of(List<String> names) throws IllegalArgumentException {
         return names.stream()
                 .map(UserName::new)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), UserNames::new));
     }
 
-    private void validateSize(final List<UserName> userNames) {
+    private void validateSize(final List<UserName> userNames) throws IllegalArgumentException {
         if (userNames.size() < MIN_SIZE) {
             throw new IllegalArgumentException(String.format(
                     "참여자는 %d명 이상이어야 합니다.", MIN_SIZE
@@ -28,7 +28,7 @@ public class UserNames {
         }
     }
 
-    private void validateDuplicate(final List<UserName> userNames) {
+    private void validateDuplicate(final List<UserName> userNames) throws IllegalArgumentException {
         long unique = userNames.stream()
                 .distinct()
                 .count();
