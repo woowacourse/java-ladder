@@ -4,7 +4,6 @@ import ladder.util.BooleanListGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Line {
 
@@ -51,12 +50,5 @@ public class Line {
 
     public List<Point> getPoints() {
         return points;
-    }
-
-    @Override
-    public String toString() {
-        return points.stream()
-                .map(Point::getSymbol)
-                .collect(Collectors.joining("|", "    |", "|"));
     }
 }
