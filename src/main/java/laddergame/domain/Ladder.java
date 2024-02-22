@@ -1,42 +1,23 @@
 package laddergame.domain;
 
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import laddergame.dto.LineBuildResult;
 
 public class Ladder {
-    private static final String NUMBER_REGEX = "^[\\d]*$";
-    private static final String NATURAL_NUMBER_ERROR = "자연수를 입력해 주세요.";
     private final List<Line> lines;
-    private final int height;
+    private final Height height;
 
-    public Ladder(final int playerCount, final String height) {
-        validate(height);
+    public Ladder(final int playerCount, final Height height) {
 
-        this.height = Integer.parseInt(height);
-        this.lines = IntStream.range(0, this.height)
+        this.height = height;
+        this.lines = IntStream.range(0, this.height.getHeight())
                 .mapToObj(i -> new Line(playerCount))
                 .collect(Collectors.toList());
     }
 
-    private void validate(final String height) {
-        checkIsNumber(height);
-        checkIsZero(height);
-    }
 
-    private void checkIsNumber(final String height) {
-        if (!Pattern.matches(NUMBER_REGEX, height)) {
-            throw new IllegalArgumentException(NATURAL_NUMBER_ERROR);
-        }
-    }
-
-    private void checkIsZero(final String height) {
-        if (Integer.parseInt(height) == 0) {
-            throw new IllegalArgumentException(NATURAL_NUMBER_ERROR);
-        }
-    }
 
     public void build(final List<LineBuildResult> isBridgesBuilt) {
         IntStream.range(0, lines.size())
@@ -45,9 +26,5 @@ public class Ladder {
 
     public List<Line> getLines() {
         return lines;
-    }
-
-    public int getHeight() {
-        return height;
     }
 }

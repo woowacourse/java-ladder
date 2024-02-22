@@ -3,6 +3,7 @@ package laddergame;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
+import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.Players;
 import laddergame.domain.strategy.CanBuildStrategy;
@@ -17,16 +18,16 @@ public class LadderGame {
 
     public void run() {
         Players players = requestUntilValidated(() -> Players.from(inputView.readPlayersName()));
-        String height = requestUntilValidated(inputView::readLadderHeight);
+        Height height = requestUntilValidated(() -> new Height(inputView.readLadderHeight()));
 
         Ladder ladder = new Ladder(players.getPlayers().size(), height);
-        ladder.build(getLineBuildResults(players, ladder));
+        ladder.build(getLineBuildResults(players, height));
         printLadderResult(players, ladder);
     }
 
-    private static List<LineBuildResult> getLineBuildResults(final Players players, final Ladder ladder) {
+    private static List<LineBuildResult> getLineBuildResults(final Players players, final Height height) {
         CanBuildStrategy randomBuildStrategy = new RandomBuildStrategy();
-        return IntStream.range(0, ladder.getHeight())
+        return IntStream.range(0, height.getHeight())
                 .mapToObj(i -> randomBuildStrategy.canBuildBridges(players.getPlayers().size() - 1))
                 .toList();
     }
