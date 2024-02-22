@@ -9,6 +9,7 @@ import java.util.StringJoiner;
 
 public class OutputView {
     private static final String LADDER_FRAME = "|";
+    private static final String PLAYER_NAMES_FORMAT = "%5s";
 
     public void printResult(PlayerNames playerNames, Ladder ladder) {
         System.out.println("\n실행 결과\n");
@@ -20,12 +21,11 @@ public class OutputView {
         System.out.println(exception.getMessage());
     }
 
-
     private void printPlayerNames(PlayerNames playerNames) {
         StringJoiner playerNamesJoiner = new StringJoiner(" ");
 
         for (int i = 0; i < playerNames.getCount(); i++) {
-            String playerName = String.format("%5s", playerNames.getNameOfIndex(i));
+            String playerName = String.format(PLAYER_NAMES_FORMAT, playerNames.getNameOfIndex(i));
             playerNamesJoiner.add(playerName);
         }
         System.out.println(playerNamesJoiner);
