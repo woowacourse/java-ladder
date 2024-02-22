@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Layer {
-    private List<Boolean> steps;
+    private final List<Boolean> steps;
 
     public Layer(int numberOfParticipants) {
         List<Boolean> steps = new ArrayList<>();

@@ -5,7 +5,8 @@ import java.util.List;
 import model.dto.LayerSteps;
 
 public class Ladder {
-    private List<Layer> layers;
+    private static final int MIN_LADDER_HEIGHT = 1;
+    private final List<Layer> layers;
 
     public Ladder(int height, int numberOfParticipants) {
         validateHeight(height);
@@ -17,8 +18,8 @@ public class Ladder {
     }
 
     private void validateHeight(int height) {
-        if (height < 1) {
-            throw new IllegalArgumentException("사다리 높이는 1 이상이어야한다");
+        if (height < MIN_LADDER_HEIGHT) {
+            throw new IllegalArgumentException("사다리 높이는" + MIN_LADDER_HEIGHT + "이상이어야한다");
         }
     }
 
