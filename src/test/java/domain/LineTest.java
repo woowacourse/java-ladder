@@ -1,11 +1,12 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
-
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 class LineTest {
 
@@ -25,6 +26,17 @@ class LineTest {
         List<Stick> sticks = line.getSticks();
 
         assertThat(sticks).hasSize(playerSize);
+    }
+
+    @DisplayName("라인에 연속된 막대는 있을 수 없다.")
+    @Test
+    void opposite() {
+        int playerSize = 2;
+        Line line = new Line(filledStickGenerator(), playerSize);
+
+        List<Stick> sticks = line.getSticks();
+
+        assertThat(sticks.get(playerSize - 1)).isEqualTo(Stick.EMPTY);
     }
 
     private StickGenerator filledStickGenerator() {
