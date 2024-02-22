@@ -7,7 +7,7 @@ import java.util.List;
 import laddergame.domain.LadderHeight;
 import laddergame.domain.Names;
 import laddergame.domain.Point;
-import laddergame.domain.Result;
+import laddergame.dto.Result;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

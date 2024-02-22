@@ -1,6 +1,8 @@
 package laddergame.domain;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,13 +19,13 @@ public class NameTest {
         Name name = new Name(value);
 
         // then
-        Assertions.assertThat(name.getName()).isEqualTo(value);
+        assertThat(name.getName()).isEqualTo(value);
     }
 
     @DisplayName("이름의 길이가 5를 넘으면 예외를 발생시킨다.")
     @Test
     void validateNameLength() {
-        Assertions.assertThatThrownBy(() -> new Name("abcdef"))
+        assertThatThrownBy(() -> new Name("abcdef"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 이름길이는 5글자를 넘을 수 없습니다.");
 
@@ -34,7 +36,7 @@ public class NameTest {
     @ValueSource(strings = {" ", "", "   "})
     @NullSource
     void testNameBlank(String value) {
-        Assertions.assertThatThrownBy(() -> new Name(value))
+        assertThatThrownBy(() -> new Name(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 이름에 빈값을 입력할 수 없습니다.");
 
