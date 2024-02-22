@@ -11,7 +11,7 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder create(final int lineSize, final LadderHeight height,
+    public static Ladder create(final LineSize lineSize, final LadderHeight height,
             final BooleanGenerator booleanGenerator) {
 
         final List<Line> lines = new ArrayList<>();

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import laddergame.domain.Ladder;
 import laddergame.domain.LadderHeight;
+import laddergame.domain.LineSize;
+import laddergame.domain.Names;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -18,14 +20,16 @@ public class LadderTest {
     void createLadder(int value) {
         // given
         final LadderHeight height = new LadderHeight(value);
-        final List<Boolean> line = List.of(true, false, true);
+        final LineSize lineSize = new LineSize(new Names(List.of("pobi", "zeze", "crong", "jk")));
 
         // when
-        Ladder ladder = Ladder.create(3, height, () -> true);
+        Ladder ladder = Ladder.create(lineSize, height, () -> true);
 
         // then
+        final List<Boolean> expectedLine = List.of(true, false, true);
+
         assertThat(ladder).extracting("lines")
-                .isEqualTo(createLadder(line, value));
+                .isEqualTo(createLadder(expectedLine, value));
     }
 
     public static List<List<Boolean>> createLadder(final List<Boolean> line, final int size) {

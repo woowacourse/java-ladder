@@ -12,12 +12,12 @@ public class Line {
         this.points = points;
     }
 
-    public static Line create(final int size, final BooleanGenerator booleanGenerator) {
+    public static Line create(final LineSize lineSize, final BooleanGenerator booleanGenerator) {
         List<Boolean> points = new ArrayList<>();
 
         boolean temp = false;
 
-        while (points.size() < size) {
+        while (lineSize.isBiggerThan(points.size())) {
             final boolean point = generateBoolean(temp, booleanGenerator);
             points.add(point);
             temp = point;
