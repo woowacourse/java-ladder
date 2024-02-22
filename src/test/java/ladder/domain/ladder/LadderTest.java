@@ -13,18 +13,6 @@ import org.junit.jupiter.api.Test;
 class LadderTest {
 
     @Test
-    @DisplayName("사다리 생성자 테스트")
-    void testConstruct() {
-        BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
-        Ladder ladder = new Ladder(4, 5, booleanGenerator);
-
-        assertThat(ladder).extracting("playerCount")
-                .isEqualTo(4);
-        assertThat(ladder).extracting("height")
-                .isEqualTo(5);
-    }
-
-    @Test
     @DisplayName("사다리를 생성한다.")
     void testGenerateLadder() {
         List<Boolean> rungExist = List.of(true, false, true, false, true, false, true, false, false);
