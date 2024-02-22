@@ -16,8 +16,11 @@ public class Ladder {
             People people,
             LadderHeight ladderHeight) {
 
-        // TODO: -1에 대한 의미 전달
-        return new Ladder(generator.apply(people.getCount() - 1, ladderHeight.getValue()));
+        return new Ladder(generator.apply(calculateLadderWidth(people), ladderHeight.getValue()));
+    }
+
+    private static int calculateLadderWidth(People people) {
+        return people.getCount() - 1;
     }
 
     public List<List<Boolean>> getScaffolds() {
