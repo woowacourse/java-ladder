@@ -31,7 +31,7 @@ public class Members {
                 .toList();
     }
 
-    private void validateVer2(String rawNames) {
+    private void validateVer2(String rawNames) { // TODO: 어느 방법이 더 좋은지
         validateNull(rawNames);
         List<String> names = addMembersVer2(rawNames);
         validateDuplication(names);
