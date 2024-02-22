@@ -4,13 +4,7 @@ import domain.Players;
 
 import java.util.List;
 
-public class PlayersRequest {
-    private final List<String> players;
-
-    public PlayersRequest(List<String> players) {
-        this.players = players;
-    }
-
+public record PlayersRequest(List<String> players) {
     public Players toPlayers() {
         return Players.from(players);
     }
