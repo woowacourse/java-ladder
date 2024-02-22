@@ -12,6 +12,10 @@ public class Name {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private void validate(String name) {
         validateNameLength(name);
         validateNameIsNotBlank(name);
