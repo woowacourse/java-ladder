@@ -38,4 +38,13 @@ class PlayersTest {
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("중복된 사용자는 허용하지 않는다.")
+    @Test
+    void checkDuplicated() {
+        List<String> names = List.of("아톰", "산초", "산초");
+
+        assertThatThrownBy(() -> new Players(names))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
