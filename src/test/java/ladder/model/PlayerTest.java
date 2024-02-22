@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PlayerTest {
@@ -23,5 +24,13 @@ public class PlayerTest {
         assertThatThrownBy(() -> new Player(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 영문자와 숫자로 구성되어야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings={"o", "thr", "fivee"})
+    @DisplayName("올바른 문자열로 참여자 이름을 생성한다.")
+    void nameCreateTest(String name) {
+        assertThatCode(() -> new Player(name))
+                .doesNotThrowAnyException();
     }
 }
