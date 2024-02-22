@@ -19,6 +19,9 @@ public class OutputView {
     private static final String BRIDGE_PREFIX = "    |";
     private static final String EXCEPTION_PREFIX = "[ERROR] ";
 
+    private OutputView() {
+    }
+
     public static void printGameResultIntro() {
         System.out.println(GAME_RESULT_INTRO);
     }
