@@ -1,6 +1,7 @@
 package ladder.domain;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ public class EnergyTest {
     void isHealthyPersonTest() {
         Energy health = new Energy(() -> 6);
 
-        Assertions.assertThat(health.isEnergetic()).isTrue();
+        assertThat(health.isEnergetic()).isTrue();
     }
 
     @DisplayName("number이 5 이하일 경우 Health의 상태가 false이다.")
@@ -19,7 +20,7 @@ public class EnergyTest {
     void isNotHealthyPersonTest() {
         Energy health = new Energy(() -> 4);
 
-        Assertions.assertThat(health.isEnergetic()).isFalse();
+        assertThat(health.isEnergetic()).isFalse();
     }
 
 }

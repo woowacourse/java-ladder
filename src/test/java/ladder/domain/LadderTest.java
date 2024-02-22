@@ -2,7 +2,7 @@ package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import ladder.domain.dto.BuiltLadderDto;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -50,12 +50,12 @@ public class LadderTest {
 
         @ParameterizedTest
         @ValueSource(ints = {2, 3, 4})
-        @DisplayName("스텝을 건설한 구역은 True를 반환한다.")
+        @DisplayName("스텝을 건설한 구역은 True 심볼을 반환한다.")
         void successfullyMakeStepTest(int currentSector) {
             ladder.buildSteps(currentSector);
 
-            BuiltLadderDto builtLadderDto = ladder.getSteps();
-            assertThat(builtLadderDto.builtLadder().get(currentSector)).isEqualTo("-----");
+            List<String> stepSymbols = ladder.getSteps().builtLadder();
+            assertThat(stepSymbols.get(currentSector)).isEqualTo("-----");
         }
     }
 }
