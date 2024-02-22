@@ -6,7 +6,7 @@ import java.util.Set;
 import model.dto.ParticipantName;
 
 public class Participants {
-    private static final int MIN_PARTICIPANT_NAME = 2;
+    private static final int MIN_PARTICIPANT_COUNT = 2;
     private final List<Participant> participants;
 
     public Participants(List<String> names) {
@@ -19,7 +19,7 @@ public class Participants {
     }
 
     private void validateNameSize(List<String> names) {
-        if (names.size() < MIN_PARTICIPANT_NAME) {
+        if (names.size() < MIN_PARTICIPANT_COUNT) {
             throw new IllegalArgumentException("참여할 사람은 두명 이상이어야한다.");
         }
     }
