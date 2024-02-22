@@ -15,10 +15,8 @@ class LadderTest {
     @Test
     @DisplayName("사다리 생성자 테스트")
     void testConstruct() {
-        int playerCount = 4;
-        Height height = new Height(5);
         BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
-        Ladder ladder = new Ladder(playerCount, height, booleanGenerator);
+        Ladder ladder = new Ladder(4, 5, booleanGenerator);
 
         assertThat(ladder).extracting("playerCount")
                 .isEqualTo(4);
@@ -29,11 +27,9 @@ class LadderTest {
     @Test
     @DisplayName("사다리를 생성한다.")
     void testGenerateLadder() {
-        int playerCount = 4;
-        Height height = new Height(3);
         List<Boolean> rungExist = List.of(true, false, true, false, true, false, true, false, false);
 
-        Ladder ladder = new Ladder(playerCount, height, new MockBooleanGenerator(rungExist));
+        Ladder ladder = new Ladder(4, 3, new MockBooleanGenerator(rungExist));
         List<Line> lines = ladder.getLines();
 
         assertSoftly(softly -> {

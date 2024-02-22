@@ -16,7 +16,7 @@ class LadderDtoTest {
     @DisplayName("Dto로 변환한다.")
     void toDto() {
         BooleanGenerator booleanGenerator = new MockBooleanGenerator(List.of(true, false));
-        Ladder ladder = new Ladder(2, new Height(2), booleanGenerator);
+        Ladder ladder = new Ladder(2, 2, booleanGenerator);
         LadderDto ladderDto = LadderDto.from(ladder);
 
         assertThat(ladderDto.lineDtos()).containsExactly(

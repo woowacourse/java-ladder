@@ -30,7 +30,7 @@ public class LadderController {
         final Height height = retryOnException(this::readLadderHeight);
         final int columnSize = players.countPlayers();
 
-        final Ladder ladder = new Ladder(columnSize, height, booleanGenerator);
+        final Ladder ladder = new Ladder(columnSize, height.getHeight(), booleanGenerator);
 
         printLadder(players, ladder);
     }
