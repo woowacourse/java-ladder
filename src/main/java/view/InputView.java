@@ -1,5 +1,6 @@
 package view;
 
+import exception.Message;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,14 +29,14 @@ public class InputView {
 
     private void validateBlank(String rawNames) {
         if (rawNames == null || rawNames.trim().isEmpty()) {// TODO: 예외 메시지
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Message.BLANK_INPUT_ERROR.getMessage());
         }
     }
 
     private void validateSeparators(String rawNames) {
         if (rawNames.startsWith(NAME_SEPARATOR) || rawNames.endsWith(NAME_SEPARATOR) || rawNames.contains(
                 NAME_SEPARATOR.repeat(2))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Message.INVALID_SEPARATOR_ERROR.getMessage());
         }
     }
 
@@ -52,7 +53,7 @@ public class InputView {
         try {
             return Integer.parseInt(rawHeight);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(); //TODO: 예외메시지
+            throw new IllegalArgumentException(Message.INVALID_HEIGHT_ERROR.getMessage());
         }
     }
 }

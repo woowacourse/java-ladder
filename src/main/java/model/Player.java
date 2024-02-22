@@ -1,5 +1,7 @@
 package model;
 
+import exception.Message;
+
 public class Player {
     private final String name;
 
@@ -10,7 +12,7 @@ public class Player {
 
     private void validate(String name) {
         if (name.length() > 5) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
         }
     }
 

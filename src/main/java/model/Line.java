@@ -18,6 +18,7 @@ public class Line {
         this.points = result;
     }
 
+    // TODO: 함수 분리하기
     private Boolean generate(List<Boolean> points, int index) {
         if (index >= 1 && points.get(index - 1)) {
             return false;

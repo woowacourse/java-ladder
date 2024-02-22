@@ -1,5 +1,6 @@
 package model;
 
+import exception.Message;
 import java.util.List;
 import java.util.Set;
 
@@ -20,13 +21,13 @@ public class Players {
 
     private void validateSize(List<String> players) {
         if (players.size() < MIN_PLAYERS) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
         }
     }
 
     private void validateDuplicates(List<String> players) {
-        if(isDuplicated(players)) {
-            throw new IllegalArgumentException();
+        if (isDuplicated(players)) {
+            throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
         }
     }
 

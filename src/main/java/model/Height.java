@@ -1,5 +1,7 @@
 package model;
 
+import exception.Message;
+
 public class Height {
 
     private static final int UPPER_BOUND = 12;
@@ -13,7 +15,7 @@ public class Height {
 
     private void validate(int value) {
         if (isOutOfRange(value)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Message.INVALID_HEIGHT_ERROR.getMessage());
         }
     }
 
