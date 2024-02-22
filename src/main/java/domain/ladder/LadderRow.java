@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class LadderRow {
+public class LadderRow {
     private final List<LadderRung> rungs;
 
     private LadderRow(final List<LadderRung> rungs) {
@@ -31,7 +31,7 @@ class LadderRow {
         return LadderRung.create(booleanGenerator);
     }
 
-    List<LadderRung> getRungs() {
+    public List<LadderRung> getRungs() {
         return Collections.unmodifiableList(this.rungs);
     }
 }

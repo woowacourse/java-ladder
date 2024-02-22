@@ -5,7 +5,7 @@ import domain.Connection;
 import java.util.HashMap;
 import java.util.Map;
 
-class LadderRung {
+public class LadderRung {
     private static final Map<Boolean, LadderRung> CACHE = new HashMap<>();
 
     private final boolean isConnected;
@@ -23,7 +23,7 @@ class LadderRung {
         return CACHE.get(booleanGenerator.generate());
     }
 
-    boolean isConnected() {
+    public boolean isConnected() {
         return this.isConnected;
     }
 }

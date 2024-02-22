@@ -1,10 +1,17 @@
 package view;
 
+import domain.ladder.Ladder;
+import domain.ladder.LadderRow;
+import domain.ladder.LadderRung;
 import domain.name.Players;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
+    private static final String DISCONNECTED_RUNG = " ";
+    private static final String CONNECTED_RUNG = "-";
+    private static final String LADDER_SIDE = "|";
+
     public static void printPlayerNames(Players players) {
         int maxLength = players.findMaxNameLength();
         players.getNames().stream()
@@ -20,19 +27,22 @@ public class OutputView {
         return " ".repeat(left) + name + " ".repeat(right);
     }
 
-    public static String printLadder(int length, List<Boolean> rungs) {
-        String DISCONNECTED_RUNG = " ";
-        String CONNECTED_RUNG = "-";
-        String LADDER_SIDE = "|";
-
-        return " ".repeat(length) + rungs.stream()
-                .map(rung -> makeRung(length, rung))
-                .collect(Collectors.joining("|", "|", "|"));
+    public static void printLadder(int length, Ladder ladder) {
+        ladder.getRows()
+                .stream()
+                .map(LadderRow::getRungs)
+                .forEach(rungs -> System.out.println(makeMessage(rungs, length)));
     }
 
-    private static String makeRung(int length, boolean rung) {
-        if (rung) {
-            return "-".repeat(length);
+    private static String makeMessage(List<LadderRung> rungs, int length) {
+        return " ".repeat(length) + rungs.stream()
+                .map(rung -> makeRung(length, rung))
+                .collect(Collectors.joining(LADDER_SIDE, LADDER_SIDE, LADDER_SIDE));
+    }
+
+    private static String makeRung(int length, LadderRung rung) {
+        if (rung.isConnected()) {
+            return CONNECTED_RUNG.repeat(length);
         }
         return " ".repeat(length);
     }

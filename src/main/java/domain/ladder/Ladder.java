@@ -3,6 +3,7 @@ package domain.ladder;
 import domain.BooleanGenerator;
 import domain.Height;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -23,5 +24,9 @@ public class Ladder {
 
     public int getHeight() {
         return rows.size();
+    }
+
+    public List<LadderRow> getRows() {
+        return Collections.unmodifiableList(rows);
     }
 }
