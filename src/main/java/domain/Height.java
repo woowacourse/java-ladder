@@ -26,4 +26,8 @@ public class Height {
             throw new IllegalArgumentException(MIN_HEIGHT + " 이상 " + MAX_HEIGHT + " 이하의 숫자를 입력해 주세요.");
         }
     }
+
+    public int getValue() {
+        return value;
+    }
 }
