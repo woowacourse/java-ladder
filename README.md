@@ -37,10 +37,10 @@
 - [x] 부생성자가 있는 경우 생성자의 접근제어자가 private인지
 - [x] 이해를 위한 코드 전반의 공백 추가
 - [x] 각 클래스 메소드 순서 점검하기
-- [ ] 테스트 코드 리팩토링
 - [x] getter 리스트 레퍼런스에 unmodifaible 추가 
 - [x] 메서드 순서 수정
 - [x] record 처리
+- [x] 테스트 코드 리팩토링
 - [ ] inputView 정리
 - [ ] inputView, outputView 생성자
 - [x] 불변객체 
