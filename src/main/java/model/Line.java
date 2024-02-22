@@ -18,20 +18,22 @@ public class Line {
         this.points = result;
     }
 
-    // TODO: 함수 분리하기
     private Boolean generate(List<Boolean> points, int index) {
-        if (index >= 1 && points.get(index - 1)) {
+        if (cannotConnect(points, index)) {
             return false;
         }
         return random.nextBoolean();
+    }
+
+    private boolean cannotConnect(List<Boolean> points, int index) {
+        return index >= 1 && points.get(index - 1);
     }
 
     public int size() {
         return points.size();
     }
 
-    //TODO: 이름 수정하기 bridge라는 건 한번도 등장 안했음!
-    public boolean hasBridge(int index) {
+    public boolean isConnected(int index) {
         return points.get(index);
     }
 

@@ -3,7 +3,6 @@ package model;
 import exception.Message;
 
 public class Height {
-
     private static final int UPPER_BOUND = 12;
 
     private final int value;

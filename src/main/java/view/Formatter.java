@@ -38,7 +38,7 @@ public class Formatter {
         StringBuilder lineBuilder = new StringBuilder();
         lineBuilder.append(LadderElement.COLUMN.getSymbol());
         for (int index = 0; index < line.size(); index++) {
-            lineBuilder.append(getElement(line.hasBridge(index)));
+            lineBuilder.append(getElement(line.isConnected(index)));
             lineBuilder.append(LadderElement.COLUMN.getSymbol());
         }
         return lineBuilder.toString();
