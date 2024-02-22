@@ -21,6 +21,14 @@ public class Carpenter {
         ladders.forEach(ladder -> tryBuildLadder(personCount, ladder));
     }
 
+    public ResultLadderDto getResultLadders() {
+        List<BuiltLadderDto> builtLadderDtos = ladders.stream()
+                .map(Ladder::getSteps)
+                .toList();
+
+        return new ResultLadderDto(builtLadderDtos);
+    }
+
     private List<Ladder> makeLadder(Height height, int personCount) {
         List<Ladder> ladders = new ArrayList<>();
 
@@ -48,13 +56,5 @@ public class Carpenter {
         if (energy.isEnergetic()) {
             ladder.buildSteps(currentStep);
         }
-    }
-
-    public ResultLadderDto getResultLadders() {
-        List<BuiltLadderDto> builtLadderDtos = ladders.stream()
-                .map(Ladder::getSteps)
-                .toList();
-
-        return new ResultLadderDto(builtLadderDtos);
     }
 }
