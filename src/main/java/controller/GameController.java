@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
 
 public class GameController {
     public void execute() {
-        Names names = new Names(InputView.inputPlayerNames());
+        Names names = Names.from(InputView.inputPlayerNames());
         Height height = new Height(InputView.inputHeight());
 
         Players players = new Players(names);
@@ -27,7 +27,8 @@ public class GameController {
     }
 
     private void printResult(GameBoard gameBoard) {
-        OutputView.printPlayerNames(gameBoard.getPlayers().getPlayerNames());
+        OutputView.printPlayerNames(gameBoard.getPlayers()
+                                             .getPlayerNames());
         IntStream.range(0, gameBoard.getLadderHeight())
                  .mapToObj(gameBoard::getDirectionAtHorizontalIndex)
                  .forEach(OutputView::printDirections);

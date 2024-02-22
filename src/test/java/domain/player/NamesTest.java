@@ -16,7 +16,7 @@ class NamesTest {
         List<String> value = List.of("도비", "조이썬");
 
         //When
-        Names names = new Names(value);
+        Names names = Names.from(value);
 
         //Then
         assertInstanceOf(Names.class, names);
@@ -29,7 +29,7 @@ class NamesTest {
         List<String> value = List.of("도비", "도비", "조이썬");
 
         assertThrows(IllegalArgumentException.class, () -> {
-            new Names(value);
+            Names.from(value);
         });
     }
 
@@ -37,6 +37,6 @@ class NamesTest {
     @DisplayName("2명 미만의 이름이 포함된 목록은 예외를 발생한다.")
     public void throwExceptionWhenNameInputLessThanTwo() {
         List<String> value = List.of("도비");
-        assertThrows(IllegalArgumentException.class, () -> new Names(value));
+        assertThrows(IllegalArgumentException.class, () -> Names.from(value));
     }
 }
