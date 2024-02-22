@@ -2,24 +2,19 @@ package ladder.view;
 
 import ladder.domain.Ladder;
 import ladder.domain.People;
+import ladder.domain.Person;
 
 import java.util.List;
 import java.util.StringJoiner;
 
-/*
-실행결과
-
- pobi honux crong    jk
-    |-----|     |-----|
-    |     |-----|     |
-    |-----|     |     |
-    |     |-----|     |
-    |-----|     |-----|
- */
 public class OutputView {
     private static final String EXECUTION_RESULT = "실행결과";
-    private static final String LADDER_SCAFFOLD = "-----";
-    private static final String LADDER_BLANK = "     ";
+    private static final String PEOPLE_NAMES_DELIMITER = " ";
+    private static final String LADDER_FORMAT = String.format("%%%ds", Person.getMaxLength());
+    private static final String LINE_PILLAR = "|";
+    private static final String LINE_PREFIX = String.format(LADDER_FORMAT, LINE_PILLAR);
+    private static final String LADDER_SCAFFOLD = "-".repeat(Person.getMaxLength());
+    private static final String LADDER_BLANK = " ".repeat(Person.getMaxLength());
 
     private OutputView() {
     }
@@ -39,8 +34,8 @@ public class OutputView {
     }
 
     private static void printPeopleNames(People people) {
-        StringJoiner joiner = new StringJoiner(" ");
-        people.getNames().forEach(name -> joiner.add(String.format("%5s", name)));
+        StringJoiner joiner = new StringJoiner(PEOPLE_NAMES_DELIMITER);
+        people.getNames().forEach(name -> joiner.add(String.format(LADDER_FORMAT, name)));
         System.out.println(joiner);
     }
 
@@ -49,8 +44,7 @@ public class OutputView {
     }
 
     private static void printLine(List<Boolean> line) {
-        // TODO: 매직넘버 분리
-        StringJoiner joiner = new StringJoiner("|", "    |", "|");
+        StringJoiner joiner = new StringJoiner(LINE_PILLAR, LINE_PREFIX, LINE_PILLAR);
         line.forEach(exist -> joiner.add(selectScaffold(exist)));
         System.out.println(joiner);
     }
