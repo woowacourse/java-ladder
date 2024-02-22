@@ -15,7 +15,7 @@ class PlayersTest {
         //when
         final Players players = new Players(names);
         //then
-        Assertions.assertThat(players.getPlayers()).hasSize(4);
+        Assertions.assertThat(players.count()).isEqualTo(4);
     }
 
     @DisplayName("참가자의 수를 반환한다.")

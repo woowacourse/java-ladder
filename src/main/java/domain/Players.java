@@ -16,10 +16,6 @@ public class Players {
         return players.size();
     }
 
-    public List<Player> getPlayers() {
-        return players;
-    }
-
     public List<String> getNames() {
         final List<String> names = new ArrayList<>();
         for (final Player player : players) {
