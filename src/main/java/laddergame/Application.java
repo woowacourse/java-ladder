@@ -1,16 +1,12 @@
 package laddergame;
 
+import laddergame.config.AppConfig;
 import laddergame.controller.LadderController;
-import laddergame.service.LadderGame;
-import laddergame.domain.RandomPointGenerator;
-import laddergame.view.InputView;
-import laddergame.view.OutputView;
 
 public class Application {
 
     public static void main(String[] args) {
-        final LadderController ladderController = new LadderController(new InputView(), new OutputView(),
-                new LadderGame(new RandomPointGenerator()));
+        final LadderController ladderController = AppConfig.ladderController();
         ladderController.run();
     }
 }

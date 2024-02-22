@@ -27,4 +27,6 @@ public class LadderController {
 
         outputView.printResult(result);
     }
+
+
 }
