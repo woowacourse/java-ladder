@@ -1,6 +1,6 @@
 package view;
 
-import dto.LineDto;
+import dto.LineInfo;
 import dto.Result;
 import formatter.LineFormatter;
 import formatter.NamesFormatter;
@@ -21,12 +21,12 @@ public class OutputView {
         System.out.println(NamesFormatter.format(names));
     }
 
-    public void printLines(List<LineDto> lines) {
+    public void printLines(List<LineInfo> lines) {
         lines.forEach(this::printLine);
     }
 
-    private void printLine(LineDto line) {
-        List<Boolean> paths = line.paths();
+    private void printLine(LineInfo line) {
+        List<Boolean> paths = line.lineInfo();
         System.out.println(LineFormatter.format(paths));
     }
 }

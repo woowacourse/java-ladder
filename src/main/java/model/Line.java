@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 public class Line {
     private static final int MIN_PERSON_COUNT = 2;
 
-    private final List<Boolean> paths;
+    private final List<Path> paths;
 
     public Line(int personCount) {
         validatePersonCount(personCount);
@@ -16,15 +16,15 @@ public class Line {
     }
 
     // TODO : 끝내주는 이름 생각하기
-    private List<Boolean> generatePaths(int pathsSize) {
+    private List<Path> generatePaths(int pathsSize) {
         int index = 0;
         Random random = new Random();
-        List<Boolean> paths = new ArrayList<>();
-        IntStream.range(0, pathsSize).forEach((i) -> paths.add(false));
+        List<Path> paths = new ArrayList<>();
+        IntStream.range(0, pathsSize).forEach((i) -> paths.add(Path.NOT_EXIST));
 
         while (index < pathsSize) {
             if (random.nextBoolean()) {
-                paths.set(index, true);
+                paths.set(index, Path.EXIST);
                 index += 2;
                 continue;
             }
@@ -43,11 +43,14 @@ public class Line {
         return paths.size();
     }
 
-    public boolean get(int index) {
+    public Path get(int index) {
         return paths.get(index);
     }
 
-    public List<Boolean> getPaths() {
-        return paths;
+    // TODO : 끝내주는 이름 필요
+    public List<Boolean> getLineInfo() {
+        return paths.stream()
+                .map(Path::isExist)
+                .toList();
     }
 }
