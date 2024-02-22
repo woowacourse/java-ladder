@@ -9,20 +9,28 @@ public class LadderGameController {
     private LadderGameController() {
     }
 
-    //TODO 메소드 10줄 이내로 작성
     public static void run() {
+        People people = getPeople();
+        Ladder ladder = getLadder(people);
+
+        OutputView.printNames(people);
+        OutputView.printLadder(ladder);
+    }
+
+    private static People getPeople() {
         People people = null;
         while (people == null) {
             people = makePeople();
         }
+        return people;
+    }
 
+    private static Ladder getLadder(People people) {
         Ladder ladder = null;
         while (ladder == null) {
             ladder = makeLadder(people);
         }
-
-        OutputView.printNames(people);
-        OutputView.printLadder(ladder);
+        return ladder;
     }
 
     private static People makePeople() {
