@@ -3,6 +3,7 @@ package model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,13 +29,9 @@ class LineTest {
     @Test
     @DisplayName("사다리의 경로는 연달아 있을 수 없다.")
     void createPathThrowException() {
-        int personCount = 4;
-        int pathSize = personCount - 1;
-        Line line = new Line(personCount);
-        for (int i = 0; i < pathSize - 1; i++) {
-            Path left = line.get(i);
-            Path right = line.get(i + 1);
-            assertThat(left == Path.EXIST && right == Path.EXIST).isFalse();
-        }
+        List<Path> paths = List.of(Path.EXIST, Path.EXIST, Path.NOT_EXIST);
+        assertThatThrownBy(() -> new Line(paths))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사다리의 경로는 연달아 있을 수 없습니다.");
     }
 }
