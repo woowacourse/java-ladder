@@ -21,16 +21,10 @@ public class LadderLegGenerator {
                                       .toList());
     }
 
-    public LadderLeg generateLadderLeg(LadderLeg previousLadderLeg, Supplier<Direction>directionSupplier) {
-        return new LadderLeg(IntStream.range(0, height.getHeight())
-                                      .mapToObj(index -> {
-                                          if (previousLadderLeg.hasRightDirectionAtIndex(index)) {
-                                              return Direction.LEFT;
-                                          }
-                                          return directionSupplier.get();
-                                      })
-                                      .map(LadderLegPiece::new)
-                                      .toList());
+    public LadderLeg generateLadderLeg(LadderLeg previousLadderLeg, Supplier<Direction> directionSupplier) {
+        return new LadderLeg(convertDirectionToLegPieceList(IntStream.range(0, height.getHeight())
+                                                        .mapToObj(previousLadderLeg::hasRightDirectionAtIndex)
+                                                        .map(flag -> determineDirection(flag, directionSupplier))));
     }
 
 }

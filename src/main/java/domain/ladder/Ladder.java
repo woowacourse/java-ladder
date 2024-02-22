@@ -12,7 +12,6 @@ public class Ladder {
     private final Height height;
     private final List<LadderLeg> ladderLegs;
 
-    //층 , 사용자 수
     public Ladder(Height height, Integer playerCount, DirectionGenerator directionGenerator) {
         this.height = height;
         this.playerCount = playerCount;
@@ -44,4 +43,9 @@ public class Ladder {
                          .map(ladderLeg -> ladderLeg.getDirectionAtIndex(index))
                          .toList();
     }
+
+    public int getHeight(){
+        return height.getHeight();
+    }
+
 }
