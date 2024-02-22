@@ -7,7 +7,7 @@ public class LineResponse {
 
     private final String value;
 
-    public LineResponse(String value) {
+    private LineResponse(String value) {
         this.value = value;
     }
 
@@ -26,5 +26,9 @@ public class LineResponse {
             return LadderElement.ROW.getSymbol();
         }
         return LadderElement.EMPTY.getSymbol();
+    }
+
+    public String getValue() {
+        return value;
     }
 }

@@ -2,20 +2,23 @@ package view.dto;
 
 import java.util.List;
 import model.Ladder;
-import model.Line;
 
 public class LadderResponse {
-    private final List<Line> lines;
+    private final List<LineResponse> lines;
 
-    private LadderResponse(List<Line> lines) {
+    private LadderResponse(List<LineResponse> lines) {
         this.lines = lines;
     }
 
     public static LadderResponse from(Ladder ladder) {
-        return new LadderResponse(ladder.getLines());
+        List<LineResponse> lineResponses = ladder.getLines()
+                .stream()
+                .map(line -> LineResponse.from(line))
+                .toList();
+        return new LadderResponse(lineResponses);
     }
 
-    public List<Line> getLadder() {
+    public List<LineResponse> getLadderResponse() {
         return lines;
     }
 }
