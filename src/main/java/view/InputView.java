@@ -22,11 +22,10 @@ public class InputView {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String input = scanner.nextLine();
         inputValidator.validatePlayers(input);
-        List<String> players = Arrays.asList(input.split(INPUT_NAMES_DELIMITER));
-        List<String> trimedPlayers = players.stream()
+        List<String> players = Arrays.stream(input.split(INPUT_NAMES_DELIMITER))
                 .map(String::trim)
                 .toList();
-        return new PlayersRequest(trimedPlayers);
+        return new PlayersRequest(players);
     }
 
     public HeightRequest inputHeight() {
