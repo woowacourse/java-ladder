@@ -21,8 +21,8 @@ public class OutputView {
 
     public static void printLadder(List<LineDto> ladder) {
         StringBuilder sb = new StringBuilder();
-        for (LineDto ld : ladder) {
-            sb.append(LineStringFormatter.create(ld));
+        for (LineDto lineDto : ladder) {
+            sb.append(LineStringFormatter.create(lineDto));
         }
         System.out.println(sb);
     }
