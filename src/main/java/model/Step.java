@@ -6,17 +6,17 @@ public enum Step {
     EXIST(true, "-----"),
     NONE(false, "     ");
 
-    private final boolean step;
+    private final boolean doesExist;
     private final String output;
 
-    Step(boolean step, String output) {
-        this.step = step;
+    Step(boolean doesExist, String output) {
+        this.doesExist = doesExist;
         this.output = output;
     }
 
-    public static Step valueOfStep(boolean step) {
+    public static Step findByExistence(boolean doesExist) {
         return Arrays.stream(values())
-                .filter(value -> value.step == step)
+                .filter(value -> value.doesExist == doesExist)
                 .findAny()
                 .orElse(null);
     }

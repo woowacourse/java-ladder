@@ -19,7 +19,7 @@ public class Ladder {
 
     private void validateHeight(int height) {
         if (height < MIN_LADDER_HEIGHT) {
-            throw new IllegalArgumentException("사다리 높이는" + MIN_LADDER_HEIGHT + "이상이어야한다");
+            throw new IllegalArgumentException("사다리 높이는 " + MIN_LADDER_HEIGHT + " 이상이어야한다");
         }
     }
 

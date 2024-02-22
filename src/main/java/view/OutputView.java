@@ -27,7 +27,6 @@ public class OutputView {
 
     private void printEachLayer(LayerSteps layerSteps) {
         List<String> steps = layerSteps.steps().stream()
-                .map(Step::valueOfStep)
                 .map(Step::getOutput)
                 .toList();
         String joinedSteps = String.join(LADDER_BASE, steps);

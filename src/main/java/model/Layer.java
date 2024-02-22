@@ -4,21 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Layer {
-    private final List<Boolean> steps;
+    private final List<Step> steps;
 
     public Layer(int numberOfParticipants) {
-        List<Boolean> steps = new ArrayList<>();
-        boolean previousStep = false;
+        List<Step> steps = new ArrayList<>();
+        boolean priorExistence = false;
 
-        for (int i = 0; i < numberOfParticipants - 1; i++) {
-            boolean generatedStep = StepGenerator.generateStep(previousStep);
-            previousStep = generatedStep;
-            steps.add(generatedStep);
+        for (int i = 1; i < numberOfParticipants; i++) {
+            boolean doesExist = StepExistenceGenerator.generate(priorExistence);
+            priorExistence = doesExist;
+            steps.add(Step.findByExistence(doesExist));
         }
         this.steps = steps;
     }
 
-    public List<Boolean> getSteps() {
+    public List<Step> getSteps() {
         return steps;
     }
 
