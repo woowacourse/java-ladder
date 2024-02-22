@@ -11,13 +11,17 @@ class PlayersTest {
     @DisplayName("생성 테스트")
     @Test
     void create() {
-        Players players = new Players("아톰,산초");
+        List<String> names = List.of("아톰", "산초");
+
+        Players players = new Players(names);
     }
 
     @DisplayName("사람들의 이름을 받아 사람 리스트로 변환한다.")
     @Test
-    void parsePersonName() {
-        Players players = new Players("아톰,산초");
+    void mapToPlayer() {
+        List<String> names = List.of("아톰", "산초");
+
+        Players players = new Players(names);
 
         List<Player> result = players.getPlayers();
 
