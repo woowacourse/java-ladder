@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class RowLine {
-    private static final int MIN_PEOPLE_NUMBER=1;
-    private static final int MAX_PEOPLE_NUMBER=100;
+    private static final int MIN_PEOPLE_NUMBER = 1;
+    private static final int MAX_PEOPLE_NUMBER = 100;
     private final List<Boolean> connection = new ArrayList<>();
 
     public RowLine(int peopleNumber, LineGenerator generator) {

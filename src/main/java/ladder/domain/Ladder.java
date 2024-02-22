@@ -18,13 +18,13 @@ public class Ladder {
         }
     }
 
-    public List<RowLine> getRowLines() {
-        return Collections.unmodifiableList(rowLines);
-    }
-
     private static void validateLadderHeight(int height) {
         if (height < MIN_LADDER_HEIGHT || height > MAX_LADDER_HEIGHT) {
             throw new IllegalArgumentException("사다리의 높이는 1이상 100이하여야 합니다");
         }
+    }
+
+    public List<RowLine> getRowLines() {
+        return Collections.unmodifiableList(rowLines);
     }
 }
