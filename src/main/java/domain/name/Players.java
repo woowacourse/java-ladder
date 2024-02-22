@@ -5,20 +5,20 @@ import java.util.List;
 public class Players {
     private static final String DUPLICATE_EXCEPTION_MESSAGE = "[ERROR] 중복된 이름이 존재합니다.";
 
-    private final List<Name> names;
+    private final List<PlayerName> names;
 
-    public Players(final List<Name> names) {
+    public Players(final List<PlayerName> names) {
         validateDuplicateName(names);
         this.names = names;
     }
 
-    private void validateDuplicateName(List<Name> names) {
+    private void validateDuplicateName(List<PlayerName> names) {
         if (getUniqueNameSize(names) != names.size()) {
             throw new IllegalArgumentException(DUPLICATE_EXCEPTION_MESSAGE);
         }
     }
 
-    private long getUniqueNameSize(final List<Name> names) {
+    private long getUniqueNameSize(final List<PlayerName> names) {
         return names.stream()
                 .distinct()
                 .count();
@@ -26,14 +26,14 @@ public class Players {
 
     public int findMaxNameLength() {
         return names.stream()
-                .mapToInt(Name::getLength)
+                .mapToInt(PlayerName::getLength)
                 .max()
                 .orElse(0);
     }
 
     public List<String> getNames() {
         return names.stream()
-                .map(Name::getValue)
+                .map(PlayerName::getValue)
                 .toList();
     }
 

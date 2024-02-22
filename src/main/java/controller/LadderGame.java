@@ -6,7 +6,7 @@ import static java.util.stream.Collectors.toList;
 import domain.BooleanGenerator;
 import domain.Height;
 import domain.ladder.Ladder;
-import domain.name.Name;
+import domain.name.PlayerName;
 import domain.name.Players;
 import java.util.List;
 import view.InputView;
@@ -24,6 +24,7 @@ public class LadderGame {
             Players players = generatePlayers();
             Height height = generateHeight();
             Ladder ladder = generateLadder(players, height);
+
             OutputView.printPlayerNames(players);
             OutputView.printLadder(players.findMaxNameLength(), ladder);
         } catch (Exception e) {
@@ -34,7 +35,7 @@ public class LadderGame {
     private Players generatePlayers() {
         List<String> names = InputView.inputPlayerNames();
         return names.stream()
-                .map(Name::new)
+                .map(PlayerName::new)
                 .collect(collectingAndThen(toList(), Players::new));
     }
 
