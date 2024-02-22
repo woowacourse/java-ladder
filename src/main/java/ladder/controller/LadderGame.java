@@ -17,8 +17,8 @@ public class LadderGame {
 
     public void run() {
         final Participants participants = retryOnException(this::createParticipants);
-        final int stepWidth = participants.getCount() - 1;
-        final Ladder ladder = createLadder(stepWidth);
+        final int width = participants.getNecessaryLadderWidth();
+        final Ladder ladder = createLadder(width);
         printLadder(participants, ladder);
         inputView.closeResource();
     }

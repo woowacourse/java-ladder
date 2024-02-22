@@ -32,8 +32,8 @@ public class Participants {
         }
     }
 
-    public int getCount() {
-        return participants.size();
+    public int getNecessaryLadderWidth() {
+        return participants.size() - 1;
     }
 
     public List<Participant> getValues() {
