@@ -1,3 +1,5 @@
+package test;
+
 import ladder.domain.People;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -6,6 +8,7 @@ import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,11 +31,9 @@ public class PeopleTest {
     @NullSource
     void peopleNamesNullInput(String name) {
         assertThrows(IllegalArgumentException.class
-                , () -> {
-                    List<String> names = new ArrayList<>();
-                    names.add(name);
-                    new People(names);
+                , () -> {new People(Arrays.asList(name));
                 });
+
     }
 
     @DisplayName("참여자 이름에 정상적인 입력값이 들어왔을 때, domain.People 객체를 생성할 수 있다.")

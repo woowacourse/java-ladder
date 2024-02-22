@@ -1,3 +1,5 @@
+package test;
+
 import ladder.domain.Ladder;
 import ladder.domain.RowLine;
 import org.junit.jupiter.api.DisplayName;
