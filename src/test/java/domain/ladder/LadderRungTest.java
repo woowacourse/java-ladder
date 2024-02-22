@@ -2,17 +2,30 @@ package domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.Test;
 
 public class LadderRungTest {
-    @ParameterizedTest
-    @ValueSource(booleans = {true, false})
-    void 가로대가_연결되면_true를_반환하고_연결되지_않으면_false를_반환한다(boolean isConnected) {
+    @Test
+    void true면_연결된_가로대를_생성한다() {
         // given
+        boolean isConnected = true;
+
+        // when
         LadderRung ladderRung = LadderRung.findLadderRung(isConnected);
 
-        // when & then
-        assertThat(ladderRung.isConnected()).isEqualTo(isConnected);
+        // then
+        assertThat(ladderRung).isEqualTo(LadderRung.CONNECTED);
+    }
+
+    @Test
+    void false면_연결되지_않은_가로대를_생성한다() {
+        // given
+        boolean isConnected = false;
+
+        // when
+        LadderRung ladderRung = LadderRung.findLadderRung(isConnected);
+
+        // then
+        assertThat(ladderRung).isEqualTo(LadderRung.DISCONNECTED);
     }
 }
