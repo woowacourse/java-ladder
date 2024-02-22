@@ -24,4 +24,8 @@ public class Ladder {
     public Integer getWidth() {
         return lines.get(0).getConnections().size();
     }
+
+    public List<RowLine> getLines() {
+        return List.copyOf(lines);
+    }
 }
