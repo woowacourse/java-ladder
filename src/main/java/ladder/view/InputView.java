@@ -1,15 +1,17 @@
 package ladder.view;
 
+import java.io.InputStream;
 import java.util.List;
-import ladder.view.model.Reader;
+import java.util.Scanner;
 
 public class InputView {
 
     private static final String SPLIT_DELIMITER = ",";
-    private final Reader consoleReader;
 
-    public InputView(Reader consoleReader) {
-        this.consoleReader = consoleReader;
+    private final Scanner scanner;
+
+    public InputView(InputStream in) {
+        this.scanner = new Scanner(in);
     }
 
     public List<String> getNames() {
@@ -19,10 +21,10 @@ public class InputView {
 
     public String getHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return consoleReader.readLine();
+        return scanner.nextLine();
     }
 
     private List<String> divideInput() {
-        return List.of(consoleReader.readLine().split(SPLIT_DELIMITER));
+        return List.of(scanner.nextLine().split(SPLIT_DELIMITER));
     }
 }
