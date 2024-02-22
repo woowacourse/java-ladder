@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-
     private final List<Point> points;
 
     public Line(final List<Point> points) {

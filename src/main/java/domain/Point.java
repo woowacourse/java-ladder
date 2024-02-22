@@ -9,6 +9,10 @@ public class Point {
         this.step = step;
     }
 
+    public boolean isStepExist() {
+        return step.isExist();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -24,9 +28,5 @@ public class Point {
 
     public Step getStep() {
         return step;
-    }
-
-    public boolean isStepExist() {
-        return step.isExist();
     }
 }

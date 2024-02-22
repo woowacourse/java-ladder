@@ -12,6 +12,6 @@ public class PlayersRequest {
     }
 
     public Players toPlayers() {
-        return new Players(players);
+        return Players.from(players);
     }
 }

@@ -7,9 +7,13 @@ public class Carpenter {
     private final Height height;
     private final WoodWorkMachine woodWorkMachine;
 
-    public Carpenter(final Height height, final PlayerCount playerCount) {
+    private Carpenter(final Height height, final WoodWorkMachine woodWorkMachine) {
         this.height = height;
-        this.woodWorkMachine = new WoodWorkMachine(playerCount, new RandomBooleanGenerator());
+        this.woodWorkMachine = woodWorkMachine;
+    }
+
+    public static Carpenter of(Height height, PlayerCount playerCount) {
+        return new Carpenter(height, new WoodWorkMachine(playerCount, new RandomBooleanGenerator()));
     }
 
     public Ladder makeLadder() {

@@ -10,15 +10,9 @@ public class InputValidator {
         validateEndWord(input);
     }
 
-    private void validateEndWord(String input) {
-        if (input.endsWith(INPUT_NAMES_DELIMITER)) {
-            throw new IllegalArgumentException("입력은 구분자로 끝날 수 없습니다.");
-        }
-    }
-
-    private void validateStartWord(String input) {
-        if (input.startsWith(INPUT_NAMES_DELIMITER)) {
-            throw new IllegalArgumentException("입력은 구분자로 시작할 수 없습니다.");
+    private void validateBlank(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException("공백을 입력할 수 없습니다.");
         }
     }
 
@@ -28,9 +22,15 @@ public class InputValidator {
         }
     }
 
-    private void validateBlank(String input) {
-        if (input.isBlank()) {
-            throw new IllegalArgumentException("공백을 입력할 수 없습니다.");
+    private void validateStartWord(String input) {
+        if (input.startsWith(INPUT_NAMES_DELIMITER)) {
+            throw new IllegalArgumentException("입력은 구분자로 시작할 수 없습니다.");
+        }
+    }
+
+    private void validateEndWord(String input) {
+        if (input.endsWith(INPUT_NAMES_DELIMITER)) {
+            throw new IllegalArgumentException("입력은 구분자로 끝날 수 없습니다.");
         }
     }
 
