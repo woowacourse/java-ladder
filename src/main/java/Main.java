@@ -1,5 +1,5 @@
 import controller.LadderGame;
-import domain.RandomBooleanGenerator;
+import domain.booleanGenerator.RandomBooleanGenerator;
 
 public class Main {
     public static void main(String[] args) {

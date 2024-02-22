@@ -3,8 +3,8 @@ package controller;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
-import domain.BooleanGenerator;
-import domain.Height;
+import domain.booleanGenerator.BooleanGenerator;
+import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.player.PlayerName;
 import domain.player.PlayerNames;

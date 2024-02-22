@@ -1,4 +1,4 @@
-package domain;
+package domain.booleanGenerator;
 
 import java.util.concurrent.ThreadLocalRandom;
 

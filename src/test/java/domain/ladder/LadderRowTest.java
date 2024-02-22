@@ -3,7 +3,7 @@ package domain.ladder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import domain.BooleanGenerator;
+import domain.booleanGenerator.BooleanGenerator;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import support.TrueGenerator;

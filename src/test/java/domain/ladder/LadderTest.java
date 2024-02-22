@@ -2,8 +2,7 @@ package domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import domain.BooleanGenerator;
-import domain.Height;
+import domain.booleanGenerator.BooleanGenerator;
 import org.junit.jupiter.api.Test;
 import support.TrueGenerator;
 

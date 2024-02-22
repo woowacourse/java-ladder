@@ -1,6 +1,6 @@
 package support;
 
-import domain.BooleanGenerator;
+import domain.booleanGenerator.BooleanGenerator;
 import domain.ladder.LadderRung;
 
 public class TrueGenerator implements BooleanGenerator {
