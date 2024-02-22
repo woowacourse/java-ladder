@@ -36,7 +36,7 @@ public class LadderGame extends Controller{
     }
 
     public PlayerNames readPlayerNames() {
-        return retry(() -> createPlayerNames(inputView.readPlayerNames()), INIT_RETRY_COUNT);
+        return retry(() -> createPlayerNames(inputView.readPlayerNames()));
     }
 
     public PlayerNames createPlayerNames(String playerNamesInput) {
@@ -62,6 +62,6 @@ public class LadderGame extends Controller{
     }
 
     public LadderHeight readLadderHeight() {
-        return retry(() -> new LadderHeight(inputView.readLadderHeight()), INIT_RETRY_COUNT);
+        return retry(() -> new LadderHeight(inputView.readLadderHeight()));
     }
 }

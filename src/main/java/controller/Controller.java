@@ -10,23 +10,29 @@ import java.util.function.Supplier;
 public class Controller {
     protected final InputView inputView;
     protected final OutputView outputView;
-
-    protected static final int INIT_RETRY_COUNT = 0;
+    private int retryCount;
 
     public Controller(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.retryCount = 0;
     }
 
-    public <R> R retry(final Supplier<R> supplier, final int retryCount) {
-        if (retryCount == InputView.READ_LIMIT) {
-            throw new IOException(ExceptionMessage.READ_LIMIT_OVER);
-        }
+    public <R> R retry(final Supplier<R> supplier) {
+        validateRetryCountLimit();
         try {
-            return supplier.get();
+            R value = supplier.get();
+            retryCount = 0;
+            return value;
         } catch (Exception exception) {
             outputView.printErrorMessage(exception);
-            return retry(supplier, retryCount + 1);
+            return retry(supplier);
+        }
+    }
+
+    private void validateRetryCountLimit() {
+        if (retryCount++ == InputView.READ_LIMIT) {
+            throw new IOException(ExceptionMessage.READ_LIMIT_OVER);
         }
     }
 }
