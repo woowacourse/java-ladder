@@ -14,7 +14,7 @@ public class LineTest {
     void createLine() {
         final Line line = new Line(() -> true, 4);
 
-        assertThat(line.getLineResult().value().size())
+        assertThat(line.getLine().size())
                 .isEqualTo(4 - 1);
     }
 
@@ -23,7 +23,7 @@ public class LineTest {
     void notExistBetweenNextAndCurrent() {
         final Line line = new Line(() -> true, 4);
 
-        assertThat(line.getLineResult().value().get(1))
+        assertThat(line.getLine().get(1))
                 .isEqualTo(NONE);
     }
 
@@ -32,7 +32,7 @@ public class LineTest {
     void getLineResult() {
         final Line line = new Line(() -> true, 4);
 
-        assertThat(line.getLineResult().value())
+        assertThat(line.getLine())
                 .containsExactly(EXIST, NONE, EXIST);
     }
 }

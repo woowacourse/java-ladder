@@ -1,9 +1,10 @@
 package ladder.domain;
 
+import static java.util.Collections.unmodifiableList;
+
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
-import ladder.dto.LineResult;
 
 public class Lines {
     private final List<Line> lines;
@@ -22,9 +23,7 @@ public class Lines {
                 .toList();
     }
 
-    public List<LineResult> getLineResults() {
-        return lines.stream()
-                .map(Line::getLineResult)
-                .toList();
+    public List<Line> getLines() {
+        return unmodifiableList(lines);
     }
 }

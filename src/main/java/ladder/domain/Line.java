@@ -1,13 +1,10 @@
 package ladder.domain;
 
-import java.util.stream.IntStream;
-import ladder.dto.LineResult;
+import static java.util.Collections.unmodifiableList;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
-
-import static java.util.Collections.unmodifiableList;
 
 public class Line {
     private final List<StepStatus> stepStatuses;
@@ -34,7 +31,7 @@ public class Line {
         return StepStatus.getStepStatus(generator.get());
     }
 
-    public LineResult getLineResult() {
-        return new LineResult(unmodifiableList(stepStatuses));
+    public List<StepStatus> getLine() {
+        return unmodifiableList(stepStatuses);
     }
 }

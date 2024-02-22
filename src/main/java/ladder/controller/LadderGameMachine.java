@@ -1,16 +1,16 @@
 package ladder.controller;
 
+import java.util.List;
+import java.util.function.Supplier;
 import ladder.domain.LadderHeight;
 import ladder.domain.Lines;
 import ladder.domain.UserNames;
 import ladder.dto.LadderResult;
+import ladder.dto.LineResult;
 import ladder.util.ConsoleReader;
 import ladder.util.RandomBooleanGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
-
-import java.util.List;
-import java.util.function.Supplier;
 
 public class LadderGameMachine {
     private static final ConsoleReader CONSOLE = new ConsoleReader();
@@ -50,6 +50,9 @@ public class LadderGameMachine {
             final int ladderHeight,
             final UserNames userNames) {
         Lines lines = Lines.of(generator, ladderHeight, userNames.getUserCount());
-        return new LadderResult(userNames.getUserNames(), lines.getLineResults());
+        List<LineResult> lineResults = lines.getLines().stream()
+                .map(line -> new LineResult(line.getLine()))
+                .toList();
+        return new LadderResult(userNames.getUserNames(), lineResults);
     }
 }
