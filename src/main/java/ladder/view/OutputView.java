@@ -36,7 +36,8 @@ public class OutputView {
     }
 
     private static void printRowLine(RowLine rowLine) {
-        StringBuilder stringBuilder = new StringBuilder(BLANK.repeat(INTERVAL_WIDTH - 1) + VERTICAL_LINE);
+        StringBuilder stringBuilder = new StringBuilder(
+                BLANK.repeat(INTERVAL_WIDTH - 1) + VERTICAL_LINE);
 
         for (boolean isConnected : rowLine.getConnection()) {
             appendLineInterval(isConnected, stringBuilder);

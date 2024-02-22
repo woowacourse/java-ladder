@@ -1,7 +1,7 @@
 package test;
 
-import ladder.domain.linegenerator.RandomLineGenerator;
 import ladder.domain.RowLine;
+import ladder.domain.linegenerator.RandomLineGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -59,6 +59,4 @@ public class RowLineTest {
         List<Boolean> connection = new RowLine(n, new RandomLineGenerator()).getConnection();
         assertThat(connection).hasSize(n - 1);
     }
-
-    //TODO 테스트케이스 추가 : 전략패턴(allFalseLineGenerator)
 }
