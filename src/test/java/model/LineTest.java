@@ -32,10 +32,9 @@ class LineTest {
         int pathSize = personCount - 1;
         Line line = new Line(personCount);
         for (int i = 0; i < pathSize - 1; i++) {
-            boolean left = line.get(i);
-            boolean right = line.get(i + 1);
-            boolean isConnected = left && right;
-            assertThat(isConnected).isFalse();
+            Path left = line.get(i);
+            Path right = line.get(i + 1);
+            assertThat(left == Path.EXIST && right == Path.EXIST).isFalse();
         }
     }
 }
