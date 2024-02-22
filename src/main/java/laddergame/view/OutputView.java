@@ -1,10 +1,11 @@
 package laddergame.view;
 
-import java.util.List;
 import java.util.StringJoiner;
 import java.util.stream.IntStream;
 import laddergame.domain.Ladder;
 import laddergame.domain.Line;
+import laddergame.domain.Player;
+import laddergame.domain.Players;
 
 public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
@@ -13,8 +14,10 @@ public class OutputView {
 
     }
 
-    public void writePlayersName(final List<String> players) {
-        System.out.println(String.join("\t", players));
+    public void writePlayersName(final Players players) {
+        System.out.println(String.join("\t", players.getPlayers().stream()
+                .map(Player::getName)
+                .toList()));
     }
 
     public void writeLadder(final Ladder ladder) {

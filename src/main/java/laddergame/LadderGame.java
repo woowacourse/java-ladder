@@ -18,11 +18,11 @@ public class LadderGame {
         System.out.println();
         String height = requestUntilValidated(inputView::readLadderHeight);
 
-        Ladder ladder = new Ladder(players.getPlayerNames().size(), height);
+        Ladder ladder = new Ladder(players.getPlayers().size(), height);
 
         CanBuildStrategy randomBuildStrategy = new RandomBuildStrategy();
         List<List<Boolean>> randomResult = IntStream.range(0, ladder.getHeight())
-                .mapToObj(i -> randomBuildStrategy.canBuildBridges(players.getPlayerNames().size() - 1))
+                .mapToObj(i -> randomBuildStrategy.canBuildBridges(players.getPlayers().size() - 1))
                 .toList();
 
         ladder.build(randomResult);
@@ -33,7 +33,7 @@ public class LadderGame {
 
     private static void printLadderResult(Players players, Ladder ladder, OutputView outputView) {
         outputView.writeResultTitle();
-        outputView.writePlayersName(players.getPlayerNames());
+        outputView.writePlayersName(players);
         outputView.writeLadder(ladder);
     }
 

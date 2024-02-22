@@ -17,11 +17,9 @@ public class PlayersTest {
         //given
         final String playerName1 = "choco";
         final String playerName2 = "lemon";
-        final Player player1 = new Player(playerName1);
-        final Player player2 = new Player(playerName2);
 
         //when
-        final Players players = Players.from(List.of(player1, player2));
+        final Players players = Players.from(List.of(playerName1, playerName2));
 
         //then
         assertEquals(players.getPlayers().size(), 2);

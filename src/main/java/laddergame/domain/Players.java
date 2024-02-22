@@ -1,17 +1,23 @@
 package laddergame.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Players {
-    private final List<String> playerNames;
+    private final List<Player> players;
 
-    private Players(final List<String> playerNames) {
-        this.playerNames = playerNames;
+    private Players(final List<Player> players) {
+        this.players = players;
     }
 
     public static Players from(final List<String> playerNames) {
         validate(playerNames);
-        return new Players(playerNames);
+
+        List<Player> players = new ArrayList<>();
+        for (String name : playerNames) {
+            players.add(new Player(name));
+        }
+        return new Players(players);
     }
 
     private static void validate(final List<String> playerNames) {
@@ -41,7 +47,7 @@ public class Players {
                 .count();
     }
 
-    public List<String> getPlayerNames() {
-        return playerNames;
+    public List<Player> getPlayers() {
+        return players;
     }
 }
