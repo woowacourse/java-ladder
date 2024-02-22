@@ -11,13 +11,13 @@ public class Line {
         this.points = points;
     }
 
-    public static Line create(final LineSize lineSize, final BooleanGenerator booleanGenerator) {
+    public static Line create(final LineSize lineSize, final PointGenerator pointGenerator) {
         List<Point> points = new ArrayList<>();
 
         Point temp = Point.EMPTY;
 
         while (lineSize.isBiggerThan(points.size())) {
-            final Point point = generatePoint(temp, booleanGenerator);
+            final Point point = generatePoint(temp, pointGenerator);
             points.add(point);
             temp = point;
         }
@@ -25,12 +25,12 @@ public class Line {
         return new Line(points);
     }
 
-    private static Point generatePoint(final Point before, final BooleanGenerator booleanGenerator) {
+    private static Point generatePoint(final Point before, final PointGenerator pointGenerator) {
         if (before.isExist()) {
             return Point.EMPTY;
         }
 
-        return Point.from(booleanGenerator.generate());
+        return pointGenerator.generate();
     }
 
     public List<Boolean> getPointsState() {

@@ -12,11 +12,11 @@ public class Ladder {
     }
 
     public static Ladder create(final LineSize lineSize, final LadderHeight height,
-            final BooleanGenerator booleanGenerator) {
+            final PointGenerator pointGenerator) {
         final List<Line> lines = new ArrayList<>();
 
         while (height.isBiggerThan(lines.size())) {
-            lines.add(Line.create(lineSize, booleanGenerator));
+            lines.add(Line.create(lineSize, pointGenerator));
         }
 
         return new Ladder(lines);

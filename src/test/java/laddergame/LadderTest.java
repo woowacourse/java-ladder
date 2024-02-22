@@ -8,6 +8,7 @@ import laddergame.domain.Ladder;
 import laddergame.domain.LadderHeight;
 import laddergame.domain.LineSize;
 import laddergame.domain.Names;
+import laddergame.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -23,7 +24,7 @@ public class LadderTest {
         final LineSize lineSize = new LineSize(new Names(List.of("pobi", "zeze", "crong", "jk")));
 
         // when
-        Ladder ladder = Ladder.create(lineSize, height, () -> true);
+        Ladder ladder = Ladder.create(lineSize, height, () -> Point.EXIST);
 
         // then
         final List<Boolean> expected = List.of(true, false, true);

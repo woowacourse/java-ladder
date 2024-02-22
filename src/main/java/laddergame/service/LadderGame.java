@@ -1,6 +1,6 @@
 package laddergame.service;
 
-import laddergame.domain.BooleanGenerator;
+import laddergame.domain.PointGenerator;
 import laddergame.domain.Ladder;
 import laddergame.domain.LadderHeight;
 import laddergame.domain.LineSize;
@@ -9,15 +9,15 @@ import laddergame.domain.Result;
 
 public class LadderGame {
 
-    private final BooleanGenerator booleanGenerator;
+    private final PointGenerator pointGenerator;
 
-    public LadderGame(final BooleanGenerator booleanGenerator) {
-        this.booleanGenerator = booleanGenerator;
+    public LadderGame(final PointGenerator pointGenerator) {
+        this.pointGenerator = pointGenerator;
     }
 
     public Result createLadder(final Names names, final LadderHeight height) {
         final LineSize lineSize = new LineSize(names);
-        final Ladder ladder = Ladder.create(lineSize, height, booleanGenerator);
+        final Ladder ladder = Ladder.create(lineSize, height, pointGenerator);
 
         return Result.of(names, ladder);
     }

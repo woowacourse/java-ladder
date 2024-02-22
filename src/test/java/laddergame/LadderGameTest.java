@@ -3,6 +3,7 @@ package laddergame;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import laddergame.domain.Point;
 import laddergame.service.LadderGame;
 import laddergame.domain.LadderHeight;
 import laddergame.domain.Names;
@@ -22,7 +23,7 @@ public class LadderGameTest {
         final Names names = new Names(input);
         final LadderHeight height = new LadderHeight(5);
 
-        final LadderGame ladderGame = new LadderGame(() -> true);
+        final LadderGame ladderGame = new LadderGame(() -> Point.EXIST);
 
         // when
         final Result result = ladderGame.createLadder(names, height);

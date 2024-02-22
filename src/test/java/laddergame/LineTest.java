@@ -20,7 +20,7 @@ public class LineTest {
         LineSize lineSize = new LineSize(new Names(List.of("pobi", "zeze", "crong", "jk")));
 
         // when
-        Line line = Line.create(lineSize, () -> true);
+        Line line = Line.create(lineSize, () -> Point.EXIST);
 
         //then
         final List<Point> expectedLine = List.of(Point.EXIST, Point.EMPTY, Point.EXIST);
