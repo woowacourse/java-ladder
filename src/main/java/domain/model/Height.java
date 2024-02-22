@@ -1,10 +1,11 @@
 package domain.model;
 
 public class Height {
-    int height;
+    private final int height;
 
-    public Height(final String height) {
-        validateNaturalNumber(height);
+    public Height(final String heightText) {
+        validateNaturalNumber(heightText);
+        this.height = Integer.parseInt(heightText);
     }
 
     public int getHeight() {
@@ -12,9 +13,8 @@ public class Height {
     }
 
     private void validateNaturalNumber(String inputData) {
-        this.height = Integer.parseInt(inputData);
-        if (this.height <= 0) {
-            throw new IllegalArgumentException();
+        if (Integer.parseInt(inputData) <= 0) {
+            throw new IllegalArgumentException("자연수만 입력해주세요.");
         }
     }
 }

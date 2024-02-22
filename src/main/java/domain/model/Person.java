@@ -14,15 +14,15 @@ public class Person {
         return this.name;
     }
 
-    public void validateNameLength(){
-        if (this.name.length() > 5){
-            throw new IllegalStateException();
+    public void validateNameLength() {
+        if (this.name.length() > 5) {
+            throw new IllegalStateException("이름은 5글자 이하입니다.");
         }
     }
 
-    public void validateNonBlank(){
-        if(this.name.isBlank()){
-            throw new IllegalArgumentException();
+    public void validateNonBlank() {
+        if (this.name.isBlank()) {
+            throw new IllegalArgumentException("공백 이름은 허용하지 않습니다.");
         }
     }
 }
