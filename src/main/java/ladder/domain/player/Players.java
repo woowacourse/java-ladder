@@ -24,7 +24,7 @@ public class Players {
     private void validateSize(final List<Player> players) {
         final int playerSize = players.size();
 
-        if (playerSize > MAXIMUM_PLAYER_SIZE || playerSize < MINIMUM_PLAYER_SIZE) {
+        if (MINIMUM_PLAYER_SIZE < playerSize || playerSize < MAXIMUM_PLAYER_SIZE) {
             throw new InvalidInputException(ErrorMessage.INVALID_PLAYER_SIZE);
         }
     }
