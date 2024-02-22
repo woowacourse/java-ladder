@@ -14,9 +14,9 @@ public class LadderController {
         int height = InputView.readHeight();
 
         List<Name> names1 = makeNames(names);
-        LadderFactory ladderFactory = new LadderFactory();
-        List<Bridge> ladder = ladderFactory.create(names1.size(), height);
-        OutputView.printLadder(names1, ladder, height);
+        List<Bridge> ladder = new LadderFactory().create(names1.size(), height);
+
+        OutputView.printResult(names1, ladder, height);
     }
 
     private static List<Name> makeNames(String[] names) {
