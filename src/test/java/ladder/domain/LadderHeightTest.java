@@ -2,6 +2,8 @@ package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -29,5 +31,21 @@ public class LadderHeightTest {
     void minHeightExceptionTest() {
         assertThatThrownBy(() -> LadderHeight.from("0"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("사다리 높이 양쪽에 공백이 있는 경우 제거 한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {" 10", " 10 ", "10 "})
+    void heightStripTest(String height) {
+        // given
+        int expected = 10;
+
+        // when
+        LadderHeight ladderHeight = LadderHeight.from(height);
+
+        // then
+        assertThat(ladderHeight)
+                .extracting("value")
+                .isEqualTo(expected);
     }
 }
