@@ -9,6 +9,7 @@ import ladder.domain.randomGenerator.NumberGenerator;
 public class Carpenter {
 
     private static final int LOOP_START_INDEX = 0;
+
     private final List<Ladder> ladders;
     private final Energy energy;
 

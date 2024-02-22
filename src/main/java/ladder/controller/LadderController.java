@@ -23,7 +23,6 @@ public class LadderController {
     }
 
     public void run() {
-
         Height height = repeatUntilValid(this::getHeight);
         Participants participants = repeatUntilValid(this::getNames);
 
