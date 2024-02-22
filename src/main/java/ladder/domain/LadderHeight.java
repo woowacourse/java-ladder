@@ -1,9 +1,11 @@
 package ladder.domain;
 
 import static ladder.constant.ErrorMessage.MIN_LADDER_HEIGHT;
+import static ladder.constant.ErrorMessage.NUMERIC_LADDER_HEIGHT;
 
 public class LadderHeight {
     private static final int MIN_HEIGHT = 1;
+    private static final String NUMERIC_REGEX = "-?\\d+(\\.\\d+)?";
 
     private final int value;
 
@@ -13,7 +15,15 @@ public class LadderHeight {
     }
 
     public static LadderHeight from(String height) {
-        return new LadderHeight(Integer.parseInt(height.strip()));
+        String strippedHeight = height.strip();
+        validateNumeric(strippedHeight);
+        return new LadderHeight(Integer.parseInt(strippedHeight));
+    }
+
+    private static void validateNumeric(String height) {
+        if (!height.matches(NUMERIC_REGEX)) {
+            throw new IllegalArgumentException(NUMERIC_LADDER_HEIGHT.generate());
+        }
     }
 
     private static void validateMin(int value) {
