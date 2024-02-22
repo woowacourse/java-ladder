@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.exception.InvalidHeightRangeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -14,7 +15,7 @@ public class HeightTest {
     void checkInvalidLadderHeightTest(int height) {
         // when & then
         assertThatThrownBy(() -> new Height(height))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(InvalidHeightRangeException.class);
     }
 
     @ParameterizedTest
