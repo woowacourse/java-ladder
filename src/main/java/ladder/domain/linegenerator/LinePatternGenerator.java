@@ -18,11 +18,18 @@ public class LinePatternGenerator implements LineGenerator {
     public List<Stick> generate(int size) {
         validate(size);
         List<Stick> line = new ArrayList<>();
+        int width = size - 1;
 
-        while (line.size() < size - 1) {
+        while (line.size() < width) {
             add(line);
         }
         return line;
+    }
+
+    private void validate(int size) {
+        if (size < MIN_LINE_SIZE) {
+            throw new IllegalArgumentException("사다리의 크기는 2 이상입니다");
+        }
     }
 
     private void add(List<Stick> line) {
@@ -37,13 +44,7 @@ public class LinePatternGenerator implements LineGenerator {
         return line.isEmpty() || !line.get(line.size() - 1).isExist();
     }
 
-    private void validate(int size) {
-        if (size < MIN_LINE_SIZE) {
-            throw new IllegalArgumentException("사다리의 크기는 2 이상입니다");
-        }
-    }
-
-    public Stick generateStick() {
+    private Stick generateStick() {
         if (supplier.getAsBoolean()) {
             return Stick.EXISTENCE;
         }
