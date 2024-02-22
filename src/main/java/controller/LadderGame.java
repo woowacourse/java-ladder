@@ -15,7 +15,7 @@ public class LadderGame {
         final Players players = new Players(inputView.readNames());
         final Height height = new Height(inputView.readHeight());
 
-        final Ladder ladder = Ladder.createByStrategy(RandomBridgeGenerator.getInstance(), height.getHeight(),
+        final Ladder ladder = Ladder.createByStrategy(RandomBridgeGenerator.getInstance(), height.getValue(),
                 players.count());
 
         printGameResult(players, ladder);

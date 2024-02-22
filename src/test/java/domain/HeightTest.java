@@ -14,7 +14,7 @@ class HeightTest {
         //when
         final Height height = new Height(rawHeight);
         // then
-        Assertions.assertThat(height.getHeight()).isEqualTo(rawHeight);
+        Assertions.assertThat(height.getValue()).isEqualTo(rawHeight);
     }
 
     @DisplayName("사다리의 높이가 0미만 10 초과이면 예외를 발생시킨다.")
