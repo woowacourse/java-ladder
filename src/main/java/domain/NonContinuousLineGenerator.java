@@ -11,9 +11,9 @@ public class NonContinuousLineGenerator implements RowLineGenerator {
     public RowLine generate(Integer personCount) {
         List<ConnectionStatus> connections = new ArrayList<>();
         ConnectionStatus prev = DISCONNECTED;
-        for (int i = 0; i < personCount; i++) {
+        for (int i = 0; i < personCount - 1; i++) {
             ConnectionStatus decideByPrev = decideCurrentStatus(prev);
-            connections.add(decideCurrentStatus(prev));
+            connections.add(decideByPrev);
             prev = decideByPrev;
         }
         return new RowLine(connections);
