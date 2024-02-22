@@ -9,18 +9,11 @@ public class LineString {
     private LineString() {}
 
     public static String from(Line line) {
-        Iterator<Boolean> iterator = line.iterator();
+        Iterator<Connection> iterator = line.iterator();
         StringBuilder stringBuilder = new StringBuilder();
         while (iterator.hasNext()) {
-            stringBuilder.append(layer(iterator.next()));
+            stringBuilder.append(iterator.next().getBridge());
         }
         return stringBuilder.toString();
-    }
-
-    private static String layer(boolean input) {
-        if (input) {
-            return "-----|";
-        }
-        return "     |";
     }
 }

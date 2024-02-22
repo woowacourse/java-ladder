@@ -6,12 +6,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import util.Connection;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
+
+import static util.Connection.CONNECTED;
+import static util.Connection.UNCONNECTED;
 
 public class LineTest {
 
@@ -35,23 +39,23 @@ public class LineTest {
     @Test
     void stateDecisionTest() {
         Line line = new Line(List.of(1,9,2,8,4,5));
-        Iterator<Boolean> iterator = line.iterator();
-        List<Boolean> state = new ArrayList<>();
+        Iterator<Connection> iterator = line.iterator();
+        List<Connection> state = new ArrayList<>();
         while(iterator.hasNext()) {
             state.add(iterator.next());
         }
-        Assertions.assertThat(state).isEqualTo(List.of(false, true, false, true, false, true));
+        Assertions.assertThat(state).isEqualTo(List.of(UNCONNECTED, CONNECTED, UNCONNECTED, CONNECTED, UNCONNECTED, CONNECTED));
     }
 
     @DisplayName("한 사다리가 결정되면 다음 사다리가 없도록 생성된다.")
     @Test
     void doubleBridgeTest() {
         Line line = new Line(List.of(1,9,2,8,5,5));
-        Iterator<Boolean> iterator = line.iterator();
-        List<Boolean> state = new ArrayList<>();
+        Iterator<Connection> iterator = line.iterator();
+        List<Connection> state = new ArrayList<>();
         while(iterator.hasNext()) {
             state.add(iterator.next());
         }
-        Assertions.assertThat(state).isEqualTo(List.of(false, true, false, true, false, true));
+        Assertions.assertThat(state).isEqualTo(List.of(UNCONNECTED, CONNECTED, UNCONNECTED, CONNECTED, UNCONNECTED, CONNECTED));
     }
 }
