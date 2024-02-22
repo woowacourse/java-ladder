@@ -19,10 +19,6 @@ public enum Bridge {
                 .findFirst();
     }
 
-    public int getCode() {
-        return code;
-    }
-
     public boolean isConnected() {
         return this == CONNECTED;
     }
