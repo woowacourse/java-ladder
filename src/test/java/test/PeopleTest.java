@@ -8,12 +8,11 @@ import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PeopleTest {
+class PeopleTest {
     @DisplayName("참여자 이름에 예외적인 입력값이 들어왔을 때, domain.People 객체를 생성할 수 없다.")
     @ParameterizedTest
     @ValueSource(strings = {
@@ -21,19 +20,19 @@ public class PeopleTest {
             "a@", // 숫자, 알파벳 이외의 문자로 구성될 때
             "" // 공백으로 주어질 때
     })
-    void peopleNamesInvalidInput(String name) {
+    void peopleNamesInvalidInput(String invalidName) {
+        List<String> names = List.of(invalidName);
         assertThrows(IllegalArgumentException.class
-                , () -> new People(List.of(name)));
+                , () -> new People(names));
     }
 
     @DisplayName("참여자 이름에 Null이 들어왔을 때, domain.People 객체를 생성할 수 없다.")
     @ParameterizedTest
     @NullSource
-    void peopleNamesNullInput(String name) {
+    void peopleNamesNullInput(String nullName) {
+        List<String> names = List.of(nullName);
         assertThrows(IllegalArgumentException.class
-                , () -> {new People(Arrays.asList(name));
-                });
-
+                , () -> new People(names));
     }
 
     @DisplayName("참여자 이름에 정상적인 입력값이 들어왔을 때, domain.People 객체를 생성할 수 있다.")

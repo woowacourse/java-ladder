@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class LadderTest {
+class LadderTest {
 
     @Test
     @DisplayName("사용자가 입력한 높이만큼의 사다리가 생성된다")
