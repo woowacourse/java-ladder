@@ -1,3 +1,4 @@
+package domain.ladder;
 
 import domain.ladder.common.Direction;
 import util.DirectionGenerator;

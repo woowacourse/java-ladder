@@ -1,3 +1,5 @@
+package domain.ladder;
+
 import domain.ladder.common.Direction;
 import domain.ladder.LadderLeg;
 import domain.ladder.LadderLegPiece;

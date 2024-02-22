@@ -1,3 +1,5 @@
+package domain.ladder;
+
 import domain.ladder.common.Direction;
 import domain.ladder.LadderLegPiece;
 import org.junit.jupiter.api.DisplayName;

@@ -1,3 +1,4 @@
+package domain;
 
 import domain.*;
 import domain.ladder.Ladder;
@@ -17,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GameBoardTest {
     @Test
-    @DisplayName("domain.player.Player 와 사다리를 통해 게임 보드를 만든다.")
+    @DisplayName("Player 와 사다리를 통해 게임 보드를 만든다.")
     public void createGameBoard() {
         Players players = 플레이어_생성(new Names(List.of("도비", "조이썬", "포비", "크롱")));
 

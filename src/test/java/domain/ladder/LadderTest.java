@@ -1,3 +1,5 @@
+package domain.ladder;
+
 import domain.ladder.common.Direction;
 import domain.ladder.common.Height;
 import domain.ladder.Ladder;
@@ -12,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LadderTest {
 
     @Test
-    @DisplayName("Height와 domain.player.Player 수를 받아 Ladder를 생성한다.")
+    @DisplayName("Height와 Player 수를 받아 Ladder를 생성한다.")
     public void createLadder() {
 
         Height height = new Height("5");
