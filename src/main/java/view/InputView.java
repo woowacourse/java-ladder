@@ -11,7 +11,6 @@ public class InputView {
     private static final String ASK_LADDER_HEIGHT = "\n최대 사다리 높이는 몇 개인가요?";
     private static final String LADDER_HEIGHT_NOT_INTEGER = "최대 사다리 높이는 숫자로 입력 해야 합니다";
 
-
     private InputView() {
     }
 
