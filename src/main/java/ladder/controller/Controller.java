@@ -1,8 +1,8 @@
 package ladder.controller;
 
-import ladder.domain.DefaultLineGenerator;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
+import ladder.domain.LineGenerator;
 import ladder.domain.People;
 import ladder.exception.ExceptionHandler;
 import ladder.view.InputView;
@@ -14,7 +14,7 @@ public class Controller {
         People people = createPeople();
         Height height = createHeight();
         Ladder ladder = new Ladder(people, height);
-        ladder.initialize(new DefaultLineGenerator());
+        ladder.initialize(new LineGenerator());
         ResultView.printResult(people, ladder);
     }
 

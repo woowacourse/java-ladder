@@ -34,7 +34,7 @@ class LadderTest {
         Ladder ladder = new Ladder(people, height);
 
         // when
-        ladder.initialize(new DefaultLineGenerator());
+        ladder.initialize(new LineGenerator());
 
         LadderLevel anyLadderLevel = ladder.stream().findFirst().get();
 

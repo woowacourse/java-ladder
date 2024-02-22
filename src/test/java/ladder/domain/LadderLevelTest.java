@@ -18,7 +18,7 @@ class LadderLevelTest {
     @DisplayName("사다리 층 생성")
     @Test
     void ladderLevelConstructTest() {
-        assertThatCode(() -> new LadderLevel(5, new DefaultLineGenerator()))
+        assertThatCode(() -> new LadderLevel(5, new LineGenerator()))
                 .doesNotThrowAnyException();
     }
 
@@ -30,7 +30,7 @@ class LadderLevelTest {
     @Test
     void ladderLevelIntegrityTest() {
         // given
-        LadderLevel ladderLevel = new LadderLevel(100, new DefaultLineGenerator());
+        LadderLevel ladderLevel = new LadderLevel(100, new LineGenerator());
         List<Direction> directions = ladderLevel.stream().toList();
 
         //when
