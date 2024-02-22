@@ -2,6 +2,7 @@ package controller;
 
 import model.Ladder;
 import model.LadderGame;
+import model.LadderHeight;
 import model.Participants;
 import model.RandomGenerator;
 import view.InputView;
@@ -19,8 +20,9 @@ public class LadderGameController {
 
     public void run() {
         Participants participants = inputView.readParticipantNames();
-        int ladderHeight = inputView.readLadderHeight();
+        int height = inputView.readLadderHeight();
 
+        LadderHeight ladderHeight = new LadderHeight(height);
         RandomGenerator generator = new RandomGenerator();
         LadderGame ladderGame = new LadderGame(ladderHeight, participants, generator);
         Ladder ladder = ladderGame.createLadder();
