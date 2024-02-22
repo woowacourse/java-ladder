@@ -15,7 +15,7 @@ public class LineTest {
         final Line line = new Line(() -> true, 4);
 
         assertThat(line.getLine().size())
-                .isEqualTo(4 - 1);
+                .isEqualTo(3);
     }
 
     @DisplayName("같은층에 연속된 EXIST가 존재하지 않는다.")
