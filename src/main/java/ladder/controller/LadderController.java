@@ -6,25 +6,24 @@ import ladder.model.Players;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.io.IOException;
 import java.util.List;
 
 public class LadderController {
     private Players ladderPlayers;
     private Ladder ladder;
 
-    public void init() throws IOException {
+    public void init(){
         ladderPlayers = Players.from(readPlayerNames());
 
         LadderSize ladderSize = new LadderSize(readLadderHeight(), ladderPlayers.getSize());
         ladder = Ladder.of(ladderSize);
     }
 
-    private List<String> readPlayerNames() throws IOException {
+    private List<String> readPlayerNames(){
         return InputView.inputPlayerNames();
     }
 
-    private int readLadderHeight() throws IOException {
+    private int readLadderHeight() {
         return InputView.inputLadderHeight();
     }
 
