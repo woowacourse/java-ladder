@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.Arrays;
+import java.util.List;
 
 public enum LadderItem {
 
@@ -21,5 +22,13 @@ public enum LadderItem {
                 .findAny()
                 .orElseThrow()
                 .shape;
+    }
+
+    public static List<LadderItem> getLadderItemsAsList() {
+        return Arrays.stream(LadderItem.values()).toList();
+    }
+
+    public String getShape() {
+        return shape;
     }
 }

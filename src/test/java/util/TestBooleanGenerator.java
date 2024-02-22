@@ -1,15 +1,17 @@
 package util;
 
+import domain.LadderItem;
+
 public class TestBooleanGenerator implements BooleanGenerator {
 
-    private final boolean isConnectable;
+    private final LadderItem isConnectable;
 
-    public TestBooleanGenerator(boolean isConnectable) {
+    public TestBooleanGenerator(LadderItem isConnectable) {
         this.isConnectable = isConnectable;
     }
 
     @Override
-    public boolean generate() {
+    public LadderItem generate() {
         return isConnectable;
     }
 }

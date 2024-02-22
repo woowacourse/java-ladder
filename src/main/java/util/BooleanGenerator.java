@@ -1,5 +1,7 @@
 package util;
 
+import domain.LadderItem;
+
 public interface BooleanGenerator {
-    boolean generate();
+    LadderItem generate();
 }

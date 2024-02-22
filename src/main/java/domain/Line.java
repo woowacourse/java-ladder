@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Boolean> points;
+    private final List<LadderItem> points;
     private final int columnLength;
 
     public Line(int columnLength) {
@@ -13,9 +13,9 @@ public class Line {
         this.columnLength = columnLength;
     }
 
-    public List<Boolean> makeLine(BooleanGenerator booleanGenerator) {
+    public List<LadderItem> makeLine(BooleanGenerator booleanGenerator) {
         for (int position = 0; position < columnLength - 1; position++) {
-            boolean isConnectable = booleanGenerator.generate();
+            LadderItem isConnectable = booleanGenerator.generate();
 
             points.add(decideConnectable(position, isConnectable));
         }
@@ -23,15 +23,15 @@ public class Line {
         return points;
     }
 
-    public boolean decideConnectable(int position, boolean isConnectable) {
-        if (position == 0 || !points.get(position - 1)) {
+    public LadderItem decideConnectable(int position, LadderItem isConnectable) {
+        if (position == 0 || points.get(position - 1).equals(LadderItem.UNCONNECTED)) {
             return isConnectable;
         }
 
-        return false;
+        return LadderItem.UNCONNECTED;
     }
 
-    public List<Boolean> getPoints() {
+    public List<LadderItem> getPoints() {
         return points;
     }
 }
