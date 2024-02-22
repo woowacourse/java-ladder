@@ -5,38 +5,26 @@ import java.util.List;
 
 public class LadderRow {
 
-    private final int maxWidth;
-    private final List<Boolean> lines;
+    private final List<Boolean> lineStatus;
 
-    public LadderRow(int participantsSize) {
-        this.maxWidth = participantsSize - 1;
-        this.lines = new ArrayList<>();
+    public LadderRow(List<Boolean> lineStatus) {
+        checkContinuousLine(lineStatus);
+        this.lineStatus = new ArrayList<>(lineStatus);
     }
-
-
-    public void crossLine(boolean line) {
-        if (lines.size() == maxWidth - 1 && line) {
-            lines.add(true);
-            return;
-        }
-        lines.add(line);
-        if (line) {
-            lines.add(false);
+    
+    public void checkContinuousLine(List<Boolean> lineStatus){
+        for (int i = 1; i < lineStatus.size(); i++) {
+            removeContinuousLine(lineStatus, i);
         }
     }
 
-    public void clear() {
-        lines.clear();
-    }
-    public int getMaxWidth() {
-        return maxWidth;
-    }
-
-    public int currentWidthSize() {
-        return lines.size();
+    private void removeContinuousLine (List<Boolean> lineStatus, int index) {
+        if(lineStatus.get(index) && lineStatus.get(index -1)){
+            lineStatus.set(index, false);
+        }
     }
 
-    public List<Boolean> getLines() {
-        return lines;
+    public List<Boolean> getLineStatus() {
+        return lineStatus;
     }
 }
