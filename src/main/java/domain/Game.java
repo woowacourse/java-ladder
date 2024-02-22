@@ -2,20 +2,20 @@ package domain;
 
 public class Game {
 
-    private final Lines lines;
     private final Members members;
+    private final Lines lines;
 
-    public Game(Lines lines, Members members) {
-        this.lines = lines;
+    public Game(Members members, Lines lines) {
         this.members = members;
-    }
-
-    public Lines getLines() {
-        return lines;
+        this.lines = lines;
     }
 
     public Members getMembers() {
         return members;
+    }
+
+    public Lines getLines() {
+        return lines;
     }
 
     // TODO: 사다리 게임 실제 로직 -> LV 2

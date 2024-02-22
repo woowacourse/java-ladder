@@ -23,15 +23,14 @@ public class GameController {
 
     public void run() {
         String rawNames = inputView.readNames();
-        String rawHeight = inputView.readHeight();
-
         Members members = new Members(rawNames);
 
+        String rawHeight = inputView.readHeight();
         Height height = new Height(rawHeight);
         Lines lines = new Lines(members.getCount(), height, pointStrategy);
 
-        Game game = new Game(lines, members);
-        
+        Game game = new Game(members, lines);
+
         outputView.printResult(game);
     }
 }
