@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Players {
+
     private static final int MIN_PLAYERS = 2;
 
     private final List<Player> players;

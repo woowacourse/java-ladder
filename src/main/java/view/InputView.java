@@ -10,7 +10,6 @@ public class InputView {
     private static final String HEIGHT_REQUEST_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String NAME_SEPARATOR = ",";
 
-
     private final Scanner scanner;
 
     public InputView(Scanner scanner) {
@@ -34,8 +33,9 @@ public class InputView {
     }
 
     private void validateSeparators(String rawNames) {
-        if (rawNames.startsWith(NAME_SEPARATOR) || rawNames.endsWith(NAME_SEPARATOR) || rawNames.contains(
-                NAME_SEPARATOR.repeat(2))) {
+        if (rawNames.startsWith(NAME_SEPARATOR)
+                || rawNames.endsWith(NAME_SEPARATOR)
+                || rawNames.contains(NAME_SEPARATOR.repeat(2))) {
             throw new IllegalArgumentException(Message.INVALID_SEPARATOR_ERROR.getMessage());
         }
     }

@@ -20,7 +20,7 @@ class LineTest {
 
     @RepeatedTest(10)
     @DisplayName("동일한 true 값을 가지지 않는지 확인")
-    void createSame() { //TODO: 이름 변경하기
+    void overlapConnection() {
         //given
         Line line = new Line(4);
         List<Boolean> points = line.getPoints();
@@ -34,6 +34,6 @@ class LineTest {
         }
 
         //then
-        Assertions.assertThat(isOverlap).isEqualTo(false);
+        Assertions.assertThat(isOverlap).isFalse();
     }
 }

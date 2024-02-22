@@ -15,7 +15,6 @@ class HeightTest {
                 .doesNotThrowAnyException();
     }
 
-
     @ParameterizedTest
     @DisplayName("올바르지 않는 사다리 높이가 들어오면 예외가 발생한다.")
     @ValueSource(ints = {-1, 0, 13})
