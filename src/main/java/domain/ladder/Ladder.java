@@ -15,28 +15,23 @@ public class Ladder {
     public Ladder(Height height, Integer playerCount, DirectionGenerator directionGenerator) {
         this.height = height;
         this.playerCount = playerCount;
-        List<LadderLeg> ladderLegs = new ArrayList<>();
-        generateFirstToLastLegs(ladderLegs, directionGenerator);
-        this.ladderLegs = ladderLegs;
-    }
-    public int getHeight(){
-        return height.getHeight();
+
+        this.ladderLegs = generateFirstToLastLegs(directionGenerator);
     }
 
-    public List<LadderLeg> getLadderLegs() {
-        return ladderLegs;
-    }
-
-    private void generateFirstToLastLegs(List<LadderLeg> ladderLegs, DirectionGenerator directionGenerator) {
-
+    private List<LadderLeg> generateFirstToLastLegs(DirectionGenerator directionGenerator) {
         LadderLegGenerator ladderLegGenerator = new LadderLegGenerator(this.height);
+
+        List<LadderLeg> ladderLegs = new ArrayList<>();
         LadderLeg ladderLeg = ladderLegGenerator.generateDownLadderLeg();
-        for (int i = 0; i < playerCount - 1; i++) {
+        for (int i = 0; i < this.playerCount - 1; i++) {
             ladderLeg = ladderLegGenerator.generateLadderLeg(ladderLeg, directionGenerator::generate);
             ladderLegs.add(ladderLeg);
         }
         ladderLegs.add(ladderLegGenerator.generateLadderLeg(ladderLeg, () -> Direction.DOWN));
+        return ladderLegs;
     }
+
 
     public List<Direction> getDirectionAtHorizontalIndex(Integer index) {
         return ladderLegs.stream()
