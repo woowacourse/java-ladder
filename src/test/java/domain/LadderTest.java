@@ -6,14 +6,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LadderTest {
-    private PointGenerator pointGenerator = new PickedPointGenerator();
-    private static final int PERSON_COUNT = 4;
 
     @DisplayName("주어진 line들로 사다리를 만든다.")
     @Test
     void createLadder() {
         //given
-        final int personCount = PERSON_COUNT;
+        final int personCount = 4;
+        PointGenerator pointGenerator = new PickedPointGenerator(List.of(false, true, false));
         Line line = Line.create(personCount, pointGenerator);
         List<Line> lines = List.of(line);
         //when

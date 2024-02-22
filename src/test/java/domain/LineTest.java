@@ -7,19 +7,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LineTest {
-    private PointGenerator pointGenerator;
-    private final int PERSON_COUNT = 4;
-
-    @BeforeEach
-    void init(){
-        pointGenerator = new PickedPointGenerator();
-    }
 
     @DisplayName("라인을 생성한다.")
     @Test
     void createLine() {
         //given
-        int personCount = PERSON_COUNT;
+        int personCount = 4;
+        PointGenerator pointGenerator = new PickedPointGenerator(List.of(false, true, false));
         //when
         Line line = Line.create(personCount, pointGenerator);
         //then
