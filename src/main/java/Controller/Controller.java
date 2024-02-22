@@ -21,15 +21,14 @@ public class Controller {
         final Players players = readWithRetry(this::getPlayers);
         final Height height = readWithRetry(this::getHeight);
 
-        final Carpenter carpenter = makeCarpenter(height, players);
+        final Carpenter carpenter = hireCarpenter(height, players);
         final Ladder ladder = carpenter.makeLadder();
 
         outputView.printResult(players, ladder);
     }
 
-    private Carpenter makeCarpenter(Height height, Players players) {
-        final NumberGenerator numberGenerator = new RandomNumberGenerator();
-        return new Carpenter(height, PlayerCount.fromPlayers(players), numberGenerator); // TODO: 파라미터 3개 걸림
+    private Carpenter hireCarpenter(Height height, Players players) {
+        return new Carpenter(height, PlayerCount.fromPlayers(players));
     }
 
     private Players getPlayers() {
