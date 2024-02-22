@@ -8,7 +8,6 @@ public class Player {
 
     public Player(String name) {
         validate(name);
-
         this.name = name;
     }
 

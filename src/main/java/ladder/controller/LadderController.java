@@ -2,7 +2,7 @@ package ladder.controller;
 
 import ladder.model.Ladder;
 import ladder.model.LadderSize;
-import ladder.model.Player;
+import ladder.model.Players;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -10,15 +10,13 @@ import java.io.IOException;
 import java.util.List;
 
 public class LadderController {
-    private List<Player> ladderPlayers;
+    private Players ladderPlayers;
     private Ladder ladder;
 
     public void init() throws IOException {
-        ladderPlayers = readPlayerNames().stream()
-                .map(Player::new)
-                .toList();
+        ladderPlayers = Players.from(readPlayerNames());
 
-        LadderSize ladderSize = new LadderSize(readLadderHeight(), ladderPlayers.size());
+        LadderSize ladderSize = new LadderSize(readLadderHeight(), ladderPlayers.getSize());
         ladder = Ladder.of(ladderSize);
     }
 
@@ -31,12 +29,8 @@ public class LadderController {
     }
 
     public void printResult() {
-        List<String> playerNames = ladderPlayers.stream()
-                .map(Player::getName)
-                .toList();
-
         OutputView.printResultDescription();
-        OutputView.printPlayerNames(playerNames);
+        OutputView.printPlayerNames(ladderPlayers.getPlayerNames());
         OutputView.printLadder(ladder.toLineDtoList());
     }
 }
