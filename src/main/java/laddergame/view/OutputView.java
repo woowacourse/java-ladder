@@ -1,6 +1,6 @@
 package laddergame.view;
 
-import laddergame.domain.Result;
+import laddergame.dto.Result;
 
 public class OutputView {
 

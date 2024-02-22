@@ -5,7 +5,7 @@ import laddergame.domain.Ladder;
 import laddergame.domain.LadderHeight;
 import laddergame.domain.LineSize;
 import laddergame.domain.Names;
-import laddergame.domain.Result;
+import laddergame.dto.Result;
 
 public class LadderGame {
 
