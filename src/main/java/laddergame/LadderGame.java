@@ -12,27 +12,26 @@ import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
 public class LadderGame {
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
     public void run() {
-        InputView inputView = new InputView();
         Players players = requestUntilValidated(() -> Players.from(inputView.readPlayersName()));
-        System.out.println();
         String height = requestUntilValidated(inputView::readLadderHeight);
 
         Ladder ladder = new Ladder(players.getPlayers().size(), height);
-
-        CanBuildStrategy randomBuildStrategy = new RandomBuildStrategy();
-        List<LineBuildResult> randomResult = IntStream.range(0, ladder.getHeight())
-                .mapToObj(i -> randomBuildStrategy.canBuildBridges(players.getPlayers().size() - 1))
-                .toList();
-
-        ladder.build(randomResult);
-
-        OutputView outputView = new OutputView();
-        printLadderResult(players, ladder, outputView);
+        ladder.build(getLineBuildResults(players, ladder));
+        printLadderResult(players, ladder);
     }
 
-    private static void printLadderResult(Players players, Ladder ladder, OutputView outputView) {
+    private static List<LineBuildResult> getLineBuildResults(final Players players, final Ladder ladder) {
+        CanBuildStrategy randomBuildStrategy = new RandomBuildStrategy();
+        return IntStream.range(0, ladder.getHeight())
+                .mapToObj(i -> randomBuildStrategy.canBuildBridges(players.getPlayers().size() - 1))
+                .toList();
+    }
+
+    private void printLadderResult(final Players players, final Ladder ladder) {
         outputView.writeResultTitle();
         outputView.writePlayersName(players);
         outputView.writeLadder(ladder);
