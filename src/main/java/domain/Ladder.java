@@ -1,6 +1,6 @@
 package domain;
 
-import domain.point.strategy.RandomPointGenerator;
+import domain.point.strategy.RandomBridgeGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,11 +14,12 @@ public class Ladder {
     }
 
     public static Ladder of(LadderHeight height, int pointCount) {
-        RandomPointGenerator randomPointGenerator = new RandomPointGenerator();
+        RandomBridgeGenerator randomPointGenerator = new RandomBridgeGenerator();
 
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height.getValue(); i++) {
-            lines.add(new Line(randomPointGenerator.generate(pointCount)));
+            List<LadderBridge> bridges = randomPointGenerator.generate(pointCount);
+            lines.add(new Line(bridges));
         }
 
         return new Ladder(lines);

@@ -4,13 +4,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    private final List<Boolean> points;
+    private final List<LadderBridge> bridges;
 
-    public Line(List<Boolean> points) {
-        this.points = points;
+    public Line(List<LadderBridge> bridges) {
+        this.bridges = bridges;
     }
 
-    public List<Boolean> getPoints() {
-        return Collections.unmodifiableList(points);
+    public List<LadderBridge> getBridges() {
+        return Collections.unmodifiableList(bridges);
     }
 }

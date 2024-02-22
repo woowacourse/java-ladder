@@ -1,6 +1,7 @@
 package view;
 
 import domain.Ladder;
+import domain.LadderBridge;
 import domain.Line;
 import domain.PlayerNames;
 
@@ -41,12 +42,12 @@ public class OutputView {
     private void printLadder(Ladder ladder) {
         StringJoiner ladderJoiner = new StringJoiner(LADDER_FRAME, LADDER_FRAME, LADDER_FRAME);
         for (Line line : ladder.getLines()) {
-            for (Boolean point : line.getPoints()) {
-                if (point) {
-                    ladderJoiner.add(POINT);
+            for (LadderBridge bridge : line.getBridges()) {
+                if (bridge.equals(LadderBridge.BRIDGE)) {
+                    ladderJoiner.add(bridge.getValue());
                     continue;
                 }
-                ladderJoiner.add(NONE_POINT);
+                ladderJoiner.add(bridge.getValue());
             }
             System.out.print("    ");
             System.out.println(ladderJoiner);

@@ -18,7 +18,7 @@ public class LadderTest {
         List<Line> lines = ladder.getLines();
         assertAll(
                 () -> Assertions.assertThat(lines.size()).isEqualTo(3),
-                () -> Assertions.assertThat(lines.get(0).getPoints().size()).isEqualTo(3)
+                () -> Assertions.assertThat(lines.get(0).getBridges().size()).isEqualTo(3)
         );
 
     }
