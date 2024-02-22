@@ -10,8 +10,8 @@ public class Player {
     }
 
     private void validateNameLength(final String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("이름은 5자를 초과할 수 없습니다.");
+        if (name.isEmpty() || name.length() > 5) {
+            throw new IllegalArgumentException("이름은 1자 이상 5자 이하 이어야 합니다.");
         }
     }
 
