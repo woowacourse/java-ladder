@@ -7,6 +7,7 @@ import static message.ErrorMessage.NO_PLAYER_NAME_EXCEPTION;
 public class Name {
 
     private static final String NAME_LANGUAGE_FORMAT = "^[A-Za-z]*$";
+    private static final int MAXIMUM_NAME_SIZE = 5;
     private final String name;
 
     public Name(String name) {
@@ -33,7 +34,7 @@ public class Name {
     }
 
     private void validateNameSize(String name) {
-        if (name.length() > 5) {
+        if (name.length() > MAXIMUM_NAME_SIZE) {
             throw new IllegalArgumentException(INVALID_PLAYER_NAME_SIZE_EXCEPTION.getMessage());
         }
     }
