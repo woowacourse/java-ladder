@@ -20,7 +20,7 @@ public class LadderLevel {
     }
 
     private void initialize(int size) {
-        for (int i = 0; i < size; i++) {
+        for (int index = 0; index < size; index++) {
             ladderLevel.add(NONE);
         }
     }

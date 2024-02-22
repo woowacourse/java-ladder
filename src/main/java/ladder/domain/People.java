@@ -5,6 +5,9 @@ import java.util.stream.Stream;
 
 public class People {
 
+    private static final int MIN_NAME_LENGTH = 1;
+    private static final int MAX_NAME_LENGTH = 5;
+
     private final List<String> people;
 
     public People(List<String> names) {
@@ -20,8 +23,9 @@ public class People {
     }
 
     private void validateNameLength(List<String> names) {
-        if (names.stream().anyMatch(name -> name.isEmpty() || name.length() > 5)) {
-            throw new IllegalArgumentException("이름은 1~5글자로 입력해주세요.");
+        if (names.stream().anyMatch(name -> name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH)) {
+            throw new IllegalArgumentException(
+                    "이름은 %d~%d글자로 입력해주세요.".formatted(MIN_NAME_LENGTH, MAX_NAME_LENGTH));
         }
     }
 

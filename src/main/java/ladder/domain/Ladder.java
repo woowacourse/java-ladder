@@ -18,7 +18,7 @@ public class Ladder {
 
     public void initialize(LineGenerator lineGenerator) {
         ladderLevels.clear();
-        for (int i = 0; i < height.value(); i++) {
+        for (int currentHeight = 0; currentHeight < height.value(); currentHeight++) {
             ladderLevels.add(new LadderLevel(people.count(), lineGenerator));
         }
     }
