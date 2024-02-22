@@ -4,7 +4,7 @@ public interface DirectionGenerator {
 
     Direction generateInitialValue();
 
-    Direction generateValue(Direction priorDirection);
+    Direction generateMiddleValue(Direction priorDirection);
 
     Direction generateLastValue(Direction priorDirection);
 }

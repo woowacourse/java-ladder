@@ -8,7 +8,7 @@ public class DirectionGeneratorImpl implements DirectionGenerator{
     }
 
     @Override
-    public Direction generateValue(Direction priorDirection) {
+    public Direction generateMiddleValue(Direction priorDirection) {
         if (priorDirection == Direction.RIGHT) {
             return Direction.LEFT;
         }

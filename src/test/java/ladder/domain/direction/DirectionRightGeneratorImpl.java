@@ -1,20 +1,26 @@
 package ladder.domain.direction;
 
-import ladder.domain.direction.Direction;
-import ladder.domain.direction.DirectionGenerator;
-
 public class DirectionRightGeneratorImpl implements DirectionGenerator {
+
     @Override
     public Direction generateInitialValue() {
         return Direction.getDirection(0);
     }
 
     @Override
-    public Direction generateValue(Direction priorDirection) {
+    public Direction generateMiddleValue(Direction priorDirection) {
         if (priorDirection == Direction.RIGHT) {
             return Direction.LEFT;
         }
         return generateRightOrNeutral();
+    }
+
+    @Override
+    public Direction generateLastValue(Direction priorDirection) {
+        if (priorDirection == Direction.RIGHT) {
+            return Direction.LEFT;
+        }
+        return Direction.NEUTRAL;
     }
 
     private Direction generateRightOrNeutral() {

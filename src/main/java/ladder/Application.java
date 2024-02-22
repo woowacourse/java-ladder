@@ -3,7 +3,7 @@ package ladder;
 import ladder.contorller.LadderController;
 import ladder.domain.direction.DirectionGenerator;
 import ladder.domain.direction.DirectionGeneratorImpl;
-import ladder.domain.ladder.LineGenerator;
+import ladder.domain.line.LineGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 

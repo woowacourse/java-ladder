@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import java.util.List;
+import ladder.domain.line.Line;
 
 public class Ladder {
 

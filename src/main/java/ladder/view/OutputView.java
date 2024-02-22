@@ -2,7 +2,7 @@ package ladder.view;
 
 import ladder.domain.direction.Direction;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Line;
+import ladder.domain.line.Line;
 import ladder.domain.user.User;
 import ladder.domain.user.Users;
 
