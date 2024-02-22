@@ -8,14 +8,12 @@ import strategy.PointStrategy;
 public class Lines {
 
     private final List<Line> lines = new ArrayList<>();
-    private final PointStrategy pointStrategy;
 
     public Lines(int playerCount, Height height, PointStrategy pointStrategy) {
-        this.pointStrategy = pointStrategy;
-        generate(playerCount, height);
+        generate(playerCount, height, pointStrategy);
     }
 
-    private void generate(int playerCount, Height height) {
+    private void generate(int playerCount, Height height, PointStrategy pointStrategy) {
         for (int i = 0; i < height.getValue(); i++) {
             lines.add(new Line(playerCount, pointStrategy));
         }

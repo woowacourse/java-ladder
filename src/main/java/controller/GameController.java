@@ -14,13 +14,11 @@ public class GameController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final PointStrategy pointStrategy;
     private final ErrorHandler errorHandler;
 
     public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.pointStrategy = new RandomPointStrategy();
         this.errorHandler = new ErrorHandler();
     }
 
@@ -39,6 +37,6 @@ public class GameController {
     private Lines makeLines(Members members) {
         String rawHeight = inputView.readHeight();
         Height height = new Height(rawHeight);
-        return new Lines(members.getCount(), height, pointStrategy);
+        return new Lines(members.getCount(), height, new RandomPointStrategy());
     }
 }
