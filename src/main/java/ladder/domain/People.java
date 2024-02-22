@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static ladder.constant.ErrorMessage.MIN_PEOPLE_COUNT;
+import static ladder.constant.ErrorMessage.PEOPLE_NAMES_STARTS_OR_ENDS_WITH_DELIMITER;
 
 public class People {
     private static final String DELIMITER = ",";
@@ -18,6 +19,7 @@ public class People {
     }
 
     public static People from(String names) {
+        validateStartsOrEndsWithDelimiter(names);
         return new People(Arrays.stream(names.split(DELIMITER))
                 .map(Person::new)
                 .toList());
@@ -26,6 +28,12 @@ public class People {
     private static void validateCount(List<Person> values) {
         if (values.size() < MIN_COUNT) {
             throw new IllegalArgumentException(MIN_PEOPLE_COUNT.generate());
+        }
+    }
+
+    private static void validateStartsOrEndsWithDelimiter(String names) {
+        if (names.startsWith(DELIMITER) || names.endsWith(DELIMITER)) {
+            throw new IllegalArgumentException(PEOPLE_NAMES_STARTS_OR_ENDS_WITH_DELIMITER.generate());
         }
     }
 

@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import static ladder.constant.ErrorMessage.MIN_PERSON_NAME_LENGTH;
+import static ladder.constant.ErrorMessage.MAX_PERSON_NAME_LENGTH;
 import static ladder.constant.ErrorMessage.PERSON_NAME_NOT_BLANK;
 
 public class Person {
@@ -24,7 +24,7 @@ public class Person {
 
     private void validateLength(String name) {
         if (name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException(MIN_PERSON_NAME_LENGTH.generate());
+            throw new IllegalArgumentException(MAX_PERSON_NAME_LENGTH.generate());
         }
     }
 
