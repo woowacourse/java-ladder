@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputViewTest {
     @Nested
-    @DisplayName("사용자 이름 입력 입력 시")
+    @DisplayName("사용자 이름 입력 시")
     class inputUserNames {
         @DisplayName(",로 구분하여 이름을 입력하면 List<String>로 반환한다.")
         @Test
