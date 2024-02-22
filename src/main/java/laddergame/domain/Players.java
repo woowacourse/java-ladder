@@ -1,6 +1,5 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Players {
@@ -13,11 +12,10 @@ public class Players {
     public static Players from(final List<String> playerNames) {
         validate(playerNames);
 
-        List<Player> players = new ArrayList<>();
-        for (String name : playerNames) {
-            players.add(new Player(name));
-        }
-        return new Players(players);
+        return new Players(playerNames.stream()
+                .map(Player::new)
+                .toList()
+        );
     }
 
     private static void validate(final List<String> playerNames) {
