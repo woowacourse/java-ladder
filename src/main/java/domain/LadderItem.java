@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public enum LadderItem {
 
-    TRUE_LINE(true, "-----|"),
-    FALSE_LINE(false, "     |");
+    CONNECTED(true, "-----|"),
+    UNCONNECTED(false, "     |");
 
     private final Boolean isConnected;
     private final String shape;
