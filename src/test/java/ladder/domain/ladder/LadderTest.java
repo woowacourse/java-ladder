@@ -1,14 +1,12 @@
 package ladder.domain.ladder;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.SoftAssertions.assertSoftly;
-
-import java.util.List;
-import ladder.domain.generator.BooleanGenerator;
-import ladder.domain.generator.RandomBooleanGenerator;
 import ladder.mock.MockBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 class LadderTest {
 

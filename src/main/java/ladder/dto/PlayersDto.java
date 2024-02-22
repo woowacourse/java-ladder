@@ -1,9 +1,10 @@
 package ladder.dto;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public record PlayersDto(List<String> playerNames) {
 

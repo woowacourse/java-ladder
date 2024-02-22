@@ -1,8 +1,9 @@
 package ladder.mock;
 
+import ladder.domain.generator.BooleanGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
-import ladder.domain.generator.BooleanGenerator;
 
 public class MockBooleanGenerator implements BooleanGenerator {
     private final List<Boolean> rungs;

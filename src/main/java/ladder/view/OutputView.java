@@ -1,10 +1,11 @@
 package ladder.view;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import ladder.dto.LadderDto;
 import ladder.dto.LineDto;
 import ladder.dto.PlayersDto;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR]";

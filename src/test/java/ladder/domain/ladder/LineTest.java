@@ -1,12 +1,13 @@
 package ladder.domain.ladder;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.List;
 import ladder.mock.MockBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
 

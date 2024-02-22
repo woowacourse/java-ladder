@@ -1,9 +1,10 @@
 package ladder.domain.ladder;
 
+import ladder.domain.generator.BooleanGenerator;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
-import ladder.domain.generator.BooleanGenerator;
 
 public class Ladder {
     private final List<Line> lines;

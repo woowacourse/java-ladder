@@ -1,7 +1,5 @@
 package ladder.controller;
 
-import java.util.List;
-import java.util.function.Supplier;
 import ladder.domain.generator.BooleanGenerator;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
@@ -12,6 +10,9 @@ import ladder.dto.PlayersDto;
 import ladder.utils.Converter;
 import ladder.view.InputView;
 import ladder.view.OutputView;
+
+import java.util.List;
+import java.util.function.Supplier;
 
 public class LadderController {
     private final InputView inputView;

@@ -1,8 +1,9 @@
 package ladder.dto;
 
-import java.util.List;
 import ladder.domain.ladder.Line;
 import ladder.domain.ladder.Rung;
+
+import java.util.List;
 
 public record LineDto(List<Boolean> rungsExist) {
 

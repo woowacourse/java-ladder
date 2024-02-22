@@ -1,9 +1,10 @@
 package ladder.domain.ladder;
 
+import ladder.domain.generator.BooleanGenerator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import ladder.domain.generator.BooleanGenerator;
 
 public class Line {
     private final BooleanGenerator booleanGenerator;

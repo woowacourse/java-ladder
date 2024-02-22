@@ -1,8 +1,9 @@
 package ladder.dto;
 
-import java.util.List;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
+
+import java.util.List;
 
 public record LadderDto(List<LineDto> lineDtos) {
     public static LadderDto from(final Ladder ladder) {
