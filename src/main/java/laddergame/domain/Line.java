@@ -3,6 +3,7 @@ package laddergame.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 import laddergame.dto.LineBuildResult;
 
 public class Line {
@@ -17,18 +18,17 @@ public class Line {
         this.points = isBridgeBuilt.buildResults();
     }
 
-    private void validate(final LineBuildResult isBridgeBuilt) {
-        boolean isTrue = false;
-        for (Boolean previous : isBridgeBuilt.buildResults()) {
-            if (previous && isTrue) {
-                throw new IllegalStateException();
-            }
-            if (previous) {
-                isTrue = true;
-                continue;
-            }
-            isTrue = false;
+    private void validate(final LineBuildResult buildResults) {
+        boolean hasTrueSequence = IntStream.range(0, buildResults.buildResults().size() - 1)
+                .anyMatch(i -> buildResults.buildResults().get(i) && isAdjacentSame(buildResults, i));
+
+        if (hasTrueSequence) {
+            throw new IllegalStateException();
         }
+    }
+
+    private boolean isAdjacentSame(LineBuildResult buildResults, int index) {
+        return buildResults.buildResults().get(index) == buildResults.buildResults().get(index + 1);
     }
 
     public boolean isBuilt(final int position) {
