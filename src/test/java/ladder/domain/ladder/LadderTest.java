@@ -20,7 +20,7 @@ class LadderTest {
         List<Line> lines = new ArrayList<>();
         LineGenerator lineGenerator = new LineGenerator(new DirectionGeneratorImpl());
         for (int i = 0; i < lineCount; i++) {
-             lines.add(lineGenerator.generate(width));
+            lines.add(lineGenerator.generate(width));
         }
 
         //when, then

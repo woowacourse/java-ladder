@@ -3,8 +3,6 @@ package ladder.domain.user;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import ladder.domain.user.User;
-import ladder.domain.user.Users;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -6,21 +6,22 @@ import java.util.stream.Collectors;
 
 public class Users {
 
+    private static final int MIN_USER_SIZE = 2;
+    private static final int MAX_USER_SIZE = 10;
+
     private final List<User> users;
-    private final int MIN_USER_SIZE = 2;
-    private final int MAX_USER_SIZE = 10;
 
     public Users(List<User> users) {
         validateUsers(users);
         this.users = users;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
     public int getNumberOfUsers() {
         return users.size();
+    }
+
+    public List<User> getUsers() {
+        return users;
     }
 
     private void validateUsers(List<User> users) {

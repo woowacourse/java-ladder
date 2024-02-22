@@ -1,12 +1,11 @@
 package ladder.view;
 
+import java.util.List;
 import ladder.domain.direction.Direction;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.line.Line;
 import ladder.domain.user.User;
 import ladder.domain.user.Users;
-
-import java.util.List;
 
 public class OutputView {
 

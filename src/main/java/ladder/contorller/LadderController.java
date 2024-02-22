@@ -48,7 +48,7 @@ public class LadderController {
     private Ladder createLadder(int ladderWidth) {
         try {
             int ladderHeight = inputView.readLadderHeight();
-            List<Line> lines = createLines(ladderHeight,ladderWidth);
+            List<Line> lines = createLines(ladderHeight, ladderWidth);
 
             return new Ladder(lines);
         } catch (IllegalArgumentException e) {

@@ -1,6 +1,6 @@
 package ladder.domain.direction;
 
-public class DirectionGeneratorImpl implements DirectionGenerator{
+public class DirectionGeneratorImpl implements DirectionGenerator {
 
     @Override
     public Direction generateInitialValue() {

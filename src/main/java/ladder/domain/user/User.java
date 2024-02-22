@@ -4,9 +4,9 @@ import java.util.regex.Pattern;
 
 public class User {
 
-    private final String ALPHABET_FORMAT = "^[a-z A-Z]+$";
-    private final String BLANK = " ";
-    private final int MAX_NAME_LENGTH = 5;
+    private static final String ALPHABET_FORMAT = "^[a-z A-Z]+$";
+    private static final String BLANK = " ";
+    private static final int MAX_NAME_LENGTH = 5;
 
     private final String userName;
 
