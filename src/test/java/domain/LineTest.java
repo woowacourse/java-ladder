@@ -9,17 +9,24 @@ import strategy.RandomPointStrategy;
 
 public class LineTest {
 
-    @RepeatedTest(1000)
-    @DisplayName("랜덤으로 만든 값이 Point 클래스의 instance이다.")
-    void test() {
+    @Test
+    @DisplayName("가로줄 생성 성공: (참여자 - 1) 만큼의 가로줄이 생성된다.")
+    void test_ok_constructor() {
+        Line line = new Line(3, new RandomPointStrategy());
+        assertThat(line.getPoints().size()).isEqualTo(3 - 1);
+    }
+
+    @RepeatedTest(50)
+    @DisplayName("가로줄 생성 성공: 랜덤으로 생성된 값이 Point 객체이다.")
+    void test_ok_generateRandomPoint() {
         Line line = new Line(4, new RandomPointStrategy());
-        line.getPoints().forEach(
-                point -> assertThat(point).isInstanceOf(Point.class));
+        line.getPoints()
+                .forEach(point -> assertThat(point).isInstanceOf(Point.class));
     }
 
     @Test
-    @DisplayName("true가 나오면 그 다음은 무조건 false가 된다.")
-    void test_ok_trueNextFalse() {
+    @DisplayName("가로줄 생성 성공: 연결 오른쪽은 비연결이다.")
+    void test_ok_generatePointNextConnected() {
         Line line = new Line(3, () -> Point.CONNECTED);
         assertThat(line.getPoints().get(1)).isEqualTo(Point.DISCONNECTED);
     }

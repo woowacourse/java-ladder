@@ -9,7 +9,7 @@ public class MemberTest {
 
     @Test
     @DisplayName("멤버 객체 생성 성공")
-    void member_ok_createDomain() {
+    void test_ok_constructor() {
         assertThat(new Member("name").getName()).isEqualTo("name");
     }
 }

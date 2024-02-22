@@ -12,8 +12,8 @@ public class HeightTest {
     @ValueSource(strings = {"1", "20"})
     @DisplayName("사다리 높이 생성 성공: 1부터 20까지 가능")
     void test_ok(String height) {
-        assertThatCode(() -> new Height(height))
-                .doesNotThrowAnyException();
+        assertThat(new Height(height).getValue())
+                .isEqualTo(Integer.parseInt(height));
     }
 
     @ParameterizedTest

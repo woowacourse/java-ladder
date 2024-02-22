@@ -1,5 +1,6 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -11,9 +12,17 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class MembersTest {
+
+    @Test
+    @DisplayName("참여자들 입력 성공: 사이즈 일치")
+    void test_ok_constructor() {
+        Members members = new Members("a,bb,ccc,ddddd");
+        assertThat(members.getCount()).isEqualTo(4);
+    }
+
     @Test
     @DisplayName("참여자들 입력 실패: 중복")
-    void members_exception_duplicatedNames() {
+    void test_exception_duplicatedNames() {
         assertThatThrownBy(() -> new Members("a,b,c,c"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("이름은 서로 중복될 수 없습니다.");
@@ -22,7 +31,7 @@ public class MembersTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 16})
     @DisplayName("참여자들 입력 실패: 인원수 경계값 - 1, 16")
-    void members_exception_memberCount(int amount) {
+    void test_exception_memberCount(int amount) {
         assertThatThrownBy(() -> new Members(makeMemberNamesForTestCase(amount)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("명만 허용됩니다.");
@@ -31,7 +40,7 @@ public class MembersTest {
     @ParameterizedTest
     @ValueSource(ints = {2, 15})
     @DisplayName("참여자들 입력 성공: 인원수 경계값 - 2, 15")
-    void members_ok_memberCount(int amount) {
+    void test_ok_memberCount(int amount) {
         assertThatCode(() -> new Members(makeMemberNamesForTestCase(amount)))
                 .doesNotThrowAnyException();
     }
@@ -39,7 +48,7 @@ public class MembersTest {
     @ParameterizedTest
     @ValueSource(strings = {" a  , b , c ", "a,b,c"})
     @DisplayName("참여자들 입력 성공: 쉼표로 구분 잘 되는지")
-    void members_ok_delimiter(String rawNames) {
+    void test_ok_delimiter(String rawNames) {
         assertThatCode(() -> new Members(rawNames))
                 .doesNotThrowAnyException();
     }
@@ -47,20 +56,18 @@ public class MembersTest {
     @ParameterizedTest
     @ValueSource(strings = {",,,a", "a,,,", ",,,", "bb, ,cc"})
     @DisplayName("참여자들 입력 실패: 비정상적인 쉼표 입력")
-    void members_exception_delimiter(String rawNames) {
+    void test_exception_delimiter(String rawNames) {
         assertThatThrownBy(() -> new Members(rawNames))
                 .isInstanceOf(IllegalArgumentException.class);
-//                .hasMessageContaining("자의 이름만 허용합니다."); TODO 메시지 검증
     }
 
     @Test
     @DisplayName("참여자들 입력 실패: null 입력")
-    void members_exception_null() {
+    void test_exception_null() {
         assertThatThrownBy(() -> new Members(null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("null을 입력할 수 없습니다.");
     }
-
 
     private String makeMemberNamesForTestCase(int amount) {
         List<String> names = new ArrayList<>();
