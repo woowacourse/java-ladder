@@ -17,5 +17,4 @@ class NamesFormatterTest {
         String formattedNames = NamesFormatter.format(names);
         assertThat(formattedNames).isEqualTo("pobi  honux crong   jk");
     }
-
 }

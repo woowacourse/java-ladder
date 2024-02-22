@@ -21,7 +21,7 @@ class PersonTest {
     @ParameterizedTest(name = "이름은 최소 1글자 최대 5글자다.")
     @ValueSource(strings = {"", "mollly"})
     void createPersonThrowException(String name) {
-        assertThatThrownBy(()-> new Person(name))
+        assertThatThrownBy(() -> new Person(name))
                 .isExactlyInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 최소 1글자 최대 5글자여야 합니다.");
     }

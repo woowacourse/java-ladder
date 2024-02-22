@@ -24,6 +24,4 @@ class PeopleTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사람은 최소 2명 참가해야 합니다.");
     }
-
-    // TODO: 참여한 인원수를 반환하는지에 대한 테스트??
 }
