@@ -8,6 +8,7 @@ import laddergame.dto.LineBuildResult;
 
 public class Ladder {
     private static final String NUMBER_REGEX = "^[\\d]*$";
+    private static final String NATURAL_NUMBER_ERROR = "자연수를 입력해 주세요.";
     private final List<Line> lines;
     private final int height;
 
@@ -27,13 +28,13 @@ public class Ladder {
 
     private void checkIsNumber(final String height) {
         if (!Pattern.matches(NUMBER_REGEX, height)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NATURAL_NUMBER_ERROR);
         }
     }
 
     private void checkIsZero(final String height) {
         if (Integer.parseInt(height) == 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NATURAL_NUMBER_ERROR);
         }
     }
 

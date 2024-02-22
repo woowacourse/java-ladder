@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 import laddergame.dto.LineBuildResult;
 
 public class Line {
+    private static final String BRIDGE_SEQUENCE_ERROR = "연속적인 다리 건설은 허용하지 않습니다.";
     private List<Boolean> points;
 
     public Line(final int playerCount) {
@@ -23,7 +24,7 @@ public class Line {
                 .anyMatch(i -> buildResults.buildResults().get(i) && isAdjacentSame(buildResults, i));
 
         if (hasTrueSequence) {
-            throw new IllegalStateException();
+            throw new IllegalStateException(BRIDGE_SEQUENCE_ERROR);
         }
     }
 

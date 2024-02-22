@@ -1,8 +1,11 @@
 package laddergame.domain;
 
+import static laddergame.domain.Player.NAME_BLANK_ERROR;
+
 import java.util.List;
 
 public class Players {
+    private static final String NAME_DUPLICATED_ERROR = "이름의 중복은 허용하지 않습니다.";
     private final List<Player> players;
 
     private Players(final List<Player> players) {
@@ -25,13 +28,13 @@ public class Players {
 
     private static void checkDuplicated(List<String> playerNames) {
         if (hasDuplicateName(playerNames)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NAME_DUPLICATED_ERROR);
         }
     }
 
     private static void checkBlankName(List<String> playerNames) {
         if (playerNames.stream().anyMatch(String::isBlank)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NAME_BLANK_ERROR);
         }
     }
 
