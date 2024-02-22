@@ -11,7 +11,7 @@ public class Ladder {
     private static final Random random = new Random();
     private final List<Line> ladder;
 
-    public Ladder(List<Line> ladder) {
+    private Ladder(List<Line> ladder) {
         this.ladder = ladder;
     }
 
