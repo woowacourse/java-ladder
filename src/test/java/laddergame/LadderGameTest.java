@@ -3,7 +3,7 @@ package laddergame;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import laddergame.domain.LadderGame;
+import laddergame.service.LadderGame;
 import laddergame.domain.LadderHeight;
 import laddergame.domain.Names;
 import laddergame.domain.Result;
@@ -18,18 +18,18 @@ public class LadderGameTest {
     void init() {
         // given
         final List<String> input = List.of("pobi", "honux", "crong", "jk");
-        final List<Boolean> line = List.of(true, false, true, false, true);
 
         final Names names = new Names(input);
         final LadderHeight height = new LadderHeight(5);
 
+        final LadderGame ladderGame = new LadderGame(() -> true);
+
         // when
-        final LadderGame ladderGame = LadderGame.create(names, height, size -> line);
-        final Result result = ladderGame.getResult();
+        final Result result = ladderGame.createLadder(names, height);
 
         // then
         assertThat(result.names()).isEqualTo(input);
         assertThat(result.ladder()).hasSize(5)
-                .isEqualTo(LadderTest.createLadder(line, 5));
+                .isEqualTo(LadderTest.createLadder(List.of(true, false, true), 5));
     }
 }
