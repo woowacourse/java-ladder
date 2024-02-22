@@ -17,6 +17,11 @@ public class OutputView {
     private OutputView() {
     }
 
+    public static void printResultMessage() {
+        System.out.println("실행 결과");
+        System.out.println();
+    }
+
     public static void printPlayerNames(Players players) {
         int maxLength = players.findMaxNameLength();
         players.getNames().stream()
