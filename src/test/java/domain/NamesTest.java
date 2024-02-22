@@ -34,15 +34,6 @@ class NamesTest {
     }
 
     @Test
-    @DisplayName("전체 사람 중, 첫 번째 사람의 이름을 반환한다.")
-    void getFirstName() {
-        List<String> rawNames = List.of("pobi", "crong", "honux");
-        Names names = new Names(rawNames);
-
-        assertEquals("pobi", names.firstName());
-    }
-
-    @Test
     @DisplayName("주어진 인덱스에 해당하는 사람 이름을 반환한다.")
     void findNameByIndex() {
         List<String> rawNames = List.of("pobi", "crong", "honux");

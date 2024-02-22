@@ -50,13 +50,6 @@ public class Names {
         return names.size();
     }
 
-    public String firstName() {
-        if (names == null || names.isEmpty()) {
-            return "";
-        }
-        return names.get(FIRST_INDEX).getValue();
-    }
-
     public String nameOf(int index) {
         return names.get(index).getValue();
     }

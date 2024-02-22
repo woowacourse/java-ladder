@@ -7,6 +7,8 @@ public enum ResultMessage {
     MOVABLE_LINE("-----|"),
     UNMOVABLE_LINE("     |");
 
+    private static final int FIRST_NAME_INDEX = 0;
+
     private final String message;
 
     ResultMessage(String message) {
@@ -30,6 +32,6 @@ public enum ResultMessage {
     }
 
     public static String ladderPadding(final Names names) {
-        return " ".repeat(names.firstName().length()) + "|";
+        return " ".repeat(names.nameOf(FIRST_NAME_INDEX).length()) + "|";
     }
 }

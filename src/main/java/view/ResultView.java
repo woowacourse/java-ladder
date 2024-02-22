@@ -5,6 +5,8 @@ import domain.Lines;
 import domain.Names;
 
 public class ResultView {
+    private static final int FIRST_NAME_INDEX = 0;
+
     private ResultView() {
     }
 
@@ -22,7 +24,7 @@ public class ResultView {
     }
 
     private static void printNames(Names names) {
-        String firstName = names.firstName() + " ";
+        String firstName = names.nameOf(FIRST_NAME_INDEX) + " ";
         StringBuilder nameLine = new StringBuilder();
 
         for (int i = 1; i < names.size(); i++) {
