@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class People {
@@ -42,5 +43,9 @@ public class People {
                 .mapToInt(String::length)
                 .max()
                 .orElse(0);
+    }
+
+    public List<String> getNames() {
+        return Collections.unmodifiableList(names);
     }
 }

@@ -20,14 +20,7 @@ public class Ladder {
         }
     }
 
-    protected int getLinesSize() {
-        return lines.size();
-    }
-
-    @Override
-    public String toString() {
-        return lines.stream()
-                .map(Line::toString)
-                .collect(Collectors.joining("\n"));
+    public List<Line> getLadder() {
+        return Collections.unmodifiableList(lines);
     }
 }

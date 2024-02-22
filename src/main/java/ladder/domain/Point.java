@@ -18,8 +18,7 @@ public enum Point {
         return points[new Random().nextInt(points.length)];
     }
 
-    public String getSymbol() {
-        return symbol.repeat(5);
+    public String repeatSymbol(int count) {
+        return symbol.repeat(count);
     }
-    
 }
