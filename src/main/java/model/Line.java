@@ -3,14 +3,11 @@ package model;
 import java.util.Collections;
 import java.util.List;
 
-public class Line {
+public record Line(List<Bridge> bridges) {
     private static final String INVALID_BRIDGES = "겹치는 다리가 존재합니다.";
 
-    private final List<Bridge> bridges;
-
-    public Line(List<Bridge> bridges) {
+    public Line {
         validateBridges(bridges);
-        this.bridges = bridges;
     }
 
     private void validateBridges(List<Bridge> bridges) {
@@ -27,7 +24,8 @@ public class Line {
         }
     }
 
-    public List<Bridge> getBridges() {
+    @Override
+    public List<Bridge> bridges() {
         return Collections.unmodifiableList(bridges);
     }
 }
