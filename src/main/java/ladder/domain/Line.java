@@ -20,8 +20,7 @@ public class Line {
         }
     }
 
-    // TODO: 방어적 복사
     public List<Boolean> getScaffold() {
-        return scaffold;
+        return List.copyOf(scaffold);
     }
 }
