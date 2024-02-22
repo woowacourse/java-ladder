@@ -1,29 +1,23 @@
 package domain.ladder;
 
-import domain.BooleanGenerator;
-import domain.Connection;
-import java.util.HashMap;
-import java.util.Map;
+public enum LadderRung {
+    CONNECTED(true),
+    NOT_CONNECTED(false);
 
-public class LadderRung {
-    private static final Map<Boolean, LadderRung> CACHE = new HashMap<>();
+    private final boolean value;
 
-    private final boolean isConnected;
-
-    static {
-        CACHE.put(Connection.IS_CONNECTED.getValue(), new LadderRung(Connection.IS_CONNECTED.getValue()));
-        CACHE.put(Connection.IS_NOT_CONNECTED.getValue(), new LadderRung(Connection.IS_NOT_CONNECTED.getValue()));
+    LadderRung(final boolean value) {
+        this.value = value;
     }
 
-    private LadderRung(final boolean isConnected) {
-        this.isConnected = isConnected;
-    }
-
-    static LadderRung create(BooleanGenerator booleanGenerator) {
-        return CACHE.get(booleanGenerator.generate());
+    public static LadderRung findRung(boolean isConnected) {
+        if (CONNECTED.value == isConnected) {
+            return CONNECTED;
+        }
+        return NOT_CONNECTED;
     }
 
     public boolean isConnected() {
-        return this.isConnected;
+        return value;
     }
 }

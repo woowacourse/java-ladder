@@ -1,4 +1,4 @@
-package domain.name;
+package domain.player;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

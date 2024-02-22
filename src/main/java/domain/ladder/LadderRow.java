@@ -1,7 +1,6 @@
 package domain.ladder;
 
 import domain.BooleanGenerator;
-import domain.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +14,7 @@ public class LadderRow {
 
     static LadderRow create(int size, BooleanGenerator booleanGenerator) {
         final List<LadderRung> rungs = new ArrayList<>();
-        boolean lastConnected = Connection.IS_NOT_CONNECTED.getValue();
+        boolean lastConnected = LadderRung.NOT_CONNECTED.isConnected();
         for (int i = 0; i < size; i++) {
             LadderRung ladderRung = createRung(booleanGenerator, lastConnected);
             rungs.add(ladderRung);
@@ -26,9 +25,9 @@ public class LadderRow {
 
     private static LadderRung createRung(final BooleanGenerator booleanGenerator, final boolean lastConnected) {
         if (lastConnected) {
-            return LadderRung.create(Connection.IS_NOT_CONNECTED::getValue);
+            return LadderRung.findRung(LadderRung.NOT_CONNECTED.isConnected());
         }
-        return LadderRung.create(booleanGenerator);
+        return LadderRung.findRung(booleanGenerator.generate());
     }
 
     public List<LadderRung> getRungs() {

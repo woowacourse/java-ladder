@@ -1,24 +1,24 @@
-package domain.name;
+package domain.player;
 
 import java.util.List;
 
-public class Players {
+public class PlayerNames {
     private static final String DUPLICATE_EXCEPTION_MESSAGE = "[ERROR] 중복된 이름이 존재합니다.";
 
     private final List<PlayerName> names;
 
-    public Players(final List<PlayerName> names) {
+    public PlayerNames(final List<PlayerName> names) {
         validateDuplicateName(names);
         this.names = names;
     }
 
     private void validateDuplicateName(List<PlayerName> names) {
-        if (getUniqueNameSize(names) != names.size()) {
+        if (getUniqueNamesSize(names) != names.size()) {
             throw new IllegalArgumentException(DUPLICATE_EXCEPTION_MESSAGE);
         }
     }
 
-    private long getUniqueNameSize(final List<PlayerName> names) {
+    private long getUniqueNamesSize(final List<PlayerName> names) {
         return names.stream()
                 .distinct()
                 .count();
@@ -31,13 +31,13 @@ public class Players {
                 .orElse(0);
     }
 
+    public int getPlayerCount() {
+        return names.size();
+    }
+
     public List<String> getNames() {
         return names.stream()
                 .map(PlayerName::getValue)
                 .toList();
-    }
-
-    public int getPlayerCount() {
-        return names.size();
     }
 }

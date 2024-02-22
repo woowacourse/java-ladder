@@ -6,8 +6,8 @@ import static java.util.stream.Collectors.toList;
 import domain.BooleanGenerator;
 import domain.Height;
 import domain.ladder.Ladder;
-import domain.name.PlayerName;
-import domain.name.Players;
+import domain.player.PlayerName;
+import domain.player.PlayerNames;
 import java.util.List;
 import view.InputView;
 import view.OutputView;
@@ -21,22 +21,22 @@ public class LadderGame {
 
     public void run() {
         try {
-            Players players = generatePlayers();
+            PlayerNames playerNames = generatePlayers();
             Height height = generateHeight();
-            Ladder ladder = generateLadder(players, height);
+            Ladder ladder = generateLadder(playerNames, height);
 
-            OutputView.printPlayerNames(players);
-            OutputView.printLadder(players.findMaxNameLength(), ladder);
+            OutputView.printPlayerNames(playerNames);
+            OutputView.printLadder(playerNames.findMaxNameLength(), ladder);
         } catch (Exception e) {
             OutputView.printErrorMessage(e);
         }
     }
 
-    private Players generatePlayers() {
+    private PlayerNames generatePlayers() {
         List<String> names = InputView.inputPlayerNames();
         return names.stream()
                 .map(PlayerName::new)
-                .collect(collectingAndThen(toList(), Players::new));
+                .collect(collectingAndThen(toList(), PlayerNames::new));
     }
 
     private Height generateHeight() {
@@ -44,7 +44,7 @@ public class LadderGame {
         return new Height(height);
     }
 
-    private Ladder generateLadder(Players players, Height height) {
-        return Ladder.create(height, players.getPlayerCount(), booleanGenerator);
+    private Ladder generateLadder(PlayerNames playerNames, Height height) {
+        return Ladder.create(height, playerNames.getPlayerCount(), booleanGenerator);
     }
 }

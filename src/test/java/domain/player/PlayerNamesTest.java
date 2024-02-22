@@ -1,4 +1,4 @@
-package domain.name;
+package domain.player;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-public class PlayersTest {
+public class PlayerNamesTest {
     @Test
     void 중복된_이름이_존재하면_예외가_발생한다() {
         // given
@@ -16,7 +16,7 @@ public class PlayersTest {
         final List<PlayerName> names = List.of(duplicateName1, duplicateName2, uniqueName);
 
         // when & then
-        assertThatThrownBy(() -> new Players(names))
+        assertThatThrownBy(() -> new PlayerNames(names))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
@@ -29,6 +29,6 @@ public class PlayersTest {
         final List<PlayerName> names = List.of(uniqueName1, uniqueName2, uniqueName3);
 
         // when & then
-        assertDoesNotThrow(() -> new Players(names));
+        assertDoesNotThrow(() -> new PlayerNames(names));
     }
 }

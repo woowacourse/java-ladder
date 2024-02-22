@@ -3,7 +3,7 @@ package view;
 import domain.ladder.Ladder;
 import domain.ladder.LadderRow;
 import domain.ladder.LadderRung;
-import domain.name.Players;
+import domain.player.PlayerNames;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,9 +12,9 @@ public class OutputView {
     private static final String CONNECTED_RUNG = "-";
     private static final String LADDER_SIDE = "|";
 
-    public static void printPlayerNames(Players players) {
-        int maxLength = players.findMaxNameLength();
-        players.getNames().stream()
+    public static void printPlayerNames(PlayerNames playerNames) {
+        int maxLength = playerNames.findMaxNameLength();
+        playerNames.getNames().stream()
                 .map(name -> alignNameCenter(name, maxLength + 1))
                 .forEach(System.out::print);
         System.out.println();

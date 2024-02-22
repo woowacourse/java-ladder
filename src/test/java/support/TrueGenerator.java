@@ -1,11 +1,11 @@
 package support;
 
 import domain.BooleanGenerator;
-import domain.Connection;
+import domain.ladder.LadderRung;
 
 public class TrueGenerator implements BooleanGenerator {
     @Override
     public boolean generate() {
-        return Connection.IS_CONNECTED.getValue();
+        return LadderRung.CONNECTED.isConnected();
     }
 }
