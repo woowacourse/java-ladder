@@ -15,7 +15,8 @@ public class Ladder {
         BooleanListGenerator booleanListGenerator = new RandomBooleanListGenerator();
 
         while (!height.isSame(lines.size())) {
-            lines.add(new Line(people.count(), booleanListGenerator));
+            Line line = new Line(people.count(), booleanListGenerator);
+            lines.add(line);
         }
     }
 
