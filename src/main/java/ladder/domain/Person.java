@@ -6,8 +6,8 @@ public class Person {
     private final String name;
 
     public Person(String name) {
-        validate(name);
-        this.name = name;
+        this.name = name.strip();
+        validate(this.name);
     }
 
     private void validate(String name) {
