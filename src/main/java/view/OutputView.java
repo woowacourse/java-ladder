@@ -4,7 +4,6 @@ import domain.Ladder;
 import domain.Line;
 import domain.Players;
 import domain.Stick;
-
 import java.util.List;
 
 public class OutputView {

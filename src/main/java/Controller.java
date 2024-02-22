@@ -1,9 +1,8 @@
 import domain.Ladder;
 import domain.Players;
+import java.util.List;
 import view.InputView;
 import view.OutputView;
-
-import java.util.List;
 
 class Controller {
     private final InputView inputView;
