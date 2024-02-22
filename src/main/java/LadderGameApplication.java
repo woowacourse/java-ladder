@@ -1,8 +1,7 @@
 import controller.LadderGame;
+import java.util.Scanner;
 import view.InputView;
 import view.OutputView;
-
-import java.util.Scanner;
 
 public class LadderGameApplication {
 

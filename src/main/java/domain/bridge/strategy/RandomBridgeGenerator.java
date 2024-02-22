@@ -2,7 +2,6 @@ package domain.bridge.strategy;
 
 import domain.LadderBridge;
 import domain.bridge.BridgeGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

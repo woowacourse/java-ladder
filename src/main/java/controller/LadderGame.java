@@ -6,11 +6,11 @@ import domain.Ladder;
 import domain.LadderHeight;
 import domain.PlayerName;
 import domain.PlayerNames;
-import view.InputView;
-import view.OutputView;
-
+import domain.bridge.strategy.RandomBridgeGenerator;
 import java.util.Arrays;
 import java.util.List;
+import view.InputView;
+import view.OutputView;
 
 public class LadderGame extends Controller {
 
@@ -28,7 +28,7 @@ public class LadderGame extends Controller {
 
     private Ladder createLadder(PlayerNames playerNames, LadderHeight ladderHeight) {
         int pointCount = calculatePointCount(playerNames);
-        return Ladder.of(ladderHeight, pointCount);
+        return Ladder.of(ladderHeight, pointCount, new RandomBridgeGenerator());
     }
 
     private int calculatePointCount(PlayerNames playerNames) {

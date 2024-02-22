@@ -2,10 +2,9 @@ package controller;
 
 import common.exception.message.ExceptionMessage;
 import common.exception.model.IOException;
+import java.util.function.Supplier;
 import view.InputView;
 import view.OutputView;
-
-import java.util.function.Supplier;
 
 public class Controller {
     protected final InputView inputView;

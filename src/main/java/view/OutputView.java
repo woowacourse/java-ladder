@@ -4,7 +4,6 @@ import domain.Ladder;
 import domain.LadderBridge;
 import domain.Line;
 import domain.PlayerNames;
-
 import java.util.StringJoiner;
 
 public class OutputView {

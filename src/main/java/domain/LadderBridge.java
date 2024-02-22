@@ -2,7 +2,6 @@ package domain;
 
 import common.exception.message.ExceptionMessage;
 import common.exception.model.NotFoundException;
-
 import java.util.Arrays;
 
 public enum LadderBridge {
