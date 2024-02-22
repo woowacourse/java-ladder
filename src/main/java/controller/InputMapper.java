@@ -17,7 +17,7 @@ public class InputMapper {
         return new Height(Integer.parseInt(target));
     }
 
-    public void validateInputNumeric(String target) {
+    private void validateInputNumeric(String target) {
         try {
             Integer.parseInt(target);
         } catch (NumberFormatException e) {
