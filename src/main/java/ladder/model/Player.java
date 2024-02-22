@@ -18,7 +18,7 @@ public class Player {
         if (isNameEmpty(name)) {
             throw new IllegalArgumentException("이름이 비어 있습니다.");
         }
-        if (!isNameFormatValid(name)) {
+        if (isNameFormatNotValid(name)) {
             throw new IllegalArgumentException("이름은 영문자와 숫자로 구성되어야 합니다.");
         }
     }
@@ -31,8 +31,8 @@ public class Player {
         return name.isEmpty();
     }
 
-    private boolean isNameFormatValid(String name) {
-        return name.matches(NAME_PATTERN);
+    private boolean isNameFormatNotValid(String name) {
+        return !name.matches(NAME_PATTERN);
     }
 
     public String getName() {
