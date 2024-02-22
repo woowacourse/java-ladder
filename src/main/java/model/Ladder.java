@@ -1,8 +1,11 @@
 package model;
 
-import java.util.ArrayList;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Line> lines;
@@ -13,12 +16,9 @@ public class Ladder {
 
     public static Ladder create(LadderHeight height, Players players, BridgesGenerator bridgesGenerator) {
         int bridgeCount = players.getSizeOfPlayers() - 1;
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height.value(); i++) {
-            Line line = new Line(bridgesGenerator.pickBridges(bridgeCount));
-            lines.add(line);
-        }
-        return new Ladder(lines);
+        return IntStream.range(0, height.value())
+                .mapToObj(i -> new Line(bridgesGenerator.pickBridges(bridgeCount)))
+                .collect(collectingAndThen(toList(), Ladder::new));
     }
 
     public List<Line> getLines() {
