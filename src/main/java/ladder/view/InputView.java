@@ -14,8 +14,7 @@ public class InputView {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
         String names = new Scanner(System.in).nextLine();
-        // TODO Array 를 List로 바꾸는 방법 찾아보기
-        return Arrays.stream(names.split(NAME_DELIMITER)).toList();
+        return Arrays.asList(names.split(NAME_DELIMITER));
     }
 
     public int inputHeight() {
