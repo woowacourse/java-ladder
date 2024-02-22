@@ -8,53 +8,43 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.List;
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class LadderGame {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        final Participants participants = retryOnException(this::createParticipants);
+        final Participants participants = createParticipants();
         final int stepWidth = participants.getCount() - 1;
-        final Ladder ladder = retryOnException(this::createLadder, stepWidth);
+        final Ladder ladder = createLadder(stepWidth);
         printLadder(participants, ladder);
         inputView.closeResource();
     }
 
     private Participants createParticipants() {
-        final List<String> participantsName = inputView.readParticipantsName();
-        return new Participants(participantsName);
+        try {
+            final List<String> participantsName = inputView.readParticipantsName();
+            return new Participants(participantsName);
+        } catch (IllegalArgumentException e) {
+            outputView.printException(e);
+            return createParticipants();
+        }
     }
 
     private Ladder createLadder(final int stepWidth) {
-        final int ladderHeight = inputView.readLadderHeight();
-        final LadderStepGenerator ladderStepGenerator = new RandomLadderStepGenerator(stepWidth);
-        return new Ladder(ladderStepGenerator, ladderHeight);
+        try {
+            final int ladderHeight = inputView.readLadderHeight();
+            final LadderStepGenerator ladderStepGenerator = new RandomLadderStepGenerator(stepWidth);
+            return new Ladder(ladderStepGenerator, ladderHeight);
+        } catch (RuntimeException e) {
+            outputView.printException(e);
+            return createLadder(stepWidth);
+        }
     }
 
     private void printLadder(final Participants participants, final Ladder ladder) {
         outputView.printResultPrefix();
         outputView.printParticipants(participants);
         outputView.printLadder(ladder);
-    }
-
-    private <T> T retryOnException(Supplier<T> retryOperation) {
-        try {
-            return retryOperation.get();
-        } catch (RuntimeException e) {
-            outputView.printException(e);
-            return retryOnException(retryOperation);
-        }
-    }
-
-    private <T, R> R retryOnException(Function<T, R> retryOperation, T input) {
-        try {
-            return retryOperation.apply(input);
-        } catch (RuntimeException e) {
-            outputView.printException(e);
-            return retryOnException(retryOperation, input);
-        }
     }
 }
