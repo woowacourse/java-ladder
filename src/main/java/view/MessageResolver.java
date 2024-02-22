@@ -17,12 +17,10 @@ public class MessageResolver {
 
     public String resolveLines(Lines lines) {
         String result = "";
-
         for (int i = 0; i < lines.getLines().size(); i++) {
             result += resolveLine(lines.getLines().get(i));
             result += "\n";
         }
-
         return result;
     }
 
