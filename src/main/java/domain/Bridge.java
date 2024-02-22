@@ -15,7 +15,7 @@ public class Bridge {
         this.height = height;
     }
 
-    public boolean isAdjacent(Bridge bridge) {
+    public boolean isAdjacent(final Bridge bridge) {
         if (height != bridge.height) {
             return false;
         }

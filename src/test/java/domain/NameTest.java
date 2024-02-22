@@ -13,8 +13,8 @@ class NameTest {
     @Test
     @DisplayName("정상적인 이름은 예외를 발생하지 않는다")
     void normal_name_doesnt_throw_exception() {
-        String nameA = "A";
-        Name name = new Name(nameA);
+        final String nameA = "A";
+        final Name name = new Name(nameA);
 
         assertThat(name).isEqualTo(new Name(nameA));
     }
@@ -38,11 +38,9 @@ class NameTest {
     @ParameterizedTest
     @ValueSource(strings = {"망크", "+"})
     @DisplayName("이름이 영어와 숫자가 아니라면 예외가 발생한다")
-    void name_not_alphanumeric_throw_exception(String name) {
+    void name_not_alphanumeric_throw_exception(final String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름이 영어와 숫자가 아니라면 예외가 발생한다");
     }
-
-
 }
