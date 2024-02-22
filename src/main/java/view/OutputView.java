@@ -14,6 +14,9 @@ public class OutputView {
     private static final String CONNECTED_RUNG_CHARACTER = "-";
     private static final String LADDER_SIDE_CHARACTER = "|";
 
+    private OutputView() {
+    }
+
     public static void printPlayerNames(Players players) {
         int maxLength = players.findMaxNameLength();
         players.getNames().stream()
