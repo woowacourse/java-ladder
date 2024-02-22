@@ -6,12 +6,12 @@ public record LadderSize(int height, int width) {
     }
 
     private void validate(int height, int width) {
-        if (!isNaturalNumber(height) || !isNaturalNumber(width)) {
+        if (isNotNaturalNumber(height) || isNotNaturalNumber(width)) {
             throw new IllegalArgumentException("사다리 높이는 자연수여야 합니다.");
         }
     }
 
-    private boolean isNaturalNumber(int value) {
-        return value > 0;
+    private boolean isNotNaturalNumber(int value) {
+        return value <= 0;
     }
 }
