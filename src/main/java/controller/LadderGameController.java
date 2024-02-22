@@ -3,7 +3,6 @@ package controller;
 import java.util.function.Supplier;
 import model.Ladder;
 import model.LadderGame;
-import model.LadderHeight;
 import model.Participants;
 import model.RandomGenerator;
 import view.InputView;
@@ -29,9 +28,8 @@ public class LadderGameController {
     }
 
     private Ladder createLadder(int height, Participants participants) {
-        LadderHeight ladderHeight = new LadderHeight(height);
         RandomGenerator generator = new RandomGenerator();
-        LadderGame ladderGame = new LadderGame(ladderHeight, participants, generator);
+        LadderGame ladderGame = new LadderGame(height, participants, generator);
         return ladderGame.createLadder();
     }
 
