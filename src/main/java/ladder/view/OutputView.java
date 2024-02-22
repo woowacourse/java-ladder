@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class OutputView {
-    private static final String EXECUTION_RESULT = "실행결과";
+    private static final String EXECUTION_RESULT = "실행결과" + System.lineSeparator();
     private static final String PEOPLE_NAMES_DELIMITER = " ";
     private static final String LADDER_FORMAT = String.format("%%%ds", Person.getMaxLength());
     private static final String LINE_PILLAR = "|";

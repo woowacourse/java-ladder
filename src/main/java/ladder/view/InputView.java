@@ -12,11 +12,17 @@ public class InputView {
 
     public static String readPeopleNames() {
         OutputView.printMessage(PEOPLE_NAMES_INPUT_MESSAGE);
-        return scanner.nextLine();
+        String peopleNames = scanner.nextLine();
+
+        OutputView.printMessage("");
+        return peopleNames;
     }
 
     public static String readLadderHeight() {
         OutputView.printMessage(LADDER_HEIGHT_INPUT_MESSAGE);
-        return scanner.nextLine();
+        String ladderHeight = scanner.nextLine();
+
+        OutputView.printMessage("");
+        return ladderHeight;
     }
 }
