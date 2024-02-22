@@ -6,42 +6,44 @@ import java.util.List;
 
 public class Line {
 
-    private final List<Point> points;
+    private final List<Bridge> bridges;
 
     public Line(int playerCount, BooleanGenerator booleanGenerator) {
-        points = new ArrayList<>();
+        bridges = new ArrayList<>();
         generate(playerCount, booleanGenerator);
     }
 
     private void generate(int playerCount, BooleanGenerator booleanGenerator) {
-        for (int index = 0; index < playerCount; index++) {
-            index = makePoint(index, playerCount, booleanGenerator.generate());
+        for (int position = 0; position < playerCount - 1; position++) {
+            makePoint(booleanGenerator);
         }
     }
 
-    private int makePoint(int index, int playerCount, boolean isHorizon) {
-        if (isHorizon && index < playerCount - 1) {
-            generateHorizon();
-            return index + 1;
+    private void makePoint(BooleanGenerator booleanGenerator) {
+        if (bridges.isEmpty() || checkPreviousBlank()) {
+            makeBridge(booleanGenerator);
+            return;
         }
-        generateVertical();
-        return index;
+        bridges.add(Bridge.BLANK);
     }
 
-    private void generateHorizon() {
-        points.add(new Point(Direction.RIGHT));
-        points.add(new Point(Direction.LEFT));
+    private boolean checkPreviousBlank() {
+        return bridges.get(bridges.size() - 1) == Bridge.BLANK;
     }
 
-    private void generateVertical() {
-        points.add(new Point(Direction.DOWN));
+    private void makeBridge(BooleanGenerator booleanGenerator) {
+        if (booleanGenerator.generate()) {
+            bridges.add(Bridge.EXIST);
+            return;
+        }
+        bridges.add(Bridge.BLANK);
     }
 
-    public int getPointCount() {
-        return points.size();
+    public int getBridgeCount() {
+        return bridges.size();
     }
 
-    public List<Point> getPoints() {
-        return this.points;
+    public List<Bridge> getBridges() {
+        return bridges;
     }
 }

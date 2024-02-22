@@ -12,7 +12,7 @@ public class LineTest {
     @DisplayName("현재 생성된 Point의 갯수를 리턴하는 기능")
     @Test
     public void getPointCount() {
-        assertThat(new Line(5, new FixedBooleanGenerator(true)).getPointCount())
+        assertThat(new Line(5, new FixedBooleanGenerator(true)).getBridgeCount())
                 .isEqualTo(0);
     }
 
@@ -20,8 +20,8 @@ public class LineTest {
     @Test
     public void createLineTrueCase() {
         Line line = new Line(2, new FixedBooleanGenerator(true));
-        assertThat(line.getPoints()).isEqualTo(
-                List.of(new Point(Direction.RIGHT), new Point(Direction.LEFT)));
+        assertThat(line.getBridges()).isEqualTo(
+                List.of());
     }
 
     static class FixedBooleanGenerator implements BooleanGenerator {

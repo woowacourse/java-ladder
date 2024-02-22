@@ -10,22 +10,16 @@
 3. Height
     - 높이는 최소 2이상, 최대 10이하만 가능하다.
 
-4. Point
+4. Bridge
     - 방향값을 갖는 Direction을 갖는다.
 
-5. Direction
-    - LEFT, RIGHT, DOWN 세 방향을 갖는 enum.
-    - 1/2 확률로 RIGHT와 DOwN을 생성하도록 한다.
+5. Line
+    - Bridge를 가지는 일급 컬렉션.
+    - 각 Bridge의 존재 여부를 지정하며 생성한다.
+    - 쳣번째 Bridge면, 1/2 확률로 다리를 연결한다.
+    - 이전 Bridge가 존재하면 아니면 1/2 확률로 다리를 연결한다.
 
-6. Line
-    - Point들을 가지는 일급 컬렉션.
-    - 각 Point가 가질 수 있는 Direction을 지정하며 생성한다.
-    - 이전 Point가 RIGHT면 LEFT를 할당한다.
-    - 이전 Point가 RIGHT가 아니면 1/2 확률로 RIGHT 또는 DOWN을 할당한다.
-    - 쳣번째 Point면, 1/2 확률로 RIGHT 또는 DOWN을 할당한다.
-    - 마지막 Point면, 이전이 RIGHT면 LEFT, 아니면 DOWN,
-
-7. Ladder
+6. Ladder
     - Line들을 가지는 일급 컬렉션.
     - 생성자에서 참가자, 최대 높이, 랜덤 구현체를 바탕으로 사다리를 만든다.
 
@@ -33,7 +27,6 @@
 
 1. 이름 입력받는다.
     - 쉼표(,)를 기준으로 구분한다.
-
 
 2. 사다리 최대 높이를 입력받는다.
     - 숫자만 입력 가능하다.

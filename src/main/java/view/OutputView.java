@@ -1,39 +1,43 @@
 package view;
 
-import domain.Direction;
+import domain.Bridge;
 import domain.Ladder;
 import domain.Line;
-import domain.Point;
 import java.util.List;
 
 public class OutputView {
+
+    private static final String HORIZON_DELIMITER = "-";
+    private static final String VERTICAL_DELIMITER = "|";
+    private static final String SPACE = " ";
+    private static final String NEW_LINE = "\n";
+
 
     public void printPlayer(List<String> names) {
         System.out.println("실행 결과");
         System.out.println();
         names.forEach(name -> {
-            System.out.print(name);
-            System.out.print("   ");
+            System.out.print(String.format("%6s", name));
         });
         System.out.println();
     }
 
     public void printLadder(Ladder ladder, int maxPlayerNameLength, int length) {
         List<Line> lines = ladder.getLines();
-        StringBuffer sb = new StringBuffer();
+
         for (Line line : lines) {
-            sb.append(" ".repeat(length));
-            for (Point point : line.getPoints()) {
-                sb.append("|");
-                if (point.getDirection() == Direction.RIGHT) {
-                    sb.append("-".repeat(maxPlayerNameLength));
+            System.out.print(SPACE.repeat(length));
+            System.out.print(VERTICAL_DELIMITER);
+            for (Bridge bridge : line.getBridges()) {
+                if (bridge == Bridge.EXIST) {
+                    System.out.print(HORIZON_DELIMITER.repeat(maxPlayerNameLength));
+                    System.out.print(VERTICAL_DELIMITER);
                     continue;
                 }
-                sb.append(" ".repeat(maxPlayerNameLength));
+                System.out.print(SPACE.repeat(maxPlayerNameLength));
+                System.out.print(VERTICAL_DELIMITER);
             }
-            sb.append("\n");
+            System.out.println();
         }
-        System.out.println(sb);
     }
-
 }
