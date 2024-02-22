@@ -18,7 +18,7 @@ class HeightTest {
 
         Height height = new Height(value);
 
-        assertEquals(height.getHeight(), value);
+        assertEquals(height.toInt(), value);
     }
 
     @Test

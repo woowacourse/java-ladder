@@ -24,7 +24,7 @@ public class Height {
             throw new IllegalArgumentException("높이는 1 이상이여야 합니다.");
         }
     }
-    public int getHeight() {
+    public int toInt() {
         return height;
     }
 }
