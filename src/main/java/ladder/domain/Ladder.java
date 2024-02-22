@@ -1,21 +1,21 @@
 package ladder.domain;
 
-import ladder.util.BooleanListGenerator;
-import ladder.util.RandomBooleanListGenerator;
+import ladder.util.RandomPointsGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Ladder {
 
     private final List<Line> lines = new ArrayList<>();
 
     public Ladder(People people, Height height) {
-        BooleanListGenerator booleanListGenerator = new RandomBooleanListGenerator();
+        RandomPointsGenerator randomPointsGenerator = new RandomPointsGenerator(new Random());
 
         while (!height.isSame(lines.size())) {
-            Line line = new Line(people.count(), booleanListGenerator);
+            Line line = new Line(people.count(), randomPointsGenerator);
             lines.add(line);
         }
     }

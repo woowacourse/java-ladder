@@ -1,23 +1,23 @@
 package ladder.domain;
 
-import ladder.util.BooleanListGenerator;
+import ladder.util.RandomPointsGenerator;
 
 import java.util.Collections;
 import java.util.List;
 
 public class Line {
 
-    private final BooleanListGenerator booleanListGenerator;
+    private final RandomPointsGenerator randomPointsGenerator;
     private final List<Point> points;
 
-    public Line(int personCount, BooleanListGenerator booleanListGenerator) {
-        this.booleanListGenerator = booleanListGenerator;
+    public Line(int personCount, RandomPointsGenerator randomPointsGenerator) {
+        this.randomPointsGenerator = randomPointsGenerator;
         this.points = createPoints(personCount - 1);
         ensurePoints();
     }
 
     private List<Point> createPoints(int size) {
-        List<Point> points = booleanListGenerator.generate(size);
+        List<Point> points = randomPointsGenerator.generate(size);
         if (!points.contains(Point.ON)) {
             return createPoints(size);
         }
