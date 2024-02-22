@@ -26,8 +26,8 @@ public class OutputView {
 
     private static void printPlayers(List<Player> players) {
         System.out.print(players.get(0).getName() + " ");
-        players.stream().skip(1).forEach((it) -> {
-            System.out.printf(FORMAT_NAME, it.getName());
+        players.stream().skip(1).forEach((player) -> {
+            System.out.printf(FORMAT_NAME, player.getName());
         });
         System.out.println();
     }
