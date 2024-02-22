@@ -26,7 +26,7 @@ public class LadderGame {
             final Ladder ladder = generateLadder(playerNames, height);
 
             OutputView.printPlayerNames(playerNames);
-            OutputView.printLadder(playerNames.findMaxNameLength(), ladder);
+            OutputView.printLadder(ladder, playerNames.findMaxNameLength());
         } catch (Exception e) {
             OutputView.printErrorMessage(e);
         }

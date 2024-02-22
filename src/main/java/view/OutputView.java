@@ -8,43 +8,49 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private static final String DISCONNECTED_RUNG = " ";
     private static final String CONNECTED_RUNG = "-";
-    private static final String LADDER_SIDE = "|";
+    private static final String NOT_CONNECTED_RUNG = " ";
+    private static final String LADDER_COLUMN = "|";
+    public static final String SPACE = " ";
 
     public static void printPlayerNames(PlayerNames playerNames) {
+        StringBuilder stringBuilder = new StringBuilder();
+
         int maxLength = playerNames.findMaxNameLength();
-        playerNames.getNames().stream()
-                .map(name -> alignNameCenter(name, maxLength + 1))
-                .forEach(System.out::print);
-        System.out.println();
+        playerNames.getNames()
+                .stream()
+                .map(name -> alignStringCenter(name, maxLength + 1))
+                .forEach(stringBuilder::append);
+
+        System.out.println(stringBuilder);
     }
 
-    private static String alignNameCenter(String name, int length) {
-        int spaces = length - name.length();
+    private static String alignStringCenter(String input, int length) {
+        int spaces = length - input.length();
         int left = spaces / 2;
         int right = spaces - left;
-        return " ".repeat(left) + name + " ".repeat(right);
+        return SPACE.repeat(left) + input + SPACE.repeat(right);
     }
 
-    public static void printLadder(int length, Ladder ladder) {
+    public static void printLadder(Ladder ladder, int length) {
         ladder.getRows()
                 .stream()
                 .map(LadderRow::getRungs)
-                .forEach(rungs -> System.out.println(makeMessage(rungs, length)));
+                .forEach(rungs -> System.out.println(makeLadderRowText(rungs, length)));
     }
 
-    private static String makeMessage(List<LadderRung> rungs, int length) {
-        return " ".repeat(length) + rungs.stream()
-                .map(rung -> makeRung(length, rung))
-                .collect(Collectors.joining(LADDER_SIDE, LADDER_SIDE, LADDER_SIDE));
+    private static String makeLadderRowText(List<LadderRung> rungs, int length) {
+        return SPACE.repeat(length) +
+                rungs.stream()
+                        .map(rung -> makeLadderRungText(rung, length))
+                        .collect(Collectors.joining(LADDER_COLUMN, LADDER_COLUMN, LADDER_COLUMN));
     }
 
-    private static String makeRung(int length, LadderRung rung) {
+    private static String makeLadderRungText(LadderRung rung, int length) {
         if (rung.isConnected()) {
             return CONNECTED_RUNG.repeat(length);
         }
-        return DISCONNECTED_RUNG.repeat(length);
+        return NOT_CONNECTED_RUNG.repeat(length);
     }
 
     public static void printErrorMessage(Exception e) {
