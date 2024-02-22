@@ -22,11 +22,19 @@ public class LadderGameController {
         Participants participants = inputView.readParticipantNames();
         int height = inputView.readLadderHeight();
 
+        Ladder ladder = createLadder(height, participants);
+
+        printResult(participants, ladder);
+    }
+
+    private Ladder createLadder(int height, Participants participants) {
         LadderHeight ladderHeight = new LadderHeight(height);
         RandomGenerator generator = new RandomGenerator();
         LadderGame ladderGame = new LadderGame(ladderHeight, participants, generator);
-        Ladder ladder = ladderGame.createLadder();
+        return ladderGame.createLadder();
+    }
 
+    private void printResult(Participants participants, Ladder ladder) {
         outputView.printResultHeader();
         outputView.printParticipantsNames(participants);
         outputView.printLadder(ladder);
