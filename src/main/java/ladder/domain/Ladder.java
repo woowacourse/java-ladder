@@ -4,18 +4,17 @@ import ladder.util.BooleanListGenerator;
 import ladder.util.RandomBooleanListGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Ladder {
 
     private final List<Line> lines = new ArrayList<>();
 
-
-    public Ladder(Height height, People people) {
+    public Ladder(People people, Height height) {
         BooleanListGenerator booleanListGenerator = new RandomBooleanListGenerator();
 
-        while (!height.isSame(getLinesSize())) {
+        while (!height.isSame(lines.size())) {
             lines.add(new Line(people.count(), booleanListGenerator));
         }
     }
