@@ -17,7 +17,7 @@ public class StepStatusTest {
 
     @DisplayName("EXIST면 true를 반환한다.")
     @Test
-    void cheRckIsExist() {
+    void checkIsExist() {
         assertThat(EXIST.isExist())
                 .isTrue();
     }
