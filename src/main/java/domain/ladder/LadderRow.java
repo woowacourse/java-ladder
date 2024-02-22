@@ -12,19 +12,19 @@ public class LadderRow {
         this.rungs = rungs;
     }
 
-    static LadderRow create(BooleanGenerator booleanGenerator, int size) {
+    public static LadderRow create(BooleanGenerator booleanGenerator, int size) {
         final List<LadderRung> rungs = new ArrayList<>();
-        boolean lastConnected = LadderRung.NOT_CONNECTED.isConnected();
+        boolean isLastConnected = LadderRung.NOT_CONNECTED.isConnected();
         for (int i = 0; i < size; i++) {
-            LadderRung ladderRung = createRung(booleanGenerator, lastConnected);
+            LadderRung ladderRung = findNextRung(booleanGenerator, isLastConnected);
             rungs.add(ladderRung);
-            lastConnected = ladderRung.isConnected();
+            isLastConnected = ladderRung.isConnected();
         }
         return new LadderRow(rungs);
     }
 
-    private static LadderRung createRung(final BooleanGenerator booleanGenerator, final boolean lastConnected) {
-        if (lastConnected) {
+    private static LadderRung findNextRung(final BooleanGenerator booleanGenerator, final boolean isLastConnected) {
+        if (isLastConnected) {
             return LadderRung.findRung(LadderRung.NOT_CONNECTED.isConnected());
         }
         return LadderRung.findRung(booleanGenerator.generate());

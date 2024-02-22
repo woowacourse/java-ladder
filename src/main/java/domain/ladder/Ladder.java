@@ -15,13 +15,17 @@ public class Ladder {
 
     public static Ladder create(final BooleanGenerator booleanGenerator, final Height height, final int playerSize) {
         final List<LadderRow> rows = new ArrayList<>();
-        for (int i = 0; i < height.getValue(); i++) { // TODO 매직넘버 변수 설정
-            final LadderRow ladderRow = LadderRow.create(booleanGenerator, playerSize - 1);
+        for (int i = 0; i < height.getValue(); i++) {
+            final LadderRow ladderRow = LadderRow.create(booleanGenerator, getColumnSize(playerSize));
             rows.add(ladderRow);
         }
         return new Ladder(rows);
     }
-    
+
+    private static int getColumnSize(final int playerSize) {
+        return playerSize - 1;
+    }
+
     public List<LadderRow> getRows() {
         return Collections.unmodifiableList(rows);
     }
