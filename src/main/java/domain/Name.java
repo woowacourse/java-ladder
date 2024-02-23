@@ -1,6 +1,5 @@
 package domain;
 
-import constant.Exception;
 import exception.domain.NameExceptionMessage;
 
 public class Name {

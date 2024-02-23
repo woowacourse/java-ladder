@@ -1,6 +1,5 @@
 package domain;
 
-import constant.Exception;
 import exception.domain.ParticipantsExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

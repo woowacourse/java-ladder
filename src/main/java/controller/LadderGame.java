@@ -1,6 +1,5 @@
 package controller;
 
-import exception.Exception;
 import domain.Ladder;
 import domain.Participants;
 import exception.controller.LadderGameExceptionMessage;
