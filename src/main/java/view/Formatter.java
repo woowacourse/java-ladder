@@ -9,17 +9,6 @@ public class Formatter {
     private Formatter() {
     }
 
-    public static String formatPlayers(List<String> names) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.format("%s ", names.get(0)));
-        for (String name : names.subList(1, names.size() - 1)) {
-            stringBuilder.append(String.format("%6s", name));
-        }
-        String lastPlayer = names.get(names.size() - 1);
-        stringBuilder.append(String.format("%5s", lastPlayer));
-        return stringBuilder.toString();
-    }
-
     public static String formatLadder(int paddingSize, List<Line> lines) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Line line : lines) {

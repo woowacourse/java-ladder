@@ -47,4 +47,24 @@ public class Players {
     public int size() {
         return players.size();
     }
+
+    public String format() {
+        return String.format("%s%s%s", formatFirstPlayer(), formatMiddlePlayer(), formatLastPlayer());
+    }
+
+    private String formatFirstPlayer() {
+        return String.format("%s ", players.get(0).getName());
+    }
+
+    private String formatMiddlePlayer() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Player player : players.subList(1, players.size() - 1)) {
+            stringBuilder.append(String.format("%6s", player.getName()));
+        }
+        return stringBuilder.toString();
+    }
+
+    private String formatLastPlayer() {
+        return String.format("%5s", players.get(players.size() - 1).getName());
+    }
 }

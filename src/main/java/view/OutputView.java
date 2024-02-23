@@ -14,12 +14,24 @@ public class OutputView {
     }
 
     private void printPlayers(List<String> names) {
-        String value = Formatter.formatPlayers(names);
-        System.out.println(value);
+        System.out.println(formatNames(names));
     }
 
     private void printLadder(int paddingSize, List<Line> lines) {
         String value = Formatter.formatLadder(paddingSize, lines);
         System.out.printf(value);
+    }
+
+    private String formatNames(List<String> names) {
+        StringBuilder stringBuilder = new StringBuilder();
+        // 첫번째
+        stringBuilder.append(String.format("%s ", names.get(0)));
+
+        for (String name : names.subList(1, names.size() - 1)) {
+            stringBuilder.append(String.format("%6s", name));
+        }
+        String lastPlayer = names.get(names.size() - 1);
+        stringBuilder.append(String.format("%5s", lastPlayer));
+        return stringBuilder.toString();
     }
 }
