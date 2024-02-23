@@ -6,6 +6,7 @@ import model.dto.LayerSteps;
 
 public class Ladder {
     private static final int MIN_LADDER_HEIGHT = 1;
+
     private final List<Layer> layers;
 
     public Ladder(int height, int numberOfParticipants) {

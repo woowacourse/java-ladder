@@ -7,6 +7,7 @@ import model.dto.ParticipantName;
 
 public class Participants {
     private static final int MIN_PARTICIPANT_COUNT = 2;
+
     private final List<Participant> participants;
 
     public Participants(List<String> names) {
