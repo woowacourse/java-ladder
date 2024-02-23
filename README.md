@@ -81,3 +81,4 @@ pobi  honux crong   jk
   - [X] HeightTest
     - [X] 테스트명 변경
 - [X] Person 추가
+- [X] Person -> Player, People -> Players 변경

@@ -18,13 +18,13 @@ public class ResultView {
 
     public static void printResult(Players players, Ladder ladder) {
         System.out.println("\n실행 결과\n");
-        printPeople(players);
+        printPlayers(players);
         printLadder(ladder);
     }
 
-    private static void printPeople(Players players) {
+    private static void printPlayers(Players players) {
         StringJoiner stringJoiner = new StringJoiner(NAME_DELIMITER);
-        players.stream().forEach(person -> stringJoiner.add(NAME_FORMAT.formatted(person.name())));
+        players.stream().forEach(player -> stringJoiner.add(NAME_FORMAT.formatted(player.name())));
         System.out.println(stringJoiner);
     }
 

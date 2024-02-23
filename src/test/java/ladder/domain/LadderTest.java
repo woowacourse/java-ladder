@@ -39,12 +39,12 @@ class LadderTest {
         LadderLevel anyLadderLevel = ladder.stream().findFirst().get();
 
         int actualHeight = (int) ladder.stream().count();
-        int actualPeopleCount = (int) anyLadderLevel.stream().count();
+        int actualPlayersCount = (int) anyLadderLevel.stream().count();
 
         // then
         assertAll(
                 () -> assertThat(actualHeight).isEqualTo(height.value()),
-                () -> assertThat(actualPeopleCount).isEqualTo(players.count())
+                () -> assertThat(actualPlayersCount).isEqualTo(players.count())
         );
     }
 }

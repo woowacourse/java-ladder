@@ -11,9 +11,9 @@ import org.junit.jupiter.api.Test;
 
 class PlayersTest {
 
-    @DisplayName("이름을 입력하여 People을 생성한다.")
+    @DisplayName("이름을 입력하여 Players를 생성한다.")
     @Test
-    void peopleConstructTest() {
+    void playersConstructTest() {
         assertThatCode(() -> new Players(List.of("명오", "제우스")))
                 .doesNotThrowAnyException();
     }
@@ -29,7 +29,7 @@ class PlayersTest {
 
     @DisplayName("사람 수를 반환한다.")
     @Test
-    void peopleCountTest() {
+    void playersCountTest() {
         Players players = new Players(List.of("명오", "제우스"));
         assertThat(players.count()).isEqualTo(2);
     }

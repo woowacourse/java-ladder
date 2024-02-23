@@ -5,25 +5,25 @@ import java.util.stream.Stream;
 
 public class Players {
 
-    private static final int MIN_PEOPLE_COUNT = 2;
+    private static final int MIN_PLAYER_COUNT = 2;
 
-    private final List<Player> people;
+    private final List<Player> players;
 
     public Players(List<String> names) {
         validate(names);
-        people = names.stream()
+        players = names.stream()
                 .map(Player::new)
                 .toList();
     }
 
     private void validate(List<String> names) {
-        validatePeopleCount(names);
+        validatePlayersCount(names);
         validateDuplicatedName(names);
     }
 
-    private void validatePeopleCount(List<String> names) {
-        if (names.size() < MIN_PEOPLE_COUNT) {
-            throw new IllegalArgumentException("참여자는 최소 %d명입니다.".formatted(MIN_PEOPLE_COUNT));
+    private void validatePlayersCount(List<String> names) {
+        if (names.size() < MIN_PLAYER_COUNT) {
+            throw new IllegalArgumentException("참여자는 최소 %d명입니다.".formatted(MIN_PLAYER_COUNT));
         }
     }
 
@@ -35,10 +35,10 @@ public class Players {
     }
 
     public int count() {
-        return people.size();
+        return players.size();
     }
 
     public Stream<Player> stream() {
-        return people.stream();
+        return players.stream();
     }
 }
