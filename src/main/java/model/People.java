@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class People {
@@ -19,9 +20,11 @@ public class People {
     }
 
     public static People from(final List<String> names) {
-        final List<Person> personGroup = names.stream()
-                .map(Person::from)
-                .toList();
+        final List<Person> personGroup = new ArrayList<>(names.size());
+        for (int column = 0; column < names.size(); column++) {
+            final Person person = Person.from(names.get(column), column);
+            personGroup.add(person);
+        }
         return new People(personGroup);
     }
 
