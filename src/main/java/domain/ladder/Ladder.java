@@ -25,10 +25,10 @@ public class Ladder {
         List<LadderLeg> ladderLegs = new ArrayList<>();
         LadderLeg ladderLeg = ladderLegGenerator.generateDownLadderLeg();
         for (int i = 0; i < this.playerCount - 1; i++) {
-            ladderLeg = ladderLegGenerator.generateLadderLeg(ladderLeg, directionGenerator.generate());
+            ladderLeg = ladderLegGenerator.generateLadderLeg(ladderLeg, directionGenerator::generate);
             ladderLegs.add(ladderLeg);
         }
-        ladderLegs.add(ladderLegGenerator.generateLadderLeg(ladderLeg, Direction.DOWN));
+        ladderLegs.add(ladderLegGenerator.generateLadderLeg(ladderLeg, () -> Direction.DOWN));
         return ladderLegs;
     }
 

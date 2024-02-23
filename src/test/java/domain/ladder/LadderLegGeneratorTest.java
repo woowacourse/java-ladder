@@ -45,7 +45,7 @@ class LadderLegGeneratorTest {
         FixedDirectionGenerator fixedDirectionGenerator = new FixedDirectionGenerator(fixedDirectionList);
         LadderLeg ladderLeg = ladderLegGenerator
                 .generateLadderLeg(downLadderLeg,
-                        fixedDirectionGenerator.generate());
+                        () -> fixedDirectionGenerator.generate());
         for (int i = 0; i < 5; i++) {
             assertEquals(ladderLeg.getDirectionAtIndex(i), fixedDirectionList.get(i));
         }
@@ -61,12 +61,12 @@ class LadderLegGeneratorTest {
         LadderLeg rightLadderLeg =
                 ladderLegGenerator.generateLadderLeg(
                         ladderLegGenerator.generateDownLadderLeg(),
-                       new FixedDirectionGenerator(fixedDirectionList).generate());
+                        () -> new FixedDirectionGenerator(fixedDirectionList).generate());
 
         LadderLeg testLeftLadderLeg =
                 ladderLegGenerator.generateLadderLeg(
                         rightLadderLeg,
-                        new FixedDirectionGenerator(fixedDirectionList).generate());
+                        () -> new FixedDirectionGenerator(fixedDirectionList).generate());
 
         for (int i = 0; i < 5; i++) {
             assertEquals(testLeftLadderLeg.getDirectionAtIndex(i), Direction.LEFT);
