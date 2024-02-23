@@ -1,5 +1,7 @@
-package domain;
+package domain.lines;
 
+import domain.BooleanGenerator;
+import domain.RandomBooleanGenerator;
 import domain.line.Line;
 
 import java.util.ArrayList;
@@ -7,16 +9,24 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Lines {
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
+    final int height;
+    final int personCount;
     private final BooleanGenerator generator = new RandomBooleanGenerator();
 
     public Lines(final int height, final int personCount) {
-        IntStream.range(0, height)
-                .mapToObj(index -> new Line(personCount, generator))
-                .forEach(lines::add);
+        this.height = height;
+        this.personCount = personCount;
+        lines = new ArrayList<>();
     }
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    private List<Line> createLines() {
+        return IntStream.range(0, height)
+                .mapToObj(index -> new Line(personCount, generator))
+                .toList();
     }
 }

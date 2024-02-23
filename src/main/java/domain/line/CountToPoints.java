@@ -5,7 +5,7 @@ import domain.BooleanGenerator;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class CreateLine implements LineValue{
+public class CreateLine implements Points {
     private final int source;
 
     public CreateLine(int source) {

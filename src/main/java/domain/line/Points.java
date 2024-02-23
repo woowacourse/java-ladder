@@ -4,6 +4,6 @@ import domain.BooleanGenerator;
 
 import java.util.List;
 
-public interface LineValue {
+public interface Points {
     List<Point> value(BooleanGenerator generator);
 }
