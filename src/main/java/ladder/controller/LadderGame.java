@@ -3,7 +3,6 @@ package ladder.controller;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.participant.Participants;
-import ladder.domain.generator.LadderStepGenerator;
 import ladder.domain.generator.RandomLadderStepGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -29,7 +28,7 @@ public class LadderGame {
 
     private Ladder createLadder(final int stepWidth) {
         final Height height = retryOnException(this::readLadderHeight);
-        final LadderStepGenerator ladderStepGenerator = new RandomLadderStepGenerator(stepWidth);
+        final RandomLadderStepGenerator ladderStepGenerator = new RandomLadderStepGenerator(stepWidth);
         return new Ladder(ladderStepGenerator, height);
     }
 
