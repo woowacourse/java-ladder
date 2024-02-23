@@ -20,7 +20,7 @@ public class LineTest {
     @Test
     public void createLineNonContinuous() {
         Line line = new Line(4, new FixedBooleanGenerator(true));
-        assertThat(line.getBridges()).isEqualTo(List.of(Bridge.EXIST, Bridge.BLANK, Bridge.EXIST));
+        assertThat(line.getBridgesInformation()).isEqualTo(List.of(true, false, true));
     }
 
     static class FixedBooleanGenerator implements BooleanGenerator {

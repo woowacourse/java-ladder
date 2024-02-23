@@ -3,13 +3,23 @@ package domain;
 import domain.booleangenerator.BooleanGenerator;
 
 public enum Bridge {
-    EXIST,
-    BLANK;
+    EXIST(true),
+    BLANK(false);
+
+    private final boolean isExist;
+
+    Bridge(boolean isExist) {
+        this.isExist = isExist;
+    }
 
     public static Bridge of(BooleanGenerator booleanGenerator) {
         if (booleanGenerator.generate()) {
             return EXIST;
         }
         return BLANK;
+    }
+
+    public boolean toBoolean() {
+        return isExist;
     }
 }

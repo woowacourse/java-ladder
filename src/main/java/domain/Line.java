@@ -31,7 +31,9 @@ public class Line {
         return bridges.size();
     }
 
-    public List<Bridge> getBridges() {
-        return bridges;
+    public List<Boolean> getBridgesInformation() {
+        return bridges.stream().map(Bridge::toBoolean).toList();
     }
+
+
 }
