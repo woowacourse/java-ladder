@@ -1,17 +1,14 @@
 package controller;
 
-import domain.*;
+import domain.GameBoard;
 import domain.ladder.Ladder;
 import domain.ladder.common.Height;
-import domain.player.Name;
 import domain.player.Names;
-import domain.player.Player;
 import domain.player.Players;
 import util.RandomDirectionGenerator;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
 import java.util.stream.IntStream;
 
 public class GameController {

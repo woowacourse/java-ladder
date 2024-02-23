@@ -2,7 +2,6 @@ package domain.ladder;
 
 import domain.ladder.common.Direction;
 import domain.ladder.common.Height;
-import domain.ladder.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,9 +26,10 @@ class LadderTest {
 
         assertInstanceOf(Ladder.class, ladder);
     }
+
     @Test
     @DisplayName("특정 높이 가지들의 방향들을 가져온다.")
-    public void getDirectionAtHorizontalIndex(){
+    public void getDirectionAtHorizontalIndex() {
         Height height = new Height("5");
         Integer playerCount = 5;
         List<Direction> fixedDirectionList = IntStream.rangeClosed(0, 20)
@@ -39,8 +39,8 @@ class LadderTest {
         Ladder ladder = new Ladder(height, playerCount, new FixedDirectionGenerator(fixedDirectionList));
 
         List<Direction> directions = ladder.getDirectionAtHorizontalIndex(0);
-        List<Direction> expected = List.of(Direction.RIGHT,Direction.LEFT,Direction.RIGHT,Direction.LEFT,Direction.DOWN);
-        assertEquals(directions,expected);
+        List<Direction> expected = List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT, Direction.DOWN);
+        assertEquals(directions, expected);
     }
 
 

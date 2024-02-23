@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 public class LadderLegGenerator {
 
-    private static final Supplier<Direction> leftDirectionSupplier = () -> Direction.LEFT;
+    private static final Supplier<Direction> downDirectionSupplier = () -> Direction.DOWN;
     private final Height height;
 
     public LadderLegGenerator(Height height) {
@@ -19,18 +19,18 @@ public class LadderLegGenerator {
 
     public LadderLeg generateDownLadderLeg() {
         return new LadderLeg(convertDirectionToLegPieceList(IntStream.range(0, height.getHeight())
-                                                                     .mapToObj(index -> Direction.DOWN)));
+                                                                     .mapToObj(index -> downDirectionSupplier.get())));
     }
 
     public LadderLeg generateLadderLeg(LadderLeg previousLadderLeg, Supplier<Direction> directionSupplier) {
         return new LadderLeg(convertDirectionToLegPieceList(IntStream.range(0, height.getHeight())
-                                                        .mapToObj(previousLadderLeg::hasRightDirectionAtIndex)
-                                                        .map(flag -> determineDirection(flag, directionSupplier))));
+                                                                     .mapToObj(previousLadderLeg::hasRightDirectionAtIndex)
+                                                                     .map(flag -> determineDirection(flag, directionSupplier))));
     }
 
     private Direction determineDirection(boolean prevRightDirectionFlag, Supplier<Direction> directionSupplier) {
         if (prevRightDirectionFlag) {
-            return leftDirectionSupplier.get();
+            return Direction.LEFT;
         }
         return directionSupplier.get();
     }

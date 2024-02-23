@@ -23,12 +23,15 @@ public class OutputView {
                    .forEach(System.out::print);
         printNewLine();
     }
+
     private static String padString(String name) {
         return NAME_SPACE_UNIT.repeat(NAME_SPACE_SIZE - name.length()) + name;
     }
+
     private static void printNewLine() {
         System.out.print(System.lineSeparator());
     }
+
     public static void printDirections(List<Direction> directions) {
 
         StringBuilder resultStringBuilder = new StringBuilder();

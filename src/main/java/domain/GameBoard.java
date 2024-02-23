@@ -2,7 +2,6 @@ package domain;
 
 import domain.ladder.Ladder;
 import domain.ladder.common.Direction;
-import domain.player.Player;
 import domain.player.Players;
 
 import java.util.List;
@@ -10,7 +9,8 @@ import java.util.List;
 public class GameBoard {
     private final Players players;
     private final Ladder ladder;
-    public GameBoard(Players players, Ladder ladder){
+
+    public GameBoard(Players players, Ladder ladder) {
         this.players = players;
         this.ladder = ladder;
     }
@@ -18,14 +18,16 @@ public class GameBoard {
     public Players getPlayers() {
         return players;
     }
-    public int getLadderHeight(){
+
+    public int getLadderHeight() {
         return ladder.getHeight();
     }
 
     public Ladder getLadder() {
         return ladder;
     }
-    public List<Direction> getDirectionAtHorizontalIndex(Integer index){
+
+    public List<Direction> getDirectionAtHorizontalIndex(Integer index) {
         return ladder.getDirectionAtHorizontalIndex(index);
     }
 }

@@ -2,8 +2,6 @@ package domain.ladder;
 
 import domain.ladder.common.Direction;
 import domain.ladder.common.Height;
-import domain.ladder.LadderLeg;
-import domain.ladder.LadderLegGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.DirectionGenerator;
@@ -48,7 +46,7 @@ class LadderLegGeneratorTest {
         DirectionGenerator directionGenerator = new FixedDirectionGenerator(fixedDirectionList);
         LadderLeg ladderLeg = ladderLegGenerator
                 .generateLadderLeg(downLadderLeg,
-                        ()->directionGenerator.generate());
+                        () -> directionGenerator.generate());
         for (int i = 0; i < 5; i++) {
             assertEquals(ladderLeg.getDirectionAtIndex(i), fixedDirectionList.get(i));
         }
