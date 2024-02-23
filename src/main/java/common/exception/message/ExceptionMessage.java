@@ -16,7 +16,7 @@ public class ExceptionMessage {
     public static final String PLAYER_NAME_BLANK = "참가자 이름으로 공백을 사용할 수 없습니다";
     public static final String LADDER_HEIGHT_RANGE = String.format("사다리 높이의 범위는 %d 이상, %d 이하여야 합니다",
             LadderHeight.HEIGHT_MIN_RANGE, LadderHeight.HEIGHT_MAX_RANGE);
-    public static final String SERIAL_BRIDGE = "사다리의 가로 라인에 연속되는 다리가 올 수 없습니다";
+    public static final String SERIAL_LADDER_BRIDGE = "사다리의 가로 라인에 연속되는 다리가 올 수 없습니다";
 
     /**
      * NotFoundException

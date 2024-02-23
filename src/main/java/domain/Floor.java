@@ -24,7 +24,7 @@ public class Floor {
 
     private void isSerialBridge(LadderBridge beforeBridge, LadderBridge nextBridge) {
         if (beforeBridge.equals(LadderBridge.BRIDGE) && beforeBridge == nextBridge) {
-            throw new ValidationException(ExceptionMessage.SERIAL_BRIDGE);
+            throw new ValidationException(ExceptionMessage.SERIAL_LADDER_BRIDGE);
         }
     }
 
