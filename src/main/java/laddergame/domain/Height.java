@@ -13,11 +13,11 @@ public class Height {
     }
 
     private void validate(final String height) {
-        checkIsNumber(height);
+        checkIsNotMinus(height);
         checkIsZero(height);
     }
 
-    private void checkIsNumber(final String height) {
+    private void checkIsNotMinus(final String height) {
         if (!NUMBER_REGEX.matcher(height).matches()) {
             throw new IllegalArgumentException(NATURAL_NUMBER_ERROR);
         }
