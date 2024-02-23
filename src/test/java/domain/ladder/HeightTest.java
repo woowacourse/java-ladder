@@ -1,4 +1,4 @@
-package domain.player;
+package domain.ladder;
 
 import domain.ladder.common.Height;
 import org.junit.jupiter.api.DisplayName;
