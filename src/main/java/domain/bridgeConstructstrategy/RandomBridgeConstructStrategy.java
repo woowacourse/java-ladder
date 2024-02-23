@@ -15,16 +15,14 @@ public class RandomBridgeConstructStrategy implements BridgeConstructStrategy {
     public Bridges generate(int count) {
         List<Bridge> result = new ArrayList<>();
         Random random = new Random();
-
-        for (int i = 0; i < count; i++) { // TODO 변수 네이 2
-
-            addToBridge(result, random, i);
+        for (int index = 0; index < count; index++) {
+            addToBridge(result, random, index);
         }
         return new Bridges(result);
     }
 
-    private void addToBridge(List<Bridge> result, Random random, int i) {
-        if (hasPreviousBridge(result, i)) {
+    private void addToBridge(List<Bridge> result, Random random, int index) {
+        if (hasPreviousBridge(result, index)) {
             result.add(Bridge.EMPTY);
             return;
         }
@@ -33,7 +31,7 @@ public class RandomBridgeConstructStrategy implements BridgeConstructStrategy {
         result.add(randomBridge);
     }
 
-    private boolean hasPreviousBridge(List<Bridge> result, int i) {
-        return i != 0 && result.get(i - 1) == Bridge.BUILT;
+    private boolean hasPreviousBridge(List<Bridge> result, int index) {
+        return index != 0 && result.get(index - 1) == Bridge.BUILT;
     }
 }
