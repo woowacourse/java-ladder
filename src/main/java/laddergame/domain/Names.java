@@ -9,10 +9,17 @@ public class Names {
     private final List<Name> names;
 
     public Names(final List<String> input) {
+        validateSize(input);
         final List<Name> names = convertToNames(input);
         validateDuplication(names);
 
         this.names = names;
+    }
+
+    private void validateSize(final List<String> input) {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 참가자는 1명이상이어야 합니다.");
+        }
     }
 
     private List<Name> convertToNames(final List<String> input) {
