@@ -5,8 +5,9 @@ import java.util.stream.Collectors;
 
 class RowString {
     static String from(Row row) {
-        List<Boolean> rowInfos = row.getRowInfos();
-        String rawRowString = rowInfos.stream().map(RowString::makeBridge)
+        List<Boolean> bridges = row.getBridges();
+        String rawRowString = bridges.stream()
+                .map(RowString::makeBridge)
                 .collect(Collectors.joining("|"));
         return "    |%s|".formatted(rawRowString);
     }
