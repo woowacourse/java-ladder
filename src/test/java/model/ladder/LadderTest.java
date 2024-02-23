@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LadderTest {
-    @DisplayName("사다리는 사다리 높이만큼의 라인을 가진다")
+    @DisplayName("사다리는 사다리 높이만큼의 라인을 가짐")
     @Test
     void testSizeOfLadderLines() {
         Players players = Players.create(List.of("pobi", "lala"));

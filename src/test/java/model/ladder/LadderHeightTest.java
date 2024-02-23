@@ -8,7 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class LadderHeightTest {
-    @DisplayName("사다리 높이가 1미만이면 예외가 발생한다")
+    @DisplayName("사다리 높이가 1미만이면 예외 발생")
     @ParameterizedTest
     @CsvSource({"0", "-1"})
     void testInvalidValueOfHeight(int height) {
@@ -16,7 +16,7 @@ class LadderHeightTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("사다리 높이가 1이상이면 예외가 발생하지 않는다")
+    @DisplayName("사다리 높이가 1이상이면 객체 생성 성공")
     @ParameterizedTest
     @CsvSource({"1", "2", "10", "100", "1000000"})
     void testValidValueOfHeight(int height) {
