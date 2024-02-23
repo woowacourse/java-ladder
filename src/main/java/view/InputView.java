@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import domain.LadderHeight;
-
 public class InputView {
 
 	private static final String NAME_SPLIT_DELIMITER = ",";

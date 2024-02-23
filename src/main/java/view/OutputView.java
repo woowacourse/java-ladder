@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.StringJoiner;
 
 import domain.HorizontalLineStatus;
-import domain.Name;
 
 public class OutputView {
 
