@@ -2,7 +2,7 @@ package domain;
 
 import static domain.Name.MAX_NAME_LENGTH;
 
-class NameString {
+class NamePrinter {
     static String from(Name name) {
         String nameString = name.getName();
         if (nameString.length() < MAX_NAME_LENGTH) {

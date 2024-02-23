@@ -15,10 +15,10 @@ public class LadderGame {
     }
 
     public String getLadderString() {
-        return LadderString.from(ladder);
+        return LadderPrinter.from(ladder);
     }
 
     public String getNamesString() {
-        return NamesString.from(names);
+        return NamesPrinter.from(names);
     }
 }

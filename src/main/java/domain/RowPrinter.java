@@ -3,10 +3,10 @@ package domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class RowString {
+class RowPrinter {
     static String from(Row row) {
         List<Boolean> rowInfos = row.getRowInfos();
-        String rawRowString = rowInfos.stream().map(RowString::makeBridge)
+        String rawRowString = rowInfos.stream().map(RowPrinter::makeBridge)
                 .collect(Collectors.joining("|"));
         return "    |%s|".formatted(rawRowString);
     }
