@@ -22,16 +22,16 @@ public class Line {
     private void makeLeg(int legCount, BooleanGenerator booleanGenerator) {
         legs.add(Leg.from(booleanGenerator.generate()));
         for (int i = 1; i < legCount; i++) {
-            decideLegExist(i);
+            decideLegExist(i, booleanGenerator);
         }
     }
 
-    private void decideLegExist(int legIndex) {
+    private void decideLegExist(int legIndex, BooleanGenerator booleanGenerator) {
         if (legs.get(legIndex - 1).isExist()) {
             legs.add(Leg.from(false));
             return;
         }
-        legs.add(Leg.from(true));
+        legs.add(Leg.from(booleanGenerator.generate()));
     }
 
     public List<Leg> getLegs() {
