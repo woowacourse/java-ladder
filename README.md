@@ -78,7 +78,7 @@ example feat: 사용자 입력 후 도메인 사용
 - [ ] InputView에서 try with resource를 학습하고 적용해보기
 - [x] InputView의 `,` 상수화
   - [x] 이 외에도 다른 부분에 상수화 할 부분이 있는지 확인하기
-- [ ] sout 대신 Line Separator 사용
+- [x] sout 대신 Line Separator 사용
 - [x] Height 클래스에서 정규식 패턴을 계속 비교하는 대신 
   - `private static final Pattern NUMBER_PATTERN = Pattern.compile("^[\\d]*$");`사용
 - [x] Ladder build 메소드의 파라미터명을 `isBridgesBuilt` -> `buildResults` 로 수정
@@ -86,5 +86,5 @@ example feat: 사용자 입력 후 도메인 사용
   - 적용시 Line의 validate와 RandomBuildStrategy 중복 로직 발생 해결가능.
   - 연속 true는 규칙 위반이라는 사실은 누가 알고 있어야 할까?
 - [ ] Line의 point도 도메인 객체화 할 수 있다
-- [ ] Player의 `NAME_MAX_LENGTH` -> `MAX_NAME_LENGTH`
+- [x] Player의 `NAME_MAX_LENGTH` -> `MAX_NAME_LENGTH`
 - [ ] Players에서 정적 팩토리 메소드를 사용한 이유
