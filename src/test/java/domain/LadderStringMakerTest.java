@@ -6,7 +6,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LadderStringTest {
+class LadderStringMakerTest {
     @Test
     @DisplayName("사다리 문자열 생성 시 맨 왼쪽 사다리는 4개의 공백으로 시작")
     void testLeftFourSpace() {
