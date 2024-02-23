@@ -35,7 +35,7 @@ public class Player {
     }
 
     private void validateLength(String name) {
-        if (name == null || name.isBlank() || name.length() > MAXIMUM_NAME_LENGTH) {
+        if (name.isBlank() || name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(String.format("1글자 이상 5글자 이하의 이름만 입력하세요. 입력한 이름: %s", name));
         }
     }
