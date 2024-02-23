@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Line {
+public class Bridges {
 
     private final List<Bridge> bridges;
 
-    private Line(List<Bridge> bridges) {
+    private Bridges(List<Bridge> bridges) {
         this.bridges = bridges;
     }
 
-    public static Line createByStrategy(final BridgeGenerator bridgeGenerator, final int personCount) {
+    public static Bridges createByStrategy(final BridgeGenerator bridgeGenerator, final int personCount) {
         List<Bridge> bridges = new ArrayList<>();
         while (bridges.size() < personCount - 1) {
             final Bridge bridgeCandidate = bridgeGenerator.generate();
@@ -20,7 +20,7 @@ public class Line {
 
             bridges.add(createBridge(bridgeCandidate, previousBridge));
         }
-        return new Line(bridges);
+        return new Bridges(bridges);
     }
 
     private static Bridge findPreviousBridge(List<Bridge> bridges) {

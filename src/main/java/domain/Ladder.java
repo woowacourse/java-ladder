@@ -5,21 +5,21 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private final List<Line> lines;
+    private final List<Bridges> ladder;
 
-    private Ladder(List<Line> lines) {
-        this.lines = lines;
+    private Ladder(List<Bridges> ladder) {
+        this.ladder = ladder;
     }
 
     public static Ladder createByStrategy(BridgeGenerator bridgeGenerator, int height, int personCount) {
-        final List<Line> lines = new ArrayList<>();
+        final List<Bridges> ladder = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(Line.createByStrategy(bridgeGenerator, personCount));
+            ladder.add(Bridges.createByStrategy(bridgeGenerator, personCount));
         }
-        return new Ladder(lines);
+        return new Ladder(ladder);
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    public List<Bridges> getLadder() {
+        return Collections.unmodifiableList(ladder);
     }
 }

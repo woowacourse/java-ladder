@@ -17,6 +17,6 @@ class LadderTest {
         //when
         final Ladder ladder = Ladder.createByStrategy(bridgeGenerator, height, personCount);
         //then
-        Assertions.assertThat(ladder.getLines()).hasSize(height);
+        Assertions.assertThat(ladder.getLadder()).hasSize(height);
     }
 }
