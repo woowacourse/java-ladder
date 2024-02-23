@@ -2,7 +2,6 @@ package ladderGame.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Stream;
 
 public class Line {
@@ -13,7 +12,7 @@ public class Line {
         this.booleanGenerator = booleanGenerator;
 
         connectionStatuses = new ArrayList<>();
-        Stream.iterate(0, index -> index < number, index -> index+1)
+        Stream.iterate(0, index -> index < number, index -> index + 1)
                 .forEach(this::makeLine);
     }
 
