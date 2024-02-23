@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -28,12 +29,12 @@ public class PlayerTest {
     @DisplayName("플레이어 이름이 5자 초과일 경우 예외가 발생한다.")
     public void nameExceedMaxLengthException() {
         //given
-        final String actualName = "nameTest";
+        final String fiveLengthLongerName = "chococ";
+        final String fiveLengthLessName = "choco";
 
         //when & then
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Player(actualName);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Player(fiveLengthLongerName));
+        assertDoesNotThrow(() -> new Player(fiveLengthLessName));
     }
 
     @ParameterizedTest
