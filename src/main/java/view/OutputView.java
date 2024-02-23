@@ -1,9 +1,6 @@
 package view;
 
-import domain.Ladder;
-import domain.Line;
-import domain.Participants;
-import domain.StepPoint;
+import domain.*;
 
 import java.util.List;
 
@@ -20,9 +17,9 @@ public class OutputView {
     }
 
     private void printNames(Participants participants) {
-        List<String> participantsName = participants.getParticipantsName();
-        for (String name : participantsName) {
-            System.out.printf("%5s ", name);
+        List<Name> names = participants.getNames();
+        for (Name name : names) {
+            System.out.printf("%5s ", name.getName());
         }
         System.out.println();
     }
