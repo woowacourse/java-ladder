@@ -20,7 +20,7 @@ public class LineTest {
                 .doesNotThrowAnyException();
     }
 
-    @DisplayName("이전 상태가 START이면 END이다. 아닐 경우 true면 S false면 N이다.")
+    @DisplayName("이전 상태가 START이면 END이다.")
     @Test
     void initializeLineStateWhenBeforeStateIsStart() {
         LineState expected = LineState.END;
@@ -34,7 +34,7 @@ public class LineTest {
         assertThat(lineState).isEqualTo(expected);
     }
 
-    @DisplayName("이전 상태가 S가 아닐 경우 true면 S false면 N이다.")
+    @DisplayName("이전 상태가 START가 아닐 경우 true면 START false면 NONE이다.")
     @ParameterizedTest
     @CsvSource(value = {"true,START", "false,NONE"})
     void initializeLineStateWhenBeforeStateNotStart(boolean given, LineState expected) {
