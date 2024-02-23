@@ -17,11 +17,9 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-
-
-    public void build(final List<LineBuildResult> isBridgesBuilt) {
+    public void build(final List<LineBuildResult> buildResults) {
         IntStream.range(0, lines.size())
-                .forEach(i -> lines.get(i).buildBridge(isBridgesBuilt.get(i)));
+                .forEach(i -> lines.get(i).buildBridge(buildResults.get(i)));
     }
 
     public List<Line> getLines() {

@@ -81,7 +81,7 @@ example feat: 사용자 입력 후 도메인 사용
 - [ ] sout 대신 Line Separator 사용
 - [x] Height 클래스에서 정규식 패턴을 계속 비교하는 대신 
   - `private static final Pattern NUMBER_PATTERN = Pattern.compile("^[\\d]*$");`사용
-- [ ] Ladder build 메소드의 파라미터명을 `isBridgesBuilt` -> `buildResults` 로 수정
+- [x] Ladder build 메소드의 파라미터명을 `isBridgesBuilt` -> `buildResults` 로 수정
 - [ ] Line을 생성한 뒤 값을 넣지 않고 생성자에서 바로 값을 넣어주기
   - 적용시 Line의 validate와 RandomBuildStrategy 중복 로직 발생 해결가능.
   - 연속 true는 규칙 위반이라는 사실은 누가 알고 있어야 할까?
