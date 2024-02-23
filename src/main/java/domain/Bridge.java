@@ -17,7 +17,7 @@ public enum Bridge {
         this.exist = exist;
     }
 
-    public static Bridge getBy(final boolean exist) {
+    public static Bridge from(final boolean exist) {
         return Arrays.stream(values())
                 .filter(value -> value.exist == exist)
                 .findAny()

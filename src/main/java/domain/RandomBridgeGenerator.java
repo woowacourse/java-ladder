@@ -16,6 +16,6 @@ public class RandomBridgeGenerator implements BridgeGenerator {
     @Override
     public Bridge generate() {
         final Random random = new Random();
-        return Bridge.getBy(random.nextBoolean());
+        return Bridge.from(random.nextBoolean());
     }
 }

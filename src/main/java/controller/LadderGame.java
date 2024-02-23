@@ -9,7 +9,7 @@ import view.OutputView;
 
 public class LadderGame {
 
-    private final InputView inputView = new InputView();
+    private final InputView inputView = InputView.getInstance();
     private final OutputView outputView = new OutputView();
 
     public void start() {

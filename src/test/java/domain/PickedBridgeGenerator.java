@@ -15,6 +15,6 @@ class PickedBridgeGenerator implements BridgeGenerator {
     public Bridge generate() {
         final Boolean exist = test.get(index % test.size());
         index++;
-        return Bridge.getBy(exist);
+        return Bridge.from(exist);
     }
 }
