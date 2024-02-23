@@ -16,7 +16,7 @@ public class LadderGame {
         Height height = readHeight();
         OutputView.printNewLine();
 
-        Ladder ladder = new Ladder(new RandomBridgeConstructStrategy(), names.size(), height);
+        Ladder ladder = new Ladder(new RandomBridgeConstructStrategy(), names, height);
 
         OutputView.printNames(names);
         OutputView.printLadder(ladder);
