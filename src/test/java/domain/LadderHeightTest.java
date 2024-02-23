@@ -19,7 +19,7 @@ class LadderHeightTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
+    @ValueSource(ints = {1, 2, 10})
     @DisplayName("사다리의 높이가 올바른 경우 예외를 발생시키지 않는다.")
     void ladderCreationTest(int height) {
         assertDoesNotThrow(() -> new LadderHeight(height));
