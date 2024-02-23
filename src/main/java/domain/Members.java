@@ -21,11 +21,6 @@ public class Members {
         return new Members(initialize(rawNames));
     }
 
-    public Members(String rawNames) {
-        validate(rawNames);
-        this.members = initialize(rawNames);
-    }
-
     private static void validate(String rawNames) {
         validateNull(rawNames);
         List<String> names = parse(rawNames);
