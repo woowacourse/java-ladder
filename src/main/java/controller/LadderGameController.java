@@ -4,6 +4,8 @@ import domain.Height;
 import domain.Ladder;
 import domain.Players;
 import domain.booleangenerator.BooleanGenerator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 import view.InputView;
 import view.OutputView;
@@ -16,21 +18,22 @@ public class LadderGameController {
     private final OutputView outputView;
     private final BooleanGenerator booleanGenerator;
     private int repeatCount;
+    private final Map<Integer, Boolean> linesInformation;
 
     public LadderGameController(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.booleanGenerator = booleanGenerator;
         repeatCount = 0;
+        linesInformation = new LinkedHashMap<>();
     }
 
     public void run() {
         Players players = initPlayers();
         Height height = initHeight();
+        Ladder ladder = initLadder(players.getSize(), height);
 
-        Ladder ladder = makeLadder(players.getSize(), height);
-
-        outputView.printResult(ladder, players.getNames());
+        outputView.printResult(ladder.getLinesInformation(), players.getNames());
     }
 
     private Players initPlayers() {
@@ -59,7 +62,7 @@ public class LadderGameController {
         }
     }
 
-    private Ladder makeLadder(int playerCount, Height height) {
+    private Ladder initLadder(int playerCount, Height height) {
         return new Ladder(playerCount, height, booleanGenerator);
     }
 }

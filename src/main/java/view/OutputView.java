@@ -1,9 +1,7 @@
 package view;
 
-import domain.Bridge;
-import domain.Ladder;
-import domain.Line;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -15,10 +13,10 @@ public class OutputView {
         System.out.println(errorMessage);
     }
 
-    public void printResult(Ladder ladder, List<String> names) {
+    public void printResult(Map<Integer, List<Boolean>> ladderInformation, List<String> names) {
         System.out.println("실행결과\n");
         printPlayer(names);
-        printLadder(ladder);
+        printLadder(ladderInformation);
     }
 
     private void printPlayer(List<String> names) {
@@ -26,24 +24,23 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printLadder(Ladder ladder) {
-        List<Line> lines = ladder.getLines();
-        for (Line line : lines) {
-            printLine(line);
+    private void printLadder(Map<Integer, List<Boolean>> ladderInformation) {
+        for (List<Boolean> lineInformation : ladderInformation.values()) {
+            printLine(lineInformation);
         }
     }
 
-    private void printLine(Line line) {
+    private void printLine(List<Boolean> lineInformation) {
         System.out.print(SPACE);
         System.out.print(VERTICAL_DELIMITER);
-        for (Bridge bridge : line.getBridges()) {
-            printBridge(bridge);
+        for (boolean isHorizon : lineInformation) {
+            printBridge(isHorizon);
         }
         System.out.println();
     }
 
-    private void printBridge(Bridge bridge) {
-        if (bridge == Bridge.EXIST) {
+    private void printBridge(boolean isHorizon) {
+        if (isHorizon) {
             System.out.print(HORIZON_DELIMITER);
             System.out.print(VERTICAL_DELIMITER);
             return;
