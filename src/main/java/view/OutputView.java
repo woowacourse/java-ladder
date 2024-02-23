@@ -39,5 +39,4 @@ public class OutputView {
         }
         System.out.print(LadderComponent.DIVISION.getOutput());
     }
-
 }

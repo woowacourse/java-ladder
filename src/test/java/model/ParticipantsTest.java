@@ -24,5 +24,4 @@ class ParticipantsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참가자가 1명 이하인 경우는 존재할 수 없습니다.");
     }
-
 }

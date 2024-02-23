@@ -7,6 +7,7 @@ import java.util.Random;
 public class Ladder {
 
     private static final String NOT_POSITIVE_HEIGHT = "최대 사다리의 높이는 양수가 되어야 합니다";
+    
     private final int maximumHeight;
     private final List<LadderRow> ladderRows;
 

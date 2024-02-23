@@ -16,6 +16,4 @@ public class LadderRowTest {
         LadderRow ladderRow = new LadderRow(new ArrayList<>(List.of(true, true, true, true)));
         assertThat(ladderRow.getLineStatus()).isEqualTo(List.of(true, false, true, false));
     }
-
-
 }
