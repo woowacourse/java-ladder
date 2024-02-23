@@ -1,0 +1,25 @@
+package ladder.controller;
+
+import ladder.model.Ladder;
+import ladder.model.LadderSize;
+import ladder.model.Players;
+import ladder.view.InputView;
+import ladder.view.OutputView;
+
+public class LadderController {
+    private Players ladderPlayers;
+    private Ladder ladder;
+
+    public void makeLadder(){
+        ladderPlayers = Players.from(InputView.inputPlayerNames());
+
+        LadderSize ladderSize = new LadderSize(InputView.inputLadderHeight(), ladderPlayers.getSize());
+        ladder = Ladder.of(ladderSize);
+    }
+
+    public void showLadder() {
+        OutputView.printResultDescription();
+        OutputView.printPlayerNames(ladderPlayers.getPlayerNames());
+        OutputView.printLadder(ladder.toLineDtoList());
+    }
+}
