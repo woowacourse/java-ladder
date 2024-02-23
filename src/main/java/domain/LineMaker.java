@@ -14,31 +14,30 @@ public class LineMaker {
     }
 
     public Line makeLine() {
-        List<Point> points = new ArrayList<>();
+        List<Step> steps = new ArrayList<>();
 
         for (int index = 0; isInCountRange(playerCount, index); index++) {
-            points.add(makePoint(index, points));
+            steps.add(makePoint(index, steps));
         }
-        return new Line(points);
+        return new Line(steps);
     }
 
     private boolean isInCountRange(PlayerCount playerCount, int buildCount) {
         return playerCount.isBiggerThan(buildCount);
     }
 
-    private Point makePoint(int index, List<Point> points) {
-        if (hasBeforeStep(index, points) || isLastPoint(index)) {
-            return new Point(Step.EMPTY);
+    private Step makePoint(int index, List<Step> steps) {
+        if (hasBeforeStep(index, steps) || isLastPoint(index)) {
+            return Step.EMPTY;
         }
-        Step step = Step.from(randomBooleanGenerator.generate());
-        return new Point(step);
+        return Step.from(randomBooleanGenerator.generate());
     }
 
-    private boolean hasBeforeStep(int index, List<Point> points) {
+    private boolean hasBeforeStep(int index, List<Step> points) {
         if (isFirstPoint(index)) {
             return false;
         }
-        return points.get(index - 1).isStepExist();
+        return points.get(index - 1).isExist();
     }
 
     private boolean isLastPoint(int index) {

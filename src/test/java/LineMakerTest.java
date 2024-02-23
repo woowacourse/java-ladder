@@ -8,8 +8,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineMakerTest {
-    public static final Point EXIST_POINT = new Point(Step.EXIST);
-    public static final Point EMPTY_POINT = new Point(Step.EMPTY);
+    public static final Step EXIST_POINT = Step.EXIST;
+    public static final Step EMPTY_POINT = Step.EMPTY;
 
     @DisplayName("기둥에 발판이 있으면 연결된 다음 기둥에는 발판이 없어야하고, 마지막 다리는 발판이 없다.")
     @Test

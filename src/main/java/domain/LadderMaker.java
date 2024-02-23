@@ -19,7 +19,7 @@ public class LadderMaker {
     public Ladder makeLadder() {
         List<Line> lines = new ArrayList<>();
         while (height.isBiggerThan(lines.size())) {
-//            lines.add(lineMaker.makeLine());
+            lines.add(lineMaker.makeLine());
 //            lines.add(Line2.of(playerCount, new RandomBooleanGenerator()));
         }
         return new Ladder(lines);

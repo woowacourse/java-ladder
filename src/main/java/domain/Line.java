@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private final List<Point> points;
+    private final List<Step> steps;
 
-    public Line(final List<Point> points) {
-        this.points = points;
+    public Line(final List<Step> steps) {
+        this.steps = steps;
     }
 
     @Override
@@ -16,15 +16,15 @@ public class Line {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Line line = (Line) o;
-        return Objects.equals(points, line.points);
+        return Objects.equals(steps, line.steps);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(points);
+        return Objects.hash(steps);
     }
 
-    public List<Point> getPoints() {
-        return Collections.unmodifiableList(points);
+    public List<Step> getPoints() {
+        return Collections.unmodifiableList(steps);
     }
 }

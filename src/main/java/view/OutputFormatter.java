@@ -3,7 +3,6 @@ package view;
 import domain.Line;
 import domain.Player;
 import domain.Players;
-import domain.Point;
 import domain.Step;
 import java.util.stream.Collectors;
 
@@ -33,8 +32,8 @@ public class OutputFormatter {
         return name + SPACE;
     }
 
-    private String getStep(Point point) {
-        if (point.getStep().equals(Step.EXIST)) {
+    private String getStep(Step step) {
+        if (step.isExist()) {
             return BAR + "-----";
         }
         return BAR + "     ";

@@ -18,8 +18,8 @@ public class LadderGame {
     }
 
     public void run() {
-        final Players players = readWithRetry(this::getPlayers);
-        final Height height = readWithRetry(this::getHeight);
+        final Players players = readWithRetry(this::readPlayers);
+        final Height height = readWithRetry(this::readHeight);
 
         final LadderMaker ladderMaker = generateLadderMaker(height, players);
         final Ladder ladder = ladderMaker.makeLadder();
@@ -27,12 +27,12 @@ public class LadderGame {
         outputView.printResult(players, ladder);
     }
 
-    private Players getPlayers() {
+    private Players readPlayers() {
         final PlayersRequest playersRequest = readWithRetry(inputView::inputPlayers);
         return playersRequest.toPlayers();
     }
 
-    private Height getHeight() {
+    private Height readHeight() {
         final HeightRequest heightRequest = readWithRetry(inputView::inputHeight);
         return heightRequest.toHeight();
     }
