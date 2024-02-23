@@ -5,7 +5,7 @@ import ladder.domain.generator.RandomLadderStepGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LadderTest {
     @Test
@@ -16,8 +16,11 @@ public class LadderTest {
         final Height height = new Height(4);
         final LadderStepGenerator ladderStepGenerator = new RandomLadderStepGenerator(stepWidth);
 
-        // when & then
-        assertThatCode(() -> new Ladder(ladderStepGenerator, height))
-                .doesNotThrowAnyException();
+        // when
+        Ladder ladder = new Ladder(ladderStepGenerator, height);
+        int ladderHeight = ladder.getLadderSteps().size();
+
+        // then
+        assertThat(ladderHeight).isEqualTo(4);
     }
 }
