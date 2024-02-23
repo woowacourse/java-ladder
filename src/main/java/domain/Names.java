@@ -6,5 +6,16 @@ import java.util.List;
 public record Names(List<Name> names) {
     public Names(String[] names) {
         this(Arrays.stream(names).map(Name::new).toList());
+        validateDuplicateNames();
+    }
+
+    private void validateDuplicateNames() {
+        if (names.size() != getUniqueNameCount()) {
+            throw new IllegalArgumentException("중복된 이름은 허용하지 않습니다");
+        }
+    }
+
+    private long getUniqueNameCount() {
+        return names.stream().distinct().count();
     }
 }
