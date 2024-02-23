@@ -5,7 +5,7 @@ public class LineSize {
     private final int lineSize;
 
     public LineSize(final Names names) {
-        this.lineSize = names.size() - 1;
+        this.lineSize = names.getSize() - 1;
     }
 
     public boolean isBiggerThan(final int size) {

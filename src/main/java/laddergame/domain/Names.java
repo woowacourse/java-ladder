@@ -27,7 +27,7 @@ public class Names {
         }
     }
 
-    public int size() {
+    public int getSize() {
         return names.size();
     }
 
