@@ -2,8 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-class Name {
-    static final int MAX_NAME_LENGTH = 5;
+public class Name {
     private final String name;
 
     Name(String name) {

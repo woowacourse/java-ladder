@@ -2,6 +2,7 @@ package domain;
 
 import java.util.List;
 import view.LadderPrinter;
+import view.NamesPrinter;
 
 public class LadderGame {
     private final Ladder ladder;
@@ -19,6 +20,7 @@ public class LadderGame {
     }
 
     public String getNamesString() {
-        return NamesPrinter.from(names);
+        List<String> rawNames = names.getRawNames();
+        return NamesPrinter.from(rawNames);
     }
 }

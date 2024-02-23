@@ -17,8 +17,10 @@ public class Names {
         }
     }
 
-    List<Name> getNames() {
-        return names;
+    List<String> getRawNames() {
+        return names.stream()
+                .map(Name::getName)
+                .toList();
     }
 
     int getNameCount() {

@@ -26,5 +26,4 @@ class LadderPrinterTest {
                 List.of(false, true)
         );
     }
-
 }
