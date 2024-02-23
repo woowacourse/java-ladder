@@ -8,6 +8,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
+
 public class LadderLegTest {
     @Test
     @DisplayName("사다리 조각을 통해 사다리 다리를 만든다.")
@@ -15,9 +17,9 @@ public class LadderLegTest {
         List<Direction> directions = List.of(Direction.LEFT, Direction.RIGHT);
         List<LadderLegPiece> ladderLegPieces = 사다리_조각들_생성(directions);
 
-        LadderLeg ladderLeg = new LadderLeg(ladderLegPieces);
-
-        assertInstanceOf(LadderLeg.class, ladderLeg);
+        assertThatCode(() -> new LadderLeg(ladderLegPieces))
+                .doesNotThrowAnyException();
+        ;
     }
 
     @Test

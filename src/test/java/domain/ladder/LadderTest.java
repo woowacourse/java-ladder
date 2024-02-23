@@ -10,6 +10,8 @@ import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
+
 class LadderTest {
 
     @Test
@@ -22,9 +24,10 @@ class LadderTest {
                                                       .mapToObj((value) -> Direction.RIGHT)
                                                       .toList();
 
-        Ladder ladder = new Ladder(height, playerCount, new FixedDirectionGenerator(fixedDirectionList));
-
-        assertInstanceOf(Ladder.class, ladder);
+        assertThatCode(() -> new Ladder(
+                          height, playerCount,
+                          new FixedDirectionGenerator(fixedDirectionList)))
+                  .doesNotThrowAnyException();
     }
 
     @Test

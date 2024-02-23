@@ -2,6 +2,8 @@ package domain.ladder;
 
 import domain.ladder.common.Direction;
 import domain.ladder.common.Height;
+
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.DirectionGenerator;
@@ -10,6 +12,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
+
 class LadderLegGeneratorTest {
 
     @Test
@@ -17,9 +21,8 @@ class LadderLegGeneratorTest {
     public void createLadderGenerator() {
         Height height = new Height("5");
 
-        LadderLegGenerator ladder = new LadderLegGenerator(height);
-
-        assertInstanceOf(LadderLegGenerator.class, ladder);
+        assertThatCode(() -> new LadderLegGenerator(height))
+                .doesNotThrowAnyException();
     }
 
     @Test

@@ -15,7 +15,6 @@ class PlayersTest {
 
         Players players = new Players(names);
 
-        assertInstanceOf(Players.class, players);
         assertIterableEquals(players.getPlayerNames(), names.getValue());
     }
 }

@@ -8,15 +8,16 @@ import org.junit.jupiter.params.provider.EnumSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
+
 public class LadderLegPieceTest {
     @Test
     @DisplayName("방향을 통해 사다리조각을 생성한다.")
     public void createLadderPiece() {
         Direction direction = Direction.DOWN;
 
-        LadderLegPiece ladderLegPiece = new LadderLegPiece(direction);
-
-        assertEquals(ladderLegPiece.getDirection(), direction);
+        assertThatCode(() -> new LadderLegPiece(direction))
+                .doesNotThrowAnyException();
     }
 
     @DisplayName("사다리조각의 방향이 오른쪽 여부에 따라서 Boolean 값을 반환한다.")

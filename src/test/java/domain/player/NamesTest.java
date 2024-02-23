@@ -1,5 +1,7 @@
 package domain.player;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +16,10 @@ class NamesTest {
         //Given
         List<String> value = List.of("도비", "조이썬");
 
-        //When
-        Names names = Names.from(value);
+        //When , Then
+        assertThatCode(() -> Names.from(value))
+                .doesNotThrowAnyException();
 
-        //Then
-        assertInstanceOf(Names.class, names);
     }
 
     @Test
