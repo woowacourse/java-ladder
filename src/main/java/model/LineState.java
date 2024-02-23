@@ -1,15 +1,9 @@
 package model;
 
 public enum LineState {
-    START("start"),
-    END("end"),
-    NONE("none");
-
-    private final String state;
-
-    LineState(String state) {
-        this.state = state;
-    }
+    START,
+    END,
+    NONE;
 
     public static LineState decideLineState(boolean decision) {
         if (decision) {
@@ -23,9 +17,5 @@ public enum LineState {
             return END;
         }
         return decideLineState(decision);
-    }
-
-    public String getState() {
-        return state;
     }
 }
