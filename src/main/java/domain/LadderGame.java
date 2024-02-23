@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
-    Ladder ladder;
-    Players players;
-    Generator generator;
+    private final Ladder ladder;
+    private final Players players;
+    private final Generator generator;
 
     public LadderGame(Players players, Height height) {
         this.ladder = new Ladder(height);
