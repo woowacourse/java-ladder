@@ -18,15 +18,15 @@ public class Line {
         List<Rung> rungs = new ArrayList<>();
 
         for (int i = 0; i < playerCount - 1; i++) {
-            Rung rung = generateRung(rungs, i);
+            Rung rung = generateRung(rungs);
             rungs.add(rung);
         }
 
         return rungs;
     }
 
-    private Rung generateRung(List<Rung> rungs, int index) {
-        boolean previousRungExist = index > 0 && rungs.get(index - 1).isExist();
+    private Rung generateRung(List<Rung> rungs) {
+        boolean previousRungExist = !rungs.isEmpty() && rungs.get(rungs.size() - 1).isExist();
         Rung currentRung = rungGenerator.generate();
 
         if (previousRungExist && currentRung.isExist()) {
