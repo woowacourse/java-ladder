@@ -1,6 +1,6 @@
 package game;
 
-import domain.HorizontalLinePattern;
+import domain.LadderRowPattern;
 import domain.Ladder;
 import domain.LadderHeight;
 import domain.Players;
@@ -28,7 +28,7 @@ public class LadderGame {
 
         Ladder ladder = Ladder.of(players, height);
         ladder.drawLines(supplier);
-        List<HorizontalLinePattern> statuses = ladder.createStatuses();
+        List<LadderRowPattern> statuses = ladder.createStatuses();
 
         printLadderResult(players.getNames(), statuses);
     }
@@ -45,7 +45,7 @@ public class LadderGame {
         return new LadderHeight(height);
     }
 
-    private void printLadderResult(List<String> names, List<HorizontalLinePattern> statuses) {
+    private void printLadderResult(List<String> names, List<LadderRowPattern> statuses) {
         outputView.printResultMessage();
         outputView.printNames(names);
         outputView.printLadder(statuses);

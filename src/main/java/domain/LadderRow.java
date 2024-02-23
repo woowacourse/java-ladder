@@ -32,8 +32,8 @@ public class LadderRow {
         return index == 0 || !rowPattern.get(index - 1);
     }
 
-    public HorizontalLinePattern createStatus() {
+    public LadderRowPattern createStatus() {
         List<Boolean> placeStatuses = List.copyOf(rowPattern);
-        return new HorizontalLinePattern(placeStatuses);
+        return new LadderRowPattern(placeStatuses);
     }
 }

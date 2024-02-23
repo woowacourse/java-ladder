@@ -1,6 +1,6 @@
 package view;
 
-import domain.HorizontalLinePattern;
+import domain.LadderRowPattern;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -34,17 +34,17 @@ public class OutputView {
         System.out.println(joiner.toString());
     }
 
-    public void printLadder(List<HorizontalLinePattern> statuses) {
-        statuses.stream()
-                .map(HorizontalLinePattern::rowPattern)
-                .forEach(this::printHorizontalLine);
+    public void printLadder(List<LadderRowPattern> patterns) {
+        patterns.stream()
+                .map(LadderRowPattern::rowPattern)
+                .forEach(this::printLadderRowPattern);
     }
 
     public void printErrorMessage(String message) {
         System.out.println("[ERROR] " + message + System.lineSeparator());
     }
 
-    private void printHorizontalLine(List<Boolean> indices) {
+    private void printLadderRowPattern(List<Boolean> indices) {
         StringBuilder builder = new StringBuilder();
 
         builder.append(LADDER_PREFIX_SPACES);
