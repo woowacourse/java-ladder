@@ -1,7 +1,9 @@
 package ladder.domain.connectiongenerator;
 
+import ladder.domain.Connection;
+
 import java.util.List;
 
 public interface ConnectionGenerator {
-    List<Boolean> getConnection(int peopleNumber);
+    List<Connection> getConnections(int peopleNumber);
 }

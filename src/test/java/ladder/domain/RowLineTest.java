@@ -59,7 +59,7 @@ class RowLineTest {
     @ParameterizedTest
     @ValueSource(ints = {100, 1, 2})
     void rowLineConnectionSizeTest(int n) {
-        List<Boolean> connection = new RowLine(n, new RandomConnectionGenerator()).getConnection();
+        List<Connection> connection = new RowLine(n, new RandomConnectionGenerator()).getConnections();
         assertThat(connection).hasSize(n - 1);
     }
 }

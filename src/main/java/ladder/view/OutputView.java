@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.Connection;
 import ladder.domain.Ladder;
 import ladder.view.enums.NameFormat;
 import ladder.domain.People;
@@ -7,6 +8,8 @@ import ladder.domain.RowLine;
 
 import java.util.List;
 import java.util.StringJoiner;
+
+import static ladder.domain.Connection.CONNECTED;
 
 public class OutputView {
     private static final String BLANK = " ";
@@ -38,15 +41,15 @@ public class OutputView {
         StringBuilder stringBuilder = new StringBuilder(
                 BLANK.repeat(INTERVAL_WIDTH - 1) + VERTICAL_LINE);
 
-        for (boolean isConnected : rowLine.getConnection()) {
+        for (Connection isConnected : rowLine.getConnections()) {
             stringBuilder.append(findConnectionMark(isConnected).repeat(INTERVAL_WIDTH));
             stringBuilder.append(VERTICAL_LINE);
         }
         System.out.println(stringBuilder);
     }
 
-    private static String findConnectionMark(boolean isConnected) {
-        if (isConnected) {
+    private static String findConnectionMark(Connection isConnected) {
+        if (isConnected==CONNECTED) {
              return HORIZONTAL_LINE;
         }
          return BLANK;

@@ -6,16 +6,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static ladder.domain.Connection.CONNECTED;
+import static ladder.domain.Connection.NOTCONNECTED;
+
 public class RowLine {
     private static final int MIN_PEOPLE_NUMBER = 1;
     private static final int MAX_PEOPLE_NUMBER = 100;
-    private final List<Boolean> connection = new ArrayList<>();
+    private final List<Connection> connections = new ArrayList<>();
 
     public RowLine(int peopleNumber, ConnectionGenerator generator) {
         validatePeopleNumber(peopleNumber);
-        List<Boolean> generatedConnection = generator.getConnection(peopleNumber);
-        validateSuccessiveLine(generatedConnection);
-        this.connection.addAll(generatedConnection);
+        List<Connection> generatedConnection = generator.getConnections(peopleNumber);
+        validateConnection(generatedConnection);
+        this.connections.addAll(generatedConnection);
     }
 
     private void validatePeopleNumber(int peopleNumber) {
@@ -25,18 +28,19 @@ public class RowLine {
     }
 
     //TODO 가독성 강화하기 - 네이밍
-    private void validateSuccessiveLine(List<Boolean> booleans) {
-        Boolean flag = Boolean.FALSE;
-        for (Boolean b : booleans) {
-            if (flag && b) {
+    private void validateConnection(List<Connection> connections) {
+        Connection beforeConnection = NOTCONNECTED;
+
+        for (Connection currentConnection : connections) {
+            if (beforeConnection==CONNECTED && currentConnection==CONNECTED) {
                 throw new IllegalArgumentException("사다리 가로선이 연속되었습니다.");
             }
-            flag = b;
+            beforeConnection = currentConnection;
         }
     }
 
-    public List<Boolean> getConnection() {
-        return Collections.unmodifiableList(connection);
+    public List<Connection> getConnections() {
+        return Collections.unmodifiableList(connections);
     }
 
 

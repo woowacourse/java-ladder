@@ -36,12 +36,12 @@ class LadderTest {
     @Test
     void makeLadderTest() {
         Ladder testLadder = new Ladder(3, 5, new AllFalseConnectionGenerator());
-        Set<Boolean> connectionElement = testLadder.getRowLines()
+        Set<Connection> connectionElement = testLadder.getRowLines()
                 .stream()
-                .map(RowLine::getConnection)
+                .map(RowLine::getConnections)
                 .flatMap(List::stream)
                 .collect(Collectors.toSet());
 
-        assertThat(connectionElement).containsExactly(Boolean.FALSE);
+        assertThat(connectionElement).containsExactly(Connection.NOTCONNECTED);
     }
 }
