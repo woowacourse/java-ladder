@@ -20,4 +20,12 @@ class RowLineTest {
         assertThat(rowLine.getConnection(1)).isEqualTo(DISCONNECTED);
         assertThat(rowLine.getConnection(2)).isEqualTo(CONNECTED);
     }
+
+    @DisplayName("연결 개수를 확인할 수 있다")
+    @Test
+    void testCalculateConnectionCount() {
+        List<ConnectionStatus> connections = List.of(CONNECTED, DISCONNECTED, CONNECTED);
+        RowLine rowLine = new RowLine(connections);
+        assertThat(rowLine.getConnectionCount()).isEqualTo(3);
+    }
 }
