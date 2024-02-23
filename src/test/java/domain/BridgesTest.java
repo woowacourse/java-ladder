@@ -25,14 +25,14 @@ public class BridgesTest {
     @DisplayName("연속되는 브릿지가 존재하면 예외가 발생한다.")
     @Test
     void constructFailWithContinuousBridge() {
-        assertThatThrownBy(() -> new Bridges(List.of(BridgeStatus.BUILT, BridgeStatus.BUILT)))
+        assertThatThrownBy(() -> new Bridges(List.of(Bridge.BUILT, Bridge.BUILT)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("Bridges 가 올바른 List 를 반환해야 한다.")
     @MethodSource("getBridgeTestProvider")
     @ParameterizedTest
-    void getBridgeTest(List<BridgeStatus> expectedBridges) {
+    void getBridgeTest(List<Bridge> expectedBridges) {
         Bridges bridges = new Bridges(expectedBridges);
 
         Assertions.assertThat(bridges.getBridges())
@@ -41,7 +41,7 @@ public class BridgesTest {
 
     static Stream<Arguments> getBridgeTestProvider() {
         return Stream.of(
-                Arguments.of(List.of(BridgeStatus.BUILT, BridgeStatus.EMPTY, BridgeStatus.EMPTY, BridgeStatus.BUILT))
+                Arguments.of(List.of(Bridge.BUILT, Bridge.EMPTY, Bridge.EMPTY, Bridge.BUILT))
         );
     }
 }

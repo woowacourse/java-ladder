@@ -57,9 +57,9 @@ class ContinuousBridgeConstructStrategy implements BridgeConstructStrategy {
 
     @Override
     public Bridges generate(int count) {
-        List<BridgeStatus> bridgeStatuses = IntStream.range(0, count)
-                .mapToObj((i) -> BridgeStatus.BUILT)
+        List<Bridge> bridges = IntStream.range(0, count)
+                .mapToObj((i) -> Bridge.BUILT)
                 .toList();
-        return new Bridges(bridgeStatuses);
+        return new Bridges(bridges);
     }
 }

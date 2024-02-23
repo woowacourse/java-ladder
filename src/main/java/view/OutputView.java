@@ -1,6 +1,6 @@
 package view;
 
-import domain.BridgeStatus;
+import domain.Bridge;
 import domain.Bridges;
 import domain.Ladder;
 import domain.Names;
@@ -34,8 +34,8 @@ public class OutputView {
         }
     }
 
-    private static String getBridgeMessage(BridgeStatus bridgeStatus) {
-        if (bridgeStatus == BridgeStatus.BUILT) {
+    private static String getBridgeMessage(Bridge bridge) {
+        if (bridge == Bridge.BUILT) {
             return "-".repeat(5);
         }
         return " ".repeat(5);
