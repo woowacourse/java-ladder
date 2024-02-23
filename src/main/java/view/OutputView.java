@@ -1,9 +1,6 @@
 package view;
 
-import domain.Ladder;
-import domain.Line;
-import domain.Player;
-import domain.Players;
+import domain.*;
 
 import java.util.List;
 
@@ -41,10 +38,10 @@ public class OutputView {
         return players.get(0).getName().length();
     }
 
-    private static void printLine(List<Boolean> legs) {
-        for (Boolean leg : legs) {
+    private static void printLine(List<Leg> legs) {
+        for (Leg leg : legs) {
             System.out.print(STICK);
-            System.out.print(extractLeg(leg));
+            System.out.print(extractLeg(leg.isExist()));
         }
         System.out.print(STICK + "\n");
     }

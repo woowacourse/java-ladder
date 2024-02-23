@@ -6,32 +6,32 @@ import util.RandomGenerator;
 
 public class Line {
 
-    private final List<Boolean> legs;
+    private final List<Leg> legs;
 
     public Line() {
         legs = new ArrayList<>();
     }
 
     public void makeLeg(int legCount) {
-        legs.add(generateLegRandomly());
+        legs.add(Leg.from(generateLegRandomly()));
         for (int i = 1; i < legCount; i++) {
             decideLegExist(i);
         }
     }
 
     private void decideLegExist(int legIndex) {
-        if (legs.get(legIndex - 1)) {
-            legs.add(false);
+        if (legs.get(legIndex - 1).isExist()) {
+            legs.add(Leg.from(false));
             return;
         }
-        legs.add(generateLegRandomly());
+        legs.add(Leg.from(true));
     }
 
     protected boolean generateLegRandomly() {
         return RandomGenerator.generateRandomBoolean();
     }
 
-    public List<Boolean> getLegs() {
+    public List<Leg> getLegs() {
         return List.copyOf(legs);
     }
 }
