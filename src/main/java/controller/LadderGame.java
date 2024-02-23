@@ -23,8 +23,8 @@ public class LadderGame {
     }
 
     private void run() {
-        Ladder ladder = makeLadder();
         participants = recruitParticipants();
+        Ladder ladder = makeLadder();
         outputView.printResult(participants, ladder);
     }
 

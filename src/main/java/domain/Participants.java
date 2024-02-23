@@ -7,13 +7,13 @@ public class Participants {
 
     public static final int MIN_OF_PARTICIPANTS_COUNT = 2;
     public static final int MAX_OF_PARTICIPANTS_COUNT = 50;
-    private final List<Person> participants;
+    private final List<Name> names;
 
     public Participants(List<String> names) {
         validateCount(names);
         validateDuplicate(names);
-        this.participants = names.stream()
-                .map(Person::new)
+        this.names = names.stream()
+                .map(Name::new)
                 .toList();
     }
 
@@ -29,13 +29,11 @@ public class Participants {
         }
     }
 
-    public List<String> getParticipantsName() {
-        return participants.stream()
-                .map(Person::getName)
-                .toList();
+    public List<Name> getParticipantsName() {
+        return names;
     }
 
     public int getParticipantsCount() {
-        return participants.size();
+        return names.size();
     }
 }
