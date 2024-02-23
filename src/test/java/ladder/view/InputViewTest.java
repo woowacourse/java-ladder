@@ -19,8 +19,7 @@ public class InputViewTest {
         @Test
         void parseNamesWithDelimiter() {
             List<String> names = InputView.readNames(() -> "a,b,c");
-            assertThat(names)
-                    .containsExactly("a", "b", "c");
+            assertThat(names).containsExactly("a", "b", "c");
         }
 
         @DisplayName("사용자 이름으로 공백이 입력되면 예외를 던진다.")
