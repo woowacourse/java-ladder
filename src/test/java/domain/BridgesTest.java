@@ -34,7 +34,6 @@ public class BridgesTest {
     @ParameterizedTest
     void getBridgeTest(List<Bridge> expectedBridges) {
         Bridges bridges = new Bridges(expectedBridges);
-
         Assertions.assertThat(bridges.getBridges())
                 .isEqualTo(expectedBridges);
     }
