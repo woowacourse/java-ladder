@@ -1,9 +1,12 @@
 package domain;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 class Name {
     static final int MAX_NAME_LENGTH = 5;
+    private static final Pattern NAME_CHARACTER_REGEX = Pattern.compile("^[^a-zA-Z]+$");
     private final String name;
 
     Name(String name) {
@@ -13,7 +16,8 @@ class Name {
     }
 
     private static void validateNameCharacters(String name) {
-        if (name.matches("^[^a-zA-Z]+$")) {
+        Matcher matcher = NAME_CHARACTER_REGEX.matcher(name);
+        if (matcher.matches()) {
             throw new LadderGameException(ExceptionType.NAME_CHARACTER);
         }
     }
