@@ -57,6 +57,6 @@ public class LadderGameTest {
         LadderGame ladderGame = new LadderGame(ladderHeight, participants, randomGenerator);
         Ladder result = ladderGame.createLadder();
 
-        assertThat(result).isNotNull();
+        assertThat(result.getLines()).hasSize(ladderHeight);
     }
 }
