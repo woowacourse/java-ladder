@@ -14,19 +14,20 @@ public class Line {
     public static Line create(final LineSize lineSize, final PointGenerator pointGenerator) {
         List<Point> points = new ArrayList<>();
 
-        Point temp = Point.EMPTY;
-
         while (lineSize.isBiggerThan(points.size())) {
-            final Point point = generatePoint(temp, pointGenerator);
-            points.add(point);
-            temp = point;
+            points.add(generatePoint(points, pointGenerator));
         }
 
         return new Line(points);
     }
 
-    private static Point generatePoint(final Point before, final PointGenerator pointGenerator) {
-        if (before.isExist()) {
+    private static Point generatePoint(final List<Point> points, final PointGenerator pointGenerator) {
+        if (points.isEmpty()) {
+            return pointGenerator.generate();
+        }
+
+        Point lastPoint = points.get(points.size() - 1);
+        if (lastPoint.isExist()) {
             return Point.EMPTY;
         }
 

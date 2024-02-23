@@ -11,8 +11,7 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder create(final LineSize lineSize, final LadderHeight height,
-            final PointGenerator pointGenerator) {
+    public static Ladder create(final LineSize lineSize, final LadderHeight height, final PointGenerator pointGenerator) {
         final List<Line> lines = new ArrayList<>();
 
         while (height.isBiggerThan(lines.size())) {
