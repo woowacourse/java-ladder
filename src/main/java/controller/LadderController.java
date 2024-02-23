@@ -15,13 +15,12 @@ public class LadderController {
     public void run() {
         Players players = readPlayers();
         Ladder ladder = readLadder();
-        ladder.makeLines(getWidth(players));
         OutputView.printResult(players, ladder);
     }
 
     private Ladder readLadder() {
         try {
-            return new Ladder(InputView.readLadderHeight());
+            return Ladder.from(InputView.readLadderHeight());
         } catch (NumberFormatException e) {
             System.out.println(INVALID_LADDER_LANGUAGE_EXCEPTION.getMessage());
             return readLadder();

@@ -10,12 +10,18 @@ public class Ladder {
     private final Height height;
     private final List<Line> lines;
 
-    public Ladder(int height) {
+    private Ladder(int height) {
         this.height = new Height(height);
         this.lines = new ArrayList<>();
     }
 
-    public void makeLines(int width) {
+    public static Ladder from(int width) {
+        Ladder ladder = new Ladder(width);
+        ladder.makeLines(width);
+        return ladder;
+    }
+
+    private void makeLines(int width) {
         for (int i = 0; i < height.getHeight(); i++) {
             lines.add(Line.of(width, new RandomBooleanGenerator()));
         }
