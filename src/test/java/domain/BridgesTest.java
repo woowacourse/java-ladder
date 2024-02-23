@@ -18,8 +18,9 @@ public class BridgesTest {
     @DisplayName("객체가 정상적으로 생성된다.")
     @Test
     void constructSuccessTest() {
+        List<Bridge> nonContinuousBridge = List.of(Bridge.BUILT, Bridge.EMPTY, Bridge.EMPTY, Bridge.BUILT);
         assertThatNoException()
-                .isThrownBy(() -> new Bridges(List.of())); // TODO 정상 테스트의 의미를 대변하기엔 부족하다.
+                .isThrownBy(() -> new Bridges(nonContinuousBridge));
     }
 
     @DisplayName("연속되는 브릿지가 존재하면 예외가 발생한다.")
