@@ -1,29 +1,32 @@
 package ladder.domain.connectiongenerator;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class RandomConnectionGenerator implements ConnectionGenerator {
-    //TODO 로직 가독성 생각해보기
-    //TODO Stream.iterate 생각해보기
+    private static final double PERCENTAGE_OF_CONNECTION = 0.5;
+
     @Override
     public List<Boolean> getConnection(int peopleNumber) {
+        int connectionNumber = peopleNumber - 1;
+        boolean beforeConnection = false;
 
-        List<Boolean> line = new ArrayList<>();
-        boolean before = false;
-        for (int i = 0; i < peopleNumber - 1; i++) {
-            addBoolean(before, line);
-            before = line.get(i);
-        }
-        return line;
+        return Stream.iterate(beforeConnection, this::addConnection)
+                .limit(connectionNumber)
+                .toList();
     }
 
-    private void addBoolean(boolean before, List<Boolean> line) {
-        if (before) {
-            line.add(false);
+    private boolean addConnection(boolean beforeConnection) {
+        if (beforeConnection) {
+            beforeConnection = false;
+            return beforeConnection;
         }
-        if (!before) {
-            line.add(Math.random() >= 0.5);
-        }
+
+        beforeConnection = addRandomConnection();
+        return beforeConnection;
+    }
+
+    private boolean addRandomConnection() {
+        return Math.random() >= PERCENTAGE_OF_CONNECTION;
     }
 }
