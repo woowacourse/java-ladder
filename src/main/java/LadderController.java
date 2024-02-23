@@ -14,7 +14,7 @@ public class LadderController {
         final int height = InputView.readHeight();
 
         final List<Name> names = makeNames(rawNames);
-        final Ladder ladder = new Ladder(names.size(), height);
+        final Ladder ladder = new Ladder(names.size() - 1, height);
 
         OutputView.printResult(names, ladder);
     }
