@@ -18,8 +18,9 @@ public class Line {
     }
 
     private List<StepStatus> initStepStatuses(final int userCount) {
-        final List<StepStatus> stepStatuses = new ArrayList<>(userCount - 1);
-        for (int i = 0; i < userCount - 1; i++) {
+        int totalStepStatusesSize = userCount - 1;
+        final List<StepStatus> stepStatuses = new ArrayList<>(totalStepStatusesSize);
+        for (int i = 0; i < totalStepStatusesSize; i++) {
             stepStatuses.add(generateStepStatus(stepStatuses, i));
         }
         return stepStatuses;
