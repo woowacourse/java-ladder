@@ -35,4 +35,12 @@ public class UserNameTest {
                 .isThrownBy(() -> new UserName(name))
                 .withMessage("이름에 공백을 입력할 수 없습니다");
     }
+
+    @DisplayName("'all'을 입력하면 예외가 발생한다.")
+    @Test
+    void createNameByAll() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new UserName("all"))
+                .withMessage("'all'은 사용할 수 없는 이름입니다.");
+    }
 }
