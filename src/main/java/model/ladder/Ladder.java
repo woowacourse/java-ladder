@@ -18,7 +18,7 @@ public class Ladder {
     }
 
     public static Ladder create(LadderHeight height, Players players, BridgesGenerator bridgesGenerator) {
-        int bridgeCount = players.getSizeOfPlayers() - 1;
+        int bridgeCount = players.getSize() - 1;
         return IntStream.range(0, height.value())
                 .mapToObj(i -> new Line(bridgesGenerator.pickBridges(bridgeCount)))
                 .collect(collectingAndThen(toList(), Ladder::new));

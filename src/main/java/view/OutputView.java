@@ -10,9 +10,9 @@ import model.player.Players;
 
 public class OutputView {
     private static final String GAME_RESULT_INTRO = "\n실행결과\n";
-    private static final String PLAYER_NAMES_FORMAT = "%" + Player.MAX_LENGTH_OF_NAME + "s";
+    private static final String PLAYER_NAMES_FORMAT = "%" + Player.MAX_NAME_LENGTH + "s";
     private static final String PLAYER_NAMES_DELIMITER = " ";
-    private static final int BRIDGE_LENGTH = Player.MAX_LENGTH_OF_NAME;
+    private static final int BRIDGE_LENGTH = Player.MAX_NAME_LENGTH;
     private static final String IS_CONNECTED_BRIDGE = "-";
     private static final String IS_UNCONNECTED_BRIDGE = " ";
     private static final String BRIDGE_DELIMITER = "|";
@@ -27,7 +27,7 @@ public class OutputView {
     }
 
     public static void printPlayerNames(Players players) {
-        List<String> names = players.getPlayerNames()
+        List<String> names = players.getNames()
                 .stream()
                 .map((name) -> String.format(PLAYER_NAMES_FORMAT, name))
                 .toList();

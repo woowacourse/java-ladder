@@ -1,16 +1,16 @@
 package model.player;
 
 public record Player(String name) {
-    public static final int MAX_LENGTH_OF_NAME = 5;
-    private static final String INVALID_LENGTH_OF_NAME = "참여자 이름은 최대 5글지입니다.";
+    public static final int MAX_NAME_LENGTH = 5;
+    private static final String INVALID_NAME_LENGTH = "참여자 이름은 최대 5글지입니다.";
 
     public Player {
-        validateLengthOfName(name);
+        validateNameLength(name);
     }
 
-    private void validateLengthOfName(String name) {
-        if (name.length() > MAX_LENGTH_OF_NAME) {
-            throw new IllegalArgumentException(INVALID_LENGTH_OF_NAME);
+    private void validateNameLength(String name) {
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(INVALID_NAME_LENGTH);
         }
     }
 }
