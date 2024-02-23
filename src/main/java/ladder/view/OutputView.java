@@ -42,7 +42,7 @@ public class OutputView {
     }
 
     private String getLadderStepShape(final LadderStep ladderStep) {
-        final String ladderStepShape = ladderStep.ladderPaths()
+        final String ladderStepShape = ladderStep.getLadderPaths()
                 .stream()
                 .map(Path::getShape)
                 .collect(Collectors.joining(STEP_DELIMITER, STEP_DELIMITER, STEP_DELIMITER));

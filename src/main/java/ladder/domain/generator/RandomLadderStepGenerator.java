@@ -1,37 +1,25 @@
 package ladder.domain.generator;
 
+import ladder.domain.ladder.LadderStep;
 import ladder.domain.ladder.Path;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static ladder.domain.ladder.Path.EMPTY;
-import static ladder.domain.ladder.Path.EXIST;
+public class RandomLadderStepGenerator {
+    private static final Random random = new Random();
 
-public class RandomLadderStepGenerator extends LadderStepGenerator {
-    private final Random random = new Random();
-
-    public RandomLadderStepGenerator(final int stepWidth) {
-        super(stepWidth);
-    }
-
-    @Override
-    protected List<Path> generate() {
+    static public LadderStep generate(final int stepWidth) {
         final List<Path> ladderPaths = new ArrayList<>();
-        Path prevPath = EMPTY;
         while (ladderPaths.size() < stepWidth) {
-            final Path currentPath = generatePath(prevPath);
+            final Path currentPath = generatePath();
             ladderPaths.add(currentPath);
-            prevPath = currentPath;
         }
-        return ladderPaths;
+        return new LadderStep(ladderPaths);
     }
 
-    private Path generatePath(final Path prevPath) {
-        if (prevPath.equals(EXIST)) {
-            return EMPTY;
-        }
+    static private Path generatePath() {
         final boolean isAvailable = random.nextBoolean();
         return Path.from(isAvailable);
     }
