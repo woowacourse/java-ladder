@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class PlayersTest {
     @Test
-    @DisplayName("정상적으로 참여 인원 객체를 생성한다. ")
+    @DisplayName("정상적으로 참여 인원 객체를 생성한다.")
     void createSuccess() {
         List<String> players = List.of("pobi", "anna");
         Assertions.assertThatCode(() -> new Players(players))

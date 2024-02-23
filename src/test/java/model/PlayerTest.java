@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class PlayerTest {
     @Test
-    @DisplayName("플레이어 생성 테스트")
+    @DisplayName("정상적인 플레이어 이름 입력시 플레이어 객체를 생성한다.")
     void createPlayer() {
         String name = "pobi";
         Assertions.assertThatCode(() -> new Player(name))

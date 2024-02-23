@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class HeightTest {
 
     @Test
-    @DisplayName("사다리 높이 객체 생성")
+    @DisplayName("사다리 높이 객체를 생성한다.")
     void createHeight() {
         Assertions.assertThatCode(() -> new Height(5))
                 .doesNotThrowAnyException();

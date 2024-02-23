@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class LineTest {
 
     @Test
-    @DisplayName("사다리 생성 테스트")
+    @DisplayName("라인 객체를 생성한다.")
     void createLine() {
         int personCount = 4;
 
@@ -19,7 +19,7 @@ class LineTest {
 
 
     @RepeatedTest(10)
-    @DisplayName("동일한 true 값을 가지지 않는지 확인")
+    @DisplayName("동일한 true 값을 가지지 않는지 확인한다.")
     void overlapConnection() {
         //given
         Line line = new Line(4);

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class LadderTest {
     @Test
     @DisplayName("사다리 높이가 사다리 객체의 크기가 된다.")
-    void createLadder() {
+    void createLadderWithHeight() {
         // given
         Height height = new Height(5);
         int personCount = 7;
