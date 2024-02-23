@@ -15,16 +15,20 @@ public class PointBuildStrategy implements BuildStrategy {
     public Points build(final int count) {
         List<Point> list = new ArrayList<>();
         list.add(new Point(generator.generate()));
-        IntStream.range(0, count - 1).forEach(i -> addBuildResult(list));
+        IntStream.range(0, getBuildSize(count)).forEach(i -> addBuildResult(list));
 
         return new Points(list.stream().toList());
     }
 
     private void addBuildResult(List<Point> points) {
-        if (points.get(points.size() - 1).isBuilt()) {
+        if (points.get(getBuildSize(points.size())).isBuilt()) {
             points.add(new Point(false));
             return;
         }
         points.add(new Point(generator.generate()));
+    }
+
+    private static int getBuildSize(final int playerCount) {
+        return playerCount - 1;
     }
 }
