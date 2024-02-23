@@ -9,11 +9,9 @@ class LadderPrinterTest {
     @Test
     @DisplayName("사다리 문자열 생성")
     void ladderToString() {
-        Height height = new Height(5);
-        Width width = new Width(2);
-        Ladder ladder = new Ladder(height, width, width1 -> List.of(true));
+        Ladder ladder = new Ladder(5, 2, width1 -> List.of(true));
         String actual = LadderPrinter.from(ladder);
-        String expected = "    |-----|\n".repeat(height.getLength());
+        String expected = "    |-----|\n".repeat(5);
         expected = expected.substring(0, expected.length() - 1);
         Assertions.assertThat(actual)
                 .isEqualTo(expected);

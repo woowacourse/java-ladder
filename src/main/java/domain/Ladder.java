@@ -5,8 +5,10 @@ import java.util.stream.IntStream;
 
 class Ladder {
     private final List<Row> rows;
-
-    Ladder(Height height, Width width, BridgeGenerator bridgeGenerator) {
+    
+    Ladder(int rawHeight, int rawWidth, BridgeGenerator bridgeGenerator) {
+        Height height = new Height(rawHeight);
+        Width width = new Width(rawWidth);
         rows = IntStream.range(0, height.getLength())
                 .mapToObj(value -> bridgeGenerator.generate(width.getLength() - 1))
                 .map(Row::new)

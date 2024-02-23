@@ -9,9 +9,7 @@ public class LadderGame {
     public LadderGame(List<String> userNames, int ladderHeight) {
         names = new Names(userNames);
         int nameCount = names.getNameCount();
-        Height height = new Height(ladderHeight);
-        Width width = new Width(nameCount);
-        ladder = new Ladder(height, width, new BridgeRandomGenerator());
+        ladder = new Ladder(ladderHeight, nameCount, new BridgeRandomGenerator());
     }
 
     public String getLadderString() {

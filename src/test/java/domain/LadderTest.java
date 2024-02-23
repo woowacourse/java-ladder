@@ -8,18 +8,8 @@ class LadderTest {
     @Test
     @DisplayName("사다리 전체 폭 검증")
     void validateRowCount() {
-        Height height = new Height(5);
-        Width width = new Width(5);
-        Ladder ladder = new Ladder(height, width, new BridgeRandomGenerator());
+        Ladder ladder = new Ladder(5, 5, new BridgeRandomGenerator());
         Assertions.assertThat(ladder.getRows().size())
                 .isEqualTo(5);
-    }
-
-    @Test
-    @DisplayName("사다리를 Wrapper 타입을 이용해 생성")
-    void makeWithWrapperTypes() {
-        Height height = new Height(5);
-        Width width = new Width(5);
-        new Ladder(height, width, new BridgeRandomGenerator());
     }
 }
