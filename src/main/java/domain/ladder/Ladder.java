@@ -39,7 +39,7 @@ public class Ladder {
                          .toList();
     }
 
-    public int getHeight(){
+    public int getHeight() {
         return height.toInt();
     }
 

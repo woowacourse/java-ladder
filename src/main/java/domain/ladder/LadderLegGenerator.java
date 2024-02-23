@@ -23,8 +23,8 @@ public class LadderLegGenerator {
 
     public LadderLeg generateLadderLeg(LadderLeg previousLadderLeg, Supplier<Direction> directionSupplier) {
         return new LadderLeg(convertDirectionToLegPieceList(IntStream.range(0, height.toInt())
-                                                        .mapToObj(previousLadderLeg::hasRightDirectionAtIndex)
-                                                        .map(flag -> determineDirection(flag, directionSupplier))));
+                                                                     .mapToObj(previousLadderLeg::hasRightDirectionAtIndex)
+                                                                     .map(flag -> determineDirection(flag, directionSupplier))));
     }
 
     private Direction determineDirection(boolean prevRightDirectionFlag, Supplier<Direction> directionSupplier) {

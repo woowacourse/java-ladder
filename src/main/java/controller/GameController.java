@@ -24,7 +24,8 @@ public class GameController {
     }
 
     private void printResult(GameBoard gameBoard) {
-        OutputView.printPlayerNames(gameBoard.getPlayers().getPlayerNames());
+        OutputView.printPlayerNames(gameBoard.getPlayers()
+                                             .getPlayerNames());
         IntStream.range(0, gameBoard.getLadderHeight())
                  .mapToObj(gameBoard::getDirectionAtHorizontalIndex)
                  .forEach(OutputView::printDirections);
