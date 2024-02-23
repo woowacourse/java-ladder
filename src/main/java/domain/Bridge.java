@@ -12,7 +12,7 @@ public enum Bridge {
         this.isExist = isExist;
     }
 
-    public static Bridge of(BooleanGenerator booleanGenerator) {
+    public static Bridge from(BooleanGenerator booleanGenerator) {
         if (booleanGenerator.generate()) {
             return EXIST;
         }

@@ -17,7 +17,7 @@ public class Line {
 
     private void addBridge(BooleanGenerator booleanGenerator) {
         if (bridges.isEmpty() || checkPreviousBlank()) {
-            bridges.add(Bridge.of(booleanGenerator));
+            bridges.add(Bridge.from(booleanGenerator));
             return;
         }
         bridges.add(Bridge.BLANK);
