@@ -1,21 +1,19 @@
 package ladder.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
-
 import static ladder.domain.Direction.LEFT;
 import static ladder.domain.Direction.RIGHT;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LadderLevelTest {
 
-    @DisplayName("사다리 층 생성")
+    @DisplayName("사다리 층을 생성한다.")
     @Test
     void ladderLevelConstructTest() {
         assertThatCode(() -> new LadderLevel(5, new LineGenerator()))
@@ -26,7 +24,7 @@ class LadderLevelTest {
      * Direction.RIGHT Direction.LEFT는 함께 생성된다. <br>
      * RIGHT-LEFT 쌍은 가로줄 한 개를 의미한다.
      */
-    @DisplayName("가로줄 검증")
+    @DisplayName("가로줄이 올바르게 생성되는 지 검증")
     @Test
     void ladderLevelIntegrityTest() {
         // given

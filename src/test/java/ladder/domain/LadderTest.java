@@ -5,24 +5,16 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LadderTest {
-    Players players;
-    Height height;
 
-    @BeforeEach
-    void setUp() {
-        players = new Players(List.of("poby", "honux", "crong", "jk"));
-        height = new Height(5);
-    }
-
-    @DisplayName("사다리 생성")
+    @DisplayName("사다리를 생성한다.")
     @Test
     void ladderConstructTest() {
+        Players players = new Players(List.of("poby", "honux", "crong", "jk"));
+        Height height = new Height(5);
         assertThatCode(() -> new Ladder(players, height))
                 .doesNotThrowAnyException();
     }
@@ -31,6 +23,8 @@ class LadderTest {
     @Test
     void ladderSizeTest() {
         //given
+        Players players = new Players(List.of("poby", "honux", "crong", "jk"));
+        Height height = new Height(5);
         Ladder ladder = new Ladder(players, height);
 
         // when
@@ -39,12 +33,12 @@ class LadderTest {
         LadderLevel anyLadderLevel = ladder.stream().findFirst().get();
 
         int actualHeight = (int) ladder.stream().count();
-        int actualPeopleCount = (int) anyLadderLevel.stream().count();
+        int actualPlayersCount = (int) anyLadderLevel.stream().count();
 
         // then
         assertAll(
                 () -> assertThat(actualHeight).isEqualTo(height.value()),
-                () -> assertThat(actualPeopleCount).isEqualTo(players.count())
+                () -> assertThat(actualPlayersCount).isEqualTo(players.count())
         );
     }
 }

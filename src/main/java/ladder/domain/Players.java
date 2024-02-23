@@ -1,44 +1,54 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
 public class Players {
 
-    private static final int MIN_PEOPLE_COUNT = 2;
+    private static final int MIN_PLAYERS_COUNT = 2;
 
-    private final List<Player> people;
+    private final List<Player> players;
 
     public Players(List<String> names) {
         validate(names);
-        people = names.stream()
+        players = names.stream()
                 .map(Player::new)
                 .toList();
     }
 
     private void validate(List<String> names) {
-        validatePeopleCount(names);
+        validatePlayersCount(names);
         validateDuplicatedName(names);
     }
 
-    private void validatePeopleCount(List<String> names) {
-        if (names.size() < MIN_PEOPLE_COUNT) {
-            throw new IllegalArgumentException("참여자는 최소 %d명입니다.".formatted(MIN_PEOPLE_COUNT));
+    private void validatePlayersCount(List<String> names) {
+        if (names.size() < MIN_PLAYERS_COUNT) {
+            throw new IllegalArgumentException("참여자는 최소 %d명입니다.".formatted(MIN_PLAYERS_COUNT));
         }
     }
 
-
     private void validateDuplicatedName(List<String> names) {
-        if (names.size() != names.stream().distinct().count()) {
-            throw new IllegalArgumentException("중복된 이름은 입력할 수 없습니다.");
+        List<String> distinctNames = new ArrayList<>();
+        names.forEach(name -> {
+            throwExceptionIfContains(distinctNames, name);
+            distinctNames.add(name);
+        });
+    }
+
+    private static void throwExceptionIfContains(List<String> distinctNames, String name) {
+        if (distinctNames.contains(name)) {
+            throw new IllegalArgumentException(
+                    "중복된 이름은 입력할 수 없습니다: %s".formatted(name)
+            );
         }
     }
 
     public int count() {
-        return people.size();
+        return players.size();
     }
 
     public Stream<Player> stream() {
-        return people.stream();
+        return players.stream();
     }
 }

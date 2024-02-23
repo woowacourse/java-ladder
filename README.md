@@ -51,33 +51,33 @@ pobi  honux crong   jk
 
 <img src="docs/images/graph01.png" width="640"/>
 
-그래프를 행렬로 표현했습니다. 
+그래프를 행렬로 표현했습니다.
 
 <img src="docs/images/graph02.png" width="640"/>
 
-각 칸은 세로줄을 의미하고, 1과 -1의 쌍은 가로줄을 의미합니다.  
+각 칸은 세로줄을 의미하고, 1과 -1의 쌍은 가로줄을 의미합니다.
 
 즉 1은 오른쪽 방향을, -1은 왼쪽 방향을, 0은 방향이 없음을 의미합니다.
-
 
 ## 리팩토링 목록
 
 - [X] People 객체만으로 충분하므로 Person 삭제
 - [X] 인스턴스 변수를 private으로 변경
 - [X] 원시 자료형을 래퍼 클래스로 변경
-  - [X] Height 생성
+    - [X] Height 생성
 - [X] 매직넘버를 상수로 변경
 - [X] 테스트 개선
-  - [X] LadderLevelTest
-    - [X] 생성 테스트 추가
-    - [X] 테스트케이스 생성 메서드 들여쓰기 제거
-    - [X] 테스트명 변경
-  - [X] LadderTest
-    - [X] 생성 테스트 추가
-    - [X] 테스트명 변경
-  - [X] PeopleTest
-    - [X] count 테스트 추가
-    - [X] 테스트명 변경
-  - [X] HeightTest
-    - [X] 테스트명 변경
+    - [X] LadderLevelTest
+        - [X] 생성 테스트 추가
+        - [X] 테스트케이스 생성 메서드 들여쓰기 제거
+        - [X] 테스트명 변경
+    - [X] LadderTest
+        - [X] 생성 테스트 추가
+        - [X] 테스트명 변경
+    - [X] PeopleTest
+        - [X] count 테스트 추가
+        - [X] 테스트명 변경
+    - [X] HeightTest
+        - [X] 테스트명 변경
 - [X] Person 추가
+- [X] Person -> Player, People -> Players 로 변경

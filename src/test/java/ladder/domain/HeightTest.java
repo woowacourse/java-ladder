@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class HeightTest {
 
-    @DisplayName("높이 생성")
+    @DisplayName("높이를 생성한다.")
     @Test
     void heightConstructTest() {
         assertThatCode(() -> new Height(1))
@@ -22,6 +22,7 @@ class HeightTest {
     @ParameterizedTest
     void invalidHeightTest(int value) {
         assertThatThrownBy(() -> new Height(value))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("높이는 1 이상이여야 합니다: %d".formatted(value));
     }
 }
