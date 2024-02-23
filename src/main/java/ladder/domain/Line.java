@@ -25,7 +25,8 @@ public class Line {
     }
 
     private StepStatus generateStepStatus(final List<StepStatus> stepStatuses, final int index) {
-        if (index > 0 && stepStatuses.get(index - 1).isExist()) {
+        int prevStepStatusIndex = index - 1;
+        if (index > 0 && stepStatuses.get(prevStepStatusIndex).isExist()) {
             return StepStatus.getStepStatus(false);
         }
         return StepStatus.getStepStatus(randomBooleanGenerator.get());
