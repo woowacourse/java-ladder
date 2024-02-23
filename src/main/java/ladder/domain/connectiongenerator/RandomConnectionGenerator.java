@@ -27,6 +27,6 @@ public class RandomConnectionGenerator implements ConnectionGenerator {
     }
 
     private boolean addRandomConnection() {
-        return Math.random() >= PERCENTAGE_OF_CONNECTION;
+        return Math.random() <= PERCENTAGE_OF_CONNECTION;
     }
 }
