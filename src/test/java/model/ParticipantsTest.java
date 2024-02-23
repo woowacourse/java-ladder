@@ -9,7 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ParticipantsTest {
-
     @DisplayName("List<model.Participant>을 받아 model.Participants 객체를 생성한다.")
     @Test
     void createParticipants() {

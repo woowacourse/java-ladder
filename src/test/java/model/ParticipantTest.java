@@ -10,7 +10,6 @@ import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class ParticipantTest {
-
     @DisplayName("String 값을 받아 model.Participant 객체를 생성한다.")
     @Test
     void createParticipant() {

@@ -10,7 +10,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class LineStateTest {
-
     @DisplayName("LineState는 3가지 상태를 가지고 있는 enum이다.")
     @Test
     void createParticipants() {
@@ -42,4 +41,3 @@ class LineStateTest {
         assertThat(actual).isEqualTo(expected);
     }
 }
-

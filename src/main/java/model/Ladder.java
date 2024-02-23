@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-
     private final List<Line> lines = new ArrayList<>();
 
     public void generateLine(int height, int peopleCount, RandomGenerator randomGenerator) {

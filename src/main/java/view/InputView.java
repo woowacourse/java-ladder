@@ -9,7 +9,6 @@ import model.Participant;
 import model.Participants;
 
 public class InputView {
-
     private final Scanner scanner = new Scanner(System.in);
 
     public Participants readParticipantNames() {

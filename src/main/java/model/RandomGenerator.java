@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomGenerator {
-
     private final Random random = new Random();
 
     public List<Boolean> generate(int count) {

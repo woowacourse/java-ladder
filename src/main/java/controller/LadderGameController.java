@@ -9,7 +9,6 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
-
     private final InputView inputView;
     private final OutputView outputView;
     private final ExceptionHandler exceptionHandler;

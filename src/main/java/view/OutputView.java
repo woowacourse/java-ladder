@@ -9,7 +9,6 @@ import model.Participant;
 import model.Participants;
 
 public class OutputView {
-
     public void printResultHeader() {
         System.out.println();
         System.out.println("실행결과");
