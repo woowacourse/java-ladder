@@ -1,10 +1,9 @@
 import domain.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 public class LadderTest {
 
@@ -14,7 +13,7 @@ public class LadderTest {
     @DisplayName("사다리 객체를 정상적으로 생성한다.")
     @Test
     void createLadder() {
-        assertThatCode(()->Ladder.from(HEIGHT,WIDTH))
+        assertThatCode(() -> Ladder.from(HEIGHT, WIDTH))
                 .doesNotThrowAnyException();
     }
 
@@ -24,6 +23,6 @@ public class LadderTest {
         Ladder ladder = Ladder.from(HEIGHT, WIDTH);
 
         ladder.getLines().stream()
-                        .forEach(line -> assertThat(line.getLegs().size()).isEqualTo(WIDTH));
+                .forEach(line -> assertThat(line.getLegs().size()).isEqualTo(WIDTH));
     }
 }

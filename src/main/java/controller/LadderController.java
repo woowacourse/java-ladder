@@ -1,11 +1,11 @@
 package controller;
 
-import static message.ErrorMessage.INVALID_LADDER_LANGUAGE_EXCEPTION;
-
 import domain.Ladder;
 import domain.Players;
 import view.InputView;
 import view.OutputView;
+
+import static message.ErrorMessage.INVALID_LADDER_LANGUAGE_EXCEPTION;
 
 public class LadderController {
 

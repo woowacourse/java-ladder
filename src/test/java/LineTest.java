@@ -6,13 +6,11 @@ import org.junit.jupiter.api.Test;
 import util.generator.BooleanGenerator;
 import util.generator.RandomBooleanGenerator;
 
-import java.io.InputStream;
 import java.util.List;
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.InstanceOfAssertFactories.INPUT_STREAM;
 
 public class LineTest {
 
