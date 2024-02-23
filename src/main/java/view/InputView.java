@@ -1,12 +1,11 @@
 package view;
 
-import domain.LadderHeight;
-import domain.Name;
-
-import java.io.Reader;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+
+import domain.LadderHeight;
+import domain.Name;
 
 public class InputView {
 

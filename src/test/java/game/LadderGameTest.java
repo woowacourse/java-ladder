@@ -1,8 +1,7 @@
 package game;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import generator.FloorGenerator;
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -13,11 +12,11 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import generator.FloorGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -69,7 +68,7 @@ class LadderGameTest {
 		);
 
 		try {
-			Assertions.assertTimeoutPreemptively(Duration.ofSeconds(1L), this::run);
+			assertTimeoutPreemptively(Duration.ofSeconds(1L), this::run);
 		} catch (NoSuchElementException ignored) {
 		}
 	}
@@ -85,7 +84,7 @@ class LadderGameTest {
 		);
 
 		try {
-			Assertions.assertTimeoutPreemptively(Duration.ofSeconds(1L), this::run);
+			assertTimeoutPreemptively(Duration.ofSeconds(1L), this::run);
 		} catch (NoSuchElementException ignored) {
 		}
 	}
