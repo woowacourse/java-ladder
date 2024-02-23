@@ -1,7 +1,7 @@
 package laddergame.controller;
 
 import laddergame.domain.ladder.Ladder;
-import laddergame.domain.People;
+import laddergame.domain.people.People;
 import laddergame.util.ExceptionHandledReader;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;

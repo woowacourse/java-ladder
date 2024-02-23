@@ -1,9 +1,10 @@
 package laddergame.view;
 
-import laddergame.domain.*;
 import laddergame.domain.ladder.Connection;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.RowLine;
+import laddergame.domain.people.Name;
+import laddergame.domain.people.People;
 import laddergame.view.enums.NameFormat;
 
 import java.util.List;
