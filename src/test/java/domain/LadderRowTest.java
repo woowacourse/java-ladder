@@ -25,7 +25,7 @@ class LadderRowTest {
         // given
         LadderRow ladderRow = new LadderRow(5);
         // when
-        LadderRowPattern status = ladderRow.createStatus();
+        LadderRowPattern status = ladderRow.getRowPattern();
         List<Boolean> actual = status.rowPattern();
         // then
         assertThat(actual).containsOnly(false);
@@ -39,7 +39,7 @@ class LadderRowTest {
         LadderRow ladderRow = new LadderRow(6);
         // when
         ladderRow.createPattern(trueSupplier);
-        LadderRowPattern status = ladderRow.createStatus();
+        LadderRowPattern status = ladderRow.getRowPattern();
         List<Boolean> actual = status.rowPattern();
         List<Boolean> expected = List.of(true, false, true, false, true);
         // then

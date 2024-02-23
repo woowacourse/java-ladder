@@ -6,7 +6,7 @@ import java.util.function.BooleanSupplier;
 
 public class Ladder {
 
-    private final List<LadderRow> lines = new ArrayList<>();
+    private final List<LadderRow> rows = new ArrayList<>();
 
     private Ladder(Players players, LadderHeight height) {
         createLadder(players, height);
@@ -17,12 +17,12 @@ public class Ladder {
     }
 
     public void drawLines(BooleanSupplier supplier) {
-        lines.forEach(line -> line.createPattern(supplier));
+        rows.forEach(row -> row.createPattern(supplier));
     }
 
-    public List<LadderRowPattern> createStatuses() {
-        return lines.stream()
-                .map(LadderRow::createStatus)
+    public List<LadderRowPattern> getLadderPatterns() {
+        return rows.stream()
+                .map(LadderRow::getRowPattern)
                 .toList();
     }
 
@@ -30,7 +30,7 @@ public class Ladder {
         int currentFloor = 0;
         while (!height.hasLengthOf(currentFloor)) {
             LadderRow line = new LadderRow(players.size());
-            lines.add(line);
+            rows.add(line);
             currentFloor++;
         }
     }

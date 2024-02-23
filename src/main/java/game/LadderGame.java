@@ -28,9 +28,9 @@ public class LadderGame {
 
         Ladder ladder = Ladder.of(players, height);
         ladder.drawLines(supplier);
-        List<LadderRowPattern> statuses = ladder.createStatuses();
+        List<LadderRowPattern> patterns = ladder.getLadderPatterns();
 
-        printLadderResult(players.getNames(), statuses);
+        printLadderResult(players.getNames(), patterns);
     }
 
     private Players getNames() {
@@ -45,10 +45,10 @@ public class LadderGame {
         return new LadderHeight(height);
     }
 
-    private void printLadderResult(List<String> names, List<LadderRowPattern> statuses) {
+    private void printLadderResult(List<String> names, List<LadderRowPattern> rowPatterns) {
         outputView.printResultMessage();
         outputView.printNames(names);
-        outputView.printLadder(statuses);
+        outputView.printLadder(rowPatterns);
     }
 
     private <T> T retryOnException(Supplier<T> function) {

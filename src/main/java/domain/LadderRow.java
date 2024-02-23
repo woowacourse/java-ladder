@@ -32,7 +32,7 @@ public class LadderRow {
         return index == 0 || !rowPattern.get(index - 1);
     }
 
-    public LadderRowPattern createStatus() {
+    public LadderRowPattern getRowPattern() {
         List<Boolean> placeStatuses = List.copyOf(rowPattern);
         return new LadderRowPattern(placeStatuses);
     }
