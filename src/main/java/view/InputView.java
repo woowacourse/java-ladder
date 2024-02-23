@@ -44,12 +44,12 @@ public class InputView {
         System.out.println(HEIGHT_REQUEST_MESSAGE);
         String rawHeight = scanner.nextLine();
         validateBlank(rawHeight);
-        int height = convert(rawHeight);
+        int height = parseInt(rawHeight);
         System.out.println();
         return height;
     }
 
-    private int convert(String rawHeight) {
+    private int parseInt(String rawHeight) {
         try {
             return Integer.parseInt(rawHeight);
         } catch (NumberFormatException exception) {
