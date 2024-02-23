@@ -13,13 +13,17 @@ public class FloorTest {
     @Test
     @DisplayName("가로 라인에서 다리가 연속되어 있다면 예외가 발생한다")
     void createFloorFailByNoneSerialBridge() {
-        List<LadderBridge> points = List.of(LadderBridge.BRIDGE, LadderBridge.BRIDGE, LadderBridge.NONE);
+        // given
+        List<LadderBridge> bridges = List.of(LadderBridge.BRIDGE, LadderBridge.BRIDGE, LadderBridge.NONE);
         BridgeGeneratorStub pointGenerator = new BridgeGeneratorStub();
-        pointGenerator.setBridges(points);
-        int pointCount = points.size();
 
-        Assertions.assertThatThrownBy(() -> new Floor(pointGenerator.generate(pointCount)))
+        // when
+        pointGenerator.setBridges(bridges);
+        int bridgeCount = bridges.size();
+
+        // then
+        Assertions.assertThatThrownBy(() -> new Floor(pointGenerator.generate(bridgeCount)))
                 .isInstanceOf(ValidationException.class)
-                .hasMessage(ExceptionMessage.SERIAL_BRIDGE);
+                .hasMessage(ExceptionMessage.SERIAL_LADDER_BRIDGE);
     }
 }
