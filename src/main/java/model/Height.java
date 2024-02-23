@@ -12,7 +12,7 @@ public class Height {
     }
 
     private void validateHeightIsPositive(int maximumHeight) {
-        if (maximumHeight < 0) {    // 0을 상수화?
+        if (maximumHeight <= 0) {
             throw new IllegalArgumentException(NOT_POSITIVE_HEIGHT);
         }
     }
