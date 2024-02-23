@@ -8,13 +8,6 @@ import util.RandomElementSelector;
 
 public class NonContinuousLineGenerator implements RowLineGenerator {
 
-    ConnectionStatus decideCurrentStatus(ConnectionStatus prev) {
-        if (prev.isConnect()) {
-            return DISCONNECTED;
-        }
-        return RandomElementSelector.selectRandomElement(ConnectionStatus.getAllStatus());
-    }
-
     @Override
     public RowLine generate(int personCount) {
         List<ConnectionStatus> connections = new ArrayList<>();
@@ -25,5 +18,12 @@ public class NonContinuousLineGenerator implements RowLineGenerator {
             prev = decideByPrev;
         }
         return new RowLine(connections);
+    }
+
+    ConnectionStatus decideCurrentStatus(ConnectionStatus prev) {
+        if (prev.isConnect()) {
+            return DISCONNECTED;
+        }
+        return RandomElementSelector.selectRandomElement(ConnectionStatus.getAllStatus());
     }
 }
