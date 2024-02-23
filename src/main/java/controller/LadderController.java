@@ -9,8 +9,8 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderController {
-    InputView inputView;
-    OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
 
     public LadderController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
