@@ -6,7 +6,7 @@ public class Application {
         final LadderGame ladderGame = new LadderGame();
         try {
             ladderGame.start();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
