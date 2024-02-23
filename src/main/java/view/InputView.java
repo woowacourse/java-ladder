@@ -1,7 +1,5 @@
 package view;
 
-import constant.Exception;
-
 import exception.view.InputException;
 import java.util.List;
 import java.util.Scanner;
