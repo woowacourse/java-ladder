@@ -8,10 +8,6 @@ public record Name(String value) {
     private static final int MAX_NAME_LENGTH = 5;
 
     public Name {
-        validateName(value);
-    }
-
-    private void validateName(String value) {
         validateNameLength(value);
         validateNamePattern(value);
     }
