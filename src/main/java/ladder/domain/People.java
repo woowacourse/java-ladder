@@ -9,7 +9,7 @@ public class People {
     private static final int MIN_PEOPLE_NUMBERS = 1;
     private static final int MAX_PEOPLE_NUMBERS = 100;
     private final List<String> names = new ArrayList<>();
-
+    //TODO name 원시값 포장하기
     public People(List<String> names) {
         validatePeopleNumber(names);
 
@@ -18,7 +18,7 @@ public class People {
         }
         this.names.addAll(names);
     }
-
+    //TODO 메서드 순서 고려하기
     public List<String> getNames() {
         return Collections.unmodifiableList(names);
     }

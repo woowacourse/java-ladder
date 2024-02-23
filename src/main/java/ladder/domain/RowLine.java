@@ -18,6 +18,7 @@ public class RowLine {
         this.connection.addAll(generatedConnection);
     }
 
+    //TODO static 삭제
     private static void validatePeopleNumber(int peopleNumber) {
         if (peopleNumber < MIN_PEOPLE_NUMBER || peopleNumber > MAX_PEOPLE_NUMBER) {
             throw new IllegalArgumentException("참여자 수는 1이상 100이하의 사람 수 입니다.");
@@ -27,7 +28,7 @@ public class RowLine {
     public List<Boolean> getConnection() {
         return Collections.unmodifiableList(connection);
     }
-
+    //TODO 가독성 강화하기 - 네이밍
     private void validateSuccessiveLine(List<Boolean> booleans) {
         Boolean flag = Boolean.FALSE;
         for (Boolean b : booleans) {

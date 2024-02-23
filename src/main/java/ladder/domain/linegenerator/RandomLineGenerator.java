@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RandomLineGenerator implements LineGenerator {
+    //TODO 로직 가독성 생각해보기
+    //TODO Stream.iterate 생각해보기
     @Override
     public List<Boolean> getLine(int peopleNumber) {
 

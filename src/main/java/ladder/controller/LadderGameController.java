@@ -8,7 +8,7 @@ import ladder.view.OutputView;
 public class LadderGameController {
     private LadderGameController() {
     }
-
+    //TODO 예외처리가 Controller의 역할인지 생각하기
     public static void run() {
         People people = getPeople();
         Ladder ladder = getLadder(people);

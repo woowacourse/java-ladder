@@ -13,6 +13,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PeopleTest {
+
+    //TODO 예외 케이스 주석 삭제 + 문자열 경계값 테스트
+    //TODO 패키지 이동 고려하기
     @DisplayName("참여자 이름에 예외적인 입력값이 들어왔을 때, domain.People 객체를 생성할 수 없다.")
     @ParameterizedTest
     @ValueSource(strings = {
