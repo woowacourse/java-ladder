@@ -12,10 +12,7 @@ public class RandomBooleanGenerator implements BooleanGenerator {
 
     @Override
     public boolean generate() {
-        if (random.nextInt(2) == 1) {
-            return true;
-        }
-        return false;
+        return random.nextInt(2) == 1;
     }
 
     public static RandomBooleanGenerator getGenerator() {
