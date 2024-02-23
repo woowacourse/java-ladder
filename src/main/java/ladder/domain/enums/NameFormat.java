@@ -1,7 +1,6 @@
 package ladder.domain.enums;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 public enum NameFormat {
     DEFAULT(0, "%s "),
