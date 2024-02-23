@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 
 public class LadderLegGenerator {
 
-    private static final Supplier<Direction> leftDirectionSupplier = () -> Direction.LEFT;
     private final Height height;
 
     public LadderLegGenerator(Height height) {
@@ -30,6 +29,7 @@ public class LadderLegGenerator {
 
     private Direction determineDirection(boolean prevRightDirectionFlag, Supplier<Direction> directionSupplier) {
         if (prevRightDirectionFlag) {
+            final Supplier<Direction> leftDirectionSupplier = () -> Direction.LEFT;
             return leftDirectionSupplier.get();
         }
         return directionSupplier.get();
