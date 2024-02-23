@@ -3,13 +3,12 @@ package ladder.view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
 import ladder.domain.Height;
 import ladder.domain.Players;
 
 public class InputView {
 
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     public static Players inputNames() {
         System.out.println("\n참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
@@ -19,10 +18,19 @@ public class InputView {
 
     public static Height inputHeight() {
         System.out.println("\n최대 사다리 높이는 몇 개인가요?");
-        return new Height(Integer.parseInt(readLine()));
+        return new Height(readInt());
     }
 
     private static String readLine() {
-        return scanner.nextLine().replaceAll(" ", "");
+        return SCANNER.nextLine().replaceAll(" ", "");
+    }
+
+    private static int readInt() {
+        String input = readLine();
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException exception) {
+            throw new NumberFormatException("입력이 정수가 아닙니다: " + input);
+        }
     }
 }

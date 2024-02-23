@@ -11,14 +11,14 @@ import ladder.view.ResultView;
 public class Controller {
 
     public void run() {
-        Players players = createPeople();
+        Players players = createPlayers();
         Height height = createHeight();
         Ladder ladder = new Ladder(players, height);
         ladder.initialize(new LineGenerator());
         ResultView.printResult(players, ladder);
     }
 
-    private Players createPeople() {
+    private Players createPlayers() {
         return ExceptionHandler.run(InputView::inputNames);
     }
 

@@ -16,7 +16,8 @@ public class LadderLevel {
     public LadderLevel(int size, LineGenerator lineGenerator) {
         ladderLevel = new ArrayList<>();
         initialize(size);
-        IntStream.range(0, size - 1).forEach(index -> setLines(lineGenerator, index));
+        IntStream.range(0, size - 1)
+                .forEach(index -> setLines(lineGenerator, index));
     }
 
     private void initialize(int size) {
