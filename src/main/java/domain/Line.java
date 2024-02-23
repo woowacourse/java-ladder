@@ -26,10 +26,10 @@ public class Line {
 
     private List<Boolean> filterAdjacentBridges(final List<Boolean> bridges) {
         List<Boolean> filteredBridges = new ArrayList<>();
-        for (int i = 1; i < bridges.size(); i++) {
-            Boolean before = bridges.get(i - 1);
-            Boolean current = bridges.get(i);
-            filteredBridges.add(removeBridgeIfAdjacent(before, current));
+        for (int current = 1; current < bridges.size(); current++) {
+            Boolean beforeBridge = bridges.get(current - 1);
+            Boolean currentBridge = bridges.get(current);
+            filteredBridges.add(removeBridgeIfAdjacent(beforeBridge, currentBridge));
         }
         return filteredBridges;
     }
