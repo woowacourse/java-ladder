@@ -9,6 +9,7 @@ public class People {
     private static final int MIN_PEOPLE_NUMBERS = 1;
     private static final int MAX_PEOPLE_NUMBERS = 100;
     private final List<String> names = new ArrayList<>();
+
     //TODO name 원시값 포장하기
     public People(List<String> names) {
         validatePeopleNumber(names);
@@ -17,10 +18,6 @@ public class People {
             validateNameRule(name);
         }
         this.names.addAll(names);
-    }
-    //TODO 메서드 순서 고려하기
-    public List<String> getNames() {
-        return Collections.unmodifiableList(names);
     }
 
     private void validatePeopleNumber(List<String> names) {
@@ -33,5 +30,9 @@ public class People {
         if (name == null || !name.matches(NAME_RULE)) {
             throw new IllegalArgumentException("이름은 5자 이내의 영숫자로 구성되어야 합니다.");
         }
+    }
+
+    public List<String> getNames() {
+        return Collections.unmodifiableList(names);
     }
 }

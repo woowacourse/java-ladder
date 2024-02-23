@@ -24,10 +24,6 @@ public class RowLine {
         }
     }
 
-    public List<Boolean> getConnection() {
-        return Collections.unmodifiableList(connection);
-    }
-
     //TODO 가독성 강화하기 - 네이밍
     private void validateSuccessiveLine(List<Boolean> booleans) {
         Boolean flag = Boolean.FALSE;
@@ -38,5 +34,10 @@ public class RowLine {
             flag = b;
         }
     }
+
+    public List<Boolean> getConnection() {
+        return Collections.unmodifiableList(connection);
+    }
+
 
 }
