@@ -18,7 +18,7 @@ public class Height {
         }
     }
 
-    boolean isOutOfRange(int value) {
+    private boolean isOutOfRange(int value) {
         return value <= 0 || value > UPPER_BOUND;
     }
 
