@@ -7,15 +7,9 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class LineTest {
-    @Test
-    @DisplayName("인원 수를 인자로 받아서 Line을 생성한다.")
-    void createLine() {
-        assertThatCode(() -> new Line(3));
-    }
-
     @RepeatedTest(100)
     @DisplayName("연속으로 True를 가질 수 없다.")
     void notConsecutiveDraw() {
@@ -24,8 +18,8 @@ class LineTest {
         List<ConnectionStatus> isConnections = line.getConnectionStatuses();
 
         boolean isConsecutive = false;
-        for(int i = 1; i < isConnections.size(); i++) {
-            if(isConnections.get(i).equals(ConnectionStatus.CONNECTION) && isConnections.get(i - 1).equals(ConnectionStatus.CONNECTION)) {
+        for (int i = 1; i < isConnections.size(); i++) {
+            if (isConnections.get(i).equals(ConnectionStatus.CONNECTION) && isConnections.get(i - 1).equals(ConnectionStatus.CONNECTION)) {
                 isConsecutive = true;
                 break;
             }
