@@ -10,30 +10,31 @@ public class OutputView {
     private static final String HORIZON_DELIMITER = "-";
     private static final String VERTICAL_DELIMITER = "|";
     private static final String SPACE = " ";
+    private static final int OFFSET_COUNT = 5;
 
-    private static void printLine(List<String> names, Line line, int maxPlayerNameLength) {
-        System.out.print(SPACE.repeat(6));
+    private static void printLine(Line line) {
+        System.out.print(SPACE.repeat(OFFSET_COUNT));
         System.out.print(VERTICAL_DELIMITER);
         for (Bridge bridge : line.getBridges()) {
-            printBridge(bridge, maxPlayerNameLength);
+            printBridge(bridge);
         }
         System.out.println();
     }
 
-    private static void printBridge(Bridge bridge, int maxPlayerNameLength) {
-        if (bridge == Bridge.EXIST) {
-            System.out.print(HORIZON_DELIMITER.repeat(maxPlayerNameLength));
+    private static void printBridge(Bridge bridge) {
+        if (Bridge.isExist(bridge)) {
+            System.out.print(HORIZON_DELIMITER.repeat(OFFSET_COUNT));
             System.out.print(VERTICAL_DELIMITER);
             return;
         }
-        System.out.print(SPACE.repeat(maxPlayerNameLength));
+        System.out.print(SPACE.repeat(OFFSET_COUNT));
         System.out.print(VERTICAL_DELIMITER);
     }
 
     public void printResult(Ladder ladder, List<String> names) {
         System.out.println("실행결과\n");
         printPlayer(names);
-        printLadder(ladder, names);
+        printLadder(ladder);
     }
 
     private void printPlayer(List<String> names) {
@@ -41,14 +42,10 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printLadder(Ladder ladder, List<String> names) {
+    private void printLadder(Ladder ladder) {
         List<Line> lines = ladder.getLines();
-        int maxPlayerNameLength = names.stream()
-                .mapToInt(String::length)
-                .max()
-                .orElseThrow();
         for (Line line : lines) {
-            printLine(names, line, maxPlayerNameLength);
+            printLine(line);
         }
     }
 }
