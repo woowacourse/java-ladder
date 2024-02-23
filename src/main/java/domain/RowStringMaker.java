@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 class RowStringMaker {
+    private RowStringMaker() {
+
+    }
+
     static String make(Row row) {
         List<Boolean> bridges = row.getBridges();
         String rawRowString = bridges.stream()
