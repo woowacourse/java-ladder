@@ -17,7 +17,7 @@ public class InputView {
             String removedInput = removeBlank(input);
             return split(removedInput);
         } catch (IOException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("비정상적인 입력입니다. 다시 입력해주세요.");
         }
     }
 
