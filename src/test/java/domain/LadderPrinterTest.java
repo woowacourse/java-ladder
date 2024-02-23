@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class LadderPrinterTest {
     @Test
     @DisplayName("사다리 문자열 생성")
-    void test() {
+    void ladderToString() {
         Height height = new Height(5);
         Width width = new Width(2);
         Ladder ladder = new Ladder(height, width, width1 -> List.of(true));
