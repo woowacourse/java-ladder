@@ -10,10 +10,10 @@ public class Names {
 
     public Names(List<String> names) {
         validate(names);
-        this.names = from(names);
+        this.names = fromNameStrings(names);
     }
 
-    private List<Name> from(List<String> names) {
+    private List<Name> fromNameStrings(List<String> names) {
         return names.stream()
                     .map(Name::new)
                     .toList();
