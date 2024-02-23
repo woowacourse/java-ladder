@@ -1,7 +1,7 @@
 package view;
 
 public class InputValidator {
-    private static final String INPUT_NAMES_DELIMITER = InputView.INPUT_NAMES_DELIMITER;
+    private static final String INPUT_NAMES_DELIMITER = InputView.NAME_DELIMITER;
 
     public void validatePlayers(String input) {
         validateBlank(input);
