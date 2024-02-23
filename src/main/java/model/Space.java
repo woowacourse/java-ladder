@@ -16,4 +16,8 @@ public enum Space {
         }
         return Space.EMPTY;
     }
+
+    public boolean isValue() {
+        return value;
+    }
 }
