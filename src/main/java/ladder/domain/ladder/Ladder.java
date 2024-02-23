@@ -16,7 +16,7 @@ public class Ladder {
 
     private List<LadderStep> generateLadderSteps(final LadderStepGenerator stepGenerator, final Height height) {
         final List<LadderStep> ladderSteps = new ArrayList<>();
-        while (height.isGreaterThan(ladderSteps)) {
+        while (height.isGreaterThan(ladderSteps.size())) {
             final LadderStep currentLadderStep = stepGenerator.generateValidStep();
             ladderSteps.add(currentLadderStep);
         }
