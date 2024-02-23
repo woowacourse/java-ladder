@@ -1,10 +1,10 @@
 package domain;
 
-import static domain.ConnectionStatus.DISCONNECTED;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import util.RandomElementSelector;
+
+import static domain.ConnectionStatus.DISCONNECTED;
 
 public class NonContinuousLineGenerator implements RowLineGenerator {
 
@@ -24,6 +24,11 @@ public class NonContinuousLineGenerator implements RowLineGenerator {
         if (prev.isConnect()) {
             return DISCONNECTED;
         }
-        return RandomElementSelector.selectRandomElement(ConnectionStatus.getAllStatus());
+        return selectRandomElement(ConnectionStatus.getAllStatus());
+    }
+
+    private ConnectionStatus selectRandomElement(List<ConnectionStatus> collection) {
+        Collections.shuffle(collection);
+        return collection.get(0);
     }
 }
