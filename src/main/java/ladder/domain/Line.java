@@ -9,11 +9,11 @@ import java.util.function.Supplier;
 import static java.util.Collections.unmodifiableList;
 
 public class Line {
-    private final Supplier<Boolean> generator;
+    private final Supplier<Boolean> randomBooleanGenerator;
     private final List<StepStatus> stepStatuses;
 
-    public Line(final Supplier<Boolean> generator, final int userCount) {
-        this.generator = generator;
+    public Line(final Supplier<Boolean> randomBooleanGenerator, final int userCount) {
+        this.randomBooleanGenerator = randomBooleanGenerator;
         this.stepStatuses = initStepStatuses(userCount);
     }
 
@@ -29,7 +29,7 @@ public class Line {
         if (index > 0 && stepStatuses.get(index - 1).isExist()) {
             return StepStatus.getStepStatus(false);
         }
-        return StepStatus.getStepStatus(generator.get());
+        return StepStatus.getStepStatus(randomBooleanGenerator.get());
     }
 
     public LineResult getLineResult() {
