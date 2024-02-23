@@ -24,7 +24,7 @@ public class Line {
     }
 
     private static Bridge findPreviousBridge(List<Bridge> bridges) {
-        if (bridges.size() == 0) {
+        if (bridges.isEmpty()) {
             return Bridge.NO_BRIDGE;
         }
         return bridges.get(bridges.size() - 1);
