@@ -11,10 +11,10 @@ public class Line {
 
     public Line(PointStrategy pointStrategy, int playerCount) {
         this.pointStrategy = pointStrategy;
-        this.points = generate(playerCount);
+        this.points = initialize(playerCount);
     }
 
-    private List<Point> generate(int playerCount) {
+    private List<Point> initialize(int playerCount) {
         List<Point> points = new ArrayList<>();
         points.add(pointStrategy.generatePoint());
         for (int i = 1; i < playerCount - 1; i++) {

@@ -8,13 +8,18 @@ public class Height {
     private final int value;
 
     public Height(String rawValue) {
-        this.value = validateNonNumeric(rawValue);
-        validateRange(value);
+        validate(rawValue);
+        this.value = initialize(rawValue);
     }
 
-    private int validateNonNumeric(String rawValue) {
+    private void validate(String rawValue) {
+        validateNonNumeric(rawValue);
+        validateRange(Integer.parseInt(rawValue));
+    }
+
+    private void validateNonNumeric(String rawValue) {
         try {
-            return Integer.parseInt(rawValue);
+            Integer.parseInt(rawValue);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("숫자를 입력해 주세요.");
         }
@@ -24,6 +29,10 @@ public class Height {
         if (value < MIN_HEIGHT || value > MAX_HEIGHT) {
             throw new IllegalArgumentException(MIN_HEIGHT + " 이상 " + MAX_HEIGHT + " 이하의 숫자를 입력해 주세요.");
         }
+    }
+
+    private int initialize(String rawValue) {
+        return Integer.parseInt(rawValue);
     }
 
     public int getValue() {

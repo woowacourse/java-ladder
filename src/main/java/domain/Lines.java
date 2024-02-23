@@ -10,10 +10,10 @@ public class Lines {
     private final List<Line> lines;
 
     public Lines(int playerCount, Height height, PointStrategy pointStrategy) {
-        this.lines = generate(playerCount, height, pointStrategy);
+        this.lines = initialize(playerCount, height, pointStrategy);
     }
 
-    private List<Line> generate(int playerCount, Height height, PointStrategy pointStrategy) {
+    private List<Line> initialize(int playerCount, Height height, PointStrategy pointStrategy) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height.getValue(); i++) {
             lines.add(new Line(pointStrategy, playerCount));

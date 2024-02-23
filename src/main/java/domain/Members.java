@@ -14,7 +14,7 @@ public class Members {
 
     public Members(String rawNames) {
         validate(rawNames);
-        this.members = generate(rawNames);
+        this.members = initialize(rawNames);
     }
 
     private void validate(String rawNames) {
@@ -24,7 +24,7 @@ public class Members {
         validateCount(names);
     }
 
-    private List<Member> generate(String rawNames) {
+    private List<Member> initialize(String rawNames) {
         return parse(rawNames).stream()
             .map(Member::new)
             .toList();
