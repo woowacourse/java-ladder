@@ -18,7 +18,7 @@ public enum Step {
         return Arrays.stream(values())
                 .filter(value -> value.doesExist == doesExist)
                 .findAny()
-                .orElse(null);
+                .orElseThrow(() -> new IllegalArgumentException("발판의 존재여부는 true, false 중 하나입니다."));
     }
 
     public String getOutput() {
