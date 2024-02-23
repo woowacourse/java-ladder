@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import view.LadderPrinter;
 
 public class LadderGame {
     private final Ladder ladder;
@@ -13,7 +14,8 @@ public class LadderGame {
     }
 
     public String getLadderString() {
-        return LadderPrinter.from(ladder);
+        List<List<Boolean>> rawLadder = ladder.getRawLadder();
+        return LadderPrinter.from(rawLadder);
     }
 
     public String getNamesString() {

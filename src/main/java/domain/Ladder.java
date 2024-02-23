@@ -5,7 +5,7 @@ import java.util.stream.IntStream;
 
 class Ladder {
     private final List<Row> rows;
-    
+
     Ladder(int rawHeight, int rawWidth, BridgeGenerator bridgeGenerator) {
         Height height = new Height(rawHeight);
         Width width = new Width(rawWidth);
@@ -17,5 +17,11 @@ class Ladder {
 
     List<Row> getRows() {
         return rows;
+    }
+
+    public List<List<Boolean>> getRawLadder() {
+        return rows.stream()
+                .map(Row::getBridges)
+                .toList();
     }
 }
