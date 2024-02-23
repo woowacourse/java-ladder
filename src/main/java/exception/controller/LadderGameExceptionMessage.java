@@ -1,12 +1,12 @@
 package exception.controller;
 
-public enum LadderGameMessage {
+public enum LadderGameExceptionMessage {
 
     EXIT("[ERROR] 잘못된 입력의 반복으로 프로그램을 종료합니다.");
 
     private final String exceptionMessage;
 
-    LadderGameMessage(String exceptionMessage) {
+    LadderGameExceptionMessage(String exceptionMessage) {
         this.exceptionMessage = exceptionMessage;
     }
 
