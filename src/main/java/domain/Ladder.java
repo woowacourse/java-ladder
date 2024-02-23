@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.stream.IntStream;
+import utils.BooleanGenerator;
 import utils.RandomBooleanGenerator;
 
 import java.util.ArrayList;
@@ -7,15 +9,17 @@ import java.util.List;
 
 public class Ladder {
 
-    private final Height height;
     private final List<Line> lines;
 
     public Ladder(int floor, int participantsCount) {
+        int stepPointCount = participantsCount - 1;
+        BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
+        Height height = new Height(floor);
         lines = new ArrayList<>();
-        height = new Height(floor);
-        for (int i = 0; i < floor; i++) {
-            lines.add(new Line(participantsCount - 1, new RandomBooleanGenerator()));
-        }
+
+        IntStream.range(0, floor)
+                .mapToObj(i -> new Line(stepPointCount, booleanGenerator))
+                .forEach(lines::add);
     }
 
     public List<Line> getLines() {
