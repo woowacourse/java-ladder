@@ -12,14 +12,14 @@ public class LineTest {
     @Test
     @DisplayName("가로줄 생성 성공: (참여자 - 1) 만큼의 가로줄이 생성된다.")
     void test_ok_constructor() {
-        Line line = new Line(3, new RandomPointStrategy());
+        Line line = new Line(new RandomPointStrategy(), 3);
         assertThat(line.getPoints().size()).isEqualTo(3 - 1);
     }
 
     @RepeatedTest(50)
     @DisplayName("가로줄 생성 성공: 랜덤으로 생성된 값이 Point 객체이다.")
     void test_ok_generateRandomPoint() {
-        Line line = new Line(4, new RandomPointStrategy());
+        Line line = new Line(new RandomPointStrategy(), 4);
         line.getPoints()
                 .forEach(point -> assertThat(point).isInstanceOf(Point.class));
     }
@@ -27,7 +27,7 @@ public class LineTest {
     @Test
     @DisplayName("가로줄 생성 성공: 연결 오른쪽은 비연결이다.")
     void test_ok_generatePointNextConnected() {
-        Line line = new Line(3, () -> Point.CONNECTED);
+        Line line = new Line(() -> Point.CONNECTED, 3);
         assertThat(line.getPoints().get(1)).isEqualTo(Point.DISCONNECTED);
     }
 }

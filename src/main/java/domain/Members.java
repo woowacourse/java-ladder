@@ -5,24 +5,31 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Members {
 
     private static final int MIN_MEMBER_COUNT = 2;
     private static final int MAX_MEMBER_COUNT = 15;
 
-    private final List<Member> members = new ArrayList<>();
+    private final List<Member> members;
 
     public Members(String rawNames) {
         validate(rawNames);
+        this.members = generate(rawNames);
     }
 
     private void validate(String rawNames) {
         validateNull(rawNames);
-        List<String> names = addMembers(rawNames);
+        List<String> names = parse(rawNames);
         validateDuplication(names);
         validateCount(names);
-        names.forEach(name -> members.add(new Member(name)));
+    }
+
+    private List<Member> generate(String rawNames) {
+        return parse(rawNames).stream()
+            .map(Member::new)
+            .toList();
     }
 
     private void validateNull(String rawNames) {
@@ -31,7 +38,7 @@ public class Members {
         }
     }
 
-    private List<String> addMembers(String rawNames) {
+    private List<String> parse(String rawNames) {
         return Arrays.stream(rawNames.split(",", -1))
                 .map(String::trim)
                 .toList();
