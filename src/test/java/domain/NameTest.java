@@ -10,7 +10,7 @@ class NameTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"", "abcdef"})
-    @DisplayName("사람 이름 길이 검증")
+    @DisplayName("사람 이름 길이가 부적절(1 미만 5 초과)하면 예외 발생")
     void validateNameLength(String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(LadderGameException.class)
@@ -19,7 +19,7 @@ class NameTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"12345", "!@#$%", "가나다라마"})
-    @DisplayName("사람 이름 구성 문자 검증")
+    @DisplayName("사람 이름이 영문 대소문자가 아니면 예외 발생")
     void validateNameCharacters(String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(LadderGameException.class)

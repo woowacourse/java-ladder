@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class RowTest {
     @Test
-    @DisplayName("연속해서 다리가 등장하는지 확인")
+    @DisplayName("연속해서 다리가 등장하면 예외 발생")
     void validateNearInfo() {
         Assertions.assertThatThrownBy(() -> new Row(List.of(true, true)))
                 .isInstanceOf(LadderGameException.class)
@@ -19,9 +19,9 @@ class RowTest {
 
     @ParameterizedTest
     @ValueSource(ints = {Row.MIN_BRIDGES_COUNT - 1, Row.MAX_BRIDGES_COUNT + 1})
-    @DisplayName("다리 개수 확인")
-    void validateRowInfoSize(int infoSize) {
-        List<Boolean> bridges = IntStream.range(0, infoSize).mapToObj(value -> false).toList();
+    @DisplayName("다리 개수가 부적절(1 미만 9 초과)하면 예외 발생")
+    void validateBridgesSize(int bridgesSize) {
+        List<Boolean> bridges = IntStream.range(0, bridgesSize).mapToObj(value -> false).toList();
         Assertions.assertThatThrownBy(() -> new Row(bridges))
                 .isInstanceOf(LadderGameException.class)
                 .hasMessage(ExceptionType.ROW_BRIDGES_COUNT.getMessage());

@@ -13,7 +13,7 @@ public class NameStringTest {
             "aaa,' aaa '",
             "aaaa,'aaaa '",
             "aaaaa,aaaaa"})
-    @DisplayName("이름이 5자 미만이면 규칙에 따라 공백을 추가")
+    @DisplayName("이름이 5자 미만이면 규칙에 따라 공백 추가")
     void testNameStringPadding(String name, String expected) {
         String actual = NameString.from(new Name(name));
         Assertions.assertThat(actual).isEqualTo(expected);

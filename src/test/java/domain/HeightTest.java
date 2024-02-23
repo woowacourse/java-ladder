@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class HeightTest {
     @ParameterizedTest
     @ValueSource(ints = {Height.MIN - 1, Height.MAX + 1})
-    @DisplayName("높이 검증")
+    @DisplayName("부적절한 사다리 높이(5 미만 10 초과)를 입력 받으면 예외 발생")
     void validateHeight(int length) {
         assertThatThrownBy(() -> new Height(length))
                 .isInstanceOf(LadderGameException.class)
