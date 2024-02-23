@@ -1,39 +1,23 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Line {
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points;
     private final BooleanGenerator generator;
 
     public Line(final int personCount, final BooleanGenerator generator) {
         this.generator = generator;
-        createLine(personCount);
+        points = createLine(personCount);
     }
 
-    private void createLine(int personCount) {
-        for (int i = 0; i < personCount - 1; i++) {
-            boolean nextBoolean = generator.generate();
-            boolean nextPoint = selectNextPoint(nextBoolean);
-            points.add(nextPoint);
-        }
-    }
-
-    private boolean selectNextPoint(boolean nextBoolean) {
-        if (points.isEmpty()) {
-            return nextBoolean;
-        }
-
-        if (isLastPointTrue()) {
-            return false;
-        }
-        
-        return nextBoolean;
-    }
-
-    private boolean isLastPointTrue() {
-        return points.get(points.size() - 1);
+    private List<Boolean> createLine(int personCount) {
+        Boolean firstPoint = generator.generate();
+        return Stream.iterate(firstPoint, prevPoint -> {
+            if (prevPoint) return false;
+            return generator.generate();
+        }).limit(personCount - 1).toList();
     }
 
     public List<Boolean> getPoints() {

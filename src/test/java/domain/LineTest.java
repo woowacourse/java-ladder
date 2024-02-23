@@ -14,6 +14,9 @@ class LineTest {
         int personCount = 5;
         Line line = new Line(personCount, new FixedBooleanGenerator());
         List<Boolean> points = line.getPoints();
+        for (Boolean point : points) {
+            System.out.println(point);
+        }
         int isInvalidLine = Collections.indexOfSubList(points, List.of(true, true));
 
         assertEquals(-1, isInvalidLine);
