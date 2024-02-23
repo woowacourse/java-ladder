@@ -27,11 +27,10 @@ public class Ladder {
     }
 
     private int getUniqueSize(final List<Line> lines) {
-        return lines.stream()
+        return (int) lines.stream()
                 .map(Line::size)
                 .distinct()
-                .toList()
-                .size();
+                .count();
     }
 
     public List<Line> getLines() {
