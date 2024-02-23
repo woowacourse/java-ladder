@@ -4,10 +4,8 @@ import domain.ladder.common.Direction;
 import util.DirectionGenerator;
 import domain.ladder.common.Height;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Ladder {
@@ -18,18 +16,30 @@ public class Ladder {
     public Ladder(Height height, Integer playerCount, DirectionGenerator directionGenerator) {
         this.height = height;
         this.playerCount = playerCount;
-        this.ladderLegs = generateFirstToLastLegs(directionGenerator);
+        this.ladderLegs = generateLadderLegs(directionGenerator);
     }
 
-    private List<LadderLeg> generateFirstToLastLegs(DirectionGenerator directionGenerator) {
+    private List<LadderLeg> generateLadderLegs(DirectionGenerator directionGenerator) {
         int heightValue = height.getHeight();
-        List<LadderLeg> ladderLegs = Stream.iterate(LadderLeg.downLadderLeg(heightValue), prevLeg ->
-                                                   LadderLeg.from(prevLeg, heightValue, directionGenerator::generate))
-                                           .limit(playerCount - 1)
-                                           .collect(Collectors.toList());
 
-        ladderLegs.add(LadderLeg.from(ladderLegs.get(ladderLegs.size() - 1), heightValue, () -> Direction.DOWN));
+        List<LadderLeg> ladderLegs = buildBeforeFinalLeg(heightValue, directionGenerator);
+        addFinalLeg(heightValue, ladderLegs);
         return ladderLegs;
+    }
+
+    private List<LadderLeg> buildBeforeFinalLeg(int heightValue, DirectionGenerator directionGenerator) {
+        LadderLeg initialLeg = LadderLeg.downLadderLeg(heightValue);
+        return Stream.iterate(initialLeg, prevLeg ->
+                             LadderLeg.fromPreviousWithDynamicDirection(prevLeg, heightValue, directionGenerator::generate))
+                     .skip(1)
+                     .limit(playerCount - 1)
+                     .collect(Collectors.toList());
+    }
+
+    private void addFinalLeg(int heightValue, List<LadderLeg> ladderLegs) {
+        ladderLegs.add(
+                LadderLeg
+                        .fromPreviousWithDownDirection(ladderLegs.get(ladderLegs.size() - 1), heightValue));
     }
 
 
