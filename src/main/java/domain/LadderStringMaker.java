@@ -2,10 +2,10 @@ package domain;
 
 import java.util.stream.Collectors;
 
-class LadderString {
-    static String from(Ladder ladder) {
+class LadderStringMaker {
+    static String make(Ladder ladder) {
         return ladder.getRows().stream()
-                .map(RowString::from)
+                .map(RowStringMaker::make)
                 .collect(Collectors.joining("\n"));
     }
 }

@@ -13,10 +13,10 @@ public class LadderGame {
     }
 
     public String getLadderString() {
-        return LadderString.from(ladder);
+        return LadderStringMaker.make(ladder);
     }
 
     public String getNamesString() {
-        return NamesString.from(names);
+        return NamesStringMaker.make(names);
     }
 }

@@ -13,7 +13,7 @@ class LadderStringTest {
         Height height = new Height(5);
         Width width = new Width(2);
         Ladder ladder = new Ladder(height, width, width1 -> List.of(true));
-        String ladderString = LadderString.from(ladder);
+        String ladderString = LadderStringMaker.make(ladder);
 
         String expected = "    ";
         Arrays.stream(ladderString.split("\n"))
@@ -28,7 +28,7 @@ class LadderStringTest {
         Height height = new Height(5);
         Width width = new Width(2);
         Ladder ladder = new Ladder(height, width, width1 -> List.of(true));
-        String ladderString = LadderString.from(ladder);
+        String ladderString = LadderStringMaker.make(ladder);
 
         String actual = ladderString.substring(ladderString.length() - 1);
         String expected = "|";

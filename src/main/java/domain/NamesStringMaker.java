@@ -2,10 +2,10 @@ package domain;
 
 import java.util.stream.Collectors;
 
-class NamesString {
-    static String from(Names names) {
+class NamesStringMaker {
+    static String make(Names names) {
         return names.getNames().stream()
-                .map(NameString::from)
+                .map(NameStringMaker::make)
                 .collect(Collectors.joining(" "));
     }
 }

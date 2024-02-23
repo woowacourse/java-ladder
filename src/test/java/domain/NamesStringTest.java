@@ -9,7 +9,7 @@ class NamesStringTest {
     @DisplayName("이름들의 문자열은 공백으로 구분되어 생성")
     void testNamesSperator() {
         Names names = new Names("aaaaa,bbbbb,ccccc,ddddd,eeeee");
-        String actual = NamesString.from(names);
+        String actual = NamesStringMaker.make(names);
         String expected = "aaaaa bbbbb ccccc ddddd eeeee";
         Assertions.assertThat(actual).isEqualTo(expected);
     }
