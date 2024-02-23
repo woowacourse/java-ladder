@@ -23,7 +23,7 @@ public class Ladder {
     private LadderRow buildRow(int participantsSize) {
         List<Boolean> lineStatus = new ArrayList<>();
         lineStatus.add(new Random().nextBoolean());
-        for (int i = lineStatus.size(); i < participantsSize - 1; i++) {
+        for (int i = 1; i < participantsSize - 1; i++) {
             fillLineStatus(lineStatus, new Random().nextBoolean());
         }
         return new LadderRow(lineStatus);
