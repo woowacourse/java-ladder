@@ -8,6 +8,9 @@ import java.util.stream.Collectors;
 
 public class MessageResolver {
     private static final String COLUMN_LINE = "|";
+    private static final String LINE_MESSAGE_PREFIX = "    ";
+    private static final String CONNECT_STATUS_MESSAGE = "-----";
+    private static final String DISCONNECT_STATUS_MESSAGE = "     ";
 
     public String resolveNamesMessage(Names names) {
         return names.getNames().stream()
@@ -23,15 +26,15 @@ public class MessageResolver {
     }
 
     private String resolveLineMessage(RowLine rowLine) {
-        return "    " + COLUMN_LINE + rowLine.getConnections().stream()
+        return LINE_MESSAGE_PREFIX + COLUMN_LINE + rowLine.getConnections().stream()
                 .map(this::resolveConnectionMessage)
                 .collect(Collectors.joining(COLUMN_LINE)) + COLUMN_LINE;
     }
 
     private String resolveConnectionMessage(ConnectionStatus connectionStatus) {
         if (connectionStatus.isConnect()) {
-            return "-----";
+            return CONNECT_STATUS_MESSAGE;
         }
-        return "     ";
+        return DISCONNECT_STATUS_MESSAGE;
     }
 }
