@@ -16,14 +16,6 @@ public enum LadderItem {
         this.shape = shape;
     }
 
-    public static String getShapeByIsConnected(boolean isConnected) {
-        return Arrays.stream(LadderItem.values())
-                .filter(ladderItem -> ladderItem.isConnected == isConnected)
-                .findAny()
-                .orElseThrow()
-                .shape;
-    }
-
     public static List<LadderItem> getLadderItemsAsList() {
         return Arrays.stream(LadderItem.values()).toList();
     }
