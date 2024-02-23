@@ -1,6 +1,7 @@
 package view;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String FINAL_RESULT_FORMAT = "%s%n%n";
@@ -24,24 +25,25 @@ public class OutputView {
 
     private String formatNames(List<String> names) {
         StringBuilder stringBuilder = new StringBuilder();
-        addFirstName(names, stringBuilder);
-        addMiddleNames(names, stringBuilder);
-        addLastName(names, stringBuilder);
+        stringBuilder.append(formatFirstName(names));
+        stringBuilder.append(formatMiddleNames(names));
+        stringBuilder.append(formatLastName(names));
         return stringBuilder.toString();
     }
 
-    private void addLastName(List<String> names, StringBuilder stringBuilder) {
+    private String formatLastName(List<String> names) {
         String lastPlayer = names.get(names.size() - 1);
-        stringBuilder.append(String.format("%6s", lastPlayer));
+        return String.format("%6s", lastPlayer);
     }
 
-    private void addMiddleNames(List<String> names, StringBuilder stringBuilder) {
-        for (String name : names.subList(1, names.size() - 1)) {
-            stringBuilder.append(String.format("%6s", name));
-        }
+    private String formatMiddleNames(List<String> names) {
+        return names.subList(1, names.size() - 1)
+                .stream()
+                .map(name -> String.format("%6s", name))
+                .collect(Collectors.joining());
     }
 
-    private void addFirstName(List<String> names, StringBuilder stringBuilder) {
-        stringBuilder.append(String.format("%s ", names.get(0)));
+    private String formatFirstName(List<String> names) {
+        return String.format("%s ", names.get(0));
     }
 }
