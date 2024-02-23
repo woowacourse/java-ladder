@@ -14,13 +14,10 @@ public class ResultView {
     private static final String LINE_MARK = "|";
 
     public void printLadder(List<Player> players, List<Line> lines) {
-        printResultPrompt();
+        System.out.println(System.lineSeparator() + RESULT_PROMPT + System.lineSeparator());
+
         printPlayerNames(players);
         printLines(lines);
-    }
-
-    private void printResultPrompt() {
-        System.out.println(System.lineSeparator() + RESULT_PROMPT + System.lineSeparator());
     }
 
     private void printPlayerNames(List<Player> players) {
