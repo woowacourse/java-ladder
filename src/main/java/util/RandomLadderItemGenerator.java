@@ -1,6 +1,6 @@
 package util;
 
-import domain.LadderItem;
+import view.LadderItem;
 import java.util.List;
 import java.util.Random;
 

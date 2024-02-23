@@ -8,6 +8,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import util.TestLadderItemGenerator;
+import view.LadderItem;
+
 import java.util.List;
 import java.util.stream.Stream;
 

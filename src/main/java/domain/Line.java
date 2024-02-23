@@ -1,6 +1,8 @@
 package domain;
 
 import util.LadderItemGenerator;
+import view.LadderItem;
+
 import java.util.ArrayList;
 import java.util.List;
 

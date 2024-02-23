@@ -1,7 +1,7 @@
 package controller;
 
 import domain.Ladder;
-import domain.LadderItem;
+import view.LadderItem;
 import domain.Line;
 import domain.Participant;
 import domain.Participants;

@@ -1,6 +1,6 @@
 package util;
 
-import domain.LadderItem;
+import view.LadderItem;
 
 public interface LadderItemGenerator {
     LadderItem generate();
