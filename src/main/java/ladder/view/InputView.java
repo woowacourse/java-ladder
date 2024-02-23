@@ -24,6 +24,15 @@ public class InputView {
         return parseToInt(input);
     }
 
+    public List<String> readPrizes() {
+        System.out.println();
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+        String input = readLine();
+
+        return parseStringToList(input);
+    }
+
     private String readLine() {
         String input = scanner.nextLine();
 
