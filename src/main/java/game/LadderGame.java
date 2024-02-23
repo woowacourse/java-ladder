@@ -1,14 +1,11 @@
 package game;
 
-import domain.ladder.LadderRowPattern;
 import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
+import domain.ladder.LadderRowPattern;
 import domain.player.Players;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.BooleanSupplier;
-import java.util.function.Supplier;
-import java.util.stream.Stream;
 import util.LoopFunction;
 import view.InputView;
 import view.OutputView;
