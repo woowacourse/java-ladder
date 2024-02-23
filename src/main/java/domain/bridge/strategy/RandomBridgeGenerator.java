@@ -24,14 +24,13 @@ public class RandomBridgeGenerator implements BridgeGenerator {
             points.add(now);
             return;
         }
-        points.add(generatePoint(now, points.get(index - 1)));
+        points.add(generatePoint(points.get(index - 1)));
     }
 
-    private LadderBridge generatePoint(LadderBridge now, final LadderBridge before) {
-        while (now.equals(LadderBridge.BRIDGE) && before.equals(LadderBridge.BRIDGE)) {
-            now = LadderBridge.getByExist(random.nextBoolean());
+    private LadderBridge generatePoint(final LadderBridge before) {
+        if (before.equals(LadderBridge.BRIDGE)) {
+            return LadderBridge.NONE;
         }
-
-        return now;
+        return LadderBridge.getByExist(random.nextBoolean());
     }
 }
