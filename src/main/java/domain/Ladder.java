@@ -10,7 +10,7 @@ public class Ladder {
     private final List<Bridges> bridges;
 
     public Ladder(BridgeConstructStrategy bridgeConstructStrategy, Names names, Height height) {
-        bridges = IntStream.range(0, height.getIntValue()) // TODO for 문과 차이점 비교
+        bridges = IntStream.range(0, height.getIntValue())
                 .mapToObj((index) -> bridgeConstructStrategy.generate(names.size() - 1))
                 .toList();
     }
