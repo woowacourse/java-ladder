@@ -11,7 +11,7 @@ public class LadderTest {
 
     @Test
     void createLadderSuccessWithHeightAndPointCount() {
-        LadderHeight height = new LadderHeight("3");
+        LadderHeight height = new LadderHeight(3);
         int pointCount = 5;
         Ladder ladder = Ladder.of(height, pointCount, new RandomBridgeGenerator());
         List<Floor> floors = ladder.getFloors();

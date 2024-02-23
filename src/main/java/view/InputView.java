@@ -1,7 +1,7 @@
 package view;
 
 import common.exception.message.ExceptionMessage;
-import common.exception.model.ValidationException;
+import common.exception.model.IOException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -28,7 +28,7 @@ public class InputView {
 
     private void validatePlayerNamesInput(final String playerNamesInput) {
         if (!InputView.PLAYER_NAMES_INPUT_PATTERN.matcher(playerNamesInput).matches()) {
-            throw new ValidationException(ExceptionMessage.PLAYER_NAMES_INPUT_FORMAT);
+            throw new IOException(ExceptionMessage.PLAYER_NAMES_INPUT_FORMAT);
         }
     }
 
@@ -43,7 +43,7 @@ public class InputView {
         try {
             Integer.parseInt(value);
         } catch (NumberFormatException exception) {
-            throw new ValidationException(ExceptionMessage.INTEGER_FORMAT);
+            throw new IOException(ExceptionMessage.INTEGER_FORMAT);
         }
     }
 }
