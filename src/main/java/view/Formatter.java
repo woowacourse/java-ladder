@@ -11,17 +11,13 @@ public class Formatter {
 
     public static String formatPlayers(List<String> names) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(names.get(0)).append(" ");
+        stringBuilder.append(String.format("%s ", names.get(0)));
         for (String name : names.subList(1, names.size() - 1)) {
-            stringBuilder.append(getNameWithSpace(6 - name.length(), name));
+            stringBuilder.append(String.format("%6s", name));
         }
         String lastPlayer = names.get(names.size() - 1);
-        stringBuilder.append(getNameWithSpace(5 - lastPlayer.length(), lastPlayer));
+        stringBuilder.append(String.format("%5s", lastPlayer));
         return stringBuilder.toString();
-    }
-
-    private static String getNameWithSpace(int spaceRepeat, String name) {
-        return " ".repeat(spaceRepeat) + name;
     }
 
     public static String formatLadder(int paddingSize, List<Line> lines) {
