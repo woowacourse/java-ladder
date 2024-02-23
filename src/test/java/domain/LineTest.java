@@ -12,10 +12,17 @@ class LineTest {
     @DisplayName("가로 라인은 겹치지 않아야 한다.")
     void isLineCannotNextToLine() {
         int personCount = 5;
-        Line line = new Line(personCount, new RandomBooleanGenerator());
+        Line line = new Line(personCount, new FixedBooleanGenerator());
         List<Boolean> points = line.getPoints();
         int isInvalidLine = Collections.indexOfSubList(points, List.of(true, true));
 
         assertEquals(-1, isInvalidLine);
+    }
+}
+
+class FixedBooleanGenerator implements BooleanGenerator {
+    @Override
+    public Boolean generate() {
+        return true;
     }
 }
