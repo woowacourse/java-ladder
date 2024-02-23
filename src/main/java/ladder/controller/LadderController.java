@@ -1,10 +1,6 @@
 package ladder.controller;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderHeight;
-import ladder.domain.People;
-import ladder.domain.Person;
-import ladder.domain.linesGenerator.RandomLadderCreator;
+import ladder.domain.*;
 import ladder.util.ExceptionRetryHandler;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -19,7 +15,7 @@ public class LadderController {
         People people = requestPeopleUntilValid();
         LadderHeight ladderHeight = requestLadderHeightUntilValid();
 
-        Ladder ladder = new Ladder(RandomLadderCreator.create(people.getCount() - 1, ladderHeight.getValue()));
+        Ladder ladder = RandomLadderCreator.create(people.getCount() - 1, ladderHeight.getValue());
 
         OutputView.printResult(people, ladder);
     }
