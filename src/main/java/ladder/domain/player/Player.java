@@ -4,8 +4,9 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class Player {
-    public static final int MAXIMUM_NAME_RANGE = 5;
+    private static final int MAXIMUM_NAME_RANGE = 5;
     private static final Pattern NAME_VALID_FORMAT = Pattern.compile("[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]+");
+
     private final String name;
 
     public Player(String name) {

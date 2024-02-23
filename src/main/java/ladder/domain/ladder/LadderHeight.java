@@ -3,7 +3,8 @@ package ladder.domain.ladder;
 import java.util.Objects;
 
 public class LadderHeight {
-    public static final int MINIMUM_HEIGHT = 1;
+    private static final int MINIMUM_HEIGHT = 1;
+
     private final int height;
 
     public LadderHeight(int height) {

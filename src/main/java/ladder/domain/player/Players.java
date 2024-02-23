@@ -6,8 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Players {
-    public static final int MAXIMUM_PLAYER_SIZE = 10;
-    public static final int MINIMUM_PLAYER_SIZE = 2;
+    private static final int MAXIMUM_PLAYER_SIZE = 10;
+    private static final int MINIMUM_PLAYER_SIZE = 2;
+
     private final List<Player> players;
 
     public Players(List<Player> players) {
