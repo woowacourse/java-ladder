@@ -14,13 +14,18 @@ public class Line {
 
     public static Line createByStrategy(final BridgeGenerator bridgeGenerator, final int personCount) {
         List<Bridge> bridges = new ArrayList<>();
-        while (bridges.size() != personCount - 1) {
+        buildBridge(bridgeGenerator, personCount, bridges);
+        return new Line(bridges);
+    }
+
+    private static void buildBridge(final BridgeGenerator bridgeGenerator, final int personCount, final List<Bridge> bridges) {
+        int bridgeCount = personCount - 1;
+        while (bridges.size() < bridgeCount) {
             final Bridge bridgeCandidate = bridgeGenerator.generate();
             final Bridge previousBridge = findPreviousBridge(bridges);
 
             bridges.add(createBridge(bridgeCandidate, previousBridge));
         }
-        return new Line(bridges);
     }
 
     private static Bridge findPreviousBridge(List<Bridge> bridges) {
