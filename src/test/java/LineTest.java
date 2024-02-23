@@ -1,5 +1,5 @@
 import domain.*;
-import mock.TrueGenerator;
+import mock.ExistStepGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ public class LineMakerTest {
     @Test
     void makeLineExist() {
         // given
-        final LineMaker lineMaker = new LineMaker(PlayerCount.from(3), new TrueGenerator());
+        final LineMaker lineMaker = new LineMaker(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))), new TrueGenerator());
 
         // when & then
         assertThat(lineMaker.makeLine()).isEqualTo(new Line(List.of(EXIST_POINT, EMPTY_POINT, EMPTY_POINT)));
@@ -25,7 +25,7 @@ public class LineMakerTest {
     @Test
     void makeLineEmpty() {
         // given
-        final LineMaker lineMaker = new LineMaker(PlayerCount.from(3), new FalseStepGenerator());
+        final LineMaker lineMaker = new LineMaker(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))), new FalseStepGenerator());
 
         // when & then
         assertThat(lineMaker.makeLine()).isEqualTo(new Line(List.of(EMPTY_POINT, EMPTY_POINT, EMPTY_POINT)));

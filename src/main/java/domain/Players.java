@@ -38,6 +38,10 @@ public class Players {
         return players.size();
     }
 
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -49,9 +53,5 @@ public class Players {
     @Override
     public int hashCode() {
         return Objects.hash(players);
-    }
-
-    public List<Player> getPlayers() {
-        return Collections.unmodifiableList(players);
     }
 }

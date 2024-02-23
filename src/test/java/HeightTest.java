@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.*;
 
 public class HeightTest {
     @Test
-    @DisplayName("다리 높이에 0을 입력하면 예외가 발생한다.")
+    @DisplayName("다리 높이에 0이하의 수를 입력하면 예외가 발생한다.")
     void invalidHeight() {
         assertThatThrownBy(() -> new Height(0)).isInstanceOf(IllegalArgumentException.class);
     }

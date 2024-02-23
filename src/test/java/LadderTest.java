@@ -1,4 +1,5 @@
 import domain.*;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ public class LadderMakerTest {
     @DisplayName("높이와 참가자수, 번호생성기가 주어지면 높이만큼 사다리를 생성한다.")
     void makeLadder() {
         // given
-        final LadderMaker ladderMaker = LadderMaker.of(new Height(4), PlayerCount.from(3));
+        final LadderMaker ladderMaker = LadderMaker.of(new Height(4), PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))));
 
         // when & then
         assertThat(ladderMaker.makeLadder()).extracting("lines")

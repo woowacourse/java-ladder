@@ -7,7 +7,8 @@ import view.reader.Reader;
 public class Application {
     public static void main(String[] args) {
         Printer printer = new Printer();
-        LadderGame ladderGame = new LadderGame(InputView.of(new Reader(), printer), OutputView.from(printer));
+        Reader reader = new Reader();
+        LadderGame ladderGame = new LadderGame(InputView.of(reader, printer), OutputView.from(printer));
         ladderGame.run();
     }
 }
