@@ -2,7 +2,6 @@ package domain;
 
 import util.ExceptionMessages;
 
-import javax.swing.text.html.MinimalHTMLWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,12 +10,12 @@ public class Players {
     private static final int MINIMUM_PLAYERS_COUNT = 2;
     private static final int MAXIMUM_PLAYERS_COUNT = 10;
 
-    private final List<Player> players = new ArrayList<>();
+    private final List<Name> names = new ArrayList<>();
 
     public Players(final List<String> names) {
         validateNameCount(names.size());
         for (final String name : names) {
-            players.add(new Player(name));
+            this.names.add(new Name(name));
         }
     }
 
@@ -27,13 +26,13 @@ public class Players {
     }
 
     public int count() {
-        return players.size();
+        return names.size();
     }
 
     public List<String> getNames() {
         final List<String> names = new ArrayList<>();
-        for (final Player player : players) {
-            names.add(player.getName());
+        for (final Name name : this.names) {
+            names.add(name.getValue());
         }
 
         return names;

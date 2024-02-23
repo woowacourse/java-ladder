@@ -2,14 +2,14 @@ package domain;
 
 import util.ExceptionMessages;
 
-public class Player {
+public class Name {
 
     private static final int MAXIMUM_NAME = 5;
-    private final String name;
+    private final String value;
 
-    public Player(final String name) {
-        validateNameLength(name);
-        this.name = name;
+    public Name(final String value) {
+        validateNameLength(value);
+        this.value = value;
     }
 
     private void validateNameLength(final String name) {
@@ -18,7 +18,7 @@ public class Player {
         }
     }
 
-    public String getName() {
-        return name;
+    public String getValue() {
+        return value;
     }
 }
