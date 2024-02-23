@@ -4,7 +4,6 @@ import java.util.List;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.generator.RungGenerator;
-import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.dto.response.LadderResponse;
 import ladder.dto.response.PlayersResponse;
@@ -23,22 +22,21 @@ public class LadderController {
     }
 
     public void run() {
-        Players players = readPlayers();
-        LadderHeight ladderHeight = readLadderHeight();
+        Players players = initPlayers();
+        LadderHeight ladderHeight = initLadderHeight();
 
         Ladder ladder = new Ladder(players.getSize(), ladderHeight, rungGenerator);
 
         printLadder(players, ladder);
     }
 
-    public Players readPlayers() {
+    public Players initPlayers() {
         List<String> playerNames = inputView.readPlayerNames();
-        List<Player> players = playerNames.stream().map(Player::new).toList();
 
-        return new Players(players);
+        return new Players(playerNames);
     }
 
-    public LadderHeight readLadderHeight() {
+    public LadderHeight initLadderHeight() {
         int ladderHeight = inputView.readLadderHeight();
 
         return new LadderHeight(ladderHeight);

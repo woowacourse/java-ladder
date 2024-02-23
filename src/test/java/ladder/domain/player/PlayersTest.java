@@ -9,12 +9,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class PlayersTest {
-    private final Players players = new Players(List.of(
-            new Player("pobi"),
-            new Player("honux"),
-            new Player("crong"),
-            new Player("jk")
-    ));
+    private final Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
 
     @Test
     @DisplayName("참가자들을 생성한다.")
@@ -41,32 +36,27 @@ class PlayersTest {
         @Test
         @DisplayName("최소 범위보다 작을 경우 예외를 발생한다.")
         void testLessThanMinimumSize() {
-            List<Player> players = List.of(new Player("pobi"));
+            List<String> playerNames = List.of("pobi");
 
-            assertThatThrownBy(() -> new Players(players))
+            assertThatThrownBy(() -> new Players(playerNames))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @Test
         @DisplayName("최대 범위보다 클 경우 예외를 발생한다.")
         void testGreaterThanMaximumSize() {
-            List<Player> players = List.of(
-                    new Player("1"), new Player("2"), new Player("3"), new Player("4"),
-                    new Player("5"), new Player("6"), new Player("7"), new Player("8"),
-                    new Player("9"), new Player("10"), new Player("11")
-            );
+            List<String> playerNames = List.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11");
 
-            assertThatThrownBy(() -> new Players(players))
+            assertThatThrownBy(() -> new Players(playerNames))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @Test
         @DisplayName("참가자들의 이름이 중복된 경우 예외를 발생한다.")
         void testDuplicatedName() {
-            List<Player> players = List.of(new Player("pobi"), new Player("pobi"),
-                    new Player("honux"));
+            List<String> playerNames = List.of("pobi", "pobi", "crong", "jk");
 
-            assertThatThrownBy(() -> new Players(players))
+            assertThatThrownBy(() -> new Players(playerNames))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
