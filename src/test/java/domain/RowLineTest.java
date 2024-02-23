@@ -16,8 +16,8 @@ class RowLineTest {
     void testCheckRightConnection() {
         List<ConnectionStatus> connections = List.of(CONNECTED, DISCONNECTED, CONNECTED);
         RowLine rowLine = new RowLine(connections);
-        assertThat(rowLine.hasRightConnection(0)).isTrue();
-        assertThat(rowLine.hasRightConnection(1)).isFalse();
-        assertThat(rowLine.hasRightConnection(2)).isTrue();
+        assertThat(rowLine.getConnection(0)).isEqualTo(CONNECTED);
+        assertThat(rowLine.getConnection(1)).isEqualTo(DISCONNECTED);
+        assertThat(rowLine.getConnection(2)).isEqualTo(CONNECTED);
     }
 }

@@ -10,8 +10,12 @@ public class RowLine {
         this.connections = connections;
     }
 
-    public boolean hasRightConnection(int index) {
-        return connections.get(index).equals(ConnectionStatus.CONNECTED);
+    public ConnectionStatus getConnection(int index) {
+        return connections.get(index);
+    }
+
+    public int getConnectionCount() {
+        return connections.size();
     }
 
     public List<ConnectionStatus> getConnections() {
