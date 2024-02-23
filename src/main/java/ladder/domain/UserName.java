@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public record UserName(String value) {
-    static final int MAX_LENGTH = 5;
+    private static final int MAX_LENGTH = 5;
     private static final Pattern NAME_PATTERN = Pattern.compile("[^ㄱ-ㅎ가-힣a-zA-Z0-9_\\-&]");
 
     public UserName {

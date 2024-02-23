@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import static ladder.domain.UserName.MAX_LENGTH;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +14,7 @@ public class UserNameTest {
     void createNameByOverLength() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new UserName("abcdef"))
-                .withMessage(String.format("이름의 길이는 %d 이하여야 합니다.", MAX_LENGTH));
+                .withMessage("이름의 길이는 5 이하여야 합니다.");
     }
 
     @DisplayName("유효하지 않은 특수문자가 포함된 이름이 입력되면 예외가 발생한다.")
