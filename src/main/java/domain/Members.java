@@ -25,16 +25,16 @@ public class Members {
         names.forEach(name -> members.add(new Member(name)));
     }
 
-    private List<String> addMembers(String rawNames) {
-        return Arrays.stream(rawNames.split(",", -1))
-                .map(String::trim)
-                .toList();
-    }
-
     private void validateNull(String rawNames) {
         if (rawNames == null) {
             throw new IllegalArgumentException("null을 입력할 수 없습니다.");
         }
+    }
+
+    private List<String> addMembers(String rawNames) {
+        return Arrays.stream(rawNames.split(",", -1))
+                .map(String::trim)
+                .toList();
     }
 
     private void validateDuplication(List<String> names) {
