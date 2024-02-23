@@ -1,0 +1,70 @@
+package model;
+
+import exception.Message;
+import java.util.List;
+import java.util.Set;
+
+public class Players {
+
+    private static final int MIN_PLAYERS = 2;
+
+    private final List<Player> players;
+
+    public Players(List<String> players) {
+        validate(players);
+        this.players = players.stream()
+                .map(Player::new)
+                .toList();
+    }
+
+    private void validate(List<String> players) {
+        validateSize(players);
+        validateDuplicates(players);
+    }
+
+    private void validateSize(List<String> players) {
+        if (players.size() < MIN_PLAYERS) {
+            throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
+        }
+    }
+
+    private void validateDuplicates(List<String> players) {
+        if (isDuplicated(players)) {
+            throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
+        }
+    }
+
+    private boolean isDuplicated(List<String> players) {
+        return Set.copyOf(players).size() != players.size();
+    }
+
+    public List<String> getNames() {
+        return players.stream()
+                .map(Player::getName)
+                .toList();
+    }
+
+    public int size() {
+        return players.size();
+    }
+
+    public String format() {
+        return String.format("%s%s%s", formatFirstPlayer(), formatMiddlePlayer(), formatLastPlayer());
+    }
+
+    private String formatFirstPlayer() {
+        return String.format("%s ", players.get(0).getName());
+    }
+
+    private String formatMiddlePlayer() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Player player : players.subList(1, players.size() - 1)) {
+            stringBuilder.append(String.format("%6s", player.getName()));
+        }
+        return stringBuilder.toString();
+    }
+
+    private String formatLastPlayer() {
+        return String.format("%5s", players.get(players.size() - 1).getName());
+    }
+}
