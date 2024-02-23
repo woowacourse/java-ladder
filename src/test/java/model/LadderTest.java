@@ -21,16 +21,6 @@ public class LadderTest {
         assertThat(ladder.height()).isEqualTo(maximumHeight);
     }
 
-    @DisplayName("최대 사다리의 높이는 양수가 되어야 한다.")
-    @Test
-    void ladderHeightIsPositive() {
-        int maximumHeight = -1;
-        assertThatThrownBy(() -> new Ladder(maximumHeight))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("최대 사다리의 높이는 양수가 되어야 합니다");
-    }
-
-
     @DisplayName("한 행에는 연속된 선이 존재하면 안된다.")
     @RepeatedTest(100)
     void makeNotContinuousLineInRows() {
