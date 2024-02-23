@@ -2,42 +2,64 @@ package controller;
 
 import domain.Height;
 import domain.Ladder;
-import domain.Player;
 import domain.Players;
 import domain.booleangenerator.BooleanGenerator;
-import java.util.List;
+import java.util.function.Supplier;
 import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
 
+    private static final int MAXIMUM_REPEAT_COUNT = 3;
+
     private final InputView inputView;
     private final OutputView outputView;
     private final BooleanGenerator booleanGenerator;
+    private int repeatCount;
 
     public LadderGameController(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.booleanGenerator = booleanGenerator;
+        repeatCount = 0;
     }
 
     public void run() {
-        List<String> names = inputView.readPlayerNames();
-        Players players = new Players(makePlayers(names));
-        int height = inputView.readHeight();
+        Players players = initPlayers();
+        Height height = initHeight();
 
         Ladder ladder = makeLadder(players.getSize(), height);
 
-        outputView.printResult(ladder, names);
+        outputView.printResult(ladder, players.getNames());
     }
 
-    private List<Player> makePlayers(List<String> names) {
-        return names.stream()
-                .map(Player::new)
-                .toList();
+    private Players initPlayers() {
+        return repeatUntilValidInput(() -> new Players(inputView.readPlayerNames()));
     }
 
-    private Ladder makeLadder(int playerCount, int height) {
-        return new Ladder(playerCount, new Height(height), booleanGenerator);
+    private Height initHeight() {
+        return repeatUntilValidInput(() -> new Height(inputView.readHeight()));
+    }
+
+    private <R> R repeatUntilValidInput(Supplier<R> supplier) {
+        CheckStackOverFlowError();
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            repeatCount++;
+            outputView.printErrorMessage(e.getMessage());
+            return repeatUntilValidInput(supplier);
+        }
+    }
+
+    private void CheckStackOverFlowError() {
+        if (repeatCount > MAXIMUM_REPEAT_COUNT) {
+            outputView.printErrorMessage("재시도 횟수 초과 입니다. 프로그램을 다시 실행해주세요.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private Ladder makeLadder(int playerCount, Height height) {
+        return new Ladder(playerCount, height, booleanGenerator);
     }
 }
