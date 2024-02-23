@@ -1,4 +1,4 @@
-package ladder.controller;
+package ladder;
 
 import java.util.List;
 import java.util.function.Supplier;
