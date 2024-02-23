@@ -5,6 +5,7 @@ import constant.domain.NameExceptionMessage;
 public class Name {
 
     public static final int MAX_OF_NAME_LENGTH = 5;
+
     private final String name;
 
     public Name(String name) {
