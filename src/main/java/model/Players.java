@@ -12,7 +12,9 @@ public class Players {
 
     public Players(List<String> players) {
         validate(players);
-        this.players = convert(players);
+        this.players = players.stream()
+                .map(Player::new)
+                .toList();
     }
 
     private void validate(List<String> players) {
@@ -34,12 +36,6 @@ public class Players {
 
     private boolean isDuplicated(List<String> players) {
         return Set.copyOf(players).size() != players.size();
-    }
-
-    private List<Player> convert(List<String> players) {
-        return players.stream()
-                .map(Player::new)
-                .toList();
     }
 
     public List<String> getNames() {
