@@ -24,10 +24,10 @@ public class RandomBridgeGenerator implements BridgeGenerator {
             points.add(now);
             return;
         }
-        points.add(generatePoint(points.get(index - 1)));
+        points.add(generateNoSerialBridge(points.get(index - 1)));
     }
 
-    private LadderBridge generatePoint(final LadderBridge before) {
+    private LadderBridge generateNoSerialBridge(final LadderBridge before) {
         if (before.equals(LadderBridge.BRIDGE)) {
             return LadderBridge.NONE;
         }
