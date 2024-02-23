@@ -13,7 +13,7 @@ public class LadderTest {
     @Test
     void createTest() {
         // given
-        LadderHeight ladderHeight = LadderHeight.from("4");
+        LadderHeight ladderHeight = new LadderHeight(4);
         People people = new People(List.of(
                 new Person("pobi"),
                 new Person("nak"),

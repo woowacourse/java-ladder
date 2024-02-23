@@ -7,13 +7,9 @@ public class LadderHeight {
 
     private final int value;
 
-    private LadderHeight(int value) {
+    public LadderHeight(int value) {
         this.value = value;
         validateMin(this.value);
-    }
-
-    public static LadderHeight from(String height) {
-        return new LadderHeight(Integer.parseInt(height.strip()));
     }
 
     private static void validateMin(int value) {

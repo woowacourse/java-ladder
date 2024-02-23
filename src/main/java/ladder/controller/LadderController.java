@@ -40,6 +40,6 @@ public class LadderController {
     }
 
     private static LadderHeight requestLadderHeight() {
-        return LadderHeight.from(InputView.readLadderHeight());
+        return new LadderHeight(InputView.readLadderHeight());
     }
 }

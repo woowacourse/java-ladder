@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import static ladder.constant.ErrorMessage.LADDER_HEIGHT_NUMBER_FORMAT;
 import static ladder.constant.ErrorMessage.PEOPLE_NAMES_STARTS_OR_ENDS_WITH_DELIMITER;
 
 public class InputView {
@@ -21,6 +22,10 @@ public class InputView {
         validateStartsOrEndsWithDelimiter(peopleNames);
 
         OutputView.printMessage("");
+        return splitByDelimiter(peopleNames);
+    }
+
+    private static List<String> splitByDelimiter(String peopleNames) {
         return Arrays.stream(peopleNames.split(PEOPLE_NAMES_DELIMITER))
                 .map(String::strip)
                 .toList();
@@ -32,11 +37,19 @@ public class InputView {
         }
     }
 
-    public static String readLadderHeight() {
+    public static int readLadderHeight() {
         OutputView.printMessage(LADDER_HEIGHT_INPUT_MESSAGE);
-        String ladderHeight = scanner.nextLine();
+        String ladderHeight = scanner.nextLine().strip();
 
         OutputView.printMessage("");
-        return ladderHeight;
+        return toInt(ladderHeight);
+    }
+
+    private static int toInt(String ladderHeight) {
+        try {
+            return Integer.parseInt(ladderHeight);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(LADDER_HEIGHT_NUMBER_FORMAT.generate());
+        }
     }
 }
