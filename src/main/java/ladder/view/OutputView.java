@@ -17,8 +17,8 @@ public class OutputView {
         System.out.println("실행결과");
     }
 
-    public void printPlayerNames(final PlayersResponse playersResponse) {
-        final List<String> playerNames = playersResponse.playerResponses().stream()
+    public void printPlayerNames(PlayersResponse playersResponse) {
+        List<String> playerNames = playersResponse.playerResponses().stream()
                 .map(PlayerResponse::name)
                 .toList();
 
@@ -26,36 +26,36 @@ public class OutputView {
         System.out.println(generatePlayerNamesMessage(playerNames));
     }
 
-    private String generatePlayerNamesMessage(final List<String> playerNames) {
+    private String generatePlayerNamesMessage(List<String> playerNames) {
         return playerNames.stream()
                 .map(this::generatePlayerNameMessage)
                 .collect(Collectors.joining());
     }
 
-    private String generatePlayerNameMessage(final String playerName) {
+    private String generatePlayerNameMessage(String playerName) {
         return String.format("%5s ", playerName);
     }
 
-    public void printLadder(final LadderResponse ladderResponse) {
-        final String ladderMessage = generateLadderMessage(ladderResponse.lineResponses());
+    public void printLadder(LadderResponse ladderResponse) {
+        String ladderMessage = generateLadderMessage(ladderResponse.lineResponses());
         System.out.println(ladderMessage);
     }
 
-    private String generateLadderMessage(final List<LineResponse> lineResponses) {
+    private String generateLadderMessage(List<LineResponse> lineResponses) {
         return lineResponses.stream()
                 .map(lineDto -> generateLadderLine(lineDto.rungsExist()))
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    private String generateLadderLine(final List<Boolean> rungsExist) {
-        final String message = rungsExist.stream()
+    private String generateLadderLine(List<Boolean> rungsExist) {
+        String message = rungsExist.stream()
                 .map(this::generateRungMessage)
                 .collect(Collectors.joining(LADDER_SIDE_RAIL, LADDER_SIDE_RAIL, LADDER_SIDE_RAIL));
 
         return LADDER_RUNG_EMPTY.concat(message);
     }
 
-    private String generateRungMessage(final boolean rungExist) {
+    private String generateRungMessage(boolean rungExist) {
         if (rungExist) {
             return LADDER_RUNG_EXIST;
         }

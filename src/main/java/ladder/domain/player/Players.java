@@ -10,18 +10,18 @@ public class Players {
     public static final int MINIMUM_PLAYER_SIZE = 2;
     private final List<Player> players;
 
-    public Players(final List<Player> players) {
+    public Players(List<Player> players) {
         validate(players);
         this.players = new ArrayList<>(players);
     }
 
-    private void validate(final List<Player> players) {
+    private void validate(List<Player> players) {
         validateSize(players);
         validateDuplicatedName(players);
     }
 
-    private void validateSize(final List<Player> players) {
-        final int playerSize = players.size();
+    private void validateSize(List<Player> players) {
+        int playerSize = players.size();
 
         if (MAXIMUM_PLAYER_SIZE < playerSize || playerSize < MINIMUM_PLAYER_SIZE) {
             throw new IllegalArgumentException(
@@ -29,8 +29,8 @@ public class Players {
         }
     }
 
-    private void validateDuplicatedName(final List<Player> players) {
-        final List<String> playerNames = players.stream()
+    private void validateDuplicatedName(List<Player> players) {
+        List<String> playerNames = players.stream()
                 .map(Player::getName)
                 .toList();
 

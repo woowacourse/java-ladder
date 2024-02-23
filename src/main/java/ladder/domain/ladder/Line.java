@@ -3,22 +3,22 @@ package ladder.domain.ladder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import ladder.domain.ladder.generator.BooleanGenerator;
+import ladder.domain.ladder.generator.RungGenerator;
 
 public class Line {
-    private final BooleanGenerator booleanGenerator;
+    private final RungGenerator rungGenerator;
     private final List<Rung> rungs;
 
-    public Line(final int playerCount, final BooleanGenerator booleanGenerator) {
-        this.booleanGenerator = booleanGenerator;
+    public Line(int playerCount, RungGenerator rungGenerator) {
+        this.rungGenerator = rungGenerator;
         this.rungs = generateRungs(playerCount);
     }
 
-    public List<Rung> generateRungs(final int playerCount) {
-        final List<Rung> rungs = new ArrayList<>();
+    public List<Rung> generateRungs(int playerCount) {
+        List<Rung> rungs = new ArrayList<>();
 
         for (int i = 0; i < playerCount - 1; i++) {
-            final Rung rung = generateRung(rungs, i);
+            Rung rung = generateRung(rungs, i);
             rungs.add(rung);
         }
 
@@ -27,9 +27,13 @@ public class Line {
 
     private Rung generateRung(List<Rung> rungs, int index) {
         boolean previousRungExist = index > 0 && rungs.get(index - 1).isExist();
-        boolean canMakeRung = booleanGenerator.generate();
+        Rung currentRung = rungGenerator.generate();
 
-        return Rung.of(!previousRungExist && canMakeRung);
+        if (previousRungExist && currentRung.isExist()) {
+            return Rung.of(false);
+        }
+
+        return currentRung;
     }
 
     public List<Rung> getRungs() {
