@@ -17,7 +17,7 @@ public class Names {
 
     private void validateNameCount(List<String> rawNames) {
         if (rawNames.size() < MIN_NAMES_COUNT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름은 2개 이상 입력해야 합니다.");
         }
     }
 
@@ -29,7 +29,7 @@ public class Names {
 
     private void validateNameDuplication(List<String> rawNames) {
         if (hasDuplicatedName(rawNames)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름은 중복하여 입력할 수 없습니다.");
         }
     }
 

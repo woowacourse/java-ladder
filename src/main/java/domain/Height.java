@@ -11,7 +11,7 @@ public class Height {
 
     private void validateHeight(int value) {
         if (value < MIN_HEIGHT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("사다리의 높이는 1이상만 입력할 수 있습니다.");
         }
     }
 

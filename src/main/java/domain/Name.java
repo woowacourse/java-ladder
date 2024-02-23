@@ -13,11 +13,11 @@ public class Name {
 
     private void validateNameLength(String value) {
         if (value.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름의 길이는 5글자 이하만 입력할 수 있습니다.");
         }
 
         if (value.length() < MIN_NAME_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름의 길이는 2글자 이상만 입력할 수 있습니다.");
         }
     }
 

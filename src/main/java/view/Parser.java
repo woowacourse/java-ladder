@@ -16,7 +16,7 @@ public class Parser {
 
     private static void validateInput(String input) {
         if (input.endsWith(DELIMITER)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("입력은 콤마(,)로 마칠 수 없습니다.");
         }
     }
 
