@@ -1,8 +1,8 @@
 package laddergame.domain.strategy;
 
-import laddergame.dto.LineBuildResult;
+import laddergame.domain.Points;
 
 public interface BuildStrategy {
-    LineBuildResult canBuildBridges(int count);
+    Points build(int count);
 }
 

@@ -7,8 +7,8 @@ import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.Players;
 import laddergame.domain.strategy.BuildStrategy;
-import laddergame.domain.strategy.RandomBuildStrategy;
-import laddergame.dto.LineBuildResult;
+import laddergame.domain.strategy.PointBuildStrategy;
+import laddergame.domain.Points;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -21,14 +21,13 @@ public class LadderGame {
         Height height = requestUntilValidated(() -> new Height(inputView.readLadderHeight()));
 
         Ladder ladder = new Ladder(players.getPlayers().size(), height);
-        ladder.build(getLineBuildResults(players, height));
         printLadderResult(players, ladder);
     }
 
-    private static List<LineBuildResult> getLineBuildResults(final Players players, final Height height) {
-        BuildStrategy randomBuildStrategy = new RandomBuildStrategy();
+    private static List<Points> getLineBuildResults(final Players players, final Height height) {
+        BuildStrategy pointBuildStrategy = new PointBuildStrategy();
         return IntStream.range(0, height.getHeight())
-                .mapToObj(i -> randomBuildStrategy.canBuildBridges(players.getPlayers().size() - 1))
+                .mapToObj(i -> pointBuildStrategy.build(players.getPlayers().size() - 1))
                 .toList();
     }
 

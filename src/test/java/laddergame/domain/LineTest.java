@@ -1,29 +1,33 @@
 package laddergame.domain;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 import laddergame.domain.strategy.BuildStrategy;
-import laddergame.dto.LineBuildResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("라인")
 public class LineTest {
+    Point truePoint = new Point(TRUE);
+    Point falsePoint = new Point(FALSE);
+
     @Test
     @DisplayName("라인을 생성하는지 테스트한다.")
     public void createLineTest() {
         //given
         final int personCount = 4;
         final int expectedSize = personCount - 1;
+        BuildStrategy buildStrategy = count -> new Points(List.of(truePoint, falsePoint, truePoint));
 
         //when
-        Line line = new Line(personCount);
+        Line line = new Line(personCount, buildStrategy);
 
         //then
-        assertEquals(line.getPoints().size(), expectedSize);
+        assertEquals(line.getPoints().points().size(), expectedSize);
     }
 
     @Test
@@ -32,35 +36,12 @@ public class LineTest {
         //given
         final int personCount = 4;
         final int position = 1;
-        Line line = new Line(personCount);
-
-        BuildStrategy buildStrategy = new BuildStrategy() {
-            @Override
-            public LineBuildResult canBuildBridges(int count) {
-                return new LineBuildResult(List.of(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE));
-            }
-        };
-
-        LineBuildResult isBridgeBuilt = buildStrategy.canBuildBridges(personCount);
+        BuildStrategy buildStrategy = count -> new Points(List.of(truePoint, falsePoint, truePoint));
 
         //when
-        line.buildBridge(isBridgeBuilt);
+        Line line = new Line(personCount, buildStrategy);
 
         //then
-        assertFalse(line.isBuilt(position));
+        assertFalse(line.getPoints().points().get(position).isBuilt());
     }
-
-    @Test
-    @DisplayName("연속으로 랜덤 결과가 true면 에러를 발생한다.")
-    public void checkSequenceBuildBridge() {
-        //given
-        final int playerCount = 5;
-        final LineBuildResult canBuild1 = new LineBuildResult(List.of(Boolean.TRUE, Boolean.TRUE, Boolean.FALSE, Boolean.FALSE));
-        final LineBuildResult canBuild2 = new LineBuildResult(List.of(Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE));
-
-        //when & then
-        assertThrows(IllegalStateException.class, () -> new Line(playerCount).buildBridge(canBuild1));
-        assertThrows(IllegalStateException.class, () -> new Line(playerCount).buildBridge(canBuild2));
-    }
-
 }

@@ -6,6 +6,7 @@ import laddergame.domain.Ladder;
 import laddergame.domain.Line;
 import laddergame.domain.Player;
 import laddergame.domain.Players;
+import laddergame.domain.Point;
 
 public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
@@ -27,8 +28,8 @@ public class OutputView {
 
     private void writeLine(final Line line) {
         StringJoiner stringJoiner = new StringJoiner("|", "\t|", "|");
-        for (Boolean point : line.getPoints()) {
-            stringJoiner.add(BridgeSymbol.getSymbol(point));
+        for (Point point : line.getPoints().points()) {
+            stringJoiner.add(PointSymbol.getSymbol(point));
         }
         System.out.println(stringJoiner);
     }
