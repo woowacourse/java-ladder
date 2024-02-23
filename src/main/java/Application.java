@@ -1,9 +1,14 @@
-import config.Config;
+import controller.InputMapper;
+import controller.LadderGameController;
+import view.InputView;
+import view.MessageResolver;
+import view.ResultView;
 
 public class Application {
 
     public static void main(String[] args) {
-        Config config = new Config();
-        config.ladderGameController().run();
+        LadderGameController ladderGameController = new LadderGameController(
+                new InputView(), new InputMapper(), new ResultView(new MessageResolver()));
+        ladderGameController.run();
     }
 }
