@@ -4,13 +4,12 @@ import view.InputView;
 import view.OutputView;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 public class LadderController {
 
     public static void main(String[] args) throws IOException {
-        final String[] rawNames = InputView.readNames();
+        final List<String> rawNames = InputView.readNames();
         final int height = InputView.readHeight();
 
         final List<Name> names = makeNames(rawNames);
@@ -19,8 +18,8 @@ public class LadderController {
         OutputView.printResult(names, ladder, height);
     }
 
-    private static List<Name> makeNames(final String[] names) {
-        return Arrays.stream(names)
+    private static List<Name> makeNames(final List<String> names) {
+        return names.stream()
                 .map(Name::new)
                 .toList();
     }
