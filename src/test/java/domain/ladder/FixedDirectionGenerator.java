@@ -6,8 +6,8 @@ import util.DirectionGenerator;
 import java.util.List;
 
 public class FixedDirectionGenerator implements DirectionGenerator {
-    List<Direction> fixedList;
-    Integer index = 0;
+    private final List<Direction> fixedList;
+    private int index = 0;
 
     FixedDirectionGenerator(List<Direction> fixedList) {
         this.fixedList = fixedList;
