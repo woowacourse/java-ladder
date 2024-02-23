@@ -9,12 +9,10 @@ public record UserName(String value) {
     private static final Pattern NAME_PATTERN = Pattern.compile("[^ㄱ-ㅎ가-힣a-zA-Z0-9_\\-&]");
 
     public UserName {
-        if (Objects.equals(value, "all")) {
-            throw new IllegalArgumentException("'all'은 사용할 수 없는 이름입니다.");
-        }
         validateNotEmpty(value);
         validateNameLength(value);
         validateNamePattern(value);
+        validateNotAll(value);
     }
 
     private void validateNotEmpty(final String name) throws IllegalArgumentException {
@@ -35,6 +33,12 @@ public record UserName(String value) {
             throw new IllegalArgumentException(
                     String.format("이름의 길이는 %d 이하여야 합니다.", MAX_LENGTH)
             );
+        }
+    }
+
+    private void validateNotAll(final String name) throws IllegalArgumentException {
+        if (Objects.equals(name, "all")) {
+            throw new IllegalArgumentException("'all'은 사용할 수 없는 이름입니다.");
         }
     }
 }
