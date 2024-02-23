@@ -1,32 +1,13 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Line {
 
-    private static final Random random = new Random();
+    private final List<Step> points;
 
-    private final List<Boolean> points;
-
-    public Line(int personCount) {
-        List<Boolean> result = new ArrayList<>();
-        for (int i = 0; i < personCount - 1; i++) {
-            result.add(generate(result, i));
-        }
-        this.points = result;
-    }
-
-    private Boolean generate(List<Boolean> points, int index) {
-        if (cannotConnect(points, index)) {
-            return false;
-        }
-        return random.nextBoolean();
-    }
-
-    private boolean cannotConnect(List<Boolean> points, int index) {
-        return index >= 1 && points.get(index - 1);
+    public Line(int personCount, BuildStrategy<Step> buildStrategy) {
+        this.points = buildStrategy.generate(personCount - 1);
     }
 
     public int size() {
@@ -34,10 +15,10 @@ public class Line {
     }
 
     public boolean isConnected(int index) {
-        return points.get(index);
+        return points.get(index).hasStep();
     }
 
-    public List<Boolean> getPoints() {
+    public List<Step> getPoints() {
         return points;
     }
 }

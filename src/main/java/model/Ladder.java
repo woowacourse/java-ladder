@@ -14,7 +14,7 @@ public class Ladder {
     public static Ladder of(Height height, int width) {
         List<Line> lines = new ArrayList<>();
         for(int i = 0; i < height.getValue(); i++) {
-            lines.add(new Line(width));
+            lines.add(new Line(width, new RandomBuildStrategy()));
         }
         return new Ladder(lines);
     }
