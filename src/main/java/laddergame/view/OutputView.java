@@ -13,10 +13,6 @@ public class OutputView {
     private static final String LADDER_SEPARATOR = "|";
     private static final String SPACE = "\t";
 
-    public OutputView() {
-
-    }
-
     public void writePlayersName(final Players players) {
         System.out.println(String.join("\t", players.getPlayers().stream()
                 .map(Player::getName)
