@@ -1,9 +1,5 @@
 package domain;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public enum ConnectionStatus {
 
     CONNECTED(Boolean.TRUE),
@@ -13,10 +9,6 @@ public enum ConnectionStatus {
 
     ConnectionStatus(boolean connect) {
         this.connect = connect;
-    }
-
-    public static List<ConnectionStatus> getAllStatus() {
-        return Arrays.stream(ConnectionStatus.values()).collect(Collectors.toList());
     }
 
     public boolean isConnect() {

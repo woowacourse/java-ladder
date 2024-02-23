@@ -2,20 +2,18 @@ package util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.ArrayList;
+import domain.ConnectionStatus;
 import java.util.Arrays;
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.RepeatedTest;
 
-@DisplayName("컬렉션 랜덤 요소 선택 기능 테스트")
+@DisplayName("랜덤 요소 선택 기능 테스트")
 class RandomElementSelectorTest {
 
-    @DisplayName("컬렉션의 요소 중 랜덤하게 뽑은 요소는 원래 컬렉션에 들어있던 요소이다")
-    @Test
+    @DisplayName("Enum 클래스의 상수 중 랜덤으로 하나를 고를 수 있다")
+    @RepeatedTest(100)
     void testSelectedRandomIsInOriginCollection() {
-        List<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3));
-        Integer random = RandomElementSelector.selectRandomElement(numbers);
-        assertThat(random).isIn(numbers);
+        ConnectionStatus randomStatus = RandomElementSelector.selectRandomConstant(ConnectionStatus.class);
+        assertThat(randomStatus).isIn(Arrays.asList(ConnectionStatus.values()));
     }
 }

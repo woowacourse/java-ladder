@@ -23,6 +23,6 @@ public class NonContinuousLineGenerator implements RowLineGenerator {
         if (prev.isConnect()) {
             return DISCONNECTED;
         }
-        return RandomElementSelector.selectRandomElement(ConnectionStatus.getAllStatus());
+        return RandomElementSelector.selectRandomConstant(ConnectionStatus.class);
     }
 }
