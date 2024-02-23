@@ -19,7 +19,7 @@ class Ladder {
         return rows;
     }
 
-    public List<List<Boolean>> getRawLadder() {
+    List<List<Boolean>> getRawLadder() {
         return rows.stream()
                 .map(Row::getBridges)
                 .toList();
