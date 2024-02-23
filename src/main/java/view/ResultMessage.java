@@ -17,13 +17,13 @@ public enum ResultMessage {
     public static String of(Line line) {
         StringBuilder result = new StringBuilder();
         for (Point point : line.getPoints()) {
-            result.append(currentPoint(point));
+            result.append(lineMessageForPoint(point));
         }
         result.append("\n");
         return result.toString();
     }
 
-    private static String currentPoint(final Point point) {
+    private static String lineMessageForPoint(final Point point) {
         if (point.isConnected()) {
             return ResultMessage.MOVABLE_LINE.message;
         }
