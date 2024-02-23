@@ -5,26 +5,15 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
-    private static final int MIN_HEIGHT = 1;
-    private static final int MAX_HEIGHT = 10;
-
     private static final Random random = new Random();
     private final List<Bridge> bridges = new ArrayList<>();
 
     public Line(final int width) {
-        validateWidth(width);
         generateLine(width);
     }
 
     public List<Bridge> getBridges() {
         return this.bridges;
-    }
-
-    private void validateWidth(final int width) {
-        if (MIN_HEIGHT > width || width > MAX_HEIGHT) {
-            throw new IllegalArgumentException(String.format("높이는 %d 이상 %d 이하로 입력해 주세요.",
-                    MIN_HEIGHT, MAX_HEIGHT));
-        }
     }
 
     private void generateLine(final int width) {
