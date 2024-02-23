@@ -2,7 +2,9 @@ package domain;
 
 import domain.booleangenerator.BooleanGenerator;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Ladder {
 
@@ -15,7 +17,11 @@ public class Ladder {
         }
     }
 
-    public List<Line> getLines() {
-        return this.lines;
+    public Map<Integer, List<Boolean>> getLinesInformation() {
+        Map<Integer, List<Boolean>> information = new LinkedHashMap<>();
+        for (int i = 0; i < lines.size(); i++) {
+            information.put(i + 1, lines.get(i).getBridgesInformation());
+        }
+        return information;
     }
 }
