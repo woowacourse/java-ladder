@@ -27,7 +27,7 @@ public class InputView {
     }
 
     private void validateBlank(String rawNames) {
-        if (rawNames == null || rawNames.trim().isEmpty()) {// TODO: 예외 메시지
+        if (rawNames == null || rawNames.trim().isEmpty()) {
             throw new IllegalArgumentException(Message.BLANK_INPUT_ERROR.getMessage());
         }
     }
