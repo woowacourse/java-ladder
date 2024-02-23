@@ -1,10 +1,11 @@
 package mock;
 
+import domain.Step;
 import domain.StepGenerator;
 
-public class TrueGenerator implements StepGenerator {
+public class ExistStepGenerator implements StepGenerator {
     @Override
-    public boolean generate() {
-        return true;
+    public Step generate() {
+        return Step.EXIST;
     }
 }
