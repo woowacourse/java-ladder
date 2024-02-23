@@ -1,9 +1,9 @@
 package game;
 
-import domain.LadderRowPattern;
-import domain.Ladder;
-import domain.LadderHeight;
-import domain.Players;
+import domain.ladder.LadderRowPattern;
+import domain.ladder.Ladder;
+import domain.ladder.LadderHeight;
+import domain.player.Players;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;

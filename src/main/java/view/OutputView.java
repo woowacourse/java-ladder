@@ -1,6 +1,6 @@
 package view;
 
-import domain.LadderRowPattern;
+import domain.ladder.LadderRowPattern;
 import java.util.List;
 import java.util.StringJoiner;
 
