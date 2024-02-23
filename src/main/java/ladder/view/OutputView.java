@@ -8,6 +8,7 @@ import ladder.dto.response.PlayerResponse;
 import ladder.dto.response.PlayersResponse;
 
 public class OutputView {
+    private static final String LADDER_LEFT_MARGIN = "    ";
     private static final String LADDER_RUNG_EMPTY = "     ";
     private static final String LADDER_RUNG_EXIST = "-----";
     private static final String LADDER_SIDE_RAIL = "|";
@@ -52,7 +53,7 @@ public class OutputView {
                 .map(this::generateRungMessage)
                 .collect(Collectors.joining(LADDER_SIDE_RAIL, LADDER_SIDE_RAIL, LADDER_SIDE_RAIL));
 
-        return LADDER_RUNG_EMPTY.concat(message);
+        return LADDER_LEFT_MARGIN.concat(message);
     }
 
     private String generateRungMessage(boolean rungExist) {
