@@ -10,10 +10,15 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class LineTest {
-    @RepeatedTest(100)
+    @Test
     @DisplayName("연속으로 True를 가질 수 없다.")
     void notConsecutiveDraw() {
-        Line line = new Line(5);
+        Line line = new Line(new BooleanGenerator() {
+            @Override
+            public boolean generate() {
+                return true;
+            }
+        }, 5);
 
         List<ConnectionStatus> isConnections = line.getConnectionStatuses();
 
