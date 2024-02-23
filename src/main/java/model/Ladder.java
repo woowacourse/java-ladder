@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import model.dto.LayerSteps;
 
 public class Ladder {
@@ -23,7 +24,7 @@ public class Ladder {
         }
     }
 
-    public List<LayerSteps> captureLayerSteps() {
-        return layers.stream().map(LayerSteps::new).toList();
+    public void forEachLayer(Consumer<Layer> consumer) {
+        layers.forEach(consumer);
     }
 }

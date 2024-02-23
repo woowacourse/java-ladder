@@ -3,6 +3,7 @@ package model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Consumer;
 import model.dto.ParticipantName;
 
 public class Participants {
@@ -31,8 +32,8 @@ public class Participants {
         }
     }
 
-    public List<ParticipantName> captureParticipantsName() {
-        return participants.stream().map(ParticipantName::new).toList();
+    public void forEachParticipant(Consumer<Participant> consumer) {
+        participants.forEach(consumer);
     }
 
     public int getParticipantsSize() {
