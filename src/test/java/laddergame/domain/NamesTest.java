@@ -16,4 +16,12 @@ public class NamesTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 이름은 중복 될 수 없습니다.");
     }
+
+    @DisplayName("빈 값이면 예외를 발생시킨다.")
+    @Test
+    void empty() {
+        assertThatThrownBy(() -> new Names(List.of()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 참가자는 1명이상이어야 합니다.");
+    }
 }

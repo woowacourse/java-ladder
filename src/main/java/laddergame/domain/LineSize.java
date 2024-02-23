@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import java.util.Objects;
 import laddergame.exception.LadderGameException;
 
 public class LineSize {
@@ -19,5 +20,21 @@ public class LineSize {
 
     public int getLineSize() {
         return lineSize;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof final LineSize lineSize1)) {
+            return false;
+        }
+        return getLineSize() == lineSize1.getLineSize();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getLineSize());
     }
 }

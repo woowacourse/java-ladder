@@ -18,7 +18,7 @@ public class RandomLadderGenerator implements LadderGenerator {
     }
 
     private Line createLine(final LineSize lineSize) {
-        final List<Point> points = Stream.iterate(Point.EMPTY, this::decideNextPoint)
+        final List<Point> points = Stream.iterate(generatePoint(), this::decideNextPoint)
                 .limit(lineSize.getLineSize())
                 .toList();
 
