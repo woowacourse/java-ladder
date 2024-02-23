@@ -13,9 +13,10 @@ public class LineTest {
     @Test
     void createLine() {
         final Line line = new Line(() -> true, 4);
+        final int expected = 4 - 1;
 
         assertThat(line.getLineResult().value().size())
-                .isEqualTo(4 - 1);
+                .isEqualTo(expected);
     }
 
     @DisplayName("같은층에 연속된 EXIST가 존재하지 않는다.")
