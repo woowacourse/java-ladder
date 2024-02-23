@@ -8,7 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("이름 도메인 테스트")
-public class NameTest {
+class NameTest {
 
     @DisplayName("이름의 길이가 1자에서 5자 사이가 아니면 생성 검증에 실패한다.")
     @ParameterizedTest

@@ -8,7 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("높이 도메인 테스트")
-public class HeightTest {
+class HeightTest {
 
     @DisplayName("사다리 높이가 0 이하면 생성 검증에 실패한다")
     @ParameterizedTest

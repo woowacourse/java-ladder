@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("가로줄 테스트")
-public class RowLineTest {
+class RowLineTest {
 
     @DisplayName("특정 위치의 오른쪽이 연결이 있는지 확인할 수 있다.")
     @Test
