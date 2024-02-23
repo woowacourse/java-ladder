@@ -3,6 +3,7 @@ package ladder.controller;
 import java.util.List;
 import java.util.function.Supplier;
 import ladder.domain.Carpenter;
+import ladder.domain.Energy;
 import ladder.domain.Height;
 import ladder.domain.Participants;
 import ladder.domain.dto.ResultLadderDto;
@@ -29,7 +30,9 @@ public class LadderController {
 
         int participantsCount = participants.getParticipantsCount();
 
-        Carpenter carpenter = new Carpenter(height, participantsCount, numberGenerator);
+        Energy energy = new Energy(numberGenerator);
+        Carpenter carpenter = new Carpenter(height, participantsCount, energy);
+
         ResultLadderDto resultLadderDto = buildLadder(carpenter, participantsCount);
 
         outputView.printResult(resultLadderDto, participants.getNames());

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import ladder.domain.dto.BuiltLadderDto;
 import ladder.domain.dto.ResultLadderDto;
-import ladder.domain.randomGenerator.NumberGenerator;
 
 public class Carpenter {
 
@@ -12,9 +11,9 @@ public class Carpenter {
     private final List<Ladder> ladders;
     private final Energy energy;
 
-    public Carpenter(Height height, int personCount, NumberGenerator numberGenerator) {
+    public Carpenter(Height height, int personCount, Energy energy) {
         ladders = makeLadder(height, personCount);
-        this.energy = new Energy(numberGenerator);
+        this.energy = energy;
     }
 
     public void buildLadders(int personCount) {
