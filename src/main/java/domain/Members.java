@@ -1,11 +1,9 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Members {
 
@@ -40,8 +38,8 @@ public class Members {
 
     private List<String> parse(String rawNames) {
         return Arrays.stream(rawNames.split(",", -1))
-                .map(String::trim)
-                .toList();
+            .map(String::trim)
+            .toList();
     }
 
     private void validateDuplication(List<String> names) {
@@ -53,7 +51,8 @@ public class Members {
 
     private void validateCount(List<String> names) {
         if (names.size() < MIN_MEMBER_COUNT || names.size() > MAX_MEMBER_COUNT) {
-            throw new IllegalArgumentException("참여자는 " + MIN_MEMBER_COUNT + "~" + MAX_MEMBER_COUNT + "명만 허용됩니다.");
+            throw new IllegalArgumentException(
+                "참여자는 " + MIN_MEMBER_COUNT + "~" + MAX_MEMBER_COUNT + "명만 허용됩니다.");
         }
     }
 
@@ -63,7 +62,7 @@ public class Members {
 
     public List<String> getNames() {
         return members.stream()
-                .map(Member::getName)
-                .toList();
+            .map(Member::getName)
+            .toList();
     }
 }
