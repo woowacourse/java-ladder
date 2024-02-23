@@ -7,7 +7,8 @@ public record Name(String name) {
     private static final int NAME_LENGTH_MAX = 5;
     private static final String NAME_REGEX_POLICY = "^[A-Za-z0-9]+";
 
-    public Name {
+    public Name(String name) {
+        this.name = name;
         validateNameLength();
         validateAlphanumericName();
     }
