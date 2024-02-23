@@ -26,7 +26,7 @@ public class Controller {
             retryCount = 0;
             return value;
         } catch (Exception exception) {
-            outputView.printErrorMessage(exception);
+            outputView.printErrorMessage(exception.getMessage());
             return retry(supplier);
         }
     }

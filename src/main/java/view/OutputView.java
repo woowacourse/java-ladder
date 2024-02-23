@@ -16,8 +16,8 @@ public class OutputView {
         printLadder(ladder);
     }
 
-    public void printErrorMessage(final Exception exception) {
-        System.out.println(exception.getMessage());
+    public void printErrorMessage(final String errorMessage) {
+        System.out.println(errorMessage);
     }
 
     private void printPlayerNames(final PlayerNames playerNames) {
