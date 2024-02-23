@@ -1,7 +1,7 @@
 package controller;
 
-import domain.model.Ladder;
-import domain.model.People;
+import model.Ladder;
+import model.People;
 import handler.ExceptionHandler;
 import view.InputView;
 import view.ResultView;

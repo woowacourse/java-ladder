@@ -1,9 +1,10 @@
 package view;
 
-import domain.model.*;
-
 import java.util.List;
 import java.util.stream.IntStream;
+import model.Ladder;
+import model.People;
+import model.Person;
 
 public class ResultView {
     private static final int MAX_INTERVAL = 6;

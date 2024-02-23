@@ -1,6 +1,8 @@
-package domain.model;
+package model;
 
 
+import model.Direction;
+import model.Line;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

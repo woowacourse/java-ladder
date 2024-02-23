@@ -1,5 +1,6 @@
-package domain.model;
+package model;
 
+import model.People;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

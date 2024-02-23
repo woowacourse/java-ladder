@@ -1,4 +1,4 @@
-package domain.model;
+package model;
 
 public class Height {
     private final int height;
