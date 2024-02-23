@@ -1,6 +1,6 @@
 package domain;
 
-import constant.Exception;
+import constant.domain.HeightExceptionMessage;
 
 public class Height {
 
@@ -13,7 +13,7 @@ public class Height {
 
     private void validate(int height) {
         if (height < MIN_OF_HEIGHT || height > MAX_OF_HEIGHT) {
-            throw new IllegalArgumentException(Exception.OUT_OF_RANGE_HEIGHT.getExceptionMessage());
+            throw new IllegalArgumentException(HeightExceptionMessage.OUT_OF_RANGE_HEIGHT.getExceptionMessage());
         }
     }
 }

@@ -1,6 +1,6 @@
 package domain;
 
-import constant.Exception;
+import constant.domain.ParticipantsExceptionMessage;
 
 import java.util.List;
 
@@ -20,13 +20,13 @@ public class Participants {
 
     private void validateCount(List<String> names) {
         if (names.size() < MIN_OF_PARTICIPANTS_COUNT || names.size() > MAX_OF_PARTICIPANTS_COUNT) {
-            throw new IllegalArgumentException(Exception.OUT_OF_RANGE_PARTICIPANTS_COUNT.getExceptionMessage());
+            throw new IllegalArgumentException(ParticipantsExceptionMessage.OUT_OF_RANGE_PARTICIPANTS_COUNT.getExceptionMessage());
         }
     }
 
     private void validateDuplicate(List<String> names) {
         if (names.stream().distinct().count() != names.size()) {
-            throw new IllegalArgumentException(Exception.DUPLICATE_PARTICIPANTS.getExceptionMessage());
+            throw new IllegalArgumentException(ParticipantsExceptionMessage.DUPLICATE_PARTICIPANTS.getExceptionMessage());
         }
     }
 

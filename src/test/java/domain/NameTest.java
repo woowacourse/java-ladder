@@ -1,6 +1,6 @@
 package domain;
 
-import constant.Exception;
+import constant.domain.NameExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,7 +15,7 @@ public class NameTest {
     void longNameExceptionTest() {
         assertThatThrownBy(() -> new Name("zangsu"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Exception.OUT_OF_RANGE_NAME_LENGTH.getExceptionMessage());
+                .hasMessage(NameExceptionMessage.OUT_OF_RANGE_NAME_LENGTH.getExceptionMessage());
     }
 
     @ParameterizedTest
@@ -24,7 +24,7 @@ public class NameTest {
     void noNameExceptionTest(String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Exception.NO_NAME.getExceptionMessage());
+                .hasMessage(NameExceptionMessage.NO_NAME.getExceptionMessage());
     }
 
 }

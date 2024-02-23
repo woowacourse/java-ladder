@@ -1,6 +1,6 @@
 package controller;
 
-import constant.Exception;
+import constant.controller.LadderGameExceptionMessage;
 import domain.Ladder;
 import domain.Participants;
 import view.InputView;
@@ -19,7 +19,7 @@ public class LadderGame {
         try {
             run();
         } catch (StackOverflowError e) {
-            System.out.println(Exception.EXIT.getExceptionMessage());
+            System.out.println(LadderGameExceptionMessage.EXIT.getExceptionMessage());
         }
     }
 
