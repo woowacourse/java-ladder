@@ -1,14 +1,9 @@
 package laddergame;
 
-import java.util.List;
 import java.util.function.Supplier;
-import java.util.stream.IntStream;
 import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.Players;
-import laddergame.domain.strategy.BuildStrategy;
-import laddergame.domain.strategy.PointBuildStrategy;
-import laddergame.domain.Points;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -22,13 +17,6 @@ public class LadderGame {
 
         Ladder ladder = new Ladder(players.getPlayers().size(), height);
         printLadderResult(players, ladder);
-    }
-
-    private static List<Points> getLineBuildResults(final Players players, final Height height) {
-        BuildStrategy pointBuildStrategy = new PointBuildStrategy();
-        return IntStream.range(0, height.getHeight())
-                .mapToObj(i -> pointBuildStrategy.build(players.getPlayers().size() - 1))
-                .toList();
     }
 
     private void printLadderResult(final Players players, final Ladder ladder) {
