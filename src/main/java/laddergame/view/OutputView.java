@@ -10,13 +10,16 @@ import laddergame.domain.Point;
 
 public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String LADDER_SYMBOL = "|";
+    private static final String POINT_SPACE = "\t";
+    private static final String RESULT_TITLE = System.lineSeparator() + "실행결과" + System.lineSeparator();
 
     public OutputView() {
 
     }
 
     public void writePlayersName(final Players players) {
-        System.out.println(String.join("\t", players.getPlayers().stream()
+        System.out.println(String.join(POINT_SPACE, players.getPlayers().stream()
                 .map(Player::getName)
                 .toList()));
     }
@@ -27,7 +30,7 @@ public class OutputView {
     }
 
     private void writeLine(final Line line) {
-        StringJoiner stringJoiner = new StringJoiner("|", "\t|", "|");
+        StringJoiner stringJoiner = new StringJoiner(LADDER_SYMBOL, POINT_SPACE + LADDER_SYMBOL, LADDER_SYMBOL);
         for (Point point : line.getPoints().points()) {
             stringJoiner.add(PointSymbol.getSymbol(point));
         }
@@ -35,7 +38,7 @@ public class OutputView {
     }
 
     public void writeResultTitle() {
-        System.out.println(System.lineSeparator() + "실행결과" + System.lineSeparator());
+        System.out.println(RESULT_TITLE);
     }
 
     public static void writeErrorMessage(final String message) {
