@@ -16,6 +16,7 @@ class PlayerTest {
     void testConstruct() {
         String pobi = "pobi";
         Player player = new Player(pobi);
+
         assertThat(pobi).isEqualTo(player.getName());
     }
 

@@ -21,7 +21,6 @@ class LadderHeightTest {
     @Test
     @DisplayName("사다리의 높이가 범위를 벗어나면 예외가 발생한다.")
     void testInvalidHeightRange() {
-        // then
         assertThatThrownBy(() -> new LadderHeight(0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
