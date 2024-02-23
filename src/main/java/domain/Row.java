@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 class Row {
-    private final List<Boolean> rowInfos;
+    private final List<Boolean> bridges;
 
-    Row(List<Boolean> rowInfos) {
-        IntStream.range(1, rowInfos.size())
-                .forEach(index -> validateNearInfo(rowInfos, index));
-        this.rowInfos = Collections.unmodifiableList(rowInfos);
+    Row(List<Boolean> bridges) {
+        IntStream.range(1, bridges.size())
+                .forEach(index -> validateNearInfo(bridges, index));
+        this.bridges = Collections.unmodifiableList(bridges);
     }
 
     private void validateNearInfo(List<Boolean> rowInfos, int index) {
@@ -19,7 +19,7 @@ class Row {
         }
     }
 
-    List<Boolean> getRowInfos() {
-        return rowInfos;
+    List<Boolean> getBridges() {
+        return bridges;
     }
 }
