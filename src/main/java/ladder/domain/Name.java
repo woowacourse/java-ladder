@@ -31,7 +31,7 @@ public class Name {
 
     private void validateNameLength(String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름의 길이는 최대 5글자 까지 가능합니다.");
+            throw new IllegalArgumentException("이름의 길이는 최대 "+MAXIMUM_NAME_LENGTH+"글자 까지 가능합니다.");
         }
     }
 

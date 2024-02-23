@@ -36,7 +36,7 @@ public class Participants {
 
     private void validateIsNotOverMaximumReception(List<String> names) {
         if (names.size() > MAXIMUM_RECEPTION_COUNT) {
-            throw new IllegalArgumentException("참여자 인원은 최대 10명까지 가능합니다.");
+            throw new IllegalArgumentException("참여자 인원은 최대 "+MAXIMUM_RECEPTION_COUNT+"명까지 가능합니다.");
         }
     }
 
