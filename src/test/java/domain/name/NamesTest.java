@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 @DisplayName("이름 일급 컬렉션 테스트")
-public class NamesTest {
+class NamesTest {
 
     @DisplayName("이름이 중복될 경우 생성 검증에 실패한다")
     @Test
