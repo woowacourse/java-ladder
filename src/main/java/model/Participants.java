@@ -11,7 +11,7 @@ public class Participants {
     private final List<Participant> participants;
 
     public Participants(List<String> names) {
-        validateNameSize(names);
+        validateNameCount(names);
         validateDuplicateName(names);
         List<Participant> participants = names.stream()
                 .map(Participant::new)
@@ -19,7 +19,7 @@ public class Participants {
         this.participants = participants;
     }
 
-    private void validateNameSize(List<String> names) {
+    private void validateNameCount(List<String> names) {
         if (names.size() < MIN_PARTICIPANT_COUNT) {
             throw new IllegalArgumentException("참여할 사람은 두명 이상이어야한다.");
         }
