@@ -25,7 +25,7 @@ public class Line {
         return points;
     }
 
-    public LadderItem decideConnectable(int position, LadderItem isConnectable) {
+    private LadderItem decideConnectable(int position, LadderItem isConnectable) {
         if (position == 0 || points.get(position - 1).equals(LadderItem.UNCONNECTED)) {
             return isConnectable;
         }
