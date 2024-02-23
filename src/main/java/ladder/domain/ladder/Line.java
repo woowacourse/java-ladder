@@ -29,7 +29,7 @@ public class Line {
         boolean previousRungExist = !rungs.isEmpty() && rungs.get(rungs.size() - 1).isExist();
         Rung currentRung = rungGenerator.generate();
 
-        if (previousRungExist && currentRung.isExist()) {
+        if (previousRungExist || !currentRung.isExist()) {
             return Rung.of(false);
         }
 
