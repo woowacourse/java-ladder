@@ -2,6 +2,7 @@ package view;
 
 import domain.Ladder;
 import domain.Line;
+import domain.Participants;
 
 import java.util.List;
 
@@ -11,13 +12,14 @@ public class OutputView {
     public static final String EXIST_POINT = "-----|";
     public static final String EMPTY_POINT = "     |";
 
-    public void printResult(List<String> participantsName, Ladder ladder) {
+    public void printResult(Participants participants, Ladder ladder) {
         System.out.println("\n실행결과\n");
-        printNames(participantsName);
+        printNames(participants);
         printLadder(ladder);
     }
 
-    private void printNames(List<String> participantsName) {
+    private void printNames(Participants participants) {
+        List<String> participantsName = participants.getParticipantsName();
         for (String name : participantsName) {
             System.out.printf("%5s ", name);
         }

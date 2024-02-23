@@ -26,7 +26,7 @@ public class LadderGame {
     private void run() {
         participants = recruitParticipants();
         ladder = makeLadder();
-        outputView.printResult(participants.getParticipantsName(), ladder);
+        outputView.printResult(participants, ladder);
     }
 
     private Participants recruitParticipants() {
