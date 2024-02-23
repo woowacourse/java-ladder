@@ -11,6 +11,10 @@ public class ResultView {
 
     private static final String LINE_SEPARATOR = System.lineSeparator();
     private static final String COLUMN_LINE = "|";
+    private static final String NAME_FORMAT = "%-5s";
+    private static final String BLANK = " ";
+    private static final String ROW_LINE = "-----";
+    private static final String EMPTY_LINE = "     ";
 
     public void printLadder(Ladder ladder, Names names) {
         System.out.println(LINE_SEPARATOR + "실행결과" + LINE_SEPARATOR);
@@ -20,8 +24,8 @@ public class ResultView {
 
     private String resolveNamesMessage(Names names) {
         return names.getNames().stream()
-                .map(name -> String.format("%-5s", name.getName()))
-                .collect(Collectors.joining(" "));
+                .map(name -> String.format(NAME_FORMAT, name.getName()))
+                .collect(Collectors.joining(BLANK));
     }
 
     public String resolveLadderMessage(Ladder ladder) {
@@ -39,8 +43,8 @@ public class ResultView {
 
     private String resolveConnectionMessage(ConnectionStatus connectionStatus) {
         if (connectionStatus.isConnect()) {
-            return "-----";
+            return ROW_LINE;
         }
-        return "     ";
+        return EMPTY_LINE;
     }
 }
