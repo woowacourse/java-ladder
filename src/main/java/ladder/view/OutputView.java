@@ -1,9 +1,9 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
-import ladder.domain.enums.NameFormat;
 import ladder.domain.People;
 import ladder.domain.RowLine;
+import ladder.domain.enums.NameFormat;
 
 import java.util.List;
 import java.util.StringJoiner;
@@ -34,6 +34,10 @@ public class OutputView {
         }
     }
 
+    public static void printMessage(String message) {
+        System.out.println(message);
+    }
+
     private static void printRowLine(RowLine rowLine) {
         StringBuilder stringBuilder = new StringBuilder(
                 BLANK.repeat(INTERVAL_WIDTH - 1) + VERTICAL_LINE);
@@ -47,8 +51,8 @@ public class OutputView {
 
     private static String findConnectionMark(boolean isConnected) {
         if (isConnected) {
-             return HORIZONTAL_LINE;
+            return HORIZONTAL_LINE;
         }
-         return BLANK;
+        return BLANK;
     }
 }
