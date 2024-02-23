@@ -16,6 +16,7 @@ public class Ladder {
     public Ladder(int height, int peopleNumber) {
         this(height, peopleNumber, new RandomLineGenerator());
     }
+
     //TODO Stream.generate 고민하기
     public Ladder(int height, int peopleNumber, LineGenerator lineGenerator) {
         validateLadderHeight(height);
@@ -25,8 +26,7 @@ public class Ladder {
         }
     }
 
-    //TODO static 삭제
-    private static void validateLadderHeight(int height) {
+    private void validateLadderHeight(int height) {
         if (height < MIN_LADDER_HEIGHT || height > MAX_LADDER_HEIGHT) {
             throw new IllegalArgumentException("사다리의 높이는 1이상 100이하여야 합니다");
         }
