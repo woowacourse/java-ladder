@@ -1,8 +1,8 @@
 package domain.ladder;
 
 import domain.ladder.attirbute.Direction;
-import util.DirectionGenerator;
 import domain.ladder.attirbute.Height;
+import util.DirectionGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,14 +22,14 @@ public class Ladder {
     private List<LadderLeg> generateFirstToLastLegs(DirectionGenerator directionGenerator) {
         LadderLegGenerator ladderLegGenerator = new LadderLegGenerator(this.height);
 
-        List<LadderLeg> ladderLegs = new ArrayList<>();
+        List<LadderLeg> generatedLadderLegs = new ArrayList<>();
         LadderLeg ladderLeg = ladderLegGenerator.generateDownLadderLeg();
         for (int i = 0; i < this.playerCount - 1; i++) {
             ladderLeg = ladderLegGenerator.generateLadderLeg(ladderLeg, directionGenerator::generate);
-            ladderLegs.add(ladderLeg);
+            generatedLadderLegs.add(ladderLeg);
         }
-        ladderLegs.add(ladderLegGenerator.generateLadderLeg(ladderLeg, () -> Direction.DOWN));
-        return ladderLegs;
+        generatedLadderLegs.add(ladderLegGenerator.generateLadderLeg(ladderLeg, () -> Direction.DOWN));
+        return generatedLadderLegs;
     }
 
 
