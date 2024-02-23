@@ -10,10 +10,10 @@ class LadderTest {
     void createLadder() {
         // given
         Height height = new Height(5);
-        int personCount = 7;
+        Width width = new Width(7);
 
         // when
-        Ladder ladder = Ladder.of(height, personCount);
+        Ladder ladder = Ladder.of(height, width);
 
         // when
         Assertions.assertThat(ladder.size()).isEqualTo(height.getValue());

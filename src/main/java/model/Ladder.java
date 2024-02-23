@@ -11,9 +11,9 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(Height height, int width) {
+    public static Ladder of(Height height, Width width) {
         List<Line> lines = new ArrayList<>();
-        for(int i = 0; i < height.getValue(); i++) {
+        for (int i = 0; i < height.getValue(); i++) {
             lines.add(new Line(width));
         }
         return new Ladder(lines);

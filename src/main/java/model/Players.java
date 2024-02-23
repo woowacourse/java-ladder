@@ -42,6 +42,10 @@ public class Players {
                 .toList();
     }
 
+    public Width getWidth() {
+        return new Width(size());
+    }
+
     public List<String> getNames() {
         return players.stream()
                 .map(Player::getName)

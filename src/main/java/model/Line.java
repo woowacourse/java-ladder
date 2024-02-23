@@ -10,9 +10,9 @@ public class Line {
 
     private final List<Boolean> points;
 
-    public Line(int personCount) {
+    public Line(Width width) {
         List<Boolean> result = new ArrayList<>();
-        for (int i = 0; i < personCount - 1; i++) {
+        for (int i = 0; i < width.getValue() - 1; i++) {
             result.add(generate(result, i));
         }
         this.points = result;

@@ -11,9 +11,9 @@ class LineTest {
     @Test
     @DisplayName("사다리 생성 테스트")
     void createLine() {
-        int personCount = 4;
+        final var width = new Width(4);
 
-        Assertions.assertThatCode(() -> new Line(personCount))
+        Assertions.assertThatCode(() -> new Line(width))
                 .doesNotThrowAnyException();
     }
 
@@ -21,7 +21,7 @@ class LineTest {
     @DisplayName("동일한 true 값을 가지지 않는지 확인")
     void overlapConnection() {
         //given
-        Line line = new Line(4);
+        Line line = new Line(new Width(4));
         List<Boolean> points = line.getPoints();
 
         //when
