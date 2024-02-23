@@ -1,14 +1,14 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 @DisplayName("높이 도메인 테스트")
-public class HeightTest {
+class HeightTest {
 
     @DisplayName("사다리 높이가 0 이하면 생성 검증에 실패한다")
     @ParameterizedTest

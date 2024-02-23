@@ -12,10 +12,6 @@ public class RowLine {
         this.connections = connections;
     }
 
-    public boolean hasRightConnection(int index) {
-        return connections.get(index).isConnect();
-    }
-
     public List<ConnectionStatus> getConnections() {
         return List.copyOf(connections);
     }
