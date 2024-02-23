@@ -17,8 +17,12 @@ public class InputView {
                         .split(DELIMITER));
     }
 
-    public static int readHeight() throws NumberFormatException {
+    public static int readHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return Integer.parseInt(scanner.nextLine());
+        try {
+            return Integer.parseInt(scanner.nextLine());
+        }catch(NumberFormatException e){
+            throw new IllegalArgumentException("사다리의 높이는 1이상 100이하의 자연수여야 합니다");
+        }
     }
 }

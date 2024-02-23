@@ -46,8 +46,6 @@ public class LadderGameController {
         try {
             int peopleNumber = people.getNames().size();
             return new Ladder(InputView.readHeight(), peopleNumber);
-        } catch (NumberFormatException e) {
-            System.out.println("사다리의 높이는 1이상 100이하의 자연수여야 합니다");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
