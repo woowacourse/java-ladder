@@ -28,8 +28,10 @@ class LadderControllerTest {
             InputView inputView = new InputView(new Scanner(System.in));
             OutputView outputView = new OutputView();
             LadderController ladderController = new LadderController(inputView, outputView);
+
             //when
             PlayerNames playerNames = ladderController.createPlayerNames(playerNameInfos);
+
             //then
             assertAll(
                     () -> Assertions.assertThat(playerNames.getCount()).isEqualTo(3),

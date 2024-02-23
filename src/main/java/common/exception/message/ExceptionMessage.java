@@ -21,6 +21,7 @@ public class ExceptionMessage {
             InputView.PLAYER_NAMES_INPUT_DELIMITER);
     public static final String LADDER_HEIGHT_RANGE = String.format("사다리 높이의 범위는 %d 이상, %d 이하여야 합니다",
             LadderHeight.HEIGHT_MIN_RANGE, LadderHeight.HEIGHT_MAX_RANGE);
+    public static final String SERIAL_LADDER_BRIDGE = "한 층 내에서 사디리의 다리는 연속될 수 없습니다.";
 
     /**
      * NotFoundException

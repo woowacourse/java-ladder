@@ -11,9 +11,9 @@ public class RandomBridgeGenerator implements BridgeGenerator {
     private static final Random random = new Random();
 
     @Override
-    public List<LadderBridge> generate(int pointCount) {
-        List<LadderBridge> bridges = new ArrayList<>(pointCount);
-        for (int i = 0; i < pointCount; i++) {
+    public List<LadderBridge> generate(int bridgeCount) {
+        List<LadderBridge> bridges = new ArrayList<>(bridgeCount);
+        for (int i = 0; i < bridgeCount; i++) {
             addBridge(i, bridges, LadderBridge.getByExist(random.nextBoolean()));
         }
 
