@@ -30,8 +30,7 @@ class UserNamesTest {
     void getUserCount() {
         final UserNames userNames = UserNames.from(List.of("aaa", "bbb"));
 
-        assertThat(userNames.getUserCount())
-                .isEqualTo(2);
+        assertThat(userNames.getUserCount()).isEqualTo(2);
     }
 
     @DisplayName("사용자 이름들을 List<String> 형태로 가공하여 반환한다.")
@@ -39,7 +38,6 @@ class UserNamesTest {
     void getUserNames() {
         final UserNames userNames = UserNames.from(List.of("kelly", "liv"));
 
-        assertThat(userNames.getUserNames())
-                .containsExactly("kelly", "liv");
+        assertThat(userNames.getUserNames()).containsExactly("kelly", "liv");
     }
 }

@@ -11,14 +11,12 @@ public class StepStatusTest {
     @DisplayName("true가 입력되면 EXIST를 반환한다.")
     @Test
     void returnNoneWhenStepExist() {
-        assertThat(StepStatus.getStepStatus(true))
-                .isEqualTo(EXIST);
+        assertThat(StepStatus.getStepStatus(true)).isEqualTo(EXIST);
     }
 
     @DisplayName("EXIST면 true를 반환한다.")
     @Test
     void checkIsExist() {
-        assertThat(EXIST.isExist())
-                .isTrue();
+        assertThat(EXIST.isExist()).isTrue();
     }
 }
