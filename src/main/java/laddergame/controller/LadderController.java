@@ -2,7 +2,7 @@ package laddergame.controller;
 
 import laddergame.domain.LadderHeight;
 import laddergame.domain.Names;
-import laddergame.domain.Result;
+import laddergame.dto.GameResultDto;
 import laddergame.exception.ExceptionHandler;
 import laddergame.service.LadderGame;
 import laddergame.view.InputView;
@@ -24,7 +24,7 @@ public class LadderController {
         final Names names = getNames();
         final LadderHeight height = getLadderHeight();
 
-        final Result result = ladderGame.createLadder(names, height);
+        final GameResultDto result = ladderGame.createLadder(names, height);
 
         outputView.printResult(result);
     }

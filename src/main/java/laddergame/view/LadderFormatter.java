@@ -2,7 +2,8 @@ package laddergame.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import laddergame.domain.Result;
+import laddergame.dto.GameResultDto;
+import laddergame.dto.LineDto;
 
 public class LadderFormatter {
 
@@ -13,15 +14,15 @@ public class LadderFormatter {
     private LadderFormatter() {
     }
 
-    public static String formatLadder(final Result result) {
-        final List<String> names = result.names();
-        final List<List<Boolean>> ladder = result.ladder();
+    public static String formatLadder(final GameResultDto gameDto) {
+        final List<String> names = gameDto.names();
+        final List<LineDto> ladder = gameDto.ladder();
 
         final int width = WidthCalculator.calculateWidth(names);
         final int firstWidth = WidthCalculator.calculateFirstWidth(names);
 
         return ladder.stream()
-                .map(line -> BLANK_UNIT.repeat(firstWidth) + formatLine(line, width))
+                .map(line -> BLANK_UNIT.repeat(firstWidth) + formatLine(line.points(), width))
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 

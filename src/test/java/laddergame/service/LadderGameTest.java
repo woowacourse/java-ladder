@@ -7,7 +7,7 @@ import java.util.List;
 import laddergame.domain.LadderHeight;
 import laddergame.domain.Names;
 import laddergame.domain.Point;
-import laddergame.domain.Result;
+import laddergame.dto.GameResultDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +26,7 @@ public class LadderGameTest {
         final LadderGame ladderGame = new LadderGame(() -> Point.EXIST);
 
         // when
-        final Result result = ladderGame.createLadder(names, height);
+        final GameResultDto result = ladderGame.createLadder(names, height);
 
         // then
         assertThat(result.names()).isEqualTo(input);

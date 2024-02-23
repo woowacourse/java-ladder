@@ -21,6 +21,6 @@ public class LadderTest {
         Ladder ladder = Ladder.create(lineSize, height, () -> Point.EXIST);
 
         // then
-        assertThat(ladder.getLinesState()).hasSize(value);
+        assertThat(ladder.getLines()).hasSize(value);
     }
 }

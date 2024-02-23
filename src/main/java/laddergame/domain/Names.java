@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -30,9 +31,7 @@ public class Names {
         return names.size();
     }
 
-    public List<String> getNames() {
-        return names.stream()
-                .map(Name::getName)
-                .toList();
+    public List<Name> getNames() {
+        return Collections.unmodifiableList(names);
     }
 }
