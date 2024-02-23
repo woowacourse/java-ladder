@@ -6,7 +6,7 @@ import java.util.function.BooleanSupplier;
 
 public class Ladder {
 
-    private final List<HorizontalLine> lines = new ArrayList<>();
+    private final List<LadderRow> lines = new ArrayList<>();
 
     private Ladder(Players players, LadderHeight height) {
         createLadder(players, height);
@@ -22,14 +22,14 @@ public class Ladder {
 
     public List<HorizontalLinePattern> createStatuses() {
         return lines.stream()
-                .map(HorizontalLine::createStatus)
+                .map(LadderRow::createStatus)
                 .toList();
     }
 
     private void createLadder(Players players, LadderHeight height) {
         int currentFloor = 0;
         while (!height.hasLengthOf(currentFloor)) {
-            HorizontalLine line = new HorizontalLine(players.size());
+            LadderRow line = new LadderRow(players.size());
             lines.add(line);
             currentFloor++;
         }

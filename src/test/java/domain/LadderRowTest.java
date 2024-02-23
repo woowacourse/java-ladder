@@ -10,22 +10,22 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class HorizontalLineTest {
+class LadderRowTest {
 
     @ParameterizedTest
     @ValueSource(ints = {2, 3, 10})
     @DisplayName("올바른 범위의 수가 주어지면, 세로줄을 생성한다.")
     void validPlayerCountCreationTest(int playerCount) {
-        assertDoesNotThrow(() -> new HorizontalLine(playerCount));
+        assertDoesNotThrow(() -> new LadderRow(playerCount));
     }
 
     @Test
     @DisplayName("초기에 생성했을 때, 가로줄은 없다.")
     void initialCreationEmptyCrossingLinesTest() {
         // given
-        HorizontalLine horizontalLine = new HorizontalLine(5);
+        LadderRow ladderRow = new LadderRow(5);
         // when
-        HorizontalLinePattern status = horizontalLine.createStatus();
+        HorizontalLinePattern status = ladderRow.createStatus();
         List<Boolean> actual = status.rowPattern();
         // then
         assertThat(actual).containsOnly(false);
@@ -36,10 +36,10 @@ class HorizontalLineTest {
     void generateFalseAfterTrueTest() {
         // given
         BooleanSupplier trueSupplier = () -> true;
-        HorizontalLine horizontalLine = new HorizontalLine(6);
+        LadderRow ladderRow = new LadderRow(6);
         // when
-        horizontalLine.createPattern(trueSupplier);
-        HorizontalLinePattern status = horizontalLine.createStatus();
+        ladderRow.createPattern(trueSupplier);
+        HorizontalLinePattern status = ladderRow.createStatus();
         List<Boolean> actual = status.rowPattern();
         List<Boolean> expected = List.of(true, false, true, false, true);
         // then
