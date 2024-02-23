@@ -2,6 +2,7 @@ package domain.player;
 
 public class Name {
     private final String value;
+    private final static int MAXIUM_NAME_LENGTH = 5;
 
     public Name(String value) {
         validate(value);
@@ -19,7 +20,7 @@ public class Name {
     }
 
     private void validateAvailableLength(String inputName) {
-        if (inputName.length() > 5) {
+        if (inputName.length() > MAXIUM_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
