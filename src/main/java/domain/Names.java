@@ -19,6 +19,14 @@ public class Names {
                 .toList());
     }
 
+    public int getNameCount() {
+        return names.size();
+    }
+
+    public List<Name> getNames() {
+        return List.copyOf(names);
+    }
+    
     private void validate(List<Name> names) {
         validateUnique(names);
         validateEntryAmount(names);
@@ -34,13 +42,5 @@ public class Names {
         if (names.size() < MIN_COUNT) {
             throw new IllegalArgumentException("[ERROR] 참여 인원은 " + MIN_COUNT + "명 이상이어야 합니다");
         }
-    }
-
-    public int getNameCount() {
-        return names.size();
-    }
-
-    public List<Name> getNames() {
-        return List.copyOf(names);
     }
 }
