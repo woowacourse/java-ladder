@@ -15,7 +15,9 @@ public class LadderLeg {
         return ladderLegPieces.get(index)
                               .isRightDirection();
     }
-    public Direction getDirectionAtIndex(int index){
-        return ladderLegPieces.get(index).getDirection();
+
+    public Direction getDirectionAtIndex(int index) {
+        return ladderLegPieces.get(index)
+                              .getDirection();
     }
 }
