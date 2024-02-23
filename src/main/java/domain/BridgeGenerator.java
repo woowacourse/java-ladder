@@ -2,6 +2,6 @@ package domain;
 
 import java.util.List;
 
-interface RowInfoGenerator {
+interface BridgeGenerator {
     List<Boolean> generate(int width);
 }

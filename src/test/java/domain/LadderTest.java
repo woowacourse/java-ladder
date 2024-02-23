@@ -10,7 +10,7 @@ class LadderTest {
     void validateRowCount() {
         Height height = new Height(5);
         Width width = new Width(5);
-        Ladder ladder = new Ladder(height, width, new RowInfoRandomGenerator());
+        Ladder ladder = new Ladder(height, width, new BridgeRandomGenerator());
         Assertions.assertThat(ladder.getRows().size())
                 .isEqualTo(5);
     }
@@ -20,6 +20,6 @@ class LadderTest {
     void makeWithWrapperTypes() {
         Height height = new Height(5);
         Width width = new Width(5);
-        new Ladder(height, width, new RowInfoRandomGenerator());
+        new Ladder(height, width, new BridgeRandomGenerator());
     }
 }
