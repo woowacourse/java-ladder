@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 
 public class LadderLeg {
     private final List<LadderLegPiece> ladderLegPieces;
+    private static final Supplier<Direction> downDirectionSupplier = () -> Direction.DOWN;
 
     public LadderLeg(final List<LadderLegPiece> ladderLegPieces) {
         this.ladderLegPieces = ladderLegPieces;
@@ -17,13 +18,17 @@ public class LadderLeg {
 
     public static LadderLeg downLadderLeg(int height) {
         return new LadderLeg(convertDirectionToLegPieceList(IntStream.range(0, height)
-                                                                     .mapToObj(index -> Direction.DOWN)));
+                                                                     .mapToObj(index -> downDirectionSupplier.get())));
     }
 
-    public static LadderLeg from(LadderLeg previousLadderLeg, int height, Supplier<Direction> directionSupplier) {
+    public static LadderLeg fromPreviousWithDynamicDirection(LadderLeg previousLadderLeg, int height, Supplier<Direction> directionSupplier) {
         return new LadderLeg(convertDirectionToLegPieceList(IntStream.range(0, height)
                                                                      .mapToObj(previousLadderLeg::hasRightDirectionAtIndex)
                                                                      .map(flag -> determineDirection(flag, directionSupplier))));
+    }
+
+    public static LadderLeg fromPreviousWithDownDirection(LadderLeg previousLadderLeg, int height) {
+        return fromPreviousWithDynamicDirection(previousLadderLeg, height, downDirectionSupplier);
     }
 
     private static Direction determineDirection(boolean prevRightDirectionFlag, Supplier<Direction> directionSupplier) {

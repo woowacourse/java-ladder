@@ -28,7 +28,7 @@ public class LadderLegTest {
         List<LadderLegPiece> ladderLegPieces = 사다리_조각들_생성(directions);
         LadderLeg prevLadderLeg = new LadderLeg(ladderLegPieces);
 
-        LadderLeg ladderLeg = LadderLeg.from(prevLadderLeg, 2, () -> Direction.DOWN);
+        LadderLeg ladderLeg = LadderLeg.fromPreviousWithDynamicDirection(prevLadderLeg, 2, () -> Direction.DOWN);
         assertAll(() -> {
             assertEquals(ladderLeg.getDirectionAtIndex(0), Direction.DOWN);
             assertEquals(ladderLeg.getDirectionAtIndex(1), Direction.LEFT);
