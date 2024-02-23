@@ -16,10 +16,13 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("사다리를 Wrapper 타입을 이용해 생성")
-    void makeWithWrapperTypes() {
+    @DisplayName("사다리를 Wrapper 타입을 이용해 생성할 때, 예외가 발생하지 않는다.")
+    void testConstructWithWrapper() {
         Height height = new Height(5);
         Width width = new Width(5);
-        new Ladder(height, width, new RowInfoRandomGenerator());
+
+        Assertions.assertThatCode(() -> new Ladder(height, width, new RowInfoRandomGenerator()))
+                .doesNotThrowAnyException();
+
     }
 }
