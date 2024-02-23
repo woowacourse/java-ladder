@@ -34,6 +34,20 @@ public class InputViewTest {
     }
 
     @Nested
+    @DisplayName("실행 결과 입력 시")
+    class inputDestinations {
+        @DisplayName("공백이 입력되면 예외를 던진다.")
+        @NullAndEmptySource
+        @ValueSource(strings = {" ", "  ", "\t", "\n"})
+        @ParameterizedTest
+        void validateDestinationsWithNullOrEmpty(String input) {
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> InputView.readDestinations(() -> input))
+                    .withMessage("공백을 넣을 수 없습니다.");
+        }
+    }
+
+    @Nested
     @DisplayName("사다리 높이 입력 시")
     class inputLadderHeight {
         @DisplayName("사다리 높이에 공백이 입력되면 예외를 던진다.")
