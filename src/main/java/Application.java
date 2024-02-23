@@ -1,4 +1,3 @@
-import controller.InputMapper;
 import controller.LadderGameController;
 import view.InputView;
 import view.MessageResolver;
