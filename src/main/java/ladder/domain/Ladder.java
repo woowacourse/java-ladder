@@ -7,10 +7,10 @@ import ladder.domain.linegenerator.LineGenerator;
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(Height height, int size, LineGenerator lineGenerator) {
+    public Ladder(Height height, int width, LineGenerator lineGenerator) {
         lines = new ArrayList<>();
         for (int i = 0; i < height.getValue(); i++) {
-            Line line = new Line(lineGenerator.generate(size));
+            Line line = new Line(lineGenerator.generate(width));
             lines.add(line);
         }
     }
