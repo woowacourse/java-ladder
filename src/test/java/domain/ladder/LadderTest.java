@@ -24,10 +24,8 @@ class LadderTest {
                                                       .mapToObj((value) -> Direction.RIGHT)
                                                       .toList();
 
-        assertThatCode(() -> new Ladder(
-                          height, playerCount,
-                          new FixedDirectionGenerator(fixedDirectionList)))
-                  .doesNotThrowAnyException();
+        assertThatCode(() -> new Ladder(height, playerCount, new FixedDirectionGenerator(fixedDirectionList)))
+                .doesNotThrowAnyException();
     }
 
     @Test
@@ -43,7 +41,7 @@ class LadderTest {
 
         List<Direction> directions = ladder.getDirectionAtHorizontalIndex(0);
         List<Direction> expected = List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT, Direction.DOWN);
-        assertEquals(directions, expected);
+        assertEquals(expected, directions);
     }
 
 
