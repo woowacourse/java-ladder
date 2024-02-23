@@ -8,7 +8,7 @@ public class Step {
         this.buildStatus = false;
     }
 
-    public void changeStatus() {
+    public void buildStep() {
         buildStatus = true;
     }
 
