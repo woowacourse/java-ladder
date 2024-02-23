@@ -24,7 +24,7 @@ public class Name {
     }
 
     private void validateNameBlank(String name) {
-        if (name.isBlank()) {
+        if (name == null || name.isBlank()) {
             throw new IllegalArgumentException(NO_PLAYER_NAME_EXCEPTION.getMessage());
         }
     }
