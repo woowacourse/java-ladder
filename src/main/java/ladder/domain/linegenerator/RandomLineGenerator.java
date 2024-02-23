@@ -2,26 +2,28 @@ package ladder.domain.linegenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class RandomLineGenerator implements LineGenerator {
     @Override
     public List<Boolean> getLine(int peopleNumber) {
+        Boolean before = Boolean.FALSE;
 
-        List<Boolean> line = new ArrayList<>();
-        boolean before = false;
-        for (int i = 0; i < peopleNumber - 1; i++) {
-            addBoolean(before, line);
-            before = line.get(i);
-        }
-        return line;
+        return Stream.iterate(before, this::nextBoolean)
+                .skip(1)
+                .limit(peopleNumber-1)
+                .toList();
     }
 
-    private void addBoolean(boolean before, List<Boolean> line) {
+    private Boolean nextBoolean(Boolean before) {
         if (before) {
-            line.add(false);
+            before = Boolean.FALSE;
+            return false;
         }
-        if (!before) {
-            line.add(Math.random() >= 0.5);
+        if (Math.random() >= 0.5) {
+            before = Boolean.TRUE;
+            return true;
         }
+        return false;
     }
 }
