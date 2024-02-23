@@ -1,7 +1,7 @@
 package domain;
 
 import util.Generator;
-import util.LadderString;
+import util.LadderSequence;
 import util.RandomGenerator;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class LadderGame {
         }
         List<String> results = new ArrayList<>();
         results.add(nameResult.toString());
-        results.addAll(LadderString.from(ladder));
+        results.addAll(LadderSequence.from(ladder));
         return results;
     }
 }
