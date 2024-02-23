@@ -13,10 +13,9 @@ public class Participants {
     public Participants(List<String> names) {
         validateNameSize(names);
         validateDuplicateName(names);
-        List<Participant> participants = names.stream()
+        this.participants = names.stream()
                 .map(Participant::new)
                 .toList();
-        this.participants = participants;
     }
 
     private void validateNameSize(List<String> names) {
