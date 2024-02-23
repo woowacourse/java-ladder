@@ -17,12 +17,12 @@ public class Floor {
     private void validateIsBridgeSerial(List<LadderBridge> bridges) {
         LadderBridge before = bridges.get(0);
         for (int i = 1; i < bridges.size(); i++) {
-            isBridgeSerial(bridges, i, before);
+            isBridgeSerial(before, bridges.get(i));
         }
     }
 
-    private void isBridgeSerial(List<LadderBridge> bridges, int i, LadderBridge before) {
-        if(bridges.get(i).equals(before)) {
+    private void isBridgeSerial(LadderBridge before, LadderBridge now) {
+        if(now.equals(before) && now.equals(LadderBridge.BRIDGE)) {
             throw new ValidationException(ExceptionMessage.SERIAL_LADDER_BRIDGE);
         }
     }

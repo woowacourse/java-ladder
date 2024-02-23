@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 import view.InputView;
 import view.OutputView;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertAll;

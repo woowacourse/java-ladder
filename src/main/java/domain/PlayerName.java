@@ -10,7 +10,7 @@ public class PlayerName {
     public static final int PLAYER_NAME_MAX_LENGTH = 5;
     private static final Pattern PLAYER_NAME_PATTERN = Pattern.compile("[가-힣a-zA-Z]+");
 
-    private String name;
+    private final String name;
 
     public PlayerName(String name) {
         validate(name);
