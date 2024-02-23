@@ -2,7 +2,7 @@ package controller;
 
 import domain.Height;
 import domain.Ladder;
-import domain.Player;
+import domain.Players;
 import domain.booleangenerator.BooleanGenerator;
 import java.util.List;
 import view.InputView;
@@ -20,23 +20,14 @@ public class LadderGameController {
         this.booleanGenerator = booleanGenerator;
     }
 
-    private static List<Player> makePlayers(List<String> names) {
-        return names.stream()
-                .map(Player::new)
-                .toList();
-    }
-
     public void run() {
-        List<String> names = inputView.readPlayerNames();
-        List<Player> players = makePlayers(names);
-        int height = inputView.readHeight();
+        List<String> inputNames = inputView.readPlayerNames();
+        Players players = new Players(inputNames);
+        int inputHeight = inputView.readHeight();
+        Height height = new Height(inputHeight);
 
-        Ladder ladder = makeLadder(names, height);
+        Ladder ladder = new Ladder(players, height, booleanGenerator);
 
-        outputView.printResult(ladder, names);
-    }
-
-    private Ladder makeLadder(List<String> names, int height) {
-        return new Ladder(names.size(), new Height(height), booleanGenerator);
+        outputView.printResult(ladder, players.getNames());
     }
 }
