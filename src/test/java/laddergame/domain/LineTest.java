@@ -37,7 +37,7 @@ public class LineTest {
         CanBuildStrategy canBuildStrategy = new CanBuildStrategy() {
             @Override
             public LineBuildResult canBuildBridges(int count) {
-                return new LineBuildResult(List.of(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE));
+                return new LineBuildResult(List.of(true, false, true));
             }
         };
 
@@ -55,8 +55,8 @@ public class LineTest {
     public void checkSequenceBuildBridge() {
         //given
         final int playerCount = 5;
-        final LineBuildResult canBuild1 = new LineBuildResult(List.of(Boolean.TRUE, Boolean.TRUE, Boolean.FALSE, Boolean.FALSE));
-        final LineBuildResult canBuild2 = new LineBuildResult(List.of(Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE));
+        final LineBuildResult canBuild1 = new LineBuildResult(List.of(true, true, false, false));
+        final LineBuildResult canBuild2 = new LineBuildResult(List.of(true, true, true, true));
 
         //when & then
         assertThrows(IllegalStateException.class, () -> new Line(playerCount).buildBridge(canBuild1));

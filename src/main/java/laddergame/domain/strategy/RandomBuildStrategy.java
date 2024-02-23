@@ -21,7 +21,7 @@ public class RandomBuildStrategy implements CanBuildStrategy {
 
     private void addBuildResult(List<Boolean> list) {
         if (list.get(list.size() - 1)) {
-            list.add(Boolean.FALSE);
+            list.add(true);
             return;
         }
         list.add(generator.generate());

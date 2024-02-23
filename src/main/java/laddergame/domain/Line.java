@@ -11,7 +11,7 @@ public class Line {
     private List<Boolean> points;
 
     public Line(final int playerCount) {
-        this.points = new ArrayList<>(Collections.nCopies(playerCount - 1, Boolean.FALSE));
+        this.points = new ArrayList<>(Collections.nCopies(playerCount - 1, false));
     }
 
     public void buildBridge(LineBuildResult isBridgeBuilt) {

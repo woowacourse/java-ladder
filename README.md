@@ -31,7 +31,7 @@
 - [x] 입력한 사람이 0명일 경우, 재입력 받는다.
 - [x] 사람 이름은 쉼표(,)를 기준으로 구분한다.
 - [x] 사람 이름의 앞뒤 공백은 제거한다.
- - [x] 사다리의 최종 결과를 출력한다.
+- [x] 사다리의 최종 결과를 출력한다.
 - [x] 사다리를 출력할 때 사람 이름도 같이 출력한다.
 - [x] 최대 사다리 높이를 입력받는다.
 - [x] 입력값이 잘못되었을 경우, 사용자로부터 재입력받는다.
@@ -55,5 +55,36 @@
 - 일급 컬렉션을 쓴다.
 
 # Git commit 메세지
-접두어로 `docs`, `test`, `feat`, `fix`, `refactor`, `chore` 사용
+접두어로 `docs`, `test`, `feat`, `fix`, `refactor`, `chore` 사용  
 example feat: 사용자 입력 후 도메인 사용
+
+# step1 피드백
+- [x] TDD 수행할 때 컴파일 되지 않는 상태를 커밋하지 않기
+  - 다음 미션에 적용해보기!
+- [ ] 테스트코드 indent 2 이상 넘지않게 수정하기
+  - [ ] indent를 줄이기 힘들다면 `RandomBuildStrataegy`가 두가지 이상을 제어하고 있는게 아닌지 생각해보기
+- [x] Boolean.TRUE -> primitive type으로 수정
+- [ ] `CanBuildStrategy` 클래스명 변경
+  - 리뷰어님은 `LineBuildStrategy` 추천
+- [ ] `canBuildStrategey`의 `canBuildBridges()` 메소드명이 동어반복 느낌
+  - `canBuildStrategy.apply(int);`을 추천하심
+- [ ] `RandomBuildStrategy`는 정말 random한 일만 하는가? 이 객체는 하나의 책임만 갖고 있는가? 인터페이스가 잘 설계되었나?
+- [ ] `RandomBooleanGenerator`에서 static final로 선언한 값을 getGenerator로 가져오는 이유가 뭘까?
+  - `new RandomBooleanGenerator` 로 사용하면 안되나?
+  - 싱글톤으로 관리하기 위해서(계속해서 new로 객체를 생성하면 성능 저하가 발생할 수 있으니까) 사용한 것인데 진짜 싱글톤으로 관리된 것인지 확인
+- [ ] Enum `BridgeSymbol`에서 getSymbol을 static으로 사용한 이유
+  - 특정된 symbol 하나만 반환하는 것이 아니라 둘 중 하나의 symbol을 선택해서 반환해야 하기 때문에 사용함
+- [ ] InputView 생성자 생략 가능
+- [ ] InputView에서 try with resource를 학습하고 적용해보기
+- [ ] InputView의 `,` 상수화
+  - [ ] 이 외에도 다른 부분에 상수화 할 부분이 있는지 확인하기
+- [ ] sout 대신 Line Separator 사용
+- [ ] Height 클래스에서 정규식 패턴을 계속 비교하는 대신 
+  - `private static final Pattern NUMBER_PATTERN = Pattern.compile("^[\\d]*$");`사용
+- [ ] Ladder build 메소드의 파라미터명을 `isBridgesBuilt` -> `buildResults` 로 수정
+- [ ] Line을 생성한 뒤 값을 넣지 않고 생성자에서 바로 값을 넣어주기
+  - 적용시 Line의 validate와 RandomBuildStrategy 중복 로직 발생 해결가능.
+  - 연속 true는 규칙 위반이라는 사실은 누가 알고 있어야 할까?
+- [ ] Line의 point도 도메인 객체화 할 수 있다
+- [ ] Player의 `NAME_MAX_LENGTH` -> `MAX_NAME_LENGTH`
+- [ ] Players에서 정적 팩토리 메소드를 사용한 이유

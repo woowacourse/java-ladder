@@ -36,7 +36,7 @@ public class LadderTest {
         CanBuildStrategy canBuildStrategy = new CanBuildStrategy() {
             @Override
             public LineBuildResult canBuildBridges(int count) {
-                return new LineBuildResult(List.of(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE));
+                return new LineBuildResult(List.of(true, false, true));
             }
         };
 
