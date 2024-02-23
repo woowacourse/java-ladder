@@ -16,7 +16,10 @@ public class Line {
     }
 
     public List<LadderItem> makeLine(LadderItemGenerator ladderItemGenerator) {
-        for (int position = 0; position < columnLength - 1; position++) {
+        // 0번째 point는 이전 point의 영향을 받지 않으므로 미리 추가
+        points.add(ladderItemGenerator.generate());
+
+        for (int position = 1; position < columnLength - 1; position++) {
             LadderItem isConnectable = ladderItemGenerator.generate();
 
             points.add(decideConnectable(position, isConnectable));
@@ -26,7 +29,7 @@ public class Line {
     }
 
     private LadderItem decideConnectable(int position, LadderItem isConnectable) {
-        if (position == 0 || points.get(position - 1).equals(LadderItem.UNCONNECTED)) {
+        if (points.get(position - 1).equals(LadderItem.UNCONNECTED)) {
             return isConnectable;
         }
 
