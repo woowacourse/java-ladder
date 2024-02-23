@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
+    public static final int MIN_PLAYER_SIZE = 2;
     private final List<Bridges> bridges;
 
     public Ladder(BridgeConstructStrategy bridgeConstructStrategy, int personCount, Height height) {
@@ -17,8 +18,8 @@ public class Ladder {
     }
 
     private void validate(int personCount) {
-        if (personCount <= 0) { // TODO 변수 네이밍
-            throw new IllegalArgumentException("사람을 1 명 이상 입력해 주세요.");
+        if (personCount < MIN_PLAYER_SIZE) {
+            throw new IllegalArgumentException("사람을 "+ MIN_PLAYER_SIZE + " 명 이상 입력해 주세요.");
         }
     }
 
