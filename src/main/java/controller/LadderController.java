@@ -1,5 +1,6 @@
 package controller;
 
+import model.Height;
 import model.Ladder;
 import model.Participants;
 import view.InputView;
@@ -19,11 +20,9 @@ public class LadderController {
 
     public void play() throws IOException {
         Participants participants = new Participants(inputView.inputParticipantsName());
-        int height = inputView.inputLadderHeight();
-        Ladder ladder = new Ladder(height);
-        ladder.build(participants.size());
-        outputView.printResult();
-        outputView.printParticipantsName(participants);
-        outputView.printLadder(ladder);
+        Height height = new Height(inputView.inputLadderHeight());
+        Ladder ladder = new Ladder();
+        ladder.build(height, participants);
+        outputView.printResult(height, participants, ladder);
     }
 }

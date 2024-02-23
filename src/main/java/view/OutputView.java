@@ -1,9 +1,6 @@
 package view;
 
-import model.Ladder;
-import model.LadderRow;
-import model.Participant;
-import model.Participants;
+import model.*;
 
 import java.util.List;
 
@@ -12,11 +9,14 @@ public class OutputView {
     private static final String RESULT_MESSAGE = "실행결과\n";
     private static final String NAME_FORMAT = "%5s ";
 
-    public void printResult() {
+    public void printResult(Height height, Participants participants, Ladder ladder) {
         System.out.println(RESULT_MESSAGE);
+        printParticipantsName(participants);
+        printLadder(height, ladder);
+
     }
 
-    public void printParticipantsName(Participants participants) {
+    private void printParticipantsName(Participants participants) {
         List<String> participantsName = participants.getParticipants().stream()
                 .map(Participant::getName)
                 .toList();
@@ -24,20 +24,19 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printLadder(Ladder ladder) {
-        for (int i = 0; i < ladder.height(); i++) {
+    private void printLadder(Height height, Ladder ladder) {
+        for (int i = 0; i < height.getValue(); i++) {
             printRow(ladder.getRow(i));
             System.out.println();
         }
     }
 
     private void printRow(LadderRow ladderRow) {
-        System.out.print(LadderComponent.EMPTY_LINE);
-        for (boolean line : ladderRow.getLineStatus()) {
+        System.out.print(LadderComponent.EMPTY_LINE.getOutput());
+        for (Space space : ladderRow.getSpaces()) {
             System.out.print(LadderComponent.DIVISION.getOutput());
-            System.out.print(LadderComponent.match(line).getOutput());
+            System.out.print(LadderComponent.match(space).getOutput());
         }
         System.out.print(LadderComponent.DIVISION.getOutput());
     }
-
 }

@@ -1,5 +1,7 @@
 package view;
 
+import model.Space;
+
 public enum LadderComponent {
     DIVISION("|"),
     LINE("-----"),
@@ -16,8 +18,8 @@ public enum LadderComponent {
         return output;
     }
 
-    public static LadderComponent match(boolean lineStatus) {
-        if (lineStatus) {
+    public static LadderComponent match(Space space) {
+        if (space.isValue()) {
             return LINE;
         }
         return EMPTY_LINE;
