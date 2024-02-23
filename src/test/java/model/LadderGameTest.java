@@ -40,7 +40,8 @@ public class LadderGameTest {
 
         assertThatThrownBy(() -> new LadderGame(given, participants, randomGenerator))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 사다리 높이는 1 이상의 정수이어야 한다.");
+                .hasMessageContaining("[ERROR] 사다리 높이는")
+                .hasMessageContaining("이상의 정수이어야 한다.");
     }
 
     @DisplayName("사다리 높이와, 참여자 수, 생성기를 이용하여 사다리를 반환한다.")

@@ -25,7 +25,8 @@ class ParticipantTest {
         String given = "123456";
         assertThatThrownBy(() -> new Participant(given))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 참여자 이름의 길이는 5자를 초과할 수 없다.");
+                .hasMessageContaining("[ERROR] 참여자 이름의 길이는 ")
+                .hasMessageContaining("자를 초과할 수 없다.");
     }
 
     @DisplayName("참여할 사람의 이름은 null이거나 공백이면 안된다.")

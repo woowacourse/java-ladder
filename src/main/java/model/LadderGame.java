@@ -1,6 +1,7 @@
 package model;
 
 public class LadderGame {
+    private static final int MINIMUM_LADDER_HEIGHT = 1;
 
     private final int ladderHeight;
     private final Participants participants;
@@ -14,8 +15,8 @@ public class LadderGame {
     }
 
     private void validateLadderHeightRange(int ladderHeight) {
-        if (ladderHeight < 1) {
-            throw new IllegalArgumentException("[ERROR] 사다리 높이는 1 이상의 정수이어야 한다.");
+        if (ladderHeight < MINIMUM_LADDER_HEIGHT) {
+            throw new IllegalArgumentException("[ERROR] 사다리 높이는 " + MINIMUM_LADDER_HEIGHT + " 이상의 정수이어야 한다.");
         }
     }
 

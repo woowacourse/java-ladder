@@ -45,7 +45,9 @@ class ParticipantsTest {
                 new Participant("daon")
         );
         assertThatThrownBy(() -> new Participants(given))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 참여자는 ")
+                .hasMessageContaining("명 이상이어야 한다.");
     }
 
     @DisplayName("참여자 수를 반환한다.")
