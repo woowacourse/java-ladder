@@ -21,7 +21,7 @@ public class Ladder {
     }
 
     public void buildSteps(int currentPosition) {
-        steps.get(currentPosition).changeStatus();
+        steps.get(currentPosition).build();
     }
 
     public boolean hasStepDuplicated(int currentPosition) {
