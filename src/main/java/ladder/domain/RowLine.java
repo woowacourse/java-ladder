@@ -29,12 +29,16 @@ public class RowLine {
     }
 
     private void validateSuccessiveLine(List<Boolean> booleans) {
-        Boolean flag = Boolean.FALSE;
-        for (Boolean b : booleans) {
-            if (flag && b) {
-                throw new IllegalArgumentException("사다리 가로선이 연속되었습니다.");
-            }
-            flag = b;
+        Boolean before = Boolean.FALSE;
+        for (Boolean after : booleans) {
+            validateSuccessiveLineBetween(before, after);
+            before = after;
+        }
+    }
+
+    private static void validateSuccessiveLineBetween(Boolean before, Boolean after) {
+        if (before && after) {
+            throw new IllegalArgumentException("사다리 가로선이 연속되었습니다.");
         }
     }
 
