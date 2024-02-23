@@ -32,7 +32,6 @@ class ParticipantsTest {
     @DisplayName("model.Participants 객체에 참여자 수가 없으면 예외가 발생한다")
     @Test
     void validateParticipantsSizeWhenZero() {
-
         List<Participant> given = List.of();
         assertThatThrownBy(() -> new Participants(given))
                 .isInstanceOf(IllegalArgumentException.class);
