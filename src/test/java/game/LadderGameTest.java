@@ -8,15 +8,15 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.time.Duration;
-import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.function.BooleanSupplier;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import generator.FloorGenerator;
+import generator.LadderFloorGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -92,7 +92,8 @@ class LadderGameTest {
 	private void run() {
 		InputView inputView = new InputView();
 		OutputView outputView = new OutputView();
-		FloorGenerator generator = (size) -> List.of(false, false);
+		BooleanSupplier supplier = () -> false;
+		LadderFloorGenerator generator = new LadderFloorGenerator(supplier);
 		LadderGame ladderGame = new LadderGame(inputView, outputView, generator);
 
 		ladderGame.play();

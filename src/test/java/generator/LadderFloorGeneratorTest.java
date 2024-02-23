@@ -15,7 +15,7 @@ class LadderFloorGeneratorTest {
 	void generateFalseAfterTrueTest() {
 		// given
 		BooleanSupplier trueSupplier = () -> true;
-		FloorGenerator ladderGenerator = new LadderFloorGenerator(trueSupplier);
+		LadderFloorGenerator ladderGenerator = new LadderFloorGenerator(trueSupplier);
 		// when
 		List<Boolean> actual = ladderGenerator.generate(5);
 		List<Boolean> expected = List.of(true, false, true, false, true);

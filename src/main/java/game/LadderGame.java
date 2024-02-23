@@ -7,7 +7,7 @@ import domain.HorizontalLineStatus;
 import domain.Ladder;
 import domain.LadderHeight;
 import domain.Name;
-import generator.FloorGenerator;
+import generator.LadderFloorGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -15,9 +15,9 @@ public class LadderGame {
 
 	private final InputView inputView;
 	private final OutputView outputView;
-	private final FloorGenerator floorGenerator;
+	private final LadderFloorGenerator floorGenerator;
 
-	public LadderGame(InputView inputView, OutputView outputView, FloorGenerator floorGenerator) {
+	public LadderGame(InputView inputView, OutputView outputView, LadderFloorGenerator floorGenerator) {
 		this.inputView = inputView;
 		this.outputView = outputView;
 		this.floorGenerator = floorGenerator;

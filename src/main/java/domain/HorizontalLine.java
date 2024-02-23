@@ -3,7 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import generator.FloorGenerator;
+import generator.LadderFloorGenerator;
 
 public class HorizontalLine {
 
@@ -18,7 +18,7 @@ public class HorizontalLine {
 		this.playerCount = playerCount;
 	}
 
-	public void createCrossingLines(FloorGenerator floorGenerator) {
+	public void createCrossingLines(LadderFloorGenerator floorGenerator) {
 		List<Boolean> generatedFloor = floorGenerator.generate(playerCount - 1);
 		floor.addAll(generatedFloor);
 	}

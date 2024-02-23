@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.BooleanSupplier;
 import java.util.stream.Stream;
 
-public class LadderFloorGenerator implements FloorGenerator {
+public class LadderFloorGenerator {
 
 	private final BooleanSupplier supplier;
 
@@ -13,7 +13,6 @@ public class LadderFloorGenerator implements FloorGenerator {
 		this.supplier = supplier;
 	}
 
-	@Override
 	public List<Boolean> generate(int size) {
 		List<Boolean> floor = new ArrayList<>();
 
