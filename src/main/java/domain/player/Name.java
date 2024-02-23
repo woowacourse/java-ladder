@@ -33,7 +33,7 @@ public class Name {
 
     private void validateContainBlankInName(String inputName) {
         if (inputName.contains(" ")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("중간에 공백이 포함된 이름은 사용할 수 없습니다.");
         }
     }
 
