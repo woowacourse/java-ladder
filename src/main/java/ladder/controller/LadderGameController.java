@@ -23,7 +23,7 @@ public class LadderGameController {
         Height height = inputHeight();
 
         LineGenerator lineGenerator = new LinePatternGenerator(new RandomBooleanSupplier());
-        Ladder ladder = new Ladder(height, playerNames.size(), lineGenerator);
+        Ladder ladder = Ladder.makeLadder(height, playerNames.size(), lineGenerator);
 
         PlayerNamesDto playerNamesDto = toDto(playerNames);
         LadderDto ladderDto = toDto(ladder);
