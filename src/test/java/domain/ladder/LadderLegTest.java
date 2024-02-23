@@ -19,8 +19,22 @@ public class LadderLegTest {
 
         assertThatCode(() -> new LadderLeg(ladderLegPieces))
                 .doesNotThrowAnyException();
-        ;
     }
+
+    @Test
+    @DisplayName("그 전 방향이 오른쪽이면 왼쪽 방향 사다리 다리를 만든다.")
+    public void createLeftDirectionWhenPrevDirectionIsRight() {
+        List<Direction> directions = List.of(Direction.LEFT, Direction.RIGHT);
+        List<LadderLegPiece> ladderLegPieces = 사다리_조각들_생성(directions);
+        LadderLeg prevLadderLeg = new LadderLeg(ladderLegPieces);
+
+        LadderLeg ladderLeg = LadderLeg.from(prevLadderLeg, 2, () -> Direction.DOWN);
+        assertAll(() -> {
+            assertEquals(ladderLeg.getDirectionAtIndex(0), Direction.DOWN);
+            assertEquals(ladderLeg.getDirectionAtIndex(1), Direction.LEFT);
+        });
+    }
+
 
     @Test
     @DisplayName("가지고 있는 특정 사다리 조각의 방향이 오른쪽인지 확인한다.")
