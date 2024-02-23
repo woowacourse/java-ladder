@@ -1,6 +1,6 @@
 package controller;
 
-import constant.Exception;
+import exception.Exception;
 import domain.Ladder;
 import domain.Participants;
 import view.InputView;

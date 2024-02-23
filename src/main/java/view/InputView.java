@@ -2,6 +2,7 @@ package view;
 
 import constant.Exception;
 
+import exception.view.InputException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -21,7 +22,7 @@ public class InputView {
 
     private void validateNames(String names) {
         if (FINISH_WITH_DELIMITER_REGEX.matcher(names).matches()) {
-            throw new IllegalArgumentException(Exception.NO_LAST_NAME.getExceptionMessage());
+            throw new IllegalArgumentException(InputException.NO_LAST_NAME.getExceptionMessage());
         }
     }
 
@@ -31,7 +32,7 @@ public class InputView {
         try {
             return Integer.parseInt(height);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Exception.NOT_INTEGER.getExceptionMessage());
+            throw new IllegalArgumentException(InputException.NOT_INTEGER.getExceptionMessage());
         }
     }
 }
