@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,7 +31,7 @@ class PeopleTest {
     @ParameterizedTest
     @NullSource
     void peopleNamesNullInput(String nullName) {
-        List<String> names = List.of(nullName);
+        List<String> names = Collections.singletonList(nullName);
         assertThrows(IllegalArgumentException.class
                 , () -> new People(names));
     }
