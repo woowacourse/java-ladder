@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Players {
     private final List<Player> players = new ArrayList<>();
@@ -24,11 +25,8 @@ public class Players {
     }
 
     public List<String> getNames() {
-        final List<String> names = new ArrayList<>();
-        for (final Player player : players) {
-            names.add(player.getName());
-        }
-
-        return names;
+        return players.stream()
+                .map(Player::getName)
+                .collect(Collectors.toList());
     }
 }
