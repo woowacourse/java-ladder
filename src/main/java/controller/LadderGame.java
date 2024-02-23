@@ -8,7 +8,6 @@ import view.ResultView;
 import java.util.List;
 
 public class LadderGame {
-
     public void run() {
         List<String> userNames = InputView.inputUserNames();
         Users users = new Users(userNames);

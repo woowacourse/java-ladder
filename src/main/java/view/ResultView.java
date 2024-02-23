@@ -10,7 +10,6 @@ public class ResultView {
     private static final String LINE = "|-----";
     private static final String NONE_LINE = "|     ";
 
-
     private ResultView() {
 
     }
@@ -49,8 +48,8 @@ public class ResultView {
         return stringBuilder.toString();
     }
 
-    private static String drawBridge(final Bridge brdige) {
-        if (brdige.getBridge()) {
+    private static String drawBridge(final Bridge bridge) {
+        if (bridge.getBridge()) {
             return LINE;
         }
         return NONE_LINE;
