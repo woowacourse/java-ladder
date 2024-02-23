@@ -3,7 +3,7 @@ package laddergame.domain;
 import java.util.regex.Pattern;
 
 public class Height {
-    private static final String NUMBER_REGEX = "^[\\d]*$";
+    private static final Pattern NUMBER_REGEX = Pattern.compile("^[\\d]*$");
     private static final String NATURAL_NUMBER_ERROR = "자연수를 입력해 주세요.";
     private final int height;
 
@@ -18,7 +18,7 @@ public class Height {
     }
 
     private void checkIsNumber(final String height) {
-        if (!Pattern.matches(NUMBER_REGEX, height)) {
+        if (NUMBER_REGEX.matcher(height).matches()) {
             throw new IllegalArgumentException(NATURAL_NUMBER_ERROR);
         }
     }

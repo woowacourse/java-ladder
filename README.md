@@ -79,7 +79,7 @@ example feat: 사용자 입력 후 도메인 사용
 - [x] InputView의 `,` 상수화
   - [x] 이 외에도 다른 부분에 상수화 할 부분이 있는지 확인하기
 - [ ] sout 대신 Line Separator 사용
-- [ ] Height 클래스에서 정규식 패턴을 계속 비교하는 대신 
+- [x] Height 클래스에서 정규식 패턴을 계속 비교하는 대신 
   - `private static final Pattern NUMBER_PATTERN = Pattern.compile("^[\\d]*$");`사용
 - [ ] Ladder build 메소드의 파라미터명을 `isBridgesBuilt` -> `buildResults` 로 수정
 - [ ] Line을 생성한 뒤 값을 넣지 않고 생성자에서 바로 값을 넣어주기
