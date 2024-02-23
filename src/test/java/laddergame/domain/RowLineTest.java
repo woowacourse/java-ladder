@@ -2,6 +2,8 @@ package laddergame.domain;
 
 import laddergame.domain.connectiongenerator.ConnectionGenerator;
 import laddergame.domain.connectiongenerator.RandomConnectionGenerator;
+import laddergame.domain.ladder.Connection;
+import laddergame.domain.ladder.RowLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
