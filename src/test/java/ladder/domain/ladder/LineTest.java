@@ -38,4 +38,14 @@ class LineTest {
 
         assertThat(line.findConnectedIndex(index)).isEqualTo(expected);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0, 1", "1, 0", "2, 3", "3, 2"}, delimiter = ',')
+    @DisplayName("사다리의 시작 인덱스로 마지막 인덱스를 찾는다.")
+    void findEndIndex(int index, int expected) {
+        List<Rung> rungs = List.of(Rung.EXIST, Rung.EMPTY, Rung.EXIST);
+        Line line = new Line(4, new MockRungGenerator(rungs));
+
+        assertThat(line.findConnectedIndex(index)).isEqualTo(expected);
+    }
 }
