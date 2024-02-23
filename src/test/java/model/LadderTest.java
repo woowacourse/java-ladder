@@ -2,7 +2,6 @@ package model;
 
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -18,19 +17,18 @@ public class LadderTest {
         Height height = new Height(5);
         Ladder ladder = new Ladder();
         Participants participants = new Participants(List.of("pobi", "left", "right"));
-        ladder.build(height, participants);
+        ladder.build(new LadderGenerateStrategy(), height, participants);
         assertThat(ladder.getLadderRows().size()).isEqualTo(height.getValue());
     }
 
 
-    @DisplayName("랜덤한 값으로 구성된 사다리를 생성할 수 있다.")
-    @RepeatedTest(100)
-    void createOneRow() {
+    @DisplayName("사다리를 생성할 수 있다.")
+    @Test
+    void build() {
         Height height = new Height(1);
         Ladder ladder = new Ladder();
         Participants participants = new Participants(List.of("pobi", "left", "right"));
-        ladder.build(height, participants);
-        assertThat(ladder.getRow(0).getSpaces())
-                .containsAnyOf(Space.LINE, Space.EMPTY);
+        ladder.build((x) -> List.of(true, false), height, participants);
+        assertThat(ladder.getRow(0).getSpaces()).isEqualTo(List.of(Space.LINE, Space.EMPTY));
     }
 }

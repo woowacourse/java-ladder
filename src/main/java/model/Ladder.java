@@ -2,7 +2,8 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class Ladder {
     private final List<LadderRow> ladderRows;
@@ -11,18 +12,12 @@ public class Ladder {
         this.ladderRows = new ArrayList<>();
     }
 
-    public void build(Height height, Participants participants) {
+    public void build(Function<Integer, List<Boolean>> generator, Height height, Participants participants) {
         for (int i = 0; i < height.getValue(); i++) {
-            ladderRows.add(createOneRow(participants));
+            ladderRows.add(new LadderRow(
+                    generator.apply(participants.size()-1))
+            );
         }
-    }
-
-    private LadderRow createOneRow(Participants participants) {
-        List<Boolean> row = new ArrayList<>();
-        for (int i = 1; i < participants.size() - 1; i++) {
-            row.add(new Random().nextBoolean());
-        }
-        return new LadderRow(row);
     }
 
     public LadderRow getRow(int index) {

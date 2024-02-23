@@ -2,6 +2,7 @@ package controller;
 
 import model.Height;
 import model.Ladder;
+import model.LadderGenerateStrategy;
 import model.Participants;
 import view.InputView;
 import view.OutputView;
@@ -22,7 +23,7 @@ public class LadderController {
         Participants participants = new Participants(inputView.inputParticipantsName());
         Height height = new Height(inputView.inputLadderHeight());
         Ladder ladder = new Ladder();
-        ladder.build(height, participants);
+        ladder.build(new LadderGenerateStrategy(), height, participants);
         outputView.printResult(height, participants, ladder);
     }
 }
