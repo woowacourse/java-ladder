@@ -12,24 +12,12 @@ class LadderTest {
 
     @Test
     @DisplayName("사다리가 정상적으로 생성되는가")
-    void valid_ladder_create_test() {
-        // given
-        final int width = 3, height = 1;
-        final LadderStrategy ladderStrategy = new TestLadderStrategy();
-        final Ladder ladder = new Ladder(ladderStrategy, width, height);
+    void ladder_created_correctly() {
+        int width = 3, height = 1;
+        Ladder ladder = new Ladder(width, height);
 
-        // when
-        final List<Bridge> bridges = ladder.create(width, height);
+        List<Line> lines = ladder.getLines();
 
-        // then
-        final List<Bridge> expected = List.of(new Bridge(0, 0));
-        assertThat(expected).containsExactlyInAnyOrderElementsOf(bridges);
-    }
-
-    static class TestLadderStrategy implements LadderStrategy {
-        @Override
-        public boolean creatable() {
-            return true;
-        }
+        assertThat(lines.size()).isEqualTo(height);
     }
 }
