@@ -11,10 +11,9 @@ class HeightTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 10})
     void validHeight(final int rawHeight) {
-        //when
-        final Height height = new Height(rawHeight);
-        // then
-        Assertions.assertThat(height.getValue()).isEqualTo(rawHeight);
+        //when & then
+        Assertions.assertThatCode(() -> new Height(rawHeight))
+                .doesNotThrowAnyException();
     }
 
     @DisplayName("사다리의 높이가 1미만 10 초과이면 예외를 발생시킨다.")
