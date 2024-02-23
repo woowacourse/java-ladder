@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import model.strategy.BuildStrategy;
 
 public class Line {
 

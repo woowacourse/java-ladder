@@ -1,8 +1,9 @@
-package model;
+package model.strategy;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import model.Step;
 
 public class RandomBuildStrategy implements BuildStrategy<Step> {
 

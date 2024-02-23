@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.strategy.RandomBuildStrategy;
 
 public class Ladder {
     private final List<Line> lines;

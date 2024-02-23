@@ -1,7 +1,8 @@
-package model;
+package model.strategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Step;
 
 public class NothingBuildStrategy implements BuildStrategy<Step> {
 

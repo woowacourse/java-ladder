@@ -1,4 +1,4 @@
-package model;
+package model.strategy;
 
 import java.util.List;
 
