@@ -1,8 +1,7 @@
 package ladder.domain.linegenerator;
 
-import java.util.List;
-import ladder.domain.Stick;
+import ladder.domain.Line;
 
 public interface LineGenerator {
-    List<Stick> generate(int size);
+    Line generate(int size);
 }

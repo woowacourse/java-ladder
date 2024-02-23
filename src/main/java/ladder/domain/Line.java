@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -39,6 +40,10 @@ public class Line {
 
     public boolean isExist(int position) {
         return sticks.get(position).isExist();
+    }
+
+    public List<Stick> getSticks() {
+        return Collections.unmodifiableList(sticks);
     }
 
     public int getWidth() {

@@ -14,7 +14,7 @@ public class Ladder {
     public static Ladder makeLadder(Height height, int width, LineGenerator lineGenerator) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height.getValue(); i++) {
-            Line line = new Line(lineGenerator.generate(width));
+            Line line = lineGenerator.generate(width);
             lines.add(line);
         }
         return new Ladder(lines);

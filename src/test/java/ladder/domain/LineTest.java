@@ -10,7 +10,7 @@ class LineTest {
     @Test
     @DisplayName("라인이 비어있으면 예외 발생")
     void validateEmptyLine() {
-        Assertions.assertThatThrownBy(() -> new Line(Collections.EMPTY_LIST))
+        Assertions.assertThatThrownBy(() -> new Line(Collections.emptyList()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("적어도 가로 라인이 하나이상 있어야 한다.");
     }

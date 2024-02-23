@@ -3,6 +3,7 @@ package ladder.domain.linegenerator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BooleanSupplier;
+import ladder.domain.Line;
 import ladder.domain.Stick;
 
 public class LinePatternGenerator implements LineGenerator {
@@ -14,7 +15,7 @@ public class LinePatternGenerator implements LineGenerator {
     }
 
     @Override
-    public List<Stick> generate(int size) {
+    public Line generate(int size) {
         validate(size);
         List<Stick> line = new ArrayList<>();
         int width = size - 1;
@@ -22,7 +23,7 @@ public class LinePatternGenerator implements LineGenerator {
         while (line.size() < width) {
             add(line);
         }
-        return line;
+        return new Line(line);
     }
 
     private void validate(int size) {

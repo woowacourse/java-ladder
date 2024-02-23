@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.function.BooleanSupplier;
+import ladder.domain.Line;
 import ladder.domain.Stick;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,31 +20,31 @@ class LinePatternGeneratorTest {
         MockBooleanSupplier supplier = new MockBooleanSupplier(List.of(false, true));
         LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
 
-        List<Stick> line = linePatternGenerator.generate(4);
+        Line line = linePatternGenerator.generate(4);
 
-        assertThat(line).hasSize(3);
+        assertThat(line.getWidth()).isEqualTo(3);
     }
 
-    @DisplayName("숫자가 1이 나왓을 경우, 해당 위치는 막대가 존재하고 다음 위치에는 막대가 없다")
+    @DisplayName("true 가 나왔을 경우, 해당 위치는 막대가 존재하고 다음 위치에는 막대가 없다")
     @Test
     void generateTest_whenReturnOne() {
         BooleanSupplier supplier = () -> true;
         LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
 
-        List<Stick> line = linePatternGenerator.generate(3);
+        Line line = linePatternGenerator.generate(3);
 
-        assertThat(line).containsExactly(Stick.EXISTENCE, Stick.NON_EXISTENCE);
+        assertThat(line.getSticks()).containsExactly(Stick.EXISTENCE, Stick.NON_EXISTENCE);
     }
 
-    @DisplayName("숫자가 0이 나왓을 경우, 해당 위치에 막대가 존재하지 않는다")
+    @DisplayName("false 가 나왔을 경우, 해당 위치에 막대가 존재하지 않는다")
     @Test
     void generateTest_whenReturnZero() {
         BooleanSupplier supplier = () -> false;
         LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
 
-        List<Stick> line = linePatternGenerator.generate(2);
+        Line line = linePatternGenerator.generate(2);
 
-        assertThat(line).containsExactly(Stick.NON_EXISTENCE);
+        assertThat(line.getSticks()).containsExactly(Stick.NON_EXISTENCE);
     }
 
     @DisplayName("사다리 크기가 2보다 작을 경우, 예외를 발생한다")
