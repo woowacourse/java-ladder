@@ -1,4 +1,6 @@
-package domain;
+package domain.line;
+
+import domain.ConnectionStatus;
 
 import java.util.ArrayList;
 import java.util.Collections;

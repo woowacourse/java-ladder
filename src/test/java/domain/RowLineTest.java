@@ -1,12 +1,14 @@
 package domain;
 
+import domain.line.RowLine;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static domain.ConnectionStatus.CONNECTED;
 import static domain.ConnectionStatus.DISCONNECTED;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
-import java.util.List;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 
 @DisplayName("가로줄 테스트")
 public class RowLineTest {

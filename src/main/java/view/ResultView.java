@@ -2,8 +2,8 @@ package view;
 
 import domain.ConnectionStatus;
 import domain.Ladder;
-import domain.Names;
-import domain.RowLine;
+import domain.line.RowLine;
+import domain.name.Names;
 
 import java.util.stream.Collectors;
 

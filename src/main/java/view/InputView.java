@@ -1,7 +1,7 @@
 package view;
 
 import domain.Height;
-import domain.Names;
+import domain.name.Names;
 
 import java.util.Arrays;
 import java.util.List;

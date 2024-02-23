@@ -1,9 +1,11 @@
 package domain;
 
-import java.util.List;
+import domain.name.Names;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 @DisplayName("이름 일급 컬렉션 테스트")
 public class NamesTest {

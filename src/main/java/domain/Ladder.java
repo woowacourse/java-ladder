@@ -1,5 +1,8 @@
 package domain;
 
+import domain.line.RowLine;
+import domain.line.RowLineGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 

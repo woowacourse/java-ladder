@@ -2,8 +2,8 @@ package controller;
 
 import domain.Height;
 import domain.Ladder;
-import domain.Names;
-import domain.NonContinuousLineGenerator;
+import domain.line.NonContinuousLineGenerator;
+import domain.name.Names;
 import view.InputView;
 import view.ResultView;
 
