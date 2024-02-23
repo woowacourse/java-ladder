@@ -1,12 +1,12 @@
-package ladder.domain;
+package laddergame.domain;
 
-import ladder.domain.connectiongenerator.ConnectionGenerator;
-import ladder.domain.connectiongenerator.RandomConnectionGenerator;
+import laddergame.domain.connectiongenerator.ConnectionGenerator;
+import laddergame.domain.connectiongenerator.RandomConnectionGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import ladder.domain.connectiongenerator.SuccessiveConnectionGenerator;
+import laddergame.domain.connectiongenerator.SuccessiveConnectionGenerator;
 
 import java.util.List;
 

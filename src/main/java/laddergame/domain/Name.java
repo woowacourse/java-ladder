@@ -1,4 +1,4 @@
-package ladder.domain;
+package laddergame.domain;
 
 public class Name {
     private static final String NAME_RULE = "[a-zA-Z0-9]{1,5}";

@@ -1,12 +1,12 @@
-package ladder.view;
+package laddergame.view;
 
-import ladder.domain.*;
-import ladder.view.enums.NameFormat;
+import laddergame.domain.*;
+import laddergame.view.enums.NameFormat;
 
 import java.util.List;
 import java.util.StringJoiner;
 
-import static ladder.domain.Connection.CONNECTED;
+import static laddergame.domain.Connection.CONNECTED;
 
 public class OutputView {
     private static final String BLANK = " ";

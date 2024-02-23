@@ -1,12 +1,12 @@
-package ladder.domain.connectiongenerator;
+package laddergame.domain.connectiongenerator;
 
-import ladder.domain.Connection;
+import laddergame.domain.Connection;
 
 import java.util.List;
 import java.util.stream.Stream;
 
-import static ladder.domain.Connection.CONNECTED;
-import static ladder.domain.Connection.NOTCONNECTED;
+import static laddergame.domain.Connection.CONNECTED;
+import static laddergame.domain.Connection.NOTCONNECTED;
 
 public class RandomConnectionGenerator implements ConnectionGenerator {
     private static final double PERCENTAGE_OF_CONNECTION = 0.5;

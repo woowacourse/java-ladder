@@ -1,13 +1,13 @@
-package ladder.domain;
+package laddergame.domain;
 
-import ladder.domain.connectiongenerator.ConnectionGenerator;
+import laddergame.domain.connectiongenerator.ConnectionGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static ladder.domain.Connection.CONNECTED;
-import static ladder.domain.Connection.NOTCONNECTED;
+import static laddergame.domain.Connection.CONNECTED;
+import static laddergame.domain.Connection.NOTCONNECTED;
 
 public class RowLine {
     private final List<Connection> connections = new ArrayList<>();

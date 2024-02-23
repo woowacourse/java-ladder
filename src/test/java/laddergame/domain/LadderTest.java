@@ -1,10 +1,10 @@
-package ladder.domain;
+package laddergame.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import ladder.domain.connectiongenerator.AllFalseConnectionGenerator;
+import laddergame.domain.connectiongenerator.AllFalseConnectionGenerator;
 
 import java.util.List;
 import java.util.Set;

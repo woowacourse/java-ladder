@@ -1,4 +1,4 @@
-package ladder.domain;
+package laddergame.domain;
 
 public enum Connection {
 

@@ -1,10 +1,10 @@
-package ladder.controller;
+package laddergame.controller;
 
-import ladder.domain.Ladder;
-import ladder.domain.People;
-import ladder.util.ExceptionHandledReader;
-import ladder.view.InputView;
-import ladder.view.OutputView;
+import laddergame.domain.Ladder;
+import laddergame.domain.People;
+import laddergame.util.ExceptionHandledReader;
+import laddergame.view.InputView;
+import laddergame.view.OutputView;
 
 public class LadderGameController {
     private LadderGameController() {

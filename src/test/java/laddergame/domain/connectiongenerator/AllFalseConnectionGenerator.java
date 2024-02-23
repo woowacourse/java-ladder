@@ -1,6 +1,6 @@
-package ladder.domain.connectiongenerator;
+package laddergame.domain.connectiongenerator;
 
-import ladder.domain.Connection;
+import laddergame.domain.Connection;
 
 import java.util.List;
 import java.util.stream.Stream;

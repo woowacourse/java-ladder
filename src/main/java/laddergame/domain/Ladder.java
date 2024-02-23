@@ -1,7 +1,7 @@
-package ladder.domain;
+package laddergame.domain;
 
-import ladder.domain.connectiongenerator.ConnectionGenerator;
-import ladder.domain.connectiongenerator.RandomConnectionGenerator;
+import laddergame.domain.connectiongenerator.ConnectionGenerator;
+import laddergame.domain.connectiongenerator.RandomConnectionGenerator;
 
 import java.util.Collections;
 import java.util.List;

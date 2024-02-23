@@ -1,4 +1,4 @@
-package ladder.util;
+package laddergame.util;
 
 import java.util.function.Supplier;
 import static java.lang.System.*;

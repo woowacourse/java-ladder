@@ -1,4 +1,4 @@
-package ladder.view.enums;
+package laddergame.view.enums;
 
 import java.util.Arrays;
 import java.util.Optional;

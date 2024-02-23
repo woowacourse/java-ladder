@@ -1,6 +1,6 @@
-package ladder;
+package laddergame;
 
-import ladder.controller.LadderGameController;
+import laddergame.controller.LadderGameController;
 
 public class Main {
     public static void main(String[] args) {
