@@ -9,13 +9,21 @@ public class Line {
     private final List<Point> points;
 
     public Line(final List<Point> points) {
-        validateOverlapped(points);
+        validatePoints(points);
         this.points = points;
     }
 
-    private void validateOverlapped(final List<Point> points) {
+    private void validatePoints(final List<Point> points) {
         final int size = points.size();
 
+        if (size == 0 || size == 1) {
+            return;
+        }
+
+        validateOverlapped(points, size);
+    }
+
+    private void validateOverlapped(final List<Point> points, final int size) {
         for (int i = 1; i < size; i++) {
             validatePoint(points.get(i - 1), points.get(i));
         }

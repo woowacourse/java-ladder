@@ -32,6 +32,5 @@ public class LineTest {
         // when & then
         assertThatCode(() -> new Line(points))
                 .doesNotThrowAnyException();
-
     }
 }
