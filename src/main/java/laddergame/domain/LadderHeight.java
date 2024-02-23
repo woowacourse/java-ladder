@@ -15,10 +15,6 @@ public class LadderHeight {
         }
     }
 
-    public boolean isBiggerThan(final int value) {
-        return height > value;
-    }
-
     public int getHeight() {
         return height;
     }

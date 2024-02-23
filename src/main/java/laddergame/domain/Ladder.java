@@ -1,7 +1,8 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Ladder {
 
@@ -11,19 +12,17 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder create(final LineSize lineSize, final LadderHeight height, final PointGenerator pointGenerator) {
-        final List<Line> lines = new ArrayList<>();
-
-        while (height.isBiggerThan(lines.size())) {
-            lines.add(Line.create(lineSize, pointGenerator));
-        }
+    public static Ladder create(final LineSize lineSize,
+                                final LadderHeight height,
+                                final PointGenerator pointGenerator) {
+        List<Line> lines = Stream.generate(() -> Line.create(lineSize, pointGenerator))
+                .limit(height.getHeight())
+                .toList();
 
         return new Ladder(lines);
     }
 
-    public List<List<Boolean>> getLinesState() {
-        return lines.stream()
-                .map(Line::getPointsState)
-                .toList();
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }
