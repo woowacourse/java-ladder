@@ -11,11 +11,15 @@ public class Ladder {
 
     public Ladder(int height, int numberOfParticipants) {
         validateHeight(height);
+        this.layers = generateLayers(height, numberOfParticipants);
+    }
+
+    private List<Layer> generateLayers(int height, int numberOfParticipants) {
         List<Layer> layers = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             layers.add(new Layer(numberOfParticipants));
         }
-        this.layers = layers;
+        return layers;
     }
 
     private void validateHeight(int height) {
