@@ -1,6 +1,6 @@
-package domain.player;
+package domain.ladder;
 
-import domain.ladder.common.Height;
+import domain.ladder.attirbute.Height;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,7 +18,7 @@ class HeightTest {
 
         Height height = new Height(value);
 
-        assertEquals(height.toInt(), value);
+        assertEquals(height.toInt(), Integer.parseInt(value));
     }
 
     @Test

@@ -1,8 +1,7 @@
 package domain;
 
 import domain.ladder.Ladder;
-import domain.ladder.common.Direction;
-import domain.player.Player;
+import domain.ladder.attirbute.Direction;
 import domain.player.Players;
 
 import java.util.List;

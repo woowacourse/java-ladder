@@ -1,8 +1,8 @@
 package domain.ladder;
 
-import domain.ladder.common.Direction;
+import domain.ladder.attirbute.Direction;
 import util.DirectionGenerator;
-import domain.ladder.common.Height;
+import domain.ladder.attirbute.Height;
 
 import java.util.ArrayList;
 import java.util.List;

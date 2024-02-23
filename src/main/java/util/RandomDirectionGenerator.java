@@ -1,6 +1,6 @@
 package util;
 
-import domain.ladder.common.Direction;
+import domain.ladder.attirbute.Direction;
 
 import java.util.Random;
 

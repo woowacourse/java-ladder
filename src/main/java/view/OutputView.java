@@ -1,6 +1,6 @@
 package view;
 
-import domain.ladder.common.Direction;
+import domain.ladder.attirbute.Direction;
 import domain.player.Name;
 
 import java.util.EnumMap;

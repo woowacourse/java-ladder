@@ -1,11 +1,8 @@
 package domain;
 
-import domain.*;
 import domain.ladder.Ladder;
-import domain.ladder.common.Height;
-import domain.player.Name;
+import domain.ladder.attirbute.Height;
 import domain.player.Names;
-import domain.player.Player;
 import domain.player.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

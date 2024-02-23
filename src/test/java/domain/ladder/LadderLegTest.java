@@ -1,8 +1,6 @@
 package domain.ladder;
 
-import domain.ladder.common.Direction;
-import domain.ladder.LadderLeg;
-import domain.ladder.LadderLegPiece;
+import domain.ladder.attirbute.Direction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

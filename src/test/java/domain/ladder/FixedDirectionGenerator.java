@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import domain.ladder.common.Direction;
+import domain.ladder.attirbute.Direction;
 import util.DirectionGenerator;
 
 import java.util.List;
