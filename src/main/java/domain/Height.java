@@ -17,7 +17,7 @@ class Height {
 
     private void validate(int length) {
         if (length < MIN || length > MAX) {
-            throw new LadderGameException(ExceptionType.HEIGHT_RANGE);
+            throw new LadderGameException(ExceptionType.INVALID_HEIGHT_RANGE);
         }
     }
 

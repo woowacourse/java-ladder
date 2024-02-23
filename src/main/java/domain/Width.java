@@ -17,7 +17,7 @@ class Width {
 
     private void validate(int width) {
         if (width < MIN || width > MAX) {
-            throw new LadderGameException(ExceptionType.WIDTH_RANGE);
+            throw new LadderGameException(ExceptionType.INVALID_WIDTH_RANGE);
         }
     }
 

@@ -35,13 +35,13 @@ class Name {
 
     private void validateNameCharacters(String name) {
         if (name.matches("^[^a-zA-Z]+$")) {
-            throw new LadderGameException(ExceptionType.NAME_CHARACTER);
+            throw new LadderGameException(ExceptionType.INVALID_NAME_CHARACTER);
         }
     }
 
     private void validateNameLength(String name) {
         if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
-            throw new LadderGameException(ExceptionType.NAME_LENGTH_RANGE);
+            throw new LadderGameException(ExceptionType.INVALID_NAME_LENGTH_RANGE);
         }
     }
 }

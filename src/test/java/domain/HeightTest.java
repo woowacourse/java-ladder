@@ -13,6 +13,6 @@ class HeightTest {
     void validateHeight(int length) {
         assertThatThrownBy(() -> new Height(length))
                 .isInstanceOf(LadderGameException.class)
-                .hasMessage(ExceptionType.HEIGHT_RANGE.getMessage());
+                .hasMessage(ExceptionType.INVALID_HEIGHT_RANGE.getMessage());
     }
 }

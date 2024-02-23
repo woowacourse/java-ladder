@@ -12,7 +12,7 @@ class NamesTest {
     void validateDuplicateName() {
         Assertions.assertThatThrownBy(() -> new Names("abcde,abcde,abc"))
                 .isInstanceOf(LadderGameException.class)
-                .hasMessage(ExceptionType.NAMES_DUPLICATE.getMessage());
+                .hasMessage(ExceptionType.NOT_ALLOW_DUPLICATE_NAME.getMessage());
     }
 
     @ParameterizedTest
@@ -21,7 +21,7 @@ class NamesTest {
     void validateSeparator(String names) {
         Assertions.assertThatThrownBy(() -> new Names(names))
                 .isInstanceOf(LadderGameException.class)
-                .hasMessage(ExceptionType.NAMES_SEPARATOR.getMessage());
+                .hasMessage(ExceptionType.INVALID_NAMES_SEPARATOR.getMessage());
     }
 
     @ParameterizedTest
@@ -32,6 +32,6 @@ class NamesTest {
     void validateNameCount(String names) {
         Assertions.assertThatThrownBy(() -> new Names(names))
                 .isInstanceOf(LadderGameException.class)
-                .hasMessage(ExceptionType.NAMES_COUNT.getMessage());
+                .hasMessage(ExceptionType.INVALID_NAMES_RANGE.getMessage());
     }
 }

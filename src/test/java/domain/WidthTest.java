@@ -13,6 +13,6 @@ class WidthTest {
     void validateWidth(int length) {
         assertThatThrownBy(() -> new Width(length))
                 .isInstanceOf(LadderGameException.class)
-                .hasMessage(ExceptionType.WIDTH_RANGE.getMessage());
+                .hasMessage(ExceptionType.INVALID_WIDTH_RANGE.getMessage());
     }
 }

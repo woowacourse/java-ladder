@@ -14,7 +14,7 @@ class NameTest {
     void validateNameLength(String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(LadderGameException.class)
-                .hasMessage(ExceptionType.NAME_LENGTH_RANGE.getMessage());
+                .hasMessage(ExceptionType.INVALID_NAME_LENGTH_RANGE.getMessage());
     }
 
     @ParameterizedTest
@@ -23,6 +23,6 @@ class NameTest {
     void validateNameCharacters(String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(LadderGameException.class)
-                .hasMessage(ExceptionType.NAME_CHARACTER.getMessage());
+                .hasMessage(ExceptionType.INVALID_NAME_CHARACTER.getMessage());
     }
 }

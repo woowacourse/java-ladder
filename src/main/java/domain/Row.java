@@ -25,13 +25,13 @@ class Row {
 
     private void validateBridgesCount(List<Boolean> bridges) {
         if (bridges.size() < MIN_BRIDGES_COUNT || bridges.size() > MAX_BRIDGES_COUNT) {
-            throw new LadderGameException(ExceptionType.ROW_BRIDGES_COUNT);
+            throw new LadderGameException(ExceptionType.INVALID_BRIDGES_RANGE);
         }
     }
 
     private void validateNearBridge(List<Boolean> bridges, int index) {
         if (bridges.get(index) && bridges.get(index - 1)) {
-            throw new LadderGameException(ExceptionType.ROW_NEAR);
+            throw new LadderGameException(ExceptionType.NOT_ALLOW_NEAR_BRIDGE);
         }
     }
 }

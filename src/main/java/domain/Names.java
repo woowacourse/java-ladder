@@ -31,14 +31,14 @@ public class Names {
 
     private void validateNameCount(List<String> splitNames) {
         if (splitNames.size() < MIN_NAMES_COUNT || splitNames.size() > MAX_NAMES_COUNT) {
-            throw new LadderGameException(ExceptionType.NAMES_COUNT);
+            throw new LadderGameException(ExceptionType.INVALID_NAMES_RANGE);
         }
     }
 
     private void validateDuplicateName(List<String> splitNames) {
         long distinctCount = splitNames.stream().distinct().count();
         if (distinctCount != splitNames.size()) {
-            throw new LadderGameException(ExceptionType.NAMES_DUPLICATE);
+            throw new LadderGameException(ExceptionType.NOT_ALLOW_DUPLICATE_NAME);
         }
     }
 
@@ -46,7 +46,7 @@ public class Names {
         boolean startsWith = names.startsWith(SEPARATOR);
         boolean endsWith = names.endsWith(SEPARATOR);
         if (startsWith || endsWith) {
-            throw new LadderGameException(ExceptionType.NAMES_SEPARATOR);
+            throw new LadderGameException(ExceptionType.INVALID_NAMES_SEPARATOR);
         }
     }
 }

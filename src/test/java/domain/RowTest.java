@@ -14,7 +14,7 @@ class RowTest {
     void validateNearInfo() {
         Assertions.assertThatThrownBy(() -> new Row(List.of(true, true)))
                 .isInstanceOf(LadderGameException.class)
-                .hasMessage(ExceptionType.ROW_NEAR.getMessage());
+                .hasMessage(ExceptionType.NOT_ALLOW_NEAR_BRIDGE.getMessage());
     }
 
     @ParameterizedTest
@@ -24,6 +24,6 @@ class RowTest {
         List<Boolean> bridges = IntStream.range(0, bridgesSize).mapToObj(value -> false).toList();
         Assertions.assertThatThrownBy(() -> new Row(bridges))
                 .isInstanceOf(LadderGameException.class)
-                .hasMessage(ExceptionType.ROW_BRIDGES_COUNT.getMessage());
+                .hasMessage(ExceptionType.INVALID_BRIDGES_RANGE.getMessage());
     }
 }
