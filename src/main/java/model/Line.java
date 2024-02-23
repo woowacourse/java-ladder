@@ -6,17 +6,17 @@ import java.util.List;
 public class Line {
     private final List<LineState> lineStates = new ArrayList<>();
 
-    public Line(final int peopleCount, List<Boolean> results) {
-        initializeLineStates(peopleCount, results);
+    public Line(final int peopleCount, List<Boolean> makeLadderDecision) {
+        initializeLineStates(peopleCount, makeLadderDecision);
     }
 
-    private void initializeLineStates(int peopleCount, List<Boolean> results) {
+    private void initializeLineStates(int peopleCount, List<Boolean> makeLadderDecision) {
         int index = 0;
-        lineStates.add(LineState.decideLineState(results.get(index)));
+        lineStates.add(LineState.decideLineState(makeLadderDecision.get(index)));
         index += 1;
         for (; index < peopleCount; index++) {
             LineState beforeState = lineStates.get(index - 1);
-            lineStates.add(LineState.decideLineStateWithBeforeState(beforeState, results.get(index)));
+            lineStates.add(LineState.decideLineStateWithBeforeState(beforeState, makeLadderDecision.get(index)));
         }
     }
 
