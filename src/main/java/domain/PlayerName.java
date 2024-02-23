@@ -18,9 +18,9 @@ public class PlayerName {
     }
 
     private void validate(String name) {
-        validateFormat(name);
         validateLength(name);
         validateIsBlank(name);
+        validateFormat(name);
     }
 
     private void validateFormat(String name) {
