@@ -11,16 +11,15 @@ import static ladder.domain.ladder.Path.EXIST;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderStepTest {
-
     @Test
     @DisplayName("연속된 Path가 존재하지 않도록 수정한다.")
     void discontinuousLadderPathsTest() {
         // given
-        List<Path> continuousLadderPaths = new ArrayList<>(List.of(EXIST, EXIST, EMPTY));
-        List<Path> expectedLadderPaths = List.of(EXIST, EMPTY, EMPTY);
+        final List<Path> continuousLadderPaths = new ArrayList<>(List.of(EXIST, EXIST, EMPTY));
+        final List<Path> expectedLadderPaths = List.of(EXIST, EMPTY, EMPTY);
 
         // when
-        List<Path> actualLadderPaths = new LadderStep(continuousLadderPaths).ladderPaths();
+        final List<Path> actualLadderPaths = new LadderStep(continuousLadderPaths).ladderPaths();
 
         // then
         assertThat(actualLadderPaths)
