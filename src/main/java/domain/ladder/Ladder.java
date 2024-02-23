@@ -32,15 +32,20 @@ public class Ladder {
         return generatedLadderLegs;
     }
 
-
-    public List<Direction> getDirectionAtHorizontalIndex(Integer index) {
+    public List<Direction> getDirectionAtHorizontalIndex(int index) {
+        validateIndex(index);
         return ladderLegs.stream()
                          .map(ladderLeg -> ladderLeg.getDirectionAtIndex(index))
                          .toList();
     }
 
+    private void validateIndex(int index) {
+        if (index < 0 || index >= this.width) {
+            throw new IllegalArgumentException("존재하지 않은 LadderLeg를 조회하였습니다.");
+        }
+    }
+
     public int getHeight() {
         return height.toInt();
     }
-
 }
