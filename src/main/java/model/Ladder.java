@@ -37,7 +37,7 @@ public class Ladder {
         lineStatus.add(isLine);
     }
 
-    public int height() {
+    public int getHeight() {
         return ladderRows.size();
     }
 

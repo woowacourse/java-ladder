@@ -25,7 +25,7 @@ public class OutputView {
     }
 
     public void printLadder(Ladder ladder) {
-        for (int i = 0; i < ladder.height(); i++) {
+        for (int i = 0; i < ladder.getHeight(); i++) {
             printRow(ladder.getRow(i));
             System.out.println();
         }

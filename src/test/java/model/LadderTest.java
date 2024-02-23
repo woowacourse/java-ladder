@@ -18,7 +18,7 @@ public class LadderTest {
         int maximumHeight = 5;
         Ladder ladder = new Ladder(maximumHeight);
         ladder.build(3);
-        assertThat(ladder.height()).isEqualTo(maximumHeight);
+        assertThat(ladder.getHeight()).isEqualTo(maximumHeight);
     }
 
     @DisplayName("한 행에는 연속된 선이 존재하면 안된다.")

@@ -37,7 +37,7 @@ public class Participants {
                 .toList();
     }
 
-    public int size() {
+    public int getParticipantsSize() {
         return this.participants.size();
     }
 
