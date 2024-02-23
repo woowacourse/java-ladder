@@ -36,18 +36,30 @@ public class LadderGame {
 
 	private List<Name> getNames() {
 		outputView.printReadNames();
-		return inputView.readNames();
+		List<String> names = inputView.readNames();
+
+		return names.stream()
+			.map(Name::new)
+			.toList();
 	}
 
 	private LadderHeight getHeight() {
 		outputView.printReadLadderHeight();
-		return inputView.readLadderHeight();
+		int height = inputView.readLadderHeight();
+
+		return new LadderHeight(height);
 	}
 
 	private void printLadderResult(List<Name> names, List<HorizontalLineStatus> statuses) {
 		outputView.printResultMessage();
-		outputView.printNames(names);
+		outputView.printNames(convertNames(names));
 		outputView.printLadder(statuses);
+	}
+
+	private List<String> convertNames(List<Name> names) {
+		return names.stream()
+			.map(Name::value)
+			.toList();
 	}
 
 	private <T> T retryOnException(Supplier<T> function) {

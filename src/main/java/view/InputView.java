@@ -5,34 +5,30 @@ import java.util.List;
 import java.util.Scanner;
 
 import domain.LadderHeight;
-import domain.Name;
 
 public class InputView {
 
-    private static final String NAME_SPLIT_DELIMITER = ",";
+	private static final String NAME_SPLIT_DELIMITER = ",";
 
-    private final Scanner scanner = new Scanner(System.in);
+	private final Scanner scanner = new Scanner(System.in);
 
-    public List<Name> readNames() {
-        String names = scanner.nextLine();
-        String[] splitNames = names.split(NAME_SPLIT_DELIMITER);
+	public List<String> readNames() {
+		String names = scanner.nextLine();
+		String[] splitNames = names.split(NAME_SPLIT_DELIMITER);
 
-        return Arrays.stream(splitNames)
-                .map(Name::new)
-                .toList();
-    }
+		return Arrays.stream(splitNames).toList();
+	}
 
-    public LadderHeight readLadderHeight() {
-        String input = scanner.nextLine();
-        int value = convertToInteger(input);
-        return new LadderHeight(value);
-    }
+	public int readLadderHeight() {
+		String input = scanner.nextLine();
+		return convertToInteger(input);
+	}
 
-    private int convertToInteger(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("사다리 높이는 정수로 입력해야 합니다.");
-        }
-    }
+	private int convertToInteger(String input) {
+		try {
+			return Integer.parseInt(input);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("사다리 높이는 정수로 입력해야 합니다.");
+		}
+	}
 }
