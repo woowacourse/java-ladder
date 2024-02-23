@@ -12,7 +12,7 @@ public class Height {
         this.height = height;
     }
 
-    private static void validateRange(int height) {
+    private void validateRange(int height) {
         if (height < MINIMUM_HEIGHT || MAXIMUM_HEIGHT < height) {
             throw new IllegalArgumentException(String.format("높이는 2 이상 10 이하만 가능합니다. 입력 값 : %d", height));
         }
