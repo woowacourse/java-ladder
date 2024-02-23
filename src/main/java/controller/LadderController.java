@@ -8,6 +8,7 @@ import model.Ladder;
 import model.Participants;
 import model.dto.LayerSteps;
 import model.dto.ParticipantName;
+import model.vo.Height;
 import view.InputView;
 import view.OutputView;
 
@@ -33,9 +34,9 @@ public class LadderController {
     }
 
     private Ladder prepareLadder(Participants participants) {
-        int ladderHeight = inputView.requestLadderHeight();
+        int height = new Height(inputView.requestLadderHeight()).getValue();
         int numberOfParticipants = participants.getParticipantsSize();
-        return new Ladder(ladderHeight, numberOfParticipants);
+        return new Ladder(height, numberOfParticipants);
     }
 
     private <T> T repeatUntilSuccess(Supplier<T> supplier) {
