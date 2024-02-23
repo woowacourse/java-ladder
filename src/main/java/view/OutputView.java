@@ -32,7 +32,7 @@ public class OutputView {
 
     private void addLastName(List<String> names, StringBuilder stringBuilder) {
         String lastPlayer = names.get(names.size() - 1);
-        stringBuilder.append(String.format("%5s", lastPlayer));
+        stringBuilder.append(String.format("%6s", lastPlayer));
     }
 
     private void addMiddleNames(List<String> names, StringBuilder stringBuilder) {
