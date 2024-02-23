@@ -12,7 +12,7 @@ public class HeightTest {
     @Test
     void constructSuccessTest() {
         Assertions.assertThatNoException()
-                .isThrownBy(() -> new Height(5));
+                .isThrownBy(() -> new Height(5)); // TODO 경계값을 넣어주는게 더 좋을 듯
     }
 
     @DisplayName("높이가 자연수가 아니라면 예외가 발생한다.")

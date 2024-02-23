@@ -19,7 +19,7 @@ public class BridgesTest {
     @Test
     void constructSuccessTest() {
         assertThatNoException()
-                .isThrownBy(() -> new Bridges(List.of()));
+                .isThrownBy(() -> new Bridges(List.of())); // TODO 정상 테스트의 의미를 대변하기엔 부족하다.
     }
 
     @DisplayName("연속되는 브릿지가 존재하면 예외가 발생한다.")

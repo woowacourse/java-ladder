@@ -16,7 +16,8 @@ public class RandomBridgeConstructStrategy implements BridgeConstructStrategy {
         List<BridgeStatus> result = new ArrayList<>();
         Random random = new Random();
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) { // TODO 변수 네이 2
+
             addToBridge(result, random, i);
         }
         return new Bridges(result);

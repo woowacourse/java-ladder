@@ -6,7 +6,7 @@ public class Names {
 
     private final List<Name> names;
 
-    public Names(List<String> names) {
+    public Names(List<String> names) { // TODO 리스트 사이즈 검증
         this.names = names.stream()
                 .map(Name::new)
                 .toList();
