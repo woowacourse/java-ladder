@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
-import ladder.domain.enums.NameFormat;
+import ladder.view.enums.NameFormat;
 import ladder.domain.People;
 import ladder.domain.RowLine;
 

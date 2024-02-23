@@ -1,10 +1,9 @@
-package ladder.domain.enums;
+package ladder.view.enums;
 
 import java.util.Arrays;
 import java.util.Optional;
 
 public enum NameFormat {
-    //TODO 패키지 이동 고려하기 domain>view
     DEFAULT(0, "%s "),
     ONE(1, "  %s  "),
     TWO(2, "  %s "),
