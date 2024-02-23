@@ -10,18 +10,18 @@ public class Floor {
     private final List<LadderBridge> bridges;
 
     public Floor(List<LadderBridge> bridges) {
-        validateIsBridgeSerial(bridges);
+        validateBridgesNotExistSerially(bridges);
         this.bridges = bridges;
     }
 
-    private void validateIsBridgeSerial(List<LadderBridge> bridges) {
+    private void validateBridgesNotExistSerially(List<LadderBridge> bridges) {
         LadderBridge before = bridges.get(0);
         for (int i = 1; i < bridges.size(); i++) {
-            isBridgeSerial(before, bridges.get(i));
+            compareBridgeStatus(before, bridges.get(i));
         }
     }
 
-    private void isBridgeSerial(LadderBridge before, LadderBridge now) {
+    private void compareBridgeStatus(LadderBridge before, LadderBridge now) {
         if(now.equals(before) && now.equals(LadderBridge.BRIDGE)) {
             throw new ValidationException(ExceptionMessage.SERIAL_LADDER_BRIDGE);
         }
