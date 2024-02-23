@@ -47,6 +47,6 @@ public class LadderGameMachine {
 
     private LadderResult createLadderResult(final Supplier<Boolean> generator, final int ladderHeight, final UserNames userNames) {
         Lines lines = Lines.of(generator, ladderHeight, userNames.getUserCount());
-        return new LadderResult(userNames.getUserNames(), lines.getLineResults());
+        return LadderResult.of(userNames, lines);
     }
 }
