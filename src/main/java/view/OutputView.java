@@ -24,14 +24,24 @@ public class OutputView {
 
     private String formatNames(List<String> names) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.format("%s ", names.get(0)));
+        addFirstName(names, stringBuilder);
+        addMiddleNames(names, stringBuilder);
+        addLastName(names, stringBuilder);
+        return stringBuilder.toString();
+    }
 
+    private void addLastName(List<String> names, StringBuilder stringBuilder) {
+        String lastPlayer = names.get(names.size() - 1);
+        stringBuilder.append(String.format("%5s", lastPlayer));
+    }
+
+    private void addMiddleNames(List<String> names, StringBuilder stringBuilder) {
         for (String name : names.subList(1, names.size() - 1)) {
             stringBuilder.append(String.format("%6s", name));
         }
+    }
 
-        String lastPlayer = names.get(names.size() - 1);
-        stringBuilder.append(String.format("%5s", lastPlayer));
-        return stringBuilder.toString();
+    private void addFirstName(List<String> names, StringBuilder stringBuilder) {
+        stringBuilder.append(String.format("%s ", names.get(0)));
     }
 }
