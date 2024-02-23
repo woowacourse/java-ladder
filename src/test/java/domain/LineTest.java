@@ -18,5 +18,4 @@ class LineTest {
         //then
         Assertions.assertThat(line.getBridges()).containsExactly(Bridge.NO_BRIDGE, Bridge.BRIDGE, Bridge.NO_BRIDGE);
     }
-
 }
