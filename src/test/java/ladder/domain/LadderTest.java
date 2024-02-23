@@ -13,23 +13,16 @@ public class LadderTest {
     @Test
     void createTest() {
         // given
-        LadderHeight ladderHeight = new LadderHeight(4);
-        People people = new People(List.of(
-                new Person("pobi"),
-                new Person("nak"),
-                new Person("seya"),
-                new Person("neo")));
         List<Line> expected = List.of(
                 new Line(List.of(true, false, true)),
                 new Line(List.of(false, true, false)),
                 new Line(List.of(true, false, false)));
 
         // when
-        Ladder ladder = Ladder.create((width, height) ->
-                List.of(
-                        new Line(List.of(true, false, true)),
-                        new Line(List.of(false, true, false)),
-                        new Line(List.of(true, false, false))), people, ladderHeight);
+        Ladder ladder = new Ladder(List.of(
+                new Line(List.of(true, false, true)),
+                new Line(List.of(false, true, false)),
+                new Line(List.of(true, false, false))));
 
         // then
         assertThat(ladder)
