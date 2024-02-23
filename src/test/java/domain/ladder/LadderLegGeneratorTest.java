@@ -7,13 +7,14 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 class LadderLegGeneratorTest {
 
     @Test
     @DisplayName("Ladder의 높이를 통해 LadderLeg 생성기를 생성한다.")
-    public void createLadderGenerator() {
+    void createLadderGenerator() {
         Height height = new Height("5");
 
         LadderLegGenerator ladder = new LadderLegGenerator(height);
@@ -23,29 +24,26 @@ class LadderLegGeneratorTest {
 
     @Test
     @DisplayName("가지가 없는 빈 LadderLeg 를 생성한다.")
-    public void generateDownLadderLeg() {
+    void generateDownLadderLeg() {
         Height height = new Height("5");
         LadderLegGenerator ladder = new LadderLegGenerator(height);
 
         LadderLeg ladderLeg = ladder.generateDownLadderLeg();
 
         for (int i = 0; i < height.toInt(); i++) {
-            assertEquals(ladderLeg.getDirectionAtIndex(i), Direction.DOWN);
+            assertEquals(Direction.DOWN, ladderLeg.getDirectionAtIndex(i));
         }
     }
 
     @Test
     @DisplayName("전 LadderLeg 와 DirectionGenerator 를 통해 가지를 가지는 LadderLeg 를 생성한다.")
-    public void generateLadderLeg() {
+    void generateLadderLeg() {
         LadderLegGenerator ladderLegGenerator = 사다리_생성기_생성();
-        List<Direction> fixedDirectionList = List
-                .of(Direction.RIGHT, Direction.DOWN, Direction.RIGHT, Direction.DOWN, Direction.RIGHT);
+        List<Direction> fixedDirectionList = List.of(Direction.RIGHT, Direction.DOWN, Direction.RIGHT, Direction.DOWN, Direction.RIGHT);
 
         LadderLeg downLadderLeg = ladderLegGenerator.generateDownLadderLeg();
         FixedDirectionGenerator fixedDirectionGenerator = new FixedDirectionGenerator(fixedDirectionList);
-        LadderLeg ladderLeg = ladderLegGenerator
-                .generateLadderLeg(downLadderLeg,
-                        () -> fixedDirectionGenerator.generate());
+        LadderLeg ladderLeg = ladderLegGenerator.generateLadderLeg(downLadderLeg, () -> fixedDirectionGenerator.generate());
         for (int i = 0; i < 5; i++) {
             assertEquals(ladderLeg.getDirectionAtIndex(i), fixedDirectionList.get(i));
         }
@@ -53,23 +51,16 @@ class LadderLegGeneratorTest {
 
     @Test
     @DisplayName("전 LadderLeg의 동일 index가 오른쪽 가지를 가질때, 왼쪽 가지를 가지는 LadderLeg 를 생성한다.")
-    public void generateLeftDirectionLadderLeg() {
+    void generateLeftDirectionLadderLeg() {
         LadderLegGenerator ladderLegGenerator = 사다리_생성기_생성();
-        List<Direction> fixedDirectionList = List
-                .of(Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT);
+        List<Direction> fixedDirectionList = List.of(Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT);
 
-        LadderLeg rightLadderLeg =
-                ladderLegGenerator.generateLadderLeg(
-                        ladderLegGenerator.generateDownLadderLeg(),
-                        () -> new FixedDirectionGenerator(fixedDirectionList).generate());
+        LadderLeg rightLadderLeg = ladderLegGenerator.generateLadderLeg(ladderLegGenerator.generateDownLadderLeg(), () -> new FixedDirectionGenerator(fixedDirectionList).generate());
 
-        LadderLeg testLeftLadderLeg =
-                ladderLegGenerator.generateLadderLeg(
-                        rightLadderLeg,
-                        () -> new FixedDirectionGenerator(fixedDirectionList).generate());
+        LadderLeg testLeftLadderLeg = ladderLegGenerator.generateLadderLeg(rightLadderLeg, () -> new FixedDirectionGenerator(fixedDirectionList).generate());
 
         for (int i = 0; i < 5; i++) {
-            assertEquals(testLeftLadderLeg.getDirectionAtIndex(i), Direction.LEFT);
+            assertEquals(Direction.LEFT, testLeftLadderLeg.getDirectionAtIndex(i));
         }
     }
 
@@ -77,6 +68,5 @@ class LadderLegGeneratorTest {
         Height height = new Height("5");
         return new LadderLegGenerator(height);
     }
-
 
 }
