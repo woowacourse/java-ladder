@@ -3,30 +3,18 @@ package ladderGame.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 public class Line {
     private final List<ConnectionStatus> connectionStatuses;
 
     public Line(int number) {
-        connectionStatuses = new ArrayList<>();
-        for (int i = 0; i < number - 1; i++) {
-            makeLine(i);
+        StatusBuilder statusBuilder = new StatusBuilder();
+        for (int i = 0; i < number; i++) {
+            statusBuilder.add();
         }
-    }
 
-    private void makeLine(int index) {
-        if (index == 0 || !connectionStatuses.get(index - 1).equals(ConnectionStatus.CONNECTION)) {
-            connectionStatuses.add(decideConnectionStatus());
-            return;
-        }
-        connectionStatuses.add(ConnectionStatus.DISCONNECTION);
-    }
-
-    private ConnectionStatus decideConnectionStatus() {
-        if (new Random().nextBoolean()) {
-            return ConnectionStatus.CONNECTION;
-        }
-        return ConnectionStatus.DISCONNECTION;
+        connectionStatuses = statusBuilder.build();
     }
 
     public List<ConnectionStatus> getConnectionStatuses() {
