@@ -1,35 +1,39 @@
 package domain;
 
-import generator.FloorGenerator;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BooleanSupplier;
+import java.util.stream.IntStream;
 
 public class HorizontalLine {
 
-    private static final int MIN_PLAYER_COUNT = 2;
-    private static final int MAX_PLAYER_COUNT = 10;
-
-    private final int playerCount;
-    private final List<Boolean> floor = new ArrayList<>();
+    private final List<Boolean> rowPattern;
 
     public HorizontalLine(int playerCount) {
-        validatePlayerCount(playerCount);
-        this.playerCount = playerCount;
+        this.rowPattern = new ArrayList<>();
+        for (int i = 0; i < playerCount - 1; i++) {
+            rowPattern.add(false);
+        }
     }
 
-    public void createCrossingLines(FloorGenerator floorGenerator) {
-        List<Boolean> generatedFloor = floorGenerator.generate(playerCount - 1);
-        floor.addAll(generatedFloor);
+    public void createPattern(BooleanSupplier supplier) {
+        IntStream.range(0, rowPattern.size())
+                .forEach(index -> {
+                    boolean value = supplier.getAsBoolean();
+                    rowPattern.set(index, isPlaceableWithValue(index, value));
+                });
+    }
+
+    private boolean isPlaceableWithValue(int index, boolean value) {
+        return value && isPreviousIndexEmpty(index);
+    }
+
+    private boolean isPreviousIndexEmpty(int index) {
+        return index == 0 || !rowPattern.get(index - 1);
     }
 
     public HorizontalLineStatus createStatus() {
-        List<Boolean> placeStatuses = List.copyOf(floor);
+        List<Boolean> placeStatuses = List.copyOf(rowPattern);
         return new HorizontalLineStatus(placeStatuses);
-    }
-
-    private void validatePlayerCount(int playerCount) {
-        if (playerCount < MIN_PLAYER_COUNT || playerCount > MAX_PLAYER_COUNT) {
-            throw new IllegalArgumentException("플레이어 수 범위는 2 이상 10 이하여야 합니다.");
-        }
     }
 }
