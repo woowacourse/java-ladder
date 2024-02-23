@@ -10,6 +10,7 @@ import java.util.List;
 public class Ladder {
     private static final int MIN_LADDER_HEIGHT = 1;
     private static final int MAX_LADDER_HEIGHT = 100;
+
     private final List<RowLine> rowLines = new ArrayList<>();
 
     public Ladder(int height, int peopleNumber) {

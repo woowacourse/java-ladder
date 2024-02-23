@@ -39,39 +39,36 @@ class PeopleTest {
     @Test
     void peopleNamesValidInput() {
         List<String> names = List.of("abcde", "a1234", "12345", "a");
-        assertDoesNotThrow(
-                () -> {
-                    new People(names);
-                });
+        assertDoesNotThrow(() -> { new People(names); });
     }
 
     @DisplayName("참여자 수가 1이상 100이하가 아닐 때, domain.People 객체를 생성할 수 없다.")
     @Test
-    void peopleNumbersInvalidInput(){
-        List<String> zeroNames= new ArrayList<>();
-        List<String> exceedNames= new ArrayList<>();
+    void peopleNumbersInvalidInput() {
+        List<String> zeroNames = new ArrayList<>();
+        List<String> exceedNames = new ArrayList<>();
 
         for (int i = 0; i < 101; i++) {
             exceedNames.add(String.valueOf(i));
         }
 
-        assertAll (
-                ()-> assertThrows(IllegalArgumentException.class,
-                        () -> {new People(zeroNames);}),
-                ()-> assertThrows(IllegalArgumentException.class,
-                        () -> {new People(exceedNames);})
+        assertAll(
+                () -> assertThrows(IllegalArgumentException.class,
+                        () -> { new People(zeroNames);}),
+                () -> assertThrows(IllegalArgumentException.class,
+                        () -> { new People(exceedNames);})
         );
 
     }
 
     @DisplayName("참여자 수가 1이상 100이하 일 때, domain.People 객체를 생성할 수 있다.")
     @Test
-    void peopleNumbersValidInput(){
-        List<String> validNames= new ArrayList<>();
+    void peopleNumbersValidInput() {
+        List<String> validNames = new ArrayList<>();
 
         for (int i = 0; i < 100; i++) {
             validNames.add(String.valueOf(i));
         }
-        assertDoesNotThrow(()-> {new People(validNames);});
+        assertDoesNotThrow(() -> { new People(validNames);});
     }
 }
