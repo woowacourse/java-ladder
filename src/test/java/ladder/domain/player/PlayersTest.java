@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import ladder.exception.InvalidInputException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -45,7 +44,7 @@ class PlayersTest {
             List<Player> players = List.of(new Player("pobi"));
 
             assertThatThrownBy(() -> new Players(players))
-                    .isInstanceOf(InvalidInputException.class);
+                    .isInstanceOf(IllegalArgumentException.class);
         }
 
         @Test
@@ -58,7 +57,7 @@ class PlayersTest {
             );
 
             assertThatThrownBy(() -> new Players(players))
-                    .isInstanceOf(InvalidInputException.class);
+                    .isInstanceOf(IllegalArgumentException.class);
         }
 
         @Test
@@ -68,7 +67,7 @@ class PlayersTest {
                     new Player("honux"));
 
             assertThatThrownBy(() -> new Players(players))
-                    .isInstanceOf(InvalidInputException.class);
+                    .isInstanceOf(IllegalArgumentException.class);
         }
     }
 }

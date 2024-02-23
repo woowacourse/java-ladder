@@ -3,8 +3,8 @@ package ladder.dto.response;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import ladder.domain.ladder.generator.BooleanGenerator;
 import ladder.domain.ladder.Line;
+import ladder.domain.ladder.generator.BooleanGenerator;
 import ladder.mock.MockBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

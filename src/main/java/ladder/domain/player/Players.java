@@ -1,10 +1,9 @@
 package ladder.domain.player;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import ladder.exception.ErrorMessage;
-import ladder.exception.InvalidInputException;
 
 public class Players {
     public static final int MAXIMUM_PLAYER_SIZE = 10;
@@ -13,7 +12,7 @@ public class Players {
 
     public Players(final List<Player> players) {
         validate(players);
-        this.players = players;
+        this.players = new ArrayList<>(players);
     }
 
     private void validate(final List<Player> players) {
@@ -25,7 +24,8 @@ public class Players {
         final int playerSize = players.size();
 
         if (MAXIMUM_PLAYER_SIZE < playerSize || playerSize < MINIMUM_PLAYER_SIZE) {
-            throw new InvalidInputException(ErrorMessage.INVALID_PLAYER_SIZE);
+            throw new IllegalArgumentException(
+                    String.format("참가자들의 수는 %d~%d여야 합니다.", MINIMUM_PLAYER_SIZE, MAXIMUM_PLAYER_SIZE));
         }
     }
 
@@ -35,7 +35,7 @@ public class Players {
                 .toList();
 
         if (playerNames.size() != new HashSet<>(playerNames).size()) {
-            throw new InvalidInputException(ErrorMessage.DUPLICATED_PLAYER_NAME);
+            throw new IllegalArgumentException("참가자들의 이름은 중복될 수 없습니다.");
         }
     }
 

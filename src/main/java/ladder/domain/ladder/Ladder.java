@@ -8,7 +8,7 @@ import ladder.domain.ladder.generator.BooleanGenerator;
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(final int playerCount, final LadderHeight ladderHeight, final BooleanGenerator booleanGenerator) {
+    public Ladder(int playerCount, LadderHeight ladderHeight, BooleanGenerator booleanGenerator) {
         this.lines = generateLines(playerCount, ladderHeight.getHeight(), booleanGenerator);
 
     }

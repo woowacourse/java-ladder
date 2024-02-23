@@ -1,8 +1,6 @@
 package ladder.domain.ladder;
 
 import java.util.Objects;
-import ladder.exception.ErrorMessage;
-import ladder.exception.InvalidInputException;
 
 public class LadderHeight {
     public static final int MINIMUM_HEIGHT = 1;
@@ -15,7 +13,7 @@ public class LadderHeight {
 
     private void validateHeightRange(final int height) {
         if (height < MINIMUM_HEIGHT) {
-            throw new InvalidInputException(ErrorMessage.INVALID_LADDER_HEIGHT_RANGE);
+            throw new IllegalArgumentException(String.format("사다리의 높이는 %d이상이어야 합니다.", MINIMUM_HEIGHT));
         }
     }
 

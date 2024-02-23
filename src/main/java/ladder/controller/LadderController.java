@@ -1,12 +1,11 @@
 package ladder.controller;
 
-import java.util.function.Supplier;
+import java.util.List;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.generator.BooleanGenerator;
+import ladder.domain.player.Player;
 import ladder.domain.player.Players;
-import ladder.dto.request.LadderHeightRequest;
-import ladder.dto.request.PlayerNamesRequest;
 import ladder.dto.response.LadderResponse;
 import ladder.dto.response.PlayersResponse;
 import ladder.view.InputView;
@@ -17,45 +16,37 @@ public class LadderController {
     private final OutputView outputView;
     private final BooleanGenerator booleanGenerator;
 
-    public LadderController(final InputView inputView,
-                            final OutputView outputView,
-                            final BooleanGenerator booleanGenerator) {
+    public LadderController(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.booleanGenerator = booleanGenerator;
     }
 
     public void run() {
-        final Players players = retryOnException(this::readPlayers);
-        final LadderHeight ladderHeight = retryOnException(this::readLadderHeight);
+        Players players = readPlayers();
+        LadderHeight ladderHeight = readLadderHeight();
 
-        final Ladder ladder = new Ladder(players.getSize(), ladderHeight, booleanGenerator);
+        Ladder ladder = new Ladder(players.getSize(), ladderHeight, booleanGenerator);
 
         printLadder(players, ladder);
     }
 
     public Players readPlayers() {
-        final PlayerNamesRequest dto = inputView.readPlayerNames();
-        return dto.toPlayers();
+        List<String> playerNames = inputView.readPlayerNames();
+        List<Player> players = playerNames.stream().map(Player::new).toList();
+
+        return new Players(players);
     }
 
     public LadderHeight readLadderHeight() {
-        final LadderHeightRequest dto = inputView.readLadderHeight();
-        return dto.toHeight();
+        int ladderHeight = inputView.readLadderHeight();
+
+        return new LadderHeight(ladderHeight);
     }
 
-    private void printLadder(final Players players, final Ladder ladder) {
+    private void printLadder(Players players, Ladder ladder) {
         outputView.printLadderResultMessage();
         outputView.printPlayerNames(PlayersResponse.from(players));
         outputView.printLadder(LadderResponse.from(ladder));
-    }
-
-    private <T> T retryOnException(final Supplier<T> supplier) {
-        try {
-            return supplier.get();
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            return retryOnException(supplier);
-        }
     }
 }

@@ -3,9 +3,9 @@ package ladder.dto.response;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import java.util.List;
-import ladder.domain.ladder.generator.BooleanGenerator;
-import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderHeight;
+import ladder.domain.ladder.generator.BooleanGenerator;
 import ladder.mock.MockBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

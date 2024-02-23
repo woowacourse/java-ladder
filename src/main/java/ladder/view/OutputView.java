@@ -12,10 +12,6 @@ public class OutputView {
     private static final String LADDER_RUNG_EXIST = "-----";
     private static final String LADDER_SIDE_RAIL = "|";
 
-    public void printErrorMessage(String errorMessage) {
-        System.out.println(errorMessage);
-    }
-
     public void printLadderResultMessage() {
         System.out.println();
         System.out.println("실행결과");
