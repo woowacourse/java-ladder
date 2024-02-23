@@ -1,7 +1,6 @@
 package view;
 
 import java.util.List;
-import model.LadderElement;
 import model.Line;
 
 public class Formatter {
