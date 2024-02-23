@@ -15,7 +15,8 @@ public class LadderController {
         People people = requestPeopleUntilValid();
         LadderHeight ladderHeight = requestLadderHeightUntilValid();
 
-        Ladder ladder = RandomLadderCreator.create(people.getCount() - 1, ladderHeight.getValue());
+        RandomLadderCreator randomLadderCreator = new RandomLadderCreator();
+        Ladder ladder = randomLadderCreator.create(people.getCount() - 1, ladderHeight.getValue());
 
         OutputView.printResult(people, ladder);
     }

@@ -9,16 +9,13 @@ import java.util.stream.IntStream;
 public class RandomLadderCreator {
     private static Random RANDOM = new Random();
 
-    private RandomLadderCreator() {
-    }
-
-    public static Ladder create(int width, int height) {
+    public Ladder create(int width, int height) {
         return new Ladder(IntStream.range(0, height)
                 .mapToObj(i -> createRandomLine(width))
                 .toList());
     }
 
-    private static Line createRandomLine(int width) {
+    private Line createRandomLine(int width) {
         List<Boolean> scaffolds = new ArrayList<>(Collections.nCopies(width, false));
 
         for (int index : shuffleOrder(width)) {
@@ -28,7 +25,7 @@ public class RandomLadderCreator {
         return new Line(scaffolds);
     }
 
-    private static List<Integer> shuffleOrder(int width) {
+    private List<Integer> shuffleOrder(int width) {
         List<Integer> order = new ArrayList<>(IntStream.range(0, width)
                 .boxed()
                 .toList());
@@ -36,7 +33,7 @@ public class RandomLadderCreator {
         return order;
     }
 
-    private static void placeRandomScaffold(List<Boolean> scaffolds, int index) {
+    private void placeRandomScaffold(List<Boolean> scaffolds, int index) {
         if (isLeftExist(scaffolds, index) || isRightExist(scaffolds, index)) {
             return;
         }
@@ -44,11 +41,11 @@ public class RandomLadderCreator {
         scaffolds.set(index, RANDOM.nextBoolean());
     }
 
-    private static boolean isLeftExist(List<Boolean> line, int index) {
+    private boolean isLeftExist(List<Boolean> line, int index) {
         return index - 1 >= 0 && line.get(index - 1);
     }
 
-    private static boolean isRightExist(List<Boolean> line, int index) {
+    private boolean isRightExist(List<Boolean> line, int index) {
         return index + 1 < line.size() && line.get(index + 1);
     }
 }
