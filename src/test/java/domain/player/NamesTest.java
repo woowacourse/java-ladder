@@ -28,9 +28,7 @@ class NamesTest {
 
         List<String> value = List.of("도비", "도비", "조이썬");
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Names(value);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Names(value));
     }
 
     @Test
