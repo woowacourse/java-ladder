@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import static ladder.domain.LadderHeight.MIN_LADDER_HEIGHT;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,6 +12,6 @@ public class LadderHeightTest {
     void createLadderHeightByInvalidRange(final int ladderHeight) {
         Assertions.assertThatIllegalArgumentException()
                 .isThrownBy(() -> new LadderHeight(ladderHeight))
-                .withMessage(String.format("사다리 크기는 %d 이상이어야 합니다.", MIN_LADDER_HEIGHT));
+                .withMessage("사다리 크기는 2 이상이어야 합니다.");
     }
 }

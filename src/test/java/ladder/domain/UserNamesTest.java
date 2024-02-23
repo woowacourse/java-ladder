@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import static ladder.domain.UserNames.MIN_SIZE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -15,9 +14,7 @@ class UserNamesTest {
     void createUserNamesByLowerSize() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> UserNames.from(List.of("a")))
-                .withMessage(String.format(
-                        "참여자는 %d명 이상이어야 합니다.", MIN_SIZE
-                ));
+                .withMessage("참여자는 2명 이상이어야 합니다.");
     }
 
     @DisplayName("중복된 이름이 입력되면 예외가 발생한다.")
