@@ -1,11 +1,11 @@
 package controller;
 
 import domain.Ladder;
-import view.LadderItem;
+import domain.LadderItem;
 import domain.Line;
 import domain.Participant;
 import domain.Participants;
-import util.LadderItemGenerator;
+import util.BooleanGenerator;
 import view.InputView;
 import view.OutputView;
 import java.util.ArrayList;
@@ -15,19 +15,19 @@ public class LadderGame {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final LadderItemGenerator ladderItemGenerator;
+    private final BooleanGenerator booleanGenerator;
 
-    public LadderGame(InputView inputView, OutputView outputView, LadderItemGenerator ladderItemGenerator) {
+    public LadderGame(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.ladderItemGenerator = ladderItemGenerator;
+        this.booleanGenerator = booleanGenerator;
     }
 
     public void start() {
         Participants participants = makeParticipants(inputName());
         Ladder ladder = new Ladder(inputHeight());
 
-        ladder.makeLadder(participants.getParticipantsCount(), ladderItemGenerator);
+        ladder.makeLadder(participants.getParticipantsCount(), booleanGenerator);
         printLadder(ladder, participants);
     }
 

@@ -1,7 +1,6 @@
 package domain;
 
-import util.LadderItemGenerator;
-import view.LadderItem;
+import util.BooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,17 +14,21 @@ public class Line {
         this.columnLength = columnLength;
     }
 
-    public List<LadderItem> makeLine(LadderItemGenerator ladderItemGenerator) {
+    public List<LadderItem> makeLine(BooleanGenerator booleanGenerator) {
         // 0번째 point는 이전 point의 영향을 받지 않으므로 미리 추가
-        points.add(ladderItemGenerator.generate());
+        points.add(makeRandomLadderItem(booleanGenerator));
 
         for (int position = 1; position < columnLength - 1; position++) {
-            LadderItem isConnectable = ladderItemGenerator.generate();
+            LadderItem isConnectable = makeRandomLadderItem(booleanGenerator);
 
             points.add(decideConnectable(position, isConnectable));
         }
 
         return points;
+    }
+
+    private LadderItem makeRandomLadderItem(BooleanGenerator booleanGenerator) {
+        return LadderItem.getLadderItemByIsConnected(booleanGenerator.generate());
     }
 
     private LadderItem decideConnectable(int position, LadderItem isConnectable) {

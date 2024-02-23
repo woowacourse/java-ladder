@@ -1,7 +1,6 @@
-package view;
+package domain;
 
 import java.util.Arrays;
-import java.util.List;
 
 public enum LadderItem {
 
@@ -16,8 +15,11 @@ public enum LadderItem {
         this.shape = shape;
     }
 
-    public static List<LadderItem> getLadderItemsAsList() {
-        return Arrays.stream(LadderItem.values()).toList();
+    public static LadderItem getLadderItemByIsConnected(boolean isConnected) {
+        return Arrays.stream(LadderItem.values())
+                .filter(item -> item.isConnected == isConnected)
+                .findAny()
+                .orElseThrow();
     }
 
     public String getShape() {
