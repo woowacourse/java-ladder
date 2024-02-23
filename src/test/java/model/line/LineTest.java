@@ -11,7 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class LineTest {
+class LineTest {
     @DisplayName("라인 생성 시 다리가 겹치면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource("provideDuplicatedBridges")

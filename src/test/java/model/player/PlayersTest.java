@@ -10,7 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class PlayersTest {
+class PlayersTest {
     @DisplayName("참여자 수가 2명 미만이면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource("provideInvalidPlayerNames")

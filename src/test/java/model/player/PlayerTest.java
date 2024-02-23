@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-public class PlayerTest {
+class PlayerTest {
     @DisplayName("참여자 이름이 5자 초과면 예외가 발생한다")
     @ParameterizedTest
     @CsvSource({"pobiii", "dooraaa", "jojojojojojo"})
