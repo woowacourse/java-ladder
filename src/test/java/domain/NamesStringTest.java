@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 
 class NamesStringTest {
     @Test
-    @DisplayName("이름 문자열 생성")
-    void test() {
-        Names names = new Names("a,aa,aaa,aaaa,aaaaa");
+    @DisplayName("이름들의 문자열은 공백으로 구분되어 생성")
+    void testNamesSperator() {
+        Names names = new Names("aaaaa,bbbbb,ccccc,ddddd,eeeee");
         String actual = NamesString.from(names);
-        String expected = "   a    aa   aaa  aaaa  aaaaa";
+        String expected = "aaaaa bbbbb ccccc ddddd eeeee";
         Assertions.assertThat(actual).isEqualTo(expected);
     }
 
