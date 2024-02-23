@@ -30,7 +30,7 @@ public class GameController {
 
     private Members makeMembers() {
         String rawNames = inputView.readNames();
-        return new Members(rawNames);
+        return Members.from(rawNames);
     }
 
     private Lines makeLines(Members members) {
