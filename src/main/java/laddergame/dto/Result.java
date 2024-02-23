@@ -10,21 +10,17 @@ import laddergame.domain.Point;
 public record Result(List<String> names, List<List<Boolean>> ladder) {
 
     public static Result of(final Names names, final Ladder ladder) {
-        return new Result(convertNames(names), convertLadder(ladder)
-
-        );
+        return new Result(convertNames(names), convertLadder(ladder));
     }
 
     private static List<String> convertNames(final Names names) {
-        return names.getNames()
-                .stream()
+        return names.getNames().stream()
                 .map(Name::getName)
                 .toList();
     }
 
     private static List<List<Boolean>> convertLadder(final Ladder ladder) {
-        return ladder.getLines()
-                .stream()
+        return ladder.getLines().stream()
                 .map(Result::convertLine)
                 .toList();
     }
