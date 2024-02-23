@@ -12,7 +12,7 @@ import static ladder.domain.ladder.Path.EMPTY;
 public abstract class LadderStepGenerator {
     protected final int stepWidth;
 
-    public LadderStepGenerator(final int stepWidth) {
+    protected LadderStepGenerator(final int stepWidth) {
         this.stepWidth = stepWidth;
     }
 
