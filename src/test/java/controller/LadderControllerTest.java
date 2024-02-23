@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import view.InputView;
 import view.OutputView;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -22,7 +24,7 @@ class LadderControllerTest {
         @DisplayName("플레이어 이름은 구분자 단위로 나뉘어진다")
         void splitPlayerNameByDelimiter() {
             //given
-            String playerNameInfos = "aa,bb,cc";
+            String[] playerNameInfos = {"aa", "bb", "cc"};
             InputView inputView = new InputView(new Scanner(System.in));
             OutputView outputView = new OutputView();
             LadderController ladderController = new LadderController(inputView, outputView);

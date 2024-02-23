@@ -11,7 +11,6 @@ public class ExceptionMessage {
     /**
      * ValidationException
      */
-    public static final String INTEGER_FORMAT = "정수 형태만 입력 가능합니다";
     public static final String PLAYER_NAMES_RANGE = String.format("참가자의 수는 %d 이상, %d 이하여야 합니다",
             PlayerNames.PLAYER_NAMES_MIN_RANGE, PlayerNames.PLAYER_NAMES_MAX_RANGE);
     public static final String PLAYER_NAMES_DUPLICATION = "참가자 이름은 중복될 수 없습니다";
@@ -31,5 +30,6 @@ public class ExceptionMessage {
     /**
      * IOException
      */
+    public static final String INTEGER_FORMAT = "정수 형태만 입력 가능합니다";
     public static final String READ_LIMIT_OVER = String.format("입력 횟수 제한(%d)를 초과하였습니다", Controller.READ_LIMIT);
 }

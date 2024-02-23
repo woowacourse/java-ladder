@@ -31,19 +31,12 @@ public class LadderController extends Controller {
         return retry(() -> createPlayerNames(inputView.readPlayerNames()));
     }
 
-    public PlayerNames createPlayerNames(String playerNamesInput) {
-        String[] splitPlayerNames = splitPlayerNames(playerNamesInput);
-        List<PlayerName> playerNames = Arrays.stream(splitPlayerNames)
+    public PlayerNames createPlayerNames(String[] playerNamesInput) {
+        List<PlayerName> playerNames = Arrays.stream(playerNamesInput)
                 .map(PlayerName::new)
                 .toList();
 
         return new PlayerNames(playerNames);
-    }
-
-    private String[] splitPlayerNames(String playerNamesInput) {
-        playerNamesInput = playerNamesInput.replace(InputView.BLANK_SPACE, InputView.BLANK_EMPTY);
-
-        return playerNamesInput.split(InputView.PLAYER_NAMES_INPUT_DELIMITER);
     }
 
     private LadderHeight readLadderHeight() {

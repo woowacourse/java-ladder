@@ -29,10 +29,10 @@ public class LadderTest {
 
         private static Stream<Arguments> createLadderSuccessWithHeightAndPointCountArguments() {
             return Stream.of(
-                    Arguments.arguments(new LadderHeight(String.valueOf(2)),
+                    Arguments.arguments(new LadderHeight(2),
                             new PlayerNames(List.of(new PlayerName("a"), new PlayerName("b")))),
 
-                    Arguments.arguments(new LadderHeight(String.valueOf(10)),
+                    Arguments.arguments(new LadderHeight(10),
                             new PlayerNames(List.of(new PlayerName("a"), new PlayerName("b"), new PlayerName("c"),
                                     new PlayerName("d"), new PlayerName("e"), new PlayerName("f"), new PlayerName("g"),
                                     new PlayerName("h"), new PlayerName("i"), new PlayerName("j"))))
@@ -51,10 +51,10 @@ public class LadderTest {
 
         private static Stream<Arguments> createLadderFailByPlayerCountArguments() {
             return Stream.of(
-                    Arguments.arguments(new LadderHeight(String.valueOf(2)),
+                    Arguments.arguments(new LadderHeight(2),
                             List.of(new PlayerName("a"))),
 
-                    Arguments.arguments(new LadderHeight(String.valueOf(10)),
+                    Arguments.arguments(new LadderHeight(10),
                             List.of(new PlayerName("a"), new PlayerName("b"), new PlayerName("c"),
                                     new PlayerName("d"), new PlayerName("e"), new PlayerName("f"), new PlayerName("g"),
                                     new PlayerName("h"), new PlayerName("i"), new PlayerName("j"), new PlayerName("k")))
@@ -65,7 +65,7 @@ public class LadderTest {
     @ParameterizedTest
     @MethodSource("createLadderFailByHeightArguments")
     @DisplayName("사다리 높이가 2 미만, 10 초과이면 사람의 수가 2 이상, 10 이하여도 예외가 발생한다")
-    void createLadderFailByHeightAndPointCount(String height, PlayerNames playerNames) {
+    void createLadderFailByHeightAndPointCount(int height, PlayerNames playerNames) {
         Assertions.assertThatThrownBy(
                         () -> Ladder.create(new LadderHeight(height), playerNames, new BridgeGeneratorStub()))
                 .isInstanceOf(ValidationException.class);
@@ -73,10 +73,10 @@ public class LadderTest {
 
     private static Stream<Arguments> createLadderFailByHeightArguments() {
         return Stream.of(
-                Arguments.arguments("1",
+                Arguments.arguments(1,
                         new PlayerNames(List.of(new PlayerName("a"), new PlayerName("b")))),
 
-                Arguments.arguments("11",
+                Arguments.arguments(11,
                         new PlayerNames(List.of(new PlayerName("a"), new PlayerName("b"), new PlayerName("c"),
                                 new PlayerName("d"), new PlayerName("e"), new PlayerName("f"), new PlayerName("g"),
                                 new PlayerName("h"), new PlayerName("i"), new PlayerName("j"))))
