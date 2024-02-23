@@ -1,5 +1,7 @@
 package domain;
 
+import util.ExceptionMessages;
+
 import java.util.Arrays;
 
 public enum Bridge {
@@ -19,7 +21,7 @@ public enum Bridge {
         return Arrays.stream(values())
                 .filter(value -> value.exist == exist)
                 .findAny()
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessages.NO_ENUM));
     }
 
     public String getShape() {
