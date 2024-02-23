@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class InputView {
 
+    private static final String DELIMITER_ERROR = "입력된 값: %s, 구분자로 끝날 수 없습니다.";
+
     private InputView() {
 
     }
@@ -34,11 +36,11 @@ public class InputView {
 
     private static void validateDelimiter(final String userNames) {
         if (userNames.endsWith(",")) {
-            throw new IllegalArgumentException(String.format("입력된 값: %s, 구분자로 끝날 수 없습니다.", userNames));
+            throw new IllegalArgumentException(String.format(DELIMITER_ERROR, userNames));
         }
 
         if (userNames.startsWith(",")) {
-            throw new IllegalArgumentException(String.format("입력된 값: %s, 구분자로 끝날 수 없습니다.", userNames));
+            throw new IllegalArgumentException(String.format(DELIMITER_ERROR, userNames));
         }
     }
 
