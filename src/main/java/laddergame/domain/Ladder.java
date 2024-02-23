@@ -1,6 +1,5 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import laddergame.exception.InvalidLadderException;
 
@@ -32,17 +31,6 @@ public class Ladder {
                 .distinct()
                 .toList()
                 .size();
-    }
-
-    public static Ladder create(final LineSize lineSize, final LadderHeight height,
-            final PointGenerator pointGenerator) {
-        final List<Line> lines = new ArrayList<>();
-
-        while (height.isBiggerThan(lines.size())) {
-            lines.add(Line.create(lineSize, pointGenerator));
-        }
-
-        return new Ladder(lines);
     }
 
     public List<List<Boolean>> getLinesState() {

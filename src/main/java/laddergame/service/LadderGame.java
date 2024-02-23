@@ -1,7 +1,7 @@
 package laddergame.service;
 
-import laddergame.domain.PointGenerator;
 import laddergame.domain.Ladder;
+import laddergame.domain.LadderGenerator;
 import laddergame.domain.LadderHeight;
 import laddergame.domain.LineSize;
 import laddergame.domain.Names;
@@ -9,15 +9,15 @@ import laddergame.dto.Result;
 
 public class LadderGame {
 
-    private final PointGenerator pointGenerator;
+    private final LadderGenerator ladderGenerator;
 
-    public LadderGame(final PointGenerator pointGenerator) {
-        this.pointGenerator = pointGenerator;
+    public LadderGame(final LadderGenerator ladderGenerator) {
+        this.ladderGenerator = ladderGenerator;
     }
 
-    public Result createLadder(final Names names, final LadderHeight height) {
+    public Result createLadder(final Names names, final LadderHeight ladderHeight) {
         final LineSize lineSize = new LineSize(names);
-        final Ladder ladder = Ladder.create(lineSize, height, pointGenerator);
+        final Ladder ladder = ladderGenerator.generate(lineSize, ladderHeight);
 
         return Result.of(names, ladder);
     }
