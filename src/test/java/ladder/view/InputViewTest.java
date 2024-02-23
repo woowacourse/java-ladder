@@ -36,6 +36,13 @@ public class InputViewTest {
     @Nested
     @DisplayName("실행 결과 입력 시")
     class inputDestinations {
+        @DisplayName(",로 구분하여 실행 결과를 입력하면 List<String>로 반환한다.")
+        @Test
+        void parseNamesWithDelimiter() {
+            List<String> destinations = InputView.readDestinations(() -> "꽝,5000,4000,꽝");
+            assertThat(destinations).containsExactly("꽝", "5000", "4000", "꽝");
+        }
+
         @DisplayName("공백이 입력되면 예외를 던진다.")
         @NullAndEmptySource
         @ValueSource(strings = {" ", "  ", "\t", "\n"})
