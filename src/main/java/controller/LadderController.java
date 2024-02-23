@@ -1,7 +1,5 @@
 package controller;
 
-import common.exception.message.ExceptionMessage;
-import common.exception.model.ValidationException;
 import domain.Ladder;
 import domain.LadderHeight;
 import domain.PlayerName;
@@ -35,26 +33,12 @@ public class LadderController extends Controller {
         return retry(() -> createPlayerNames(inputView.readPlayerNames()));
     }
 
-    public PlayerNames createPlayerNames(final String playerNamesInput) {
-        String[] splitPlayerNames = splitPlayerNames(playerNamesInput);
+    public PlayerNames createPlayerNames(final String[] splitPlayerNames) {
         List<PlayerName> playerNames = Arrays.stream(splitPlayerNames)
                 .map(PlayerName::new)
                 .toList();
 
         return new PlayerNames(playerNames);
-    }
-
-    private String[] splitPlayerNames(String playerNamesInput) {
-        playerNamesInput = playerNamesInput.replace(InputView.BLANK_SPACE, InputView.BLANK_EMPTY);
-        validatePlayerNamesInput(playerNamesInput);
-
-        return playerNamesInput.split(InputView.PLAYER_NAMES_INPUT_DELIMITER);
-    }
-
-    private void validatePlayerNamesInput(final String playerNamesInput) {
-        if (!InputView.PLAYER_NAMES_INPUT_PATTERN.matcher(playerNamesInput).matches()) {
-            throw new ValidationException(ExceptionMessage.PLAYER_NAMES_INPUT_FORMAT);
-        }
     }
 
     public LadderHeight readLadderHeight() {

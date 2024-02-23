@@ -21,12 +21,14 @@ class LadderControllerTest {
         @DisplayName("플레이어 이름은 구분자 단위로 나뉘어진다")
         void splitPlayerNameByDelimiter() {
             //given
-            String playerNameInfos = "aa,bb,cc";
             InputView inputView = new InputView(new Scanner(System.in));
             OutputView outputView = new OutputView();
             LadderController ladderController = new LadderController(inputView, outputView);
+            String[] playerNameInfos = new String[]{"aa", "bb", "cc"};
+
             //when
             PlayerNames playerNames = ladderController.createPlayerNames(playerNameInfos);
+
             //then
             assertAll(
                     () -> Assertions.assertThat(playerNames.getCount()).isEqualTo(3),
@@ -35,7 +37,5 @@ class LadderControllerTest {
                     () -> Assertions.assertThat(playerNames.getNameOfIndex(2)).isEqualTo("cc")
             );
         }
-
-
     }
 }
