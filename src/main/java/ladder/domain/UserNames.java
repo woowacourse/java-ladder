@@ -30,11 +30,11 @@ public class UserNames {
     }
 
     private void validateDuplicate(final List<UserName> userNames) {
-        long unique = userNames.stream()
+        long uniqueUserNamesCount = userNames.stream()
                 .distinct()
                 .count();
 
-        if (userNames.size() != unique) {
+        if (userNames.size() != uniqueUserNamesCount) {
             throw new IllegalArgumentException("중복된 이름은 허용되지 않습니다.");
         }
     }
