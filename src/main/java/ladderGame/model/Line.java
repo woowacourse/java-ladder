@@ -5,32 +5,32 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
-    private final List<DrawnStatus> drawnStatuses;
+    private final List<ConnectionStatus> connectionStatuses;
 
     public Line(int number) {
-        drawnStatuses = new ArrayList<>();
+        connectionStatuses = new ArrayList<>();
         for (int i = 0; i < number - 1; i++) {
             makeLine(i);
         }
     }
 
     private void makeLine(int index) {
-        if (index == 0 || !drawnStatuses.get(index - 1).equals(DrawnStatus.DRAWN)) {
-            drawnStatuses.add(decideDrawnStatus());
+        if (index == 0 || !connectionStatuses.get(index - 1).equals(ConnectionStatus.CONNECTION)) {
+            connectionStatuses.add(decideConnectionStatus());
             return;
         }
-        drawnStatuses.add(DrawnStatus.NON_DRAWN);
+        connectionStatuses.add(ConnectionStatus.DISCONNECTION);
     }
 
-    private DrawnStatus decideDrawnStatus() {
+    private ConnectionStatus decideConnectionStatus() {
         if (new Random().nextBoolean()) {
-            return DrawnStatus.DRAWN;
+            return ConnectionStatus.CONNECTION;
         }
-        return DrawnStatus.NON_DRAWN;
+        return ConnectionStatus.DISCONNECTION;
     }
 
-    public List<DrawnStatus> getDrawnStatuses() {
-        return new ArrayList<>(drawnStatuses);
+    public List<ConnectionStatus> getConnectionStatuses() {
+        return new ArrayList<>(connectionStatuses);
     }
 
 }

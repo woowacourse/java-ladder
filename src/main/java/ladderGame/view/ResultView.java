@@ -1,6 +1,6 @@
 package ladderGame.view;
 
-import ladderGame.model.DrawnStatus;
+import ladderGame.model.ConnectionStatus;
 import ladderGame.model.Line;
 import ladderGame.model.Player;
 
@@ -9,8 +9,8 @@ import java.util.List;
 public class ResultView {
     private static final String RESULT_PROMPT = "실행 결과";
     private static final String BLANK_MARK = "     ";
-    private static final String NOT_DRAWN_MARK = "     ";
-    private static final String DRAWN_MARK = "-----";
+    private static final String DISCONNECTION_MARK = "     ";
+    private static final String CONNECTION_MARK = "-----";
     private static final String LINE_MARK = "|";
 
     public void printLadder(List<Player> players, List<Line> lines) {
@@ -33,20 +33,20 @@ public class ResultView {
     }
 
     private String makeLineToString(Line line) {
-        List<DrawnStatus> spaces = line.getDrawnStatuses();
+        List<ConnectionStatus> spaces = line.getConnectionStatuses();
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(BLANK_MARK + LINE_MARK);
-        for (DrawnStatus space : spaces) {
-            stringBuilder.append(makeDrawnStatusToString(space)).append(LINE_MARK);
+        for (ConnectionStatus space : spaces) {
+            stringBuilder.append(makeConnectionStatusToString(space)).append(LINE_MARK);
         }
         return stringBuilder.toString();
     }
 
-    private String makeDrawnStatusToString(DrawnStatus drawnStatus) {
-        if (drawnStatus.equals(DrawnStatus.DRAWN)) {
-            return DRAWN_MARK;
+    private String makeConnectionStatusToString(ConnectionStatus connectionStatus) {
+        if (connectionStatus.equals(ConnectionStatus.CONNECTION)) {
+            return CONNECTION_MARK;
         }
-        return NOT_DRAWN_MARK;
+        return DISCONNECTION_MARK;
     }
 }
