@@ -29,12 +29,12 @@ public class Ladder {
         return new LadderRow(lineStatus);
     }
 
-    private void fillLineStatus(List<Boolean> lineStatus, boolean linesOrNoLine) {
-        if (lineStatus.get(lineStatus.size() - 1).equals(true) && linesOrNoLine) {
+    private void fillLineStatus(List<Boolean> lineStatus, boolean isLine) {
+        if (lineStatus.get(lineStatus.size() - 1).equals(true) && isLine) {
             lineStatus.add(false);
             return;
         }
-        lineStatus.add(linesOrNoLine);
+        lineStatus.add(isLine);
     }
 
     public int height() {

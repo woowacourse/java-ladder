@@ -33,9 +33,9 @@ public class OutputView {
 
     private void printRow(LadderRow ladderRow) {
         System.out.print(LadderComponent.EMPTY_LINE);
-        for (boolean line : ladderRow.getLineStatus()) {
+        for (boolean isLine : ladderRow.getLineStatus()) {
             System.out.print(LadderComponent.DIVISION.getOutput());
-            System.out.print(LadderComponent.match(line).getOutput());
+            System.out.print(LadderComponent.match(isLine).getOutput());
         }
         System.out.print(LadderComponent.DIVISION.getOutput());
     }

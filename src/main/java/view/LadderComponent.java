@@ -16,8 +16,8 @@ public enum LadderComponent {
         return output;
     }
 
-    public static LadderComponent match(boolean lineStatus) {
-        if (lineStatus) {
+    public static LadderComponent match(boolean isLine) {
+        if (isLine) {
             return LINE;
         }
         return EMPTY_LINE;
