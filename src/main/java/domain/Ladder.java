@@ -12,14 +12,19 @@ public class Ladder {
         this.floors = floors;
     }
 
-    public static Ladder of(final LadderHeight height, final int pointCount, final BridgeGenerator bridgeGenerator) {
+    public static Ladder of(final LadderHeight height, final PlayerNames playerNames, final BridgeGenerator bridgeGenerator) {
         List<Floor> floors = new ArrayList<>();
+        int bridgeCount = calculateBridgeCount(playerNames);
         for (int i = 0; i < height.getValue(); i++) {
-            List<LadderBridge> bridges = bridgeGenerator.generate(pointCount);
+            List<LadderBridge> bridges = bridgeGenerator.generate(bridgeCount);
             floors.add(new Floor(bridges));
         }
 
         return new Ladder(floors);
+    }
+
+    private static int calculateBridgeCount(PlayerNames playerNames) {
+        return playerNames.getCount() - 1;
     }
 
     public List<Floor> getFloors() {

@@ -19,14 +19,9 @@ public class LadderController extends Controller {
     public Ladder createLadder() {
         PlayerNames playerNames = readPlayerNames();
         LadderHeight ladderHeight = readLadderHeight();
-        int pointCount = calculatePointCount(playerNames);
-        Ladder ladder = Ladder.of(ladderHeight, pointCount, new RandomBridgeGenerator());
+        Ladder ladder = Ladder.of(ladderHeight, playerNames, new RandomBridgeGenerator());
         outputView.printLadder(playerNames, ladder);
         return ladder;
-    }
-
-    private int calculatePointCount(PlayerNames playerNames) {
-        return playerNames.getCount() - 1;
     }
 
     public PlayerNames readPlayerNames() {
