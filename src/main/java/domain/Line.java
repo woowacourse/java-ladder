@@ -25,10 +25,10 @@ public class Line {
     }
 
     private boolean isPreviousStepExist(int cellIndex) {
-        return isExistStep(cellIndex - 1);
+        return isStepExistAt(cellIndex - 1);
     }
 
-    public boolean isExistStep(int cellIndex) {
+    public boolean isStepExistAt(int cellIndex) {
         return stepPoints.get(cellIndex).isExist();
     }
 
