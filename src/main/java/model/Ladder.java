@@ -1,8 +1,8 @@
 package model;
 
+import dto.LayerSteps;
 import java.util.ArrayList;
 import java.util.List;
-import model.dto.LayerSteps;
 
 public class Ladder {
     private static final int MIN_LADDER_HEIGHT = 1;

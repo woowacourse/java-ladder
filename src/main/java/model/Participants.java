@@ -1,9 +1,9 @@
 package model;
 
+import dto.ParticipantName;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import model.dto.ParticipantName;
 
 public class Participants {
     private static final int MIN_PARTICIPANT_COUNT = 2;

@@ -1,9 +1,9 @@
 package view;
 
+import dto.LayerSteps;
+import dto.ParticipantName;
 import java.util.List;
 import model.Step;
-import model.dto.LayerSteps;
-import model.dto.ParticipantName;
 
 public class OutputView {
     private static final String NAME_FORMAT = "%5s";
