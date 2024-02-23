@@ -20,11 +20,10 @@ public enum NameFormat {
     }
 
     public static String findFormat(int nameLength) {
-        Optional<String> optionalString = Arrays.stream(values())
+        return Arrays.stream(values())
                 .filter(f -> f.nameLength == nameLength)
                 .map(f -> f.format)
-                .findFirst();
-
-        return optionalString.orElseGet(() -> DEFAULT.format);
+                .findFirst()
+                .orElse(DEFAULT.format);
     }
 }
