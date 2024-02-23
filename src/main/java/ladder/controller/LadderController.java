@@ -34,6 +34,10 @@ public class LadderController {
         LadderGame ladderGame = new LadderGame(players, ladder, prizes);
 
         printLadder(players, ladder);
+
+        for (Player player : players.getPlayers()) {
+            System.out.println(player.getName() + " : " + ladderGame.getResultByPlayerName(player.getName()));
+        }
     }
 
     public Players initPlayers() {
