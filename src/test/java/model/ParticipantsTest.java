@@ -6,26 +6,21 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullSource;
 
 class ParticipantsTest {
-    @DisplayName("model.Participants 객체에 null 값이 입력되면 예외가 발생한다")
-    @Test
-    void validateParticipantsSizeWhenNull() {
-        List<Participant> given = null;
+    @DisplayName("참여자수가 null이거나 비어있다면 예외가 발생한다")
+    @NullSource
+    @EmptySource
+    @ParameterizedTest
+    void validateParticipantsSizeWhenNull(List<Participant> given) {
         assertThatThrownBy(() -> new Participants(given))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("model.Participants 객체에 참여자 수가 없으면 예외가 발생한다")
-    @Test
-    void validateParticipantsSizeWhenZero() {
-
-        List<Participant> given = List.of();
-        assertThatThrownBy(() -> new Participants(given))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("model.Participants 객체에 참여자 수가 1명이면 예외가 발생한다.")
+    @DisplayName("참여자 수가 1명이면 예외가 발생한다.")
     @Test
     void validateParticipantsSizeWhenOne() {
         List<Participant> given = List.of(

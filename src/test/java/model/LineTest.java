@@ -9,11 +9,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class LineTest {
-    @DisplayName("이전 상태가 START이면 END이다. 아닐 경우 true면 S false면 N이다.")
+    @DisplayName("이전 상태가 START이면 END를 반환한다.")
     @Test
     void initializeLineStateWhenBeforeStateIsStart() {
         LineState expected = LineState.END;
-
         int peopleCount = 3;
         Line line = new Line(peopleCount, List.of(true, true, false));
 
@@ -23,7 +22,7 @@ public class LineTest {
         assertThat(lineState).isEqualTo(expected);
     }
 
-    @DisplayName("이전 상태가 S가 아닐 경우 true면 S false면 N이다.")
+    @DisplayName("이전 상태가 START가 아닐 경우, 주어진 불린값이 true면 START, false면 NONE을 반환한다.")
     @ParameterizedTest
     @CsvSource(value = {"true,START", "false,NONE"})
     void initializeLineStateWhenBeforeStateNotStart(boolean given, LineState expected) {
