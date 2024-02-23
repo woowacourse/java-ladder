@@ -13,10 +13,10 @@ public class LineSizeTest {
     @Test
     void create() {
         // given
-        Names names = new Names(List.of("pobi", "zeze"));
+        final Names names = new Names(List.of("pobi", "zeze"));
 
         // when
-        LineSize lineSize = new LineSize(names);
+        final LineSize lineSize = new LineSize(names);
 
         // then
         assertThat(lineSize).extracting("lineSize").isEqualTo(1);

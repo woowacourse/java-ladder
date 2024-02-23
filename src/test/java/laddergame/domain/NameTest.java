@@ -16,7 +16,7 @@ public class NameTest {
     @ValueSource(strings = {"a", "ab", "abc", "abcd", "abcde"})
     void create(String value) {
         // given & when
-        Name name = new Name(value);
+        final Name name = new Name(value);
 
         // then
         assertThat(name.getName()).isEqualTo(value);

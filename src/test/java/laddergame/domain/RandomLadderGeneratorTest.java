@@ -12,10 +12,10 @@ class RandomLadderGeneratorTest {
     @Test
     void generate() {
         // given
-        LineSize lineSize = new LineSize(new Names(List.of("pobi", "honux", "crong", "jk")));
-        LadderHeight ladderHeight = new LadderHeight(5);
+        final LineSize lineSize = new LineSize(new Names(List.of("pobi", "honux", "crong", "jk")));
+        final LadderHeight ladderHeight = new LadderHeight(5);
 
-        LadderGenerator ladderGenerator = new RandomLadderGenerator();
+        final LadderGenerator ladderGenerator = new RandomLadderGenerator();
 
         // when & then
         assertThatCode(() -> ladderGenerator.generate(lineSize, ladderHeight))

@@ -8,6 +8,7 @@ public class ExceptionHandler {
     private static final int MAX_RETRY_COUNT = 1000;
 
     private static int retryCount = 0;
+
     public static <T> T retryUntilInputIsValid(final Supplier<T> function, final OutputView outputView) {
         try {
             return function.get();

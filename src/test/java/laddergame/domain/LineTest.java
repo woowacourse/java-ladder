@@ -15,7 +15,7 @@ public class LineTest {
     @Test
     void createByOverlapped() {
         // given
-        List<Point> points = List.of(Point.EXIST, Point.EXIST, Point.EMPTY);
+        final List<Point> points = List.of(Point.EXIST, Point.EXIST, Point.EMPTY);
 
         // when & then
         assertThatThrownBy(() -> new Line(points))
@@ -27,7 +27,7 @@ public class LineTest {
     @Test
     void create() {
         // given
-        List<Point> points = List.of(Point.EXIST, Point.EMPTY, Point.EXIST);
+        final List<Point> points = List.of(Point.EXIST, Point.EMPTY, Point.EXIST);
 
         // when & then
         assertThatCode(() -> new Line(points))

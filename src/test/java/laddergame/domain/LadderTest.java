@@ -14,7 +14,7 @@ public class LadderTest {
     @Test
     void createDifferentSize() {
         // given
-        List<Line> lines = List.of(new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST)),
+        final List<Line> lines = List.of(new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST)),
                 new Line(List.of(Point.EXIST, Point.EMPTY)));
 
         // when & then
@@ -27,7 +27,7 @@ public class LadderTest {
     @Test
     void createSameSize() {
         // given
-        List<Line> lines = List.of(new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST)),
+        final List<Line> lines = List.of(new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST)),
                 new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST)));
 
         // when & then
