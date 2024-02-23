@@ -14,7 +14,7 @@ public class Line {
 
     public static Line createByStrategy(final BridgeGenerator bridgeGenerator, final int personCount) {
         List<Bridge> bridges = new ArrayList<>();
-        while (bridges.size() != personCount - 1) {
+        while (bridges.size() < personCount - 1) {
             final Bridge bridgeCandidate = bridgeGenerator.generate();
             final Bridge previousBridge = findPreviousBridge(bridges);
 
