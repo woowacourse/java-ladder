@@ -1,16 +1,10 @@
 package domain.player;
 
-public class Name {
-    private final String value;
-    private final static int MAXIUM_NAME_LENGTH = 5;
+public record Name(String value) {
+    private static final int MAXIMUM_NAME_LENGTH = 5;
 
-    public Name(String value) {
+    public Name {
         validate(value);
-        this.value = value;
-    }
-
-    public String getValue() {
-        return value;
     }
 
     private void validate(String inputName) {
@@ -20,7 +14,7 @@ public class Name {
     }
 
     private void validateAvailableLength(String inputName) {
-        if (inputName.length() > MAXIUM_NAME_LENGTH) {
+        if (inputName.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
