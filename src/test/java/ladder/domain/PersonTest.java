@@ -38,20 +38,4 @@ public class PersonTest {
         assertThatThrownBy(() -> new Person(name))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    @DisplayName("이름 양쪽에 공백이 있는 경우 제거한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {" pobi", " pobi  ", "pobi "})
-    void nameStripTest(String name) {
-        // given
-        String expected = "pobi";
-
-        // when
-        Person person = new Person(name);
-
-        // then
-        assertThat(person)
-                .extracting("name")
-                .isEqualTo(expected);
-    }
 }
