@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class Line {
-    private final List<Boolean> points;
+    private final List<Point> points;
     private final BooleanGenerator generator;
 
     public Line(final int personCount, final BooleanGenerator generator) {
@@ -12,15 +12,15 @@ public class Line {
         points = createLine(personCount);
     }
 
-    private List<Boolean> createLine(int personCount) {
-        Boolean firstPoint = generator.generate();
+    private List<Point> createLine(int personCount) {
+        Point firstPoint = Point.from(generator.generate());
         return Stream.iterate(firstPoint, prevPoint -> {
-            if (prevPoint) return false;
-            return generator.generate();
+            if (firstPoint.isConnected()) return Point.DISCONNECTED;
+            return Point.from(generator.generate());
         }).limit(personCount - 1).toList();
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
 }

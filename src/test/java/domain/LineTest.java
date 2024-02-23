@@ -13,11 +13,8 @@ class LineTest {
     void isLineCannotNextToLine() {
         int personCount = 5;
         Line line = new Line(personCount, new FixedBooleanGenerator());
-        List<Boolean> points = line.getPoints();
-        for (Boolean point : points) {
-            System.out.println(point);
-        }
-        int isInvalidLine = Collections.indexOfSubList(points, List.of(true, true));
+        List<Point> points = line.getPoints();
+        int isInvalidLine = Collections.indexOfSubList(points, List.of(Point.CONNECTED, Point.CONNECTED));
 
         assertEquals(-1, isInvalidLine);
     }
