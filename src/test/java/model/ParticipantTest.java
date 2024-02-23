@@ -1,20 +1,19 @@
 package model;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.Assertions.*;
 
 class ParticipantTest {
 
     @DisplayName("String 값을 받아 model.Participant 객체를 생성한다.")
     @Test
     void createParticipant() {
-        String given = "daon";
+        String given = "lilly";
         assertThatCode(() -> new Participant(given))
                 .doesNotThrowAnyException();
     }
@@ -30,8 +29,8 @@ class ParticipantTest {
 
     @DisplayName("참여할 사람의 이름은 null이거나 공백이면 안된다.")
     @ParameterizedTest
-    @NullSource
-    @ValueSource(strings = {""})
+    @NullAndEmptySource
+    @ValueSource(strings = {"", "     "})
     void validateNameNotNullAndNotBlank(String given) {
         assertThatThrownBy(() -> new Participant(given))
                 .isInstanceOf(IllegalArgumentException.class)
