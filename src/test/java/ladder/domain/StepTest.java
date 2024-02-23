@@ -12,7 +12,7 @@ class StepTest {
     void changeStatusTest() {
         Step step = new Step();
 
-        step.changeStatus();
+        step.build();
 
         assertThat(step.getBuildStatus()).isTrue();
     }

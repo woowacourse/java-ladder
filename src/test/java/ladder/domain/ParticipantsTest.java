@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 public class ParticipantsTest {
 
+    private static final int MAXIMUM_RECEPTION_COUNT = 10;
+
     @Test
     @DisplayName("참여자 최대 인원 테스트")
     void participantsIsMaximumTest() {
@@ -16,7 +18,7 @@ public class ParticipantsTest {
 
         Assertions.assertThatThrownBy(() -> new Participants(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참여자 인원은 최대 10명까지 가능합니다.");
+                .hasMessage("참여자 인원은 최대 "+MAXIMUM_RECEPTION_COUNT+"명까지 가능합니다.");
     }
 
     @Test

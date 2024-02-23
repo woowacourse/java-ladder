@@ -12,6 +12,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class LadderTest {
 
+    private static final int FIRST_STEP_INDEX = 0;
+    private static final int NEXT_STEP_INDEX = 1;
+    private static final int NOT_BUILD_STEP_INDEX = 3;
+
     private Ladder ladder;
 
     @BeforeEach
@@ -26,9 +30,9 @@ public class LadderTest {
         @Test
         @DisplayName("이전 포지션에 스텝이 존재하면 True를 반환한다.")
         void hasDuplicatedStep() {
-            ladder.buildSteps(0);
+            ladder.buildSteps(FIRST_STEP_INDEX);
 
-            Boolean hasDuplicateStep = ladder.hasStepDuplicated(1);
+            Boolean hasDuplicateStep = ladder.hasStepDuplicated(NEXT_STEP_INDEX);
 
             assertThat(hasDuplicateStep).isTrue();
         }
@@ -36,9 +40,9 @@ public class LadderTest {
         @Test
         @DisplayName("이전 포지션에 스텝이 존재하지 않으면 False를 반환한다.")
         void hasNotDuplicatedStep() {
-            ladder.buildSteps(0);
+            ladder.buildSteps(FIRST_STEP_INDEX);
 
-            Boolean hasDuplicateStep = ladder.hasStepDuplicated(3);
+            Boolean hasDuplicateStep = ladder.hasStepDuplicated(NOT_BUILD_STEP_INDEX);
 
             assertThat(hasDuplicateStep).isFalse();
         }

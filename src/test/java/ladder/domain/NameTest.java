@@ -10,6 +10,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class NameTest {
 
+    private static final int MAXIMUM_NAME_LENGTH = 5;
+
     @ParameterizedTest
     @ValueSource(strings = {"123456", "hellooooo"})
     @DisplayName("이름이 요구하는 길이와 일치하지 않으면 에러를 발생한다.")
@@ -17,7 +19,7 @@ public class NameTest {
 
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름의 길이는 최대 5글자 까지 가능합니다.");
+                .hasMessage("이름의 길이는 최대 "+MAXIMUM_NAME_LENGTH+"글자 까지 가능합니다.");
     }
 
     @Test

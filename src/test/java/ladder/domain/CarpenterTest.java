@@ -52,7 +52,6 @@ public class CarpenterTest {
 
     private BuiltLadderDto getLadderOfCarpenter(Carpenter carpenter) {
         List<BuiltLadderDto> ladders = carpenter.getResultLadders().resultLadder();
-        BuiltLadderDto ladder = ladders.get(secondLadderIndex);
-        return ladder;
+        return ladders.get(secondLadderIndex);
     }
 }
