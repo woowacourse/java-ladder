@@ -3,14 +3,14 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import generator.FloorGenerator;
-
 public class Ladder {
 
 	private final List<HorizontalLine> lines = new ArrayList<>();
 
 	private Ladder(int playerCount, int height) {
-		createLadder(playerCount, height);
+		for (int i = 0; i < height; i++) {
+			lines.add(new HorizontalLine(playerCount));
+		}
 	}
 
 	public static Ladder of(int playerCount, int height) {
@@ -25,11 +25,5 @@ public class Ladder {
 		return lines.stream()
 			.map(HorizontalLine::createStatus)
 			.toList();
-	}
-
-	private void createLadder(int playerCount, int height) {
-		for (int i = 0; i < height; i++) {
-			lines.add(new HorizontalLine(playerCount));
-		}
 	}
 }
