@@ -4,10 +4,10 @@ import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidationException;
 
 public class LadderHeight {
-    private final int value;
-
     public static final int HEIGHT_MIN_RANGE = 2;
     public static final int HEIGHT_MAX_RANGE = 10;
+
+    private final int value;
 
     public LadderHeight(String value) {
         validate(value);

@@ -6,11 +6,11 @@ import common.exception.model.ValidationException;
 import java.util.regex.Pattern;
 
 public class PlayerName {
-    private String name;
-
     public static final int PLAYER_NAME_MIN_LENGTH = 1;
     public static final int PLAYER_NAME_MAX_LENGTH = 5;
-    public static final Pattern PLAYER_NAME_PATTERN = Pattern.compile("[가-힣a-zA-Z]+");
+    private static final Pattern PLAYER_NAME_PATTERN = Pattern.compile("[가-힣a-zA-Z]+");
+
+    private String name;
 
     public PlayerName(String name) {
         validate(name);

@@ -7,10 +7,10 @@ import common.exception.model.ValidationException;
 import java.util.List;
 
 public class PlayerNames {
-    private final List<PlayerName> playerNames;
-
     public static final int PLAYER_NAMES_MIN_RANGE = 2;
     public static final int PLAYER_NAMES_MAX_RANGE = 10;
+
+    private final List<PlayerName> playerNames;
 
     public PlayerNames(List<PlayerName> playerNames) {
         validate(playerNames);
