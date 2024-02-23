@@ -1,6 +1,6 @@
 package view;
 
-import domain.HorizontalLineStatus;
+import domain.HorizontalLinePattern;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -34,9 +34,9 @@ public class OutputView {
         System.out.println(joiner.toString());
     }
 
-    public void printLadder(List<HorizontalLineStatus> statuses) {
+    public void printLadder(List<HorizontalLinePattern> statuses) {
         statuses.stream()
-                .map(HorizontalLineStatus::placedStatuses)
+                .map(HorizontalLinePattern::rowPattern)
                 .forEach(this::printHorizontalLine);
     }
 

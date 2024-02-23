@@ -32,8 +32,8 @@ public class HorizontalLine {
         return index == 0 || !rowPattern.get(index - 1);
     }
 
-    public HorizontalLineStatus createStatus() {
+    public HorizontalLinePattern createStatus() {
         List<Boolean> placeStatuses = List.copyOf(rowPattern);
-        return new HorizontalLineStatus(placeStatuses);
+        return new HorizontalLinePattern(placeStatuses);
     }
 }

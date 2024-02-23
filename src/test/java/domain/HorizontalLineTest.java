@@ -25,8 +25,8 @@ class HorizontalLineTest {
         // given
         HorizontalLine horizontalLine = new HorizontalLine(5);
         // when
-        HorizontalLineStatus status = horizontalLine.createStatus();
-        List<Boolean> actual = status.placedStatuses();
+        HorizontalLinePattern status = horizontalLine.createStatus();
+        List<Boolean> actual = status.rowPattern();
         // then
         assertThat(actual).containsOnly(false);
     }
@@ -39,8 +39,8 @@ class HorizontalLineTest {
         HorizontalLine horizontalLine = new HorizontalLine(6);
         // when
         horizontalLine.createPattern(trueSupplier);
-        HorizontalLineStatus status = horizontalLine.createStatus();
-        List<Boolean> actual = status.placedStatuses();
+        HorizontalLinePattern status = horizontalLine.createStatus();
+        List<Boolean> actual = status.rowPattern();
         List<Boolean> expected = List.of(true, false, true, false, true);
         // then
         assertThat(actual).containsExactlyElementsOf(expected);

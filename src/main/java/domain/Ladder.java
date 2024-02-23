@@ -20,7 +20,7 @@ public class Ladder {
         lines.forEach(line -> line.createPattern(supplier));
     }
 
-    public List<HorizontalLineStatus> createStatuses() {
+    public List<HorizontalLinePattern> createStatuses() {
         return lines.stream()
                 .map(HorizontalLine::createStatus)
                 .toList();
