@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class HeightTest {
 
-    @DisplayName("사다리의 높이가 0이상 10 이하이면 높이가 잘 생성된다.")
+    @DisplayName("사다리의 높이가 1이상 10 이하이면 높이가 잘 생성된다.")
     @ParameterizedTest
     @ValueSource(ints = {1, 10})
     void validHeight(final int rawHeight) {
@@ -17,7 +17,7 @@ class HeightTest {
         Assertions.assertThat(height.getValue()).isEqualTo(rawHeight);
     }
 
-    @DisplayName("사다리의 높이가 0미만 10 초과이면 예외를 발생시킨다.")
+    @DisplayName("사다리의 높이가 1미만 10 초과이면 예외를 발생시킨다.")
     @ParameterizedTest
     @ValueSource(ints = {0, 11})
     void invalidHeight(final int rawHeight) {
