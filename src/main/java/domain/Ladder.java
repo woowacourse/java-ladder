@@ -8,12 +8,12 @@ public class Ladder {
 
     private final List<HorizontalLine> lines = new ArrayList<>();
 
-    private Ladder(int playerCount, int height) {
-        createLadder(playerCount, height);
+    private Ladder(Players players, LadderHeight height) {
+        createLadder(players, height);
     }
 
-    public static Ladder of(int playerCount, int height) {
-        return new Ladder(playerCount, height);
+    public static Ladder of(Players players, LadderHeight height) {
+        return new Ladder(players, height);
     }
 
     public void drawLines(BooleanSupplier supplier) {
@@ -26,9 +26,12 @@ public class Ladder {
                 .toList();
     }
 
-    private void createLadder(int playerCount, int height) {
-        for (int i = 0; i < height; i++) {
-            lines.add(new HorizontalLine(playerCount));
+    private void createLadder(Players players, LadderHeight height) {
+        int currentFloor = 0;
+        while (!height.hasLengthOf(currentFloor)) {
+            HorizontalLine line = new HorizontalLine(players.size());
+            lines.add(line);
+            currentFloor++;
         }
     }
 }

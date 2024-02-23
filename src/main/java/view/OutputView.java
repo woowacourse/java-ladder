@@ -1,7 +1,6 @@
 package view;
 
 import domain.HorizontalLineStatus;
-import domain.Name;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -26,10 +25,9 @@ public class OutputView {
         System.out.println("실행결과" + System.lineSeparator());
     }
 
-    public void printNames(List<Name> names) {
+    public void printNames(List<String> names) {
         StringJoiner joiner = new StringJoiner(" ");
         names.stream()
-                .map(Name::value)
                 .map(this::formatName)
                 .forEach(joiner::add);
 

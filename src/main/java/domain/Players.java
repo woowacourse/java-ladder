@@ -16,6 +16,16 @@ public class Players {
                 .toList();
     }
 
+    public List<String> getNames() {
+        return names.stream()
+                .map(Name::value)
+                .toList();
+    }
+
+    public int size() {
+        return names.size();
+    }
+
     private void validateSize(List<String> names) {
         if (names.size() < MIN_PLAYERS_SIZE || names.size() > MAX_PLAYERS_SIZE) {
             throw new IllegalArgumentException("참여하는 사람의 수는 2명 이상 10명 이하여야 합니다.");

@@ -1,12 +1,19 @@
 package domain;
 
-public record LadderHeight(int value) {
+public class LadderHeight {
 
     private static final int MIN_HEIGHT = 1;
     private static final int MAX_HEIGHT = 10;
 
-    public LadderHeight {
+    private final int value;
+
+    public LadderHeight(int value) {
         validateHeight(value);
+        this.value = value;
+    }
+
+    public boolean hasLengthOf(int currentFloor) {
+        return currentFloor == value;
     }
 
     private void validateHeight(int height) {
