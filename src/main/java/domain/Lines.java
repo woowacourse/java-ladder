@@ -9,16 +9,16 @@ public class Lines {
 
     private final List<Line> lines;
 
-    public Lines(int playerCount, Height height, PointStrategy pointStrategy) {
-        this.lines = initialize(playerCount, height, pointStrategy);
+    private Lines(List<Line> lines) {
+        this.lines = lines;
     }
 
-    private List<Line> initialize(int playerCount, Height height, PointStrategy pointStrategy) {
+    public static Lines of(int playerCount, Height height, PointStrategy pointStrategy) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height.getValue(); i++) {
-            lines.add(new Line(pointStrategy, playerCount));
+            lines.add(Line.of(pointStrategy, playerCount));
         }
-        return lines;
+        return new Lines(lines);
     }
 
     public List<Line> getLines() {

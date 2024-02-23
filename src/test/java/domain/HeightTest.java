@@ -12,7 +12,7 @@ public class HeightTest {
     @ValueSource(strings = {"1", "20"})
     @DisplayName("사다리 높이 생성 성공: 1부터 20까지 가능")
     void test_ok(String height) {
-        assertThat(new Height(height).getValue())
+        assertThat(Height.from(height).getValue())
                 .isEqualTo(Integer.parseInt(height));
     }
 
@@ -20,7 +20,7 @@ public class HeightTest {
     @ValueSource(strings = {"-1", "0", "21"})
     @DisplayName("사다리 높이 생성 실패: 높이 경계값 -1, 0, 21")
     void test_exception_outOfRange(String height) {
-        assertThatThrownBy(() -> new Height(height))
+        assertThatThrownBy(() -> Height.from(height))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -28,7 +28,7 @@ public class HeightTest {
     @ValueSource(strings = {"a", "1a", "a1"})
     @DisplayName("사다리 높이 생성 실패: 문자 입력 경우")
     void test_exception_nonNumeric(String height) {
-        assertThatThrownBy(() -> new Height(height))
+        assertThatThrownBy(() -> Height.from(height))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

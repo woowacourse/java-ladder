@@ -12,44 +12,53 @@ public class Members {
 
     private final List<Member> members;
 
+    private Members(List<Member> members) {
+        this.members = members;
+    }
+
+    public static Members from(String rawNames) {
+        validate(rawNames);
+        return new Members(initialize(rawNames));
+    }
+
     public Members(String rawNames) {
         validate(rawNames);
         this.members = initialize(rawNames);
     }
 
-    private void validate(String rawNames) {
+    private static void validate(String rawNames) {
         validateNull(rawNames);
         List<String> names = parse(rawNames);
         validateDuplication(names);
         validateCount(names);
     }
 
-    private List<Member> initialize(String rawNames) {
+    private static List<Member> initialize(String rawNames) {
         return parse(rawNames).stream()
-            .map(Member::new)
+            .map(Member::from)
             .toList();
     }
 
-    private void validateNull(String rawNames) {
+    private static void validateNull(String rawNames) {
         if (rawNames == null) {
             throw new IllegalArgumentException("null을 입력할 수 없습니다.");
         }
     }
 
-    private List<String> parse(String rawNames) {
+    private static List<String> parse(String rawNames) {
         return Arrays.stream(rawNames.split(",", -1))
             .map(String::trim)
             .toList();
     }
 
-    private void validateDuplication(List<String> names) {
+    private static void validateDuplication(List<String> names) {
         Set<String> nonDuplicated = new HashSet<>(names);
         if (names.size() != nonDuplicated.size()) {
             throw new IllegalArgumentException("이름은 서로 중복될 수 없습니다.");
         }
     }
 
-    private void validateCount(List<String> names) {
+    private static void validateCount(List<String> names) {
         if (names.size() < MIN_MEMBER_COUNT || names.size() > MAX_MEMBER_COUNT) {
             throw new IllegalArgumentException(
                 "참여자는 " + MIN_MEMBER_COUNT + "~" + MAX_MEMBER_COUNT + "명만 허용됩니다.");

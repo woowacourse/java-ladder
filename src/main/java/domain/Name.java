@@ -8,30 +8,34 @@ public class Name {
 
     private final String name;
 
-    public Name(String name) {
-        validate(name);
+    private Name(String name) {
         this.name = name;
     }
 
-    private void validate(String name) {
+    public static Name from(String name) {
+        validate(name);
+        return new Name(name);
+    }
+
+    private static void validate(String name) {
         validateNull(name);
         validateLength(name);
         validatePattern(name);
     }
 
-    private void validateNull(String name) {
+    private static void validateNull(String name) {
         if (name == null) {
             throw new IllegalArgumentException("이름에 null을 입력할 수 없습니다.");
         }
     }
 
-    private void validateLength(String name) {
+    private static void validateLength(String name) {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(MIN_NAME_LENGTH + "~" + MAX_NAME_LENGTH + "자의 이름만 허용합니다.");
         }
     }
 
-    private void validatePattern(String name) {
+    private static void validatePattern(String name) {
         if (!name.matches(FORMAT_NAME)) {
             throw new IllegalArgumentException("이름은 알파벳과 숫자만 허용합니다.");
         }

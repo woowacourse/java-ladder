@@ -24,7 +24,7 @@ public class GameController {
     public void run() {
         Members members = errorHandler.readUntilNoError(this::makeMembers);
         Lines lines = errorHandler.readUntilNoError(() -> makeLines(members));
-        Game game = new Game(members, lines);
+        Game game = Game.of(members, lines);
         outputView.printResult(game);
     }
 
@@ -35,7 +35,7 @@ public class GameController {
 
     private Lines makeLines(Members members) {
         String rawHeight = inputView.readHeight();
-        Height height = new Height(rawHeight);
-        return new Lines(members.getCount(), height, new RandomPointStrategy());
+        Height height = Height.from(rawHeight);
+        return Lines.of(members.getCount(), height, new RandomPointStrategy());
     }
 }

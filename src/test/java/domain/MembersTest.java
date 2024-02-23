@@ -16,14 +16,14 @@ public class MembersTest {
     @Test
     @DisplayName("참여자들 입력 성공: 사이즈 일치")
     void test_ok_constructor() {
-        Members members = new Members("a,bb,ccc,ddddd");
+        Members members = Members.from("a,bb,ccc,ddddd");
         assertThat(members.getCount()).isEqualTo(4);
     }
 
     @Test
     @DisplayName("참여자들 입력 실패: 중복")
     void test_exception_duplicatedNames() {
-        assertThatThrownBy(() -> new Members("a,b,c,c"))
+        assertThatThrownBy(() -> Members.from("a,b,c,c"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("이름은 서로 중복될 수 없습니다.");
     }
@@ -32,7 +32,7 @@ public class MembersTest {
     @ValueSource(ints = {1, 16})
     @DisplayName("참여자들 입력 실패: 인원수 경계값 - 1, 16")
     void test_exception_memberCount(int amount) {
-        assertThatThrownBy(() -> new Members(makeMemberNamesForTestCase(amount)))
+        assertThatThrownBy(() -> Members.from(makeMemberNamesForTestCase(amount)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("명만 허용됩니다.");
     }
@@ -41,7 +41,7 @@ public class MembersTest {
     @ValueSource(ints = {2, 15})
     @DisplayName("참여자들 입력 성공: 인원수 경계값 - 2, 15")
     void test_ok_memberCount(int amount) {
-        assertThatCode(() -> new Members(makeMemberNamesForTestCase(amount)))
+        assertThatCode(() -> Members.from(makeMemberNamesForTestCase(amount)))
                 .doesNotThrowAnyException();
     }
 
@@ -49,7 +49,7 @@ public class MembersTest {
     @ValueSource(strings = {" a  , b , c ", "a,b,c"})
     @DisplayName("참여자들 입력 성공: 쉼표로 구분 잘 되는지")
     void test_ok_delimiter(String rawNames) {
-        assertThatCode(() -> new Members(rawNames))
+        assertThatCode(() -> Members.from(rawNames))
                 .doesNotThrowAnyException();
     }
 
@@ -57,14 +57,14 @@ public class MembersTest {
     @ValueSource(strings = {",,,a", "a,,,", ",,,", "bb, ,cc"})
     @DisplayName("참여자들 입력 실패: 비정상적인 쉼표 입력")
     void test_exception_delimiter(String rawNames) {
-        assertThatThrownBy(() -> new Members(rawNames))
+        assertThatThrownBy(() -> Members.from(rawNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("참여자들 입력 실패: null 입력")
     void test_exception_null() {
-        assertThatThrownBy(() -> new Members(null))
+        assertThatThrownBy(() -> Members.from(null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("null을 입력할 수 없습니다.");
     }

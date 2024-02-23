@@ -6,24 +6,22 @@ import strategy.PointStrategy;
 
 public class Line {
 
-    private final PointStrategy pointStrategy;
     private final List<Point> points;
 
-    public Line(PointStrategy pointStrategy, int playerCount) {
-        this.pointStrategy = pointStrategy;
-        this.points = initialize(playerCount);
+    private Line(List<Point> points) {
+        this.points = points;
     }
 
-    private List<Point> initialize(int playerCount) {
+    public static Line of(PointStrategy pointStrategy, int playerCount) {
         List<Point> points = new ArrayList<>();
         points.add(pointStrategy.generatePoint());
         for (int i = 1; i < playerCount - 1; i++) {
-            points.add(makeNextPointByPrevious(points.get(i - 1)));
+            points.add(findNextPoint(points.get(i - 1), pointStrategy));
         }
-        return points;
+        return new Line(points);
     }
 
-    private Point makeNextPointByPrevious(Point previous) {
+    private static Point findNextPoint(Point previous, PointStrategy pointStrategy) {
         if (previous.equals(Point.CONNECTED)) {
             return Point.DISCONNECTED;
         }
