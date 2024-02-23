@@ -1,6 +1,5 @@
 package model;
 
-import model.Person;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,6 +12,7 @@ class PersonTest {
         //given
         Person person = new Person("name1");
         Person person2 = new Person("name2");
+
         //when & then
         Assertions.assertThat(person.getName()).isEqualTo("name1");
         Assertions.assertThat(person2.getName()).isEqualTo("name2");

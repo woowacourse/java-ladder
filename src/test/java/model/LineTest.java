@@ -1,8 +1,5 @@
 package model;
 
-
-import model.Direction;
-import model.Line;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,12 +17,14 @@ public class LineTest {
         //given
         Line line=new Line(() -> true, 4);
         line.draw(() -> true, 4);
+
         //when
         List<Boolean> expect=List.of(false, true, false, true);
         List<Boolean> actual = new ArrayList<>();
         for(int i=0;i<4;i++){
             actual.add(line.hasLeftConnectedLine(i));
         }
+
         //then
         Assertions.assertThat(actual).isEqualTo(expect);
     }
@@ -35,9 +34,11 @@ public class LineTest {
         //given
         Line line=new Line(() -> true, 4);
         line.draw(() -> true, 4);
+
         //when
         List<Integer> expect=List.of(0,2);
         List<Integer> actual = line.findHorizontalPosition();
+
         //then
         Assertions.assertThat(expect).isEqualTo(actual);
     }
@@ -47,9 +48,11 @@ public class LineTest {
     void showDirectionTest() {
         //given
         Line line = new Line(() -> true, 4);
+
         //when
         Direction leftDirection = line.showDirection(1);
         Direction rightDirection = line.showDirection(2);
+
         //then
         Assertions.assertThat(leftDirection).isEqualTo(Direction.LEFT);
         Assertions.assertThat(rightDirection).isEqualTo(Direction.RIGHT);

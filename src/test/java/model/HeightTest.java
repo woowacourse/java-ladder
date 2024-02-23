@@ -1,6 +1,5 @@
 package model;
 
-import model.Height;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,6 +11,7 @@ public class HeightTest {
     void heightTest() {
         //given
         Height height = new Height("1");
+
         //when & then
         Assertions.assertThat(height.getHeight()).isEqualTo(1);
     }
