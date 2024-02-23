@@ -2,7 +2,6 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import domain.booleangenerator.BooleanGenerator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,17 +22,5 @@ public class LineTest {
         assertThat(line.getBridgesInformation()).isEqualTo(List.of(true, false, true));
     }
 
-    static class FixedBooleanGenerator implements BooleanGenerator {
-
-        private final boolean value;
-
-        public FixedBooleanGenerator(boolean value) {
-            this.value = value;
-        }
-
-        @Override
-        public boolean generate() {
-            return value;
-        }
-    }
 }
+

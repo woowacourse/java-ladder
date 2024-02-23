@@ -3,7 +3,6 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import domain.LineTest.FixedBooleanGenerator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
