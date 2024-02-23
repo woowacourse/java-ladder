@@ -29,7 +29,7 @@ public class OutputView {
     public static void printPlayerNames(Players players) {
         List<String> names = players.getNames()
                 .stream()
-                .map((name) -> String.format(PLAYER_NAMES_FORMAT, name))
+                .map(name -> String.format(PLAYER_NAMES_FORMAT, name))
                 .toList();
         String result = String.join(PLAYER_NAMES_DELIMITER, names);
         System.out.println(result);
