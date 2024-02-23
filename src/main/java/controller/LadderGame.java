@@ -3,6 +3,7 @@ package controller;
 import exception.Exception;
 import domain.Ladder;
 import domain.Participants;
+import exception.controller.LadderGameExceptionMessage;
 import view.InputView;
 import view.OutputView;
 
@@ -13,20 +14,19 @@ public class LadderGame {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private Participants participants;
-    private Ladder ladder;
 
     public void play() {
         try {
             run();
         } catch (StackOverflowError e) {
-            System.out.println(Exception.EXIT.getExceptionMessage());
+            System.out.println(LadderGameExceptionMessage.EXIT.getExceptionMessage());
         }
     }
 
     private void run() {
+        Ladder ladder = makeLadder();
         participants = recruitParticipants();
-        ladder = makeLadder();
-        outputView.printResult(participants.getParticipantsName(), ladder);
+        outputView.printResult(participants, ladder);
     }
 
     private Participants recruitParticipants() {
