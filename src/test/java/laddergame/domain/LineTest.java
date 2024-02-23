@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
-import laddergame.domain.strategy.CanBuildStrategy;
+import laddergame.domain.strategy.LineBuildStrategy;
 import laddergame.dto.LineBuildResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,14 +34,14 @@ public class LineTest {
         final int position = 1;
         Line line = new Line(personCount);
 
-        CanBuildStrategy canBuildStrategy = new CanBuildStrategy() {
+        LineBuildStrategy lineBuildStrategy = new LineBuildStrategy() {
             @Override
-            public LineBuildResult canBuildBridges(int count) {
+            public LineBuildResult apply(int count) {
                 return new LineBuildResult(List.of(true, false, true));
             }
         };
 
-        LineBuildResult isBridgeBuilt = canBuildStrategy.canBuildBridges(personCount);
+        LineBuildResult isBridgeBuilt = lineBuildStrategy.apply(personCount);
 
         //when
         line.buildBridge(isBridgeBuilt);

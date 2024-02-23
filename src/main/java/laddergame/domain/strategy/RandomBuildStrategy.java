@@ -7,11 +7,11 @@ import laddergame.dto.LineBuildResult;
 import laddergame.util.BooleanGenerator;
 import laddergame.util.RandomBooleanGenerator;
 
-public class RandomBuildStrategy implements CanBuildStrategy {
+public class RandomBuildStrategy implements LineBuildStrategy {
     private final BooleanGenerator generator = RandomBooleanGenerator.getGenerator();
 
     @Override
-    public LineBuildResult canBuildBridges(final int count) {
+    public LineBuildResult apply(final int count) {
         List<Boolean> list = new ArrayList<>();
         list.add(generator.generate());
         IntStream.range(0, count - 1).forEach(i -> addBuildResult(list));

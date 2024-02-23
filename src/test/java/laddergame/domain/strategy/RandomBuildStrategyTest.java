@@ -17,7 +17,7 @@ public class RandomBuildStrategyTest {
         final int count = 4;
 
         //when
-        LineBuildResult canBuildBridges = randomBuildStrategy.canBuildBridges(count);
+        LineBuildResult canBuildBridges = randomBuildStrategy.apply(count);
 
         //then
         assertEquals(canBuildBridges.buildResults().size(), count);
@@ -31,7 +31,7 @@ public class RandomBuildStrategyTest {
         final int count = 5;
 
         //when
-        LineBuildResult canBuildBridges = randomBuildStrategy.canBuildBridges(count);
+        LineBuildResult canBuildBridges = randomBuildStrategy.apply(count);
 
         //then
         for (int i = 0; i < canBuildBridges.buildResults().size() - 1; i++) {

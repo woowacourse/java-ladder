@@ -64,10 +64,10 @@ example feat: 사용자 입력 후 도메인 사용
 - [ ] 테스트코드 indent 2 이상 넘지않게 수정하기
   - [ ] indent를 줄이기 힘들다면 `RandomBuildStrataegy`가 두가지 이상을 제어하고 있는게 아닌지 생각해보기
 - [x] Boolean.TRUE -> primitive type으로 수정
-- [ ] `CanBuildStrategy` 클래스명 변경
+- [x] `CanBuildStrategy` 클래스명 변경
   - 리뷰어님은 `LineBuildStrategy` 추천
-- [ ] `canBuildStrategey`의 `canBuildBridges()` 메소드명이 동어반복 느낌
-  - `canBuildStrategy.apply(int);`을 추천하심
+- [x] `canBuildStrategey`의 `canBuildBridges()` 메소드명이 동어반복 느낌
+  - `lineBuildStrategy.apply(int);`을 추천하심
 - [ ] `RandomBuildStrategy`는 정말 random한 일만 하는가? 이 객체는 하나의 책임만 갖고 있는가? 인터페이스가 잘 설계되었나?
 - [ ] `RandomBooleanGenerator`에서 static final로 선언한 값을 getGenerator로 가져오는 이유가 뭘까?
   - `new RandomBooleanGenerator` 로 사용하면 안되나?
