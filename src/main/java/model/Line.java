@@ -14,7 +14,7 @@ public class Line {
         return points.size();
     }
 
-    public boolean isConnected(int index) {
+    public boolean hasStep(int index) {
         return points.get(index).hasStep();
     }
 
