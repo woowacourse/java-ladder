@@ -28,8 +28,7 @@ public class OutputFormatter {
         String name = player.getName();
         if (name.length() < 5) {
             String leftBlank = SPACE.repeat(4 - name.length());
-            String rightBlank = SPACE;
-            name = leftBlank + name + rightBlank;
+            name = leftBlank + name + SPACE;
         }
         return name + SPACE;
     }
