@@ -14,7 +14,7 @@ public class LadderRow {
 
     public static LadderRow create(BooleanGenerator booleanGenerator, int size) {
         final List<LadderRung> rungs = new ArrayList<>();
-        boolean isLastConnected = LadderRung.NOT_CONNECTED.isConnected();
+        boolean isLastConnected = false;
         for (int i = 0; i < size; i++) {
             LadderRung ladderRung = findNextRung(booleanGenerator, isLastConnected);
             rungs.add(ladderRung);
