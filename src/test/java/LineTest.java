@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LineMakerTest {
+public class LineTest {
     public static final Step EXIST_POINT = Step.EXIST;
     public static final Step EMPTY_POINT = Step.EMPTY;
 
@@ -15,26 +15,26 @@ public class LineMakerTest {
     @Test
     void makeLineExist() {
         // given
-        final LineMaker lineMaker = new LineMaker(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))), new TrueGenerator());
+        final Line line = Line.create(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))), new ExistStepGenerator());
 
         // when & then
-        assertThat(lineMaker.makeLine()).isEqualTo(new Line(List.of(EXIST_POINT, EMPTY_POINT, EMPTY_POINT)));
+        assertThat(line).isEqualTo(new Line(List.of(EXIST_POINT, EMPTY_POINT, EMPTY_POINT)));
     }
 
     @DisplayName("모든 기둥에 발판이 없는 경우를 확인한다.")
     @Test
     void makeLineEmpty() {
         // given
-        final LineMaker lineMaker = new LineMaker(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))), new FalseStepGenerator());
+        final Line line = Line.create(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))), new EmptyStepGenerator());
 
         // when & then
-        assertThat(lineMaker.makeLine()).isEqualTo(new Line(List.of(EMPTY_POINT, EMPTY_POINT, EMPTY_POINT)));
+        assertThat(line).isEqualTo(new Line(List.of(EMPTY_POINT, EMPTY_POINT, EMPTY_POINT)));
     }
 
-    private static class FalseStepGenerator implements StepGenerator {
+    private static class EmptyStepGenerator implements StepGenerator {
         @Override
-        public boolean generate() {
-            return false;
+        public Step generate() {
+            return Step.EMPTY;
         }
     }
 }
