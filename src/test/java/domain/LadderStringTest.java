@@ -30,7 +30,7 @@ class LadderStringTest {
         Ladder ladder = new Ladder(height, width, width1 -> List.of(true));
         String ladderString = LadderString.from(ladder);
 
-        String actual = ladderString.substring(ladderString.length() - 1, ladderString.length());
+        String actual = ladderString.substring(ladderString.length() - 1);
         String expected = "|";
         Assertions.assertThat(actual).isEqualTo(expected);
 
