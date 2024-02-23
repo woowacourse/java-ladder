@@ -7,9 +7,10 @@ import generator.LadderFloorGenerator;
 
 public class Ladder {
 
-	private final List<HorizontalLine> lines = new ArrayList<>();
+	private final List<HorizontalLine> lines;
 
 	private Ladder(int playerCount, int height) {
+		lines = new ArrayList<>();
 		for (int i = 0; i < height; i++) {
 			lines.add(new HorizontalLine(playerCount));
 		}
