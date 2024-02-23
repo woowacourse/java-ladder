@@ -75,7 +75,7 @@ example feat: 사용자 입력 후 도메인 사용
 - [ ] Enum `BridgeSymbol`에서 getSymbol을 static으로 사용한 이유
   - 특정된 symbol 하나만 반환하는 것이 아니라 둘 중 하나의 symbol을 선택해서 반환해야 하기 때문에 사용함
 - [x] InputView, OutputView 생성자 생략 가능
-- [ ] InputView에서 try with resource를 학습하고 적용해보기
+- [x] InputView에서 try with resource를 학습하고 적용해보기
 - [x] InputView의 `,` 상수화
   - [x] 이 외에도 다른 부분에 상수화 할 부분이 있는지 확인하기
 - [x] sout 대신 Line Separator 사용

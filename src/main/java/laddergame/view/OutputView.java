@@ -8,8 +8,8 @@ import laddergame.domain.Player;
 import laddergame.domain.Players;
 
 public class OutputView {
+    public static final String LINE_SEPARATOR = System.lineSeparator();
     private static final String ERROR_PREFIX = "[ERROR] ";
-    private static final String LINE_SEPARATOR = System.lineSeparator();
     private static final String LADDER_SEPARATOR = "|";
     private static final String SPACE = "\t";
 
