@@ -16,6 +16,10 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
+    public int getLadderSize() {
+        return lines.size();
+    }
+
     public List<Line> getLines() {
         return lines;
     }
