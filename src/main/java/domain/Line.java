@@ -36,10 +36,7 @@ public class Line {
     }
 
     private static Bridge createBridge(final Bridge bridgeCandidate, final Bridge previousBridge) {
-        if (bridgeCandidate == Bridge.NO_BRIDGE) {
-            return bridgeCandidate;
-        }
-        if (previousBridge == Bridge.NO_BRIDGE) {
+        if (bridgeCandidate == Bridge.BRIDGE && previousBridge == Bridge.NO_BRIDGE) {
             return bridgeCandidate;
         }
         return Bridge.NO_BRIDGE;
