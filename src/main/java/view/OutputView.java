@@ -41,16 +41,8 @@ public class OutputView {
     private void printLadderLine(final Floor floor, final StringJoiner ladderJoiner) {
         System.out.print("\t");
         for (LadderBridge bridge : floor.getBridges()) {
-            addBridgeValue(bridge, ladderJoiner);
+            ladderJoiner.add(bridge.getValue());
         }
         System.out.println(ladderJoiner);
-    }
-
-    private void addBridgeValue(final LadderBridge bridge, StringJoiner ladderJoiner) {
-        if (bridge.equals(LadderBridge.BRIDGE)) {
-            ladderJoiner.add(bridge.getValue());
-            return;
-        }
-        ladderJoiner.add(bridge.getValue());
     }
 }
