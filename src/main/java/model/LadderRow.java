@@ -5,26 +5,28 @@ import java.util.List;
 
 public class LadderRow {
 
-    private final List<Boolean> lineStatus;
+    private final List<Space> spaces;
 
-    public LadderRow(List<Boolean> lineStatus) {
-        checkContinuousLine(lineStatus);
-        this.lineStatus = new ArrayList<>(lineStatus);
+    public LadderRow(List<Boolean> spaces) {
+        verifyContinuousLine(spaces);
+        this.spaces = spaces.stream()
+                .map(Space::of)
+                .toList();
     }
 
-    public void checkContinuousLine(List<Boolean> lineStatus) {
-        for (int i = 1; i < lineStatus.size(); i++) {
-            removeContinuousLine(lineStatus, i);
+    private void verifyContinuousLine(List<Boolean> spaces) {
+        for (int i = 1; i < spaces.size(); i++) {
+            replaceContinuousLine(spaces, i);
         }
     }
 
-    private void removeContinuousLine(List<Boolean> lineStatus, int index) {
-        if (lineStatus.get(index) && lineStatus.get(index - 1)) {
-            lineStatus.set(index, false);
+    private void replaceContinuousLine(List<Boolean> spaces, int index) {
+        if (spaces.get(index) && spaces.get(index - 1)) {
+            spaces.set(index, false);
         }
     }
 
-    public List<Boolean> getLineStatus() {
-        return lineStatus;
+    public List<Space> getSpaces() {
+        return new ArrayList<>(spaces);
     }
 }

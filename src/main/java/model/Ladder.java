@@ -5,51 +5,31 @@ import java.util.List;
 import java.util.Random;
 
 public class Ladder {
-
-    private static final String NOT_POSITIVE_HEIGHT = "최대 사다리의 높이는 양수가 되어야 합니다";
-    private final int maximumHeight;
     private final List<LadderRow> ladderRows;
 
-    public Ladder(int maximumHeight) {
-        validateHeightIsPositive(maximumHeight);
+    public Ladder() {
         this.ladderRows = new ArrayList<>();
-        this.maximumHeight = maximumHeight;
     }
 
-    private void validateHeightIsPositive(int maximumHeight) {
-        if (maximumHeight < 0) {
-            throw new IllegalArgumentException(NOT_POSITIVE_HEIGHT);
+    public void build(Height height, Participants participants) {
+        for (int i = 0; i < height.getValue(); i++) {
+            ladderRows.add(createOneRow(participants));
         }
     }
 
-    public void build(int participantsSize) {
-        for (int i = 0; i < maximumHeight; i++) {
-            ladderRows.add(buildRow(participantsSize));
+    private LadderRow createOneRow(Participants participants) {
+        List<Boolean> row = new ArrayList<>();
+        for (int i = 1; i < participants.size() - 1; i++) {
+            row.add(new Random().nextBoolean());
         }
-    }
-
-    private LadderRow buildRow(int participantsSize) {
-        List<Boolean> lineStatus = new ArrayList<>();
-        lineStatus.add(new Random().nextBoolean());
-        for (int i = lineStatus.size(); i < participantsSize - 1; i++) {
-            fillLineStatus(lineStatus, new Random().nextBoolean());
-        }
-        return new LadderRow(lineStatus);
-    }
-
-    private void fillLineStatus(List<Boolean> lineStatus, boolean linesOrNoLine) {
-        if (lineStatus.get(lineStatus.size() - 1).equals(true) && linesOrNoLine) {
-            lineStatus.add(false);
-            return;
-        }
-        lineStatus.add(linesOrNoLine);
-    }
-
-    public int height() {
-        return ladderRows.size();
+        return new LadderRow(row);
     }
 
     public LadderRow getRow(int index) {
         return ladderRows.get(index);
+    }
+
+    public List<LadderRow> getLadderRows() {
+        return new ArrayList<>(ladderRows);
     }
 }
