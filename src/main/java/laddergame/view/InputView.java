@@ -12,9 +12,6 @@ public class InputView {
     private static final String MAX_HEIGHT_INPUT = "최대 사다리 높이는 몇 개인가요?";
     private static final String NAME_SEPARATOR = ",";
 
-    public InputView() {
-    }
-
     public List<String> readPlayersName() {
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));

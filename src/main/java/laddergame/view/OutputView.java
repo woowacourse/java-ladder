@@ -14,10 +14,6 @@ public class OutputView {
     private static final String POINT_SPACE = "\t";
     private static final String RESULT_TITLE = System.lineSeparator() + "실행결과" + System.lineSeparator();
 
-    public OutputView() {
-
-    }
-
     public void writePlayersName(final Players players) {
         System.out.println(String.join(POINT_SPACE, players.getPlayers().stream()
                 .map(Player::getName)
