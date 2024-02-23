@@ -2,7 +2,7 @@ package controller;
 
 import domain.Height;
 import domain.Ladder;
-import domain.Players;
+import domain.Names;
 import domain.RandomBridgeGenerator;
 import view.InputView;
 import view.OutputView;
@@ -13,18 +13,18 @@ public class LadderGame {
     private final OutputView outputView = new OutputView();
 
     public void start() {
-        final Players players = new Players(inputView.readNames());
+        final Names names = new Names(inputView.readNames());
         final Height height = new Height(inputView.readHeight());
 
         final RandomBridgeGenerator randomBridgeGenerator = RandomBridgeGenerator.getInstance();
-        final Ladder ladder = Ladder.createByStrategy(randomBridgeGenerator, height.getValue(), players.count());
+        final Ladder ladder = Ladder.createByStrategy(randomBridgeGenerator, height.getValue(), names.count());
 
-        printGameResult(players, ladder);
+        printGameResult(names, ladder);
     }
 
-    private void printGameResult(final Players players, final Ladder ladder) {
+    private void printGameResult(final Names names, final Ladder ladder) {
         outputView.printResultMessage();
-        outputView.printPlayers(players.getNames());
+        outputView.printPlayers(names.getValues());
         outputView.printLadder(ladder.getLines());
     }
 }

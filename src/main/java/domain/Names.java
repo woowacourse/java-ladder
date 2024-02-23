@@ -5,17 +5,17 @@ import util.ExceptionMessages;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Players {
+public class Names {
 
     private static final int MINIMUM_PLAYERS_COUNT = 2;
     private static final int MAXIMUM_PLAYERS_COUNT = 10;
 
-    private final List<Name> names = new ArrayList<>();
+    private final List<Name> values = new ArrayList<>();
 
-    public Players(final List<String> names) {
-        validateNameCount(names.size());
-        for (final String name : names) {
-            this.names.add(new Name(name));
+    public Names(final List<String> values) {
+        validateNameCount(values.size());
+        for (final String name : values) {
+            this.values.add(new Name(name));
         }
     }
 
@@ -26,12 +26,12 @@ public class Players {
     }
 
     public int count() {
-        return names.size();
+        return values.size();
     }
 
-    public List<String> getNames() {
+    public List<String> getValues() {
         final List<String> names = new ArrayList<>();
-        for (final Name name : this.names) {
+        for (final Name name : this.values) {
             names.add(name.getValue());
         }
 

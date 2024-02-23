@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class PlayersTest {
+class NamesTest {
 
     @DisplayName("참가자 수가 2명 이상, 10명 이하이면 참가자 목록이 잘 생성된다.")
     @ParameterizedTest
@@ -20,7 +20,7 @@ class PlayersTest {
             names.add(String.valueOf(i));
         }
         //when
-        final Players players = new Players(names);
+        final Names players = new Names(names);
         //then
         Assertions.assertThat(players.count()).isEqualTo(playerCount);
     }
@@ -35,7 +35,7 @@ class PlayersTest {
             names.add(String.valueOf(i));
         }
         //when & then
-        Assertions.assertThatThrownBy(() -> new Players(names)).isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> new Names(names)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("참가자의 수를 반환한다.")
@@ -44,7 +44,7 @@ class PlayersTest {
         //given
         final List<String> names = List.of("pobi", "honux", "crong", "jk");
         //when
-        final Players players = new Players(names);
+        final Names players = new Names(names);
         int playersCount = players.count();
         //then
         Assertions.assertThat(playersCount).isEqualTo(names.size());
@@ -55,9 +55,9 @@ class PlayersTest {
     void getPlayerNames() {
         //given
         final List<String> names = List.of("pobi", "honux", "crong", "jk");
-        final Players players = new Players(names);
+        final Names players = new Names(names);
         //when
-        List<String> returnedNames = players.getNames();
+        List<String> returnedNames = players.getValues();
         //then
         Assertions.assertThat(returnedNames).containsAll(names);
     }
