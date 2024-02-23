@@ -1,13 +1,13 @@
-package ladder.domain.linegenerator;
+package ladder.domain.connectiongenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RandomLineGenerator implements LineGenerator {
+public class RandomConnectionGenerator implements ConnectionGenerator {
     //TODO 로직 가독성 생각해보기
     //TODO Stream.iterate 생각해보기
     @Override
-    public List<Boolean> getLine(int peopleNumber) {
+    public List<Boolean> getConnection(int peopleNumber) {
 
         List<Boolean> line = new ArrayList<>();
         boolean before = false;

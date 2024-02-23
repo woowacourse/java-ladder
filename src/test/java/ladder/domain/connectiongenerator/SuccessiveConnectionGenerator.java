@@ -1,11 +1,11 @@
-package ladder.domain.linegenerator;
+package ladder.domain.connectiongenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SuccessiveLineGenerator implements LineGenerator {
+public class SuccessiveConnectionGenerator implements ConnectionGenerator {
     @Override
-    public List<Boolean> getLine(int peopleNumber) {
+    public List<Boolean> getConnection(int peopleNumber) {
         List<Boolean> line = new ArrayList<>();
         for (int i = 0; i < peopleNumber - 1; i++) {
             line.add(Boolean.TRUE);

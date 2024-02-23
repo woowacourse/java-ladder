@@ -1,7 +1,7 @@
 package ladder.domain;
 
-import ladder.domain.linegenerator.LineGenerator;
-import ladder.domain.linegenerator.RandomLineGenerator;
+import ladder.domain.connectiongenerator.ConnectionGenerator;
+import ladder.domain.connectiongenerator.RandomConnectionGenerator;
 
 import java.util.Collections;
 import java.util.List;
@@ -14,12 +14,12 @@ public class Ladder {
     private final List<RowLine> rowLines;
 
     public Ladder(int height, int peopleNumber) {
-        this(height, peopleNumber, new RandomLineGenerator());
+        this(height, peopleNumber, new RandomConnectionGenerator());
     }
 
-    public Ladder(int height, int peopleNumber, LineGenerator lineGenerator) {
+    public Ladder(int height, int peopleNumber, ConnectionGenerator connectionGenerator) {
         validateLadderHeight(height);
-        this.rowLines = Stream.generate(() -> new RowLine(peopleNumber, lineGenerator))
+        this.rowLines = Stream.generate(() -> new RowLine(peopleNumber, connectionGenerator))
                 .limit(height)
                 .toList();
     }

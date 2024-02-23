@@ -1,12 +1,12 @@
 package ladder.domain;
 
-import ladder.domain.linegenerator.LineGenerator;
-import ladder.domain.linegenerator.RandomLineGenerator;
+import ladder.domain.connectiongenerator.ConnectionGenerator;
+import ladder.domain.connectiongenerator.RandomConnectionGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import ladder.domain.linegenerator.SuccessiveLineGenerator;
+import ladder.domain.connectiongenerator.SuccessiveConnectionGenerator;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ class RowLineTest {
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 101})
     void peopleNumbersInvalidInput(int peopleNumber) {
-        LineGenerator unsuccesivelineGenerator = new RandomLineGenerator();
+        ConnectionGenerator unsuccesivelineGenerator = new RandomConnectionGenerator();
         assertThrows(IllegalArgumentException.class
                 , () -> {
                     new RowLine(peopleNumber, unsuccesivelineGenerator);
@@ -31,24 +31,24 @@ class RowLineTest {
     void peopleNumbersValidInput() {
         assertDoesNotThrow(
                 () -> {
-                    new RowLine(100, new RandomLineGenerator());
+                    new RowLine(100, new RandomConnectionGenerator());
                 });
     }
 
     @DisplayName("연속된 가로선이 있는 domain.RowLine 객체는 생성되지 않는다")
     @Test
     void successiveRowLineTest() {
-        LineGenerator successiveLineGenerator = new SuccessiveLineGenerator();
+        ConnectionGenerator successiveConnectionGenerator = new SuccessiveConnectionGenerator();
         assertThrows(IllegalArgumentException.class
                 , () -> {
-                    new RowLine(5, successiveLineGenerator);
+                    new RowLine(5, successiveConnectionGenerator);
                 });
     }
 
     @DisplayName("연속된 가로선이 없는 domain.RowLine 객체는 생성할 수 있다")
     @Test
     void unsuccessiveRowLineTest() {
-        LineGenerator unsuccesivelineGenerator = new RandomLineGenerator();
+        ConnectionGenerator unsuccesivelineGenerator = new RandomConnectionGenerator();
         assertDoesNotThrow(
                 () -> {
                     new RowLine(5, unsuccesivelineGenerator);
@@ -59,7 +59,7 @@ class RowLineTest {
     @ParameterizedTest
     @ValueSource(ints = {100, 1, 2})
     void rowLineConnectionSizeTest(int n) {
-        List<Boolean> connection = new RowLine(n, new RandomLineGenerator()).getConnection();
+        List<Boolean> connection = new RowLine(n, new RandomConnectionGenerator()).getConnection();
         assertThat(connection).hasSize(n - 1);
     }
 }

@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.linegenerator.LineGenerator;
+import ladder.domain.connectiongenerator.ConnectionGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,9 +11,9 @@ public class RowLine {
     private static final int MAX_PEOPLE_NUMBER = 100;
     private final List<Boolean> connection = new ArrayList<>();
 
-    public RowLine(int peopleNumber, LineGenerator generator) {
+    public RowLine(int peopleNumber, ConnectionGenerator generator) {
         validatePeopleNumber(peopleNumber);
-        List<Boolean> generatedConnection = generator.getLine(peopleNumber);
+        List<Boolean> generatedConnection = generator.getConnection(peopleNumber);
         validateSuccessiveLine(generatedConnection);
         this.connection.addAll(generatedConnection);
     }
