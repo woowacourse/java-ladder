@@ -14,19 +14,19 @@ public class LadderController {
 
     public void run() {
         Players players = readPlayers();
-        Ladder ladder = readLadder();
+        Ladder ladder = readLadder(players);
         OutputView.printResult(players, ladder);
     }
 
-    private Ladder readLadder() {
+    private Ladder readLadder(Players players) {
         try {
-            return Ladder.from(InputView.readLadderHeight());
+            return Ladder.from(InputView.readLadderHeight(), getWidth(players));
         } catch (NumberFormatException e) {
             System.out.println(INVALID_LADDER_LANGUAGE_EXCEPTION.getMessage());
-            return readLadder();
+            return readLadder(players);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readLadder();
+            return readLadder(players);
         }
     }
 

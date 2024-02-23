@@ -12,7 +12,7 @@ public class LadderTest {
     @DisplayName("사다리 객체를 정상적으로 생성한다.")
     @Test
     void createLadder() {
-        assertThatCode(()->Ladder.from(5))
+        assertThatCode(()->Ladder.from(5,4))
                 .doesNotThrowAnyException();
     }
 }

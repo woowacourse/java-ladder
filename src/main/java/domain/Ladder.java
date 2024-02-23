@@ -8,15 +8,17 @@ import java.util.List;
 public class Ladder {
 
     private final Height height;
+    private final Width width;
     private final List<Line> lines;
 
-    private Ladder(int height) {
+    private Ladder(int height, int width) {
         this.height = new Height(height);
+        this.width = new Width(width);
         this.lines = new ArrayList<>();
     }
 
-    public static Ladder from(int width) {
-        Ladder ladder = new Ladder(width);
+    public static Ladder from(int height, int width) {
+        Ladder ladder = new Ladder(height, width);
         ladder.makeLines(width);
         return ladder;
     }
