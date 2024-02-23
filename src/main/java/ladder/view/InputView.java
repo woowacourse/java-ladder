@@ -26,6 +26,12 @@ public class InputView {
         return parseLadderHeight(input);
     }
 
+    public static List<String> readDestinations(Supplier<String> reader) throws IllegalArgumentException {
+        String input = reader.get();
+        validateEmpty(input);
+        return List.of("test");
+    }
+
     private static void validateEmpty(final String input) throws IllegalArgumentException {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException("공백을 넣을 수 없습니다.");
