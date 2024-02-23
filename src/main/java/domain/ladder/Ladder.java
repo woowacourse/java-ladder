@@ -8,23 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private final Integer playerCount;
+    private final int width;
     private final Height height;
     private final List<LadderLeg> ladderLegs;
 
-    public Ladder(Height height, Integer playerCount, DirectionGenerator directionGenerator) {
+    public Ladder(Height height, int width, DirectionGenerator directionGenerator) {
         this.height = height;
-        this.playerCount = playerCount;
+        this.width = width;
 
         this.ladderLegs = generateFirstToLastLegs(directionGenerator);
     }
 
     private List<LadderLeg> generateFirstToLastLegs(DirectionGenerator directionGenerator) {
         LadderLegGenerator ladderLegGenerator = new LadderLegGenerator(this.height);
-
         List<LadderLeg> generatedLadderLegs = new ArrayList<>();
         LadderLeg ladderLeg = ladderLegGenerator.generateDownLadderLeg();
-        for (int i = 0; i < this.playerCount - 1; i++) {
+        int beforeLastLegPosition = this.width - 1;
+        for (int i = 0; i < beforeLastLegPosition; i++) {
             ladderLeg = ladderLegGenerator.generateLadderLeg(ladderLeg, directionGenerator::generate);
             generatedLadderLegs.add(ladderLeg);
         }
