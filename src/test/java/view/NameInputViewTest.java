@@ -1,5 +1,7 @@
 package view;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import domain.ExceptionType;
 import domain.LadderGameException;
 import org.assertj.core.api.Assertions;
@@ -25,5 +27,23 @@ class NameInputViewTest {
         Assertions.assertThatThrownBy(() -> NameInputView.getNames(() -> "a,b,c,d,e,f,g,h,i,j,k"))
                 .isInstanceOf(LadderGameException.class)
                 .hasMessage(ExceptionType.NAMES_COUNT.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "abcdef,a"})
+    @DisplayName("사람 이름 길이 검증")
+    void validateNameLength(String name) {
+        assertThatThrownBy(() -> NameInputView.getNames(() -> name))
+                .isInstanceOf(LadderGameException.class)
+                .hasMessage(ExceptionType.NAME_LENGTH_RANGE.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"12345,a", "!@#$%,a", "가나다라마,a"})
+    @DisplayName("사람 이름 구성 문자 검증")
+    void validateNameCharacters(String name) {
+        assertThatThrownBy(() -> NameInputView.getNames(() -> name))
+                .isInstanceOf(LadderGameException.class)
+                .hasMessage(ExceptionType.NAME_CHARACTER.getMessage());
     }
 }
