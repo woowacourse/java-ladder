@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.dto.LineResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,9 +14,10 @@ public class LineTest {
     @Test
     void createLine() {
         final Line line = new Line(() -> true, 4);
+        final LineResult lineResult = LineResult.of(line);
         final int expected = 4 - 1;
 
-        assertThat(line.getLineResult().value().size())
+        assertThat(lineResult.value().size())
                 .isEqualTo(expected);
     }
 
@@ -23,8 +25,9 @@ public class LineTest {
     @Test
     void notExistBetweenNextAndCurrent() {
         final Line line = new Line(() -> true, 4);
+        final LineResult lineResult = LineResult.of(line);
 
-        assertThat(line.getLineResult().value().get(1))
+        assertThat(lineResult.value().get(1))
                 .isEqualTo(NONE);
     }
 
@@ -32,8 +35,9 @@ public class LineTest {
     @Test
     void getLineResult() {
         final Line line = new Line(() -> true, 4);
+        final LineResult lineResult = LineResult.of(line);
 
-        assertThat(line.getLineResult().value())
+        assertThat(lineResult.value())
                 .containsExactly(EXIST, NONE, EXIST);
     }
 }

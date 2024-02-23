@@ -28,7 +28,7 @@ public class Lines {
 
     public List<LineResult> getLineResults() {
         return lines.stream()
-                .map(Line::getLineResult)
+                .map(LineResult::of)
                 .toList();
     }
 }

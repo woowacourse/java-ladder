@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.dto.LineResult;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
@@ -33,7 +31,7 @@ public class Line {
         return StepStatus.getStepStatus(randomBooleanGenerator.get());
     }
 
-    public LineResult getLineResult() {
-        return new LineResult(unmodifiableList(stepStatuses));
+    public List<StepStatus> getStepStatuses() {
+        return unmodifiableList(stepStatuses);
     }
 }
