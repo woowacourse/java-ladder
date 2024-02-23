@@ -12,6 +12,11 @@ public class OutputView {
     private static final String LADDER_RUNG_EMPTY = "     ";
     private static final String LADDER_RUNG_EXIST = "-----";
     private static final String LADDER_SIDE_RAIL = "|";
+    private static final String ERROR_PREFIX = "[ERROR]";
+
+    public void printErrorMessage(String message) {
+        System.out.printf("%s %s%n", ERROR_PREFIX, message);
+    }
 
     public void printLadderResultMessage() {
         System.out.println();

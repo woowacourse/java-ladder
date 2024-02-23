@@ -1,6 +1,7 @@
 package ladder.controller;
 
 import java.util.List;
+import java.util.function.Supplier;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.generator.RungGenerator;
@@ -22,8 +23,8 @@ public class LadderController {
     }
 
     public void run() {
-        Players players = initPlayers();
-        LadderHeight ladderHeight = initLadderHeight();
+        Players players = retryOnException(this::initPlayers);
+        LadderHeight ladderHeight = retryOnException(this::initLadderHeight);
 
         Ladder ladder = new Ladder(players.getSize(), ladderHeight, rungGenerator);
 
@@ -46,5 +47,15 @@ public class LadderController {
         outputView.printLadderResultMessage();
         outputView.printPlayerNames(PlayersResponse.from(players));
         outputView.printLadder(LadderResponse.from(ladder));
+    }
+
+    private <T> T retryOnException(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }
