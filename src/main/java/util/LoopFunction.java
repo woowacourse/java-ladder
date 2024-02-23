@@ -5,6 +5,8 @@ import java.util.stream.Stream;
 
 public class LoopFunction<T> {
 
+    private static final String ERROR_PREFIX = "[ERROR] ";
+
     private final Supplier<T> function;
 
     private T returnValue = null;
@@ -27,7 +29,7 @@ public class LoopFunction<T> {
             T returnValue = loopFunction.invoke();
             loopFunction.setReturnValue(returnValue);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(ERROR_PREFIX + e.getMessage());
         }
         return loopFunction;
     }
