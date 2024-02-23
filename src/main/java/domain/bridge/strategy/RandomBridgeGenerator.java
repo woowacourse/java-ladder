@@ -14,25 +14,24 @@ public class RandomBridgeGenerator implements BridgeGenerator {
     public List<LadderBridge> generate(int pointCount) {
         List<LadderBridge> bridges = new ArrayList<>(pointCount);
         for (int i = 0; i < pointCount; i++) {
-            addPoint(i, bridges, LadderBridge.getByExist(random.nextBoolean()));
+            addBridge(i, bridges, LadderBridge.getByExist(random.nextBoolean()));
         }
 
         return bridges;
     }
 
-    private void addPoint(int index, List<LadderBridge> points, LadderBridge now) {
+    private void addBridge(int index, List<LadderBridge> bridge, LadderBridge now) {
         if (index == 0) {
-            points.add(now);
+            bridge.add(now);
             return;
         }
-        points.add(generatePoint(now, points.get(index - 1)));
+        bridge.add(generate(bridge.get(index - 1)));
     }
 
-    private LadderBridge generatePoint(LadderBridge now, LadderBridge before) {
-        while (now.equals(LadderBridge.BRIDGE) && before.equals(LadderBridge.BRIDGE)) {
-            now = LadderBridge.getByExist(random.nextBoolean());
+    private LadderBridge generate(LadderBridge before) {
+        if(before.equals(LadderBridge.BRIDGE)) {
+            return LadderBridge.NONE;
         }
-
-        return now;
+        return LadderBridge.getByExist(random.nextBoolean());
     }
 }
