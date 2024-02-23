@@ -12,7 +12,7 @@ public class OutputView {
 
 
     public static void printResult(final Names names, final Ladder ladder) {
-        System.out.println("실행 결과\n");
+        System.out.println("\n실행 결과");
 
         printPlayers(names.names());
         printLadder(ladder);
