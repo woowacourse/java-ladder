@@ -1,10 +1,9 @@
 package domain;
 
 import util.Generator;
-import util.LadderString;
+import util.LadderBuilder;
 import util.RandomGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
@@ -29,13 +28,6 @@ public class LadderGame {
     }
 
     public List<String> getResult() {
-        StringBuilder nameResult = new StringBuilder();
-        for (Name player : players) {
-            nameResult.append(String.format("%6s", player.getName()));
-        }
-        List<String> results = new ArrayList<>();
-        results.add(nameResult.toString());
-        results.addAll(LadderString.from(ladder));
-        return results;
+        return LadderBuilder.getResult(players, ladder);
     }
 }
