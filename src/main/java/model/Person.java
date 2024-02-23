@@ -1,24 +1,17 @@
 package model;
 
 public class Person {
-    private static final int MIN_NAME_LENGTH = 1;
-    private static final int MAX_NAME_LENGTH = 5;
+    private final PersonName personName;
 
-    private final String name;
-
-    public Person(final String name) {
-        validateNameLength(name);
-        this.name = name;
+    private Person(final PersonName personName) {
+        this.personName = personName;
     }
 
-    private void validateNameLength(final String name) {
-        final int length = name.length();
-        if (length < MIN_NAME_LENGTH || length > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름은 최소 1글자 최대 5글자여야 합니다.");
-        }
+    public static Person from(final String name) {
+        return new Person(new PersonName(name));
     }
 
     public String getName() {
-        return name;
+        return personName.name();
     }
 }

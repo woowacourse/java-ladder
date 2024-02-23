@@ -14,15 +14,14 @@ class PersonTest {
     @Test
     void createPerson() {
         String name = "moly";
-        PersonName personName = new PersonName(name);
-        Person person = new Person(personName);
+        Person person = Person.from(name);
         assertThat(person.getName()).isEqualTo(name);
     }
 
     @ParameterizedTest(name = "이름은 최소 1글자 최대 5글자다.")
     @ValueSource(strings = {"", "mollly"})
     void createPersonThrowExceptionWhenInvalidNameLength(String name) {
-        assertThatThrownBy(() -> new Person(new PersonName(name)))
+        assertThatThrownBy(() -> Person.from(name))
                 .isExactlyInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 최소 1글자 최대 5글자여야 합니다.");
     }

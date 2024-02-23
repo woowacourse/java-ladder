@@ -20,7 +20,7 @@ public class People {
 
     public static People from(final List<String> names) {
         final List<Person> personGroup = names.stream()
-                .map(Person::new)
+                .map(Person::from)
                 .toList();
         return new People(personGroup);
     }
