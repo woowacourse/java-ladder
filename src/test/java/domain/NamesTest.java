@@ -24,10 +24,13 @@ class NamesTest {
                 .hasMessage(ExceptionType.NAMES_SEPARATOR.getMessage());
     }
 
-    @Test
-    @DisplayName("사람이름 개수 검사")
-    void validateNameCount() {
-        Assertions.assertThatThrownBy(() -> new Names("a,b,c,d,e,f,g,h,i,j,k"))
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "a,b,c,d,e,f,g,h,i,j,k",
+            "a"})
+    @DisplayName("참여자 이름 개수가 부적절하면 예외가 발생한다.")
+    void validateNameCount(String names) {
+        Assertions.assertThatThrownBy(() -> new Names(names))
                 .isInstanceOf(LadderGameException.class)
                 .hasMessage(ExceptionType.NAMES_COUNT.getMessage());
     }

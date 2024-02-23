@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Names {
     static final int MAX_NAMES_COUNT = 10;
+    static final int MIN_NAMES_COUNT = 2;
     private static final String SEPARATOR = ",";
     private final List<Name> names;
 
@@ -29,7 +30,7 @@ public class Names {
     }
 
     private void validateNameCount(List<String> splitNames) {
-        if (splitNames.size() > MAX_NAMES_COUNT) {
+        if (splitNames.size() < MIN_NAMES_COUNT || splitNames.size() > MAX_NAMES_COUNT) {
             throw new LadderGameException(ExceptionType.NAMES_COUNT);
         }
     }
