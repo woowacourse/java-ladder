@@ -12,10 +12,10 @@ import java.util.List;
 import view.InputView;
 import view.OutputView;
 
-public class LadderGame {
+public class LadderController {
     private final BooleanGenerator booleanGenerator;
 
-    public LadderGame(BooleanGenerator booleanGenerator) {
+    public LadderController(BooleanGenerator booleanGenerator) {
         this.booleanGenerator = booleanGenerator;
     }
 
