@@ -1,5 +1,5 @@
 import domain.*;
-import mock.TrueGenerator;
+import mock.ExistStepGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,14 +9,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineMakerTest {
 
-    private static final Point EXIST_POINT = new Point(Step.EXIST);
-    private static final Point EMPTY_POINT = new Point(Step.EMPTY);
+    private static final Step EXIST_POINT = Step.EXIST;
+    private static final Step EMPTY_POINT = Step.EMPTY;
 
     @DisplayName("앞에 다리가 생성되면 연결된 다음 다리는 발판이 없어야 하고, 마지막 다리는 발판이 없어야 한다.")
     @Test
     void makeLineExist() {
         //given
-        final LineMaker lineMaker = new LineMaker(PlayerCount.from(3), new TrueGenerator());
+        final LineMaker lineMaker = new LineMaker(PlayerCount.from(3), new ExistStepGenerator());
 
         //when & then
         assertThat(lineMaker.makeLine()).isEqualTo(new Line(List.of(EXIST_POINT, EMPTY_POINT, EMPTY_POINT)));
@@ -26,18 +26,18 @@ public class LineMakerTest {
     @Test
     void makeLineEmpty() {
         //given
-        final BooleanGenerator falseBooleanGenerator = new FalseBooleanGenerator();
-        final LineMaker lineMaker = new LineMaker(PlayerCount.from(3), falseBooleanGenerator);
+        final StepGenerator emptyStepGenerator = new EmptyStepGenerator();
+        final LineMaker lineMaker = new LineMaker(PlayerCount.from(3), emptyStepGenerator);
 
         //when & then
         assertThat(lineMaker.makeLine()).isEqualTo(new Line(List.of(EMPTY_POINT, EMPTY_POINT, EMPTY_POINT)));
     }
 
-    private static class FalseBooleanGenerator implements BooleanGenerator {
+    private static class EmptyStepGenerator implements StepGenerator {
 
         @Override
-        public boolean generate() {
-            return false;
+        public Step generate() {
+            return Step.EMPTY;
         }
     }
 }

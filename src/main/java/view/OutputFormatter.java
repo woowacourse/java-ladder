@@ -3,7 +3,6 @@ package view;
 import domain.Line;
 import domain.Player;
 import domain.Players;
-import domain.Point;
 import domain.Step;
 import java.util.stream.Collectors;
 
@@ -28,14 +27,14 @@ public class OutputFormatter {
     }
 
     public String toLine(Line rawLine) {
-        String line = rawLine.getPoints().stream()
+        String line = rawLine.getSteps().stream()
                 .map(this::getStep)
                 .collect(Collectors.joining());
         return "    " + line;
     }
 
-    private String getStep(Point point) {
-        if (point.getStep().equals(Step.EXIST)) {
+    private String getStep(Step step) {
+        if (step.equals(Step.EXIST)) {
             return BAR + "-----";
         }
         return BAR + "     ";

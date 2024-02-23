@@ -13,7 +13,7 @@ public class LadderMaker {
     }
 
     public static LadderMaker of(Height height, PlayerCount playerCount) {
-        return new LadderMaker(height, new LineMaker(playerCount, new RandomBooleanGenerator()));
+        return new LadderMaker(height, new LineMaker(playerCount, new RandomStepGenerator()));
     }
 
     public Ladder makeLadder() {
