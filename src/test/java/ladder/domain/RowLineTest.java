@@ -1,13 +1,12 @@
-package test;
+package ladder.domain;
 
-import ladder.domain.RowLine;
 import ladder.domain.linegenerator.LineGenerator;
 import ladder.domain.linegenerator.RandomLineGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import test.linegenerator.SuccessiveLineGenerator;
+import ladder.domain.linegenerator.SuccessiveLineGenerator;
 
 import java.util.List;
 

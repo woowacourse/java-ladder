@@ -1,6 +1,4 @@
-package test.linegenerator;
-
-import ladder.domain.linegenerator.LineGenerator;
+package ladder.domain.linegenerator;
 
 import java.util.ArrayList;
 import java.util.List;

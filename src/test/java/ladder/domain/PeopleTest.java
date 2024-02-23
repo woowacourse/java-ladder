@@ -1,4 +1,4 @@
-package test;
+package ladder.domain;
 
 import ladder.domain.People;
 import org.junit.jupiter.api.DisplayName;
