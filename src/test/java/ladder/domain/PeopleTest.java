@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PeopleTest {
 
-    @DisplayName("참여자 이름에 예외적인 입력값이 들어왔을 때, domain.People 객체를 생성할 수 없다.")
+    @DisplayName("참여자 이름에 예외적인 입력값이 들어왔을 때, People 객체를 생성할 수 없다.")
     @ParameterizedTest
     @ValueSource(strings = {"abcdef", "a@", ""})
     void peopleNamesInvalidInput(String invalidName) {
