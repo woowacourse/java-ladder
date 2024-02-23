@@ -12,15 +12,15 @@ public class NonContinuousLineGenerator implements RowLineGenerator {
         List<ConnectionStatus> connections = new ArrayList<>();
         ConnectionStatus previousStatus = DISCONNECTED;
         for (int i = 0; i < personCount - 1; i++) {
-            ConnectionStatus decideByPrev = decideCurrentStatus(previousStatus);
-            connections.add(decideByPrev);
-            previousStatus = decideByPrev;
+            ConnectionStatus decidedCurrentStatus = decideCurrentStatus(previousStatus);
+            connections.add(decidedCurrentStatus);
+            previousStatus = decidedCurrentStatus;
         }
         return new RowLine(connections);
     }
 
-    ConnectionStatus decideCurrentStatus(ConnectionStatus prev) {
-        if (prev.isConnect()) {
+    ConnectionStatus decideCurrentStatus(ConnectionStatus previousStatus) {
+        if (previousStatus.isConnect()) {
             return DISCONNECTED;
         }
         return RandomElementSelector.selectRandomConstant(ConnectionStatus.class);
