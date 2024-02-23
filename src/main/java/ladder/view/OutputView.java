@@ -35,7 +35,10 @@ public class OutputView {
 
     private static void printPeopleNames(People people) {
         StringJoiner joiner = new StringJoiner(PEOPLE_NAMES_DELIMITER);
-        people.getNames().forEach(name -> joiner.add(String.format(LADDER_FORMAT, name)));
+        for (String name : people.getNames()) {
+            joiner.add(String.format(LADDER_FORMAT, name));
+        }
+
         System.out.println(joiner);
     }
 
@@ -45,7 +48,10 @@ public class OutputView {
 
     private static void printLine(List<Boolean> line) {
         StringJoiner joiner = new StringJoiner(LINE_PILLAR, LINE_PREFIX, LINE_PILLAR);
-        line.forEach(exist -> joiner.add(selectScaffold(exist)));
+        for (Boolean exist : line) {
+            joiner.add(selectScaffold(exist));
+        }
+
         System.out.println(joiner);
     }
 

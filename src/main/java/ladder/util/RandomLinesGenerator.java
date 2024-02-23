@@ -23,7 +23,9 @@ public class RandomLinesGenerator {
     private static List<Boolean> generateRandomLine(int count) {
         List<Boolean> line = new ArrayList<>(Collections.nCopies(count, false));
 
-        shuffleOrder(count).forEach(index -> generateRandomScaffold(line, index));
+        for (int index : shuffleOrder(count)) {
+            generateRandomScaffold(line, index);
+        }
 
         return Collections.unmodifiableList(line);
     }
