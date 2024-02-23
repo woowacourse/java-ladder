@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -12,9 +13,10 @@ public class Ladder {
     }
 
     public static Ladder createFrom(RowLineGenerator rowLineGenerator, Integer personCount, Height height) {
-        List<RowLine> lines = IntStream.range(0, height.getHeight())
-                .mapToObj(i -> rowLineGenerator.generate(personCount))
-                .toList();
+        List<RowLine> lines = new ArrayList<>();
+        for (int i = 0; i < height.getHeight(); i++) {
+            lines.add(rowLineGenerator.generate(personCount));
+        }
         return new Ladder(lines);
     }
 
