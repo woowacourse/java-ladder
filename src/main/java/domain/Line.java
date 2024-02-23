@@ -1,19 +1,26 @@
 package domain;
 
+import util.generator.BooleanGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
-import util.RandomGenerator;
 
 public class Line {
 
     private final List<Leg> legs;
 
-    public Line() {
+    private Line() {
         legs = new ArrayList<>();
     }
 
-    public void makeLeg(int legCount) {
-        legs.add(Leg.from(generateLegRandomly()));
+    public static Line of(int legCount, BooleanGenerator booleanGenerator) {
+        Line line = new Line();
+        line.makeLeg(legCount, booleanGenerator);
+        return line;
+    }
+
+    private void makeLeg(int legCount, BooleanGenerator booleanGenerator) {
+        legs.add(Leg.from(booleanGenerator.generate()));
         for (int i = 1; i < legCount; i++) {
             decideLegExist(i);
         }
@@ -25,10 +32,6 @@ public class Line {
             return;
         }
         legs.add(Leg.from(true));
-    }
-
-    protected boolean generateLegRandomly() {
-        return RandomGenerator.generateRandomBoolean();
     }
 
     public List<Leg> getLegs() {

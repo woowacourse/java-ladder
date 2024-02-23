@@ -1,5 +1,7 @@
 package domain;
 
+import util.generator.RandomBooleanGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +17,7 @@ public class Ladder {
 
     public void makeLines(int width) {
         for (int i = 0; i < height.getHeight(); i++) {
-            Line line = new Line();
-            line.makeLeg(width);
-            lines.add(line);
+            lines.add(Line.of(width, new RandomBooleanGenerator()));
         }
     }
 
