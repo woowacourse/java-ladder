@@ -1,43 +1,19 @@
 package domain;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Names {
-    static final int MAX_NAMES_COUNT = 10;
-    private static final String SEPARATOR = ",";
     private final List<Name> names;
 
-    Names(String names) {
-        validateSeparator(names);
-        List<String> splitNames = splitName(names);
-        validateDuplicateName(splitNames);
-        validateNameCount(splitNames);
-        this.names = splitNames.stream().map(Name::new).toList();
-    }
-
-    private static List<String> splitName(String names) {
-        return Arrays.stream(names.split(SEPARATOR)).toList();
-    }
-
-    private static void validateNameCount(List<String> splitNames) {
-        if (splitNames.size() > MAX_NAMES_COUNT) {
-            throw new LadderGameException(ExceptionType.NAMES_COUNT);
-        }
+    Names(List<String> names) {
+        validateDuplicateName(names);
+        this.names = names.stream().map(Name::new).toList();
     }
 
     private void validateDuplicateName(List<String> splitNames) {
         long distinctCount = splitNames.stream().distinct().count();
         if (distinctCount != splitNames.size()) {
             throw new LadderGameException(ExceptionType.NAMES_DUPLICATE);
-        }
-    }
-
-    private void validateSeparator(String names) {
-        boolean startsWith = names.startsWith(SEPARATOR);
-        boolean endsWith = names.endsWith(SEPARATOR);
-        if (startsWith || endsWith) {
-            throw new LadderGameException(ExceptionType.NAMES_SEPARATOR);
         }
     }
 
