@@ -1,5 +1,6 @@
 package view;
 
+import domain.Bridge;
 import domain.Ladder;
 import domain.Line;
 import domain.Name;
@@ -8,9 +9,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private static final String LADDER_LEFT_SIDE = "     |";
-    private static final String BRIDGE_EXIST = "-----|";
-    private static final String BRIDGE_EMPTY = "     |";
+    private static final int SINGLE_BRIDGE_LENGTH = 5;
+    private static final String BRIDGE_SEPARATOR = "|";
+    private static final String BRIDGE_LEFT_MARGIN = "     ";
 
 
     public static void printResult(final List<Name> names, final Ladder ladder) {
@@ -21,32 +22,29 @@ public class OutputView {
     }
 
     private static void printPlayers(final List<Name> names) {
-        System.out.println(joinNames(names));
+        System.out.println(makePlayersNameMessage(names));
     }
 
-    private static String joinNames(final List<Name> names) {
+    private static String makePlayersNameMessage(final List<Name> names) {
         return names.stream()
                 .map(name -> String.format("%6s", name.name()))
                 .collect(Collectors.joining());
     }
 
     private static void printLadder(final Ladder ladder) {
-        ladder.getLines().forEach(line -> {
-            System.out.print(LADDER_LEFT_SIDE);
-            System.out.println(joinSingleLine(line));
-        });
+        ladder.getLines().stream()
+                .map(OutputView::makeLineMessage)
+                .forEach(System.out::println);
     }
 
-    private static String joinSingleLine(final Line line) {
-        return line.getBridges().stream()
-                .map(OutputView::getBridgeSymbol)
-                .collect(Collectors.joining());
+    private static String makeLineMessage(final Line line) {
+        return BRIDGE_LEFT_MARGIN +
+                line.getBridges().stream()
+                        .map(OutputView::makeBridgeMessage)
+                        .collect(Collectors.joining(BRIDGE_SEPARATOR, BRIDGE_SEPARATOR, BRIDGE_SEPARATOR));
     }
 
-    private static String getBridgeSymbol(Boolean bridge) {
-        if (bridge) {
-            return BRIDGE_EXIST;
-        }
-        return BRIDGE_EMPTY;
+    private static String makeBridgeMessage(Bridge bridge) {
+        return bridge.getSymbol().repeat(SINGLE_BRIDGE_LENGTH);
     }
 }

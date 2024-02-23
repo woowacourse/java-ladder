@@ -15,23 +15,12 @@ public class LineTest {
         int width = 5;
 
         Line line = new Line(width);
-        List<Boolean> bridges = line.getBridges();
+        List<Bridge> bridges = line.getBridges();
 
         for (int current = 1; current < bridges.size(); current++) {
-            Boolean beforeBridge = bridges.get(current - 1);
-            Boolean currentBridge = bridges.get(current);
-            assertThat(beforeBridge && currentBridge).isFalse();
+            Bridge beforeBridge = bridges.get(current - 1);
+            Bridge currentBridge = bridges.get(current);
+            assertThat(beforeBridge.isExist() && currentBridge.isExist()).isFalse();
         }
-    }
-
-    @Test
-    @DisplayName("너비가 0일 때 라인이 안 만들어지는가")
-    void non_adjacent_line_with_zero_width_created() {
-        int width = 0;
-
-        Line line = new Line(width);
-        List<Boolean> bridges = line.getBridges();
-
-        assertThat(bridges).isEqualTo(List.of());
     }
 }

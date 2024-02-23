@@ -1,41 +1,52 @@
 package domain;
 
-import java.util.*;
-import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Line {
+    private static final int MIN_HEIGHT = 1;
+    private static final int MAX_HEIGHT = 10;
+
     private static final Random random = new Random();
-    private final List<Boolean> bridges;
+    private final List<Bridge> bridges = new ArrayList<>();
 
     public Line(final int width) {
-        bridges = generateLine(width);
+        validateWidth(width);
+        generateLine(width);
     }
 
-    public List<Boolean> getBridges() {
-        return bridges;
+    public List<Bridge> getBridges() {
+        return this.bridges;
     }
 
-    private List<Boolean> generateLine(final int width) {
-        List<Boolean> bridges = IntStream.range(0, width)
-                .mapToObj(ignore -> random.nextBoolean())
-                .toList();
-        return filterAdjacentBridges(bridges);
-    }
-
-    private List<Boolean> filterAdjacentBridges(final List<Boolean> bridges) {
-        List<Boolean> filteredBridges = new ArrayList<>();
-        for (int current = 1; current < bridges.size(); current++) {
-            Boolean beforeBridge = bridges.get(current - 1);
-            Boolean currentBridge = bridges.get(current);
-            filteredBridges.add(removeBridgeIfAdjacent(beforeBridge, currentBridge));
+    private void validateWidth(final int width) {
+        if (MIN_HEIGHT > width || width > MAX_HEIGHT) {
+            throw new IllegalArgumentException(String.format("높이는 %d 이상 %d 이하로 입력해 주세요.",
+                    MIN_HEIGHT, MAX_HEIGHT));
         }
-        return filteredBridges;
     }
 
-    private boolean removeBridgeIfAdjacent(final Boolean before, final Boolean current) {
-        if (before && current) {
+    private void generateLine(final int width) {
+        for (int i = 0; i < width; i++) {
+            bridges.add(generateBridgeOne());
+        }
+    }
+
+    private Bridge generateBridgeOne() {
+        if (doesLastBridgeExist()) {
+            return Bridge.EMPTY;
+        }
+        if (random.nextBoolean()) {
+            return Bridge.EXIST;
+        }
+        return Bridge.EMPTY;
+    }
+
+    private boolean doesLastBridgeExist() {
+        if (this.bridges.size() == 0) {
             return false;
         }
-        return current;
+        return Bridge.EXIST == this.bridges.get(this.bridges.size() - 1);
     }
 }
