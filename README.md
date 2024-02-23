@@ -76,8 +76,8 @@ example feat: 사용자 입력 후 도메인 사용
   - 특정된 symbol 하나만 반환하는 것이 아니라 둘 중 하나의 symbol을 선택해서 반환해야 하기 때문에 사용함
 - [ ] InputView 생성자 생략 가능
 - [ ] InputView에서 try with resource를 학습하고 적용해보기
-- [ ] InputView의 `,` 상수화
-  - [ ] 이 외에도 다른 부분에 상수화 할 부분이 있는지 확인하기
+- [x] InputView의 `,` 상수화
+  - [x] 이 외에도 다른 부분에 상수화 할 부분이 있는지 확인하기
 - [ ] sout 대신 Line Separator 사용
 - [ ] Height 클래스에서 정규식 패턴을 계속 비교하는 대신 
   - `private static final Pattern NUMBER_PATTERN = Pattern.compile("^[\\d]*$");`사용

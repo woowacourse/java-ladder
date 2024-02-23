@@ -9,6 +9,9 @@ import laddergame.domain.Players;
 
 public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String LINE_SEPARATOR = System.lineSeparator();
+    private static final String LADDER_SEPARATOR = "|";
+    private static final String SPACE = "\t";
 
     public OutputView() {
 
@@ -26,7 +29,7 @@ public class OutputView {
     }
 
     private void writeLine(final Line line) {
-        StringJoiner stringJoiner = new StringJoiner("|", "\t|", "|");
+        StringJoiner stringJoiner = new StringJoiner(LADDER_SEPARATOR, SPACE + LADDER_SEPARATOR, LADDER_SEPARATOR);
         for (Boolean point : line.getPoints()) {
             stringJoiner.add(BridgeSymbol.getSymbol(point));
         }
@@ -34,9 +37,7 @@ public class OutputView {
     }
 
     public void writeResultTitle() {
-        System.out.println();
-        System.out.println("실행결과");
-        System.out.println();
+        System.out.println(LINE_SEPARATOR + "실행결과" + LINE_SEPARATOR);
     }
 
     public static void writeErrorMessage(final String message) {
