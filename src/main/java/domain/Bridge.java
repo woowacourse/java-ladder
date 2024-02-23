@@ -3,13 +3,12 @@ package domain;
 import java.util.Objects;
 
 public class Bridge {
+
     private final int rail;
     private final int height;
 
     public Bridge(final int rail, final int height) {
-        if (rail < 0 || height < 0) {
-            throw new IllegalArgumentException("잘못된 연결을 하면 예외가 발생한다");
-        }
+        validationNegativeInteger(rail, height);
 
         this.rail = rail;
         this.height = height;
@@ -21,6 +20,12 @@ public class Bridge {
         }
 
         return rail + 1 == bridge.rail || rail - 1 == bridge.rail;
+    }
+
+    private static void validationNegativeInteger(int rail, int height) {
+        if (rail < 0 || height < 0) {
+            throw new IllegalArgumentException("잘못된 연결을 하면 예외가 발생한다");
+        }
     }
 
     @Override
