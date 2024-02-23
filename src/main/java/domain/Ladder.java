@@ -1,21 +1,22 @@
 package domain;
 
 import domain.booleangenerator.BooleanGenerator;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
 
     public Ladder(Players players, Height height, BooleanGenerator booleanGenerator) {
-        while (height.isRemain()) {
-            lines.add(new Line(players.getTotalPlayerSize(), booleanGenerator));
-            height.decrease();
-        }
+        this.lines = IntStream.range(0, height.getHeight())
+                .mapToObj(number -> new Line(players.getTotalPlayerSize(), booleanGenerator))
+                .collect(Collectors.toList());
     }
 
     public List<Line> getLines() {
-        return this.lines;
+        return Collections.unmodifiableList(this.lines);
     }
 }
