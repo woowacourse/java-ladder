@@ -12,11 +12,11 @@ public class Line2 {
         this.steps = steps;
     }
 
-    public static Line of(PlayerCount playerCount, RandomBooleanGenerator randomBooleanGenerator) {
+    public static Line of(PlayerCount playerCount, RandomStepGenerator randomBooleanGenerator) {
         return new Line(makeLine(playerCount, randomBooleanGenerator));
     }
 
-    public static List<Step> makeLine(PlayerCount playerCount, RandomBooleanGenerator randomBooleanGenerator) {
+    public static List<Step> makeLine(PlayerCount playerCount, RandomStepGenerator randomBooleanGenerator) {
         List<Step> steps = new ArrayList<>();
 
         for (int index = 0; isInCountRange(playerCount, index); index++) {
@@ -29,12 +29,12 @@ public class Line2 {
         return playerCount.isBiggerThan(buildCount);
     }
 
-    private static Step makePoint(int index, List<Step> steps, RandomBooleanGenerator randomBooleanGenerator,
+    private static Step makePoint(int index, List<Step> steps, RandomStepGenerator randomStepGenerator,
                                   PlayerCount playerCount) {
         if (hasBeforeStep(index, steps) || isLastPoint(index, playerCount)) {
             return Step.EMPTY;
         }
-        return Step.from(randomBooleanGenerator.generate());
+        return randomStepGenerator.generate();
 //        return new Step(step);
     }
 

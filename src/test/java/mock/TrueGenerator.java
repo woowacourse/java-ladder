@@ -1,8 +1,8 @@
 package mock;
 
-import domain.BooleanGenerator;
+import domain.StepGenerator;
 
-public class TrueGenerator implements BooleanGenerator {
+public class TrueGenerator implements StepGenerator {
     @Override
     public boolean generate() {
         return true;

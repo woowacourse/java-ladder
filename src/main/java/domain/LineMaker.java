@@ -2,22 +2,21 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class LineMaker {
-    private final BooleanGenerator randomBooleanGenerator;
+    private final StepGenerator randomStepGenerator;
     private final PlayerCount playerCount;
 
-    public LineMaker(final PlayerCount playerCount, final BooleanGenerator randomBooleanGenerator) {
+    public LineMaker(final PlayerCount playerCount, final StepGenerator randomStepGenerator) {
         this.playerCount = playerCount;
-        this.randomBooleanGenerator = randomBooleanGenerator;
+        this.randomStepGenerator = randomStepGenerator;
     }
 
     public Line makeLine() {
         List<Step> steps = new ArrayList<>();
 
         for (int index = 0; isInCountRange(playerCount, index); index++) {
-            steps.add(makePoint(index, steps));
+            steps.add(makeStep(index, steps));
         }
         return new Line(steps);
     }
@@ -26,11 +25,11 @@ public class LineMaker {
         return playerCount.isBiggerThan(buildCount);
     }
 
-    private Step makePoint(int index, List<Step> steps) {
+    private Step makeStep(int index, List<Step> steps) {
         if (hasBeforeStep(index, steps) || isLastPoint(index)) {
             return Step.EMPTY;
         }
-        return Step.from(randomBooleanGenerator.generate());
+        return randomStepGenerator.generate();
     }
 
     private boolean hasBeforeStep(int index, List<Step> points) {

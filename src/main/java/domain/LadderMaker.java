@@ -13,14 +13,14 @@ public class LadderMaker {
     }
 
     public static LadderMaker of(Height height, PlayerCount playerCount) {
-        return new LadderMaker(height, new LineMaker(playerCount, new RandomBooleanGenerator()));
+        return new LadderMaker(height, new LineMaker(playerCount, new RandomStepGenerator()));
     }
 
     public Ladder makeLadder() {
         List<Line> lines = new ArrayList<>();
         while (height.isBiggerThan(lines.size())) {
             lines.add(lineMaker.makeLine());
-//            lines.add(Line2.of(playerCount, new RandomBooleanGenerator()));
+//            lines.add(Line2.of(playerCount, new RandomStepGenerator()));
         }
         return new Ladder(lines);
     }

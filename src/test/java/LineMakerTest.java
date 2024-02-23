@@ -25,13 +25,13 @@ public class LineMakerTest {
     @Test
     void makeLineEmpty() {
         // given
-        final LineMaker lineMaker = new LineMaker(PlayerCount.from(3), new FalseBooleanGenerator());
+        final LineMaker lineMaker = new LineMaker(PlayerCount.from(3), new FalseStepGenerator());
 
         // when & then
         assertThat(lineMaker.makeLine()).isEqualTo(new Line(List.of(EMPTY_POINT, EMPTY_POINT, EMPTY_POINT)));
     }
 
-    private static class FalseBooleanGenerator implements BooleanGenerator {
+    private static class FalseStepGenerator implements StepGenerator {
         @Override
         public boolean generate() {
             return false;
