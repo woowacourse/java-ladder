@@ -17,7 +17,9 @@ class ParticipantsTest {
                 new Participant("ash"),
                 new Participant("daon")
         );
-        assertThatCode(() -> new Participants(given))
+        assertThatCode(() ->
+                assertThat(new Participants(given).getSize())
+                        .isEqualTo(2))
                 .doesNotThrowAnyException();
     }
 
