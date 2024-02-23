@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.domain.creator;
+
+import ladder.domain.Line;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,16 +8,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class RandomLadderCreator {
-    private static Random RANDOM = new Random();
+public class RandomLineCreator {
+    private static final Random RANDOM = new Random();
 
-    public Ladder create(int width, int height) {
-        return new Ladder(IntStream.range(0, height)
-                .mapToObj(i -> createRandomLine(width))
-                .toList());
-    }
-
-    private Line createRandomLine(int width) {
+    public Line create(int width) {
         List<Boolean> scaffolds = new ArrayList<>(Collections.nCopies(width, false));
 
         for (int index : shuffleOrder(width)) {
