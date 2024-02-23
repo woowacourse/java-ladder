@@ -2,16 +2,16 @@ package ladder.domain.connectiongenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class AllFalseConnectionGenerator implements ConnectionGenerator {
 
     @Override
     public List<Boolean> getConnection(int peopleNumber) {
-        List<Boolean> line = new ArrayList<>();
-        for (int i = 0; i < peopleNumber - 1; i++) {
-            line.add(Boolean.FALSE);
-        }
+        int connectionNumber = peopleNumber - 1;
 
-        return line;
+        return Stream.iterate(false, connection->connection)
+                .limit(connectionNumber)
+                .toList();
     }
 }
