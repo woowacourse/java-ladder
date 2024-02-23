@@ -1,10 +1,8 @@
 package model;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -28,7 +26,7 @@ public class PeopleTest {
     @DisplayName("중복된 참가자 이름이 있으면 예외를 발생한다.")
     void duplicateParticipantTest() {
         assertThatThrownBy(() -> new People("a,a,v"))
-                .isInstanceOf(IllegalStateException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 }

@@ -22,7 +22,7 @@ class PersonTest {
     @DisplayName("사람의 이름은 5글자를 초과하면 예외를 발생시킨다.")
     void personMaxNameLengthTest() {
         Assertions.assertThatThrownBy(() -> new Person("namena"))
-                .isInstanceOf(IllegalStateException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

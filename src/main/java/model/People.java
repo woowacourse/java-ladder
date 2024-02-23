@@ -41,7 +41,7 @@ public class People {
                 .count();
 
         if (numberOfOrigin != numberOfDistinct) {
-            throw new IllegalStateException("중복된 이름은 허용하지 않습니다.");
+            throw new IllegalArgumentException("중복된 이름은 허용하지 않습니다.");
         }
     }
 
