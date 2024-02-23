@@ -14,7 +14,9 @@ public class CustomGenerator implements Generator{
     public List<Integer> generate(int personCount) {
         return customNumbers.stream()
                 .map((number) -> {
-                    if (number) return 5;
+                    if (number) {
+                        return 5;
+                    }
                     return 4;
                 })
                 .toList();
