@@ -6,10 +6,13 @@ import org.junit.jupiter.api.Test;
 import util.generator.BooleanGenerator;
 import util.generator.RandomBooleanGenerator;
 
+import java.io.InputStream;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.InstanceOfAssertFactories.INPUT_STREAM;
 
 public class LineTest {
 
@@ -42,9 +45,8 @@ public class LineTest {
 
         List<Leg> legs = line.getLegs();
 
-        for (int i = 1; i < legs.size(); i++) {
-            assertThat(legs.get(i)).isNotEqualTo(legs.get(i - 1));
-        }
+        IntStream.range(1, legs.size())
+                .forEach(i -> assertThat(legs.get(i)).isNotEqualTo(legs.get(i - 1)));
     }
 
     @DisplayName("라인의 맨 앞에 다리가 존재하지 않을 때 라인을 이루는 다리는 겹치지 않는다")
@@ -54,9 +56,8 @@ public class LineTest {
 
         List<Leg> legs = line.getLegs();
 
-        for (int i = 1; i < legs.size(); i++) {
-            assertThat(legs.get(i)).isNotEqualTo(legs.get(i - 1));
-        }
+        IntStream.range(1, legs.size())
+                .forEach(i -> assertThat(legs.get(i)).isNotEqualTo(legs.get(i - 1)));
     }
 
     static class TrueGenerator implements BooleanGenerator {
