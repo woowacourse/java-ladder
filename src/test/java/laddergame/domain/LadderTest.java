@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
-import laddergame.domain.strategy.CanBuildStrategy;
+import laddergame.domain.strategy.BuildStrategy;
 import laddergame.dto.LineBuildResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,14 +33,14 @@ public class LadderTest {
         final Height height = new Height("1");
         final int playerCount = 4;
         List<LineBuildResult> buildResult = new ArrayList<>();
-        CanBuildStrategy canBuildStrategy = new CanBuildStrategy() {
+        BuildStrategy buildStrategy = new BuildStrategy() {
             @Override
             public LineBuildResult canBuildBridges(int count) {
                 return new LineBuildResult(List.of(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE));
             }
         };
 
-        LineBuildResult booleanList = canBuildStrategy.canBuildBridges(playerCount);
+        LineBuildResult booleanList = buildStrategy.canBuildBridges(playerCount);
         buildResult.add(booleanList);
 
         //when

@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.Players;
-import laddergame.domain.strategy.CanBuildStrategy;
+import laddergame.domain.strategy.BuildStrategy;
 import laddergame.domain.strategy.RandomBuildStrategy;
 import laddergame.dto.LineBuildResult;
 import laddergame.view.InputView;
@@ -26,7 +26,7 @@ public class LadderGame {
     }
 
     private static List<LineBuildResult> getLineBuildResults(final Players players, final Height height) {
-        CanBuildStrategy randomBuildStrategy = new RandomBuildStrategy();
+        BuildStrategy randomBuildStrategy = new RandomBuildStrategy();
         return IntStream.range(0, height.getHeight())
                 .mapToObj(i -> randomBuildStrategy.canBuildBridges(players.getPlayers().size() - 1))
                 .toList();

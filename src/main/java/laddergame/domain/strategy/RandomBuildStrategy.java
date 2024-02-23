@@ -7,7 +7,7 @@ import laddergame.dto.LineBuildResult;
 import laddergame.util.BooleanGenerator;
 import laddergame.util.RandomBooleanGenerator;
 
-public class RandomBuildStrategy implements CanBuildStrategy {
+public class RandomBuildStrategy implements BuildStrategy {
     private final BooleanGenerator generator = RandomBooleanGenerator.getGenerator();
 
     @Override
