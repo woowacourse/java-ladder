@@ -1,8 +1,8 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 public class RandomLadderGenerator implements LadderGenerator {
 
@@ -10,25 +10,17 @@ public class RandomLadderGenerator implements LadderGenerator {
 
     @Override
     public Ladder generate(final LineSize lineSize, final LadderHeight ladderHeight) {
-        final List<Line> lines = new ArrayList<>();
-
-        while (ladderHeight.isBiggerThan(lines.size())) {
-            lines.add(createLine(lineSize));
-        }
+        final List<Line> lines = Stream.generate(() -> createLine(lineSize))
+                .limit(ladderHeight.getHeight())
+                .toList();
 
         return new Ladder(lines);
     }
 
     private Line createLine(final LineSize lineSize) {
-        List<Point> points = new ArrayList<>();
-
-        Point temp = Point.EMPTY;
-
-        while (lineSize.isBiggerThan(points.size())) {
-            final Point point = decideNextPoint(temp);
-            points.add(point);
-            temp = point;
-        }
+        final List<Point> points = Stream.iterate(Point.EMPTY, this::decideNextPoint)
+                .limit(lineSize.getLineSize())
+                .toList();
 
         return new Line(points);
     }
