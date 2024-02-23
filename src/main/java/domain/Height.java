@@ -1,6 +1,7 @@
 package domain;
 
 public class Height {
+
     private final int value;
 
     public Height(final int value) {

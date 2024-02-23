@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
+
     private final Scanner scanner = new Scanner(System.in);
 
     public List<String> readNames() {
@@ -20,5 +21,4 @@ public class InputView {
             throw new IllegalArgumentException("높이는 숫자여야 합니다.");
         }
     }
-
 }

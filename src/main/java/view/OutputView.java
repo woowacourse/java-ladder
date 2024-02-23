@@ -2,6 +2,7 @@ package view;
 
 import domain.Bridge;
 import domain.Line;
+
 import java.util.List;
 import java.util.StringJoiner;
 

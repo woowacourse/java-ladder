@@ -8,6 +8,7 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGame {
+
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 

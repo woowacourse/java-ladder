@@ -44,5 +44,4 @@ public class Line {
     public List<Bridge> getBridges() {
         return Collections.unmodifiableList(bridges);
     }
-
 }
