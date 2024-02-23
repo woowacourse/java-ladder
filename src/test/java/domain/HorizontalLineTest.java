@@ -19,16 +19,6 @@ class HorizontalLineTest {
         assertDoesNotThrow(() -> new HorizontalLine(playerCount));
     }
 
-    // TODO: 플레이어 수 범위는 별도 도메인에서 진행
-//    @ParameterizedTest
-//    @ValueSource(ints = {-1, 0, 1, 11, 100})
-//    @DisplayName("올바르지 않은 범위의 수가 주어지면, 예외를 발생한다.")
-//    void invalidPlayerCountCreationTest(int playerCount) {
-//        assertThatThrownBy(() -> new HorizontalLine(playerCount))
-//                .isInstanceOf(IllegalArgumentException.class)
-//                .hasMessage("플레이어 수 범위는 2 이상 10 이하여야 합니다.");
-//    }
-
     @Test
     @DisplayName("초기에 생성했을 때, 가로줄은 없다.")
     void initialCreationEmptyCrossingLinesTest() {
