@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Names {
 
-    private static final Integer MIN_COUNT = 2;
+    private static final int MIN_COUNT = 2;
 
     private final List<Name> names;
 
@@ -37,7 +37,7 @@ public class Names {
         }
     }
 
-    public Integer getNameCount() {
+    public int getNameCount() {
         return names.size();
     }
 

@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 public enum ConnectionStatus {
 
-    CONNECTED(Boolean.TRUE),
-    DISCONNECTED(Boolean.FALSE);
+    CONNECTED(true),
+    DISCONNECTED(false);
 
     private final boolean connect;
 

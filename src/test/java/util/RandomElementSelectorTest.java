@@ -15,7 +15,7 @@ class RandomElementSelectorTest {
     @Test
     void testSelectedRandomIsInOriginCollection() {
         List<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3));
-        Integer random = RandomElementSelector.selectRandomElement(numbers);
+        int random = RandomElementSelector.selectRandomElement(numbers);
         assertThat(random).isIn(numbers);
     }
 }

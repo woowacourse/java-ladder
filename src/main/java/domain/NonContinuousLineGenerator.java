@@ -16,7 +16,7 @@ public class NonContinuousLineGenerator implements RowLineGenerator {
     }
 
     @Override
-    public RowLine generate(Integer personCount) {
+    public RowLine generate(int personCount) {
         List<ConnectionStatus> connections = new ArrayList<>();
         ConnectionStatus prev = DISCONNECTED;
         for (int i = 0; i < personCount - 1; i++) {

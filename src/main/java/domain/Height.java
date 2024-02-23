@@ -2,9 +2,9 @@ package domain;
 
 public class Height {
 
-    private static final Integer MIN_VALUE = 1;
+    private static final int MIN_VALUE = 1;
 
-    private final Integer height;
+    private final int height;
 
     public Height(int value) {
         validateRange(value);
@@ -17,7 +17,7 @@ public class Height {
         }
     }
 
-    public Integer getHeight() {
+    public int getHeight() {
         return height;
     }
 }
