@@ -11,7 +11,7 @@ public class RowLine {
     }
 
     public boolean hasRightConnection(int index) {
-        return connections.get(index).equals(ConnectionStatus.CONNECTED);
+        return connections.get(index).isConnect();
     }
 
     public List<ConnectionStatus> getConnections() {
