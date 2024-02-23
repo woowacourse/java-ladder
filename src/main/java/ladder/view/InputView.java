@@ -34,6 +34,12 @@ public class InputView {
         return splitInput(input);
     }
 
+    public static String readRequestResult(Supplier<String> reader) throws IllegalArgumentException {
+        String input = reader.get();
+        validateEmpty(input);
+        return input;
+    }
+
     private static void validateEmpty(final String input) throws IllegalArgumentException {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException("공백을 넣을 수 없습니다.");

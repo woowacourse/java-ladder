@@ -76,4 +76,18 @@ public class InputViewTest {
                     .withMessage("사다리 높이에는 숫자를 입력해야 합니다");
         }
     }
+
+    @Nested
+    @DisplayName("결과 보고 싶은 사람 입력 시")
+    class inputRequestResult {
+        @DisplayName("공백이 입력되면 예외를 던진다.")
+        @NullAndEmptySource
+        @ValueSource(strings = {" ", "  ", "\t", "\n"})
+        @ParameterizedTest
+        void validateRequestResultWithNullOrEmpty(final String input) {
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> InputView.readRequestResult(() -> input))
+                    .withMessage("공백을 넣을 수 없습니다.");
+        }
+    }
 }
