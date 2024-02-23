@@ -41,6 +41,26 @@ public class Line {
         return Rung.EXIST;
     }
 
+    public int findConnectedIndex(int index) {
+        if (canMoveLeft(index)) {
+            return index - 1;
+        }
+
+        if (canMoveRight(index)) {
+            return index + 1;
+        }
+
+        return index;
+    }
+
+    private boolean canMoveLeft(int index) {
+        return index > 0 && rungs.get(index - 1).isExist();
+    }
+
+    private boolean canMoveRight(int index) {
+        return index < rungs.size() && rungs.get(index).isExist();
+    }
+
     public List<Rung> getRungs() {
         return Collections.unmodifiableList(rungs);
     }
