@@ -2,11 +2,15 @@ package view;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class InputView {
-    public static String getInput() {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    BufferedReader bufferedReader;
+
+    public InputView(BufferedReader bufferedReader) {
+        this.bufferedReader = bufferedReader;
+    }
+
+    public String getInput() {
         try {
             return bufferedReader.readLine();
         } catch (IOException e) {
