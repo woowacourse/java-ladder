@@ -1,9 +1,6 @@
 package view;
 
-import domain.Bridge;
-import domain.Ladder;
-import domain.Line;
-import domain.Name;
+import domain.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,10 +11,10 @@ public class OutputView {
     private static final String BRIDGE_LEFT_MARGIN = "     ";
 
 
-    public static void printResult(final List<Name> names, final Ladder ladder) {
+    public static void printResult(final Names names, final Ladder ladder) {
         System.out.println("실행 결과\n");
 
-        printPlayers(names);
+        printPlayers(names.names());
         printLadder(ladder);
     }
 
