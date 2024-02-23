@@ -12,7 +12,7 @@ public class Height {
     }
 
     private void validate(int height) {
-        if (height < MIN_OF_HEIGHT || height > MAX_OF_HEIGHT) {
+        if (height < MIN_OF_HEIGHT || MAX_OF_HEIGHT < height) {
             throw new IllegalArgumentException(HeightExceptionMessage.OUT_OF_RANGE_HEIGHT.getExceptionMessage());
         }
     }
