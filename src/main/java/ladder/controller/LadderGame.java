@@ -7,6 +7,7 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class LadderGame {
@@ -43,11 +44,21 @@ public class LadderGame {
     }
 
     private <T> T retryOnException(final Supplier<T> retryOperation) {
+        boolean retry = true;
+        Optional<T> result = Optional.empty();
+        while (retry) {
+            result = tryOperation(retryOperation);
+            retry = result.isEmpty();
+        }
+        return result.get();
+    }
+
+    private <T> Optional<T> tryOperation(final Supplier<T> operation) {
         try {
-            return retryOperation.get();
+            return Optional.of(operation.get());
         } catch (IllegalArgumentException e) {
             outputView.printException(e);
-            return retryOnException(retryOperation);
+            return Optional.empty();
         }
     }
 }
