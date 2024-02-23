@@ -9,8 +9,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParticipantsTest {
     @Test
@@ -24,7 +24,7 @@ public class ParticipantsTest {
         final int count = participants.getNecessaryLadderWidth();
 
         // then
-        assertEquals(2, count);
+        assertThat(count).isEqualTo(2);
     }
 
     @ParameterizedTest
