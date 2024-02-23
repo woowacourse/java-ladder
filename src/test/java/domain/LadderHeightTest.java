@@ -2,14 +2,11 @@ package domain;
 
 import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidationException;
-import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class LadderHeightTest {
@@ -37,18 +34,12 @@ public class LadderHeightTest {
     @DisplayName("사다리 높이 범위 테스트")
     class LadderHeightRangeTest {
         @ParameterizedTest
-        @MethodSource("createLadderHeightSuccessByRangeArguments")
+        @ValueSource(strings = {"2", "10"})
         @DisplayName("높이가 2 이상, 10 이하라면 정상적으로 생성된다")
-        void createLadderHeightSuccessWithRange(String value, int expected) {
+        void createLadderHeightSuccessWithRange(String value) {
             LadderHeight ladderHeight = new LadderHeight(value);
+            int expected = Integer.parseInt(value);
             Assertions.assertThat(ladderHeight.getValue()).isEqualTo(expected);
-        }
-
-        static Stream<Arguments> createLadderHeightSuccessByRangeArguments() {
-            return Stream.of(
-                    Arguments.arguments("2", 2),
-                    Arguments.arguments("10", 10)
-            );
         }
 
         @ParameterizedTest
