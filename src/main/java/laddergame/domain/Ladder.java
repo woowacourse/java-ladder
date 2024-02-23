@@ -2,7 +2,7 @@ package laddergame.domain;
 
 import java.util.Collections;
 import java.util.List;
-import laddergame.exception.InvalidLadderException;
+import laddergame.exception.LadderGameException;
 
 public class Ladder {
 
@@ -16,13 +16,13 @@ public class Ladder {
 
     private void validateEmpty(final List<Line> lines) {
         if (lines == null || lines.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 라인없이 사다리를 생성할 수 없습니다.");
+            throw new LadderGameException("[ERROR] 라인없이 사다리를 생성할 수 없습니다.");
         }
     }
 
     private void validateSameSize(final List<Line> lines) {
         if (getUniqueSize(lines) != 1) {
-            throw new InvalidLadderException("[ERROR] 라인 길이가 다른 사다리를 생성할 수 없습니다.");
+            throw new LadderGameException("[ERROR] 라인 길이가 다른 사다리를 생성할 수 없습니다.");
         }
     }
 

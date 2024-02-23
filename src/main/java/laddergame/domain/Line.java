@@ -2,7 +2,7 @@ package laddergame.domain;
 
 import java.util.Collections;
 import java.util.List;
-import laddergame.exception.LineOverlappedException;
+import laddergame.exception.LadderGameException;
 
 public class Line {
 
@@ -31,7 +31,7 @@ public class Line {
 
     private void validatePoint(final Point before, final Point now) {
         if (before.isExist() && now.isExist()) {
-            throw new LineOverlappedException("[ERROR] 포인트가 겹치는 라인을 생성할 수 없습니다.");
+            throw new LadderGameException("[ERROR] 포인트가 겹치는 라인을 생성할 수 없습니다.");
         }
     }
 

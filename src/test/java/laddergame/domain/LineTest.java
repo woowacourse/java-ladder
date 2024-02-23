@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import laddergame.exception.LineOverlappedException;
+import laddergame.exception.LadderGameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +19,7 @@ public class LineTest {
 
         // when & then
         assertThatThrownBy(() -> new Line(points))
-                .isInstanceOf(LineOverlappedException.class)
+                .isInstanceOf(LadderGameException.class)
                 .hasMessage("[ERROR] 포인트가 겹치는 라인을 생성할 수 없습니다.");
     }
 
