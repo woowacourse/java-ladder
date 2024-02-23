@@ -3,10 +3,13 @@ package ladder.controller;
 import ladder.domain.Ladder;
 import ladder.domain.LadderHeight;
 import ladder.domain.People;
+import ladder.domain.Person;
 import ladder.util.ExceptionRetryHandler;
 import ladder.util.RandomLinesGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
+
+import java.util.List;
 
 public class LadderController {
     private LadderController() {
@@ -26,7 +29,10 @@ public class LadderController {
     }
 
     private static People requestPeople() {
-        return People.from(InputView.readPeopleNames());
+        List<String> peopleNames = InputView.readPeopleNames();
+        return new People(peopleNames.stream()
+                .map(Person::new)
+                .toList());
     }
 
     private static LadderHeight requestLadderHeightUntilValid() {

@@ -2,8 +2,6 @@ package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -21,8 +19,10 @@ public class PeopleTest {
                 List.of(new Person("pobi"), new Person("nakna"), new Person("seyan"));
 
         // when
-        People people = People.from(names);
-
+        People people = new People(List.of(
+                new Person("pobi"),
+                new Person("nakna"),
+                new Person("seyan")));
         // then
         assertThat(people)
                 .extracting("values")
@@ -33,15 +33,7 @@ public class PeopleTest {
     @DisplayName("콤마로 구분된 이름이 2개 이상이 아니라면 예외를 발생시킨다.")
     @Test
     void peopleCountExceptionTest() {
-        assertThatThrownBy(() -> People.from("pobi"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("이름이 콤마(,)로 시작하거나 끝나는 경우 예외를 발생시킨다.")
-    @ParameterizedTest
-    @ValueSource(strings = {",pobi,nak", "pobi,nak,"})
-    void peopleNamesStartsOrEndsWithDelimiterExceptionTest(String names) {
-        assertThatThrownBy(() -> People.from(names))
+        assertThatThrownBy(() -> new People(List.of(new Person("pobi"))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

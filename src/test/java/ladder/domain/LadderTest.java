@@ -14,7 +14,11 @@ public class LadderTest {
     void createTest() {
         // given
         LadderHeight ladderHeight = LadderHeight.from("4");
-        People people = People.from("pobi,nak,seya,neo");
+        People people = new People(List.of(
+                new Person("pobi"),
+                new Person("nak"),
+                new Person("seya"),
+                new Person("neo")));
         List<Line> expected = List.of(
                 new Line(List.of(true, false, true)),
                 new Line(List.of(false, true, false)),

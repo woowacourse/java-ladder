@@ -9,7 +9,7 @@ public class Person {
     private final String name;
 
     public Person(String name) {
-        this.name = name.strip();
+        this.name = name;
         validate(this.name);
     }
 
