@@ -3,6 +3,7 @@ package view;
 import domain.Ladder;
 import domain.Line;
 import domain.Participants;
+import domain.StepPoint;
 
 import java.util.List;
 
@@ -34,16 +35,16 @@ public class OutputView {
     }
 
     private void printOneLine(Line line) {
-        List<Boolean> points = line.getPoints();
+        List<StepPoint> stepPoints = line.getStepPoints();
         System.out.print(START_OF_LINE);
-        for (Boolean point : points) {
-            printOnePoint(point);
+        for (StepPoint stepPoint : stepPoints) {
+            printOnePoint(stepPoint);
         }
         System.out.println();
     }
 
-    private void printOnePoint(Boolean point) {
-        if (point) {
+    private void printOnePoint(StepPoint stepPoint) {
+        if (stepPoint.isExist()) {
             System.out.print(EXIST_POINT);
             return;
         }

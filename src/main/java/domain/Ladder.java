@@ -1,7 +1,7 @@
 package domain;
 
-import utils.BooleanGenerator;
-import utils.RandomBooleanGenerator;
+import utils.RandomStepGenerator;
+import utils.StepGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +16,9 @@ public class Ladder {
         height = new Height(floor);
         lines = new ArrayList<>();
         int stepPointCount = participantsCount - 1;
-        BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
+        StepGenerator stepGenerator = new RandomStepGenerator();
         IntStream.range(0, floor)
-                .mapToObj(i -> new Line(stepPointCount, booleanGenerator))
+                .mapToObj(i -> new Line(stepPointCount, stepGenerator))
                 .forEach(lines::add);
     }
 

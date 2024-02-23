@@ -1,33 +1,38 @@
 package domain;
 
-import utils.BooleanGenerator;
+import utils.StepGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
 
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<StepPoint> stepPoints;
 
-    public Line(int count, BooleanGenerator booleanGenerator) {
-        points.add(booleanGenerator.generate());
-        for (int index = 1; index < count; index++) {
-            points.add(makeOnePoint(index, booleanGenerator));
+    public Line(int numberOfCell, StepGenerator stepGenerator) {
+        stepPoints = new ArrayList<>();
+        stepPoints.add(stepGenerator.generate());
+        for (int cellIndex = 1; cellIndex < numberOfCell; cellIndex++) {
+            stepPoints.add(makeOnePoint(cellIndex, stepGenerator));
         }
     }
 
-    private boolean makeOnePoint(int index, BooleanGenerator booleanGenerator) {
-        if (!points.get(index - 1)) {
-            return booleanGenerator.generate();
+    private StepPoint makeOnePoint(int cellIndex, StepGenerator stepGenerator) {
+        if (isPreviousStepExist(cellIndex)) {
+            return StepPoint.ABSENT;
         }
-        return false;
+        return stepGenerator.generate();
     }
 
-    public boolean isExistPoint(int index) {
-        return points.get(index);
+    private boolean isPreviousStepExist(int cellIndex) {
+        return stepPoints.get(cellIndex - 1).isExist();
     }
 
-    public List<Boolean> getPoints() {
-        return points;
+    public boolean isExistStep(int cellIndex) {
+        return stepPoints.get(cellIndex).isExist();
+    }
+
+    public List<StepPoint> getStepPoints() {
+        return stepPoints;
     }
 }
