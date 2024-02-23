@@ -11,23 +11,8 @@ public class OutputView {
     private static final String VERTICAL_DELIMITER = "|";
     private static final String SPACE = " ";
 
-    private static void printLine(List<String> names, Line line, int maxPlayerNameLength) {
-        System.out.print(SPACE.repeat(6));
-        System.out.print(VERTICAL_DELIMITER);
-        for (Bridge bridge : line.getBridges()) {
-            printBridge(bridge, maxPlayerNameLength);
-        }
-        System.out.println();
-    }
-
-    private static void printBridge(Bridge bridge, int maxPlayerNameLength) {
-        if (bridge == Bridge.EXIST) {
-            System.out.print(HORIZON_DELIMITER.repeat(maxPlayerNameLength));
-            System.out.print(VERTICAL_DELIMITER);
-            return;
-        }
-        System.out.print(SPACE.repeat(maxPlayerNameLength));
-        System.out.print(VERTICAL_DELIMITER);
+    public void printErrorMessage(String errorMessage){
+        System.out.println(errorMessage);
     }
 
     public void printResult(Ladder ladder, List<String> names) {
@@ -50,5 +35,24 @@ public class OutputView {
         for (Line line : lines) {
             printLine(names, line, maxPlayerNameLength);
         }
+    }
+
+    private void printLine(List<String> names, Line line, int maxPlayerNameLength) {
+        System.out.print(SPACE.repeat(6));
+        System.out.print(VERTICAL_DELIMITER);
+        for (Bridge bridge : line.getBridges()) {
+            printBridge(bridge, maxPlayerNameLength);
+        }
+        System.out.println();
+    }
+
+    private void printBridge(Bridge bridge, int maxPlayerNameLength) {
+        if (bridge == Bridge.EXIST) {
+            System.out.print(HORIZON_DELIMITER.repeat(maxPlayerNameLength));
+            System.out.print(VERTICAL_DELIMITER);
+            return;
+        }
+        System.out.print(SPACE.repeat(maxPlayerNameLength));
+        System.out.print(VERTICAL_DELIMITER);
     }
 }
