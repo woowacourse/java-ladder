@@ -12,17 +12,9 @@ public class Name {
     }
 
     private void validate(String name) {
-        validateNameLength(name);
-        validateNotBlank(name);
-    }
-
-    private void validateNameLength(String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_OVER_THAN_MAXIMUM);
         }
-    }
-
-    private void validateNotBlank(String name) {
         if (name.isBlank()) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_NOT_BLANK);
         }
