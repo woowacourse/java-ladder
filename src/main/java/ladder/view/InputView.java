@@ -45,8 +45,4 @@ public class InputView {
             throw new InvalidHeightNumberException();
         }
     }
-
-    public void closeResource() {
-        scanner.close();
-    }
 }
