@@ -62,4 +62,8 @@ public class Line {
                 .map(Point::isExist)
                 .toList();
     }
+
+    public int size() {
+        return points.size();
+    }
 }

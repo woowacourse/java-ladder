@@ -1,26 +1,37 @@
 package laddergame.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import laddergame.exception.InvalidLadderException;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.Test;
 
 public class LadderTest {
 
-    @DisplayName("사다리높이만큼 라인을 생성한다.")
-    @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3, 4})
-    void create(int value) {
+    @DisplayName("라인의 길이가 다른 사다리를 생성할 수 없다.")
+    @Test
+    void createDifferentSize() {
         // given
-        final LadderHeight height = new LadderHeight(value);
-        final LineSize lineSize = new LineSize(new Names(List.of("pobi", "zeze", "crong", "jk")));
+        List<Line> lines = List.of(new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST)),
+                new Line(List.of(Point.EXIST, Point.EMPTY)));
 
-        // when
-        Ladder ladder = Ladder.create(lineSize, height, () -> Point.EXIST);
+        // when & then
+        assertThatThrownBy(() -> new Ladder(lines))
+                .isInstanceOf(InvalidLadderException.class)
+                .hasMessage("[ERROR] 라인 길이가 다른 사다리를 생성할 수 없습니다.");
+    }
 
-        // then
-        assertThat(ladder.getLinesState()).hasSize(value);
+    @DisplayName("라인의 길이가 같은 사다리를 생성한다.")
+    @Test
+    void createSameSize() {
+        // given
+        List<Line> lines = List.of(new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST)),
+                new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST)));
+
+        // when & then
+        assertThatCode(() -> new Ladder(lines))
+                .doesNotThrowAnyException();
     }
 }
