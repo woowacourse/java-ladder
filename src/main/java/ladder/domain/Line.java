@@ -14,8 +14,9 @@ public class Line {
     }
 
     private List<StepStatus> createStepStatuses(Supplier<Boolean> generator, final int userCount) {
-        final List<StepStatus> stepStatuses = new ArrayList<>(userCount - 1);
-        for (int i = 0; i < userCount - 1; i++) {
+        final int totalSteps = userCount - 1;
+        final List<StepStatus> stepStatuses = new ArrayList<>(totalSteps);
+        for (int i = 0; i < totalSteps; i++) {
             stepStatuses.add(generateStepStatus(generator, stepStatuses, i));
         }
         return stepStatuses;
@@ -24,8 +25,9 @@ public class Line {
     private StepStatus generateStepStatus(
             Supplier<Boolean> generator,
             final List<StepStatus> stepStatuses,
-            final int index) {
-        if (index > 0 && stepStatuses.get(index - 1).isExist()) {
+            final int currentStep) {
+        final int previousStep = currentStep - 1;
+        if (currentStep > 0 && stepStatuses.get(previousStep).isExist()) {
             return StepStatus.getStepStatus(false);
         }
         return StepStatus.getStepStatus(generator.get());
