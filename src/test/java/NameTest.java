@@ -5,6 +5,7 @@ import domain.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class NameTest {
@@ -32,10 +33,11 @@ public class NameTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("플레이어의 이름이 빈 문자열인 경우 예외가 발생한다.")
-    @Test
-    void createNameWithBlank() {
-        assertThatThrownBy(() -> new Name(""))
+    @DisplayName("플레이어의 이름이 Null 또는 빈 문자열인 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void createNameWithBlank(String invalidName) {
+        assertThatThrownBy(() -> new Name(invalidName))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
