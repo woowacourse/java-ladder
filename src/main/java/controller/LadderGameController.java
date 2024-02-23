@@ -13,7 +13,7 @@ public class LadderGameController {
     public void run() {
         Players players = retryOnException(this::preparePlayers);
         LadderHeight ladderHeight = retryOnException(this::prepareLadderHeight);
-        Ladder ladder = makeLadder(players, ladderHeight);
+        Ladder ladder = Ladder.create(ladderHeight, players, new RandomBridgesGenerator());
         end(players, ladder);
     }
 
@@ -25,10 +25,6 @@ public class LadderGameController {
     private LadderHeight prepareLadderHeight() {
         int ladderHeight = InputView.askLadderHeight();
         return new LadderHeight(ladderHeight);
-    }
-
-    public Ladder makeLadder(Players players, LadderHeight ladderHeight) {
-        return Ladder.create(ladderHeight, players, new RandomBridgesGenerator());
     }
 
     public void end(Players players, Ladder ladder) {
