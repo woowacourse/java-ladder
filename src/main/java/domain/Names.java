@@ -16,11 +16,19 @@ public class Names {
         this.names = splitNames.stream().map(Name::new).toList();
     }
 
-    private static List<String> splitName(String names) {
+    List<Name> getNames() {
+        return names;
+    }
+
+    int getNameCount() {
+        return names.size();
+    }
+
+    private List<String> splitName(String names) {
         return Arrays.stream(names.split(SEPARATOR)).toList();
     }
 
-    private static void validateNameCount(List<String> splitNames) {
+    private void validateNameCount(List<String> splitNames) {
         if (splitNames.size() > MAX_NAMES_COUNT) {
             throw new LadderGameException(ExceptionType.NAMES_COUNT);
         }
@@ -39,13 +47,5 @@ public class Names {
         if (startsWith || endsWith) {
             throw new LadderGameException(ExceptionType.NAMES_SEPARATOR);
         }
-    }
-
-    List<Name> getNames() {
-        return names;
-    }
-
-    int getNameCount() {
-        return names.size();
     }
 }

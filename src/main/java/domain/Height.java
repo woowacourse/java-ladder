@@ -11,13 +11,15 @@ class Height {
         this.length = length;
     }
 
+    int getLength() {
+        return length;
+    }
+
     private void validate(int length) {
         if (length < MIN || length > MAX) {
             throw new LadderGameException(ExceptionType.HEIGHT_RANGE);
         }
     }
 
-    int getLength() {
-        return length;
-    }
+
 }

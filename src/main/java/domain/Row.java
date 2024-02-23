@@ -19,19 +19,19 @@ class Row {
         this.rowInfos = Collections.unmodifiableList(rowInfos);
     }
 
-    private static void validateRowInfosCount(List<Boolean> rowInfos) {
+    List<Boolean> getRowInfos() {
+        return rowInfos;
+    }
+
+    private void validateRowInfosCount(List<Boolean> rowInfos) {
         if (rowInfos.size() < MIN_ROW_COUNT || rowInfos.size() > MAX_ROW_COUNT) {
             throw new LadderGameException(ExceptionType.ROW_COUNT);
         }
     }
 
-    private static void validateNearInfo(List<Boolean> rowInfos, int index) {
+    private void validateNearInfo(List<Boolean> rowInfos, int index) {
         if (rowInfos.get(index) && rowInfos.get(index - 1)) {
             throw new LadderGameException(ExceptionType.ROW_NEAR);
         }
-    }
-
-    List<Boolean> getRowInfos() {
-        return rowInfos;
     }
 }

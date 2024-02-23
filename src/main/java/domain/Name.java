@@ -12,18 +12,6 @@ class Name {
         this.name = name;
     }
 
-    private static void validateNameCharacters(String name) {
-        if (name.matches("^[^a-zA-Z]+$")) {
-            throw new LadderGameException(ExceptionType.NAME_CHARACTER);
-        }
-    }
-
-    private static void validateNameLength(String name) {
-        if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
-            throw new LadderGameException(ExceptionType.NAME_LENGTH_RANGE);
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -43,5 +31,17 @@ class Name {
 
     String getName() {
         return name;
+    }
+
+    private void validateNameCharacters(String name) {
+        if (name.matches("^[^a-zA-Z]+$")) {
+            throw new LadderGameException(ExceptionType.NAME_CHARACTER);
+        }
+    }
+
+    private void validateNameLength(String name) {
+        if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
+            throw new LadderGameException(ExceptionType.NAME_LENGTH_RANGE);
+        }
     }
 }
