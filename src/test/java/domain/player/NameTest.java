@@ -19,7 +19,6 @@ class NameTest {
         Name name = new Name(value);
 
         //Then
-        assertInstanceOf(Name.class,name);
         assertEquals(name.getValue(),value);
     }
 
