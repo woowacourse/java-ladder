@@ -17,8 +17,4 @@ public class RowLine {
     public int getConnectionCount() {
         return connections.size();
     }
-
-    public List<ConnectionStatus> getConnections() {
-        return List.copyOf(connections);
-    }
 }
