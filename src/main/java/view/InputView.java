@@ -1,5 +1,7 @@
 package view;
 
+import util.ExceptionMessages;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,7 +21,7 @@ public class InputView {
         try {
             return scanner.nextInt();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("높이는 숫자여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessages.INVALID_HEIGHT_FORMAT);
         }
     }
 }

@@ -1,5 +1,7 @@
 package domain;
 
+import util.ExceptionMessages;
+
 import javax.swing.text.html.MinimalHTMLWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,7 @@ public class Players {
 
     private void validateNameCount(final int count) {
         if (count < MINIMUM_PLAYERS_COUNT || count > MAXIMUM_PLAYERS_COUNT) {
-            throw new IllegalArgumentException("참가자 수는 2명 이상 10명 이하 이어야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessages.INVALID_PLAYERS_COUNT);
         }
     }
 

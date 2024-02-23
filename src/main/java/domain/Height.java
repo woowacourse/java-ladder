@@ -1,5 +1,7 @@
 package domain;
 
+import util.ExceptionMessages;
+
 public class Height {
 
     private static final int MINIMUM_HEIGHT = 1;
@@ -13,7 +15,7 @@ public class Height {
 
     private void validateRange(final int value) {
         if (value < MINIMUM_HEIGHT || value > MAXIMUM_HEIGHT) {
-            throw new IllegalArgumentException("사다리의 높이는 1이상 10이하 이어야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessages.INVALID_HEIGHT_RANGE);
         }
     }
 
