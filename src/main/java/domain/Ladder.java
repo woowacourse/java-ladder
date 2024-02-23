@@ -11,6 +11,10 @@ public class Ladder {
         this.lines = lines;
     }
 
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -22,9 +26,5 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
-    }
-
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
     }
 }

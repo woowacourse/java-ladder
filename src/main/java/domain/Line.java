@@ -11,6 +11,10 @@ public class Line {
         this.steps = steps;
     }
 
+    public List<Step> getSteps() {
+        return Collections.unmodifiableList(steps);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -22,9 +26,5 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(steps);
-    }
-
-    public List<Step> getSteps() {
-        return Collections.unmodifiableList(steps);
     }
 }
