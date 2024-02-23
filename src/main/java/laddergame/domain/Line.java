@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import java.util.Collections;
 import java.util.List;
 import laddergame.exception.LineOverlappedException;
 
@@ -34,13 +35,11 @@ public class Line {
         }
     }
 
-    public List<Boolean> getPointsState() {
-        return points.stream()
-                .map(Point::isExist)
-                .toList();
-    }
-
     public int size() {
         return points.size();
+    }
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }

@@ -11,4 +11,8 @@ public class LineSize {
     public boolean isBiggerThan(final int size) {
         return lineSize > size;
     }
+
+    public int getLineSize() {
+        return lineSize;
+    }
 }

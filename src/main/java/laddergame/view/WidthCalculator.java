@@ -1,30 +1,22 @@
 package laddergame.view;
 
-import java.util.Comparator;
 import java.util.List;
 
 public class WidthCalculator {
+
+    private static final int DEFAULT_SIZE = 5;
 
     private WidthCalculator() {
     }
 
     public static int calculateWidth(final List<String> names) {
-        final int maxLengthSkipFirst = getMaxLengthSkipFirst(names);
         final int lastLength = getLastLength(names);
 
-        if (maxLengthSkipFirst == lastLength) {
-            return lastLength + 1;
+        if (lastLength == DEFAULT_SIZE) {
+            return DEFAULT_SIZE + 1;
         }
 
-        return maxLengthSkipFirst;
-    }
-
-    private static int getMaxLengthSkipFirst(final List<String> names) {
-        return names.stream()
-                .map(String::length)
-                .skip(1)
-                .max(Comparator.naturalOrder())
-                .orElse(0);
+        return DEFAULT_SIZE;
     }
 
     private static int getLastLength(final List<String> names) {

@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import java.util.Collections;
 import java.util.List;
 import laddergame.exception.InvalidLadderException;
 
@@ -33,9 +34,7 @@ public class Ladder {
                 .size();
     }
 
-    public List<List<Boolean>> getLinesState() {
-        return lines.stream()
-                .map(Line::getPointsState)
-                .toList();
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }
