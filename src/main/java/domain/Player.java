@@ -39,4 +39,8 @@ public class Player {
             throw new IllegalArgumentException(String.format("1글자 이상 5글자 이하의 이름만 입력하세요. 입력한 이름: %s", name));
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
