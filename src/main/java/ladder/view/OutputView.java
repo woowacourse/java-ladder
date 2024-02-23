@@ -1,10 +1,7 @@
 package ladder.view;
 
-import ladder.domain.Connection;
-import ladder.domain.Ladder;
+import ladder.domain.*;
 import ladder.view.enums.NameFormat;
-import ladder.domain.People;
-import ladder.domain.RowLine;
 
 import java.util.List;
 import java.util.StringJoiner;
@@ -22,7 +19,10 @@ public class OutputView {
 
     public static void printNames(People people) {
         StringJoiner nameJoiner = new StringJoiner(BLANK);
-        List<String> names = people.getNames();
+        List<String> names = people.getNames()
+                .stream()
+                .map(Name::getName)
+                .toList();
 
         for (String name : names) {
             String format = NameFormat.findFormat(name.length());
@@ -49,9 +49,9 @@ public class OutputView {
     }
 
     private static String findConnectionMark(Connection isConnected) {
-        if (isConnected==CONNECTED) {
-             return HORIZONTAL_LINE;
+        if (isConnected == CONNECTED) {
+            return HORIZONTAL_LINE;
         }
-         return BLANK;
+        return BLANK;
     }
 }
