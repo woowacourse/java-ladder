@@ -17,7 +17,6 @@ class LineTest {
                 .doesNotThrowAnyException();
     }
 
-
     @RepeatedTest(10)
     @DisplayName("동일한 true 값을 가지지 않는지 확인")
     void overlapConnection() {
