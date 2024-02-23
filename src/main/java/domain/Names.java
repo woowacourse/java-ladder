@@ -8,15 +8,9 @@ public class Names {
 
     private final List<Name> names;
 
-    private Names(List<Name> names) {
+    public Names(List<Name> names) {
         validate(names);
         this.names = names;
-    }
-
-    public static Names from(List<String> names) {
-        return new Names(names.stream()
-                .map(Name::new)
-                .toList());
     }
 
     public int getNameCount() {
@@ -26,7 +20,7 @@ public class Names {
     public List<Name> getNames() {
         return List.copyOf(names);
     }
-    
+
     private void validate(List<Name> names) {
         validateUnique(names);
         validateEntryAmount(names);
