@@ -1,6 +1,7 @@
 package model;
 
 import exception.Message;
+import java.util.Objects;
 
 public class Height {
     private static final int UPPER_BOUND = 12;
@@ -24,5 +25,21 @@ public class Height {
 
     public int getValue() {
         return value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(value);
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Height height)) {
+            return false;
+        }
+        return value == height.value;
     }
 }

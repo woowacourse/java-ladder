@@ -22,4 +22,15 @@ class HeightTest {
         Assertions.assertThatThrownBy(() -> new Height(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("사다리 높이가 같으면 서로 같은 객체이다.")
+    void createSameHeight() {
+        //given & when
+        var height1 = new Height(10);
+        var height2 = new Height(10);
+
+        //then
+        Assertions.assertThat(height1).isEqualTo(height2);
+    }
 }
