@@ -21,8 +21,8 @@ public class LadderGame {
         final Players players = readWithRetry(this::getPlayers);
         final Height height = readWithRetry(this::getHeight);
 
-        final Carpenter carpenter = hireCarpenter(height, players);
-        final Ladder ladder = carpenter.makeLadder();
+        final LadderMaker ladderMaker = generateLadderMaker(height, players);
+        final Ladder ladder = ladderMaker.makeLadder();
 
         outputView.printResult(players, ladder);
     }
@@ -37,8 +37,8 @@ public class LadderGame {
         return heightRequest.toHeigth();
     }
 
-    private Carpenter hireCarpenter(Height height, Players players) {
-        return Carpenter.of(height, PlayerCount.fromPlayers(players));
+    private LadderMaker generateLadderMaker(Height height, Players players) {
+        return LadderMaker.of(height, PlayerCount.fromPlayers(players));
     }
 
     private <T> T readWithRetry(Supplier<T> supplier) {

@@ -3,24 +3,20 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WoodWorkMachine {
+public class LineMaker {
     private final BooleanGenerator randomBooleanGenerator;
     private final PlayerCount playerCount;
 
-    public WoodWorkMachine(final PlayerCount playerCount, final BooleanGenerator randomBooleanGenerator) {
+    public LineMaker(final PlayerCount playerCount, final BooleanGenerator randomBooleanGenerator) {
         this.playerCount = playerCount;
         this.randomBooleanGenerator = randomBooleanGenerator;
     }
 
     public Line makeLine() {
         List<Point> points = new ArrayList<>();
-
-        int index = 0;
-        while (isInCountRange(playerCount, points.size())) {
+        for (int index = 0; isInCountRange(playerCount, index); index++){
             points.add(makePoint(index, points));
-            index++;
         }
-
         return new Line(points);
     }
 
