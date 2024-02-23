@@ -1,8 +1,8 @@
 package view;
 
-import domain.Line;
+import domain.line.Line;
 import domain.Names;
-import domain.Point;
+import domain.line.Point;
 
 public enum ResultMessage {
     MOVABLE_LINE("-----|"),

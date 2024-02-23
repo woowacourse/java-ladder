@@ -1,6 +1,6 @@
 package view;
 
-import domain.Line;
+import domain.line.Line;
 import domain.Lines;
 import domain.Names;
 

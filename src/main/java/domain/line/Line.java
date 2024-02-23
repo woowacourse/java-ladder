@@ -1,15 +1,17 @@
-package domain;
+package domain.line;
+
+import domain.BooleanGenerator;
 
 import java.util.List;
 import java.util.stream.Stream;
 
 public class Line {
-    private final List<Point> points;
+    private final LineValue points;
     private final BooleanGenerator generator;
 
     public Line(final int personCount, final BooleanGenerator generator) {
         this.generator = generator;
-        points = createLine(personCount);
+        points = new CreateLine(personCount);
     }
 
     private List<Point> createLine(int personCount) {
@@ -21,6 +23,6 @@ public class Line {
     }
 
     public List<Point> getPoints() {
-        return points;
+        return points.value(generator);
     }
 }

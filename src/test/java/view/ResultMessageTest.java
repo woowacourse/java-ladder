@@ -3,7 +3,7 @@ package view;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import domain.BooleanGenerator;
-import domain.Line;
+import domain.line.Line;
 import domain.Names;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
