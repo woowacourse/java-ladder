@@ -10,12 +10,12 @@ public record Names(List<Name> names) {
     }
 
     private void validateDuplicateNames() {
-        if (names.size() != getUniqueNameCount()) {
+        if (this.names.size() != getUniqueNameCount()) {
             throw new IllegalArgumentException("중복된 이름은 허용하지 않습니다");
         }
     }
 
     private long getUniqueNameCount() {
-        return names.stream().distinct().count();
+        return this.names.stream().distinct().count();
     }
 }

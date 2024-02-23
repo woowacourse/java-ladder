@@ -9,21 +9,21 @@ public class Line {
     private final List<Bridge> bridges = new ArrayList<>();
 
     public Line(final int width) {
-        generateLine(width);
+        makeLine(width);
     }
 
     public List<Bridge> getBridges() {
         return this.bridges;
     }
 
-    private void generateLine(final int width) {
+    private void makeLine(final int width) {
         for (int i = 0; i < width; i++) {
-            bridges.add(generateBridgeOne());
+            this.bridges.add(makeBridge());
         }
     }
 
-    private Bridge generateBridgeOne() {
-        if (doesLastBridgeExist()) {
+    private Bridge makeBridge() {
+        if (doesBridgeExistAtLast()) {
             return Bridge.EMPTY;
         }
         if (random.nextBoolean()) {
@@ -32,7 +32,7 @@ public class Line {
         return Bridge.EMPTY;
     }
 
-    private boolean doesLastBridgeExist() {
+    private boolean doesBridgeExistAtLast() {
         if (this.bridges.size() == 0) {
             return false;
         }

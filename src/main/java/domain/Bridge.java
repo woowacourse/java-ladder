@@ -12,7 +12,7 @@ public enum Bridge {
     }
 
     public boolean isExist() {
-        return existence;
+        return this.existence;
     }
 
     public String getSymbol() {

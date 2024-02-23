@@ -12,7 +12,7 @@ public class Ladder {
 
     public Ladder(final int width, final int height) {
         validateHeight(height);
-        lines = generateLadder(width, height);
+        this.lines = generateLadder(width, height);
     }
 
     public List<Line> generateLadder(final int width, final int height) {
@@ -22,11 +22,11 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return lines;
+        return this.lines;
     }
 
     private void validateHeight(final int height) {
-        String errorMessage = String.format("높이는 %d 이상 %d 이하로 입력해 주세요.", MIN_HEIGHT, MAX_HEIGHT);
+        final String errorMessage = String.format("높이는 %d 이상 %d 이하로 입력해 주세요.", MIN_HEIGHT, MAX_HEIGHT);
         if (MIN_HEIGHT > height || height > MAX_HEIGHT) {
             throw new IllegalArgumentException(errorMessage);
         }

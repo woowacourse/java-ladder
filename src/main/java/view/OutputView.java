@@ -41,7 +41,7 @@ public class OutputView {
                         .collect(Collectors.joining(BRIDGE_SEPARATOR, BRIDGE_SEPARATOR, BRIDGE_SEPARATOR));
     }
 
-    private static String makeBridgeMessage(Bridge bridge) {
+    private static String makeBridgeMessage(final Bridge bridge) {
         return bridge.getSymbol().repeat(SINGLE_BRIDGE_LENGTH);
     }
 }
