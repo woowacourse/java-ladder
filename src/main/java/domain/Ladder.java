@@ -13,17 +13,23 @@ public class Ladder {
         this.floors = floors;
     }
 
-    public static Ladder create(LadderHeight height, int pointCount, BridgeGenerator bridgeGenerator) {
+    public static Ladder create(LadderHeight height, PlayerNames playerNames, BridgeGenerator bridgeGenerator) {
         List<Floor> floors = new ArrayList<>();
         for (int i = 0; i < height.getValue(); i++) {
-            List<LadderBridge> bridges = bridgeGenerator.generate(pointCount);
+            List<LadderBridge> bridges = bridgeGenerator.generate(calculatePointCount(playerNames));
             floors.add(new Floor(bridges));
         }
 
         return new Ladder(floors);
     }
 
+    private static int calculatePointCount(PlayerNames playerNames) {
+        return playerNames.getCount() - 1;
+    }
+
     public List<Floor> getFloors() {
         return Collections.unmodifiableList(floors);
     }
+
+
 }
