@@ -10,6 +10,7 @@ import java.util.StringJoiner;
 public class OutputView {
     private static final String LADDER_FRAME = "|";
     private static final String PLAYER_NAMES_FORMAT = "%5s";
+    private static final String ERROR_MESSAGE_FORMAT = "[ERROR] : %s";
 
     public void printLadder(PlayerNames playerNames, Ladder ladder) {
         System.out.println("\n실행 결과\n");
@@ -17,8 +18,8 @@ public class OutputView {
         printLadder(ladder);
     }
 
-    public void printErrorMessage(Exception exception) {
-        System.out.println(exception.getMessage());
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(String.format(ERROR_MESSAGE_FORMAT, errorMessage));
     }
 
     private void printPlayerNames(PlayerNames playerNames) {
@@ -42,16 +43,8 @@ public class OutputView {
     private void printLadderFloor(Floor floor, StringJoiner ladderJoiner) {
         System.out.print("\t");
         for (LadderBridge bridge : floor.getBridges()) {
-            addBridgeValue(bridge, ladderJoiner);
+            ladderJoiner.add(bridge.getValue());
         }
         System.out.println(ladderJoiner);
-    }
-
-    private void addBridgeValue(LadderBridge bridge, StringJoiner ladderJoiner) {
-        if (bridge.equals(LadderBridge.BRIDGE)) {
-            ladderJoiner.add(bridge.getValue());
-            return;
-        }
-        ladderJoiner.add(bridge.getValue());
     }
 }
