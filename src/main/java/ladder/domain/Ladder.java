@@ -3,27 +3,25 @@ package ladder.domain;
 import ladder.domain.linegenerator.LineGenerator;
 import ladder.domain.linegenerator.RandomLineGenerator;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Ladder {
     private static final int MIN_LADDER_HEIGHT = 1;
     private static final int MAX_LADDER_HEIGHT = 100;
 
-    private final List<RowLine> rowLines = new ArrayList<>();
+    private final List<RowLine> rowLines;
 
     public Ladder(int height, int peopleNumber) {
         this(height, peopleNumber, new RandomLineGenerator());
     }
 
-    //TODO Stream.generate 고민하기
     public Ladder(int height, int peopleNumber, LineGenerator lineGenerator) {
         validateLadderHeight(height);
-
-        for (int i = 0; i < height; i++) {
-            this.rowLines.add(new RowLine(peopleNumber, lineGenerator));
-        }
+        this.rowLines = Stream.generate(() -> new RowLine(peopleNumber, lineGenerator))
+                .limit(height)
+                .toList();
     }
 
     private void validateLadderHeight(int height) {
