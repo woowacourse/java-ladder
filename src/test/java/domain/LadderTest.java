@@ -24,6 +24,16 @@ class LadderTest {
         assertThat(ladder.getLineByIndex(0)).isEqualTo(line1);
     }
 
+    @DisplayName("줄의 개수를 반환할 수 있다")
+    void testGetLineCount() {
+        RowLine line1 = new RowLine(List.of(CONNECTED, DISCONNECTED, DISCONNECTED));
+        RowLine line2 = new RowLine(List.of(CONNECTED, DISCONNECTED, CONNECTED));
+        List<RowLine> rowLines = List.of(line1, line2);
+        Ladder ladder = new Ladder(rowLines);
+
+        assertThat(ladder.getRowLineCount()).isEqualTo(2);
+    }
+    
     @DisplayName("모든 줄이 같은 사이즈를 가져야 생성 검증에 통과한다")
     @Test
     void testCreateLadderWithDifferentSizeLines() {
