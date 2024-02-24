@@ -10,7 +10,7 @@ public class Line {
 
     public Line(List<ConnectionStatus> connectionStatuses) {
         for (int i = 1; i < connectionStatuses.size(); i++) {
-            validateContinuousLine(connectionStatuses.get(i-1), connectionStatuses.get(i));
+            validateContinuousLine(connectionStatuses.get(i - 1), connectionStatuses.get(i));
         }
         this.connectionStatuses = connectionStatuses;
     }
