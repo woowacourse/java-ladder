@@ -22,7 +22,6 @@ public class InputView {
         System.out.println("\n최대 사다리 높이는 몇 개인가요?");
         String input = scanner.nextLine();
         return convertInteger(input);
-
     }
 
     public void closeScanner() {
