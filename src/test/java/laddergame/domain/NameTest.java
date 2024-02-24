@@ -37,7 +37,7 @@ public class NameTest {
     void testNameBlank(String value) {
         Assertions.assertThatThrownBy(() -> new Name(value))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 이름에 빈값을 입력할 수 없습니다.");
+                .hasMessage("[ERROR] 입력값에 빈값을 입력할 수 없습니다.");
 
     }
 }

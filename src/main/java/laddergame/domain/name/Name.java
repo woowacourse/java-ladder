@@ -1,5 +1,7 @@
 package laddergame.domain.name;
 
+import laddergame.util.InputValidator;
+
 import java.util.Objects;
 
 public class Name {
@@ -9,15 +11,9 @@ public class Name {
     private final String name;
 
     public Name(final String input) {
-        validateBlank(input);
+        InputValidator.validateBlank(input);
         validateLength(input);
         this.name = input;
-    }
-
-    private void validateBlank(final String input) {
-        if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 이름에 빈값을 입력할 수 없습니다.");
-        }
     }
 
     private void validateLength(final String input) {
