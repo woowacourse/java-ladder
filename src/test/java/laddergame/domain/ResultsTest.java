@@ -21,7 +21,7 @@ class ResultsTest {
         Results results = Results.from(resultNames);
 
         //then
-        assertEquals(results.getResults().get(0).getName(), resultNames.get(0));
+        assertEquals(results.getResults().get(0).name(), resultNames.get(0));
     }
 
     @ParameterizedTest

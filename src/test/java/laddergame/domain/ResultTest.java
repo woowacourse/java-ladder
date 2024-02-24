@@ -20,7 +20,7 @@ public class ResultTest {
         Result result = new Result(name);
 
         //then
-        assertEquals(result.getName(), name);
+        assertEquals(result.name(), name);
     }
 
     @ParameterizedTest
