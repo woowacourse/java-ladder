@@ -7,9 +7,9 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BarsTest {
+public class LadderResultTest {
     @Test
-    @DisplayName("사다리 실행 플레이어 결과를 계산한다.")
+    @DisplayName("사다리를 실행한 결과를 계산한다.")
     void calculatePlayerResultTest() {
         Bars bars = new Bars(List.of(0, 1, 0, 2));
         LadderResult ladderResult = new LadderResult(List.of("a", "b", "c", "d"));
