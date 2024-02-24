@@ -1,4 +1,5 @@
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -22,8 +23,17 @@ class ApplicationTest extends NsTest {
                                     + "    |-----|     |-----|"
                     );
                 },
-                1, 1, 0, 1, 1, 0, 0, 1, 1, 1
+                1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1
         );
+    }
+
+    @DisplayName("참여자 이름 입력 예외 테스트")
+    @Test
+    void testInvalidPlayerNameLength() {
+        assertSimpleTest(() -> {
+            runException("jojojo,dora");
+            assertThat(output()).contains("[ERROR] 참여자 이름은 최대 5글지입니다.");
+        });
     }
 
     @Override
