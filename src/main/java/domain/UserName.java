@@ -3,6 +3,7 @@ package domain;
 import java.util.regex.Pattern;
 
 public class UserName {
+    private static final int MAX_LENGTH = 5;
     private static final Pattern SPECIAL_CHARACTER = Pattern.compile("[ !@#$%^&*().?\":{}|<>]");
     private final String userName;
 
@@ -24,8 +25,9 @@ public class UserName {
     }
 
     private void validateLength(final String userName) {
-        if (userName.length() > 5) {
-            throw new IllegalArgumentException(String.format("입력 된 값: %s, 사용자 이름은 5글자 이하로 입력해 주세요.", userName));
+        if (userName.length() > MAX_LENGTH) {
+            throw new IllegalArgumentException(
+                    String.format("입력 된 값: %s, 사용자 이름은 %d글자 이하로 입력해 주세요.", userName, MAX_LENGTH));
         }
     }
 

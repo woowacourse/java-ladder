@@ -52,9 +52,17 @@
 
 Bridge -> Line -> Ladder 순으로 의존하고 있다.
 
-Bridge에서 자체적으로 랜덤으로 생성하면 Line에서 테스트가 불가하다.
+Bridge에서 자체적으로 랜덤으로 생성하면 Line,Ladder에서 테스트가 불가하다.
 Line에서 자체적으로 랜덤으로 생성하면 Ladder에서 테스트가 불가하다.
-최선의 방법은 Ladder에 랜덤을 넣어주는 것일까?
+
+랜덤을 분리해보자. bridge, line, ladder는 강한 의존 관계를 갖고 있기 때문에
+LadderGenerator라는 하나의 클래스에서 사다리를 만들어내고 이를 Ladder에 집어 넣는다.
+
+이렇게 하면 얻는 이점은? 
+한 개 LadderGenerator 한 개의 클래스에 랜덤 의존성이 생기지만
+Bridge -> Line -> Ladder 세 개의 클래스에 랜덤 의존성이 사라진다.
+테스트하기가 더욱 편해진다
+
 
 
 
