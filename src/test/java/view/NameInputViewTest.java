@@ -46,4 +46,12 @@ class NameInputViewTest {
                 .isInstanceOf(LadderGameException.class)
                 .hasMessage(ExceptionType.NAME_CHARACTER.getMessage());
     }
+
+    @Test
+    @DisplayName("사람 이름 구성 문자 검증")
+    void validateBlackList() {
+        assertThatThrownBy(() -> NameInputView.getNames(() -> "all,abc"))
+                .isInstanceOf(LadderGameException.class)
+                .hasMessage(ExceptionType.NAME_BLACK_LIST.getMessage());
+    }
 }
