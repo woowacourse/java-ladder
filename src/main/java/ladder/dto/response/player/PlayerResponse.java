@@ -1,4 +1,4 @@
-package ladder.dto.response;
+package ladder.dto.response.player;
 
 import ladder.domain.player.Player;
 
