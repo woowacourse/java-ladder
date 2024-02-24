@@ -13,49 +13,15 @@ import java.util.StringJoiner;
 import static laddergame.domain.ladder.Connection.CONNECTED;
 
 public class ResultView {
-    private static final String BLANK = " ";
-    private static final String VERTICAL_LINE = "|";
-    private static final String HORIZONTAL_LINE = "-";
-    private static final int INTERVAL_WIDTH = 5;
+    private static final String LINE_SEPERATOR = System.lineSeparator();
 
     private ResultView() {
     }
 
-    public static void printNames(People people) {
-        StringJoiner nameJoiner = new StringJoiner(BLANK);
-        List<String> names = people.getNames()
-                .stream()
-                .map(Name::getName)
-                .toList();
-
-        for (String name : names) {
-            String format = NameFormat.findFormat(name.length());
-            nameJoiner.add(String.format(format, name));
-        }
-        System.out.println(nameJoiner);
+    public static void printLadder(People people, Ladder ladder) {
+        System.out.println(LINE_SEPERATOR+"실행 결과"+LINE_SEPERATOR);
+        System.out.println(MessageResolver.resolvePeopleMessage(people));
+        System.out.println(MessageResolver.resolveLadderMessage(ladder));
     }
 
-    public static void printLadder(Ladder ladder) {
-        for (RowLine rowLine : ladder.getRowLines()) {
-            printRowLine(rowLine);
-        }
-    }
-
-    private static void printRowLine(RowLine rowLine) {
-        StringBuilder stringBuilder = new StringBuilder(
-                BLANK.repeat(INTERVAL_WIDTH - 1) + VERTICAL_LINE);
-
-        for (Connection isConnected : rowLine.getConnections()) {
-            stringBuilder.append(findConnectionMark(isConnected).repeat(INTERVAL_WIDTH));
-            stringBuilder.append(VERTICAL_LINE);
-        }
-        System.out.println(stringBuilder);
-    }
-
-    private static String findConnectionMark(Connection isConnected) {
-        if (isConnected == CONNECTED) {
-            return HORIZONTAL_LINE;
-        }
-        return BLANK;
-    }
 }
