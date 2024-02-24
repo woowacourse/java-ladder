@@ -33,15 +33,22 @@ public class LadderGame {
         return results.getRawResults();
     }
 
-    public String climb(String rawName) {
-        int startPosition = names.position(rawName);
-        int endPosition = ladder.climb(startPosition);
-        return results.getRawResult(endPosition);
+    public List<String> showClimbResults(String operation) {
+        if (operation.equals("all")) {
+            return climbAll();
+        }
+        return List.of(climb(operation));
     }
 
-    public List<String> climbAll() {
+    List<String> climbAll() {
         return names.getRawNames().stream()
                 .map(this::climb)
                 .toList();
+    }
+
+    String climb(String rawName) {
+        int startPosition = names.position(rawName);
+        int endPosition = ladder.climb(startPosition);
+        return results.getRawResult(endPosition);
     }
 }

@@ -20,25 +20,21 @@ public class Main {
             int ladderHeight = Integer.parseInt(InputView.getInput());
             return new LadderGame(names, ladderHeight, rawResults);
         });
-        OutputView.print(NamesPrinter.from(ladderGame.getRawNames()));
+        List<String> rawNames = ladderGame.getRawNames();
+        OutputView.print(NamesPrinter.from(rawNames));
         OutputView.print(LadderPrinter.from(ladderGame.getRawLadder()));
         OutputView.print(NamesPrinter.from(ladderGame.getRawResults()));
 
         OutputView.print("결과를 보고 싶은 사람은?");
         String nameThatNeedToShowResult = NameInputView.getNameThatNeedToShowResult(InputView::getInput,
                 new HashSet<>(ladderGame.getRawNames()));
-        if (nameThatNeedToShowResult.equals("all")) {
-            OutputView.print("실행 결과");
-            List<String> climbResults = ladderGame.climbAll();
-            for (int index = 0; index < ladderGame.getRawNames().size(); index++) {
-                String result = ladderGame.getRawNames().get(index) + " : " + climbResults.get(index);
-                OutputView.print(result);
-            }
-            return;
-        }
-        String result = ladderGame.climb(nameThatNeedToShowResult);
         OutputView.print("실행 결과");
-        OutputView.print(result);
+        
+        List<String> climbResults = ladderGame.showClimbResults(nameThatNeedToShowResult);
+        for (int index = 0; index < rawNames.size(); index++) {
+            String result = rawNames.get(index) + " : " + climbResults.get(index);
+            OutputView.print(result);
+        }
     }
 
     static final class RetryHelper {
