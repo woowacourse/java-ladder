@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Names {
+
     private static final int MIN_COUNT = 2;
 
     private final List<Name> names;

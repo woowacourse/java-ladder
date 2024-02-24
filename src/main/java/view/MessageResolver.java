@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class MessageResolver {
+
     private static final String COLUMN_LINE = "|";
     private static final String LINE_MESSAGE_PREFIX = "    ";
     private static final String CONNECT_STATUS_MESSAGE = "-----";

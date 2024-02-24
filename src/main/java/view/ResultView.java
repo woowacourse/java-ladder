@@ -4,6 +4,7 @@ import domain.Ladder;
 import domain.Names;
 
 public class ResultView {
+
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
     private final MessageResolver messageResolver;

@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("출력 메시지 리졸버 테스트")
 class MessageResolverTest {
+
     private MessageResolver messageResolver;
 
     @BeforeEach
