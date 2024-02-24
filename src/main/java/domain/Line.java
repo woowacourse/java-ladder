@@ -1,7 +1,7 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 import strategy.PointStrategy;
 
 public class Line {
@@ -13,11 +13,10 @@ public class Line {
     }
 
     public static Line of(PointStrategy pointStrategy, int playerCount) {
-        List<Point> points = new ArrayList<>();
-        points.add(pointStrategy.generatePoint());
-        for (int i = 1; i < playerCount - 1; i++) {
-            points.add(findNextPoint(points.get(i - 1), pointStrategy));
-        }
+        List<Point> points = Stream.iterate(
+                pointStrategy.generatePoint(), previous -> findNextPoint(previous, pointStrategy))
+            .limit(playerCount - 1)
+            .toList();
         return new Line(points);
     }
 
