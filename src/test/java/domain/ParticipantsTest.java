@@ -8,9 +8,9 @@ import java.util.List;
 
 class ParticipantsTest {
 
-    @DisplayName("참가자들 이름 중복 에외 처리")
+    @DisplayName("참가자 간 이름이 중복되면 에외가 발생한다.")
     @Test
-    void validateDuplicatedNameTest() {
+    void occurExceptionIfNameIsDuplicated() {
         assertThatThrownBy(() -> new Participants(List.of("test1", "test2", "test2")))
                 .isInstanceOf(IllegalArgumentException.class);
     }

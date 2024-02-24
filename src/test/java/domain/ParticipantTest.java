@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 
 class ParticipantTest {
 
-    @DisplayName("이름이 5글자를 초과할 경우 예외 처리")
+    @DisplayName("이름이 최대 글자를 초과할 경우 예외가 발생한다.")
     @Test
-    void validateNameLengthTest() {
+    void occurExceptionIfNameExceedsMaxLength() {
         assertThatThrownBy(() -> new Participant("clover"))
                 .isInstanceOf(IllegalArgumentException.class);
     }

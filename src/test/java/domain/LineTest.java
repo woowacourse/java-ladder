@@ -13,10 +13,10 @@ import java.util.stream.Stream;
 
 class LineTest {
 
-    @DisplayName("현재 위치에서 다리를 놓을 수 있는지 확인")
+    @DisplayName("현재 위치에서 LineItem을 놓을 수 있는지 확인한다.")
     @ParameterizedTest
     @MethodSource("methodSourceEnum")
-    void checkIsPossibleAddBridgeTest(LineItem actual, LineItem lineItem, LineItem expected) {
+    void checkCanAddLineItem(LineItem actual, LineItem lineItem, LineItem expected) {
         Line line = new Line(5);
         line.getPoints().add(actual);
 
@@ -30,9 +30,9 @@ class LineTest {
         );
     }
 
-    @DisplayName("사다리 라인 생성")
+    @DisplayName("사다리의 Line이 올바르게 생성되는지 확인한다.")
     @Test
-    void makeLineTest() {
+    void checkCreatedLineIsCorrect() {
         TestLineItemGenerator testDirectionGenerator = new TestLineItemGenerator(LineItem.CONNECTED);
         Line line = new Line(4);
 
