@@ -9,9 +9,9 @@ import java.util.stream.IntStream;
 public class Ladder {
     private final List<Line> ladder = new ArrayList<>();
 
-    public Ladder(final int height, final int personCount) {
-        validateMaxHeight(height);
-
+    public Ladder(final List<Line> ladder) {
+        validateMaxHeight(ladder.size());
+//        this.ladder = ladder;
 //        IntStream.range(0, height)
 //                .forEach(iterator -> ladder.add(new Line(personCount, new RandomGenerator())));
     }

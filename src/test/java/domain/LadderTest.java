@@ -1,6 +1,9 @@
 package domain;
 
 import domain.Ladder;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.Generator;
@@ -8,25 +11,14 @@ import utils.Generator;
 import static org.assertj.core.api.Assertions.*;
 
 class LadderTest {
-
-    @Test
-    @DisplayName("사다리의 높이는 주어진 높이와 같다")
-    void generate() {
-        int maxHeight = 4;
-        int personCount = 4;
-
-        Ladder ladder = new Ladder(maxHeight, personCount);
-
-        assertThat(maxHeight).isEqualTo(ladder.getHeight());
-    }
-
     @Test
     @DisplayName("사다리 최대 높이는 100이다.")
     void maxHeight() {
-        int maxHeight = 101;
-        int personCount = 4;
+        List<Line> lines = new ArrayList<>();
+        Line line = new Line(List.of(Bridge.BRIDGE, Bridge.NON_BRIDGE));
 
-        assertThatThrownBy(() -> new Ladder(maxHeight, personCount))
-                .isInstanceOf(IllegalArgumentException.class);
+        IntStream.range(0, 101).forEach(number -> lines.add(line));
+
+        assertThatThrownBy(() -> new Ladder(lines)).isInstanceOf(IllegalArgumentException.class);
     }
 }
