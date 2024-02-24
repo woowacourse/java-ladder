@@ -9,19 +9,19 @@ public class Ladder {
 
     private final List<Line> ladder;
 
-    public Ladder() {
-        this.ladder = new ArrayList<>();
+    private Ladder(List<Line> ladder) {
+        this.ladder = ladder;
     }
 
-    public List<Line> makeLadder(Height height, int columnLength, LineItemGenerator lineItemGenerator) {
+    public static Ladder of(Height height, int columnLength, LineItemGenerator lineItemGenerator) {
+        List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < height.getHeight(); i++) {
             Line line = new Line(columnLength);
             line.makeLine(lineItemGenerator);
 
             ladder.add(line);
         }
-
-        return ladder;
+        return new Ladder(ladder);
     }
 
     public List<Line> getLadder() {
