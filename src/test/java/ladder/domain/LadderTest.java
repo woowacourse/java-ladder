@@ -37,19 +37,19 @@ public class LadderTest {
     @ParameterizedTest
     @ValueSource(strings = {"-1", "0",})
     @DisplayName("높이는 양의 정수만 가능하다.")
-    void isPositiveIntegerTest(String number) {
+    void isPositiveIntegerHeightTest(String heightInput) {
 
-        assertThatThrownBy(() -> new Height(number))
+        assertThatThrownBy(() -> new Ladder(heightInput, 3, () -> Rung.EXIST))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("입력된 높이는 1 이상, 100 이하여야 합니다. 입력값 : " + number);
+                .hasMessage("입력된 높이는 1 이상, 100 이하여야 합니다. 입력값 : " + heightInput);
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"&", "op%la",})
+    @ValueSource(strings = {"&", "op%la", "#1", " "})
     @DisplayName("높이는 숫자로 변환이 가능해야 함을 테스트")
-    void isCanTranslateToIntegerTest(String input) {
+    void canTranslateToIntegerTest(String heightInput) {
 
-        assertThatThrownBy(() -> new Height(input))
+        assertThatThrownBy(() -> new Ladder(heightInput, 3, () -> Rung.EXIST))
                 .isInstanceOf(NumberFormatException.class)
                 .hasMessage("숫자로 입력을 변환할 수 없습니다.");
     }
