@@ -6,8 +6,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 class BridgesRandomGenerator implements BridgeGenerator {
+    private final Random random = new Random();
+
     public List<Boolean> generate(int width) {
-        Random random = new Random();
+
         List<Boolean> rowInfos = generateRowInfos(width, random);
         fixRowInfo(width, rowInfos);
         return rowInfos;
