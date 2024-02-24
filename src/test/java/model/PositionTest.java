@@ -45,4 +45,13 @@ class PositionTest {
         assertThat(rightPosition.depth()).isEqualTo(1);
         assertThat(rightPosition.column()).isEqualTo(2);
     }
+
+    @Test
+    @DisplayName("현재 위치보다 한칸 아래의 위치를 반환한다.")
+    void getBelowPosition() {
+        Position position = new Position(1, 1);
+        Position belowPosition = position.getBelowPosition();
+        assertThat(belowPosition.depth()).isEqualTo(2);
+        assertThat(belowPosition.column()).isEqualTo(1);
+    }
 }
