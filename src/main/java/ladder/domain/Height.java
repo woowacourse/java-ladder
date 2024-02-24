@@ -14,13 +14,13 @@ public class Height {
         try {
             return Integer.parseInt(rawValue);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자가 아닙니다.");
+            throw new IllegalArgumentException("정수를 입력해야 합니다.");
         }
     }
 
     private void validate(int value) {
         if (value <= 0) {
-            throw new IllegalArgumentException("1 이상의 숫자를 입력해주세요");
+            throw new IllegalArgumentException("1 이상의 정수를 입력해야 합니다.");
         }
     }
 
