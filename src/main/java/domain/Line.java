@@ -1,9 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Line {
     private final List<Step> steps;
@@ -12,24 +9,25 @@ public class Line {
         this.steps = steps;
     }
 
-    public static Line create(PlayerCount playerCount, RandomStepGenerator randomStepGenerator) {
-        return new Line(makeLine(playerCount, randomStepGenerator));
+    public static Line create(PlayerCount playerCount) {
+        return new Line(makeLine(playerCount));
     }
 
-    private static List<Step> makeLine(PlayerCount playerCount, RandomStepGenerator randomStepGenerator) {
+    private static List<Step> makeLine(PlayerCount playerCount) {
         List<Step> steps = new ArrayList<>();
         int count = playerCount.getCount();
         for (int index = 0; index < count; index++) {
-            steps.add(makeStep(steps, randomStepGenerator, playerCount));
+            steps.add(makeStep(steps, playerCount));
         }
         return steps;
     }
 
-    private static Step makeStep(List<Step> steps, RandomStepGenerator randomStepGenerator, PlayerCount playerCount) {
+    private static Step makeStep(List<Step> steps, PlayerCount playerCount) {
         if (hasBeforeStep(steps) || isLastPoint(steps, playerCount)) {
             return Step.EMPTY;
         }
-        return randomStepGenerator.generate();
+        Random random = new Random();
+        return Step.from(random.nextBoolean());
     }
 
     private static boolean hasBeforeStep(List<Step> steps) {

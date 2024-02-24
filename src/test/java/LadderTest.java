@@ -12,8 +12,6 @@ public class LadderTest {
     void makeLadder() {
         final Ladder ladder = Ladder.create(new Height(4), PlayerCount.from(3));
 
-        assertThat(ladder).extracting("lines")
-                .asList()
-                .hasSize(4);
+        assertThat(ladder.getLines().size()).isEqualTo(4);
     }
 }
