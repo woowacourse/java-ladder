@@ -20,5 +20,7 @@ public class LadderGame {
         ResultView.printResultMessage();
         ResultView.printNames(users);
         ResultView.printResult(ladder);
+
+        InputView.inputTargetResult();
     }
 }
