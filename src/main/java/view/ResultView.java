@@ -3,7 +3,9 @@ package view;
 import domain.Ladder;
 import domain.Bridge;
 import domain.Line;
+import domain.UserName;
 import domain.Users;
+import java.util.List;
 
 public class ResultView {
 
@@ -17,11 +19,26 @@ public class ResultView {
     public static void printNames(final Users users) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append(String.format("%-6s", users.getFirst()));
-        users.getMiddleUsers().forEach(userName -> stringBuilder.append(String.format("%6s", userName)));
-        stringBuilder.append(String.format("%5s", users.getLast()));
+        stringBuilder.append(String.format("%-6s", getFirst(users)));
+        getMiddle(users).forEach(userName -> stringBuilder.append(String.format("%6s", userName)));
+        stringBuilder.append(String.format("%5s", getLast(users)));
 
         System.out.println(stringBuilder);
+    }
+
+    private static List<UserName> getMiddle(Users users) {
+        List<UserName> userNames = users.getUsers();
+        return userNames.subList(1, userNames.size() - 1);
+    }
+
+    private static UserName getLast(Users users) {
+        List<UserName> userNames = users.getUsers();
+        return userNames.get(userNames.size()-1);
+    }
+
+    private static UserName getFirst(Users users) {
+        List<UserName> userNames = users.getUsers();
+        return userNames.get(0);
     }
 
     public static void printResultMessage() {

@@ -12,22 +12,6 @@ public class Users {
                 .toList();
     }
 
-    public int gerPersonCount() {
-        return users.size();
-    }
-
-    public UserName getFirst() {
-        return users.get(0);
-    }
-
-    public UserName getLast() {
-        return users.get(users.size() - 1);
-    }
-
-    public List<UserName> getMiddleUsers() {
-        return users.subList(1, users.size() - 1);
-    }
-
     private void validate(final List<String> userNames) {
         if (userNames.size() <= 1) {
             throw new IllegalArgumentException(String.format("입력된 값: %d, 사용자는 두명 이상이여야 합니다.", userNames.size()));
@@ -35,5 +19,13 @@ public class Users {
         if (userNames.size() > 50) {
             throw new IllegalArgumentException(String.format("입력된 값: %d, 사용자는 최대 50명입니다.", userNames.size()));
         }
+    }
+
+    public int getPersonCount() {
+        return users.size();
+    }
+
+    public List<UserName> getUsers() {
+        return users;
     }
 }
