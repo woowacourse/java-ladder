@@ -2,39 +2,39 @@ package ladder.controller;
 
 import java.util.List;
 import java.util.function.Supplier;
-import ladder.domain.Carpenter;
 import ladder.domain.Height;
-import ladder.domain.Participants;
-import ladder.domain.dto.ResultLadderDto;
-import ladder.domain.randomGenerator.NumberGenerator;
+import ladder.domain.Ladder;
+import ladder.domain.dto.LadderResponseDto;
+import ladder.domain.participant.Participants;
+import ladder.domain.randomGenerator.RungGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class LadderController {
 
-    private final NumberGenerator numberGenerator;
     private final InputView inputView;
     private final OutputView outputView;
+    private final RungGenerator rungGenerator;
 
-    public LadderController(NumberGenerator numberGenerator, InputView inputView, OutputView outputView) {
-        this.numberGenerator = numberGenerator;
+    public LadderController(InputView inputView, OutputView outputView, RungGenerator rungGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.rungGenerator = rungGenerator;
     }
 
     public void run() {
         Height height = repeatUntilValid(this::getHeight);
-        Participants participants = repeatUntilValid(this::getNames);
+        Participants participants = repeatUntilValid(this::getParticipants);
 
         int participantsCount = participants.getParticipantsCount();
 
-        Carpenter carpenter = new Carpenter(height, participantsCount, numberGenerator);
-        ResultLadderDto resultLadderDto = buildLadder(carpenter, participantsCount);
+        Ladder ladder = new Ladder(height, participantsCount, rungGenerator);
+        LadderResponseDto ladderResponseDto = ladder.getResultLadders();
 
-        outputView.printResult(resultLadderDto, participants.getNames());
+        outputView.printResult(ladderResponseDto, participants.getNames());
     }
 
-    private Participants getNames() {
+    private Participants getParticipants() {
         List<String> inputNames = inputView.getNames();
         return new Participants(inputNames);
     }
@@ -42,11 +42,6 @@ public class LadderController {
     private Height getHeight() {
         String inputHeight = inputView.getHeight();
         return new Height(inputHeight);
-    }
-
-    private ResultLadderDto buildLadder(Carpenter carpenter, int participantsCount) {
-        carpenter.buildLadders(participantsCount);
-        return carpenter.getResultLadders();
     }
 
     private <T> T repeatUntilValid(Supplier<T> function) {
