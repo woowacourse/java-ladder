@@ -19,7 +19,7 @@ public class LadderController {
         this.handler = new ExceptionHandler();
     }
 
-    public void make() {
+    public void runLadderGame() {
         People people = runWithHandler(() -> new People(inputView.askParticipants()));
         Ladder ladder = runWithHandler(() -> new Ladder(inputView.askLadderHeight(), people.numberOfParticipants()));
 
