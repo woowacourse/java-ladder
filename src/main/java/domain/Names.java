@@ -3,6 +3,7 @@ package domain;
 import util.ExceptionMessages;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -30,12 +31,7 @@ public class Names {
         return values.size();
     }
 
-    public List<String> getValues() {
-        final List<String> names = new ArrayList<>();
-        for (final Name name : this.values) {
-            names.add(name.getValue());
-        }
-
-        return names;
+    public List<Name> getValues() {
+        return Collections.unmodifiableList(values);
     }
 }

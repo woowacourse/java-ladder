@@ -2,6 +2,7 @@ package view;
 
 import domain.Bridge;
 import domain.Line;
+import domain.Name;
 
 import java.util.List;
 import java.util.StringJoiner;
@@ -18,10 +19,10 @@ public class OutputView {
         System.out.println(System.lineSeparator() + "실행결과");
     }
 
-    public void printNames(List<String> names) {
+    public void printNames(List<Name> names) {
         StringJoiner nameJoiner = new StringJoiner(NAME_DELIMITER);
-        for (final String name : names) {
-            nameJoiner.add(String.format("%5s", name));
+        for (final Name name : names) {
+            nameJoiner.add(String.format("%5s", name.getValue()));
         }
         System.out.println(System.lineSeparator() + nameJoiner);
     }
