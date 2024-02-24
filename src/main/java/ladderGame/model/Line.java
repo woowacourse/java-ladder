@@ -12,8 +12,9 @@ public class Line {
         this.booleanGenerator = booleanGenerator;
 
         connectionStatuses = new ArrayList<>();
-        Stream.iterate(0, index -> index < number, index -> index + 1)
-                .forEach(this::makeLine);
+        for(int i = 0; i < number - 1; i++) {
+            makeLine(i);
+        }
     }
 
     private void makeLine(int index) {
