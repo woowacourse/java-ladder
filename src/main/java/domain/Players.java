@@ -31,7 +31,7 @@ public class Players {
         return names.stream().distinct().count();
     }
 
-    public List<Player> mapToPlayer(List<String> names) {
+    private List<Player> mapToPlayer(List<String> names) {
         return names.stream()
                 .map(name -> new Player(name.trim()))
                 .toList();
