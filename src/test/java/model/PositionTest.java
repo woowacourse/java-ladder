@@ -27,4 +27,22 @@ class PositionTest {
                 .isExactlyInstanceOf(IllegalArgumentException.class)
                 .hasMessage("위치는 음수일 수 없습니다.");
     }
+
+    @Test
+    @DisplayName("현재 위치보다 한칸 왼쪽의 위치를 반환한다.")
+    void getLeftPosition() {
+        Position position = new Position(1, 1);
+        Position leftPosition = position.getLeftPosition();
+        assertThat(leftPosition.depth()).isEqualTo(1);
+        assertThat(leftPosition.column()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("현재 위치보다 한칸 오른쪽의 위치를 반환한다.")
+    void getRightPosition() {
+        Position position = new Position(1, 1);
+        Position rightPosition = position.getRightPosition();
+        assertThat(rightPosition.depth()).isEqualTo(1);
+        assertThat(rightPosition.column()).isEqualTo(2);
+    }
 }
