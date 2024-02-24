@@ -1,8 +1,8 @@
 package strategy;
 
-import domain.Point;
+import domain.Connection;
 
 public interface PointStrategy {
 
-    Point generatePoint();
+    Connection generatePoint();
 }

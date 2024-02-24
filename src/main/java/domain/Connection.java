@@ -1,13 +1,13 @@
 package domain;
 
-public enum Point {
+public enum Connection {
 
     CONNECTED( "-"),
     DISCONNECTED( " ");
 
     private final String displayCharacter;
 
-    Point(String displayCharacter) {
+    Connection(String displayCharacter) {
         this.displayCharacter = displayCharacter;
     }
 

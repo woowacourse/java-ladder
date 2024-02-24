@@ -1,16 +1,16 @@
 package strategy;
 
-import domain.Point;
+import domain.Connection;
 import java.util.Random;
 
 public class RandomPointStrategy implements PointStrategy {
 
     @Override
-    public Point generatePoint() {
+    public Connection generatePoint() {
         Random random = new Random();
         if (random.nextBoolean()) {
-            return Point.CONNECTED;
+            return Connection.CONNECTED;
         }
-        return Point.DISCONNECTED;
+        return Connection.DISCONNECTED;
     }
 }

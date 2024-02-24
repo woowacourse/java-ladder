@@ -21,13 +21,13 @@ public class LineTest {
     void test_ok_generateRandomPoint() {
         Line line = new Line(4, new RandomPointStrategy());
         line.getPoints()
-                .forEach(point -> assertThat(point).isInstanceOf(Point.class));
+                .forEach(point -> assertThat(point).isInstanceOf(Connection.class));
     }
 
     @Test
     @DisplayName("가로줄 생성 성공: 연결 오른쪽은 비연결이다.")
     void test_ok_generatePointNextConnected() {
-        Line line = new Line(3, () -> Point.CONNECTED);
-        assertThat(line.getPoints().get(1)).isEqualTo(Point.DISCONNECTED);
+        Line line = new Line(3, () -> Connection.CONNECTED);
+        assertThat(line.getPoints().get(1)).isEqualTo(Connection.DISCONNECTED);
     }
 }

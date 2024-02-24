@@ -3,7 +3,7 @@ package view;
 import domain.Line;
 import domain.Lines;
 import domain.Members;
-import domain.Point;
+import domain.Connection;
 import java.util.List;
 
 public class MessageResolver {
@@ -29,17 +29,17 @@ public class MessageResolver {
     }
 
     private String resolveLine(Line line) {
-        List<Point> points = line.getPoints();
+        List<Connection> connections = line.getPoints();
         StringBuilder stringBuilder = new StringBuilder(" ".repeat(MAX_NAME_LENGTH - 1));
-        for (Point point : points) {
+        for (Connection connection : connections) {
             stringBuilder.append("|");
-            stringBuilder.append(resolvePoint(point));
+            stringBuilder.append(resolvePoint(connection));
         }
         stringBuilder.append("|");
         return stringBuilder.toString();
     }
 
-    private String resolvePoint(Point point) {
-        return point.getDisplayCharacter().repeat(MAX_NAME_LENGTH);
+    private String resolvePoint(Connection connection) {
+        return connection.getDisplayCharacter().repeat(MAX_NAME_LENGTH);
     }
 }

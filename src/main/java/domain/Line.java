@@ -6,7 +6,7 @@ import strategy.PointStrategy;
 
 public class Line {
 
-    private final List<Point> points = new ArrayList<>();
+    private final List<Connection> points = new ArrayList<>();
     private final PointStrategy pointStrategy;
 
     public Line(int playerCount, PointStrategy pointStrategy) {
@@ -21,14 +21,14 @@ public class Line {
         }
     }
 
-    private Point makeNextPointByPrevious(Point previous) {
-        if (previous.equals(Point.CONNECTED)) {
-            return Point.DISCONNECTED;
+    private Connection makeNextPointByPrevious(Connection previous) {
+        if (previous.equals(Connection.CONNECTED)) {
+            return Connection.DISCONNECTED;
         }
         return pointStrategy.generatePoint();
     }
 
-    public List<Point> getPoints() {
+    public List<Connection> getPoints() {
         return points;
     }
 }
