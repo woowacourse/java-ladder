@@ -15,7 +15,7 @@ public class HeightTest {
 
         assertThatThrownBy(() -> new Height(number))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("입력된 높이가 정해진 규칙에 맞지 않습니다.");
+                .hasMessage("입력된 높이는 1 이상, 100 이하여야 합니다. 입력값 : " + number);
     }
 
     @ParameterizedTest
