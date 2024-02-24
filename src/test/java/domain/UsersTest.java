@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,7 @@ class UsersTest {
     void createOnlyUsers() {
         String userNames = "pobi";
 
-        assertThatThrownBy(() -> new Users(List.of(userNames.split(","))))
+        assertThatThrownBy(() -> new Users(Arrays.stream(userNames.split(",")).toList()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -24,7 +25,6 @@ class UsersTest {
     @DisplayName("사용자는 최대 50명이다")
     void maxUsers() {
         List<String> userNames = new ArrayList<>();
-
         for (int i = 1; i <= 50; i++) {
             userNames.add(String.valueOf(i));
         }
@@ -42,7 +42,7 @@ class UsersTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"pobi,0","rush,1","jonge,2"})
+    @CsvSource(value = {"pobi,0", "rush,1", "jonge,2"})
     @DisplayName("사용자 이름이 주어지면 그 위치를 반환한다")
     void findPositionByName(String name, int position) {
         Users users = new Users(List.of("pobi", "rush", "jonge"));

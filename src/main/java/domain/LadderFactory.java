@@ -2,12 +2,12 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.IntStream;
-import utils.RandomGenerator;
 
 public class LadderFactory {
 
-    private static final RandomGenerator RANDOM_GENERATOR = new RandomGenerator();
+    private static final Random RANDOM_GENERATOR = new Random();
 
     private LadderFactory() {
 
@@ -37,7 +37,7 @@ public class LadderFactory {
     }
 
     private static Bridge getRandomBridge() {
-        return Bridge.findByHasLine(RANDOM_GENERATOR.generate());
+        return Bridge.findByHasLine(RANDOM_GENERATOR.nextBoolean());
     }
 
     public static Ladder createLadder(List<Line> lines) {
