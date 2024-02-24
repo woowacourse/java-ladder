@@ -16,16 +16,9 @@ public class ResultView {
     public void printLadder(List<Player> players, List<Line> lines) {
         System.out.println(System.lineSeparator() + RESULT_PROMPT + System.lineSeparator());
 
-        printPlayerNames(players);
-        printLines(lines);
-    }
-
-    private void printPlayerNames(List<Player> players) {
         players.forEach(player -> System.out.printf("%6s", player.getName()));
         System.out.println();
-    }
 
-    private void printLines(List<Line> lines) {
         lines.forEach(line -> System.out.println(makeLineToString(line)));
     }
 
