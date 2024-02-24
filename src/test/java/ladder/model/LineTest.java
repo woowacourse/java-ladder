@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static ladder.constant.LadderPath.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
@@ -57,5 +58,16 @@ public class LineTest {
         assertThatThrownBy(() -> new Line(row))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("오른쪽 경로 오른쪽에 왼쪽 경로가 없습니다.");
+    }
+
+    @Test
+    @DisplayName("라인의 경로를 분석해서 사다리 막대 좌표를 추출해낼 수 있다.")
+    void findBarsTest() {
+        Line line = new Line(List.of(RIGHT, LEFT, STAY, RIGHT, LEFT));
+
+        List<Integer> actual = line.findBars();
+        List<Integer> expected = List.of(0, 3);
+
+        assertThat(actual).isEqualTo(expected);
     }
 }
