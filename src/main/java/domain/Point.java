@@ -2,14 +2,12 @@ package domain;
 
 public enum Point {
 
-    CONNECTED(true, "-"),
-    DISCONNECTED(false, " ");
+    CONNECTED( "-"),
+    DISCONNECTED( " ");
 
-    private final Boolean isConnected;
     private final String displayCharacter;
 
-    Point(Boolean isConnected, String displayCharacter) {
-        this.isConnected = isConnected;
+    Point(String displayCharacter) {
         this.displayCharacter = displayCharacter;
     }
 
