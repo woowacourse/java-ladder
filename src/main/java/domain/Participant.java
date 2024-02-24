@@ -3,6 +3,7 @@ package domain;
 public class Participant {
 
     private static final Integer MAX_NAME_LENGTH = 5;
+
     private final String name;
 
     public Participant(String name) {
