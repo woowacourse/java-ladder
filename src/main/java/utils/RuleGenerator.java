@@ -2,6 +2,6 @@ package utils;
 
 
 public interface RuleGenerator {
-    boolean generate();
+    boolean isAboveThreshold();
 
 }

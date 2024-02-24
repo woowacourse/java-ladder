@@ -7,7 +7,7 @@ public class RuleGeneratorImpl implements RuleGenerator {
     private static final int THRESHOLD = 3;
 
     @Override
-    public boolean generate() {
+    public boolean isAboveThreshold() {
         int randomNumber = new Random().nextInt(10);
 
         return randomNumber >= THRESHOLD;
