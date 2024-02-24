@@ -4,17 +4,10 @@ import strategy.PointStrategy;
 
 public enum Connection {
 
-    CONNECTED( "-"),
-    DISCONNECTED( " ");
+    CONNECTED,
+    DISCONNECTED;
 
-    private final String displayCharacter;
-
-    Connection(String displayCharacter) {
-        this.displayCharacter = displayCharacter;
-    }
-
-    public String getDisplayCharacter() {
-        return displayCharacter;
+    Connection() {
     }
 
     public Connection makeNextConnection(PointStrategy pointStrategy) {

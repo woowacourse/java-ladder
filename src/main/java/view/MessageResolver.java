@@ -30,16 +30,23 @@ public class MessageResolver {
 
     private String resolveLine(Line line) {
         List<Connection> connections = line.getPoints();
-        StringBuilder stringBuilder = new StringBuilder(" ".repeat(MAX_NAME_LENGTH - 1));
+        StringBuilder stringBuilder = new StringBuilder(repeatCharacter(" ", MAX_NAME_LENGTH - 1));
         for (Connection connection : connections) {
             stringBuilder.append("|");
-            stringBuilder.append(resolvePoint(connection));
+            stringBuilder.append(resolveConnection(connection));
         }
         stringBuilder.append("|");
         return stringBuilder.toString();
     }
 
-    private String resolvePoint(Connection connection) {
-        return connection.getDisplayCharacter().repeat(MAX_NAME_LENGTH);
+    private String resolveConnection(Connection connection) {
+        if (connection.equals(Connection.CONNECTED)) {
+            return repeatCharacter("-", MAX_NAME_LENGTH);
+        }
+        return repeatCharacter(" ", MAX_NAME_LENGTH);
+    }
+
+    private String repeatCharacter(String character, int times) {
+        return character.repeat(times);
     }
 }
