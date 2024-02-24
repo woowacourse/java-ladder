@@ -20,11 +20,15 @@ public class Line {
             return stick;
         }
 
-        if (stick.isFilled() && isRepeat(stick)) {
+        if (isRepeatFilled(stick)) {
             return Stick.NOT_FILLED;
         }
 
         return stick;
+    }
+
+    private boolean isRepeatFilled(Stick stick) {
+        return isRepeat(stick) && stick.isFilled();
     }
 
     private boolean isRepeat(Stick stick) {
