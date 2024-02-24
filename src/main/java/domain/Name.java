@@ -22,7 +22,7 @@ public record Name(String name) {
 
     private void validateAlphanumericName() {
         if (!Pattern.matches(NAME_REGEX_POLICY, this.name)) {
-            throw new IllegalArgumentException("이름이 영어와 숫자가 아니라면 예외가 발생한다");
+            throw new IllegalArgumentException("이름은 영어와 숫자만 허용합니다.");
         }
     }
 }
