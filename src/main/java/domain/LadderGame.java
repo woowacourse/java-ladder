@@ -40,13 +40,13 @@ public class LadderGame {
         return List.of(climb(operation));
     }
 
-    List<String> climbAll() {
+    private List<String> climbAll() {
         return names.getRawNames().stream()
                 .map(this::climb)
                 .toList();
     }
 
-    String climb(String rawName) {
+    private String climb(String rawName) {
         int startPosition = names.position(rawName);
         int endPosition = ladder.climb(startPosition);
         return results.getRawResult(endPosition);

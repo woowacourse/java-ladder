@@ -13,9 +13,10 @@ class LadderGameTest {
 
     static Stream<Arguments> climbParameter() {
         return Stream.of(
-                Arguments.of("a", "2"),
-                Arguments.of("b", "1"),
-                Arguments.of("c", "3")
+                Arguments.of("a", List.of("2")),
+                Arguments.of("b", List.of("1")),
+                Arguments.of("c", List.of("3")),
+                Arguments.of("all", List.of("2", "1", "3"))
         );
     }
 
@@ -59,14 +60,14 @@ class LadderGameTest {
     @ParameterizedTest
     @MethodSource("climbParameter")
     @DisplayName("사다리 타기 게임을 실행했을 때, 제대로 사다리가 타지는지 검증")
-    void climb(String nameThatWantToShoResult, String expectedResult) {
-        List<String> expectedRawNames = List.of("a", "b", "c", "d");
+    void climb(String nameThatWantToShoResult, List<String> expectedResult) {
+        List<String> expectedRawNames = List.of("a", "b", "c");
         List<String> rawResults = List.of("1", "2", "3");
         int ladderHeight = 5;
         LadderGame ladderGame = new LadderGame(expectedRawNames, ladderHeight, rawResults,
                 width -> List.of(true, false));
-        String actualResult = ladderGame.climb(nameThatWantToShoResult);
-        Assertions.assertThat(actualResult)
+        List<String> climbResults = ladderGame.showClimbResults(nameThatWantToShoResult);
+        Assertions.assertThat(climbResults)
                 .isEqualTo(expectedResult);
     }
 }
