@@ -14,6 +14,6 @@ public class LadderRowTest {
     @Test
     void makeNotDuplicateInLine() {
         LadderRow ladderRow = new LadderRow(new ArrayList<>(List.of(true, true, true, true)));
-        assertThat(ladderRow.getLineStatus()).isEqualTo(List.of(true, false, true, false));
+        assertThat(ladderRow.getIsLines()).isEqualTo(List.of(true, false, true, false));
     }
 }

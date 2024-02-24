@@ -5,26 +5,26 @@ import java.util.List;
 
 public class LadderRow {
 
-    private final List<Boolean> lineStatus;
+    private final List<Boolean> isLines;
 
-    public LadderRow(List<Boolean> lineStatus) {
-        checkContinuousLine(lineStatus);
-        this.lineStatus = new ArrayList<>(lineStatus);
+    public LadderRow(List<Boolean> isLines) {
+        checkContinuousLine(isLines);
+        this.isLines = new ArrayList<>(isLines);
     }
 
-    public void checkContinuousLine(List<Boolean> lineStatus) {
-        for (int i = 1; i < lineStatus.size(); i++) {
-            removeContinuousLine(lineStatus, i);
+    public void checkContinuousLine(List<Boolean> isLines) {
+        for (int i = 1; i < isLines.size(); i++) {
+            removeContinuousLine(isLines, i);
         }
     }
 
-    private void removeContinuousLine(List<Boolean> lineStatus, int index) {
-        if (lineStatus.get(index) && lineStatus.get(index - 1)) {
-            lineStatus.set(index, false);
+    private void removeContinuousLine(List<Boolean> isLines, int index) {
+        if (isLines.get(index) && isLines.get(index - 1)) {
+            isLines.set(index, false);
         }
     }
 
-    public List<Boolean> getLineStatus() {
-        return lineStatus;
+    public List<Boolean> getIsLines() {
+        return isLines;
     }
 }

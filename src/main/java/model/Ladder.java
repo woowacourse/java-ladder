@@ -21,20 +21,20 @@ public class Ladder {
     }
 
     private LadderRow buildRow(int participantsSize) {
-        List<Boolean> lineStatus = new ArrayList<>();
-        lineStatus.add(new Random().nextBoolean());
+        List<Boolean> isLines = new ArrayList<>();
+        isLines.add(new Random().nextBoolean());
         for (int i = 1; i < participantsSize - 1; i++) {
-            fillLineStatus(lineStatus, new Random().nextBoolean());
+            fillLineStatus(isLines, new Random().nextBoolean());
         }
-        return new LadderRow(lineStatus);
+        return new LadderRow(isLines);
     }
 
-    private void fillLineStatus(List<Boolean> lineStatus, boolean isLine) {
-        if (lineStatus.get(lineStatus.size() - 1).equals(true) && isLine) {
-            lineStatus.add(false);
+    private void fillLineStatus(List<Boolean> isLines, boolean isLine) {
+        if (isLines.get(isLines.size() - 1).equals(true) && isLine) {
+            isLines.add(false);
             return;
         }
-        lineStatus.add(isLine);
+        isLines.add(isLine);
     }
 
     public int getHeight() {
