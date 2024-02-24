@@ -1,11 +1,11 @@
 package domain;
 
-import util.LadderItemGenerator;
+import util.LineItemGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<LadderItem> points;
+    private final List<LineItem> points;
     private final int columnLength;
 
     public Line(int columnLength) {
@@ -13,25 +13,25 @@ public class Line {
         this.columnLength = columnLength;
     }
 
-    public List<LadderItem> makeLine(LadderItemGenerator ladderItemGenerator) {
+    public List<LineItem> makeLine(LineItemGenerator lineItemGenerator) {
         for (int position = 0; position < columnLength - 1; position++) {
-            LadderItem isConnectable = ladderItemGenerator.generate();
+            LineItem lineItem = lineItemGenerator.generate();
 
-            points.add(decideConnectable(position, isConnectable));
+            points.add(decideLineItem(position, lineItem));
         }
 
         return points;
     }
 
-    public LadderItem decideConnectable(int position, LadderItem isConnectable) {
-        if (position == 0 || points.get(position - 1).equals(LadderItem.UNCONNECTED)) {
-            return isConnectable;
+    public LineItem decideLineItem(int position, LineItem lineItem) {
+        if (position == 0 || points.get(position - 1).equals(LineItem.UNCONNECTED)) {
+            return lineItem;
         }
 
-        return LadderItem.UNCONNECTED;
+        return LineItem.UNCONNECTED;
     }
 
-    public List<LadderItem> getPoints() {
+    public List<LineItem> getPoints() {
         return points;
     }
 }

@@ -12,6 +12,6 @@ class LadderItemTest {
     @ParameterizedTest
     @CsvSource(value = {"true,-----|", "false,'     |'"}, delimiter = ',')
     void getShapeByIsConnected(boolean isConnected, String expected) {
-        assertThat(LadderItem.getShapeByIsConnected(isConnected)).isEqualTo(expected);
+        assertThat(LineItem.getShapeByIsConnected(isConnected)).isEqualTo(expected);
     }
 }
