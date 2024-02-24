@@ -22,4 +22,8 @@ public class PlayerCount {
     public boolean isSameWith(int otherCount) {
         return count == otherCount;
     }
+
+    public int getCount() {
+        return count;
+    }
 }

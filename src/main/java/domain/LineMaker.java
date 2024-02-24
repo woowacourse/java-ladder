@@ -14,14 +14,11 @@ public class LineMaker {
 
     public Line makeLine() {
         List<Step> steps = new ArrayList<>();
-        for (int index = 0; isInCountRange(playerCount, index); index++){
+        int count = playerCount.getCount();
+        for (int index = 0; index < count; index++) {
             steps.add(makeStep(index, steps));
         }
         return new Line(steps);
-    }
-
-    private boolean isInCountRange(PlayerCount playerCount, int buildCount) {
-        return playerCount.isBiggerThan(buildCount);
     }
 
     private Step makeStep(int index, List<Step> steps) {

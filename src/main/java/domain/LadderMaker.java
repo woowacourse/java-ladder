@@ -18,7 +18,8 @@ public class LadderMaker {
 
     public Ladder makeLadder() {
         List<Line> lines = new ArrayList<>();
-        while (height.isBiggerThan(lines.size())) {
+        int count = height.getHeight();
+        for (int index = 0; index < count; index++){
             lines.add(lineMaker.makeLine());
         }
         return new Ladder(lines);
