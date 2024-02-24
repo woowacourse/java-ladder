@@ -2,7 +2,6 @@ package ladder.controller;
 
 import java.util.List;
 import java.util.function.Supplier;
-import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.dto.LadderResponseDto;
 import ladder.domain.participant.Participants;
@@ -23,12 +22,10 @@ public class LadderController {
     }
 
     public void run() {
-        Height height = repeatUntilValid(this::getHeight);
         Participants participants = repeatUntilValid(this::getParticipants);
-
         int participantsCount = participants.getParticipantsCount();
 
-        Ladder ladder = new Ladder(height, participantsCount, rungGenerator);
+        Ladder ladder = repeatUntilValid(() -> getLadder(participantsCount));
         LadderResponseDto ladderResponseDto = ladder.getResultLadders();
 
         outputView.printResult(ladderResponseDto, participants.getNames());
@@ -39,9 +36,13 @@ public class LadderController {
         return new Participants(inputNames);
     }
 
-    private Height getHeight() {
-        String inputHeight = inputView.getHeight();
-        return new Height(inputHeight);
+    private Ladder getLadder(int participantsCount) {
+        String height = getHeight();
+        return new Ladder(height, participantsCount, rungGenerator);
+    }
+
+    private String getHeight() {
+        return inputView.getHeight();
     }
 
     private <T> T repeatUntilValid(Supplier<T> function) {
