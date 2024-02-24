@@ -39,4 +39,8 @@ public class LadderFactory {
     private static Bridge getRandomBridge() {
         return Bridge.findByHasLine(RANDOM_GENERATOR.generate());
     }
+
+    public static Ladder createLadder(List<Line> lines) {
+        return new Ladder(lines);
+    }
 }
