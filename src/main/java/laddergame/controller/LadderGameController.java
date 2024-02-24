@@ -4,7 +4,7 @@ import laddergame.domain.ladder.Ladder;
 import laddergame.domain.people.People;
 import laddergame.util.ExceptionHandledReader;
 import laddergame.view.InputView;
-import laddergame.view.OutputView;
+import laddergame.view.ResultView;
 
 public class LadderGameController {
     private LadderGameController() {
@@ -14,8 +14,7 @@ public class LadderGameController {
         People people = ExceptionHandledReader.readUntilNoError(LadderGameController::getPeople);
         Ladder ladder = ExceptionHandledReader.readUntilNoError(() -> getLadder(people));
 
-        OutputView.printNames(people);
-        OutputView.printLadder(ladder);
+        ResultView.printLadder(people, ladder);
     }
 
     private static People getPeople() {
