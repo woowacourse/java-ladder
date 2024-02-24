@@ -26,7 +26,7 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("사다리 라인이 겹치지 않도록 해야 한다.")
+    @DisplayName("랜덤으로 생성한 사다리 라인을 겹치지 않도록 수정한다.")
     void createNonOverlappingLine() {
         // given
         int personCount = 5;
