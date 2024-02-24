@@ -15,10 +15,6 @@ public class PlayerCount {
         return new PlayerCount(players.getCount());
     }
 
-    public boolean isBiggerThan(int buildCount) {
-        return this.count > buildCount;
-    }
-
     public boolean isSameWith(int otherCount) {
         return count == otherCount;
     }
