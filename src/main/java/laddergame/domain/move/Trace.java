@@ -1,5 +1,6 @@
 package laddergame.domain.move;
 
+import laddergame.domain.ladder.Line;
 import laddergame.domain.point.Point;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class Trace {
         return movableStrategy;
     }
 
-    public Trace next(List<Point> points) {
-        return movableStrategy.move(points, position).orElse(this);
+    public Trace next(Line line) {
+        return movableStrategy.move(line, position).orElse(this);
     }
 }

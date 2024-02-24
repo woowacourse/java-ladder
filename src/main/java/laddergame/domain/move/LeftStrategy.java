@@ -1,22 +1,21 @@
 package laddergame.domain.move;
 
-import laddergame.domain.point.Point;
+import laddergame.domain.ladder.Line;
 
-import java.util.List;
 import java.util.Optional;
 
 public class LeftStrategy implements MovableStrategy {
     @Override
-    public Optional<Trace> move(final List<Point> points, final int position) {
+    public Optional<Trace> move(final Line line, final int position) {
         final int left = position - 1;
 
-        if (left < 0) {
+        if (left == -1) {
             return Optional.empty();
         }
 
-        if (points.get(left).isExist()) {
+        if (line.hasPoint(left)) {
             return Optional.of(new Trace(left, this));
-        } else if(points.get(position).isExist()){
+        } else if(line.hasPoint(position)){
             return Optional.of(new Trace(position, new RightStrategy()));
         }
 
