@@ -3,7 +3,7 @@ package domain;
 import java.util.regex.Pattern;
 
 public class UserName {
-    private final Pattern SPECIAL_CHARACTER = Pattern.compile("[ !@#$%^&*().?\":{}|<>]");
+    private static final Pattern SPECIAL_CHARACTER = Pattern.compile("[ !@#$%^&*().?\":{}|<>]");
     private final String userName;
 
     public UserName(final String userName) {
@@ -32,6 +32,7 @@ public class UserName {
     private void validateSpecialCharacter(final String userName) {
         if (SPECIAL_CHARACTER.matcher(userName).find()) {
             throw new IllegalArgumentException(String.format("입력 된 값: %s, 특수기호는 들어갈 수 없습니다.", userName));
+
         }
     }
 
