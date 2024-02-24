@@ -66,4 +66,16 @@ public class NameInputView {
             throw new LadderGameException(ExceptionType.NAME_BLACK_LIST);
         }
     }
+
+    public static String getNameThatNeedToShowResult(Supplier<String> supplier, Set<String> names) {
+        String name = supplier.get();
+        validateNamesContainsName(names, name);
+        return name;
+    }
+
+    private static void validateNamesContainsName(Set<String> names, String name) {
+        if (!names.contains(name) && !name.equals("all")) {
+            throw new LadderGameException(ExceptionType.NAME_NOT_FOUND);
+        }
+    }
 }

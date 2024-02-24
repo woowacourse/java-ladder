@@ -14,7 +14,8 @@ public enum ExceptionType {
     RESULTS_COUNT_RANGE("실행 결과는 최대 10개까지 받을 수 있습니다."),
     RESULT_COUNT("실행 결과의 개수와 이름의 개수가 다릅니다."),
     RESULTS_SEPARATOR("구분자가 맨 앞이나 맨 뒤에 있으면 안됩니다."),
-    RESULT_LENGTH("실행 결과의 길이는 1자 이상 5자 이하여야 합니다.");
+    RESULT_LENGTH("실행 결과의 길이는 1자 이상 5자 이하여야 합니다."),
+    NAME_NOT_FOUND("없는 이름입니다.");
 
     private final String message;
 
