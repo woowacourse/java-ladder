@@ -1,4 +1,6 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
+
+import laddergame.domain.point.PointGenerator;
 
 import java.util.Collections;
 import java.util.List;

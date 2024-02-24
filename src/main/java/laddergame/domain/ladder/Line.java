@@ -1,4 +1,9 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
+
+import laddergame.domain.move.MovableStrategy;
+import laddergame.domain.move.Trace;
+import laddergame.domain.point.Point;
+import laddergame.domain.point.PointGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +12,7 @@ public class Line {
 
     private final List<Point> points;
 
-    private Line(final List<Point> points) {
+    public Line(final List<Point> points) {
         this.points = points;
     }
 
@@ -38,5 +43,9 @@ public class Line {
         return points.stream()
                 .map(Point::isExist)
                 .toList();
+    }
+
+    public Trace move(Trace trace) {
+        return trace.next(this.points);
     }
 }

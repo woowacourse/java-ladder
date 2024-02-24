@@ -1,9 +1,9 @@
 package laddergame.dto;
 
-import laddergame.domain.Ladder;
-import laddergame.domain.Line;
-import laddergame.domain.Name;
-import laddergame.domain.Names;
+import laddergame.domain.ladder.Ladder;
+import laddergame.domain.ladder.Line;
+import laddergame.domain.name.Name;
+import laddergame.domain.name.Names;
 
 import java.util.List;
 

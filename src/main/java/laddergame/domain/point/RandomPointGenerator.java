@@ -1,4 +1,7 @@
-package laddergame.domain;
+package laddergame.domain.point;
+
+import laddergame.domain.point.Point;
+import laddergame.domain.point.PointGenerator;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.name;
 
 import java.util.Collections;
 import java.util.List;

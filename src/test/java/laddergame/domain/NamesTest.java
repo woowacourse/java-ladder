@@ -3,6 +3,8 @@ package laddergame.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+
+import laddergame.domain.name.Names;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

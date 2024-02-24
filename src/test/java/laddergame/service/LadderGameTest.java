@@ -4,9 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
-import laddergame.domain.LadderHeight;
-import laddergame.domain.Names;
-import laddergame.domain.Point;
+import laddergame.domain.ladder.LadderHeight;
+import laddergame.domain.name.Names;
+import laddergame.domain.point.Point;
 import laddergame.dto.GameResultDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
 package laddergame.controller;
 
-import laddergame.domain.LadderHeight;
-import laddergame.domain.Names;
+import laddergame.domain.ladder.LadderHeight;
+import laddergame.domain.name.Names;
 import laddergame.dto.GameResultDto;
 import laddergame.exception.ExceptionHandler;
 import laddergame.service.LadderGame;

@@ -1,4 +1,6 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
+
+import laddergame.domain.name.Names;
 
 public class LineSize {
 

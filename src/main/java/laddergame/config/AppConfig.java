@@ -1,7 +1,7 @@
 package laddergame.config;
 
 import laddergame.controller.LadderController;
-import laddergame.domain.RandomPointGenerator;
+import laddergame.domain.point.RandomPointGenerator;
 import laddergame.service.LadderGame;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;

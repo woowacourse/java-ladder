@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.point;
 
 public enum Point {
     EMPTY, EXIST;
