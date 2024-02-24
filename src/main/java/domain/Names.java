@@ -23,6 +23,15 @@ public class Names {
                 .toList();
     }
 
+    int position(String rawName) {
+        Name needToFind = new Name(rawName);
+        try {
+            return names.indexOf(needToFind);
+        } catch (NullPointerException e) {
+            throw new LadderGameException(ExceptionType.NAME_NOT_FOUND);
+        }
+    }
+
     int getNameCount() {
         return names.size();
     }
