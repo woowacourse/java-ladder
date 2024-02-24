@@ -1,5 +1,4 @@
 import domain.LadderGame;
-import java.util.HashSet;
 import java.util.List;
 import java.util.function.Supplier;
 import view.InputView;
@@ -12,7 +11,18 @@ import view.ResultPrinter;
 
 public class Main {
     public static void main(String[] args) {
-        LadderGame ladderGame = RetryHelper.retry(() -> {
+        LadderGame ladderGame = generateLadderGame();
+
+        printName(ladderGame);
+        printLadder(ladderGame);
+        printResults(ladderGame);
+
+        List<String> rawNames = ladderGame.getRawNames();
+        printClimbResult(ladderGame, rawNames);
+    }
+
+    private static LadderGame generateLadderGame() {
+        return RetryHelper.retry(() -> {
             OutputView.print("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
             List<String> names = NameInputView.getNames(InputView::getInput);
             OutputView.print("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
@@ -21,19 +31,26 @@ public class Main {
             int ladderHeight = Integer.parseInt(InputView.getInput());
             return new LadderGame(names, ladderHeight, rawResults);
         });
-        List<String> rawNames = ladderGame.getRawNames();
-        OutputView.print(NamesPrinter.from(rawNames));
+    }
+
+    private static void printName(LadderGame ladderGame) {
+        OutputView.print(NamesPrinter.from(ladderGame.getRawNames()));
+    }
+
+    private static void printLadder(LadderGame ladderGame) {
         OutputView.print(LadderPrinter.from(ladderGame.getRawLadder()));
+    }
+
+    private static void printResults(LadderGame ladderGame) {
         OutputView.print(NamesPrinter.from(ladderGame.getRawResults()));
-        printClimbResult(ladderGame, rawNames);
     }
 
     private static void printClimbResult(LadderGame ladderGame, List<String> rawNames) {
         String nameThatNeedToShowResult = "";
         while (!nameThatNeedToShowResult.equals("all")) {
             OutputView.print("결과를 보고 싶은 사람은?");
-            nameThatNeedToShowResult = NameInputView.getNameThatNeedToShowResult(InputView::getInput,
-                    new HashSet<>(ladderGame.getRawNames()));
+            nameThatNeedToShowResult = RetryHelper.retry(
+                    () -> NameInputView.getNameThatNeedToShowResult(InputView::getInput, ladderGame.getRawNames()));
             OutputView.print("실행 결과");
             List<String> climbResults = ResultPrinter.of(rawNames,
                     ladderGame.showClimbResults(nameThatNeedToShowResult));

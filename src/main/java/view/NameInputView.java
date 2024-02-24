@@ -3,6 +3,7 @@ package view;
 import domain.ExceptionType;
 import domain.LadderGameException;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
@@ -67,9 +68,9 @@ public class NameInputView {
         }
     }
 
-    public static String getNameThatNeedToShowResult(Supplier<String> supplier, Set<String> names) {
+    public static String getNameThatNeedToShowResult(Supplier<String> supplier, List<String> names) {
         String name = supplier.get();
-        validateNamesContainsName(names, name);
+        validateNamesContainsName(new HashSet<>(names), name);
         return name;
     }
 
