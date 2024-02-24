@@ -1,22 +1,20 @@
 package view;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class InputView {
-    private static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private static final Scanner reader = new Scanner(System.in);
     private static final String USER_NAME_DELIMITER = ",";
 
 
-    public static String[] readNames() throws IOException {
+    public static String[] readNames() {
         printNameInputMessage();
-        return removeBlank(reader.readLine()).split(USER_NAME_DELIMITER);
+        return removeBlank(reader.nextLine()).split(USER_NAME_DELIMITER);
     }
 
-    public static int readHeight() throws IOException {
+    public static int readHeight() {
         printLadderHeightInputMessage();
-        return Integer.parseInt(reader.readLine());
+        return Integer.parseInt(reader.nextLine());
     }
 
     private static void printNameInputMessage() {
