@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Players {
     private static final String NAME_DUPLICATED_ERROR = "이름의 중복은 허용하지 않습니다.";
+    private static final String PLAYER_NOT_FOUND_ERROR = "플레이어를 찾을 수 없습니다.";
     private final List<Player> players;
 
     private Players(final List<Player> players) {
@@ -46,6 +47,13 @@ public class Players {
         return playerNames.stream()
                 .distinct()
                 .count();
+    }
+
+    public Player getPlayerByName(final String name) {
+        return players.stream()
+                .filter(player -> player.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(PLAYER_NOT_FOUND_ERROR));
     }
 
     public List<Player> getPlayers() {

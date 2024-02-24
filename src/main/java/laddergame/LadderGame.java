@@ -6,6 +6,8 @@ import laddergame.domain.Ladder;
 import laddergame.domain.Players;
 import laddergame.domain.Result;
 import laddergame.domain.Results;
+import laddergame.domain.strategy.BuildStrategy;
+import laddergame.domain.strategy.PointBuildStrategy;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -17,7 +19,8 @@ public class LadderGame {
         Players players = requestUntilValidated(() -> Players.from(inputView.readPlayersName()));
         Results results = requestUntilValidated(() -> Results.from(inputView.readResultNames()));
         Height height = requestUntilValidated(() -> new Height(inputView.readLadderHeight()));
-        Ladder ladder = new Ladder(players.getPlayers().size(), height);
+        BuildStrategy pointBuildStrategy = new PointBuildStrategy();
+        Ladder ladder = new Ladder(players, height, results, pointBuildStrategy);
         outputView.printLadderResult(players, ladder, results);
         Result result = requestUntilValidated(() -> new Result(inputView.readDesiredResultName()));
     }
