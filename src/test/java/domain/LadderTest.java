@@ -8,15 +8,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class LadderTest {
 
     static Stream<Arguments> climbParameters() {
         return Stream.of(
-                Arguments.of(0,1),
-                Arguments.of(1,0),
-                Arguments.of(2,2)
+                Arguments.of(0, 1),
+                Arguments.of(1, 0),
+                Arguments.of(2, 2)
         );
     }
 
@@ -24,7 +23,7 @@ class LadderTest {
     @DisplayName("사다리 전체 폭 검증")
     void validateRowCount() {
         Ladder ladder = new Ladder(5, 5, new BridgeRandomGenerator());
-        Assertions.assertThat(ladder.getRows().size())
+        Assertions.assertThat(ladder.getRawLadder().size())
                 .isEqualTo(5);
     }
 
@@ -32,14 +31,14 @@ class LadderTest {
     @MethodSource("climbParameters")
     @DisplayName("사다리 타기")
     void climb(int startPosition, int endPosition) {
-        Ladder ladder = new Ladder(5, 3, width -> List.of(true,false));
+        Ladder ladder = new Ladder(5, 3, width -> List.of(true, false));
         /*
-        * |-----|    |
-        * |-----|    |
-        * |-----|    |
-        * |-----|    |
-        * |-----|    |
-        * */
+         * |-----|    |
+         * |-----|    |
+         * |-----|    |
+         * |-----|    |
+         * |-----|    |
+         * */
         int actual = ladder.climb(startPosition);
         Assertions.assertThat(actual)
                 .isEqualTo(endPosition);

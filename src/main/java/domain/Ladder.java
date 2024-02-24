@@ -15,10 +15,6 @@ class Ladder {
                 .toList();
     }
 
-    List<Row> getRows() {
-        return rows;
-    }
-
     List<List<Boolean>> getRawLadder() {
         return rows.stream()
                 .map(Row::getBridges)
