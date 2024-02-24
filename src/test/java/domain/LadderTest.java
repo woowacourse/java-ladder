@@ -27,9 +27,11 @@ public class LadderTest {
                 new FixedBooleanGenerator(true));
 
         assertAll(
-                () -> assertThatCode(() -> ladder.getLines().add(new Line(3, () -> true)))
+                () -> assertThatCode(
+                        () -> ladder.getLines().add(new Line(new Players(List.of("pobi", "tommy")), () -> true)))
                         .isInstanceOf(UnsupportedOperationException.class),
-                () -> assertThatCode(() -> ladder.getLines().set(0, new Line(3, () -> true)))
+                () -> assertThatCode(
+                        () -> ladder.getLines().set(0, new Line(new Players(List.of("pobi", "tommy")), () -> true)))
                         .isInstanceOf(UnsupportedOperationException.class),
                 () -> assertThatCode(() -> ladder.getLines().remove(0))
                         .isInstanceOf(UnsupportedOperationException.class),

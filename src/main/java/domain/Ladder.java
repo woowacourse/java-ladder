@@ -12,7 +12,7 @@ public class Ladder {
 
     public Ladder(Players players, Height height, BooleanGenerator booleanGenerator) {
         this.lines = IntStream.range(0, height.getHeight())
-                .mapToObj(number -> new Line(players.getTotalPlayerSize(), booleanGenerator))
+                .mapToObj(number -> new Line(players, booleanGenerator))
                 .collect(Collectors.toList());
     }
 
