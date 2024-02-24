@@ -31,15 +31,16 @@ class LadderTest {
     @MethodSource("climbParameters")
     @DisplayName("사다리 타기")
     void climb(int startPosition, int endPosition) {
-        Ladder ladder = new Ladder(5, 3, width -> List.of(true, false));
+        int rawWidth = 3;
+        Ladder ladder = new Ladder(5, rawWidth, width -> List.of(true, false));
         /*
          * |-----|    |
          * |-----|    |
          * |-----|    |
          * |-----|    |
          * |-----|    | */
-        int actual = ladder.climb(startPosition);
+        Position actual = ladder.climb(new Position(startPosition, rawWidth - 1));
         Assertions.assertThat(actual)
-                .isEqualTo(endPosition);
+                .isEqualTo(new Position(endPosition, rawWidth - 1));
     }
 }

@@ -21,8 +21,8 @@ class Ladder {
                 .toList();
     }
 
-    int climb(int startPosition) {
-        int endPosition = startPosition;
+    Position climb(Position startPosition) {
+        Position endPosition = startPosition;
         for (Row row : rows) {
             endPosition = row.move(endPosition);
         }

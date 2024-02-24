@@ -48,8 +48,8 @@ public class LadderGame {
     }
 
     private String climb(String rawName) {
-        int startPosition = names.position(rawName);
-        int endPosition = ladder.climb(startPosition);
-        return results.getRawResult(endPosition);
+        Position startPosition = names.position(rawName);
+        Position endPosition = ladder.climb(startPosition);
+        return results.getRawResult(endPosition.getRawPosition());
     }
 }
