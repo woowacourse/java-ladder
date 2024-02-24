@@ -14,6 +14,16 @@ public class Person {
         return new Person(new PersonName(name), startPosition);
     }
 
+    public void moveHorizontally(Line line) {
+        if (line.hasLeftPath(getColumn())) {
+            position = new Position(getDepth(), getColumn() - 1);
+            return;
+        }
+        if (line.hasRightPath(getColumn())) {
+            position = new Position(getDepth(), getColumn() + 1);
+        }
+    }
+
     public String getName() {
         return personName.name();
     }
