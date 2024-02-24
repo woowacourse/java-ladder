@@ -58,7 +58,7 @@ public class ResultView {
 
     private static String drawLine(Line line) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Bridge bridge : line.getPoints()) {
+        for (Bridge bridge : line.getBridges()) {
             stringBuilder.append(drawBridge(bridge));
         }
         stringBuilder.append("|");

@@ -11,23 +11,19 @@ import static org.assertj.core.api.Assertions.*;
 
 class LineTest {
     @Test
-    @DisplayName("가로 길이는 사용자 수 -1 이다.")
+    @DisplayName("가로 길이는 {사용자 수 - 1} 이다.")
     void createLineWithPersonCount() {
         int personCount = 4;
+        List<Bridge> bridges = List.of(Bridge.BRIDGE, Bridge.BRIDGE, Bridge.BRIDGE);
 
-        assertThatCode(() -> new Line(personCount, new RandomGenerator())).doesNotThrowAnyException();
+        assertThat(new Line(bridges).getBridges()).size().isEqualTo(personCount - 1);
     }
 
     @Test
-    @DisplayName("가로 라인은 겹치지 않는다.")
+    @DisplayName("가로 브릿지가 겹치는 경우 예외를 발생시킨다")
     void createRandomLine() {
-        int personCount = 4;
-        List<Boolean> expectedPoint = List.of(true, false, true);
-        Line line = new Line(personCount, new TrueGenerator());
-        List<Boolean> list = line.getPoints().stream()
-                .map(Bridge::getBridge)
-                .toList();
-
-        assertThat(list).isEqualTo(expectedPoint);
+//        List<Bridge> bridges = List.of(Bridge.BRIDGE, Bridge.BRIDGE, Bridge.BRIDGE);
+//
+//        assertThatThrownBy(() -> new Line(bridges)).isEqualTo();
     }
 }

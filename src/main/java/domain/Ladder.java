@@ -12,8 +12,8 @@ public class Ladder {
     public Ladder(final int height, final int personCount) {
         validateMaxHeight(height);
 
-        IntStream.range(0, height)
-                .forEach(iterator -> ladder.add(new Line(personCount, new RandomGenerator())));
+//        IntStream.range(0, height)
+//                .forEach(iterator -> ladder.add(new Line(personCount, new RandomGenerator())));
     }
 
     private void validateMaxHeight(int height) {
