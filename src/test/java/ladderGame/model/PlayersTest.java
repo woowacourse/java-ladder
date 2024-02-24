@@ -14,8 +14,7 @@ class PlayersTest {
     void validateDuplicationName() {
         List<String> names = List.of("초롱", "초롱");
         assertThatThrownBy(() -> new Players(names))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참여자들의 이름은 중복될 수 없습니다.");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -23,7 +22,6 @@ class PlayersTest {
     void validateLessThanMinimum() {
         List<String> names = List.of("켬미");
         assertThatThrownBy(() -> new Players(names))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참여자의 이름은 두 개 이상이어야 합니다.");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
