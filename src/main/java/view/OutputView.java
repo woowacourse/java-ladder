@@ -18,6 +18,10 @@ public class OutputView {
         printLadder(ladder);
     }
 
+    public static void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
+    }
+
     private static void printPlayers(final List<Name> names) {
         System.out.println(makePlayersNameMessage(names));
     }
