@@ -4,6 +4,7 @@ import domain.Ladder;
 import domain.LadderFactory;
 import domain.UserName;
 import domain.Users;
+import java.util.stream.Collectors;
 import view.InputView;
 import view.ResultView;
 
@@ -36,8 +37,14 @@ public class LadderGame {
             return false;
         }
         if (target.equals("all")) {
-            ResultView.printTargetResult(List.of());
-            return false;
+            List<String> names = users.getUsers().stream().map(UserName::toString).toList();
+            ResultView.printTargetResult(names,
+                    names.stream()
+                            .map(users::findPositionByName)
+                            .map(ladder::play)
+                            .map(results::get)
+                            .toList());
+            return true;
         }
         int startPosition = users.findPositionByName(target);
         int endPosition = ladder.play(startPosition);

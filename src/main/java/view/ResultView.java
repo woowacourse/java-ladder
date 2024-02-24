@@ -3,8 +3,6 @@ package view;
 import domain.Ladder;
 import domain.Bridge;
 import domain.Line;
-import domain.UserName;
-import domain.Users;
 import java.util.List;
 
 public class ResultView {
@@ -77,8 +75,10 @@ public class ResultView {
         System.out.println(result);
     }
 
-    public static void printTargetResult(List<String> result) {
-
+    public static void printTargetResult(List<String> names, List<String> results) {
+        for (int i = 0; i < names.size(); i++) {
+            System.out.println(names.get(i) + " : " + results.get(i));
+        }
     }
 
 }
