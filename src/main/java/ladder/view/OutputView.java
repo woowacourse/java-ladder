@@ -1,13 +1,8 @@
 package ladder.view;
 
 import ladder.dto.LineDto;
-import ladder.model.Bars;
-import ladder.model.Player;
-import ladder.model.Players;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class OutputView {
     private static final int PLAYER_NAME_PAD_SIZE = 6;
