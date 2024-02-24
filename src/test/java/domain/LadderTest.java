@@ -36,7 +36,7 @@ class LadderTest {
 
     @ParameterizedTest
     @CsvSource(value = {"0,0", "1,1", "2,2", "3,3"})
-    @DisplayName("게임을 실행 했을 때 브릿지가 놓여있지 않으면 같은 위치의 값을 반환한다")
+    @DisplayName("사다리 게임을 실행 했을 때 브릿지가 놓여있지 않으면 같은 위치의 값을 반환한다")
     void nonBridgeTest(int position, int result) {
         Line line = new Line(List.of(Bridge.NON_BRIDGE, Bridge.NON_BRIDGE, Bridge.NON_BRIDGE));
         List<Line> lines = List.of(line, line, line);
@@ -49,7 +49,7 @@ class LadderTest {
 
     @ParameterizedTest
     @CsvSource(value = {"0,3", "1,0", "2,1", "3,2"})
-    @DisplayName("게임을 실행 했을 때 올바른 결과를 반환한다")
+    @DisplayName("사다리 게임을 실행 했을 때 올바른 결과를 반환한다")
     void gameResultTest(int position, int result) {
         Line line1 = new Line(List.of(Bridge.BRIDGE, Bridge.NON_BRIDGE, Bridge.NON_BRIDGE));
         Line line2 = new Line(List.of(Bridge.NON_BRIDGE, Bridge.BRIDGE, Bridge.NON_BRIDGE));
