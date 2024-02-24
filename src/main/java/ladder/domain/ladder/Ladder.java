@@ -43,7 +43,9 @@ public class Ladder {
     }
 
     private void validateIndexRange(int index) {
-        if (index < 0 || index > lines.get(0).getRungs().size()) {
+        int playerCount = lines.get(0).getRungs().size() + 1;
+
+        if (0 > index || index >= playerCount) {
             throw new IllegalArgumentException("index가 범위를 벗어났습니다.");
         }
     }

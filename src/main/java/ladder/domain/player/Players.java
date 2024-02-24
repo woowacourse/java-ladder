@@ -1,6 +1,7 @@
 package ladder.domain.player;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 public class Players {
@@ -39,7 +40,7 @@ public class Players {
 
     private static void validateDuplicatedName(List<String> playerNames) {
 
-        if (playerNames.size() != playerNames.stream().distinct().count()) {
+        if (playerNames.size() != new HashSet<>(playerNames).size()) {
             throw new IllegalArgumentException("참가자들의 이름은 중복될 수 없습니다.");
         }
     }
