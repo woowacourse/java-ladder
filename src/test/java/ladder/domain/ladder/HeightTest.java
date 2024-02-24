@@ -12,7 +12,7 @@ class HeightTest {
     @DisplayName("사다리는 높이를 가진다.")
     void testConstruct() {
         Height height = new Height(1);
-        assertThat(height.getHeight()).isEqualTo(1);
+        assertThat(height.getValue()).isEqualTo(1);
     }
 
     @Test
