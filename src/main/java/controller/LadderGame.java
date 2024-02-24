@@ -1,15 +1,17 @@
 package controller;
 
+import domain.Height;
 import domain.Ladder;
-import view.LineItem;
 import domain.Line;
 import domain.Participant;
 import domain.Participants;
+import view.LineItem;
 import util.LineItemGenerator;
 import view.InputView;
 import view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class LadderGame {
 
@@ -24,10 +26,10 @@ public class LadderGame {
     }
 
     public void start() {
-        Participants participants = prepareParticipants();
-        Ladder ladder = new Ladder(inputView.inputHeight());
+        Participants participants = retryUntilSuccess(this::prepareParticipants);
+        Height height = retryUntilSuccess(this::inputHeight);
 
-        ladder.makeLadder(participants.getParticipantsCount(), lineItemGenerator);
+        Ladder ladder = Ladder.of(height, participants.getParticipantsCount(), lineItemGenerator);
         printLadder(ladder, participants);
     }
 
@@ -36,6 +38,20 @@ public class LadderGame {
         List<String> names = List.of(input.split(","));
 
         return new Participants(names);
+    }
+
+    private Height inputHeight() {
+        return new Height(inputView.inputHeight());
+    }
+
+    private <T> T retryUntilSuccess(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void printLadder(Ladder ladder, Participants participants) {
