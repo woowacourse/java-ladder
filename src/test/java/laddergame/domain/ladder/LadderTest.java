@@ -1,13 +1,10 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.ladder.Connection;
-import laddergame.domain.ladder.Ladder;
-import laddergame.domain.ladder.RowLine;
+import laddergame.domain.connectiongenerator.AllFalseConnectionGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import laddergame.domain.connectiongenerator.AllFalseConnectionGenerator;
 
 import java.util.List;
 import java.util.Set;

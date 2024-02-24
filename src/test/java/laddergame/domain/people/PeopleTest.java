@@ -1,6 +1,5 @@
 package laddergame.domain.people;
 
-import laddergame.domain.people.People;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

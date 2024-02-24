@@ -3,8 +3,6 @@ package laddergame.domain.ladder;
 import laddergame.domain.connectiongenerator.ConnectionGenerator;
 import laddergame.domain.connectiongenerator.RandomConnectionGenerator;
 import laddergame.domain.connectiongenerator.SuccessiveConnectionGenerator;
-import laddergame.domain.ladder.Connection;
-import laddergame.domain.ladder.RowLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,9 +21,7 @@ class RowLineTest {
     void successiveRowLineTest() {
         ConnectionGenerator successiveConnectionGenerator = new SuccessiveConnectionGenerator();
         assertThrows(IllegalArgumentException.class
-                , () -> {
-                    new RowLine(5, successiveConnectionGenerator);
-                });
+                , () -> { new RowLine(5, successiveConnectionGenerator); });
     }
 
     @DisplayName("연속된 가로선이 없는 domain.RowLine 객체는 생성할 수 있다")
@@ -33,9 +29,8 @@ class RowLineTest {
     void unsuccessiveRowLineTest() {
         ConnectionGenerator unsuccesivelineGenerator = new RandomConnectionGenerator();
         assertDoesNotThrow(
-                () -> {
-                    new RowLine(5, unsuccesivelineGenerator);
-                });
+                () -> { new RowLine(5, unsuccesivelineGenerator); });
+
     }
 
     @DisplayName("참여자의 수가 n일 때, RowLine의 connection 길이는 n-1이다")

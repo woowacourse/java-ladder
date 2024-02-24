@@ -1,16 +1,7 @@
 package laddergame.view;
 
-import laddergame.domain.ladder.Connection;
 import laddergame.domain.ladder.Ladder;
-import laddergame.domain.ladder.RowLine;
-import laddergame.domain.people.Name;
 import laddergame.domain.people.People;
-import laddergame.view.enums.NameFormat;
-
-import java.util.List;
-import java.util.StringJoiner;
-
-import static laddergame.domain.ladder.Connection.CONNECTED;
 
 public class ResultView {
     private static final String LINE_SEPERATOR = System.lineSeparator();
