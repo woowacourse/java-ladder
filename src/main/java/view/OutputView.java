@@ -11,20 +11,14 @@ public class OutputView {
     private static final String NAME_DELIMITER = " ";
     private static final String FIRST_COLUMN = "    |";
     private static final String COLUMN = "|";
-
-    private static String makeLineView(final Line line) {
-        StringJoiner bridgeJoiner = new StringJoiner(COLUMN, FIRST_COLUMN, COLUMN);
-        for (Bridge bridge : line.getBridges()) {
-            bridgeJoiner.add(bridge.getShape());
-        }
-        return bridgeJoiner.toString();
-    }
+    private static final String BRIDGE = "-----";
+    private static final String NO_BRIDGE = "     ";
 
     public void printResultMessage() {
         System.out.println(System.lineSeparator() + "실행결과");
     }
 
-    public void printPlayers(List<String> names) {
+    public void printNames(List<String> names) {
         StringJoiner nameJoiner = new StringJoiner(NAME_DELIMITER);
         for (final String name : names) {
             nameJoiner.add(String.format("%5s", name));
@@ -38,5 +32,20 @@ public class OutputView {
             lineJoiner.add(makeLineView(line));
         }
         System.out.println(lineJoiner);
+    }
+
+    private String makeLineView(final Line line) {
+        StringJoiner bridgeJoiner = new StringJoiner(COLUMN, FIRST_COLUMN, COLUMN);
+        for (Bridge bridge : line.getBridges()) {
+            bridgeJoiner.add(exists(bridge));
+        }
+        return bridgeJoiner.toString();
+    }
+
+    private String exists(final Bridge bridge) {
+        if (bridge.exists()) {
+            return BRIDGE;
+        }
+        return NO_BRIDGE;
     }
 }

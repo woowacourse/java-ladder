@@ -6,14 +6,12 @@ import java.util.Arrays;
 
 public enum Bridge {
 
-    BRIDGE("-----", true),
-    NO_BRIDGE("     ", false);
+    BRIDGE(true),
+    NO_BRIDGE(false);
 
-    private final String shape;
     private final boolean exist;
 
-    Bridge(final String shape, final boolean exist) {
-        this.shape = shape;
+    Bridge(final boolean exist) {
         this.exist = exist;
     }
 
@@ -24,7 +22,8 @@ public enum Bridge {
                 .orElseThrow(() -> new IllegalArgumentException(ExceptionMessages.NO_ENUM));
     }
 
-    public String getShape() {
-        return shape;
+    public boolean exists(){
+        return this.exist;
     }
+
 }
