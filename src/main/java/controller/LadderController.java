@@ -17,6 +17,7 @@ public class LadderController {
 
     public void run() {
         Players players = new Players(inputView.readPlayersName());
+        inputView.readResult();
         Height height = new Height(inputView.readHeight());
 
         Ladder ladder = Ladder.of(height, players.size());
