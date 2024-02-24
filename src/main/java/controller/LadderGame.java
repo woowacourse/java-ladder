@@ -1,11 +1,11 @@
 package controller;
 
 import domain.Ladder;
-import domain.LadderItem;
+import view.LineItem;
 import domain.Line;
 import domain.Participant;
 import domain.Participants;
-import util.LadderItemGenerator;
+import util.LineItemGenerator;
 import view.InputView;
 import view.OutputView;
 import java.util.ArrayList;
@@ -15,34 +15,27 @@ public class LadderGame {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final LadderItemGenerator ladderItemGenerator;
+    private final LineItemGenerator lineItemGenerator;
 
-    public LadderGame(InputView inputView, OutputView outputView, LadderItemGenerator ladderItemGenerator) {
+    public LadderGame(InputView inputView, OutputView outputView, LineItemGenerator lineItemGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.ladderItemGenerator = ladderItemGenerator;
+        this.lineItemGenerator = lineItemGenerator;
     }
 
     public void start() {
-        Participants participants = makeParticipants(inputName());
-        Ladder ladder = new Ladder(inputHeight());
+        Participants participants = prepareParticipants();
+        Ladder ladder = new Ladder(inputView.inputHeight());
 
-        ladder.makeLadder(participants.getParticipantsCount(), ladderItemGenerator);
+        ladder.makeLadder(participants.getParticipantsCount(), lineItemGenerator);
         printLadder(ladder, participants);
     }
 
-    private List<String> inputName() {
+    private Participants prepareParticipants() {
         String input = inputView.inputName();
+        List<String> names = List.of(input.split(","));
 
-        return List.of(input.split(","));
-    }
-
-    private Participants makeParticipants(List<String> names) {
         return new Participants(names);
-    }
-
-    private String inputHeight() {
-        return inputView.inputHeight();
     }
 
     private void printLadder(Ladder ladder, Participants participants) {
@@ -52,11 +45,13 @@ public class LadderGame {
         createParticipantsLineUp(result, participants.getParticipants());
         createLadder(result, createdLadder);
 
+        outputView.printResultMessage();
         outputView.printLadder(result);
     }
 
     private void createParticipantsLineUp(List<String> result, List<Participant> participants) {
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\n");
         for (Participant participant : participants) {
             stringBuilder.append(String.format("%5s ", participant.getName()));
         }
@@ -76,7 +71,7 @@ public class LadderGame {
     }
 
     private void createLine(Line line, StringBuilder stringBuilder) {
-        for (LadderItem point : line.getPoints()) {
+        for (LineItem point : line.getPoints()) {
             stringBuilder.append(point.getShape());
         }
     }
