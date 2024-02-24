@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Console {
 
     private static Scanner scanner;
+    public static final String NEW_LINE = System.lineSeparator();
 
     private Console() {
     }

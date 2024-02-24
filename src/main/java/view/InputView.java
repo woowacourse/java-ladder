@@ -1,5 +1,7 @@
 package view;
 
+import static utils.Console.NEW_LINE;
+
 import utils.Console;
 
 public class InputView {
@@ -10,7 +12,7 @@ public class InputView {
     }
 
     public String askLadderHeight() {
-        System.out.println("\n최대 사다리 높이는 몇 개인가요?");
+        System.out.println(NEW_LINE + "최대 사다리 높이는 몇 개인가요?");
         return Console.readLine();
     }
 

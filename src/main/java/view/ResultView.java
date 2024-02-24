@@ -1,5 +1,7 @@
 package view;
 
+import static utils.Console.NEW_LINE;
+
 import java.util.List;
 import java.util.stream.IntStream;
 import model.Ladder;
@@ -14,7 +16,7 @@ public class ResultView {
     private static final String INTERVAL = "     ";
 
     public void printResult(People people, Ladder ladder) {
-        System.out.println("\n실행결과\n");
+        System.out.println(NEW_LINE + "실행결과" + NEW_LINE);
         printNames(people);
 
         ladder.getLines()
