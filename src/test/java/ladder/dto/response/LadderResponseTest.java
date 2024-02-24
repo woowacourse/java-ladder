@@ -4,7 +4,6 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import java.util.List;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.Rung;
 import ladder.domain.ladder.generator.RungGenerator;
 import ladder.mock.MockRungGenerator;
@@ -18,7 +17,7 @@ class LadderResponseTest {
     void toDto() {
         List<Rung> rungs = List.of(Rung.EXIST, Rung.EMPTY);
         RungGenerator rungGenerator = new MockRungGenerator(rungs);
-        Ladder ladder = new Ladder(2, new LadderHeight(2), rungGenerator);
+        Ladder ladder = Ladder.of(2, 2, rungGenerator);
         LadderResponse ladderResponse = LadderResponse.from(ladder);
 
         assertThat(ladderResponse.lineResponses()).containsExactly(

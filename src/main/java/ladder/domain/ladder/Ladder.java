@@ -6,20 +6,30 @@ import java.util.stream.Stream;
 import ladder.domain.ladder.generator.RungGenerator;
 
 public class Ladder {
+    private static final int MINIMUM_HEIGHT = 1;
+    private static final int MAXIMUM_HEIGHT = 30;
 
-    private final int playerCount;
     private final List<Line> lines;
 
-    public Ladder(int playerCount, LadderHeight ladderHeight, RungGenerator rungGenerator) {
-        this.playerCount = playerCount;
-        this.lines = generateLines(playerCount, ladderHeight.getHeight(), rungGenerator);
-
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
-    private List<Line> generateLines(int playerCount, int height, RungGenerator rungGenerator) {
-        return Stream.generate(() -> new Line(playerCount, rungGenerator))
+    public static Ladder of(int height, int playerCount, RungGenerator rungGenerator) {
+        validateHeightRange(height);
+
+        List<Line> lines = Stream.generate(() -> new Line(playerCount, rungGenerator))
                 .limit(height)
                 .toList();
+
+        return new Ladder(lines);
+    }
+
+    private static void validateHeightRange(int height) {
+        if (MAXIMUM_HEIGHT < height || height < MINIMUM_HEIGHT) {
+            throw new IllegalArgumentException(
+                    String.format("사다리의 높이는 %d이상 %d이하여야 합니다.", MINIMUM_HEIGHT, MAXIMUM_HEIGHT));
+        }
     }
 
     public int findEndIndex(int index) {
@@ -32,9 +42,9 @@ public class Ladder {
         return index;
     }
 
-    private void validateIndexRange(final int index) {
-        if (0 > index || index >= playerCount) {
-            throw new IllegalArgumentException("시작점은 0 이상 참가자 수 미만이어야 합니다.");
+    private void validateIndexRange(int index) {
+        if (index < 0 || index > lines.get(0).getRungs().size()) {
+            throw new IllegalArgumentException("index가 범위를 벗어났습니다.");
         }
     }
 

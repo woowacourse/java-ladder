@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class PlayersTest {
-    private final Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
+    private final Players players = Players.from(List.of("pobi", "honux", "crong", "jk"));
 
     @Test
     @DisplayName("참가자들을 생성한다.")
@@ -25,7 +25,7 @@ class PlayersTest {
     @Test
     @DisplayName("참가자들의 수를 셀 수 있다.")
     void countPlayers() {
-        int actual = players.getSize();
+        int actual = players.size();
         assertThat(actual).isEqualTo(4);
     }
 
@@ -38,7 +38,7 @@ class PlayersTest {
         void testLessThanMinimumSize() {
             List<String> playerNames = List.of("pobi");
 
-            assertThatThrownBy(() -> new Players(playerNames))
+            assertThatThrownBy(() -> Players.from(playerNames))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -47,7 +47,7 @@ class PlayersTest {
         void testGreaterThanMaximumSize() {
             List<String> playerNames = List.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11");
 
-            assertThatThrownBy(() -> new Players(playerNames))
+            assertThatThrownBy(() -> Players.from(playerNames))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -56,7 +56,7 @@ class PlayersTest {
         void testDuplicatedName() {
             List<String> playerNames = List.of("pobi", "pobi", "crong", "jk");
 
-            assertThatThrownBy(() -> new Players(playerNames))
+            assertThatThrownBy(() -> Players.from(playerNames))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }

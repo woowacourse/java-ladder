@@ -14,7 +14,7 @@ class PlayersResponseTest {
     void toDto() {
         List<String> playerNames = List.of("pobi", "honux", "crong", "jk");
 
-        Players players = new Players(playerNames);
+        Players players = Players.from(playerNames);
         PlayersResponse playersResponse = PlayersResponse.from(players);
 
         assertThat(playersResponse.playerResponses()).containsExactly(

@@ -1,14 +1,11 @@
 package ladder.controller;
 
-import java.util.List;
 import java.util.function.Supplier;
 import ladder.domain.LadderGame;
-import ladder.domain.Prizes;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.generator.RungGenerator;
-import ladder.domain.player.Player;
 import ladder.domain.player.Players;
+import ladder.domain.prize.Prizes;
 import ladder.dto.response.LadderResponse;
 import ladder.dto.response.PlayersResponse;
 import ladder.view.InputView;
@@ -26,46 +23,14 @@ public class LadderController {
     }
 
     public void run() {
-        Players players = retryOnException(this::initPlayers);
-        Prizes prizes = retryOnException(() -> initPrizes(players.getSize()));
-        LadderHeight ladderHeight = retryOnException(this::initLadderHeight);
+        Players players = retryOnException(() -> Players.from(inputView.readPlayerNames()));
+        Prizes prizes = retryOnException(() -> Prizes.of(inputView.readPrizes(), players.size()));
+        Ladder ladder = retryOnException(() -> Ladder.of(inputView.readLadderHeight(), players.size(), rungGenerator));
 
-        Ladder ladder = new Ladder(players.getSize(), ladderHeight, rungGenerator);
-        LadderGame ladderGame = new LadderGame(players, ladder, prizes);
+        LadderGame ladderGame = LadderGame.of(players, ladder, prizes);
 
         printLadder(players, ladder);
-
-        for (Player player : players.getPlayers()) {
-            System.out.println(player.getName() + " : " + ladderGame.getResultByPlayerName(player.getName()));
-        }
-    }
-
-    public Players initPlayers() {
-        List<String> playerNames = inputView.readPlayerNames();
-
-        return new Players(playerNames);
-    }
-
-    public Prizes initPrizes(int playersSize) {
-        List<String> prizes = inputView.readPrizes();
-
-        validatePrizesSize(playersSize, prizes.size());
-
-        return new Prizes(prizes);
-    }
-
-    private static void validatePrizesSize(int playersSize, int prizesSize) {
-        if (playersSize != prizesSize) {
-            throw new IllegalArgumentException("참여하는 사람 수와 상품의 개수가 일치하지 않습니다.");
-        }
-    }
-
-    public LadderHeight initLadderHeight() {
-        int ladderHeight = inputView.readLadderHeight();
-
-        return new LadderHeight(ladderHeight);
-    }
-
+    }w
 
     private void printLadder(Players players, Ladder ladder) {
         outputView.printLadderResultMessage();

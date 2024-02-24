@@ -15,25 +15,23 @@ class LadderTest {
     @Test
     @DisplayName("사다리 생성 테스트")
     void testConstruct() {
-        int playerCount = 4;
-        LadderHeight ladderHeight = new LadderHeight(5);
         RungGenerator rungGenerator = new RandomRungGenerator();
 
-        assertThatCode(() -> new Ladder(playerCount, ladderHeight, rungGenerator))
+        assertThatCode(() -> Ladder.of(3, 4, rungGenerator))
                 .doesNotThrowAnyException();
     }
 
     @Test
     @DisplayName("사다리를 생성한다.")
     void testGenerateLadder() {
+        int height = 3;
         int playerCount = 4;
-        LadderHeight ladderHeight = new LadderHeight(3);
         List<Rung> rungs = List.of(
                 Rung.EXIST, Rung.EMPTY, Rung.EXIST,
                 Rung.EMPTY, Rung.EXIST, Rung.EMPTY,
                 Rung.EXIST, Rung.EMPTY, Rung.EMPTY);
 
-        Ladder ladder = new Ladder(playerCount, ladderHeight, new MockRungGenerator(rungs));
+        Ladder ladder = Ladder.of(height, playerCount, new MockRungGenerator(rungs));
         List<Line> lines = ladder.getLines();
 
         assertSoftly(softly -> {

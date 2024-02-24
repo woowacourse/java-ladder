@@ -9,23 +9,26 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(List<String> playerNames) {
-        validate(playerNames);
-        this.players = createPlayers(playerNames);
+    private Players(List<Player> players) {
+        this.players = players;
     }
 
-    private List<Player> createPlayers(List<String> playerNames) {
-        return playerNames.stream()
+    public static Players from(List<String> playerNames) {
+        validate(playerNames);
+
+        List<Player> players = playerNames.stream()
                 .map(Player::new)
                 .toList();
+
+        return new Players(players);
     }
 
-    private void validate(List<String> playerNames) {
+    private static void validate(List<String> playerNames) {
         validateSize(playerNames);
         validateDuplicatedName(playerNames);
     }
 
-    private void validateSize(List<String> playerNames) {
+    private static void validateSize(List<String> playerNames) {
         int size = playerNames.size();
 
         if (MAXIMUM_PLAYER_SIZE < size || size < MINIMUM_PLAYER_SIZE) {
@@ -34,14 +37,14 @@ public class Players {
         }
     }
 
-    private void validateDuplicatedName(List<String> playerNames) {
+    private static void validateDuplicatedName(List<String> playerNames) {
 
         if (playerNames.size() != playerNames.stream().distinct().count()) {
             throw new IllegalArgumentException("참가자들의 이름은 중복될 수 없습니다.");
         }
     }
 
-    public int getSize() {
+    public int size() {
         return players.size();
     }
 

@@ -7,26 +7,33 @@ import java.util.Map.Entry;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
+import ladder.domain.prize.Prize;
+import ladder.domain.prize.Prizes;
 
 public class LadderGame {
-    private final Map<Player, String> result = new LinkedHashMap<>();
+    private final Map<Player, Prize> result;
 
-    public LadderGame(Players players, Ladder ladder, Prizes prizes) {
-        matchPlayersAndPrizes(players, ladder, prizes);
+    private LadderGame(Map<Player, Prize> result) {
+        this.result = new LinkedHashMap<>(result);
     }
 
-    private void matchPlayersAndPrizes(Players players, Ladder ladder, Prizes prizes) {
-        for (int i = 0; i < players.getSize(); i++) {
+    public static LadderGame of(Players players, Ladder ladder, Prizes prizes) {
+        Map<Player, Prize> result = new LinkedHashMap<>();
+
+        for (int i = 0; i < players.size(); i++) {
+            Player player = players.getPlayers().get(i);
             int endIndex = ladder.findEndIndex(i);
-            String prize = prizes.getPrizes().get(endIndex);
+            Prize prize = prizes.getPrizes().get(endIndex);
 
-            result.put(players.getPlayers().get(i), prize);
+            result.put(player, prize);
         }
+
+        return new LadderGame(result);
     }
 
-    public String getResultByPlayerName(String playerName) {
-        for (Entry<Player, String> entry : result.entrySet()) {
-            if (entry.getKey().getName().equals(playerName)) {
+    public Prize getResultByPlayerName(String playerName) {
+        for (Entry<Player, Prize> entry : result.entrySet()) {
+            if (entry.getKey().name().equals(playerName)) {
                 return entry.getValue();
             }
         }
@@ -34,7 +41,7 @@ public class LadderGame {
         throw new IllegalArgumentException("존재하지 않는 참가자입니다.");
     }
 
-    public Map<Player, String> getAllResult() {
+    public Map<Player, Prize> getAllResult() {
         return Collections.unmodifiableMap(result);
     }
 }
