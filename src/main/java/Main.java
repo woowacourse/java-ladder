@@ -8,6 +8,7 @@ import view.NameInputView;
 import view.NamesPrinter;
 import view.OutputView;
 import view.ResultInputView;
+import view.ResultPrinter;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,16 +25,19 @@ public class Main {
         OutputView.print(NamesPrinter.from(rawNames));
         OutputView.print(LadderPrinter.from(ladderGame.getRawLadder()));
         OutputView.print(NamesPrinter.from(ladderGame.getRawResults()));
+        printClimbResult(ladderGame, rawNames);
+    }
 
-        OutputView.print("결과를 보고 싶은 사람은?");
-        String nameThatNeedToShowResult = NameInputView.getNameThatNeedToShowResult(InputView::getInput,
-                new HashSet<>(ladderGame.getRawNames()));
-        OutputView.print("실행 결과");
-        
-        List<String> climbResults = ladderGame.showClimbResults(nameThatNeedToShowResult);
-        for (int index = 0; index < rawNames.size(); index++) {
-            String result = rawNames.get(index) + " : " + climbResults.get(index);
-            OutputView.print(result);
+    private static void printClimbResult(LadderGame ladderGame, List<String> rawNames) {
+        String nameThatNeedToShowResult = "";
+        while (!nameThatNeedToShowResult.equals("all")) {
+            OutputView.print("결과를 보고 싶은 사람은?");
+            nameThatNeedToShowResult = NameInputView.getNameThatNeedToShowResult(InputView::getInput,
+                    new HashSet<>(ladderGame.getRawNames()));
+            OutputView.print("실행 결과");
+            List<String> climbResults = ResultPrinter.of(rawNames,
+                    ladderGame.showClimbResults(nameThatNeedToShowResult));
+            climbResults.forEach(OutputView::print);
         }
     }
 
