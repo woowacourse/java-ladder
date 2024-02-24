@@ -4,6 +4,8 @@ import java.util.function.Supplier;
 import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.Players;
+import laddergame.domain.Result;
+import laddergame.domain.Results;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -13,13 +15,11 @@ public class LadderGame {
 
     public void run() {
         Players players = requestUntilValidated(() -> Players.from(inputView.readPlayersName()));
-        requestUntilValidated(() -> inputView.readResultNames());
+        Results results = requestUntilValidated(() -> Results.from(inputView.readResultNames()));
         Height height = requestUntilValidated(() -> new Height(inputView.readLadderHeight()));
-
         Ladder ladder = new Ladder(players.getPlayers().size(), height);
         printLadderResult(players, ladder);
-
-        requestUntilValidated(() -> inputView.readDesiredResultName());
+        Result result = requestUntilValidated(() -> new Result(inputView.readDesiredResultName()));
     }
 
     private void printLadderResult(final Players players, final Ladder ladder) {
