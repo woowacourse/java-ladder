@@ -16,4 +16,15 @@ public class PlayersTest {
         assertThatThrownBy(() -> Players.from(playerNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("해당하는 플레이어가 없으면 예외가 발생한다.")
+    void playerExistTest() {
+        Players players = Players.from(List.of("hi", "my", "name"));
+        Player player = new Player("is");
+
+        assertThatThrownBy(() -> players.isContains(player))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("해당하는 이름의 플레이어가 없습니다.");
+    }
 }
