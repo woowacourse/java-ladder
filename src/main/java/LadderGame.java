@@ -1,6 +1,7 @@
 import domain.Height;
 import domain.Ladder;
 import domain.Names;
+import domain.Prizes;
 import domain.bridgeConstructstrategy.RandomBridgeConstructStrategy;
 import view.InputView;
 import view.OutputView;
@@ -13,6 +14,8 @@ public class LadderGame {
     public static void run() {
         Names names = readNames();
         OutputView.printNewLine();
+        readPrizes(names);
+        OutputView.printNewLine();
         Height height = readHeight();
         OutputView.printNewLine();
 
@@ -22,12 +25,22 @@ public class LadderGame {
         OutputView.printLadder(ladder);
     }
 
+    // TODO 반복 메서드 추출
     private static Names readNames() {
         try {
             return new Names(InputView.readPersonNames());
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
             return readNames();
+        }
+    }
+
+    private static Prizes readPrizes(Names names) {
+        try {
+            return new Prizes(InputView.readPrizes(), names);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printException(exception);
+            return readPrizes(names);
         }
     }
 
