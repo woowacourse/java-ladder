@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LineMaker {
-    private final StepGenerator randomStepGenerator;
+    private final RandomStepGenerator randomStepGenerator;
     private final PlayerCount playerCount;
 
-    public LineMaker(final PlayerCount playerCount, final StepGenerator randomStepGenerator) {
+    public LineMaker(final PlayerCount playerCount, final RandomStepGenerator randomStepGenerator) {
         this.playerCount = playerCount;
         this.randomStepGenerator = randomStepGenerator;
     }

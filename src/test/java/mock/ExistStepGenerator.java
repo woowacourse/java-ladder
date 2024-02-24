@@ -1,10 +1,8 @@
 package mock;
 
 import domain.Step;
-import domain.StepGenerator;
 
-public class ExistStepGenerator implements StepGenerator {
-    @Override
+public class ExistStepGenerator {
     public Step generate() {
         return Step.EXIST;
     }
