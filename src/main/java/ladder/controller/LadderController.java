@@ -17,19 +17,17 @@ import java.util.function.Supplier;
 public class LadderController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final BooleanGenerator booleanGenerator;
+    private final LadderGenerator ladderGenerator;
 
     public LadderController(final InputView inputView,
                             final OutputView outputView,
                             final BooleanGenerator booleanGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.booleanGenerator = booleanGenerator;
+        this.ladderGenerator = new LadderGenerator(booleanGenerator);
     }
 
     public void run() {
-        final LadderGenerator ladderGenerator = new LadderGenerator(booleanGenerator);
-
         final Players players = retryOnException(this::readPlayers);
         final Height height = retryOnException(this::readLadderHeight);
 
