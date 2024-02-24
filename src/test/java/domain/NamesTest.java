@@ -13,12 +13,14 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class NamesTest {
 
+    @DisplayName("객체가 정상적으로 생성된다.")
     @Test
     void constructSuccessTest() {
         assertThatNoException()
                 .isThrownBy(() -> new Names(List.of("파랑", "조앤")));
     }
 
+    @DisplayName("이름의 개수가 2개 이하인 경우 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("getBridgeTestProvider")
     void constructFailWithNamesLessThan2(List<String> names) {

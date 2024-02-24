@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-public class LadderFindPrizeTest {
+public class LadderTravelTest {
 
     private static final Height DEFAULT_HEIGHT = new Height(4);
     private static final Names names = new Names(List.of("a", "b", "c", "d"));
