@@ -16,11 +16,11 @@ public class Person {
 
     public void moveHorizontally(Line line) {
         if (line.hasLeftPath(getColumn())) {
-            position = new Position(getDepth(), getColumn() - 1);
+            position = position.getLeftPosition();
             return;
         }
         if (line.hasRightPath(getColumn())) {
-            position = new Position(getDepth(), getColumn() + 1);
+            position = position.getRightPosition();
         }
     }
 
