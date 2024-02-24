@@ -9,7 +9,11 @@ public enum ExceptionType {
     NAMES_DUPLICATE("이름은 중복될 수 없습니다."),
     NAMES_SEPARATOR("구분자가 맨 앞이나 맨 뒤에 있으면 안됩니다."),
     ROW_COUNT("가로 라인 개수는 1이상 9 이하여야 합니다."),
-    ROW_NEAR("연속해서 가로 라인이 등장할 수 없습니다.");
+    ROW_NEAR("연속해서 가로 라인이 등장할 수 없습니다."),
+    RESULTS_COUNT_RANGE("실행 결과는 최대 10개까지 받을 수 있습니다."),
+    RESULT_COUNT("실행 결과의 개수와 이름의 개수가 다릅니다."),
+    RESULTS_SEPARATOR("구분자가 맨 앞이나 맨 뒤에 있으면 안됩니다."),
+    RESULT_LENGTH("실행 결과의 길이는 1자 이상 5자 이하여야 합니다.");
 
     private final String message;
 
