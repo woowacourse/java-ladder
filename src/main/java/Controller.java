@@ -1,5 +1,4 @@
-import domain.Ladder;
-import domain.Players;
+import domain.Game;
 import java.util.List;
 import view.InputView;
 import view.OutputView;
@@ -15,12 +14,12 @@ class Controller {
     }
 
     public void run() {
-        List<String> names = inputView.readNames();
+        List<String> playerNames = inputView.readNames();
         List<String> gameResults = inputView.readGameResults();
         int height = inputView.readHeight();
-        Players players = new Players(names);
-        Ladder ladder = new Ladder(height, players.getPlayerSize());
 
-        outputView.printLadder(players, ladder);
+        Game game = new Game(playerNames, gameResults, height);
+
+        outputView.printLadder(game.getPlayers(), game.getLadder());
     }
 }
