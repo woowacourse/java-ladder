@@ -3,15 +3,13 @@ package model;
 import java.util.Arrays;
 
 public enum Step {
-    EXIST(true, "-----"),
-    NONE(false, "     ");
+    EXIST(true),
+    NONE(false);
 
     private final boolean doesExist;
-    private final String output;
 
-    Step(boolean doesExist, String output) {
+    Step(boolean doesExist) {
         this.doesExist = doesExist;
-        this.output = output;
     }
 
     public static Step findByExistence(boolean doesExist) {
@@ -21,7 +19,7 @@ public enum Step {
                 .orElse(null);
     }
 
-    public String getOutput() {
-        return output;
+    public boolean getDoesExist() {
+        return doesExist;
     }
 }
