@@ -9,16 +9,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 class UsersTest {
-
-    @Test
-    @DisplayName("User 리스트를 갖는 Users를 생성한다.")
-    void createUsersByNames() {
-        String userNames = "pobi,honux,crong,jk";
-
-        assertThatCode(() -> new Users(List.of(userNames.split(","))))
-                .doesNotThrowAnyException();
-    }
-
     @Test
     @DisplayName("사용자가 두명 이상 있어야 한다.")
     void createOnlyUsers() {

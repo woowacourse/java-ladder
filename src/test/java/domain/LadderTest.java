@@ -9,16 +9,7 @@ import static org.assertj.core.api.Assertions.*;
 class LadderTest {
 
     @Test
-    @DisplayName("사람 수와 높이로 Ladder 생성")
-    void createLadderWithPersonCountAndMaxHeight() {
-        int maxHeight = 4;
-        int personCount = 4;
-
-        assertThatCode(() -> new Ladder(maxHeight, personCount)).doesNotThrowAnyException();
-    }
-
-    @Test
-    @DisplayName("사다리를 생성한다")
+    @DisplayName("사다리의 높이는 주어진 높이와 같다")
     void generate() {
         int maxHeight = 4;
         int personCount = 4;
