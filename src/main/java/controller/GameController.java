@@ -34,8 +34,8 @@ public class GameController {
 
         Members members = Members.from(rawNames);
         Lines lines = Lines.of(members.getCount(), Height.from(rawHeight), pointStrategy);
-
         Game game = Game.of(members, lines);
+
         outputView.printResult(game);
     }
 }
