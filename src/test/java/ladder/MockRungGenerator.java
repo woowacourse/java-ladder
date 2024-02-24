@@ -5,18 +5,18 @@ import java.util.NoSuchElementException;
 import ladder.domain.Rung;
 import ladder.domain.randomGenerator.RungGenerator;
 
-public class MockBooleanGenerator implements RungGenerator {
+public class MockRungGenerator implements RungGenerator {
 
     private final Iterator<Rung> mockedRungs;
 
-    public MockBooleanGenerator(Iterable<Rung> mockedStatus) {
+    public MockRungGenerator(Iterable<Rung> mockedStatus) {
         this.mockedRungs = mockedStatus.iterator();
     }
 
     @Override
     public Rung getRandomStatusRung() {
         if (!mockedRungs.hasNext()) {
-            throw new NoSuchElementException("mock 리스트 인덱스를 넘어섰습니다.");
+            throw new NoSuchElementException("다음 Mock 데이터를 찾을 수 없습니다.");
         }
         return mockedRungs.next();
     }
