@@ -2,8 +2,8 @@ package domain;
 
 import java.util.Objects;
 
-class Name {
-    static final int MAX_NAME_LENGTH = 5;
+public class Name {
+    public static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
     Name(String name) {
@@ -29,7 +29,7 @@ class Name {
         return Objects.hash(name);
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 

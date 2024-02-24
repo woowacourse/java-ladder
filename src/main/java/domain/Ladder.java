@@ -3,7 +3,7 @@ package domain;
 import java.util.List;
 import java.util.stream.IntStream;
 
-class Ladder {
+public class Ladder {
     private final List<Row> rows;
 
     Ladder(Height height, Width width, BridgeGenerator rowInfoGenerator) {
@@ -13,7 +13,7 @@ class Ladder {
                 .toList();
     }
 
-    List<Row> getRows() {
+    public List<Row> getRows() {
         return rows;
     }
 }

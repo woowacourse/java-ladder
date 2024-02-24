@@ -17,7 +17,7 @@ public class Names {
         this.names = splitNames.stream().map(Name::new).toList();
     }
 
-    List<Name> getNames() {
+    public List<Name> getNames() {
         return names;
     }
 

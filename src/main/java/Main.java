@@ -8,21 +8,24 @@ import view.OutPutView;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        var outputView = new OutPutView();
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
             LadderGame ladderGame = RetryHelper.retry(() -> {
-                return createLadderGame(bufferedReader);
+                return createLadderGame(bufferedReader, outputView);
             });
-            OutPutView.print(ladderGame.getNamesString());
-            OutPutView.print(ladderGame.getLadderString());
+            outputView.printLadderResult(ladderGame.getNames(), ladderGame.getLadder());
         }
     }
 
-    private static LadderGame createLadderGame(BufferedReader bufferedReader) {
+    private static LadderGame createLadderGame(BufferedReader bufferedReader, OutPutView outputView) {
         var inputView = new InputView(bufferedReader);
-        OutPutView.print("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+
+        outputView.printNamesInput();
         String nameInput = inputView.getInput();
-        OutPutView.print("최대 사다리 높이는 몇 개인가요?");
+
+        outputView.printHeightInput();
         int ladderHeight = Integer.parseInt(inputView.getInput());
+        
         return new LadderGame(nameInput, ladderHeight);
     }
 

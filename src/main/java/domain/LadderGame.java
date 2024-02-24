@@ -12,11 +12,11 @@ public class LadderGame {
         ladder = new Ladder(height, width, new BridgesRandomGenerator());
     }
 
-    public String getLadderString() {
-        return LadderStringMaker.make(ladder);
+    public Names getNames() {
+        return names;
     }
 
-    public String getNamesString() {
-        return NamesStringMaker.make(names);
+    public Ladder getLadder() {
+        return ladder;
     }
 }
