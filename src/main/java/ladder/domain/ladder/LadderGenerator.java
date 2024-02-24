@@ -11,7 +11,7 @@ public class LadderGenerator {
     }
 
     public Ladder generate(final Players players, final Height height) {
-        final int playerCount = players.countPlayers();
+        final int playerCount = players.count();
         final int ladderHeight = height.getHeight();
 
         return new Ladder(playerCount, ladderHeight, booleanGenerator);

@@ -22,7 +22,7 @@ class PlayersTest {
     @Test
     @DisplayName("참가자들의 수를 셀 수 있다.")
     void countPlayers() {
-        int actual = players.countPlayers();
+        int actual = players.count();
         assertThat(actual).isEqualTo(4);
     }
 
