@@ -28,7 +28,10 @@ public class Players {
         return new HashSet<>(playerNames).size() != playerNames.size();
     }
 
-    public void isContains(Player player) {
+    public void isContainsOrSameAsAll(Player player) {
+        if (player.isNameAll()) {
+            return;
+        }
         if (!players.contains(player)) {
             throw new IllegalArgumentException("해당하는 이름의 플레이어가 없습니다.");
         }
