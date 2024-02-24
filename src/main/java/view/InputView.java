@@ -12,16 +12,27 @@ public class InputView {
 
     public List<String> readPlayerNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        return getUserInput();
+    }
+
+    public List<String> readResults() {
+        System.out.println();
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        return getUserInput();
+    }
+
+    private List<String> getUserInput() {
         try {
             String input = bufferedReader.readLine();
             String removedInput = removeBlank(input);
             return split(removedInput);
         } catch (IOException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("입력을 받는 도중 에러가 발생했습니다.");
         }
     }
 
     public int readHeight() {
+        System.out.println();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         try {
             String input = bufferedReader.readLine();
