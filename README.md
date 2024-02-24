@@ -68,8 +68,8 @@ example feat: 사용자 입력 후 도메인 사용
   - 리뷰어님은 `LineBuildStrategy` 추천
 - [x] `canBuildStrategey`의 `canBuildBridges()` 메소드명이 동어반복 느낌
   - `lineBuildStrategy.apply(int);`을 추천하심
-- [ ] `RandomBuildStrategy`는 정말 random한 일만 하는가? 이 객체는 하나의 책임만 갖고 있는가? 인터페이스가 잘 설계되었나?
-- [ ] `RandomBooleanGenerator`에서 static final로 선언한 값을 getGenerator로 가져오는 이유가 뭘까?
+- [x] `RandomBuildStrategy`는 정말 random한 일만 하는가? 이 객체는 하나의 책임만 갖고 있는가? 인터페이스가 잘 설계되었나?
+- [x] `RandomBooleanGenerator`에서 static final로 선언한 값을 getGenerator로 가져오는 이유가 뭘까?
   - `new RandomBooleanGenerator` 로 사용하면 안되나?
   - 싱글톤으로 관리하기 위해서(계속해서 new로 객체를 생성하면 성능 저하가 발생할 수 있으니까) 사용한 것인데 진짜 싱글톤으로 관리된 것인지 확인
 - [x] Enum `BridgeSymbol`에서 getSymbol을 static으로 사용한 이유

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.List;
 import laddergame.domain.strategy.LineBuildStrategy;
-import laddergame.domain.strategy.RandomBuildStrategy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

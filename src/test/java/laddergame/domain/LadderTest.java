@@ -2,10 +2,9 @@ package laddergame.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.ArrayList;
 import java.util.List;
 import laddergame.domain.strategy.LineBuildStrategy;
-import laddergame.domain.strategy.RandomBuildStrategy;
+import laddergame.domain.strategy.RandomNoTrueSequenceBuildStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +19,7 @@ public class LadderTest {
         final Players players = Players.from(playersName);
 
         //when
-        Ladder ladder = Ladder.buildOf(new RandomBuildStrategy(), players, height);
+        Ladder ladder = Ladder.buildOf(new RandomNoTrueSequenceBuildStrategy(), players, height);
 
         //then
         assertEquals(ladder.getLines().size(), height.getHeight());

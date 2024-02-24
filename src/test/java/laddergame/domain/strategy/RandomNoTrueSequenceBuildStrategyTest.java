@@ -9,16 +9,16 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 @DisplayName("랜덤전략")
-public class RandomBuildStrategyTest {
+public class RandomNoTrueSequenceBuildStrategyTest {
     @Test
     @DisplayName("주어진 횟수만큼 다리가 생성되는지 확인한다.")
     public void testRandomBuildStrategy() {
         //given
-        RandomBuildStrategy randomBuildStrategy = new RandomBuildStrategy();
+        RandomNoTrueSequenceBuildStrategy randomNoTrueSequenceBuildStrategy = new RandomNoTrueSequenceBuildStrategy();
         final int count = 4;
 
         //when
-        List<Boolean> canBuildBridges = randomBuildStrategy.apply(count);
+        List<Boolean> canBuildBridges = randomNoTrueSequenceBuildStrategy.apply(count);
 
         //then
         assertEquals(canBuildBridges.size(), count);
@@ -28,11 +28,11 @@ public class RandomBuildStrategyTest {
     @DisplayName("다리가 연속적으로 생성되지 않는지 검증한다.")
     public void testSequenceBridges() {
         //given
-        RandomBuildStrategy randomBuildStrategy = new RandomBuildStrategy();
+        RandomNoTrueSequenceBuildStrategy randomNoTrueSequenceBuildStrategy = new RandomNoTrueSequenceBuildStrategy();
         final int count = 5;
 
         //when
-        List<Boolean> canBuildBridges = randomBuildStrategy.apply(count);
+        List<Boolean> canBuildBridges = randomNoTrueSequenceBuildStrategy.apply(count);
 
         //then
         for (int i = 0; i < canBuildBridges.size() - 1; i++) {

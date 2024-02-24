@@ -1,13 +1,11 @@
 package laddergame;
 
-import java.util.List;
 import java.util.function.Supplier;
-import java.util.stream.IntStream;
+
 import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.Players;
-import laddergame.domain.strategy.LineBuildStrategy;
-import laddergame.domain.strategy.RandomBuildStrategy;
+import laddergame.domain.strategy.RandomNoTrueSequenceBuildStrategy;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -19,7 +17,7 @@ public class LadderGame {
         Players players = requestUntilValidated(() -> Players.from(inputView.readPlayersName()));
         Height height = requestUntilValidated(() -> new Height(inputView.readLadderHeight()));
 
-        Ladder ladder = Ladder.buildOf(new RandomBuildStrategy(), players, height);
+        Ladder ladder = Ladder.buildOf(new RandomNoTrueSequenceBuildStrategy(), players, height);
         printLadderResult(players, ladder);
     }
 
