@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class LadderResultTest {
     @Test
     @DisplayName("사다리를 실행한 결과를 계산한다.")
-    void calculatePlayerResultTest() {
+    void moveLadderTest() {
         Bars bars = new Bars(List.of(0, 1, 0, 2));
         LadderResult ladderResult = new LadderResult(List.of("a", "b", "c", "d"));
 
