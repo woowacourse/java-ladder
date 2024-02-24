@@ -20,7 +20,10 @@ public class InputView {
 
     public static int readHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-
-        return Integer.parseInt(SCANNER.nextLine()); // TODO 숫자 검증
+        try {
+            return Integer.parseInt(SCANNER.nextLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("잘못된 입력입니다. 숫자를 입력해 주세요.");
+        }
     }
 }
