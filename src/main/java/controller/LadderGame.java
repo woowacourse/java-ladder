@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Ladder;
+import domain.LadderFactory;
 import domain.Users;
 import view.InputView;
 import view.ResultView;
@@ -9,18 +10,26 @@ import java.util.List;
 
 public class LadderGame {
     public void run() {
-        List<String> userNames = InputView.inputUserNames();
-        Users users = new Users(userNames);
+        final List<String> userNames = InputView.inputUserNames();
+        final Users users = new Users(userNames);
+        final List<String> results = InputView.inputResult();
+        final Ladder ladder = LadderFactory.createRandomLadder(InputView.inputHeight(), users.getPersonCount());
 
-        List<String> results = InputView.inputResult();
+        printLadderWithExtras(users, ladder, results);
 
-//        int height = InputView.inputHeight();
-//        Ladder ladder = new Ladder(height, users.getPersonCount());
+        handleTargetResult();
+    }
 
+    private static void handleTargetResult() {
+        InputView.inputTargetResult();
+        ResultView.printTargetResultMessage();
+        ResultView.printTargetResult("");
+    }
+
+    private void printLadderWithExtras(final Users users, final Ladder ladder, final List<String> results) {
         ResultView.printResultMessage();
         ResultView.printNames(users);
-        ResultView.printResult(ladder);
-
-        InputView.inputTargetResult();
+        ResultView.printLadder(ladder);
+        ResultView.printResult(results);
     }
 }

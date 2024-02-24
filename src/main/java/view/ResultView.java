@@ -17,7 +17,7 @@ public class ResultView {
     }
 
     public static void printNames(final Users users) {
-        StringBuilder stringBuilder = new StringBuilder();
+        final StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(String.format("%-6s", getFirst(users)));
         getMiddle(users).forEach(userName -> stringBuilder.append(String.format("%6s", userName)));
@@ -26,27 +26,27 @@ public class ResultView {
         System.out.println(stringBuilder);
     }
 
-    private static List<UserName> getMiddle(Users users) {
-        List<UserName> userNames = users.getUsers();
+    private static List<UserName> getMiddle(final Users users) {
+        final List<UserName> userNames = users.getUsers();
         return userNames.subList(1, userNames.size() - 1);
     }
 
-    private static UserName getLast(Users users) {
-        List<UserName> userNames = users.getUsers();
-        return userNames.get(userNames.size()-1);
+    private static UserName getLast(final Users users) {
+        final List<UserName> userNames = users.getUsers();
+        return userNames.get(userNames.size() - 1);
     }
 
-    private static UserName getFirst(Users users) {
-        List<UserName> userNames = users.getUsers();
+    private static UserName getFirst(final Users users) {
+        final List<UserName> userNames = users.getUsers();
         return userNames.get(0);
     }
 
     public static void printResultMessage() {
-        System.out.println("실행결과");
+        System.out.println("사다리 결과");
         System.out.println();
     }
 
-    public static void printResult(final Ladder ladder) {
+    public static void printLadder(final Ladder ladder) {
         for (Line line : ladder.getLadder()) {
             System.out.println(generateSingleLine(line));
         }
@@ -71,4 +71,23 @@ public class ResultView {
         }
         return NONE_LINE;
     }
+
+    public static void printResult(List<String> results) {
+        results.forEach(result -> System.out.print(result + " "));
+        System.out.println();
+    }
+
+
+    public static void printTargetResultMessage() {
+        System.out.println("실행결과");
+        System.out.println();
+    }
+
+    public static void printTargetResult(String result) {
+
+    }
+    public static void printTargetResult(List<String> result) {
+
+    }
+
 }
