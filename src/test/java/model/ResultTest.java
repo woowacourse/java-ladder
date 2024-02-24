@@ -11,7 +11,7 @@ class ResultTest {
     @DisplayName("정상적으로 실행 결과 객체를 생성한다.")
     void createResult() {
         List<String> values = List.of("꽝", "5000", "꽝", "1000");
-        Assertions.assertThatCode(() -> new Result(values))
+        Assertions.assertThatCode(() -> Result.from(values))
                 .doesNotThrowAnyException();
     }
 }

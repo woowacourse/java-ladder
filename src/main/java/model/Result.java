@@ -4,10 +4,17 @@ import java.util.List;
 
 public class Result {
 
-    private final List<String> values;
+    private final List<Prize> prizes;
 
-    public Result(final List<String> values) {
-        this.values = values;
+    private Result(final List<Prize> prizes) {
+        this.prizes = prizes;
+    }
+
+    public static Result from(final List<String> values) {
+        List<Prize> prizes = values.stream()
+                .map(Prize::new)
+                .toList();
+        return new Result(prizes);
     }
 
 }
