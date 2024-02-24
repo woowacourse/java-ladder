@@ -2,7 +2,6 @@ package controller;
 
 import java.util.List;
 import java.util.function.Supplier;
-import model.bridge.RandomBridgesGenerator;
 import model.ladder.Ladder;
 import model.ladder.LadderHeight;
 import model.player.Players;
@@ -13,13 +12,13 @@ public class LadderGameController {
     public void run() {
         Players players = retryOnException(this::preparePlayers);
         LadderHeight ladderHeight = retryOnException(this::prepareLadderHeight);
-        Ladder ladder = Ladder.create(ladderHeight, players, new RandomBridgesGenerator());
+        Ladder ladder = Ladder.of(ladderHeight, players);
         end(players, ladder);
     }
 
     private Players preparePlayers() {
         List<String> playerNames = InputView.askPlayerNames();
-        return Players.create(playerNames);
+        return Players.of(playerNames);
     }
 
     private LadderHeight prepareLadderHeight() {

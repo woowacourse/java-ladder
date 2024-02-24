@@ -22,4 +22,8 @@ public enum Bridge {
     public boolean isConnected() {
         return this == CONNECTED;
     }
+
+    public boolean isUnconnected() {
+        return this == UNCONNECTED;
+    }
 }
