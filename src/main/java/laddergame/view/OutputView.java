@@ -44,7 +44,7 @@ public class OutputView {
 
     private void writeResultNames(final Results results) {
         System.out.println(String.join(POINT_SPACE, results.getResults().stream()
-                .map(Result::name)
+                .map(Result::getName)
                 .toList()));
     }
 

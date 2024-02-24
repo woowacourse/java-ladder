@@ -9,10 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-@DisplayName("결과")
+@DisplayName("결과들")
 class ResultsTest {
     @Test
-    @DisplayName("결과 생성에 성공한다.")
+    @DisplayName("생성에 성공한다.")
     public void createResults() {
         //given
         List<String> resultNames = List.of("꽝", "5000", "꽝", "3000");
@@ -21,12 +21,12 @@ class ResultsTest {
         Results results = Results.from(resultNames);
 
         //then
-        assertEquals(results.getResults().get(0).name(), resultNames.get(0));
+        assertEquals(results.getResults().get(0).getName(), resultNames.get(0));
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"", "    "})
-    @DisplayName("결과 이름에 빈칸을 허용하지 않는다.")
+    @DisplayName("이름에 빈칸을 허용하지 않는다.")
     public void resultsBlankException(final String name) {
         //given
         List<String> resultNames = List.of(name);
