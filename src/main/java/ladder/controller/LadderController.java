@@ -15,6 +15,8 @@ public class LadderController {
     public void makeLadder(){
         ladderPlayers = Players.from(InputView.inputPlayerNames());
 
+        List<String> ladderResult = InputView.inputLadderResult();
+
         LadderSize ladderSize = new LadderSize(InputView.inputLadderHeight(), ladderPlayers.getSize());
         ladder = Ladder.of(ladderSize);
     }
@@ -26,6 +28,6 @@ public class LadderController {
     }
 
     public void showResult() {
-        List<String> ladderResult = InputView.inputLadderResult();
+        String resultPlayer = InputView.inputResultPlayer();
     }
 }
