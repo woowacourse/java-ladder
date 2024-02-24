@@ -13,13 +13,13 @@ class BridgeRandomGenerator implements BridgeGenerator {
         return rowInfos;
     }
 
-    private static List<Boolean> generateRowInfos(int width, Random random) {
+    private List<Boolean> generateRowInfos(int width, Random random) {
         return IntStream.range(0, width)
                 .mapToObj(value -> random.nextBoolean())
                 .collect(Collectors.toList());
     }
 
-    private static void fixRowInfo(int width, List<Boolean> rowInfos) {
+    private void fixRowInfo(int width, List<Boolean> rowInfos) {
         IntStream.range(1, width).forEach(
                 index -> {
                     if (rowInfos.get(index) && rowInfos.get(index - 1)) {
