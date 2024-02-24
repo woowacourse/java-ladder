@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
     @Test
     @DisplayName("주어진 가로 길이와 세로 길이의 랜덤 사다리를 생성한다.")
     void createRandomLadder() {
-        Ladder ladder = LadderFactory.createRandomLadder(5, 10);
+        final Ladder ladder = LadderFactory.createRandomLadder(5, 10);
 
         assertAll(
                 () -> assertThat(ladder.getHeight()).isEqualTo(5),
@@ -23,10 +23,10 @@ import org.junit.jupiter.api.Test;
     @Test
     @DisplayName("주어진 가로 길이와 세로 길이의 사다리를 생성한다.")
     void createManualLadder() {
-        Line line = new Line(List.of(Bridge.NON_BRIDGE, Bridge.NON_BRIDGE, Bridge.NON_BRIDGE));
-        List<Line> lines = List.of(line, line, line);
+        final Line line = new Line(List.of(Bridge.NON_BRIDGE, Bridge.NON_BRIDGE, Bridge.NON_BRIDGE));
+        final List<Line> lines = List.of(line, line, line);
 
-        Ladder ladder = LadderFactory.createLadder(lines);
+        final Ladder ladder = LadderFactory.createLadder(lines);
 
         assertAll(
                 () -> assertThat(ladder.getHeight()).isEqualTo(3),

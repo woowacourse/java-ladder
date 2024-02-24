@@ -25,7 +25,7 @@ public class LadderFactory {
     }
 
     private static List<Bridge> generateLine(final int width) {
-        List<Bridge> bridges = new ArrayList<>();
+        final List<Bridge> bridges = new ArrayList<>();
         bridges.add(getRandomBridge());
         IntStream.range(1, width)
                 .mapToObj(index -> bridges.get(index - 1))

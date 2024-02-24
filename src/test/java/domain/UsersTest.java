@@ -15,7 +15,7 @@ class UsersTest {
     @Test
     @DisplayName("사용자가 두명 이상 있어야 한다.")
     void createOnlyUsers() {
-        String userNames = "pobi";
+        final String userNames = "pobi";
 
         assertThatThrownBy(() -> new Users(Arrays.stream(userNames.split(",")).toList()))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -24,7 +24,7 @@ class UsersTest {
     @Test
     @DisplayName("사용자는 최대 50명이다")
     void maxUsers() {
-        List<String> userNames = new ArrayList<>();
+        final List<String> userNames = new ArrayList<>();
         for (int i = 1; i <= 50; i++) {
             userNames.add(String.valueOf(i));
         }
@@ -36,7 +36,7 @@ class UsersTest {
     @Test
     @DisplayName("존재하지 않는 이름이 주어지면 예외를 발생시킨다")
     void nameNotExist() {
-        Users users = new Users(List.of("pobi", "rush", "jonge"));
+        final Users users = new Users(List.of("pobi", "rush", "jonge"));
 
         assertThatThrownBy(() -> users.findPositionByName("brown")).isInstanceOf(IllegalArgumentException.class);
     }
@@ -45,7 +45,7 @@ class UsersTest {
     @CsvSource(value = {"pobi,0", "rush,1", "jonge,2"})
     @DisplayName("사용자 이름이 주어지면 그 위치를 반환한다")
     void findPositionByName(String name, int position) {
-        Users users = new Users(List.of("pobi", "rush", "jonge"));
+        final Users users = new Users(List.of("pobi", "rush", "jonge"));
 
         assertThat(users.findPositionByName(name)).isEqualTo(position);
     }

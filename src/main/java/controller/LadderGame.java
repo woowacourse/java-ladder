@@ -39,8 +39,8 @@ public class LadderGame {
         ResultView.printTargetResult(results.get(endPosition));
     }
 
-    private static void printAllResult(Users users, Ladder ladder, List<String> results) {
-        List<String> names = users.getUsers().stream().map(UserName::toString).toList();
+    private static void printAllResult(final Users users, final Ladder ladder, final List<String> results) {
+        final List<String> names = users.getUsers().stream().map(UserName::toString).toList();
         ResultView.printTargetResult(names,
                 names.stream()
                         .map(users::findPositionByName)
