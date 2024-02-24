@@ -14,9 +14,8 @@ class PlayerTest {
     @Test
     @DisplayName("참가자들은 이름을 가진다.")
     void testConstruct() {
-        String pobi = "pobi";
-        Player player = new Player(pobi);
-        assertThat(pobi).isEqualTo(player.getName());
+        Player player = new Player("pobi");
+        assertThat(player.getName()).isEqualTo("pobi");
     }
 
     @Nested
