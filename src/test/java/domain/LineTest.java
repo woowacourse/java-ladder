@@ -9,11 +9,17 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import util.TestLineItemGenerator;
 import view.LineItem;
-
 import java.util.List;
 import java.util.stream.Stream;
 
 class LineTest {
+
+    private static Stream<Arguments> methodSourceEnum() {
+        return Stream.of(
+                Arguments.arguments(LineItem.CONNECTED, LineItem.CONNECTED, LineItem.UNCONNECTED),
+                Arguments.arguments(LineItem.UNCONNECTED, LineItem.CONNECTED, LineItem.CONNECTED)
+        );
+    }
 
     @DisplayName("현재 위치에서 LineItem을 놓을 수 있는지 확인한다.")
     @ParameterizedTest
@@ -23,13 +29,6 @@ class LineTest {
         line.getPoints().add(actual);
 
         assertThat(line.decideLineItem(1, lineItem)).isEqualTo(expected);
-    }
-
-    private static Stream<Arguments> methodSourceEnum() {
-        return Stream.of(
-                Arguments.arguments(LineItem.CONNECTED, LineItem.CONNECTED, LineItem.UNCONNECTED),
-                Arguments.arguments(LineItem.UNCONNECTED, LineItem.CONNECTED, LineItem.CONNECTED)
-        );
     }
 
     @DisplayName("사다리의 Line이 올바르게 생성되는지 확인한다.")
