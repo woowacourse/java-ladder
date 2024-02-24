@@ -12,23 +12,16 @@ public class Player {
     }
 
     private void validate(String name) {
-        if (isNameLengthLongerThanMaxLength(name)) {
-            throw new IllegalArgumentException("이름의 길이는 5보다 클 수 없다.");
-        }
-        if (isNameEmpty(name)) {
-            throw new IllegalArgumentException("이름의 길이는 1보다 작을 수 없다.");
+        if (isNameLengthNot1to5(name)) {
+            throw new IllegalArgumentException("이름의 길이는 1이상 5이하의 숫자여야 합니다.");
         }
         if (isNameFormatNotValid(name)) {
             throw new IllegalArgumentException("이름은 영문자와 숫자로 구성되어야 합니다.");
         }
     }
 
-    private boolean isNameLengthLongerThanMaxLength(String name) {
-        return name.length() > MAX_NAME_LENGTH;
-    }
-
-    private boolean isNameEmpty(String name) {
-        return name.isEmpty();
+    private boolean isNameLengthNot1to5(String name) {
+        return name.isEmpty() || name.length() > MAX_NAME_LENGTH;
     }
 
     private boolean isNameFormatNotValid(String name) {
