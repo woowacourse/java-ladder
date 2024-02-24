@@ -28,7 +28,8 @@ public class MessageResolver {
 
     private String resolveLineMessage(RowLine rowLine) {
         return LINE_MESSAGE_PREFIX + COLUMN_LINE + IntStream.range(0, rowLine.getConnectionCount())
-                .mapToObj(index -> resolveConnectionMessage(rowLine.getConnection(index)))
+                .mapToObj(rowLine::getConnection)
+                .map(this::resolveConnectionMessage)
                 .collect(Collectors.joining(COLUMN_LINE)) + COLUMN_LINE;
     }
 
