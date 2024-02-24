@@ -12,7 +12,7 @@ public class DirectionRightGeneratorImpl implements DirectionGenerator {
 
     @Override
     public Direction generateInitialValue() {
-        return Direction.getDirection(0);
+        return Direction.getDirection(true);
     }
 
     @Override
@@ -32,7 +32,6 @@ public class DirectionRightGeneratorImpl implements DirectionGenerator {
     }
 
     private Direction generateRightOrNeutral() {
-        int randomNumber = random.nextInt(2);
-        return Direction.getDirection(randomNumber);
+        return Direction.getDirection(random.nextBoolean());
     }
 }

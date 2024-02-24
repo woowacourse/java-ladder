@@ -32,7 +32,6 @@ public class DirectionGeneratorImpl implements DirectionGenerator {
     }
 
     private Direction generateRightOrNeutral() {
-        int randomNumber = random.nextInt(2);
-        return Direction.getDirection(randomNumber);
+        return Direction.getDirection(random.nextBoolean());
     }
 }
