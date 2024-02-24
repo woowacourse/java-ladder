@@ -15,17 +15,14 @@ public class Line {
     }
 
     private void generate(int playerCount) {
-        points.add(pointStrategy.generatePoint());
-        for (int i = 1; i < playerCount - 1; i++) {
-            points.add(makeNextPointByPrevious(points.get(i - 1)));
-        }
-    }
+        Connection first = pointStrategy.generatePoint();
+        points.add(first);
 
-    private Connection makeNextPointByPrevious(Connection previous) {
-        if (previous.equals(Connection.CONNECTED)) {
-            return Connection.DISCONNECTED;
+        for (int i = 1; i < playerCount - 1; i++) {
+            Connection previous = points.get(i - 1);
+            Connection next = previous.makeNextConnection(pointStrategy);
+            points.add(next);
         }
-        return pointStrategy.generatePoint();
     }
 
     public List<Connection> getPoints() {

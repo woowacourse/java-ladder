@@ -1,5 +1,7 @@
 package domain;
 
+import strategy.PointStrategy;
+
 public enum Connection {
 
     CONNECTED( "-"),
@@ -13,5 +15,12 @@ public enum Connection {
 
     public String getDisplayCharacter() {
         return displayCharacter;
+    }
+
+    public Connection makeNextConnection(PointStrategy pointStrategy) {
+        if (this == CONNECTED) {
+            return DISCONNECTED;
+        }
+        return pointStrategy.generatePoint();
     }
 }
