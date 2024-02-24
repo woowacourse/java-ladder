@@ -14,7 +14,7 @@ public class RandomConnectionGenerator implements ConnectionGenerator {
     @Override
     public List<Connection> getConnections(int peopleNumber) {
         int connectionNumber = peopleNumber - 1;
-        Connection beforeConnection = NOTCONNECTED;
+        Connection beforeConnection = addRandomConnection();
 
         return Stream.iterate(beforeConnection, this::addConnection)
                 .limit(connectionNumber)
