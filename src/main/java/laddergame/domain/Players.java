@@ -3,9 +3,12 @@ package laddergame.domain;
 import static laddergame.domain.Player.NAME_BLANK_ERROR;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class Players {
     private static final String NAME_DUPLICATED_ERROR = "이름의 중복은 허용하지 않습니다.";
+    private static final String NAMES_COUNT_ERROR = "이름을 두명 이상 적어주세요.";
+    private static final int MIN_NAMES_COUNT = 2;
     private final List<Player> players;
 
     private Players(final List<Player> players) {
@@ -24,6 +27,7 @@ public class Players {
     private static void validate(final List<String> playerNames) {
         checkBlankName(playerNames);
         checkDuplicated(playerNames);
+        checkNamesCount(playerNames.size());
     }
 
     private static void checkDuplicated(List<String> playerNames) {
@@ -35,6 +39,12 @@ public class Players {
     private static void checkBlankName(List<String> playerNames) {
         if (playerNames.stream().anyMatch(String::isBlank)) {
             throw new IllegalArgumentException(NAME_BLANK_ERROR);
+        }
+    }
+
+    private static void checkNamesCount(int count) {
+        if (count < MIN_NAMES_COUNT) {
+            throw new IllegalArgumentException(NAMES_COUNT_ERROR);
         }
     }
 
@@ -50,5 +60,9 @@ public class Players {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public int getPlayersCount() {
+        return players.size();
     }
 }
