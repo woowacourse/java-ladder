@@ -14,7 +14,11 @@ public class InputView {
 
     public static int readHeight() {
         printLadderHeightInputMessage();
-        return Integer.parseInt(reader.nextLine());
+        try {
+            return Integer.parseInt(reader.nextLine());
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("숫자를 입력해 주세요.");
+        }
     }
 
     private static void printNameInputMessage() {
