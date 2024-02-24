@@ -47,15 +47,34 @@ public class Main {
     }
 
     private static void printClimbResult(LadderGame ladderGame, List<String> rawNames) {
-        String gameOperator = "";
+        String gameOperator = getGameOperator(ladderGame);
+
+        gameOperator = printClimbResultsUntilOperatorIsAll(ladderGame, gameOperator);
+
+        List<String> climbResults = ClimbResultPrinter.of(rawNames, ladderGame.getClimbResults(gameOperator));
+        climbResults.forEach(OutputView::print);
+    }
+
+    private static String getGameOperator(LadderGame ladderGame) {
+        OutputView.print("결과를 보고 싶은 사람은?");
+        String gameOperator = RetryHelper.retry(
+                () -> LadderGameOperatorInputView.getOperator(InputView::getInput, ladderGame.getRawNames())
+        );
+        OutputView.print("실행 결과");
+        return gameOperator;
+    }
+
+    private static String printClimbResultsUntilOperatorIsAll(LadderGame ladderGame, String gameOperator) {
         while (!gameOperator.equals("all")) {
-            OutputView.print("결과를 보고 싶은 사람은?");
-            gameOperator = RetryHelper.retry(
-                    () -> LadderGameOperatorInputView.getOperator(InputView::getInput, ladderGame.getRawNames()));
-            OutputView.print("실행 결과");
-            List<String> climbResults = ClimbResultPrinter.of(rawNames, ladderGame.getClimbResults(gameOperator));
+            List<String> climbResults = ClimbResultPrinter.of(
+                    List.of(gameOperator),
+                    ladderGame.getClimbResults(gameOperator)
+            );
             climbResults.forEach(OutputView::print);
+
+            gameOperator = getGameOperator(ladderGame);
         }
+        return gameOperator;
     }
 
     static final class RetryHelper {
