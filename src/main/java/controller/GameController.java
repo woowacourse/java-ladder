@@ -15,10 +15,10 @@ public class GameController {
     private final OutputView outputView;
     private final ErrorHandler errorHandler;
 
-    public GameController(InputView inputView, OutputView outputView) {
+    public GameController(InputView inputView, OutputView outputView, ErrorHandler errorHandler) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.errorHandler = new ErrorHandler();
+        this.errorHandler = errorHandler;
     }
 
     public void run() {
