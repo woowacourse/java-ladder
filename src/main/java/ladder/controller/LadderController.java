@@ -6,6 +6,8 @@ import ladder.model.Players;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import java.util.List;
+
 public class LadderController {
     private Players ladderPlayers;
     private Ladder ladder;
@@ -21,5 +23,9 @@ public class LadderController {
         OutputView.printResultDescription();
         OutputView.printPlayerNames(ladderPlayers.getPlayerNames());
         OutputView.printLadder(ladder.toLineDtoList());
+    }
+
+    public void showResult() {
+        List<String> ladderResult = InputView.inputLadderResult();
     }
 }
