@@ -32,7 +32,7 @@ public class LineTest {
     void makeLegWithUnOverlap() {
         Line line = new Line() {
             @Override
-            public boolean generateLegRandomly() {
+            public boolean generateLeg() {
                 return true;
             }
         };
