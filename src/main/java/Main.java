@@ -1,6 +1,7 @@
 import domain.LadderGame;
 import java.util.List;
 import java.util.function.Supplier;
+import view.ClimbResultPrinter;
 import view.InputView;
 import view.LadderGameOperatorInputView;
 import view.LadderPrinter;
@@ -8,7 +9,6 @@ import view.NameInputView;
 import view.NamesPrinter;
 import view.OutputView;
 import view.ResultInputView;
-import view.ResultPrinter;
 
 public class Main {
     public static void main(String[] args) {
@@ -53,7 +53,7 @@ public class Main {
             gameOperator = RetryHelper.retry(
                     () -> LadderGameOperatorInputView.getOperator(InputView::getInput, ladderGame.getRawNames()));
             OutputView.print("실행 결과");
-            List<String> climbResults = ResultPrinter.of(rawNames, ladderGame.getClimbResults(gameOperator));
+            List<String> climbResults = ClimbResultPrinter.of(rawNames, ladderGame.getClimbResults(gameOperator));
             climbResults.forEach(OutputView::print);
         }
     }
