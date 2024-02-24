@@ -1,39 +1,40 @@
 package ladder.domain;
 
-import ladder.util.RandomPointsGenerator;
+import java.util.stream.IntStream;
+import ladder.util.PointsGenerator;
 
 import java.util.Collections;
 import java.util.List;
 
 public class Line {
 
-    private final RandomPointsGenerator randomPointsGenerator;
     private final List<Point> points;
 
-    public Line(int personCount, RandomPointsGenerator randomPointsGenerator) {
-        this.randomPointsGenerator = randomPointsGenerator;
-        this.points = createRandomPoints(personCount - 1);
-        ensurePoints();
+    public Line(int personCount, PointsGenerator pointsGenerator) {
+        List<Point> points = pointsGenerator.generate(personCount - 1);
+        validate(points);
+        this.points = points;
     }
 
-    private List<Point> createRandomPoints(int size) {
-        List<Point> points = randomPointsGenerator.generate(size);
-        if (!points.contains(Point.ON)) {
-            return createRandomPoints(size);
+    private void validate(List<Point> points) {
+        validateAtLeastOnePointIsUsed(points);
+        validateNonConsecutiveUsage(points);
+    }
+
+    private void validateAtLeastOnePointIsUsed(List<Point> points) {
+        boolean allPointsAreUnused = points.stream().noneMatch(Point::isUsed);
+
+        if (allPointsAreUnused) {
+            throw new IllegalArgumentException("모든 좌표가 사용되지 않아 최대 사다리 높이를 만족할 수 없습니다.");
         }
-        return points;
     }
 
-    private void ensurePoints() {
-        for (int i = 1; i < points.size(); i++) {
-            makePointEnsure(i);
-        }
-    }
+    private void validateNonConsecutiveUsage(List<Point> points) {
+        boolean hasConsecutiveUsage = IntStream.range(1, points.size())
+                .anyMatch(index -> points.get(index).isUsed() && points.get(index - 1).isUsed());
 
-    private void makePointEnsure(int currentIndex) {
-        Point previous = points.get(currentIndex - 1);
-        if (previous == Point.ON) {
-            points.set(currentIndex, Point.OFF);
+        if (hasConsecutiveUsage) {
+            throw new IllegalArgumentException("사다리 타기가 정상적으로 동작하려면 좌표가 연속적으로 사용되어서는 안 됩니다.");
         }
     }
 

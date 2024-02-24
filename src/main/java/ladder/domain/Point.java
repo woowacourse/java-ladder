@@ -1,23 +1,26 @@
 package ladder.domain;
 
+import java.util.Arrays;
+
 public enum Point {
 
-    ON(true, "-"),
-    OFF(false, " ");
+    USED("-"),
+    UNUSED(" ");
 
-    private final boolean status;
     private final String symbol;
 
-    Point(boolean status, String symbol) {
-        this.status = status;
+    Point(String symbol) {
         this.symbol = symbol;
     }
 
-    public static Point match(boolean status) {
-        if (status) {
-            return ON;
-        }
-        return OFF;
+    public static Point getByIndex(int index) {
+        return Arrays.stream(Point.values())
+                .toList()
+                .get(index);
+    }
+
+    public boolean isUsed() {
+        return this == Point.USED;
     }
 
     public String repeatSymbol(int count) {
