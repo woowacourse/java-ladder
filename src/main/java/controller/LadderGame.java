@@ -87,7 +87,7 @@ public class LadderGame {
     }
 
     private void createLine(Line line, StringBuilder stringBuilder) {
-        for (LineItem point : line.getPoints()) {
+        for (LineItem point : line.getLineItems()) {
             stringBuilder.append(point.getShape());
         }
     }

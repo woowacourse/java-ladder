@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<LineItem> points;
+    private final List<LineItem> lineItems;
     private final int columnLength;
 
     public Line(int columnLength) {
-        this.points = new ArrayList<>();
+        this.lineItems = new ArrayList<>();
         this.columnLength = columnLength;
     }
 
@@ -19,21 +19,21 @@ public class Line {
         for (int position = 0; position < columnLength - 1; position++) {
             LineItem lineItem = lineItemGenerator.generate();
 
-            points.add(decideLineItem(position, lineItem));
+            lineItems.add(decideLineItem(position, lineItem));
         }
 
-        return points;
+        return lineItems;
     }
 
     public LineItem decideLineItem(int position, LineItem lineItem) {
-        if (position == 0 || LineItem.isUnconnected(points.get(position - 1))) {
+        if (position == 0 || LineItem.isUnconnected(lineItems.get(position - 1))) {
             return lineItem;
         }
 
         return LineItem.UNCONNECTED;
     }
 
-    public List<LineItem> getPoints() {
-        return points;
+    public List<LineItem> getLineItems() {
+        return lineItems;
     }
 }
