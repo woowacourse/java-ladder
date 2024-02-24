@@ -22,9 +22,8 @@ public class Line {
         return stepGenerator.generate();
     }
 
-    private boolean isPreviousStepExist(int index) {
-        return stepPoints.get(index - 1)
-                .isExist();
+    private boolean isPreviousStepExist(int cellIndex) {
+        return isExistStep(cellIndex - 1);
     }
 
     public boolean isExistStep(int index) {
