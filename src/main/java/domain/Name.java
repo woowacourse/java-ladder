@@ -4,9 +4,11 @@ import static message.ErrorMessage.INVALID_PLAYER_NAME_LANGUAGE_EXCEPTION;
 import static message.ErrorMessage.INVALID_PLAYER_NAME_SIZE_EXCEPTION;
 import static message.ErrorMessage.NO_PLAYER_NAME_EXCEPTION;
 
+import java.util.regex.Pattern;
+
 public class Name {
 
-    private static final String NAME_LANGUAGE_FORMAT = "^[A-Za-z]*$";
+    private static final Pattern NAME_LANGUAGE_FORMAT_PATTERN = Pattern.compile("^[A-Za-z]*$");
     private static final int MAXIMUM_NAME_SIZE = 5;
     private final String name;
 
@@ -28,7 +30,7 @@ public class Name {
     }
 
     private void validateNameLanguage(String name) {
-        if (!name.matches(NAME_LANGUAGE_FORMAT)) {
+        if (!NAME_LANGUAGE_FORMAT_PATTERN.matcher(name).matches()) {
             throw new IllegalArgumentException(INVALID_PLAYER_NAME_LANGUAGE_EXCEPTION.getMessage());
         }
     }
