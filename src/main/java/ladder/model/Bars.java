@@ -3,19 +3,13 @@ package ladder.model;
 import java.util.List;
 
 public class Bars {
-    List<Bar> bars;
+    List<Integer> bars;
 
-    private Bars(List<Bar> bars) {
+    public Bars(List<Integer> bars) {
         this.bars = bars;
     }
 
-    public static Bars from(List<Integer> positions) {
-        return new Bars(positions.stream()
-                .map(Bar::new)
-                .toList());
-    }
-
-    public List<Bar> getBars() {
+    public List<Integer> getBars() {
         return bars;
     }
 }

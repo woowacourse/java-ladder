@@ -18,12 +18,10 @@ public class LadderResult {
         }
     }
 
-    public LadderResult moveThroughLadder(List<Bar> bars) {
+    public LadderResult moveThroughLadder(List<Integer> bars) {
         List<String> changedLadderResult = new ArrayList<>(ladderResult);
 
-        bars.stream()
-                .map(Bar::getLeftPosition)
-                .forEach(idx -> Collections.swap(changedLadderResult, idx, idx + 1));
+        bars.forEach(idx -> Collections.swap(changedLadderResult, idx, idx + 1));
 
         return new LadderResult(changedLadderResult);
     }

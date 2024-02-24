@@ -34,7 +34,7 @@ public class LadderController {
             isQuestionedPlayerExist(questionedPlayer);
         }
 
-        Bars bars = Bars.from(ladder.findBars());
+        Bars bars = new Bars(ladder.findBars());
         LadderResult changedLadderResult = ladderResult.moveThroughLadder(bars.getBars());
 
         OutputView.printQuestionedPlayerResultDescription();
