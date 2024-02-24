@@ -2,60 +2,42 @@ package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
+import ladder.domain.dto.LadderResponseDto;
+import ladder.domain.dto.LineResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class LadderTest {
 
-    private Ladder ladder;
+    private Height height;
 
     @BeforeEach
     void setUp() {
-        ladder = new Ladder(5);
+        height = new Height("3");
     }
 
-    @Nested
-    @DisplayName("이전 포지션에 스텝이 존재하는지 검사하는 테스트")
-    class CheckDuplicateStepTest {
+    @Test
+    @DisplayName("매개변수 height와 생성되는 사다리와 사다리의 높이는 일치해야 한다.")
+    void ladderHeightTest() {
+        Ladder ladder = new Ladder(height, 5, () -> true);
+        LadderResponseDto resultLadders = ladder.getResultLadders();
+        int ladderHeight = resultLadders.ladderResult().size();
 
-        @Test
-        @DisplayName("이전 포지션에 스텝이 존재하면 True를 반환한다.")
-        void hasDuplicatedStep() {
-            ladder.buildSteps(0);
-
-            Boolean hasDuplicateStep = ladder.hasStepDuplicated(1);
-
-            assertThat(hasDuplicateStep).isTrue();
-        }
-
-        @Test
-        @DisplayName("이전 포지션에 스텝이 존재하지 않으면 False를 반환한다.")
-        void hasNotDuplicatedStep() {
-            ladder.buildSteps(0);
-
-            Boolean hasDuplicateStep = ladder.hasStepDuplicated(3);
-
-            assertThat(hasDuplicateStep).isFalse();
-        }
+        assertThat(ladderHeight).isEqualTo(3);
     }
 
-    @Nested
-    @DisplayName("스텝 건설 테스트")
-    class MakeStepTest {
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2})
+    @DisplayName("생성되는 사다리의 가로 공간은 사람 수 보다 1적어야 한다.")
+    void ladderHorizontalLengthTest(int heightPosition) {
+        Ladder ladder = new Ladder(height, 5, () -> true);
+        LadderResponseDto resultLadders = ladder.getResultLadders();
+        LineResponseDto lineResponseDto = resultLadders.ladderResult().get(heightPosition);
+        int maxRungsCount = lineResponseDto.buildStatusList().size();
 
-        @ParameterizedTest
-        @ValueSource(ints = {2, 3, 4})
-        @DisplayName("스텝을 건설한 구역은 True 심볼을 반환한다.")
-        void successfullyMakeStepTest(int currentSector) {
-            ladder.buildSteps(currentSector);
-
-            List<String> stepSymbols = ladder.getSteps().builtLadder();
-            assertThat(stepSymbols.get(currentSector)).isEqualTo("-----");
-        }
+        assertThat(maxRungsCount).isEqualTo(4);
     }
 }

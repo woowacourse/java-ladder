@@ -2,42 +2,33 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.domain.dto.BuiltLadderDto;
+import ladder.domain.dto.LadderResponseDto;
+import ladder.domain.dto.LineResponseDto;
+import ladder.domain.randomGenerator.RungGenerator;
 
 public class Ladder {
 
-    private static final int STEP_START_NUMBER = 0;
-    private static final boolean DEFAULT_NO_DUPLICATED_STEP = false;
+    private final List<Line> lines;
 
-    private final List<Step> steps;
-
-    public Ladder(final int personCount) {
-        this.steps = makeSteps(personCount);
+    public Ladder(Height height, int personCount, RungGenerator rungGenerator) {
+        lines = makeLines(height, personCount, rungGenerator);
     }
 
-    private List<Step> makeSteps(int stepCount) {
-        List<Step> steps = new ArrayList<>();
+    private List<Line> makeLines(Height height, int personCount, RungGenerator rungGenerator) {
+        List<Line> lines = new ArrayList<>();
 
-        for (int currentStep = STEP_START_NUMBER; currentStep < stepCount; currentStep++) {
-            steps.add(new Step());
+        for (int currentHeight = 0; currentHeight < height.getHeight(); currentHeight++) {
+            lines.add(new Line(rungGenerator, personCount));
         }
-        return steps;
+
+        return lines;
     }
 
-    public void buildSteps(int currentPosition) {
-        steps.get(currentPosition).changeStatus();
-    }
+    public LadderResponseDto getResultLadders() {
+        List<LineResponseDto> lineResponseDtos = lines.stream()
+                .map(Line::getRungs)
+                .toList();
 
-    public boolean hasStepDuplicated(int currentPosition) {
-        if (currentPosition > STEP_START_NUMBER) {
-            int stepBeforePosition = currentPosition - 1;
-            Step step = steps.get(stepBeforePosition);
-            return step.getBuildStatus();
-        }
-        return DEFAULT_NO_DUPLICATED_STEP;
-    }
-
-    public BuiltLadderDto getSteps() {
-        return BuiltLadderDto.of(steps);
+        return new LadderResponseDto(lineResponseDtos);
     }
 }
