@@ -2,6 +2,7 @@ import domain.LadderGame;
 import java.util.List;
 import java.util.function.Supplier;
 import view.InputView;
+import view.LadderGameOperatorInputView;
 import view.LadderPrinter;
 import view.NameInputView;
 import view.NamesPrinter;
@@ -46,14 +47,13 @@ public class Main {
     }
 
     private static void printClimbResult(LadderGame ladderGame, List<String> rawNames) {
-        String nameThatNeedToShowResult = "";
-        while (!nameThatNeedToShowResult.equals("all")) {
+        String gameOperator = "";
+        while (!gameOperator.equals("all")) {
             OutputView.print("결과를 보고 싶은 사람은?");
-            nameThatNeedToShowResult = RetryHelper.retry(
-                    () -> NameInputView.getNameThatNeedToShowResult(InputView::getInput, ladderGame.getRawNames()));
+            gameOperator = RetryHelper.retry(
+                    () -> LadderGameOperatorInputView.getOperator(InputView::getInput, ladderGame.getRawNames()));
             OutputView.print("실행 결과");
-            List<String> climbResults = ResultPrinter.of(rawNames,
-                    ladderGame.showClimbResults(nameThatNeedToShowResult));
+            List<String> climbResults = ResultPrinter.of(rawNames, ladderGame.showClimbResults(gameOperator));
             climbResults.forEach(OutputView::print);
         }
     }
