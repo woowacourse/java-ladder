@@ -8,6 +8,7 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.List;
+import java.util.Objects;
 
 public class LadderController {
     private Players ladderPlayers;
@@ -27,15 +28,25 @@ public class LadderController {
         OutputView.printLadderDescription();
         OutputView.printPlayerNames(ladderPlayers.getPlayerNames());
         OutputView.printLadder(ladder.toLineDtoList());
+        OutputView.printLadderResult(ladderResult);
     }
 
     public void showResult() {
         String questionedPlayer = InputView.inputQuestionedPlayer();
+        if (!Objects.equals(questionedPlayer, "all")) {
+            isQuestionedPlayerExist(questionedPlayer);
+        }
 
         Bars bars = Bars.from(ladder.findBars());
         List<String> changedLadderResult = bars.calculateChangedLadderResult(ladderResult);
 
         OutputView.printQuestionedPlayerResultDescription();
         OutputView.printQuestionedPlayerResult(questionedPlayer, ladderPlayers.getPlayerNames(), changedLadderResult);
+    }
+
+    private void isQuestionedPlayerExist(String name) {
+        if (ladderPlayers.isNotContains(name)) {
+            throw new IllegalArgumentException("해당 플레이어는 존재하지 않습니다.");
+        }
     }
 }

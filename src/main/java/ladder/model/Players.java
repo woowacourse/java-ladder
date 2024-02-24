@@ -28,6 +28,10 @@ public class Players {
         return new HashSet<>(playerNames).size() != playerNames.size();
     }
 
+    public boolean isNotContains(String name) {
+        return !players.contains(new Player(name));
+    }
+
     public int getSize() {
         return players.size();
     }
