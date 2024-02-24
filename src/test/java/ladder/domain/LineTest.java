@@ -31,7 +31,7 @@ public class LineTest {
     void createAllUnusedPoints() {
         // given
         int personCount = 5;
-        PointsGenerator pointsGenerator = new PointsGenerator() {
+        PointsGenerator randomPointsGenerator = new RandomPointsGenerator() {
             @Override
             public List<Point> generate(int size) {
                 return List.of(Point.UNUSED, Point.UNUSED, Point.UNUSED, Point.UNUSED);
@@ -40,6 +40,23 @@ public class LineTest {
 
         // when & then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Line(personCount, pointsGenerator));
+                .isThrownBy(() -> new Line(personCount, randomPointsGenerator));
+    }
+
+    @Test
+    @DisplayName("좌표가 연속적으로 사용되어서는 안 된다.")
+    void createConsecutiveUsage() {
+        // given
+        int personCount = 5;
+        PointsGenerator randomPointsGenerator = new RandomPointsGenerator() {
+            @Override
+            public List<Point> generate(int size) {
+                return List.of(Point.USED, Point.USED, Point.UNUSED, Point.UNUSED);
+            }
+        };
+
+        // when & then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Line(personCount, randomPointsGenerator));
     }
 }
