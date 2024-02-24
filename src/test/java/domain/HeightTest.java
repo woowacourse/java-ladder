@@ -15,6 +15,7 @@ public class HeightTest {
     @ValueSource(strings = {"abc", "-1", "0"})
     void occurExceptionIfHeightIsNotNaturalNumber(String height) {
         assertThatThrownBy(() -> new Height(height))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사다리의 높이는 자연수여야 합니다.");
     }
 }
