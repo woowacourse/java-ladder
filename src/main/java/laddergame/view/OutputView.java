@@ -16,13 +16,20 @@ public class OutputView {
     private static final String POINT_SPACE = "\t";
     private static final String RESULT_TITLE = System.lineSeparator() + "실행결과" + System.lineSeparator();
 
-    public void writePlayersName(final Players players) {
+    public void printLadderResult(final Players players, final Ladder ladder, final Results results) {
+        writeResultTitle();
+        writePlayersName(players);
+        writeLadder(ladder);
+        writeResultNames(results);
+    }
+
+    private void writePlayersName(final Players players) {
         System.out.println(String.join(POINT_SPACE, players.getPlayers().stream()
                 .map(Player::getName)
                 .toList()));
     }
 
-    public void writeLadder(final Ladder ladder) {
+    private void writeLadder(final Ladder ladder) {
         IntStream.range(0, ladder.getLadderSize())
                 .forEach(i -> writeLine(ladder.getLines().get(i)));
     }
@@ -35,7 +42,7 @@ public class OutputView {
         System.out.println(stringJoiner);
     }
 
-    public void writeResultNames(final Results results) {
+    private void writeResultNames(final Results results) {
         System.out.println(String.join(POINT_SPACE, results.getResults().stream()
                 .map(Result::name)
                 .toList()));

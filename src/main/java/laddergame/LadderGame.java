@@ -18,15 +18,8 @@ public class LadderGame {
         Results results = requestUntilValidated(() -> Results.from(inputView.readResultNames()));
         Height height = requestUntilValidated(() -> new Height(inputView.readLadderHeight()));
         Ladder ladder = new Ladder(players.getPlayers().size(), height);
-        printLadderResult(players, ladder, results);
+        outputView.printLadderResult(players, ladder, results);
         Result result = requestUntilValidated(() -> new Result(inputView.readDesiredResultName()));
-    }
-
-    private void printLadderResult(final Players players, final Ladder ladder, final Results results) {
-        outputView.writeResultTitle();
-        outputView.writePlayersName(players);
-        outputView.writeLadder(ladder);
-        outputView.writeResultNames(results);
     }
 
     private <T> T requestUntilValidated(Supplier<T> supplier) {
