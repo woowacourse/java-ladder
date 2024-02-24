@@ -1,8 +1,5 @@
 package ladder.domain.direction;
 
-import javax.swing.*;
-import java.util.Arrays;
-
 public enum Direction {
     RIGHT,
     NEUTRAL,
