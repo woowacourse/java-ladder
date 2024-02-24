@@ -19,12 +19,12 @@ public class Ladder {
     }
 
     private int parseAndValidateHeight(String heightInput) {
-        int height = changeInputToInteger(heightInput);
+        int height = parseHeightInputToInteger(heightInput);
         validateHeightRange(height);
         return height;
     }
 
-    private int changeInputToInteger(String heightInput) {
+    private int parseHeightInputToInteger(String heightInput) {
         try {
             return Integer.parseInt(heightInput);
         } catch (NumberFormatException e) {
