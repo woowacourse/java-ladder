@@ -3,9 +3,12 @@ package model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
+import model.path.Path;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class PersonTest {
@@ -26,5 +29,15 @@ class PersonTest {
         assertThatThrownBy(() -> Person.from(name, 0))
                 .isExactlyInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 최소 1글자 최대 5글자여야 합니다.");
+    }
+
+    @ParameterizedTest(name = "사람은 경로대로 좌우로 음직인다.")
+    @CsvSource({"0, 1", "1, 0", "2, 2", "3, 4", "4, 3"})
+    void moveHorizontally(int before, int expected) {
+        Line line = new Line(List.of(Path.EXIST, Path.NOT_EXIST, Path.NOT_EXIST, Path.EXIST));
+        Person person = Person.from("loky", before);
+        person.moveHorizontally(line);
+        int after = person.getColumn();
+        assertThat(after).isEqualTo(expected);
     }
 }
