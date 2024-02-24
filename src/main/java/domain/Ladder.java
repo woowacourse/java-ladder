@@ -51,11 +51,11 @@ public class Ladder {
         return 0;
     }
 
-    private boolean hasBridge(int position, int currentHeight) {
+    private boolean hasBridge(final int position, final int currentHeight) {
         return ladder.get(currentHeight).getBridges().get(position).getBridge();
     }
 
-    private boolean inRange(int position) {
+    private boolean inRange(final int position) {
         return position >= 0 && position < getWidth();
     }
 
@@ -68,7 +68,7 @@ public class Ladder {
     }
 
     public int getWidth() {
-        Line firstLine = ladder.get(0);
+        final Line firstLine = ladder.get(0);
         return firstLine.getWidth();
     }
 }
