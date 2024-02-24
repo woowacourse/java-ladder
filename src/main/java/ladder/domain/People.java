@@ -61,13 +61,6 @@ public class People {
         return names.size();
     }
 
-    public int findMaxNameLength() {
-        return names.stream()
-                .mapToInt(String::length)
-                .max()
-                .orElse(0);
-    }
-
     public List<String> getNames() {
         return Collections.unmodifiableList(names);
     }

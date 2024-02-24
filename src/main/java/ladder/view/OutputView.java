@@ -8,36 +8,46 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
+    private static final int MAX_NAME_LENGTH = 5;
+
     public static void printError(String message) {
         System.out.println(message);
     }
 
-    public void printPeople(People people) {
+    public void printResult(People people, Ladder ladder) {
         System.out.println("\n실행결과\n");
 
-        String nameFormat = makeNameFormat(people);
+        String formattedNames = makeNamesFormatted(people);
+        System.out.println(formattedNames);
 
-        for (String name : people.getNames()) {
-            String formattedName = String.format(nameFormat, name);
-            System.out.print(formattedName);
+        String formattedLadder = makeLadderFormatted(ladder);
+        System.out.println(formattedLadder);
+    }
+
+    private String makeNamesFormatted(People people) {
+        return people.getNames().stream()
+                .map(this::makeNameFormatted)
+                .collect(Collectors.joining(" "));
+    }
+
+    private String makeNameFormatted(String name) {
+        if (name.length() == 5) {
+            return name;
         }
-        System.out.println();
+        int trailingSpaces = 1;
+        int leadingSpaces = MAX_NAME_LENGTH - name.length() - trailingSpaces;
+        return " ".repeat(leadingSpaces) + name + " ".repeat(trailingSpaces);
     }
 
-    private String makeNameFormat(People people) {
-        int width = people.findMaxNameLength() + 1;
-        return "%" + width + "s";
+    private String makeLadderFormatted(Ladder ladder) {
+        return ladder.getLadder().stream()
+                .map(this::makeLineFormatted)
+                .collect(Collectors.joining("\n"));
     }
 
-    public void printLadder(Ladder ladder, People people) {
-        ladder.getLadder()
-                .forEach(line -> printLine(line, people.findMaxNameLength()));
-    }
-
-    private void printLine(Line line, int maxNameLength) {
-        String points = line.getPoints().stream()
-                .map(point -> point.repeatSymbol(maxNameLength))
+    private String makeLineFormatted(Line line) {
+        return line.getPoints().stream()
+                .map(point -> point.repeatSymbol(MAX_NAME_LENGTH))
                 .collect(Collectors.joining("|", "    |", "|"));
-        System.out.println(points);
     }
 }
