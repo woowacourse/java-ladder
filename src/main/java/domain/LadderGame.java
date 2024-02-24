@@ -33,11 +33,12 @@ public class LadderGame {
         return results.getRawResults();
     }
 
-    public List<String> showClimbResults(String operator) {
-        if (operator.equals("all")) {
+    public List<String> showClimbResults(String rawOperator) {
+        LadderGameOperator operator = new LadderGameOperator(rawOperator);
+        if (operator.isAll()) {
             return climbAll();
         }
-        return List.of(climb(operator));
+        return List.of(climb(rawOperator));
     }
 
     private List<String> climbAll() {
