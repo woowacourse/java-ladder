@@ -34,4 +34,15 @@ class ResultsTest {
         //when & then
         assertThrows(IllegalArgumentException.class, () -> Results.from(resultNames));
     }
+
+    @Test
+    @DisplayName("플레이어 수와 맞지 않을 경우, 예외가 발생한다.")
+    public void notMatchPlayersResult() {
+        //given
+        List<String> resultNames = List.of("choco", "lemon");
+        final int playerCount = 3;
+
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> Results.from(resultNames, playerCount));
+    }
 }
