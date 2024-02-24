@@ -7,14 +7,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class LadderTest {
+public class HeightTest {
 
     @DisplayName("사다리 높이가 자연수가 아닐 경우 예외가 발생한다.")
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {"abc", "-1", "0"})
     void occurExceptionIfHeightIsNotNaturalNumber(String height) {
-        assertThatThrownBy(() -> new Ladder(height))
+        assertThatThrownBy(() -> new Height(height))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
