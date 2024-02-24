@@ -48,4 +48,8 @@ public class InputView {
             throw new IllegalArgumentException(IOEXCEPTION_ERROR);
         }
     }
+
+    public String readDesiredResultName() {
+
+    }
 }
