@@ -21,8 +21,8 @@ public class InputView {
     }
 
     public static int inputLadderHeight() {
+        System.out.println(INPUT_HEIGHT_DESCRIPTION);
         try {
-            System.out.println(INPUT_HEIGHT_DESCRIPTION);
             return Integer.parseInt(br.readLine());
         } catch (IOException e) {
             throw new RuntimeException("입력 값을 받는 도중 에러가 발생했습니다.");
