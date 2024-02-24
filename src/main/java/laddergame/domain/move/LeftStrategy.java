@@ -12,7 +12,9 @@ public class LeftStrategy implements MovableStrategy {
 
         if (line.hasPoint(left)) {
             return Optional.of(new Trace(left, this));
-        } else if(line.hasPoint(position)){
+        }
+
+        if (line.hasPoint(position)){
             return Optional.of(new Trace(position, new RightStrategy()));
         }
 

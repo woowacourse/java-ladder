@@ -1,7 +1,7 @@
 package laddergame.domain.ladder;
 
 import laddergame.domain.Result;
-import laddergame.domain.move.FirstStrategy;
+import laddergame.domain.move.LeftStrategy;
 import laddergame.domain.move.Trace;
 import laddergame.domain.name.Name;
 import laddergame.domain.name.Names;
@@ -39,7 +39,7 @@ public class Ladder {
         Map<Name, Trace> map = new HashMap<>();
 
         for(int i = 0; i < names.getSize(); i++) {
-            Trace trace = new Trace(i, new FirstStrategy());
+            Trace trace = new Trace(i, new LeftStrategy());
             for(Line line : lines) {
                 trace = line.move(trace);
             }
