@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.Arrays;
-import java.util.List;
 
 public enum LineItem {
 
@@ -16,20 +15,15 @@ public enum LineItem {
         this.shape = shape;
     }
 
-    public static String getShapeByIsConnected(boolean isConnected) {
+    public static LineItem valueOf(boolean isConnected) {
         return Arrays.stream(LineItem.values())
                 .filter(lineItem -> lineItem.isConnected == isConnected)
                 .findAny()
-                .orElseThrow()
-                .shape;
+                .orElseThrow();
     }
 
     public static boolean isUnconnected(LineItem lineItem) {
         return lineItem.equals(LineItem.UNCONNECTED);
-    }
-
-    public static List<LineItem> getLineItemsAsList() {
-        return List.of(LineItem.values());
     }
 
     public String getShape() {

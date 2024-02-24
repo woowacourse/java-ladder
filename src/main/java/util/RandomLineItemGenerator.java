@@ -1,7 +1,6 @@
 package util;
 
 import domain.LineItem;
-import java.util.List;
 import java.util.Random;
 
 public class RandomLineItemGenerator implements LineItemGenerator {
@@ -10,8 +9,7 @@ public class RandomLineItemGenerator implements LineItemGenerator {
 
     @Override
     public LineItem generate() {
-        List<LineItem> ladderItems = LineItem.getLineItemsAsList();
-        return ladderItems.get(random.nextInt(ladderItems.size()));
+        boolean isConnected = random.nextBoolean();
+        return LineItem.valueOf(isConnected);
     }
-
 }
