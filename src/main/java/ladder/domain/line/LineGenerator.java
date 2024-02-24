@@ -13,7 +13,7 @@ public class LineGenerator {
 
     public Line generate(int width) {
         Line line = new Line();
-        final int middleValue = width - 2;
+        int middleValue = width - 2;
 
         addInitialDirection(line);
         addMiddleDirection(middleValue, line);
