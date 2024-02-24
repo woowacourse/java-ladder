@@ -15,8 +15,7 @@ public class InputView {
     public static List<String> inputPlayerNames() {
         System.out.println(INPUT_NAME_DESCRIPTION);
         try {
-            String rawNames = br.readLine();
-            return List.of(rawNames.split(","));
+            return splitWithComma(br.readLine());
         } catch (IOException e) {
             throw new RuntimeException(INPUT_ERROR_MESSAGE);
         }
@@ -25,8 +24,7 @@ public class InputView {
     public static List<String> inputLadderResult() {
         System.out.println(INPUT_LADDER_RESULT);
         try {
-            String ladderResult = br.readLine();
-            return List.of(ladderResult.split(","));
+            return splitWithComma(br.readLine());
         } catch (IOException e) {
             throw new IllegalArgumentException(INPUT_ERROR_MESSAGE);
         }
@@ -39,5 +37,9 @@ public class InputView {
         } catch (IOException e) {
             throw new RuntimeException(INPUT_ERROR_MESSAGE);
         }
+    }
+
+    private static List<String> splitWithComma(String input) {
+        return List.of(input.split(","));
     }
 }
