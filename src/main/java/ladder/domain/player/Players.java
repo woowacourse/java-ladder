@@ -14,7 +14,7 @@ public class Players {
         this.players = createPlayers(playerNames);
     }
 
-    private static List<Player> createPlayers(final List<String> playerNames) {
+    private List<Player> createPlayers(final List<String> playerNames) {
         return playerNames.stream()
                 .map(Player::new)
                 .toList();
