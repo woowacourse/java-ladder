@@ -1,25 +1,21 @@
 package ladder.controller;
 
-import ladder.model.Bars;
-import ladder.model.Ladder;
-import ladder.model.LadderSize;
-import ladder.model.Players;
+import ladder.model.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.List;
 import java.util.Objects;
 
 public class LadderController {
     private Players ladderPlayers;
     private Ladder ladder;
-    private List<String> ladderResult;
+    private LadderResult ladderResult;
 
     public void makeLadder(){
         ladderPlayers = Players.from(InputView.inputPlayerNames());
 
-        ladderResult = InputView.inputLadderResult();
-        isLadderResultSameLengthWithLadderPlayers();
+        ladderResult = new LadderResult(InputView.inputLadderResult());
+        ladderResult.isSameLengthWithLadderPlayers(ladderPlayers.getSize());
 
         LadderSize ladderSize = new LadderSize(InputView.inputLadderHeight(), ladderPlayers.getSize());
         ladder = Ladder.of(ladderSize);
@@ -29,7 +25,7 @@ public class LadderController {
         OutputView.printLadderDescription();
         OutputView.printPlayerNames(ladderPlayers.getPlayerNames());
         OutputView.printLadder(ladder.toLineDtoList());
-        OutputView.printLadderResult(ladderResult);
+        OutputView.printLadderResult(ladderResult.getLadderResult());
     }
 
     public void showResult() {
@@ -39,16 +35,11 @@ public class LadderController {
         }
 
         Bars bars = Bars.from(ladder.findBars());
-        List<String> changedLadderResult = bars.calculateChangedLadderResult(ladderResult);
+        LadderResult changedLadderResult = ladderResult.moveThroughLadder(bars.getBars());
 
         OutputView.printQuestionedPlayerResultDescription();
-        OutputView.printQuestionedPlayerResult(questionedPlayer, ladderPlayers.getPlayerNames(), changedLadderResult);
-    }
-
-    private void isLadderResultSameLengthWithLadderPlayers() {
-        if (ladderResult.size() != ladderPlayers.getSize()) {
-            throw new IllegalArgumentException("실행 결과 개수가 참여할 사람 이름의 수와 일치하지 않습니다.");
-        }
+        OutputView.printQuestionedPlayerResult(questionedPlayer, ladderPlayers.getPlayerNames(),
+                changedLadderResult.getLadderResult());
     }
 
     private void isQuestionedPlayerExist(String name) {

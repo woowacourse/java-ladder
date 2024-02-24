@@ -1,7 +1,5 @@
 package ladder.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Bars {
@@ -17,13 +15,7 @@ public class Bars {
                 .toList());
     }
 
-    public List<String> calculateChangedLadderResult(List<String> ladderResult) {
-        List<String> changedLadderResult = new ArrayList<>(ladderResult);
-
-        bars.stream()
-                .map(Bar::getLeftPosition)
-                .forEach(idx -> Collections.swap(changedLadderResult, idx, idx + 1));
-
-        return changedLadderResult;
+    public List<Bar> getBars() {
+        return bars;
     }
 }
