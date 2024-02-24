@@ -12,6 +12,7 @@ public class InputView {
     private static final String MAX_HEIGHT_INPUT = "최대 사다리 높이는 몇 개인가요?";
     private static final String NAME_SEPARATOR = ",";
     private static final String RESULTS_NAME_INPUT = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String DESIRED_NAME_INPUT = "결과를 보고 싶은 사람은?";
 
     public List<String> readPlayersName() {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -50,6 +51,13 @@ public class InputView {
     }
 
     public String readDesiredResultName() {
-
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println();
+        System.out.println(DESIRED_NAME_INPUT);
+        try {
+            return bufferedReader.readLine().trim();
+        } catch (IOException exception) {
+            throw new IllegalArgumentException(IOEXCEPTION_ERROR);
+        }
     }
 }

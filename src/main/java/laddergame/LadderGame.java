@@ -18,6 +18,8 @@ public class LadderGame {
 
         Ladder ladder = new Ladder(players.getPlayers().size(), height);
         printLadderResult(players, ladder);
+
+        requestUntilValidated(() -> inputView.readDesiredResultName());
     }
 
     private void printLadderResult(final Players players, final Ladder ladder) {
