@@ -1,6 +1,6 @@
 import controller.InputMapper;
 import controller.LadderGameController;
-import domain.NonContinuousLineGenerator;
+import domain.NonContinuousConnectionGenerator;
 import domain.RowLineGenerator;
 import view.InputView;
 import view.MessageResolver;
@@ -10,11 +10,11 @@ public class Application {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         ResultView resultView = new ResultView(new MessageResolver());
-        RowLineGenerator nonContinuousLineGenerator = new NonContinuousLineGenerator();
+        RowLineGenerator rowLineGenerator = new RowLineGenerator(new NonContinuousConnectionGenerator());
         InputMapper inputMapper = new InputMapper();
 
         LadderGameController ladderGameController = new LadderGameController(inputView, inputMapper, resultView,
-                nonContinuousLineGenerator);
+                rowLineGenerator);
 
         ladderGameController.run();
     }

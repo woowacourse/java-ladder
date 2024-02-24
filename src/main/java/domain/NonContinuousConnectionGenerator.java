@@ -1,15 +1,16 @@
 package domain;
 
-import static domain.ConnectionStatus.CONNECTED;
 import static domain.ConnectionStatus.DISCONNECTED;
+
+import util.RandomElementSelector;
 
 public class NonContinuousConnectionGenerator implements ConnectionGenerator {
 
     @Override
     public ConnectionStatus generateByPreviousStatus(ConnectionStatus previous) {
         if (previous.isConnect()) {
-            return CONNECTED;
+            return DISCONNECTED;
         }
-        return DISCONNECTED;
+        return RandomElementSelector.selectRandomConstant(ConnectionStatus.class);
     }
 }
