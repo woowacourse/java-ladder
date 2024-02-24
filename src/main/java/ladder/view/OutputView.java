@@ -13,6 +13,8 @@ public class OutputView {
     private static final String LINE_VERTICAL = "|";
     private static final String LINE_HORIZONTAL = "-----";
     private static final int MAX_NAME_LENGTH = 5;
+    public static final int USERNAME_BLANK_DEFAULT = 4;
+    public static final int USERNAME_SEPARATING_COUNT = 2;
 
     public void printError(String message) {
         System.out.println(message);
@@ -35,8 +37,8 @@ public class OutputView {
 
     private String appendNameFormat(String userName) {
         if (userName.length() < MAX_NAME_LENGTH) {
-            String blankFormats = BLANK.repeat(4 - userName.length());
-            return blankFormats + userName + BLANK.repeat(2);
+            String blankFormats = BLANK.repeat(USERNAME_BLANK_DEFAULT - userName.length());
+            return blankFormats + userName + BLANK.repeat(USERNAME_SEPARATING_COUNT);
         }
         return userName + BLANK;
     }
