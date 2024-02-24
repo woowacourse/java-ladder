@@ -1,10 +1,6 @@
 package domain;
 
-import utils.RandomGenerator;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Ladder {
     private static final int MAX_HEIGHT = 100;
@@ -40,5 +36,25 @@ public class Ladder {
     public int getWidth() {
         Line firstLine = ladder.get(0);
         return firstLine.getWidth();
+    }
+
+    public int play(int position) {
+        int currentHeight = 0;
+        int ladderHeight = getHeight();
+        while (currentHeight < ladderHeight) {
+            position += horizontalMovement(position, currentHeight);
+            currentHeight++;
+        }
+        return position;
+    }
+
+    private int horizontalMovement(int position, int currentHeight) {
+        if (ladder.get(currentHeight).getBridges().get(position).getBridge()) {
+            return 1;
+        }
+        if (position - 1 > 0 && ladder.get(currentHeight).getBridges().get(position - 1).getBridge()) {
+            return -1;
+        }
+        return 0;
     }
 }
