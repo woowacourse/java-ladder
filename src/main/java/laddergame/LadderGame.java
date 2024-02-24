@@ -8,7 +8,6 @@ import laddergame.domain.Ladder;
 import laddergame.domain.Players;
 import laddergame.domain.strategy.LineBuildStrategy;
 import laddergame.domain.strategy.RandomBuildStrategy;
-import laddergame.dto.LineBuildResult;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -20,16 +19,8 @@ public class LadderGame {
         Players players = requestUntilValidated(() -> Players.from(inputView.readPlayersName()));
         Height height = requestUntilValidated(() -> new Height(inputView.readLadderHeight()));
 
-        Ladder ladder = new Ladder(players.getPlayers().size(), height);
-        ladder.build(getLineBuildResults(players, height));
+        Ladder ladder = Ladder.buildOf(new RandomBuildStrategy(), players, height);
         printLadderResult(players, ladder);
-    }
-
-    private static List<LineBuildResult> getLineBuildResults(final Players players, final Height height) {
-        LineBuildStrategy randomBuildStrategy = new RandomBuildStrategy();
-        return IntStream.range(0, height.getHeight())
-                .mapToObj(i -> randomBuildStrategy.apply(players.getPlayers().size() - 1))
-                .toList();
     }
 
     private void printLadderResult(final Players players, final Ladder ladder) {
@@ -42,7 +33,7 @@ public class LadderGame {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
-            OutputView.writeErrorMessage("입력이 잘못되었습니다. 다시 입력해주세요.");
+            OutputView.writeErrorMessage(e.getMessage());
             return requestUntilValidated(supplier);
         }
     }

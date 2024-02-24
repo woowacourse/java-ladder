@@ -14,8 +14,8 @@ public class InputView {
 
     public List<String> readPlayersName() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-
-        try(BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try {
             return Arrays.stream(bufferedReader.readLine().split(NAME_DELIMITER))
                     .map(String::trim)
                     .toList();
@@ -26,8 +26,8 @@ public class InputView {
 
     public String readLadderHeight() {
         System.out.println(LINE_SEPARATOR + "최대 사다리 높이는 몇 개인가요?");
-
-        try(BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try {
             return bufferedReader.readLine();
         } catch (IOException exception) {
             throw new IllegalArgumentException(IOEXCEPTION_ERROR);

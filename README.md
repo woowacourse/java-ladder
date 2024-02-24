@@ -72,7 +72,7 @@ example feat: 사용자 입력 후 도메인 사용
 - [ ] `RandomBooleanGenerator`에서 static final로 선언한 값을 getGenerator로 가져오는 이유가 뭘까?
   - `new RandomBooleanGenerator` 로 사용하면 안되나?
   - 싱글톤으로 관리하기 위해서(계속해서 new로 객체를 생성하면 성능 저하가 발생할 수 있으니까) 사용한 것인데 진짜 싱글톤으로 관리된 것인지 확인
-- [ ] Enum `BridgeSymbol`에서 getSymbol을 static으로 사용한 이유
+- [x] Enum `BridgeSymbol`에서 getSymbol을 static으로 사용한 이유
   - 특정된 symbol 하나만 반환하는 것이 아니라 둘 중 하나의 symbol을 선택해서 반환해야 하기 때문에 사용함
 - [x] InputView, OutputView 생성자 생략 가능
 - [x] InputView에서 try with resource를 학습하고 적용해보기
@@ -82,9 +82,9 @@ example feat: 사용자 입력 후 도메인 사용
 - [x] Height 클래스에서 정규식 패턴을 계속 비교하는 대신 
   - `private static final Pattern NUMBER_PATTERN = Pattern.compile("^[\\d]*$");`사용
 - [x] Ladder build 메소드의 파라미터명을 `isBridgesBuilt` -> `buildResults` 로 수정
-- [ ] Line을 생성한 뒤 값을 넣지 않고 생성자에서 바로 값을 넣어주기
+- [x] Line을 생성한 뒤 값을 넣지 않고 생성자에서 바로 값을 넣어주기
   - 적용시 Line의 validate와 RandomBuildStrategy 중복 로직 발생 해결가능.
   - 연속 true는 규칙 위반이라는 사실은 누가 알고 있어야 할까?
 - [ ] Line의 point도 도메인 객체화 할 수 있다
 - [x] Player의 `NAME_MAX_LENGTH` -> `MAX_NAME_LENGTH`
-- [ ] Players에서 정적 팩토리 메소드를 사용한 이유
+- [x] Players에서 정적 팩토리 메소드를 사용한 이유

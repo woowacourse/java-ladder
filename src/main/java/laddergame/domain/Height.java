@@ -13,18 +13,14 @@ public class Height {
     }
 
     private void validate(final String height) {
-        checkIsNumber(height);
-        checkIsZero(height);
+        checkIsNaturalNumber(height);
+//        checkIsNumber(height);
+//        checkIsZero(height);
     }
 
-    private void checkIsNumber(final String height) {
-        if (NUMBER_REGEX.matcher(height).matches()) {
-            throw new IllegalArgumentException(NATURAL_NUMBER_ERROR);
-        }
-    }
-
-    private void checkIsZero(final String height) {
-        if (Integer.parseInt(height) == 0) {
+    private void checkIsNaturalNumber(final String height) {
+        if (!NUMBER_REGEX.matcher(height).matches() || height.equals("0")) {
+            System.out.println(height);
             throw new IllegalArgumentException(NATURAL_NUMBER_ERROR);
         }
     }

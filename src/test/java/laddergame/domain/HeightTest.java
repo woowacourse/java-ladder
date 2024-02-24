@@ -22,7 +22,6 @@ public class HeightTest {
 
         //then
         assertEquals(height.getHeight(), expectedHeight);
-
     }
 
     @ParameterizedTest

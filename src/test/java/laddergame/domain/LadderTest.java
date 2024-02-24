@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 import laddergame.domain.strategy.LineBuildStrategy;
-import laddergame.dto.LineBuildResult;
+import laddergame.domain.strategy.RandomBuildStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,14 +16,15 @@ public class LadderTest {
     public void createLadderTest() {
         //given
         final Height height = new Height("4");
-        final int playerCount = 4;
+        final List<String> playersName = List.of("name1", "name2");
+        final Players players = Players.from(playersName);
 
         //when
-        Ladder ladder = new Ladder(playerCount, height);
+        Ladder ladder = Ladder.buildOf(new RandomBuildStrategy(), players, height);
 
         //then
         assertEquals(ladder.getLines().size(), height.getHeight());
-        assertEquals(ladder.getLines().get(0).getPoints().size(), playerCount - 1);
+        assertEquals(ladder.getLines().get(0).getPoints().size(), playersName.size() - 1);
     }
 
     @Test
@@ -31,23 +32,19 @@ public class LadderTest {
     public void buildLadderBridge() {
         //given
         final Height height = new Height("1");
-        final int playerCount = 4;
-        List<LineBuildResult> buildResult = new ArrayList<>();
+        final List<String> playersName = List.of("name1", "name2", "name3", "name4");
+        final Players players = Players.from(playersName);
         LineBuildStrategy lineBuildStrategy = new LineBuildStrategy() {
             @Override
-            public LineBuildResult apply(int count) {
-                return new LineBuildResult(List.of(true, false, true));
+            public List<Boolean> apply(int count) {
+                return List.of(true, false, true);
             }
         };
 
-        LineBuildResult booleanList = lineBuildStrategy.apply(playerCount);
-        buildResult.add(booleanList);
-
         //when
-        Ladder ladder = new Ladder(playerCount, height);
-        ladder.build(buildResult);
+        Ladder ladder = Ladder.buildOf(lineBuildStrategy, players, height);
 
         //then
-        assertEquals(ladder.getLines().get(0).getPoints(), booleanList.buildResults());
+        assertEquals(List.of(true, false, true), ladder.getLines().get(0).getPoints());
     }
 }
