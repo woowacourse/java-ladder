@@ -35,7 +35,7 @@ public class LadderController {
         Bars bars = Bars.from(ladder.findBars());
         List<String> changedLadderResult = bars.calculateChangedLadderResult(ladderResult);
 
-        OutputView.printLadderResultDescription();
-        OutputView.printLadderResult(questionedPlayer, ladderPlayers.getPlayerNames(), changedLadderResult);
+        OutputView.printQuestionedPlayerResultDescription();
+        OutputView.printQuestionedPlayerResult(questionedPlayer, ladderPlayers.getPlayerNames(), changedLadderResult);
     }
 }

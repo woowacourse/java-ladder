@@ -29,14 +29,14 @@ public class OutputView {
         System.out.println(sb);
     }
 
-    public static void printLadderResultDescription() {
+    public static void printQuestionedPlayerResultDescription() {
         System.out.println(LADDER_RESULT_DESCRIPTION);
     }
 
-    public static void printLadderResult(String questionedPlayer, List<String> playerNames,
+    public static void printQuestionedPlayerResult(String questionedPlayer, List<String> playerNames,
                                          List<String> changedLadderResult) {
         if (questionedPlayer.equals("all")) {
-            printAllLadderResult(playerNames, changedLadderResult);
+            printAllPlayerLadderResult(playerNames, changedLadderResult);
             return;
         }
 
@@ -44,7 +44,7 @@ public class OutputView {
         System.out.println(changedLadderResult.get(position));
     }
 
-    private static void printAllLadderResult(List<String> playerNames, List<String> changedLadderResult) {
+    private static void printAllPlayerLadderResult(List<String> playerNames, List<String> changedLadderResult) {
         for (int i = 0; i < playerNames.size(); i++) {
             String player = playerNames.get(i);
             String result = changedLadderResult.get(i);
