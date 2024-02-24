@@ -28,8 +28,10 @@ public class Players {
         return new HashSet<>(playerNames).size() != playerNames.size();
     }
 
-    public boolean isNotContains(String name) {
-        return !players.contains(new Player(name));
+    public void isContains(Player player) {
+        if (!players.contains(player)) {
+            throw new IllegalArgumentException("해당하는 이름의 플레이어가 없습니다.");
+        }
     }
 
     public int getPlayerIndex(Player player) {

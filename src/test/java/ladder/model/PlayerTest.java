@@ -34,4 +34,6 @@ public class PlayerTest {
         assertThatCode(() -> new Player(name))
                 .doesNotThrowAnyException();
     }
+
+
 }

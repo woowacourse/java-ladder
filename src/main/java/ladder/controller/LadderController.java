@@ -29,7 +29,7 @@ public class LadderController {
 
     public void showResultWithQuestion() {
         Player questionedPlayer = new Player(InputView.inputQuestionedPlayer());
-        questionedPlayer.isExistInPlayers(ladderPlayers);
+        ladderPlayers.isContains(questionedPlayer);
 
         showResult(questionedPlayer, calculateResult());
     }
