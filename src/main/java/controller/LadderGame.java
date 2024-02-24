@@ -4,7 +4,6 @@ import domain.Ladder;
 import domain.LadderFactory;
 import domain.UserName;
 import domain.Users;
-import java.util.stream.Collectors;
 import view.InputView;
 import view.ResultView;
 
@@ -19,9 +18,7 @@ public class LadderGame {
 
         printLadderWithExtras(users, ladder, results);
 
-        while (handleTargetResult(users, ladder, results)) {
-        }
-
+        printTargetResult(users, ladder, results);
     }
 
     private void printLadderWithExtras(final Users users, final Ladder ladder, final List<String> results) {
@@ -31,25 +28,24 @@ public class LadderGame {
         ResultView.printNames(results);
     }
 
-    private static boolean handleTargetResult(Users users, Ladder ladder, List<String> results) {
-        String target = InputView.inputTargetResult();
-        if (target.equals("exit")) {
-            return false;
-        }
+    private static void printTargetResult(final Users users, final Ladder ladder, final List<String> results) {
+        final String target = InputView.inputTargetResult();
         if (target.equals("all")) {
-            List<String> names = users.getUsers().stream().map(UserName::toString).toList();
-            ResultView.printTargetResult(names,
-                    names.stream()
-                            .map(users::findPositionByName)
-                            .map(ladder::play)
-                            .map(results::get)
-                            .toList());
-            return true;
+            printAllResult(users, ladder, results);
+            return;
         }
-        int startPosition = users.findPositionByName(target);
-        int endPosition = ladder.play(startPosition);
+        final int endPosition = ladder.playByPosition(users.findPositionByName(target));
         ResultView.printTargetResultMessage();
         ResultView.printTargetResult(results.get(endPosition));
-        return true;
+    }
+
+    private static void printAllResult(Users users, Ladder ladder, List<String> results) {
+        List<String> names = users.getUsers().stream().map(UserName::toString).toList();
+        ResultView.printTargetResult(names,
+                names.stream()
+                        .map(users::findPositionByName)
+                        .map(ladder::playByPosition)
+                        .map(results::get)
+                        .toList());
     }
 }

@@ -30,7 +30,7 @@ public class Users {
         return users;
     }
 
-    public int findPositionByName(String name) {
+    public int findPositionByName(final String name) {
         return IntStream.range(0, users.size())
                 .filter(index -> name.equals(users.get(index).toString()))
                 .findFirst()

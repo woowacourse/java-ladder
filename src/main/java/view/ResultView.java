@@ -42,9 +42,9 @@ public class ResultView {
     }
 
     public static void printLadder(final Ladder ladder) {
-        for (Line line : ladder.getLadder()) {
-            System.out.println(generateSingleLine(line));
-        }
+        ladder.getLadder().stream()
+                .map(ResultView::generateSingleLine)
+                .forEach(System.out::println);
     }
 
     private static String generateSingleLine(final Line line) {
@@ -71,13 +71,13 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printTargetResult(String result) {
+    public static void printTargetResult(final String result) {
         System.out.println(result);
     }
 
-    public static void printTargetResult(List<String> names, List<String> results) {
-        for (int i = 0; i < names.size(); i++) {
-            System.out.println(names.get(i) + " : " + results.get(i));
+    public static void printTargetResult(final List<String> names, final List<String> results) {
+        for (int index = 0; index < names.size(); index++) {
+            System.out.println(names.get(index) + " : " + results.get(index));
         }
     }
 

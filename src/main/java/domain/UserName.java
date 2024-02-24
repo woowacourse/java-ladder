@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 public class UserName {
     private static final int MAX_LENGTH = 5;
     private static final Pattern SPECIAL_CHARACTER = Pattern.compile("[ !@#$%^&*().?\":{}|<>]");
+
     private final String userName;
 
     public UserName(final String userName) {

@@ -13,6 +13,10 @@ public class LadderFactory {
 
     }
 
+    public static Ladder createLadder(final List<Line> lines) {
+        return new Ladder(lines);
+    }
+
     public static Ladder createRandomLadder(final int height, final int width) {
         final List<Line> lines = IntStream.range(0, height)
                 .mapToObj(index -> new Line(generateLine(width)))
@@ -20,7 +24,7 @@ public class LadderFactory {
         return new Ladder(lines);
     }
 
-    private static List<Bridge> generateLine(int width) {
+    private static List<Bridge> generateLine(final int width) {
         List<Bridge> bridges = new ArrayList<>();
         bridges.add(getRandomBridge());
         IntStream.range(1, width)
@@ -29,7 +33,7 @@ public class LadderFactory {
         return bridges;
     }
 
-    private static Bridge getCurrentBridgeByPreviousBridge(Bridge previousBridge) {
+    private static Bridge getCurrentBridgeByPreviousBridge(final Bridge previousBridge) {
         if (previousBridge.getBridge()) {
             return Bridge.NON_BRIDGE;
         }
@@ -40,7 +44,4 @@ public class LadderFactory {
         return Bridge.findByHasLine(RANDOM_GENERATOR.nextBoolean());
     }
 
-    public static Ladder createLadder(List<Line> lines) {
-        return new Ladder(lines);
-    }
 }

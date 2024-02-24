@@ -16,7 +16,6 @@ class LadderTest {
     void maxHeightTest() {
         List<Line> lines = new ArrayList<>();
         Line line = new Line(List.of(Bridge.BRIDGE, Bridge.NON_BRIDGE));
-
         IntStream.range(0, 101).forEach(number -> lines.add(line));
 
         assertThatThrownBy(() -> new Ladder(lines)).isInstanceOf(IllegalArgumentException.class);
@@ -35,28 +34,28 @@ class LadderTest {
     @ParameterizedTest
     @CsvSource(value = {"0,0", "1,1", "2,2", "3,3"})
     @DisplayName("사다리 게임을 실행 했을 때 브릿지가 놓여있지 않으면 같은 위치의 값을 반환한다")
-    void nonBridgeTest(int position, int result) {
+    void nonBridgeTest(int startPosition, int expected) {
         Line line = new Line(List.of(Bridge.NON_BRIDGE, Bridge.NON_BRIDGE, Bridge.NON_BRIDGE));
         List<Line> lines = List.of(line, line, line);
         Ladder ladder = LadderFactory.createLadder(lines);
 
-        int actual = ladder.play(position);
+        int endPosition = ladder.playByPosition(startPosition);
 
-        assertThat(actual).isEqualTo(result);
+        assertThat(endPosition).isEqualTo(expected);
     }
 
     @ParameterizedTest
     @CsvSource(value = {"0,3", "1,0", "2,1", "3,2"})
     @DisplayName("사다리 게임을 실행 했을 때 올바른 결과를 반환한다")
-    void gameResultTest(int position, int result) {
+    void gameResultTest(int startPosition, int expected) {
         Line line1 = new Line(List.of(Bridge.BRIDGE, Bridge.NON_BRIDGE, Bridge.NON_BRIDGE));
         Line line2 = new Line(List.of(Bridge.NON_BRIDGE, Bridge.BRIDGE, Bridge.NON_BRIDGE));
         Line line3 = new Line(List.of(Bridge.NON_BRIDGE, Bridge.NON_BRIDGE, Bridge.BRIDGE));
         List<Line> lines = List.of(line1, line2, line3);
         Ladder ladder = LadderFactory.createLadder(lines);
 
-        int actual = ladder.play(position);
+        final int endPosition = ladder.playByPosition(startPosition);
 
-        assertThat(actual).isEqualTo(result);
+        assertThat(endPosition).isEqualTo(expected);
     }
 }

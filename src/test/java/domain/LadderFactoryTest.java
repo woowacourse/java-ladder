@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LadderFactoryTest {
+    class LadderFactoryTest {
 
     @Test
     @DisplayName("주어진 가로 길이와 세로 길이의 랜덤 사다리를 생성한다.")

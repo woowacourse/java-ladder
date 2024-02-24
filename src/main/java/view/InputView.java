@@ -22,7 +22,7 @@ public class InputView {
         return parseByDelimiter(SCANNER.nextLine());
     }
 
-    private static List<String> parseByDelimiter(String input) {
+    private static List<String> parseByDelimiter(final String input) {
         validateDelimiter(input);
 
         return Arrays.stream(input.split(","))
@@ -47,13 +47,13 @@ public class InputView {
     }
 
 
-    private static void validateHeight(String height) {
+    private static void validateHeight(final String height) {
         if (isNumeric(height)) {
             throw new IllegalArgumentException(String.format("입력된 값: %s, 숫자를 입력해주세요.", height));
         }
     }
 
-    private static boolean isNumeric(String input) {
+    private static boolean isNumeric(final String input) {
         return !input.matches("-?\\d+");
     }
 

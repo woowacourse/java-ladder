@@ -16,7 +16,7 @@ public enum Bridge {
         return bridgeType;
     }
 
-    public static Bridge findByHasLine(boolean bridgeType) {
+    public static Bridge findByHasLine(final boolean bridgeType) {
         return Arrays.stream(values())
                 .filter(value -> value.bridgeType == bridgeType)
                 .findAny()

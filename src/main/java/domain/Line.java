@@ -11,7 +11,7 @@ public class Line {
         this.bridges = bridges;
     }
 
-    private void validate(List<Bridge> bridges) {
+    private void validate(final List<Bridge> bridges) {
         IntStream.range(1, bridges.size()).forEach(index -> {
                     Bridge previousBridge = bridges.get(index - 1);
                     Bridge currentBridge = bridges.get(index);
@@ -20,7 +20,7 @@ public class Line {
         );
     }
 
-    private static void validateOverlappingBridge(Bridge previousBridge, Bridge currentBridge) {
+    private static void validateOverlappingBridge(final Bridge previousBridge, final Bridge currentBridge) {
         if (previousBridge.getBridge() && previousBridge == currentBridge) {
             throw new IllegalArgumentException("사다리 라인은 겹칠 수 없습니다.");
         }
