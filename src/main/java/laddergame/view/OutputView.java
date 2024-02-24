@@ -7,6 +7,8 @@ import laddergame.domain.Line;
 import laddergame.domain.Player;
 import laddergame.domain.Players;
 import laddergame.domain.Point;
+import laddergame.domain.Result;
+import laddergame.domain.Results;
 
 public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
@@ -31,6 +33,12 @@ public class OutputView {
             stringJoiner.add(PointSymbol.getSymbol(point));
         }
         System.out.println(stringJoiner);
+    }
+
+    public void writeResultNames(final Results results) {
+        System.out.println(String.join(POINT_SPACE, results.getResults().stream()
+                .map(Result::name)
+                .toList()));
     }
 
     public void writeResultTitle() {
