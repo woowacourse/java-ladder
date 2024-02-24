@@ -4,6 +4,7 @@ import domain.Game;
 import domain.Height;
 import domain.Lines;
 import domain.Members;
+import domain.StringParser;
 import error.ErrorHandler;
 import strategy.RandomPointStrategy;
 import view.InputView;
@@ -30,7 +31,7 @@ public class GameController {
 
         Lines lines = errorHandler.readUntilNoError(() -> {
             String rawHeight = requestHeight();
-            Height height = makeHeight(rawHeight);
+            int height = StringParser.stringToInt(rawHeight);
             return makeLines(members.getCount(), height);
         });
 
@@ -50,11 +51,7 @@ public class GameController {
         return inputView.readHeight();
     }
 
-    private Height makeHeight(String rawHeight) {
-        return new Height(rawHeight);
-    }
-
-    private Lines makeLines(int memberCount, Height height) {
+    private Lines makeLines(int memberCount, int height) {
         return new Lines(memberCount, height, new RandomPointStrategy());
     }
 }

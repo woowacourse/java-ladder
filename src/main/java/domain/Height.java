@@ -7,8 +7,7 @@ public class Height {
 
     private final int value;
 
-    public Height(String rawValue) {
-        int value = StringParser.stringToInt(rawValue);
+    public Height(int value) {
         validateRange(value);
         this.value = value;
     }

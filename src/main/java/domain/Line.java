@@ -9,16 +9,16 @@ public class Line {
     private final List<Connection> points = new ArrayList<>();
     private final PointStrategy pointStrategy;
 
-    public Line(int playerCount, PointStrategy pointStrategy) {
+    public Line(int memberCount, PointStrategy pointStrategy) {
         this.pointStrategy = pointStrategy;
-        generate(playerCount);
+        generate(memberCount);
     }
 
-    private void generate(int playerCount) {
+    private void generate(int memberCount) {
         Connection first = pointStrategy.generatePoint();
         points.add(first);
 
-        for (int i = 1; i < playerCount - 1; i++) {
+        for (int i = 1; i < memberCount - 1; i++) {
             Connection previous = points.get(i - 1);
             Connection next = previous.makeNextConnection(pointStrategy);
             points.add(next);

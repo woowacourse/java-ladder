@@ -9,13 +9,13 @@ public class Lines {
 
     private final List<Line> lines = new ArrayList<>();
 
-    public Lines(int playerCount, Height height, PointStrategy pointStrategy) {
-        generate(playerCount, height, pointStrategy);
+    public Lines(int memberCount, int height, PointStrategy pointStrategy) {
+        generate(memberCount, height, pointStrategy);
     }
 
-    private void generate(int playerCount, Height height, PointStrategy pointStrategy) {
-        for (int i = 0; i < height.getValue(); i++) {
-            lines.add(new Line(playerCount, pointStrategy));
+    private void generate(int memberCount, int height, PointStrategy pointStrategy) {
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line(memberCount, pointStrategy));
         }
     }
 
