@@ -28,7 +28,7 @@ public class Line {
     }
 
     protected boolean generateLegRandomly() {
-        return RandomGenerator.generateRandomBoolean();
+        return RandomGenerator.generateBoolean();
     }
 
     public List<Boolean> getLegs() {
