@@ -1,9 +1,7 @@
 package domain;
 
-import java.util.stream.IntStream;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 import utils.RandomStepGenerator;
 import utils.StepGenerator;
 
@@ -15,11 +13,9 @@ public class Ladder {
         int stepPointCount = participantsCount - 1;
         StepGenerator stepGenerator = new RandomStepGenerator();
         Height height = new Height(floor);
-        lines = new ArrayList<>();
-
-        IntStream.range(0, floor)
-                .mapToObj(i -> new Line(stepPointCount, stepGenerator))
-                .forEach(lines::add);
+        lines = Stream.generate(() -> new Line(stepPointCount, stepGenerator))
+                .limit(floor)
+                .toList();
     }
 
     public List<Line> getLines() {
