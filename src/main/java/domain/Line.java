@@ -24,7 +24,7 @@ public class Line {
     }
 
     public LineItem decideLineItem(int position, LineItem lineItem) {
-        if (position == 0 || points.get(position - 1).equals(LineItem.UNCONNECTED)) {
+        if (position == 0 || LineItem.isUnconnected(points.get(position - 1))) {
             return lineItem;
         }
 

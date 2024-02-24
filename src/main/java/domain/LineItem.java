@@ -24,6 +24,10 @@ public enum LineItem {
                 .shape;
     }
 
+    public static boolean isUnconnected(LineItem lineItem) {
+        return lineItem.equals(LineItem.UNCONNECTED);
+    }
+
     public static List<LineItem> getLineItemsAsList() {
         return List.of(LineItem.values());
     }
