@@ -13,6 +13,7 @@ public class LadderGame {
 
     public void run() {
         Players players = requestUntilValidated(() -> Players.from(inputView.readPlayersName()));
+        requestUntilValidated(() -> inputView.readResultNames());
         Height height = requestUntilValidated(() -> new Height(inputView.readLadderHeight()));
 
         Ladder ladder = new Ladder(players.getPlayers().size(), height);
