@@ -20,10 +20,10 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("가로 브릿지가 겹치는 경우 예외를 발생시킨다")
+    @DisplayName("앞 뒤 브릿지가 겹치는 경우 예외를 발생시킨다")
     void createRandomLine() {
-//        List<Bridge> bridges = List.of(Bridge.BRIDGE, Bridge.BRIDGE, Bridge.BRIDGE);
-//
-//        assertThatThrownBy(() -> new Line(bridges)).isEqualTo();
+        List<Bridge> bridges = List.of(Bridge.BRIDGE, Bridge.BRIDGE, Bridge.BRIDGE);
+
+        assertThatThrownBy(() -> new Line(bridges)).isInstanceOf(IllegalArgumentException.class);
     }
 }
