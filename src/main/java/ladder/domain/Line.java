@@ -2,12 +2,13 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import ladder.domain.dto.LineResponseDto;
 import ladder.domain.randomGenerator.RungGenerator;
 
 public class Line {
 
-    private static final boolean DEFAULT_NO_DUPLICATED_STEP = false;
+    private static final boolean FIRST_POSITION_NOT_EXIST = false;
     private static final int EXCLUDE_LAST_POSITION = 1;
     private static final int FOR_BEFORE_POSITION = 1;
 
@@ -22,9 +23,8 @@ public class Line {
     private List<Rung> makeRungs(int personCount) {
         List<Rung> rungs = new ArrayList<>();
 
-        for (int currentPosition = 0; currentPosition < personCount - EXCLUDE_LAST_POSITION; currentPosition++) {
-            rungs.add(generateRung(currentPosition, rungs));
-        }
+        IntStream.range(0, personCount - EXCLUDE_LAST_POSITION)
+                .forEach(currentPosition -> rungs.add(generateRung(currentPosition, rungs)));
 
         return rungs;
     }
@@ -40,7 +40,7 @@ public class Line {
         if (currentPosition > 0) {
             return rungs.get(currentPosition - FOR_BEFORE_POSITION).isBuildStatus();
         }
-        return DEFAULT_NO_DUPLICATED_STEP;
+        return FIRST_POSITION_NOT_EXIST;
     }
 
     public LineResponseDto getRungs() {
