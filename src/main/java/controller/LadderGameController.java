@@ -10,8 +10,8 @@ import view.OutputView;
 
 public class LadderGameController {
     public void run() {
-        Players players = retryOnException(this::preparePlayers);
-        LadderHeight ladderHeight = retryOnException(this::prepareLadderHeight);
+        Players players = retryPlayersOnException(this::preparePlayers);
+        LadderHeight ladderHeight = retryLadderHeightOnException(this::prepareLadderHeight);
         Ladder ladder = Ladder.of(ladderHeight, players);
         end(players, ladder);
     }
@@ -32,12 +32,21 @@ public class LadderGameController {
         OutputView.printLadder(ladder);
     }
 
-    private <T> T retryOnException(Supplier<T> retryOperation) {
+    private Players retryPlayersOnException(Supplier<Players> preparePlayers) {
         try {
-            return retryOperation.get();
+            return preparePlayers.get();
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
-            return retryOnException(retryOperation);
+            return retryPlayersOnException(preparePlayers);
+        }
+    }
+
+    private LadderHeight retryLadderHeightOnException(Supplier<LadderHeight> prepareLadderHeight) {
+        try {
+            return prepareLadderHeight.get();
+        } catch (IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e.getMessage());
+            return retryLadderHeightOnException(prepareLadderHeight);
         }
     }
 }
