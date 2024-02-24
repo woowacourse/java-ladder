@@ -6,7 +6,7 @@ import ladder.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        LadderGame controller = new LadderGame(new InputView(), new OutputView());
-        controller.run();
+        LadderGame ladderGame = new LadderGame(new InputView(), new OutputView());
+        ladderGame.run();
     }
 }
