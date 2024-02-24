@@ -44,4 +44,13 @@ public class PlayerTest {
         //given & when & then
         assertThrows(IllegalArgumentException.class, () -> new Player(name));
     }
+
+    @Test
+    @DisplayName("플에이어 이름은 예약어를 사용할 수 없다.")
+    public void nameReservedExceptionTest() {
+        //given
+        String playerName = "all";
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> new Player(playerName));
+    }
 }
