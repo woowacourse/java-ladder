@@ -7,6 +7,7 @@ import java.util.List;
 
 public class People {
 
+    private static final int MIN_PEOPLE_SIZE = 2;
     private static final int MAX_NAME_LENGTH = 5;
 
     private final List<String> names;
@@ -25,8 +26,15 @@ public class People {
     }
 
     private void validate(List<String> names) {
+        validateMinSize(names);
         validateMinLength(names);
         validateMaxLength(names);
+    }
+
+    private void validateMinSize(List<String> names) {
+        if (names.size() < MIN_PEOPLE_SIZE) {
+            throw new IllegalArgumentException("사람이 최소 2명 필요합니다.");
+        }
     }
 
     private void validateMinLength(List<String> names) {
