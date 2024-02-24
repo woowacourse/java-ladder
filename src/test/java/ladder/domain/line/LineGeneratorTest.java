@@ -38,7 +38,7 @@ public class LineGeneratorTest {
         //when
         Direction direction = directionsInfo.get(firstIndex);
 
-        //when, then
+        //then
         assertThat(direction).isNotEqualTo(Direction.LEFT);
     }
 
@@ -57,14 +57,14 @@ public class LineGeneratorTest {
         Direction firstLineDirection = directionsInfo.get(firstIndex);
         Direction secondLineDirection = directionsInfo.get(secondIndex);
 
-        //when, then
+        //then
         assertThat(firstLineDirection).isEqualTo(Direction.RIGHT);
         assertThat(secondLineDirection).isEqualTo(Direction.LEFT);
     }
 
     @DisplayName("라인에서 두번째 값 부터는 이전 값이 '왼쪽'이라면 다음 값은 '오른쪽' 또는 '중립'이 되어야 한다.")
     @Test
-    void lineGenerateTestByRNBeforeLeft() {//수정 필요
+    void lineGenerateTestByRNBeforeLeft() {
         //given
         int width = 3;
         int secondIndex = 1;
@@ -79,7 +79,7 @@ public class LineGeneratorTest {
         boolean isDirectionRN = (thirdLineDirection == Direction.RIGHT
                 || thirdLineDirection == Direction.NEUTRAL);
 
-        //when, then
+        //then
         assertThat(secondLineDirection).isEqualTo(Direction.LEFT);
         assertThat(isDirectionRN).isTrue();
     }
