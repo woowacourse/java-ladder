@@ -13,30 +13,30 @@ public class Ladder {
 
     private final List<Floor> floors;
 
-    public Ladder(String inputHeight, int personCount, RungGenerator rungGenerator) {
-        int height = parseAndValidateHeight(inputHeight);
+    public Ladder(String heightInput, int personCount, RungGenerator rungGenerator) {
+        int height = parseAndValidateHeight(heightInput);
         floors = makeFloors(height, personCount, rungGenerator);
     }
 
-    private int parseAndValidateHeight(String inputHeight) {
-        int height = changeInputToInteger(inputHeight);
+    private int parseAndValidateHeight(String heightInput) {
+        int height = changeInputToInteger(heightInput);
         validateHeightRange(height);
         return height;
     }
 
-    private int changeInputToInteger(String input) {
+    private int changeInputToInteger(String heightInput) {
         try {
-            return Integer.parseInt(input);
+            return Integer.parseInt(heightInput);
         } catch (NumberFormatException e) {
             throw new NumberFormatException("숫자로 입력을 변환할 수 없습니다.");
         }
     }
 
-    private void validateHeightRange(int number) {
-        if (number < MIN_HEIGHT_RANGE || MAX_HEIGHT_RANGE < number) {
+    private void validateHeightRange(int height) {
+        if (height < MIN_HEIGHT_RANGE || MAX_HEIGHT_RANGE < height) {
             throw new IllegalArgumentException(
                     "입력된 높이는 " + MIN_HEIGHT_RANGE + " 이상,"
-                            + " " + MAX_HEIGHT_RANGE + " 이하여야 합니다. 입력값 : " + number);
+                            + " " + MAX_HEIGHT_RANGE + " 이하여야 합니다. 입력값 : " + height);
         }
     }
 
