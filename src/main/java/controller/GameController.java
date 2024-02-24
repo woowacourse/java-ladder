@@ -22,20 +22,39 @@ public class GameController {
     }
 
     public void run() {
-        Members members = errorHandler.readUntilNoError(this::makeMembers);
-        Lines lines = errorHandler.readUntilNoError(() -> makeLines(members));
+
+        Members members = errorHandler.readUntilNoError(() -> {
+            String rawNames = requestNames();
+            return makeMembers(rawNames);
+        });
+
+        Lines lines = errorHandler.readUntilNoError(() -> {
+            String rawHeight = requestHeight();
+            Height height = makeHeight(rawHeight);
+            return makeLines(members.getCount(), height);
+        });
+
         Game game = new Game(members, lines);
         outputView.printResult(game);
     }
 
-    private Members makeMembers() {
-        String rawNames = inputView.readNames();
+    private String requestNames() {
+        return inputView.readNames();
+    }
+
+    private Members makeMembers(String rawNames) {
         return new Members(rawNames);
     }
 
-    private Lines makeLines(Members members) {
-        String rawHeight = inputView.readHeight();
-        Height height = new Height(rawHeight);
-        return new Lines(members.getCount(), height, new RandomPointStrategy());
+    private String requestHeight() {
+        return inputView.readHeight();
+    }
+
+    private Height makeHeight(String rawHeight) {
+        return new Height(rawHeight);
+    }
+
+    private Lines makeLines(int memberCount, Height height) {
+        return new Lines(memberCount, height, new RandomPointStrategy());
     }
 }
