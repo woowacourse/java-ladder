@@ -43,7 +43,7 @@ class UsersTest {
     }
 
 
-    @DisplayName("사용자의 이름이 중복된다면 예외로 처리한다.")
+    @DisplayName("사용자의 이름이 중복된다면 예외가 발생한다.")
     @Test
     void newUsersTestByDuplicatedUserName() {
         //given
