@@ -36,4 +36,20 @@ public class Line {
                 .map(Path::isExist)
                 .toList();
     }
+
+    public boolean hasLeftPath(int column) {
+        if (column <= 0) {
+            return false;
+        }
+        Path leftPath = paths.get(column - 1);
+        return leftPath.isExist();
+    }
+
+    public boolean hasRightPath(int column) {
+        if (column >= paths.size()) {
+            return false;
+        }
+        Path rightPath = paths.get(column);
+        return rightPath.isExist();
+    }
 }
