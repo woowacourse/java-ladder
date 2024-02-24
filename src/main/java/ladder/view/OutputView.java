@@ -41,18 +41,11 @@ public class OutputView {
         System.out.println(LADDER_RESULT_DESCRIPTION);
     }
 
-    public static void printQuestionedPlayerResult(String questionedPlayer, List<String> playerNames,
-                                         List<String> changedLadderResult) {
-        if (questionedPlayer.equals("all")) {
-            printAllPlayerLadderResult(playerNames, changedLadderResult);
-            return;
-        }
-
-        int position = playerNames.indexOf(questionedPlayer);
-        System.out.println(changedLadderResult.get(position));
+    public static void printOnePlayerResult(int playerIndex, List<String> changedLadderResult) {
+        System.out.println(changedLadderResult.get(playerIndex));
     }
 
-    private static void printAllPlayerLadderResult(List<String> playerNames, List<String> changedLadderResult) {
+    public static void printAllPlayerResult(List<String> playerNames, List<String> changedLadderResult) {
         for (int i = 0; i < playerNames.size(); i++) {
             String player = playerNames.get(i);
             String result = changedLadderResult.get(i);

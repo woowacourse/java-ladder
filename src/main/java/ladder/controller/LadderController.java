@@ -4,8 +4,6 @@ import ladder.model.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.Objects;
-
 public class LadderController {
     private Players ladderPlayers;
     private Ladder ladder;
@@ -18,6 +16,7 @@ public class LadderController {
         ladderResult.isSameLengthWithLadderPlayers(ladderPlayers.getSize());
 
         LadderSize ladderSize = new LadderSize(InputView.inputLadderHeight(), ladderPlayers.getSize());
+
         ladder = Ladder.of(ladderSize);
     }
 
@@ -28,23 +27,27 @@ public class LadderController {
         OutputView.printLadderResult(ladderResult.getLadderResult());
     }
 
-    public void showResult() {
-        String questionedPlayer = InputView.inputQuestionedPlayer();
-        if (!Objects.equals(questionedPlayer, "all")) {
-            isQuestionedPlayerExist(questionedPlayer);
-        }
+    public void showResultWithQuestion() {
+        Player questionedPlayer = new Player(InputView.inputQuestionedPlayer());
+        questionedPlayer.isExistInPlayers(ladderPlayers);
 
-        Bars bars = new Bars(ladder.findBars());
-        LadderResult changedLadderResult = ladderResult.moveThroughLadder(bars.getBars());
-
-        OutputView.printQuestionedPlayerResultDescription();
-        OutputView.printQuestionedPlayerResult(questionedPlayer, ladderPlayers.getPlayerNames(),
-                changedLadderResult.getLadderResult());
+        showResult(questionedPlayer, calculateResult());
     }
 
-    private void isQuestionedPlayerExist(String name) {
-        if (ladderPlayers.isNotContains(name)) {
-            throw new IllegalArgumentException("해당 플레이어는 존재하지 않습니다.");
+    private LadderResult calculateResult() {
+        Bars bars = new Bars(ladder.findBars());
+        return ladderResult.moveThroughLadder(bars.getBars());
+    }
+
+    private void showResult(Player questionedPlayer, LadderResult changedLadderResult) {
+        OutputView.printQuestionedPlayerResultDescription();
+
+        if (questionedPlayer.isNameAll()) {
+            OutputView.printAllPlayerResult(ladderPlayers.getPlayerNames(), changedLadderResult.getLadderResult());
+            return;
         }
+
+        int questionedPlayerIndex = ladderPlayers.getPlayerIndex(questionedPlayer);
+        OutputView.printOnePlayerResult(questionedPlayerIndex, changedLadderResult.getLadderResult());
     }
 }

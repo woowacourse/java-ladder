@@ -32,6 +32,10 @@ public class Players {
         return !players.contains(new Player(name));
     }
 
+    public int getPlayerIndex(Player player) {
+        return players.indexOf(player);
+    }
+
     public int getSize() {
         return players.size();
     }

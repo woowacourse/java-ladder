@@ -30,6 +30,19 @@ public class Player {
         return !name.matches(NAME_PATTERN);
     }
 
+    public boolean isNameAll() {
+        return name.equals("all");
+    }
+
+    public void isExistInPlayers(Players players) {
+        if (isNameAll()) {
+            return;
+        }
+        if (players.isNotContains(name)) {
+            throw new IllegalArgumentException("해당 플레이어는 존재하지 않습니다.");
+        }
+    }
+
     public String getName() {
         return name;
     }
