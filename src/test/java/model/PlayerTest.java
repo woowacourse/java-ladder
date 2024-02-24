@@ -16,7 +16,7 @@ class PlayerTest {
     @Test
     @DisplayName("플레이어의 이름이 5자 초과여서 오류가 발생한다.")
     void invalidNameLength() {
-        String name = "pobipobi";
+        String name = "browny";
         Assertions.assertThatThrownBy(() -> new Player(name))
                 .isInstanceOf(IllegalArgumentException.class);
     }
