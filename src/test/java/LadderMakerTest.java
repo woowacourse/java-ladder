@@ -1,4 +1,3 @@
-import domain.LadderMaker;
 import domain.Height;
 import domain.PlayerCount;
 import org.junit.jupiter.api.DisplayName;

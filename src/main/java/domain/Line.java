@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -7,8 +8,43 @@ import java.util.Objects;
 public class Line {
     private final List<Step> steps;
 
-    public Line(final List<Step> steps) {
+    private Line(final List<Step> steps) {
         this.steps = steps;
+    }
+
+    public static Line create(PlayerCount playerCount, RandomStepGenerator randomStepGenerator) {
+        return new Line(makeLine(playerCount, randomStepGenerator));
+    }
+
+    private static List<Step> makeLine(PlayerCount playerCount, RandomStepGenerator randomStepGenerator) {
+        List<Step> steps = new ArrayList<>();
+        int count = playerCount.getCount();
+        for (int index = 0; index < count; index++) {
+            steps.add(makeStep(steps, randomStepGenerator, playerCount));
+        }
+        return steps;
+    }
+
+    private static Step makeStep(List<Step> steps, RandomStepGenerator randomStepGenerator, PlayerCount playerCount) {
+        if (hasBeforeStep(steps) || isLastPoint(steps, playerCount)) {
+            return Step.EMPTY;
+        }
+        return randomStepGenerator.generate();
+    }
+
+    private static boolean hasBeforeStep(List<Step> steps) {
+        if (isFirstPoint(steps)) {
+            return false;
+        }
+        return steps.get(steps.size() - 1).isExist();
+    }
+
+    private static boolean isFirstPoint(List<Step> steps) {
+        return steps.isEmpty();
+    }
+
+    private static boolean isLastPoint(List<Step> steps, PlayerCount playerCount) {
+        return playerCount.isSameWith(steps.size() + 1);
     }
 
     public List<Step> getSteps() {
