@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Ladder {
+
     private final List<RowLine> lines;
 
-    private Ladder(List<RowLine> lines) {
+    public Ladder(List<RowLine> lines) {
+        validateLinesSizeEqual(lines);
         this.lines = lines;
     }
 
@@ -15,6 +17,21 @@ public class Ladder {
                 .mapToObj(i -> rowLineGenerator.generate(personCount))
                 .toList();
         return new Ladder(lines);
+    }
+
+    public RowLine getLineByIndex(int index) {
+        return lines.get(index);
+    }
+
+    private void validateLinesSizeEqual(List<RowLine> lines) {
+        if (!isAllLineSameSize(lines)) {
+            throw new IllegalArgumentException("[ERROR] 사다리를 구성하는 줄들의 길이가 같지 않습니다");
+        }
+    }
+
+    private boolean isAllLineSameSize(List<RowLine> lines) {
+        return lines.stream()
+                .allMatch(rowLine -> rowLine.getConnectionCount() == lines.get(0).getConnectionCount());
     }
 
     public List<RowLine> getLines() {
