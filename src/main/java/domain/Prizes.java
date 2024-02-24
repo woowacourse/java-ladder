@@ -12,7 +12,7 @@ public class Prizes {
     }
 
     private void validate(List<String> prizes, Names names) {
-        if (prizes.size() < names.size()) {
+        if (prizes.size() != names.size()) {
             throw new IllegalArgumentException("실행 결과 수는 사람 수와 동일해야합니다.");
         }
     }
