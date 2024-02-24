@@ -17,6 +17,16 @@ public class LadderTest {
     private static final Height DEFAULT_HEIGHT = new Height(4);
     private static final Names names = new Names(List.of("a", "b", "c", "d"));
 
+    static class ContinuousBridgeConstructStrategy implements BridgeConstructStrategy {
+        @Override
+        public Bridges generate(int count) {
+            List<Bridge> bridges = IntStream.range(0, count)
+                    .mapToObj((i) -> Bridge.BUILT)
+                    .toList();
+            return new Bridges(bridges);
+        }
+    }
+
     @DisplayName("객체가 정상적으로 생성된다.")
     @Test
     void constructSuccessTest() {
@@ -39,16 +49,5 @@ public class LadderTest {
 
         //then
         assertThat(ladder.getBridge()).hasSize(DEFAULT_HEIGHT.getIntValue());
-    }
-}
-
-class ContinuousBridgeConstructStrategy implements BridgeConstructStrategy {
-
-    @Override
-    public Bridges generate(int count) {
-        List<Bridge> bridges = IntStream.range(0, count)
-                .mapToObj((i) -> Bridge.BUILT)
-                .toList();
-        return new Bridges(bridges);
     }
 }
