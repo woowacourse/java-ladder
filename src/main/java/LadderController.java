@@ -8,21 +8,24 @@ import java.util.function.Supplier;
 public class LadderController {
 
     public static void main(String[] args) {
-        final String[] rawNames = retryOnException(InputView::readNames);
+        final Names names = retryOnException(LadderController::getNames);
         final int height = retryOnException(InputView::readHeight);
 
-        final Names names = new Names(rawNames);
         final int width = names.names().size() - 1;
         final Ladder ladder = new Ladder(width, height);
 
         OutputView.printResult(names, ladder);
     }
 
+    private static Names getNames() {
+        return new Names(InputView.readNames());
+    }
+
     private static <T> T retryOnException(Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e);
             return retryOnException(supplier);
         }
     }
