@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.*;
 class LadderTest {
     @Test
     @DisplayName("사다리 최대 높이는 100이다.")
-    void maxHeight() {
+    void maxHeightTest() {
         List<Line> lines = new ArrayList<>();
         Line line = new Line(List.of(Bridge.BRIDGE, Bridge.NON_BRIDGE));
 
@@ -24,11 +24,21 @@ class LadderTest {
 
     @Test
     @DisplayName("주어진 사다리의 가로 길이가 일정한지 확인한다")
-    void LadderShape() {
+    void LadderShapeTest() {
         Line line1 = new Line(List.of(Bridge.NON_BRIDGE, Bridge.NON_BRIDGE, Bridge.NON_BRIDGE));
         Line line2 = new Line(List.of(Bridge.NON_BRIDGE, Bridge.NON_BRIDGE));
         List<Line> lines = List.of(line1, line2, line1);
 
-        assertThatThrownBy(() -> new Ladder(lines)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LadderFactory.createLadder(lines)).isInstanceOf(IllegalArgumentException.class);
+    }
+    
+    @Test
+    @DisplayName("게임을 실행 했을 때 브릿지가 놓여있지 않으면 같은 위치의 값을 반환한다")
+    void nonBridgeTest() {
+        Line line1 = new Line(List.of(Bridge.NON_BRIDGE, Bridge.NON_BRIDGE, Bridge.NON_BRIDGE));
+        Line line2 = new Line(List.of(Bridge.NON_BRIDGE, Bridge.NON_BRIDGE));
+        List<Line> lines = List.of(line1, line2, line1);
+
+
     }
 }
