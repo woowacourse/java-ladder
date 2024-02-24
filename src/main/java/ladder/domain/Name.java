@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class Name {
@@ -44,5 +45,22 @@ public class Name {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Name other = (Name) obj;
+        return Objects.equals(name, other.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
