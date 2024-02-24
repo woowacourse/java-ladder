@@ -53,7 +53,7 @@ public class Main {
             gameOperator = RetryHelper.retry(
                     () -> LadderGameOperatorInputView.getOperator(InputView::getInput, ladderGame.getRawNames()));
             OutputView.print("실행 결과");
-            List<String> climbResults = ResultPrinter.of(rawNames, ladderGame.showClimbResults(gameOperator));
+            List<String> climbResults = ResultPrinter.of(rawNames, ladderGame.getClimbResults(gameOperator));
             climbResults.forEach(OutputView::print);
         }
     }

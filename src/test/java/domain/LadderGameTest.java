@@ -66,7 +66,7 @@ class LadderGameTest {
         int ladderHeight = 5;
         LadderGame ladderGame = new LadderGame(expectedRawNames, ladderHeight, rawResults,
                 width -> List.of(true, false));
-        List<String> climbResults = ladderGame.showClimbResults(nameThatWantToShoResult);
+        List<String> climbResults = ladderGame.getClimbResults(nameThatWantToShoResult);
         Assertions.assertThat(climbResults)
                 .isEqualTo(expectedResult);
     }

@@ -33,7 +33,7 @@ public class LadderGame {
         return results.getRawResults();
     }
 
-    public List<String> showClimbResults(String rawOperator) {
+    public List<String> getClimbResults(String rawOperator) {
         LadderGameOperator operator = new LadderGameOperator(rawOperator);
         if (operator.isAll()) {
             return climbAll();
