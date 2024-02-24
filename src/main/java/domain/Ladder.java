@@ -26,7 +26,6 @@ public class Ladder {
 
     // TODO Prize 객체를 사용해서 반환하는 것도 고민
     public String findPrizeByName(String name) {
-        // TODO Namse 에 존재하는 이름인지 검증
         int index = names.findIndex(name);
 
         for (Bridges bridge : bridges) {
