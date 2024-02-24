@@ -24,4 +24,12 @@ class Ladder {
                 .map(Row::getBridges)
                 .toList();
     }
+
+    int climb(int startPosition) {
+        int endPosition = startPosition;
+        for (Row row : rows) {
+            endPosition = row.move(endPosition);
+        }
+        return endPosition;
+    }
 }

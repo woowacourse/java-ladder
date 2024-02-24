@@ -22,4 +22,26 @@ class Row {
     List<Boolean> getBridges() {
         return bridges;
     }
+
+    int move(int startPosition) {
+        Boolean canGoRight = getCanGo(startPosition);
+        Boolean canGoLeft = getCanGo(startPosition - 1);
+        if (canGoRight) {
+            return startPosition + 1;
+        }
+        if (canGoLeft) {
+            return startPosition - 1;
+        }
+        return startPosition;
+    }
+
+    private Boolean getCanGo(int startPosition) {
+        Boolean canGoRight;
+        try {
+            canGoRight = bridges.get(startPosition);
+        }catch (IndexOutOfBoundsException e) {
+            canGoRight = false;
+        }
+        return canGoRight;
+    }
 }
