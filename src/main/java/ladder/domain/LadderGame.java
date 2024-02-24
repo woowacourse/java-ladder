@@ -11,28 +11,28 @@ import ladder.domain.prize.Prize;
 import ladder.domain.prize.Prizes;
 
 public class LadderGame {
-    private final Map<Player, Prize> result;
+    private final Map<Player, Prize> results;
 
-    private LadderGame(Map<Player, Prize> result) {
-        this.result = new LinkedHashMap<>(result);
+    private LadderGame(Map<Player, Prize> results) {
+        this.results = new LinkedHashMap<>(results);
     }
 
     public static LadderGame of(Players players, Ladder ladder, Prizes prizes) {
-        Map<Player, Prize> result = new LinkedHashMap<>();
+        Map<Player, Prize> results = new LinkedHashMap<>();
 
         for (int i = 0; i < players.size(); i++) {
             Player player = players.getPlayers().get(i);
             int endIndex = ladder.findEndIndex(i);
             Prize prize = prizes.getPrizes().get(endIndex);
 
-            result.put(player, prize);
+            results.put(player, prize);
         }
 
-        return new LadderGame(result);
+        return new LadderGame(results);
     }
 
     public Prize getResultByPlayerName(String playerName) {
-        for (Entry<Player, Prize> entry : result.entrySet()) {
+        for (Entry<Player, Prize> entry : results.entrySet()) {
             if (entry.getKey().name().equals(playerName)) {
                 return entry.getValue();
             }
@@ -41,7 +41,7 @@ public class LadderGame {
         throw new IllegalArgumentException("존재하지 않는 참가자입니다.");
     }
 
-    public Map<Player, Prize> getAllResult() {
-        return Collections.unmodifiableMap(result);
+    public Map<Player, Prize> getAllResults() {
+        return Collections.unmodifiableMap(results);
     }
 }

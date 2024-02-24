@@ -33,6 +33,13 @@ public class InputView {
         return parseStringToList(input);
     }
 
+    public String readSelectedPlayerName() {
+        System.out.println();
+        System.out.println("결과를 보고 싶은 사람은?");
+
+        return readLine();
+    }
+
     private String readLine() {
         String input = scanner.nextLine();
 
@@ -56,6 +63,8 @@ public class InputView {
     }
 
     private List<String> parseStringToList(String input) {
-        return Arrays.stream(input.split(",", -1)).toList();
+        return Arrays.stream(input.split(",", -1))
+                .map(String::strip)
+                .toList();
     }
 }

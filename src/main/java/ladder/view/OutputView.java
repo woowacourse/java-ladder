@@ -1,7 +1,9 @@
 package ladder.view;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import ladder.dto.response.LadderAllResultsResponse;
 import ladder.dto.response.ladder.LadderResponse;
 import ladder.dto.response.ladder.LineResponse;
 import ladder.dto.response.player.PlayerResponse;
@@ -20,9 +22,9 @@ public class OutputView {
         System.out.printf("%s %s%n", ERROR_PREFIX, message);
     }
 
-    public void printLadderGame(PlayersResponse playersResponse,
-                                LadderResponse ladderResponse,
-                                PrizesResponse prizesResponse) {
+    public void printLadderResult(PlayersResponse playersResponse,
+                                  LadderResponse ladderResponse,
+                                  PrizesResponse prizesResponse) {
         printLadderResultMessage();
         printPlayerNames(playersResponse);
         printLadder(ladderResponse);
@@ -88,5 +90,22 @@ public class OutputView {
                 .collect(Collectors.joining());
 
         System.out.println(prizeNamesMessage);
+    }
+
+    public void printPrizeForSelectedPlayer(PrizeResponse prizeResponse) {
+        String prizeName = prizeResponse.name();
+
+        System.out.println();
+        System.out.println("실행결과");
+        System.out.println(prizeName);
+    }
+
+    public void printAllResults(LadderAllResultsResponse ladderAllResultsResponse) {
+        Map<String, String> allResults = ladderAllResultsResponse.allResults();
+        String resultFormat = "%s : %s%n";
+
+        System.out.println();
+        System.out.println("실행결과");
+        allResults.forEach((playerName, prizeName) -> System.out.printf(resultFormat, playerName, prizeName));
     }
 }
