@@ -28,4 +28,9 @@ public class Ladder {
     public int getHeight() {
         return ladder.size();
     }
+
+    public int getWidth() {
+        Line firstLine = ladder.get(0);
+        return firstLine.getWidth();
+    }
 }

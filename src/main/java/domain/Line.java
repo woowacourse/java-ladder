@@ -29,4 +29,7 @@ public class Line {
     public List<Bridge> getBridges() {
         return bridges;
     }
+    public int getWidth(){
+        return bridges.size();
+    }
 }
