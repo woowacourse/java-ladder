@@ -19,6 +19,7 @@ public class LadderController {
         ladderPlayers = Players.from(InputView.inputPlayerNames());
 
         ladderResult = InputView.inputLadderResult();
+        isLadderResultSameLengthWithLadderPlayers();
 
         LadderSize ladderSize = new LadderSize(InputView.inputLadderHeight(), ladderPlayers.getSize());
         ladder = Ladder.of(ladderSize);
@@ -42,6 +43,12 @@ public class LadderController {
 
         OutputView.printQuestionedPlayerResultDescription();
         OutputView.printQuestionedPlayerResult(questionedPlayer, ladderPlayers.getPlayerNames(), changedLadderResult);
+    }
+
+    private void isLadderResultSameLengthWithLadderPlayers() {
+        if (ladderResult.size() != ladderPlayers.getSize()) {
+            throw new IllegalArgumentException("실행 결과 개수가 참여할 사람 이름의 수와 일치하지 않습니다.");
+        }
     }
 
     private void isQuestionedPlayerExist(String name) {
