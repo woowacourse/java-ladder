@@ -25,6 +25,21 @@ public class People {
     }
 
     private void validate(List<String> names) {
+        validateMinLength(names);
+        validateMaxLength(names);
+    }
+
+    private void validateMinLength(List<String> names) {
+        long count = names.stream()
+                .filter(String::isEmpty)
+                .count();
+
+        if (count > 0) {
+            throw new IllegalArgumentException("이름은 최소 1글자 부여해야 합니다.");
+        }
+    }
+
+    private void validateMaxLength(List<String> names) {
         long count = names.stream()
                 .filter(name -> name.length() > MAX_NAME_LENGTH)
                 .count();
