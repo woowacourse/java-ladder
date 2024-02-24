@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LadderTest {
 
     @Test
-    @DisplayName("입력받은 높이만큼 사다리를 생성한다.")
+    @DisplayName("입력받은 높이만큼 사다리의 라인을 생성한다.")
     void createLadder() {
         // given
         Height height = new Height("5");
