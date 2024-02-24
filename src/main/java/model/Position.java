@@ -18,4 +18,8 @@ public record Position(int depth, int column) {
     public Position getRightPosition() {
         return new Position(depth, column + 1);
     }
+
+    public Position getBelowPosition() {
+        return new Position(depth + 1, column);
+    }
 }
