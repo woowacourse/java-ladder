@@ -26,6 +26,14 @@ public class OutputView {
         for (LineDto lineDto : ladder) {
             sb.append(LineStringFormatter.create(lineDto));
         }
+        System.out.print(sb);
+    }
+
+    public static void printLadderResult(List<String> ladderResult) {
+        StringBuilder sb = new StringBuilder();
+        for (String result : ladderResult) {
+            sb.append(padName(result));
+        }
         System.out.println(sb);
     }
 
