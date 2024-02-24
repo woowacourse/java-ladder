@@ -26,20 +26,19 @@ public class Line {
     }
 
     private Rung generateRung(List<Rung> rungs) {
-        Rung currentRung = rungGenerator.generate();
-
-        if (rungs.isEmpty()) {
-            return currentRung;
+        if (shouldGenerateExistRung(rungs, rungGenerator.generate())) {
+            return Rung.EXIST;
         }
 
-        boolean previousRungExist = rungs.get(rungs.size() - 1).isExist();
-
-        if (previousRungExist || currentRung.isEmpty()) {
-            return Rung.EMPTY;
-        }
-
-        return Rung.EXIST;
+        return Rung.EMPTY;
     }
+
+    private static boolean shouldGenerateExistRung(List<Rung> rungs, Rung currentRung) {
+        boolean previousRungIsEmpty = rungs.isEmpty() || rungs.get(rungs.size() - 1).isEmpty();
+
+        return previousRungIsEmpty && currentRung.isExist();
+    }
+
 
     public int findConnectedIndex(int index) {
         if (canMoveLeft(index)) {

@@ -63,12 +63,14 @@ public class LadderController {
 
     private void printAllResults(LadderGame ladderGame) {
         Map<Player, Prize> allResults = ladderGame.getAllResults();
+
         outputView.printAllResults(LadderAllResultsResponse.from(allResults));
     }
 
     private void printPrizeForSelectedPlayer(LadderGame ladderGame, String selectedPlayerName) {
         try {
             Prize prize = ladderGame.getResultByPlayerName(selectedPlayerName);
+
             outputView.printPrizeForSelectedPlayer(PrizeResponse.from(prize));
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
