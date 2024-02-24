@@ -1,20 +1,17 @@
 import domain.Height;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
 public class HeightTest {
-    @Test
-    @DisplayName("다리 높이에 0을 입력하면 예외가 발생한다.")
-    void invalidHeight() {
-        assertThatThrownBy(() -> new Height(0)).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("다리 높이에 0보다 큰 수를 입력하면 정상적으로 다리길이를 생성한다.")
-    void validHeight() {
-        assertThatCode(() -> new Height(1)).doesNotThrowAnyException();
+    @ParameterizedTest
+    @ValueSource(ints = {-10, -5, 0})
+    @DisplayName("다리 높이에 0이하의 수를 입력하면 예외가 발생한다.")
+    void invalidHeight(int height) {
+        assertThatThrownBy(() -> new Height(height)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

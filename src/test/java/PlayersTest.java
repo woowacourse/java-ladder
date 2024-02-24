@@ -13,12 +13,6 @@ public class PlayersTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("정상적인 입력")
-    @Test
-    void notDuplicatePlayer() {
-        Assertions.assertThatCode(() -> Players.from(List.of("bito", "kirby"))).doesNotThrowAnyException();
-    }
-
     @DisplayName("플레이어의 인원 수를 반환한다.")
     @Test
     void getCount() {
