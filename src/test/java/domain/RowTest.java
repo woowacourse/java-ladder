@@ -9,6 +9,18 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class RowTest {
+
+    @Test
+    @DisplayName("다리 행은 다리 정보들을 반환할 수 있음")
+    void testGetBridge() {
+        List<Boolean> expected = List.of(true, false);
+        Row row = new Row(expected);
+
+        List<Boolean> actual = row.getBridges();
+
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
     @Test
     @DisplayName("연속해서 다리가 등장하면 예외 발생")
     void validateNearInfo() {
