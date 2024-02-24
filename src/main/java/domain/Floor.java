@@ -3,6 +3,7 @@ package domain;
 import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidationException;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class Floor {
 
     public Floor(List<LadderBridge> bridges) {
         validateBridgesNotExistSerially(bridges);
-        this.bridges = bridges;
+        this.bridges = List.copyOf(bridges);
     }
 
     private void validateBridgesNotExistSerially(List<LadderBridge> bridges) {
@@ -28,6 +29,6 @@ public class Floor {
     }
 
     public List<LadderBridge> getBridges() {
-        return Collections.unmodifiableList(bridges);
+        return bridges;
     }
 }

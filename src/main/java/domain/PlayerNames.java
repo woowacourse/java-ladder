@@ -14,7 +14,7 @@ public class PlayerNames {
 
     public PlayerNames(List<PlayerName> playerNames) {
         validate(playerNames);
-        this.playerNames = playerNames;
+        this.playerNames = List.copyOf(playerNames);
     }
 
     private void validate(List<PlayerName> playerNames) {

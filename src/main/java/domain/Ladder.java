@@ -10,7 +10,7 @@ public class Ladder {
     private final List<Floor> floors;
 
     private Ladder(List<Floor> floors) {
-        this.floors = floors;
+        this.floors = List.copyOf(floors);
     }
 
     public static Ladder create(LadderHeight height, PlayerNames playerNames, BridgeGenerator bridgeGenerator) {
@@ -28,7 +28,7 @@ public class Ladder {
     }
 
     public List<Floor> getFloors() {
-        return Collections.unmodifiableList(floors);
+        return floors;
     }
 
 
