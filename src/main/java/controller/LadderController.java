@@ -3,6 +3,7 @@ package controller;
 import model.Height;
 import model.Ladder;
 import model.Players;
+import model.Result;
 import view.InputView;
 import view.OutputView;
 
@@ -17,7 +18,8 @@ public class LadderController {
 
     public void run() {
         Players players = new Players(inputView.readPlayersName());
-        inputView.readResult();
+        Result result = Result.from(inputView.readResult());
+
         Height height = new Height(inputView.readHeight());
 
         Ladder ladder = Ladder.of(height, players.size());

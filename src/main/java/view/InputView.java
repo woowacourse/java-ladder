@@ -9,7 +9,7 @@ public class InputView {
     private static final String PLAYERS_REQUEST_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String RESULT_REQUEST_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String HEIGHT_REQUEST_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
-    private static final String NAME_SEPARATOR = ",";
+    private static final String SEPARATOR = ",";
 
     private final Scanner scanner;
 
@@ -22,7 +22,7 @@ public class InputView {
         String rawNames = scanner.nextLine();
         validateBlank(rawNames);
         validateSeparators(rawNames);
-        List<String> names = List.of(rawNames.split(NAME_SEPARATOR, -1));
+        List<String> names = List.of(rawNames.split(SEPARATOR, -1));
         System.out.println();
         return names;
     }
@@ -34,9 +34,9 @@ public class InputView {
     }
 
     private void validateSeparators(String rawNames) {
-        if (rawNames.startsWith(NAME_SEPARATOR)
-                || rawNames.endsWith(NAME_SEPARATOR)
-                || rawNames.contains(NAME_SEPARATOR.repeat(2))) {
+        if (rawNames.startsWith(SEPARATOR)
+                || rawNames.endsWith(SEPARATOR)
+                || rawNames.contains(SEPARATOR.repeat(2))) {
             throw new IllegalArgumentException(Message.INVALID_SEPARATOR_ERROR.getMessage());
         }
     }
@@ -58,7 +58,13 @@ public class InputView {
         }
     }
 
-    public void readResult() {
+    public List<String> readResult() {
         System.out.println(RESULT_REQUEST_MESSAGE);
+        String rawResult = scanner.nextLine();
+        validateBlank(rawResult);
+        validateSeparators(rawResult);
+        List<String> result = List.of(rawResult.split(SEPARATOR, -1));
+        System.out.println();
+        return result;
     }
 }
