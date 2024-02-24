@@ -1,8 +1,6 @@
 package domain;
 
 import java.util.List;
-import view.LadderPrinter;
-import view.NamesPrinter;
 
 public class LadderGame {
     private final Ladder ladder;
@@ -14,13 +12,11 @@ public class LadderGame {
         ladder = new Ladder(ladderHeight, nameCount, new BridgeRandomGenerator());
     }
 
-    public String getLadderString() {
-        List<List<Boolean>> rawLadder = ladder.getRawLadder();
-        return LadderPrinter.from(rawLadder);
+    public List<String> getRawNames() {
+        return names.getRawNames();
     }
 
-    public String getNamesString() {
-        List<String> rawNames = names.getRawNames();
-        return NamesPrinter.from(rawNames);
+    public List<List<Boolean>> getRawLadder() {
+        return ladder.getRawLadder();
     }
 }

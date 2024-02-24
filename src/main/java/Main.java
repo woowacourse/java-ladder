@@ -2,7 +2,9 @@ import domain.LadderGame;
 import java.util.List;
 import java.util.function.Supplier;
 import view.InputView;
+import view.LadderPrinter;
 import view.NameInputView;
+import view.NamesPrinter;
 import view.OutputView;
 
 public class Main {
@@ -14,8 +16,8 @@ public class Main {
             int ladderHeight = Integer.parseInt(InputView.getInput());
             return new LadderGame(names, ladderHeight);
         });
-        OutputView.print(ladderGame.getNamesString());
-        OutputView.print(ladderGame.getLadderString());
+        OutputView.print(NamesPrinter.from(ladderGame.getRawNames()));
+        OutputView.print(LadderPrinter.from(ladderGame.getRawLadder()));
     }
 
     static final class RetryHelper {
