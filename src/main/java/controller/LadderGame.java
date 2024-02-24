@@ -13,7 +13,7 @@ public class LadderGame {
         Users users = new Users(userNames);
 
         int height = InputView.inputHeight();
-        Ladder ladder = new Ladder(height, users.gerPersonCount());
+        Ladder ladder = new Ladder(height, users.getPersonCount());
 
         ResultView.printResultMessage();
         ResultView.printNames(users);

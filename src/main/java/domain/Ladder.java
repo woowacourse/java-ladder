@@ -32,3 +32,4 @@ public class Ladder {
         return ladder.size();
     }
 }
+

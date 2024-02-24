@@ -23,7 +23,6 @@ class LineTest {
     void createRandomLine() {
         int personCount = 4;
         List<Boolean> expectedPoint = List.of(true, false, true);
-
         Line line = new Line(personCount, new TrueGenerator());
         List<Boolean> list = line.getPoints().stream()
                 .map(Bridge::getBridge)

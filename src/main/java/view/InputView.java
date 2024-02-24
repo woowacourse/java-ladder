@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class InputView {
+public class    InputView {
 
     private InputView() {
 
