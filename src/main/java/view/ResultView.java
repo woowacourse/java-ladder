@@ -16,29 +16,26 @@ public class ResultView {
 
     }
 
-    public static void printNames(final Users users) {
+    public static void printNames(final List<String> names) {
         final StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append(String.format("%-6s", getFirst(users)));
-        getMiddle(users).forEach(userName -> stringBuilder.append(String.format("%6s", userName)));
-        stringBuilder.append(String.format("%5s", getLast(users)));
+        stringBuilder.append(String.format("%-5s", getFirst(names)));
+        getMiddle(names).forEach(userName -> stringBuilder.append(String.format("%6s", userName)));
+        stringBuilder.append(String.format("%5s", getLast(names)));
 
         System.out.println(stringBuilder);
     }
 
-    private static List<UserName> getMiddle(final Users users) {
-        final List<UserName> userNames = users.getUsers();
-        return userNames.subList(1, userNames.size() - 1);
+    private static List<String> getMiddle(final List<String> names) {
+        return names.subList(1, names.size() - 1);
     }
 
-    private static UserName getLast(final Users users) {
-        final List<UserName> userNames = users.getUsers();
-        return userNames.get(userNames.size() - 1);
+    private static String getLast(final List<String> names) {
+        return names.get(names.size() - 1);
     }
 
-    private static UserName getFirst(final Users users) {
-        final List<UserName> userNames = users.getUsers();
-        return userNames.get(0);
+    private static String getFirst(final List<String> names) {
+        return names.get(0);
     }
 
     public static void printResultMessage() {
@@ -71,21 +68,15 @@ public class ResultView {
         }
         return NONE_LINE;
     }
-
-    public static void printResult(List<String> results) {
-        results.forEach(result -> System.out.print(result + " "));
-        System.out.println();
-    }
-
-
     public static void printTargetResultMessage() {
         System.out.println("실행결과");
         System.out.println();
     }
 
     public static void printTargetResult(String result) {
-
+        System.out.println(result);
     }
+
     public static void printTargetResult(List<String> result) {
 
     }
