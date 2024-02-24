@@ -2,33 +2,23 @@ package ladderGame.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Line {
+    private static final String EXCEPTION_MESSAGE_CONTINUOUS_LINE = "사다리에 연속된 줄이 생길 수 없습니다.";
+
     private final List<ConnectionStatus> connectionStatuses;
-    private final BooleanGenerator booleanGenerator;
 
-    public Line(BooleanGenerator booleanGenerator, int number) {
-        this.booleanGenerator = booleanGenerator;
-
-        connectionStatuses = new ArrayList<>();
-        Stream.iterate(0, index -> index < number, index -> index + 1)
-                .forEach(this::makeLine);
+    public Line(List<ConnectionStatus> connectionStatuses) {
+        for (int i = 1; i < connectionStatuses.size(); i++) {
+            validateContinuousLine(connectionStatuses.get(i-1), connectionStatuses.get(i));
+        }
+        this.connectionStatuses = connectionStatuses;
     }
 
-    private void makeLine(int index) {
-        if (index == 0 || !connectionStatuses.get(index - 1).equals(ConnectionStatus.CONNECTION)) {
-            connectionStatuses.add(decideConnectionStatus());
-            return;
+    private void validateContinuousLine(ConnectionStatus preStatus, ConnectionStatus currentStatus) {
+        if (preStatus.equals(ConnectionStatus.CONNECTION) && currentStatus.equals(ConnectionStatus.CONNECTION)) {
+            throw new IllegalStateException(EXCEPTION_MESSAGE_CONTINUOUS_LINE);
         }
-        connectionStatuses.add(ConnectionStatus.DISCONNECTION);
-    }
-
-    private ConnectionStatus decideConnectionStatus() {
-        if (booleanGenerator.generate()) {
-            return ConnectionStatus.CONNECTION;
-        }
-        return ConnectionStatus.DISCONNECTION;
     }
 
     public List<ConnectionStatus> getConnectionStatuses() {

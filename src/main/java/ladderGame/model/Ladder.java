@@ -8,7 +8,10 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(int maxHeight, int personNumber) {
-        lines = Stream.generate(() -> new Line(new RandomBooleanGenerator(), personNumber)).limit(maxHeight).toList();
+        LineGenerator lineGenerator = new LineGenerator(new RandomBooleanGenerator());
+        lines = Stream.generate(() -> new Line(lineGenerator.makeLine(personNumber)))
+                .limit(maxHeight)
+                .toList();
     }
 
     public List<Line> getLines() {
