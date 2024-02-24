@@ -35,14 +35,30 @@ class LadderTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"0,0", "1,1", "2,2"})
+    @CsvSource(value = {"0,0", "1,1", "2,2", "3,3"})
     @DisplayName("게임을 실행 했을 때 브릿지가 놓여있지 않으면 같은 위치의 값을 반환한다")
     void nonBridgeTest(int position, int result) {
         Line line = new Line(List.of(Bridge.NON_BRIDGE, Bridge.NON_BRIDGE, Bridge.NON_BRIDGE));
         List<Line> lines = List.of(line, line, line);
-
         Ladder ladder = LadderFactory.createLadder(lines);
 
-        assertThat(ladder.play(position)).isEqualTo(result);
+        int actual = ladder.play(position);
+
+        assertThat(actual).isEqualTo(result);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0,3", "1,0", "2,1", "3,2"})
+    @DisplayName("게임을 실행 했을 때 올바른 결과를 반환한다")
+    void gameResultTest(int position, int result) {
+        Line line1 = new Line(List.of(Bridge.BRIDGE, Bridge.NON_BRIDGE, Bridge.NON_BRIDGE));
+        Line line2 = new Line(List.of(Bridge.NON_BRIDGE, Bridge.BRIDGE, Bridge.NON_BRIDGE));
+        Line line3 = new Line(List.of(Bridge.NON_BRIDGE, Bridge.NON_BRIDGE, Bridge.BRIDGE));
+        List<Line> lines = List.of(line1, line2, line3);
+        Ladder ladder = LadderFactory.createLadder(lines);
+
+        int actual = ladder.play(position);
+
+        assertThat(actual).isEqualTo(result);
     }
 }

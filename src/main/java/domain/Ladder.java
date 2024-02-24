@@ -49,10 +49,10 @@ public class Ladder {
     }
 
     private int horizontalMovement(int position, int currentHeight) {
-        if (ladder.get(currentHeight).getBridges().get(position).getBridge()) {
+        if (position < getWidth() && ladder.get(currentHeight).getBridges().get(position).getBridge()) {
             return 1;
         }
-        if (position - 1 > 0 && ladder.get(currentHeight).getBridges().get(position - 1).getBridge()) {
+        if (position - 1 >= 0 && ladder.get(currentHeight).getBridges().get(position - 1).getBridge()) {
             return -1;
         }
         return 0;
