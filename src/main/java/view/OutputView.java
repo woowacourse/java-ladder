@@ -1,9 +1,9 @@
 package view;
 
-import domain.Bridge;
-import domain.Bridges;
-import domain.Ladder;
-import domain.Names;
+import domain.ladder.Bridge;
+import domain.ladder.Bridges;
+import domain.ladder.Ladder;
+import domain.player.Names;
 import java.util.List;
 import java.util.stream.Collectors;
 

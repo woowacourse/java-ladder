@@ -1,11 +1,12 @@
-package domain;
+package domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import domain.bridgeConstructstrategy.BridgeConstructStrategy;
-import domain.bridgeConstructstrategy.RandomBridgeConstructStrategy;
+import domain.ladder.bridgeConstructstrategy.BridgeConstructStrategy;
+import domain.ladder.bridgeConstructstrategy.RandomBridgeConstructStrategy;
+import domain.player.Names;
 import java.util.List;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;

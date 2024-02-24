@@ -1,6 +1,6 @@
-package domain.bridgeConstructstrategy;
+package domain.ladder.bridgeConstructstrategy;
 
-import domain.Bridges;
+import domain.ladder.Bridges;
 
 public interface BridgeConstructStrategy {
     Bridges generate(int count);

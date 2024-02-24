@@ -1,6 +1,7 @@
-package domain;
+package domain.ladder;
 
-import domain.bridgeConstructstrategy.BridgeConstructStrategy;
+import domain.player.Names;
+import domain.ladder.bridgeConstructstrategy.BridgeConstructStrategy;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
