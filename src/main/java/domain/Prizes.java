@@ -16,4 +16,11 @@ public class Prizes {
             throw new IllegalArgumentException("실행 결과 수는 사람 수와 동일해야합니다.");
         }
     }
+
+    public String findByIndex(int index) {
+        if (index < 0 || index >= prizes.size()) {
+            throw new IllegalArgumentException("범위를 벗어난 index 입니다.");
+        }
+        return prizes.get(index);
+    }
 }

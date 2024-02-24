@@ -25,9 +25,20 @@ public class Names {
         return names.size();
     }
 
+    public int findIndex(String findName) {
+        for (int i = 0; i < names.size(); i++) {
+            Name name = names.get(i);
+            if (name.isSameName(findName)) { // TODO 인덴트 줄이기
+                return i;
+            }
+        }
+        throw new IllegalArgumentException("존재하지 않는 이름입니다.");
+    }
+
     public List<String> getNames() {
         return names.stream()
                 .map(Name::getName)
                 .toList();
     }
+
 }

@@ -14,12 +14,12 @@ public class LadderGame {
     public static void run() {
         Names names = readNames();
         OutputView.printNewLine();
-        readPrizes(names);
+        Prizes prizes = readPrizes(names);
         OutputView.printNewLine();
         Height height = readHeight();
         OutputView.printNewLine();
 
-        Ladder ladder = new Ladder(new RandomBridgeConstructStrategy(), names, height);
+        Ladder ladder = new Ladder(new RandomBridgeConstructStrategy(), names, prizes, height);
 
         OutputView.printNames(names);
         OutputView.printLadder(ladder);
