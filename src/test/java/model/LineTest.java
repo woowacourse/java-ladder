@@ -1,11 +1,17 @@
 package model;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.lang.reflect.Method;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import utils.RuleGenerator;
 
 
 public class LineTest {
@@ -26,7 +32,7 @@ public class LineTest {
         }
 
         //then
-        Assertions.assertThat(actual).isEqualTo(expect);
+        assertThat(actual).isEqualTo(expect);
     }
     @Test
     @DisplayName("우측으로 가로 라인이 있는 위치들을 반환한다")
@@ -40,7 +46,7 @@ public class LineTest {
         List<Integer> actual = line.findHorizontalPosition();
 
         //then
-        Assertions.assertThat(expect).isEqualTo(actual);
+        assertThat(expect).isEqualTo(actual);
     }
 
     @Test
@@ -54,8 +60,63 @@ public class LineTest {
         Direction rightDirection = line.showDirection(2);
 
         //then
-        Assertions.assertThat(leftDirection).isEqualTo(Direction.LEFT);
-        Assertions.assertThat(rightDirection).isEqualTo(Direction.RIGHT);
+        assertThat(leftDirection).isEqualTo(Direction.LEFT);
+        assertThat(rightDirection).isEqualTo(Direction.RIGHT);
+    }
+
+    @Nested
+    @DisplayName("접근제어자 없이 테스트 하기 위한 학습용 코드")
+    class accessModifierTest{
+
+        @Test
+        @DisplayName("리플랙션을 통한 테스트 방법")
+        void reflectionTest() throws Exception {
+            //given
+            RuleGenerator ruleGenerator = () -> true;
+            Line line = new Line(() -> true, 5);
+
+            //when
+            Method makeHorizontalLine = line.getClass()
+                    .getDeclaredMethod("makeHorizontalLine", RuleGenerator.class, int.class);
+            makeHorizontalLine.setAccessible(true);
+
+            makeHorizontalLine.invoke(line,ruleGenerator ,4);
+
+            //then
+            assertThat(line.hasLeftConnectedLine(5))
+                    .isTrue();
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = {1,3})
+        @DisplayName("private Method를 커버하는 public Method에 대한 테스트를 한다.")
+        void parameterizedTest(int position) {
+            //given
+            Line line = new Line(()-> true, 5);
+
+            //when
+            line.draw(() -> true, 5);
+
+            //then
+            assertThat(line.hasLeftConnectedLine(position))
+                    .isTrue();
+         }
+
+
+        @ParameterizedTest
+        @ValueSource(ints = {0,2,4})
+        @DisplayName("private Method를 커버하는 public Method에 대한 실패 테스트도 한다.")
+        void parameterizedFailedTest(int position) {
+            //given
+            Line line = new Line(()-> true, 5);
+
+            //when
+            line.draw(() -> true, 5);
+
+            //then
+            assertThat(line.hasLeftConnectedLine(position))
+                    .isFalse();
+        }
     }
 
 }
