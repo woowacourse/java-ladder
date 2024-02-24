@@ -25,6 +25,7 @@ class LadderFactoryTest {
     void createManualLadder() {
         Line line = new Line(List.of(Bridge.NON_BRIDGE, Bridge.NON_BRIDGE, Bridge.NON_BRIDGE));
         List<Line> lines = List.of(line, line, line);
+
         Ladder ladder = LadderFactory.createLadder(lines);
 
         assertAll(

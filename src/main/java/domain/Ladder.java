@@ -12,7 +12,15 @@ public class Ladder {
 
     public Ladder(final List<Line> ladder) {
         validateMaxHeight(ladder.size());
+        validateLadderShape(ladder);
         this.ladder = ladder;
+    }
+
+    private void validateLadderShape(List<Line> ladder) {
+        final int width = ladder.get(0).getWidth();
+        if (ladder.stream().anyMatch(line -> line.getWidth() != width)) {
+            throw new IllegalArgumentException("사다리의 가로 길이는 일정해야 합니다.");
+        }
     }
 
     private void validateMaxHeight(int height) {
