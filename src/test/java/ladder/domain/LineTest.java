@@ -1,24 +1,25 @@
 package ladder.domain;
 
+import ladder.util.PointsGenerator;
 import ladder.util.RandomPointsGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LineTest {
 
     @Test
-    @DisplayName("라인에는 사람의 수 - 1 만큼 좌표가 있다.")
+    @DisplayName("라인에 사람의 수 - 1만큼 좌표를 생성한다.")
     void createLine() {
         // given
         int personCount = 5;
 
         // when
-        Line line = new Line(personCount, new RandomPointsGenerator(new Random()));
+        Line line = new Line(personCount, new RandomPointsGenerator());
         int pointsSize = line.getPoints().size();
 
         // then
@@ -26,21 +27,19 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("사다리 라인이 겹치지 않도록 해야 한다.")
-    void createNonOverlappingLine() {
+    @DisplayName("좌표가 하나 이상 사용되어야 한다.")
+    void createAllUnusedPoints() {
         // given
         int personCount = 5;
-        RandomPointsGenerator randomPointsGenerator = new RandomPointsGenerator(new Random() {
+        PointsGenerator pointsGenerator = new PointsGenerator() {
             @Override
-            public boolean nextBoolean() {
-                return true;
+            public List<Point> generate(int size) {
+                return List.of(Point.UNUSED, Point.UNUSED, Point.UNUSED, Point.UNUSED);
             }
-        });
+        };
 
-        // when
-        Line line = new Line(personCount, randomPointsGenerator);
-
-        // then
-        assertThat(line.getPoints()).isEqualTo(List.of(Point.ON, Point.OFF, Point.ON, Point.OFF));
+        // when & then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Line(personCount, pointsGenerator));
     }
 }
