@@ -28,4 +28,13 @@ public class Users {
     public List<UserName> getUsers() {
         return users;
     }
+
+    public int findPostionByName(String brown) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).toString().equals(brown)) {
+                return i;
+            }
+        }
+        throw new IllegalArgumentException("존재하지 않는 이름입니다.");
+    }
 }

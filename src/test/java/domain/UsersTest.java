@@ -30,4 +30,12 @@ class UsersTest {
 
         assertThatThrownBy(() -> new Users(userNames)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("존재하지 않는 이름이 주어지면 에러를 발생시킨다")
+    void nameNotExist() {
+        Users users = new Users(List.of("pobi", "rush", "jonge"));
+
+        assertThatThrownBy(() -> users.findPostionByName("brown")).isInstanceOf(IllegalArgumentException.class);
+    }
 }
