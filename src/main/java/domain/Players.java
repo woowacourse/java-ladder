@@ -40,8 +40,4 @@ public class Players {
     public List<Player> getPlayers() {
         return this.players;
     }
-
-    public int getPlayerSize() {
-        return this.players.size();
-    }
 }
