@@ -4,6 +4,7 @@ import domain.Bridge;
 import domain.Bridges;
 import domain.Ladder;
 import domain.Names;
+import domain.Prizes;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,13 @@ public class OutputView {
     public static void printNames(Names names) {
         for (String name : names.getNames()) {
             System.out.printf("%5s ", name);
+        }
+        System.out.println();
+    }
+
+    public static void printPrizes(Prizes prizes) {
+        for (String prize : prizes.getPrizes()) {
+            System.out.printf("%5s ", prize);
         }
         System.out.println();
     }

@@ -23,4 +23,8 @@ public class Prizes {
         }
         return prizes.get(index);
     }
+
+    public List<String> getPrizes() {
+        return prizes;
+    }
 }

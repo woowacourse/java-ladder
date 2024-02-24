@@ -23,6 +23,8 @@ public class LadderGame {
 
         OutputView.printNames(names);
         OutputView.printLadder(ladder);
+        OutputView.printPrizes(prizes);
+
     }
 
     // TODO 반복 메서드 추출
