@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
@@ -20,11 +21,26 @@ class PlayersTest {
 
     @Test
     @DisplayName("참여 인원이 2명 미만이어서 오류가 발생한다.")
-    void invalidPlayers() {
+    void createUnderPlayersSize() {
         List<String> players = List.of("pobi");
         Assertions.assertThatThrownBy(() -> new Players(players))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("참여 인원이 12명 초과면 오류가 발생한다.")
+    void createOverPlayersSize() {
+        //given
+        List<String> players = new ArrayList<>();
+        for (int i = 0; i < 13; i++) {
+            players.add(String.valueOf(i));
+        }
+
+        //when & then
+        Assertions.assertThatThrownBy(() -> new Players(players))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
     @Test
     @DisplayName("중복된 이름의 참여 인원인 경우 오류를 반환한다.")

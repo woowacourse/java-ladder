@@ -7,6 +7,7 @@ import java.util.Set;
 public class Players {
 
     private static final int MIN_PLAYERS = 2;
+    private static final int MAX_PLAYERS = 12;
 
     private final List<Player> players;
 
@@ -23,7 +24,7 @@ public class Players {
     }
 
     private void validateSize(List<String> players) {
-        if (players.size() < MIN_PLAYERS) {
+        if (players.size() < MIN_PLAYERS || players.size() > MAX_PLAYERS) {
             throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
         }
     }
