@@ -23,7 +23,8 @@ public class LadderGame {
         BuildStrategy pointBuildStrategy = new PointBuildStrategy();
         Ladder ladder = new Ladder(players, height, results, pointBuildStrategy);
         outputView.printLadderResult(players, ladder, results);
-        Result result = requestUntilValidated(() -> new Result(inputView.readDesiredResultName()));
+        Result result = requestUntilValidated(() -> ladder.find(inputView.readDesiredResultName()));
+        outputView.writeDesiredResult(result);
     }
 
     private <T> T requestUntilValidated(Supplier<T> supplier) {

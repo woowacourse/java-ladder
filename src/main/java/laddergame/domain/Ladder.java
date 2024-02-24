@@ -23,8 +23,8 @@ public class Ladder {
         makeResults(results);
     }
 
-    public String find(final String name) {
-        return foundResult.get(players.getPlayerByName(name)).name();
+    public Result find(final String name) {
+        return foundResult.get(players.getPlayerByName(name));
     }
 
     private void makeResults(final Results results) {

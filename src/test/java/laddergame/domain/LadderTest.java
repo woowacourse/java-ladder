@@ -44,10 +44,10 @@ public class LadderTest {
         Ladder ladder = new Ladder(players, height, results, buildStrategy);
 
         //then
-        assertEquals(ladder.find("choco"), "꽝1");
-        assertEquals(ladder.find("lemon"), "꽝2");
-        assertEquals(ladder.find("clova"), "꽝3");
-        assertEquals(ladder.find("nyang"), "꽝4");
+        assertEquals(ladder.find("choco"), results.getResults().get(0));
+        assertEquals(ladder.find("lemon"), results.getResults().get(1));
+        assertEquals(ladder.find("clova"), results.getResults().get(2));
+        assertEquals(ladder.find("nyang"), results.getResults().get(3));
     }
 
     @Test
@@ -64,9 +64,9 @@ public class LadderTest {
         Ladder ladder = new Ladder(players, height, results, buildStrategy);
 
         //then
-        assertEquals(ladder.find("choco"), "꽝2");
-        assertEquals(ladder.find("lemon"), "꽝1");
-        assertEquals(ladder.find("clova"), "꽝4");
-        assertEquals(ladder.find("nyang"), "꽝3");
+        assertEquals(ladder.find("choco"), results.getResults().get(1));
+        assertEquals(ladder.find("lemon"), results.getResults().get(0));
+        assertEquals(ladder.find("clova"), results.getResults().get(3));
+        assertEquals(ladder.find("nyang"), results.getResults().get(2));
     }
 }

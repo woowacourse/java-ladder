@@ -52,6 +52,12 @@ public class OutputView {
         System.out.println(RESULT_TITLE);
     }
 
+    public void writeDesiredResult(final Result result) {
+        System.out.println();
+        System.out.println("실행 결과");
+        System.out.println(result.name());
+    }
+
     public static void writeErrorMessage(final String message) {
         System.out.println(ERROR_PREFIX + message);
     }
