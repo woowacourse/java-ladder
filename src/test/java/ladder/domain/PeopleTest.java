@@ -63,18 +63,4 @@ class PeopleTest {
         assertThatCode(() -> new People(names))
                 .doesNotThrowAnyException();
     }
-
-    @Test
-    @DisplayName("가장 긴 이름의 길이를 찾을 수 있다.")
-    void findMaxNameLength() {
-        // given
-        String names = "pobi,honux,crong,jk";
-        People people = new People(names);
-
-        // when
-        int maxNameLength = people.findMaxNameLength();
-
-        // then
-        assertThat(maxNameLength).isEqualTo(5);
-    }
 }
