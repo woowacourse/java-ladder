@@ -34,4 +34,28 @@ class NamesTest {
                 .isInstanceOf(LadderGameException.class)
                 .hasMessage(ExceptionType.INVALID_NAMES_RANGE.getMessage());
     }
+
+    @Test
+    @DisplayName("참여자 이름 개수가 적절하면 해당 개수만큼 참여자 이름 생성")
+    void testGetNames() {
+        String givenNames = "a,b,c,d,e";
+        Names names = new Names(givenNames);
+
+        int actual = names.getNames().size();
+        int expected = 5;
+
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("참여자 이름 개수가 적절하면 해당 사람 개수를 반환할 수 있음")
+    void testGetNameCount() {
+        String givenNames = "a,b,c,d,e";
+        Names names = new Names(givenNames);
+
+        int actual = names.getNameCount();
+        int expected = 5;
+
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
 }
