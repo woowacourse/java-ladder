@@ -41,6 +41,6 @@ class NameTest {
     void name_not_alphanumeric_throw_exception(final String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름이 영어와 숫자가 아니라면 예외가 발생한다");
+                .hasMessage("이름은 영어와 숫자만 허용합니다.");
     }
 }
