@@ -51,7 +51,7 @@ class LadderGameTest {
         List<String> expectedRawResults = List.of("1,2");
         int ladderHeight = 5;
         LadderGame ladderGame = new LadderGame(rawNames, ladderHeight, expectedRawResults);
-        List<String> actualRawResults = ladderGame.getResults();
+        List<String> actualRawResults = ladderGame.getRawResults();
         Assertions.assertThat(actualRawResults)
                 .containsExactlyElementsOf(expectedRawResults);
     }

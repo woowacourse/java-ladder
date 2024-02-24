@@ -22,7 +22,7 @@ public class Main {
         });
         OutputView.print(NamesPrinter.from(ladderGame.getRawNames()));
         OutputView.print(LadderPrinter.from(ladderGame.getRawLadder()));
-        OutputView.print(NamesPrinter.from(ladderGame.getResults()));
+        OutputView.print(NamesPrinter.from(ladderGame.getRawResults()));
 
         OutputView.print("결과를 보고 싶은 사람은?");
         String nameThatNeedToShowResult = NameInputView.getNameThatNeedToShowResult(InputView::getInput,

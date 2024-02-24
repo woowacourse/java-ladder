@@ -1,25 +1,24 @@
 package domain;
 
-import java.util.Collections;
 import java.util.List;
 
 public class LadderGame {
     private final Ladder ladder;
     private final Names names;
-    private final List<String> results;
+    private final Results results;
 
-    public LadderGame(List<String> userNames, int ladderHeight, List<String> results) {
+    public LadderGame(List<String> userNames, int ladderHeight, List<String> rawResults) {
         names = new Names(userNames);
         int nameCount = names.getNameCount();
         ladder = new Ladder(ladderHeight, nameCount, new BridgeRandomGenerator());
-        this.results = Collections.unmodifiableList(results);
+        this.results = new Results(rawResults);
     }
 
-    LadderGame(List<String> userNames, int ladderHeight, List<String> results, BridgeGenerator bridgeGenerator) {
+    LadderGame(List<String> userNames, int ladderHeight, List<String> rawResults, BridgeGenerator bridgeGenerator) {
         names = new Names(userNames);
         int nameCount = names.getNameCount();
         ladder = new Ladder(ladderHeight, nameCount, bridgeGenerator);
-        this.results = Collections.unmodifiableList(results);
+        this.results = new Results(rawResults);
     }
 
     public List<String> getRawNames() {
@@ -30,14 +29,14 @@ public class LadderGame {
         return ladder.getRawLadder();
     }
 
-    public List<String> getResults() {
-        return results;
+    public List<String> getRawResults() {
+        return results.getRawResults();
     }
 
     public String climb(String rawName) {
         int startPosition = names.position(rawName);
         int endPosition = ladder.climb(startPosition);
-        return results.get(endPosition);
+        return results.getRawResult(endPosition);
     }
 
     public List<String> climbAll() {
