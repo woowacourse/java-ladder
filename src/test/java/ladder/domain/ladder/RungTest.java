@@ -1,18 +1,16 @@
 package ladder.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RungTest {
-    @ParameterizedTest
-    @EnumSource(Rung.class)
-    @DisplayName("발판은 상태를 가진다.")
-    void testRungStatus(Rung rung) {
-        Rung[] values = Rung.values();
-        assertThat(values).contains(rung);
-    }
 
+    @Test
+    @DisplayName("발판은 상태(존재한다, 존재하지 않는다)를 가진다.")
+    void testRung() {
+        Rung[] rungs = Rung.values();
+        assertThat(rungs).containsExactly(Rung.EXIST, Rung.EMPTY);
+    }
 }
