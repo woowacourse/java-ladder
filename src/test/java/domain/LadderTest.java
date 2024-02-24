@@ -37,8 +37,7 @@ class LadderTest {
          * |-----|    |
          * |-----|    |
          * |-----|    |
-         * |-----|    |
-         * */
+         * |-----|    | */
         int actual = ladder.climb(startPosition);
         Assertions.assertThat(actual)
                 .isEqualTo(endPosition);
