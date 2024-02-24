@@ -50,7 +50,7 @@ public class InputView {
         }
     }
 
-    public String readDesiredResultName() {
+    public String readDesiredPlayerName() {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println();
         System.out.println(DESIRED_NAME_INPUT);

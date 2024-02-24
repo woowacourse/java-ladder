@@ -23,7 +23,7 @@ public class LadderGame {
         BuildStrategy pointBuildStrategy = new PointBuildStrategy();
         Ladder ladder = new Ladder(players, height, results, pointBuildStrategy);
         outputView.printLadderResult(players, ladder, results);
-        Result result = requestUntilValidated(() -> ladder.find(inputView.readDesiredResultName()));
+        Result result = requestUntilValidated(() -> ladder.find(inputView.readDesiredPlayerName()));
         outputView.writeDesiredResult(result);
     }
 
