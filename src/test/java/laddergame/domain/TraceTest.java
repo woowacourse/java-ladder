@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import laddergame.domain.ladder.Line;
 import laddergame.domain.move.LeftStrategy;
 import laddergame.domain.move.RightStrategy;
 import laddergame.domain.move.Trace;
@@ -17,11 +18,11 @@ public class TraceTest {
     @Test
     void testMoveRight() {
         // given
-        List<Point> points = List.of(Point.EMPTY, Point.EXIST, Point.EMPTY);
+        Line line = new Line(List.of(Point.EMPTY, Point.EXIST, Point.EMPTY));
         Trace trace = new Trace(0, new RightStrategy());
 
         // when
-        Trace next = trace.next(points);
+        Trace next = trace.next(line);
 
         // then
         assertThat(next.getPosition()).isEqualTo(1);
@@ -32,11 +33,11 @@ public class TraceTest {
     @Test
     void testMoveLeft() {
         // given
-        List<Point> points = List.of(Point.EMPTY, Point.EXIST, Point.EMPTY);
+        Line line = new Line(List.of(Point.EMPTY, Point.EXIST, Point.EMPTY));
         Trace trace = new Trace(2, new LeftStrategy());
 
         // when
-        Trace next = trace.next(points);
+        Trace next = trace.next(line);
 
         // then
         assertThat(next.getPosition()).isEqualTo(1);
@@ -47,11 +48,11 @@ public class TraceTest {
     @Test
     void testNotMove() {
         // given
-        List<Point> points = List.of(Point.EMPTY, Point.EMPTY, Point.EMPTY);
+        Line line = new Line(List.of(Point.EMPTY, Point.EMPTY, Point.EMPTY));
         Trace trace = new Trace(1, new LeftStrategy());
 
         // when
-        Trace next = trace.next(points);
+        Trace next = trace.next(line);
 
         // then
         assertThat(next.getPosition()).isEqualTo(1);

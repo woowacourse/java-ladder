@@ -1,6 +1,5 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.move.MovableStrategy;
 import laddergame.domain.move.Trace;
 import laddergame.domain.point.Point;
 import laddergame.domain.point.PointGenerator;
@@ -46,6 +45,17 @@ public class Line {
     }
 
     public Trace move(Trace trace) {
-        return trace.next(this.points);
+        return trace.next(this);
+    }
+
+    public boolean hasPoint(int position) {
+        if (position == -1 || position == points.size()) {
+            return false;
+        }
+        return points.get(position).isExist();
+    }
+
+    public int getSize() {
+        return points.size();
     }
 }
