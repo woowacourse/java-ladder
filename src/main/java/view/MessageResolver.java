@@ -20,10 +20,10 @@ public class MessageResolver {
     }
 
     public String resolveLadderMessage(Ladder ladder) {
-        return ladder.getLines().stream()
+        return IntStream.range(0, ladder.getRowLineCount())
+                .mapToObj(ladder::getLineByIndex)
                 .map(this::resolveLineMessage)
                 .collect(Collectors.joining(System.lineSeparator()));
-
     }
 
     private String resolveLineMessage(RowLine rowLine) {

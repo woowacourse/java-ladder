@@ -37,8 +37,4 @@ public class Ladder {
         return lines.stream()
                 .allMatch(rowLine -> rowLine.getConnectionCount() == lines.get(0).getConnectionCount());
     }
-
-    public List<RowLine> getLines() {
-        return List.copyOf(lines);
-    }
 }
