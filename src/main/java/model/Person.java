@@ -14,6 +14,14 @@ public class Person {
         return new Person(new PersonName(name), startPosition);
     }
 
+    public void climbDown(final Ladder ladder) {
+        while (position.depth() < ladder.getLines().size()) {
+            Line line = ladder.get(position.depth());
+            moveHorizontally(line);
+            moveBelow();
+        }
+    }
+
     public void moveHorizontally(Line line) {
         if (line.hasLeftPath(getColumn())) {
             position = position.getLeftPosition();

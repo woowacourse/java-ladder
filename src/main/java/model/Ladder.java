@@ -27,6 +27,10 @@ public class Ladder {
         }
     }
 
+    public Line get(int depth) {
+        return lines.get(depth);
+    }
+
     public List<Line> getLines() {
         return lines;
     }
