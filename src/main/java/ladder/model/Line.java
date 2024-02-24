@@ -2,8 +2,10 @@ package ladder.model;
 
 import ladder.constant.LadderPath;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static ladder.constant.LadderPath.*;
@@ -45,6 +47,16 @@ public class Line {
                 .filter(i -> row.get(i).isRightPath())
                 .map(idx -> idx + 1)
                 .allMatch(idx -> row.get(idx).isLeftPath());
+    }
+
+    public List<Integer> findBars() {
+        List<Integer> bars = new ArrayList<>();
+
+        IntStream.range(0, row.size())
+                .filter(idx -> row.get(idx).equals(RIGHT))
+                .forEach(bars::add);
+
+        return bars;
     }
 
     public int size() {

@@ -7,17 +7,23 @@ import java.util.List;
 public class Bars {
     List<Bar> bars;
 
-    public Bars(List<Bar> bars) {
+    private Bars(List<Bar> bars) {
         this.bars = bars;
     }
 
-    public List<String> calculateLadderResult(Players players) {
-        List<String> ladderResult = new ArrayList<>(players.getPlayerNames());
+    public static Bars from(List<Integer> positions) {
+        return new Bars(positions.stream()
+                .map(Bar::new)
+                .toList());
+    }
+
+    public List<String> calculateChangedLadderResult(List<String> ladderResult) {
+        List<String> changedLadderResult = new ArrayList<>(ladderResult);
 
         bars.stream()
                 .map(Bar::getLeftPosition)
-                .forEach(idx -> Collections.swap(ladderResult, idx, idx + 1));
+                .forEach(idx -> Collections.swap(changedLadderResult, idx, idx + 1));
 
-        return ladderResult;
+        return changedLadderResult;
     }
 }
