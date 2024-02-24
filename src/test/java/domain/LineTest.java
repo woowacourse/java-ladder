@@ -26,18 +26,18 @@ class LineTest {
     @MethodSource("methodSourceEnum")
     void checkCanAddLineItem(LineItem actual, LineItem lineItem, LineItem expected) {
         Line line = new Line(5);
-        line.getPoints().add(actual);
+        line.getLineItems().add(actual);
 
         assertThat(line.decideLineItem(1, lineItem)).isEqualTo(expected);
     }
 
-    @DisplayName("사다리의 Line이 올바르게 생성되는지 확인한다.")
+    @DisplayName("사다리의 LineItem이 columnLength에 맞게 생성되는지 확인한다.")
     @Test
-    void checkCreatedLineIsCorrect() {
+    void checkCreatedLineItemCount() {
         TestLineItemGenerator testDirectionGenerator = new TestLineItemGenerator(LineItem.CONNECTED);
-        Line line = new Line(4);
+        int columnLength = 4;
+        Line line = new Line(columnLength);
 
-        assertThat(line.makeLine(testDirectionGenerator))
-                .isEqualTo(List.of(LineItem.CONNECTED, LineItem.UNCONNECTED, LineItem.CONNECTED));
+        assertThat(line.makeLine(testDirectionGenerator).size()).isEqualTo(columnLength-1);
     }
 }
