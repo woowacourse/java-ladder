@@ -71,4 +71,5 @@ public class Ladder {
         Line firstLine = ladder.get(0);
         return firstLine.getWidth();
     }
+
 }

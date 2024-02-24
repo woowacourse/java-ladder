@@ -57,5 +57,6 @@ class LadderTest {
         final int endPosition = ladder.playByPosition(startPosition);
 
         assertThat(endPosition).isEqualTo(expected);
+
     }
 }
