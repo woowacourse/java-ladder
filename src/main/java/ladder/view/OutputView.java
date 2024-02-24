@@ -6,8 +6,8 @@ import java.util.List;
 
 public class OutputView {
     private static final int PLAYER_NAME_PAD_SIZE = 6;
-    private static final String LADDER_DESCRIPTION = "사다리 결과";
-    private static final String LADDER_RESULT_DESCRIPTION = "실행 결과";
+    private static final String LADDER_DESCRIPTION = "\n사다리 결과\n";
+    private static final String LADDER_RESULT_DESCRIPTION = "\n실행 결과";
 
     public static void printLadderDescription() {
         System.out.println(LADDER_DESCRIPTION);
