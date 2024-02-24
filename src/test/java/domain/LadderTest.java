@@ -1,15 +1,17 @@
+package domain;
+
 import static org.assertj.core.api.Assertions.assertThatCode;
 
-import domain.Player;
+import domain.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class PlayerTest {
+public class LadderTest {
 
-    @DisplayName("플레이어 객체를 정상적으로 생성한다.")
+    @DisplayName("사다리 객체를 정상적으로 생성한다.")
     @Test
-    void createPlayer() {
-        assertThatCode(() -> new Player("dodo"))
+    void createLadder() {
+        assertThatCode(() -> new Ladder(5))
                 .doesNotThrowAnyException();
     }
 }
