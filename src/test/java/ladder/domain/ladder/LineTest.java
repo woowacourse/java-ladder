@@ -1,10 +1,10 @@
 package ladder.domain.ladder;
 
-import ladder.mock.MockBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,8 +14,7 @@ class LineTest {
     @Test
     @DisplayName("라인 내 발판들을 생성한다.")
     void generateRungs() {
-        List<Boolean> rungExist = List.of(true, false, true);
-        Line line = new Line(4, new MockBooleanGenerator(rungExist));
+        Line line = new Line(Arrays.asList(true, false, true));
         List<Rung> rungs = line.getRungs();
         assertThat(rungs).containsExactly(Rung.EXIST, Rung.EMPTY, Rung.EXIST);
     }
@@ -26,8 +25,7 @@ class LineTest {
         @Test
         @DisplayName("연속되면 발판을 생성하지 않는다. - 1")
         void invalidGenerateRungsV1() {
-            List<Boolean> rungExist = List.of(true, true, true);
-            Line line = new Line(4, new MockBooleanGenerator(rungExist));
+            Line line = new Line(Arrays.asList(true, true, true));
             List<Rung> rungs = line.getRungs();
             assertThat(rungs).containsExactly(Rung.EXIST, Rung.EMPTY, Rung.EXIST);
         }
@@ -35,8 +33,7 @@ class LineTest {
         @Test
         @DisplayName("연속되면 발판을 생성하지 않는다. - 2")
         void invalidGenerateRungsV2() {
-            List<Boolean> rungExist = List.of(true, true, false);
-            Line line = new Line(4, new MockBooleanGenerator(rungExist));
+            Line line = new Line(Arrays.asList(true, true, false));
             List<Rung> rungs = line.getRungs();
             assertThat(rungs).containsExactly(Rung.EXIST, Rung.EMPTY, Rung.EMPTY);
         }
