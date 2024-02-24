@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -32,10 +34,19 @@ class UsersTest {
     }
 
     @Test
-    @DisplayName("존재하지 않는 이름이 주어지면 에러를 발생시킨다")
+    @DisplayName("존재하지 않는 이름이 주어지면 예외를 발생시킨다")
     void nameNotExist() {
         Users users = new Users(List.of("pobi", "rush", "jonge"));
 
-        assertThatThrownBy(() -> users.findPostionByName("brown")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> users.findPositionByName("brown")).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"pobi,0","rush,1","jonge,2"})
+    @DisplayName("사용자 이름이 주어지면 그 위치를 반환한다")
+    void findPositionByName(String name, int position) {
+        Users users = new Users(List.of("pobi", "rush", "jonge"));
+
+        assertThat(users.findPositionByName(name)).isEqualTo(position);
     }
 }

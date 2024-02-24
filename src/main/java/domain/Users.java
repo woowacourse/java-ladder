@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Users {
     private final List<UserName> users;
@@ -29,12 +30,10 @@ public class Users {
         return users;
     }
 
-    public int findPostionByName(String brown) {
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).toString().equals(brown)) {
-                return i;
-            }
-        }
-        throw new IllegalArgumentException("존재하지 않는 이름입니다.");
+    public int findPositionByName(String name) {
+        return IntStream.range(0, users.size())
+                .filter(index -> name.equals(users.get(index).toString()))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 이름입니다."));
     }
 }
