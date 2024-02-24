@@ -18,14 +18,14 @@ public enum LineItem {
 
     public static String getShapeByIsConnected(boolean isConnected) {
         return Arrays.stream(LineItem.values())
-                .filter(ladderItem -> ladderItem.isConnected == isConnected)
+                .filter(lineItem -> lineItem.isConnected == isConnected)
                 .findAny()
                 .orElseThrow()
                 .shape;
     }
 
-    public static List<LineItem> getLadderItemsAsList() {
-        return Arrays.stream(LineItem.values()).toList();
+    public static List<LineItem> getLineItemsAsList() {
+        return List.of(LineItem.values());
     }
 
     public String getShape() {

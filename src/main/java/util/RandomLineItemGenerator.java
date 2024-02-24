@@ -10,7 +10,7 @@ public class RandomLineItemGenerator implements LineItemGenerator {
 
     @Override
     public LineItem generate() {
-        List<LineItem> ladderItems = LineItem.getLadderItemsAsList();
+        List<LineItem> ladderItems = LineItem.getLineItemsAsList();
         return ladderItems.get(random.nextInt(ladderItems.size()));
     }
 
