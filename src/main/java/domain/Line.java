@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static java.util.Collections.unmodifiableList;
+
 public class Line {
     private static final Random random = new Random();
     private final List<Bridge> bridges = new ArrayList<>();
@@ -13,7 +15,7 @@ public class Line {
     }
 
     public List<Bridge> getBridges() {
-        return this.bridges;
+        return unmodifiableList(this.bridges);
     }
 
     private void makeLine(final int width) {

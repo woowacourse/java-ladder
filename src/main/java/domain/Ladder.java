@@ -3,6 +3,8 @@ package domain;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static java.util.Collections.unmodifiableList;
+
 
 public class Ladder {
 
@@ -12,13 +14,13 @@ public class Ladder {
         this.lines = generateLadder(width, height);
     }
 
-    public List<Line> generateLadder(final int width, final int height) {
+    private List<Line> generateLadder(final int width, final int height) {
         return IntStream.range(0, height)
                 .mapToObj(ignore -> new Line(width))
                 .toList();
     }
 
     public List<Line> getLines() {
-        return this.lines;
+        return unmodifiableList(this.lines);
     }
 }
