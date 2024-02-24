@@ -18,7 +18,7 @@ class ResultsTest {
         List<String> resultNames = List.of("꽝", "5000", "꽝", "3000");
 
         //when
-        Results results = Results.from(resultNames);
+        Results results = Results.from(resultNames, resultNames.size());
 
         //then
         assertEquals(results.getResults().get(0).name(), resultNames.get(0));
@@ -32,7 +32,7 @@ class ResultsTest {
         List<String> resultNames = List.of(name);
 
         //when & then
-        assertThrows(IllegalArgumentException.class, () -> Results.from(resultNames));
+        assertThrows(IllegalArgumentException.class, () -> Results.from(resultNames, resultNames.size()));
     }
 
     @Test

@@ -17,7 +17,8 @@ public class LadderGame {
 
     public void run() {
         Players players = requestUntilValidated(() -> Players.from(inputView.readPlayersName()));
-        Results results = requestUntilValidated(() -> Results.from(inputView.readResultNames()));
+        Results results = requestUntilValidated(
+                () -> Results.from(inputView.readResultNames(), players.getPlayers().size()));
         Height height = requestUntilValidated(() -> new Height(inputView.readLadderHeight()));
         BuildStrategy pointBuildStrategy = new PointBuildStrategy();
         Ladder ladder = new Ladder(players, height, results, pointBuildStrategy);
