@@ -1,11 +1,10 @@
 package Controller;
 
 import domain.*;
-import dto.HeightRequest;
-import dto.PlayersRequest;
 import view.InputView;
 import view.OutputView;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 public class LadderGame {
@@ -28,13 +27,13 @@ public class LadderGame {
     }
 
     private Players readPlayers() {
-        final PlayersRequest playersRequest = readWithRetry(inputView::inputPlayers);
-        return playersRequest.toPlayers();
+        final List<String> players = readWithRetry(inputView::inputPlayers);
+        return Players.from(players);
     }
 
     private Height readHeight() {
-        final HeightRequest heightRequest = readWithRetry(inputView::inputHeight);
-        return heightRequest.toHeigth();
+        final int height = readWithRetry(inputView::inputHeight);
+        return new Height(height);
     }
 
     private LadderMaker generateLadderMaker(Height height, Players players) {
