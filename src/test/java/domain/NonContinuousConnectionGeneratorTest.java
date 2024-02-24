@@ -18,7 +18,7 @@ class NonContinuousConnectionGeneratorTest {
         connectionGenerator = new NonContinuousConnectionGenerator();
     }
 
-    @DisplayName("라인을 생성할 때 이전의 연결상태가 true이면 false를 다음값으로 채택한다")
+    @DisplayName("이전의 연결상태가 true이면 false를 다음값으로 채택한다")
     @Test
     void testDecideNextConnectionByPrevStatus() {
         ConnectionStatus previousStatus = CONNECTED;
