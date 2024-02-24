@@ -1,7 +1,7 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import ladder.domain.dto.LadderResponseDto;
 import ladder.domain.dto.LineResponseDto;
 import ladder.domain.randomGenerator.RungGenerator;
@@ -15,13 +15,9 @@ public class Ladder {
     }
 
     private List<Line> makeLines(Height height, int personCount, RungGenerator rungGenerator) {
-        List<Line> lines = new ArrayList<>();
-
-        for (int currentHeight = 0; currentHeight < height.getHeight(); currentHeight++) {
-            lines.add(new Line(rungGenerator, personCount));
-        }
-
-        return lines;
+        return IntStream.range(0, height.getHeight())
+                .mapToObj(currentHeight -> new Line(rungGenerator, personCount))
+                .toList();
     }
 
     public LadderResponseDto getResultLadders() {
