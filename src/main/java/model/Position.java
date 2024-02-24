@@ -10,4 +10,12 @@ public record Position(int depth, int column) {
             throw new IllegalArgumentException("위치는 음수일 수 없습니다.");
         }
     }
+
+    public Position getLeftPosition() {
+        return new Position(depth, column - 1);
+    }
+
+    public Position getRightPosition() {
+        return new Position(depth, column + 1);
+    }
 }
