@@ -5,7 +5,8 @@ public class LadderGame {
     private final Names names;
 
     public LadderGame(String userNames, int ladderHeight) {
-        names = new Names(userNames);
+        NameCreator nameCreator = new NameCreator();
+        names = nameCreator.create(userNames);
         int nameCount = names.getNameCount();
         Height height = new Height(ladderHeight);
         Width width = new Width(nameCount);

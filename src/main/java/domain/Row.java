@@ -1,14 +1,12 @@
 package domain;
 
-import static domain.Names.MAX_NAMES_COUNT;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class Row {
     static final int MIN_BRIDGES_COUNT = 1;
-    static final int MAX_BRIDGES_COUNT = MAX_NAMES_COUNT - 1;
+    static final int MAX_BRIDGES_COUNT = 9;
 
     private final List<Boolean> bridges;
 
