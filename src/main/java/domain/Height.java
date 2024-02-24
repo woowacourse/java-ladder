@@ -8,16 +8,9 @@ public class Height {
     private final int value;
 
     public Height(String rawValue) {
-        this.value = validateNonNumeric(rawValue);
+        int value = StringParser.stringToInt(rawValue);
         validateRange(value);
-    }
-
-    private int validateNonNumeric(String rawValue) {
-        try {
-            return Integer.parseInt(rawValue);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력해 주세요.");
-        }
+        this.value = value;
     }
 
     private void validateRange(int value) {

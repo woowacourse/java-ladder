@@ -1,40 +1,23 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Members {
 
+    private static final String DELIMITER = ",";
     private static final int MIN_MEMBER_COUNT = 2;
     private static final int MAX_MEMBER_COUNT = 15;
 
     private final List<Member> members = new ArrayList<>();
 
     public Members(String rawNames) {
-        validate(rawNames);
-    }
-
-    private void validate(String rawNames) {
-        validateNull(rawNames);
-        List<String> names = addMembers(rawNames);
+        List<String> names = StringParser.splitByDelimiter(rawNames, DELIMITER);
         validateDuplication(names);
         validateCount(names);
-        names.forEach(name -> members.add(new Member(name)));
-    }
-
-    private List<String> addMembers(String rawNames) {
-        return Arrays.stream(rawNames.split(",", -1))
-                .map(String::trim)
-                .toList();
-    }
-
-    private void validateNull(String rawNames) {
-        if (rawNames == null) {
-            throw new IllegalArgumentException("null을 입력할 수 없습니다.");
-        }
+        addMembersByNames(names);
     }
 
     private void validateDuplication(List<String> names) {
@@ -48,6 +31,10 @@ public class Members {
         if (names.size() < MIN_MEMBER_COUNT || names.size() > MAX_MEMBER_COUNT) {
             throw new IllegalArgumentException("참여자는 " + MIN_MEMBER_COUNT + "~" + MAX_MEMBER_COUNT + "명만 허용됩니다.");
         }
+    }
+
+    private void addMembersByNames(List<String> names) {
+        names.forEach(name -> members.add(new Member(name)));
     }
 
     public int getCount() {
