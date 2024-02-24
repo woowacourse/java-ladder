@@ -1,5 +1,7 @@
 package view;
 
+import domain.Game;
+import domain.GameResult;
 import domain.Ladder;
 import domain.Line;
 import domain.Player;
@@ -9,11 +11,12 @@ import java.util.List;
 
 public class OutputView {
 
-    public void printLadder(Players players, Ladder ladder) {
+    public void printResult(Game game) {
         System.out.println("실행결과");
 
-        printPlayerNames(players);
-        printLadder(ladder);
+        printPlayerNames(game.getPlayers());
+        printLadder(game.getLadder());
+        printGameResults(game.getGameResults());
     }
 
     private void printPlayerNames(Players players) {
@@ -40,5 +43,9 @@ public class OutputView {
         }
 
         System.out.printf("     |%s%n", sb);
+    }
+
+    private void printGameResults(List<GameResult> gameResults) {
+        gameResults.forEach(gameResult -> System.out.printf("%-5s", gameResult.getName()));
     }
 }

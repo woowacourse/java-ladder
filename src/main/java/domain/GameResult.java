@@ -1,6 +1,6 @@
 package domain;
 
-class GameResult {
+public class GameResult {
 
     private final String name;
 
@@ -14,5 +14,9 @@ class GameResult {
         if (resultName.trim().isEmpty()) {
             throw new IllegalArgumentException("실행 결과는 공백을 제외한 1자 이상 입력해주세요.");
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }

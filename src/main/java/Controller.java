@@ -17,9 +17,8 @@ class Controller {
         List<String> playerNames = inputView.readNames();
         List<String> gameResults = inputView.readGameResults();
         int height = inputView.readHeight();
-
         Game game = new Game(playerNames, gameResults, height);
 
-        outputView.printLadder(game.getPlayers(), game.getLadder());
+        outputView.printResult(game);
     }
 }

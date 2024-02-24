@@ -31,4 +31,8 @@ public class Game {
     public Ladder getLadder() {
         return this.ladder;
     }
+
+    public List<GameResult> getGameResults() {
+        return this.gameResults;
+    }
 }
