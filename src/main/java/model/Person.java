@@ -15,7 +15,7 @@ public class Person {
     }
 
     public void climbDown(final Ladder ladder) {
-        while (position.depth() < ladder.getLines().size()) {
+        while (ladder.isWithinLadderRange(position)) {
             Line line = ladder.get(position.depth());
             moveHorizontally(line);
             moveBelow();

@@ -52,4 +52,8 @@ public class Line {
         Path rightPath = paths.get(column);
         return rightPath.isExist();
     }
+
+    public int size() {
+        return paths.size();
+    }
 }

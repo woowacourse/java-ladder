@@ -31,6 +31,26 @@ public class Ladder {
         return lines.get(depth);
     }
 
+    public boolean isWithinLadderRange(final Position position) {
+        final int depth = position.depth();
+        final int column = position.column();
+        if (depth < 0) {
+            throw new IllegalStateException("올바르지 않은 위치입니다.");
+        }
+        if (column < 0 || column > getWidth()) {
+            throw new IllegalStateException("올바르지 않은 위치입니다.");
+        }
+        return depth < getHeight();
+    }
+
+    private int getHeight() {
+        return lines.size();
+    }
+
+    private int getWidth() {
+        return lines.get(0).size();
+    }
+
     public List<Line> getLines() {
         return lines;
     }
