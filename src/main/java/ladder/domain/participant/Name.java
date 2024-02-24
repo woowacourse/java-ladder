@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.participant;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class Name {
 
     private static final int MAXIMUM_NAME_LENGTH = 5;
-    private static final Pattern specialCharactersFilter = Pattern.compile("[^a-zA-Z0-9\\s]");
+    private static final Pattern specialCharactersFilter = Pattern.compile("[^ㄱ-ㅎ가-힣a-zA-Z0-9\\s]");
 
     private final String name;
 
@@ -23,7 +23,7 @@ public class Name {
 
     private void validateNameLength(String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름의 길이는 최대 5글자 까지 가능합니다.");
+            throw new IllegalArgumentException("이름의 길이는 최대 " + MAXIMUM_NAME_LENGTH + "글자 까지 가능합니다.");
         }
     }
 

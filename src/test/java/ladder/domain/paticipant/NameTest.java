@@ -1,8 +1,10 @@
-package ladder.domain;
+package ladder.domain.paticipant;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import ladder.domain.participant.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,7 +14,7 @@ public class NameTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"123456", "hellooooo"})
-    @DisplayName("이름이 요구하는 길이와 일치하지 않으면 에러를 발생한다.")
+    @DisplayName("이름이 요구하는 길이와 일치하지 않으면 에러를 발생시킨다.")
     void isValidNameLengthTest(String name) {
 
         assertThatThrownBy(() -> new Name(name))
@@ -21,7 +23,7 @@ public class NameTest {
     }
 
     @Test
-    @DisplayName("이름이 공백일 경우 에러를 발생한다.")
+    @DisplayName("이름이 공백일 경우 에러를 발생시킨다..")
     void isNotBlankNameTest() {
 
         assertThatThrownBy(() -> new Name(" "))
@@ -48,4 +50,13 @@ public class NameTest {
         assertDoesNotThrow(() -> new Name(name));
     }
 
+    @Test
+    @DisplayName("eqauls & hashCode 메서드 오버라이드 테스트")
+    void eqaulsTest() {
+        Name name1 = new Name("jazz");
+        Name name2 = new Name("jazz");
+
+        assertThat(name1).isEqualTo(name2);
+        assertThat(name1.hashCode()).isEqualTo(name2.hashCode());
+    }
 }
