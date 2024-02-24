@@ -14,7 +14,6 @@ public class OutputView {
     private static final String LINE_HORIZONTAL = "-----";
     private static final int MAX_NAME_LENGTH = 5;
     public static final int USERNAME_BLANK_DEFAULT = 4;
-    public static final int USERNAME_SEPARATING_COUNT = 2;
 
     public void printError(String message) {
         System.out.println(message);
@@ -30,17 +29,21 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
         for (User user : users.getUsers()) {
             String userName = user.getUserName();
-            sb.append(appendNameFormat(userName));
+            appendNameFormat(sb, userName);
         }
         System.out.println(sb);
     }
 
-    private String appendNameFormat(String userName) {
+    private void appendNameFormat(StringBuilder sb, String userName) {
         if (userName.length() < MAX_NAME_LENGTH) {
-            String blankFormats = BLANK.repeat(USERNAME_BLANK_DEFAULT - userName.length());
-            return blankFormats + userName + BLANK.repeat(USERNAME_SEPARATING_COUNT);
+            sb.append(BLANK.repeat(USERNAME_BLANK_DEFAULT - userName.length()));
         }
-        return userName + BLANK;
+
+        sb.append(userName).append(BLANK);
+
+        if (userName.length() < MAX_NAME_LENGTH) {
+            sb.append(BLANK);
+        }
     }
 
     private void printLadder(Ladder ladder) {
