@@ -24,6 +24,10 @@ public class Person {
         }
     }
 
+    public void moveBelow() {
+        position = position.getBelowPosition();
+    }
+
     public String getName() {
         return personName.name();
     }
