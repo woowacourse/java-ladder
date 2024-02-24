@@ -12,13 +12,13 @@ import java.util.StringJoiner;
 
 import static laddergame.domain.ladder.Connection.CONNECTED;
 
-public class OutputView {
+public class ResultView {
     private static final String BLANK = " ";
     private static final String VERTICAL_LINE = "|";
     private static final String HORIZONTAL_LINE = "-";
     private static final int INTERVAL_WIDTH = 5;
 
-    private OutputView() {
+    private ResultView() {
     }
 
     public static void printNames(People people) {
