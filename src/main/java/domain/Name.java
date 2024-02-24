@@ -10,6 +10,7 @@ public class Name {
 
     private static final Pattern NAME_LANGUAGE_FORMAT_PATTERN = Pattern.compile("^[A-Za-z]*$");
     private static final int MAXIMUM_NAME_SIZE = 5;
+
     private final String name;
 
     public Name(String name) {
