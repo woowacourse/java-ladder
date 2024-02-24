@@ -1,20 +1,20 @@
 package ladder.view;
 
 import java.util.List;
-import ladder.domain.Name;
-import ladder.domain.dto.BuiltLadderDto;
-import ladder.domain.dto.ResultLadderDto;
+import ladder.domain.dto.LadderResponseDto;
+import ladder.domain.dto.LineResponseDto;
+import ladder.domain.participant.Name;
 
 public class OutputView {
 
     private static final String LADDERS_PREFIX = "    |";
     private static final String LADDER_STICK_SYMBOL = "|";
 
-    public void printResult(ResultLadderDto resultLadderDto, List<Name> names) {
-        List<BuiltLadderDto> builtLadderDtos = resultLadderDto.resultLadder();
+    public void printResult(LadderResponseDto ladderResponseDto, List<Name> names) {
+        List<LineResponseDto> lineResponseDtos = ladderResponseDto.ladderResult();
 
         printParticipantsNames(names);
-        printBuiltLadders(builtLadderDtos);
+        printBuiltLadders(lineResponseDtos);
     }
 
     private void printParticipantsNames(List<Name> names) {
@@ -24,15 +24,15 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printBuiltLadders(List<BuiltLadderDto> builtLadderDtos) {
-        for (BuiltLadderDto builtLadderDto : builtLadderDtos) {
-            System.out.println(LADDERS_PREFIX + String.join(LADDER_STICK_SYMBOL, builtLadderDto.builtLadder()));
+    private void printBuiltLadders(List<LineResponseDto> lineResponseDtos) {
+        for (LineResponseDto lineResponseDto : lineResponseDtos) {
+            System.out.println(LADDERS_PREFIX + String.join(LADDER_STICK_SYMBOL,
+                    RungSymbol.changeStatusListToSymbol(lineResponseDto.buildStatusList())
+            ) + LADDER_STICK_SYMBOL);
         }
     }
 
     public void printError(IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }
-
-
 }
