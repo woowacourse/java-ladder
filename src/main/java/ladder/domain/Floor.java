@@ -3,19 +3,19 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import ladder.domain.dto.LineResponseDto;
+import ladder.domain.dto.FloorResponseDto;
 import ladder.domain.randomGenerator.RungGenerator;
 
-public class Line {
+public class Floor {
 
-    private static final boolean FIRST_POSITION_NOT_EXIST = false;
+    private static final boolean FIRST_POSITION_NOT_EXIST = true;
     private static final int EXCLUDE_LAST_POSITION = 1;
-    private static final int FOR_BEFORE_POSITION = 1;
+    private static final int FOR_PREVIOUS_POSITION = 1;
 
     private final RungGenerator rungGenerator;
     private final List<Rung> rungs;
 
-    public Line(final RungGenerator rungGenerator, final int personCount) {
+    public Floor(final RungGenerator rungGenerator, final int personCount) {
         this.rungGenerator = rungGenerator;
         this.rungs = makeRungs(personCount);
     }
@@ -30,20 +30,20 @@ public class Line {
     }
 
     private Rung generateRung(int currentPosition, List<Rung> rungs) {
-        if (!hasRungDuplicated(currentPosition, rungs) && rungGenerator.getRandomBooleanStatus()) {
-            return Rung.EXIST;
+        if (checkPreviousPositionNotExist(currentPosition, rungs)) {
+            return rungGenerator.getRandomStatusRung();
         }
         return Rung.NOT_EXIST;
     }
 
-    private boolean hasRungDuplicated(int currentPosition, List<Rung> rungs) {
+    private boolean checkPreviousPositionNotExist(int currentPosition, List<Rung> rungs) {
         if (currentPosition > 0) {
-            return rungs.get(currentPosition - FOR_BEFORE_POSITION).isBuildStatus();
+            return !rungs.get(currentPosition - FOR_PREVIOUS_POSITION).isBuildStatus();
         }
         return FIRST_POSITION_NOT_EXIST;
     }
 
-    public LineResponseDto getRungs() {
-        return LineResponseDto.of(rungs);
+    public FloorResponseDto getRungs() {
+        return FloorResponseDto.of(rungs);
     }
 }

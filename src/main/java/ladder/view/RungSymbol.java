@@ -17,10 +17,10 @@ public enum RungSymbol {
         this.symbol = symbol;
     }
 
-    public static List<String> changeStatusListToSymbol(List<Boolean> lineStatus) {
+    public static List<String> changeStatusListToSymbol(List<Boolean> rungsBuildStatus) {
         List<String> symbols = new ArrayList<>();
 
-        for (Boolean buildStatus : lineStatus) {
+        for (Boolean buildStatus : rungsBuildStatus) {
             symbols.add(changeStatusToSymbol(buildStatus));
         }
 
