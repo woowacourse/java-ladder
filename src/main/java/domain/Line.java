@@ -1,6 +1,8 @@
 package domain;
 
 import util.LineItemGenerator;
+import view.LineItem;
+
 import java.util.ArrayList;
 import java.util.List;
 

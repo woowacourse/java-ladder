@@ -1,6 +1,6 @@
 package util;
 
-import domain.LineItem;
+import view.LineItem;
 import java.util.Random;
 
 public class RandomLineItemGenerator implements LineItemGenerator {

@@ -1,6 +1,6 @@
 package util;
 
-import domain.LineItem;
+import view.LineItem;
 
 public class TestLineItemGenerator implements LineItemGenerator {
 
