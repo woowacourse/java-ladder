@@ -15,7 +15,8 @@ public class Ladder {
         validateHeight(height);
         final List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            final Line line = new Line(pathGenerator.generate(personCount - 1));
+            int pathCount = personCount - 1;
+            final Line line = new Line(pathGenerator.generate(pathCount));
             lines.add(line);
         }
         return new Ladder(lines);
