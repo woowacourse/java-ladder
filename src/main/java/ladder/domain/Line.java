@@ -8,8 +8,9 @@ public class Line {
     private final List<Stick> sticks;
 
     public Line(List<Stick> sticks) {
-        validate(sticks);
-        this.sticks = sticks;
+        List<Stick> copiedSticks = List.copyOf(sticks);
+        validate(copiedSticks);
+        this.sticks = copiedSticks;
     }
 
     private void validate(List<Stick> sticks) {
