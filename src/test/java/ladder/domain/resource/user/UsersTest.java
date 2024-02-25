@@ -19,7 +19,8 @@ class UsersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 사용자는 2~10명 까지만 등록 가능합니다.");
     }
-
+    
+    //TODO 초과할 -> 초과인
     @DisplayName("사용자의 이름의 개수가 10명 초과할 경우 예외가 발생한다.")
     @Test
     void newUsersTestByCountOverSize() {

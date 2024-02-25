@@ -40,7 +40,7 @@ class UserTest {
         //when, then
         assertThatThrownBy(() -> new User(userName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 사용자 이름은 영문 대소문자만 허용합니다.");
+                .hasMessage("[ERROR] 사용자 이름은 영문 대소문자와 숫자만 허용합니다.");
     }
 
     @DisplayName("사용자의 이름 내에 공백이 존재한다면 예외가 발생한다.")

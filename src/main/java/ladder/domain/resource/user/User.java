@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class User {
 
-    private static final String ALPHABET_FORMAT = "^[a-z A-Z]+$";
+    private static final String ALPHABET_FORMAT = "^[a-zA-Z0-9 ]+$";
     private static final String BLANK = " ";
     private static final int MAX_NAME_LENGTH = 5;
 
@@ -33,7 +33,7 @@ public class User {
 
     private void validateNameEngFormat(String name) {
         if (!Pattern.matches(ALPHABET_FORMAT, name)) {
-            throw new IllegalArgumentException("[ERROR] 사용자 이름은 영문 대소문자만 허용합니다.");
+            throw new IllegalArgumentException("[ERROR] 사용자 이름은 영문 대소문자와 숫자만 허용합니다.");
         }
     }
 
