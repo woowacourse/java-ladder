@@ -1,13 +1,14 @@
 package laddergame.domain;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("플레이어들")
 public class PlayersTest {
@@ -35,7 +36,6 @@ public class PlayersTest {
 
         // when & then
         assertThrows(IllegalArgumentException.class, () -> Players.from(List.of(name, name)));
-
     }
 
     @ParameterizedTest

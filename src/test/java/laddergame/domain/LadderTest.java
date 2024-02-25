@@ -1,12 +1,13 @@
 package laddergame.domain;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.List;
 import laddergame.domain.strategy.LineBuildStrategy;
 import laddergame.domain.strategy.RandomNoTrueSequenceBuildStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("사다리")
 public class LadderTest {

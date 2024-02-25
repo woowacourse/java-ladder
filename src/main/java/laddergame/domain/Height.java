@@ -14,8 +14,6 @@ public class Height {
 
     private void validate(final String height) {
         checkIsNaturalNumber(height);
-//        checkIsNumber(height);
-//        checkIsZero(height);
     }
 
     private void checkIsNaturalNumber(final String height) {

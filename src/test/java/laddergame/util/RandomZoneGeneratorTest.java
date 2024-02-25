@@ -1,12 +1,12 @@
 package laddergame.util;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.List;
-
 import laddergame.domain.Zone;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("랜덤")
 class RandomZoneGeneratorTest {

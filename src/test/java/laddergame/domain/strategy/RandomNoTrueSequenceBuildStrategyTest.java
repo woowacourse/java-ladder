@@ -1,15 +1,13 @@
 package laddergame.domain.strategy;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
 import laddergame.domain.Zone;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.stream.IntStream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("랜덤전략")
 public class RandomNoTrueSequenceBuildStrategyTest {

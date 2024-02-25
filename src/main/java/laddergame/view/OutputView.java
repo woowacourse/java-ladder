@@ -1,9 +1,9 @@
 package laddergame.view;
 
+import laddergame.domain.*;
+
 import java.util.StringJoiner;
 import java.util.stream.IntStream;
-
-import laddergame.domain.*;
 
 public class OutputView {
     public static final String LINE_SEPARATOR = System.lineSeparator();
@@ -24,9 +24,8 @@ public class OutputView {
 
     private void writeLine(final Line line) {
         StringJoiner stringJoiner = new StringJoiner(LADDER_SEPARATOR, SPACE + LADDER_SEPARATOR, LADDER_SEPARATOR);
-        for (Zone zone : line.getZones()) {
-            stringJoiner.add(zone.getSymbol());
-        }
+        line.getZones().forEach(zone -> stringJoiner.add(zone.getSymbol()));
+
         System.out.println(stringJoiner);
     }
 

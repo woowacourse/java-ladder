@@ -1,8 +1,8 @@
 package laddergame.domain;
 
-import java.util.List;
-
 import laddergame.domain.strategy.LineBuildStrategy;
+
+import java.util.List;
 
 public class Line {
     private List<Zone> zones;

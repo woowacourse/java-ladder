@@ -1,9 +1,8 @@
 package laddergame.domain;
 
-import static laddergame.domain.Player.NAME_BLANK_ERROR;
-
 import java.util.List;
-import java.util.regex.Pattern;
+
+import static laddergame.domain.Player.NAME_BLANK_ERROR;
 
 public class Players {
     private static final String NAME_DUPLICATED_ERROR = "이름의 중복은 허용하지 않습니다.";

@@ -1,9 +1,10 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import laddergame.domain.strategy.LineBuildStrategy;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Line> lines;
@@ -16,11 +17,10 @@ public class Ladder {
                                  final Players players,
                                  final Height height)
     {
-        List<Line> temp = new ArrayList<>();
-        for (int i = 0; i < height.getHeight(); i++) {
-            temp.add(Line.buildOf(lineBuildStrategy, players.getPlayersCount() - 1));
-        }
-        return new Ladder(temp);
+        List<Line> lines = IntStream.range(0, height.getHeight())
+                    .mapToObj(i -> Line.buildOf(lineBuildStrategy, players.getPlayersCount() - 1))
+                    .collect(Collectors.toList());
+        return new Ladder(lines);
     }
 
     public List<Line> getLines() {

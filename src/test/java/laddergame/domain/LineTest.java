@@ -1,13 +1,12 @@
 package laddergame.domain;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
-import java.util.List;
 import laddergame.domain.strategy.LineBuildStrategy;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("라인")
 public class LineTest {
