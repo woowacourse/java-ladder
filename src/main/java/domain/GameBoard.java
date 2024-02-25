@@ -29,6 +29,10 @@ public class GameBoard {
         return ladder;
     }
 
+    public Prizes getPrizes() {
+        return prizes;
+    }
+
     public List<Direction> getDirectionAtHorizontalIndex(Integer index) {
         return ladder.getDirectionAtHorizontalIndex(index);
     }
