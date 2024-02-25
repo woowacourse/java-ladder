@@ -16,4 +16,14 @@ public class ResultTest {
         assertThrows(IllegalArgumentException.class, () -> new Result(invalidResult));
         assertDoesNotThrow(() -> new Result(validResult));
     }
+
+    @Test
+    @DisplayName("실행 결과는 1글자 이상이어야 한다.")
+    void isValidResult() {
+        String invalidResult = "";
+        String validResult = "5";
+
+        assertThrows(IllegalArgumentException.class, () -> new Result(invalidResult));
+        assertDoesNotThrow(() -> new Result(validResult));
+    }
 }
