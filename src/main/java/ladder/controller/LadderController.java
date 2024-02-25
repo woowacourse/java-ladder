@@ -17,12 +17,7 @@ public class LadderController {
 
         Ladder ladder = new LadderGenerator(ladderWidth(people), ladderHeight.getValue())
                 .generate();
-        OutputView.printResult(
-                people.getNames(),
-                ladder.lines().stream()
-                        .map(Line::scaffolds)
-                        .toList()
-        );
+        printResult(people, ladder);
     }
 
     private static <T> T requestUntilValid(Supplier<T> supplier) {
@@ -44,5 +39,14 @@ public class LadderController {
 
     private static int ladderWidth(People people) {
         return people.getCount() - 1;
+    }
+
+    private static void printResult(People people, Ladder ladder) {
+        OutputView.printResult(
+                people.getNames(),
+                ladder.lines().stream()
+                        .map(Line::scaffolds)
+                        .toList()
+        );
     }
 }
