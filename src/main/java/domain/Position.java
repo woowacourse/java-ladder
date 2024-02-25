@@ -41,10 +41,10 @@ class Position {
         Boolean canGoRight = getCanGo(bridges, rawPosition);
         Boolean canGoLeft = getCanGo(bridges, rawPosition - 1);
         if (canGoRight) {
-            return Position.getCachedPosition(rawPosition + 1, maxPosition);
+            return moveRight();
         }
         if (canGoLeft) {
-            return Position.getCachedPosition(rawPosition - 1, maxPosition);
+            return moveLeft();
         }
         return this;
     }
@@ -54,6 +54,14 @@ class Position {
             return false;
         }
         return bridges.get(nextRawPosition);
+    }
+
+    private Position moveRight() {
+        return Position.getCachedPosition(rawPosition + 1, maxPosition);
+    }
+
+    private Position moveLeft() {
+        return Position.getCachedPosition(rawPosition - 1, maxPosition);
     }
 
     @Override
@@ -76,13 +84,5 @@ class Position {
 
     int getRawPosition() {
         return rawPosition;
-    }
-
-    @Override
-    public String toString() {
-        return "Position{" +
-                "rawPosition=" + rawPosition +
-                ", maxPosition=" + maxPosition +
-                '}';
     }
 }
