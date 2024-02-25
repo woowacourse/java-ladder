@@ -18,14 +18,14 @@ public class LadderGame {
     private final OutputView outputView = OutputView.getInstance();
 
     public void run() {
-        Players players = requestUntilValidated(() -> Players.from(inputView.readPlayersName()));
-        Results results = requestUntilValidated(
+        final Players players = requestUntilValidated(() -> Players.from(inputView.readPlayersName()));
+        final Results results = requestUntilValidated(
                 () -> Results.from(inputView.readResultNames(), players.getPlayers().size()));
-        Height height = requestUntilValidated(() -> new Height(inputView.readLadderHeight()));
-        BuildStrategy pointBuildStrategy = new PointBuildStrategy();
-        Ladder ladder = new Ladder(players, height, results, pointBuildStrategy);
+        final Height height = requestUntilValidated(() -> new Height(inputView.readLadderHeight()));
+        final BuildStrategy pointBuildStrategy = new PointBuildStrategy();
+        final Ladder ladder = new Ladder(players, height, results, pointBuildStrategy);
         outputView.writeLadderResult(players, ladder, results);
-        PlayersResults playersResults = ladder.getPlayersResults();
+        final PlayersResults playersResults = ladder.getPlayersResults();
         repeatUntil(() -> runCommand(
                 requestUntilValidated(() -> inputView.readDesiredPlayerName(players)), playersResults));
     }
