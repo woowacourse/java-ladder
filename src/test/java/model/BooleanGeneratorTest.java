@@ -9,7 +9,7 @@ class BooleanGeneratorTest {
     @DisplayName("true를 입력하면 반드시 false를 반환한다.")
     @Test
     void returnFalseIfTrue() {
-        BooleanGenerator booleanGenerator = new BooleanGenerator();
+        LadderRowElementGenerator booleanGenerator = new LadderRowElementGenerator();
         boolean result = booleanGenerator.updateFalseIfTrue(true);
         Assertions.assertThat(result).isFalse();
     }

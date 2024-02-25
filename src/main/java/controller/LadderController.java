@@ -1,7 +1,7 @@
 package controller;
 
-import model.BooleanGenerator;
-import model.BooleansGenerator;
+import model.LadderRowElementGenerator;
+import model.LadderRowGenerator;
 import model.Height;
 import model.Ladder;
 import model.Participants;
@@ -22,8 +22,8 @@ public class LadderController {
 
     public void play() throws IOException {
         Participants participants = new Participants(inputView.inputParticipantsName());
-        BooleansGenerator booleansGenerator
-                = new BooleansGenerator(participants.getParticipantsSize(), new BooleanGenerator());
+        LadderRowGenerator booleansGenerator
+                = new LadderRowGenerator(participants.getParticipantsSize(), new LadderRowElementGenerator());
         Height height = new Height(inputView.inputLadderHeight());
 
         Ladder ladder = new Ladder(height, booleansGenerator);
