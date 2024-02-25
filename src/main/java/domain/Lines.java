@@ -16,7 +16,7 @@ public class Lines {
     public static Lines of(int memberCount, int height, ConnectionStrategy connectionStrategy) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(memberCount, connectionStrategy));
+            lines.add(Line.from(memberCount, connectionStrategy));
         }
         return new Lines(lines);
     }
