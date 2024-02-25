@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -12,8 +14,17 @@ public class DestinationsTest {
         List<String> destinations = List.of("꽝", "5000", "꽝", "3000");
         int userCount = 5;
 
-        Assertions.assertThatIllegalArgumentException()
+        assertThatIllegalArgumentException()
                 .isThrownBy(() -> Destinations.of(destinations, userCount))
                 .withMessage("실행 결과 수는 사용자 수와 같아야 합니다.");
+    }
+
+    @DisplayName("List<String>으로 전달 받은 destinations들을 List<Destination>으로 반환한다.")
+    @Test
+    void makeStringToDestination() {
+        List<String> destinations = List.of("꽝", "5000");
+
+        Assertions.assertThat(Destinations.of(destinations, 2).getDestinations())
+                .containsExactly(new Destination("꽝"), new Destination("5000"));
     }
 }
