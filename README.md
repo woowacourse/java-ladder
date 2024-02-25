@@ -95,7 +95,8 @@ example feat: 사용자 입력 후 도메인 사용
 - [x] `NoTrueSequenceBuildStrategy` 클래스명을 `NonContinuousLineBuildStrategy` 로 수정
 - [x] `NoTrueSequenceBuildStrategy`에서 스트림 -> for문으로 수정
   - 스트림은 컬렉션의 개별 요소에 컨텍스트 없이 접근할 때는 좋지만, 이전 컨텍스트를 가져와야 할 때는 불편하다.
-- [ ] `RandomZoneGenerator`의 generate 메소드에 있는 매직넘버 상수화
+- [x] `RandomZoneGenerator`의 generate 메소드에 있는 매직넘버 상수화
+  - nextBoolean 사용
 - [ ] `OutputView`의 래더 출력 메소드에 있는 스트림을 `ladder.getLines().forEach(this::writeLine);`로 수정하기
 - [ ] `OutputView`의 래더 출력 메소드에 있는 스트림에 join까지 넣기
 - [x] `Ladder` 클래스의 정적팩토리 메서드 대신 non static 생성자만 사용하기
