@@ -43,11 +43,11 @@ public class Ladder {
         return new Result(map);
     }
 
-    private Trace moveLines(int position) {
-        Trace trace = Trace.init(position, new LeftStrategy());
+    private Trace moveLines(int index) {
+        Trace trace = Trace.init(index, new LeftStrategy());
 
         for(Line line : lines) {
-            trace = line.move(trace);
+            trace = trace.next(line);
         }
 
         return trace;

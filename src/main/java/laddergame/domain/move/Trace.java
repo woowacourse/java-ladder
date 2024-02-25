@@ -13,16 +13,20 @@ public class Trace {
         this.movableStrategy = movableStrategy;
     }
 
+    public static Trace init(final int position, final MovableStrategy movableStrategy) {
+        return new Trace(position, movableStrategy);
+    }
+
+    public Trace next(Line line) {
+        return movableStrategy.move(line, position).orElse(this);
+    }
+
     public int getPosition() {
         return position;
     }
 
     public MovableStrategy getMovableStrategy() {
         return movableStrategy;
-    }
-
-    public Trace next(Line line) {
-        return movableStrategy.move(line, position).orElse(this);
     }
 
     @Override

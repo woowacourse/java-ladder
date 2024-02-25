@@ -44,10 +44,6 @@ public class Line {
                 .toList();
     }
 
-    public Trace move(Trace trace) {
-        return trace.next(this);
-    }
-
     public boolean hasPoint(int position) {
         if (position == -1 || position == points.size()) {
             return false;
