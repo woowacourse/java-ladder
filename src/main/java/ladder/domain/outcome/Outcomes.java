@@ -15,4 +15,8 @@ public class Outcomes {
                 .map(Outcome::new)
                 .toList();
     }
+
+    public List<Outcome> getValues() {
+        return outcomes;
+    }
 }
