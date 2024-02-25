@@ -1,10 +1,16 @@
 package ladder;
 
+import java.util.ArrayList;
 import java.util.List;
+import ladder.domain.Destination;
 import ladder.domain.Destinations;
+import ladder.domain.GameResult;
+import ladder.domain.GameResults;
 import ladder.domain.LadderHeight;
 import ladder.domain.Lines;
+import ladder.domain.RequestName;
 import ladder.domain.UserNames;
+import ladder.dto.AllResults;
 import ladder.dto.Ladder;
 import ladder.dto.LineResult;
 import ladder.util.ConsoleReader;
@@ -22,6 +28,8 @@ public class LadderGameMachine {
         Destinations destinations = initDestinations(userNames.getUserCount());
         Ladder ladder = createLadder(userNames, lines, destinations);
         OutputView.printLadder(ladder);
+        GameResults gameResults = new GameResults(userNames, lines.findStepPositions(), destinations.getDestinations());
+        printGameResult(gameResults, userNames);
     }
 
     private UserNames initNames() {
@@ -58,6 +66,38 @@ public class LadderGameMachine {
         List<LineResult> lineResults = lines.getLines().stream()
                 .map(line -> new LineResult(line.getLine()))
                 .toList();
-        return new Ladder(userNames.getUserNames(), lineResults, destinations.getDestinations());
+        List<String> destinationValues = destinations.getDestinations().stream()
+                .map(Destination::value)
+                .toList();
+        return new Ladder(userNames.getUserNames(), lineResults, destinationValues);
     }
+
+    private void printGameResult(GameResults gameResults, UserNames userNames) {
+        RequestName requestName = initRequestName(userNames);
+        while (requestName.isNotAll()) {
+            String result = gameResults.findByUserName(requestName.getRequestName());
+            OutputView.printOneResult(result);
+            requestName = initRequestName(userNames);
+        }
+        List<AllResults> results = generateAllResults(gameResults.findAll());
+        OutputView.printAllResults(results);
+    }
+
+    private List<AllResults> generateAllResults(final List<GameResult> gameResults) {
+        List<GameResult> results = new ArrayList<>(gameResults);
+        return results.stream()
+                .map(result -> new AllResults(result.getUserName().value(), result.getDestination().value()))
+                .toList();
+    }
+
+    private RequestName initRequestName(UserNames userNames) {
+        try {
+            String input = InputView.readRequestName(CONSOLE);
+            return new RequestName(input, userNames);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return initRequestName(userNames);
+        }
+    }
+
 }
