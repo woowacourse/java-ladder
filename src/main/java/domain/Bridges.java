@@ -14,6 +14,10 @@ public class Bridges {
         validateNearBridge(bridges);
         this.bridges = bridges;
     }
+    
+    public List<Boolean> getBridges() {
+        return bridges;
+    }
 
     private void validateBridgesCount(List<Boolean> bridges) {
         if (bridges.size() < MIN_BRIDGES_COUNT || bridges.size() > MAX_BRIDGES_COUNT) {
@@ -29,7 +33,5 @@ public class Bridges {
         });
     }
 
-    public List<Boolean> getBridges() {
-        return bridges;
-    }
+
 }
