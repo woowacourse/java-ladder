@@ -2,6 +2,7 @@ package ladder;
 
 import java.util.List;
 import java.util.function.Supplier;
+import ladder.domain.Destinations;
 import ladder.domain.LadderHeight;
 import ladder.domain.Lines;
 import ladder.domain.UserNames;
@@ -22,6 +23,7 @@ public class LadderGameMachine {
                 new RandomBooleanGenerator(),
                 ladderHeight.value(),
                 userNames);
+        Destinations destinations = Destinations.of(InputView.readDestinations(CONSOLE), userNames.getUserCount());
         OutputView.printLadder(ladder);
     }
 
