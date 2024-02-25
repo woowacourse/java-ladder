@@ -12,13 +12,11 @@ public class Ladder {
 
     private final int height;
     private final List<Line> ladder;
-    private final Results results;
 
-    public Ladder(String height, Results results) {
+    public Ladder(String height) {
         validateHeight(height);
         this.height = Integer.parseInt(height);
         this.ladder = new ArrayList<>();
-        this.results = results;
     }
 
     private void validateHeight(String height) {
@@ -52,9 +50,5 @@ public class Ladder {
 
     public List<Line> getLadder() {
         return Collections.unmodifiableList(ladder);
-    }
-
-    public List<String> getResults() {
-        return results.getResults();
     }
 }

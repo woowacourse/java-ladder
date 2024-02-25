@@ -25,11 +25,11 @@ public class LadderGame {
     public void start() {
         Participants participants = new Participants(inputName());
         Results results = new Results(inputView.inputResults(), participants.getParticipantsCount());
-        Ladder ladder = new Ladder(inputView.inputHeight(), results);
+        Ladder ladder = new Ladder(inputView.inputHeight());
 
         ladder.makeLadder(participants.getParticipantsCount(), booleanGenerator);
 
-        printLadder(ladder, participants);
+        printLadder(ladder, participants, results);
 
         ladder.playLadder(results, participants);
 
@@ -42,15 +42,15 @@ public class LadderGame {
         return List.of(input.split(","));
     }
 
-    private void printLadder(Ladder ladder, Participants participants) {
-        List<String> result = new ArrayList<>();
+    private void printLadder(Ladder ladder, Participants participants, Results results) {
+        List<String> output = new ArrayList<>();
         List<Line> createdLadder = ladder.getLadder();
 
-        createParticipantsLineUp(result, participants.getParticipants());
-        createLadder(result, createdLadder);
-        createGameResults(result, ladder);
+        createParticipantsLineUp(output, participants.getParticipants());
+        createLadder(output, createdLadder);
+        createGameResults(output, results);
 
-        outputView.printLadder(result);
+        outputView.printLadder(output);
     }
 
     private void createParticipantsLineUp(List<String> result, List<Participant> participants) {
@@ -79,10 +79,10 @@ public class LadderGame {
         }
     }
 
-    private void createGameResults(List<String> result, Ladder ladder) {
+    private void createGameResults(List<String> result, Results results) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (String gameResult : ladder.getResults()) {
+        for (String gameResult : results.getResults()) {
             stringBuilder.append(String.format("%5s ", gameResult));
         }
 
