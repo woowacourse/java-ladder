@@ -15,7 +15,7 @@ public class People {
     }
 
     public List<Person> getParticipants() {
-        return Collections.unmodifiableList(participants);
+        return participants;
     }
 
     public int numberOfParticipants() {
