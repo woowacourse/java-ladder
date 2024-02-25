@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     public static void printLadder(Ladder ladder) {
-        System.out.println("실행결과");
+        System.out.println("사다리 결과");
         System.out.println();
         System.out.println(makeNameMessage(ladder.names()));
         System.out.println(drawLadder(ladder.lines()));
