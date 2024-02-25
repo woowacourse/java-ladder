@@ -2,9 +2,9 @@ package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import static ladder.domain.Direction.LEFT;
-import static ladder.domain.Direction.NONE;
-import static ladder.domain.Direction.RIGHT;
+import static ladder.domain.LadderDirection.LEFT;
+import static ladder.domain.LadderDirection.NONE;
+import static ladder.domain.LadderDirection.RIGHT;
 
 import java.util.List;
 
@@ -21,10 +21,10 @@ class LadderLevelTest {
                 .directionSelector(() -> NONE)
                 .build();
 
-        List<Direction> directions = ladderLevel.toDirectionList();
+        List<LadderDirection> ladderDirections = ladderLevel.toLadderDirectionList();
 
-        assertThat(directions.size()).isEqualTo(100);
-        assertThat(directions).doesNotContain(RIGHT, LEFT);
+        assertThat(ladderDirections.size()).isEqualTo(100);
+        assertThat(ladderDirections).doesNotContain(RIGHT, LEFT);
     }
 
     @DisplayName("가로줄로 가득 찬 사다리 층이 생성된다.")
@@ -35,9 +35,9 @@ class LadderLevelTest {
                 .directionSelector(() -> RIGHT)
                 .build();
 
-        List<Direction> directions = ladderLevel.toDirectionList();
+        List<LadderDirection> ladderDirections = ladderLevel.toLadderDirectionList();
 
-        assertThat(directions).doesNotContain(NONE);
-        assertThat(directions).contains(RIGHT, LEFT);
+        assertThat(ladderDirections).doesNotContain(NONE);
+        assertThat(ladderDirections).contains(RIGHT, LEFT);
     }
 }

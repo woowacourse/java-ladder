@@ -5,13 +5,13 @@ import java.util.List;
 
 public class LadderLevel {
 
-    private final List<Direction> ladderLevel;
+    private final List<LadderDirection> ladderLevel;
 
-    public LadderLevel(List<Direction> directions) {
-        ladderLevel = directions;
+    public LadderLevel(List<LadderDirection> ladderDirections) {
+        ladderLevel = ladderDirections;
     }
 
-    public List<Direction> toDirectionList() {
+    public List<LadderDirection> toLadderDirectionList() {
         return Collections.unmodifiableList(ladderLevel);
     }
 }

@@ -1,8 +1,8 @@
 package ladder.domain;
 
-import static ladder.domain.Direction.LEFT;
-import static ladder.domain.Direction.NONE;
-import static ladder.domain.Direction.RIGHT;
+import static ladder.domain.LadderDirection.LEFT;
+import static ladder.domain.LadderDirection.NONE;
+import static ladder.domain.LadderDirection.RIGHT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 
 public class LadderLevelBuilder {
 
-    private final List<Direction> ladderLevel;
+    private final List<LadderDirection> ladderLevel;
 
     private int size;
     private LadderDirectionSelector ladderDirectionSelector;
@@ -34,7 +34,7 @@ public class LadderLevelBuilder {
     }
 
     public LadderLevel build() {
-        IntStream.range(0, size).forEach((__) -> ladderLevel.add(Direction.NONE));
+        IntStream.range(0, size).forEach((__) -> ladderLevel.add(LadderDirection.NONE));
         IntStream.range(0, size - 1).forEach(this::selectDirectionIfNotExistsAt);
         return new LadderLevel(ladderLevel);
     }
@@ -46,8 +46,8 @@ public class LadderLevelBuilder {
     }
 
     private void selectDirectionAt(int index) {
-        Direction direction = ladderDirectionSelector.select();
-        if (direction == RIGHT) {
+        LadderDirection ladderDirection = ladderDirectionSelector.select();
+        if (ladderDirection == RIGHT) {
             ladderLevel.set(index, RIGHT);
             ladderLevel.set(index + 1, LEFT);
         }

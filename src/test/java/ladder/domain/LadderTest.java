@@ -19,11 +19,11 @@ class LadderTest {
                 new DefaultLadderDirectionSelector());
 
         List<LadderLevel> ladderLevels = ladder.toLadderLevelList();
-        List<Direction> directions = ladderLevels.get(0).toDirectionList();
+        List<LadderDirection> ladderDirections = ladderLevels.get(0).toLadderDirectionList();
 
         assertAll(
                 () -> assertThat(ladderLevels).hasSize(5),
-                () -> assertThat(directions).hasSize(4)
+                () -> assertThat(ladderDirections).hasSize(4)
         );
     }
 }
