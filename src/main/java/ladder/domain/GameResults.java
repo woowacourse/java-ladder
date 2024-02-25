@@ -1,7 +1,7 @@
 package ladder.domain;
 
-public class GameResult {
-    public GameResult(UserNames userNames, final String requestUser) {
+public class GameResults {
+    public GameResults(UserNames userNames, final String requestUser) {
         validateRequestUser(userNames, requestUser);
     }
 
