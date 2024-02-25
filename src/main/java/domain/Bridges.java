@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -14,9 +15,9 @@ public class Bridges {
         validateNearBridge(bridges);
         this.bridges = bridges;
     }
-    
+
     public List<Boolean> getBridges() {
-        return bridges;
+        return Collections.unmodifiableList(bridges);
     }
 
     private void validateBridgesCount(List<Boolean> bridges) {
