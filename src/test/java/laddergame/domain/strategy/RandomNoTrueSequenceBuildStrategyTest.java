@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 @DisplayName("랜덤전략")
 public class RandomNoTrueSequenceBuildStrategyTest {
@@ -37,10 +38,8 @@ public class RandomNoTrueSequenceBuildStrategyTest {
         List<Zone> canBuildBridges = randomNoTrueSequenceBuildStrategy.apply(count);
 
         //then
-        for (int i = 0; i < canBuildBridges.size() - 1; i++) {
-            if (canBuildBridges.get(i).equals(Zone.BRIDGE)) {
-                assertEquals(canBuildBridges.get(i + 1), Zone.EMPTY);
-            }
-        }
+        IntStream.range(0, canBuildBridges.size() - 1)
+                .filter(i -> canBuildBridges.get(i).equals(Zone.BRIDGE))
+                .forEach(i -> assertEquals(canBuildBridges.get(i + 1), Zone.EMPTY));
     }
 }

@@ -61,8 +61,8 @@ example feat: 사용자 입력 후 도메인 사용
 # step1 피드백
 - [x] TDD 수행할 때 컴파일 되지 않는 상태를 커밋하지 않기
   - 다음 미션에 적용해보기!
-- [ ] 테스트코드 indent 2 이상 넘지않게 수정하기
-  - [ ] indent를 줄이기 힘들다면 `RandomBuildStrataegy`가 두가지 이상을 제어하고 있는게 아닌지 생각해보기
+- [x] 테스트코드 indent 2 이상 넘지않게 수정하기
+  - [x] indent를 줄이기 힘들다면 `RandomBuildStrataegy`가 두가지 이상을 제어하고 있는게 아닌지 생각해보기
 - [x] Boolean.TRUE -> primitive type으로 수정
 - [x] `CanBuildStrategy` 클래스명 변경
   - 리뷰어님은 `LineBuildStrategy` 추천

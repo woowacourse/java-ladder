@@ -34,6 +34,7 @@ public class LadderTest {
         final List<String> playersName = List.of("name1", "name2", "name3", "name4");
         final Players players = Players.from(playersName);
         final List<Zone> expected = List.of(Zone.BRIDGE, Zone.EMPTY, Zone.BRIDGE);
+
         LineBuildStrategy lineBuildStrategy = new LineBuildStrategy() {
             @Override
             public List<Zone> apply(int count) {
