@@ -17,7 +17,7 @@ public class Results {
                 .toList();
     }
 
-    public String resultOf(int index) {
+    public String resultOf(final int index) {
         return results.get(index).getValue();
     }
 }
