@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomBridgeGenerator implements BridgeGenerator {
-    private static final Random random = new Random();
+    private final Random random = new Random();
 
     @Override
     public List<LadderBridge> generate(int bridgeCount) {
@@ -25,10 +25,10 @@ public class RandomBridgeGenerator implements BridgeGenerator {
             bridge.add(now);
             return;
         }
-        bridge.add(generate(bridge.get(index - 1)));
+        bridge.add(generateBridge(bridge.get(index - 1)));
     }
 
-    private LadderBridge generate(LadderBridge before) {
+    private LadderBridge generateBridge(LadderBridge before) {
         if(before.equals(LadderBridge.BRIDGE)) {
             return LadderBridge.NONE;
         }
