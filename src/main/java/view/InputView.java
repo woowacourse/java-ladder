@@ -1,5 +1,6 @@
 package view;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,7 +17,7 @@ public class InputView {
         System.out.println(System.lineSeparator() + "최대 사다리 높이는 몇 개인가요?");
         try {
             return scanner.nextInt();
-        } catch (NumberFormatException e) {
+        } catch (InputMismatchException e) {
             throw new IllegalArgumentException("높이는 숫자여야 합니다.");
         }
     }
