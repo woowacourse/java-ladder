@@ -17,7 +17,7 @@ public class BooleansGenerator {
     public List<Boolean> generateNotConsecutiveTrue() {
         List<Boolean> generated = new ArrayList<>();
         generated.add(generator.generateBoolean());
-        for (int i = 0; i < size - 1; i++) {
+        for (int i = 0; i < size - 2; i++) {
             boolean value = generator.updateFalseIfTrue(generated.get(i));
             generated.add(value);
         }
