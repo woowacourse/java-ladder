@@ -23,7 +23,10 @@ public class Line {
     }
 
     private static Step makeStep(List<Step> steps, PlayerCount playerCount) {
-        if (hasBeforeStep(steps) || isLastPoint(steps, playerCount)) {
+        if (hasBeforeStep(steps)) {
+            return Step.RIGHT;
+        }
+        if (isLastPoint(steps, playerCount)) {
             return Step.EMPTY;
         }
         Random random = new Random();
@@ -34,7 +37,7 @@ public class Line {
         if (isFirstPoint(steps)) {
             return false;
         }
-        return steps.get(steps.size() - 1).isExist();
+        return steps.get(steps.size() - 1).isLeft();
     }
 
     private static boolean isFirstPoint(List<Step> steps) {

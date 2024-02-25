@@ -32,7 +32,7 @@ public class OutputFormatter {
     }
 
     private String getStep(Step step) {
-        if (step.equals(Step.EXIST)) {
+        if (step.equals(Step.LEFT)) {
             return BAR + "-----";
         }
         return BAR + "     ";

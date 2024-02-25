@@ -92,11 +92,11 @@ public class InputView {
         }
     }
 
-    public List<String> inputResult() {
+    public String inputResult() {
         System.out.println("결과를 보고 싶은 사람은?");
         String input = scanner.nextLine();
         validateResult(input);
-        return Arrays.stream(input.split(DELIMITER)).map(String::trim).toList();
+        return input;
     }
 
     private void validateResult(String input) {
