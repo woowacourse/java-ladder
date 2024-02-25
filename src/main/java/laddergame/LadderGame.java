@@ -3,9 +3,8 @@ package laddergame;
 import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.Players;
-import laddergame.domain.strategy.NonContinuousLineBuildStrategy;
+import laddergame.domain.strategy.ZonesBuildStrategy;
 import laddergame.util.RandomZoneGenerator;
-import laddergame.util.ZoneGenerator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -20,7 +19,7 @@ public class LadderGame {
         Height height = retryUntilValidated(() -> new Height(inputView.readLadderHeight()));
 
         Ladder ladder = new Ladder(
-                new NonContinuousLineBuildStrategy(new RandomZoneGenerator()),
+                new ZonesBuildStrategy(new RandomZoneGenerator()),
                 players,
                 height);
         printLadderResult(players, ladder);

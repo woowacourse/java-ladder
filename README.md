@@ -91,7 +91,8 @@ example feat: 사용자 입력 후 도메인 사용
 - [x] 일급컬렉션 반환할 때 불변객체로 만들어서 반환
 
 # step1 피드백(2)
-- [ ] `LineBuildStrategy` 의 리턴타입을 `Line`으로 수정
+- `LineBuildStrategy` 의 리턴타입을 `Line`으로 수정
+  - [x] Line으로 수정하면 Line 생성자에서 필드에 리턴 값을 주입하기 어려워 지기 때문에 클래스명을 `ZonesBuildStrategy`로 변경
 - [x] `NoTrueSequenceBuildStrategy` 클래스명을 `NonContinuousLineBuildStrategy` 로 수정
 - [x] `NoTrueSequenceBuildStrategy`에서 스트림 -> for문으로 수정
   - 스트림은 컬렉션의 개별 요소에 컨텍스트 없이 접근할 때는 좋지만, 이전 컨텍스트를 가져와야 할 때는 불편하다.

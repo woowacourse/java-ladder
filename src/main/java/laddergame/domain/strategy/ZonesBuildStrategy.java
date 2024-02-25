@@ -1,18 +1,15 @@
 package laddergame.domain.strategy;
 
 import laddergame.domain.Zone;
-import laddergame.util.RandomZoneGenerator;
 import laddergame.util.ZoneGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
-import java.util.stream.IntStream;
 
-public class NonContinuousLineBuildStrategy implements LineBuildStrategy {
+public class ZonesBuildStrategy implements LineBuildStrategy {
     private final ZoneGenerator zoneGenerator;
 
-    public NonContinuousLineBuildStrategy(ZoneGenerator zoneGenerator) {
+    public ZonesBuildStrategy(ZoneGenerator zoneGenerator) {
         this.zoneGenerator = zoneGenerator;
     }
 

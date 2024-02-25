@@ -16,8 +16,8 @@ public class NonContinuousLineBuildStrategyTest {
     @DisplayName("주어진 횟수만큼 다리가 생성되는지 확인한다.")
     public void testRandomBuildStrategy() {
         //given
-        NonContinuousLineBuildStrategy nonContinuousLineBuildStrategy =
-                new NonContinuousLineBuildStrategy(new RandomZoneGenerator());
+        ZonesBuildStrategy nonContinuousLineBuildStrategy =
+                new ZonesBuildStrategy(new RandomZoneGenerator());
         final int count = 4;
 
         //when
@@ -31,8 +31,8 @@ public class NonContinuousLineBuildStrategyTest {
     @DisplayName("다리가 연속적으로 생성되지 않는지 검증한다.")
     public void testSequenceBridges() {
         //given
-        NonContinuousLineBuildStrategy nonContinuousLineBuildStrategy =
-                new NonContinuousLineBuildStrategy(new RandomZoneGenerator());
+        ZonesBuildStrategy nonContinuousLineBuildStrategy =
+                new ZonesBuildStrategy(new RandomZoneGenerator());
         final int count = 5;
 
         //when
