@@ -1,48 +1,29 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LadderTest {
-    Players players;
-    Height height;
 
-    @BeforeEach
-    void setUp() {
-        players = new Players(List.of("poby", "honux", "crong", "jk"));
-        height = new Height(5);
-    }
-
-    @DisplayName("사다리 생성")
-    @Test
-    void ladderConstructTest() {
-        assertThatCode(() -> Ladder.of(players, height, new DefaultLadderDirectionSelector()))
-                .doesNotThrowAnyException();
-    }
-
-    @DisplayName("사다리는 입력에 맞는 사이즈의 사다리를 생성한다.")
+    @DisplayName("사람 수와 높이를 입력받아 사다리를 생성한다.")
     @Test
     void ladderSizeTest() {
-        //given
-        Ladder ladder = Ladder.of(players, height, new DefaultLadderDirectionSelector());
+        Ladder ladder = Ladder.of(
+                new Players(List.of("poby", "honux", "crong", "jk")),
+                new Height(5),
+                new DefaultLadderDirectionSelector());
 
-        // when
-        LadderLevel anyLadderLevel = ladder.toLadderLevelList().get(0);
+        List<LadderLevel> ladderLevels = ladder.toLadderLevelList();
+        List<Direction> directions = ladderLevels.get(0).toDirectionList();
 
-        int actualHeight = ladder.toLadderLevelList().size();
-        int actualPlayersCount = anyLadderLevel.toDirectionList().size();
-
-        // then
         assertAll(
-                () -> assertThat(actualHeight).isEqualTo(height.value()),
-                () -> assertThat(actualPlayersCount).isEqualTo(players.count())
+                () -> assertThat(ladderLevels).hasSize(5),
+                () -> assertThat(directions).hasSize(4)
         );
     }
 }
