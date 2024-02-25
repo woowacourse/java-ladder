@@ -19,6 +19,6 @@ public class LinesTest {
     void findStepPositions() {
         Lines lines = Lines.of(() -> true, 3, 4);
 
-        assertThat(lines.findStepPositions()).containsExactly(List.of(0, 2), List.of(0, 2), List.of(0, 2));
+        assertThat(lines.findStepPositions()).containsExactly(0, 2, 0, 2, 0, 2);
     }
 }
