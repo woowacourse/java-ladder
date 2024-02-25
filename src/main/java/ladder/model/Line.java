@@ -18,10 +18,10 @@ public class Line {
     }
 
     private void validate(List<LadderPath> row) {
-        if (isLeftOnFirst(row) || !isNotExistRightBeforeLeft(row)) {
+        if (isLeftOnFirst(row) || isNotExistRightBeforeLeft(row)) {
             throw new IllegalArgumentException("왼쪽 경로 왼쪽에 오른쪽 경로가 없습니다.");
         }
-        if (isRightOnEnd(row) || !isNotExistLeftAfterRight(row)) {
+        if (isRightOnEnd(row) || isNotExistLeftAfterRight(row)) {
             throw new IllegalArgumentException("오른쪽 경로 오른쪽에 왼쪽 경로가 없습니다.");
         }
     }
@@ -38,14 +38,14 @@ public class Line {
         return IntStream.range(0, row.size())
                 .filter(i -> row.get(i).isLeftPath())
                 .map(idx -> idx - 1)
-                .allMatch(idx -> row.get(idx).isRightPath());
+                .anyMatch(idx -> row.get(idx).isNotRightPath());
     }
 
     private boolean isNotExistLeftAfterRight(List<LadderPath> row) {
         return IntStream.range(0, row.size())
                 .filter(i -> row.get(i).isRightPath())
                 .map(idx -> idx + 1)
-                .allMatch(idx -> row.get(idx).isLeftPath());
+                .anyMatch(idx -> row.get(idx).isNotLeftPath());
     }
 
     public List<Integer> findBars() {
