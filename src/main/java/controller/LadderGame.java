@@ -47,8 +47,8 @@ public class LadderGame {
         List<Line> createdLadder = ladder.getLadder();
 
         createParticipantsLineUp(output, participants.getParticipants());
-        createLadder(output, createdLadder);
-        createGameResults(output, results);
+        createLadderOutput(output, createdLadder);
+        createResultsOutput(output, results);
 
         outputView.printLadder(output);
     }
@@ -62,7 +62,7 @@ public class LadderGame {
         result.add(stringBuilder.toString());
     }
 
-    private void createLadder(List<String> result, List<Line> createdLadder) {
+    private void createLadderOutput(List<String> result, List<Line> createdLadder) {
         for (Line line : createdLadder) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("    |");
@@ -79,7 +79,7 @@ public class LadderGame {
         }
     }
 
-    private void createGameResults(List<String> result, Results results) {
+    private void createResultsOutput(List<String> result, Results results) {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (String gameResult : results.getResults()) {
