@@ -3,6 +3,7 @@ package laddergame.view;
 import laddergame.domain.*;
 
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class OutputView {
@@ -18,15 +19,15 @@ public class OutputView {
     }
 
     public void writeLadder(final Ladder ladder) {
-        IntStream.range(0, ladder.getLines().size())
-                .forEach(i -> writeLine(ladder.getLines().get(i)));
+        ladder.getLines().forEach(this::writeLine);
     }
 
     private void writeLine(final Line line) {
-        StringJoiner stringJoiner = new StringJoiner(LADDER_SEPARATOR, SPACE + LADDER_SEPARATOR, LADDER_SEPARATOR);
-        line.getZones().forEach(zone -> stringJoiner.add(zone.getSymbol()));
+        String formatted = line.getZones().stream()
+                .map(Zone::getSymbol)
+                .collect(Collectors.joining(LADDER_SEPARATOR, SPACE + LADDER_SEPARATOR, LADDER_SEPARATOR));
 
-        System.out.println(stringJoiner);
+        System.out.println(formatted);
     }
 
     public void writeResultTitle() {
