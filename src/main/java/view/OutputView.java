@@ -11,14 +11,6 @@ public class OutputView {
     private static final String FIRST_COLUMN = "    |";
     private static final String COLUMN = "|";
 
-    private static String makeLineView(final Bridges line) {
-        StringJoiner bridgeJoiner = new StringJoiner(COLUMN, FIRST_COLUMN, COLUMN);
-        for (Bridge bridge : line.getBridges()) {
-            bridgeJoiner.add(BridgeShape.convertForView(bridge));
-        }
-        return bridgeJoiner.toString();
-    }
-
     public void printResultMessage() {
         System.out.println(System.lineSeparator() + "실행결과");
     }
@@ -31,11 +23,19 @@ public class OutputView {
         System.out.println(System.lineSeparator() + nameJoiner);
     }
 
-    public void printLadder(List<Bridges> lines) {
-        StringJoiner lineJoiner = new StringJoiner(System.lineSeparator());
-        for (final Bridges line : lines) {
-            lineJoiner.add(makeLineView(line));
+    public void printLadder(List<Bridges> ladder) {
+        StringJoiner ladderShapeJoiner = new StringJoiner(System.lineSeparator());
+        for (final Bridges bridges : ladder) {
+            ladderShapeJoiner.add(getBridgesShape(bridges));
         }
-        System.out.println(lineJoiner);
+        System.out.println(ladderShapeJoiner);
+    }
+
+    private static String getBridgesShape(final Bridges bridges) {
+        StringJoiner bridgesShapeJoiner = new StringJoiner(COLUMN, FIRST_COLUMN, COLUMN);
+        for (Bridge bridge : bridges.getBridges()) {
+            bridgesShapeJoiner.add(BridgeShape.convertForView(bridge));
+        }
+        return bridgesShapeJoiner.toString();
     }
 }
