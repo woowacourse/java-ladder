@@ -32,4 +32,14 @@ public class HeightTest {
         //given & when & then
         assertThrows(IllegalArgumentException.class, () -> new Height(height));
     }
+
+    @Test
+    @DisplayName("최댓값을 제한한다.")
+    public void maxHeightLimitTest() {
+        //given
+        String height = "10";
+
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> new Height(height));
+    }
 }
