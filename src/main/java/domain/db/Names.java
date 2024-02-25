@@ -1,4 +1,4 @@
-package domain.game;
+package domain.db;
 
 import java.util.Arrays;
 import java.util.List;

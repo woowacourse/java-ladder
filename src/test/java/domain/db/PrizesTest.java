@@ -1,6 +1,5 @@
-package domain;
+package domain.db;
 
-import domain.game.Prizes;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

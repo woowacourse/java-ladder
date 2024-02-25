@@ -1,4 +1,4 @@
-package domain.game;
+package domain.db;
 
 public record Prize(String name) {
     private static final int NAME_LENGTH_MIN = 1;

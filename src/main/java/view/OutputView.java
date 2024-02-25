@@ -1,7 +1,7 @@
 package view;
 
-import domain.game.Name;
-import domain.game.Names;
+import domain.db.Name;
+import domain.db.Names;
 import domain.ladder.Bridge;
 import domain.ladder.Ladder;
 import domain.ladder.Line;

@@ -1,9 +1,8 @@
-package domain;
+package domain.game;
 
-import domain.game.Names;
-import domain.game.Prize;
-import domain.game.Prizes;
-import domain.game.Result;
+import domain.db.Names;
+import domain.db.Prize;
+import domain.db.Prizes;
 
 public class Judge {
     private final Names names;
@@ -17,6 +16,7 @@ public class Judge {
     }
 
     // TODO: 캐싱 고려
+    // TODO: 존재하지 않는 사용자 고려
     public Prize getPrize(final String name) {
         int from = this.names.getSequence(name); // TODO: 여러 가지 타입 고려
         int to = this.result.getOne(from);

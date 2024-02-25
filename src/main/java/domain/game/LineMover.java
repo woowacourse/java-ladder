@@ -1,4 +1,4 @@
-package domain;
+package domain.game;
 
 import domain.ladder.Bridge;
 import domain.ladder.Line;

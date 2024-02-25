@@ -1,6 +1,5 @@
 package domain.game;
 
-import domain.LineMover;
 import domain.ladder.Bridge;
 import domain.ladder.Line;
 import org.junit.jupiter.api.DisplayName;
