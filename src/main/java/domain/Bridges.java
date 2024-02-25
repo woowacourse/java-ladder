@@ -14,7 +14,9 @@ public class Bridges {
 
     public static Bridges createByStrategy(final BridgeGenerator bridgeGenerator, final Players players) {
         List<Bridge> bridges = new ArrayList<>();
-        while (bridges.size() < players.count() - 1) {
+        final int bridgesTargetSize = players.count() - 1;
+
+        while (bridges.size() < bridgesTargetSize) {
             final Bridge bridgeCandidate = bridgeGenerator.generate();
             final Bridge previousBridge = findPreviousBridge(bridges);
 
