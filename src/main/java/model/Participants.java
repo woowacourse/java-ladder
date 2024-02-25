@@ -34,7 +34,7 @@ public class Participants {
 
     private List<Participant> create(List<String> participantsName) {
         return participantsName.stream()
-                .map(Participant::new)
+                .map(name -> new Participant(new Name(name)))
                 .toList();
     }
 

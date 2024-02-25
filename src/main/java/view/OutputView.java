@@ -2,6 +2,7 @@ package view;
 
 import model.Ladder;
 import model.LadderRow;
+import model.Name;
 import model.Participant;
 import model.Participants;
 
@@ -17,7 +18,7 @@ public class OutputView {
     }
 
     public void printParticipantsName(Participants participants) {
-        List<String> participantsName = participants.getParticipants().stream()
+        List<Name> participantsName = participants.getParticipants().stream()
                 .map(Participant::getName)
                 .toList();
         participantsName.forEach(name -> System.out.printf(NAME_FORMAT, name));
