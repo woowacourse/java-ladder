@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class UserNamesTest {
 
@@ -39,5 +41,14 @@ class UserNamesTest {
         final UserNames userNames = UserNames.from(List.of("kelly", "liv"));
 
         assertThat(userNames.getUserNames()).containsExactly("kelly", "liv");
+    }
+
+    @DisplayName("전달 받은 이름과 동일한 이름을 가진 사람이 있는지 확인한다")
+    @CsvSource(value = {"liv:true", "moly:false"}, delimiter = ':')
+    @ParameterizedTest
+    void checkSameName(String name, Boolean expected) {
+        UserNames userNames = UserNames.from(List.of("kelly", "liv"));
+
+        assertThat(userNames.isExist(name)).isEqualTo(expected);
     }
 }

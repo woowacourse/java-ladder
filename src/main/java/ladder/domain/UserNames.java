@@ -40,6 +40,11 @@ public class UserNames {
         }
     }
 
+    public boolean isExist(final String name) {
+        return userNames.stream()
+                .anyMatch(userName -> userName.isSame(name));
+    }
+
     public int getUserCount() {
         return userNames.size();
     }
