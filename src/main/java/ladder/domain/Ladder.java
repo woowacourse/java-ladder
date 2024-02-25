@@ -2,25 +2,16 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Ladder {
-
-    private final Players players;
-    private final Height height;
     private final List<LadderLevel> ladderLevels;
 
     public Ladder(Players players, Height height) {
-        this.players = players;
-        this.height = height;
         ladderLevels = new ArrayList<>();
-    }
-
-    public void initialize(LineGenerator lineGenerator) {
-        ladderLevels.clear();
-        for (int currentHeight = 0; currentHeight < height.value(); currentHeight++) {
-            ladderLevels.add(new LadderLevel(players.count(), lineGenerator));
-        }
+        IntStream.range(0, height.value())
+                .forEach((i) -> ladderLevels.add(new LadderLevel(players.count())));
     }
 
     public Stream<LadderLevel> stream() {
