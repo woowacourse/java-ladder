@@ -14,6 +14,10 @@ public class OutPutView {
     private static final String HEIGHT_INPUT = "최대 사다리 높이는 몇 개인가요?";
     private static final String PREFIX_RESULT = "\n실행 결과\n";
 
+    private static final String VERTICAL_BRIDGE = "|";
+    private static final String EXIST_BRIDGE = "----";
+    private static final String NONE_BRIDGE = "    ";
+
     public void printNamesInput() {
         System.out.println(NAMES_INPUT);
     }
@@ -38,15 +42,15 @@ public class OutPutView {
         Bridges bridges = row.getBridges();
         String rawRowString = bridges.getBridges().stream()
                 .map(this::makeBridge)
-                .collect(Collectors.joining("|"));
+                .collect(Collectors.joining(VERTICAL_BRIDGE));
         return "    |%s|".formatted(rawRowString);
     }
 
     private String makeBridge(Boolean aBoolean) {
         if (aBoolean) {
-            return "-----";
+            return EXIST_BRIDGE;
         }
-        return "     ";
+        return NONE_BRIDGE;
     }
 
     private String makeNamesString(Names names) {
