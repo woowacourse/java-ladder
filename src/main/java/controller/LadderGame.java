@@ -26,6 +26,8 @@ public class LadderGame {
         outputView.printResult(players, ladder, targets);
 
         String result = inputView.inputResult();
+        Player player = new Player(result);
+
     }
 
     private Players readPlayers() {

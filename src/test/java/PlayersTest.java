@@ -1,3 +1,4 @@
+import domain.Player;
 import domain.Players;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -17,5 +18,22 @@ public class PlayersTest {
     @Test
     void getCount() {
         Assertions.assertThat(Players.from(List.of("bito", "kirby")).getCount()).isEqualTo(2);
+    }
+
+    @DisplayName("해당 참여자가 몇번째 순서인지 반환한다.")
+    @Test
+    void getOrder() {
+        Players players = Players.from(List.of("bito", "kirby", "zeze", "ready"));
+
+        Assertions.assertThat(players.getOrder(new Player("kirby"))).isEqualTo(1);
+    }
+
+    @DisplayName("해당 참여자가 존재하지 않으면 예외를 발생시킨다.")
+    @Test
+    void notContainPlayer() {
+        Players players = Players.from(List.of("bito", "kirby", "zeze", "ready"));
+
+        Assertions.assertThatThrownBy(() -> players.getOrder(new Player("pobi")))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

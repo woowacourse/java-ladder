@@ -42,6 +42,17 @@ public class Players {
         return Collections.unmodifiableList(players);
     }
 
+    public int getOrder(Player player) {
+        isExistPLayer(player);
+        return players.indexOf(player);
+    }
+
+    private void isExistPLayer(Player player) {
+        if (!players.contains(player)) {
+            throw new IllegalArgumentException("해당 참여자는 리스트에 없습니다.");
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
