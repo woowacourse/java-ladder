@@ -5,6 +5,8 @@ import ladder.domain.People;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import static ladder.utils.InputUtility.retryUntilGet;
+
 public class LadderGameController {
     private LadderGameController() {
     }
@@ -18,19 +20,11 @@ public class LadderGameController {
     }
 
     private static People getPeople() {
-        People people = null;
-        while (people == null) {
-            people = makePeople();
-        }
-        return people;
+        return retryUntilGet(LadderGameController::makePeople);
     }
 
     private static Ladder getLadder(People people) {
-        Ladder ladder = null;
-        while (ladder == null) {
-            ladder = makeLadder(people);
-        }
-        return ladder;
+        return retryUntilGet(LadderGameController::makeLadder, people);
     }
 
     private static People makePeople() {
