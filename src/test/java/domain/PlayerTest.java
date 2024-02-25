@@ -13,7 +13,7 @@ class PlayerTest {
     void validNameLength(String playerName) {
         //when & then
         Assertions.assertThatCode(() -> new Player(playerName))
-                        .doesNotThrowAnyException();
+                .doesNotThrowAnyException();
     }
 
     @DisplayName("참가자 이름이 1글자 미만 5글자 초과이면 예외를 발생시킨다.")
