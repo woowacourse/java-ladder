@@ -14,7 +14,7 @@ public class Player {
     }
 
     private void validate(String name) {
-        if (isNameLengthNot1to5(name)) {
+        if (isNameLengthNotValid(name)) {
             throw new IllegalArgumentException("이름의 길이는 1이상 5이하의 숫자여야 합니다.");
         }
         if (isNameFormatNotValid(name)) {
@@ -22,7 +22,7 @@ public class Player {
         }
     }
 
-    private boolean isNameLengthNot1to5(String name) {
+    private boolean isNameLengthNotValid(String name) {
         return name.isEmpty() || name.length() > MAX_NAME_LENGTH;
     }
 
