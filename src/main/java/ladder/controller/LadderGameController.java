@@ -14,6 +14,7 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class LadderGameController {
+
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 

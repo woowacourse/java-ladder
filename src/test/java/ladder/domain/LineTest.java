@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LineTest {
+
     @Test
     @DisplayName("라인이 비어있으면 예외 발생")
     void validateEmptyLine() {

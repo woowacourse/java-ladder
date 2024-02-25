@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class StickTest {
+
     @Test
     @DisplayName("막대가 해당자리에 있는지 테스트")
     void isExistTest() {

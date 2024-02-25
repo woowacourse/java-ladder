@@ -5,6 +5,7 @@ import java.util.List;
 import ladder.domain.linegenerator.LineGenerator;
 
 public class Ladder {
+
     private final List<Line> lines;
 
     public Ladder(Height height, int size, LineGenerator lineGenerator) {

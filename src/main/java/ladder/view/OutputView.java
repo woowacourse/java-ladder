@@ -6,7 +6,6 @@ import ladder.dto.PlayerNamesDto;
 
 public class OutputView {
 
-
     private static final String LINE_PREFIX = "    |";
     private static final String EXIST_STICK = "-----|";
     private static final String BLANK_STICK = "     |";

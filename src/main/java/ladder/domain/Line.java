@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Line {
+
     private final List<Stick> sticks;
 
     public Line(List<Stick> sticks) {
