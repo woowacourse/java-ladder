@@ -42,7 +42,7 @@ public class GameController {
         return errorHandler.readUntilNoError(() -> {
             String rawHeight = inputView.readHeight();
             int height = StringParser.stringToInt(rawHeight);
-            return new Lines(members.getCount(), height, new RandomConnectionStrategy());
+            return Lines.from(members.getCount(), height, new RandomConnectionStrategy());
         });
     }
 }
