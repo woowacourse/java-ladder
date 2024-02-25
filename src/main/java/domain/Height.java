@@ -2,8 +2,8 @@ package domain;
 
 public class Height {
 
-    private static final int MIN_HEIGHT = 1;
-    private static final int MAX_HEIGHT = 20;
+    public static final int MIN_HEIGHT = 1;
+    public static final int MAX_HEIGHT = 20;
 
     private final int value;
 
