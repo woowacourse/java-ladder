@@ -1,7 +1,6 @@
 package ladder;
 
 import java.util.List;
-import java.util.function.Supplier;
 import ladder.domain.Destinations;
 import ladder.domain.LadderHeight;
 import ladder.domain.Lines;
@@ -19,11 +18,9 @@ public class LadderGameMachine {
     public void run() {
         UserNames userNames = initNames();
         LadderHeight ladderHeight = initLadderHeight();
-        Ladder ladder = createLadder(
-                new RandomBooleanGenerator(),
-                ladderHeight.value(),
-                userNames);
-        Destinations destinations = Destinations.of(InputView.readDestinations(CONSOLE), userNames.getUserCount());
+        Lines lines = Lines.of(new RandomBooleanGenerator(), ladderHeight.value(), userNames.getUserCount());
+        Destinations destinations = initDestinations(userNames.getUserCount());
+        Ladder ladder = createLadder(userNames, lines, destinations);
         OutputView.printLadder(ladder);
     }
 
@@ -47,14 +44,20 @@ public class LadderGameMachine {
         }
     }
 
-    private Ladder createLadder(
-            final Supplier<Boolean> generator,
-            final int ladderHeight,
-            final UserNames userNames) {
-        Lines lines = Lines.of(generator, ladderHeight, userNames.getUserCount());
+    private Destinations initDestinations(final int userCount) {
+        try {
+            List<String> input = InputView.readDestinations(CONSOLE);
+            return Destinations.of(input, userCount);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return initDestinations(userCount);
+        }
+    }
+
+    private Ladder createLadder(UserNames userNames, Lines lines, Destinations destinations) {
         List<LineResult> lineResults = lines.getLines().stream()
                 .map(line -> new LineResult(line.getLine()))
                 .toList();
-        return new Ladder(userNames.getUserNames(), lineResults);
+        return new Ladder(userNames.getUserNames(), lineResults, destinations.getDestinations());
     }
 }

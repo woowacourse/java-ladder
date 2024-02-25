@@ -25,6 +25,6 @@ public class DestinationsTest {
         List<String> destinations = List.of("꽝", "5000");
 
         Assertions.assertThat(Destinations.of(destinations, 2).getDestinations())
-                .containsExactly(new Destination("꽝"), new Destination("5000"));
+                .containsExactly("꽝", "5000");
     }
 }
