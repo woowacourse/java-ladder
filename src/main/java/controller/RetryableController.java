@@ -8,11 +8,11 @@ import view.OutputView;
 import java.util.function.Supplier;
 
 public class RetryableController {
+    public static final int READ_LIMIT = 10;
+
     protected final InputView inputView;
     protected final OutputView outputView;
     private int retryCount;
-
-    public static final int READ_LIMIT = 10;
 
     public RetryableController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;

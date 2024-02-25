@@ -30,6 +30,4 @@ public class Ladder {
     public List<Floor> getFloors() {
         return floors;
     }
-
-
 }

@@ -6,11 +6,11 @@ import common.exception.model.IOException;
 import java.util.Scanner;
 
 public class InputView {
-    private final Scanner scanner;
-
     public static final String PLAYER_NAMES_INPUT_DELIMITER = ",";
     public static final String BLANK_SPACE = " ";
     public static final String BLANK_EMPTY = "";
+
+    private final Scanner scanner;
 
     public InputView(Scanner scanner) {
         this.scanner = scanner;
