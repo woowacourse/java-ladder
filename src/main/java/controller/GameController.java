@@ -20,10 +20,10 @@ public class GameController {
         Ladder ladder = new Ladder(height, players.getPlayerCount(), new RandomDirectionGenerator());
         GameBoard gameBoard = new GameBoard(players, ladder);
 
-        printResult(gameBoard);
+        printGeneratedLadderResult(gameBoard);
     }
 
-    private void printResult(GameBoard gameBoard) {
+    private void printGeneratedLadderResult(GameBoard gameBoard) {
         System.out.println("사다리 결과");
         System.out.println(System.lineSeparator());
         OutputView.printPlayerNames(gameBoard.getPlayers()
