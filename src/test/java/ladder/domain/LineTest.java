@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.util.RandomPointsGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

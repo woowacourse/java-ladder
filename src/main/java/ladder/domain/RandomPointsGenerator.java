@@ -1,6 +1,4 @@
-package ladder.util;
-
-import ladder.domain.Point;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
