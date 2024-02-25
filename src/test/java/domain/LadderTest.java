@@ -39,8 +39,8 @@ class LadderTest {
          * |-----|    |
          * |-----|    |
          * |-----|    | */
-        Position actual = ladder.climb(new Position(startPosition, rawWidth - 1));
+        Position actual = ladder.climb(Position.getCachedPosition(startPosition, rawWidth - 1));
         Assertions.assertThat(actual)
-                .isEqualTo(new Position(endPosition, rawWidth - 1));
+                .isEqualTo(Position.getCachedPosition(endPosition, rawWidth - 1));
     }
 }

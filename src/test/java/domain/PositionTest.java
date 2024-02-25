@@ -23,7 +23,7 @@ class PositionTest {
     @Test
     @DisplayName("최대 위치 값 이하만 생성되는지 검증")
     void validateMax() {
-        Assertions.assertThatThrownBy(() -> new Position(3, 2))
+        Assertions.assertThatThrownBy(() -> Position.getCachedPosition(3, 2))
                 .isInstanceOf(LadderGameException.class)
                 .hasMessage(POSITION_OVERFLOW.getMessage());
     }
@@ -31,7 +31,7 @@ class PositionTest {
     @Test
     @DisplayName("최소 위치 값 이상만 생성되는지 검증")
     void validateMin() {
-        Assertions.assertThatThrownBy(() -> new Position(-1, 2))
+        Assertions.assertThatThrownBy(() -> Position.getCachedPosition(-1, 2))
                 .isInstanceOf(LadderGameException.class)
                 .hasMessage(POSITION_OVERFLOW.getMessage());
     }
@@ -40,9 +40,9 @@ class PositionTest {
     @MethodSource("nextParameter")
     @DisplayName("다음 위치 검증")
     void next(int rawPosition, int rawExpectedNextPosition) {
-        Position position = new Position(rawPosition, 1);
+        Position position = Position.getCachedPosition(rawPosition, 1);
         Position actual = position.move(List.of(true));
-        Position expected = new Position(rawExpectedNextPosition, 1);
+        Position expected = Position.getCachedPosition(rawExpectedNextPosition, 1);
         Assertions.assertThat(actual)
                 .isEqualTo(expected);
     }

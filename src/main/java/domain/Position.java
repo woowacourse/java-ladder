@@ -3,14 +3,29 @@ package domain;
 import static domain.ExceptionType.POSITION_OVERFLOW;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 class Position {
+
+    private static final Map<Integer, Map<Integer, Position>> cache = new ConcurrentHashMap<>();
+
+    static Position getCachedPosition(int rawPosition, int maxPosition) {
+        if (cache.containsKey(maxPosition)) {
+            Map<Integer, Position> cacheThatSameMaxPosition = cache.get(maxPosition);
+            return cacheThatSameMaxPosition.computeIfAbsent(rawPosition, key -> new Position(key, maxPosition));
+        }
+        cache.computeIfAbsent(maxPosition, key -> new ConcurrentHashMap<>())
+                .put(rawPosition, new Position(rawPosition, maxPosition));
+        return getCachedPosition(rawPosition, maxPosition);
+    }
+
     private final int rawPosition;
     private final int maxPosition;
 
 
-    Position(int rawPosition, int maxPosition) {
+    private Position(int rawPosition, int maxPosition) {
         validateRange(rawPosition, maxPosition);
         this.rawPosition = rawPosition;
         this.maxPosition = maxPosition;
@@ -26,10 +41,10 @@ class Position {
         Boolean canGoRight = getCanGo(bridges, rawPosition);
         Boolean canGoLeft = getCanGo(bridges, rawPosition - 1);
         if (canGoRight) {
-            return new Position(rawPosition + 1, maxPosition);
+            return Position.getCachedPosition(rawPosition + 1, maxPosition);
         }
         if (canGoLeft) {
-            return new Position(rawPosition - 1, maxPosition);
+            return Position.getCachedPosition(rawPosition - 1, maxPosition);
         }
         return this;
     }
