@@ -19,8 +19,10 @@ class PlayersTest {
         for (int i = 0; i < playerCount; i++) {
             names.add(String.valueOf(i));
         }
+
         //when
         final Players players = new Players(names);
+
         //then
         Assertions.assertThat(players.count()).isEqualTo(playerCount);
     }
@@ -34,6 +36,7 @@ class PlayersTest {
         for (int i = 0; i < playerCount; i++) {
             names.add(String.valueOf(i));
         }
+
         //when & then
         Assertions.assertThatThrownBy(() -> new Players(names)).isInstanceOf(IllegalArgumentException.class);
     }
@@ -43,9 +46,11 @@ class PlayersTest {
     void getPlayersCount() {
         //given
         final List<String> names = List.of("pobi", "honux", "crong", "jk");
+
         //when
         final Players players = new Players(names);
         int playersCount = players.count();
+
         //then
         Assertions.assertThat(playersCount).isEqualTo(names.size());
     }
@@ -56,8 +61,10 @@ class PlayersTest {
         //given
         final List<String> names = List.of("pobi", "honux", "crong", "jk");
         final Players players = new Players(names);
+
         //when
         List<String> returnedNames = players.getNames();
+
         //then
         Assertions.assertThat(returnedNames).containsAll(names);
     }
