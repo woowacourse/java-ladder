@@ -1,10 +1,9 @@
 package ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayerTest {
 
@@ -12,12 +11,12 @@ public class PlayerTest {
     @Test
     void 플레이어_인스턴스_생성() {
         // Given
-        UserName userName = new UserName("kelly");
-        LineNumber lineNumber = new LineNumber(1);
-        LineFloor lineFloor = new LineFloor(5);
+        final String userName = "kelly";
+        final int lineNumber = 1;
+        final int lineFloor = 5;
 
         // When
-        Player player = new Player(userName, lineNumber, lineFloor);
+        Player player = Player.of(userName, lineNumber, lineFloor);
 
         // Then
         assertThat(player).isNotNull();

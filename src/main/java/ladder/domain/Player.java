@@ -10,4 +10,8 @@ public class Player {
         this.currentLineNumber = currentLineNumber;
         this.currentLineFloor = currentLineFloor;
     }
+
+    public static Player of(String userName, int lineNumber, int lineFloor) {
+        return new Player(new UserName(userName), new LineNumber(lineNumber), new LineFloor(lineFloor));
+    }
 }
