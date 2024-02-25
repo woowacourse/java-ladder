@@ -1,7 +1,6 @@
 package domain;
 
 import common.exception.message.ExceptionMessage;
-import common.exception.model.ValidationException;
 
 public class LadderHeight {
     private final int value;
@@ -16,7 +15,7 @@ public class LadderHeight {
 
     private void validateRange(final int height) {
         if (height < HEIGHT_MIN_RANGE || height > HEIGHT_MAX_RANGE) {
-            throw new ValidationException(ExceptionMessage.LADDER_HEIGHT_RANGE);
+            throw new IllegalArgumentException(ExceptionMessage.LADDER_HEIGHT_RANGE);
         }
     }
 

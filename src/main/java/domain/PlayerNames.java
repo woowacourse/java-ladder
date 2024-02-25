@@ -2,7 +2,6 @@
 package domain;
 
 import common.exception.message.ExceptionMessage;
-import common.exception.model.ValidationException;
 import java.util.List;
 
 public class PlayerNames {
@@ -23,7 +22,7 @@ public class PlayerNames {
 
     private void validateRange(final List<PlayerName> playerNames) {
         if (playerNames.size() < PLAYER_NAMES_MIN_RANGE || playerNames.size() > PLAYER_NAMES_MAX_RANGE) {
-            throw new ValidationException(ExceptionMessage.PLAYER_NAMES_RANGE);
+            throw new IllegalArgumentException(ExceptionMessage.PLAYER_NAMES_RANGE);
         }
     }
 
@@ -32,7 +31,7 @@ public class PlayerNames {
         long distinctCount = playerNames.stream().map(PlayerName::getName).distinct().count();
 
         if (playerCount != distinctCount) {
-            throw new ValidationException(ExceptionMessage.PLAYER_NAMES_DUPLICATION);
+            throw new IllegalArgumentException(ExceptionMessage.PLAYER_NAMES_DUPLICATION);
         }
     }
 

@@ -1,8 +1,6 @@
 package controller;
 
 import common.exception.message.ExceptionMessage;
-import common.exception.model.IOException;
-import common.exception.model.ValidationException;
 import java.util.Scanner;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -18,13 +16,13 @@ class ControllerTest {
         Controller controller = new Controller(new InputView(new Scanner(System.in)), new OutputView());
 
         Assertions.assertThatThrownBy(() -> repeatMethodOverLimitCount(controller))
-                .isInstanceOf(IOException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.READ_LIMIT_OVER);
     }
 
     private void repeatMethodOverLimitCount(Controller controller) {
         controller.retry(() -> {
-            throw new ValidationException("");
+            throw new IllegalArgumentException("");
         });
     }
 }

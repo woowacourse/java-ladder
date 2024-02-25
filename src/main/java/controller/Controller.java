@@ -1,7 +1,6 @@
 package controller;
 
 import common.exception.message.ExceptionMessage;
-import common.exception.model.IOException;
 import java.util.function.Supplier;
 import view.InputView;
 import view.OutputView;
@@ -33,7 +32,7 @@ public class Controller {
 
     private void validateRetryCountLimit() {
         if (retryCount++ == READ_LIMIT) {
-            throw new IOException(ExceptionMessage.READ_LIMIT_OVER);
+            throw new IllegalArgumentException(ExceptionMessage.READ_LIMIT_OVER);
         }
     }
 }

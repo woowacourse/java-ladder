@@ -1,7 +1,6 @@
 package domain;
 
 import common.exception.message.ExceptionMessage;
-import common.exception.model.ValidationException;
 
 public class PlayerName {
     private final String name;
@@ -14,7 +13,7 @@ public class PlayerName {
 
     private void validateIsBlank(final String name) {
         if (name.isBlank()) {
-            throw new ValidationException(ExceptionMessage.PLAYER_NAME_BLANK);
+            throw new IllegalArgumentException(ExceptionMessage.PLAYER_NAME_BLANK);
         }
     }
 

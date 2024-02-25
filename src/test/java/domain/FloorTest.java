@@ -1,7 +1,6 @@
 package domain;
 
 import common.exception.message.ExceptionMessage;
-import common.exception.model.ValidationException;
 import domain.bridge.strategy.BridgeGeneratorStub;
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -23,7 +22,7 @@ public class FloorTest {
 
         // then
         Assertions.assertThatThrownBy(() -> new Floor(pointGenerator.generate(bridgeCount)))
-                .isInstanceOf(ValidationException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.SERIAL_LADDER_BRIDGE);
     }
 }

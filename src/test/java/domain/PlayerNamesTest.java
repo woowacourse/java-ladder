@@ -1,7 +1,6 @@
 package domain;
 
 import common.exception.message.ExceptionMessage;
-import common.exception.model.ValidationException;
 import java.util.List;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
@@ -40,7 +39,7 @@ class PlayerNamesTest {
         @DisplayName("참가자 수가 2 미만, 10 초과이면 예외가 발생한다")
         void createPlayerNamesFailByRange(List<PlayerName> playerNames) {
             Assertions.assertThatThrownBy(() -> new PlayerNames(playerNames))
-                    .isInstanceOf(ValidationException.class)
+                    .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ExceptionMessage.PLAYER_NAMES_RANGE);
         }
 
@@ -77,7 +76,7 @@ class PlayerNamesTest {
 
             // then
             Assertions.assertThatThrownBy(() -> new PlayerNames(playerNames))
-                    .isInstanceOf(ValidationException.class)
+                    .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ExceptionMessage.PLAYER_NAMES_DUPLICATION);
         }
     }

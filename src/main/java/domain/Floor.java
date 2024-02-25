@@ -1,7 +1,6 @@
 package domain;
 
 import common.exception.message.ExceptionMessage;
-import common.exception.model.ValidationException;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class Floor {
 
     private void isSerialBridge(LadderBridge beforeBridge, LadderBridge nextBridge) {
         if (beforeBridge.equals(LadderBridge.BRIDGE) && beforeBridge == nextBridge) {
-            throw new ValidationException(ExceptionMessage.SERIAL_LADDER_BRIDGE);
+            throw new IllegalArgumentException(ExceptionMessage.SERIAL_LADDER_BRIDGE);
         }
     }
 

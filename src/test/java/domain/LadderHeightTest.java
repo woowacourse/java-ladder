@@ -1,7 +1,6 @@
 package domain;
 
 import common.exception.message.ExceptionMessage;
-import common.exception.model.ValidationException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -25,7 +24,7 @@ public class LadderHeightTest {
         @DisplayName("높이가 2 미만, 10 초과라면 예외가 발생한다")
         void createLadderHeightFailByRange(int value) {
             Assertions.assertThatThrownBy(() -> new LadderHeight(value))
-                    .isInstanceOf(ValidationException.class)
+                    .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ExceptionMessage.LADDER_HEIGHT_RANGE);
         }
     }
