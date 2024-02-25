@@ -15,19 +15,20 @@ public class Ladder {
 
     public Ladder(int ladderHeight, int ladderWidth) {
         validateLinesSize(ladderHeight);
-        this.lines = new ArrayList<>();
         LineGenerator lineGenerator = new LineGenerator(new DirectionGeneratorImpl());
-        createLines(ladderHeight, ladderWidth, lineGenerator);
+        this.lines = createLines(ladderHeight, ladderWidth, lineGenerator);
     }
 
     public List<Line> getLines() {
         return lines;
     }
 
-    private void createLines(int ladderHeight, int ladderWidth, LineGenerator lineGenerator) {
+    private List<Line> createLines(int ladderHeight, int ladderWidth, LineGenerator lineGenerator) {
+        List<Line> lines = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
-            this.lines.add(lineGenerator.generate(ladderWidth));
+            lines.add(lineGenerator.generate(ladderWidth));
         }
+        return lines;
     }
 
     private void validateLinesSize(int ladderHeight) {
