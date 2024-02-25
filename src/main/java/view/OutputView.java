@@ -38,7 +38,7 @@ public class OutputView {
     public static void printLadder(Ladder ladder) {
         List<Line> lines = ladder.getLines();
         for (Line line : lines) {
-            List<Bridge> bridges = line.bridges();
+            List<Bridge> bridges = line.getBridges();
             String result = bridges.stream()
                     .map(OutputView::formatBridge)
                     .collect(Collectors.joining(BRIDGE_DELIMITER));
