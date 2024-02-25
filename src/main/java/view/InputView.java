@@ -5,11 +5,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
+    private static final Scanner scanner = new Scanner(System.in);
+
     public InputView() {
     }
 
     private static String input() {
-        Scanner scanner = new Scanner(System.in);
         return scanner.next();
     }
 
