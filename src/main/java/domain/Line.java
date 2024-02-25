@@ -39,6 +39,18 @@ public class Line {
         return LadderItem.UNCONNECTED;
     }
 
+    public int decideNextPosition(int position) {
+        if ((position == columnLength || position - 1 >= 0) && points.get(position -1).equals(LadderItem.CONNECTED)) {
+            return position - 1;
+        }
+
+        if ((position == 0 || position < columnLength - 1) && points.get(position).equals(LadderItem.CONNECTED)) {
+            return position + 1;
+        }
+
+        return position;
+    }
+
     public List<LadderItem> getPoints() {
         return points;
     }

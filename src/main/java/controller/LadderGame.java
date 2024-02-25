@@ -28,6 +28,8 @@ public class LadderGame {
         ladder.makeLadder(participants.getParticipantsCount(), booleanGenerator);
 
         printLadder(ladder, participants);
+
+        ladder.playLadder(results, participants);
     }
 
     private List<String> inputName() {

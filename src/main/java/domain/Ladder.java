@@ -38,6 +38,18 @@ public class Ladder {
         return ladder;
     }
 
+    public void playLadder(Results results, Participants participants) {
+        for (int initPosition = 0; initPosition < participants.getParticipantsCount(); initPosition++) {
+            int position = initPosition;
+
+            for (int i = 0; i < height; i++) {
+                position = ladder.get(i).decideNextPosition(position);
+            }
+
+            results.recordParticipantsResult(participants.getParticipants().get(initPosition), position);
+        }
+    }
+
     public List<Line> getLadder() {
         return Collections.unmodifiableList(ladder);
     }
