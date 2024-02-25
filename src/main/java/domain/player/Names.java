@@ -1,5 +1,6 @@
 package domain.player;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,6 +39,6 @@ public class Names {
     }
 
     public List<Name> getValue() {
-        return names;
+        return Collections.unmodifiableList(names);
     }
 }
