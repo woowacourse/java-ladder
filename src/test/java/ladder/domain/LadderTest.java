@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
@@ -10,16 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class LadderTest {
 
-    @DisplayName("사다리를 생성한다.")
-    @Test
-    void ladderConstructTest() {
-        Players players = new Players(List.of("poby", "honux", "crong", "jk"));
-        Height height = new Height(5);
-        assertThatCode(() -> new Ladder(players, height))
-                .doesNotThrowAnyException();
-    }
-
-    @DisplayName("사다리는 입력에 맞는 사이즈의 사다리를 생성한다.")
+    @DisplayName("사다리는 (입력된 사용자의 수) * (입력된 높이) 사이즈의 사다리를 생성한다.")
     @Test
     void ladderSizeTest() {
         //given
@@ -28,7 +18,7 @@ class LadderTest {
         Ladder ladder = new Ladder(players, height);
 
         //when
-        LadderLevel anyLadderLevel = ladder.stream().findFirst().get();
+        LadderLevel anyLadderLevel = ladder.stream().findAny().get();
 
         int actualHeight = (int) ladder.stream().count();
         int actualPlayersCount = (int) anyLadderLevel.stream().count();

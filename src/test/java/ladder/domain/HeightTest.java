@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class HeightTest {
 
-    @DisplayName("높이를 생성한다.")
+    @DisplayName("높이를 입력하여 Height을 생성한다.")
     @Test
     void heightConstructTest() {
         assertThatCode(() -> new Height(1))

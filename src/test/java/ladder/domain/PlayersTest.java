@@ -33,7 +33,7 @@ class PlayersTest {
                 .hasMessage("참여자는 최소 2명입니다.");
     }
 
-    @DisplayName("사람 수를 반환한다.")
+    @DisplayName("count 메서드는 사람 수를 반환한다.")
     @Test
     void playersCountTest() {
         Players players = new Players(List.of("명오", "제우스"));
