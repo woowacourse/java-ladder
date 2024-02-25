@@ -1,5 +1,6 @@
 package laddergame;
 
+import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
 import laddergame.domain.Height;
 import laddergame.domain.Ladder;
@@ -8,6 +9,7 @@ import laddergame.domain.PlayersResults;
 import laddergame.domain.Results;
 import laddergame.domain.strategy.BuildStrategy;
 import laddergame.domain.strategy.PointBuildStrategy;
+import laddergame.util.ReservedWords;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -24,14 +26,17 @@ public class LadderGame {
         Ladder ladder = new Ladder(players, height, results, pointBuildStrategy);
         outputView.writeLadderResult(players, ladder, results);
         PlayersResults playersResults = ladder.getPlayersResults();
-        while (true) {
-            final String name = requestUntilValidated(() -> inputView.readDesiredPlayerName(players));
-            if (name.equals("all")) {
-                outputView.writeAllResults(playersResults);
-                break;
-            }
-            outputView.writeDesiredResult(playersResults.find(name));
+        repeatUntil(() -> runCommand(
+                requestUntilValidated(() -> inputView.readDesiredPlayerName(players)), playersResults));
+    }
+
+    private boolean runCommand(final String name, final PlayersResults playersResults) {
+        if (ReservedWords.isIncluded(name)) {
+            outputView.writeAllResults(playersResults);
+            return true;
         }
+        outputView.writeDesiredResult(playersResults.find(name));
+        return false;
     }
 
     private <T> T requestUntilValidated(Supplier<T> supplier) {
@@ -40,6 +45,11 @@ public class LadderGame {
         } catch (IllegalArgumentException e) {
             OutputView.writeErrorMessage(e.getMessage());
             return requestUntilValidated(supplier);
+        }
+    }
+
+    private void repeatUntil(BooleanSupplier condition) {
+        while (!condition.getAsBoolean()) {
         }
     }
 }
