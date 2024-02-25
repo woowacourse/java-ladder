@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class BridgesTest {
     @ParameterizedTest
-    @ValueSource(ints = {Bridges.MIN_BRIDGES_COUNT - 1, Bridges.MAX_BRIDGES_COUNT + 1})
+    @ValueSource(ints = {0, 10})
     @DisplayName("다리 개수가 부적절(1 미만 9 초과)하면 예외 발생")
     void validateBridgesSize(int bridgesSize) {
         List<Boolean> bridges = IntStream.range(0, bridgesSize).mapToObj(value -> false).toList();

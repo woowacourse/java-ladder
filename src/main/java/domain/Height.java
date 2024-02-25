@@ -1,8 +1,8 @@
 package domain;
 
 class Height {
-    static final int MIN = 5;
-    static final int MAX = 10;
+    private static final int MIN = 5;
+    private static final int MAX = 10;
 
     private final int length;
 
