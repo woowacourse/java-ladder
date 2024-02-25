@@ -11,10 +11,10 @@ public class Line {
 
     public Line(List<Boolean> scaffold) {
         this.scaffold = new ArrayList<>(scaffold);
-        validateContinue(this.scaffold);
+        validateNonContinuousHorizontal(this.scaffold);
     }
 
-    private static void validateContinue(List<Boolean> scaffold) {
+    private static void validateNonContinuousHorizontal(List<Boolean> scaffold) {
         if (IntStream.range(0, scaffold.size() - 1)
                 .anyMatch(i -> scaffold.get(i) && scaffold.get(i + 1))) {
             throw new IllegalArgumentException(CONTINUE_SCAFFOLD.generate());
