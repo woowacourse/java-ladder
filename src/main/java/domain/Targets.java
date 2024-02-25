@@ -26,4 +26,8 @@ public class Targets {
                 .map(Target::new)
                 .collect(Collectors.toList());
     }
+
+    public List<Target> getTargets() {
+        return targets;
+    }
 }

@@ -1,9 +1,7 @@
 package view;
 
-import domain.Line;
-import domain.Player;
-import domain.Players;
-import domain.Step;
+import domain.*;
+
 import java.util.stream.Collectors;
 
 public class OutputFormatter {
@@ -38,5 +36,21 @@ public class OutputFormatter {
             return BAR + "-----";
         }
         return BAR + "     ";
+    }
+
+    public String toTargetUnit(Targets targets) {
+        return targets.getTargets().stream()
+                .map(this::getTargetUnit)
+                .collect(Collectors.joining());
+    }
+
+    private String getTargetUnit(Target target) {
+        String name = target.getTarget();
+        if (name.length() < 5) {
+            String leftBlank = SPACE.repeat(4 - name.length());
+            String rightBlank = SPACE;
+            name = leftBlank + name + rightBlank;
+        }
+        return name + SPACE;
     }
 }

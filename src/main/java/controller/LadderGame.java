@@ -18,19 +18,24 @@ public class LadderGame {
 
     public void run() {
         final Players players = readWithRetry(this::readPlayers);
-        inputView.inputTargets();
+        final Targets targets = readTargets(players);
         final Height height = readWithRetry(this::readHeight);
 
         final Ladder ladder = Ladder.create(height, PlayerCount.fromPlayers(players));
 
-        inputView.inputResult();
+        outputView.printResult(players, ladder, targets);
 
-        outputView.printResult(players, ladder);
+        inputView.inputResult();
     }
 
     private Players readPlayers() {
         final List<String> players = readWithRetry(inputView::inputPlayers);
         return Players.from(players);
+    }
+
+    private Targets readTargets(Players players) {
+        final List<String> targets = readWithRetry(inputView::inputTargets);
+        return Targets.from(targets, PlayerCount.fromPlayers(players));
     }
 
     private Height readHeight() {

@@ -14,4 +14,8 @@ public class Target {
             throw new IllegalArgumentException("실행 결과는 1~%d자 이내로 입력해야합니다.".formatted(MAX_NAME_LENGTH));
         }
     }
+
+    public String getTarget() {
+        return target;
+    }
 }

@@ -3,6 +3,7 @@ package view;
 import domain.Ladder;
 import domain.Line;
 import domain.Players;
+import domain.Targets;
 
 public class OutputView {
     private final OutputFormatter outputFormatter;
@@ -11,10 +12,11 @@ public class OutputView {
         this.outputFormatter = new OutputFormatter();
     }
 
-    public void printResult(Players rawPlayers, Ladder ladder) {
+    public void printResult(Players rawPlayers, Ladder ladder, Targets targets) {
         System.out.println("실행결과");
         printNames(rawPlayers);
         printLadder(ladder);
+        printTargets(targets);
     }
 
     private void printNames(Players players) {
@@ -29,5 +31,10 @@ public class OutputView {
     private void printLine(Line rawLine) {
         String line = outputFormatter.toLine(rawLine);
         System.out.println(line);
+    }
+
+    private void printTargets(Targets targets) {
+        String targetUnit = outputFormatter.toTargetUnit(targets);
+        System.out.println(targetUnit);
     }
 }
