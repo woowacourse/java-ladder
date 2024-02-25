@@ -1,12 +1,11 @@
 package controller;
 
 import domain.Game;
-import domain.Height;
 import domain.Lines;
 import domain.Members;
 import domain.StringParser;
 import error.ErrorHandler;
-import strategy.RandomPointStrategy;
+import strategy.RandomConnectionStrategy;
 import view.InputView;
 import view.OutputView;
 
@@ -52,6 +51,6 @@ public class GameController {
     }
 
     private Lines makeLines(int memberCount, int height) {
-        return new Lines(memberCount, height, new RandomPointStrategy());
+        return new Lines(memberCount, height, new RandomConnectionStrategy());
     }
 }

@@ -1,6 +1,6 @@
 package domain;
 
-import strategy.PointStrategy;
+import strategy.ConnectionStrategy;
 
 public enum Connection {
 
@@ -10,10 +10,10 @@ public enum Connection {
     Connection() {
     }
 
-    public Connection makeNextConnection(PointStrategy pointStrategy) {
+    public Connection makeNextConnection(ConnectionStrategy connectionStrategy) {
         if (this == CONNECTED) {
             return DISCONNECTED;
         }
-        return pointStrategy.generatePoint();
+        return connectionStrategy.generateConnection();
     }
 }

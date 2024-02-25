@@ -39,7 +39,7 @@ public class OutputView {
     }
 
     private String resolveLine(Line line) {
-        List<Connection> connections = line.getPoints();
+        List<Connection> connections = line.getConnections();
         StringBuilder stringBuilder = new StringBuilder(repeatCharacter(DISCONNECTED_CHARACTER, MAX_NAME_LENGTH - 1));
         for (Connection connection : connections) {
             stringBuilder.append(FRAME_OF_LADDER);
