@@ -9,6 +9,7 @@ public class People {
 
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
+    private static final int MIN_PEOPLE_COUNT = 2;
     private static final String DELIMITER = ",";
 
     private final List<String> names;
@@ -31,12 +32,19 @@ public class People {
         for (String name : names) {
             validateLength(name);
         }
+        validateCount(names);
     }
 
     private void validateLength(String name) {
         int nameLength = name.length();
         if (nameLength > MAX_NAME_LENGTH || nameLength < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 공백을 제외한 최소 1글자 최대 5글자까지 부여할 수 있습니다.");
+        }
+    }
+
+    private void validateCount(List<String> names) {
+        if (names.size() < MIN_PEOPLE_COUNT) {
+            throw new IllegalArgumentException("두 명 이상 입력해주세요.");
         }
     }
 
