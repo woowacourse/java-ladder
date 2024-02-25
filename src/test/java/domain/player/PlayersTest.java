@@ -3,7 +3,6 @@ package domain.player;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import domain.player.Players;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -31,5 +30,16 @@ class PlayersTest {
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참여하는 사람의 수는 2명 이상 10명 이하여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("중복된 이름이 존재하는 경우, 예외를 발생한다.")
+    void duplicatedNameTest() {
+        // given
+        List<String> names = List.of("aru", "aru", "pobi");
+        // when, then
+        assertThatThrownBy(() -> new Players(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("중복된 이름이 존재합니다.");
     }
 }
