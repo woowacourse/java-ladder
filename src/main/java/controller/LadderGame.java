@@ -7,6 +7,7 @@ import domain.Participant;
 import domain.Participants;
 import util.BooleanGenerator;
 import view.InputView;
+import view.LadderShape;
 import view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +78,7 @@ public class LadderGame {
 
     private void createLine(Line line, StringBuilder stringBuilder) {
         for (LadderItem point : line.getPoints()) {
-            stringBuilder.append(point.getShape());
+            stringBuilder.append(LadderShape.getShapeByLadderItem(point));
         }
     }
 }
