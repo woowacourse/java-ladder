@@ -2,7 +2,7 @@ package view;
 
 import java.util.List;
 import java.util.Scanner;
-import parser.NameParser;
+import view.parser.NameParser;
 
 public class InputView {
     private final Scanner scanner = new Scanner(System.in);
