@@ -51,14 +51,14 @@ public class InputView {
         }
     }
 
-    public List<String> inputResults() {
+    public List<String> inputTargets() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String input = scanner.nextLine();
-        validateResults(input);
+        validateTargets(input);
         return Arrays.stream(input.split(NAME_DELIMITER)).map(String::trim).toList();
     }
 
-    private void validateResults(String input) {
+    private void validateTargets(String input) {
         validateBlank(input);
         validateDoubleDelimiter(input);
         validateStartWord(input);

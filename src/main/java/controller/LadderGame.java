@@ -18,7 +18,7 @@ public class LadderGame {
 
     public void run() {
         final Players players = readWithRetry(this::readPlayers);
-        inputView.inputResults();
+        inputView.inputTargets();
         final Height height = readWithRetry(this::readHeight);
 
         final Ladder ladder = Ladder.create(height, PlayerCount.fromPlayers(players));

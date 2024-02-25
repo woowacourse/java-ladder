@@ -1,12 +1,12 @@
 package domain;
 
-public class Result {
+public class Target {
     private static final int MAX_NAME_LENGTH = 5;
-    private final String result;
+    private final String target;
 
-    public Result(String result) {
-        validate(result);
-        this.result = result;
+    public Target(String target) {
+        validate(target);
+        this.target = target;
     }
 
     private void validate(String result) {
