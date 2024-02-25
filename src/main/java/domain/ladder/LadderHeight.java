@@ -12,7 +12,7 @@ public class LadderHeight {
         this.height = height;
     }
 
-    public boolean hasLengthOf(int height) {
+    public boolean isSameHeightAs(int height) {
         return height == this.height;
     }
 

@@ -25,11 +25,11 @@ public class Ladder {
     }
 
     private void createLadder(Players players, LadderHeight height) {
-        int currentFloor = 0;
-        while (!height.hasLengthOf(currentFloor)) {
+        int createdRowCount = 0;
+        while (!height.isSameHeightAs(createdRowCount)) {
             LadderRow line = new LadderRow(players.size());
             rows.add(line);
-            currentFloor++;
+            createdRowCount++;
         }
     }
 }
