@@ -21,7 +21,7 @@ public class LadderGame {
         final Outcomes outcomes = readOutComes(participants.getCount());
         final int width = participants.getNecessaryLadderWidth();
         final Ladder ladder = createLadder(width);
-        printLadder(participants, ladder);
+        printLadderGame(participants, ladder, outcomes);
     }
 
     private Participants createParticipants() {
@@ -34,9 +34,9 @@ public class LadderGame {
         }
     }
 
-    private Outcomes readOutComes(int neededOutcomesCount) {
+    private Outcomes readOutComes(final int neededOutcomesCount) {
         try {
-            List<String> outcomes = inputView.readOutcomes();
+            final List<String> outcomes = inputView.readOutcomes();
             return new Outcomes(outcomes, neededOutcomesCount);
         } catch (IllegalArgumentException e) {
             outputView.printException(e);
@@ -55,10 +55,11 @@ public class LadderGame {
         return new LadderSize(ladderWidth, ladderHeight);
     }
 
-    private void printLadder(final Participants participants, final Ladder ladder) {
+    private void printLadderGame(final Participants participants, final Ladder ladder, final Outcomes outcomes) {
         outputView.printResultPrefix();
         outputView.printParticipants(participants);
         outputView.printLadder(ladder);
+        outputView.printOutcomes(outcomes);
     }
 
     private <T, R> R retryOnException(final Function<T, R> retryOperation, T input) {
