@@ -16,4 +16,8 @@ public class Results {
                 .map(Result::getValue)
                 .toList();
     }
+
+    public String resultOf(int index) {
+        return results.get(index).getValue();
+    }
 }
