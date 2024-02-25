@@ -7,13 +7,13 @@ public class Name {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String NAME_REGEX = "^[a-zA-Z]*$";
 
-    private final String name;
+    private final String value;
 
-    public Name(String name) {
-        name = name.trim();
-        validateNameLength(name);
-        validateIsAlphabetic(name);
-        this.name = name;
+    public Name(String value) {
+        value = value.trim();
+        validateNameLength(value);
+        validateIsAlphabetic(value);
+        this.value = value;
     }
 
     private void validateNameLength(final String name) {
@@ -29,6 +29,6 @@ public class Name {
     }
 
     public String getValue() {
-        return name;
+        return value;
     }
 }
