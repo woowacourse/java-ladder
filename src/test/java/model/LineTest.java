@@ -1,6 +1,8 @@
 package model;
 
 import java.util.List;
+import model.ladder.Line;
+import model.ladder.Width;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;

@@ -1,5 +1,8 @@
 package model;
 
+import model.ladder.Height;
+import model.ladder.Ladder;
+import model.ladder.Width;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package model;
+package model.ladder;
 
 import exception.Message;
 import java.util.Objects;

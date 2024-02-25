@@ -1,8 +1,9 @@
-package model;
+package model.players;
 
 import exception.Message;
 import java.util.List;
 import java.util.Set;
+import model.ladder.Width;
 
 public class Players {
 

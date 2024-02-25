@@ -1,9 +1,9 @@
 package controller;
 
-import model.Height;
-import model.Ladder;
-import model.Players;
-import model.Width;
+import model.ladder.Height;
+import model.ladder.Ladder;
+import model.ladder.Width;
+import model.players.Players;
 import view.InputView;
 import view.OutputView;
 

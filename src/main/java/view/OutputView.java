@@ -1,7 +1,7 @@
 package view;
 
 import java.util.List;
-import model.Line;
+import model.ladder.Line;
 
 public class OutputView {
     private static final String FINAL_RESULT_FORMAT = "%s%n%n";
