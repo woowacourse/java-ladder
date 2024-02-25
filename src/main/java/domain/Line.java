@@ -19,14 +19,10 @@ public class Line {
     public static List<Step> createSteps(PlayerCount playerCount, StepGenerator randomBooleanGenerator) {
         List<Step> steps = new ArrayList<>();
 
-        for (int buildCount = 0; isInCountRange(playerCount, buildCount); buildCount++) {
+        for (int buildCount = 0; playerCount.isBiggerThan(buildCount); buildCount++) {
             steps.add(createStep(steps, randomBooleanGenerator, playerCount));
         }
         return steps;
-    }
-
-    private static boolean isInCountRange(PlayerCount playerCount, int buildCount) {
-        return playerCount.isBiggerThan(buildCount);
     }
 
     private static Step createStep(List<Step> steps, StepGenerator randomStepGenerator,
@@ -39,7 +35,7 @@ public class Line {
 
     private static boolean hasBeforeStep(List<Step> steps) {
         int index = steps.size();
-        if (isFirstStep(index)) {
+        if (index == 0) {
             return false;
         }
         return steps.get(index - 1).isExist();
@@ -47,10 +43,6 @@ public class Line {
 
     private static boolean isLastStep(List<Step> steps, PlayerCount playerCount) {
         return playerCount.isSameWith(steps.size() + 1);
-    }
-
-    private static boolean isFirstStep(int index) {
-        return index == 0;
     }
 
     @Override
