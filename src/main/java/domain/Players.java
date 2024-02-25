@@ -40,17 +40,4 @@ public class Players {
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Players players1 = (Players) o;
-        return Objects.equals(players, players1.players);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(players);
-    }
 }
