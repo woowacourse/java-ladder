@@ -1,11 +1,9 @@
 package domain;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Result {
-    private final Map<Integer, Integer> mapper = new HashMap<>();
+    private final Map<Integer, Integer> mapper = new LinkedHashMap<>();
 
     public Result(final List<Integer> from, final List<Integer> to) {
         makeMapper(from, to);
@@ -19,5 +17,9 @@ public class Result {
 
     public Integer getOne(final int from) {
         return mapper.get(from);
+    }
+
+    public List<Integer> getAll() {
+        return new ArrayList<>(mapper.values());
     }
 }
