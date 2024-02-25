@@ -1,5 +1,7 @@
 package laddergame.view;
 
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.StringJoiner;
 import java.util.stream.IntStream;
 import laddergame.domain.Ladder;
@@ -14,13 +16,19 @@ public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String LADDER_SYMBOL = "|";
     private static final String POINT_SPACE = "\t";
-    private static final String RESULT_TITLE = System.lineSeparator() + "실행결과" + System.lineSeparator();
+    private static final String LADDER_RESULT_TITLE = System.lineSeparator() + "사다리 결과" + System.lineSeparator();
+    private static final String RESULT_TITLE = System.lineSeparator() + "실행결과";
+    private static final String PLAYER_RESULT_FORMAT = "%s : %s" + System.lineSeparator();
 
-    public void printLadderResult(final Players players, final Ladder ladder, final Results results) {
-        writeResultTitle();
+    public void writeLadderResult(final Players players, final Ladder ladder, final Results results) {
+        writeLadderResultTitle();
         writePlayersName(players);
         writeLadder(ladder);
         writeResultNames(results);
+    }
+
+    private void writeLadderResultTitle() {
+        System.out.println(LADDER_RESULT_TITLE);
     }
 
     private void writePlayersName(final Players players) {
@@ -48,7 +56,7 @@ public class OutputView {
                 .toList()));
     }
 
-    public void writeResultTitle() {
+    private void writeResultTitle() {
         System.out.println(RESULT_TITLE);
     }
 
@@ -56,6 +64,13 @@ public class OutputView {
         System.out.println();
         System.out.println("실행 결과");
         System.out.println(result.name());
+    }
+
+    public void writeAllResults(final Map<Player, Result> playerResult) {
+        writeResultTitle();
+        for (Entry<Player, Result> entry : playerResult.entrySet()) {
+            System.out.printf(PLAYER_RESULT_FORMAT, entry.getKey().getName(), entry.getValue().name());
+        }
     }
 
     public static void writeErrorMessage(final String message) {

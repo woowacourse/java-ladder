@@ -49,4 +49,8 @@ public class Ladder {
     public List<Line> getLines() {
         return lines;
     }
+
+    public Map<Player, Result> getFoundResult() {
+        return foundResult;
+    }
 }

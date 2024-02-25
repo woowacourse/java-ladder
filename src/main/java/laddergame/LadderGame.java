@@ -22,9 +22,16 @@ public class LadderGame {
         Height height = requestUntilValidated(() -> new Height(inputView.readLadderHeight()));
         BuildStrategy pointBuildStrategy = new PointBuildStrategy();
         Ladder ladder = new Ladder(players, height, results, pointBuildStrategy);
-        outputView.printLadderResult(players, ladder, results);
-        Result result = requestUntilValidated(() -> ladder.find(inputView.readDesiredPlayerName()));
-        outputView.writeDesiredResult(result);
+        outputView.writeLadderResult(players, ladder, results);
+        while (true) {
+            final String command = inputView.readDesiredPlayerName();
+            if (command.equals("all")) {
+                outputView.writeAllResults(ladder.getFoundResult());
+                break;
+            }
+            Result result = requestUntilValidated(() -> ladder.find(command));
+            outputView.writeDesiredResult(result);
+        }
     }
 
     private <T> T requestUntilValidated(Supplier<T> supplier) {
