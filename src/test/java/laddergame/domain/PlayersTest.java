@@ -20,7 +20,7 @@ public class PlayersTest {
         final String playerName2 = "lemon";
 
         //when
-        final Players players = Players.from(List.of(playerName1, playerName2));
+        final Players players = new Players(List.of(playerName1, playerName2));
 
         //then
         assertEquals(players.getPlayers().size(), 2);
@@ -35,7 +35,7 @@ public class PlayersTest {
         final String name = "name";
 
         // when & then
-        assertThrows(IllegalArgumentException.class, () -> Players.from(List.of(name, name)));
+        assertThrows(IllegalArgumentException.class, () -> new Players(List.of(name, name)));
     }
 
     @ParameterizedTest
@@ -43,6 +43,6 @@ public class PlayersTest {
     @DisplayName("입력이 없을 경우 예외가 발생한다.")
     public void nameIsNullException(final String name) {
         //given & when & then
-        assertThrows(IllegalArgumentException.class, () -> Players.from(List.of(name)));
+        assertThrows(IllegalArgumentException.class, () -> new Players(List.of(name)));
     }
 }

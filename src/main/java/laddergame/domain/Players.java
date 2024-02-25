@@ -9,19 +9,14 @@ public class Players {
     private static final String NAME_DUPLICATED_ERROR = "이름의 중복은 허용하지 않습니다.";
     private static final String NAMES_COUNT_ERROR = "이름을 두명 이상 적어주세요.";
     private static final int MIN_NAMES_COUNT = 2;
+
     private final List<Player> players;
 
-    private Players(final List<Player> players) {
-        this.players = players;
-    }
-
-    public static Players from(final List<String> playerNames) {
+    public Players(final List<String> playerNames) {
         validate(playerNames);
-
-        return new Players(playerNames.stream()
+        this.players = playerNames.stream()
                 .map(Player::new)
-                .toList()
-        );
+                .toList();
     }
 
     private static void validate(final List<String> playerNames) {

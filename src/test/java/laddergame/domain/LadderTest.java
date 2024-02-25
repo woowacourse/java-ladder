@@ -18,7 +18,7 @@ public class LadderTest {
         //given
         final Height height = new Height("4");
         final List<String> playersName = List.of("name1", "name2");
-        final Players players = Players.from(playersName);
+        final Players players = new Players(playersName);
 
         //when
         Ladder ladder = new Ladder(
@@ -37,7 +37,7 @@ public class LadderTest {
         //given
         final Height height = new Height("1");
         final List<String> playersName = List.of("name1", "name2", "name3", "name4");
-        final Players players = Players.from(playersName);
+        final Players players = new Players(playersName);
         final List<Zone> expected = List.of(Zone.BRIDGE, Zone.EMPTY, Zone.BRIDGE);
 
         LineBuildStrategy lineBuildStrategy = new LineBuildStrategy() {
