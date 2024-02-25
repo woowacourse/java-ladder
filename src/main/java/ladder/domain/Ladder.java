@@ -12,6 +12,7 @@ public class Ladder {
     private static final int MAX_LADDER_HEIGHT = 100;
 
     private final List<RowLine> rowLines = new ArrayList<>();
+    private final int peopleNumber;
 
     public Ladder(int height, int peopleNumber) {
         this(height, peopleNumber, new RandomLineGenerator());
@@ -19,20 +20,29 @@ public class Ladder {
 
     public Ladder(int height, int peopleNumber, LineGenerator lineGenerator) {
         validateLadderHeight(height);
+        this.peopleNumber = peopleNumber;
 
         for (int i = 0; i < height; i++) {
             this.rowLines.add(new RowLine(peopleNumber, lineGenerator));
         }
     }
 
+    public List<RowLine> getRowLines() {
+        return Collections.unmodifiableList(rowLines);
+    }
 
-    private static void validateLadderHeight(int height) {
+    public int getResultOf(int lineNumber) {
+        PositionRow positionRow = new PositionRow(lineNumber, peopleNumber);
+        for (RowLine rowLine : rowLines) {
+            rowLine.move(positionRow);
+        }
+
+        return positionRow.getPosition();
+    }
+
+    private void validateLadderHeight(int height) {
         if (height < MIN_LADDER_HEIGHT || height > MAX_LADDER_HEIGHT) {
             throw new IllegalArgumentException("사다리의 높이는 1이상 100이하여야 합니다");
         }
-    }
-
-    public List<RowLine> getRowLines() {
-        return Collections.unmodifiableList(rowLines);
     }
 }

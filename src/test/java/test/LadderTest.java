@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import test.linegenerator.AllFalseLineGenerator;
+import test.linegenerator.AlternativeLineGenerator;
 
 import java.util.List;
 import java.util.Set;
@@ -45,5 +46,21 @@ class LadderTest {
                 .collect(Collectors.toSet());
 
         assertThat(connectionElement).containsExactly(Boolean.FALSE);
+    }
+
+    @DisplayName("사다리 결과 테스트 : 가로선이 없는 경우")
+    @ParameterizedTest
+    @ValueSource(ints = {0,1,2,3,4})
+    void noLineLadderResultTest(int lineNumber) {
+        Ladder testLadder = new Ladder(2, 5, new AllFalseLineGenerator());
+        assertThat(testLadder.getResultOf(lineNumber)).isEqualTo(lineNumber);
+    }
+
+    @DisplayName("사다리 결과 테스트 : 가로선이 홀수번째에 있는 경우")
+    @ParameterizedTest
+    @ValueSource(ints = {0,1,2,3,4})
+    void alternativeLadderResultTest(int lineNumber) {
+        Ladder testLadder = new Ladder(2, 5, new AlternativeLineGenerator());
+        assertThat(testLadder.getResultOf(lineNumber)).isEqualTo(lineNumber);
     }
 }
