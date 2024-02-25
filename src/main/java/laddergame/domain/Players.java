@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 import static laddergame.domain.Player.NAME_BLANK_ERROR;
@@ -58,7 +59,7 @@ public class Players {
     }
 
     public List<Player> getPlayers() {
-        return players;
+        return Collections.unmodifiableList(players);
     }
 
     public int getPlayersCount() {

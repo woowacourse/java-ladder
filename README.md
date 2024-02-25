@@ -88,4 +88,4 @@ example feat: 사용자 입력 후 도메인 사용
 - [x] Line의 point도 도메인 객체화 할 수 있다
 - [x] Player의 `NAME_MAX_LENGTH` -> `MAX_NAME_LENGTH`
 - [x] Players에서 정적 팩토리 메소드를 사용한 이유
-- [ ] 읿급컬렉션 반환할 때 불변객체로 만들어서 반환
+- [x] 일급컬렉션 반환할 때 불변객체로 만들어서 반환

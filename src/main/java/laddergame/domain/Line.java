@@ -2,6 +2,8 @@ package laddergame.domain;
 
 import laddergame.domain.strategy.LineBuildStrategy;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -18,6 +20,6 @@ public class Line {
     }
 
     public List<Zone> getZones() {
-        return zones;
+        return Collections.unmodifiableList(zones);
     }
 }
