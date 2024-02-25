@@ -3,6 +3,7 @@ package ladder.view;
 import java.util.List;
 import java.util.stream.Collectors;
 import ladder.domain.StepStatus;
+import ladder.dto.AllResults;
 import ladder.dto.Ladder;
 import ladder.dto.LineResult;
 
@@ -51,6 +52,24 @@ public class OutputView {
             return "-----|";
         }
         return "     |";
+    }
+
+    public static void printOneResult(final String result) {
+        System.out.println("실행 결과");
+        System.out.println(result);
+        System.out.println();
+    }
+
+    public static void printAllResults(final List<AllResults> results) {
+        System.out.println("실행 결과");
+        System.out.println(makeResultMessage(results));
+        System.out.println();
+    }
+
+    private static String makeResultMessage(final List<AllResults> results) {
+        return results.stream()
+                .map(result -> String.join(" : ", result.name(), result.destination()))
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
     public static void printErrorMessage(final String message) {
