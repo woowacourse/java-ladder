@@ -10,18 +10,13 @@ import java.util.stream.IntStream;
 public class Ladder {
     private final List<Line> lines;
 
-    private Ladder(List<Line> lines) {
-        this.lines = lines;
-    }
-
-    public static Ladder buildOf(final LineBuildStrategy lineBuildStrategy,
-                                 final Players players,
-                                 final Height height)
+    public Ladder(final LineBuildStrategy lineBuildStrategy,
+                  final Players players,
+                  final Height height)
     {
-        List<Line> lines = IntStream.range(0, height.getHeight())
-                    .mapToObj(i -> new Line(lineBuildStrategy, players.getPlayersCount() - 1))
-                    .collect(Collectors.toList());
-        return new Ladder(lines);
+        this.lines = IntStream.range(0, height.getHeight())
+                .mapToObj(i -> new Line(lineBuildStrategy, players.getPlayersCount() - 1))
+                .collect(Collectors.toList());
     }
 
     public List<Line> getLines() {

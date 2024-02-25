@@ -98,6 +98,6 @@ example feat: 사용자 입력 후 도메인 사용
 - [ ] `RandomZoneGenerator`의 generate 메소드에 있는 매직넘버 상수화
 - [ ] `OutputView`의 래더 출력 메소드에 있는 스트림을 `ladder.getLines().forEach(this::writeLine);`로 수정하기
 - [ ] `OutputView`의 래더 출력 메소드에 있는 스트림에 join까지 넣기
-- [ ] `Ladder` 클래스의 정적팩토리 메서드를 대체하여 `Line`을 생성할 방법 생각해보기
+- [x] `Ladder` 클래스의 정적팩토리 메서드 대신 non static 생성자만 사용하기
 - [x] `Line` 정적팩토리 메서드 사용 대신 생성자에서 Line 만들어주기
 - [ ] push 하기 전 코드 정리하기

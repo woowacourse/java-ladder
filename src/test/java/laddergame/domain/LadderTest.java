@@ -20,7 +20,7 @@ public class LadderTest {
         final Players players = Players.from(playersName);
 
         //when
-        Ladder ladder = Ladder.buildOf(new NonContinuousLineBuildStrategy(), players, height);
+        Ladder ladder = new Ladder(new NonContinuousLineBuildStrategy(), players, height);
 
         //then
         assertEquals(ladder.getLines().size(), height.getHeight());
@@ -44,7 +44,7 @@ public class LadderTest {
         };
 
         //when
-        Ladder ladder = Ladder.buildOf(lineBuildStrategy, players, height);
+        Ladder ladder = new Ladder(lineBuildStrategy, players, height);
 
         //then
         assertEquals(expected, ladder.getLines().get(0).getZones());

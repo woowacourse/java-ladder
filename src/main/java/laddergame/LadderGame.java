@@ -17,7 +17,7 @@ public class LadderGame {
         Players players = retryUntilValidated(() -> Players.from(inputView.readPlayersName()));
         Height height = retryUntilValidated(() -> new Height(inputView.readLadderHeight()));
 
-        Ladder ladder = Ladder.buildOf(new NonContinuousLineBuildStrategy(), players, height);
+        Ladder ladder = new Ladder(new NonContinuousLineBuildStrategy(), players, height);
         printLadderResult(players, ladder);
     }
 
