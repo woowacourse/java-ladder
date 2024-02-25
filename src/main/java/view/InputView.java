@@ -27,6 +27,11 @@ public class InputView {
         }
     }
 
+    public static String readNameToSearch() {
+        printNameToSearchInputMessage();
+        return removeBlank(reader.nextLine());
+    }
+
     private static String removeBlank(final String text) {
         return text.replace(" ", "");
     }
@@ -41,5 +46,9 @@ public class InputView {
 
     private static void printLadderHeightInputMessage() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
+    }
+
+    private static void printNameToSearchInputMessage() {
+        System.out.println("결과를 보고 싶은 사람은?");
     }
 }
