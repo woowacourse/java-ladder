@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 import ladder.domain.LadderHeight;
 import ladder.domain.Lines;
 import ladder.domain.UserNames;
-import ladder.dto.LadderResult;
+import ladder.dto.Ladder;
 import ladder.dto.LineResult;
 import ladder.util.ConsoleReader;
 import ladder.util.RandomBooleanGenerator;
@@ -18,11 +18,11 @@ public class LadderGameMachine {
     public void run() {
         UserNames userNames = initNames();
         LadderHeight ladderHeight = initLadderHeight();
-        LadderResult ladderResult = createLadderResult(
+        Ladder ladder = createLadder(
                 new RandomBooleanGenerator(),
                 ladderHeight.value(),
                 userNames);
-        OutputView.printLadderResult(ladderResult);
+        OutputView.printLadder(ladder);
     }
 
     private UserNames initNames() {
@@ -45,7 +45,7 @@ public class LadderGameMachine {
         }
     }
 
-    private LadderResult createLadderResult(
+    private Ladder createLadder(
             final Supplier<Boolean> generator,
             final int ladderHeight,
             final UserNames userNames) {
@@ -53,6 +53,6 @@ public class LadderGameMachine {
         List<LineResult> lineResults = lines.getLines().stream()
                 .map(line -> new LineResult(line.getLine()))
                 .toList();
-        return new LadderResult(userNames.getUserNames(), lineResults);
+        return new Ladder(userNames.getUserNames(), lineResults);
     }
 }
