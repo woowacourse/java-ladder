@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ParticipantTest {
+public class NameTest {
     @Test
     @DisplayName("참가자 이름의 앞뒤 공백을 제거한다.")
     void trimNameTest() {
@@ -18,27 +18,27 @@ public class ParticipantTest {
         final String name = "mia ";
 
         // when
-        final Participant mia = new Participant(name);
+        final Name mia = new Name(name);
 
         // then
-        assertEquals("mia", mia.getName());
+        assertEquals("mia", mia.getValue());
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"miamia", "potato", ""})
     @DisplayName("참가자 이름이 1~5자가 아니면 예외가 발생한다.")
-    void checkNameLengthTest(final String name) {
+    void checkNameLengthTest(final String value) {
         // when & then
-        assertThatThrownBy(() -> new Participant(name))
+        assertThatThrownBy(() -> new Name(value))
                 .isInstanceOf(InvalidNameLengthException.class);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"감1자", "미아a", ".#a", "1234"})
     @DisplayName("참가자 이름이 영어가 아니면 예외가 발생한다.")
-    void checkAlphabeticNameTest(final String name) {
+    void checkAlphabeticNameTest(final String value) {
         // when & then
-        assertThatThrownBy(() -> new Participant(name))
+        assertThatThrownBy(() -> new Name(value))
                 .isInstanceOf(NonAlphabeticNameException.class);
     }
 }
