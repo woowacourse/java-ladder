@@ -23,9 +23,9 @@ public class Lines {
                 .toList();
     }
 
-    public List<List<Integer>> findStepPositions() {
+    public List<Integer> findStepPositions() {
         return lines.stream()
-                .map(Line::findStepPosition)
+                .flatMap(line -> line.findStepPosition().stream())
                 .toList();
     }
 
