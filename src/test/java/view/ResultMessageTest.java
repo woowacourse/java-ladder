@@ -2,9 +2,10 @@ package view;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import domain.BooleanGenerator;
 import domain.Line;
 import domain.Names;
+import domain.Point;
+import domain.PointGenerator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,7 +31,7 @@ class ResultMessageTest {
         assertEquals("    |", paddedLine);
     }
 
-    static class FixedGenerator implements BooleanGenerator {
+    static class FixedGenerator implements PointGenerator {
         private final Boolean value;
 
         public FixedGenerator(Boolean value) {
@@ -38,9 +39,11 @@ class ResultMessageTest {
         }
 
         @Override
-        public Boolean generate() {
-            return value;
+        public Point generate() {
+            if (value) {
+                return Point.MOVABLE;
+            }
+            return Point.UNMOVABLE;
         }
-
     }
 }
