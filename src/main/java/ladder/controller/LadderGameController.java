@@ -5,6 +5,8 @@ import ladder.domain.Ladder;
 import ladder.domain.People;
 import ladder.view.InputView;
 import ladder.view.OutputView;
+import ladder.view.Result;
+import ladder.view.ResultView;
 
 import static ladder.utils.InputUtility.retryUntilGet;
 
@@ -20,6 +22,9 @@ public class LadderGameController {
         OutputView.printPeopleName(people);
         OutputView.printLadder(ladder);
         OutputView.printCompensation(compensation);
+
+        Result result = Result.of(people, ladder, compensation);
+        ResultView.print(InputView.readName(), result);
     }
 
     private static People getPeople() {
