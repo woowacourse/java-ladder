@@ -1,8 +1,14 @@
 package model;
 
+import static model.path.Path.EXIST;
+import static model.path.Path.NOT_EXIST;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
+import model.path.FixedPathGenerator;
+import model.path.Path;
 import model.path.RandomPathGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +16,19 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LadderTest {
+
+    @Test
+    @DisplayName("사다리를 생성한다.")
+    void createLadder() {
+        List<Path> expectedPaths = List.of(EXIST, NOT_EXIST);
+        FixedPathGenerator pathGenerator = new FixedPathGenerator(expectedPaths);
+        int height = 1;
+        int personCount = 2;
+
+        Ladder ladder = Ladder.from(height, personCount, pathGenerator);
+        Line actualLine = ladder.getLines().get(height - 1);
+        assertThat(actualLine).isEqualTo(new Line(expectedPaths));
+    }
 
     @ParameterizedTest(name = "사다리의 높이는 1 이상이다.")
     @ValueSource(ints = {1, 5})
@@ -25,5 +44,4 @@ class LadderTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리의 높이는 1 이상이어야 합니다.");
     }
-
 }
