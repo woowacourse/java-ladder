@@ -11,12 +11,22 @@ public class Players {
                             .map(Player::new)
                             .toList();
     }
+
+    public Player searchPlayer(Name targetPlayerName) {
+        return players.stream()
+                      .filter(player -> player.name()
+                                              .equals(targetPlayerName))
+                      .findFirst()
+                      .orElse(null);
+    }
+
     public List<Name> getPlayerNames() {
         return players.stream()
-                      .map(Player::getName)
+                      .map(Player::name)
                       .toList();
     }
-    public int getPlayerCount(){
+
+    public int getPlayerCount() {
         return players.size();
     }
 
