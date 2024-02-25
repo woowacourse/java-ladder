@@ -11,7 +11,7 @@ import view.OutputView;
 import java.util.Arrays;
 import java.util.List;
 
-public class LadderController extends Controller {
+public class LadderController extends RetryableController {
 
     public LadderController(InputView inputView, OutputView outputView) {
         super(inputView, outputView);

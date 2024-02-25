@@ -1,6 +1,6 @@
 package common.exception.message;
 
-import controller.Controller;
+import controller.RetryableController;
 import domain.LadderHeight;
 import domain.PlayerName;
 import domain.PlayerNames;
@@ -32,5 +32,5 @@ public class ExceptionMessage {
      * IOException
      */
     public static final String INTEGER_FORMAT = "정수 형태만 입력 가능합니다";
-    public static final String READ_LIMIT_OVER = String.format("입력 횟수 제한(%d)를 초과하였습니다", Controller.READ_LIMIT);
+    public static final String READ_LIMIT_OVER = String.format("입력 횟수 제한(%d)를 초과하였습니다", RetryableController.READ_LIMIT);
 }

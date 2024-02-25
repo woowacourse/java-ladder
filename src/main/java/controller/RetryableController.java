@@ -7,14 +7,14 @@ import view.OutputView;
 
 import java.util.function.Supplier;
 
-public class Controller {
+public class RetryableController {
     protected final InputView inputView;
     protected final OutputView outputView;
     private int retryCount;
 
     public static final int READ_LIMIT = 10;
 
-    public Controller(InputView inputView, OutputView outputView) {
+    public RetryableController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.retryCount = 0;
