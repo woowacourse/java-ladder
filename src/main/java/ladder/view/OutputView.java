@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import ladder.domain.StepStatus;
-import ladder.dto.LadderResult;
+import ladder.dto.Ladder;
 import ladder.dto.LineResult;
 
 public class OutputView {
@@ -14,11 +14,11 @@ public class OutputView {
         throw new AssertionError();
     }
 
-    public static void printLadderResult(LadderResult ladderResult) {
+    public static void printLadder(Ladder ladder) {
         System.out.println("실행결과");
         System.out.println();
-        System.out.println(makeNameMessage(ladderResult.names()));
-        System.out.println(drawRadder(ladderResult.lines()));
+        System.out.println(makeNameMessage(ladder.names()));
+        System.out.println(drawLadder(ladder.lines()));
     }
 
     private static String makeNameMessage(final List<String> userNames) {
@@ -35,7 +35,7 @@ public class OutputView {
         return String.format("%5s", name);
     }
 
-    private static String drawRadder(final List<LineResult> lineResults) {
+    private static String drawLadder(final List<LineResult> lineResults) {
         return lineResults.stream()
                 .map(OutputView::drawLine)
                 .collect(Collectors.joining(System.lineSeparator()));
