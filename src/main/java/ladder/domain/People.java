@@ -7,7 +7,9 @@ import java.util.List;
 
 public class People {
 
+    private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
+    private static final String DELIMITER = ",";
 
     private final List<String> names;
 
@@ -18,19 +20,23 @@ public class People {
     }
 
     private List<String> parse(String rawNames) {
-        String[] names = rawNames.split(",");
+        String[] names = rawNames.split(DELIMITER);
         return Arrays.stream(names)
                 .map(String::trim)
+                .filter(name -> !name.isBlank())
                 .toList();
     }
 
     private void validate(List<String> names) {
-        long count = names.stream()
-                .filter(name -> name.length() > MAX_NAME_LENGTH)
-                .count();
+        for (String name : names) {
+            validateLength(name);
+        }
+    }
 
-        if (count > 0) {
-            throw new IllegalArgumentException("이름은 최대 5글자까지 부여할 수 있습니다.");
+    private void validateLength(String name) {
+        int nameLength = name.length();
+        if (nameLength > MAX_NAME_LENGTH || nameLength < MIN_NAME_LENGTH) {
+            throw new IllegalArgumentException("이름은 공백을 제외한 최소 1글자 최대 5글자까지 부여할 수 있습니다.");
         }
     }
 

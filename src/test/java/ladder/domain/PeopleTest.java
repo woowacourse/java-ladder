@@ -2,8 +2,11 @@ package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class PeopleTest {
 
@@ -25,6 +28,20 @@ class PeopleTest {
     void createInvalidNames() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new People("pobipobi,honux,crong,jk"));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {",pobi,honux", "  ,pobi,honux", "pobi,,honux", "pobi,  ,honux"})
+    @DisplayName("이름이 공백이라면 무시한다.")
+    void blankNameTest(String names) {
+        // given
+        People people = new People(names);
+
+        // when
+        int count = people.count();
+
+        // then
+        assertThat(count).isEqualTo(2);
     }
 
     @Test
