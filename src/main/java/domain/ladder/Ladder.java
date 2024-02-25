@@ -10,12 +10,8 @@ public class Ladder {
 
     private final List<LadderRow> rows = new ArrayList<>();
 
-    private Ladder(Players players, LadderHeight height) {
+    public Ladder(Players players, LadderHeight height) {
         createLadder(players, height);
-    }
-
-    public static Ladder of(Players players, LadderHeight height) {
-        return new Ladder(players, height);
     }
 
     public void drawLines(BooleanSupplier patternGenerator) {

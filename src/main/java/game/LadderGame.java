@@ -25,7 +25,7 @@ public class LadderGame {
         Players players = this.getNames();
         LadderHeight height = this.getHeight();
 
-        Ladder ladder = Ladder.of(players, height);
+        Ladder ladder = new Ladder(players, height);
         ladder.drawLines(supplier);
         List<LadderRowDto> patterns = ladder.getLadderPatterns();
 
