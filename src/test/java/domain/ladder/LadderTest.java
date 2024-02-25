@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.ladder.bridgeConstructstrategy.BridgeConstructStrategy;
+import domain.ladder.bridgeConstructstrategy.CustomBridgeConstructStrategy;
 import domain.ladder.bridgeConstructstrategy.RandomBridgeConstructStrategy;
 import domain.player.Names;
 import java.util.List;
@@ -49,5 +50,35 @@ public class LadderTest {
 
         //then
         assertThat(ladder.getBridge()).hasSize(DEFAULT_HEIGHT.getIntValue());
+    }
+
+    @DisplayName("사다리가 생성된 이후엔 올바른 결과를 조회할 수 있다.")
+    @Test
+    void ladderMatchesCollectResult() {
+/*  테스트 되는 사다리의 형태 :
+            |-----|     |-----|
+            |     |-----|     |
+            |-----|     |     |
+            |     |-----|     |
+            |-----|     |-----|
+ */
+        Ladder customLadder = new Ladder(
+                new CustomBridgeConstructStrategy(List.of(
+                        List.of(Bridge.BUILT, Bridge.EMPTY, Bridge.BUILT),
+                        List.of(Bridge.EMPTY, Bridge.BUILT, Bridge.EMPTY),
+                        List.of(Bridge.BUILT, Bridge.EMPTY, Bridge.EMPTY),
+                        List.of(Bridge.EMPTY, Bridge.BUILT, Bridge.EMPTY),
+                        List.of(Bridge.BUILT, Bridge.EMPTY, Bridge.BUILT)
+                )), names, new Height(5)
+        );
+
+        assertThat(customLadder.getResultIndex(0))
+                .isEqualTo(0);
+        assertThat(customLadder.getResultIndex(1))
+                .isEqualTo(3);
+        assertThat(customLadder.getResultIndex(2))
+                .isEqualTo(2);
+        assertThat(customLadder.getResultIndex(3))
+                .isEqualTo(1);
     }
 }
