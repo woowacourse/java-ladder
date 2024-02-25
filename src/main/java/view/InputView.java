@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class InputView {
     private static final String BLANK_EXCEPTION_MESSAGE = "[ERROR] 빈 값은 입력할 수 없습니다.";
     private static final String SPACE_EXCEPTION_MESSAGE = "[ERROR] 공백은 포함될 수 없습니다.";
-    private static final String INVALID_CHARACTER_EXCEPTION_MESSAGE = "[ERROR] 영어, 한글, 쉼표만 입력 가능합니다.";
+    private static final String INVALID_CHARACTER_EXCEPTION_MESSAGE = "[ERROR] 영어, 한글, 숫자 및 쉼표만 입력 가능합니다.";
     private static final String NUMERIC_EXCEPTION_MESSAGE = "[ERROR] 숫자만 입력할 수 있습니다.";
 
     private static final String DEFAULT_DELIMITER = ",";
