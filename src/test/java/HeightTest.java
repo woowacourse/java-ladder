@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.*;
 public class HeightTest {
     @ParameterizedTest
     @ValueSource(ints = {-10, -5, 0})
-    @DisplayName("다리 높이에 0이하의 수를 입력하면 예외가 발생한다.")
+    @DisplayName("다리 높이에 0이하의 수를 입력하면 예외를 발생시킨다.")
     void invalidHeight(int height) {
         assertThatThrownBy(() -> new Height(height)).isInstanceOf(IllegalArgumentException.class);
     }

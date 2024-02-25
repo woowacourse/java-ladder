@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 public class PlayersTest {
-    @DisplayName("중복된 이름이 있으면 예외 처리한다.")
+    @DisplayName("중복된 이름이 있으면 예외를 발생시킨다.")
     @Test
     void duplicatePlayer() {
         Assertions.assertThatThrownBy(() -> Players.from(List.of("bito", "kirby", "bito")))
