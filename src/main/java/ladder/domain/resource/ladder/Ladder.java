@@ -19,8 +19,8 @@ public class Ladder {
     }
 
     private void validateLinesSize(List<Line> lines) {
-        if (lines.size() > MAX_LADDER_HEIGHT) {
-            throw new IllegalArgumentException("[ERROR] 사다리의 최대 높이는 50이하만 가능합니다.");
+        if (lines.isEmpty() || lines.size() > MAX_LADDER_HEIGHT) {
+            throw new IllegalArgumentException("[ERROR] 사다리의 높이는 1~50만 가능합니다.");
         }
     }
 }
