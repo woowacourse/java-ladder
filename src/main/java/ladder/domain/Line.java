@@ -34,7 +34,7 @@ public class Line {
         return StepStatus.getStepStatus(generator.get());
     }
 
-    public List<Integer> findStepStatusPosition() {
+    public List<Integer> findStepPosition() {
         return IntStream.range(0, stepStatuses.size())
                 .filter(i -> stepStatuses.get(i).isExist())
                 .boxed()
