@@ -93,7 +93,7 @@ example feat: 사용자 입력 후 도메인 사용
 # step1 피드백(2)
 - [ ] `LineBuildStrategy` 의 리턴타입을 `Line`으로 수정
 - [x] `NoTrueSequenceBuildStrategy` 클래스명을 `NonContinuousLineBuildStrategy` 로 수정
-- [ ] `NoTrueSequenceBuildStrategy`에서 스트림 -> for문으로 수정
+- [x] `NoTrueSequenceBuildStrategy`에서 스트림 -> for문으로 수정
   - 스트림은 컬렉션의 개별 요소에 컨텍스트 없이 접근할 때는 좋지만, 이전 컨텍스트를 가져와야 할 때는 불편하다.
 - [ ] `RandomZoneGenerator`의 generate 메소드에 있는 매직넘버 상수화
 - [ ] `OutputView`의 래더 출력 메소드에 있는 스트림을 `ladder.getLines().forEach(this::writeLine);`로 수정하기
