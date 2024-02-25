@@ -9,7 +9,7 @@ public class LadderResult {
     private final List<String> ladderResult;
 
     public LadderResult(List<String> ladderResult) {
-        this.ladderResult = ladderResult;
+        this.ladderResult = new ArrayList<>(ladderResult);
     }
 
     public void isSameLengthWithLadderPlayers(int playerSize) {
@@ -27,7 +27,7 @@ public class LadderResult {
     }
 
     public List<String> getLadderResult() {
-        return ladderResult;
+        return Collections.unmodifiableList(ladderResult);
     }
 
     @Override
