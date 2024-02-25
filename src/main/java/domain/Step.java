@@ -19,13 +19,13 @@ public enum Step {
 
     public static Step from(boolean hasStep) {
         if (hasStep) {
-            return LEFT;
+            return RIGHT;
         }
         return EMPTY;
     }
 
-    public boolean isLeft() {
-        return this.equals(LEFT);
+    public boolean isRight() {
+        return this.equals(RIGHT);
     }
 
     public abstract int move(int index);

@@ -24,7 +24,7 @@ public class Line {
 
     private static Step makeStep(List<Step> steps, PlayerCount playerCount) {
         if (hasBeforeStep(steps)) {
-            return Step.RIGHT;
+            return Step.LEFT;
         }
         if (isLastPoint(steps, playerCount)) {
             return Step.EMPTY;
@@ -37,7 +37,7 @@ public class Line {
         if (isFirstPoint(steps)) {
             return false;
         }
-        return steps.get(steps.size() - 1).isLeft();
+        return steps.get(steps.size() - 1).isRight();
     }
 
     private static boolean isFirstPoint(List<Step> steps) {
@@ -46,6 +46,10 @@ public class Line {
 
     private static boolean isLastPoint(List<Step> steps, PlayerCount playerCount) {
         return playerCount.isSameWith(steps.size() + 1);
+    }
+
+    public int climb(int position) {
+        return steps.get(position).move(position);
     }
 
     public List<Step> getSteps() {

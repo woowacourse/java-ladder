@@ -27,7 +27,7 @@ public class LadderGame {
 
         String result = inputView.inputResult();
         Player player = new Player(result);
-
+        System.out.println(player.getName() + ":" + targets.getPrize(ladder.climbLadder(players.getOrder(player))).getTarget());
     }
 
     private Players readPlayers() {
