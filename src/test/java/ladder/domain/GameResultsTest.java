@@ -14,7 +14,7 @@ public class GameResultsTest {
     @BeforeEach
     void beforeEach() {
         UserNames userNames = UserNames.from(List.of("a", "b"));
-        List<Integer> stepPositions = List.of();
+        List<Integer> stepPositions = List.of(0);
         List<Destination> destinations = List.of(new Destination("꽝"), new Destination("3000"));
         this.gameResults = new GameResults(userNames, stepPositions, destinations);
     }
@@ -31,6 +31,15 @@ public class GameResultsTest {
     @Test
     void findGameResultByUserName() {
         String destination = gameResults.findByUserName("a").getDestination().value();
-        assertThat(destination).isEqualTo("꽝");
+        assertThat(destination).isEqualTo("3000");
+    }
+
+    @DisplayName("모든 결과를 반환한다")
+    @Test
+    void findAll() {
+        List<String> destinations = gameResults.findAll().stream()
+                .map(result -> result.getDestination().value())
+                .toList();
+        assertThat(destinations).containsExactly("3000", "꽝");
     }
 }

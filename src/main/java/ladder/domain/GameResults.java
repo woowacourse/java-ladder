@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import static java.util.Collections.unmodifiableList;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,5 +35,9 @@ public class GameResults {
                 .filter(result -> result.getUserName().isSame(requestName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참여자입니다."));
+    }
+
+    public List<GameResult> findAll() {
+        return unmodifiableList(gameResults);
     }
 }
