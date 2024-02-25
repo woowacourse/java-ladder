@@ -4,6 +4,7 @@ import domain.ExceptionType;
 import domain.LadderGameException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,6 +24,7 @@ public class NameInputView {
         List<String> splitNames = splitName(names);
         validateNameCount(splitNames);
         splitNames.forEach(NameInputView::validateNameCharacters);
+        splitNames.forEach(NameInputView::validateNameBlackList);
         splitNames.forEach(NameInputView::validateNameLength);
         return splitNames;
     }
@@ -55,6 +57,13 @@ public class NameInputView {
     private static void validateNameLength(String name) {
         if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
             throw new LadderGameException(ExceptionType.NAME_LENGTH_RANGE);
+        }
+    }
+
+    private static void validateNameBlackList(String name) {
+        Set<String> blackList = Set.of("all");
+        if (blackList.contains(name)) {
+            throw new LadderGameException(ExceptionType.NAME_BLACK_LIST);
         }
     }
 }

@@ -8,24 +8,30 @@ import java.util.stream.IntStream;
 class BridgeRandomGenerator implements BridgeGenerator {
     public List<Boolean> generate(int width) {
         Random random = new Random();
-        List<Boolean> rowInfos = generateRowInfos(width, random);
-        fixRowInfo(width, rowInfos);
-        return rowInfos;
+        List<Boolean> rawBridges = generateBridges(width, random);
+        fixInvalidBridges(width, rawBridges);
+        return rawBridges;
     }
 
-    private static List<Boolean> generateRowInfos(int width, Random random) {
+    private List<Boolean> generateBridges(int width, Random random) {
         return IntStream.range(0, width)
                 .mapToObj(value -> random.nextBoolean())
                 .collect(Collectors.toList());
     }
 
-    private static void fixRowInfo(int width, List<Boolean> rowInfos) {
-        IntStream.range(1, width).forEach(
-                index -> {
-                    if (rowInfos.get(index) && rowInfos.get(index - 1)) {
-                        rowInfos.set(index, false);
-                    }
-                }
-        );
+    private void fixInvalidBridges(int width, List<Boolean> rawBridges) {
+        for (int index = 1; index < width; index++) {
+            fixIfNeed(rawBridges, index);
+        }
+    }
+
+    private void fixIfNeed(List<Boolean> rawBridges, int index) {
+        if (isBridgeInARow(rawBridges, index)) {
+            rawBridges.set(index, false);
+        }
+    }
+
+    private boolean isBridgeInARow(List<Boolean> rawBridges, int index) {
+        return rawBridges.get(index) && rawBridges.get(index - 1);
     }
 }

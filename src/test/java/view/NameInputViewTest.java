@@ -11,7 +11,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class NameInputViewTest {
-
     @ParameterizedTest
     @ValueSource(strings = {",abc,ab", "abc,ab,", ",abc,ab,"})
     @DisplayName("구분자가 맨 앞이나 맨 뒤에 있는지 확인")
@@ -45,5 +44,13 @@ class NameInputViewTest {
         assertThatThrownBy(() -> NameInputView.getNames(() -> name))
                 .isInstanceOf(LadderGameException.class)
                 .hasMessage(ExceptionType.NAME_CHARACTER.getMessage());
+    }
+
+    @Test
+    @DisplayName("사람 이름 구성 문자 검증")
+    void validateBlackList() {
+        assertThatThrownBy(() -> NameInputView.getNames(() -> "all,abc"))
+                .isInstanceOf(LadderGameException.class)
+                .hasMessage(ExceptionType.NAME_BLACK_LIST.getMessage());
     }
 }

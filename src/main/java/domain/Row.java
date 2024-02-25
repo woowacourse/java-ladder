@@ -22,4 +22,8 @@ class Row {
     List<Boolean> getBridges() {
         return bridges;
     }
+
+    Position move(Position startPosition) {
+        return startPosition.move(bridges);
+    }
 }
