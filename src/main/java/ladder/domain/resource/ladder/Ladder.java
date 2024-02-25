@@ -1,7 +1,7 @@
-package ladder.domain.ladder;
+package ladder.domain.resource.ladder;
 
 import java.util.List;
-import ladder.domain.line.Line;
+import ladder.domain.resource.line.Line;
 
 public class Ladder {
 

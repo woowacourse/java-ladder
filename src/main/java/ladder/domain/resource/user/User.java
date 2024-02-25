@@ -1,4 +1,4 @@
-package ladder.domain.user;
+package ladder.domain.resource.user;
 
 import java.util.regex.Pattern;
 

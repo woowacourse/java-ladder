@@ -1,12 +1,12 @@
-package ladder.domain.line;
+package ladder.domain.resource.line;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import ladder.domain.direction.Direction;
-import ladder.domain.direction.DirectionGeneratorImpl;
-import ladder.domain.direction.DirectionNeutralGeneratorImpl;
-import ladder.domain.direction.DirectionRightGeneratorImpl;
+import ladder.domain.resource.direction.Direction;
+import ladder.domain.resource.direction.DirectionGeneratorImpl;
+import ladder.domain.resource.direction.DirectionNeutralGeneratorImpl;
+import ladder.domain.resource.direction.DirectionRightGeneratorImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

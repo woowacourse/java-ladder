@@ -1,7 +1,7 @@
-package ladder.domain.line;
+package ladder.domain.resource.line;
 
-import ladder.domain.direction.Direction;
-import ladder.domain.direction.DirectionGenerator;
+import ladder.domain.resource.direction.Direction;
+import ladder.domain.resource.direction.DirectionGenerator;
 
 public class LineGenerator {
 

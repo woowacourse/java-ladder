@@ -1,8 +1,8 @@
-package ladder.domain.line;
+package ladder.domain.resource.line;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.domain.direction.Direction;
+import ladder.domain.resource.direction.Direction;
 
 public class Line {
 

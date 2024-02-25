@@ -1,4 +1,4 @@
-package ladder.domain.user;
+package ladder.domain.resource.user;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

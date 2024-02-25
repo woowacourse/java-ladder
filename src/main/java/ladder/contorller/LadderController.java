@@ -2,12 +2,12 @@ package ladder.contorller;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.domain.direction.DirectionGeneratorImpl;
-import ladder.domain.ladder.Ladder;
-import ladder.domain.line.Line;
-import ladder.domain.line.LineGenerator;
-import ladder.domain.user.User;
-import ladder.domain.user.Users;
+import ladder.domain.resource.direction.DirectionGeneratorImpl;
+import ladder.domain.resource.ladder.Ladder;
+import ladder.domain.resource.line.Line;
+import ladder.domain.resource.line.LineGenerator;
+import ladder.domain.resource.user.User;
+import ladder.domain.resource.user.Users;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 

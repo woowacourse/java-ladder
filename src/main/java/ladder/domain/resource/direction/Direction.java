@@ -1,4 +1,4 @@
-package ladder.domain.direction;
+package ladder.domain.resource.direction;
 
 import java.util.Arrays;
 

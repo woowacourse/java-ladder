@@ -1,10 +1,10 @@
-package ladder.domain.direction;
+package ladder.domain.resource.direction;
 
-public class DirectionNeutralGeneratorImpl implements DirectionGenerator {
+public class DirectionGeneratorImpl implements DirectionGenerator {
 
     @Override
     public Direction generateInitialValue() {
-        return Direction.getDirection(1);
+        return generateRightOrNeutral();
     }
 
     @Override
