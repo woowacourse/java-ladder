@@ -23,6 +23,8 @@ public class LadderGame {
 
         final Ladder ladder = Ladder.create(height, PlayerCount.fromPlayers(players));
 
+        inputView.inputResult();
+
         outputView.printResult(players, ladder);
     }
 
