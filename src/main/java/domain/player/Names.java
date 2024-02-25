@@ -30,4 +30,8 @@ public class Names {
                 .map(Name::getName)
                 .toList();
     }
+
+    public int getIndexOf(Name name) {
+        return names.indexOf(name);
+    }
 }

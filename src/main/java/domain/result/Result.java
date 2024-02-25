@@ -1,5 +1,7 @@
 package domain.result;
 
+import java.util.Objects;
+
 public class Result {
     private static final int MAX_RESULT_LENGTH = 5;
 
@@ -20,5 +22,22 @@ public class Result {
         if (resultName.length() > MAX_RESULT_LENGTH) {
             throw new IllegalArgumentException("결과는 " + MAX_RESULT_LENGTH + "자 이하로 구성되어야 합니다.");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Result result = (Result) o;
+        return Objects.equals(resultName, result.resultName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(resultName);
     }
 }

@@ -23,4 +23,8 @@ public class Results {
     public int size() { // TODO : 얘가 정말 필요한 메서드인가?
         return results.size();
     }
+
+    public Result get(int index) {
+        return results.get(index);
+    }
 }
