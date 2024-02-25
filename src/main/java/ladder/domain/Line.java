@@ -24,14 +24,17 @@ public class Line {
     }
 
     private void validateIsNotOverlapped(List<Stick> sticks) {
-        if (isStickOverlapped(sticks)) {
-            throw new IllegalArgumentException("가로 라인이 이어지면 안된다.");
+        for (int i = 1; i < sticks.size(); i++) {
+            Stick before = sticks.get(i - 1);
+            Stick current = sticks.get(i);
+            validateIsNotOverlapped(before, current);
         }
     }
 
-    private boolean isStickOverlapped(List<Stick> sticks) {
-        return IntStream.range(1, sticks.size())
-                .anyMatch(i -> sticks.get(i).isExist() && sticks.get(i - 1).isExist());
+    private void validateIsNotOverlapped(Stick before, Stick current) {
+        if (before.isExist() && current.isExist()) {
+            throw new IllegalArgumentException("가로 라인이 이어지면 안된다.");
+        }
     }
 
     public boolean isExist(int position) {
