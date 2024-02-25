@@ -2,6 +2,7 @@ package ladder.controller;
 
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.outcome.Outcomes;
 import ladder.domain.participant.Participants;
 import ladder.domain.generator.RandomLadderStepGenerator;
 import ladder.view.InputView;
@@ -17,6 +18,7 @@ public class LadderGame {
     public void run() {
         final Participants participants = retryOnException(this::createParticipants);
         final int width = participants.getNecessaryLadderWidth();
+        readOutComes(participants.getCount());
         final Ladder ladder = createLadder(width);
         printLadder(participants, ladder);
     }
@@ -24,6 +26,16 @@ public class LadderGame {
     private Participants createParticipants() {
         final List<String> participantsName = inputView.readParticipantsName();
         return new Participants(participantsName);
+    }
+
+    private Outcomes readOutComes(int neededOutcomesCount) {
+        try {
+            List<String> outcomes = inputView.readOutcomes();
+            return new Outcomes(outcomes, neededOutcomesCount);
+        } catch (IllegalArgumentException e) {
+            outputView.printException(e);
+            return readOutComes(neededOutcomesCount);
+        }
     }
 
     private Ladder createLadder(final int stepWidth) {
