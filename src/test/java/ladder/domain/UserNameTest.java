@@ -1,10 +1,12 @@
 package ladder.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -42,5 +44,14 @@ public class UserNameTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new UserName("all"))
                 .withMessage("'all'은 사용할 수 없는 이름입니다.");
+    }
+
+    @DisplayName("동일한 이름인지 확인한다")
+    @CsvSource(value = {"liv:true", "kelly:false"}, delimiter = ':')
+    @ParameterizedTest
+    void isSameName(String name, boolean expected) {
+        UserName liv = new UserName("liv");
+        assertThat(liv.isSame(name))
+                .isEqualTo(expected);
     }
 }
