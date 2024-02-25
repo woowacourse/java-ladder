@@ -24,9 +24,9 @@ public class GameResult {
             throw new IllegalArgumentException("이름과 결과의 개수는 같아야 합니다.\n"
                     + "이름의 개수 : " + names.size() + ", 결과의 개수 : " + results.size());
         }
-        if (names.size() != ladder.width() + 1) {
+        if (names.size() != ladder.getLegSize()) {
             throw new IllegalArgumentException("이름의 개수와 사다리의 다리 개수는 같아야 합니다.\n"
-                    + "이름의 개수 : " + names.size() + ", 다리 개수 : " + ladder.width() + 1);
+                    + "이름의 개수 : " + names.size() + ", 다리 개수 : " + ladder.getLegSize());
         }
     }
 

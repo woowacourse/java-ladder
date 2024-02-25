@@ -60,7 +60,7 @@ public class Ladder {
         return Collections.unmodifiableList(bridges);
     }
 
-    public int width() {//TODO 디미터
-        return bridges.get(0).getBridges().size();
+    public int getLegSize() {
+        return bridges.get(0).size() + 1;
     }
 }
