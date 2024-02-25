@@ -16,15 +16,15 @@ public class Ladder {
         }
     }
 
+    public boolean isExist(int height, int width) {
+        return lines.get(height).isExist(width);
+    }
+
     public int getHeight() {
         return lines.size();
     }
 
     public int getWidth() {
         return lines.get(0).getWidth();
-    }
-
-    public boolean isExist(int height, int width) {
-        return lines.get(height).isExist(width);
     }
 }

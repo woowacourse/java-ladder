@@ -9,7 +9,6 @@ public class Line {
 
     public Line(List<Stick> sticks) {
         validate(sticks);
-
         this.sticks = sticks;
     }
 
