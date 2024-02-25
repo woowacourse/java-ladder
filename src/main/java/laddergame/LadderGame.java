@@ -12,8 +12,8 @@ import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
 public class LadderGame {
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private final InputView inputView = InputView.getInstance();
+    private final OutputView outputView = OutputView.getInstance();
 
     public void run() {
         Players players = requestUntilValidated(() -> Players.from(inputView.readPlayersName()));

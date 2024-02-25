@@ -20,6 +20,15 @@ public class OutputView {
     private static final String RESULT_TITLE = System.lineSeparator() + "실행결과";
     private static final String PLAYER_RESULT_FORMAT = "%s : %s" + System.lineSeparator();
 
+    private static final OutputView instance = new OutputView();
+
+    private OutputView() {
+    }
+
+    public static OutputView getInstance() {
+        return instance;
+    }
+
     public void writeLadderResult(final Players players, final Ladder ladder, final Results results) {
         writeLadderResultTitle();
         writePlayersName(players);
