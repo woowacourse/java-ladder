@@ -12,10 +12,10 @@ public class LadderResultTest {
     @Test
     @DisplayName("사다리를 실행한 결과를 계산한다.")
     void moveLadderTest() {
-        Bars bars = new Bars(List.of(0, 1, 0, 2));
+        List<Integer> bars = List.of(0, 1, 0, 2);
         LadderResult ladderResult = new LadderResult(List.of("a", "b", "c", "d"));
 
-        LadderResult actual = ladderResult.moveThroughLadder(bars.getBars());
+        LadderResult actual = ladderResult.moveThroughLadder(bars);
         LadderResult expected = new LadderResult(List.of("c", "b", "d", "a"));
 
         assertThat(actual).isEqualTo(expected);

@@ -31,12 +31,8 @@ public class LadderController {
         Player questionedPlayer = new Player(InputView.inputQuestionedPlayer());
         ladderPlayers.isContainsOrSameAsAll(questionedPlayer);
 
-        showResult(questionedPlayer, calculateResult());
-    }
-
-    private LadderResult calculateResult() {
-        Bars bars = new Bars(ladder.findBars());
-        return ladderResult.moveThroughLadder(bars.getBars());
+        LadderResult changedLadderResult = ladderResult.moveThroughLadder(ladder.findBars());
+        showResult(questionedPlayer, changedLadderResult);
     }
 
     private void showResult(Player questionedPlayer, LadderResult changedLadderResult) {
