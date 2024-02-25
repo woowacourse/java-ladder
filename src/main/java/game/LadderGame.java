@@ -2,7 +2,7 @@ package game;
 
 import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
-import dto.LadderRowDto;
+import dto.RowPatternDto;
 import domain.player.Players;
 import java.util.List;
 import java.util.function.BooleanSupplier;
@@ -27,7 +27,7 @@ public class LadderGame {
 
         Ladder ladder = new Ladder(players, height);
         ladder.drawLines(supplier);
-        List<LadderRowDto> patterns = ladder.getLadderPatterns();
+        List<RowPatternDto> patterns = ladder.getLadderPatterns();
 
         printLadderResult(players.getNames(), patterns);
     }
@@ -44,7 +44,7 @@ public class LadderGame {
         return new LadderHeight(height);
     }
 
-    private void printLadderResult(List<String> names, List<LadderRowDto> rowPatterns) {
+    private void printLadderResult(List<String> names, List<RowPatternDto> rowPatterns) {
         outputView.printResultMessage();
         outputView.printNames(names);
         outputView.printLadder(rowPatterns);

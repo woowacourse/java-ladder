@@ -1,7 +1,7 @@
 package domain.ladder;
 
 import domain.player.Players;
-import dto.LadderRowDto;
+import dto.RowPatternDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BooleanSupplier;
@@ -18,7 +18,7 @@ public class Ladder {
         rows.forEach(row -> row.createPattern(patternGenerator));
     }
 
-    public List<LadderRowDto> getLadderPatterns() {
+    public List<RowPatternDto> getLadderPatterns() {
         return rows.stream()
                 .map(LadderRow::getRowPattern)
                 .toList();

@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import domain.ladder.LadderRow;
-import dto.LadderRowDto;
+import dto.RowPatternDto;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 import org.junit.jupiter.api.DisplayName;
@@ -27,7 +27,7 @@ class LadderRowTest {
         // given
         LadderRow ladderRow = new LadderRow(5);
         // when
-        LadderRowDto status = ladderRow.getRowPattern();
+        RowPatternDto status = ladderRow.getRowPattern();
         List<Boolean> actual = status.rowPattern();
         // then
         assertThat(actual).containsOnly(false);
@@ -41,7 +41,7 @@ class LadderRowTest {
         LadderRow ladderRow = new LadderRow(6);
         // when
         ladderRow.createPattern(trueSupplier);
-        LadderRowDto status = ladderRow.getRowPattern();
+        RowPatternDto status = ladderRow.getRowPattern();
         List<Boolean> actual = status.rowPattern();
         List<Boolean> expected = List.of(true, false, true, false, true);
         // then
