@@ -1,35 +1,43 @@
 package controller;
 
 import domain.GameBoard;
+import domain.Prizes;
 import domain.ladder.Ladder;
 import domain.ladder.attirbute.Height;
 import domain.player.Names;
 import domain.player.Players;
 import util.RandomDirectionGenerator;
-import view.InputView;
 import view.OutputView;
 
 import java.util.stream.IntStream;
 
+import static view.InputView.inputHeight;
+import static view.InputView.inputNames;
+import static view.UserMessage.*;
+
+
 public class GameController {
     public void execute() {
-        Names names = new Names(InputView.inputPlayerNames());
-        Height height = new Height(InputView.inputHeight());
-
+        Names names = new Names(inputNames(PLAYER_INPUT_PROMPT));
         Players players = new Players(names);
+        Prizes prizes = new Prizes(inputNames(PRIZE_INPUT_PROMPT), players.getPlayerCount());
+        Height height = new Height(inputHeight());
+
         Ladder ladder = new Ladder(height, players.getPlayerCount(), new RandomDirectionGenerator());
-        GameBoard gameBoard = new GameBoard(players, ladder);
+        GameBoard gameBoard = new GameBoard(players, ladder, prizes);
 
         printGeneratedLadderResult(gameBoard);
     }
 
     private void printGeneratedLadderResult(GameBoard gameBoard) {
-        System.out.println("사다리 결과");
+        System.out.println(LADDER_GENERATE_RESULT_HEADER);
         System.out.println(System.lineSeparator());
-        OutputView.printPlayerNames(gameBoard.getPlayers()
+        OutputView.printObjectNames(gameBoard.getPlayers()
                                              .getPlayerNames());
         IntStream.range(0, gameBoard.getLadderHeight())
                  .mapToObj(gameBoard::getDirectionAtHorizontalIndex)
                  .forEach(OutputView::printDirections);
+        OutputView.printObjectNames(gameBoard.getPrizes()
+                                             .getValue());
     }
 }
