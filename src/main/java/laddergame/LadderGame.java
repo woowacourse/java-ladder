@@ -26,7 +26,7 @@ public class LadderGame {
         while (true) {
             final String command = requestUntilValidated(() -> inputView.readDesiredPlayerName(players));
             if (command.equals("all")) {
-                outputView.writeAllResults(ladder.getFoundResult());
+                outputView.writeAllResults(ladder.getPlayersResults());
                 break;
             }
             Result result = ladder.find(command);

@@ -1,8 +1,8 @@
 package laddergame.domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import laddergame.domain.strategy.BuildStrategy;
@@ -11,7 +11,7 @@ public class Ladder {
     private final List<Line> lines;
     private final Players players;
     private final Height height;
-    private final Map<Player, Result> foundResult = new ConcurrentHashMap<>();
+    private final Map<Player, Result> playersResults = new LinkedHashMap<>();
 
     public Ladder(
             final Players players, final Height height, final Results results, final BuildStrategy pointBuildStrategy) {
@@ -24,13 +24,13 @@ public class Ladder {
     }
 
     public Result find(final String name) {
-        return foundResult.get(players.getPlayerByName(name));
+        return playersResults.get(players.getPlayerByName(name));
     }
 
     private void makeResults(final Results results) {
         for (int playerIndex = 0; playerIndex < players.getPlayers().size(); playerIndex++) {
             final int resultIndex = findResult(playerIndex);
-            foundResult.put(players.getPlayers().get(playerIndex), results.getResults().get(resultIndex));
+            playersResults.put(players.getPlayers().get(playerIndex), results.getResults().get(resultIndex));
         }
     }
 
@@ -50,7 +50,7 @@ public class Ladder {
         return lines;
     }
 
-    public Map<Player, Result> getFoundResult() {
-        return foundResult;
+    public Map<Player, Result> getPlayersResults() {
+        return playersResults;
     }
 }
