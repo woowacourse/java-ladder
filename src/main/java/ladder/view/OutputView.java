@@ -3,7 +3,6 @@ package ladder.view;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderStep;
 import ladder.domain.ladder.Path;
-import ladder.domain.outcome.Outcome;
 import ladder.domain.outcome.Outcomes;
 import ladder.domain.participant.Participant;
 import ladder.domain.participant.Participants;
@@ -56,8 +55,8 @@ public class OutputView {
     public void printOutcomes(final Outcomes outcomes) {
         StringBuilder outcomesBuilder = new StringBuilder();
         int neededPrevLength = OUTCOME_UNIT_LENGTH - 1;
-        for (Outcome outcome : outcomes.getValues()) {
-            outcomesBuilder.append(outcome.value());
+        for (String outcome : outcomes.getValues()) {
+            outcomesBuilder.append(outcome);
             appendNeededWhitespace(outcomesBuilder, neededPrevLength);
             neededPrevLength += OUTCOME_UNIT_LENGTH;
         }

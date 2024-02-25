@@ -16,7 +16,9 @@ public class Outcomes {
                 .toList();
     }
 
-    public List<Outcome> getValues() {
-        return outcomes;
+    public List<String> getValues() {
+        return outcomes.stream()
+                .map(Outcome::value)
+                .toList();
     }
 }
