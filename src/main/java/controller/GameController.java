@@ -23,34 +23,26 @@ public class GameController {
 
     public void run() {
 
-        Members members = errorHandler.readUntilNoError(() -> {
-            String rawNames = requestNames();
-            return makeMembers(rawNames);
-        });
+        Members members = makeMembers();
 
-        Lines lines = errorHandler.readUntilNoError(() -> {
-            String rawHeight = requestHeight();
-            int height = StringParser.stringToInt(rawHeight);
-            return makeLines(members.getCount(), height);
-        });
+        Lines lines = makeLines(members);
 
         Game game = new Game(members, lines);
         outputView.printResult(game);
     }
 
-    private String requestNames() {
-        return inputView.readNames();
+    private Members makeMembers() {
+        return errorHandler.readUntilNoError(() -> {
+            String rawNames = inputView.readNames();
+            return new Members(rawNames);
+        });
     }
 
-    private Members makeMembers(String rawNames) {
-        return new Members(rawNames);
-    }
-
-    private String requestHeight() {
-        return inputView.readHeight();
-    }
-
-    private Lines makeLines(int memberCount, int height) {
-        return new Lines(memberCount, height, new RandomConnectionStrategy());
+    private Lines makeLines(Members members) {
+        return errorHandler.readUntilNoError(() -> {
+            String rawHeight = inputView.readHeight();
+            int height = StringParser.stringToInt(rawHeight);
+            return new Lines(members.getCount(), height, new RandomConnectionStrategy());
+        });
     }
 }
