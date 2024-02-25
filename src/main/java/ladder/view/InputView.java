@@ -22,7 +22,7 @@ public class InputView {
     }
 
     private static String readLine() {
-        return SCANNER.nextLine().replaceAll(" ", "");
+        return SCANNER.nextLine().replace(" ", "");
     }
 
     private static int readInt() {
