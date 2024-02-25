@@ -19,7 +19,7 @@ public class Ladder {
                                  final Height height)
     {
         List<Line> lines = IntStream.range(0, height.getHeight())
-                    .mapToObj(i -> Line.buildOf(lineBuildStrategy, players.getPlayersCount() - 1))
+                    .mapToObj(i -> new Line(lineBuildStrategy, players.getPlayersCount() - 1))
                     .collect(Collectors.toList());
         return new Ladder(lines);
     }

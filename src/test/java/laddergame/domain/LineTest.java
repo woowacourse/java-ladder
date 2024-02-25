@@ -26,7 +26,7 @@ public class LineTest {
         lineBuildStrategy.apply(personCount);
 
         //when
-        Line line = Line.buildOf(lineBuildStrategy, personCount);
+        Line line = new Line(lineBuildStrategy, personCount);
 
         //then
         assertEquals(line.getZones(), expected);
