@@ -1,5 +1,5 @@
 package domain;
 
-public interface BooleanGenerator {
-    Boolean generate();
+public interface PointGenerator {
+    Point generate();
 }

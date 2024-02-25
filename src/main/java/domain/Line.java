@@ -4,39 +4,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Boolean> points = new ArrayList<>();
-    private final BooleanGenerator generator;
+    private final List<Point> points = new ArrayList<>();
+    private final PointGenerator generator;
 
-    public Line(final int personCount, final BooleanGenerator generator) {
+    public Line(final int personCount, final PointGenerator generator) {
         this.generator = generator;
         createLine(personCount);
     }
 
     private void createLine(int personCount) {
         for (int i = 0; i < personCount - 1; i++) {
-            boolean nextBoolean = generator.generate();
-            boolean nextPoint = selectNextPoint(nextBoolean);
+            Point nextPoint = selectNextPoint(generator.generate());
             points.add(nextPoint);
         }
     }
 
-    private boolean selectNextPoint(boolean nextBoolean) {
+    private Point selectNextPoint(Point nextPoint) {
         if (points.isEmpty()) {
-            return nextBoolean;
+            return nextPoint;
         }
 
-        if (isLastPointTrue()) {
+        if (isLastPointMovable()) {
+            return Point.UNMOVABLE;
+        }
+
+        return nextPoint;
+    }
+
+    private boolean isLastPointMovable() {
+        if (points.isEmpty()) {
             return false;
         }
-        
-        return nextBoolean;
+        Point lastPoint = points.get(points.size() - 1);
+        return Point.isMovable(lastPoint);
     }
 
-    private boolean isLastPointTrue() {
-        return points.get(points.size() - 1);
-    }
-
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
 }

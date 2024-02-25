@@ -2,11 +2,14 @@ package domain;
 
 import java.util.Random;
 
-public class RandomBooleanGenerator implements BooleanGenerator {
+public class RandomPointGenerator implements PointGenerator {
     private final Random random = new Random();
 
     @Override
-    public Boolean generate() {
-        return random.nextBoolean();
+    public Point generate() {
+        if (random.nextBoolean()) {
+            return Point.MOVABLE;
+        }
+        return Point.UNMOVABLE;
     }
 }
