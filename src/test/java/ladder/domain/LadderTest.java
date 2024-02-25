@@ -27,9 +27,7 @@ class LadderTest {
         Height height = new Height(5);
         Ladder ladder = new Ladder(players, height);
 
-        // when
-        ladder.initialize(new LineGenerator());
-
+        //when
         LadderLevel anyLadderLevel = ladder.stream().findFirst().get();
 
         int actualHeight = (int) ladder.stream().count();

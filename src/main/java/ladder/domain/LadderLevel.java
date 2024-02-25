@@ -1,8 +1,7 @@
 package ladder.domain;
 
-import static ladder.domain.Direction.LEFT;
-import static ladder.domain.Direction.NONE;
-import static ladder.domain.Direction.RIGHT;
+import static ladder.domain.LadderDirection.NONE;
+import static ladder.domain.LadderDirection.RIGHT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,34 +10,26 @@ import java.util.stream.Stream;
 
 public class LadderLevel {
 
-    private final List<Direction> ladderLevel;
+    private final List<LadderDirection> ladderLevel;
+    private LadderDirection latestLadderDirection;
 
-    public LadderLevel(int size, LineGenerator lineGenerator) {
+    public LadderLevel(int size) {
         ladderLevel = new ArrayList<>();
-        initialize(size);
-        IntStream.range(0, size - 1)
-                .forEach(index -> setLines(lineGenerator, index));
-    }
-
-    private void initialize(int size) {
-        IntStream.range(0, size).forEach(index -> ladderLevel.add(NONE));
-    }
-
-    private void setLines(LineGenerator lineGenerator, int index) {
-        if (ladderLevel.get(index) == NONE) {
-            Direction direction = lineGenerator.generate();
-            setLineAt(index, direction);
+        latestLadderDirection = NONE;
+        IntStream.range(0, size).forEach((index) -> {
+            addLadderDirection();
+        });
+        if (latestLadderDirection == RIGHT) {
+            ladderLevel.set(size - 1, NONE);
         }
     }
 
-    private void setLineAt(int index, Direction direction) {
-        if (direction == RIGHT) {
-            ladderLevel.set(index, RIGHT);
-            ladderLevel.set(index + 1, LEFT);
-        }
+    private void addLadderDirection() {
+        latestLadderDirection = latestLadderDirection.next();
+        ladderLevel.add(latestLadderDirection);
     }
 
-    public Stream<Direction> stream() {
+    public Stream<LadderDirection> stream() {
         return ladderLevel.stream();
     }
 }

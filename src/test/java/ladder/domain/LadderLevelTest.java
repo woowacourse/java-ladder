@@ -1,7 +1,7 @@
 package ladder.domain;
 
-import static ladder.domain.Direction.LEFT;
-import static ladder.domain.Direction.RIGHT;
+import static ladder.domain.LadderDirection.LEFT;
+import static ladder.domain.LadderDirection.RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
@@ -16,7 +16,8 @@ class LadderLevelTest {
     @DisplayName("사다리 층을 생성한다.")
     @Test
     void ladderLevelConstructTest() {
-        assertThatCode(() -> new LadderLevel(5, new LineGenerator()))
+        Players players = new Players(List.of("명오", "제우스"));
+        assertThatCode(() -> new LadderLevel(players.count()))
                 .doesNotThrowAnyException();
     }
 
@@ -28,18 +29,18 @@ class LadderLevelTest {
     @Test
     void ladderLevelIntegrityTest() {
         // given
-        LadderLevel ladderLevel = new LadderLevel(100, new LineGenerator());
-        List<Direction> directions = ladderLevel.stream().toList();
+        LadderLevel ladderLevel = new LadderLevel(100);
+        List<LadderDirection> ladderDirections = ladderLevel.stream().toList();
 
         //when
         List<Integer> rightIndices = new ArrayList<>();
         List<Integer> leftIndices = new ArrayList<>();
 
-        IntStream.range(0, directions.size()).forEach(index -> {
-            if (directions.get(index) == RIGHT) {
+        IntStream.range(0, ladderDirections.size()).forEach(index -> {
+            if (ladderDirections.get(index) == RIGHT) {
                 rightIndices.add(index);
             }
-            if (directions.get(index) == LEFT) {
+            if (ladderDirections.get(index) == LEFT) {
                 leftIndices.add(index);
             }
         });

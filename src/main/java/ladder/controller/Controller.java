@@ -2,7 +2,6 @@ package ladder.controller;
 
 import ladder.domain.Height;
 import ladder.domain.Ladder;
-import ladder.domain.LineGenerator;
 import ladder.domain.Players;
 import ladder.exception.ExceptionHandler;
 import ladder.view.InputView;
@@ -14,7 +13,6 @@ public class Controller {
         Players players = createPlayers();
         Height height = createHeight();
         Ladder ladder = new Ladder(players, height);
-        ladder.initialize(new LineGenerator());
         ResultView.printResult(players, ladder);
     }
 
