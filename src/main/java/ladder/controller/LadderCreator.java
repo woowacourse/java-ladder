@@ -8,11 +8,11 @@ import ladder.view.OutputView;
 
 import static ladder.util.ExceptionHandler.retryWhileException;
 
-public class Controller {
+public class LadderCreator {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public Controller(InputView inputView, OutputView outputView) {
+    public LadderCreator(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
