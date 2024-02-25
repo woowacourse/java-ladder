@@ -35,10 +35,9 @@ public class LineTest {
 
     @DisplayName("StepStatus가 EXIST인 인덱스의 위치를 반환한다.")
     @Test
-    void findStepStatusPosition() {
+    void findStepPosition() {
         Line line = new Line(() -> true, 4);
 
-        assertThat(line.findStepStatusPosition())
-                .containsExactly(0, 2);
+        assertThat(line.findStepPosition()).containsExactly(0, 2);
     }
 }
