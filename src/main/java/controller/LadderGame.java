@@ -42,6 +42,7 @@ public class LadderGame {
 
         createParticipantsLineUp(result, participants.getParticipants());
         createLadder(result, createdLadder);
+        createGameResults(result, ladder);
 
         outputView.printLadder(result);
     }
@@ -70,5 +71,15 @@ public class LadderGame {
         for (LadderItem point : line.getPoints()) {
             stringBuilder.append(LadderShape.getShapeByLadderItem(point));
         }
+    }
+
+    private void createGameResults(List<String> result, Ladder ladder) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (String gameResult : ladder.getResults()) {
+            stringBuilder.append(String.format("%5s ", gameResult));
+        }
+
+        result.add(stringBuilder.toString());
     }
 }

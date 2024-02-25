@@ -41,4 +41,8 @@ public class Ladder {
     public List<Line> getLadder() {
         return Collections.unmodifiableList(ladder);
     }
+
+    public List<String> getResults() {
+        return results.getResults();
+    }
 }
