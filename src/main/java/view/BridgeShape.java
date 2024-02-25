@@ -22,7 +22,7 @@ public enum BridgeShape {
     public static String convertForView(Bridge bridge) {
         final List<BridgeShape> matchedBridgeShape = Arrays.stream(values())
                 .filter(bridgeShape -> bridgeShape.bridge == bridge)
-                .collect(Collectors.toList());
+                .toList();
 
         if (matchedBridgeShape.size() != MATCHED_BRIDGE_SHAPE_COUNT) {
             throw new IllegalStateException("BridgeShape을 찾을 수 없거나 중복되는 값이 존재합니다.");
