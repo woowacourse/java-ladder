@@ -34,7 +34,7 @@ public class GameController {
     private Members makeMembers() {
         return errorHandler.readUntilNoError(() -> {
             String rawNames = inputView.readNames();
-            return new Members(rawNames);
+            return Members.from(rawNames);
         });
     }
 
@@ -42,7 +42,7 @@ public class GameController {
         return errorHandler.readUntilNoError(() -> {
             String rawHeight = inputView.readHeight();
             int height = StringParser.stringToInt(rawHeight);
-            return Lines.from(members.getCount(), height, new RandomConnectionStrategy());
+            return Lines.of(members.getCount(), height, new RandomConnectionStrategy());
         });
     }
 }

@@ -11,30 +11,37 @@ public class Members {
     private static final int MIN_MEMBER_COUNT = 2;
     private static final int MAX_MEMBER_COUNT = 15;
 
-    private final List<Member> members = new ArrayList<>();
+    private final List<Member> members;
 
-    public Members(String rawNames) {
+    private Members(List<Member> members) {
+        this.members = members;
+    }
+
+    public static Members from(String rawNames) {
         List<String> names = StringParser.splitByDelimiter(rawNames, DELIMITER);
         validateDuplication(names);
         validateCount(names);
-        addMembersByNames(names);
+        List<Member> members = makeMembers(names);
+        return new Members(members);
     }
 
-    private void validateDuplication(List<String> names) {
+    private static void validateDuplication(List<String> names) {
         Set<String> nonDuplicated = new HashSet<>(names);
         if (names.size() != nonDuplicated.size()) {
             throw new IllegalArgumentException("이름은 서로 중복될 수 없습니다.");
         }
     }
 
-    private void validateCount(List<String> names) {
+    private static void validateCount(List<String> names) {
         if (names.size() < MIN_MEMBER_COUNT || names.size() > MAX_MEMBER_COUNT) {
             throw new IllegalArgumentException("참여자는 " + MIN_MEMBER_COUNT + "~" + MAX_MEMBER_COUNT + "명만 허용됩니다.");
         }
     }
 
-    private void addMembersByNames(List<String> names) {
+    private static List<Member> makeMembers(List<String> names) {
+        List<Member> members = new ArrayList<>();
         names.forEach(name -> members.add(new Member(name)));
+        return members;
     }
 
     public int getCount() {
