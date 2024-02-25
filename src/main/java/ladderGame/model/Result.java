@@ -1,8 +1,11 @@
 package ladderGame.model;
 
+import java.util.regex.Pattern;
+
 public class Result {
 
-    private static final int MAXIMUM_NAME_LENGTH = 5;
+    private static final Pattern RESULT_PATTERN = Pattern.compile("^(꽝|\\d{1,5})$");
+    private static final String EXCEPTION_MESSAGE_UNDEFINED_MESSAGE = "실행 결과는 꽝 또는 0 이상 99999 이하의 숫자만 입력 가능합니다.";
 
     private String result;
 
@@ -12,8 +15,8 @@ public class Result {
     }
 
     private void validate(String result) {
-        if(result.length() > MAXIMUM_NAME_LENGTH) {
-            throw new IllegalArgumentException("실행 결과는 최대 5글자까지 가능합니다.");
+        if(!RESULT_PATTERN.matcher(result).matches()) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_UNDEFINED_MESSAGE);
         }
     }
 

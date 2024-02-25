@@ -23,7 +23,7 @@ public class ResultView {
 
         lines.forEach(line -> System.out.println(makeLineToString(line)));
 
-        results.forEach(result -> System.out.printf(convert(result.getResult(), 6)));
+        results.forEach(result -> System.out.printf("%6s", result.getResult()));
     }
 
     private String makeLineToString(Line line) {
@@ -42,20 +42,5 @@ public class ResultView {
             return CONNECTION_MARK;
         }
         return DISCONNECTION_MARK;
-    }
-
-    public static String convert(String word, int size) {
-        String formatter = String.format("%%%ds", size - getKorCnt(word));
-        return String.format(formatter, word);
-    }
-
-    private static int getKorCnt(String kor) {
-        int cnt = 0;
-        for (int i = 0 ; i < kor.length() ; i++) {
-            if (kor.charAt(i) >= '가' && kor.charAt(i) <= '힣') {
-                cnt++;
-            }
-        }
-        return cnt;
     }
 }
