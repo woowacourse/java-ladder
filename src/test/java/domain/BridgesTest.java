@@ -11,11 +11,11 @@ class BridgesTest {
     @Test
     void createLine() {
         //given
-        int personCount = 4;
+        final Players players = new Players(List.of("a", "b", "c", "d"));
         BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(List.of(false, true, false));
 
         //when
-        Bridges line = Bridges.createByStrategy(bridgeGenerator, personCount);
+        Bridges line = Bridges.createByStrategy(bridgeGenerator, players);
 
         //then
         Assertions.assertThat(line.getBridges()).containsExactly(Bridge.NO_BRIDGE, Bridge.BRIDGE, Bridge.NO_BRIDGE);

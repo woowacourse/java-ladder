@@ -12,9 +12,9 @@ public class Bridges {
         this.bridges = bridges;
     }
 
-    public static Bridges createByStrategy(final BridgeGenerator bridgeGenerator, final int personCount) {
+    public static Bridges createByStrategy(final BridgeGenerator bridgeGenerator, final Players players) {
         List<Bridge> bridges = new ArrayList<>();
-        while (bridges.size() < personCount - 1) {
+        while (bridges.size() < players.count() - 1) {
             final Bridge bridgeCandidate = bridgeGenerator.generate();
             final Bridge previousBridge = findPreviousBridge(bridges);
 
