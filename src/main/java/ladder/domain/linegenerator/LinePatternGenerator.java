@@ -7,7 +7,7 @@ import ladder.domain.Stick;
 
 public class LinePatternGenerator implements LineGenerator {
 
-    private static final int MIN_LINE_SIZE = 2;
+    private static final int MIN_PLAYERS = 2;
 
     private final BooleanSupplier supplier;
 
@@ -16,10 +16,10 @@ public class LinePatternGenerator implements LineGenerator {
     }
 
     @Override
-    public List<Stick> generate(int size) {
-        validate(size);
+    public List<Stick> generate(int countOfPlayers) {
+        validate(countOfPlayers);
         List<Stick> line = new ArrayList<>();
-        int width = size - 1;
+        int width = countOfPlayers - 1;
 
         while (line.size() < width) {
             add(line);
@@ -27,8 +27,8 @@ public class LinePatternGenerator implements LineGenerator {
         return line;
     }
 
-    private void validate(int size) {
-        if (size < MIN_LINE_SIZE) {
+    private void validate(int countOfPlayers) {
+        if (countOfPlayers < MIN_PLAYERS) {
             throw new IllegalArgumentException("사다리의 크기는 2 이상입니다");
         }
     }
