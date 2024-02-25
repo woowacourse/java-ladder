@@ -16,7 +16,7 @@ class LinePatternGeneratorTest {
     @DisplayName("크기에 맞는 사다리 생성")
     @Test
     void generateTest() {
-        MockBooleanSupplier supplier = new MockBooleanSupplier(List.of(false, true));
+        FakeBooleanSupplier supplier = new FakeBooleanSupplier(List.of(false, true));
         LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
 
         List<Stick> line = linePatternGenerator.generate(4);
@@ -24,9 +24,9 @@ class LinePatternGeneratorTest {
         assertThat(line).hasSize(3);
     }
 
-    @DisplayName("숫자가 1이 나왓을 경우, 해당 위치는 막대가 존재하고 다음 위치에는 막대가 없다")
+    @DisplayName("값이 true가 나왔을 경우, 해당 위치는 막대가 존재하고 다음 위치에는 막대가 없다")
     @Test
-    void generateTest_whenReturnOne() {
+    void generateTest_whenReturnTrue() {
         BooleanSupplier supplier = () -> true;
         LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
 
@@ -35,9 +35,9 @@ class LinePatternGeneratorTest {
         assertThat(line).containsExactly(Stick.EXISTENCE, Stick.NON_EXISTENCE);
     }
 
-    @DisplayName("숫자가 0이 나왓을 경우, 해당 위치에 막대가 존재하지 않는다")
+    @DisplayName("숫자가 false가 나왔을 경우, 해당 위치에 막대가 존재하지 않는다")
     @Test
-    void generateTest_whenReturnZero() {
+    void generateTest_whenReturnFalse() {
         BooleanSupplier supplier = () -> false;
         LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
 
@@ -58,15 +58,14 @@ class LinePatternGeneratorTest {
                 .hasMessage("사다리의 크기는 2 이상입니다");
     }
 
-    class MockBooleanSupplier implements BooleanSupplier {
+    class FakeBooleanSupplier implements BooleanSupplier {
 
         private final List<Boolean> mock;
         private int index = 0;
 
-        MockBooleanSupplier(List<Boolean> mock) {
+        FakeBooleanSupplier(List<Boolean> mock) {
             this.mock = mock;
         }
-
 
         @Override
         public boolean getAsBoolean() {
