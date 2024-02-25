@@ -10,7 +10,7 @@ public class Line {
 
     public Line(final List<Path> paths) {
         validatePathCount(paths.size());
-        validateContinuousPaths(paths);
+        checkContinuousPaths(paths);
         this.paths = paths;
     }
 
@@ -20,13 +20,17 @@ public class Line {
         }
     }
 
-    private void validateContinuousPaths(final List<Path> paths) {
+    private void checkContinuousPaths(final List<Path> paths) {
         for (int i = 0; i < paths.size() - 1; i++) {
             final Path left = paths.get(i);
             final Path right = paths.get(i + 1);
-            if (left == Path.EXIST && right == Path.EXIST) {
-                throw new IllegalArgumentException("사다리의 경로는 연달아 있을 수 없습니다.");
-            }
+            validateContinuousPaths(left, right);
+        }
+    }
+
+    private void validateContinuousPaths(final Path left, final Path right) {
+        if (left == Path.EXIST && right == Path.EXIST) {
+            throw new IllegalArgumentException("사다리의 경로는 연달아 있을 수 없습니다.");
         }
     }
 
