@@ -22,7 +22,7 @@ public class User {
     private void validateUserName(String userName) {
         validateNameLength(userName);
         validateNameEngFormat(userName);
-        validateBlankInName(userName);
+        validateContainedBlank(userName);
     }
 
     private void validateNameLength(String name) {
@@ -37,7 +37,7 @@ public class User {
         }
     }
 
-    private void validateBlankInName(String name) {
+    private void validateContainedBlank(String name) {
         if (name.contains(BLANK)) {
             throw new IllegalArgumentException("[ERROR] 사용자 이름 내에는 공백을 허용하지 않습니다.");
         }
