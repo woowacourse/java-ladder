@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.List;
 import laddergame.domain.ladder.LadderHeight;
-import laddergame.domain.name.Names;
+import laddergame.domain.player.Players;
 import laddergame.domain.point.Point;
 import laddergame.dto.GameResultDto;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +20,7 @@ public class LadderGameTest {
         // given
         final List<String> input = List.of("pobi", "honux", "crong", "jk");
 
-        final Names names = new Names(input);
+        final Players names = new Players(input);
         final LadderHeight height = new LadderHeight(5);
 
         final LadderGame ladderGame = new LadderGame(() -> Point.EXIST);

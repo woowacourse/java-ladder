@@ -1,27 +1,27 @@
-package laddergame.domain.name;
+package laddergame.domain.player;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-public class Names {
+public class Players {
 
-    private final List<Name> names;
+    private final List<Player> names;
 
-    public Names(final List<String> input) {
-        final List<Name> names = convertToNames(input);
+    public Players(final List<String> input) {
+        final List<Player> names = convertToNames(input);
         validateDuplication(names);
 
         this.names = names;
     }
 
-    private List<Name> convertToNames(final List<String> input) {
+    private List<Player> convertToNames(final List<String> input) {
         return input.stream()
-                .map(Name::new)
+                .map(Player::new)
                 .toList();
     }
 
-    private void validateDuplication(final List<Name> names) {
+    private void validateDuplication(final List<Player> names) {
         if (names.size() != Set.copyOf(names).size()) {
             throw new IllegalArgumentException("[ERROR] 이름은 중복 될 수 없습니다.");
         }
@@ -31,7 +31,11 @@ public class Names {
         return names.size();
     }
 
-    public List<Name> getNames() {
+    public Player getName(int index) {
+        return this.names.get(index);
+    }
+
+    public List<Player> getNames() {
         return Collections.unmodifiableList(names);
     }
 }

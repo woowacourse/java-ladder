@@ -1,16 +1,16 @@
-package laddergame.domain.name;
+package laddergame.domain.player;
 
 import laddergame.util.InputValidator;
 
 import java.util.Objects;
 
-public class Name {
+public class Player {
 
     private static final int MAX_LENGTH = 5;
 
     private final String name;
 
-    public Name(final String input) {
+    public Player(final String input) {
         InputValidator.validateBlank(input);
         validateLength(input);
         this.name = input;
@@ -31,7 +31,7 @@ public class Name {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof final Name other)) {
+        if (!(o instanceof final Player other)) {
             return false;
         }
         return Objects.equals(getName(), other.getName());

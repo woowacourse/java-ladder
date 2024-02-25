@@ -1,18 +1,18 @@
 package laddergame.domain;
 
 import laddergame.domain.move.Trace;
-import laddergame.domain.name.Name;
+import laddergame.domain.player.Player;
 
 import java.util.Map;
 
 public class Result {
-    private Map<Name, Trace> result;
+    private Map<Player, Trace> result;
 
-    public Result(final Map<Name, Trace> result) {
+    public Result(final Map<Player, Trace> result) {
         this.result = result;
     }
 
-    public Map<Name, Trace> getResult() {
+    public Map<Player, Trace> getResult() {
         return result;
     }
 }

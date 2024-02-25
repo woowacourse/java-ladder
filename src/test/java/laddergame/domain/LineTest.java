@@ -6,7 +6,7 @@ import java.util.List;
 
 import laddergame.domain.ladder.Line;
 import laddergame.domain.ladder.LineSize;
-import laddergame.domain.name.Names;
+import laddergame.domain.player.Players;
 import laddergame.domain.point.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ public class LineTest {
     @Test
     void create() {
         // given
-        LineSize lineSize = new LineSize(new Names(List.of("pobi", "zeze", "crong", "jk")));
+        LineSize lineSize = new LineSize(new Players(List.of("pobi", "zeze", "crong", "jk")));
 
         // when
         Line line = Line.create(lineSize, () -> Point.EXIST);

@@ -1,13 +1,13 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.name.Names;
+import laddergame.domain.player.Players;
 
 public class LineSize {
 
     private final int lineSize;
 
-    public LineSize(final Names names) {
-        this.lineSize = names.getSize() - 1;
+    public LineSize(final Players players) {
+        this.lineSize = players.getSize() - 1;
     }
 
     public boolean isBiggerThan(final int size) {

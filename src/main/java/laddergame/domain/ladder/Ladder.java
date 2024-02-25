@@ -3,8 +3,8 @@ package laddergame.domain.ladder;
 import laddergame.domain.Result;
 import laddergame.domain.move.LeftStrategy;
 import laddergame.domain.move.Trace;
-import laddergame.domain.name.Name;
-import laddergame.domain.name.Names;
+import laddergame.domain.player.Player;
+import laddergame.domain.player.Players;
 import laddergame.domain.point.PointGenerator;
 
 import java.util.Collections;
@@ -21,9 +21,11 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder create(final LineSize lineSize,
-                                final LadderHeight height,
-                                final PointGenerator pointGenerator) {
+    public static Ladder create(
+            final LineSize lineSize,
+            final LadderHeight height,
+            final PointGenerator pointGenerator)
+    {
         List<Line> lines = Stream.generate(() -> Line.create(lineSize, pointGenerator))
                 .limit(height.getHeight())
                 .toList();
@@ -31,20 +33,27 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
-    }
+    public Result start(Players players) {
+        Map<Player, Trace> map = new HashMap<>();
 
-    public Result start(Names names) {
-        Map<Name, Trace> map = new HashMap<>();
-
-        for(int i = 0; i < names.getSize(); i++) {
-            Trace trace = new Trace(i, new LeftStrategy());
-            for(Line line : lines) {
-                trace = line.move(trace);
-            }
-            map.put(names.getNames().get(i),trace);
+        for (int i = 0; i < players.getSize(); i++) {
+            Trace trace = moveLines(i);
+            map.put(players.getName(i), trace);
         }
         return new Result(map);
+    }
+
+    private Trace moveLines(int position) {
+        Trace trace = Trace.init(position, new LeftStrategy());
+
+        for(Line line : lines) {
+            trace = line.move(trace);
+        }
+
+        return trace;
+    }
+
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }

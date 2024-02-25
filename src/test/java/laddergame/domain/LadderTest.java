@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.entry;
 
 import java.util.List;
-import java.util.Map;
 
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderHeight;
@@ -13,8 +12,8 @@ import laddergame.domain.ladder.LineSize;
 import laddergame.domain.move.LeftStrategy;
 import laddergame.domain.move.RightStrategy;
 import laddergame.domain.move.Trace;
-import laddergame.domain.name.Name;
-import laddergame.domain.name.Names;
+import laddergame.domain.player.Player;
+import laddergame.domain.player.Players;
 import laddergame.domain.point.Point;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -29,7 +28,7 @@ public class LadderTest {
     void create(int value) {
         // given
         final LadderHeight height = new LadderHeight(value);
-        final LineSize lineSize = new LineSize(new Names(List.of("pobi", "zeze", "crong", "jk")));
+        final LineSize lineSize = new LineSize(new Players(List.of("pobi", "zeze", "crong", "jk")));
 
         // when
         Ladder ladder = Ladder.create(lineSize, height, () -> Point.EXIST);
@@ -42,7 +41,7 @@ public class LadderTest {
     @Test
     void test() {
         // given
-        Names names = new Names(List.of("pobi", "honux", "crong", "jk"));
+        Players names = new Players(List.of("pobi", "honux", "crong", "jk"));
         List<Line> lines = List.of(
                 new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST)),
                 new Line(List.of(Point.EMPTY, Point.EXIST, Point.EMPTY)),
@@ -55,9 +54,9 @@ public class LadderTest {
         Result result = ladder.start(names);
 
         // then
-        assertThat(result.getResult()).contains(entry(new Name("pobi"), new Trace(0, new LeftStrategy())),
-                entry(new Name("honux"), new Trace(2, new RightStrategy())),
-                entry(new Name("crong"), new Trace(2, new LeftStrategy())),
-                entry(new Name("jk"), new Trace(0, new RightStrategy())));
+        assertThat(result.getResult()).contains(entry(new Player("pobi"), new Trace(0, new LeftStrategy())),
+                entry(new Player("honux"), new Trace(2, new RightStrategy())),
+                entry(new Player("crong"), new Trace(2, new LeftStrategy())),
+                entry(new Player("jk"), new Trace(0, new RightStrategy())));
     }
 }

@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 
 import laddergame.domain.ladder.LineSize;
-import laddergame.domain.name.Names;
+import laddergame.domain.player.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,7 +18,7 @@ public class LineSizeTest {
     @Test
     void create() {
         // given
-        Names names = new Names(List.of("pobi", "zeze"));
+        Players names = new Players(List.of("pobi", "zeze"));
 
         // when
         LineSize lineSize = new LineSize(names);
@@ -32,7 +32,7 @@ public class LineSizeTest {
     @ValueSource(ints = {0, 1, 2, 3})
     void isBiggerThanTrue(int size) {
         // given
-        LineSize lineSize = new LineSize(new Names(List.of("pobi", "zeze", "honux", "crong", "jk")));
+        LineSize lineSize = new LineSize(new Players(List.of("pobi", "zeze", "honux", "crong", "jk")));
 
         // when & then
         assertThat(lineSize.isBiggerThan(size)).isTrue();
@@ -43,7 +43,7 @@ public class LineSizeTest {
     @ValueSource(ints = {4, 5, 6, 7})
     void isBiggerThanFalse(int size) {
         // given
-        LineSize lineSize = new LineSize(new Names(List.of("pobi", "zeze", "honux", "crong", "jk")));
+        LineSize lineSize = new LineSize(new Players(List.of("pobi", "zeze", "honux", "crong", "jk")));
 
         // when & then
         assertThat(lineSize.isBiggerThan(size)).isFalse();
