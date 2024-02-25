@@ -1,5 +1,7 @@
 package domain;
 
+import static domain.Height.MAX_HEIGHT;
+import static domain.Height.MIN_HEIGHT;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
@@ -21,6 +23,7 @@ public class HeightTest {
     @DisplayName("사다리 높이 생성 실패: 높이 경계값 -1, 0, 21")
     void test_exception_outOfRange(int height) {
         assertThatThrownBy(() -> new Height(height))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(MIN_HEIGHT + " 이상 " + MAX_HEIGHT + " 이하의 숫자를 입력해 주세요.");
     }
 }
