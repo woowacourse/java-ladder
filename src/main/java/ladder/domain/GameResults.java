@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -19,16 +20,18 @@ public class GameResults {
             final List<Integer> stepPositions,
             final List<Destination> destinations) {
         List<Destination> finalDestinations = new ArrayList<>(destinations);
+        for (int position : stepPositions) {
+            Collections.swap(finalDestinations, position, position + 1);
+        }
         return IntStream.range(0, userNames.getUserCount())
                 .mapToObj(i -> new GameResult(userNames.findByOrder(i), finalDestinations.get(i)))
                 .toList();
     }
 
-    public void findByUserName(final String requestName) {
-        boolean isNotExist = gameResults.stream()
-                .noneMatch(result -> result.getUserName().isSame(requestName));
-        if (isNotExist) {
-            throw new IllegalArgumentException("존재하지 않는 참여자입니다.");
-        }
+    public GameResult findByUserName(final String requestName) {
+        return gameResults.stream()
+                .filter(result -> result.getUserName().isSame(requestName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참여자입니다."));
     }
 }

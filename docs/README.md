@@ -77,6 +77,6 @@ jk : 5000
 ### 사다리 결과 만들기 로직
 - [x] `1`. 각 `Line`의 `StepStatus`가 EXIST인 위치(인덱스 값)를 넘긴다.
 - [x] `2`. `1`을 `Lines`를 통해 묶어서 넘긴다.
-- [ ] `3`. `2`를 `GameResult` 생성 시 전달한다. (`Destinations`도 함께 전달)
-- [ ] `4`. `3`을 돌며, 해당 인덱스와 같은 `Destination` & 해당 인덱스 + 1 `Destination`의 위치를 서로 바꾼다.
-- [ ] `5`. `UserName`과 `Destination`을 매칭시켜 필드에 저장한다. (`List<GameResult>`)
+- [x] `3`. `2`를 `GameResults` 생성 시 전달한다. (`Destinations`도 함께 전달)
+- [x] `4`. `3`을 돌며, 해당 인덱스와 같은 `Destination` & 해당 인덱스 + 1 `Destination`의 위치를 서로 바꾼다.
+- [x] `5`. `UserName`과 `Destination`을 매칭시켜 필드에 저장한다. (`List<GameResult>`)
