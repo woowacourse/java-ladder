@@ -5,23 +5,23 @@ public class Person {
     private final String name;
 
     public Person(final String name) {
+        validateNameLength(name);
+        validateNonBlank(name);
         this.name = name;
-        validateNameLength();
-        validateNonBlank();
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void validateNameLength() {
-        if (this.name.length() > SIZE_LIMIT) {
+    public void validateNameLength(String name) {
+        if (name.length() > SIZE_LIMIT) {
             throw new IllegalStateException("이름은 5글자 이하입니다.");
         }
     }
 
-    public void validateNonBlank() {
-        if (this.name.isBlank()) {
+    public void validateNonBlank(String name) {
+        if (name.isBlank()) {
             throw new IllegalArgumentException("공백 이름은 허용하지 않습니다.");
         }
     }
