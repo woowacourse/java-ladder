@@ -86,7 +86,7 @@ public class InputViewTest {
         @ParameterizedTest
         void validateRequestResultWithNullOrEmpty(final String input) {
             assertThatIllegalArgumentException()
-                    .isThrownBy(() -> InputView.readRequestResult(() -> input))
+                    .isThrownBy(() -> InputView.readRequestName(() -> input))
                     .withMessage("공백을 넣을 수 없습니다.");
         }
     }

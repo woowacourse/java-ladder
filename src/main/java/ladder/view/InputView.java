@@ -35,7 +35,7 @@ public class InputView {
         return splitInput(input);
     }
 
-    public static String readRequestResult(Supplier<String> reader) throws IllegalArgumentException {
+    public static String readRequestName(Supplier<String> reader) throws IllegalArgumentException {
         System.out.println("결과를 보고 싶은 사람은?");
         String input = reader.get();
         validateEmpty(input);
