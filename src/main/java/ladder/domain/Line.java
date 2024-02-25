@@ -5,6 +5,7 @@ import static java.util.Collections.unmodifiableList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.IntStream;
 
 public class Line {
     private final List<StepStatus> stepStatuses;
@@ -31,6 +32,13 @@ public class Line {
             return StepStatus.getStepStatus(false);
         }
         return StepStatus.getStepStatus(generator.get());
+    }
+
+    public List<Integer> findStepStatusPosition() {
+        return IntStream.range(0, stepStatuses.size())
+                .filter(i -> stepStatuses.get(i).isExist())
+                .boxed()
+                .toList();
     }
 
     public List<StepStatus> getLine() {
