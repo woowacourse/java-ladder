@@ -21,7 +21,7 @@ class BridgesTest {
 
     @Test
     @DisplayName("연속해서 다리가 등장하면 예외 발생")
-    void validateNearInfo() {
+    void validateNearBridge() {
         Assertions.assertThatThrownBy(() -> new Bridges(List.of(true, true)))
                 .isInstanceOf(LadderGameException.class)
                 .hasMessage(ExceptionType.NOT_ALLOW_NEAR_BRIDGE.getMessage());
