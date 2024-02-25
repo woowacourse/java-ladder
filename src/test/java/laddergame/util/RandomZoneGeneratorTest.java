@@ -14,7 +14,7 @@ class RandomZoneGeneratorTest {
     @DisplayName("랜덤값이 Zone.BRIDGE 또는 Zone.EMPTY 를 반환한다.")
     public void testRandomBoolean() {
         //given
-        RandomZoneGenerator generator = RandomZoneGenerator.getGenerator();
+        RandomZoneGenerator generator = new RandomZoneGenerator();
         List<Zone> expectValue = List.of(Zone.BRIDGE, Zone.EMPTY);
 
         //when & then

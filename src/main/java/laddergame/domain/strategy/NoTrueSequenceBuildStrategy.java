@@ -8,13 +8,11 @@ import java.util.List;
 import java.util.Stack;
 import java.util.stream.IntStream;
 
-public class RandomNoTrueSequenceBuildStrategy implements LineBuildStrategy {
-    private final ZoneGenerator generator = RandomZoneGenerator.getGenerator();
-
+public class NoTrueSequenceBuildStrategy implements LineBuildStrategy {
     @Override
     public List<Zone> apply(final int count) {
         Stack<Zone> lineStatus = new Stack<>();
-        lineStatus.push(generator.generate());
+        lineStatus.push(new RandomZoneGenerator().generate());
         IntStream.range(0, count - 1)
                 .forEach(i -> lineStatus.push(decideNextValue(lineStatus.peek())));
 
@@ -25,6 +23,6 @@ public class RandomNoTrueSequenceBuildStrategy implements LineBuildStrategy {
         if (beforeValue.equals(Zone.BRIDGE)) {
             return Zone.EMPTY;
         }
-        return generator.generate();
+        return new RandomZoneGenerator().generate();
     }
 }

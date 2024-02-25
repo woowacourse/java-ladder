@@ -5,7 +5,6 @@ import laddergame.domain.Zone;
 import java.util.Random;
 
 public class RandomZoneGenerator implements ZoneGenerator {
-    private static final RandomZoneGenerator generator = new RandomZoneGenerator();
     private final Random random;
 
     public RandomZoneGenerator() {
@@ -18,9 +17,5 @@ public class RandomZoneGenerator implements ZoneGenerator {
             return Zone.BRIDGE;
         }
         return Zone.EMPTY;
-    }
-
-    public static RandomZoneGenerator getGenerator() {
-        return generator;
     }
 }
