@@ -31,6 +31,8 @@ class NameTest {
     @ValueSource(strings = {"pobi", "pobi2", "12345"})
     @DisplayName("이름은 영문과 숫자만 입력할 수 있다.")
     void validateAvailableName(String name) {
-        assertThatCode(() -> new Name(name));
+        assertThatCode(() -> {
+            new Name(name);
+        }).doesNotThrowAnyException();
     }
 }
