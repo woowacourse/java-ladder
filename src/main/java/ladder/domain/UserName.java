@@ -41,4 +41,8 @@ public record UserName(String value) {
             throw new IllegalArgumentException("'all'은 사용할 수 없는 이름입니다.");
         }
     }
+
+    public boolean isSame(final String name) {
+        return Objects.equals(this.value, name);
+    }
 }
