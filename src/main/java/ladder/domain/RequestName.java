@@ -18,8 +18,8 @@ public class RequestName {
         }
     }
 
-    public boolean isAll() {
-        return Objects.equals(requestName, "all");
+    public boolean isNotAll() {
+        return !Objects.equals(requestName, "all");
     }
 
     public String getRequestName() {

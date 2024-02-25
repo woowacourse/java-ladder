@@ -20,13 +20,13 @@ public class RequestNameTest {
                 .withMessage("존재하지 않는 참여자입니다.");
     }
 
-    @DisplayName("입력 받은 이름이 `all`이면 true를 아니면 false를 반환한다.")
-    @CsvSource(value = {"all:true", "a:false"}, delimiter = ':')
+    @DisplayName("입력 받은 이름이 `all`이면 false를 아니면 true를 반환한다.")
+    @CsvSource(value = {"all:false", "a:true"}, delimiter = ':')
     @ParameterizedTest
     void isAll(String inputName, boolean expected) {
         UserNames userNames = UserNames.from(List.of("a", "b"));
         RequestName requestName = new RequestName(inputName, userNames);
 
-        assertThat(requestName.isAll()).isEqualTo(expected);
+        assertThat(requestName.isNotAll()).isEqualTo(expected);
     }
 }
