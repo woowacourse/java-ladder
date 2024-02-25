@@ -21,7 +21,7 @@ public class Ladder {
     public static Ladder of(LadderHeight height, Players players, BridgesGenerator bridgesGenerator) {
         int bridgeCount = players.getSize() - CONNECTION_OFFSET;
         return IntStream.range(0, height.value())
-                .mapToObj(i -> new Line(bridgesGenerator.pickBridges(bridgeCount)))
+                .mapToObj(i -> new Line(bridgesGenerator.build(bridgeCount)))
                 .collect(collectingAndThen(toList(), Ladder::new));
     }
 

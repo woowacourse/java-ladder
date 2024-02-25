@@ -4,5 +4,5 @@ import java.util.List;
 
 @FunctionalInterface
 public interface BridgesGenerator {
-    List<Bridge> pickBridges(int count);
+    List<Bridge> build(int count);
 }

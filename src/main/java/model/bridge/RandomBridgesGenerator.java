@@ -10,7 +10,7 @@ public class RandomBridgesGenerator implements BridgesGenerator {
     private static final String INVALID_BRIDGE_CODE = "유효하지 않은 다리 코드입니다.";
 
     @Override
-    public List<Bridge> pickBridges(int count) {
+    public List<Bridge> build(int count) {
         List<Bridge> bridges = new ArrayList<>();
         while (bridges.size() < count) {
             int bridgeCode = generateBridgeCode(bridges);
