@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 public class Height {
     private static final Pattern NUMBER_REGEX = Pattern.compile("^[\\d]*$");
     private static final String NATURAL_NUMBER_ERROR = "자연수를 입력해 주세요.";
+
     private final int height;
 
     public Height(String height) {
