@@ -35,11 +35,12 @@ public class Ladder {
     public int findEndIndex(int index) {
         validateIndexRange(index);
 
+        int currentIndex = index;
         for (Line line : lines) {
-            index = line.findConnectedIndex(index);
+            currentIndex = line.findConnectedIndex(currentIndex);
         }
 
-        return index;
+        return currentIndex;
     }
 
     private void validateIndexRange(int index) {
