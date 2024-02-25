@@ -21,8 +21,8 @@ class GameBoardTest {
 
         Height height = new Height("5");
         Ladder ladder = new Ladder(height, players.getPlayerCount(), new RandomDirectionGenerator());
-
-        GameBoard gameBoard = new GameBoard(players, ladder);
+        Prizes prizes = new Prizes(List.of("꽝", "꽝", "꽝", "꽝"), 4);
+        GameBoard gameBoard = new GameBoard(players, ladder, prizes);
 
         assertInstanceOf(GameBoard.class, gameBoard);
 

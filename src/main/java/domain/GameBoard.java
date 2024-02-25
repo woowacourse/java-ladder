@@ -9,10 +9,12 @@ import java.util.List;
 public class GameBoard {
     private final Players players;
     private final Ladder ladder;
+    private final Prizes prizes;
 
-    public GameBoard(Players players, Ladder ladder) {
+    public GameBoard(Players players, Ladder ladder, Prizes prizes) {
         this.players = players;
         this.ladder = ladder;
+        this.prizes = prizes;
     }
 
     public Players getPlayers() {
