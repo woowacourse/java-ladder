@@ -30,7 +30,7 @@ public class GameResultsTest {
     @DisplayName("결과를 보고 싶은 사람의 이름에 해당하는 결과를 반환한다.")
     @Test
     void findGameResultByUserName() {
-        String destination = gameResults.findByUserName("a").getDestination().value();
+        String destination = gameResults.findByUserName("a");
         assertThat(destination).isEqualTo("3000");
     }
 

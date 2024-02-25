@@ -30,11 +30,12 @@ public class GameResults {
                 .toList();
     }
 
-    public GameResult findByUserName(final String requestName) {
-        return gameResults.stream()
+    public String findByUserName(final String requestName) {
+        GameResult gameResult = gameResults.stream()
                 .filter(result -> result.getUserName().isSame(requestName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참여자입니다."));
+        return gameResult.getDestination().value();
     }
 
     public List<GameResult> findAll() {
