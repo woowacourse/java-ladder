@@ -9,7 +9,7 @@ public class Ladder {
     private final List<Floor> floors;
 
     private Ladder(final List<Floor> floors) {
-        this.floors = floors;
+        this.floors = List.copyOf(floors);
     }
 
     public static Ladder of(final LadderHeight height, final PlayerNames playerNames, final BridgeGenerator bridgeGenerator) {
