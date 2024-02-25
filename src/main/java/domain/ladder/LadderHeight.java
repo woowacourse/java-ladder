@@ -5,15 +5,15 @@ public class LadderHeight {
     private static final int MIN_HEIGHT = 1;
     private static final int MAX_HEIGHT = 10;
 
-    private final int value;
+    private final int height;
 
-    public LadderHeight(int value) {
-        validateHeight(value);
-        this.value = value;
+    public LadderHeight(int height) {
+        validateHeight(height);
+        this.height = height;
     }
 
-    public boolean hasLengthOf(int currentFloor) {
-        return currentFloor == value;
+    public boolean hasLengthOf(int height) {
+        return height == this.height;
     }
 
     private void validateHeight(int height) {
