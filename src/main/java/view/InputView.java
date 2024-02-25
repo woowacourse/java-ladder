@@ -2,19 +2,16 @@ package view;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class InputView {
 
     private static final String NAME_SPLIT_DELIMITER = ",";
 
-    private final Reader reader;
-
-    public InputView(Reader reader) {
-        this.reader = reader;
-    }
+    private final Scanner scanner = new Scanner(System.in);
 
     public List<String> readNames() {
-        String names = reader.readLine();
+        String names = scanner.nextLine();
         String[] splitNames = names.split(NAME_SPLIT_DELIMITER);
 
         return Arrays.stream(splitNames)
@@ -22,7 +19,7 @@ public class InputView {
     }
 
     public int readLadderHeight() {
-        String input = reader.readLine();
+        String input = scanner.nextLine();
         return convertToInteger(input);
     }
 
