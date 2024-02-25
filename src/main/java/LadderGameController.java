@@ -5,9 +5,9 @@ import domain.ladder.bridgeConstructstrategy.RandomBridgeConstructStrategy;
 import view.InputView;
 import view.OutputView;
 
-public class LadderGame {
+public class LadderGameController {
 
-    private LadderGame() {
+    private LadderGameController() {
     }
 
     public static void run() {
