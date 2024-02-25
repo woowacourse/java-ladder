@@ -1,5 +1,8 @@
 package view;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import model.Ladder;
 import model.LadderRow;
 import model.Name;
@@ -8,36 +11,54 @@ import model.Participants;
 
 import java.util.List;
 
-public class OutputView {
+public class OutputView implements AutoCloseable {
 
     private static final String RESULT_MESSAGE = "실행결과\n";
     private static final String NAME_FORMAT = "%5s ";
+    private static final String NEWLINE = "\n";
 
-    public void printResult() {
-        System.out.println(RESULT_MESSAGE);
+    private final BufferedWriter writer;
+
+    public OutputView() {
+        this.writer = new BufferedWriter(new OutputStreamWriter(System.out));
     }
 
-    public void printParticipantsName(Participants participants) {
+    public void printResult() throws IOException {
+        writer.write(RESULT_MESSAGE);
+    }
+
+    public void printParticipantsName(Participants participants) throws IOException {
         List<Name> participantsName = participants.getParticipants().stream()
                 .map(Participant::getName)
                 .toList();
-        participantsName.forEach(name -> System.out.printf(NAME_FORMAT, name));
-        System.out.println();
+        participantsName.forEach(name -> {
+            try {
+                writer.write(NAME_FORMAT.formatted(name));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        writer.write(NEWLINE);
     }
 
-    public void printLadder(Ladder ladder) {
+    public void printLadder(Ladder ladder) throws IOException {
         for (int i = 0; i < ladder.getHeight(); i++) {
             printRow(ladder.getRow(i));
-            System.out.println();
+            writer.write(NEWLINE);
         }
     }
 
-    private void printRow(LadderRow ladderRow) {
-        System.out.print(LadderComponent.EMPTY_LINE);
+    private void printRow(LadderRow ladderRow) throws IOException {
+        writer.write(LadderComponent.EMPTY_LINE.toString());
         for (boolean isLine : ladderRow.isLines()) {
-            System.out.print(LadderComponent.DIVISION);
-            System.out.print(LadderComponent.match(isLine));
+            writer.write(LadderComponent.DIVISION.toString());
+            writer.write(LadderComponent.match(isLine).toString());
         }
-        System.out.print(LadderComponent.DIVISION);
+        writer.write(LadderComponent.DIVISION.toString());
+    }
+
+    @Override
+    public void close() throws Exception {
+        writer.close();
     }
 }
