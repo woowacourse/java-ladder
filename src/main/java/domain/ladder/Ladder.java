@@ -19,4 +19,8 @@ public class Ladder {
     public List<Bridges> getBridge() {
         return Collections.unmodifiableList(bridges);
     }
+
+    public int width() {//TODO 디미터
+        return bridges.get(0).getBridges().size();
+    }
 }

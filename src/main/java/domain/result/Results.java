@@ -19,4 +19,8 @@ public class Results {
             throw new IllegalArgumentException("결과는 " + MIN_RESULT_SIZE + " 개 이상으로 구성되어야 합니다.");
         }
     }
+
+    public int size() { // TODO : 얘가 정말 필요한 메서드인가?
+        return results.size();
+    }
 }
