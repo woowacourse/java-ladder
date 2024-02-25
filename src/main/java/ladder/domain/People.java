@@ -32,6 +32,7 @@ public class People {
         for (String name : names) {
             validateLength(name);
         }
+        validateDuplication(names);
         validateCount(names);
     }
 
@@ -39,6 +40,16 @@ public class People {
         int nameLength = name.length();
         if (nameLength > MAX_NAME_LENGTH || nameLength < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 공백을 제외한 최소 1글자 최대 5글자까지 부여할 수 있습니다.");
+        }
+    }
+
+    private void validateDuplication(List<String> names) {
+        long uniqueCount = names.stream()
+                .distinct()
+                .count();
+
+        if (uniqueCount != names.size()) {
+            throw new IllegalArgumentException("이름은 중복일 수 없습니다.");
         }
     }
 
