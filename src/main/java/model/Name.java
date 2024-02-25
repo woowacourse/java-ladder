@@ -1,15 +1,18 @@
 package model;
 
-public record Name(String value) {
+public class Name {
 
     private static final String NULL_EMPTY_NAME = "참가자의 이름은 null 이거나 공백일 수 없습니다.";
     private static final int MAX_NAME_LENGTH = 5;
     private static final String OVER_LENGTH_NAME = "참여자의 이름은 최대 %d글자입니다.".formatted(MAX_NAME_LENGTH);
 
+    private final String value;
 
-    public Name {
+
+    public Name(String value) {
         validateNameNullAndBlank(value);
         validateNameLength(value);
+        this.value = value;
     }
 
     private static void validateNameNullAndBlank(String name) {
@@ -24,4 +27,8 @@ public record Name(String value) {
         }
     }
 
+    @Override
+    public String toString() {
+        return value;
+    }
 }
