@@ -106,6 +106,8 @@ public class OutputView {
 
         System.out.println();
         System.out.println("실행결과");
-        allResults.forEach((playerName, prizeName) -> System.out.printf(resultFormat, playerName, prizeName));
+        allResults.forEach(
+                (playerName, prizeName) -> System.out.printf(resultFormat, playerName, prizeName)
+        );
     }
 }
