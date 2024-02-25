@@ -14,13 +14,13 @@ class PeopleTest {
     @DisplayName("사람 이름은 쉼표(,)를 기준으로 구분한다.")
     void createNames() {
         // given
-        People people = new People("pobi,honux,crong,jk");
+        String rawNames = "pobi,honux,crong,jk";
 
         // when
-        int count = people.count();
+        People people = new People(rawNames);
 
         // then
-        assertThat(count).isEqualTo(4);
+        assertThat(people.getNames()).contains("pobi", "honux", "crong", "jk");
     }
 
     @Test
