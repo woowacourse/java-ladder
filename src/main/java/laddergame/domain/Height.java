@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 public class Height {
     private static final Pattern NUMBER_REGEX = Pattern.compile("^[\\d]*$");
     private static final String NATURAL_NUMBER_ERROR = "자연수를 입력해 주세요.";
+    private static final String INVALID_HEIGHT_RANGE = "적절한 높이 범위가 아닙니다.";
     private static final int MAX_HEIGHT = 9;
     private final int height;
 
@@ -21,7 +22,7 @@ public class Height {
 
     private void checkHeightRange(final String height) {
         if (Integer.parseInt(height) > MAX_HEIGHT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_HEIGHT_RANGE);
         }
     }
 

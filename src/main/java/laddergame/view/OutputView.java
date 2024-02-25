@@ -13,7 +13,7 @@ import laddergame.domain.Result;
 import laddergame.domain.Results;
 
 public class OutputView {
-    private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String ERROR_PREFIX = System.lineSeparator() + "[ERROR] ";
     private static final String LADDER_SYMBOL = "|";
     private static final String POINT_SPACE = "\t";
     private static final String LADDER_RESULT_TITLE = System.lineSeparator() + "사다리 결과" + System.lineSeparator();

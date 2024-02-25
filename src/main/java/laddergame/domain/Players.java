@@ -6,7 +6,8 @@ import java.util.List;
 
 public class Players {
     private static final String NAME_DUPLICATED_ERROR = "이름의 중복은 허용하지 않습니다.";
-    private static final String PLAYER_NOT_FOUND_ERROR = "플레이어를 찾을 수 없습니다.";
+    public static final String PLAYER_NOT_FOUND_ERROR = "플레이어를 찾을 수 없습니다.";
+    private static final String INVALID_PLAYERS_RANGE = "적절하지 않은 플레이어 수입니다.";
     private static final int MAX_PLAYER_COUNT = 9;
     private static final int MIN_PLAYER_COUNT = 2;
     private final List<Player> players;
@@ -32,7 +33,7 @@ public class Players {
 
     private static void checkPlayerCounts(final List<String> playerNames) {
         if (playerNames.size() < MIN_PLAYER_COUNT || playerNames.size() > MAX_PLAYER_COUNT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_PLAYERS_RANGE);
         }
     }
 

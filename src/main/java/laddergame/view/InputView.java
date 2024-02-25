@@ -15,6 +15,7 @@ public class InputView {
     private static final String NAME_SEPARATOR = ",";
     private static final String RESULTS_NAME_INPUT = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String DESIRED_NAME_INPUT = "결과를 보고 싶은 사람은?";
+    private static final String INVALID_DESIRED_NAME_ERROR = "적절하지 않은 이름입니다.";
 
     public List<String> readPlayersName() {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -60,7 +61,7 @@ public class InputView {
             final String input = bufferedReader.readLine().trim();
             checkDesiredPlayerName(input, players);
             return input;
-        } catch (IOException | IllegalArgumentException exception) {
+        } catch (IOException exception) {
             throw new IllegalArgumentException(IOEXCEPTION_ERROR);
         }
     }
@@ -72,6 +73,6 @@ public class InputView {
         if (players.isIncluded(name)) {
             return;
         }
-        throw new IllegalArgumentException("");
+        throw new IllegalArgumentException(INVALID_DESIRED_NAME_ERROR);
     }
 }

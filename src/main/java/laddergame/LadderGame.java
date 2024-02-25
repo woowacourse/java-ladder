@@ -38,7 +38,7 @@ public class LadderGame {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
-            OutputView.writeErrorMessage("입력이 잘못되었습니다. 다시 입력해주세요.");
+            OutputView.writeErrorMessage(e.getMessage());
             return requestUntilValidated(supplier);
         }
     }

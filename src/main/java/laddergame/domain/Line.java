@@ -3,6 +3,7 @@ package laddergame.domain;
 import laddergame.domain.strategy.BuildStrategy;
 
 public class Line {
+    private static final String BUILD_SIZE_ERROR = "다리 생성 여부의 크기는 건설 가능 크기와 같아야 합니다.";
     private final Points points;
 
     public Line(final int playerCount, final BuildStrategy buildStrategy) {
@@ -13,7 +14,7 @@ public class Line {
 
     private void validate(final int buildSize, final Points points) {
         if (buildSize != points.points().size()) {
-            throw new IllegalStateException();
+            throw new IllegalStateException(BUILD_SIZE_ERROR);
         }
     }
 
