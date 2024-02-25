@@ -5,15 +5,14 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-class BridgesRandomGenerator implements BridgesGenerator {
+class RowRandomGenerator implements RowGenerator {
     private final Random random = new Random();
 
-    public Bridges generate(int width) {
-        Bridges bridges = generateRowInfos(width, random);
-        return bridges;
+    public Row generate(int width) {
+        return new Row(generateBridges(width, random));
     }
 
-    private Bridges generateRowInfos(int width, Random random) {
+    private Bridges generateBridges(int width, Random random) {
         List<Boolean> rawBridges = IntStream.range(0, width)
                 .mapToObj(value -> random.nextBoolean())
                 .collect(Collectors.toList());

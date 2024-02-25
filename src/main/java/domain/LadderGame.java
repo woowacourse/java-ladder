@@ -10,7 +10,7 @@ public class LadderGame {
         int nameCount = names.getNameCount();
         Height height = new Height(ladderHeight);
         Width width = new Width(nameCount);
-        ladder = new Ladder(height, width, new BridgesRandomGenerator());
+        ladder = new Ladder(height, width, new RowRandomGenerator());
     }
 
     public Names getNames() {

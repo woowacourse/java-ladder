@@ -6,10 +6,9 @@ import java.util.stream.IntStream;
 public class Ladder {
     private final List<Row> rows;
 
-    Ladder(Height height, Width width, BridgesGenerator bridgesGenerator) {
+    Ladder(Height height, Width width, RowGenerator rowGenerator) {
         rows = IntStream.range(0, height.getLength())
-                .mapToObj(value -> bridgesGenerator.generate(width.getLength() - 1))
-                .map(Row::new)
+                .mapToObj(value -> rowGenerator.generate(width.getLength() - 1))
                 .toList();
     }
 
