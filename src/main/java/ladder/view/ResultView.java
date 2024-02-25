@@ -24,7 +24,7 @@ public class ResultView {
 
     private static void printAll(Result result) {
         for (Entry<String, String> entry : result.getResultMap().entrySet()) {
-            System.out.printf("%s : %s"+System.lineSeparator(),
+            System.out.printf("%s : %s" + System.lineSeparator(),
                     entry.getKey(),
                     entry.getValue());
         }

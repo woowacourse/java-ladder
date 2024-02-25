@@ -14,7 +14,7 @@ public class InputUtility {
         return result.get();
     }
 
-    public static <T,R> R retryUntilGet(Function<T,R> function, T input) {
+    public static <T, R> R retryUntilGet(Function<T, R> function, T input) {
         Optional<R> result = Optional.empty();
 
         while (result.isEmpty()) {
