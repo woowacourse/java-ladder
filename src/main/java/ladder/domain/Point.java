@@ -2,14 +2,12 @@ package ladder.domain;
 
 public enum Point {
 
-    ON(true, "-"),
-    OFF(false, " ");
+    ON("-"),
+    OFF(" ");
 
-    private final boolean status;
     private final String symbol;
 
-    Point(boolean status, String symbol) {
-        this.status = status;
+    Point(String symbol) {
         this.symbol = symbol;
     }
 
