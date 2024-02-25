@@ -22,10 +22,6 @@ class LadderLevelTest {
                 .doesNotThrowAnyException();
     }
 
-    /**
-     * Direction.RIGHT Direction.LEFT는 함께 생성된다. <br>
-     * RIGHT-LEFT 쌍은 가로줄 한 개를 의미한다.
-     */
     @DisplayName("가로줄 검증")
     @Test
     void ladderLevelIntegrityTest() {
