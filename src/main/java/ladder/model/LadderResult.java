@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class LadderResult {
-    List<String> ladderResult;
+    private final List<String> ladderResult;
 
     public LadderResult(List<String> ladderResult) {
         this.ladderResult = ladderResult;
