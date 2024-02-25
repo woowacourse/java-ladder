@@ -45,6 +45,6 @@ public class LadderController {
     }
 
     private Ladder generateLadder(PlayerNames playerNames, Height height) {
-        return Ladder.create(booleanGenerator, height, playerNames.getPlayerCount());
+        return new Ladder(booleanGenerator, height, playerNames.getPlayerCount());
     }
 }

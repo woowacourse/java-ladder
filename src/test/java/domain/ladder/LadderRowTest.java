@@ -17,7 +17,7 @@ public class LadderRowTest {
         final int playerSize = 5;
 
         // when
-        LadderRow ladderRow = LadderRow.create(trueGenerator, playerSize);
+        LadderRow ladderRow = new LadderRow(trueGenerator, playerSize);
 
         // then
         assertThat(ladderRow.getRungs()).hasSize(playerSize);
@@ -29,7 +29,7 @@ public class LadderRowTest {
         final int playerSize = 4;
 
         // when
-        LadderRow ladderRow = LadderRow.create(trueGenerator, playerSize);
+        LadderRow ladderRow = new LadderRow(trueGenerator, playerSize);
 
         // then
         List<LadderRung> rungs = ladderRow.getRungs();

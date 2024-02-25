@@ -16,7 +16,7 @@ public class LadderTest {
         int playerSize = 5;
 
         // when
-        Ladder ladder = Ladder.create(trueGenerator, height, playerSize);
+        Ladder ladder = new Ladder(trueGenerator, height, playerSize);
 
         // then
         assertThat(ladder.getHeight()).isEqualTo(height.getValue());

@@ -8,20 +8,15 @@ import java.util.List;
 public class Ladder {
     private final List<LadderRow> rows;
 
-    private Ladder(List<LadderRow> rows) {
-        this.rows = rows;
-    }
-
-    public static Ladder create(final BooleanGenerator booleanGenerator, final Height height, final int playerSize) {
-        final List<LadderRow> rows = new ArrayList<>();
+    public Ladder(final BooleanGenerator booleanGenerator, final Height height, final int playerSize) {
+        rows = new ArrayList<>();
         for (int i = 0; i < height.getValue(); i++) {
-            final LadderRow ladderRow = LadderRow.create(booleanGenerator, getColumnSize(playerSize));
+            final LadderRow ladderRow = new LadderRow(booleanGenerator, getColumnSize(playerSize));
             rows.add(ladderRow);
         }
-        return new Ladder(rows);
     }
 
-    private static int getColumnSize(final int playerSize) {
+    private int getColumnSize(final int playerSize) {
         return playerSize - 1;
     }
 

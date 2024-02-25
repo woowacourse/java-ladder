@@ -8,26 +8,26 @@ import java.util.List;
 public class LadderRow {
     private final List<LadderRung> rungs;
 
-    private LadderRow(final List<LadderRung> rungs) {
-        this.rungs = rungs;
-    }
-
-    public static LadderRow create(BooleanGenerator booleanGenerator, int size) {
-        final List<LadderRung> rungs = new ArrayList<>();
-        boolean isLastConnected = false;
+    public LadderRow(BooleanGenerator booleanGenerator, int size) {
+        rungs = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            LadderRung ladderRung = findNextRung(booleanGenerator, isLastConnected);
+            LadderRung ladderRung = findNextRung(booleanGenerator, getLastRung());
             rungs.add(ladderRung);
-            isLastConnected = ladderRung.isConnected();
         }
-        return new LadderRow(rungs);
     }
 
-    private static LadderRung findNextRung(final BooleanGenerator booleanGenerator, final boolean isLastConnected) {
-        if (isLastConnected) {
+    private LadderRung findNextRung(final BooleanGenerator booleanGenerator, final LadderRung lastRung) {
+        if (lastRung.isConnected()) {
             return LadderRung.findRung(LadderRung.NOT_CONNECTED.isConnected());
         }
         return LadderRung.findRung(booleanGenerator.generate());
+    }
+
+    private LadderRung getLastRung() {
+        if (!rungs.isEmpty()) {
+            return rungs.get(rungs.size() - 1);
+        }
+        return LadderRung.NOT_CONNECTED;
     }
 
     public List<LadderRung> getRungs() {
