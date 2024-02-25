@@ -25,9 +25,16 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("가로줄 생성 성공: 연결 오른쪽은 비연결이다.")
+    @DisplayName("가로줄 생성 성공: 연결 오른쪽은 항상 비연결이다.")
     void test_ok_generatePointNextConnected() {
         Line line = new Line(3, () -> Connection.CONNECTED);
         assertThat(line.getConnections().get(1)).isEqualTo(Connection.DISCONNECTED);
+    }
+
+    @Test
+    @DisplayName("가로줄 생성 성공: 절대 연속으로 사다리가 연결될 수 없다.")
+    void test_ok_cannotConnectContinuously() {
+        Line line = new Line(3, () -> Connection.CONNECTED);
+        assertThat(line.getConnections().get(1)).isNotEqualTo(Connection.CONNECTED);
     }
 }
