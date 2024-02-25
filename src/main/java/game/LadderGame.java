@@ -6,7 +6,6 @@ import domain.ladder.LadderRowPattern;
 import domain.player.Players;
 import java.util.List;
 import java.util.function.BooleanSupplier;
-import util.LoopFunction;
 import view.InputView;
 import view.OutputView;
 
@@ -23,8 +22,8 @@ public class LadderGame {
     }
 
     public void play() {
-        Players players = LoopFunction.retryOnException(this::getNames);
-        LadderHeight height = LoopFunction.retryOnException(this::getHeight);
+        Players players = this.getNames();
+        LadderHeight height = this.getHeight();
 
         Ladder ladder = Ladder.of(players, height);
         ladder.drawLines(supplier);
