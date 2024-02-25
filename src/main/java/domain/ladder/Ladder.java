@@ -17,8 +17,8 @@ public class Ladder {
         return new Ladder(players, height);
     }
 
-    public void drawLines(BooleanSupplier supplier) {
-        rows.forEach(row -> row.createPattern(supplier));
+    public void drawLines(BooleanSupplier patternGenerator) {
+        rows.forEach(row -> row.createPattern(patternGenerator));
     }
 
     public List<LadderRowPattern> getLadderPatterns() {

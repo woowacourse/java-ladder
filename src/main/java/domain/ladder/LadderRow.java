@@ -16,10 +16,10 @@ public class LadderRow {
         }
     }
 
-    public void createPattern(BooleanSupplier supplier) {
+    public void createPattern(BooleanSupplier patternGenerator) {
         IntStream.range(0, rowPattern.size())
                 .forEach(index -> {
-                    boolean value = supplier.getAsBoolean();
+                    boolean value = patternGenerator.getAsBoolean();
                     rowPattern.set(index, isPlaceableWithValue(index, value));
                 });
     }
