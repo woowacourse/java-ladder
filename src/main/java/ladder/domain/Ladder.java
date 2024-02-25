@@ -1,8 +1,8 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Ladder {
 
@@ -23,7 +23,7 @@ public class Ladder {
         }
     }
 
-    public Stream<LadderLevel> stream() {
-        return ladderLevels.stream();
+    public List<LadderLevel> toLadderLevelList() {
+        return Collections.unmodifiableList(ladderLevels);
     }
 }

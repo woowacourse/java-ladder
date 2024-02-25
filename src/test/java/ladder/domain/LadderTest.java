@@ -36,10 +36,10 @@ class LadderTest {
         // when
         ladder.initialize(new LineGenerator());
 
-        LadderLevel anyLadderLevel = ladder.stream().findFirst().get();
+        LadderLevel anyLadderLevel = ladder.toLadderLevelList().get(0);
 
-        int actualHeight = (int) ladder.stream().count();
-        int actualPlayersCount = (int) anyLadderLevel.stream().count();
+        int actualHeight = ladder.toLadderLevelList().size();
+        int actualPlayersCount = anyLadderLevel.toDirectionList().size();
 
         // then
         assertAll(

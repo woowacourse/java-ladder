@@ -29,12 +29,12 @@ public class ResultView {
     }
 
     private static void printLadder(Ladder ladder) {
-        ladder.stream().forEach(ResultView::printLadderLevel);
+        ladder.toLadderLevelList().forEach(ResultView::printLadderLevel);
     }
 
     private static void printLadderLevel(LadderLevel ladderLevel) {
         System.out.print("\t");
-        ladderLevel.stream().forEach(ResultView::printLine);
+        ladderLevel.toDirectionList().forEach(ResultView::printLine);
         System.out.println();
     }
 

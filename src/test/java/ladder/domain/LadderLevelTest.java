@@ -31,7 +31,7 @@ class LadderLevelTest {
     void ladderLevelIntegrityTest() {
         // given
         LadderLevel ladderLevel = new LadderLevel(100, new LineGenerator());
-        List<Direction> directions = ladderLevel.stream().toList();
+        List<Direction> directions = ladderLevel.toDirectionList();
 
         //when
         List<Integer> rightIndices = new ArrayList<>();

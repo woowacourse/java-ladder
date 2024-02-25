@@ -5,9 +5,9 @@ import static ladder.domain.Direction.NONE;
 import static ladder.domain.Direction.RIGHT;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class LadderLevel {
 
@@ -37,7 +37,7 @@ public class LadderLevel {
         }
     }
 
-    public Stream<Direction> stream() {
-        return ladderLevel.stream();
+    public List<Direction> toDirectionList() {
+        return Collections.unmodifiableList(ladderLevel);
     }
 }
