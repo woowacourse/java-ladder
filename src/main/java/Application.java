@@ -4,7 +4,11 @@ import view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        final LadderGame ladderGame = new LadderGame(new InputView(), new OutputView());
-        ladderGame.play();
+        try {
+            final LadderGame ladderGame = new LadderGame(new InputView(), new OutputView());
+            ladderGame.play();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
