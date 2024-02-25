@@ -2,9 +2,7 @@ package laddergame.view;
 
 import laddergame.domain.*;
 
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class OutputView {
     public static final String LINE_SEPARATOR = System.lineSeparator();
