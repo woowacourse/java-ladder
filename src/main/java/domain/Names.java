@@ -27,7 +27,7 @@ public class Names {
         Name needToFind = new Name(rawName);
         try {
             int rawPosition = names.indexOf(needToFind);
-            return new Position(rawPosition, names.size());
+            return new Position(rawPosition, names.size() - 1);
         } catch (NullPointerException e) {
             throw new LadderGameException(ExceptionType.NAME_NOT_FOUND);
         }

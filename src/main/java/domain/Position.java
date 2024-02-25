@@ -34,14 +34,11 @@ class Position {
         return this;
     }
 
-    private Boolean getCanGo(List<Boolean> bridges, int startPosition) {
-        Boolean canGoRight;
-        try {
-            canGoRight = bridges.get(startPosition);
-        } catch (IndexOutOfBoundsException e) {
-            canGoRight = false;
+    private Boolean getCanGo(List<Boolean> bridges, int nextRawPosition) {
+        if (nextRawPosition < 0 || nextRawPosition >= maxPosition) {
+            return false;
         }
-        return canGoRight;
+        return bridges.get(nextRawPosition);
     }
 
     @Override
@@ -64,5 +61,13 @@ class Position {
 
     int getRawPosition() {
         return rawPosition;
+    }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "rawPosition=" + rawPosition +
+                ", maxPosition=" + maxPosition +
+                '}';
     }
 }
