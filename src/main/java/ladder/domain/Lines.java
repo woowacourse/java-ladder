@@ -23,6 +23,12 @@ public class Lines {
                 .toList();
     }
 
+    public List<List<Integer>> findStepPositions() {
+        return lines.stream()
+                .map(Line::findStepPosition)
+                .toList();
+    }
+
     public List<Line> getLines() {
         return unmodifiableList(lines);
     }
