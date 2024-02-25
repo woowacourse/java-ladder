@@ -31,4 +31,8 @@ public record Name(String value) {
         }
     }
 
+    public String toString() {
+        return this.value;
+    }
+
 }

@@ -33,7 +33,8 @@ public class Prize {
         }
     }
 
-    public String getPrizeName() {
+    public String toString() {
         return this.prizeName;
     }
+
 }
