@@ -49,6 +49,11 @@ public class Players {
                 .count();
     }
 
+    public boolean isIncluded(final String name) {
+        return players.stream()
+                .anyMatch(player -> player.getName().equals(name));
+    }
+
     public Player getPlayerByName(final String name) {
         return players.stream()
                 .filter(player -> player.getName().equals(name))

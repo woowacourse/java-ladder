@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
+import laddergame.domain.Players;
+import laddergame.util.ReservedWords;
 
 public class InputView {
     private static final String IOEXCEPTION_ERROR = "입력 과정 도중 에러가 발생했습니다.";
@@ -50,14 +52,26 @@ public class InputView {
         }
     }
 
-    public String readDesiredPlayerName() {
+    public String readDesiredPlayerName(final Players players) {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println();
         System.out.println(DESIRED_NAME_INPUT);
         try {
-            return bufferedReader.readLine().trim();
-        } catch (IOException exception) {
+            final String input = bufferedReader.readLine().trim();
+            checkDesiredPlayerName(input, players);
+            return input;
+        } catch (IOException | IllegalArgumentException exception) {
             throw new IllegalArgumentException(IOEXCEPTION_ERROR);
         }
+    }
+
+    private void checkDesiredPlayerName(final String name, final Players players) {
+        if (ReservedWords.isIncluded(name)) {
+            return;
+        }
+        if (players.isIncluded(name)) {
+            return;
+        }
+        throw new IllegalArgumentException("");
     }
 }

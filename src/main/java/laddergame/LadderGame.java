@@ -24,12 +24,12 @@ public class LadderGame {
         Ladder ladder = new Ladder(players, height, results, pointBuildStrategy);
         outputView.writeLadderResult(players, ladder, results);
         while (true) {
-            final String command = inputView.readDesiredPlayerName();
+            final String command = requestUntilValidated(() -> inputView.readDesiredPlayerName(players));
             if (command.equals("all")) {
                 outputView.writeAllResults(ladder.getFoundResult());
                 break;
             }
-            Result result = requestUntilValidated(() -> ladder.find(command));
+            Result result = ladder.find(command);
             outputView.writeDesiredResult(result);
         }
     }
