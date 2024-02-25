@@ -11,7 +11,7 @@ public class HorizontalLine {
 	private static final int MAX_PLAYER_COUNT = 10;
 
 	private final int playerCount;
-	private final List<FloorConnectionStatus> floor = new ArrayList<>();
+	private final List<Bar> bars = new ArrayList<>();
 
 	public HorizontalLine(int playerCount) {
 		validatePlayerCount(playerCount);
@@ -19,12 +19,12 @@ public class HorizontalLine {
 	}
 
 	public void createCrossingLines(LadderFloorGenerator floorGenerator) {
-		List<FloorConnectionStatus> generatedFloor = floorGenerator.generate(playerCount);
-		floor.addAll(generatedFloor);
+		List<Bar> generatedFloor = floorGenerator.generate(playerCount);
+		bars.addAll(generatedFloor);
 	}
 
 	public HorizontalLineStatus createStatus() {
-		List<FloorConnectionStatus> placeStatuses = List.copyOf(floor);
+		List<Bar> placeStatuses = List.copyOf(bars);
 		return new HorizontalLineStatus(placeStatuses);
 	}
 

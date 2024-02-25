@@ -1,6 +1,6 @@
 package domain;
 
-public enum FloorConnectionStatus {
+public enum Bar {
 	CONNECTED_TO_LEFT,
 	CONNECTED_TO_RIGHT,
 	NOT_CONNECTED;

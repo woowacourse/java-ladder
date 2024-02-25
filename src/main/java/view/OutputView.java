@@ -3,7 +3,7 @@ package view;
 import java.util.List;
 import java.util.StringJoiner;
 
-import domain.FloorConnectionStatus;
+import domain.Bar;
 import domain.HorizontalLineStatus;
 
 public class OutputView {
@@ -39,7 +39,7 @@ public class OutputView {
 
 	public void printLadder(List<HorizontalLineStatus> statuses) {
 		statuses.stream()
-			.map(HorizontalLineStatus::placedStatuses)
+			.map(HorizontalLineStatus::bars)
 			.forEach(this::printHorizontalLine);
 	}
 
@@ -47,20 +47,20 @@ public class OutputView {
 		System.out.println("[ERROR] " + message + System.lineSeparator());
 	}
 
-	private void printHorizontalLine(List<FloorConnectionStatus> indices) {
+	private void printHorizontalLine(List<Bar> bars) {
 		StringBuilder builder = new StringBuilder();
 
 		builder.append(LADDER_PREFIX_SPACES);
-		indices.forEach(connectionStatus ->
+		bars.forEach(connectionStatus ->
 			builder.append(VERTICAL_LADDER_CHARACTER)
-					.append(getHorizontalLadderCharacter(connectionStatus))
+				.append(getHorizontalLadderCharacter(connectionStatus))
 		);
 
 		System.out.println(builder.toString());
 	}
 
-	private String getHorizontalLadderCharacter(FloorConnectionStatus status) {
-		if (status.isConnectedToRight()) {
+	private String getHorizontalLadderCharacter(Bar bar) {
+		if (bar.isConnectedToRight()) {
 			return HORIZONTAL_LADDER_CHARACTER.repeat(LADDER_WIDTH_UNIT);
 		}
 		return EMPTY_LADDER_CHARACTER.repeat(LADDER_WIDTH_UNIT);

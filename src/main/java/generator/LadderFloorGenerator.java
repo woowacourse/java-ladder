@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 
-import domain.FloorConnectionStatus;
+import domain.Bar;
 
 public class LadderFloorGenerator {
 
@@ -14,37 +14,37 @@ public class LadderFloorGenerator {
 		this.supplier = supplier;
 	}
 
-	public List<FloorConnectionStatus> generate(int size) {
-		List<FloorConnectionStatus> floor = new ArrayList<>();
+	public List<Bar> generate(int size) {
+		List<Bar> bars = new ArrayList<>();
 
-		FloorConnectionStatus previous = FloorConnectionStatus.NOT_CONNECTED;
+		Bar previous = Bar.NOT_CONNECTED;
 		for (int order = 0; order < size - 1; order++) {
-			FloorConnectionStatus current = getConnection(previous);
-			floor.add(current);
+			Bar current = getConnection(previous);
+			bars.add(current);
 			previous = current;
 		}
-		floor.add(getLastConnection(previous));
+		bars.add(getLastConnection(previous));
 
-		return floor;
+		return bars;
 	}
 
-	private FloorConnectionStatus getConnection(FloorConnectionStatus previous) {
+	private Bar getConnection(Bar previous) {
 		if (previous.isConnectedToRight()) {
-			return FloorConnectionStatus.CONNECTED_TO_LEFT;
+			return Bar.CONNECTED_TO_LEFT;
 		}
 
 		boolean canConnect = supplier.getAsBoolean();
 		if (canConnect) {
-			return FloorConnectionStatus.CONNECTED_TO_RIGHT;
+			return Bar.CONNECTED_TO_RIGHT;
 		}
 
-		return FloorConnectionStatus.NOT_CONNECTED;
+		return Bar.NOT_CONNECTED;
 	}
 
-	private FloorConnectionStatus getLastConnection(FloorConnectionStatus previous) {
+	private Bar getLastConnection(Bar previous) {
 		if (previous.isConnectedToRight()) {
-			return FloorConnectionStatus.CONNECTED_TO_LEFT;
+			return Bar.CONNECTED_TO_LEFT;
 		}
-		return FloorConnectionStatus.NOT_CONNECTED;
+		return Bar.NOT_CONNECTED;
 	}
 }
