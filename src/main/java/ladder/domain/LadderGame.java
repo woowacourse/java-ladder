@@ -32,13 +32,13 @@ public class LadderGame {
     }
 
     public Prize getResultByPlayerName(String playerName) {
-        for (Entry<Player, Prize> entry : results.entrySet()) {
-            if (entry.getKey().name().equals(playerName)) {
-                return entry.getValue();
-            }
+        Player player = new Player(playerName);
+
+        if (!results.containsKey(player)) {
+            throw new IllegalArgumentException("존재하지 않는 참가자입니다.");
         }
 
-        throw new IllegalArgumentException("존재하지 않는 참가자입니다.");
+        return results.get(player);
     }
 
     public Map<Player, Prize> getAllResults() {
