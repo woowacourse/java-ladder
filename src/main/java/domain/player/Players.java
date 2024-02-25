@@ -18,7 +18,7 @@ public class Players {
 
     public List<String> getNames() {
         return names.stream()
-                .map(Name::value)
+                .map(Name::name)
                 .toList();
     }
 
