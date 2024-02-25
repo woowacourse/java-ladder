@@ -1,10 +1,6 @@
 package controller;
 
-import domain.Ladder;
-import domain.LadderItem;
-import domain.Line;
-import domain.Participant;
-import domain.Participants;
+import domain.*;
 import util.BooleanGenerator;
 import view.InputView;
 import view.LadderShape;
@@ -25,10 +21,12 @@ public class LadderGame {
     }
 
     public void start() {
-        Participants participants = makeParticipants(inputName());
-        Ladder ladder = new Ladder(inputHeight());
+        Participants participants = new Participants(inputName());
+        Results results = new Results(inputView.inputResults(), participants.getParticipantsCount());
+        Ladder ladder = new Ladder(inputView.inputHeight(), results);
 
         ladder.makeLadder(participants.getParticipantsCount(), booleanGenerator);
+
         printLadder(ladder, participants);
     }
 
@@ -36,14 +34,6 @@ public class LadderGame {
         String input = inputView.inputName();
 
         return List.of(input.split(","));
-    }
-
-    private Participants makeParticipants(List<String> names) {
-        return new Participants(names);
-    }
-
-    private String inputHeight() {
-        return inputView.inputHeight();
     }
 
     private void printLadder(Ladder ladder, Participants participants) {
