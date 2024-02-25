@@ -2,13 +2,12 @@ package laddergame.domain.strategy;
 
 import laddergame.domain.Zone;
 import laddergame.util.RandomZoneGenerator;
-import laddergame.util.ZoneGenerator;
 
 import java.util.List;
 import java.util.Stack;
 import java.util.stream.IntStream;
 
-public class NoTrueSequenceBuildStrategy implements LineBuildStrategy {
+public class NonContinuousLineBuildStrategy implements LineBuildStrategy {
     @Override
     public List<Zone> apply(final int count) {
         Stack<Zone> lineStatus = new Stack<>();

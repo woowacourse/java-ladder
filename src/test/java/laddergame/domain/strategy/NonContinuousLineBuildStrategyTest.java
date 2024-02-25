@@ -10,16 +10,16 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("랜덤전략")
-public class NoTrueSequenceBuildStrategyTest {
+public class NonContinuousLineBuildStrategyTest {
     @Test
     @DisplayName("주어진 횟수만큼 다리가 생성되는지 확인한다.")
     public void testRandomBuildStrategy() {
         //given
-        NoTrueSequenceBuildStrategy noTrueSequenceBuildStrategy = new NoTrueSequenceBuildStrategy();
+        NonContinuousLineBuildStrategy nonContinuousLineBuildStrategy = new NonContinuousLineBuildStrategy();
         final int count = 4;
 
         //when
-        List<Zone> canBuildBridges = noTrueSequenceBuildStrategy.apply(count);
+        List<Zone> canBuildBridges = nonContinuousLineBuildStrategy.apply(count);
 
         //then
         assertEquals(canBuildBridges.size(), count);
@@ -29,11 +29,11 @@ public class NoTrueSequenceBuildStrategyTest {
     @DisplayName("다리가 연속적으로 생성되지 않는지 검증한다.")
     public void testSequenceBridges() {
         //given
-        NoTrueSequenceBuildStrategy noTrueSequenceBuildStrategy = new NoTrueSequenceBuildStrategy();
+        NonContinuousLineBuildStrategy nonContinuousLineBuildStrategy = new NonContinuousLineBuildStrategy();
         final int count = 5;
 
         //when
-        List<Zone> canBuildBridges = noTrueSequenceBuildStrategy.apply(count);
+        List<Zone> canBuildBridges = nonContinuousLineBuildStrategy.apply(count);
 
         //then
         IntStream.range(0, canBuildBridges.size() - 1)

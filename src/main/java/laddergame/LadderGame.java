@@ -3,7 +3,7 @@ package laddergame;
 import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.Players;
-import laddergame.domain.strategy.NoTrueSequenceBuildStrategy;
+import laddergame.domain.strategy.NonContinuousLineBuildStrategy;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -17,7 +17,7 @@ public class LadderGame {
         Players players = retryUntilValidated(() -> Players.from(inputView.readPlayersName()));
         Height height = retryUntilValidated(() -> new Height(inputView.readLadderHeight()));
 
-        Ladder ladder = Ladder.buildOf(new NoTrueSequenceBuildStrategy(), players, height);
+        Ladder ladder = Ladder.buildOf(new NonContinuousLineBuildStrategy(), players, height);
         printLadderResult(players, ladder);
     }
 
