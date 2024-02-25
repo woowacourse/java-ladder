@@ -24,7 +24,9 @@ public class Players {
 
     private void validatePlayersCount(List<String> names) {
         if (names.size() < MIN_PLAYERS_COUNT) {
-            throw new IllegalArgumentException("참여자는 최소 %d명입니다.".formatted(MIN_PLAYERS_COUNT));
+            throw new IllegalArgumentException(
+                    "참여자는 최소 %d명입니다.".formatted(MIN_PLAYERS_COUNT)
+            );
         }
     }
 
