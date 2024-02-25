@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import static java.util.Collections.unmodifiableList;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,9 +27,7 @@ public class Destinations {
         }
     }
 
-    public List<String> getDestinations() {
-        return destinations.stream()
-                .map(Destination::value)
-                .toList();
+    public List<Destination> getDestinations() {
+        return unmodifiableList(destinations);
     }
 }
