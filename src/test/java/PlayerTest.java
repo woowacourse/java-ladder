@@ -17,7 +17,7 @@ public class PlayerTest {
 
     @DisplayName("참여자의 이름으로 all을 입력받으면 예외를 발생시킨다.")
     @Test
-    void name() {
+    void nameIsNotAll() {
         assertThatThrownBy(() -> new Player("all"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
