@@ -51,6 +51,20 @@ public class InputView {
         }
     }
 
+    public List<String> inputResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String input = scanner.nextLine();
+        validateResults(input);
+        return Arrays.stream(input.split(NAME_DELIMITER)).map(String::trim).toList();
+    }
+
+    private void validateResults(String input) {
+        validateBlank(input);
+        validateDoubleDelimiter(input);
+        validateStartWord(input);
+        validateEndWord(input);
+    }
+
     public int inputHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String input = scanner.nextLine();
