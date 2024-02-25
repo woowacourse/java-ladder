@@ -23,7 +23,7 @@ class LadderTest {
     @DisplayName("사다리 생성")
     @Test
     void ladderConstructTest() {
-        assertThatCode(() -> new Ladder(players, height))
+        assertThatCode(() -> Ladder.of(players, height, new DefaultLadderDirectionSelector()))
                 .doesNotThrowAnyException();
     }
 
@@ -31,11 +31,9 @@ class LadderTest {
     @Test
     void ladderSizeTest() {
         //given
-        Ladder ladder = new Ladder(players, height);
+        Ladder ladder = Ladder.of(players, height, new DefaultLadderDirectionSelector());
 
         // when
-        ladder.initialize(new LineGenerator());
-
         LadderLevel anyLadderLevel = ladder.toLadderLevelList().get(0);
 
         int actualHeight = ladder.toLadderLevelList().size();

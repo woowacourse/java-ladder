@@ -5,11 +5,12 @@ import static ladder.domain.Direction.RIGHT;
 
 import java.util.Random;
 
-public class LineGenerator {
+public class DefaultLadderDirectionSelector implements LadderDirectionSelector {
 
     private static final Random random = new Random();
 
-    public Direction generate() {
+    @Override
+    public Direction select() {
         if (random.nextBoolean()) {
             return RIGHT;
         }

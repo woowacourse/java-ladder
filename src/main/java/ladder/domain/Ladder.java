@@ -3,27 +3,28 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private final Players players;
-    private final Height height;
-    private final List<LadderLevel> ladderLevels;
+    private final List<LadderLevel> ladder;
 
-    public Ladder(Players players, Height height) {
-        this.players = players;
-        this.height = height;
-        ladderLevels = new ArrayList<>();
+    public Ladder(List<LadderLevel> ladder) {
+        this.ladder = ladder;
     }
 
-    public void initialize(LineGenerator lineGenerator) {
-        ladderLevels.clear();
-        for (int currentHeight = 0; currentHeight < height.value(); currentHeight++) {
-            ladderLevels.add(new LadderLevel(players.count(), lineGenerator));
-        }
+    public static Ladder of(Players players, Height height, LadderDirectionSelector ladderDirectionSelector) {
+        List<LadderLevel> ladder = new ArrayList<>();
+        IntStream.range(0, height.value()).forEach(
+                (__) -> ladder.add(LadderLevelBuilder.builder()
+                        .size(players.count())
+                        .directionSelector(ladderDirectionSelector)
+                        .build())
+        );
+        return new Ladder(ladder);
     }
 
     public List<LadderLevel> toLadderLevelList() {
-        return Collections.unmodifiableList(ladderLevels);
+        return Collections.unmodifiableList(ladder);
     }
 }

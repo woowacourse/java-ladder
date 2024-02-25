@@ -1,50 +1,43 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
 
 import static ladder.domain.Direction.LEFT;
+import static ladder.domain.Direction.NONE;
 import static ladder.domain.Direction.RIGHT;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LadderLevelTest {
 
-    @DisplayName("사다리 층 생성")
+    @DisplayName("가로줄이 없는 사다리 층이 생성된다.")
     @Test
     void ladderLevelConstructTest() {
-        assertThatCode(() -> new LadderLevel(5, new LineGenerator()))
-                .doesNotThrowAnyException();
-    }
+        LadderLevel ladderLevel = LadderLevelBuilder.builder()
+                .size(100)
+                .directionSelector(() -> NONE)
+                .build();
 
-    @DisplayName("가로줄 검증")
-    @Test
-    void ladderLevelIntegrityTest() {
-        // given
-        LadderLevel ladderLevel = new LadderLevel(100, new LineGenerator());
         List<Direction> directions = ladderLevel.toDirectionList();
 
-        //when
-        List<Integer> rightIndices = new ArrayList<>();
-        List<Integer> leftIndices = new ArrayList<>();
+        assertThat(directions.size()).isEqualTo(100);
+        assertThat(directions).doesNotContain(RIGHT, LEFT);
+    }
 
-        IntStream.range(0, directions.size()).forEach(index -> {
-            if (directions.get(index) == RIGHT) {
-                rightIndices.add(index);
-            }
-            if (directions.get(index) == LEFT) {
-                leftIndices.add(index);
-            }
-        });
+    @DisplayName("가로줄로 가득 찬 사다리 층이 생성된다.")
+    @Test
+    void ladderLevelIntegrityTest() {
+        LadderLevel ladderLevel = LadderLevelBuilder.builder()
+                .size(100)
+                .directionSelector(() -> RIGHT)
+                .build();
 
-        List<Integer> expected = rightIndices.stream().mapToInt(index -> index + 1).boxed().toList();
+        List<Direction> directions = ladderLevel.toDirectionList();
 
-        //then
-        assertThat(leftIndices).containsExactlyElementsOf(expected);
+        assertThat(directions).doesNotContain(NONE);
+        assertThat(directions).contains(RIGHT, LEFT);
     }
 }
