@@ -37,7 +37,7 @@ public class Players {
         }
     }
 
-    public static Players create(List<String> names) {
+    public static Players from(List<String> names) {
         return names.stream()
                 .map(Player::new)
                 .collect(collectingAndThen(toList(), Players::new));

@@ -15,7 +15,7 @@ public class PlayersTest {
     @ParameterizedTest
     @MethodSource("provideInvalidPlayerNames")
     void testInvalidSizeOfPlayers(List<String> names) {
-        assertThatThrownBy(() -> Players.create(names))
+        assertThatThrownBy(() -> Players.from(names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -30,7 +30,7 @@ public class PlayersTest {
     @ParameterizedTest
     @MethodSource("provideValidPlayerNames")
     void testValidSizeOfPlayers(List<String> names) {
-        assertDoesNotThrow(() -> Players.create(names));
+        assertDoesNotThrow(() -> Players.from(names));
     }
 
     private static Stream<Arguments> provideValidPlayerNames() {
@@ -44,7 +44,7 @@ public class PlayersTest {
     @ParameterizedTest
     @MethodSource("provideDuplicatedPlayerNames")
     void testInvalidPlayerNamesUnique(List<String> names) {
-        assertThatThrownBy(() -> Players.create(names))
+        assertThatThrownBy(() -> Players.from(names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -59,7 +59,7 @@ public class PlayersTest {
     @ParameterizedTest
     @MethodSource("provideUniquePlayerNames")
     void testValidPlayerNamesUnique(List<String> names) {
-        assertDoesNotThrow(() -> Players.create(names));
+        assertDoesNotThrow(() -> Players.from(names));
     }
 
     private static Stream<Arguments> provideUniquePlayerNames() {

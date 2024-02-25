@@ -19,7 +19,7 @@ public class LadderGameController {
 
     private Players preparePlayers() {
         List<String> playerNames = InputView.askPlayerNames();
-        return Players.create(playerNames);
+        return Players.from(playerNames);
     }
 
     private LadderHeight prepareLadderHeight() {
@@ -28,7 +28,7 @@ public class LadderGameController {
     }
 
     public Ladder makeLadder(Players players, LadderHeight ladderHeight) {
-        return Ladder.create(ladderHeight, players, new RandomBridgesGenerator());
+        return Ladder.of(ladderHeight, players, new RandomBridgesGenerator());
     }
 
     public void end(Players players, Ladder ladder) {
