@@ -44,6 +44,14 @@ class PeopleTest {
         assertThat(count).isEqualTo(2);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {" ,pobi", ", , ,", ",,,", "pobi"})
+    @DisplayName("이름이 1개 이하라면 예외가 발생한다.")
+    void nameLengthExceptionTest(String names) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new People(names));
+    }
+
     @Test
     @DisplayName("이름에 공백은 포함하지 않는다.")
     void createValidNames() {
