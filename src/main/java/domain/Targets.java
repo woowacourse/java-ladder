@@ -30,4 +30,8 @@ public class Targets {
     public List<Target> getTargets() {
         return targets;
     }
+
+    public Target getPrize(int index) {
+        return targets.get(index);
+    }
 }

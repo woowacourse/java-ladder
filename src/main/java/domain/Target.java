@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Target {
     private static final int MAX_NAME_LENGTH = 5;
     private final String target;
@@ -17,5 +19,18 @@ public class Target {
 
     public String getTarget() {
         return target;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Target target1 = (Target) o;
+        return Objects.equals(target, target1.target);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(target);
     }
 }
