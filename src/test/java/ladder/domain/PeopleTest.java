@@ -63,11 +63,13 @@ class PeopleTest {
     @DisplayName("이름에 공백은 포함하지 않는다.")
     void createValidNames() {
         // given
-        String name = "  jk  ";
+        String names = "crong,     jk    ";
 
-        // when & then
-        assertThatCode(() -> new People(name))
-                .doesNotThrowAnyException();
+        // when
+        People people = new People(names);
+
+        // then
+        assertThat(people.findMaxNameLength()).isEqualTo(5);
     }
 
     @Test
