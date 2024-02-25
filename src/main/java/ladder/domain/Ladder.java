@@ -2,18 +2,22 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import ladder.domain.linegenerator.LineGenerator;
 
 public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(Height height, int size, LineGenerator lineGenerator) {
-        lines = new ArrayList<>();
-        for (int i = 0; i < height.getValue(); i++) {
-            Line line = new Line(lineGenerator.generate(size));
-            lines.add(line);
-        }
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
+    public static Ladder of(Height height, int countOfPlayers, LineGenerator lineGenerator) {
+        List<Line> generateLine = IntStream.range(0, height.getValue())
+                .mapToObj(index -> new Line(lineGenerator.generate(countOfPlayers)))
+                .toList();
+        return new Ladder(generateLine);
     }
 
     public boolean isExist(int height, int width) {

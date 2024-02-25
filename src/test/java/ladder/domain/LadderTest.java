@@ -15,30 +15,34 @@ class LadderTest {
     @DisplayName("사다리의 높이를 알 수 있다")
     @Test
     void getHeightTest() {
+        Height height = new Height(3);
         LineGenerator lineGenerator = size -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
-        Ladder ladder = new Ladder(new Height(3), 2, lineGenerator);
+        Ladder ladder = Ladder.of(height, 2, lineGenerator);
+        int expected = height.getValue();
 
         int actual = ladder.getHeight();
 
-        assertThat(actual).isEqualTo(3);
+        assertThat(actual).isEqualTo(expected);
     }
 
     @DisplayName("사다리의 길이를 구할 수 있다")
     @Test
     void getWidthTest() {
+        int countOfPlayers = 3;
         LineGenerator lineGenerator = size -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
-        Ladder ladder = new Ladder(new Height(3), 2, lineGenerator);
+        Ladder ladder = Ladder.of(new Height(3), countOfPlayers, lineGenerator);
+        int expected = countOfPlayers - 1;
 
         int actual = ladder.getWidth();
 
-        assertThat(actual).isEqualTo(2);
+        assertThat(actual).isEqualTo(expected);
     }
 
     @DisplayName("특정 좌표에 스틱이 존재하는지 알 수 있다")
     @Test
     void isExistTest() {
         LineGenerator lineGenerator = size -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
-        Ladder ladder = new Ladder(new Height(3), 2, lineGenerator);
+        Ladder ladder = Ladder.of(new Height(3), 2, lineGenerator);
 
         boolean actual = ladder.isExist(2, 1);
 
@@ -51,11 +55,10 @@ class LadderTest {
     void isExistTest_whenHeightIsOutOfRange(int heightValue) {
         Height height = new Height(3);
         LineGenerator lineGenerator = size -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
-        Ladder ladder = new Ladder(height, 2, lineGenerator);
+        Ladder ladder = Ladder.of(height, 2, lineGenerator);
         int widthValue = 0;
 
-        assertThatThrownBy(() -> ladder.isExist(heightValue, widthValue))
-                .isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> ladder.isExist(heightValue, widthValue)).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("높이 위치가 범위를 벗어났습니다.");
     }
 }
