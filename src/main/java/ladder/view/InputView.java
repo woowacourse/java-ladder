@@ -36,8 +36,10 @@ public class InputView {
     }
 
     public static String readRequestResult(Supplier<String> reader) throws IllegalArgumentException {
+        System.out.println("결과를 보고 싶은 사람은?");
         String input = reader.get();
         validateEmpty(input);
+        System.out.println();
         return input;
     }
 
