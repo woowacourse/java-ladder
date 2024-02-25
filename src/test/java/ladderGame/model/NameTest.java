@@ -19,11 +19,11 @@ class NameTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", " "})
-    @DisplayName("이름은 공백일 시 예외처리 된다.")
+    @ValueSource(strings = {"", " ", "초롱", "ab cd"})
+    @DisplayName("이름에 영문과 숫자 외에 입력이 들어가는 경우 예외처리 된다.")
     void validateNotBlank(String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 공백일 수 없습니다.");
+                .hasMessage("이름은 영문과 숫자로만 입력해야 합니다.");
     }
 }
