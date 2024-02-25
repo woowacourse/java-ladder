@@ -26,7 +26,7 @@ public class Ladder {
     }
 
     private static void validateHeightRange(int height) {
-        if (MAXIMUM_HEIGHT < height || height < MINIMUM_HEIGHT) {
+        if (MINIMUM_HEIGHT > height || height > MAXIMUM_HEIGHT) {
             throw new IllegalArgumentException(
                     String.format("사다리의 높이는 %d이상 %d이하여야 합니다.", MINIMUM_HEIGHT, MAXIMUM_HEIGHT));
         }
