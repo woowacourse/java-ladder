@@ -1,9 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Participants {
 
@@ -24,6 +21,13 @@ public class Participants {
         for (String name : names) {
             participants.add(new Participant(name));
         }
+    }
+
+    public Participant findParticipantByName(String name) {
+        return participants.stream()
+                .filter(participant -> Objects.equals(participant.getName(), name))
+                .findAny()
+                .orElseThrow();
     }
 
     public int getParticipantsCount() {

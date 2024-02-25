@@ -26,7 +26,15 @@ public class Results {
         participantsResult.put(participant, results.get(position));
     }
 
+    public String getResultByParticipantName(Participant participant) {
+        return participantsResult.get(participant);
+    }
+
     public List<String> getResults() {
         return Collections.unmodifiableList(results);
+    }
+
+    public Map<Participant, String> getParticipantsResult() {
+        return Collections.unmodifiableMap(participantsResult);
     }
 }

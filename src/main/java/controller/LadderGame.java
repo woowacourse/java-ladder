@@ -5,8 +5,10 @@ import util.BooleanGenerator;
 import view.InputView;
 import view.LadderShape;
 import view.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LadderGame {
 
@@ -30,6 +32,8 @@ public class LadderGame {
         printLadder(ladder, participants);
 
         ladder.playLadder(results, participants);
+
+        printLadderGameResult(participants, results);
     }
 
     private List<String> inputName() {
@@ -83,5 +87,30 @@ public class LadderGame {
         }
 
         result.add(stringBuilder.toString());
+    }
+
+    private void printLadderGameResult(Participants participants, Results results) {
+        String name = inputView.inputResultName();
+        String result = "";
+
+        if (!name.equals("all")) {
+            result = results.getResultByParticipantName(participants.findParticipantByName(name));
+        }
+
+        if (name.equals("all")) {
+            result = getAllResult(results);
+        }
+
+        outputView.printResult(result);
+    }
+
+    private String getAllResult(Results results) {
+        List<String> allResult = new ArrayList<>();
+
+        for (Map.Entry<Participant, String> result : results.getParticipantsResult().entrySet()) {
+            allResult.add(result.getKey().getName() + " : " + result.getValue());
+        }
+
+        return String.join("\n", allResult);
     }
 }
