@@ -24,7 +24,7 @@ public class GameController {
     }
 
     private void printResult(GameBoard gameBoard) {
-        System.out.println("실행 결과");
+        System.out.println("사다리 결과");
         System.out.println(System.lineSeparator());
         OutputView.printPlayerNames(gameBoard.getPlayers()
                                              .getPlayerNames());
