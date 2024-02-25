@@ -11,6 +11,7 @@ import model.line.Line;
 import model.player.Players;
 
 public class Ladder {
+    private static final int CONNECTION_OFFSET = 1;
     private final List<Line> lines;
 
     private Ladder(List<Line> lines) {
@@ -18,7 +19,7 @@ public class Ladder {
     }
 
     public static Ladder of(LadderHeight height, Players players, BridgesGenerator bridgesGenerator) {
-        int bridgeCount = players.getSize() - 1;
+        int bridgeCount = players.getSize() - CONNECTION_OFFSET;
         return IntStream.range(0, height.value())
                 .mapToObj(i -> new Line(bridgesGenerator.pickBridges(bridgeCount)))
                 .collect(collectingAndThen(toList(), Ladder::new));
