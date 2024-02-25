@@ -66,7 +66,7 @@ echo location of your Java installation.
 goto fail
 
 :execute
-@rem Setup the command ladderLevel
+@rem Setup the command line
 
 set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
 
