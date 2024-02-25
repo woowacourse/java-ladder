@@ -27,6 +27,11 @@ public class Name {
         return Objects.equals(name, other.name);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
     public String getName() {
         return name;
     }

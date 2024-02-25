@@ -10,16 +10,7 @@ class NamesCreatorTest {
     @Test
     @DisplayName("참여자 이름들 생성자가 생성될 때 예외가 발생하지 않음")
     void testCreateNameCreator() {
-        Assertions.assertThatCode(() -> new NamesCreator()).doesNotThrowAnyException();
-    }
-
-    @Test
-    @DisplayName("사람 이름이 중복되면 예외 발생")
-    void validateDuplicateName() {
-        var nameCreator = new NamesCreator();
-        Assertions.assertThatThrownBy(() -> nameCreator.create("abcde,abcde,abc"))
-                .isInstanceOf(LadderGameException.class)
-                .hasMessage(ExceptionType.NOT_ALLOW_DUPLICATE_NAME.getMessage());
+        Assertions.assertThatCode(NamesCreator::new).doesNotThrowAnyException();
     }
 
     @ParameterizedTest
@@ -32,16 +23,5 @@ class NamesCreatorTest {
                 .hasMessage(ExceptionType.INVALID_NAMES_SEPARATOR.getMessage());
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {
-            "a,b,c,d,e,f,g,h,i,j,k",
-            "a"})
-    @DisplayName("참여자 이름 개수가 부적절(2 미만 10 초과)하면 예외 발생")
-    void validateNameCount(String names) {
-        var nameCreator = new NamesCreator();
-        Assertions.assertThatThrownBy(() -> nameCreator.create(names))
-                .isInstanceOf(LadderGameException.class)
-                .hasMessage(ExceptionType.INVALID_NAMES_RANGE.getMessage());
-    }
 
 }
