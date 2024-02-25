@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import java.util.Objects;
 import model.path.Path;
 
 public class Line {
@@ -38,5 +39,17 @@ public class Line {
         return paths.stream()
                 .map(Path::isExist)
                 .toList();
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Line line = (Line) o;
+        return Objects.equals(paths, line.paths);
     }
 }
