@@ -12,14 +12,15 @@ public enum LadderComponent {
         this.output = output;
     }
 
-    public String getOutput() {
-        return output;
-    }
-
     public static LadderComponent match(boolean isLine) {
         if (isLine) {
             return LINE;
         }
         return EMPTY_LINE;
+    }
+
+    @Override
+    public String toString() {
+        return output;
     }
 }
