@@ -35,6 +35,9 @@ public class Line {
     }
 
     public boolean isExist(int position) {
+        if (position < 0 || position >= getWidth()) {
+            throw new IllegalArgumentException("가로 위치가 범위를 벗어났습니다.");
+        }
         return sticks.get(position).isExist();
     }
 
