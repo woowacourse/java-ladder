@@ -13,8 +13,6 @@ public class LadderTest {
     @Test
     void createTest() {
         // given
-        LadderHeight ladderHeight = LadderHeight.from("4");
-        People people = People.from("pobi,nak,seya,neo");
         List<Line> expected = List.of(
                 new Line(List.of(true, false, true)),
                 new Line(List.of(false, true, false)),
