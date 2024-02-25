@@ -18,7 +18,7 @@ public class PlayersTest {
         final int maxLadderHeight = 5;
 
         // When
-        Players players = Player.of(userNames, maxLadderHeight);
+        Players players = Players.of(userNames, maxLadderHeight);
 
         // Then
         assertThat(players).isNotNull();
