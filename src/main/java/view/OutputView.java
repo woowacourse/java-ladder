@@ -14,7 +14,7 @@ public class OutputView {
     private static String makeLineView(final Bridges line) {
         StringJoiner bridgeJoiner = new StringJoiner(COLUMN, FIRST_COLUMN, COLUMN);
         for (Bridge bridge : line.getBridges()) {
-            bridgeJoiner.add(bridge.getShape());
+            bridgeJoiner.add(BridgeShape.convertForView(bridge));
         }
         return bridgeJoiner.toString();
     }
