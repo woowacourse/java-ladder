@@ -9,7 +9,10 @@ import java.util.List;
 
 public class OutputView {
 
-    public static final int MAX_NAME_LENGTH = 5;
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final String CONNECTED_CHARACTER = "-";
+    private static final String DISCONNECTED_CHARACTER = " ";
+    private static final String FRAME_OF_LADDER = "|";
 
     public void printResult(Game game) {
         System.out.println("실행결과");
@@ -37,20 +40,20 @@ public class OutputView {
 
     private String resolveLine(Line line) {
         List<Connection> connections = line.getPoints();
-        StringBuilder stringBuilder = new StringBuilder(repeatCharacter(" ", MAX_NAME_LENGTH - 1));
+        StringBuilder stringBuilder = new StringBuilder(repeatCharacter(DISCONNECTED_CHARACTER, MAX_NAME_LENGTH - 1));
         for (Connection connection : connections) {
-            stringBuilder.append("|");
+            stringBuilder.append(FRAME_OF_LADDER);
             stringBuilder.append(resolveConnection(connection));
         }
-        stringBuilder.append("|");
+        stringBuilder.append(FRAME_OF_LADDER);
         return stringBuilder.toString();
     }
 
     private String resolveConnection(Connection connection) {
         if (connection.equals(Connection.CONNECTED)) {
-            return repeatCharacter("-", MAX_NAME_LENGTH);
+            return repeatCharacter(CONNECTED_CHARACTER, MAX_NAME_LENGTH);
         }
-        return repeatCharacter(" ", MAX_NAME_LENGTH);
+        return repeatCharacter(DISCONNECTED_CHARACTER, MAX_NAME_LENGTH);
     }
 
     private String repeatCharacter(String character, int times) {
