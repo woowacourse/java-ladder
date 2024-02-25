@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import ladder.domain.linegenerator.LineGenerator;
+import ladder.domain.linegenerator.StickListGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,8 +16,8 @@ class LadderTest {
     @Test
     void getHeightTest() {
         Height height = new Height(3);
-        LineGenerator lineGenerator = size -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
-        Ladder ladder = Ladder.of(height, 2, lineGenerator);
+        StickListGenerator stickListGenerator = countOfPlayers -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
+        Ladder ladder = Ladder.of(height, 3, stickListGenerator);
         int expected = height.getValue();
 
         int actual = ladder.getHeight();
@@ -29,8 +29,8 @@ class LadderTest {
     @Test
     void getWidthTest() {
         int countOfPlayers = 3;
-        LineGenerator lineGenerator = size -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
-        Ladder ladder = Ladder.of(new Height(3), countOfPlayers, lineGenerator);
+        StickListGenerator stickListGenerator = count -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
+        Ladder ladder = Ladder.of(new Height(3), countOfPlayers, stickListGenerator);
         int expected = countOfPlayers - 1;
 
         int actual = ladder.getWidth();
@@ -41,8 +41,8 @@ class LadderTest {
     @DisplayName("특정 좌표에 스틱이 존재하는지 알 수 있다")
     @Test
     void isExistTest() {
-        LineGenerator lineGenerator = size -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
-        Ladder ladder = Ladder.of(new Height(3), 2, lineGenerator);
+        StickListGenerator stickListGenerator = countOfPlayers -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
+        Ladder ladder = Ladder.of(new Height(3), 3, stickListGenerator);
 
         boolean actual = ladder.isExist(2, 1);
 
@@ -54,8 +54,8 @@ class LadderTest {
     @ValueSource(ints = {-1, 3})
     void isExistTest_whenHeightIsOutOfRange(int heightValue) {
         Height height = new Height(3);
-        LineGenerator lineGenerator = size -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
-        Ladder ladder = Ladder.of(height, 2, lineGenerator);
+        StickListGenerator stickListGenerator = countOfPlayers -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
+        Ladder ladder = Ladder.of(height, 2, stickListGenerator);
         int widthValue = 0;
 
         assertThatThrownBy(() -> ladder.isExist(heightValue, widthValue)).isInstanceOf(IllegalArgumentException.class)

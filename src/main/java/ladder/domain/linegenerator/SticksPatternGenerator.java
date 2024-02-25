@@ -5,26 +5,25 @@ import java.util.List;
 import java.util.function.BooleanSupplier;
 import ladder.domain.Stick;
 
-public class LinePatternGenerator implements LineGenerator {
+public class SticksPatternGenerator implements StickListGenerator {
 
     private static final int MIN_PLAYERS = 2;
 
-    private final BooleanSupplier supplier;
+    private final BooleanSupplier booleanGenerator;
 
-    public LinePatternGenerator(BooleanSupplier supplier) {
-        this.supplier = supplier;
+    public SticksPatternGenerator(BooleanSupplier booleanGenerator) {
+        this.booleanGenerator = booleanGenerator;
     }
 
     @Override
     public List<Stick> generate(int countOfPlayers) {
         validate(countOfPlayers);
-        List<Stick> line = new ArrayList<>();
         int width = countOfPlayers - 1;
-
-        while (line.size() < width) {
-            add(line);
+        List<Stick> sticks = new ArrayList<>();
+        while (sticks.size() < width) {
+            addStick(sticks);
         }
-        return line;
+        return sticks;
     }
 
     private void validate(int countOfPlayers) {
@@ -33,20 +32,20 @@ public class LinePatternGenerator implements LineGenerator {
         }
     }
 
-    private void add(List<Stick> line) {
-        if (isNotOverlapped(line)) {
-            line.add(generateStick());
+    private void addStick(List<Stick> sticks) {
+        if (isNotExistAtTheEnd(sticks)) {
+            sticks.add(generateStick());
             return;
         }
-        line.add(Stick.NON_EXISTENCE);
+        sticks.add(Stick.NON_EXISTENCE);
     }
 
-    private boolean isNotOverlapped(List<Stick> line) {
-        return line.isEmpty() || !line.get(line.size() - 1).isExist();
+    private boolean isNotExistAtTheEnd(List<Stick> sticks) {
+        return sticks.isEmpty() || !sticks.get(sticks.size() - 1).isExist();
     }
 
     private Stick generateStick() {
-        if (supplier.getAsBoolean()) {
+        if (booleanGenerator.getAsBoolean()) {
             return Stick.EXISTENCE;
         }
         return Stick.NON_EXISTENCE;

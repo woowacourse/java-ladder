@@ -5,8 +5,8 @@ import java.util.stream.IntStream;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.PlayerName;
-import ladder.domain.linegenerator.LineGenerator;
-import ladder.domain.linegenerator.LinePatternGenerator;
+import ladder.domain.linegenerator.StickListGenerator;
+import ladder.domain.linegenerator.SticksPatternGenerator;
 import ladder.domain.linegenerator.RandomBooleanSupplier;
 import ladder.dto.LadderDto;
 import ladder.dto.LineDto;
@@ -23,8 +23,8 @@ public class LadderGameController {
         List<PlayerName> playerNames = inputPlayerNames();
         Height height = inputHeight();
 
-        LineGenerator lineGenerator = new LinePatternGenerator(new RandomBooleanSupplier());
-        Ladder ladder = Ladder.of(height, playerNames.size(), lineGenerator);
+        StickListGenerator stickListGenerator = new SticksPatternGenerator(new RandomBooleanSupplier());
+        Ladder ladder = Ladder.of(height, playerNames.size(), stickListGenerator);
 
         PlayerNamesDto playerNamesDto = toDto(playerNames);
         LadderDto ladderDto = toDto(ladder);

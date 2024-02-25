@@ -1,9 +1,8 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import ladder.domain.linegenerator.LineGenerator;
+import ladder.domain.linegenerator.StickListGenerator;
 
 public class Ladder {
 
@@ -13,9 +12,9 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(Height height, int countOfPlayers, LineGenerator lineGenerator) {
+    public static Ladder of(Height height, int countOfPlayers, StickListGenerator stickListGenerator) {
         List<Line> generateLine = IntStream.range(0, height.getValue())
-                .mapToObj(index -> new Line(lineGenerator.generate(countOfPlayers)))
+                .mapToObj(index -> new Line(stickListGenerator.generate(countOfPlayers)))
                 .toList();
         return new Ladder(generateLine);
     }

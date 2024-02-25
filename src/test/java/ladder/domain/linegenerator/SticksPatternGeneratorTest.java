@@ -11,13 +11,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class LinePatternGeneratorTest {
+class SticksPatternGeneratorTest {
 
     @DisplayName("크기에 맞는 사다리 생성")
     @Test
     void generateTest() {
-        FakeBooleanSupplier supplier = new FakeBooleanSupplier(List.of(false, true));
-        LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
+        BooleanSupplier booleanGenerator = new FakeBooleanSupplier(List.of(false, true));
+        SticksPatternGenerator linePatternGenerator = new SticksPatternGenerator(booleanGenerator);
 
         List<Stick> line = linePatternGenerator.generate(4);
 
@@ -27,8 +27,8 @@ class LinePatternGeneratorTest {
     @DisplayName("값이 true가 나왔을 경우, 해당 위치는 막대가 존재하고 다음 위치에는 막대가 없다")
     @Test
     void generateTest_whenReturnTrue() {
-        BooleanSupplier supplier = () -> true;
-        LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
+        BooleanSupplier booleanGenerator = () -> true;
+        SticksPatternGenerator linePatternGenerator = new SticksPatternGenerator(booleanGenerator);
 
         List<Stick> line = linePatternGenerator.generate(3);
 
@@ -38,8 +38,8 @@ class LinePatternGeneratorTest {
     @DisplayName("숫자가 false가 나왔을 경우, 해당 위치에 막대가 존재하지 않는다")
     @Test
     void generateTest_whenReturnFalse() {
-        BooleanSupplier supplier = () -> false;
-        LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
+        BooleanSupplier booleanGenerator = () -> false;
+        SticksPatternGenerator linePatternGenerator = new SticksPatternGenerator(booleanGenerator);
 
         List<Stick> line = linePatternGenerator.generate(2);
 
@@ -50,8 +50,8 @@ class LinePatternGeneratorTest {
     @ParameterizedTest
     @CsvSource({"1", "0", "-1"})
     void generateTest_whenSizeIsUnder2(int size) {
-        BooleanSupplier supplier = () -> false;
-        LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
+        BooleanSupplier booleanGenerator = () -> false;
+        SticksPatternGenerator linePatternGenerator = new SticksPatternGenerator(booleanGenerator);
 
         assertThatThrownBy(() -> linePatternGenerator.generate(size))
                 .isInstanceOf(IllegalArgumentException.class)
