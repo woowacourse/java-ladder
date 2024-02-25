@@ -3,9 +3,10 @@ package ladder.controller;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.People;
-import ladder.util.ExceptionHandler;
 import ladder.view.InputView;
 import ladder.view.OutputView;
+
+import static ladder.util.ExceptionHandler.retryWhileException;
 
 public class Controller {
     private final InputView inputView;
@@ -27,7 +28,7 @@ public class Controller {
     }
 
     private People createNames() {
-        return ExceptionHandler.run(this::readNames);
+        return retryWhileException(this::readNames);
     }
 
     private People readNames() {
@@ -36,7 +37,7 @@ public class Controller {
     }
 
     private Height createHeight() {
-        return ExceptionHandler.run(this::readHeight);
+        return retryWhileException(this::readHeight);
     }
 
     private Height readHeight() {
