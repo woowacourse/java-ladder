@@ -49,7 +49,7 @@ public class Players {
                 .toList();
     }
 
-    public int getSizeOfPlayers() {
+    public int getSize() {
         return players.size();
     }
 }
