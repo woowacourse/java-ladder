@@ -6,12 +6,12 @@ import java.util.function.Supplier;
 
 public class ExceptionHandler {
 
-    public static <T> T run(Supplier<T> callback) {
+    public static <T> T retryWhileException(Supplier<T> callback) {
         try {
             return callback.get();
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
-            return run(callback);
+            return retryWhileException(callback);
         }
     }
 }
