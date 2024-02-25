@@ -1,10 +1,13 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class NameTest {
     @Test
@@ -25,5 +28,14 @@ class NameTest {
 
         assertThrows(IllegalArgumentException.class, () -> new Name(invalidName));
         assertDoesNotThrow(() -> new Name(validName));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " "})
+    @DisplayName("이름은 빈 값이나 공백일 수 없다.")
+    void isNameNotEmptyOrBlank(String invalidName) {
+        assertThatThrownBy(() -> new Name(invalidName))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 2자 이상, 5자 이하여야 합니다.");
     }
 }
