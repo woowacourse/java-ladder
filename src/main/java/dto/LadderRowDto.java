@@ -1,9 +1,9 @@
-package domain.ladder;
+package dto;
 
 import java.util.Collections;
 import java.util.List;
 
-public record LadderRowPattern(List<Boolean> rowPattern) {
+public record LadderRowDto(List<Boolean> rowPattern) {
 
     @Override
     public List<Boolean> rowPattern() {

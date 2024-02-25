@@ -1,6 +1,6 @@
 package view;
 
-import domain.ladder.LadderRowPattern;
+import dto.LadderRowDto;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -34,9 +34,9 @@ public class OutputView {
         System.out.println(joiner.toString());
     }
 
-    public void printLadder(List<LadderRowPattern> patterns) {
+    public void printLadder(List<LadderRowDto> patterns) {
         patterns.stream()
-                .map(LadderRowPattern::rowPattern)
+                .map(LadderRowDto::rowPattern)
                 .forEach(this::printLadderRowPattern);
     }
 

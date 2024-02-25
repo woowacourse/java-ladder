@@ -1,5 +1,6 @@
 package domain.ladder;
 
+import dto.LadderRowDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BooleanSupplier;
@@ -32,8 +33,8 @@ public class LadderRow {
         return index == 0 || !rowPattern.get(index - 1);
     }
 
-    public LadderRowPattern getRowPattern() {
+    public LadderRowDto getRowPattern() {
         List<Boolean> placeStatuses = List.copyOf(rowPattern);
-        return new LadderRowPattern(placeStatuses);
+        return new LadderRowDto(placeStatuses);
     }
 }
