@@ -11,12 +11,12 @@ class LadderTest {
     @Test
     void createLadder() {
         //given
-        final int height = 5;
-        final int personCount = 4;
+        final Height height = new Height(5);
+        final Players players = new Players(List.of("a", "b", "c", "d"));
         BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(List.of(false, true, false));
         //when
-        final Ladder ladder = Ladder.createByStrategy(bridgeGenerator, height, personCount);
+        final Ladder ladder = Ladder.createByStrategy(bridgeGenerator, height, players);
         //then
-        Assertions.assertThat(ladder.getLadder()).hasSize(height);
+        Assertions.assertThat(ladder.getLadder()).hasSize(height.getValue());
     }
 }

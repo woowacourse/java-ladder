@@ -11,10 +11,10 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    public static Ladder createByStrategy(BridgeGenerator bridgeGenerator, int height, int personCount) {
+    public static Ladder createByStrategy(BridgeGenerator bridgeGenerator, Height height, Players players) {
         final List<Bridges> ladder = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            ladder.add(Bridges.createByStrategy(bridgeGenerator, personCount));
+        for (int i = 0; i < height.getValue(); i++) {
+            ladder.add(Bridges.createByStrategy(bridgeGenerator, players.count()));
         }
         return new Ladder(ladder);
     }

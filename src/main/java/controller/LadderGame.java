@@ -17,8 +17,8 @@ public class LadderGame {
 
         final Ladder ladder = Ladder.createByStrategy(
                 RandomBridgeGenerator.getInstance(),
-                height.getValue(),
-                players.count());
+                height,
+                players);
 
         printGameResult(players, ladder);
     }
