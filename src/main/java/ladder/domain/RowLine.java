@@ -18,14 +18,22 @@ public class RowLine {
         this.connection.addAll(generatedConnection);
     }
 
-    private static void validatePeopleNumber(int peopleNumber) {
-        if (peopleNumber < MIN_PEOPLE_NUMBER || peopleNumber > MAX_PEOPLE_NUMBER) {
-            throw new IllegalArgumentException("참여자 수는 1이상 100이하의 사람 수 입니다.");
+    public List<Boolean> getConnection() {
+        return Collections.unmodifiableList(connection);
+    }
+
+    public void move(PositionRow positionRow) {
+        if (isConnectedLeft(positionRow)) {
+            positionRow.moveLeft();
+        } else if (isConnectedRight(positionRow)) {
+            positionRow.moveRight();
         }
     }
 
-    public List<Boolean> getConnection() {
-        return Collections.unmodifiableList(connection);
+    private void validatePeopleNumber(int peopleNumber) {
+        if (peopleNumber < MIN_PEOPLE_NUMBER || peopleNumber > MAX_PEOPLE_NUMBER) {
+            throw new IllegalArgumentException("참여자 수는 1이상 100이하의 사람 수 입니다.");
+        }
     }
 
     private void validateSuccessiveLine(List<Boolean> booleans) {
@@ -36,10 +44,23 @@ public class RowLine {
         }
     }
 
-    private static void validateSuccessiveLineBetween(Boolean before, Boolean after) {
+    private void validateSuccessiveLineBetween(Boolean before, Boolean after) {
         if (before && after) {
             throw new IllegalArgumentException("사다리 가로선이 연속되었습니다.");
         }
     }
 
+    private boolean isConnectedLeft(PositionRow positionRow) {
+        if (positionRow.getPosition() == 0) {
+            return false;
+        }
+        return connection.get(positionRow.getPosition() - 1);
+    }
+
+    private boolean isConnectedRight(PositionRow positionRow) {
+        if (positionRow.getPosition() == connection.size()) {
+            return false;
+        }
+        return connection.get(positionRow.getPosition());
+    }
 }

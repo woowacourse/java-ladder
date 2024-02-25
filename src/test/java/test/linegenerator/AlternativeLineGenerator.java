@@ -1,9 +1,11 @@
-package ladder.domain.linegenerator;
+package test.linegenerator;
+
+import ladder.domain.linegenerator.LineGenerator;
 
 import java.util.List;
 import java.util.stream.Stream;
 
-public class RandomLineGenerator implements LineGenerator {
+public class AlternativeLineGenerator implements LineGenerator {
     @Override
     public List<Boolean> getLine(int peopleNumber) {
         return Stream.iterate(false, this::nextBoolean)
@@ -16,6 +18,6 @@ public class RandomLineGenerator implements LineGenerator {
         if (before) {
             return false;
         }
-        return Math.random() >= 0.5;
+        return true;
     }
 }
