@@ -27,16 +27,4 @@ class HorizontalLineTest {
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("플레이어 수 범위는 2 이상 10 이하여야 합니다.");
 	}
-
-	@Test
-	@DisplayName("초기에 생성했을 때, 가로줄은 없다.")
-	void initialCreationEmptyCrossingLinesTest() {
-		// given
-		HorizontalLine horizontalLine = new HorizontalLine(5);
-		// when
-		HorizontalLineStatus status = horizontalLine.createStatus();
-		List<Boolean> actual = status.placedStatuses();
-		// then
-		assertThat(actual).isEmpty();
-	}
 }

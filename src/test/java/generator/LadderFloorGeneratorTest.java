@@ -8,17 +8,25 @@ import java.util.function.BooleanSupplier;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import domain.FloorConnectionStatus;
+
 class LadderFloorGeneratorTest {
 
 	@Test
-	@DisplayName("항상 true를 반환하는 generator를 가지는 경우, 이전에 true가 나온 경우, false를 반환한다.")
+	@DisplayName("연속해서 연결되지 않는 한 층을 생성한다.")
 	void generateFalseAfterTrueTest() {
 		// given
 		BooleanSupplier trueSupplier = () -> true;
 		LadderFloorGenerator ladderGenerator = new LadderFloorGenerator(trueSupplier);
 		// when
-		List<Boolean> actual = ladderGenerator.generate(5);
-		List<Boolean> expected = List.of(true, false, true, false, true);
+		List<FloorConnectionStatus> actual = ladderGenerator.generate(5);
+		List<FloorConnectionStatus> expected = List.of(
+			FloorConnectionStatus.CONNECTED_TO_RIGHT,
+			FloorConnectionStatus.CONNECTED_TO_LEFT,
+			FloorConnectionStatus.CONNECTED_TO_RIGHT,
+			FloorConnectionStatus.CONNECTED_TO_LEFT,
+			FloorConnectionStatus.NOT_CONNECTED
+		);
 		// then
 		assertThat(actual).containsExactlyElementsOf(expected);
 	}

@@ -3,6 +3,7 @@ package view;
 import java.util.List;
 import java.util.StringJoiner;
 
+import domain.FloorConnectionStatus;
 import domain.HorizontalLineStatus;
 
 public class OutputView {
@@ -46,21 +47,20 @@ public class OutputView {
 		System.out.println("[ERROR] " + message + System.lineSeparator());
 	}
 
-	private void printHorizontalLine(List<Boolean> indices) {
+	private void printHorizontalLine(List<FloorConnectionStatus> indices) {
 		StringBuilder builder = new StringBuilder();
 
 		builder.append(LADDER_PREFIX_SPACES);
-		builder.append(VERTICAL_LADDER_CHARACTER);
-		indices.forEach(isPlaced ->
-			builder.append(getHorizontalLadderCharacterIfPlaced(isPlaced))
-				.append(VERTICAL_LADDER_CHARACTER)
+		indices.forEach(connectionStatus ->
+			builder.append(VERTICAL_LADDER_CHARACTER)
+					.append(getHorizontalLadderCharacter(connectionStatus))
 		);
 
 		System.out.println(builder.toString());
 	}
 
-	private String getHorizontalLadderCharacterIfPlaced(boolean isPlaced) {
-		if (isPlaced) {
+	private String getHorizontalLadderCharacter(FloorConnectionStatus status) {
+		if (status.isConnectedToRight()) {
 			return HORIZONTAL_LADDER_CHARACTER.repeat(LADDER_WIDTH_UNIT);
 		}
 		return EMPTY_LADDER_CHARACTER.repeat(LADDER_WIDTH_UNIT);

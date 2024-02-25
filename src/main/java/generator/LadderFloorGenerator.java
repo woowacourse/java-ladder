@@ -3,7 +3,8 @@ package generator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BooleanSupplier;
-import java.util.stream.Stream;
+
+import domain.FloorConnectionStatus;
 
 public class LadderFloorGenerator {
 
@@ -13,26 +14,37 @@ public class LadderFloorGenerator {
 		this.supplier = supplier;
 	}
 
-	public List<Boolean> generate(int size) {
-		List<Boolean> floor = new ArrayList<>();
+	public List<FloorConnectionStatus> generate(int size) {
+		List<FloorConnectionStatus> floor = new ArrayList<>();
 
-		Stream.generate(supplier::getAsBoolean)
-			.limit(size)
-			.forEach(value -> fillFloorByValue(floor, value));
+		FloorConnectionStatus previous = FloorConnectionStatus.NOT_CONNECTED;
+		for (int order = 0; order < size - 1; order++) {
+			FloorConnectionStatus current = getConnection(previous);
+			floor.add(current);
+			previous = current;
+		}
+		floor.add(getLastConnection(previous));
 
 		return floor;
 	}
 
-	private void fillFloorByValue(List<Boolean> floor, boolean value) {
-		if (isPlaceable(floor)) {
-			floor.add(value);
-			return;
+	private FloorConnectionStatus getConnection(FloorConnectionStatus previous) {
+		if (previous.isConnectedToRight()) {
+			return FloorConnectionStatus.CONNECTED_TO_LEFT;
 		}
 
-		floor.add(false);
+		boolean canConnect = supplier.getAsBoolean();
+		if (canConnect) {
+			return FloorConnectionStatus.CONNECTED_TO_RIGHT;
+		}
+
+		return FloorConnectionStatus.NOT_CONNECTED;
 	}
 
-	private boolean isPlaceable(List<Boolean> floor) {
-		return floor.isEmpty() || !floor.get(floor.size() - 1);
+	private FloorConnectionStatus getLastConnection(FloorConnectionStatus previous) {
+		if (previous.isConnectedToRight()) {
+			return FloorConnectionStatus.CONNECTED_TO_LEFT;
+		}
+		return FloorConnectionStatus.NOT_CONNECTED;
 	}
 }
