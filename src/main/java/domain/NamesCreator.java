@@ -3,7 +3,7 @@ package domain;
 import java.util.Arrays;
 import java.util.List;
 
-public class NameCreator {
+public class NamesCreator {
     static final int MAX_NAMES_COUNT = 10;
     static final int MIN_NAMES_COUNT = 2;
     private static final String SEPARATOR = ",";
