@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 @FunctionalInterface
 public interface BridgeMakingStrategy {

@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 public record Height(int height) {
     private static final int MIN_HEIGHT = 1;

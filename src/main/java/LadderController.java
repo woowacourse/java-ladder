@@ -1,6 +1,6 @@
-import domain.Height;
-import domain.Ladder;
-import domain.Names;
+import domain.ladder.Height;
+import domain.ladder.Ladder;
+import domain.game.Names;
 import view.InputView;
 import view.OutputView;
 

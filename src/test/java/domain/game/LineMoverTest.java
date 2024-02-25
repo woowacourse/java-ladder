@@ -1,7 +1,8 @@
 package domain.game;
 
-import domain.Bridge;
-import domain.Line;
+import domain.LineMover;
+import domain.ladder.Bridge;
+import domain.ladder.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

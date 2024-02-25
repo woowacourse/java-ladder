@@ -1,7 +1,7 @@
-package domain.game;
+package domain;
 
-import domain.Bridge;
-import domain.Line;
+import domain.ladder.Bridge;
+import domain.ladder.Line;
 
 import java.util.ArrayList;
 import java.util.Collections;

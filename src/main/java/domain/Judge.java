@@ -1,6 +1,9 @@
-package domain.game;
+package domain;
 
-import domain.*;
+import domain.game.Names;
+import domain.game.Prize;
+import domain.game.Prizes;
+import domain.game.Result;
 
 public class Judge {
     private final Names names;
