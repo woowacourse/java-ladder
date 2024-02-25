@@ -5,27 +5,27 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-class BridgesRandomGenerator implements BridgeGenerator {
+class BridgesRandomGenerator implements BridgesGenerator {
     private final Random random = new Random();
 
-    public List<Boolean> generate(int width) {
-
-        List<Boolean> rowInfos = generateRowInfos(width, random);
-        fixRowInfo(width, rowInfos);
-        return rowInfos;
+    public Bridges generate(int width) {
+        Bridges bridges = generateRowInfos(width, random);
+        return bridges;
     }
 
-    private List<Boolean> generateRowInfos(int width, Random random) {
-        return IntStream.range(0, width)
+    private Bridges generateRowInfos(int width, Random random) {
+        List<Boolean> rawBridges = IntStream.range(0, width)
                 .mapToObj(value -> random.nextBoolean())
                 .collect(Collectors.toList());
+        fixRawBridges(rawBridges);
+        return new Bridges(rawBridges);
     }
 
-    private void fixRowInfo(int width, List<Boolean> rowInfos) {
-        IntStream.range(1, width).forEach(
+    private void fixRawBridges(List<Boolean> rawBridges) {
+        IntStream.range(1, rawBridges.size()).forEach(
                 index -> {
-                    if (rowInfos.get(index) && rowInfos.get(index - 1)) {
-                        rowInfos.set(index, false);
+                    if (rawBridges.get(index) && rawBridges.get(index - 1)) {
+                        rawBridges.set(index, false);
                     }
                 }
         );

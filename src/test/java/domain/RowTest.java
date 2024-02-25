@@ -17,6 +17,4 @@ class RowTest {
 
         Assertions.assertThat(actual).isEqualTo(expected);
     }
-
-
 }

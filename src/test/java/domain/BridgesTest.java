@@ -41,7 +41,6 @@ class BridgesTest {
         Bridges bridges = new Bridges(expected);
 
         List<Boolean> actual = bridges.getBridges();
-
         Assertions.assertThat(actual).isEqualTo(expected);
     }
 }
