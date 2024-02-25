@@ -9,6 +9,7 @@ public class Ladder {
     Ladder(Height height, Width width, BridgeGenerator rowInfoGenerator) {
         rows = IntStream.range(0, height.getLength())
                 .mapToObj(value -> rowInfoGenerator.generate(width.getLength() - 1))
+                .map(Bridges::new)
                 .map(Row::new)
                 .toList();
     }

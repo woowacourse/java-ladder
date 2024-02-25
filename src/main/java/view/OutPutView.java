@@ -2,11 +2,11 @@ package view;
 
 import static domain.Name.MAX_NAME_LENGTH;
 
+import domain.Bridges;
 import domain.Ladder;
 import domain.Name;
 import domain.Names;
 import domain.Row;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutPutView {
@@ -35,8 +35,8 @@ public class OutPutView {
     }
 
     private String makeRowString(Row row) {
-        List<Boolean> bridges = row.getBridges();
-        String rawRowString = bridges.stream()
+        Bridges bridges = row.getBridges();
+        String rawRowString = bridges.getBridges().stream()
                 .map(this::makeBridge)
                 .collect(Collectors.joining("|"));
         return "    |%s|".formatted(rawRowString);
