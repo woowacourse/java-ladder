@@ -16,4 +16,8 @@ public class Result {
             throw new IllegalArgumentException("실행 결과는 최대 5글자까지 가능합니다.");
         }
     }
+
+    public String getResult() {
+        return result;
+    }
 }

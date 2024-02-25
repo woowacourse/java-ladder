@@ -20,6 +20,6 @@ public class LadderGameController {
         Results results = new Results(inputView.inputResults(), players.getPlayerSize());
         Ladder ladder = new Ladder(inputView.inputMaxLadderHeight(), players.getPlayerSize());
 
-        resultView.printLadder(players.getPlayers(), ladder.getLines());
+        resultView.printLadder(players.getPlayers(), ladder.getLines(), results.getResults());
     }
 }

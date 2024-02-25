@@ -1,5 +1,6 @@
 package ladderGame.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Results {
@@ -16,5 +17,9 @@ public class Results {
         if(resultsCount != playersCount) {
             throw new IllegalArgumentException("실행 결과의 수는 참가자의 수와 일치해야 합니다.");
         }
+    }
+
+    public List<Result> getResults() {
+        return new ArrayList<>(results);
     }
 }
