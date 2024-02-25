@@ -24,6 +24,13 @@ class PeopleTest {
     }
 
     @Test
+    @DisplayName("사람 이름이 중복이라면 예외가 발생한다.")
+    void createDuplicatedNames() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new People("pobi,pobi,crong,jk"));
+    }
+
+    @Test
     @DisplayName("이름이 5글자를 초과하면 예외가 발생한다.")
     void createInvalidNames() {
         assertThatIllegalArgumentException()
