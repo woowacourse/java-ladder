@@ -7,6 +7,8 @@ import java.util.List;
 public class Players {
     private static final String NAME_DUPLICATED_ERROR = "이름의 중복은 허용하지 않습니다.";
     private static final String PLAYER_NOT_FOUND_ERROR = "플레이어를 찾을 수 없습니다.";
+    private static final int MAX_PLAYER_COUNT = 9;
+    private static final int MIN_PLAYER_COUNT = 2;
     private final List<Player> players;
 
     private Players(final List<Player> players) {
@@ -25,15 +27,22 @@ public class Players {
     private static void validate(final List<String> playerNames) {
         checkBlankName(playerNames);
         checkDuplicated(playerNames);
+        checkPlayerCounts(playerNames);
     }
 
-    private static void checkDuplicated(List<String> playerNames) {
+    private static void checkPlayerCounts(final List<String> playerNames) {
+        if (playerNames.size() < MIN_PLAYER_COUNT || playerNames.size() > MAX_PLAYER_COUNT) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void checkDuplicated(final List<String> playerNames) {
         if (hasDuplicateName(playerNames)) {
             throw new IllegalArgumentException(NAME_DUPLICATED_ERROR);
         }
     }
 
-    private static void checkBlankName(List<String> playerNames) {
+    private static void checkBlankName(final List<String> playerNames) {
         if (playerNames.stream().anyMatch(String::isBlank)) {
             throw new IllegalArgumentException(NAME_BLANK_ERROR);
         }
