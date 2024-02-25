@@ -34,7 +34,7 @@ class PeopleTest {
     @DisplayName("이름이 5글자를 초과하면 예외가 발생한다.")
     void createInvalidNames() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new People("pobipobi,honux,crong,jk"));
+                .isThrownBy(() -> new People("pobiii,honux,crong,jk"));
     }
 
     @ParameterizedTest
