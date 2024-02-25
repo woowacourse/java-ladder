@@ -12,7 +12,7 @@ public enum LadderDirection {
         return pickRightOrNone();
     }
 
-    private LadderDirection pickRightOrNone() {
+    public static LadderDirection pickRightOrNone() {
         if (new Random().nextBoolean()) {
             return RIGHT;
         }

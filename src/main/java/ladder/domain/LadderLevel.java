@@ -1,32 +1,32 @@
 package ladder.domain;
 
+import static ladder.domain.LadderDirection.LEFT;
 import static ladder.domain.LadderDirection.NONE;
-import static ladder.domain.LadderDirection.RIGHT;
+import static ladder.domain.LadderDirection.pickRightOrNone;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class LadderLevel {
 
-    private final List<LadderDirection> ladderLevel;
-    private LadderDirection latestLadderDirection;
+    private final LinkedList<LadderDirection> ladderLevel;
 
     public LadderLevel(int size) {
-        ladderLevel = new ArrayList<>();
-        latestLadderDirection = NONE;
-        IntStream.range(0, size).forEach((index) -> {
-            addLadderDirection();
-        });
-        if (latestLadderDirection == RIGHT) {
-            ladderLevel.set(size - 1, NONE);
+        ladderLevel = new LinkedList<>();
+        IntStream.range(0, size)
+                .forEach((index) -> addLadderDirection());
+        if (ladderLevel.removeLast() == LEFT) {
+            ladderLevel.removeLast();
+            ladderLevel.add(NONE);
         }
     }
 
     private void addLadderDirection() {
-        latestLadderDirection = latestLadderDirection.next();
-        ladderLevel.add(latestLadderDirection);
+        if (ladderLevel.peekLast() == null) {
+            ladderLevel.add(pickRightOrNone());
+        }
+        ladderLevel.add(ladderLevel.peekLast().next());
     }
 
     public Stream<LadderDirection> stream() {
