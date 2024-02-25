@@ -7,8 +7,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -34,6 +36,24 @@ public class ParticipantsTest {
         // given & when
         assertThatThrownBy(() -> new Participants(names))
                 .isInstanceOf(InvalidParticipantsCountException.class);
+    }
+
+    @Test
+    @DisplayName("이름 순서에 맞춰 참가자에게 Position을 부여한다.")
+    void assignPositionTest() {
+        // given
+        List<String> names = List.of("poo", "po", "p");
+        List<Position> expectedPositions = IntStream.range(0, 3)
+                .mapToObj(Position::new)
+                .toList();
+
+        // when
+        List<Participant>  participants = new Participants(names).getValues();
+
+        // then
+        assertThat(participants)
+                .extracting(Participant::getStartPosition)
+                .containsExactlyElementsOf(expectedPositions);
     }
 
     static Stream<List<String>> getInvalidParticipantsNames() {
