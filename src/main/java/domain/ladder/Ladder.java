@@ -1,9 +1,13 @@
 package domain.ladder;
 
+import domain.player.Name;
 import domain.player.Names;
 import domain.ladder.bridgeConstructstrategy.BridgeConstructStrategy;
+import domain.result.Result;
+import domain.result.Results;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,26 +16,30 @@ import java.util.stream.IntStream;
 public class Ladder {
 
     private final List<Bridges> bridges;
-    private final Map<Integer, Integer> results;
 
     public Ladder(BridgeConstructStrategy bridgeConstructStrategy, Names names, Height height) {
         bridges = IntStream.range(0, height.getIntValue())
                 .mapToObj((index) -> bridgeConstructStrategy.generate(names.size() - 1))
                 .toList();
-        results = new IdentityHashMap<>();
-        calculateResult(names);
     }
 
-    private void calculateResult(Names names) {
+    public Map<Name, Result> getMatchResult(Names names, Results results) {
+        List<Integer> matchIndexes = calculateResult(names);
+        Map<Name, Result> matchResults = new HashMap<>();
+        for (int index = 0; index < names.size(); index++) {
+            matchResults.put(names.get(index), results.get(matchIndexes.get(index)));
+        }
+        return matchResults;
+    }
+
+    private List<Integer> calculateResult(Names names) {
         List<Integer> list = new ArrayList<>();
         IntStream.range(0, names.size())
                 .forEach(list::add);
         for (Bridges bridge : bridges) {
             moveEachFloor(list, bridge);
         }
-        for (int index = 0; index < names.size(); index++) {
-            results.put(index, list.get(index));
-        }
+        return list;
     }
 
     private void moveEachFloor(List<Integer> list, Bridges bridges) {
@@ -54,9 +62,5 @@ public class Ladder {
 
     public int width() {//TODO 디미터
         return bridges.get(0).getBridges().size();
-    }
-
-    public int getResultIndex(int startIndex) {
-        return results.get(startIndex);
     }
 }

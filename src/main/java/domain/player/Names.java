@@ -31,7 +31,7 @@ public class Names {
                 .toList();
     }
 
-    public int getIndexOf(Name name) {
-        return names.indexOf(name);
+    public Name get(int index) {
+        return names.get(index);
     }
 }

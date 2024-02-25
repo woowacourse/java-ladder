@@ -17,7 +17,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LadderGameTest {
+class GameResultTest {
 
     private static final Results RESULTS_SIZE_OF_THREE = new Results(List.of("1", "2", "3"));
     private static final Names NAMES_SIZE_OF_THREE = new Names(List.of("name1", "name2", "name3"));
@@ -31,7 +31,7 @@ class LadderGameTest {
         assertThat(NAMES_SIZE_OF_THREE.size())
                 .isEqualTo(RESULTS_SIZE_OF_THREE.size());
         assertThatNoException()
-                .isThrownBy(() -> new LadderGame(NAMES_SIZE_OF_THREE, RESULTS_SIZE_OF_THREE,
+                .isThrownBy(() -> new GameResult(NAMES_SIZE_OF_THREE, RESULTS_SIZE_OF_THREE,
                         DEFAULT_LADDER_SIZE_OF_THREE));
     }
 
@@ -42,7 +42,7 @@ class LadderGameTest {
         assertThat(NAMES_SIZE_OF_THREE.size())
                 .isNotEqualTo(DifferentSizeResults.size());
         assertThatThrownBy(
-                () -> new LadderGame(NAMES_SIZE_OF_THREE, DifferentSizeResults, DEFAULT_LADDER_SIZE_OF_THREE))
+                () -> new GameResult(NAMES_SIZE_OF_THREE, DifferentSizeResults, DEFAULT_LADDER_SIZE_OF_THREE))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -51,7 +51,7 @@ class LadderGameTest {
     void constructFailWithDifferentSizeNamesAndLadder() {
         Ladder differentSizeLadder =
                 new Ladder(new RandomBridgeConstructStrategy(), new Names(List.of("1", "2")), new Height(5));
-        assertThatThrownBy(() -> new LadderGame(NAMES_SIZE_OF_THREE, RESULTS_SIZE_OF_THREE, differentSizeLadder))
+        assertThatThrownBy(() -> new GameResult(NAMES_SIZE_OF_THREE, RESULTS_SIZE_OF_THREE, differentSizeLadder))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -78,15 +78,15 @@ class LadderGameTest {
                         List.of(Bridge.BUILT, Bridge.EMPTY, Bridge.BUILT)
                 )), names, new Height(5)
         );
-        LadderGame customLadderGame = new LadderGame(names, results, customLadder);
+        GameResult customGameResult = new GameResult(names, results, customLadder);
 
-        assertThat(customLadderGame.getResult(new Name("pobi")))
+        assertThat(customGameResult.getResult(new Name("pobi")))
                 .isEqualTo(new Result("꽝"));
-        assertThat(customLadderGame.getResult(new Name("honux")))
+        assertThat(customGameResult.getResult(new Name("honux")))
                 .isEqualTo(new Result("3000"));
-        assertThat(customLadderGame.getResult(new Name("crong")))
+        assertThat(customGameResult.getResult(new Name("crong")))
                 .isEqualTo(new Result("꽝"));
-        assertThat(customLadderGame.getResult(new Name("jk")))
+        assertThat(customGameResult.getResult(new Name("jk")))
                 .isEqualTo(new Result("5000"));
     }
 }
