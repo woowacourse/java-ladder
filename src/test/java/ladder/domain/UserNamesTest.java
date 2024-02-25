@@ -51,4 +51,12 @@ class UserNamesTest {
 
         assertThat(userNames.isExist(name)).isEqualTo(expected);
     }
+
+    @DisplayName("해당 위치에 있는 UserName을 반환한다.")
+    @Test
+    void findUserNameByOrder() {
+        UserNames userNames = UserNames.from(List.of("kelly", "liv"));
+
+        assertThat(userNames.findByOrder(1)).isEqualTo(new UserName("liv"));
+    }
 }

@@ -45,6 +45,10 @@ public class UserNames {
                 .anyMatch(userName -> userName.isSame(name));
     }
 
+    public UserName findByOrder(final int order) {
+        return userNames.get(order);
+    }
+
     public int getUserCount() {
         return userNames.size();
     }
