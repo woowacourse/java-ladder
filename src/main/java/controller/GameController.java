@@ -1,6 +1,6 @@
 package controller;
 
-import domain.*;
+import domain.GameBoard;
 import domain.ladder.Ladder;
 import domain.ladder.attirbute.Height;
 import domain.player.Names;
@@ -24,6 +24,8 @@ public class GameController {
     }
 
     private void printResult(GameBoard gameBoard) {
+        System.out.println("실행 결과");
+        System.out.println(System.lineSeparator());
         OutputView.printPlayerNames(gameBoard.getPlayers()
                                              .getPlayerNames());
         IntStream.range(0, gameBoard.getLadderHeight())
