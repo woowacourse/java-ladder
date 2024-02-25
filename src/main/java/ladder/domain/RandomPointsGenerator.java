@@ -4,19 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomPointsGenerator implements PointsGenerator {
+public class RandomPointsGenerator {
+    private final Random random;
 
-    public RandomPointsGenerator() {
+    public RandomPointsGenerator(Random random) {
+        this.random = random;
     }
 
-    @Override
     public List<Point> generate(int size) {
         List<Point> list = new ArrayList<>();
-        Random random = new Random();
         for (int i = 0; i < size; i++) {
-            Point point = Point.match(random.nextBoolean());
+            Point point = Point.match(generateRandomBoolean());
             list.add(point);
         }
         return list;
+    }
+
+    private boolean generateRandomBoolean() {
+        return random.nextBoolean();
     }
 }
