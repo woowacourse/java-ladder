@@ -21,9 +21,7 @@ public class LineTest {
         Line line = new Line(List.of(true, false, true));
 
         // then
-        assertThat(line)
-                .extracting("scaffold")
-                .isEqualTo(expected);
+        assertThat(line.scaffolds()).isEqualTo(expected);
     }
 
     @DisplayName("연속으로 발판이 있는 경우 예외를 발생시킨다.")

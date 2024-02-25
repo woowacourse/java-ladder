@@ -1,9 +1,6 @@
 package ladder.controller;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderHeight;
-import ladder.domain.People;
-import ladder.util.RandomLinesGenerator;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -18,8 +15,14 @@ public class LadderController {
         People people = requestUntilValid(() -> People.from(InputView.readPeopleNames()));
         LadderHeight ladderHeight = requestUntilValid(() -> LadderHeight.from(InputView.readLadderHeight()));
 
-        Ladder ladder = Ladder.create(RandomLinesGenerator::generate, people, ladderHeight);
-        OutputView.printResult(people, ladder);
+        Ladder ladder = new LadderGenerator(ladderWidth(people), ladderHeight.getValue())
+                .generate();
+        OutputView.printResult(
+                people.getNames(),
+                ladder.lines().stream()
+                        .map(Line::scaffolds)
+                        .toList()
+        );
     }
 
     private static <T> T requestUntilValid(Supplier<T> supplier) {
@@ -29,6 +32,7 @@ public class LadderController {
         }
         return result.get();
     }
+
     private static <T> Optional<T> tryGet(Supplier<T> supplier) {
         try {
             return Optional.of(supplier.get());
@@ -36,5 +40,9 @@ public class LadderController {
             OutputView.printMessage(e.getMessage());
             return Optional.empty();
         }
+    }
+
+    private static int ladderWidth(People people) {
+        return people.getCount() - 1;
     }
 }

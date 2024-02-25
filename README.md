@@ -139,12 +139,16 @@
         <td>입력을 받아 계산하고 출력 해주는 전체 진행 담당 컨트롤러</td>
     </tr>
     <tr>
-        <td rowspan="5">
+        <td rowspan="6">
             <img src="https://raw.githubusercontent.com/mallowigi/iconGenerator/master/assets/icons/folders/home.svg?sanitize=true"/>
             <b> domain</b>
         </td>
         <td><b>Ladder</b></td>
-        <td>세로 길이 만큼의 <code>Line</code> 리스트를 가지는 클래스</td>
+        <td>세로 길이 만큼의 <code>Line</code> 리스트를 가지는 레코드</td>
+    </tr>
+    <tr>
+        <td><b>LadderGenerator</b></td>
+        <td>랜덤한 사다리를 생성해주는 클래스</td>
     </tr>
     <tr>
         <td><b>LadderHeight</b></td>
@@ -152,7 +156,7 @@
     </tr>
     <tr>
         <td><b>Line</b></td>
-        <td>사다리의 세로 길이 만큼 <code>Boolean</code> 리스트를 가지는 클래스</td>
+        <td>사다리의 세로 길이 만큼 <code>Boolean</code> 리스트를 가지는 레코드</td>
     </tr>
     <tr>
         <td><b>People</b></td>
@@ -161,17 +165,6 @@
     <tr>
         <td><b>Person</b></td>
         <td>사람 이름을 문자열로 가지는 클래스</td>
-    </tr>
-    <tr>
-        <td rowspan="2">
-            <b> util</b>
-        </td>
-        <td><b>ExceptionRetryHandler</b></td>
-        <td>예외 발생 시 재실행을 해주는 정적 클래스</td>
-    </tr>
-    <tr>
-        <td><b>RandomLinesGenerator</b></td>
-        <td>랜덤한 사다리를 생성해주는 정적 클래스</td>
     </tr>
     <tr>
         <td rowspan="2">

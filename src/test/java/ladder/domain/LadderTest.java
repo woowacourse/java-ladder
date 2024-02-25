@@ -21,11 +21,11 @@ public class LadderTest {
                 new Line(List.of(true, false, false)));
 
         // when
-        Ladder ladder = Ladder.create((width, height) ->
+        Ladder ladder = new Ladder(
                 List.of(
                         new Line(List.of(true, false, true)),
                         new Line(List.of(false, true, false)),
-                        new Line(List.of(true, false, false))), people, ladderHeight);
+                        new Line(List.of(true, false, false))));
 
         // then
         assertThat(ladder)

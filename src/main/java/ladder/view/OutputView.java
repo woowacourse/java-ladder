@@ -1,7 +1,5 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.People;
 import ladder.domain.Person;
 
 import java.util.List;
@@ -23,24 +21,24 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void printResult(People people, Ladder ladder) {
+    public static void printResult(List<String> names, List<List<Boolean>> lines) {
         printResultTitle();
-        printPeopleNames(people);
-        printLadder(ladder);
+        printPeopleNames(names);
+        printLadderLines(lines);
     }
 
     private static void printResultTitle() {
         System.out.println(EXECUTION_RESULT);
     }
 
-    private static void printPeopleNames(People people) {
+    private static void printPeopleNames(List<String> names) {
         StringJoiner joiner = new StringJoiner(PEOPLE_NAMES_DELIMITER);
-        people.getNames().forEach(name -> joiner.add(String.format(LADDER_FORMAT, name)));
+        names.forEach(name -> joiner.add(String.format(LADDER_FORMAT, name)));
         System.out.println(joiner);
     }
 
-    private static void printLadder(Ladder ladder) {
-        ladder.getScaffolds().forEach(OutputView::printLine);
+    private static void printLadderLines(List<List<Boolean>> lines) {
+        lines.forEach(OutputView::printLine);
     }
 
     private static void printLine(List<Boolean> line) {
@@ -53,7 +51,6 @@ public class OutputView {
         if (exist) {
             return LADDER_SCAFFOLD;
         }
-
         return LADDER_BLANK;
     }
 }
