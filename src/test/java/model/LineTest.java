@@ -14,7 +14,7 @@ class LineTest {
     void createLineThrowException() {
         assertThatThrownBy(() -> new Line(List.of()))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참여할 사람은 최소 2명이어야 합니다.");
+                .hasMessage("사다리의 경로는 비어있더라도 최소 1개 이상이여야 합니다.");
     }
 
     @Test
