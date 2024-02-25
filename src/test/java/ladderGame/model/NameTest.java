@@ -21,9 +21,16 @@ class NameTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "초롱", "ab cd"})
     @DisplayName("이름에 영문과 숫자 외에 입력이 들어가는 경우 예외처리 된다.")
-    void validateNotBlank(String name) {
+    void validateUndefinedName(String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 영문과 숫자로만 입력해야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi", "pobi2", "12345"})
+    @DisplayName("이름은 영문과 숫자만 입력할 수 있다.")
+    void validateAvailableName(String name) {
+        assertThatCode(() -> new Name(name));
     }
 }
