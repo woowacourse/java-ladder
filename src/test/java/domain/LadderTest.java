@@ -14,7 +14,7 @@ class LadderTest {
     @NullAndEmptySource
     @ValueSource(strings = {"abc", "-1", "0"})
     void validateHeightTest(String height) {
-        assertThatThrownBy(() -> new Ladder(height))
+        assertThatThrownBy(() -> new Ladder(height, new Results("a,b,c", 3)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
