@@ -16,4 +16,13 @@ public class ResultsTest {
 
         assertThat(allResults).containsExactly("꽝", "5000", "꽝", "3000");
     }
+
+    @Test
+    @DisplayName("특정 위치의 실행 결과를 반환한다.")
+    void getResultByIndex() {
+        Results results = new Results(Arrays.asList("꽝", "5000", "꽝", "3000"));
+        String result = results.resultOf(1);
+
+        assertThat(result).isEqualTo("5000");
+    }
 }
