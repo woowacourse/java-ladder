@@ -11,6 +11,13 @@ public enum Bridge {
         this.existence = existence;
     }
 
+    public static Bridge getOne(boolean existence) {
+        if (existence) {
+            return Bridge.EXIST;
+        }
+        return Bridge.EMPTY;
+    }
+
     public boolean isExist() {
         return this.existence;
     }

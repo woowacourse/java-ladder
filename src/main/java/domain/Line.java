@@ -2,15 +2,15 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static java.util.Collections.unmodifiableList;
 
 public class Line {
-    private static final Random random = new Random();
+    private final BridgeMakingStrategy makingStrategy;
     private final List<Bridge> bridges = new ArrayList<>();
 
-    public Line(final int width) {
+    public Line(final int width, final BridgeMakingStrategy makingStrategy) {
+        this.makingStrategy = makingStrategy;
         makeLine(width);
     }
 
@@ -28,10 +28,7 @@ public class Line {
         if (doesBridgeExistAtLast()) {
             return Bridge.EMPTY;
         }
-        if (random.nextBoolean()) {
-            return Bridge.EXIST;
-        }
-        return Bridge.EMPTY;
+        return makingStrategy.getOne();
     }
 
     private boolean doesBridgeExistAtLast() {

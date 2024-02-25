@@ -14,7 +14,7 @@ public class LineTest {
     void non_adjacent_line_created() {
         int width = 5;
 
-        Line line = new Line(width);
+        Line line = new Line(width, () -> Bridge.EXIST);
         List<Bridge> bridges = line.getBridges();
 
         for (int current = 1; current < bridges.size(); current++) {
