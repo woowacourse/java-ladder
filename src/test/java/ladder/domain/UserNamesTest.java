@@ -46,7 +46,7 @@ class UserNamesTest {
     @DisplayName("전달 받은 이름과 동일한 이름을 가진 사람이 있는지 확인한다")
     @CsvSource(value = {"liv:true", "moly:false"}, delimiter = ':')
     @ParameterizedTest
-    void checkSameName(String name, Boolean expected) {
+    void checkSameName(String name, boolean expected) {
         UserNames userNames = UserNames.from(List.of("kelly", "liv"));
 
         assertThat(userNames.isExist(name)).isEqualTo(expected);
