@@ -17,8 +17,9 @@ public class LadderGameController {
         Compensation compensation = getCompensation(people);
         Ladder ladder = getLadder(people);
 
-        OutputView.printNames(people);
+        OutputView.printPeopleName(people);
         OutputView.printLadder(ladder);
+        OutputView.printCompensation(compensation);
     }
 
     private static People getPeople() {

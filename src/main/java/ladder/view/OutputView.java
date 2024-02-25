@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.Compensation;
 import ladder.domain.Ladder;
 import ladder.domain.People;
 import ladder.domain.RowLine;
@@ -17,15 +18,8 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printNames(People people) {
-        StringJoiner nameJoiner = new StringJoiner(BLANK);
-        List<String> names = people.getNames();
-
-        for (String name : names) {
-            String format = NameFormat.findFormat(name.length());
-            nameJoiner.add(String.format(format, name));
-        }
-        System.out.println(nameJoiner);
+    public static void printPeopleName(People people) {
+        printNames(people.getNames());
     }
 
     public static void printLadder(Ladder ladder) {
@@ -34,8 +28,22 @@ public class OutputView {
         }
     }
 
+    public static void printCompensation(Compensation compensation) {
+        printNames(compensation.getAll());
+    }
+
     public static void printMessage(String message) {
         System.out.println(message);
+    }
+
+    private static void printNames(List<String> names) {
+        StringJoiner nameJoiner = new StringJoiner(BLANK);
+
+        for (String name : names) {
+            String format = NameFormat.findFormat(name.length());
+            nameJoiner.add(String.format(format, name));
+        }
+        System.out.println(nameJoiner);
     }
 
     private static void printRowLine(RowLine rowLine) {
