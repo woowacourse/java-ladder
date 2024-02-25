@@ -2,6 +2,7 @@ package laddergame.domain;
 
 import laddergame.domain.strategy.LineBuildStrategy;
 import laddergame.domain.strategy.NonContinuousLineBuildStrategy;
+import laddergame.util.RandomZoneGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,10 @@ public class LadderTest {
         final Players players = Players.from(playersName);
 
         //when
-        Ladder ladder = new Ladder(new NonContinuousLineBuildStrategy(), players, height);
+        Ladder ladder = new Ladder(
+                new NonContinuousLineBuildStrategy(new RandomZoneGenerator()),
+                players,
+                height);
 
         //then
         assertEquals(ladder.getLines().size(), height.getHeight());
