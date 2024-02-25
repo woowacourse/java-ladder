@@ -2,7 +2,7 @@ package laddergame.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import laddergame.dto.GameResultDto;
+import laddergame.dto.DrawnLadderDto;
 import laddergame.dto.LineDto;
 
 public class LadderFormatter {
@@ -14,7 +14,7 @@ public class LadderFormatter {
     private LadderFormatter() {
     }
 
-    public static String formatLadder(final GameResultDto gameDto) {
+    public static String formatLadder(final DrawnLadderDto gameDto) {
         final List<String> names = gameDto.names();
         final List<LineDto> ladder = gameDto.ladder();
 

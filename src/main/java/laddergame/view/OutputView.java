@@ -1,10 +1,10 @@
 package laddergame.view;
 
-import laddergame.dto.GameResultDto;
+import laddergame.dto.DrawnLadderDto;
 
 public class OutputView {
 
-    public void printResult(final GameResultDto gameDto) {
+    public void printResult(final DrawnLadderDto gameDto) {
         System.out.println(
                 "실행결과" + System.lineSeparator() +
                         NameFormatter.formatNames(gameDto.names()) + System.lineSeparator() +

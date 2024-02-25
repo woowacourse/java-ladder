@@ -4,10 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderHeight;
 import laddergame.domain.player.Players;
 import laddergame.domain.point.Point;
-import laddergame.dto.GameResultDto;
+import laddergame.dto.DrawnLadderDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,19 +28,16 @@ public class LadderGameTest {
         final LadderGame ladderGame = new LadderGame(() -> Point.EXIST);
 
         // when
-        final GameResultDto result = ladderGame.createLadder(names, height);
+        final Ladder ladder = ladderGame.createLadder(names, height);
 
         // then
-        assertThat(result.names()).isEqualTo(input);
-        assertThat(result.ladder()).hasSize(5)
-                .isEqualTo(createLadder(List.of(true, false, true), 5));
-    }
-
-    private List<List<Boolean>> createLadder(final List<Boolean> line, final int size) {
-        List<List<Boolean>> ladder = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            ladder.add(line);
-        }
-        return ladder;
+        assertThat(ladder.getLines()).hasSize(5)
+                .extracting("points")
+                .containsExactly(
+                        List.of(Point.EXIST, Point.EMPTY, Point.EXIST),
+                        List.of(Point.EXIST, Point.EMPTY, Point.EXIST),
+                        List.of(Point.EXIST, Point.EMPTY, Point.EXIST),
+                        List.of(Point.EXIST, Point.EMPTY, Point.EXIST),
+                        List.of(Point.EXIST, Point.EMPTY, Point.EXIST));
     }
 }

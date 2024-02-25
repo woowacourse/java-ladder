@@ -1,8 +1,9 @@
 package laddergame.controller;
 
+import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderHeight;
 import laddergame.domain.player.Players;
-import laddergame.dto.GameResultDto;
+import laddergame.dto.DrawnLadderDto;
 import laddergame.exception.ExceptionHandler;
 import laddergame.service.LadderGame;
 import laddergame.view.InputView;
@@ -24,9 +25,9 @@ public class LadderController {
         final Players players = getPlayers();
         final LadderHeight height = getLadderHeight();
 
-        final GameResultDto result = ladderGame.createLadder(players, height);
+        final Ladder ladder = ladderGame.createLadder(players, height);
 
-        outputView.printResult(result);
+        printDrawnLadder(players, ladder);
     }
 
     private Players getPlayers() {
@@ -36,6 +37,10 @@ public class LadderController {
     private LadderHeight getLadderHeight() {
         return ExceptionHandler.retryUntilInputIsValid(() -> new LadderHeight(inputView.readLadderHeight()),
                 outputView);
+    }
+
+    private void printDrawnLadder(final Players players, final Ladder ladder) {
+        outputView.printResult(DrawnLadderDto.of(players, ladder));
     }
 
 }
