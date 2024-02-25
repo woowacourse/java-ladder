@@ -2,8 +2,8 @@ package view;
 
 import dto.LineInfo;
 import dto.Result;
-import formatter.LineFormatter;
-import formatter.NamesFormatter;
+import view.formatter.LineFormatter;
+import view.formatter.NamesFormatter;
 import java.util.List;
 
 public class OutputView {

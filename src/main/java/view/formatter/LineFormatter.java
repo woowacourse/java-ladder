@@ -1,4 +1,4 @@
-package formatter;
+package view.formatter;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package formatter;
+package view.formatter;
 
 public class NameFormatter {
 

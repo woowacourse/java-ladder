@@ -1,9 +1,10 @@
-package formatter;
+package view.formatter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import view.formatter.NameFormatter;
 
 class NameFormatterTest {
 

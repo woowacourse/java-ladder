@@ -1,4 +1,4 @@
-package formatter;
+package view.formatter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import view.formatter.LineFormatter;
 
 class LineFormatterTest {
     private static Stream<Arguments> generateLineTestData() {
