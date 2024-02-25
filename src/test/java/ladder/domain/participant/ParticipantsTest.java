@@ -1,5 +1,6 @@
 package ladder.domain.participant;
 
+import ladder.domain.Position;
 import ladder.exception.participant.InvalidParticipantsCountException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

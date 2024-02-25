@@ -1,5 +1,7 @@
 package ladder.domain.participant;
 
+import ladder.domain.Position;
+
 public class Participant {
     private final Name name;
     private final Position startPosition;
