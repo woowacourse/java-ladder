@@ -85,6 +85,7 @@ example feat: 사용자 입력 후 도메인 사용
 - [x] Line을 생성한 뒤 값을 넣지 않고 생성자에서 바로 값을 넣어주기
   - 적용시 Line의 validate와 RandomBuildStrategy 중복 로직 발생 해결가능.
   - 연속 true는 규칙 위반이라는 사실은 누가 알고 있어야 할까?
-- [ ] Line의 point도 도메인 객체화 할 수 있다
+- [x] Line의 point도 도메인 객체화 할 수 있다
 - [x] Player의 `NAME_MAX_LENGTH` -> `MAX_NAME_LENGTH`
 - [x] Players에서 정적 팩토리 메소드를 사용한 이유
+- [ ] 읿급컬렉션 반환할 때 불변객체로 만들어서 반환

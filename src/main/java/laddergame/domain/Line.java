@@ -5,10 +5,10 @@ import java.util.List;
 import laddergame.domain.strategy.LineBuildStrategy;
 
 public class Line {
-    private List<Boolean> points;
+    private List<Zone> zones;
 
-    public Line(final List<Boolean> points) {
-        this.points = points;
+    public Line(final List<Zone> zones) {
+        this.zones = zones;
     }
 
     public static Line buildOf(final LineBuildStrategy lineBuildStrategy,
@@ -17,11 +17,7 @@ public class Line {
         return new Line(lineBuildStrategy.apply(width));
     }
 
-    public boolean isBuilt(final int position) {
-        return points.get(position);
-    }
-
-    public List<Boolean> getPoints() {
-        return points;
+    public List<Zone> getZones() {
+        return zones;
     }
 }

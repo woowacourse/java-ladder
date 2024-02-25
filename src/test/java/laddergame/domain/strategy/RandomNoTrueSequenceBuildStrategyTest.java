@@ -1,8 +1,10 @@
 package laddergame.domain.strategy;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import laddergame.domain.Zone;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +20,7 @@ public class RandomNoTrueSequenceBuildStrategyTest {
         final int count = 4;
 
         //when
-        List<Boolean> canBuildBridges = randomNoTrueSequenceBuildStrategy.apply(count);
+        List<Zone> canBuildBridges = randomNoTrueSequenceBuildStrategy.apply(count);
 
         //then
         assertEquals(canBuildBridges.size(), count);
@@ -32,12 +34,12 @@ public class RandomNoTrueSequenceBuildStrategyTest {
         final int count = 5;
 
         //when
-        List<Boolean> canBuildBridges = randomNoTrueSequenceBuildStrategy.apply(count);
+        List<Zone> canBuildBridges = randomNoTrueSequenceBuildStrategy.apply(count);
 
         //then
         for (int i = 0; i < canBuildBridges.size() - 1; i++) {
-            if (canBuildBridges.get(i)) {
-                assertFalse(canBuildBridges.get(i + 1));
+            if (canBuildBridges.get(i).equals(Zone.BRIDGE)) {
+                assertEquals(canBuildBridges.get(i + 1), Zone.EMPTY);
             }
         }
     }

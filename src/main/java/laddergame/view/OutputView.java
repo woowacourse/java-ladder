@@ -2,10 +2,8 @@ package laddergame.view;
 
 import java.util.StringJoiner;
 import java.util.stream.IntStream;
-import laddergame.domain.Ladder;
-import laddergame.domain.Line;
-import laddergame.domain.Player;
-import laddergame.domain.Players;
+
+import laddergame.domain.*;
 
 public class OutputView {
     public static final String LINE_SEPARATOR = System.lineSeparator();
@@ -14,7 +12,7 @@ public class OutputView {
     private static final String SPACE = "\t";
 
     public void writePlayersName(final Players players) {
-        System.out.println(String.join("\t", players.getPlayers().stream()
+        System.out.println(String.join(SPACE, players.getPlayers().stream()
                 .map(Player::getName)
                 .toList()));
     }
@@ -26,8 +24,8 @@ public class OutputView {
 
     private void writeLine(final Line line) {
         StringJoiner stringJoiner = new StringJoiner(LADDER_SEPARATOR, SPACE + LADDER_SEPARATOR, LADDER_SEPARATOR);
-        for (Boolean point : line.getPoints()) {
-            stringJoiner.add(BridgeSymbol.getSymbol(point));
+        for (Zone zone : line.getZones()) {
+            stringJoiner.add(zone.getSymbol());
         }
         System.out.println(stringJoiner);
     }

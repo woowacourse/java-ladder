@@ -23,7 +23,7 @@ public class LadderTest {
 
         //then
         assertEquals(ladder.getLines().size(), height.getHeight());
-        assertEquals(ladder.getLines().get(0).getPoints().size(), playersName.size() - 1);
+        assertEquals(ladder.getLines().get(0).getZones().size(), playersName.size() - 1);
     }
 
     @Test
@@ -33,10 +33,11 @@ public class LadderTest {
         final Height height = new Height("1");
         final List<String> playersName = List.of("name1", "name2", "name3", "name4");
         final Players players = Players.from(playersName);
+        final List<Zone> expected = List.of(Zone.BRIDGE, Zone.EMPTY, Zone.BRIDGE);
         LineBuildStrategy lineBuildStrategy = new LineBuildStrategy() {
             @Override
-            public List<Boolean> apply(int count) {
-                return List.of(true, false, true);
+            public List<Zone> apply(int count) {
+                return expected;
             }
         };
 
@@ -44,6 +45,6 @@ public class LadderTest {
         Ladder ladder = Ladder.buildOf(lineBuildStrategy, players, height);
 
         //then
-        assertEquals(List.of(true, false, true), ladder.getLines().get(0).getPoints());
+        assertEquals(expected, ladder.getLines().get(0).getZones());
     }
 }

@@ -2,15 +2,16 @@ package laddergame.domain.strategy;
 
 import java.util.*;
 
-import laddergame.util.BooleanGenerator;
-import laddergame.util.RandomBooleanGenerator;
+import laddergame.domain.Zone;
+import laddergame.util.ZoneGenerator;
+import laddergame.util.RandomZoneGenerator;
 
 public class RandomNoTrueSequenceBuildStrategy implements LineBuildStrategy {
-    private final BooleanGenerator generator = RandomBooleanGenerator.getGenerator();
+    private final ZoneGenerator generator = RandomZoneGenerator.getGenerator();
 
     @Override
-    public List<Boolean> apply(final int count) {
-        Stack<Boolean> lineStatus = new Stack<>();
+    public List<Zone> apply(final int count) {
+        Stack<Zone> lineStatus = new Stack<>();
 
         lineStatus.push(generator.generate());
         for (int i = 0; i < count - 1; i ++) {
@@ -19,9 +20,9 @@ public class RandomNoTrueSequenceBuildStrategy implements LineBuildStrategy {
         return lineStatus.stream().toList();
     }
 
-    private Boolean decideNextValue(Boolean beforeValue) {
-        if (beforeValue) {
-            return false;
+    private Zone decideNextValue(Zone beforeValue) {
+        if (beforeValue.equals(Zone.BRIDGE)) {
+            return Zone.EMPTY;
         }
         return generator.generate();
     }

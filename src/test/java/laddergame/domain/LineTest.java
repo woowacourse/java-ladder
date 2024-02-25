@@ -16,12 +16,12 @@ public class LineTest {
     public void buildBridgeTest() {
         //given
         final int personCount = 4;
-        final int position = 1;
+        final List<Zone> expected = List.of(Zone.BRIDGE, Zone.EMPTY, Zone.BRIDGE);
 
         LineBuildStrategy lineBuildStrategy = new LineBuildStrategy() {
             @Override
-            public List<Boolean> apply(int count) {
-                return List.of(true, false, true);
+            public List<Zone> apply(int count) {
+                return expected;
             }
         };
         lineBuildStrategy.apply(personCount);
@@ -30,7 +30,7 @@ public class LineTest {
         Line line = Line.buildOf(lineBuildStrategy, personCount);
 
         //then
-        assertFalse(line.isBuilt(position));
+        assertEquals(line.getZones(), expected);
     }
 }
 

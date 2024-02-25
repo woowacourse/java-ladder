@@ -1,8 +1,10 @@
 package laddergame.domain.strategy;
 
+import laddergame.domain.Zone;
+
 import java.util.List;
 
 public interface LineBuildStrategy {
-    List<Boolean> apply(int count);
+    List<Zone> apply(int count);
 }
 
