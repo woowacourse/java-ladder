@@ -6,9 +6,9 @@ import java.util.List;
 public class Ladder {
     private final List<Line> lines = new ArrayList<>();
 
-    public void generateLine(int height, int peopleCount, RandomGenerator randomGenerator) {
+    public void generateLine(int height, int peopleCount, List<List<Boolean>> booleans) {
         for (int i = 0; i < height; i++) {
-            List<Boolean> generatedResult = randomGenerator.generate(peopleCount);
+            List<Boolean> generatedResult = booleans.get(i);
             lines.add(new Line(peopleCount, generatedResult));
         }
     }

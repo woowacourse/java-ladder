@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class LadderGame {
     private static final int MINIMUM_LADDER_HEIGHT = 1;
 
@@ -22,7 +24,8 @@ public class LadderGame {
     }
 
     public Ladder createLadder() {
-        ladder.generateLine(ladderHeight, participants.getSize(), generator);
+        List<List<Boolean>> booleans = generator.generateBooleans(ladderHeight, participants.getSize());
+        ladder.generateLine(ladderHeight, participants.getSize(), booleans);
         return ladder;
     }
 }

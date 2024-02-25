@@ -15,7 +15,7 @@ public class LadderTest {
         int peopleCount = 3;
         RandomGenerator randomGenerator = new RandomGenerator();
         Ladder ladder = new Ladder();
-        ladder.generateLine(givenHeight, peopleCount, randomGenerator);
+        ladder.generateLine(givenHeight, peopleCount, randomGenerator.generateBooleans(givenHeight, peopleCount));
         List<Line> result = ladder.getLines();
 
         assertThat(result).hasSize(givenHeight);
