@@ -1,11 +1,14 @@
-import domain.*;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import domain.Line;
+import domain.PlayerCount;
+import domain.Players;
+import domain.Step;
+import java.util.List;
+import mock.EmptyStepGenerator;
 import mock.ExistStepGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
     public static final Step EXIST_POINT = Step.EXIST;
@@ -29,12 +32,5 @@ public class LineTest {
 
         // when & then
         assertThat(line).isEqualTo(new Line(List.of(EMPTY_POINT, EMPTY_POINT, EMPTY_POINT)));
-    }
-
-    private static class EmptyStepGenerator implements StepGenerator {
-        @Override
-        public Step generate() {
-            return Step.EMPTY;
-        }
     }
 }
