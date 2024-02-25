@@ -5,6 +5,7 @@ import ladder.exception.participant.InvalidParticipantsCountException;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 public class Participants {
     private static final int MIN_PARTICIPANTS_COUNT = 2;
@@ -14,9 +15,7 @@ public class Participants {
     public Participants(final List<String> names) {
         validateParticipantsCount(names);
         validateDuplicatedNames(names);
-        this.participants = names.stream()
-                .map(Participant::new)
-                .toList();
+        this.participants = createParticipants(names);
     }
 
     private void validateParticipantsCount(final List<String> names) {
@@ -30,6 +29,12 @@ public class Participants {
         if (uniqueNames.size() < names.size()) {
             throw new DuplicatedNamesException();
         }
+    }
+
+    private List<Participant> createParticipants(final List<String> names) {
+        return IntStream.range(0, names.size())
+                .mapToObj(position -> new Participant(names.get(position), position))
+                .toList();
     }
 
     public int getNecessaryLadderWidth() {
