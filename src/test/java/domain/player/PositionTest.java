@@ -1,5 +1,6 @@
 package domain.player;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,5 +26,12 @@ class PositionTest {
     void constructFailWIthNegativePosition() {
         assertThatThrownBy(() -> new Position(-1))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("같은 위치를 가지는 Position 동등성 비교")
+    @Test
+    void positionEqualsWithSamePosition() {
+        assertThat(new Position(1))
+                .isEqualTo(new Position(1));
     }
 }
