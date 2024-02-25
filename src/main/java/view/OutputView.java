@@ -1,7 +1,6 @@
 package view;
 
 import domain.ladder.attirbute.Direction;
-import domain.player.Name;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -15,11 +14,11 @@ public class OutputView {
     private static final int NAME_SPACE_SIZE = 7;
     private static final String NAME_SPACE_UNIT = " ";
 
-    public static void printPlayerNames(List<Name> playerNames) {
-        playerNames.stream()
-                   .map(Name::value)
-                   .map(OutputView::padString)
-                   .forEach(System.out::print);
+    public static <T> void printObjectNames(List<T> names) {
+        names.stream()
+             .map(Object::toString)
+             .map(OutputView::padString)
+             .forEach(System.out::print);
         printNewLine();
     }
 
@@ -40,7 +39,6 @@ public class OutputView {
             String symbol = directionSymbols.get(direction);
             resultStringBuilder.append(symbol);
         });
-
         System.out.println(resultStringBuilder);
     }
 
