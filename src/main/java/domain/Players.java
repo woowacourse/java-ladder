@@ -13,6 +13,7 @@ public class Players {
 
     public Players(final List<String> names) {
         validateNameCount(names.size());
+
         for (final String name : names) {
             players.add(new Player(name));
         }

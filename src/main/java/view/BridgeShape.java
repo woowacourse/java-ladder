@@ -10,6 +10,7 @@ public enum BridgeShape {
     NO_BRIDGE("     ", Bridge.NO_BRIDGE);
 
     private static final int MATCHED_BRIDGE_SHAPE_COUNT = 1;
+
     private final String shape;
     private final Bridge bridge;
 

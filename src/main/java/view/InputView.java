@@ -21,5 +21,4 @@ public class InputView {
             throw new IllegalArgumentException("높이는 숫자여야 합니다.");
         }
     }
-
 }
