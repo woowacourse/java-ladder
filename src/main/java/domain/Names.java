@@ -5,7 +5,7 @@ import java.util.List;
 public class Names {
     private static final int EMPTY_NAME_COUNT = 0;
     private static final int MIN_NAMES_COUNT = 2;
-    private static final String INVALID_NAMES = "이름은 2개 이상의 중복되지 않은 값이어야 합니다.";
+    private static final String INVALID_NAMES = "이름은 " + MIN_NAMES_COUNT + "개 이상의 중복되지 않은 값이어야 합니다.";
 
     private final List<Name> names;
 
