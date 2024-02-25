@@ -4,7 +4,7 @@ import java.util.function.Supplier;
 import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.Players;
-import laddergame.domain.Result;
+import laddergame.domain.PlayersResults;
 import laddergame.domain.Results;
 import laddergame.domain.strategy.BuildStrategy;
 import laddergame.domain.strategy.PointBuildStrategy;
@@ -23,14 +23,14 @@ public class LadderGame {
         BuildStrategy pointBuildStrategy = new PointBuildStrategy();
         Ladder ladder = new Ladder(players, height, results, pointBuildStrategy);
         outputView.writeLadderResult(players, ladder, results);
+        PlayersResults playersResults = ladder.getPlayersResults();
         while (true) {
-            final String command = requestUntilValidated(() -> inputView.readDesiredPlayerName(players));
-            if (command.equals("all")) {
-                outputView.writeAllResults(ladder.getPlayersResults());
+            final String name = requestUntilValidated(() -> inputView.readDesiredPlayerName(players));
+            if (name.equals("all")) {
+                outputView.writeAllResults(playersResults);
                 break;
             }
-            Result result = ladder.find(command);
-            outputView.writeDesiredResult(result);
+            outputView.writeDesiredResult(playersResults.find(name));
         }
     }
 

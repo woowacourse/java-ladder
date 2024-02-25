@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import laddergame.domain.strategy.BuildStrategy;
 import org.junit.jupiter.api.DisplayName;
@@ -85,13 +84,13 @@ public class LadderTest {
 
         //when
         Ladder ladder = new Ladder(players, height, results, buildStrategy);
-        final Map<Player, Result> playersResults = ladder.getPlayersResults();
+        final PlayersResults playersResults = ladder.getPlayersResults();
 
         //then
-        assertEquals(playersResults.get(players.getPlayerByName("choco")).name(), "꽝1");
-        assertEquals(playersResults.get(players.getPlayerByName("lemon")).name(), "꽝2");
-        assertEquals(playersResults.get(players.getPlayerByName("clova")).name(), "꽝3");
-        assertEquals(playersResults.get(players.getPlayerByName("nyang")).name(), "꽝4");
+        assertEquals(playersResults.find("choco").name(), "꽝1");
+        assertEquals(playersResults.find("lemon").name(), "꽝2");
+        assertEquals(playersResults.find("clova").name(), "꽝3");
+        assertEquals(playersResults.find("nyang").name(), "꽝4");
     }
 
     @Test
@@ -106,9 +105,9 @@ public class LadderTest {
 
         //when
         Ladder ladder = new Ladder(players, height, results, buildStrategy);
-        final Map<Player, Result> playersResults = ladder.getPlayersResults();
+        final PlayersResults playersResults = ladder.getPlayersResults();
         List<Player> playersToTest = new ArrayList<>();
-        for (Entry<Player, Result> entry : playersResults.entrySet()) {
+        for (Entry<Player, Result> entry : playersResults.playerResults().entrySet()) {
             playersToTest.add(entry.getKey());
         }
 

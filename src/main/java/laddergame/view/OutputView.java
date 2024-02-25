@@ -1,6 +1,5 @@
 package laddergame.view;
 
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.StringJoiner;
 import java.util.stream.IntStream;
@@ -8,6 +7,7 @@ import laddergame.domain.Ladder;
 import laddergame.domain.Line;
 import laddergame.domain.Player;
 import laddergame.domain.Players;
+import laddergame.domain.PlayersResults;
 import laddergame.domain.Point;
 import laddergame.domain.Result;
 import laddergame.domain.Results;
@@ -66,9 +66,9 @@ public class OutputView {
         System.out.println(result.name());
     }
 
-    public void writeAllResults(final Map<Player, Result> playerResult) {
+    public void writeAllResults(final PlayersResults playerResult) {
         writeResultTitle();
-        for (Entry<Player, Result> entry : playerResult.entrySet()) {
+        for (Entry<Player, Result> entry : playerResult.playerResults().entrySet()) {
             System.out.printf(PLAYER_RESULT_FORMAT, entry.getKey().getName(), entry.getValue().name());
         }
     }
