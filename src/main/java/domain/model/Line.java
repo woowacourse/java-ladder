@@ -35,7 +35,7 @@ public class Line {
                 .toList();
     }
 
-    public boolean hasLeftConnectedLine(int position) {
+    private boolean hasLeftConnectedLine(int position) {
         if (position == 0) {
             return false;
         }
