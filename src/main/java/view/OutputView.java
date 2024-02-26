@@ -4,10 +4,13 @@ import domain.Floor;
 import domain.Ladder;
 import domain.LadderBridge;
 import domain.PlayerNames;
+import java.util.List;
 import java.util.StringJoiner;
 
 public class OutputView {
     private static final String LADDER_FRAME = "|";
+    private static final String BRIDGE_EXIST = "-----";
+    private static final String BRIDGE_NONE = "     ";
     private static final String PLAYER_NAMES_FORMAT = "%5s";
 
     public void printLadder(final PlayerNames playerNames, final Ladder ladder) {
@@ -41,8 +44,16 @@ public class OutputView {
     private void printLadderLine(final Floor floor, final StringJoiner ladderJoiner) {
         System.out.print("\t");
         for (LadderBridge bridge : floor.getBridges()) {
-            ladderJoiner.add(bridge.getValue());
+            addBridge(ladderJoiner, bridge);
         }
         System.out.println(ladderJoiner);
+    }
+
+    private void addBridge(final StringJoiner ladderJoiner, final LadderBridge bridge) {
+        if (bridge.isExist(bridge)) {
+            ladderJoiner.add(BRIDGE_EXIST);
+            return;
+        }
+        ladderJoiner.add(BRIDGE_NONE);
     }
 }
