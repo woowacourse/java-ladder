@@ -14,4 +14,15 @@ public enum Direction {
     public int getMovement() {
         return movement;
     }
+
+    public Direction next(DirectionGenerator directionGenerator) {
+        if (this == RIGHT) {
+            return LEFT;
+        }
+        return directionGenerator.generate();
+    }
+
+    public boolean isInvalidLastDirection() {
+        return this == RIGHT;
+    }
 }
