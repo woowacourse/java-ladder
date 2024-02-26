@@ -13,7 +13,7 @@ class LadderTest {
 
     @DisplayName("사다리의 모든 라인의 너비가 동일하지 않은 경우 예외가 발생한다.")
     @Test
-    void newLadderTest() {
+    void newLadderTestByConsistentLineSize() {
         //given
         LineGenerator lineGenerator = new LineGenerator(new DirectionGeneratorImpl());
         Line lineA = lineGenerator.generate(2);
