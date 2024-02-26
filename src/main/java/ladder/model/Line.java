@@ -1,6 +1,5 @@
 package ladder.model;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -49,7 +48,9 @@ public class Line {
         return row.size();
     }
 
-    public List<LadderPath> getRow() {
-        return Collections.unmodifiableList(row);
+    public List<Boolean> getConnected() {
+        return IntStream.range(0, row.size() - 1)
+                .mapToObj(idx -> row.get(idx).equals(RIGHT))
+                .toList();
     }
 }
