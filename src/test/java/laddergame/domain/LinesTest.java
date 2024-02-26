@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("라인")
@@ -30,6 +31,23 @@ public class LinesTest {
 
         //then
         assertEquals(lines.getLines(), expected);
+    }
+
+    @Test
+    @DisplayName("플레이어의 오른쪽에 라인이 있을 경우 오른쪽을 반환한다.")
+    void returnRightWhenRightLine() {
+        List<Line> expected = List.of(Line.BRIDGE, Line.EMPTY, Line.EMPTY);
+        LinesGenerator linesGenerator = new LinesGenerator() {
+            @Override
+            public List<Line> generate(int width) {
+                return expected;
+            }
+        };
+        final Players players = new Players(List.of("name1", "name2", "name3", "name4"));
+        final int playerIndex = 0;
+
+        Lines lines = new Lines(linesGenerator, players.getPlayersCount() - 1);
+        assertEquals(lines.findDirection(playerIndex), Direction.RIGHT);
     }
 }
 
