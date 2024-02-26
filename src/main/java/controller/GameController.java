@@ -20,10 +20,11 @@ public class GameController {
     public void execute() {
         Names names = new Names(inputNames(PLAYER_INPUT_PROMPT));
         Players players = new Players(names);
-        Prizes prizes = new Prizes(inputNames(PRIZE_INPUT_PROMPT), players.getPlayerCount());
+        int numberOfPlayers = players.getPlayerCount();
+        Prizes prizes = new Prizes(inputNames(PRIZE_INPUT_PROMPT), numberOfPlayers);
         Height height = new Height(inputHeight());
 
-        Ladder ladder = new Ladder(height, players.getPlayerCount(), new RandomDirectionGenerator());
+        Ladder ladder = new Ladder(height, numberOfPlayers, new RandomDirectionGenerator());
         GameBoard gameBoard = new GameBoard(players, ladder, prizes);
 
         printGeneratedLadderResult(gameBoard);
