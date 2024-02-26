@@ -1,5 +1,7 @@
 package view;
 
+import static java.lang.System.lineSeparator;
+
 import domain.Ladder;
 import domain.Line;
 import domain.Player;
@@ -8,7 +10,7 @@ import java.util.List;
 
 public class OutputView {
 
-    private static final String RESULT = "\n실행결과\n";
+    private static final String RESULT = lineSeparator()+"실행결과"+lineSeparator();
     private static final String STICK = "|";
     private static final String LEG_UNIT = "-";
     private static final String FORMAT_NAME = "%6s";
