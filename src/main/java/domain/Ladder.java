@@ -2,20 +2,25 @@ package domain;
 
 import java.util.List;
 import java.util.stream.Stream;
-import utils.RandomStepGenerator;
 import utils.StepGenerator;
 
 public class Ladder {
 
+    public static final int ONE_LINE = 1;
     private final List<Line> lines;
+    Height height;
 
-    public Ladder(int floor, int participantsCount) {
+    public Ladder(int floor, int participantsCount, StepGenerator stepGenerator) {
         int stepPointCount = participantsCount - 1;
-        StepGenerator stepGenerator = new RandomStepGenerator();
-        Height height = new Height(floor);
+        height = new Height(floor);
         lines = Stream.generate(() -> new Line(stepPointCount, stepGenerator))
                 .limit(floor)
                 .toList();
+    }
+
+    public boolean canMoveLeft(int floor, int step) {
+        Line line = lines.get(floor + ONE_LINE);
+        return line.isExistLeftStep(step);
     }
 
     public List<Line> getLines() {
