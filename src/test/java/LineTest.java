@@ -2,7 +2,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.Line;
 import domain.PlayerCount;
-import domain.Players;
 import domain.Step;
 import java.util.List;
 import mock.EmptyStepGenerator;
@@ -18,7 +17,7 @@ public class LineTest {
     @Test
     void makeLineExist() {
         // given
-        final Line line = Line.create(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))), new ExistStepGenerator());
+        final Line line = Line.create(PlayerCount.fromPlayers(List.of("a", "b", "c")), new ExistStepGenerator());
 
         // when & then
         assertThat(line).isEqualTo(new Line(List.of(EXIST_POINT, EMPTY_POINT, EMPTY_POINT)));
@@ -28,7 +27,7 @@ public class LineTest {
     @Test
     void makeLineEmpty() {
         // given
-        final Line line = Line.create(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))), new EmptyStepGenerator());
+        final Line line = Line.create(PlayerCount.fromPlayers(List.of("a", "b", "c")), new EmptyStepGenerator());
 
         // when & then
         assertThat(line).isEqualTo(new Line(List.of(EMPTY_POINT, EMPTY_POINT, EMPTY_POINT)));

@@ -1,12 +1,12 @@
 package Controller;
 
-import domain.*;
-import dto.HeightRequest;
-import dto.PlayersRequest;
+import domain.Ladder;
+import domain.PlayerCount;
+import domain.RandomStepGenerator;
+import java.util.List;
+import java.util.function.Supplier;
 import view.InputView;
 import view.OutputView;
-
-import java.util.function.Supplier;
 
 public class LadderGame {
     private final InputView inputView;
@@ -18,22 +18,12 @@ public class LadderGame {
     }
 
     public void run() {
-        final Players players = readWithRetry(this::readPlayers);
-        final Height height = readWithRetry(this::readHeight);
+        final List<String> players = readWithRetry(inputView::inputPlayers);
+        final int height = readWithRetry(inputView::inputHeight);
 
         final Ladder ladder = Ladder.create(height, PlayerCount.fromPlayers(players), new RandomStepGenerator());
 
         outputView.printResult(players, ladder);
-    }
-
-    private Players readPlayers() {
-        final PlayersRequest playersRequest = readWithRetry(inputView::inputPlayers);
-        return playersRequest.toPlayers();
-    }
-
-    private Height readHeight() {
-        final HeightRequest heightRequest = readWithRetry(inputView::inputHeight);
-        return heightRequest.toHeight();
     }
 
     private <T> T readWithRetry(Supplier<T> supplier) {

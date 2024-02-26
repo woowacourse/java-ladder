@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.List;
+
 public class PlayerCount {
     private final int count;
 
@@ -7,8 +9,8 @@ public class PlayerCount {
         this.count = count;
     }
 
-    public static PlayerCount fromPlayers(Players players) {
-        return new PlayerCount(players.getCount());
+    public static PlayerCount fromPlayers(List<String> players) {
+        return new PlayerCount(players.size());
     }
 
     public boolean isBiggerThan(int otherCount) {

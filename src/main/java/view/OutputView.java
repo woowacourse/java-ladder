@@ -2,7 +2,7 @@ package view;
 
 import domain.Ladder;
 import domain.Line;
-import domain.Players;
+import java.util.List;
 import view.printer.Printer;
 
 public class OutputView {
@@ -18,13 +18,13 @@ public class OutputView {
         return new OutputView(printer, new OutputFormatter());
     }
 
-    public void printResult(Players rawPlayers, Ladder ladder) {
+    public void printResult(List<String> rawPlayers, Ladder ladder) {
         printer.printLine("실행결과");
         printNames(rawPlayers);
         printLadder(ladder);
     }
 
-    private void printNames(Players players) {
+    private void printNames(List<String> players) {
         String nameUnit = outputFormatter.toNameUnit(players);
         printer.printLine(nameUnit);
     }

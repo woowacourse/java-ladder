@@ -1,9 +1,6 @@
 package view;
 
-import dto.HeightRequest;
-import dto.PlayersRequest;
-
- import java.util.Arrays;
+import java.util.Arrays;
 import java.util.List;
 import view.printer.Printer;
 import view.reader.Reader;
@@ -26,22 +23,21 @@ public class InputView {
         return new InputView(reader, printer, new InputValidator());
     }
 
-    public PlayersRequest inputPlayers() {
+    public List<String> inputPlayers() {
         printer.printLine("참여할 사람 이름을 입력하세요. (이름은 쉼표(" + NAME_DELIMITER + ")로 구분하세요)");
         String input = reader.readLineWithTrim();
         inputValidator.validatePlayers(input);
 
-        List<String> players = Arrays.stream(input.split(NAME_DELIMITER))
+        return Arrays.stream(input.split(NAME_DELIMITER))
                 .map(String::trim)
                 .toList();
-        return new PlayersRequest(players);
     }
 
-    public HeightRequest inputHeight() {
+    public int inputHeight() {
         printer.printLine("최대 사다리 높이는 몇 개인가요?");
         String input = reader.readLineWithTrim();
         inputValidator.validateHeight(input);
 
-        return new HeightRequest(Integer.parseInt(input));
+       return Integer.parseInt(input);
     }
 }
