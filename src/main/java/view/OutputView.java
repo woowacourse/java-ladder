@@ -1,10 +1,7 @@
 package view;
 
-import domain.Ladder;
-import domain.Line;
-import domain.Player;
-import domain.Players;
-import domain.Stick;
+import domain.*;
+
 import java.util.List;
 
 public class OutputView {

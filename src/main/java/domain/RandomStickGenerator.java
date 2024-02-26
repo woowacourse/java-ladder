@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Random;
 
-class RandomStickGenerator implements StickGenerator {
+public class RandomStickGenerator implements StickGenerator {
 
     private static final int RANDOM_BOUND = 2;
 

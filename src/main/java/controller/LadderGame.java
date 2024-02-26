@@ -2,6 +2,8 @@ package controller;
 
 import domain.Ladder;
 import domain.Players;
+import domain.RandomStickGenerator;
+import domain.StickGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -21,7 +23,8 @@ public class LadderGame {
         List<String> names = inputView.readNames();
         int height = inputView.readHeight();
         Players players = new Players(names);
-        Ladder ladder = new Ladder(height, players.getPlayerSize());
+        StickGenerator stickGenerator = new RandomStickGenerator();
+        Ladder ladder = new Ladder(height, players.getPlayerSize(), stickGenerator);
 
         outputView.printLadder(players, ladder);
     }

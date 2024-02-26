@@ -9,10 +9,9 @@ public class Ladder {
 
     private final List<Line> lines = new ArrayList<>();
 
-    public Ladder(int height, int playerSize) {
+    public Ladder(int height, int playerSize, StickGenerator stickGenerator) {
         validateLadderHeight(height);
 
-        RandomStickGenerator stickGenerator = new RandomStickGenerator();
         for (int i = 0; i < height; i++) {
             this.lines.add(new Line(stickGenerator, playerSize));
         }
