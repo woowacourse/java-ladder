@@ -3,6 +3,7 @@ package controller;
 import domain.Ladder;
 import domain.Participants;
 import exception.controller.LadderGameExceptionMessage;
+import utils.RandomStepGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -41,7 +42,7 @@ public class LadderGame {
     private Ladder makeLadder() {
         try {
             int height = inputView.readHeight();
-            return new Ladder(height, participants.getParticipantsCount());
+            return new Ladder(height, participants.getParticipantsCount(), new RandomStepGenerator());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return makeLadder();
