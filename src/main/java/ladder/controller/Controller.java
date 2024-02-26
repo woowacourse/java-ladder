@@ -18,8 +18,29 @@ public class Controller {
         Height height = createHeight();
         DirectionGenerator directionGenerator = new RandomDirectionGenerator();
         Ladder ladder = new Ladder(players, height, directionGenerator);
-        OutputView.printExecutionResult(players, ladder, results);
+        OutputView.printLadderResult(players, ladder, results);
+        repeatPrintingIndividualResult(results, ladder);
+    }
 
+    private static void repeatPrintingIndividualResult(Results results, Ladder ladder) {
+        boolean doRepeat = true;
+        while (doRepeat) {
+            doRepeat = ExceptionHandler.run(() -> printResultOf(results, ladder));
+        }
+    }
+
+    private static boolean printResultOf(Results results, Ladder ladder) {
+        String input = InputView.inputNameForResult();
+        if (input.equals("all")) {
+            OutputView.printAllResults(ladder.getAllResultLocation(), results);
+            return true;
+        }
+        if (input.equals("qqqqqq")) {
+            OutputView.printQuitMessage();
+            return false;
+        }
+        OutputView.printResultIndividual(results.getResultValue(ladder.getResultLocation(input)));
+        return true;
     }
 
     private Players createPlayers() {

@@ -26,6 +26,11 @@ public class InputView {
         return new Height(readInt());
     }
 
+    public static String inputNameForResult() {
+        System.out.println("\n결과를 보고 싶은 사람은? (qqqqqq 입력시 종료)");
+        return readLine();
+    }
+
     private static String readLine() {
         return SCANNER.nextLine().replace(" ", "");
     }
