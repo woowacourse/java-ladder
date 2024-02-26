@@ -47,7 +47,9 @@ public class Ladder {
     }
 
     private static List<LadderPath> generateRandomPath() {
-        if (random.nextBoolean()) {
+        boolean isConnectedPath = random.nextBoolean();
+
+        if (isConnectedPath) {
             return List.of(LadderPath.RIGHT, LadderPath.LEFT);
         }
         return List.of(LadderPath.STAY);
