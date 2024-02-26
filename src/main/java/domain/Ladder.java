@@ -11,7 +11,6 @@ public class Ladder {
     private final Prizes prizes;
     private final List<Bridges> bridges;
 
-    // TODO 파라미터가 너무 많음. 정적 팩토리 메서드나 Builder 패턴 도입 고민
     public Ladder(BridgeConstructStrategy bridgeConstructStrategy, Names names, Prizes prizes, Height height) {
         this.names = names;
         this.prizes = prizes;
