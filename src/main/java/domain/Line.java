@@ -11,35 +11,37 @@ public class Line {
 
     private final List<Leg> legs;
 
-    private Line() {
-        legs = new ArrayList<>();
+    private Line(int legCount, BooleanGenerator booleanGenerator) {
+        legs = makeLegs(legCount,booleanGenerator);
     }
 
     public static Line of(int legCount, BooleanGenerator booleanGenerator) {
-        Line line = new Line();
-        line.makeLeg(legCount, booleanGenerator);
-        return line;
+        return new Line(legCount, booleanGenerator);
     }
 
-    private void makeLeg(int legCount, BooleanGenerator booleanGenerator) {
-        legs.add(Leg.from(booleanGenerator.generate()));
+    private List<Leg> makeLegs(int legCount, BooleanGenerator booleanGenerator) {
+        List<Leg> newLegs = new ArrayList<>();
+
+        newLegs.add(Leg.from(booleanGenerator.generate()));
         for (int i = 1; i < legCount; i++) {
-            decideLegExist(i, booleanGenerator);
+            decideLegExist(newLegs, i, booleanGenerator);
         }
-        validateLegsUnOverlapped();
+        validateLegsUnOverlapped(newLegs);
+
+        return newLegs;
     }
 
-    private void decideLegExist(int legIndex, BooleanGenerator booleanGenerator) {
-        if (legs.get(legIndex - 1).isExist()) {
-            legs.add(Leg.from(false));
+    private void decideLegExist(List<Leg> newLegs, int legIndex, BooleanGenerator booleanGenerator) {
+        if (newLegs.get(legIndex - 1).isExist()) {
+            newLegs.add(Leg.from(false));
             return;
         }
-        legs.add(Leg.from(booleanGenerator.generate()));
+        newLegs.add(Leg.from(booleanGenerator.generate()));
     }
 
-    private void validateLegsUnOverlapped() {
+    private void validateLegsUnOverlapped(List<Leg> newLegs) {
         Leg beforeLeg = Leg.from(false);
-        for (Leg afterLeg : legs) {
+        for (Leg afterLeg : newLegs) {
             validateLegUnOverlapped(afterLeg, beforeLeg);
         }
     }
