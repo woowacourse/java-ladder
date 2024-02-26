@@ -1,12 +1,16 @@
 package domain.ladder;
 
+import domain.player.Name;
 import domain.player.Players;
 import domain.result.Result;
 import domain.result.Results;
 import dto.RowPatternDto;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.BooleanSupplier;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -18,8 +22,16 @@ public class Ladder {
     public Ladder(Players players, Results results, LadderHeight height) {
         this.players = players;
         this.results = results;
+        validateHasSameSize(players, results);
+
         createLadder(height);
         ladderIndexConverter = new LadderIndexConverter(players.size());
+    }
+
+    private void validateHasSameSize(Players players, Results results) {
+        if (players.size() != results.size()) {
+            throw new IllegalArgumentException("사람의 수와 결과의 개수가 일치하지 않습니다.");
+        }
     }
 
     public void drawLines(BooleanSupplier patternCreationStrategy) {
@@ -33,6 +45,19 @@ public class Ladder {
         int index = players.getIndexByName(name);
         int resultIndex = ladderIndexConverter.getMappedIndexByPlayerIndex(index);
         return results.get(resultIndex);
+    }
+
+    public Map<Name, Result> getAllPlayerResults() {
+        List<Result> mappedResults = players.getRawNames()
+                .stream()
+                .map(this::getResultByName)
+                .toList();
+
+        Map<Name, Result> playerResults = new LinkedHashMap<>();
+        IntStream.range(0, players.size())
+                .forEach(index -> playerResults.put(players.get(index), mappedResults.get(index)));
+
+        return playerResults;
     }
 
     public List<RowPatternDto> getLadderPatterns() {

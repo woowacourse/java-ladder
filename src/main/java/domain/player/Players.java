@@ -30,6 +30,10 @@ public class Players {
         return names.size();
     }
 
+    public Name get(int index) {
+        return names.get(index);
+    }
+
     public int getIndexByName(String name) {
         return IntStream.range(0, names.size())
                 .filter(index -> hasSameNameOnIndex(name, index))

@@ -2,11 +2,15 @@ package domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.player.Name;
 import domain.player.Players;
 import domain.result.Result;
 import domain.result.Results;
 import dto.RowPatternDto;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -67,5 +71,25 @@ class LadderTest {
         List<RowPatternDto> ladderPatterns = ladder.getLadderPatterns();
         List<Boolean> actual = ladderPatterns.get(0).rowPattern();
         assertThat(actual).containsExactlyElementsOf(expected);
+    }
+
+    @Test
+    @DisplayName("상하가 서로 대칭이 아닌 경우에도 올바르게 매핑 정보를 반환한다.")
+    void asymmetricLadderConversionTest() {
+        // given
+        Iterator<Boolean> it = Stream.of(true, false, false, true).iterator();
+        List<String> names = List.of("aru", "pobi", "woowa");
+        List<String> results = List.of("1000", "2000", "3000");
+        Ladder ladder = createDummyLadder(names, results, 2);
+        // when
+        ladder.drawLines(it::next);
+        Map<Name, Result> playerResults = ladder.getAllPlayerResults();
+        // then
+        Map<Name, Result> expected = Map.of(
+                new Name("aru"), new Result("3000"),
+                new Name("pobi"), new Result("1000"),
+                new Name("woowa"), new Result("2000")
+        );
+        assertThat(playerResults).containsAllEntriesOf(expected);
     }
 }

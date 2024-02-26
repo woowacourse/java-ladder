@@ -2,11 +2,13 @@ package game;
 
 import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
+import domain.player.Name;
 import domain.player.Players;
 import domain.result.Result;
 import domain.result.Results;
 import dto.RowPatternDto;
 import java.util.List;
+import java.util.Map;
 import java.util.function.BooleanSupplier;
 import view.InputView;
 import view.OutputView;
@@ -39,13 +41,10 @@ public class LadderGame {
         outputView.printResultMessage();
 
         if (playerName.equals("all")) {
-            players.getRawNames()
-                    .forEach(name -> {
-                        Result result = ladder.getResultByName(name);
-                        outputView.printAllResults(name, result.rawResult());
-                    });
+            printAllResults(ladder);
             return;
         }
+
         Result result = ladder.getResultByName(playerName);
         outputView.printToken(result.rawResult());
     }
@@ -73,5 +72,10 @@ public class LadderGame {
         outputView.printTokens(names);
         outputView.printLadder(rowPatterns);
         outputView.printTokens(results);
+    }
+
+    private void printAllResults(Ladder ladder) {
+        Map<Name, Result> results = ladder.getAllPlayerResults();
+        results.forEach((name, result) -> outputView.printAllResults(name.rawName(), result.rawResult()));
     }
 }

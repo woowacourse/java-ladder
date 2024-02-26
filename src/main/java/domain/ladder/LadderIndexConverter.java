@@ -18,7 +18,10 @@ public class LadderIndexConverter {
 
     public int getMappedIndexByPlayerIndex(int playerIndex) {
         validateIndex(playerIndex);
-        return mappedIndex.get(playerIndex);
+        return mappedIndex.stream()
+                .filter(index -> mappedIndex.get(index) == playerIndex)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("매핑 정보를 찾을 수 없습니다."));
     }
 
     public void swapByRowPattern(RowPatternDto rowPatternDto) {

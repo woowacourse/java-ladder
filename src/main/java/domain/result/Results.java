@@ -12,6 +12,10 @@ public class Results {
                 .toList();
     }
 
+    public int size() {
+        return results.size();
+    }
+
     public Result get(int index) {
         return results.get(index);
     }
