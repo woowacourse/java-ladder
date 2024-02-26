@@ -1,6 +1,5 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.move.Trace;
 import laddergame.domain.point.Point;
 import laddergame.domain.point.PointGenerator;
 

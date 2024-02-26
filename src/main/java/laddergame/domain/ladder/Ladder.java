@@ -1,16 +1,11 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.Result;
 import laddergame.domain.move.LeftStrategy;
 import laddergame.domain.move.Trace;
-import laddergame.domain.player.Player;
-import laddergame.domain.player.Players;
 import laddergame.domain.point.PointGenerator;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 
 public class Ladder {
@@ -33,17 +28,7 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public Result start(Players players) {
-        Map<Player, Trace> map = new HashMap<>();
-
-        for (int i = 0; i < players.getSize(); i++) {
-            Trace trace = moveLines(i);
-            map.put(players.getName(i), trace);
-        }
-        return new Result(map);
-    }
-
-    private Trace moveLines(int index) {
+    public Trace moveLines(int index) {
         Trace trace = Trace.init(index, new LeftStrategy());
 
         for(Line line : lines) {
