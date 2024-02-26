@@ -14,10 +14,10 @@ public class LadderGameTest {
         |--|  |  |
          */
         LadderGame ladderGame = new LadderGame();
-        int column = 0;
+        int startColumnIndex = 0;
         Line line = new Line(List.of(Step.EXIST, Step.EMPTY, Step.EMPTY));
 
-        assertThat(ladderGame.playLine(column, line)).isEqualTo(1);
+        assertThat(ladderGame.playLine(startColumnIndex, line)).isEqualTo(1);
     }
 
     @Test
@@ -27,10 +27,10 @@ public class LadderGameTest {
         |--|  |  |
          */
         LadderGame ladderGame = new LadderGame();
-        int column = 1;
+        int startColumnIndex = 1;
         Line line = new Line(List.of(Step.EXIST, Step.EMPTY, Step.EMPTY));
 
-        assertThat(ladderGame.playLine(column, line)).isEqualTo(0);
+        assertThat(ladderGame.playLine(startColumnIndex, line)).isEqualTo(0);
     }
 
     @Test
@@ -40,10 +40,28 @@ public class LadderGameTest {
         |--|  |  |
          */
         LadderGame ladderGame = new LadderGame();
-        int column = 2;
+        int startColumnIndex = 2;
         Line line = new Line(List.of(Step.EXIST, Step.EMPTY, Step.EMPTY));
 
-        assertThat(ladderGame.playLine(column, line)).isEqualTo(2);
+        assertThat(ladderGame.playLine(startColumnIndex, line)).isEqualTo(2);
     }
 
+    @Test
+    void playLines() {
+        /*
+        a  b  c  d
+        |--|  |  |
+        |  |  |--|
+         */
+        LadderGame ladderGame = new LadderGame();
+
+        Line line1 = new Line(List.of(Step.EXIST, Step.EMPTY, Step.EMPTY, Step.EMPTY));
+        Line line2 = new Line(List.of(Step.EMPTY, Step.EMPTY, Step.EXIST, Step.EMPTY));
+        List<Line> lines = List.of(line1, line2);
+
+        assertThat(ladderGame.playLines(0, lines)).isEqualTo(1);
+        assertThat(ladderGame.playLines(1, lines)).isEqualTo(0);
+        assertThat(ladderGame.playLines(2, lines)).isEqualTo(3);
+        assertThat(ladderGame.playLines(3, lines)).isEqualTo(2);
+    }
 }

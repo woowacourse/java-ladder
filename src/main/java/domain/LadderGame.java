@@ -13,4 +13,11 @@ public class LadderGame {
         }
         return currentColumn;
     }
+
+    public int playLines(int currentColumn, List<Line> lines) {
+        for (Line line : lines) {
+            currentColumn = playLine(currentColumn, line);
+        }
+        return currentColumn;
+    }
 }
