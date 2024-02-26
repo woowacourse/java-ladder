@@ -33,6 +33,16 @@ public class Ladder {
                 .count();
     }
 
+    public Position goDown(final Position start) {
+        Position position = new Position(start.getPosition());
+
+        for (Line line : lines) {
+            position = line.goHorizontal(position);
+        }
+
+        return position;
+    }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }

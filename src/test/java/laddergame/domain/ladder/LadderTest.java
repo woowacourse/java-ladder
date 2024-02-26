@@ -5,13 +5,11 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import javax.swing.text.Position;
-import laddergame.domain.ladder.Ladder;
-import laddergame.domain.ladder.Line;
-import laddergame.domain.ladder.Point;
 import laddergame.exception.LadderGameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class LadderTest {
 
@@ -38,5 +36,22 @@ public class LadderTest {
         // when & then
         assertThatCode(() -> new Ladder(lines))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("사다리 상단 위치에 따라 사다리 하단 위치를 결정한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"0,0", "1,1", "2,3", "3,2"})
+    void goDown(int up, int down) {
+        // given
+        Position upPosition = new Position(up);
+
+        Ladder ladder = new Ladder(List.of(new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST)),
+                new Line(List.of(Point.EXIST, Point.EMPTY, Point.EMPTY))));
+
+        // when
+        Position downPosition = ladder.goDown(upPosition);
+
+        // then
+        assertThat(downPosition).isEqualTo(new Position(down));
     }
 }
