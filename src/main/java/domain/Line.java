@@ -1,7 +1,5 @@
 package domain;
 
-import utils.StepGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 

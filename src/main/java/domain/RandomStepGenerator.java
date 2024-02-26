@@ -1,6 +1,4 @@
-package utils;
-
-import domain.StepPoint;
+package domain;
 
 import java.util.Random;
 

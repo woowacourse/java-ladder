@@ -1,8 +1,5 @@
 package domain;
 
-import utils.RandomStepGenerator;
-import utils.StepGenerator;
-
 import java.util.List;
 import java.util.stream.Stream;
 
