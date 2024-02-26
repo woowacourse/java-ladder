@@ -19,13 +19,17 @@ public class Ladder {
     }
 
     public boolean canMoveLeft(int floor, int step) {
-        //TO-DO: height 검증
+        if (height.isEnd(floor)) {
+            return false;
+        }
         Line line = lines.get(floor + ONE_LINE);
         return line.isExistLeftStep(step);
     }
 
     public boolean canMoveRight(int floor, int step) {
-        //TO-DO: height 검증
+        if (height.isEnd(floor)) {
+            return false;
+        }
         Line line = lines.get(floor + ONE_LINE);
         return line.isExistRightStep(step);
     }
