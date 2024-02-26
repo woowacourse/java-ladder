@@ -6,11 +6,11 @@ public class RequestName {
     private final String requestName;
 
     public RequestName(String requestName, UserNames userNames) {
-        validateAvailable(requestName, userNames);
+        validateRequestName(requestName, userNames);
         this.requestName = requestName;
     }
 
-    public void validateAvailable(String requestName, UserNames userNames) {
+    public void validateRequestName(String requestName, UserNames userNames) {
         boolean isNotAll = !requestName.equals("all");
         boolean isNotExist = !userNames.isExist(requestName);
         if (isNotAll && isNotExist) {
