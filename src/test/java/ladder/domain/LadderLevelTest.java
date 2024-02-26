@@ -1,8 +1,7 @@
 package ladder.domain;
 
-import static ladder.domain.LadderDirection.LEFT;
-import static ladder.domain.LadderDirection.NONE;
-import static ladder.domain.LadderDirection.RIGHT;
+import static ladder.domain.Direction.LEFT;
+import static ladder.domain.Direction.RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -15,7 +14,7 @@ class LadderLevelTest {
     @DisplayName("사다리의 한 층은 입력받은 크기로 생성된다.")
     @Test
     void ladderLevelConstructTest() {
-        LadderLevel ladderLevel = new LadderLevel(2);
+        LadderLevel ladderLevel = new LadderLevel(2, () -> RIGHT);
 
         int actualSize = (int) ladderLevel.stream().count();
 
@@ -25,15 +24,23 @@ class LadderLevelTest {
     @DisplayName("Direction.RIGHT과 Direction.LEFT는 한 쌍으로만 생성된다.")
     @Test
     void ladderLevelIntegrityTest() {
-        LadderLevel ladderLevel = new LadderLevel(2);
-        List<LadderDirection> ladderDirections = ladderLevel.stream().toList();
-
-        boolean isValid = ladderDirections.get(0) == RIGHT && ladderDirections.get(1) == LEFT;
-        boolean isValidAlso = ladderDirections.get(0) == NONE && ladderDirections.get(1) == NONE;
+        LadderLevel ladderLevel = new LadderLevel(2, () -> RIGHT);
+        List<Direction> directions = ladderLevel.stream().toList();
 
         assertAll(
-                () -> assertThat(isValid).isTrue(),
-                () -> assertThat(isValidAlso).isTrue()
+                () -> assertThat(directions.get(0)).isEqualTo(RIGHT),
+                () -> assertThat(directions.get(1)).isEqualTo(LEFT)
         );
+    }
+
+    @DisplayName("Direction에 따라 location을 바뀐다")
+    @Test
+    void ladderLevelMoveTest() {
+        LadderLevel ladderLevel = new LadderLevel(2, () -> RIGHT);
+
+        int actual = ladderLevel.move(0);
+        int expected = 1;
+
+        assertThat(actual).isEqualTo(expected);
     }
 }

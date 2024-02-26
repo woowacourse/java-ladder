@@ -1,10 +1,10 @@
 package ladder.view;
 
-import static ladder.domain.LadderDirection.RIGHT;
+import static ladder.domain.Direction.RIGHT;
 
 import java.util.StringJoiner;
+import ladder.domain.Direction;
 import ladder.domain.Ladder;
-import ladder.domain.LadderDirection;
 import ladder.domain.LadderLevel;
 import ladder.domain.Players;
 
@@ -37,8 +37,8 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void printLine(LadderDirection ladderDirection) {
-        if (ladderDirection == RIGHT) {
+    private static void printLine(Direction direction) {
+        if (direction == RIGHT) {
             System.out.print(LINE);
             return;
         }
