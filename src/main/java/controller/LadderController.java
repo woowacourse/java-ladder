@@ -15,7 +15,10 @@ public class LadderController {
     public void run() {
         Players players = readPlayers();
         Ladder ladder = readLadder();
-        ladder.makeLines(getWidth(players));
+
+        int ladderWidth = players.getPlayers().size() - 1;
+        ladder.makeLines(ladderWidth);
+
         OutputView.printResult(players, ladder);
     }
 
@@ -38,9 +41,5 @@ public class LadderController {
             System.out.println(e.getMessage());
             return readPlayers();
         }
-    }
-
-    private int getWidth(Players players) {
-        return players.getPlayers().size() - 1;
     }
 }
