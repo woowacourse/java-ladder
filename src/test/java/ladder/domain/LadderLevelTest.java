@@ -1,11 +1,12 @@
 package ladder.domain;
 
 import static ladder.domain.LadderDirection.LEFT;
+import static ladder.domain.LadderDirection.NONE;
 import static ladder.domain.LadderDirection.RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
-import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,15 +25,15 @@ class LadderLevelTest {
     @DisplayName("Direction.RIGHT과 Direction.LEFT는 한 쌍으로만 생성된다.")
     @Test
     void ladderLevelIntegrityTest() {
-        LadderLevel ladderLevel = new LadderLevel(100);
+        LadderLevel ladderLevel = new LadderLevel(2);
         List<LadderDirection> ladderDirections = ladderLevel.stream().toList();
 
-        List<Integer> rightIndices = IntStream.range(0, 100)
-                .filter(index -> ladderDirections.get(index) == RIGHT)
-                .boxed().toList();
+        boolean isValid = ladderDirections.get(0) == RIGHT && ladderDirections.get(1) == LEFT;
+        boolean isValidAlso = ladderDirections.get(0) == NONE && ladderDirections.get(1) == NONE;
 
-        assertThat(rightIndices).allSatisfy(index ->
-                assertThat(ladderDirections.get(index + 1)).isEqualTo(LEFT)
+        assertAll(
+                () -> assertThat(isValid).isTrue(),
+                () -> assertThat(isValidAlso).isTrue()
         );
     }
 }
