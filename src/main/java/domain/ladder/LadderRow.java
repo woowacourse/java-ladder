@@ -11,10 +11,10 @@ public class LadderRow {
         this.rungs = rungs;
     }
 
-    static LadderRow create(int size, LadderRungGenerator ladderRungGenerator) {
+    static LadderRow create(int width, LadderRungGenerator ladderRungGenerator) {
         final List<LadderRung> rungs = new ArrayList<>();
         LadderRung previousRung = LadderRung.DISCONNECTED;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < width; i++) {
             LadderRung ladderRung = createRung(ladderRungGenerator, previousRung);
             rungs.add(ladderRung);
             previousRung = ladderRung;
