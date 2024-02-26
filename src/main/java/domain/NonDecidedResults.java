@@ -18,4 +18,8 @@ public class NonDecidedResults {
             throw new IllegalArgumentException("[ERROR] 결과의 수는 참여자 수와 일치해야 합니다.");
         }
     }
+
+    public List<String> getNonDecidedResults() {
+        return List.copyOf(NonDecidedResults);
+    }
 }
