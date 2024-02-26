@@ -27,6 +27,21 @@ public class LadderGame {
         findLadderResult(players, ladderResults);
     }
 
+    private Players readPlayers() {
+        final List<String> players = inputView.inputPlayers();
+        return Players.from(players);
+    }
+
+    private Targets readTargets(Players players) {
+        final List<String> targets = inputView.inputTarget();
+        return Targets.from(targets, PlayerCount.from(players.getCount()));
+    }
+
+    private Height readHeight() {
+        final int height = inputView.inputHeight();
+        return new Height(height);
+    }
+
     private LadderResults createLadderResults(Players players, Ladder ladder, Targets targets) {
         HashMap<Player, Target> results = new HashMap<>();
         for (Player player : players.getPlayers()) {
@@ -36,24 +51,8 @@ public class LadderGame {
     }
 
     private void findLadderResult(Players players, LadderResults ladderResults) {
-        String result = inputView.inputResult();
-        List<Player> results = players.getCheckPlayers(result);
+        List<Player> results = readWithRetry(() -> players.getCheckPlayers(inputView.inputResult()));
         outputView.printPrize(results, ladderResults.getMatchingTargets(results));
-    }
-
-    private Players readPlayers() {
-        final List<String> players = readWithRetry(inputView::inputPlayers);
-        return Players.from(players);
-    }
-
-    private Targets readTargets(Players players) {
-        final List<String> targets = readWithRetry(inputView::inputTargets);
-        return Targets.from(targets, PlayerCount.from(players.getCount()));
-    }
-
-    private Height readHeight() {
-        final int height = readWithRetry(inputView::inputHeight);
-        return new Height(height);
     }
 
     private <T> T readWithRetry(Supplier<T> supplier) {

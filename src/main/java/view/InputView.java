@@ -51,7 +51,7 @@ public class InputView {
         }
     }
 
-    public List<String> inputTargets() {
+    public List<String> inputTarget() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String input = scanner.nextLine();
         validateTargets(input);
@@ -94,12 +94,6 @@ public class InputView {
 
     public String inputResult() {
         System.out.println("결과를 보고 싶은 사람은?");
-        String input = scanner.nextLine();
-        validateResult(input);
-        return input;
-    }
-
-    private void validateResult(String input) {
-        validateBlank(input);
+        return scanner.nextLine();
     }
 }
