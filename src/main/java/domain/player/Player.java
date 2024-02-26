@@ -20,12 +20,16 @@ public class Player {
         }
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void moveLeft() {
         position = position.decrease();
+    }
+
+    public void moveRight() {
+        position = position.increase();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Position getPosition() {

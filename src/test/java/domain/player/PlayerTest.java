@@ -39,4 +39,18 @@ class PlayerTest {
         //then
         Assertions.assertThat(player.getPosition()).isEqualTo(expectedPosition);
     }
+
+    @DisplayName("참가자의 위치를 오른쪽으로 이동시킨다.")
+    @Test
+    void moveRight() {
+        //given
+        final Player player = new Player("a");
+        final Position expectedPosition = new Position(1);
+
+        //when
+        player.moveRight();
+
+        //then
+        Assertions.assertThat(player.getPosition()).isEqualTo(expectedPosition);
+    }
 }
