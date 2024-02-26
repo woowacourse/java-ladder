@@ -7,26 +7,22 @@ import java.util.List;
 
 public class Ladder {
 
-    private final Height height;
-    private final Width width;
     private final List<Line> lines;
 
     private Ladder(int height, int width) {
-        this.height = new Height(height);
-        this.width = new Width(width);
-        this.lines = new ArrayList<>();
+        lines = makeLines(new Height(height), new Width(width));
     }
 
     public static Ladder from(int height, int width) {
-        Ladder ladder = new Ladder(height, width);
-        ladder.makeLines(width);
-        return ladder;
+        return new Ladder(height, width);
     }
 
-    private void makeLines(int width) {
+    private List<Line> makeLines(Height height, Width width) {
+        List<Line> newlines = new ArrayList<>();
         for (int i = 0; i < height.getHeight(); i++) {
-            lines.add(Line.of(width, new RandomBooleanGenerator()));
+            newlines.add(Line.of(width.getWidth(), new RandomBooleanGenerator()));
         }
+        return newlines;
     }
 
     public List<Line> getLines() {

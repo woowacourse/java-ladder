@@ -16,4 +16,8 @@ public class Width {
             throw new IllegalArgumentException(INVALID_LADDER_WIDTH_EXCEPTION.getMessageWithCause(width));
         }
     }
+
+    public int getWidth() {
+        return width;
+    }
 }
