@@ -6,9 +6,14 @@ public class Result {
 
     private final String value;
 
-    public Result(String value) {
+    public Result(String rawValue) {
+        String value = parse(rawValue);
         validate(value);
         this.value = value;
+    }
+
+    private String parse(String value) {
+        return value.trim();
     }
 
     private void validate(String value) {
