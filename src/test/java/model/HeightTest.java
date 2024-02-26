@@ -1,5 +1,8 @@
 package model;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,13 +16,13 @@ public class HeightTest {
         Height height = new Height("1");
 
         //when & then
-        Assertions.assertThat(height.getHeight()).isEqualTo(1);
+        assertThat(height.getHeight()).isEqualTo(1);
     }
 
     @Test
     @DisplayName("사다리의 높이가 음수일 경우 예외를 발생시킨다.")
     void heightNegativeInputTest() {
-        Assertions.assertThatThrownBy(() -> new Height("0"))
+        assertThatThrownBy(() -> new Height("0"))
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
