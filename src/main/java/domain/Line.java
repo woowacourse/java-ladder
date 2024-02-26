@@ -2,15 +2,22 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Line {
 
     private final List<Stick> sticks = new ArrayList<>();
 
     public Line(StickGenerator stickGenerator, int playerSize) {
-        for (int i = 0; i < playerSize - 1; i++) {
+        int sticksSize = playerSize - 1;
+
+        for (int i = 0; i < sticksSize; i++) {
             this.sticks.add(getStick(stickGenerator));
         }
+    }
+
+    Line(List<Stick> sticks) {
+        this.sticks.addAll(sticks);
     }
 
     private Stick getStick(StickGenerator stickGenerator) {
@@ -35,6 +42,57 @@ public class Line {
         Stick lastStick = this.sticks.get(this.sticks.size() - 1);
 
         return lastStick == stick;
+    }
+
+    public Direction move(int column) {
+        validateColumnSize(column);
+
+        Direction moveLeftResult = moveLeft(column);
+        Direction moveRightResult = moveRight(column);
+
+        return moveLeftResult.getHigherPriority(moveRightResult);
+    }
+
+    private void validateColumnSize(int column) {
+        int columnThreshold = this.sticks.size();
+
+        if (column < 0 || column > columnThreshold) {
+            throw new IllegalArgumentException("주어진 컬럼이 범위를 초과합니다.");
+        }
+    }
+
+    private Direction moveLeft(int column) {
+        Optional<Stick> leftStick = findLeftStick(column);
+        if (leftStick.isPresent() && leftStick.get().isFilled()) {
+            return Direction.LEFT;
+        }
+
+        return Direction.STAY;
+    }
+
+    private Optional<Stick> findLeftStick(int column) {
+        if (column > 0) {
+            return Optional.ofNullable(this.sticks.get(column - 1));
+        }
+
+        return Optional.empty();
+    }
+
+    private Direction moveRight(int column) {
+        Optional<Stick> rightStick = findRightStick(column);
+        if (rightStick.isPresent() && rightStick.get().isFilled()) {
+            return Direction.RIGHT;
+        }
+
+        return Direction.STAY;
+    }
+
+    private Optional<Stick> findRightStick(int column) {
+        if (column < this.sticks.size()) {
+            return Optional.ofNullable(this.sticks.get(column));
+        }
+
+        return Optional.empty();
     }
 
     public List<Stick> getSticks() {
