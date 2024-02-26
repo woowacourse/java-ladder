@@ -9,7 +9,7 @@ public class LadderGame {
 
     private final LadderResults ladderResults;
 
-    public LadderGame(String userNames, int ladderHeight, String rawLadderResults, RowGenerator generator) {
+    public LadderGame(String userNames, String rawLadderResults, int ladderHeight, RowGenerator generator) {
         NamesCreator namesCreator = new NamesCreator();
         LadderResultCreator ladderResultCreator = new LadderResultCreator();
         names = namesCreator.create(userNames);

@@ -24,13 +24,13 @@ public class Main {
         outputView.printNamesInput();
         String nameInput = inputView.getInput();
 
-        outputView.printHeightInput();
-        int ladderHeight = Integer.parseInt(inputView.getInput());
-
         outputView.printLadderResultInput();
         String rawLadderResult = inputView.getInput();
 
-        return new LadderGame(nameInput, ladderHeight, rawLadderResult, new RowRandomGenerator());
+        outputView.printHeightInput();
+        int ladderHeight = Integer.parseInt(inputView.getInput());
+
+        return new LadderGame(nameInput, rawLadderResult, ladderHeight, new RowRandomGenerator());
     }
 
     static final class RetryHelper {
