@@ -1,20 +1,13 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
-
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LineTest {
+import java.util.List;
 
-    @DisplayName("생성 테스트")
-    @Test
-    void createLine() {
-        assertThatCode(() -> new Line(filledStickGenerator(), 3))
-                .doesNotThrowAnyException();
-    }
+import static org.assertj.core.api.Assertions.assertThat;
+
+class LineTest {
 
     @DisplayName("라인은 인원 수 -1 만큼의 막대를 갖는다.")
     @Test

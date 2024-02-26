@@ -6,10 +6,8 @@ import java.util.List;
 public class Ladder {
 
     private static final int MIN_LADDER_HEIGHT = 1;
-
-    private final List<Line> lines = new ArrayList<>();
-
     public final int height;
+    private final List<Line> lines = new ArrayList<>();
 
     public Ladder(int height, int playerSize, StickGenerator stickGenerator) {
         validateLadderHeight(height);
@@ -32,5 +30,9 @@ public class Ladder {
 
     public List<Line> getLines() {
         return this.lines;
+    }
+
+    public int getHeight() {
+        return this.height;
     }
 }
