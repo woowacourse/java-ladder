@@ -5,15 +5,19 @@ import domain.LadderHeight;
 import domain.PlayerName;
 import domain.PlayerNames;
 import domain.bridge.strategy.RandomBridgeGenerator;
-import java.util.Arrays;
 import java.util.List;
 import view.InputView;
 import view.OutputView;
 
-public class LadderController extends Controller {
+public class LadderController {
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final RetryHandler retryHandler;
 
-    public LadderController(InputView inputView, OutputView outputView) {
-        super(inputView, outputView);
+    public LadderController(final InputView inputView, final OutputView outputView, final RetryHandler retryHandler) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.retryHandler = retryHandler;
     }
 
     public Ladder createLadder() {
@@ -25,7 +29,7 @@ public class LadderController extends Controller {
     }
 
     private PlayerNames readPlayerNames() {
-        return retry(() -> createPlayerNames(inputView.readPlayerNames()));
+        return retryHandler.retry(() -> createPlayerNames(inputView.readPlayerNames()));
     }
 
     private PlayerNames createPlayerNames(final List<String> splitPlayerNames) {
@@ -37,6 +41,6 @@ public class LadderController extends Controller {
     }
 
     private LadderHeight readLadderHeight() {
-        return retry(() -> new LadderHeight(inputView.readLadderHeight()));
+        return retryHandler.retry(() -> new LadderHeight(inputView.readLadderHeight()));
     }
 }

@@ -8,20 +8,20 @@ import org.junit.jupiter.api.Test;
 import view.InputView;
 import view.OutputView;
 
-class ControllerTest {
+class RetryHandlerTest {
 
     @Test
     @DisplayName("입력 횟수가 제한 횟수를 초과하면 예외가 발생하고 프로그램이 종료된다")
     void exitApplicationByOverReadLimitCount() {
-        Controller controller = new Controller(new InputView(new Scanner(System.in)), new OutputView());
+        RetryHandler retryHandler = new RetryHandler(new InputView(new Scanner(System.in)), new OutputView());
 
-        Assertions.assertThatThrownBy(() -> repeatMethodOverLimitCount(controller))
+        Assertions.assertThatThrownBy(() -> repeatMethodOverLimitCount(retryHandler))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.READ_LIMIT_OVER);
     }
 
-    private void repeatMethodOverLimitCount(Controller controller) {
-        controller.retry(() -> {
+    private void repeatMethodOverLimitCount(RetryHandler retryHandler) {
+        retryHandler.retry(() -> {
             throw new IllegalArgumentException("");
         });
     }

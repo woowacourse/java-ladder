@@ -5,14 +5,14 @@ import java.util.function.Supplier;
 import view.InputView;
 import view.OutputView;
 
-public class Controller {
-    protected final InputView inputView;
-    protected final OutputView outputView;
+public class RetryHandler {
+    private final InputView inputView;
+    private final OutputView outputView;
     private int retryCount;
 
     public static final int READ_LIMIT = 10;
 
-    public Controller(final InputView inputView, final OutputView outputView) {
+    public RetryHandler(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.retryCount = 0;
