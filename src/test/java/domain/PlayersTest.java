@@ -12,7 +12,7 @@ class PlayersTest {
 
     @DisplayName("사용자들의 이름을 받아 사용자 리스트를 생성한다.")
     @Test
-    void mapToPlayer() {
+    void convertToPlayer() {
         List<String> names = List.of("아톰", "산초");
         Players players = new Players(names);
 

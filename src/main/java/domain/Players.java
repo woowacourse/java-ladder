@@ -12,7 +12,7 @@ public class Players {
         validatePlayerSize(playerNames);
         validateDuplicated(playerNames);
 
-        this.players = mapToPlayer(playerNames);
+        this.players = convertToPlayer(playerNames);
     }
 
     private void validatePlayerSize(List<String> names) {
@@ -31,7 +31,7 @@ public class Players {
         return names.stream().distinct().count();
     }
 
-    public List<Player> mapToPlayer(List<String> names) {
+    private List<Player> convertToPlayer(List<String> names) {
         return names.stream()
                 .map(name -> new Player(name.trim()))
                 .toList();
