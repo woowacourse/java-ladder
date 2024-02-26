@@ -5,22 +5,30 @@ import ladder.domain.resource.line.Line;
 
 public class Ladder {
 
-    private static final int MAX_LADDER_HEIGHT = 50;
-
     private final List<Line> lines;
 
-    public Ladder(List<Line> lines) {
-        validateLinesSize(lines);
+    Ladder(List<Line> lines) {
+        validateConsistentLineSize(lines);
         this.lines = lines;
+    }
+
+    public int getHeight() {
+        return lines.size();
+    }
+
+    public int getWidth() {
+        return lines.get(0).getLineSize();
     }
 
     public List<Line> getLines() {
         return lines;
     }
 
-    private void validateLinesSize(List<Line> lines) {
-        if (lines.isEmpty() || lines.size() > MAX_LADDER_HEIGHT) {
-            throw new IllegalArgumentException("[ERROR] 사다리의 높이는 1~50만 가능합니다.");
+    private void validateConsistentLineSize(List<Line> lines) {
+        int expectedLineCount = lines.get(0).getLineSize();
+
+        if (!lines.stream().allMatch(line -> line.getLineSize() == expectedLineCount)) {
+            throw new IllegalArgumentException("[ERROR] 사다리의 모든 라인의 너비는 동일해야 합니다.");
         }
     }
 }
