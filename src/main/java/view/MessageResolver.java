@@ -2,6 +2,8 @@ package view;
 
 import domain.ConnectionStatus;
 import domain.Ladder;
+import domain.LadderResult;
+import domain.LadderResults;
 import domain.Names;
 import domain.RowLine;
 import java.util.stream.Collectors;
@@ -13,6 +15,7 @@ public class MessageResolver {
     private static final String LINE_MESSAGE_PREFIX = "    ";
     private static final String CONNECT_STATUS_MESSAGE = "-----";
     private static final String DISCONNECT_STATUS_MESSAGE = "     ";
+    private static final String LADDER_RESULT_PREFIX = "실행 결과" + System.lineSeparator();
 
     public String resolveNamesMessage(Names names) {
         return names.getNames().stream()
@@ -39,5 +42,15 @@ public class MessageResolver {
             return CONNECT_STATUS_MESSAGE;
         }
         return DISCONNECT_STATUS_MESSAGE;
+    }
+
+    public String resolveResultMessage(LadderResult ladderResult) {
+        return LADDER_RESULT_PREFIX + ladderResult.getResult();
+    }
+
+    public String resolveResultsMessage(LadderResults results) {
+        return LADDER_RESULT_PREFIX + results.getResults().stream()
+                .map(result -> String.format("%s : %s", result.getName(), result.getResult()))
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 }
