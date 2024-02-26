@@ -23,7 +23,7 @@ public class Player {
 
     private void checkReservedWords(final String name) {
         if (ReservedWords.isIncluded(name)) {
-            throw new IllegalArgumentException(RESERVED_WORD_ERROR);
+            throw new IllegalArgumentException(String.format(RESERVED_WORD_ERROR, name));
         }
     }
 
