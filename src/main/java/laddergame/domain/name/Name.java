@@ -5,12 +5,14 @@ import java.util.Objects;
 public class Name {
 
     private static final int MAX_LENGTH = 5;
+    private static final String INVALID_NAME = "all";
 
     private final String name;
 
     public Name(final String input) {
         validateBlank(input);
         validateLength(input);
+        validateInvalidName(input);
         this.name = input;
     }
 
@@ -23,6 +25,12 @@ public class Name {
     private void validateLength(final String input) {
         if (input.length() > MAX_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 이름길이는 5글자를 넘을 수 없습니다.");
+        }
+    }
+
+    private void validateInvalidName(final String input) {
+        if (INVALID_NAME.equals(input)) {
+            throw new IllegalArgumentException("[ERROR] 이름을 " + INVALID_NAME + "로 지을 수 없습니다.");
         }
     }
 

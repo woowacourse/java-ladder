@@ -3,6 +3,7 @@ package laddergame.domain.name;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -41,4 +42,13 @@ public class NameTest {
                 .hasMessage("[ERROR] 이름에 빈값을 입력할 수 없습니다.");
 
     }
+
+    @DisplayName("이름을 all로 할 수 없다.")
+    @Test
+    void validateInvalidName() {
+        Assertions.assertThatThrownBy(() -> new Name("all"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 이름을 all로 지을 수 없습니다.");
+    }
 }
+

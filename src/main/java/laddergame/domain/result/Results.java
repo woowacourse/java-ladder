@@ -15,4 +15,8 @@ public class Results {
     public List<Result> getResults() {
         return results;
     }
+
+    public int size() {
+        return results.size();
+    }
 }

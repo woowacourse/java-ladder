@@ -15,6 +15,7 @@ import laddergame.view.OutputView;
 
 public class LadderController {
 
+    private static final String FIND_ALL_KEY = "all";
     private final InputView inputView;
     private final OutputView outputView;
     private final LadderGame ladderGame;
@@ -34,19 +35,7 @@ public class LadderController {
 
         outputView.printLadderResult(ladderResult);
 
-        while (true) {
-            String inputName = inputView.readName();
-            if (inputName.equals("all")) {
-                final List<MatchingResult> matchingResults = ladderGame.findAll();
-                outputView.printMatchingResults(matchingResults);
-                break;
-            }
-
-            Name name = new Name(inputName);
-            final Result result = ladderGame.findResultByName(name);
-            outputView.printMatchingResult(result.getResult());
-        }
-
+        runSelect();
     }
 
     private Names receiveInputNames() {
@@ -56,6 +45,28 @@ public class LadderController {
     private LadderHeight receiveInputLadderHeight() {
         return ExceptionHandler.retryUntilInputIsValid(() -> new LadderHeight(inputView.readLadderHeight()),
                 outputView);
+    }
+
+    private void runSelect() {
+        final String inputName = inputView.readName();
+        if (inputName.equals(FIND_ALL_KEY)) {
+            printAllResult();
+            return;
+        }
+
+        printOnceResult(inputName);
+        runSelect();
+    }
+
+    private void printAllResult() {
+        final List<MatchingResult> matchingResults = ladderGame.findResultAll();
+        outputView.printMatchingResults(matchingResults);
+    }
+
+    private void printOnceResult(final String inputName) {
+        final Name name = new Name(inputName);
+        final Result result = ladderGame.findResultByName(name);
+        outputView.printMatchingResult(result.getResult());
     }
 
 }

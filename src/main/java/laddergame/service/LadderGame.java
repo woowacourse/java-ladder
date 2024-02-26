@@ -14,6 +14,7 @@ import laddergame.domain.result.Result;
 import laddergame.domain.result.Results;
 import laddergame.dto.LadderResult;
 import laddergame.dto.MatchingResult;
+import laddergame.exception.LadderGameException;
 
 public class LadderGame {
 
@@ -25,12 +26,19 @@ public class LadderGame {
     }
 
     public LadderResult createLadder(final Names names, final Results results, final LadderHeight ladderHeight) {
+        validateSize(names, results);
         final LineSize lineSize = new LineSize(names);
         final Ladder ladder = ladderGenerator.generate(lineSize, ladderHeight);
 
         saveMatchingResult(names.getNames(), results.getResults(), ladder);
 
         return LadderResult.of(names, ladder, results);
+    }
+
+    private void validateSize(final Names names, final Results results) {
+        if (names.size() != results.size()) {
+            throw new LadderGameException("[ERROR] 참가자와 결과 수가 같아야합니다.");
+        }
     }
 
     private void saveMatchingResult(final List<Name> names, final List<Result> results, final Ladder ladder) {
@@ -47,10 +55,14 @@ public class LadderGame {
     }
 
     public Result findResultByName(final Name name) {
-        return matchRepository.get(name);
+        if (matchRepository.containsKey(name)) {
+            return matchRepository.get(name);
+        }
+
+        throw new IllegalArgumentException("[ERROR] 존재하지 않는 이름입니다.");
     }
 
-    public List<MatchingResult> findAll() {
+    public List<MatchingResult> findResultAll() {
         return matchRepository.entrySet().stream()
                 .map(MatchingResult::from)
                 .toList();
