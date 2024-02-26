@@ -12,7 +12,7 @@ public class Line {
 
     public Line(RuleGenerator ruleGenerator, final int personCount) {
         points = new ArrayList<>(personCount);
-        draw(ruleGenerator, personCount);
+        makeLine(ruleGenerator, personCount);
     }
 
     public List<Integer> findHorizontalPosition() {
@@ -23,10 +23,9 @@ public class Line {
                 .toList();
     }
 
-    void draw(RuleGenerator generator, int personCount) {
+    private void makeLine(RuleGenerator generator, int personCount) {
         IntStream.range(0, personCount - 1)
                 .forEach(position -> makeHorizontalLine(generator, position));
-
     }
 
     private void makeHorizontalLine(RuleGenerator generator, int position) {

@@ -17,7 +17,6 @@ public class LineTest {
     void adjacentTest() {
         //given
         Line line=new Line(() -> true, 4);
-        line.draw(() -> true, 4);
         //when
         List<Boolean> expect=List.of(false, true, false, true);
         List<Boolean> actual = new ArrayList<>();
@@ -32,7 +31,6 @@ public class LineTest {
     void findHorizontalTest() {
         //given
         Line line=new Line(() -> true, 4);
-        line.draw(() -> true, 4);
         //when
         List<Integer> expect=List.of(0,2);
         List<Integer> actual = line.findHorizontalPosition();
