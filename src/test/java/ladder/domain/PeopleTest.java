@@ -38,38 +38,38 @@ class PeopleTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {",pobi,honux", "  ,pobi,honux", "pobi,,honux", "pobi,  ,honux"})
+    @ValueSource(strings = {",pobi,honux,crong", "  ,pobi,honux,crong", "pobi,,honux,crong", "pobi,  ,honux,crong"})
     @DisplayName("이름이 공백이라면 무시한다.")
-    void blankNameTest(String names) {
+    void blankNameTest(String blankNames) {
         // given
-        People people = new People(names);
+        People people = new People(blankNames);
 
         // when
         int count = people.count();
 
         // then
-        assertThat(count).isEqualTo(2);
+        assertThat(count).isEqualTo(3);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {" ,pobi", ", , ,", ",,,", "pobi"})
-    @DisplayName("이름이 1개 이하라면 예외가 발생한다.")
-    void nameLengthExceptionTest(String names) {
+    @DisplayName("이름이 2개 이하라면 예외가 발생한다.")
+    void nameLengthExceptionTest(String lessThanOneName) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new People(names));
+                .isThrownBy(() -> new People(lessThanOneName));
     }
 
     @Test
     @DisplayName("이름에 공백은 포함하지 않는다.")
     void createValidNames() {
         // given
-        String names = "crong,     jk    ";
+        String names = "crong,     jk    ,pobi";
 
         // when
         People people = new People(names);
 
         // then
-        assertThat(people.findMaxNameLength()).isEqualTo(5);
+        assertThat(people.getNames()).contains("jk");
     }
 
     @Test
