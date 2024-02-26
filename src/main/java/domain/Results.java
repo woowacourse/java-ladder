@@ -29,4 +29,8 @@ public class Results {
     public String resultOf(final int index) {
         return results.get(index).getValue();
     }
+
+    public int size() {
+        return results.size();
+    }
 }
