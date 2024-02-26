@@ -20,6 +20,10 @@ public class Players {
         }
     }
 
+    public int getWidth() {
+        return players.size() - 1;
+    }
+
     public List<Player> getPlayers() {
         return players;
     }

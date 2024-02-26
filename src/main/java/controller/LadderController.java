@@ -20,7 +20,7 @@ public class LadderController {
 
     private Ladder readLadder(Players players) {
         try {
-            return Ladder.from(InputView.readLadderHeight(), getWidth(players));
+            return Ladder.from(InputView.readLadderHeight(), players.getWidth());
         } catch (NumberFormatException e) {
             System.out.println(INVALID_LADDER_LANGUAGE_EXCEPTION.getMessage());
             return readLadder(players);
@@ -37,9 +37,5 @@ public class LadderController {
             System.out.println(e.getMessage());
             return readPlayers();
         }
-    }
-
-    private int getWidth(Players players) {
-        return players.getPlayers().size() - 1;
     }
 }
