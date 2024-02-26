@@ -22,7 +22,7 @@ public class Main {
         Results results = errorHandler.readUntilNoError(() -> makeResults(members.getCount()));
         Game game = Game.of(members, Lines.of(members.getCount(), height, pointStrategy), results);
 
-        outputView.printResult(game);
+        outputView.printGame(game);
     }
 
     private static Members makeMembers() {

@@ -36,9 +36,7 @@ public class Results {
             .toList();
     }
 
-    public List<String> getNames() {
-        return results.stream()
-            .map(Result::getName)
-            .toList();
+    public List<Result> getResults() {
+        return results;
     }
 }
