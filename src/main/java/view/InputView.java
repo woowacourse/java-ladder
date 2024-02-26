@@ -23,8 +23,7 @@ public class InputView {
     private void validatePlayers(String input) {
         validateBlank(input);
         validateDoubleDelimiter(input);
-        validateStartWord(input);
-        validateEndWord(input);
+        validateStartAndEndWord(input);
     }
 
     private void validateBlank(String input) {
@@ -39,15 +38,9 @@ public class InputView {
         }
     }
 
-    private void validateStartWord(String input) {
-        if (input.startsWith(DELIMITER)) {
-            throw new IllegalArgumentException("입력은 구분자로 시작할 수 없습니다.");
-        }
-    }
-
-    private void validateEndWord(String input) {
-        if (input.endsWith(DELIMITER)) {
-            throw new IllegalArgumentException("입력은 구분자로 끝날 수 없습니다.");
+    private void validateStartAndEndWord(String input) {
+        if (input.startsWith(DELIMITER) || input.endsWith(DELIMITER)) {
+            throw new IllegalArgumentException("입력은 구분자로 시작 혹은 끝날 수 없습니다");
         }
     }
 
@@ -61,8 +54,7 @@ public class InputView {
     private void validateTargets(String input) {
         validateBlank(input);
         validateDoubleDelimiter(input);
-        validateStartWord(input);
-        validateEndWord(input);
+        validateStartAndEndWord(input);
     }
 
     public int inputHeight() {
