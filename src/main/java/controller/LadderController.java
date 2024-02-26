@@ -31,7 +31,7 @@ public class LadderController extends RetryableController {
         return retry(() -> createPlayerNames(inputView.readPlayerNames()));
     }
 
-    public PlayerNames createPlayerNames(String[] playerNamesInput) {
+    private PlayerNames createPlayerNames(String[] playerNamesInput) {
         List<PlayerName> playerNames = Arrays.stream(playerNamesInput)
                 .map(PlayerName::new)
                 .toList();
