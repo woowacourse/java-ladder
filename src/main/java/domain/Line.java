@@ -27,7 +27,7 @@ public class Line {
     private void addBridge(final Generator generator, final int index) {
         final Bridge before = bridges.get(index - 1);
         if (before.getBridge()) {
-            bridges.add(Bridge.findByHasLine(false));
+            bridges.add(Bridge.NON_BRIDGE);
             return;
         }
         bridges.add(Bridge.findByHasLine(generator.generate()));
