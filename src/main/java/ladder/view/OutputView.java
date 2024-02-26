@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.Ladder;
 import ladder.domain.Line;
+import ladder.domain.Name;
 import ladder.domain.People;
 
 import java.util.stream.Collectors;
@@ -21,7 +22,7 @@ public class OutputView {
 
         String nameFormat = makeNameFormat(people);
 
-        for (String name : people.getNames()) {
+        for (Name name : people.getNames()) {
             String formattedName = String.format(nameFormat, name);
             System.out.print(formattedName);
         }

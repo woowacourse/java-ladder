@@ -1,49 +1,26 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class People {
 
-    private static final int MIN_NAME_LENGTH = 1;
-    private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_PEOPLE_COUNT = 3;
-    private static final String DELIMITER = ",";
 
-    private final List<String> names;
+    private final List<Name> names;
 
-    public People(String rawNames) {
-        List<String> names = parse(rawNames);
+    public People(List<Name> names) {
         validate(names);
         this.names = new ArrayList<>(names);
     }
 
-    private List<String> parse(String rawNames) {
-        String[] names = rawNames.split(DELIMITER);
-        return Arrays.stream(names)
-                .map(String::trim)
-                .filter(name -> !name.isBlank())
-                .toList();
-    }
-
-    private void validate(List<String> names) {
-        for (String name : names) {
-            validateLength(name);
-        }
+    private void validate(List<Name> names) {
         validateDuplication(names);
         validateCount(names);
     }
 
-    private void validateLength(String name) {
-        int nameLength = name.length();
-        if (nameLength > MAX_NAME_LENGTH || nameLength < MIN_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름은 공백을 제외한 최소 1글자 최대 5글자까지 부여할 수 있습니다.");
-        }
-    }
-
-    private void validateDuplication(List<String> names) {
+    private void validateDuplication(List<Name> names) {
         long uniqueCount = names.stream()
                 .distinct()
                 .count();
@@ -53,7 +30,7 @@ public class People {
         }
     }
 
-    private void validateCount(List<String> names) {
+    private void validateCount(List<Name> names) {
         if (names.size() < MIN_PEOPLE_COUNT) {
             throw new IllegalArgumentException("최소 인원은 세명입니다.");
         }
@@ -65,12 +42,12 @@ public class People {
 
     public int findMaxNameLength() {
         return names.stream()
-                .mapToInt(String::length)
+                .mapToInt(Name::getLength)
                 .max()
                 .orElse(0);
     }
 
-    public List<String> getNames() {
+    public List<Name> getNames() {
         return Collections.unmodifiableList(names);
     }
 }

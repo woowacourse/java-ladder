@@ -2,10 +2,12 @@ package ladder.controller;
 
 import ladder.domain.Height;
 import ladder.domain.Ladder;
+import ladder.domain.Name;
 import ladder.domain.People;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 public class LadderGame {
@@ -30,7 +32,10 @@ public class LadderGame {
     }
 
     private People readNames() {
-        String names = inputView.readNames();
+        List<String> rawNames = inputView.readNames();
+        List<Name> names = rawNames.stream()
+                .map(Name::new)
+                .toList();
         return new People(names);
     }
 
