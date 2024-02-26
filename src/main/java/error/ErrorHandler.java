@@ -1,19 +1,17 @@
 package error;
 
-import java.util.function.Function;
-import view.InputView;
+import java.util.function.Supplier;
 
 public class ErrorHandler {
 
     private static final String ERROR_PREFIX = "[ERROR] ";
 
-    public <T, R> R readUntilNoError(Function<T, R> function, InputView inputView, String message) {
+    public <T> T readUntilNoError(Supplier<T> supplier) {
         try {
-            String read = inputView.read(message);
-            return function.apply((T) read);
+            return supplier.get();
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_PREFIX + e.getMessage());
-            return readUntilNoError(function, inputView, message);
+            return readUntilNoError(supplier);
         }
     }
 }
