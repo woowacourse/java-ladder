@@ -19,35 +19,35 @@ public class Players {
                 .toList();
     }
 
-    private static void validate(final List<String> playerNames) {
+    private void validate(final List<String> playerNames) {
         checkBlankName(playerNames);
         checkDuplicated(playerNames);
         checkNamesCount(playerNames.size());
     }
 
-    private static void checkDuplicated(List<String> playerNames) {
+    private void checkDuplicated(List<String> playerNames) {
         if (hasDuplicateName(playerNames)) {
             throw new IllegalArgumentException(NAME_DUPLICATED_ERROR);
         }
     }
 
-    private static void checkBlankName(List<String> playerNames) {
+    private void checkBlankName(List<String> playerNames) {
         if (playerNames.stream().anyMatch(String::isBlank)) {
             throw new IllegalArgumentException(NAME_BLANK_ERROR);
         }
     }
 
-    private static void checkNamesCount(int count) {
+    private void checkNamesCount(int count) {
         if (count < MIN_NAMES_COUNT) {
             throw new IllegalArgumentException(NAMES_COUNT_ERROR);
         }
     }
 
-    private static boolean hasDuplicateName(final List<String> carNames) {
+    private boolean hasDuplicateName(final List<String> carNames) {
         return carNames.size() != getDistinctNamesCount(carNames);
     }
 
-    private static long getDistinctNamesCount(final List<String> playerNames) {
+    private long getDistinctNamesCount(final List<String> playerNames) {
         return playerNames.stream()
                 .distinct()
                 .count();

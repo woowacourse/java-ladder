@@ -103,4 +103,4 @@ example feat: 사용자 입력 후 도메인 사용
 - [x] `Ladder` 클래스의 정적팩토리 메서드 대신 non static 생성자만 사용하기
 - [x] `Line` 정적팩토리 메서드 사용 대신 생성자에서 Line 만들어주기
 - [x] `NonContinuousLineBuildStrategy`에서 ZoneGenerator를 필드로 갖도록 수정
-- [ ] push 하기 전 코드 정리하기
+- [x] push 하기 전 코드 정리하기

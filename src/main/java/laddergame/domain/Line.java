@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    private List<Zone> zones;
+    private final List<Zone> zones;
 
     public Line(final LineBuildStrategy lineBuildStrategy,
                 final int width) {
