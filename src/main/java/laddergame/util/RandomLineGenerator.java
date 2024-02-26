@@ -2,6 +2,9 @@ package laddergame.util;
 
 import laddergame.domain.Line;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class RandomLineGenerator implements LineGenerator {
@@ -14,6 +17,9 @@ public class RandomLineGenerator implements LineGenerator {
 
     @Override
     public Line generate() {
-        return Line.getLine(random.nextBoolean());
+        List<Line> lines = Arrays.stream(Line.values()).toList();
+        int randomIndex = random.nextInt(lines.size());
+
+        return lines.get(randomIndex);
     }
 }

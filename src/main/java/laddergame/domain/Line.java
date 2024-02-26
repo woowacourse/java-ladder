@@ -13,11 +13,4 @@ public enum Line {
     public String getSymbol() {
         return symbol;
     }
-
-    public static Line getLine(boolean buildStatus) {
-        if (buildStatus) {
-            return BRIDGE;
-        }
-        return EMPTY;
-    }
 }
