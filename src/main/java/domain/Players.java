@@ -42,6 +42,21 @@ public class Players {
         return Collections.unmodifiableList(players);
     }
 
+    public List<Player> getCheckPlayers(String result) {
+        if (result.equals("all")) {
+            return players;
+        }
+        return List.of(isContainPlayer(result));
+    }
+
+    private Player isContainPlayer(String result) {
+        Player player = new Player(result);
+        if (players.contains(player)) {
+            return player;
+        }
+        throw new IllegalArgumentException("해당 참여자는 리스트에 없습니다.");
+    }
+
     public int getOrder(Player player) {
         return players.indexOf(player);
     }

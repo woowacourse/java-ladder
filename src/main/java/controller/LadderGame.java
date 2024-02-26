@@ -21,24 +21,10 @@ public class LadderGame {
         final Players players = readWithRetry(this::readPlayers);
         final Targets targets = readWithRetry(() -> readTargets(players));
         final Height height = readWithRetry(this::readHeight);
-
         final Ladder ladder = Ladder.create(height, PlayerCount.from(players.getCount()));
-
-        outputView.printResult(players, ladder, targets);
-
         final LadderResults ladderResults = createLadderResults(players, ladder, targets);
+        outputView.printResult(players, ladder, targets);
         findLadderResult(players, ladderResults);
-    }
-
-    private void findLadderResult(Players players, LadderResults ladderResults) {
-        String result = inputView.inputResult();
-        if (result.equals("all")) {
-            List<Target> matchingResults = ladderResults.getMatchingTarget(players.getPlayers());
-            outputView.printPrize(players.getPlayers(), matchingResults);
-            return;
-        }
-        List<Player> checkResult = List.of(new Player(result));
-        outputView.printPrize(checkResult, ladderResults.getMatchingTarget(checkResult));
     }
 
     private LadderResults createLadderResults(Players players, Ladder ladder, Targets targets) {
@@ -47,6 +33,12 @@ public class LadderGame {
             results.put(player, targets.getPrize(ladder.climbLadder(players.getOrder(player))));
         }
         return new LadderResults(results);
+    }
+
+    private void findLadderResult(Players players, LadderResults ladderResults) {
+        String result = inputView.inputResult();
+        List<Player> results = players.getCheckPlayers(result);
+        outputView.printPrize(results, ladderResults.getMatchingTargets(results));
     }
 
     private Players readPlayers() {
