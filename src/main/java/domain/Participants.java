@@ -3,6 +3,7 @@ package domain;
 import constant.domain.ParticipantsExceptionMessage;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Participants {
 
@@ -37,5 +38,14 @@ public class Participants {
 
     public int getParticipantsCount() {
         return names.size();
+    }
+
+    public int getIndexOfName(String inputName) {
+        for (int i = 0; i < names.size(); i++) {
+            if (Objects.equals(names.get(i).getName(), inputName)) {
+                return i;
+            }
+        }
+        throw new IllegalArgumentException("[ERROR] 존재하지 않는 참가자입니다.");
     }
 }
