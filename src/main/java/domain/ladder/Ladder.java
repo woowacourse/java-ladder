@@ -22,9 +22,9 @@ public class Ladder {
         ladderIndexConverter = new LadderIndexConverter(players.size());
     }
 
-    public void drawLines(BooleanSupplier patternGenerator) {
+    public void drawLines(BooleanSupplier patternCreationStrategy) {
         rows.forEach(row -> {
-            row.createPattern(patternGenerator);
+            row.createPattern(patternCreationStrategy);
             ladderIndexConverter.swapByRowPattern(row.getRowPattern());
         });
     }
