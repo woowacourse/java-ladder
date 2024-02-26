@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class LineDto {
-    List<Boolean> connected;
+    private final List<Boolean> connected;
 
     private LineDto(List<Boolean> connected) {
         this.connected = connected;
