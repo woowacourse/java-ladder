@@ -1,12 +1,11 @@
 package ladder.model;
 
-import ladder.constant.LadderPath;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static ladder.constant.LadderPath.*;
+import static ladder.model.LadderPath.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {

@@ -1,6 +1,6 @@
 package ladder.dto;
 
-import ladder.constant.LadderPath;
+import ladder.model.LadderPath;
 import ladder.model.Line;
 
 import java.util.List;

@@ -1,12 +1,10 @@
 package ladder.model;
 
-import ladder.constant.LadderPath;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static ladder.constant.LadderPath.*;
+import static ladder.model.LadderPath.*;
 
 public class Line {
     private final List<LadderPath> row;
