@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public record Name(String value) {
 
-	private static final Pattern NAME_REGEX = Pattern.compile("^[a-z]*$");
+	private static final Pattern NAME_REGEX = Pattern.compile("^[A-Za-z가-힣0-9]*$");
 	private static final int MAX_NAME_LENGTH = 5;
 
 	public Name {
@@ -29,7 +29,7 @@ public record Name(String value) {
 	private void validateNamePattern(String value) {
 		boolean isPatternMatches = NAME_REGEX.matcher(value).matches();
 		if (!isPatternMatches) {
-			throw new IllegalArgumentException("이름은 알파벳 소문자로만 작성해야 합니다.");
+			throw new IllegalArgumentException("이름은 영문, 한글, 숫자로만 구성할 수 있습니다.");
 		}
 	}
 }
