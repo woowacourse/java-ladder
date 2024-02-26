@@ -1,7 +1,9 @@
-package domain;
+package domain.player;
 
+import domain.player.Player;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -22,5 +24,19 @@ class PlayerTest {
     void invalidNameLength(String playerName) {
         //when & then
         Assertions.assertThatThrownBy(() -> new Player(playerName)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("참가자의 위치를 왼쪽으로 이동시킨다.")
+    @Test
+    void moveLeft() {
+        //given
+        final Player player = new Player("a");
+        final Position expectedPosition = new Position(-1);
+
+        //when
+        player.moveLeft();
+
+        //then
+        Assertions.assertThat(player.getPosition()).isEqualTo(expectedPosition);
     }
 }

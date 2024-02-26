@@ -1,14 +1,17 @@
-package domain;
+package domain.player;
 
 public class Player {
 
     private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
+    private Position position;
 
     public Player(final String name) {
         validateNameLength(name);
+
         this.name = name;
+        this.position = new Position();
     }
 
     private void validateNameLength(final String name) {
@@ -19,5 +22,13 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public void moveLeft() {
+        position = position.decrease();
+    }
+
+    public Position getPosition() {
+        return position;
     }
 }
