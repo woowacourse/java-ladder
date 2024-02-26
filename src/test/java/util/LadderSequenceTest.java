@@ -1,5 +1,6 @@
 package util;
 
+import domain.CustomGenerator;
 import domain.Height;
 import domain.Ladder;
 import org.assertj.core.api.Assertions;
