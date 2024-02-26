@@ -1,8 +1,8 @@
 package view;
 
-import domain.line.Line;
-import domain.Lines;
 import domain.Names;
+import domain.line.Line;
+import domain.lines.Lines;
 
 public class ResultView {
     private ResultView() {

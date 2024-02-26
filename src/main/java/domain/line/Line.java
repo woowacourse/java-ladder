@@ -1,20 +1,28 @@
 package domain.line;
 
-import domain.BooleanGenerator;
-
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Line {
-    private final Points points;
-    private final BooleanGenerator generator;
+    private final List<Point> points;
 
-    public Line(final int personCount, final BooleanGenerator generator) {
-        this.generator = generator;
-        points = new CountToPoints(personCount);
+    public Line(List<Point> points) {
+        validateNoDuplicatePoints(points);
+        this.points = points;
+    }
+
+    private void validateNoDuplicatePoints(List<Point> points) {
+        if (hasDuplicatedPoints(points)) {
+            throw new IllegalStateException("사다리가 겹치는 라인이 생성되었습니다.");
+        }
+    }
+
+    private boolean hasDuplicatedPoints(List<Point> points) {
+        int indexOfSubList = Collections.indexOfSubList(points, List.of(Point.CONNECTED, Point.CONNECTED));
+        return indexOfSubList != -1;
     }
 
     public List<Point> getPoints() {
-        return points.value(generator);
+        return Collections.unmodifiableList(points);
     }
 }

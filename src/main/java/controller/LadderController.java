@@ -1,11 +1,12 @@
 package controller;
 
 import domain.Height;
-import domain.Lines;
 import domain.Names;
-import java.util.List;
+import domain.lines.Lines;
 import view.InputView;
 import view.ResultView;
+
+import java.util.List;
 
 public class LadderController {
     public void start() {

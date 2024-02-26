@@ -1,19 +1,21 @@
-package domain.line;
+package domain.lines;
 
 import domain.BooleanGenerator;
+import domain.line.Point;
 
 import java.util.List;
 import java.util.stream.Stream;
 
-public class CountToPoints implements Points {
+public class CountToPoints {
     private final int source;
+    private final BooleanGenerator generator;
 
-    public CountToPoints(int source) {
+    public CountToPoints(int source, BooleanGenerator generator) {
         this.source = source;
+        this.generator = generator;
     }
 
-    @Override
-    public List<Point> value(BooleanGenerator generator) {
+    public List<Point> value() {
         final Point firstPoint = Point.from(generator.generate());
         return Stream.iterate(firstPoint, prevPoint ->
                 selectCurrentPoint(generator, prevPoint)
