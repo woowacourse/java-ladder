@@ -14,6 +14,10 @@ public class InputView {
 
         final String input = scanner.nextLine();
 
+        return split(input);
+    }
+
+    private static List<String> split(final String input) {
         return Arrays.stream(input.split(DELIMITER))
                 .toList();
     }
@@ -34,6 +38,12 @@ public class InputView {
     }
 
     public List<String> readResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        final String input = scanner.nextLine();
+        return split(input);
+    }
+
+    public String readName() {
         return null;
     }
 }
