@@ -1,6 +1,7 @@
 package view;
 
 import domain.Height;
+import domain.NonDecidedResults;
 import domain.name.Names;
 
 import java.util.Arrays;
@@ -22,6 +23,11 @@ public class InputView {
         String height = scanner.nextLine();
         validateInputNumeric(height);
         return new Height(Integer.parseInt(height));
+    }
+
+    public NonDecidedResults readNonDecidedResults(Names names) {
+        List<String> results = Arrays.asList(scanner.nextLine().split(","));
+        return new NonDecidedResults(names, results);
     }
 
     private void validateInputNumeric(String target) {
