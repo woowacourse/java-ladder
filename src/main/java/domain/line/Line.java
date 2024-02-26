@@ -4,6 +4,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
+    private static final int NOT_FOUND = -1;
+    private static final Point CONNECTED_POINT = Point.CONNECTED;
+
     private final List<Point> points;
 
     public Line(List<Point> points) {
@@ -18,8 +21,8 @@ public class Line {
     }
 
     private boolean hasDuplicatedPoints(List<Point> points) {
-        int indexOfSubList = Collections.indexOfSubList(points, List.of(Point.CONNECTED, Point.CONNECTED));
-        return indexOfSubList != -1;
+        int indexOfSubList = Collections.indexOfSubList(points, List.of(CONNECTED_POINT, CONNECTED_POINT));
+        return indexOfSubList != NOT_FOUND;
     }
 
     public List<Point> getPoints() {
