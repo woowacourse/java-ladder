@@ -35,7 +35,7 @@ public class Ladder {
         StringBuilder lineBuilder = new StringBuilder();
         lineBuilder.append(LadderElement.COLUMN.getSymbol());
         for (int index = 0; index < line.size(); index++) {
-            lineBuilder.append(getElement(line.hasStep(index)));
+            lineBuilder.append(getElement(line.isConnected(index)));
             lineBuilder.append(LadderElement.COLUMN.getSymbol());
         }
         return lineBuilder.toString();
@@ -46,5 +46,28 @@ public class Ladder {
             return LadderElement.ROW.getSymbol();
         }
         return LadderElement.EMPTY.getSymbol();
+    }
+
+    public Prize findResult(final Players players, final Player target, final List<Prize> result) {
+        int index = players.getNames().indexOf(target.getName());
+        final int ladderSize = players.size() - 1;
+        for (Line line : lines) {
+            if (0 == index) {
+                if (line.isConnected(index)) {
+                    index++;
+                }
+            } else if (0 < index && index < ladderSize) {
+                if (line.isConnected(index)) {
+                    index++;
+                } else if (line.isConnected(index - 1)) {
+                    index--;
+                }
+            } else if (index == ladderSize) {
+                if (line.isConnected(index - 1)) {
+                    index--;
+                }
+            }
+        }
+        return result.get(index);
     }
 }

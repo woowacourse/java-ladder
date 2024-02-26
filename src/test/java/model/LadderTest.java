@@ -28,6 +28,45 @@ class LadderTest {
         //given
         int personCount = 5;
         var height = new Height(4);
+
+        List<String> expected = List.of("|     |     |     |     |",
+                "|     |     |     |     |",
+                "|     |     |     |     |",
+                "|     |     |     |     |");
+
+        //when
+        Ladder ladder = createNothingBuildLadder(height, personCount);
+
+        //then
+        Assertions.assertThat(ladder.getFormattedLines()).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("원하는 참여자의 결과를 확인한다.")
+    void createFindByPlayerName() {
+        //given
+        Height height = new Height(5);
+        int personCount = 3;
+        Ladder ladder = createNothingBuildLadder(height, personCount);
+
+        List<String> names = List.of("레디", "안나", "브라운");
+        Players players = new Players(names);
+
+        List<String> prizes = List.of("당첨", "꽝", "꽝");
+
+        Result result = Result.of(prizes, personCount);
+
+        //when
+        Prize expected = new Prize("당첨");
+        Player target = new Player("레디");
+
+        //then
+        Assertions.assertThat(ladder.findResult(players, target, result.getPrizes())).isEqualTo(expected);
+    }
+
+
+
+    static Ladder createNothingBuildLadder(Height height, int personCount) {
         var buildStrategy = new NothingBuildStrategy();
 
         List<Line> lines = new ArrayList<>();
@@ -36,15 +75,6 @@ class LadderTest {
             lines.add(new Line(personCount, buildStrategy));
         }
 
-        List<String> expected = List.of("|     |     |     |     |",
-                "|     |     |     |     |",
-                "|     |     |     |     |",
-                "|     |     |     |     |");
-
-        //when
-        var ladder = new Ladder(lines);
-
-        //then
-        Assertions.assertThat(ladder.getFormattedLines()).isEqualTo(expected);
+        return new Ladder(lines);
     }
 }

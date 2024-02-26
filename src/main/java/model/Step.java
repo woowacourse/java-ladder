@@ -2,6 +2,8 @@ package model;
 
 import java.util.Objects;
 
+
+//TODO: connected 로 변경하기
 public class Step {
 
     private final boolean hasStep;

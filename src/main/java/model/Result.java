@@ -25,4 +25,7 @@ public class Result {
         }
     }
 
+    public List<Prize> getPrizes() {
+        return prizes;
+    }
 }

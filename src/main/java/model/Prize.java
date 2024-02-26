@@ -26,4 +26,9 @@ public class Prize {
         }
         return Objects.equals(value, prize.value);
     }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }
