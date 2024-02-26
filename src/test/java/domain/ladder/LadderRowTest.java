@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import support.ConnectedLadderRungGenerator;
 
 public class LadderRowTest {
-    private final LadderRungGenerator ladderRungGenerator = new ConnectedLadderRungGenerator();
+    private final LadderRungGenerator connectedLadderRungGenerator = new ConnectedLadderRungGenerator();
 
     @Test
     void 플레이어_수만큼_가로대를_생성한다() {
@@ -16,7 +16,7 @@ public class LadderRowTest {
         final int playerSize = 5;
 
         // when
-        LadderRow ladderRow = LadderRow.create(playerSize, ladderRungGenerator);
+        LadderRow ladderRow = LadderRow.create(playerSize, connectedLadderRungGenerator);
 
         // then
         assertThat(ladderRow.getRungs()).hasSize(playerSize);
@@ -28,7 +28,7 @@ public class LadderRowTest {
         final int playerSize = 4;
 
         // when
-        LadderRow ladderRow = LadderRow.create(playerSize, ladderRungGenerator);
+        LadderRow ladderRow = LadderRow.create(playerSize, connectedLadderRungGenerator);
 
         // then
         List<LadderRung> rungs = ladderRow.getRungs();
