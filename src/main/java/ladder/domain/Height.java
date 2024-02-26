@@ -4,18 +4,9 @@ public class Height {
 
     private final int value;
 
-    public Height(String rawValue) {
-        int value = parse(rawValue);
+    public Height(int value) {
         validate(value);
         this.value = value;
-    }
-
-    private int parse(String rawValue) {
-        try {
-            return Integer.parseInt(rawValue);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자가 아닙니다.");
-        }
     }
 
     private void validate(int value) {
