@@ -1,7 +1,7 @@
 package model;
 
 public class Participant {
-    private final int MAX_LENGTH = 5;
+    private static final int MAX_LENGTH = 5;
     private final String name;
 
     public Participant(final String name) {

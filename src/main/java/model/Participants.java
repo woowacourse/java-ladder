@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Participants {
-    private final int MIN_LIMIT = 2;
+    private static final int MIN_LIMIT = 2;
     private final List<Participant> participants;
 
     public Participants(List<Participant> participants) {

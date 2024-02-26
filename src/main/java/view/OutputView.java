@@ -9,10 +9,10 @@ import model.Participant;
 import model.Participants;
 
 public class OutputView {
-    private final int PRINT_NAME_FORMAT = 5;
-    private final String LADDER_LINE_LENGTH = "|";
-    private final String LADDER_LINE_WIDTH_TRUE = "-----";
-    private final String LADDER_LINE_WIDTH_FALSE = "     ";
+    private static final int PRINT_NAME_FORMAT = 5;
+    private static final String LADDER_LINE_LENGTH = "|";
+    private static final String LADDER_LINE_WIDTH_TRUE = "-----";
+    private static final String LADDER_LINE_WIDTH_FALSE = "     ";
 
     public void printResultHeader() {
         System.out.println();
