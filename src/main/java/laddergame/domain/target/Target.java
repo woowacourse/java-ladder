@@ -5,15 +5,15 @@ import laddergame.util.InputValidator;
 import java.util.Objects;
 
 public class Target {
-    private final String result;
+    private final String target;
 
     public Target(final String result) {
         InputValidator.validateBlank(result);
-        this.result = result;
+        this.target = result;
     }
 
-    public String getResult() {
-        return result;
+    public String getTarget() {
+        return target;
     }
 
     @Override
@@ -21,11 +21,11 @@ public class Target {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         final Target target = (Target) o;
-        return Objects.equals(result, target.result);
+        return Objects.equals(this.target, target.target);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(result);
+        return Objects.hash(target);
     }
 }

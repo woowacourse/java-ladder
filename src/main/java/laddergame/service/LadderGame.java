@@ -33,7 +33,7 @@ public class LadderGame {
 
         for (int i = 0; i < players.getSize(); i++) {
             Target target = targets.convertToTraceBy(ladder.moveLines(i));
-            map.put(players.getPlayerName(i), target.getResult());
+            map.put(players.getPlayerName(i), target.getTarget());
         }
         return new Result(map);
     }

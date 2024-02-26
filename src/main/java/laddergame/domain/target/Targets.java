@@ -24,6 +24,10 @@ public class Targets {
         return targets.get(position + 1);
     }
 
+    public List<Target> getTargets() {
+        return targets;
+    }
+
     private List<laddergame.domain.target.Target> convertToTargets(final List<String> input) {
         return input.stream()
                 .map(laddergame.domain.target.Target::new)

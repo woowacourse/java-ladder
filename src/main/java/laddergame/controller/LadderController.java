@@ -34,7 +34,7 @@ public class LadderController {
         final Ladder ladder = ladderGame.createLadder(players, height);
         final Result result = ladderGame.start(players, targets, ladder);
 
-        printDrawnLadder(players, ladder);
+        printDrawnLadder(players, targets, ladder);
 
         List<Player> playerToShowResult = players.find(getPlayersToShowResult());
         outputView.printResult(playerToShowResult, result);
@@ -53,8 +53,8 @@ public class LadderController {
                 outputView);
     }
 
-    private void printDrawnLadder(final Players players, final Ladder ladder) {
-        outputView.printDrawnLadder(DrawnLadderDto.of(players, ladder));
+    private void printDrawnLadder(final Players players, final Targets targets, final Ladder ladder) {
+        outputView.printDrawnLadder(DrawnLadderDto.of(players, targets, ladder));
     }
 
     private String getPlayersToShowResult() {

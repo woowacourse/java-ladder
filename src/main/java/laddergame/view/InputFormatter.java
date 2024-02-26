@@ -3,9 +3,9 @@ package laddergame.view;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class NameFormatter {
+public class InputFormatter {
 
-    private NameFormatter() {
+    private InputFormatter() {
     }
 
     public static String formatNames(final List<String> names) {
@@ -14,6 +14,12 @@ public class NameFormatter {
         return formatFirstName(names)
                 + formatMiddleName(names, width)
                 + formatLastName(names, width);
+    }
+
+    public static String formatTargets(final List<String> targets) {
+        return targets.stream()
+                .map(target -> String.format("%-6s", target))
+                .collect(Collectors.joining());
     }
 
     private static String formatFirstName(final List<String> names) {
