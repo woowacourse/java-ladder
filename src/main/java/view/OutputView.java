@@ -62,11 +62,11 @@ public class OutputView {
 
         System.out.println("실행 결과");
         results1.forEach((result) -> {
-            System.out.printf("%s : %s\n", result.getName().getValue(), result.getPrize());
+            System.out.printf("%s : %s\n", result.getName().getValue(), result.getPrize().getValue());
         });
     }
 
     public static void printResult(Result result) {
-        System.out.println(result.getPrize());
+        System.out.println(result.getPrize().getValue());
     }
 }
