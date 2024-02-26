@@ -4,6 +4,7 @@ import domain.Height;
 import domain.Ladder;
 import domain.LadderCreator;
 import domain.LadderGame;
+import domain.LadderResult;
 import domain.Names;
 import domain.Prizes;
 import domain.RowLineGenerator;
@@ -29,9 +30,19 @@ public class LadderGameController {
         Names names = inputMapper.mapToNames(inputView.readNames());
         Height height = inputMapper.mapToHeight(inputView.readHeight());
         Ladder ladder = new LadderCreator().createLadder(rowLineGenerator, names.getNameCount(), height);
-        resultView.printLadder(ladder, names);
+        Prizes prizes = inputMapper.mapToPrizes(inputView.readResults());
 
-        Prizes results = inputMapper.mapToPrizes(inputView.readResults());
-        LadderGame ladderGame = new LadderGame(ladder, names, results);
+        resultView.printLadder(ladder, names, prizes);
+
+        LadderGame ladderGame = new LadderGame(ladder, names, prizes);
+
+        String driverName;
+        while (!(driverName = inputView.readDriver()).equals("all")) {
+            LadderResult result = ladderGame.drive(driverName);
+            resultView.printResult(result);
+        }
+
+        resultView.printResults(ladderGame.driveAll());
+
     }
 }
