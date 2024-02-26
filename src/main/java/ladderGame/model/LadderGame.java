@@ -12,15 +12,13 @@ public class LadderGame {
     }
 
     public LadderResult findLadderGameResult(String name) {
-        int startIndex = 0;
-        for (Player player : players.getPlayers()) {
-            if (player.getName().equals(name)) {
-                int resultIndex = ladder.findLadderResultIndex(startIndex);
-                return ladderResults.getLadderResults().get(resultIndex);
-            }
-            startIndex++;
+        Integer startIndex = players.indexOfPlayerByName(name);
+
+        if (startIndex == null) {
+            throw new IllegalStateException("존재하지 않는 참가자 이름입니다.");
         }
 
-        throw new IllegalStateException("존재하지 않는 참가자 이름입니다.");
+        int resultIndex = ladder.findLadderResultIndex(startIndex);
+        return ladderResults.getLadderResults().get(resultIndex);
     }
 }

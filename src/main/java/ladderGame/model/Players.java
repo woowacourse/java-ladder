@@ -29,6 +29,18 @@ public class Players {
         }
     }
 
+    public Integer indexOfPlayerByName(String name) {
+        int startIndex = 0;
+        for (Player player : players) {
+            if (player.getName().equals(name)) {
+                return startIndex;
+            }
+            startIndex++;
+        }
+
+        return null;
+    }
+
     public int getPlayerSize() {
         return players.size();
     }
