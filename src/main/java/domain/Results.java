@@ -26,7 +26,7 @@ public class Results {
         participantsResult.put(participant, results.get(position));
     }
 
-    public String getResultByParticipantName(Participant participant) {
+    public String getResultByParticipant(Participant participant) {
         return participantsResult.get(participant);
     }
 

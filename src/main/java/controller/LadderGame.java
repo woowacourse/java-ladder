@@ -97,11 +97,9 @@ public class LadderGame {
 
             keepInput = !name.isEmpty();
 
-            if (!keepInput) {
-                continue;
+            if (keepInput) {
+                outputView.printResult(getLadderGameResult(name, participants, results));
             }
-
-            outputView.printResult(getLadderGameResult(name, participants, results));
         }
     }
 
@@ -110,7 +108,7 @@ public class LadderGame {
             return getAllResult(results);
         }
 
-        return results.getResultByParticipantName(participants.findParticipantByName(name));
+        return results.getResultByParticipant(participants.findParticipantByName(name));
     }
 
     private String getAllResult(Results results) {
