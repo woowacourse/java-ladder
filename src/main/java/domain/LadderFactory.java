@@ -21,7 +21,7 @@ public class LadderFactory {
         final List<Line> lines = IntStream.range(0, height)
                 .mapToObj(index -> new Line(generateLine(width)))
                 .toList();
-        return new Ladder(lines);
+        return createLadder(lines);
     }
 
     private static List<Bridge> generateLine(final int width) {
@@ -45,3 +45,10 @@ public class LadderFactory {
     }
 
 }
+
+
+/*
+
+    final을 꼭 써야할까..
+
+ */
