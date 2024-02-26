@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LadderGameTest {
 
@@ -23,7 +24,11 @@ class LadderGameTest {
 
         LadderGame ladderGame = new LadderGame(new Players(List.of("포비", "왼손", "준")), new LadderResults(List.of("꽝", "5000", "3000")), ladder);
 
-        assertEquals(ladderGame.findLadderGameResult("포비"), new LadderResult("꽝"));
+        assertAll(
+                () -> assertEquals(ladderGame.findLadderGameResult("포비"), new LadderResult("꽝")),
+                () -> assertEquals(ladderGame.findLadderGameResult("왼손"), new LadderResult("5000")),
+                () -> assertEquals(ladderGame.findLadderGameResult("준"), new LadderResult("3000"))
+        );
     }
 
 }

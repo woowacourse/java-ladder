@@ -12,4 +12,8 @@ public class LadderResults {
             ladderResults.add(new LadderResult(result));
         }
     }
+
+    public List<LadderResult> getLadderResults() {
+        return new ArrayList<>(ladderResults);
+    }
 }
