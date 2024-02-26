@@ -15,7 +15,7 @@ public class LadderResultTest {
     @DisplayName("사다리 실행 결과 수는 참여자 수와 같다")
     @ParameterizedTest
     @MethodSource("provideValidSizeOfLadderResult")
-    void testValidSizeOfLadderResult(List<String> names, List<String> contents) {
+    void testValidSizeOfLadderResult(List<String> names, List<LadderResultContent> contents) {
         Players players = Players.from(names);
         assertDoesNotThrow(() -> LadderResult.of(players, contents));
     }
@@ -30,7 +30,7 @@ public class LadderResultTest {
     @DisplayName("사다리 실행 결과 수가 참여자 수와 다르면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource("provideInvalidSizeOfLadderResult")
-    void testInvalidSizeOfLadderResult(List<String> names, List<String> contents) {
+    void testInvalidSizeOfLadderResult(List<String> names, List<LadderResultContent> contents) {
         Players players = Players.from(names);
         assertThatThrownBy(() -> LadderResult.of(players, contents))
                 .isInstanceOf(IllegalArgumentException.class);
