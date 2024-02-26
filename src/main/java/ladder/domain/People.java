@@ -9,7 +9,7 @@ public class People {
 
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
-    private static final int MIN_PEOPLE_COUNT = 2;
+    private static final int MIN_PEOPLE_COUNT = 3;
     private static final String DELIMITER = ",";
 
     private final List<String> names;
@@ -55,7 +55,7 @@ public class People {
 
     private void validateCount(List<String> names) {
         if (names.size() < MIN_PEOPLE_COUNT) {
-            throw new IllegalArgumentException("최소 인원은 두명입니다.");
+            throw new IllegalArgumentException("최소 인원은 세명입니다.");
         }
     }
 
