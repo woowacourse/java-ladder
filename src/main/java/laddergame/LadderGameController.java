@@ -9,7 +9,7 @@ import laddergame.view.OutputView;
 
 import java.util.function.Supplier;
 
-public class LadderGame {
+public class LadderGameController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 

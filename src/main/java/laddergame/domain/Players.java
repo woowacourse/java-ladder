@@ -2,6 +2,8 @@ package laddergame.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static laddergame.domain.Player.NAME_BLANK_ERROR;
 
@@ -14,8 +16,8 @@ public class Players {
 
     public Players(final List<String> playerNames) {
         validate(playerNames);
-        this.players = playerNames.stream()
-                .map(playerName -> new Player(playerName, new Position(0, 0)))
+        this.players = IntStream.range(0, playerNames.size())
+                .mapToObj(i -> new Player(playerNames.get(i), new Position(i, 0)))
                 .toList();
     }
 

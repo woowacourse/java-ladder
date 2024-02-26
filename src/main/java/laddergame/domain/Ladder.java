@@ -18,6 +18,10 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
+    public Direction move(int startX, int startY) {
+        return lines.get(startY).findDirection(startX);
+    }
+
     public List<Lines> getLines() {
         return Collections.unmodifiableList(lines);
     }
