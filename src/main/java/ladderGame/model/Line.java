@@ -26,6 +26,8 @@ public class Line {
     }
 
     public boolean checkLeftConnection(int index) {
-        return false;
+        if(index == 0)
+            return false;
+        return connectionStatuses.get(index-1).equals(ConnectionStatus.CONNECTION);
     }
 }
