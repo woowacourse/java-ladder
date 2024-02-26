@@ -24,19 +24,22 @@ public class Ladder {
         return Collections.unmodifiableList(bridges);
     }
 
-    // TODO Prize 객체를 사용해서 반환하는 것도 고민
     public Result calculateResult(Name name) {
         int index = names.findIndex(name.getName());
         for (Bridges bridge : bridges) {
-            if (bridge.canCrossToLeft(index)) {
-                index--;
-                continue;
-            }
-            if (bridge.canCrossToRight(index)) {
-                index++;
-            }
+            index = calculateNewIndex(index, bridge);
         }
         return new Result(name, prizes.findByIndex(index));
+    }
+
+    private int calculateNewIndex(int index, Bridges bridge) {
+        if (bridge.canCrossToLeft(index)) {
+            return index - 1;
+        }
+        if (bridge.canCrossToRight(index)) {
+            return index + 1;
+        }
+        return index;
     }
 
     public Results calculateAllResult() {

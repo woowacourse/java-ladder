@@ -2,6 +2,7 @@ package domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Names {
 
@@ -27,13 +28,10 @@ public class Names {
     }
 
     public int findIndex(String findName) {
-        for (int i = 0; i < names.size(); i++) {
-            Name name = names.get(i);
-            if (name.isSameName(findName)) { // TODO 인덴트 줄이기
-                return i;
-            }
-        }
-        throw new IllegalArgumentException("존재하지 않는 이름입니다.");
+        return IntStream.range(0, names.size())
+                .filter((index) -> names.get(index).isSameName(findName))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 이름입니다."));
     }
 
     public Name findNameByString(String target) {
