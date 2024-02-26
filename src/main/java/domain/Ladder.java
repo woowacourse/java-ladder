@@ -38,14 +38,19 @@ public class Ladder {
 
     public void playLadder(Results results, Participants participants) {
         for (int initPosition = 0; initPosition < participants.getParticipantsCount(); initPosition++) {
-            int position = initPosition;
-
-            for (int i = 0; i < height; i++) {
-                position = ladder.get(i).decideNextPosition(position);
-            }
-
+            int position = getLastPosition(initPosition);
             results.recordParticipantsResult(participants.getParticipants().get(initPosition), position);
         }
+    }
+
+    public int getLastPosition(int initPosition) {
+        int position = initPosition;
+
+        for (int i = 0; i < height; i++) {
+            position = ladder.get(i).decideNextPosition(position);
+        }
+
+        return position;
     }
 
     public List<Line> getLadder() {
