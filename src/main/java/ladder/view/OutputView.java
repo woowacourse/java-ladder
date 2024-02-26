@@ -4,10 +4,7 @@ import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.People;
 
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
-
-import static java.lang.System.lineSeparator;
 
 public class OutputView {
 
@@ -16,8 +13,9 @@ public class OutputView {
     }
 
     public void printPeople(People people) {
-        StringJoiner resultNotice = new StringJoiner("실행결과", lineSeparator(), lineSeparator());
-        System.out.println(resultNotice);
+        System.out.println();
+        System.out.println("실행결과");
+        System.out.println();
 
         String nameFormat = makeNameFormat(people);
 
