@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -25,6 +26,14 @@ public class NameTest {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NameExceptionMessage.NO_NAME.getExceptionMessage());
+    }
+
+    @ParameterizedTest(name = "{0}가 이름이면 예외가 발생한다.")
+    @ValueSource(strings = {"all", "exit"})
+    void forbidNameExceptionTest(String name) {
+        assertThatThrownBy(() -> new Name(name))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] all 또는 exit는 이름이 될 수 없습니다.");
     }
 
 }
