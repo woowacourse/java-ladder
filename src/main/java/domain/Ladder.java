@@ -12,9 +12,16 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    private void validate(List<Line> ladder) {
-        validateMaxHeight(ladder.size());
+    private void validate(final List<Line> ladder) {
+        validateEmptiness(ladder);
+        validateMaxHeight(ladder);
         validateLadderShape(ladder);
+    }
+
+    private void validateEmptiness(final List<Line> ladder) {
+        if (ladder.isEmpty()) {
+            throw new IllegalArgumentException("사다리 가로 라인 길이는 1 이상이어야 합니다");
+        }
     }
 
     private void validateLadderShape(final List<Line> ladder) {
@@ -24,7 +31,8 @@ public class Ladder {
         }
     }
 
-    private void validateMaxHeight(final int height) {
+    private void validateMaxHeight(final List<Line> ladder) {
+        final int height = ladder.size();
         if (height > MAX_HEIGHT) {
             throw new IllegalArgumentException(String.format("입력된 값: %d, 사다리 높이는 최대 %d입니다.", height, MAX_HEIGHT));
         }

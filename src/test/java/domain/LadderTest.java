@@ -58,4 +58,13 @@ class LadderTest {
 
         assertThat(endPosition).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("빈 리스트가 주어졌을 때 사다리를 생성하면 예외를 발생시킨다")
+    void emptyList() {
+        final List<Line> lines = new ArrayList<>();
+
+        assertThatThrownBy(() -> LadderFactory.createLadder(lines))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
