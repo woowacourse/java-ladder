@@ -5,11 +5,12 @@ import ladderGame.model.*;
 import java.util.List;
 
 public class ResultView {
-    private static final String RESULT_PROMPT = "실행 결과";
+    private static final String RESULT_PROMPT = "사다리 결과";
     private static final String BLANK_MARK = "     ";
     private static final String DISCONNECTION_MARK = "     ";
     private static final String CONNECTION_MARK = "-----";
     private static final String LINE_MARK = "|";
+    private static final String LADDER_RESULT_PROMPT = "실행 결과";
 
     public void printLadder(List<Player> players, List<Line> lines, List<LadderResult> ladderResults) {
         System.out.println(System.lineSeparator() + RESULT_PROMPT + System.lineSeparator());
@@ -49,5 +50,10 @@ public class ResultView {
     private void printLadderResults(List<LadderResult> ladderResults) {
         ladderResults.forEach(result -> System.out.printf("%6s", result.getLadderResult()));
         System.out.println();
+    }
+
+    public void printLadderResult(LadderResult result) {
+        System.out.println(System.lineSeparator() + LADDER_RESULT_PROMPT);
+        System.out.println(result.getLadderResult());
     }
 }

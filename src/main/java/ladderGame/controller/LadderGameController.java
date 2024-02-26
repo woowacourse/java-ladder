@@ -28,5 +28,12 @@ public class LadderGameController {
 
         Ladder ladder = new Ladder(new ArrayList<>(lines));
         resultView.printLadder(players.getPlayers(), ladder.getLines(), ladderResults.getLadderResults());
+
+        LadderGame ladderGame = new LadderGame(players, ladderResults, ladder);
+
+        while(true) {
+            LadderResult result = ladderGame.findLadderGameResult(inputView.inputResultWantPlayerName());
+            resultView.printLadderResult(result);
+        }
     }
 }
