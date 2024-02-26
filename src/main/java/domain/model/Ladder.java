@@ -12,8 +12,10 @@ public class Ladder {
 
     public Ladder(String input, int personCount) {
         this.height = new Height(input);
+
         for (int i = 0; i < height.getHeight(); i++) {
-            lines.add(new Line(new RuleGeneratorImpl(), personCount));
+            Line line=new Line(new RuleGeneratorImpl(),personCount);
+            lines.add(line);
         }
     }
 
