@@ -14,7 +14,7 @@ public class Ladder {
 
     public int drive(int index) {
         return IntStream.range(0, getRowLineCount())
-                .reduce(index, (currentColumn, i) -> lines.get(i).navigateNextIndex(currentColumn));
+                .reduce(index, (currentColumn, i) -> lines.get(i).navigateNextColumn(currentColumn));
     }
 
     public RowLine getLineByIndex(int index) {

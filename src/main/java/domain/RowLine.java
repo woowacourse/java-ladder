@@ -12,7 +12,7 @@ public class RowLine {
         this.connections = connections;
     }
 
-    public int navigateNextIndex(int index) {
+    public int navigateNextColumn(int index) {
         if (getRightConnection(index).isConnect()) {
             return index + 1;
         }

@@ -16,10 +16,10 @@ class RowLineTest {
     void testNavigateNextColumn() {
         List<ConnectionStatus> connections = List.of(CONNECTED, DISCONNECTED, CONNECTED);
         RowLine rowLine = new RowLine(connections);
-        assertThat(rowLine.navigateNextIndex(0)).isEqualTo(1);
-        assertThat(rowLine.navigateNextIndex(1)).isEqualTo(0);
-        assertThat(rowLine.navigateNextIndex(2)).isEqualTo(3);
-        assertThat(rowLine.navigateNextIndex(3)).isEqualTo(2);
+        assertThat(rowLine.navigateNextColumn(0)).isEqualTo(1);
+        assertThat(rowLine.navigateNextColumn(1)).isEqualTo(0);
+        assertThat(rowLine.navigateNextColumn(2)).isEqualTo(3);
+        assertThat(rowLine.navigateNextColumn(3)).isEqualTo(2);
     }
 
     @DisplayName("특정 위치의 오른쪽이 연결이 있는지 확인할 수 있다.")
