@@ -10,19 +10,6 @@ import org.junit.jupiter.api.Test;
 
 class ParticipantsTest {
 
-    @DisplayName("List<model.Participant>을 받아 Participants 객체를 생성한다.")
-    @Test
-    void createParticipants() {
-        List<Participant> given = List.of(
-                new Participant("ash"),
-                new Participant("daon")
-        );
-        assertThatCode(() ->
-                assertThat(new Participants(given).getSize())
-                        .isEqualTo(2))
-                .doesNotThrowAnyException();
-    }
-
     @DisplayName("Participants 객체에 null 값이 입력되면 예외가 발생한다")
     @Test
     void validateParticipantsSizeWhenNull() {

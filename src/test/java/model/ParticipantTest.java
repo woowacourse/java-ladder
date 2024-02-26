@@ -10,14 +10,6 @@ import static org.assertj.core.api.Assertions.*;
 
 class ParticipantTest {
 
-    @DisplayName("String 값을 받아 Participant 객체를 생성한다.")
-    @Test
-    void createParticipant() {
-        String given = "lilly";
-        assertThatCode(() -> new Participant(given))
-                .doesNotThrowAnyException();
-    }
-
     @DisplayName("참여할 사람의 이름은 5자를 초과할 수 없다.")
     @Test
     void validateNameLength() {

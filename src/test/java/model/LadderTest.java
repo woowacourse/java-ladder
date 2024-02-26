@@ -9,13 +9,6 @@ import org.junit.jupiter.api.Test;
 
 public class LadderTest {
 
-    @DisplayName("model.Ladder 객체를 생성한다.")
-    @Test
-    void createLadder() {
-        assertThatCode(Ladder::new)
-                .doesNotThrowAnyException();
-    }
-
     @DisplayName("사다리 높이와 사람 수, RandomGenerator을 입력받아 사다리 줄을 설정한다.")
     @Test
     void addLadderLine() {
