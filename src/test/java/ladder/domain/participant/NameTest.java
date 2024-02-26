@@ -2,6 +2,7 @@ package ladder.domain.participant;
 
 import ladder.exception.participant.InvalidNameLengthException;
 import ladder.exception.participant.NonAlphabeticNameException;
+import ladder.exception.participant.ProhibitedNameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -40,5 +41,12 @@ public class NameTest {
         // when & then
         assertThatThrownBy(() -> new Name(value))
                 .isInstanceOf(NonAlphabeticNameException.class);
+    }
+
+    @Test
+    @DisplayName("참가자 이름이 all이면 예외가 발생한다.")
+    void prohibitedNameTest() {
+        assertThatThrownBy(() -> new Name("all"))
+                .isInstanceOf(ProhibitedNameException.class);
     }
 }
