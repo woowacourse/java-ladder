@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
+    private static final String LADDER_SIDE_SYMBOL = "|";
+
     public void printError(String message) {
         System.out.println(message);
     }
@@ -37,9 +39,10 @@ public class OutputView {
     }
 
     private void printLine(Line line, int maxNameLength) {
+        String prefixLadder = " ".repeat(maxNameLength) + LADDER_SIDE_SYMBOL;
         String points = line.getPoints().stream()
                 .map(point -> point.repeatSymbol(maxNameLength))
-                .collect(Collectors.joining("|", "    |", "|"));
+                .collect(Collectors.joining(LADDER_SIDE_SYMBOL, prefixLadder, LADDER_SIDE_SYMBOL));
         System.out.println(points);
     }
 }
