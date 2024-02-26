@@ -3,11 +3,11 @@ package ladder.domain;
 public class LineNumber {
     private static final int MINIMUM_LINE_NUMBER = 1;
 
-    private final int lineNumber;
+    private final int value;
 
-    public LineNumber(final int lineNumber) {
-        validateLineNumber(lineNumber);
-        this.lineNumber = lineNumber;
+    public LineNumber(final int value) {
+        validateLineNumber(value);
+        this.value = value;
     }
 
     private void validateLineNumber(final int lineNumber) {
