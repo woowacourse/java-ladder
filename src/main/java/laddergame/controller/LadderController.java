@@ -3,6 +3,7 @@ package laddergame.controller;
 import laddergame.domain.Result;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderHeight;
+import laddergame.domain.player.Player;
 import laddergame.domain.player.Players;
 import laddergame.domain.target.Targets;
 import laddergame.dto.DrawnLadderDto;
@@ -10,6 +11,8 @@ import laddergame.exception.ExceptionHandler;
 import laddergame.service.LadderGame;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
+
+import java.util.List;
 
 public class LadderController {
 
@@ -32,6 +35,8 @@ public class LadderController {
         final Result result = ladderGame.start(players, targets, ladder);
 
         printDrawnLadder(players, ladder);
+
+        List<Player> playerToShowResult = players.find(getPlayersToShowResult());
     }
 
     private Players getPlayers() {
@@ -51,4 +56,7 @@ public class LadderController {
         outputView.printResult(DrawnLadderDto.of(players, ladder));
     }
 
+    private String getPlayersToShowResult() {
+        return inputView.readPlayersToShowResult();
+    }
 }

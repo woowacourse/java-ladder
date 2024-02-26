@@ -10,7 +10,7 @@ import java.util.List;
 public record DrawnLadderDto(List<String> names, List<LineDto> ladder) {
 
     public static DrawnLadderDto of(final Players names, final Ladder ladder) {
-        List<String> mappedNames = mapToNames(names.getNames());
+        List<String> mappedNames = mapToNames(names.getPlayers());
         List<LineDto> mappedLadder = mapToLadder(ladder.getLines());
 
         return new DrawnLadderDto(mappedNames, mappedLadder);
