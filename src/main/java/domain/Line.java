@@ -23,6 +23,18 @@ public class Line {
         return isExistStep(nowStep - ONE_STEP);
     }
 
+    public boolean isExistRightStep(int nowStep) {
+        if (nowStep == lineLastStep()) {
+            return false;
+        }
+
+        return isExistStep(nowStep + ONE_STEP);
+    }
+
+    private int lineLastStep() {
+        return stepPoints.size() - 1;
+    }
+
     private StepPoint makeOnePoint(int cellIndex, StepGenerator stepGenerator) {
         if (isPreviousStepExist(cellIndex)) {
             return StepPoint.ABSENT;
