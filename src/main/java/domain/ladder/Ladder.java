@@ -16,9 +16,9 @@ public class Ladder {
     private final LadderIndexConverter ladderIndexConverter;
 
     public Ladder(Players players, Results results, LadderHeight height) {
-        createLadder(players, height);
         this.players = players;
         this.results = results;
+        createLadder(height);
         ladderIndexConverter = new LadderIndexConverter(players.size());
     }
 
@@ -41,7 +41,7 @@ public class Ladder {
                 .toList();
     }
 
-    private void createLadder(Players players, LadderHeight height) {
+    private void createLadder(LadderHeight height) {
         int createdRowCount = 0;
         while (!height.isSameHeightAs(createdRowCount)) {
             LadderRow line = new LadderRow(players.size());
