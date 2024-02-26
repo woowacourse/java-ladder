@@ -36,7 +36,6 @@ public class Line {
     }
 
     public Position goHorizontal(final Position position) {
-        // TODO : positon 에 points 전달해서 반환 생각해보기
         validatePosition(position);
 
         if (position.isNot(0) && canGoLeft(position)) {
