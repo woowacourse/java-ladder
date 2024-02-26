@@ -37,24 +37,19 @@ public class OutputView {
         System.out.println(System.lineSeparator() + "실행 결과");
     }
 
-
     public void printTokens(List<String> tokens) {
         StringJoiner joiner = new StringJoiner(" ");
         tokens.stream()
                 .map(this::formatToken)
                 .forEach(joiner::add);
 
-        System.out.println(joiner.toString() + System.lineSeparator());
+        System.out.println(joiner.toString());
     }
 
     public void printLadder(List<RowPatternDto> patterns) {
         patterns.stream()
                 .map(RowPatternDto::rowPattern)
                 .forEach(this::printLadderRowPattern);
-    }
-
-    public void printErrorMessage(String message) {
-        System.out.println("[ERROR] " + message + System.lineSeparator());
     }
 
     private void printLadderRowPattern(List<Boolean> indices) {
