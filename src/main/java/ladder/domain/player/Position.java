@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Position {
     private static final int MINIMUM_POSITION = 1;
 
-    private final int position;
+    private int position;
 
     public Position(final int position) {
         validatePosition(position);
@@ -17,6 +17,10 @@ public class Position {
             throw new IllegalArgumentException(
                     String.format("참여자의 위치는 %d보다 작을 수 없습니다.", MINIMUM_POSITION));
         }
+    }
+
+    public void add(final int value) {
+        this.position += value;
     }
 
     @Override
