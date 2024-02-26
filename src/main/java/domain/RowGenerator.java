@@ -1,5 +1,5 @@
 package domain;
 
-interface RowGenerator {
+public interface RowGenerator {
     Row generate(int width);
 }
