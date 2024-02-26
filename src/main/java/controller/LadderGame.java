@@ -1,12 +1,8 @@
 package controller;
 
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
-
 import domain.height.Height;
 import domain.ladder.Ladder;
 import domain.ladder.LadderRungGenerator;
-import domain.player.Name;
 import domain.player.Players;
 import java.util.List;
 import view.InputView;
@@ -34,9 +30,7 @@ public class LadderGame {
 
     private Players generatePlayers() {
         List<String> names = InputView.inputPlayerNames();
-        return names.stream()
-                .map(Name::new)
-                .collect(collectingAndThen(toList(), Players::new));
+        return Players.from(names);
     }
 
     private Height generateHeight() {

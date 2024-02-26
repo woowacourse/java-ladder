@@ -1,5 +1,8 @@
 package domain.player;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
 import java.util.List;
 
 public class Players {
@@ -10,10 +13,16 @@ public class Players {
 
     private final List<Name> names;
 
-    public Players(final List<Name> names) {
+    private Players(final List<Name> names) {
         validateNumberOfPlayers(names);
         validateDuplicateName(names);
         this.names = names;
+    }
+
+    public static Players from(List<String> rawNames) {
+        return rawNames.stream()
+                .map(Name::new)
+                .collect(collectingAndThen(toList(), Players::new));
     }
 
     private void validateNumberOfPlayers(List<Name> names) {
