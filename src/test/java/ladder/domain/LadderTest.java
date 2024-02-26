@@ -30,4 +30,17 @@ class LadderTest {
                 () -> assertThat(actualPlayersCount).isEqualTo(players.count())
         );
     }
+
+    @DisplayName("이름을 입력하면 도착 위치를 반환한다.")
+    @Test
+    void ladderResultTest() {
+        Players players = new Players(List.of("poby", "honux"));
+        Height height = new Height(3);
+        Ladder ladder = new Ladder(players, height, () -> RIGHT);
+
+        assertAll(
+                () -> assertThat(ladder.findResultLocation("poby")).isEqualTo(1),
+                () -> assertThat(ladder.findResultLocation("honux")).isEqualTo(0)
+        );
+    }
 }
