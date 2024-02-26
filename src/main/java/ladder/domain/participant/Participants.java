@@ -2,7 +2,7 @@ package ladder.domain.participant;
 
 import ladder.domain.Position;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.dto.ParticipantsOutcome;
+import ladder.domain.ladder.ParticipantsOutcome;
 import ladder.domain.outcome.Outcomes;
 import ladder.exception.participant.DuplicatedNamesException;
 import ladder.exception.participant.InvalidParticipantsCountException;

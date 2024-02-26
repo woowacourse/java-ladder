@@ -75,7 +75,7 @@ public class ParticipantsTest {
         final Map<String, String> expectedParticipantsOutcome = Map.of("mia", "200", "aim", "100", "poo", "300");
 
         // when
-        final Map<String, String> actualParticipantsOutcome = participants.assignOutcomesByLadder(ladder, outcomes).values();
+        final Map<String, String> actualParticipantsOutcome = participants.assignOutcomesByLadder(ladder, outcomes).getValues();
 
         // then
         assertThat(actualParticipantsOutcome).containsAllEntriesOf(expectedParticipantsOutcome);
