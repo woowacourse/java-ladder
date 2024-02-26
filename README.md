@@ -7,7 +7,6 @@
 - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
 
 # 기능 요구사항 목록
-
 - [X] : 사람 이름을 입력 받는다.
     - [X] : 사다리 게임에 참여하는 사람에 이름을 최대5글자까지 부여할 수 있다.
     - [X] : 사람 이름은 쉼표(,)를 기준으로 구분한다.

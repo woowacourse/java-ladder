@@ -40,7 +40,7 @@ public class OutputView {
         }
         return " ".repeat(5);
     }
-
+  
     public static void printResults(Prizes result) {
         for (String name : result.getResults()) {
             System.out.printf("%5s ", name);
@@ -63,7 +63,7 @@ public class OutputView {
         System.out.println("실행결과");
         System.out.println(name + " : " + prize);
     }
-
+  
     public static void printException(Exception exception) {
         System.out.println(exception.getMessage());
     }
