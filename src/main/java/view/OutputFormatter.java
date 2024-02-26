@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 public class OutputFormatter {
     private static final String SPACE = " ";
     private static final String BAR = "|";
+    private static final String BRIDGE = "-----";
 
     public String toNameUnit(Players players) {
         return players.getPlayers().stream()
@@ -28,14 +29,14 @@ public class OutputFormatter {
         String line = rawLine.getSteps().stream()
                 .map(this::getStep)
                 .collect(Collectors.joining());
-        return "    " + line;
+        return SPACE.repeat(4) + line;
     }
 
     private String getStep(Step step) {
         if (step.isRight()) {
-            return BAR + "-----";
+            return BAR + BRIDGE;
         }
-        return BAR + "     ";
+        return BAR + SPACE.repeat(5);
     }
 
     public String toTargetUnit(Targets targets) {
