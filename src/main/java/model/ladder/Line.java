@@ -8,14 +8,19 @@ public class Line {
 
     private static final Random random = new Random();
 
-    private final List<Boolean> points;
+    private final List<Step> steps;
 
+    /**
+     * @param width
+     */
     public Line(Width width) {
-        List<Boolean> result = new ArrayList<>();
+        List<Step> steps = new ArrayList<>();
         for (int i = 0; i < width.getValue() - 1; i++) {
+            steps.add(s)
+            steps.add(generate(steps))
             result.add(generate(result, i));
         }
-        this.points = result;
+        this.steps = result;
     }
 
     private Boolean generate(List<Boolean> points, int index) {
@@ -30,14 +35,14 @@ public class Line {
     }
 
     public int size() {
-        return points.size();
+        return steps.size();
     }
 
     public boolean isConnected(int index) {
-        return points.get(index);
+        return steps.get(index);
     }
 
-    public List<Boolean> getPoints() {
-        return points;
+    public List<Boolean> getSteps() {
+        return steps;
     }
 }

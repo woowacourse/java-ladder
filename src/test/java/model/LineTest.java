@@ -24,7 +24,7 @@ class LineTest {
     void overlapConnection() {
         //given
         Line line = new Line(new Width(4));
-        List<Boolean> points = line.getPoints();
+        List<Boolean> points = line.getSteps();
 
         //when
         boolean isOverlap = false;
