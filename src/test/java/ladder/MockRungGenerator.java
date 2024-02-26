@@ -2,8 +2,8 @@ package ladder;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import ladder.domain.Rung;
-import ladder.domain.randomGenerator.RungGenerator;
+import ladder.domain.ladder.Rung;
+import ladder.domain.ladder.RungGenerator;
 
 public class MockRungGenerator implements RungGenerator {
 

@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.Collections;
 import java.util.List;
@@ -7,7 +7,6 @@ import ladder.domain.dto.FloorResponseDto;
 import ladder.domain.dto.LadderResponseDto;
 import ladder.domain.participant.Name;
 import ladder.domain.participant.Participants;
-import ladder.domain.randomGenerator.RungGenerator;
 
 public class Ladder {
 

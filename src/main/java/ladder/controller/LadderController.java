@@ -2,10 +2,10 @@ package ladder.controller;
 
 import java.util.List;
 import java.util.function.Supplier;
-import ladder.domain.Ladder;
 import ladder.domain.dto.LadderResponseDto;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.RungGenerator;
 import ladder.domain.participant.Participants;
-import ladder.domain.randomGenerator.RungGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -23,7 +23,7 @@ public class LadderController {
 
     public void run() {
         Participants participants = repeatUntilValid(this::getParticipants);
-        int participantsCount = participants.getParticipantsCount();
+        int participantsCount = participants.getCount();
 
         Ladder ladder = repeatUntilValid(() -> getLadder(participantsCount));
         LadderResponseDto ladderResponseDto = ladder.getResultLadders();

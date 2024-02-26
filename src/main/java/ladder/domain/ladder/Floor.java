@@ -1,10 +1,9 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 import ladder.domain.dto.FloorResponseDto;
-import ladder.domain.randomGenerator.RungGenerator;
 
 public class Floor {
 

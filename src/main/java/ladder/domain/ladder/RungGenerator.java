@@ -1,6 +1,4 @@
-package ladder.domain.randomGenerator;
-
-import ladder.domain.Rung;
+package ladder.domain.ladder;
 
 public interface RungGenerator {
 

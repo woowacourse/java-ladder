@@ -1,7 +1,7 @@
 package ladder.domain.dto;
 
 import java.util.List;
-import ladder.domain.Rung;
+import ladder.domain.ladder.Rung;
 
 public record FloorResponseDto(List<Boolean> buildStatusList) {
 

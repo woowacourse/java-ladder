@@ -1,7 +1,6 @@
-package ladder.domain.randomGenerator;
+package ladder.domain.ladder;
 
 import java.util.Random;
-import ladder.domain.Rung;
 
 public class RandomRungGenerator implements RungGenerator {
 
