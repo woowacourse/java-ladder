@@ -14,7 +14,9 @@ public class OutputView {
     private static final String NAME_FORMAT = "%5s";
     private static final String STEP_DELIMITER = "|";
     private static final String EXCEPTION_PREFIX = "[ERROR] ";
-    public static final String STEP_PREFIX = "    ";
+    private static final String STEP_PREFIX = "    ";
+    private static final String PATH_EXIST = "-----";
+    private static final String PATH_EMPTY = "     ";
 
     public void printResultPrefix() {
         System.out.println(RESULT_PREFIX);
@@ -44,9 +46,16 @@ public class OutputView {
     private String getLadderStepShape(final LadderStep ladderStep) {
         final String ladderStepShape = ladderStep.getLadderPaths()
                 .stream()
-                .map(Path::getShape)
+                .map(this::determinePathShape)
                 .collect(Collectors.joining(STEP_DELIMITER, STEP_DELIMITER, STEP_DELIMITER));
         return STEP_PREFIX + ladderStepShape;
+    }
+
+    private String determinePathShape(final Path path) {
+        if(path.isExist()) {
+            return PATH_EXIST;
+        }
+        return PATH_EMPTY;
     }
 
     public void printException(final RuntimeException exception) {
