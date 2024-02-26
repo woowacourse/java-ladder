@@ -8,7 +8,7 @@ public class Leg {
         this.leg = leg;
     }
 
-    public boolean getLeg(){
+    public boolean isExistLeg() {
         return leg;
     }
 }

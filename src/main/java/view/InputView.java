@@ -1,6 +1,8 @@
 package view;
 
-import static java.lang.System.*;
+import static java.lang.System.in;
+import static java.lang.System.lineSeparator;
+import static java.lang.System.out;
 
 import domain.Player;
 import java.util.Arrays;
@@ -10,8 +12,8 @@ import java.util.regex.Pattern;
 
 public class InputView {
 
-    private static final String MESSAGE_PARTICIPATED_PLAYERS = lineSeparator()+"참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    private static final String MESSAGE_LADDER_HEIGHT = lineSeparator()+"최대 사다리 높이는 몇 개인가요?";
+    private static final String MESSAGE_PARTICIPATED_PLAYERS = lineSeparator() + "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String MESSAGE_LADDER_HEIGHT = lineSeparator() + "최대 사다리 높이는 몇 개인가요?";
     private static final Pattern EMPTY_SPACE_PATTERN = Pattern.compile(" ");
     private static final String NAMES_SEPARATOR = ",";
 

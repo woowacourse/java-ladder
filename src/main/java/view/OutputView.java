@@ -11,7 +11,7 @@ import java.util.List;
 
 public class OutputView {
 
-    private static final String RESULT = lineSeparator()+"실행결과"+lineSeparator();
+    private static final String RESULT = lineSeparator() + "실행결과" + lineSeparator();
     private static final String STICK = "|";
     private static final String LEG_UNIT = "-";
     private static final String FORMAT_NAME = "%6s";
@@ -49,7 +49,7 @@ public class OutputView {
     private static void printLine(List<Leg> legs) {
         for (Leg leg : legs) {
             System.out.print(STICK);
-            System.out.print(extractLeg(leg.getLeg()));
+            System.out.print(extractLeg(leg.isExistLeg()));
         }
         System.out.print(STICK + lineSeparator());
     }

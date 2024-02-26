@@ -42,7 +42,7 @@ public class LineTest {
         List<Leg> legs = line.getLegs();
 
         for (int i = 1; i < legs.size(); i++) {
-            assertThat(legs.get(i).getLeg()).isNotEqualTo(legs.get(i - 1).getLeg());
+            assertThat(legs.get(i).isExistLeg()).isNotEqualTo(legs.get(i - 1).isExistLeg());
         }
     }
 }

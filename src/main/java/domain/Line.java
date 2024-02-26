@@ -22,7 +22,7 @@ public class Line {
 
 
     private static void decideLegExist(LegGenerateStrategy legGenerateStrategy, List<Leg> legs, int legIndex) {
-        if (legs.get(legIndex - 1).getLeg()) {
+        if (legs.get(legIndex - 1).isExistLeg()) {
             legs.add(new Leg(false));
             return;
         }
