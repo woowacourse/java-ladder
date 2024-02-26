@@ -4,19 +4,16 @@ import ladder.exception.participant.InvalidNameLengthException;
 import ladder.exception.participant.NonAlphabeticNameException;
 import ladder.exception.participant.ProhibitedNameException;
 
-public class Name {
+public record Name(String value) {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String PROHIBITED_NAME = "all";
     private static final String NAME_REGEX = "^[a-zA-Z]*$";
 
-    private final String value;
-
-    public Name(String value) {
+    public Name {
         value = value.trim();
         validateNameLength(value);
         validateIsAlphabetic(value);
         validateIsNotProhibited(value);
-        this.value = value;
     }
 
     private void validateNameLength(final String name) {
@@ -35,9 +32,5 @@ public class Name {
         if (PROHIBITED_NAME.equals(name)) {
             throw new ProhibitedNameException();
         }
-    }
-
-    public String getValue() {
-        return value;
     }
 }

@@ -22,7 +22,7 @@ public class NameTest {
         final Name mia = new Name(name);
 
         // then
-        assertEquals("mia", mia.getValue());
+        assertEquals("mia", mia.value());
     }
 
     @ParameterizedTest
