@@ -21,7 +21,7 @@ public class Line {
     }
 
     private static void validateOverlappingBridge(final Bridge previousBridge, final Bridge currentBridge) {
-        if (previousBridge.isConnected() && previousBridge == currentBridge) {
+        if (previousBridge.isConnected() && currentBridge.isConnected()) {
             throw new IllegalArgumentException("사다리 라인은 겹칠 수 없습니다.");
         }
     }
@@ -35,7 +35,7 @@ public class Line {
     }
 
     public boolean checkConnectivity(final int position) {
-        final Bridge bridge = bridges.get(position);
-        return bridge.isConnected();
+        final Bridge targetBridge = bridges.get(position);
+        return targetBridge.isConnected();
     }
 }

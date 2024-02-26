@@ -38,14 +38,15 @@ public class Ladder {
         }
     }
 
-    public int playByPosition(int position) {
-        int currentHeight = 0;
+    public int playByPosition(int horizontalPosition) {
         final int ladderHeight = getHeight();
-        while (currentHeight < ladderHeight) {
-            position += horizontalMovement(position, currentHeight);
-            currentHeight++;
+        final Position position = new Position(0, horizontalPosition);
+        while (position.getVerticalLocation() < ladderHeight) {
+//            position += horizontalMovement(position, currentHeight);
+//            position.move();
+//            position.next();
         }
-        return position;
+        return position.getHorizontalLocation();
     }
 
     private int horizontalMovement(final int position, final int currentHeight) {
