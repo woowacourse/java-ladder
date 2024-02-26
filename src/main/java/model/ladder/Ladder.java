@@ -13,8 +13,8 @@ public class Ladder {
 
     public static Ladder of(Height height, Width width) {
         List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height.size(); i++) {
-            lines.add(new Line(width));
+        for (int index = 0; index < height.size(); index++) {
+            lines.add(Line.from(width));
         }
         return new Ladder(lines);
     }
