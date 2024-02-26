@@ -22,7 +22,7 @@ public class RandomConnectionGenerator implements ConnectionGenerator {
     }
 
     private Connection addConnection(Connection beforeConnection) {
-        if (beforeConnection==CONNECTED) {
+        if (beforeConnection == CONNECTED) {
             beforeConnection = NOTCONNECTED;
             return beforeConnection;
         }
@@ -32,8 +32,8 @@ public class RandomConnectionGenerator implements ConnectionGenerator {
     }
 
     private Connection addRandomConnection() {
-
-        if(Math.random() <= PERCENTAGE_OF_CONNECTION){
+        //TODO Random.nextBoolean 활용을 통한 코드 단순화
+        if (Math.random() <= PERCENTAGE_OF_CONNECTION) {
             return CONNECTED;
         }
         return NOTCONNECTED;

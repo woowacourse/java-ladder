@@ -7,7 +7,7 @@ public enum Connection {
 
     private final boolean isConnect;
 
-    Connection(boolean isConnect){
-        this.isConnect=isConnect;
+    Connection(boolean isConnect) {
+        this.isConnect = isConnect;
     }
 }

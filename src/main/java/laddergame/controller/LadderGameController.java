@@ -10,6 +10,7 @@ public class LadderGameController {
     private LadderGameController() {
     }
 
+    //TODO inputView 로직이 숨겨져 입력이 잘구분되지 않음
     public static void run() {
         People people = ExceptionHandledReader.readUntilNoError(LadderGameController::getPeople);
         Ladder ladder = ExceptionHandledReader.readUntilNoError(() -> getLadder(people));

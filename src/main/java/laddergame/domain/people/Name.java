@@ -4,9 +4,9 @@ public class Name {
     private static final String NAME_RULE = "[a-zA-Z0-9]{1,5}";
     private final String playerName;
 
-    public Name(String playerName){
+    public Name(String playerName) {
         validateNameRule(playerName);
-        this.playerName=playerName;
+        this.playerName = playerName;
     }
 
     private void validateNameRule(String name) {
@@ -15,5 +15,7 @@ public class Name {
         }
     }
 
-    public String getName(){return playerName;}
+    public String getName() {
+        return playerName;
+    }
 }

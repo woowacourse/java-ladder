@@ -10,6 +10,7 @@ import static laddergame.domain.ladder.Connection.CONNECTED;
 import static laddergame.domain.ladder.Connection.NOTCONNECTED;
 
 public class RowLine {
+    //TODO 필드 초기화 제거하기
     private final List<Connection> connections = new ArrayList<>();
 
     public RowLine(int peopleNumber, ConnectionGenerator generator) {
@@ -17,7 +18,7 @@ public class RowLine {
         validateConnection(generatedConnection);
         this.connections.addAll(generatedConnection);
     }
-
+    //TODO depth 줄이기
     private void validateConnection(List<Connection> connections) {
         Connection beforeConnection = NOTCONNECTED;
 
