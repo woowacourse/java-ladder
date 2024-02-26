@@ -15,9 +15,13 @@ public class CountToPoints implements Points {
     @Override
     public List<Point> value(BooleanGenerator generator) {
         final Point firstPoint = Point.from(generator.generate());
-        return Stream.iterate(firstPoint, prevPoint -> {
-            if (prevPoint.isConnected()) return Point.DISCONNECTED;
-            return Point.from(generator.generate());
-        }).limit(source - 1).toList();
+        return Stream.iterate(firstPoint, prevPoint ->
+                selectCurrentPoint(generator, prevPoint)
+        ).limit(source - 1).toList();
+    }
+
+    private static Point selectCurrentPoint(BooleanGenerator generator, Point prevPoint) {
+        if (prevPoint.isConnected()) return Point.DISCONNECTED;
+        return Point.from(generator.generate());
     }
 }
