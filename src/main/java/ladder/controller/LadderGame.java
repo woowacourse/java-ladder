@@ -8,13 +8,11 @@ import ladder.view.OutputView;
 
 import java.util.function.Supplier;
 
-public class LadderCreator {
-    private final InputView inputView;
-    private final OutputView outputView;
+public class LadderGame {
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
-    public LadderCreator(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public LadderGame() {
     }
 
     public void run() {
