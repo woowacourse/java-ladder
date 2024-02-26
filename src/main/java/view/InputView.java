@@ -18,8 +18,17 @@ public class InputView {
     }
 
     public String[] readPlayerNames() {
+        String input = scanner.nextLine();
+        validatePlayerNamesFormat(input);
+
         System.out.println(String.format("참여할 사람 이름을 입력하세요. (%s)로 구분하세요", PLAYER_NAMES_INPUT_DELIMITER));
-        return splitPlayerNames(scanner.nextLine());
+        return splitPlayerNames(input);
+    }
+
+    private void validatePlayerNamesFormat(String playerNamesInput) {
+        if(playerNamesInput.endsWith(PLAYER_NAMES_INPUT_DELIMITER)) {
+            throw new IOException(ExceptionMessage.PLAYER_NAMES_FORMAT);
+        }
     }
 
     private String[] splitPlayerNames(String playerNamesInput) {
