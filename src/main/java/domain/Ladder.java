@@ -29,4 +29,10 @@ public class Ladder {
 			.map(HorizontalLine::createStatus)
 			.toList();
 	}
+
+	public void play(Player player) {
+		for (HorizontalLine line : lines) {
+			player.move(line);
+		}
+	}
 }
