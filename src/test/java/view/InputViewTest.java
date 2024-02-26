@@ -88,5 +88,15 @@ class InputViewTest {
             Assertions.assertThat(InputView.readWinnings(() -> "a,b,c"))
                     .isEqualTo(List.of("a", "b", "c"));
         }
+
+        @DisplayName("null 혹은 빈 문자열을 받으면 예외를 발생한다.")
+        @ParameterizedTest
+        @NullAndEmptySource
+        @ValueSource(strings = {" ", "\t", "\n"})
+        void emptyInputTest(String input) {
+            Assertions.assertThatThrownBy(() -> InputView.readWinnings(() -> input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("null 혹은 빈 문자열을 입력할 수 없습니다.");
+        }
     }
 }
