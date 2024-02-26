@@ -11,7 +11,8 @@ public class Ladder {
     private final List<LadderStep> ladderSteps;
 
     public Ladder(final Height height, final int stepWidth) {
-        this.ladderSteps = generateLadderSteps(height, stepWidth);
+        final List<LadderStep> generatedLadderSteps = generateLadderSteps(height, stepWidth);
+        this.ladderSteps = unmodifiableList(generatedLadderSteps);
     }
 
     private List<LadderStep> generateLadderSteps(final Height height, final int stepWidth) {
@@ -24,6 +25,6 @@ public class Ladder {
     }
 
     public List<LadderStep> getLadderSteps() {
-        return unmodifiableList(ladderSteps);
+        return ladderSteps;
     }
 }
