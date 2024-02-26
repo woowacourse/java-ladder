@@ -3,6 +3,7 @@ package domain.bridge.strategy;
 import domain.LadderBridge;
 import domain.bridge.BridgeGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGeneratorStub implements BridgeGenerator {
@@ -10,6 +11,10 @@ public class BridgeGeneratorStub implements BridgeGenerator {
 
     public void setBridges(List<LadderBridge> bridges) {
         this.bridges = bridges;
+    }
+
+    public BridgeGeneratorStub() {
+        this.bridges = new ArrayList<>();
     }
 
     @Override
