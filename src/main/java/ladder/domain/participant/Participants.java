@@ -1,9 +1,15 @@
 package ladder.domain.participant;
 
+import ladder.domain.Position;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.dto.ParticipantsOutcome;
+import ladder.domain.outcome.Outcomes;
 import ladder.exception.participant.DuplicatedNamesException;
 import ladder.exception.participant.InvalidParticipantsCountException;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.IntStream;
 
@@ -35,6 +41,16 @@ public class Participants {
         return IntStream.range(0, names.size())
                 .mapToObj(position -> new Participant(names.get(position), position))
                 .toList();
+    }
+
+    public ParticipantsOutcome assignOutcomesByLadder(Ladder ladder, Outcomes outcomes) {
+        final Map<String, String> participantsOutcome = new HashMap<>();
+        for (Participant participant : participants) {
+            final Position endPosition = ladder.determineFinalPositionOf(participant);
+            final String outcome = outcomes.getValueOf(endPosition);
+            participantsOutcome.put(participant.getName(), outcome);
+        }
+        return new ParticipantsOutcome(participantsOutcome);
     }
 
     public int getNecessaryLadderWidth() {

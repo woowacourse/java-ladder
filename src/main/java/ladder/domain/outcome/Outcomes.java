@@ -1,5 +1,6 @@
 package ladder.domain.outcome;
 
+import ladder.domain.Position;
 import ladder.exception.outcome.MismatchedOutcomesCountException;
 
 import java.util.List;
@@ -20,5 +21,11 @@ public class Outcomes {
         return outcomes.stream()
                 .map(Outcome::value)
                 .toList();
+    }
+
+    public String getValueOf(Position position) {
+        int index = position.value();
+        Outcome outcome = outcomes.get(index);
+        return outcome.value();
     }
 }

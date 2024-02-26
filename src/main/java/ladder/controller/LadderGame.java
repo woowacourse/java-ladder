@@ -3,6 +3,7 @@ package ladder.controller;
 import ladder.domain.generator.LadderStepsGenerator;
 import ladder.domain.generator.RandomLadderStepsGenerator;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.dto.ParticipantsOutcome;
 import ladder.domain.ladder.size.LadderSize;
 import ladder.domain.outcome.Outcomes;
 import ladder.domain.participant.Participants;
@@ -22,6 +23,7 @@ public class LadderGame {
         final int width = participants.getNecessaryLadderWidth();
         final Ladder ladder = createLadder(width);
         printLadderGame(participants, ladder, outcomes);
+        final ParticipantsOutcome participantsOutcome = participants.assignOutcomesByLadder(ladder, outcomes);
     }
 
     private Participants createParticipants() {
