@@ -18,6 +18,15 @@ public class InputView {
                 .toList();
     }
 
+    public List<String> readTargets() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+        final String input = scanner.nextLine();
+
+        return Arrays.stream(input.split(DELIMITER))
+                .toList();
+    }
+
     public int readLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         final String input = scanner.nextLine();
