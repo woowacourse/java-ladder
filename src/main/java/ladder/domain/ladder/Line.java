@@ -12,19 +12,19 @@ public class Line {
 
     private List<Rung> makeUnconnectedLine(final List<Boolean> rungExist) {
         for (int index = 1; index < rungExist.size(); index++) {
-            classifyRungExist(index, rungExist);
+            removeContinuousRung(index, rungExist);
         }
 
         return mapRung(rungExist);
     }
 
-    private void classifyRungExist(final int index, final List<Boolean> rungExist) {
-        if (isConnected(index, rungExist)) {
+    private void removeContinuousRung(final int index, final List<Boolean> rungExist) {
+        if (isContinuousRung(index, rungExist)) {
             rungExist.set(index, false);
         }
     }
 
-    private boolean isConnected(final int index, final List<Boolean> rungExist) {
+    private boolean isContinuousRung(final int index, final List<Boolean> rungExist) {
         return rungExist.get(index) && rungExist.get(index - 1);
     }
 
