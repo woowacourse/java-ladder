@@ -24,6 +24,18 @@ public class InputView {
         }
     }
 
+    public List<String> readResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String results = scanner.nextLine();
+        validateResults(results);
+        return List.of(results.split(DELIMITER));
+    }
+    private void validateResults(String results) {
+        if (FINISH_WITH_DELIMITER_REGEX.matcher(results).matches()) {
+            throw new IllegalArgumentException(InputException.NO_LAST_RESULT.getExceptionMessage());
+        }
+    }
+
     public int readHeight() {
         System.out.println("\n최대 사다리 높이는 몇 개인가요?");
         String height = scanner.nextLine();
