@@ -14,7 +14,7 @@ public class Ladder {
 
         RandomStickGenerator stickGenerator = new RandomStickGenerator();
         for (int i = 0; i < height; i++) {
-            this.lines.add(new Line(stickGenerator, playerSize));
+            lines.add(new Line(stickGenerator, playerSize));
         }
     }
 
@@ -25,6 +25,6 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return this.lines;
+        return lines;
     }
 }

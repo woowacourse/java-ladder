@@ -12,7 +12,7 @@ public class Line {
         int sticksSize = playerSize - 1;
 
         for (int i = 0; i < sticksSize; i++) {
-            this.sticks.add(getStick(stickGenerator));
+            sticks.add(getStick(stickGenerator));
         }
     }
 
@@ -23,7 +23,7 @@ public class Line {
     private Stick getStick(StickGenerator stickGenerator) {
         Stick stick = stickGenerator.generateOne();
 
-        if (this.sticks.isEmpty()) {
+        if (sticks.isEmpty()) {
             return stick;
         }
 
@@ -39,7 +39,7 @@ public class Line {
     }
 
     private boolean isRepeat(Stick stick) {
-        Stick lastStick = this.sticks.get(this.sticks.size() - 1);
+        Stick lastStick = sticks.get(sticks.size() - 1);
 
         return lastStick == stick;
     }
@@ -54,7 +54,7 @@ public class Line {
     }
 
     private void validateColumnSize(int column) {
-        int columnThreshold = this.sticks.size();
+        int columnThreshold = sticks.size();
 
         if (column < 0 || column > columnThreshold) {
             throw new IllegalArgumentException("주어진 컬럼이 범위를 초과합니다.");
@@ -72,7 +72,7 @@ public class Line {
 
     private Optional<Stick> findLeftStick(int column) {
         if (column > 0) {
-            return Optional.ofNullable(this.sticks.get(column - 1));
+            return Optional.ofNullable(sticks.get(column - 1));
         }
 
         return Optional.empty();
@@ -88,14 +88,14 @@ public class Line {
     }
 
     private Optional<Stick> findRightStick(int column) {
-        if (column < this.sticks.size()) {
-            return Optional.ofNullable(this.sticks.get(column));
+        if (column < sticks.size()) {
+            return Optional.ofNullable(sticks.get(column));
         }
 
         return Optional.empty();
     }
 
     public List<Stick> getSticks() {
-        return this.sticks;
+        return sticks;
     }
 }

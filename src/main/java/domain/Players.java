@@ -38,6 +38,6 @@ public class Players {
     }
 
     public List<Player> getPlayers() {
-        return this.players;
+        return players;
     }
 }

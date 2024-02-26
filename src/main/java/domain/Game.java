@@ -25,14 +25,14 @@ public class Game {
     }
 
     public Players getPlayers() {
-        return this.players;
+        return players;
     }
 
     public Ladder getLadder() {
-        return this.ladder;
+        return ladder;
     }
 
     public List<GameResult> getGameResults() {
-        return this.gameResults;
+        return gameResults;
     }
 }

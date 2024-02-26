@@ -13,11 +13,11 @@ enum Direction {
     private final int priority;
 
     public Direction getHigherPriority(Direction other) {
-        if (this.priority > other.priority) {
+        if (priority > other.priority) {
             return this;
         }
 
-        if (this.priority < other.priority) {
+        if (priority < other.priority) {
             return other;
         }
 

@@ -10,7 +10,7 @@ class RandomStickGenerator implements StickGenerator {
 
     @Override
     public Stick generateOne() {
-        int random = this.randomGenerator.nextInt(RANDOM_BOUND);
+        int random = randomGenerator.nextInt(RANDOM_BOUND);
 
         if (random == 0) {
             return Stick.NOT_FILLED;
