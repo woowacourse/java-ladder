@@ -10,6 +10,9 @@ public class WidthCalculator {
     }
 
     public static int calculateWidth(final List<String> names) {
+        if (names.size() == 1) {
+            return 0;
+        }
         final int lastLength = getLastLength(names);
 
         if (lastLength == DEFAULT_SIZE) {
