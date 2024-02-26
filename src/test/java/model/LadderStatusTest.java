@@ -14,7 +14,7 @@ class LadderStatusTest {
         //give & when
         var step = LadderStatus.from(isConnected);
 
-//        //then
+        //then
         Assertions.assertThat(step.isConnected()).isEqualTo(isConnected);
     }
 }

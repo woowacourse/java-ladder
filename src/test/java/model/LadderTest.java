@@ -45,7 +45,7 @@ class LadderTest {
 
     @Test
     @DisplayName("원하는 참여자의 결과를 확인한다. 사다리가 빈 경우")
-    void createFindByPlayerName() {
+    void findPrizesInEmptyLadder() {
         //given
         Height height = new Height(5);
         int personCount = 3;
@@ -71,8 +71,7 @@ class LadderTest {
 
     @Test
     @DisplayName("원하는 참여자의 결과를 확인한다. 사다리가 지그재그 인 경우")
-        // TODO: 이름 변경 필요
-    void createFindByNameZigZag() {
+    void findPrizesInZigZagLadder() {
         //given
         Height height = new Height(5);
         int personCount = 4;
