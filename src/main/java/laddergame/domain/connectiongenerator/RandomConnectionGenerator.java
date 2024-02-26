@@ -3,13 +3,14 @@ package laddergame.domain.connectiongenerator;
 import laddergame.domain.ladder.Connection;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Stream;
 
 import static laddergame.domain.ladder.Connection.CONNECTED;
 import static laddergame.domain.ladder.Connection.NOTCONNECTED;
 
 public class RandomConnectionGenerator implements ConnectionGenerator {
-    private static final double PERCENTAGE_OF_CONNECTION = 0.5;
+    private static final Random random = new Random();
 
     @Override
     public List<Connection> generate(int connectionNumber) {
@@ -31,8 +32,7 @@ public class RandomConnectionGenerator implements ConnectionGenerator {
     }
 
     private Connection addRandomConnection() {
-        //TODO Random.nextBoolean 활용을 통한 코드 단순화
-        if (Math.random() <= PERCENTAGE_OF_CONNECTION) {
+        if (random.nextBoolean()) {
             return CONNECTED;
         }
         return NOTCONNECTED;
