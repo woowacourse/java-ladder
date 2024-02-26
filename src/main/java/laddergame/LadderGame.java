@@ -3,8 +3,7 @@ package laddergame;
 import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.Players;
-import laddergame.domain.strategy.LinesBuilder;
-import laddergame.util.RandomLineGenerator;
+import laddergame.util.RandomLinesGenerator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -18,8 +17,7 @@ public class LadderGame {
         Players players = retryUntilValidated(() -> new Players(inputView.readPlayersName()));
         Height height = retryUntilValidated(() -> new Height(inputView.readLadderHeight()));
 
-        Ladder ladder = new Ladder(
-                new LinesBuilder(new RandomLineGenerator()),
+        Ladder ladder = new Ladder(new RandomLinesGenerator(),
                 players,
                 height);
         printLadderResult(players, ladder);

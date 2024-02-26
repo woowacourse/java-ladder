@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.domain.strategy.LinesBuilder;
+import laddergame.util.LinesGenerator;
 
 import java.util.Collections;
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.List;
 public class Lines {
     private final List<Line> lines;
 
-    public Lines(final LinesBuilder linesBuilder,
+    public Lines(final LinesGenerator linesGenerator,
                  final int width) {
-        this.lines = linesBuilder.build(width);
+        this.lines = linesGenerator.generate(width);
     }
 
     public List<Line> getLines() {

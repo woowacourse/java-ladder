@@ -1,8 +1,7 @@
 package laddergame.domain;
 
-import laddergame.domain.strategy.LinesBuilder;
-import laddergame.util.RandomLineGenerator;
-import laddergame.util.LineGenerator;
+import laddergame.util.RandomLinesGenerator;
+import laddergame.util.LinesGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +21,7 @@ public class LadderTest {
 
         //when
         Ladder ladder = new Ladder(
-                new LinesBuilder(new RandomLineGenerator()),
+                new RandomLinesGenerator(),
                 players,
                 height);
 
@@ -38,20 +37,31 @@ public class LadderTest {
         final Height height = new Height("1");
         final List<String> playersName = List.of("name1", "name2", "name3", "name4");
         final Players players = new Players(playersName);
-        final List<Line> expected = List.of(Line.EMPTY, Line.EMPTY, Line.EMPTY);
+        final List<Line> expected = List.of(Line.EMPTY, Line.BRIDGE, Line.EMPTY);
 
-        LineGenerator lineGenerator = new LineGenerator() {
+        LinesGenerator expectedLinesGenerator = new LinesGenerator() {
             @Override
-            public Line generate() {
-                return Line.EMPTY;
+            public List<Line> generate(int width) {
+                return expected;
             }
         };
-        LinesBuilder lineBuildStrategy = new LinesBuilder(lineGenerator);
 
         //when
-        Ladder ladder = new Ladder(lineBuildStrategy, players, height);
+        Ladder ladder = new Ladder(expectedLinesGenerator, players, height);
 
         //then
         assertEquals(expected, ladder.getLines().get(0).getLines());
+    }
+
+    @Test
+    @DisplayName("플레이어의 오른쪽에 라인이 있을 경우 오른쪽으로 이동한다.")
+    void moveRightWhenRightLine() {
+        //given
+        final Height height = new Height("1");
+        final List<String> playersName = List.of("name1", "name2", "name3", "name4");
+        final Players players = new Players(playersName);
+        final List<Line> expected = List.of(Line.EMPTY, Line.EMPTY, Line.EMPTY);
+
+
     }
 }

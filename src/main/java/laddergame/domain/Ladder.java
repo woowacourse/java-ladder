@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.domain.strategy.LinesBuilder;
+import laddergame.util.LinesGenerator;
 
 import java.util.Collections;
 import java.util.List;
@@ -10,11 +10,11 @@ import java.util.stream.IntStream;
 public class Ladder {
     private final List<Lines> lines;
 
-    public Ladder(final LinesBuilder linesBuilder,
+    public Ladder(final LinesGenerator linesGenerator,
                   final Players players,
                   final Height height) {
         this.lines = IntStream.range(0, height.getHeight())
-                .mapToObj(i -> new Lines(linesBuilder, players.getPlayersCount() - 1))
+                .mapToObj(i -> new Lines(linesGenerator, players.getPlayersCount() - 1))
                 .collect(Collectors.toList());
     }
 
