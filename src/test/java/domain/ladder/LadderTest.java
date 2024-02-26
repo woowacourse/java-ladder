@@ -30,7 +30,7 @@ class LadderTest {
         // when, then
         List<String> actual = names.stream()
                 .map(ladder::getResultByName)
-                .map(Result::result)
+                .map(Result::rawResult)
                 .toList();
         assertThat(actual).containsExactlyElementsOf(results);
     }
@@ -48,7 +48,7 @@ class LadderTest {
         // then
         List<String> actual = names.stream()
                 .map(ladder::getResultByName)
-                .map(Result::result)
+                .map(Result::rawResult)
                 .toList();
         assertThat(actual).containsExactlyElementsOf(expected);
     }

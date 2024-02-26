@@ -2,14 +2,14 @@ package domain.player;
 
 import java.util.regex.Pattern;
 
-public record Name(String name) {
+public record Name(String rawName) {
 
     private static final Pattern NAME_REGEX = Pattern.compile("^[a-z]*$");
     private static final int MAX_NAME_LENGTH = 5;
 
     public Name {
-        validateNameLength(name);
-        validateNamePattern(name);
+        validateNameLength(rawName);
+        validateNamePattern(rawName);
     }
 
     private void validateNameLength(String name) {

@@ -2,14 +2,14 @@ package domain.result;
 
 import java.util.regex.Pattern;
 
-public record Result(String result) {
+public record Result(String rawResult) {
 
     private static final Pattern RESULT_REGEX = Pattern.compile("^[a-zA-Z0-9가-힣]*$");
     private static final int RESULT_MAX_LENGTH = 5;
 
     public Result {
-        validateResultLength(result);
-        validateResultPattern(result);
+        validateResultLength(rawResult);
+        validateResultPattern(rawResult);
     }
 
     private void validateResultLength(String result) {

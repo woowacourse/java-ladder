@@ -22,7 +22,7 @@ public class Players {
 
     public List<String> getRawNames() {
         return names.stream()
-                .map(Name::name)
+                .map(Name::rawName)
                 .toList();
     }
 
@@ -31,11 +31,16 @@ public class Players {
     }
 
     public int getIndexByName(String name) {
-        Name original = new Name(name);
         return IntStream.range(0, names.size())
-                .filter(index -> names.get(index).equals(original))
+                .filter(index -> hasSameNameOnIndex(name, index))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("존재하지 않는 이름입니다."));
+    }
+
+    private boolean hasSameNameOnIndex(String name, int index) {
+        return names.get(index)
+                .rawName()
+                .equals(name);
     }
 
     private void validateSize(List<String> names) {

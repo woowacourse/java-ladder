@@ -18,7 +18,7 @@ public class Results {
 
     public List<String> getRawResults() {
         return results.stream()
-                .map(Result::result)
+                .map(Result::rawResult)
                 .toList();
     }
 }
