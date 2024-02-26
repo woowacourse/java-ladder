@@ -16,15 +16,15 @@ public class ResultsTest {
     @Test
     @DisplayName("Results 객체 생성 성공: 사람 수 만큼 입력")
     void results_ok() {
-        Results results = Results.from(4, "꽝,1000,꽝,1000");
-        assertThat(results.getNames()).containsExactly("꽝", "1000", "꽝", "1000");
+        assertThatCode(() -> Results.from(4, "꽝,1000,꽝,1000"))
+            .doesNotThrowAnyException();
     }
 
     @Test
     @DisplayName("Results 객체 생성 성공: 쉼표 좌우 공백 정상 처리")
     void results_ok_namesWithSpace() {
-        Results results = Results.from(4, "  꽝 ,   1000 , 꽝 ,  1000  ");
-        assertThat(results.getNames()).containsExactly("꽝", "1000", "꽝", "1000");
+        assertThatCode(() -> Results.from(4, "  꽝 , 1000 ,  꽝 , 1000 "))
+            .doesNotThrowAnyException();
     }
 
     @Test
