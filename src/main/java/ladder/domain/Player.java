@@ -1,6 +1,6 @@
 package ladder.domain;
 
-public record Player(String name) {
+public record Player(String name, int location) {
 
     private static final int MAX_NAME_LENGTH = 5;
 

@@ -9,10 +9,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class PlayerTest {
-    @DisplayName("이름을 입력하여 Player를 생성한다.")
+    @DisplayName("이름과 위치를 입력하여 Player를 생성한다.")
     @Test
     void playerConstructTest() {
-        assertThatCode(() -> new Player("명오"))
+        assertThatCode(() -> new Player("명오", 0))
                 .doesNotThrowAnyException();
     }
 
@@ -20,7 +20,7 @@ class PlayerTest {
     @ValueSource(strings = {"", "우아한테크코스"})
     @ParameterizedTest
     void nameLengthTest(String name) {
-        assertThatThrownBy(() -> new Player(name))
+        assertThatThrownBy(() -> new Player(name, 0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 1~5글자 사이로 입력해주세요: %s".formatted(name));
     }

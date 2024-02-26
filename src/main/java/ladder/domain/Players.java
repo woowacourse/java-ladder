@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Players {
@@ -12,9 +13,9 @@ public class Players {
 
     public Players(List<String> names) {
         validate(names);
-        players = names.stream()
-                .map(Player::new)
-                .toList();
+        players = new ArrayList<>();
+        IntStream.range(0, names.size())
+                .forEach(index -> players.add(new Player(names.get(index), index)));
     }
 
     private void validate(List<String> names) {
@@ -52,5 +53,13 @@ public class Players {
 
     public Stream<Player> stream() {
         return players.stream();
+    }
+
+    public int getLocationByName(String name) {
+        Player targetPlayer = players.stream()
+                .filter(player -> player.name().equals(name))
+                .findFirst()
+                .orElse(new Player("null", -1));
+        return targetPlayer.location();
     }
 }
