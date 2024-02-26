@@ -1,5 +1,6 @@
-package domain;
+package domain.ladder;
 
+import domain.player.PlayerNames;
 import domain.bridge.BridgeGenerator;
 
 import java.util.ArrayList;

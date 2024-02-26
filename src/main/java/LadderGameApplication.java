@@ -1,5 +1,5 @@
 import controller.LadderController;
-import domain.Ladder;
+import domain.ladder.Ladder;
 import view.InputView;
 import view.OutputView;
 

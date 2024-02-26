@@ -1,7 +1,8 @@
-package domain;
+package domain.ladder;
 
 import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidationException;
+import domain.ladder.LadderBridge;
 
 import java.util.List;
 

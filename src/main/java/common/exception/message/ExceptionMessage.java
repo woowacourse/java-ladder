@@ -1,10 +1,10 @@
 package common.exception.message;
 
 import controller.RetryableController;
-import domain.LadderHeight;
-import domain.LadderResult;
-import domain.PlayerName;
-import domain.PlayerNames;
+import domain.ladder.LadderHeight;
+import domain.ladder.LadderResult;
+import domain.player.PlayerName;
+import domain.player.PlayerNames;
 import view.InputView;
 
 public class ExceptionMessage {

@@ -3,6 +3,8 @@ package domain;
 import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidationException;
 import domain.bridge.strategy.BridgeGeneratorStub;
+import domain.ladder.Floor;
+import domain.ladder.LadderBridge;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

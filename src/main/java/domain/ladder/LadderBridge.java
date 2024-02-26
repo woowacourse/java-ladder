@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 import common.exception.message.ExceptionMessage;
 import common.exception.model.NotFoundException;
