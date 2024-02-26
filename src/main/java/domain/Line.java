@@ -9,11 +9,11 @@ public class Line {
 
     public Line(StickGenerator stickGenerator, int playerSize) {
         for (int i = 0; i < playerSize - 1; i++) {
-            this.sticks.add(getStick(stickGenerator));
+            this.sticks.add(getEmptyStickOrNotRepeatedFilledStick(stickGenerator));
         }
     }
 
-    private Stick getStick(StickGenerator stickGenerator) {
+    private Stick getEmptyStickOrNotRepeatedFilledStick(StickGenerator stickGenerator) {
         Stick stick = stickGenerator.generateOne();
 
         if (this.sticks.isEmpty()) {
