@@ -15,11 +15,11 @@ class LadderResultCreatorTest {
     }
 
     @Test
-    @DisplayName("사다리 실행 결과는 콤마로 구분된다.")
+    @DisplayName("사다리 결과는 콤마로 구분된다.")
     void testCreateLadderResults() {
         LadderResultCreator ladderResultCreator = new LadderResultCreator();
         LadderResults ladderResults = ladderResultCreator.create("a,b,c,d,e");
-        
+
         int actual = ladderResults.getLadderResults().size();
         int expected = 5;
 
