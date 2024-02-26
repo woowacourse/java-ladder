@@ -25,4 +25,7 @@ public class Line {
         return new ArrayList<>(connectionStatuses);
     }
 
+    public boolean checkLeftConnection(int index) {
+        return false;
+    }
 }
