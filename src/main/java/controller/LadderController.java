@@ -6,6 +6,7 @@ import handler.ExceptionHandler;
 import view.InputView;
 import view.ResultView;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 public class LadderController {
@@ -20,10 +21,21 @@ public class LadderController {
     }
 
     public void make() {
-        People people = runWithHandler(() -> new People(inputView.askParticipants()));
-        Ladder ladder = runWithHandler(() -> new Ladder(inputView.askLadderHeight(), people.numberOfParticipants()));
+        Supplier<People> peopleSupplier = () -> new People(getParticipants());
+        People people = runWithHandler(peopleSupplier);
+
+        Supplier<Ladder> ladderSupplier = () -> new Ladder(getLadderHeight(), people.numberOfParticipants());
+        Ladder ladder = runWithHandler(ladderSupplier);
 
         resultView.printResult(people, ladder);
+    }
+
+    private List<String> getParticipants() {
+        return inputView.askParticipants();
+    }
+
+    private String getLadderHeight() {
+        return inputView.askLadderHeight();
     }
 
 
