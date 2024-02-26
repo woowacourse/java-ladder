@@ -28,6 +28,8 @@ public class LadderController {
 
         final LadderResult ladderResult = ladderGame.createLadder(names, results, height);
 
+
+
         outputView.printResult(ladderResult);
     }
 
