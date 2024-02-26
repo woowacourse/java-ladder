@@ -33,4 +33,8 @@ public class HorizontalLine {
 			throw new IllegalArgumentException("플레이어 수 범위는 2 이상 10 이하여야 합니다.");
 		}
 	}
+
+	public Bar getBar(int location) {
+		return bars.get(location);
+	}
 }
