@@ -14,15 +14,20 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class LinePatternGeneratorTest {
 
+    private static final int PERSON_SIZE = 4;
+    private static final int WIDTH_SIZE = 3;
+    private static final boolean STICK_NON_EXIST = false;
+    private static final boolean STICK_EXIST = true;
+
     @DisplayName("크기에 맞는 사다리 생성")
     @Test
     void generateTest() {
-        MockBooleanSupplier supplier = new MockBooleanSupplier(List.of(false, true));
+        MockBooleanSupplier supplier = new MockBooleanSupplier(List.of(STICK_NON_EXIST, STICK_EXIST));
         LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
 
-        Line line = linePatternGenerator.generate(4);
+        Line line = linePatternGenerator.generate(PERSON_SIZE);
 
-        assertThat(line.getWidth()).isEqualTo(3);
+        assertThat(line.getWidth()).isEqualTo(WIDTH_SIZE);
     }
 
     @DisplayName("true 가 나왔을 경우, 해당 위치는 막대가 존재하고 다음 위치에는 막대가 없다")
@@ -60,14 +65,12 @@ class LinePatternGeneratorTest {
     }
 
     class MockBooleanSupplier implements BooleanSupplier {
-
         private final List<Boolean> mock;
         private int index = 0;
 
         MockBooleanSupplier(List<Boolean> mock) {
             this.mock = mock;
         }
-
 
         @Override
         public boolean getAsBoolean() {
