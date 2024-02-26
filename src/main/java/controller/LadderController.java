@@ -11,9 +11,6 @@ import view.OutputView;
 
 public class LadderController {
 
-    public LadderController() {
-    }
-
     public void run() {
         Players players = readPlayers();
         Height ladderHeight = readHeight();
