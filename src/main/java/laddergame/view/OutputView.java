@@ -20,9 +20,9 @@ public class OutputView {
         ladder.getLines().forEach(this::writeLine);
     }
 
-    private void writeLine(final Line line) {
-        String formatted = line.getZones().stream()
-                .map(Zone::getSymbol)
+    private void writeLine(final Lines lines) {
+        String formatted = lines.getZones().stream()
+                .map(Line::getSymbol)
                 .collect(Collectors.joining(LADDER_SEPARATOR, SPACE + LADDER_SEPARATOR, LADDER_SEPARATOR));
 
         System.out.println(formatted);

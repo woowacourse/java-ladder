@@ -1,19 +1,23 @@
 package laddergame.domain;
 
-import laddergame.domain.strategy.ZonesBuilder;
+public enum Line {
+    BRIDGE("-----"),
+    EMPTY("     ");
 
-import java.util.Collections;
-import java.util.List;
+    private final String symbol;
 
-public class Line {
-    private final List<Zone> zones;
-
-    public Line(final ZonesBuilder zonesBuilder,
-                final int width) {
-        this.zones = zonesBuilder.build(width);
+    Line(String symbol) {
+        this.symbol = symbol;
     }
 
-    public List<Zone> getZones() {
-        return Collections.unmodifiableList(zones);
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public static Line getZone(boolean buildStatus) {
+        if (buildStatus) {
+            return BRIDGE;
+        }
+        return EMPTY;
     }
 }
