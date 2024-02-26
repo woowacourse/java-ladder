@@ -13,7 +13,7 @@ public class Rungs {
 
     public int findConnectedIndex(int index) {
         // index가 0보다 작으면 0으로, rungs.size보다 크면 rungs.size로 설정한다.
-        int currentIndex = Math.max(0, Math.min(index, rungs.size()+1));
+        int currentIndex = Math.max(0, Math.min(index, rungs.size()));
 
         if (canMoveLeft(currentIndex)) {
             return currentIndex - 1;

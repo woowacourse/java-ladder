@@ -20,4 +20,10 @@ class RungTest {
     void testRungExist() {
         assertThat(Rung.of(true).isExist()).isTrue();
     }
+
+    @Test
+    @DisplayName("발판은 존재하지 않는다.")
+    void testRungEmpty() {
+        assertThat(Rung.of(false).isEmpty()).isTrue();
+    }
 }
