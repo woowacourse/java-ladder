@@ -17,7 +17,7 @@ class JudgeTest {
     void does_prize_return_correctly_when_sequence_is_same_as_initial() {
         Names names = new Names(new String[]{"mang", "cho", "pobi"});
         Prizes prizes = new Prizes(new String[]{"1000", "500", "30000"});
-        Result result = new Result(List.of(0, 1, 2), List.of(0, 1, 2));
+        Result result = new Result(List.of(0, 1, 2));
 
         Judge judge = new Judge(names, prizes, result);
 
@@ -34,7 +34,7 @@ class JudgeTest {
     void does_prize_return_correctly_when_sequence_reversed() {
         Names names = new Names(new String[]{"mang", "cho", "pobi"});
         Prizes prizes = new Prizes(new String[]{"1000", "500", "30000"});
-        Result result = new Result(List.of(0, 1, 2), List.of(2, 1, 0));
+        Result result = new Result(List.of(2, 1, 0));
 
         Judge judge = new Judge(names, prizes, result);
 

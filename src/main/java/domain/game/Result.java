@@ -1,25 +1,25 @@
 package domain.game;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static java.util.stream.IntStream.range;
 
 public class Result {
-    private final Map<Integer, Integer> mapper = new LinkedHashMap<>();
+    private final Map<Integer, Integer> mapper = new HashMap<>();
 
-    public Result(final List<Integer> from, final List<Integer> to) {
-        makeMapper(from, to);
+    public Result(final List<Integer> to) {
+        makeMapper(to);
     }
 
-    private void makeMapper(final List<Integer> from, final List<Integer> to) {
-        for (int i = 0; i < from.size(); i++) {
-            mapper.put(from.get(i), to.get(i));
-        }
+    private void makeMapper(final List<Integer> to) {
+        range(0, to.size()).forEach(index ->
+                mapper.put(to.get(index), index)
+        );
     }
 
     public Integer getOne(final int from) {
         return mapper.get(from);
-    }
-
-    public List<Integer> getAll() {
-        return new ArrayList<>(mapper.values());
     }
 }
