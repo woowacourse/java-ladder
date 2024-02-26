@@ -16,4 +16,12 @@ public class PrizeTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(String.format("1글자 이상 5글자 이하의 값을 입력해주세요. 입력한 값 : %s", input));
     }
+
+    @DisplayName("1글자 이상, 5글자 이하면 예외를 발생하지않는다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"꽝", "50000"})
+    void createSuccess(String input) {
+        assertThatCode(() -> new Prize(input))
+                .doesNotThrowAnyException();
+    }
 }
