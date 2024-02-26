@@ -1,6 +1,7 @@
 package model.prize;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -22,6 +23,22 @@ class PrizesTest {
         return Stream.of(
                 Arguments.of(List.of("꽝", "식권"), Players.of(List.of("pobi", "dora"))),
                 Arguments.of(List.of("배민상품권", "꽝", "꽝"), Players.of(List.of("pobi", "doraa", "jojo")))
+        );
+    }
+
+    @DisplayName("실행 결과 수가 참여자 등록 수와 다르면 예외 발생")
+    @ParameterizedTest
+    @MethodSource("provideInvalidPrizeNamesAndPlayers")
+    void testInvalidPlayersSize(List<String> prizeNames, Players players) {
+        assertThatThrownBy(() -> Prizes.from(prizeNames, players))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    private static Stream<Arguments> provideInvalidPrizeNamesAndPlayers() {
+        return Stream.of(
+                Arguments.of(List.of("꽝", "식권", "꽝"), Players.of(List.of("pobi", "dora"))),
+                Arguments.of(List.of("배민상품권", "꽝"), Players.of(List.of("pobi", "doraa", "jojo"))),
+                Arguments.of(List.of(), Players.of(List.of("doraa", "jojo")))
         );
     }
 }
