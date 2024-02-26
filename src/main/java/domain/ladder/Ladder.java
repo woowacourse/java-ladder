@@ -40,12 +40,14 @@ public class Ladder {
     }
 
     public Direction getDirectionOfLadderLegPieceAtSpecificCoordinate(int x, int y) {
+        if (isReachEndPoint(y)) return null;
         validateCoordinate(x, y);
-        if (y == height.toInt()) {
-            return null;
-        }
         return ladderLegs.get(x)
                          .getDirectionAtIndex(y);
+    }
+
+    private boolean isReachEndPoint(int y) {
+        return y == height.toInt();
     }
 
     private void validateCoordinate(int x, int y) {
