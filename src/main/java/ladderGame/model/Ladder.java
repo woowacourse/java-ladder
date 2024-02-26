@@ -16,6 +16,17 @@ public class Ladder {
     }
 
     public int findLadderResultIndex(int index) {
-        return 0;
+        int resultIndex = index;
+        for(Line line: lines) {
+            if(line.checkLeftConnection(resultIndex)) {
+                resultIndex--;
+                continue;
+            }
+            if(line.checkRightConnection(resultIndex)) {
+                resultIndex++;
+            }
+        }
+
+        return resultIndex;
     }
 }
