@@ -1,5 +1,6 @@
 package laddergame.domain.people;
 
+import laddergame.domain.gameelements.people.People;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,6 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,7 +29,7 @@ class PeopleTest {
     @ParameterizedTest
     @NullSource
     void peopleNamesNullInput(String nullName) {
-        List<String> names = Arrays.asList(nullName);
+        List<String> names = Collections.singletonList(nullName);
         assertThrows(IllegalArgumentException.class
                 , () -> new People(names));
     }
@@ -36,7 +38,9 @@ class PeopleTest {
     @Test
     void peopleNamesValidInput() {
         List<String> names = List.of("abcde", "a1234", "12345", "a");
-        assertDoesNotThrow(() -> { new People(names); });
+        assertDoesNotThrow(() -> {
+            new People(names);
+        });
     }
 
     @DisplayName("참여자 수가 1이상 100이하가 아닐 때, domain.People 객체를 생성할 수 없다.")
@@ -51,9 +55,13 @@ class PeopleTest {
 
         assertAll(
                 () -> assertThrows(IllegalArgumentException.class,
-                        () -> { new People(zeroNames);}),
+                        () -> {
+                            new People(zeroNames);
+                        }),
                 () -> assertThrows(IllegalArgumentException.class,
-                        () -> { new People(exceedNames);})
+                        () -> {
+                            new People(exceedNames);
+                        })
         );
 
     }
@@ -66,6 +74,8 @@ class PeopleTest {
         for (int i = 0; i < 100; i++) {
             validNames.add(String.valueOf(i));
         }
-        assertDoesNotThrow(() -> { new People(validNames);});
+        assertDoesNotThrow(() -> {
+            new People(validNames);
+        });
     }
 }
