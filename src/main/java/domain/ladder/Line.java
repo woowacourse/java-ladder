@@ -14,10 +14,6 @@ public class Line {
         makeLine(width);
     }
 
-    public List<Bridge> getBridges() {
-        return unmodifiableList(this.bridges);
-    }
-
     private void makeLine(final int width) {
         for (int i = 0; i < width; i++) {
             this.bridges.add(makeBridge());
@@ -36,5 +32,13 @@ public class Line {
             return false;
         }
         return Bridge.EXIST == this.bridges.get(this.bridges.size() - 1);
+    }
+
+    public List<Bridge> getBridges() {
+        return unmodifiableList(this.bridges);
+    }
+
+    public int getWidth() {
+        return this.bridges.size();
     }
 }

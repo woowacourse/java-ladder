@@ -24,4 +24,8 @@ public class Ladder {
     public List<Line> getLines() {
         return unmodifiableList(this.lines);
     }
+
+    public int getWidth() {
+        return this.lines.get(0).getWidth();
+    }
 }
