@@ -9,12 +9,19 @@ public class Ladder {
 
     private final List<Line> lines = new ArrayList<>();
 
+    public final int height;
+
     public Ladder(int height, int playerSize, StickGenerator stickGenerator) {
         validateLadderHeight(height);
+        this.height = height;
 
         for (int i = 0; i < height; i++) {
-            this.lines.add(new Line(stickGenerator, playerSize));
+            addLine(stickGenerator, playerSize);
         }
+    }
+
+    private void addLine(StickGenerator stickGenerator, int playerSize) {
+        this.lines.add(new Line(stickGenerator, playerSize));
     }
 
     private void validateLadderHeight(int height) {
