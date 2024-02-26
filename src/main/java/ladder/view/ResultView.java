@@ -2,24 +2,21 @@ package ladder.view;
 
 import java.util.Map.Entry;
 
-public class ResultView {
-    private static final String COMMAND_ALL = "all";
+import static ladder.view.enums.Command.PRINT_ALL;
+import static ladder.view.enums.Command.STOP;
 
-    public static void print(String name, Result result) {
-        System.out.println("실행 결과");
-        if (name.equals(COMMAND_ALL)) {
+public class ResultView {
+    public static boolean print(String name, Result result) {
+        System.out.println(System.lineSeparator() + "실행 결과");
+        if (PRINT_ALL.isSameWith(name)) {
             printAll(result);
-            return;
+            return true;
+        }
+        if (STOP.isSameWith(name)) {
+            return false;
         }
         printResult(name, result);
-    }
-
-    private static void printResult(String name, Result result) {
-        if (result.getResultMap().containsKey(name)) {
-            System.out.println(result.getResultMap().get(name));
-            return;
-        }
-        System.out.println("존재하지 않는 이름입니다.");
+        return true;
     }
 
     private static void printAll(Result result) {
@@ -28,5 +25,13 @@ public class ResultView {
                     entry.getKey(),
                     entry.getValue());
         }
+    }
+
+    private static void printResult(String name, Result result) {
+        if (result.getResultMap().containsKey(name)) {
+            System.out.println(result.getResultMap().get(name));
+            return;
+        }
+        System.out.println("존재하지 않는 이름입니다.");
     }
 }

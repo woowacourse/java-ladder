@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.view.enums.Command;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,6 +17,7 @@ public class People {
 
         for (String name : names) {
             validateNameRule(name);
+            validateNotCommand(name);
         }
         this.names.addAll(names);
     }
@@ -32,6 +35,12 @@ public class People {
     private void validateNameRule(String name) {
         if (name == null || !name.matches(NAME_RULE)) {
             throw new IllegalArgumentException("이름은 5자 이내의 영숫자로 구성되어야 합니다.");
+        }
+    }
+
+    private void validateNotCommand(String name) {
+        if (Command.contains(name)) {
+            throw new IllegalArgumentException("명령어를 이름으로 할 수 없습니다: "+ name);
         }
     }
 }
