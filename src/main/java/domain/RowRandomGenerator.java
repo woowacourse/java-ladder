@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-class RowRandomGenerator implements RowGenerator {
+public class RowRandomGenerator implements RowGenerator {
     private final Random random = new Random();
 
     private Boolean previousBridge = false;

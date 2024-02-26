@@ -1,4 +1,5 @@
 import domain.LadderGame;
+import domain.RowRandomGenerator;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -25,8 +26,8 @@ public class Main {
 
         outputView.printHeightInput();
         int ladderHeight = Integer.parseInt(inputView.getInput());
-        
-        return new LadderGame(nameInput, ladderHeight);
+
+        return new LadderGame(nameInput, ladderHeight, new RowRandomGenerator());
     }
 
     static final class RetryHelper {
