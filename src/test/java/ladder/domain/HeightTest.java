@@ -14,24 +14,16 @@ class HeightTest {
     @DisplayName("높이는 1 이상의 숫자이다.")
     void createHeight() {
         // when & then
-        assertThatCode(() -> new Height("1"))
+        assertThatCode(() -> new Height(1))
                 .doesNotThrowAnyException();
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"0", "-1"})
+    @ValueSource(ints = {0, -1})
     @DisplayName("입력된 높이가 0 이하라면 예외가 발생한다.")
-    void createNegativeHeight(String height) {
+    void outOfBoundsHeightExceptionTest(int outOfBounds) {
         // when & then
-        assertThatThrownBy(() -> new Height(height))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("입력된 높이가 숫자가 아니라면 예외가 발생한다.")
-    void createNotNumber() {
-        // when & then
-        assertThatThrownBy(() -> new Height("pobi"))
+        assertThatThrownBy(() -> new Height(outOfBounds))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

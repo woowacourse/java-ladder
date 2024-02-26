@@ -13,8 +13,8 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public String readHeight() {
+    public int readHeight() {
         out.println(lineSeparator() + "최대 사다리 높이는 몇 개인가요?");
-        return scanner.nextLine();
+        return Integer.parseInt(scanner.nextLine());
     }
 }
