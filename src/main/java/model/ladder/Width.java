@@ -9,6 +9,10 @@ public class Width {
         this.value = value;
     }
 
+    public static Width from(final int players) {
+        return new Width(players - 1);
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
