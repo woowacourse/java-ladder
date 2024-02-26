@@ -1,7 +1,7 @@
 package view;
 
 import domain.Bridge;
-import domain.Bridges;
+import domain.Floor;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -23,15 +23,15 @@ public class OutputView {
         System.out.println(System.lineSeparator() + nameJoiner);
     }
 
-    public void printLadder(List<Bridges> ladder) {
+    public void printLadder(List<Floor> ladder) {
         StringJoiner ladderShapeJoiner = new StringJoiner(System.lineSeparator());
-        for (final Bridges bridges : ladder) {
+        for (final Floor bridges : ladder) {
             ladderShapeJoiner.add(getBridgesShape(bridges));
         }
         System.out.println(ladderShapeJoiner);
     }
 
-    private static String getBridgesShape(final Bridges bridges) {
+    private static String getBridgesShape(final Floor bridges) {
         StringJoiner bridgesShapeJoiner = new StringJoiner(COLUMN, FIRST_COLUMN, COLUMN);
         for (Bridge bridge : bridges.getBridges()) {
             bridgesShapeJoiner.add(BridgeShape.convertForView(bridge));
