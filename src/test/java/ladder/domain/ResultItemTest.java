@@ -6,43 +6,40 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ResultTest {
+class ResultItemTest {
 
     @Test
-    @DisplayName("결과의 앞뒤 공백은 제거한다.")
+    @DisplayName("결과 항목의 앞뒤 공백은 제거한다.")
     void trimSpaces() {
-        // given
-        String expectedResult = "꽝";
-
         // when
-        Result result = new Result("    꽝    ");
+        ResultItem resultItem = new ResultItem("    꽝    ");
 
         // then
-        assertThat(result)
-                .extracting("value")
+        assertThat(resultItem)
+                .extracting("content")
                 .asString()
-                .isEqualTo(expectedResult);
+                .isEqualTo("꽝");
     }
 
     @Test
-    @DisplayName("결과가 1글자 미만이면 예외가 발생한다.")
+    @DisplayName("결과 항목이 1글자 미만이면 예외가 발생한다.")
     void createEmptyResult() {
         // given
-        String value = "";
+        String content = "";
 
         // when & then
-        assertThatThrownBy(() -> new Result(value))
+        assertThatThrownBy(() -> new ResultItem(content))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("결과가 5글자 초과면 예외가 발생한다.")
+    @DisplayName("결과 항목이 5글자 초과면 예외가 발생한다.")
     void createExtendedResult() {
         // given
-        String value = "honux1";
+        String content = "honux1";
 
         // when & then
-        assertThatThrownBy(() -> new Result(value))
+        assertThatThrownBy(() -> new ResultItem(content))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
