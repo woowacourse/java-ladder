@@ -34,13 +34,9 @@ public class Ladder {
     }
 
     public Position goDown(final Position start) {
-        Position position = new Position(start.getPosition());
-
-        for (Line line : lines) {
-            position = line.goHorizontal(position);
-        }
-
-        return position;
+        return lines.stream()
+                .reduce(start, (position, line) -> line.goHorizontal(position),
+                        (p1, p2) -> p2);
     }
 
     public List<Line> getLines() {
