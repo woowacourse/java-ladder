@@ -15,7 +15,7 @@ public class Players {
     public Players(final List<String> playerNames) {
         validate(playerNames);
         this.players = playerNames.stream()
-                .map(Player::new)
+                .map(playerName -> new Player(playerName, new Position(0, 0)))
                 .toList();
     }
 

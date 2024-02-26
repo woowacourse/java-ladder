@@ -6,10 +6,16 @@ public class Player {
     public static final String NAME_BLANK_ERROR = "빈 이름은 허용하지 않습니다.";
 
     private final String name;
+    private final Position position;
 
-    public Player(final String name) {
+    public Player(final String name, final Position position) {
         validate(name);
         this.name = name;
+        this.position = position;
+    }
+
+    public void moveLine(Direction direction) {
+        position.move(direction);
     }
 
     private void validate(final String name) {
@@ -31,5 +37,9 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public Position getPosition() {
+        return this.position;
     }
 }
