@@ -25,6 +25,10 @@ public class Ladder {
         return lines.size();
     }
 
+    public int getColumnCount() {
+        return lines.get(0).getConnectionCount() + 1;
+    }
+
     private void validateLinesSizeEqual(List<RowLine> lines) {
         if (!isAllLineSameSize(lines)) {
             throw new IllegalArgumentException("[ERROR] 사다리를 구성하는 줄들의 길이가 같지 않습니다");
