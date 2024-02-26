@@ -62,10 +62,10 @@ class LadderTest {
         Prize expected = new Prize("당첨");
         Player target = new Player("레디");
 
-        LadderResult ladderResult = ladder.findResult(players, result);
+        LadderResultDto ladderResultDto = ladder.findResult(players, result);
 
         //then
-        Assertions.assertThat(ladderResult.getPrize(target.getName())).isEqualTo(expected.value());
+        Assertions.assertThat(ladderResultDto.getPrize(target.getName())).isEqualTo(expected.value());
     }
 
 
@@ -86,13 +86,13 @@ class LadderTest {
         Result result = Result.of(prizes, personCount);
 
         //when
-        LadderResult target = ladder.findResult(players, result);
+        LadderResultDto target = ladder.findResult(players, result);
 
         for (String formattedLine : ladder.getFormattedLines()) {
             System.out.println(formattedLine);
         }
 
-        LadderResult expected = LadderResult.of(names, List.of("꽝2", "꽝3", "당첨", "꽝1"));
+        LadderResultDto expected = LadderResultDto.of(names, List.of("꽝2", "꽝3", "당첨", "꽝1"));
 
         //then
         Assertions.assertThat(target).isEqualTo(expected);

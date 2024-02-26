@@ -70,7 +70,7 @@ public class InputView {
         return result;
     }
 
-    //TODO: result 랑 prize 둘 중 뭐가 맞을지 고민해보기
+    //TODO: playersPrizeResults 랑 prize 둘 중 뭐가 맞을지 고민해보기
     public String readPlayerWantCheckResult() {
         System.out.println(PLAYER_CHECK_RESULT_REQUEST_MESSAGE);
         String rawName = scanner.nextLine();
