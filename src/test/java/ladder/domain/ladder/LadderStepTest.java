@@ -45,4 +45,44 @@ public class LadderStepTest {
                 Arguments.arguments(List.of(EXIST, EMPTY, EXIST, EXIST), List.of(EXIST, EMPTY, EXIST, EMPTY))
         );
     }
+
+    @ParameterizedTest
+    @MethodSource("getLadderStepPosition")
+    @DisplayName("참가자가 사다리 한 스텝 안에서 다음으로 이동할 사다리 위치를 찾는다.")
+    void findNextPositionInLadderStepTest(int currentPosition, int expectedResult) {
+        // given
+        final List<Path> ladderStepPaths = List.of(EXIST, EMPTY, EMPTY, EMPTY, EXIST);
+        final LadderStep ladderStep = new LadderStep(ladderStepPaths);
+
+        // when
+        int nextPosition = ladderStep.findNextParticipantPosition(currentPosition);
+
+        // then
+        assertThat(nextPosition).isEqualTo(expectedResult);
+    }
+
+    static Stream<Arguments> getLadderStepPosition() {
+        return Stream.of(
+                Arguments.arguments(0, 1),
+                Arguments.arguments(1, 0),
+                Arguments.arguments(2, 2),
+                Arguments.arguments(3, 3),
+                Arguments.arguments(4, 5),
+                Arguments.arguments(5, 4)
+        );
+    }
 }
+
+/*
+
+    |-----|     |     |     |-----|
+    |     |-----|     |
+    |-----|     |     |
+    |     |-----|     |
+    |-----|     |-----|
+
+
+    0 1 2 3
+
+    0 1 2
+ */
