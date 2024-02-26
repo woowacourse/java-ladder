@@ -2,6 +2,7 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import utils.AbsentStepGenerator;
 import utils.PresentStepGenerator;
 
 import java.util.List;
@@ -30,13 +31,24 @@ public class LineTest {
 
     @Test
     @DisplayName("현재 위치를 이용해 이후 위치를 결정한다.")
-    void findNextLocationTest() {
+    void findNextLocationTest1() {
         Line line = new Line(3, new PresentStepGenerator());
 
         assertAll(() -> assertEquals(line.findNextLocation(0), 1),
                 () -> assertEquals(line.findNextLocation(1), 0),
                 () -> assertEquals(line.findNextLocation(2), 3),
                 () -> assertEquals(line.findNextLocation(3), 2));
+    }
+
+    @Test
+    @DisplayName("현재 위치를 이용해 이후 위치를 결정한다.")
+    void findNextLocationTest2() {
+        Line line = new Line(3, new AbsentStepGenerator());
+
+        assertAll(() -> assertEquals(line.findNextLocation(0), 0),
+                () -> assertEquals(line.findNextLocation(1), 1),
+                () -> assertEquals(line.findNextLocation(2), 2),
+                () -> assertEquals(line.findNextLocation(3), 3));
     }
 
 }

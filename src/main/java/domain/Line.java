@@ -33,4 +33,14 @@ public class Line {
     public List<StepPoint> getStepPoints() {
         return stepPoints;
     }
+
+    public int findNextLocation(int presentLocation) {
+        if (presentLocation > 0 && stepPoints.get(presentLocation - 1) == StepPoint.PRESENT) {
+            return presentLocation - 1;
+        }
+        if (presentLocation < stepPoints.size() && stepPoints.get(presentLocation) == StepPoint.PRESENT) {
+            return presentLocation + 1;
+        }
+        return presentLocation;
+    }
 }
