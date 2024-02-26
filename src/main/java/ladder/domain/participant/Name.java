@@ -1,12 +1,12 @@
 package ladder.domain.participant;
 
-public class ParticipantName {
+public class Name {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String NAME_REGEX = "^[a-zA-Z]*$";
 
     private final String value;
 
-    public ParticipantName(final String name) {
+    public Name(final String name) {
         validateLength(name);
         validateIsAlphabetic(name);
         this.value = name;

@@ -1,9 +1,9 @@
 package ladder.domain.participant;
 
-public class ParticipantPosition {
+public class Position {
     private final int value;
 
-    public ParticipantPosition(final int position) {
+    public Position(final int position) {
         this.value = position;
     }
 

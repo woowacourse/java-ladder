@@ -1,19 +1,19 @@
 package ladder.domain.participant;
 
 public class Participant {
-    private final ParticipantName name;
-    private final ParticipantPosition position;
+    private final Name name;
+    private final Position position;
 
     public Participant(final String name, final int position) {
-        this.name = new ParticipantName(name);
-        this.position = new ParticipantPosition(position);
+        this.name = new Name(name);
+        this.position = new Position(position);
     }
 
-    public ParticipantName getName() {
+    public Name getName() {
         return name;
     }
 
-    public ParticipantPosition getPosition() {
+    public Position getPosition() {
         return position;
     }
 }
