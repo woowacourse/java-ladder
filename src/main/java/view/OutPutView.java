@@ -18,8 +18,8 @@ public class OutPutView {
     private static final String PREFIX_RESULT = "\n실행 결과\n";
 
     private static final String VERTICAL_BRIDGE = "|";
-    private static final String EXIST_BRIDGE = "----";
-    private static final String NONE_BRIDGE = "    ";
+    private static final String EXIST_BRIDGE = "-----";
+    private static final String NONE_BRIDGE = "     ";
 
     public void printNamesInput() {
         System.out.println(NAMES_INPUT);
