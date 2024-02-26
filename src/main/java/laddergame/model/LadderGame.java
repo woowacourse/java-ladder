@@ -1,4 +1,4 @@
-package model;
+package laddergame.model;
 
 import java.util.List;
 

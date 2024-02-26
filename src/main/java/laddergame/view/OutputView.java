@@ -1,12 +1,12 @@
-package view;
+package laddergame.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import model.Ladder;
-import model.Line;
-import model.LineState;
-import model.Participant;
-import model.Participants;
+import laddergame.model.Ladder;
+import laddergame.model.Line;
+import laddergame.model.LineState;
+import laddergame.model.Participant;
+import laddergame.model.Participants;
 
 public class OutputView {
     public void printResultHeader() {

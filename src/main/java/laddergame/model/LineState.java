@@ -1,4 +1,4 @@
-package model;
+package laddergame.model;
 
 public enum LineState {
     START,

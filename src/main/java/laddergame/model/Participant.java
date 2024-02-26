@@ -1,4 +1,4 @@
-package model;
+package laddergame.model;
 
 public class Participant {
     private static final int MAXIMUM_NAME_LENGTH = 5;

@@ -1,12 +1,12 @@
-package controller;
+package laddergame.controller;
 
-import model.Ladder;
-import model.LadderGame;
-import model.LadderHeight;
-import model.Participants;
-import model.RandomGenerator;
-import view.InputView;
-import view.OutputView;
+import laddergame.model.Ladder;
+import laddergame.model.LadderGame;
+import laddergame.model.LadderHeight;
+import laddergame.model.Participants;
+import laddergame.model.RandomGenerator;
+import laddergame.view.InputView;
+import laddergame.view.OutputView;
 
 public class LadderGameController {
     private final InputView inputView;

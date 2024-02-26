@@ -1,4 +1,4 @@
-package view;
+package laddergame.view;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
@@ -6,9 +6,9 @@ import static java.util.stream.Collectors.toList;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.function.Supplier;
-import model.LadderHeight;
-import model.Participant;
-import model.Participants;
+import laddergame.model.LadderHeight;
+import laddergame.model.Participant;
+import laddergame.model.Participants;
 
 public class InputView {
     private final Scanner scanner = new Scanner(System.in);

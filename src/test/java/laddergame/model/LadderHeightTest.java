@@ -1,4 +1,4 @@
-package model;
+package laddergame.model;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
