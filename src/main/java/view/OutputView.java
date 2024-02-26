@@ -18,7 +18,7 @@ public class OutputView {
 
     public static void printNames(Names names) {
         for (Name name : names.getNames()) {
-            System.out.printf("%5s ", name.getName());
+            System.out.printf("%5s ", name.getValue());
         }
         System.out.println();
     }
@@ -61,7 +61,7 @@ public class OutputView {
 
         System.out.println("실행 결과");
         results1.forEach((result) -> {
-            System.out.printf("%s : %s\n", result.getName().getName(), result.getPrize());
+            System.out.printf("%s : %s\n", result.getName().getValue(), result.getPrize());
         });
     }
 

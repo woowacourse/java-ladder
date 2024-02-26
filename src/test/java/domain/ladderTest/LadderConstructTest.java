@@ -39,6 +39,6 @@ public class LadderConstructTest {
         Ladder ladder = new Ladder(new RandomBridgeConstructStrategy(), names, prizes, DEFAULT_HEIGHT);
 
         //then
-        assertThat(ladder.getBridge()).hasSize(DEFAULT_HEIGHT.getIntValue());
+        assertThat(ladder.getBridge()).hasSize(DEFAULT_HEIGHT.getValue());
     }
 }

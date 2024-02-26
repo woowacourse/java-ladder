@@ -2,11 +2,11 @@ package domain;
 
 public class Height {
 
-    private final int intValue;
+    private final int value;
 
-    public Height(int intValue) {
-        validate(intValue);
-        this.intValue = intValue;
+    public Height(int value) {
+        validate(value);
+        this.value = value;
     }
 
     private void validate(int intValue) {
@@ -15,7 +15,7 @@ public class Height {
         }
     }
 
-    public int getIntValue() {
-        return intValue;
+    public int getValue() {
+        return value;
     }
 }
