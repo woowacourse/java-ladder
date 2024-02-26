@@ -10,12 +10,13 @@ import static laddergame.domain.ladder.Connection.CONNECTED;
 import static laddergame.domain.ladder.Connection.NOTCONNECTED;
 
 public class RowLine {
-    //TODO 필드 초기화 제거하기
-    private final List<Connection> connections = new ArrayList<>();
+    private final List<Connection> connections;
 
     public RowLine(int peopleNumber, ConnectionGenerator generator) {
         List<Connection> generatedConnection = generator.getConnections(peopleNumber);
         validateConnection(generatedConnection);
+
+        this.connections= new ArrayList<>();
         this.connections.addAll(generatedConnection);
     }
     //TODO depth 줄이기
