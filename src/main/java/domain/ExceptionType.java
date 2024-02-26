@@ -9,7 +9,8 @@ public enum ExceptionType {
     INVALID_NAMES_SEPARATOR("구분자가 맨 앞이나 맨 뒤에 있으면 안됩니다."),
     INVALID_BRIDGES_RANGE("다리 개수는 1이상 9 이하여야 합니다."),
     NOT_ALLOW_DUPLICATE_NAME("이름은 중복될 수 없습니다."),
-    NOT_ALLOW_NEAR_BRIDGE("근처에 다리가 있으면 놓을 수 없습니다.");
+    NOT_ALLOW_NEAR_BRIDGE("근처에 다리가 있으면 놓을 수 없습니다."),
+    INVALID_LADDER_RESULT_RANGE("실행 결과 길이는 1자 이상 5자 이하여야 합니다.");
 
     private final String message;
 
