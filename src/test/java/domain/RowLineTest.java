@@ -11,6 +11,17 @@ import org.junit.jupiter.api.Test;
 @DisplayName("가로줄 테스트")
 class RowLineTest {
 
+    @DisplayName("현재 열의 위치에서 연결 정보를 기반으로 다음 열의 위치를 계산할 수 있다")
+    @Test
+    void testNavigateNextColumn() {
+        List<ConnectionStatus> connections = List.of(CONNECTED, DISCONNECTED, CONNECTED);
+        RowLine rowLine = new RowLine(connections);
+        assertThat(rowLine.navigateNextIndex(0)).isEqualTo(1);
+        assertThat(rowLine.navigateNextIndex(1)).isEqualTo(0);
+        assertThat(rowLine.navigateNextIndex(2)).isEqualTo(3);
+        assertThat(rowLine.navigateNextIndex(3)).isEqualTo(2);
+    }
+
     @DisplayName("특정 위치의 오른쪽이 연결이 있는지 확인할 수 있다.")
     @Test
     void testCheckRightConnection() {

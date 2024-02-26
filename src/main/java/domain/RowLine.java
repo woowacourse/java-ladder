@@ -12,6 +12,16 @@ public class RowLine {
         this.connections = connections;
     }
 
+    public int navigateNextIndex(int index) {
+        if (getRightConnection(index).isConnect()) {
+            return index + 1;
+        }
+        if (getLeftConnection(index).isConnect()) {
+            return index - 1;
+        }
+        return index;
+    }
+
     public ConnectionStatus getRightConnection(int index) {
         if (isRightIndexOutOfRange(index)) {
             return DISCONNECTED;
