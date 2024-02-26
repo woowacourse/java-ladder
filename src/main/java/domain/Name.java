@@ -6,11 +6,11 @@ public class Name {
     private static final String INVALID_NAME_LENGTH =
             "이름은 " + MIN_NAME_LENGTH + "자 이상, " + MAX_NAME_LENGTH + "자 이하여야 합니다.";
 
-    private final String name;
+    private final String value;
 
     public Name(final String value) {
         validateNameLength(value);
-        this.name = value;
+        this.value = value;
     }
 
     private void validateNameLength(final String value) {
@@ -24,6 +24,6 @@ public class Name {
     }
 
     public String getValue() {
-        return name;
+        return value;
     }
 }
