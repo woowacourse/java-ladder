@@ -13,7 +13,7 @@ public class RowLine {
     private final List<Connection> connections;
 
     public RowLine(int peopleNumber, ConnectionGenerator generator) {
-        List<Connection> generatedConnection = generator.getConnections(peopleNumber);
+        List<Connection> generatedConnection = generator.generate(peopleNumber - 1);
         validateConnection(generatedConnection);
 
         this.connections = new ArrayList<>();

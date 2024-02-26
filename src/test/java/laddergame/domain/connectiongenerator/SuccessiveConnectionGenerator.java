@@ -7,10 +7,8 @@ import java.util.stream.Stream;
 
 public class SuccessiveConnectionGenerator implements ConnectionGenerator {
     @Override
-    public List<Connection> getConnections(int peopleNumber) {
-        int connectionNumber = peopleNumber - 1;
-
-        return Stream.iterate(Connection.CONNECTED, connection->connection)
+    public List<Connection> generate(int connectionNumber) {
+        return Stream.iterate(Connection.CONNECTED, connection -> connection)
                 .limit(connectionNumber)
                 .toList();
     }

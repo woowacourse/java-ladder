@@ -12,8 +12,7 @@ public class RandomConnectionGenerator implements ConnectionGenerator {
     private static final double PERCENTAGE_OF_CONNECTION = 0.5;
 
     @Override
-    public List<Connection> getConnections(int peopleNumber) {
-        int connectionNumber = peopleNumber - 1;
+    public List<Connection> generate(int connectionNumber) {
         Connection beforeConnection = addRandomConnection();
 
         return Stream.iterate(beforeConnection, this::addConnection)
