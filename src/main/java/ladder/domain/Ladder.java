@@ -13,23 +13,9 @@ public class Ladder {
 
     private final List<Floor> floors;
 
-    public Ladder(String heightInput, int personCount, RungGenerator rungGenerator) {
-        int height = parseAndValidateHeight(heightInput);
-        floors = makeFloors(height, personCount, rungGenerator);
-    }
-
-    private int parseAndValidateHeight(String heightInput) {
-        int height = parseHeightInputToInteger(heightInput);
+    public Ladder(int height, int personCount, RungGenerator rungGenerator) {
         validateHeightRange(height);
-        return height;
-    }
-
-    private int parseHeightInputToInteger(String heightInput) {
-        try {
-            return Integer.parseInt(heightInput);
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException("숫자로 입력을 변환할 수 없습니다.");
-        }
+        floors = makeFloors(height, personCount, rungGenerator);
     }
 
     private void validateHeightRange(int height) {

@@ -19,9 +19,19 @@ public class InputView {
         return divideInput();
     }
 
-    public String getHeight() {
+    public int getHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return scanner.nextLine();
+
+        String heightInput = scanner.nextLine();
+        return parseHeightInputToInteger(heightInput);
+    }
+
+    private int parseHeightInputToInteger(String heightInput) {
+        try {
+            return Integer.parseInt(heightInput);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("숫자로 입력을 변환할 수 없습니다.");
+        }
     }
 
     private List<String> divideInput() {

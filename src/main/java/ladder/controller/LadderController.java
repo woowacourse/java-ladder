@@ -37,12 +37,8 @@ public class LadderController {
     }
 
     private Ladder getLadder(int participantsCount) {
-        String height = getHeight();
+        int height = inputView.getHeight();
         return new Ladder(height, participantsCount, rungGenerator);
-    }
-
-    private String getHeight() {
-        return inputView.getHeight();
     }
 
     private <T> T repeatUntilValid(Supplier<T> function) {

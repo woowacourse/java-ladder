@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import ladder.domain.dto.FloorResponseDto;
 import ladder.domain.dto.LadderResponseDto;
@@ -15,7 +14,7 @@ public class LadderTest {
     @Test
     @DisplayName("매개변수 height와 생성되는 사다리와 사다리의 높이는 일치해야 한다.")
     void ladderHeightTest() {
-        Ladder ladder = new Ladder("3", 5, () -> Rung.EXIST);
+        Ladder ladder = new Ladder(3, 5, () -> Rung.EXIST);
         LadderResponseDto resultLadders = ladder.getResultLadders();
         int ladderHeight = resultLadders.ladderResult().size();
 
@@ -26,31 +25,11 @@ public class LadderTest {
     @ValueSource(ints = {0, 1, 2})
     @DisplayName("생성되는 사다리의 가로 공간은 사람 수 보다 1적어야 한다.")
     void ladderHorizontalLengthTest(int heightPosition) {
-        Ladder ladder = new Ladder("3", 5, () -> Rung.EXIST);
+        Ladder ladder = new Ladder(3, 5, () -> Rung.EXIST);
         LadderResponseDto resultLadders = ladder.getResultLadders();
         FloorResponseDto floorResponseDto = resultLadders.ladderResult().get(heightPosition);
         int maxRungsCount = floorResponseDto.buildStatusList().size();
 
         assertThat(maxRungsCount).isEqualTo(4);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"-1", "0",})
-    @DisplayName("높이는 양의 정수만 가능하다.")
-    void isPositiveIntegerHeightTest(String heightInput) {
-
-        assertThatThrownBy(() -> new Ladder(heightInput, 3, () -> Rung.EXIST))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("입력된 높이는 1 이상, 100 이하여야 합니다. 입력값 : " + heightInput);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"&", "op%la", "#1", " "})
-    @DisplayName("높이는 숫자로 변환이 가능해야 함을 테스트")
-    void canTranslateToIntegerTest(String heightInput) {
-
-        assertThatThrownBy(() -> new Ladder(heightInput, 3, () -> Rung.EXIST))
-                .isInstanceOf(NumberFormatException.class)
-                .hasMessage("숫자로 입력을 변환할 수 없습니다.");
     }
 }
