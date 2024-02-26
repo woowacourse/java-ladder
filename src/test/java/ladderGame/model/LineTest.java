@@ -19,23 +19,13 @@ class LineTest {
 
     @Test
     @DisplayName("해당 위치에서 왼쪽으로 연결된 길이 있는지 알려준다.")
-    void checkLeftConnection() {
-        Line line = new Line(List.of(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION, ConnectionStatus.CONNECTION));
-
-        assertAll(
-                () -> assertTrue(line.checkLeftConnection(1)),
-                () -> assertFalse(line.checkLeftConnection(2))
-        );
-    }
-
-    @Test
-    @DisplayName("해당 위치에서 오른쪽으로 연결된 길이 있는지 알려준다.")
-    void checkRightConnection() {
+    void checkConnectionAndFindMoveIndex() {
         Line line = new Line(List.of(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION));
 
         assertAll(
-                () -> assertTrue(line.checkRightConnection(0)),
-                () -> assertFalse(line.checkRightConnection(1))
+                () -> assertEquals(line.checkConnectionAndFindNextIndex(0), 1),
+                () -> assertEquals(line.checkConnectionAndFindNextIndex(1), 0),
+                () -> assertEquals(line.checkConnectionAndFindNextIndex(2), 2)
         );
     }
 }

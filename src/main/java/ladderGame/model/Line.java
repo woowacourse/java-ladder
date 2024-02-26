@@ -25,15 +25,25 @@ public class Line {
         return new ArrayList<>(connectionStatuses);
     }
 
-    public boolean checkLeftConnection(int index) {
+    private boolean checkLeftConnection(int index) {
         if(index == 0)
             return false;
         return connectionStatuses.get(index-1).equals(ConnectionStatus.CONNECTION);
     }
 
-    public boolean checkRightConnection(int index) {
+    private boolean checkRightConnection(int index) {
         if(index >= connectionStatuses.size())
             return false;
         return connectionStatuses.get(index).equals(ConnectionStatus.CONNECTION);
+    }
+
+    public int checkConnectionAndFindNextIndex(int index) {
+        if(checkLeftConnection(index)) {
+            return index-1;
+        }
+        if(checkRightConnection(index)) {
+            return index+1;
+        }
+        return index;
     }
 }

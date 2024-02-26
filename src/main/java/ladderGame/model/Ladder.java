@@ -18,13 +18,7 @@ public class Ladder {
     public int findLadderResultIndex(int index) {
         int resultIndex = index;
         for(Line line: lines) {
-            if(line.checkLeftConnection(resultIndex)) {
-                resultIndex--;
-                continue;
-            }
-            if(line.checkRightConnection(resultIndex)) {
-                resultIndex++;
-            }
+            resultIndex = line.checkConnectionAndFindNextIndex(resultIndex);
         }
 
         return resultIndex;
