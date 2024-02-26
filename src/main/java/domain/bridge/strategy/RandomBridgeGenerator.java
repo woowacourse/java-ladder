@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomBridgeGenerator implements BridgeGenerator {
-    private static final Random random = new Random();
+    private final Random random = new Random();
 
     @Override
     public List<LadderBridge> generate(final int pointCount) {
