@@ -3,7 +3,6 @@ package model;
 import utils.RuleGeneratorImpl;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Ladder {

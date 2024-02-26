@@ -31,7 +31,7 @@ public class Line {
 
     private void makeHorizontalLine(RuleGenerator generator, int position) {
         points.add(false);
-        if (generator.isAboveThreshold()  && !hasLeftConnectedLine(position)) {
+        if (generator.isAboveThreshold() && !hasLeftConnectedLine(position)) {
             points.set(position, true);
         }
     }

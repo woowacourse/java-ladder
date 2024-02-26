@@ -9,9 +9,7 @@ public class People {
 
     public People(String names) {
         validate(names);
-        this.participants = Arrays.stream(names.split(","))
-                .map(Person::new)
-                .toList();
+        this.participants = Arrays.stream(names.split(",")).map(Person::new).toList();
     }
 
     public List<Person> getParticipants() {
@@ -36,9 +34,7 @@ public class People {
 
     private void validateDuplicateNames(String inputNames) {
         int numberOfOrigin = inputNames.split(",").length;
-        int numberOfDistinct = (int) Arrays.stream(inputNames.split(","))
-                .distinct()
-                .count();
+        int numberOfDistinct = (int) Arrays.stream(inputNames.split(",")).distinct().count();
 
         if (numberOfOrigin != numberOfDistinct) {
             throw new IllegalArgumentException("중복된 이름은 허용하지 않습니다.");

@@ -13,6 +13,7 @@ public class LadderController {
     private final ResultView resultView;
     private final InputView inputView;
     private final ExceptionHandler handler;
+
     public LadderController(ResultView resultView, InputView inputView) {
         this.resultView = resultView;
         this.inputView = inputView;
@@ -27,7 +28,7 @@ public class LadderController {
     }
 
 
-    public <T> T runWithHandler(Supplier<T> callback){
+    public <T> T runWithHandler(Supplier<T> callback) {
         return handler.handle(callback);
     }
 }
