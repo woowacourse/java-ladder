@@ -14,7 +14,7 @@ public class Participant {
     }
 
     public int getPosition() {
-        return position.getValue();
+        return position.value();
     }
 
     public void setFinalPosition(final int finalPosition) {
