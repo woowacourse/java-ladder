@@ -1,7 +1,8 @@
 package controller;
 
-import static message.ErrorMessage.INVALID_LADDER_LANGUAGE_EXCEPTION;
+import static message.ErrorMessage.INVALID_LADDER_HEIGHT_LANGUAGE_EXCEPTION;
 
+import domain.Height;
 import domain.Ladder;
 import domain.Players;
 import view.InputView;
@@ -14,23 +15,22 @@ public class LadderController {
 
     public void run() {
         Players players = readPlayers();
-        Ladder ladder = readLadder();
-
+        Height ladderHeight = readHeight();
         int ladderWidth = players.getPlayers().size() - 1;
-        ladder.makeLines(ladderWidth);
+        Ladder ladder = Ladder.createLadderWithLines(ladderHeight, ladderWidth);
 
         OutputView.printResult(players, ladder);
     }
 
-    private Ladder readLadder() {
+    private Height readHeight() {
         try {
-            return new Ladder(InputView.readLadderHeight());
+            return new Height(InputView.readLadderHeight());
         } catch (NumberFormatException e) {
-            System.out.println(INVALID_LADDER_LANGUAGE_EXCEPTION.getMessage());
-            return readLadder();
+            System.out.println(INVALID_LADDER_HEIGHT_LANGUAGE_EXCEPTION.getMessage());
+            return readHeight();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readLadder();
+            return readHeight();
         }
     }
 
