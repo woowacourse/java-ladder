@@ -7,6 +7,8 @@ import domain.RandomBridgeGenerator;
 import view.InputView;
 import view.OutputView;
 
+import java.util.List;
+
 public class LadderGame {
 
     private final InputView inputView = InputView.getInstance();

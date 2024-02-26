@@ -14,8 +14,10 @@ class LineTest {
         //given
         int personCount = 4;
         BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(List.of(false, true, false));
+
         //when
         Line line = Line.createByStrategy(bridgeGenerator, personCount);
+
         //then
         Assertions.assertThat(line.getBridges()).containsExactly(Bridge.NO_BRIDGE, Bridge.BRIDGE, Bridge.NO_BRIDGE);
     }

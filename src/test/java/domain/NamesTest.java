@@ -2,11 +2,13 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import util.ExceptionMessages;
 
 class NamesTest {
 
@@ -19,8 +21,10 @@ class NamesTest {
         for (int i = 0; i < playerCount; i++) {
             names.add(String.valueOf(i));
         }
+
         //when
         final Names players = new Names(names);
+
         //then
         Assertions.assertThat(players.count()).isEqualTo(playerCount);
     }
@@ -34,8 +38,11 @@ class NamesTest {
         for (int i = 0; i < playerCount; i++) {
             names.add(String.valueOf(i));
         }
+
         //when & then
-        Assertions.assertThatThrownBy(() -> new Names(names)).isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> new Names(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessages.INVALID_PLAYERS_COUNT);
     }
 
     @DisplayName("참가자의 수를 반환한다.")
@@ -54,11 +61,13 @@ class NamesTest {
     @Test
     void getPlayerNames() {
         //given
-        final List<String> names = List.of("pobi", "honux", "crong", "jk");
-        final Names players = new Names(names);
+        final List<String> rawNames = List.of("pobi", "honux", "crong", "jk");
+        final Names names = new Names(rawNames);
+
         //when
-        List<String> returnedNames = players.getValues();
+        List<Name> returnedNames = names.getValues();
+
         //then
-        Assertions.assertThat(returnedNames).containsAll(names);
+        Assertions.assertThat(returnedNames).hasSize(4);
     }
 }

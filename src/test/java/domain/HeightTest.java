@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import util.ExceptionMessages;
 
 class HeightTest {
 
@@ -13,16 +14,18 @@ class HeightTest {
     void validHeight(final int rawHeight) {
         //when
         final Height height = new Height(rawHeight);
+
         // then
         Assertions.assertThat(height.getValue()).isEqualTo(rawHeight);
     }
 
-    @DisplayName("사다리의 높이가 0미만 10 초과이면 예외를 발생시킨다.")
+    @DisplayName("사다리의 높이가 1 미만 10 초과이면 예외를 발생시킨다.")
     @ParameterizedTest
     @ValueSource(ints = {0, 11})
     void invalidHeight(final int rawHeight) {
         //when & then
         Assertions.assertThatThrownBy(() -> new Height(rawHeight))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessages.INVALID_HEIGHT_RANGE);
     }
 }
