@@ -32,4 +32,23 @@ public class LadderTest {
         assertEquals(actual, expected);
     }
 
+    @Test
+    @DisplayName("시작 인덱스를 기반으로 도착 인덱스를 도출한다.")
+    void getDestinationIndex() {
+        /*
+                s
+        |---|   |---|
+        |---|   |---|
+        |---|   |---|
+        |---|   |---|
+        |---|   |---|
+                    e
+         */
+        Ladder ladder = new Ladder(4, new Height(5), new FixedBooleanGenerator(true));
+
+        int actual = ladder.getDestinationIndex(2);
+        int expected = 3;
+
+        assertEquals(actual, expected);
+    }
 }
