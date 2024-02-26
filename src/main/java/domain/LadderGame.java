@@ -34,4 +34,12 @@ public class LadderGame {
 
         return playerWithResultIndex;
     }
+
+    public Map<String, String> getPlayersWithPrize(Map<String, Integer> playersWithResultIndex, List<String> prizes) {
+        Map<String, String> playersWithPrize = new LinkedHashMap<>();
+        playersWithResultIndex.forEach((player, index) -> {
+            playersWithPrize.put(player, prizes.get(index));
+        });
+        return playersWithPrize;
+    }
 }

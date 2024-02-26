@@ -89,4 +89,32 @@ public class LadderGameTest {
                 "d", 2
         ));
     }
+
+    @Test
+    void getPlayersWithPrize() {
+        /*
+        a  b  c  d
+        |--|  |  |
+        |--|  |--|
+        |  |  |  |
+        A  B  C  D
+         */
+        LadderGame ladderGame = new LadderGame();
+        List<String> players = List.of("a", "b", "c", "d");
+        List<String> prizes = List.of("A", "B", "C", "D");
+
+        Line line1 = new Line(List.of(Step.EXIST, Step.EMPTY, Step.EMPTY, Step.EMPTY));
+        Line line2 = new Line(List.of(Step.EXIST, Step.EMPTY, Step.EXIST, Step.EMPTY));
+        Line line3 = new Line(List.of(Step.EMPTY, Step.EMPTY, Step.EMPTY, Step.EMPTY));
+        List<Line> lines = List.of(line1, line2, line3);
+
+        Map<String, Integer> playersWithResultIndex = ladderGame.playPlayers(lines, players);
+
+        assertThat(ladderGame.getPlayersWithPrize(playersWithResultIndex, prizes)).containsExactlyInAnyOrderEntriesOf(Map.of(
+                "a", "A",
+                "b", "B",
+                "c", "D",
+                "d", "C"
+        ));
+    }
 }
