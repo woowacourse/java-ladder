@@ -30,10 +30,10 @@ public class InputView {
                 .toList();
     }
 
-    public List<String> inputPrizes() {
+    public List<String> inputPrizes(int playerCount) {
         printLine("실행 결과를 입력하세요. (결과는 " + DELIMITER_KOREAN + "(" + DELIMITER + ")로 구분하세요)");
         String input = readLineWithTrim();
-        inputValidator.validatePrizes(input);
+        inputValidator.validatePrizes(input, playerCount);
 
         return Arrays.stream(input.split(DELIMITER))
                 .map(String::trim)

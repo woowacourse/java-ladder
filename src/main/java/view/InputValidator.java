@@ -10,11 +10,12 @@ public class InputValidator {
         validateEndWord(input);
     }
 
-    public void validatePrizes(String input) {
+    public void validatePrizes(String input, int playerCount) {
         validateBlank(input);
         validateDoubleDelimiter(input);
         validateStartWord(input);
         validateEndWord(input);
+        validateCount(input, playerCount);
     }
 
     public void validateHeight(String input) {
@@ -45,6 +46,13 @@ public class InputValidator {
         if (input.endsWith(NAME_DELIMITER)) {
             throw new IllegalArgumentException("입력은 구분자로 끝날 수 없습니다.");
         }
+    }
+
+    private void validateCount(String input, int playerCount) {
+        if (input.split(NAME_DELIMITER).length != playerCount) {
+            throw new IllegalArgumentException("실행 결과는 참여자 수와 일치해야합니다.");
+        }
+
     }
 
     private void validateNumeric(String input) {

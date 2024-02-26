@@ -44,8 +44,4 @@ public class OutputView {
     public void printLine(String message) {
         System.out.println(message);
     }
-
-    public void printEmptyLine() {
-        System.out.println();
-    }
 }
