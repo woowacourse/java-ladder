@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import domain.player.Players;
 import domain.result.Result;
 import domain.result.Results;
+import dto.RowPatternDto;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,6 +50,22 @@ class LadderTest {
                 .map(ladder::getResultByName)
                 .map(Result::result)
                 .toList();
+        assertThat(actual).containsExactlyElementsOf(expected);
+    }
+
+    @Test
+    @DisplayName("사다리를 항상 놓는 전략으로 생성했을 때, 올바른 행 별 패턴을 반환한다.")
+    void dtoConversionTest() {
+        // given
+        List<String> names = List.of("aru", "pobi", "woowa", "hello");
+        List<String> results = List.of("1000", "2000", "3000", "4000");
+        Ladder ladder = createDummyLadder(names, results, 1);
+        List<Boolean> expected = List.of(true, false, true);
+        // when
+        ladder.drawLines(() -> true);
+        // then
+        List<RowPatternDto> ladderPatterns = ladder.getLadderPatterns();
+        List<Boolean> actual = ladderPatterns.get(0).rowPattern();
         assertThat(actual).containsExactlyElementsOf(expected);
     }
 }
