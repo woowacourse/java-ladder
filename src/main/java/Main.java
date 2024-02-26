@@ -11,9 +11,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         var outputView = new OutPutView();
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
-            LadderGame ladderGame = RetryHelper.retry(() -> {
-                return createLadderGame(bufferedReader, outputView);
-            });
+            LadderGame ladderGame = RetryHelper.retry(() -> createLadderGame(bufferedReader, outputView));
             outputView.printLadderResult(ladderGame.getNames(), ladderGame.getLadder(), ladderGame.getLadderResults());
         }
     }
