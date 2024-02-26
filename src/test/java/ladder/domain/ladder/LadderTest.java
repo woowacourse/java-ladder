@@ -17,12 +17,12 @@ class LadderTest {
     @DisplayName("참가자가 도착한 사다리 마지막 위치를 반환한다.")
     void determineFinalPositionOfParticipantTest() {
         // given
-        Participants participants = new Participants(List.of("a", "b", "c"));
-        Ladder ladder = generateLadder();
-        List<Position> expectedPositions = List.of(new Position(2), new Position(0), new Position(1));
+        final Participants participants = new Participants(List.of("a", "b", "c"));
+        final Ladder ladder = generateLadder();
+        final List<Position> expectedPositions = List.of(new Position(2), new Position(0), new Position(1));
 
         // when
-        List<Position> actualPositions = participants.getValues().stream()
+        final List<Position> actualPositions = participants.getValues().stream()
                 .map(ladder::determineFinalPositionOf)
                 .toList();
 
@@ -31,18 +31,18 @@ class LadderTest {
     }
 
     private static Ladder generateLadder() {
-        List<LadderStep> ladderSteps = List.of(
+        final List<LadderStep> ladderSteps = List.of(
                 new LadderStep(List.of(EXIST, EMPTY)),
                 new LadderStep(List.of(EMPTY, EXIST))
         );
-        LadderStepsGenerator ladderStepsGenerator = new TestLadderStepsGenerator(ladderSteps);
+        final LadderStepsGenerator ladderStepsGenerator = new TestLadderStepsGenerator(ladderSteps);
         return new Ladder(ladderStepsGenerator);
     }
 
     private record TestLadderStepsGenerator(List<LadderStep> ladderSteps) implements LadderStepsGenerator {
         @Override
-            public List<LadderStep> generate() {
+        public List<LadderStep> generate() {
                 return ladderSteps;
             }
-        }
+    }
 }

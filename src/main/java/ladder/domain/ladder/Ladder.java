@@ -20,10 +20,10 @@ public class Ladder {
         return ladderSteps;
     }
 
-    public Position determineFinalPositionOf(Participant participant) {
+    public Position determineFinalPositionOf(final Participant participant) {
         Position currentPosition = participant.getStartPosition();
         for (LadderStep ladderStep : ladderSteps) {
-            Direction direction = ladderStep.getNextDirection(currentPosition);
+            final Direction direction = ladderStep.getNextDirection(currentPosition);
             currentPosition = direction.determineNextPosition(currentPosition);
         }
         return currentPosition;
