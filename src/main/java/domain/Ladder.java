@@ -18,8 +18,12 @@ public class Ladder {
                 .toList();
     }
 
+    public boolean isFinish(int floor) {
+        return height.isEnd(floor);
+    }
+
     public boolean canMoveLeft(int floor, int step) {
-        if (height.isEnd(floor)) {
+        if (isFinish(floor)) {
             return false;
         }
         Line line = lines.get(floor + ONE_LINE);
@@ -27,7 +31,7 @@ public class Ladder {
     }
 
     public boolean canMoveRight(int floor, int step) {
-        if (height.isEnd(floor)) {
+        if (isFinish(floor)) {
             return false;
         }
         Line line = lines.get(floor + ONE_LINE);
