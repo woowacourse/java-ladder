@@ -27,11 +27,11 @@ public class Bridges {
         }
     }
 
-    public List<Bridge> getBridges() {
-        return Collections.unmodifiableList(bridges);
-    }
-
     public int size() {
         return bridges.size();
+    }
+
+    public List<Bridge> getBridges() {
+        return Collections.unmodifiableList(bridges);
     }
 }

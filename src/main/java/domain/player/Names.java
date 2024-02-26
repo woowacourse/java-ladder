@@ -25,13 +25,13 @@ public class Names {
         return names.size();
     }
 
+    public Name get(int index) {
+        return names.get(index);
+    }
+
     public List<String> getNames() {
         return names.stream()
                 .map(Name::getName)
                 .toList();
-    }
-
-    public Name get(int index) {
-        return names.get(index);
     }
 }

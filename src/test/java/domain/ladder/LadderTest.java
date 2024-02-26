@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.ladder.bridgeConstructstrategy.BridgeConstructStrategy;
-import domain.ladder.bridgeConstructstrategy.CustomBridgeConstructStrategy;
 import domain.ladder.bridgeConstructstrategy.RandomBridgeConstructStrategy;
 import domain.player.Names;
 import java.util.List;

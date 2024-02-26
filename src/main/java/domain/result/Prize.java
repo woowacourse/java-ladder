@@ -41,7 +41,7 @@ public class Prize {
         return Objects.hash(resultName);
     }
 
-    public String getResultName() {
+    public String getPrizeName() {
         return resultName;
     }
 }

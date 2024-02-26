@@ -52,10 +52,6 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printException(Exception exception) {
-        System.out.println(exception.getMessage());
-    }
-
     public static void printAllResult(Map<Name, Prize> ladderGame) {
         System.out.println("실행결과");
         for (Name name : ladderGame.keySet()) {
@@ -66,5 +62,9 @@ public class OutputView {
     public static void printEachResult(Name name, Prize prize) {
         System.out.println("실행결과");
         System.out.println(name + " : " + prize);
+    }
+
+    public static void printException(Exception exception) {
+        System.out.println(exception.getMessage());
     }
 }

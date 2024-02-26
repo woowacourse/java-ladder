@@ -32,8 +32,9 @@ public class RandomBridgeConstructStrategy implements BridgeConstructStrategy {
     }
 
     private boolean hasPreviousBridge(List<Bridge> result, int index) {
-        if(index == 0)
+        if (index == 0) {
             return false;
+        }
         return result.get(index - 1) == Bridge.BUILT;
     }
 }

@@ -46,31 +46,6 @@ public class LadderGameController {
         }
     }
 
-    private static Menu readMenu() {
-        try {
-            return Menu.from(InputView.readMenu());
-        } catch (IllegalArgumentException exception) {
-            OutputView.printException(exception);
-            return readMenu();
-        }
-    }
-
-    private static void showResult(GameResult gameResult) {
-        String input = InputView.readNameForResult();
-        if ("all".equals(input)) {
-            OutputView.printAllResult(gameResult.getAllResult());
-            return;
-        }
-        Name inputName = new Name(input);
-        OutputView.printEachResult(inputName, gameResult.getResult(inputName));
-    }
-
-    private static void printLadderGame(LadderGame ladderGame) {
-        OutputView.printNames(ladderGame.getNames());
-        OutputView.printLadder(ladderGame.getLadder());
-        OutputView.printResults(ladderGame.getResult());
-    }
-
     private static LadderGame createLadderGame() {
         try {
             Names names = readNames();
@@ -114,5 +89,30 @@ public class LadderGameController {
             OutputView.printException(exception);
             return readHeight();
         }
+    }
+
+    private static void printLadderGame(LadderGame ladderGame) {
+        OutputView.printNames(ladderGame.getNames());
+        OutputView.printLadder(ladderGame.getLadder());
+        OutputView.printResults(ladderGame.getResult());
+    }
+
+    private static Menu readMenu() {
+        try {
+            return Menu.from(InputView.readMenu());
+        } catch (IllegalArgumentException exception) {
+            OutputView.printException(exception);
+            return readMenu();
+        }
+    }
+
+    private static void showResult(GameResult gameResult) {
+        String input = InputView.readNameForResult();
+        if ("all".equals(input)) {
+            OutputView.printAllResult(gameResult.getAllResult());
+            return;
+        }
+        Name inputName = new Name(input);
+        OutputView.printEachResult(inputName, gameResult.getResult(inputName));
     }
 }

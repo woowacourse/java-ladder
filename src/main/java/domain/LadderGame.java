@@ -3,7 +3,6 @@ package domain;
 import domain.ladder.Ladder;
 import domain.player.Names;
 import domain.result.Prizes;
-import java.math.BigDecimal;
 
 public class LadderGame {
     private final Names names;

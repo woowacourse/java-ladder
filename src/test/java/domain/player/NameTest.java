@@ -3,7 +3,6 @@ package domain.player;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import domain.player.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,7 +13,7 @@ public class NameTest {
 
     @DisplayName("객체가 정상적으로 생성된다.")
     @Test
-    void constructSuccessTest(){
+    void constructSuccessTest() {
         assertThatNoException()
                 .isThrownBy(() -> new Name("takan"));
     }
@@ -29,7 +28,7 @@ public class NameTest {
 
     @DisplayName("이름이 5글자를 넘어가면 예외가 발생한다.")
     @Test
-    void constructFailWithTooLongName(){
+    void constructFailWithTooLongName() {
         assertThatThrownBy(() -> new Name("zangsu"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
