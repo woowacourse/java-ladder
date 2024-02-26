@@ -34,9 +34,9 @@ public class LadderController {
     }
 
     private Ladder prepareLadder(Participants participants) {
-        int height = new Height(inputView.requestLadderHeight()).getValue();
+        Height height = new Height(inputView.requestLadderHeight());
         int numberOfParticipants = participants.getParticipantsSize();
-        return new Ladder(height, numberOfParticipants);
+        return new Ladder(height.getValue(), numberOfParticipants);
     }
 
     private <T> T repeatUntilSuccess(Supplier<T> supplier) {

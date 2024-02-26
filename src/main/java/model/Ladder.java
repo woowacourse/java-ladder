@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-import model.dto.LayerSteps;
 
 public class Ladder {
     private final List<Layer> layers;
