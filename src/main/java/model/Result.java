@@ -1,5 +1,6 @@
 package model;
 
+import exception.Message;
 import java.util.List;
 
 public class Result {
@@ -10,11 +11,18 @@ public class Result {
         this.prizes = prizes;
     }
 
-    public static Result from(final List<String> values) {
+    public static Result of(final List<String> values, final int personCount) {
         List<Prize> prizes = values.stream()
                 .map(Prize::new)
                 .toList();
+        validate(values, personCount);
         return new Result(prizes);
+    }
+
+    private static void validate(final List<String> values, final int personCount) {
+        if (values.size() != personCount) {
+            throw new IllegalArgumentException(Message.INVALID_RESULT_ERROR.getMessage());
+        }
     }
 
 }
