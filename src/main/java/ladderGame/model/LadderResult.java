@@ -9,6 +9,10 @@ public class LadderResult {
         LadderResult = ladderResult;
     }
 
+    public String getLadderResult() {
+        return LadderResult;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

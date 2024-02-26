@@ -1,8 +1,6 @@
 package ladderGame.view;
 
-import ladderGame.model.ConnectionStatus;
-import ladderGame.model.Line;
-import ladderGame.model.Player;
+import ladderGame.model.*;
 
 import java.util.List;
 
@@ -13,11 +11,12 @@ public class ResultView {
     private static final String CONNECTION_MARK = "-----";
     private static final String LINE_MARK = "|";
 
-    public void printLadder(List<Player> players, List<Line> lines) {
+    public void printLadder(List<Player> players, List<Line> lines, List<LadderResult> ladderResults) {
         System.out.println(System.lineSeparator() + RESULT_PROMPT + System.lineSeparator());
 
         printPlayerNames(players);
         printLines(lines);
+        printLadderResults(ladderResults);
     }
 
     private void printPlayerNames(List<Player> players) {
@@ -45,5 +44,10 @@ public class ResultView {
             return CONNECTION_MARK;
         }
         return DISCONNECTION_MARK;
+    }
+
+    private void printLadderResults(List<LadderResult> ladderResults) {
+        ladderResults.forEach(result -> System.out.printf("%6s", result.getLadderResult()));
+        System.out.println();
     }
 }
