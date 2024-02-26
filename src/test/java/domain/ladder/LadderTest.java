@@ -1,6 +1,7 @@
 package domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.player.Name;
 import domain.player.Players;
@@ -91,5 +92,18 @@ class LadderTest {
                 new Name("woowa"), new Result("2000")
         );
         assertThat(playerResults).containsAllEntriesOf(expected);
+    }
+
+    @Test
+    @DisplayName("사람의 수와 결과의 수가 일치하지 않는 경우, 예외를 발생한다.")
+    void sizeMismatchCreationTest() {
+        // given
+        Players players = new Players(List.of("aru", "pobi", "woowa"));
+        Results results = new Results(List.of("1000", "2000"));
+        LadderHeight height = new LadderHeight(1);
+        // when, then
+        assertThatThrownBy(() -> new Ladder(players, results, height))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사람의 수와 결과의 개수가 일치하지 않습니다.");
     }
 }
