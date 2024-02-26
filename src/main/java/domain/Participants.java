@@ -11,7 +11,7 @@ public class Participants {
 
     public Participants(List<String> names) {
         validateDuplicatedNames(names);
-        makeParticipants(names);
+        prepareParticipants(names);
     }
 
     private void validateDuplicatedNames(List<String> names) {
@@ -20,7 +20,7 @@ public class Participants {
         }
     }
 
-    private void makeParticipants(List<String> names) {
+    private void prepareParticipants(List<String> names) {
         for (String name : names) {
             participants.add(new Participant(name));
         }
