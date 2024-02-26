@@ -38,4 +38,13 @@ public class ResultsTest {
 
         assertThat(result).isEqualTo("5000");
     }
+
+    @Test
+    @DisplayName("실행 결과의 총 개수를 반환한다.")
+    void getResultSize() {
+        Results results = new Results(Arrays.asList("꽝", "5000", "꽝", "3000"), 4);
+        int size = results.size();
+
+        assertThat(size).isEqualTo(4);
+    }
 }
