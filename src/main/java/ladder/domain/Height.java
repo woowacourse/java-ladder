@@ -15,7 +15,7 @@ public class Height {
         }
     }
 
-    public boolean isSame(int value) {
+    public boolean equals(int value) {
         return this.value == value;
     }
 }
