@@ -6,6 +6,7 @@ public class Users {
 
     private static final int MIN_USER_SIZE = 2;
     private static final int MAX_USER_SIZE = 50;
+
     private final List<UserName> userNames;
 
     public Users(final List<String> userNames) {

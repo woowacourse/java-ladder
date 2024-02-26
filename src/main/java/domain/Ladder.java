@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Ladder {
+
     private static final int MAX_LADDER_HEIGHT = 100;
 
     private final List<Line> lines = new ArrayList<>();
