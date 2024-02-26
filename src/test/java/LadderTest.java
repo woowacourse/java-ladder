@@ -1,8 +1,11 @@
 import domain.Ladder;
+import domain.Leg;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import util.generator.RandomBooleanGenerator;
+import util.generator.LineGenerator;
 import util.generator.RandomLineGenerator;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,5 +28,37 @@ public class LadderTest {
 
         ladder.getLines().stream()
                 .forEach(line -> assertThat(line.getLegs().size()).isEqualTo(WIDTH));
+    }
+
+    @DisplayName("주어진 참여자의 사다리 타기 결과를 인덱스로 반환한다.")
+    @Test
+    void climb() {
+        Ladder ladder = Ladder.from(HEIGHT, WIDTH, new CustomLineGenerator());
+
+        assertThat(ladder.climb(1)).isEqualTo(0);
+        assertThat(ladder.climb(2)).isEqualTo(3);
+    }
+
+    @DisplayName("맨 왼쪽에 위치한 참여자의 사다리 타기 결과를 인덱스로 반환한다.")
+    @Test
+    void climbWithLeftPlayer() {
+        Ladder ladder = Ladder.from(HEIGHT, WIDTH, new CustomLineGenerator());
+
+        assertThat(ladder.climb(0)).isEqualTo(1);
+    }
+
+    @DisplayName("맨 오른쪽에 위치한 참여자의 사다리 타기 결과를 인덱스로 반환한다.")
+    @Test
+    void climbWithRightPlayer() {
+        Ladder ladder = Ladder.from(HEIGHT, WIDTH, new CustomLineGenerator());
+
+        assertThat(ladder.climb(3)).isEqualTo(2);
+    }
+
+    static class CustomLineGenerator implements LineGenerator {
+        @Override
+        public List<Leg> generate(int legCount) {
+            return List.of(Leg.from(true), Leg.from(false), Leg.from(true));
+        }
     }
 }

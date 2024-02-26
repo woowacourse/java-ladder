@@ -25,6 +25,39 @@ public class Ladder {
         return newlines;
     }
 
+    public int climb(int playerIndex) {
+        for (Line line : lines) {
+            playerIndex = movePosition(playerIndex, line);
+        }
+        return playerIndex;
+    }
+
+    private int movePosition(int playerIndex, Line line) {
+        if (!isFarLeft(playerIndex) && isLegLeftExist(playerIndex, line)) {
+            return playerIndex - 1;
+        }
+        if (!isFarRight(playerIndex, line) && isLegRightExist(playerIndex, line)) {
+            return playerIndex + 1;
+        }
+        return playerIndex;
+    }
+
+    private boolean isFarLeft(int playerIndex) {
+        return playerIndex == 0;
+    }
+
+    private boolean isFarRight(int playerIndex, Line line) {
+        return playerIndex == line.getLegs().size();
+    }
+
+    private boolean isLegRightExist(int playerIndex, Line line) {
+        return line.getLegs().get(playerIndex).isExist();
+    }
+
+    private boolean isLegLeftExist(int playerIndex, Line line) {
+        return line.getLegs().get(playerIndex - 1).isExist();
+    }
+
     public List<Line> getLines() {
         return List.copyOf(lines);
     }
