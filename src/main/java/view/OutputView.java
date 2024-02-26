@@ -5,6 +5,7 @@ import domain.Line;
 import domain.Name;
 
 import java.util.List;
+import java.util.Scanner;
 import java.util.StringJoiner;
 
 public class OutputView {
@@ -14,6 +15,15 @@ public class OutputView {
     private static final String COLUMN = "|";
     private static final String BRIDGE = "-----";
     private static final String NO_BRIDGE = "     ";
+
+    private static final OutputView instance = new OutputView();
+
+    private OutputView() {
+    }
+
+    public static OutputView getInstance() {
+        return instance;
+    }
 
     public void printResultMessage() {
         System.out.println(System.lineSeparator() + "실행결과");

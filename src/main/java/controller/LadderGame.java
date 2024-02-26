@@ -7,12 +7,11 @@ import domain.RandomBridgeGenerator;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
 
 public class LadderGame {
 
     private final InputView inputView = InputView.getInstance();
-    private final OutputView outputView = new OutputView();
+    private final OutputView outputView = OutputView.getInstance();
 
     public void start() {
         final Names names = new Names(inputView.readNames());
