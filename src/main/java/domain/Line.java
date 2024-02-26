@@ -5,12 +5,8 @@ import java.util.*;
 public class Line {
     private final List<Step> steps;
 
-    private Line(final List<Step> steps) {
-        this.steps = steps;
-    }
-
-    public static Line create(PlayerCount playerCount) {
-        return new Line(makeLine(playerCount));
+    public Line(final PlayerCount playerCount) {
+        this.steps = makeLine(playerCount);
     }
 
     private static List<Step> makeLine(PlayerCount playerCount) {
