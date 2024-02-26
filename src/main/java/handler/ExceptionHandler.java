@@ -4,12 +4,12 @@ import java.util.function.Supplier;
 
 public class ExceptionHandler {
 
-    public <T> T handle(Supplier<T> callback) {
+    public <T> T handleInputException(Supplier<T> recursiveCallback) {
         try {
-            return callback.get();
+            return recursiveCallback.get();
         } catch (Exception e) {
             System.out.printf("%n[ERROR] %s%n", e.getMessage());
-            return handle(callback);
+            return handleInputException(recursiveCallback);
         }
     }
 }

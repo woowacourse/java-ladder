@@ -21,8 +21,8 @@ public class LadderController {
     }
 
     public void runLadderGame() {
-        People people = handler.handle(() -> new People(inputView.askParticipants()));
-        Ladder ladder = handler.handle(() -> new Ladder(inputView.askLadderHeight(), people.numberOfParticipants()));
+        People people = handler.handleInputException(() -> new People(inputView.askParticipants()));
+        Ladder ladder = handler.handleInputException(() -> new Ladder(inputView.askLadderHeight(), people.numberOfParticipants()));
 
         resultView.printResult(people, ladder);
     }
