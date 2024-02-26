@@ -8,7 +8,7 @@ import ladder.domain.RandomDirectionGenerator;
 import ladder.domain.Results;
 import ladder.exception.ExceptionHandler;
 import ladder.view.InputView;
-import ladder.view.ResultView;
+import ladder.view.OutputView;
 
 public class Controller {
 
@@ -18,7 +18,7 @@ public class Controller {
         Height height = createHeight();
         DirectionGenerator directionGenerator = new RandomDirectionGenerator();
         Ladder ladder = new Ladder(players, height, directionGenerator);
-        ResultView.printResult(players, ladder);
+        OutputView.printExecutionResult(players, ladder);
     }
 
     private Players createPlayers() {
