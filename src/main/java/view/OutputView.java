@@ -11,7 +11,7 @@ public class OutputView {
     private static final String LEG_UNIT = "-";
     private static final String FORMAT_NAME = "%6s";
 
-    public static void printResult(Players players, Ladder ladder) {
+    public static void printResult(Players players, Ladder ladder, Results results) {
         System.out.println(RESULT);
         List<Player> gamePlayers = players.getPlayers();
         printPlayers(gamePlayers);
@@ -21,7 +21,10 @@ public class OutputView {
             printPrefixSpace(gamePlayers);
             printLine(line.getLegs());
         }
+
+        printResults(players, results);
     }
+
 
     private static void printPlayers(List<Player> players) {
         System.out.print(players.get(0).getName() + " ");
@@ -45,6 +48,14 @@ public class OutputView {
             System.out.print(extractLeg(leg.isExist()));
         }
         System.out.print(STICK + "\n");
+    }
+
+    private static void printResults(Players players, Results results) {
+        System.out.printf("%" + getFirstPlayerNameSize(players.getPlayers()) + "s", results.getResults().get(0).getResult());
+
+        results.getResults().stream()
+                .skip(1)
+                .forEach(result -> System.out.printf(FORMAT_NAME, result.getResult()));
     }
 
     private static String extractLeg(boolean isExistLeg) {

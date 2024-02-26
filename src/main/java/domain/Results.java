@@ -18,4 +18,8 @@ public class Results {
             throw new IllegalArgumentException(INVALID_RESULT_COUNT_EXCEPTION.getMessageWithCause(results.size()));
         }
     }
+
+    public List<Result> getResults() {
+        return results;
+    }
 }

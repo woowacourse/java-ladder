@@ -18,7 +18,7 @@ public class LadderController {
         Players players = readPlayers();
         Results results = readResults(players.getPlayers().size());
         Ladder ladder = readLadder(players);
-        OutputView.printResult(players, ladder);
+        OutputView.printResult(players, ladder, results);
     }
 
     private Ladder readLadder(Players players) {
