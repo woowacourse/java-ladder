@@ -6,7 +6,7 @@ import ladder.domain.People;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import static ladder.util.ExceptionHandler.retryWhileException;
+import java.util.function.Supplier;
 
 public class LadderCreator {
     private final InputView inputView;
@@ -46,6 +46,15 @@ public class LadderCreator {
             return new Height(height);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("사다리 높이는 숫자입니다.");
+        }
+    }
+
+    private <T> T retryWhileException(Supplier<T> callback) {
+        try {
+            return callback.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return retryWhileException(callback);
         }
     }
 }
