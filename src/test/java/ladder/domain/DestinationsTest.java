@@ -1,9 +1,9 @@
 package ladder.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ public class DestinationsTest {
     void makeStringToDestination() {
         List<String> destinations = List.of("꽝", "5000");
 
-        Assertions.assertThat(Destinations.of(destinations, 2).getDestinations())
+        assertThat(Destinations.of(destinations, 2).getDestinations())
                 .containsExactly(new Destination("꽝"), new Destination("5000"));
     }
 }
