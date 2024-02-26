@@ -16,8 +16,17 @@ class LadderResultTest {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = {" ", " 0 1 "})
+    @DisplayName("실행 결과 문자에 공백이 포함되면 예외 발생")
+    void validateLadderResultCharacter(String value) {
+        Assertions.assertThatThrownBy(() -> new LadderResult(value))
+                .isInstanceOf(LadderGameException.class)
+                .hasMessage(ExceptionType.INVALID_LADDER_RESULT_CHARACTER.getMessage());
+    }
+
+    @ParameterizedTest
     @ValueSource(strings = {"0", "01234"})
-    @DisplayName("실행 결과 문자 길이가 적절하면 예외가 발생하지 않음")
+    @DisplayName("실행 결과 문자가 적절하면 예외가 발생하지 않음")
     void testLadderResult(String value) {
         Assertions.assertThatCode(() -> new LadderResult(value))
                 .doesNotThrowAnyException();
