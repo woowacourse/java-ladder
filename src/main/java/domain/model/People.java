@@ -20,7 +20,7 @@ public class People {
         return participants;
     }
 
-    public int numberOfParticipants() {
+    public int getNumberOfParticipants() {
         return participants.size();
     }
 
