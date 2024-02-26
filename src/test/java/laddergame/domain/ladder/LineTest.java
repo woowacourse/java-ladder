@@ -1,9 +1,11 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import laddergame.domain.ladder.Line;
+import laddergame.domain.ladder.Point;
 import laddergame.exception.LadderGameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,10 +1,10 @@
 package laddergame.service;
 
-import laddergame.domain.Ladder;
-import laddergame.domain.LadderGenerator;
-import laddergame.domain.LadderHeight;
-import laddergame.domain.LineSize;
-import laddergame.domain.Names;
+import laddergame.domain.ladder.Ladder;
+import laddergame.domain.ladder.LadderGenerator;
+import laddergame.domain.ladder.LadderHeight;
+import laddergame.domain.ladder.LineSize;
+import laddergame.domain.name.Names;
 import laddergame.dto.Result;
 
 public class LadderGame {

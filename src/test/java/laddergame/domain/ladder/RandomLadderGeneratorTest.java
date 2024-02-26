@@ -1,8 +1,9 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.List;
+import laddergame.domain.name.Names;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

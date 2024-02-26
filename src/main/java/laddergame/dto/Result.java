@@ -1,11 +1,11 @@
 package laddergame.dto;
 
 import java.util.List;
-import laddergame.domain.Ladder;
-import laddergame.domain.Line;
-import laddergame.domain.Name;
-import laddergame.domain.Names;
-import laddergame.domain.Point;
+import laddergame.domain.ladder.Ladder;
+import laddergame.domain.ladder.Line;
+import laddergame.domain.name.Name;
+import laddergame.domain.name.Names;
+import laddergame.domain.ladder.Point;
 
 public record Result(List<String> names, List<List<Boolean>> ladder) {
 

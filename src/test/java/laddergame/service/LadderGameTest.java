@@ -3,11 +3,11 @@ package laddergame.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import laddergame.domain.Ladder;
-import laddergame.domain.LadderHeight;
-import laddergame.domain.Line;
-import laddergame.domain.Names;
-import laddergame.domain.Point;
+import laddergame.domain.ladder.Ladder;
+import laddergame.domain.ladder.LadderHeight;
+import laddergame.domain.ladder.Line;
+import laddergame.domain.name.Names;
+import laddergame.domain.ladder.Point;
 import laddergame.dto.Result;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

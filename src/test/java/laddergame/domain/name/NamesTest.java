@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.name;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

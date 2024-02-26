@@ -1,6 +1,7 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
 
 import java.util.Objects;
+import laddergame.domain.name.Names;
 import laddergame.exception.LadderGameException;
 
 public class LineSize {
