@@ -42,7 +42,7 @@ class LadderGameTest {
 	@DisplayName("올바른 입력인 경우, 올바르게 작동 후 종료한다.")
 	void validGameTest() {
 		// given
-		command("a,b,c", "2");
+		command("a,b,c", "d,e,f", "2");
 		// when
 		run();
 		// then
@@ -51,9 +51,10 @@ class LadderGameTest {
 				"참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)",
 				"최대 사다리 높이는 몇 개인가요?",
 				"실행결과",
-				"a", "b", "c",
-				"|", "|", "|",
-				"|", "|", "|"
+				"a     b     c",
+				"|-----|     |",
+				"|-----|     |",
+				"d     e     f"
 			);
 	}
 
@@ -74,10 +75,27 @@ class LadderGameTest {
 	}
 
 	@Test
+	@DisplayName("올바르지 않은 실행 결과가 입력되면 재입력을 받는다.")
+	void retryInputOnPrizesExceptionTest() {
+		command(
+			"a,b,c" // 이름 정상 입력
+			, "a,b,c,d"
+			, "123456, 3, 4, 5"
+			, ""
+			, "12345, ,꽝,꽝"
+		);
+		try {
+			assertTimeoutPreemptively(Duration.ofSeconds(1L), this::run);
+		} catch (NoSuchElementException ignored) {
+		}
+	}
+
+	@Test
 	@DisplayName("올바르지 않은 사다리 높이가 입력되면 재입력을 받는다.")
 	void retryInputOnLadderHeightsExceptionTest() {
 		command(
-			"a,b,c" // 이름은 정상 입력
+			"a,b,c" // 이름 정상 입력
+			, "꽝, 5000, 3000" // 실행 결과 정상 입력
 			, "a"
 			, "-1"
 			, ""
@@ -92,7 +110,7 @@ class LadderGameTest {
 	private void run() {
 		InputView inputView = new InputView();
 		OutputView outputView = new OutputView();
-		BooleanSupplier supplier = () -> false;
+		BooleanSupplier supplier = () -> true;
 		LadderFloorGenerator generator = new LadderFloorGenerator(supplier);
 		LadderGame ladderGame = new LadderGame(inputView, outputView, generator);
 

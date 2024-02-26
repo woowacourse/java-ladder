@@ -17,6 +17,13 @@ public class InputView {
 		return Arrays.stream(splitNames).toList();
 	}
 
+	public List<String> readPrizes(int playerCount) {
+		List<String> prizeNames = readNames();
+		validatePrizeCount(prizeNames, playerCount);
+
+		return prizeNames;
+	}
+
 	public int readLadderHeight() {
 		String input = scanner.nextLine();
 		return convertToInteger(input);
@@ -27,6 +34,12 @@ public class InputView {
 			return Integer.parseInt(input);
 		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException("사다리 높이는 정수로 입력해야 합니다.");
+		}
+	}
+
+	private void validatePrizeCount(List<String> prizeNames, int playerCount) {
+		if (prizeNames.size() != playerCount) {
+			throw new IllegalArgumentException("상품의 개수는 플레이어 수와 동일해야 합니다.");
 		}
 	}
 }

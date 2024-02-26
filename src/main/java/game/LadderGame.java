@@ -8,6 +8,7 @@ import domain.HorizontalLineStatus;
 import domain.Ladder;
 import domain.LadderHeight;
 import domain.Player;
+import domain.Prize;
 import generator.LadderFloorGenerator;
 import view.InputView;
 import view.OutputView;
@@ -26,13 +27,14 @@ public class LadderGame {
 
 	public void play() {
 		List<Player> players = retryOnException(this::getPlayers);
+		List<Prize> prizes = retryOnException(() -> getPrizes(players.size()));
 		LadderHeight height = retryOnException(this::getHeight);
 
 		Ladder ladder = Ladder.of(players.size(), height.value());
 		ladder.drawLines(floorGenerator);
 		List<HorizontalLineStatus> statuses = ladder.createStatuses();
 
-		printLadderResult(players, statuses);
+		printLadderResult(players, statuses, prizes);
 	}
 
 	private List<Player> getPlayers() {
@@ -48,6 +50,15 @@ public class LadderGame {
 		return result;
 	}
 
+	private List<Prize> getPrizes(int playerCount) {
+		outputView.printReadPrizes();
+		List<String> prizeNames = inputView.readPrizes(playerCount);
+
+		return prizeNames.stream()
+			.map(Prize::new)
+			.toList();
+	}
+
 	private LadderHeight getHeight() {
 		outputView.printReadLadderHeight();
 		int height = inputView.readLadderHeight();
@@ -55,15 +66,26 @@ public class LadderGame {
 		return new LadderHeight(height);
 	}
 
-	private void printLadderResult(List<Player> players, List<HorizontalLineStatus> statuses) {
+	private void printLadderResult(
+		List<Player> players,
+		List<HorizontalLineStatus> statuses,
+		List<Prize> prizes
+	) {
 		outputView.printResultMessage();
 		outputView.printNames(convertNames(players));
 		outputView.printLadder(statuses);
+		outputView.printNames(convertPrizes(prizes));
 	}
 
 	private List<String> convertNames(List<Player> players) {
 		return players.stream()
 			.map(Player::getName)
+			.toList();
+	}
+
+	private List<String> convertPrizes(List<Prize> prizes) {
+		return prizes.stream()
+			.map(Prize::getName)
 			.toList();
 	}
 
