@@ -1,6 +1,6 @@
 package domain;
 
-import util.generator.RandomBooleanGenerator;
+import util.generator.LineGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,18 +9,18 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    private Ladder(int height, int width) {
-        lines = makeLines(new Height(height), new Width(width));
+    private Ladder(int height, int width, LineGenerator lineGenerator) {
+        lines = makeLines(new Height(height), new Width(width), lineGenerator);
     }
 
-    public static Ladder from(int height, int width) {
-        return new Ladder(height, width);
+    public static Ladder from(int height, int width, LineGenerator lineGenerator) {
+        return new Ladder(height, width, lineGenerator);
     }
 
-    private List<Line> makeLines(Height height, Width width) {
+    private List<Line> makeLines(Height height, Width width, LineGenerator lineGenerator) {
         List<Line> newlines = new ArrayList<>();
         for (int i = 0; i < height.getHeight(); i++) {
-            newlines.add(Line.of(width.getWidth(), new RandomBooleanGenerator()));
+            newlines.add(Line.of(width.getWidth(), lineGenerator));
         }
         return newlines;
     }
