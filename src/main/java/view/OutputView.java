@@ -13,11 +13,12 @@ public class OutputView {
 
     public static void printResult(Players players, Ladder ladder) {
         System.out.println(RESULT);
-        printPlayers(players.getPlayers());
+        List<Player> gamePlayers = players.getPlayers();
+        printPlayers(gamePlayers);
 
         List<Line> lines = ladder.getLines();
         for (Line line : lines) {
-            printPrefixSpace(players.getPlayers());
+            printPrefixSpace(gamePlayers);
             printLine(line.getLegs());
         }
     }
