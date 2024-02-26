@@ -25,7 +25,17 @@ class LineTest {
         assertAll(
                 () -> assertTrue(line.checkLeftConnection(1)),
                 () -> assertFalse(line.checkLeftConnection(2))
-                );
+        );
+    }
 
+    @Test
+    @DisplayName("해당 위치에서 오른쪽으로 연결된 길이 있는지 알려준다.")
+    void checkRightConnection() {
+        Line line = new Line(List.of(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION));
+
+        assertAll(
+                () -> assertTrue(line.checkRightConnection(0)),
+                () -> assertFalse(line.checkRightConnection(1))
+        );
     }
 }

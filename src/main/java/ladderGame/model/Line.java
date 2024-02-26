@@ -30,4 +30,8 @@ public class Line {
             return false;
         return connectionStatuses.get(index-1).equals(ConnectionStatus.CONNECTION);
     }
+
+    public boolean checkRightConnection(int index) {
+        return false;
+    }
 }
