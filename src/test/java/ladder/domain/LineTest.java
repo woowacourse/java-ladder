@@ -2,6 +2,7 @@ package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.Collections;
 import java.util.List;
@@ -35,8 +36,10 @@ class LineTest {
     void isExistTest() {
         Line line = new Line(List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE, Stick.EXISTENCE));
 
-        assertThat(line.isExist(0)).isTrue();
-        assertThat(line.isExist(1)).isFalse();
+        assertAll(
+                () -> assertThat(line.isExist(0)).isTrue(),
+                () -> assertThat(line.isExist(1)).isFalse()
+        );
     }
 
     @DisplayName("위치가 0 이하이거나 라인의 사이즈보다 클 경우, 예외를 발생시킨다")
