@@ -1,6 +1,4 @@
-package ladder.domain.ladder;
-
-import ladder.domain.Position;
+package ladder.domain;
 
 public enum Direction {
     LEFT(-1),

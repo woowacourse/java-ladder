@@ -1,10 +1,9 @@
-package ladder.domain.ladder;
+package ladder.domain;
 
-import ladder.domain.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static ladder.domain.ladder.Direction.*;
+import static ladder.domain.Direction.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class DirectionTest {
