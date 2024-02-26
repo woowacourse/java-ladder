@@ -19,7 +19,7 @@ public class Results {
 
     private void validate(int membersCount, List<Result> results) {
         if (membersCount != results.size()) {
-            throw new IllegalArgumentException("플레이어 수만큼 입력해주세요.");
+            throw new IllegalArgumentException("플레이어 수(" + membersCount + ")만큼 입력해주세요.");
         }
     }
 
