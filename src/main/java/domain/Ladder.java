@@ -27,7 +27,6 @@ public class Ladder {
     // TODO Prize 객체를 사용해서 반환하는 것도 고민
     public Result calculateResult(Name name) {
         int index = names.findIndex(name.getName());
-
         for (Bridges bridge : bridges) {
             if (bridge.canCrossToLeft(index)) {
                 index--;

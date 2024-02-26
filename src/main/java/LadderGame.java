@@ -6,6 +6,9 @@ import domain.Prizes;
 import domain.Result;
 import domain.Results;
 import domain.bridgeConstructstrategy.RandomBridgeConstructStrategy;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import view.InputView;
 import view.OutputView;
 
@@ -15,11 +18,11 @@ public class LadderGame {
     }
 
     public static void run() {
-        Names names = readNames();
+        Names names = repeat(() -> new Names(InputView.readPersonNames()));
         OutputView.printNewLine();
-        Prizes prizes = readPrizes(names);
+        Prizes prizes = repeat(() -> new Prizes(InputView.readPrizes(), names));
         OutputView.printNewLine();
-        Height height = readHeight();
+        Height height = repeat(() -> new Height(InputView.readHeight()));
         OutputView.printNewLine();
 
         Ladder ladder = new Ladder(new RandomBridgeConstructStrategy(), names, prizes, height);
@@ -29,72 +32,40 @@ public class LadderGame {
         OutputView.printPrizes(prizes);
         OutputView.printNewLine();
 
-        printResult(names, ladder);
-
-    }
-
-    // TODO 반복 메서드 추출
-    private static Names readNames() {
-        try {
-            return new Names(InputView.readPersonNames());
-        } catch (IllegalArgumentException exception) {
-            OutputView.printException(exception);
-            return readNames();
-        }
-    }
-
-    private static Prizes readPrizes(Names names) {
-        try {
-            return new Prizes(InputView.readPrizes(), names);
-        } catch (IllegalArgumentException exception) {
-            OutputView.printException(exception);
-            return readPrizes(names);
-        }
-    }
-
-    private static Height readHeight() {
-        try {
-            return new Height(InputView.readHeight());
-        } catch (IllegalArgumentException exception) {
-            OutputView.printException(exception);
-            return readHeight();
-        }
+        repeat(() -> printResult(names, ladder));
     }
 
     private static void printResult(Names names, Ladder ladder) {
         while (true) {
-            Name targetName = readTarget(names, ladder);
-            if (targetName == null) {
+            String target = InputView.readResultTarget();
+            if (target.equals("all")) {
+                Results results = ladder.calculateAllResult();
+                OutputView.printNewLine();
+                OutputView.printResults(results);
                 return;
             }
+            Name targetName = names.findNameByString(target);
             Result result = ladder.calculateResult(targetName);
             OutputView.printResult(result);
             OutputView.printNewLine();
         }
     }
 
-    private static Name readTarget(Names names, Ladder ladder) {
+    private static <T> T repeat(Supplier<T> supplier) {
         try {
-            String target = readResultTarget();
-            if (target.equals("all")) {
-                Results results = ladder.calculateAllResult();
-                OutputView.printNewLine();
-                OutputView.printResults(results);
-                return null;
-            }
-            return names.findNameByString(target);
+            return supplier.get();
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
-            return readTarget(names, ladder);
+            return repeat(supplier);
         }
     }
 
-    private static String readResultTarget() {
+    private static void repeat(Runnable runnable) {
         try {
-            return InputView.readResultTarget();
+            runnable.run();
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
-            return readResultTarget();
+            repeat(runnable);
         }
     }
 }
