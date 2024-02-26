@@ -3,7 +3,7 @@ package model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PeopleTest {
@@ -18,8 +18,13 @@ public class PeopleTest {
     @Test
     @DisplayName("참겨자는 2명 이상은 허용한다.")
     void greatParticipantTest() {
-        assertThatCode(() -> new People("a,aa"))
-                .doesNotThrowAnyException();
+        //given
+        People people = new People("a,aaa");
+
+        //when & then
+        assertThat(people.getParticipants())
+                .hasSize(2);
+
     }
 
     @Test
