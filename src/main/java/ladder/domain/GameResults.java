@@ -1,15 +1,22 @@
-//package ladder.domain;
-//
-//import java.util.List;
-//
-//public class GameResults {
-//    private final List<GameResult> gameResults;
-//
-//    public GameResults(final List<GameResult> gameResults) {
-//        this.gameResults = gameResults;
-//    }
-//
-//    public static GameResults of(final List<String> gameResults) {
-//        return
-//    }
-//}
+package ladder.domain;
+
+import java.util.List;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
+public class GameResults {
+    private final List<GameResult> gameResults;
+
+    public GameResults(final List<GameResult> gameResults) {
+        this.gameResults = gameResults;
+    }
+
+    public static GameResults of(final List<String> gameResults) {
+        int gameResultsSize = gameResults.size();
+        return IntStream.range(0, gameResultsSize)
+                .mapToObj(i -> GameResult.of(gameResults.get(i), i + 1))
+                .collect(collectingAndThen(toList(), GameResults::new));
+    }
+}
