@@ -24,8 +24,4 @@ public enum LineState {
         }
         return decideLineState(decision);
     }
-
-    public String getState() {
-        return state;
-    }
 }
