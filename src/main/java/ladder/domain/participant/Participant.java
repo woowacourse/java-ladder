@@ -7,7 +7,6 @@ public class Participant {
     private final String name;
 
     public Participant(String name) {
-        name = name.trim();
         validateNameLength(name);
         validateIsAlphabetic(name);
         this.name = name;
