@@ -6,8 +6,6 @@ import handler.ExceptionHandler;
 import view.InputView;
 import view.ResultView;
 
-import java.util.function.Supplier;
-
 public class LadderController {
 
     private final ResultView resultView;
@@ -22,7 +20,7 @@ public class LadderController {
 
     public void runLadderGame() {
         People people = handler.handleInputException(() -> new People(inputView.askParticipants()));
-        Ladder ladder = handler.handleInputException(() -> new Ladder(inputView.askLadderHeight(), people.numberOfParticipants()));
+        Ladder ladder = handler.handleInputException(() -> new Ladder(inputView.askLadderHeight(), people.getParticipantsSize()));
 
         resultView.printResult(people, ladder);
     }
