@@ -6,9 +6,14 @@ import java.util.stream.IntStream;
 
 public class Lines {
     private final List<Line> lines = new ArrayList<>();
-    private final PointGenerator generator = new RandomPointGenerator();
+    private final PointGenerator generator;
 
-    public Lines(final int height, final int personCount) {
+    public Lines(final int height, final int personCount, final PointGenerator generator) {
+        this.generator = generator;
+        createLines(height, personCount);
+    }
+
+    private void createLines(int height, int personCount) {
         IntStream.range(0, height)
                 .mapToObj(index -> new Line(personCount, generator))
                 .forEach(lines::add);
@@ -16,5 +21,14 @@ public class Lines {
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public List<Integer> getAllMovablePointIndexes() {
+        List<Integer> movablePointIndexes = new ArrayList<>();
+        lines.stream()
+                .map(Line::getMovablePointIndexes)
+                .forEach(movablePointIndexes::addAll);
+
+        return movablePointIndexes;
     }
 }

@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -40,6 +41,13 @@ public class Line {
     }
 
     public List<Point> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
+    }
+
+    public List<Integer> getMovablePointIndexes() {
+        return points.stream()
+                .filter(Point::isMovable)
+                .map(points::indexOf)
+                .toList();
     }
 }
