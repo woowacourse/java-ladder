@@ -18,7 +18,7 @@ public class LadderGame {
         Height height = retryUntilValidated(() -> new Height(inputView.readLadderHeight()));
 
         Ladder ladder = new Ladder(new RandomLinesGenerator(),
-                players,
+                players.getPlayersCount(),
                 height);
         printLadderResult(players, ladder);
     }

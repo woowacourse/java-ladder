@@ -22,7 +22,7 @@ public class LadderTest {
         //when
         Ladder ladder = new Ladder(
                 new RandomLinesGenerator(),
-                players,
+                players.getPlayersCount(),
                 height);
 
         //then
@@ -47,21 +47,9 @@ public class LadderTest {
         };
 
         //when
-        Ladder ladder = new Ladder(expectedLinesGenerator, players, height);
+        Ladder ladder = new Ladder(expectedLinesGenerator, players.getPlayersCount(), height);
 
         //then
         assertEquals(expected, ladder.getLines().get(0).getLines());
-    }
-
-    @Test
-    @DisplayName("플레이어의 오른쪽에 라인이 있을 경우 오른쪽으로 이동한다.")
-    void moveRightWhenRightLine() {
-        //given
-        final Height height = new Height("1");
-        final List<String> playersName = List.of("name1", "name2", "name3", "name4");
-        final Players players = new Players(playersName);
-        final List<Line> expected = List.of(Line.EMPTY, Line.EMPTY, Line.EMPTY);
-
-
     }
 }
