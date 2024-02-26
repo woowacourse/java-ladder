@@ -13,7 +13,7 @@ public class Width {
 
     private void validate(int width) {
         if (width <= 0) {
-            throw new IllegalArgumentException(INVALID_LADDER_WIDTH_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(INVALID_LADDER_WIDTH_EXCEPTION.getMessageWithCause(width));
         }
     }
 }

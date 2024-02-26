@@ -16,7 +16,7 @@ public class Players {
 
     private static void validatePlayerSize(List<Player> players) {
         if (players.size() < MINIMUM_PLAYER_COUNT) {
-            throw new IllegalArgumentException(INVALID_PLAYER_COUNT_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(INVALID_PLAYER_COUNT_EXCEPTION.getMessageWithCause(players.size()));
         }
     }
 

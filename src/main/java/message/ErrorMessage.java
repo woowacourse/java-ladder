@@ -19,4 +19,12 @@ public enum ErrorMessage {
     public String getMessage() {
         return "[Error] " + message;
     }
+
+    public String getMessageWithCause(String invalidInput) {
+        return "[Error] " + message + " 입력값은 " + invalidInput + " 입니다.";
+    }
+
+    public String getMessageWithCause(int invalidInput) {
+        return "[Error] " + message + " 입력값은 " + invalidInput + " 입니다.";
+    }
 }
