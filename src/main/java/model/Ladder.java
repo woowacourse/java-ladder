@@ -41,11 +41,11 @@ public class Ladder {
         return lineBuilder.toString();
     }
 
-    // tODO: players는 일급 컬렉션, result는 collections 형태임. 불일치 수정 필요
-    public LadderResult findResult(final Players players, final List<Prize> result) {
+    public LadderResult findResult(final Players players, final Result prizes) {
 
         final int ladderSize = players.size() - 1;
         List<String> prizeResult = new ArrayList<>();
+        List<Prize> result = prizes.getPrizes();
 
         for (int index = 0; index < players.size(); index++) {
             prizeResult.add(result.get(findLadderBottomIndex(index, ladderSize)).value());
