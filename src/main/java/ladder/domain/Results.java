@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Results {
     private final List<Result> results;
@@ -24,5 +25,9 @@ public class Results {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 위치입니다."))
                 .value();
+    }
+
+    public Stream<Result> stream() {
+        return results.stream();
     }
 }

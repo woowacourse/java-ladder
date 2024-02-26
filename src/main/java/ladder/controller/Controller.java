@@ -18,7 +18,8 @@ public class Controller {
         Height height = createHeight();
         DirectionGenerator directionGenerator = new RandomDirectionGenerator();
         Ladder ladder = new Ladder(players, height, directionGenerator);
-        OutputView.printExecutionResult(players, ladder);
+        OutputView.printExecutionResult(players, ladder, results);
+
     }
 
     private Players createPlayers() {
