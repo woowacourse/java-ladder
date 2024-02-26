@@ -14,7 +14,7 @@ class PlayerTest {
     @ValueSource(strings = {"a", "aaa12"})
     void validNameLength(String playerName) {
         //when & then
-        Assertions.assertThatCode(() -> new Player(playerName))
+        Assertions.assertThatCode(() -> new Player(playerName, 0))
                 .doesNotThrowAnyException();
     }
 
@@ -23,14 +23,14 @@ class PlayerTest {
     @ValueSource(strings = {"abc123", ""})
     void invalidNameLength(String playerName) {
         //when & then
-        Assertions.assertThatThrownBy(() -> new Player(playerName)).isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> new Player(playerName, 0)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("참가자의 위치를 왼쪽으로 이동시킨다.")
     @Test
     void moveLeft() {
         //given
-        final Player player = new Player("a");
+        final Player player = new Player("a", 0);
         final Position expectedPosition = new Position(-1);
 
         //when
@@ -44,7 +44,7 @@ class PlayerTest {
     @Test
     void moveRight() {
         //given
-        final Player player = new Player("a");
+        final Player player = new Player("a", 0);
         final Position expectedPosition = new Position(1);
 
         //when

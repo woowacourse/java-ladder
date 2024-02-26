@@ -7,11 +7,11 @@ public class Player {
     private final String name;
     private Position position;
 
-    public Player(final String name) {
+    public Player(final String name, final int position) {
         validateNameLength(name);
 
         this.name = name;
-        this.position = new Position();
+        this.position = new Position(position);
     }
 
     private void validateNameLength(final String name) {

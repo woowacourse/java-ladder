@@ -15,8 +15,8 @@ public class Players {
     public Players(final List<String> names) {
         validateNameCount(names.size());
 
-        for (final String name : names) {
-            players.add(new Player(name));
+        for (int position = 0; position < names.size(); position++) {
+            players.add(new Player(names.get(position), position));
         }
     }
 
