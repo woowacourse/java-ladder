@@ -30,11 +30,11 @@ public class OutputView {
     }
 
     public void printReadNameForResult() {
-        System.out.println("결과를 보고 싶은 사람은?");
+        System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
     }
 
     public void printResultMessage() {
-        System.out.println("실행 결과");
+        System.out.println(System.lineSeparator() + "실행 결과");
     }
 
 
@@ -44,7 +44,7 @@ public class OutputView {
                 .map(this::formatToken)
                 .forEach(joiner::add);
 
-        System.out.println(joiner.toString());
+        System.out.println(joiner.toString() + System.lineSeparator());
     }
 
     public void printLadder(List<RowPatternDto> patterns) {
