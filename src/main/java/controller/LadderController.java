@@ -21,14 +21,10 @@ public class LadderController {
     }
 
     public void runLadderGame() {
-        People people = runWithHandler(() -> new People(inputView.askParticipants()));
-        Ladder ladder = runWithHandler(() -> new Ladder(inputView.askLadderHeight(), people.numberOfParticipants()));
+        People people = handler.handle(() -> new People(inputView.askParticipants()));
+        Ladder ladder = handler.handle(() -> new Ladder(inputView.askLadderHeight(), people.numberOfParticipants()));
 
         resultView.printResult(people, ladder);
     }
 
-
-    public <T> T runWithHandler(Supplier<T> callback) {
-        return handler.handle(callback);
-    }
 }
