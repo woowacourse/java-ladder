@@ -19,7 +19,10 @@ public class OutputView {
     public static void printResult(Players players, Ladder ladder) {
         System.out.println(RESULT);
         printPlayers(players.getPlayers());
+        printLines(players, ladder);
+    }
 
+    private static void printLines(Players players, Ladder ladder) {
         List<Line> lines = ladder.getLines();
         for (Line line : lines) {
             printPrefixSpace(players.getPlayers());
@@ -48,7 +51,7 @@ public class OutputView {
             System.out.print(STICK);
             System.out.print(extractLeg(leg.getLeg()));
         }
-        System.out.print(STICK + "\n");
+        System.out.print(STICK + lineSeparator());
     }
 
     private static String extractLeg(boolean isExistLeg) {
