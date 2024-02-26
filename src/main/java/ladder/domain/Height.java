@@ -11,7 +11,7 @@ public class Height {
 
     private void validate(int value) {
         if (value <= 0) {
-            throw new IllegalArgumentException("1 이상의 숫자를 입력해주세요");
+            throw new IllegalArgumentException("사다리 높이는 1이상 입니다.");
         }
     }
 

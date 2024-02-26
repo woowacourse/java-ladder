@@ -55,7 +55,7 @@ public class People {
 
     private void validateCount(List<String> names) {
         if (names.size() < MIN_PEOPLE_COUNT) {
-            throw new IllegalArgumentException("두 명 이상 입력해주세요.");
+            throw new IllegalArgumentException("최소 인원은 두명입니다.");
         }
     }
 
