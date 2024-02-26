@@ -17,4 +17,15 @@ class ResultTest {
         assertThatThrownBy(() -> new Result(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("결과가 5글자 초과이면 예외가 발생한다.")
+    void createExtendedResult() {
+        // given
+        String value = "honux1";
+
+        // when & then
+        assertThatThrownBy(() -> new Result(value))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
