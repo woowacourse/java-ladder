@@ -1,7 +1,6 @@
 package ladder.controller;
 
 import ladder.model.Ladder;
-import ladder.model.LadderSize;
 import ladder.model.Players;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -21,8 +20,9 @@ public class LadderController {
     private void init() throws IOException {
         ladderPlayers = Players.from(readPlayerNames());
 
-        LadderSize ladderSize = new LadderSize(readLadderHeight(), ladderPlayers.getSize());
-        ladder = Ladder.of(ladderSize);
+        int height = readLadderHeight();
+        int width = ladderPlayers.getSize();
+        ladder = Ladder.of(height, width);
     }
 
     private List<String> readPlayerNames() throws IOException {

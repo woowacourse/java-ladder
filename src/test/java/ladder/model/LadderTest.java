@@ -3,23 +3,34 @@ package ladder.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class LadderTest {
+class LadderTest {
     @Test
-    @DisplayName("유효한 가로줄을 포함하는 사다리를 생성할 수 있다.")
-    void createValidLadderTest() {
-        assertThatCode(() -> Ladder.of(new LadderSize(10, 10)))
-                .doesNotThrowAnyException();
+    @DisplayName("사다리 높이가 자연수가 아니면 예외가 발생한다.")
+    void ladderHeightRangeTest() {
+        int height = 0;
+        int width = 5;
+        assertThatThrownBy(() -> Ladder.of(height, width))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("지정된 높이와 폭의 사다리를 생성할 수 있다.")
-    void createSpecificSizeOfLadderTest() {
-        LadderSize size = new LadderSize(7, 5);
-        Ladder ladder = Ladder.of(size);
+    @DisplayName("사다리 너비가 자연수가 아니면 예외가 발생한다.")
+    void ladderWidthRangeTest() {
+        int height = 5;
+        int width = 0;
+        assertThatThrownBy(() -> Ladder.of(height, width))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
-        assertThat(ladder.getSize()).isEqualTo(new LadderSize(7, 5));
+    @Test
+    @DisplayName("유효한 가로줄을 포함하는 사다리를 생성할 수 있다.")
+    void createValidLadderTest() {
+        int height = 10;
+        int width = 10;
+        assertThatCode(() -> Ladder.of(height, width))
+                .doesNotThrowAnyException();
     }
 }

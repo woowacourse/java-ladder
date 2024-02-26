@@ -15,15 +15,24 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    public static Ladder of(LadderSize ladderSize) {
-        int height = ladderSize.height();
-        int width = ladderSize.width();
+    public static Ladder of(int height, int width) {
+        validate(height, width);
 
         List<Line> ladder = IntStream.range(0, height)
                 .mapToObj(idx -> new Line(makeRandomRow(width)))
                 .toList();
 
         return new Ladder(ladder);
+    }
+
+    private static void validate(int height, int width) {
+        if (notNaturalNumber(height) || notNaturalNumber(width)) {
+            throw new IllegalArgumentException("사다리 높이와 너비는 자연수여야 합니다.");
+        }
+    }
+
+    private static boolean notNaturalNumber(int value) {
+        return value <= 0;
     }
 
     private static List<LadderPath> makeRandomRow(int width) {
@@ -53,10 +62,6 @@ public class Ladder {
             return List.of(LadderPath.RIGHT, LadderPath.LEFT);
         }
         return List.of(LadderPath.STAY);
-    }
-
-    public LadderSize getSize() {
-        return new LadderSize(ladder.size(), ladder.get(0).size());
     }
 
     public List<LineDto> toLineDtoList() {
