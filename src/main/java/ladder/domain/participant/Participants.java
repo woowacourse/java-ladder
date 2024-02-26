@@ -1,5 +1,7 @@
 package ladder.domain.participant;
 
+import ladder.domain.ladder.Ladder;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.IntStream;
@@ -36,6 +38,13 @@ public class Participants {
 
     public int getNecessaryLadderWidth() {
         return participants.size() - 1;
+    }
+
+    public void playAll(final Ladder ladder) {
+        for (final Participant participant: participants) {
+            int finalPosition = ladder.playAt(participant.getPosition());
+            participant.setFinalPosition(finalPosition);
+        }
     }
 
     public List<Participant> getValues() {

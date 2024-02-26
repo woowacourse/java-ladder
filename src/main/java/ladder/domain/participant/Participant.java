@@ -2,7 +2,7 @@ package ladder.domain.participant;
 
 public class Participant {
     private final Name name;
-    private final Position position;
+    private Position position;
 
     public Participant(final String name, final int position) {
         this.name = new Name(name);
@@ -15,5 +15,9 @@ public class Participant {
 
     public int getPosition() {
         return position.getValue();
+    }
+
+    public void setFinalPosition(final int finalPosition) {
+        this.position = new Position(finalPosition);
     }
 }
