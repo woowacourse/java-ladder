@@ -19,7 +19,7 @@ class LadderTest {
         final Ladder ladder = new Ladder(ladderStrategy, width, height);
 
         // when
-        final List<Bridge> bridges = ladder.create(width, height);
+        final List<Bridge> bridges = ladder.getBridges();
 
         // then
         final List<Bridge> expected = List.of(new Bridge(0, 0));
