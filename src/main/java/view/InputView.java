@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class InputView {
     public static final String PLAYER_NAMES_INPUT_DELIMITER = ",";
+    public static final String LADDER_RESULTS_INPUT_DELIMITER = ",";
     public static final String BLANK_SPACE = " ";
     public static final String BLANK_EMPTY = "";
 
@@ -24,6 +25,26 @@ public class InputView {
     private String[] splitPlayerNames(String playerNamesInput) {
         playerNamesInput = playerNamesInput.replace(InputView.BLANK_SPACE, InputView.BLANK_EMPTY);
         return playerNamesInput.split(InputView.PLAYER_NAMES_INPUT_DELIMITER);
+    }
+
+    public String[] readLadderResults() {
+        String input = scanner.nextLine();
+        validateLadderResultFormat(input);
+
+        System.out.println(String.format("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)", LADDER_RESULTS_INPUT_DELIMITER));
+        return splitLadderResults(input);
+    }
+
+    private String[] splitLadderResults(String playerNamesInput) {
+        validateLadderResultFormat(playerNamesInput);
+        playerNamesInput = playerNamesInput.replace(InputView.BLANK_SPACE, InputView.BLANK_EMPTY);
+        return playerNamesInput.split(InputView.LADDER_RESULTS_INPUT_DELIMITER);
+    }
+
+    private void validateLadderResultFormat(String playerNamesInput) {
+        if(playerNamesInput.endsWith(LADDER_RESULTS_INPUT_DELIMITER)) {
+            throw new IOException(ExceptionMessage.LADDER_RESULT_FORMAT);
+        }
     }
 
     public int readLadderHeight() {

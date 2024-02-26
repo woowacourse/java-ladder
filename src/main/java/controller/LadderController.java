@@ -2,6 +2,7 @@ package controller;
 
 import domain.Ladder;
 import domain.LadderHeight;
+import domain.LadderResults;
 import domain.PlayerName;
 import domain.PlayerNames;
 import domain.bridge.strategy.RandomBridgeGenerator;
@@ -19,9 +20,10 @@ public class LadderController extends RetryableController {
 
     public Ladder createLadder() {
         PlayerNames playerNames = readPlayerNames();
+        LadderResults ladderResults = readLadderResults(playerNames.getCount());
         LadderHeight ladderHeight = readLadderHeight();
 
-        Ladder ladder = Ladder.create(ladderHeight, playerNames, new RandomBridgeGenerator());
+        Ladder ladder = Ladder.create(ladderHeight, playerNames, ladderResults, new RandomBridgeGenerator());
         outputView.printLadder(playerNames, ladder);
 
         return ladder;
@@ -41,5 +43,8 @@ public class LadderController extends RetryableController {
 
     private LadderHeight readLadderHeight() {
         return retry(() -> new LadderHeight(inputView.readLadderHeight()));
+    }
+    private LadderResults readLadderResults(int playerCount) {
+        return retry(() -> new LadderResults(inputView.readLadderResults(), playerCount));
     }
 }

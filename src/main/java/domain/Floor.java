@@ -3,8 +3,6 @@ package domain;
 import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidationException;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Floor {
