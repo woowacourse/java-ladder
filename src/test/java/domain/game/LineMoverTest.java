@@ -15,12 +15,12 @@ class LineMoverTest {
     @DisplayName("한 줄을 정상적으로 이동시키는가")
     void move_single_line_correctly() {
         Line line = new Line(3, () -> Bridge.EXIST);
-        List<Integer> players = List.of(1, 2, 3, 4);
+        List<Integer> players = List.of(0, 1, 2, 3);
 
-        LineMover lineMover = new LineMover(line, players);
+        List<Integer> actual = LineMover.move(line, players);
 
-        List<Integer> expected = List.of(2, 1, 4, 3);
-        assertThat(lineMover.getResult()).containsExactlyElementsOf(expected);
+        List<Integer> expected = List.of(1, 0, 3, 2);
+        assertThat(actual).containsExactlyElementsOf(expected);
     }
 
     @Test
@@ -29,9 +29,9 @@ class LineMoverTest {
         Line line = new Line(3, () -> Bridge.EMPTY);
         List<Integer> players = List.of(1, 2, 3, 4);
 
-        LineMover lineMover = new LineMover(line, players);
+        List<Integer> actual = LineMover.move(line, players);
 
-        assertThat(lineMover.getResult()).containsExactlyElementsOf(players);
+        assertThat(actual).containsExactlyElementsOf(players);
     }
 
 }

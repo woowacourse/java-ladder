@@ -4,32 +4,37 @@ import domain.ladder.Bridge;
 import domain.ladder.Line;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
+import static domain.ladder.Bridge.EMPTY;
+import static java.util.Collections.swap;
+
 public class LineMover {
-    private final List<Integer> result = new ArrayList<>();
 
-    public LineMover(final Line line, final List<Integer> input) {
-        move(line, input);
-    }
-
-    public List<Integer> getResult() {
-        return Collections.unmodifiableList(result);
-    }
-
-    private void move(final Line line, final List<Integer> input) {
-        this.result.add(input.get(0));
-        for (Bridge bridge : line.getBridges()) {
-            result.add(input.get(result.size()));
-            swapIfBridgeExist(bridge);
+    public static List<Integer> move(final Line line, final List<Integer> from) {
+        final List<Integer> to = getModifiableListContainsElement(from.get(0));
+        for (final Bridge bridge : line.getBridges()) {
+            final Integer bridgeRightSideIndex = from.get(to.size());
+            to.add(bridgeRightSideIndex);
+            swapLastIfBridgeExist(bridge, to);
         }
+        return to;
     }
 
-    private void swapIfBridgeExist(final Bridge bridge) {
-        if (bridge == Bridge.EXIST) {
-            int lastIndex = this.result.size() - 1;
-            Collections.swap(result, lastIndex - 1, lastIndex);
+    private static List<Integer> getModifiableListContainsElement(final Integer elem) {
+        return new ArrayList<>() {
+            {
+                add(elem);
+            }
+        };
+    }
+
+    private static void swapLastIfBridgeExist(final Bridge bridge, final List<Integer> to) {
+        if (bridge == EMPTY) {
+            return;
         }
+
+        final int lastIndex = to.size() - 1;
+        swap(to, lastIndex - 1, lastIndex);
     }
 }
