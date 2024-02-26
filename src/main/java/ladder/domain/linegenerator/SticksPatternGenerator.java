@@ -20,7 +20,7 @@ public class SticksPatternGenerator implements StickListGenerator {
         validate(countOfPlayers);
         int width = countOfPlayers - 1;
         List<Stick> sticks = new ArrayList<>();
-        while (sticks.size() < width) {
+        for (int i = 0; i < width; i++) {
             addStick(sticks);
         }
         return sticks;
