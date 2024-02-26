@@ -2,11 +2,11 @@ package domain;
 
 import java.util.List;
 
-public class Prize {
+public class Prizes {
 
     private final List<String> prizes;
 
-    public Prize(List<String> prizes, int numberOfPrize) {
+    public Prizes(List<String> prizes, int numberOfPrize) {
         validateNumberOfPrize(prizes, numberOfPrize);
         this.prizes = prizes;
     }

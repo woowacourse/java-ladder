@@ -9,14 +9,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PrizeTest {
+public class PrizesTest {
 
     @Test
     @DisplayName("결과의 개수가 참여자의 인원수와 다르면 예외가 발생한다.")
     void numberOfPrizeExceptionTest() {
         List<String> prizes = List.of("꽝", "5000", "꽝");
 
-        assertThatThrownBy(() -> new Prize(prizes, 4))
+        assertThatThrownBy(() -> new Prizes(prizes, 4))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("결과의 개수가 참여자의 인원수와 다릅니다.");
     }
@@ -25,7 +25,7 @@ public class PrizeTest {
     @DisplayName("원하는 위치의 결과를 가져올 수 있다.")
     void getPrizeAtTest() {
         List<String> prizes = List.of("1", "10", "100", "1000");
-        Prize prize = new Prize(prizes, 4);
+        Prizes prize = new Prizes(prizes, 4);
 
         assertAll(() -> assertEquals(prize.getPrizeOf(0), "1"),
                 () -> assertEquals(prize.getPrizeOf(1), "10"),
