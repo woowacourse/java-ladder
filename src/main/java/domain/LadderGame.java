@@ -1,6 +1,8 @@
 package domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LadderGame {
     public int playLine(int currentColumn, Line line) {
@@ -19,5 +21,17 @@ public class LadderGame {
             currentColumn = playLine(currentColumn, line);
         }
         return currentColumn;
+    }
+
+    public Map<String, Integer> playPlayers(List<Line> lines, List<String> players) {
+        Map<String, Integer> playerWithResultIndex = new LinkedHashMap<>();
+
+        for (int columnIndex = 0; columnIndex < players.size(); columnIndex++) {
+            String player = players.get(columnIndex);
+            int resultColumnIndex = playLines(columnIndex, lines);
+            playerWithResultIndex.put(player, resultColumnIndex);
+        }
+
+        return playerWithResultIndex;
     }
 }
