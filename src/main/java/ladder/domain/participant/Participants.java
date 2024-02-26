@@ -41,7 +41,7 @@ public class Participants {
                 .toList();
     }
 
-    public int getParticipantsCount() {
+    public int getCount() {
         return names.size();
     }
 
