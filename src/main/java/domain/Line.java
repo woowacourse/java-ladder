@@ -9,22 +9,22 @@ public class Line {
     private final List<Bridge> bridges = new ArrayList<>();
 
     public Line(final int personCount, final Generator generator) {
-        generateRandomPoint(personCount, generator);
+        generateRandomBridge(personCount, generator);
     }
 
 
-    private void generateRandomPoint(final int personCount, Generator generator) {
+    private void generateRandomBridge(final int personCount, Generator generator) {
         boolean randomLine = generator.generate();
-        final Bridge firstBoolean = Bridge.findByHasLine(randomLine);
+        final Bridge firstBridge = Bridge.findByHasLine(randomLine);
 
-        bridges.add(firstBoolean);
+        bridges.add(firstBridge);
 
         for (int i = 1; i < personCount - 1; i++) {
-            addPoint(generator, i);
+            addBridge(generator, i);
         }
     }
 
-    private void addPoint(final Generator generator, final int index) {
+    private void addBridge(final Generator generator, final int index) {
         final Bridge before = bridges.get(index - 1);
         if (before.getBridge()) {
             bridges.add(Bridge.findByHasLine(false));
