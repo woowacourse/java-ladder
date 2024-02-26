@@ -12,12 +12,16 @@ public class Line {
         this.directionsInfo = new ArrayList<>();
     }
 
-    public void addDirection(Direction direction) {
+    void addDirection(Direction direction) {
         directionsInfo.add(direction);
     }
 
     public Direction getLastDirection() {
         return directionsInfo.get(directionsInfo.size() - 1);
+    }
+
+    public int getLineSize() {
+        return directionsInfo.size();
     }
 
     public List<Direction> getDirectionsInfo() {

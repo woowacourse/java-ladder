@@ -39,4 +39,18 @@ class LineTest {
         //then
         assertThat(foundDirection).isEqualTo(secondDirection);
     }
+
+    @DisplayName("Line의 크기를 반환한다.")
+    @Test
+    void getLineSizeTest() {
+        //given
+        Line line = new Line();
+        line.addDirection(Direction.RIGHT);
+
+        //when
+        int lineSize = line.getLineSize();
+
+        //then
+        assertThat(lineSize).isEqualTo(1);
+    }
 }
