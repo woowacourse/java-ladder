@@ -3,6 +3,7 @@ package game;
 import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
 import domain.player.Players;
+import domain.result.Result;
 import domain.result.Results;
 import dto.RowPatternDto;
 import java.util.List;
@@ -32,6 +33,21 @@ public class LadderGame {
         List<RowPatternDto> patterns = ladder.getLadderPatterns();
 
         printLadderResult(players.getRawNames(), results.getRawResults(), patterns);
+
+        outputView.printReadNameForResult();
+        String playerName = inputView.readToken();
+        outputView.printResultMessage();
+
+        if (playerName.equals("all")) {
+            players.getRawNames()
+                    .forEach(name -> {
+                        Result result = ladder.getResultByName(name);
+                        outputView.printAllResults(name, result.rawResult());
+                    });
+            return;
+        }
+        Result result = ladder.getResultByName(playerName);
+        outputView.printToken(result.rawResult());
     }
 
     private Players getNames() {
@@ -53,7 +69,7 @@ public class LadderGame {
     }
 
     private void printLadderResult(List<String> names, List<String> results, List<RowPatternDto> rowPatterns) {
-        outputView.printResultMessage();
+        outputView.printLadderCreationMessage();
         outputView.printTokens(names);
         outputView.printLadder(rowPatterns);
         outputView.printTokens(results);

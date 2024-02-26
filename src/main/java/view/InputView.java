@@ -23,6 +23,10 @@ public class InputView {
         return convertToInteger(input);
     }
 
+    public String readToken() {
+        return scanner.nextLine();
+    }
+
     private int convertToInteger(String input) {
         try {
             return Integer.parseInt(input);

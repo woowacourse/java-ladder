@@ -25,9 +25,18 @@ public class OutputView {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
     }
 
-    public void printResultMessage() {
+    public void printLadderCreationMessage() {
         System.out.println("사다리 결과" + System.lineSeparator());
     }
+
+    public void printReadNameForResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+    }
+
+    public void printResultMessage() {
+        System.out.println("실행 결과");
+    }
+
 
     public void printTokens(List<String> tokens) {
         StringJoiner joiner = new StringJoiner(" ");
@@ -59,6 +68,14 @@ public class OutputView {
         );
 
         System.out.println(builder.toString());
+    }
+
+    public void printAllResults(String name, String result) {
+        System.out.println(name + " : " + result);
+    }
+
+    public void printToken(String token) {
+        System.out.println(token);
     }
 
     private String getHorizontalLadderCharacterIfPlaced(boolean isPlaced) {
