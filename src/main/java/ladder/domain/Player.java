@@ -11,4 +11,8 @@ public record Player(String name, int location) {
             );
         }
     }
+
+    public boolean hasSameLocation(int location) {
+        return this.location == location;
+    }
 }

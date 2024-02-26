@@ -18,6 +18,14 @@ public class Players {
                 .forEach(index -> players.add(new Player(names.get(index), index)));
     }
 
+    public Stream<Player> stream() {
+        return players.stream();
+    }
+
+    public int count() {
+        return players.size();
+    }
+
     private void validate(List<String> names) {
         validatePlayersCount(names);
         validateDuplicatedName(names);
@@ -45,13 +53,5 @@ public class Players {
                     "중복된 이름은 입력할 수 없습니다: %s".formatted(name)
             );
         }
-    }
-
-    public int count() {
-        return players.size();
-    }
-
-    public Stream<Player> stream() {
-        return players.stream();
     }
 }

@@ -2,12 +2,11 @@ package ladder.view;
 
 import static ladder.domain.Direction.RIGHT;
 
-import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
 import ladder.domain.Direction;
 import ladder.domain.Ladder;
 import ladder.domain.LadderLevel;
-import ladder.domain.Player;
 import ladder.domain.Players;
 import ladder.domain.Results;
 
@@ -56,19 +55,17 @@ public class OutputView {
         System.out.println(stringJoiner);
     }
 
-    public static void printResultIndividual(String resultValue) {
-        System.out.println("실행 결과");
+    public static void printRewardIndividual(String resultValue) {
+        System.out.println("\n실행 결과");
         System.out.println(resultValue);
     }
 
-    public static void printAllResults(List<Player> players, Results results) {
-        System.out.println("실행 결과");
-        players.forEach(player ->
-                System.out.println(player.name() + " : " + results.getResultValue(player.location()))
-        );
+    public static void printAllRewards(Map<String, String> rewardOfPlayers) {
+        System.out.println("\n실행 결과");
+        rewardOfPlayers.forEach((player, reward) -> System.out.println(player + " : " + reward));
     }
 
     public static void printQuitMessage() {
-        System.out.println("종료");
+        System.out.println("\n종료");
     }
 }

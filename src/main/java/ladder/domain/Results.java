@@ -19,15 +19,15 @@ public class Results {
                 .forEach(index -> this.results.add(new Result(results.get(index), index)));
     }
 
+    public Stream<Result> stream() {
+        return results.stream();
+    }
+
     public String getResultValue(int location) {
         return results.stream()
-                .filter(result -> result.location() == location)
+                .filter(result -> result.hasSameLocation(location))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 위치입니다."))
                 .value();
-    }
-
-    public Stream<Result> stream() {
-        return results.stream();
     }
 }

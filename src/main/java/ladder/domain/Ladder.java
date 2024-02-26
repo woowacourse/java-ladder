@@ -21,6 +21,10 @@ public class Ladder {
         return ladderLevels.stream();
     }
 
+    public List<Player> getAllResultLocation() {
+        return List.copyOf(resultPlayers);
+    }
+
     private void findAllResultLocation(Players players) {
         players.stream()
                 .forEach(player ->
@@ -34,17 +38,5 @@ public class Ladder {
             currentLocation = ladderLevel.move(currentLocation);
         }
         return currentLocation;
-    }
-
-    public List<Player> getAllResultLocation() {
-        return List.copyOf(resultPlayers);
-    }
-
-    public int getResultLocation(String name) {
-        return resultPlayers.stream()
-                .filter(player -> player.name().equals(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 이름입니다."))
-                .location();
     }
 }

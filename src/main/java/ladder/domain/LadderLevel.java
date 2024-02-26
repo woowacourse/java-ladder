@@ -20,6 +20,14 @@ public class LadderLevel {
         replaceLast();
     }
 
+    public Stream<Direction> stream() {
+        return ladderLevel.stream();
+    }
+
+    public int move(int location) {
+        return location + getDirectionOf(location).getMovement();
+    }
+
     private void addDirection(DirectionGenerator directionGenerator) {
         latest = latest.next(directionGenerator);
         ladderLevel.add(latest);
@@ -30,14 +38,6 @@ public class LadderLevel {
             ladderLevel.removeLast();
             ladderLevel.add(NONE);
         }
-    }
-
-    public Stream<Direction> stream() {
-        return ladderLevel.stream();
-    }
-
-    public int move(int location) {
-        return location + getDirectionOf(location).getMovement();
     }
 
     private Direction getDirectionOf(int location) {

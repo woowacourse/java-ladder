@@ -2,7 +2,6 @@ package ladder.domain;
 
 import static ladder.domain.Direction.RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
@@ -29,31 +28,6 @@ class LadderTest {
         assertAll(
                 () -> assertThat(actualHeight).isEqualTo(height.value()),
                 () -> assertThat(actualPlayersCount).isEqualTo(players.count())
-        );
-    }
-
-    @DisplayName("존재하지 않는 이름을 입력하면 예외를 던진다")
-    @Test
-    void invalidGetResultLocationTest() {
-        Players players = new Players(List.of("poby", "honux"));
-        Height height = new Height(3);
-        Ladder ladder = new Ladder(players, height, () -> RIGHT);
-
-        assertThatThrownBy(() -> ladder.getResultLocation("zeus"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("존재하지 않는 이름입니다.");
-    }
-
-    @DisplayName("이름을 입력하면 도착 위치를 반환한다.")
-    @Test
-    void getResultLocationTest() {
-        Players players = new Players(List.of("poby", "honux"));
-        Height height = new Height(3);
-        Ladder ladder = new Ladder(players, height, () -> RIGHT);
-
-        assertAll(
-                () -> assertThat(ladder.getResultLocation("poby")).isEqualTo(1),
-                () -> assertThat(ladder.getResultLocation("honux")).isEqualTo(0)
         );
     }
 

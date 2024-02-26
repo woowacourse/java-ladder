@@ -6,6 +6,7 @@ import ladder.domain.Ladder;
 import ladder.domain.Players;
 import ladder.domain.RandomDirectionGenerator;
 import ladder.domain.Results;
+import ladder.domain.RewardsOfPlayers;
 import ladder.exception.ExceptionHandler;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -18,28 +19,33 @@ public class Controller {
         Height height = createHeight();
         DirectionGenerator directionGenerator = new RandomDirectionGenerator();
         Ladder ladder = new Ladder(players, height, directionGenerator);
+        RewardsOfPlayers rewardsOfPlayers = new RewardsOfPlayers(ladder.getAllResultLocation(), results);
         OutputView.printLadderResult(players, ladder, results);
-        repeatPrintingIndividualResult(results, ladder);
+        repeatPrintingReward(rewardsOfPlayers);
     }
 
-    private static void repeatPrintingIndividualResult(Results results, Ladder ladder) {
+    private static void repeatPrintingReward(RewardsOfPlayers rewardsOfPlayers) {
         boolean doRepeat = true;
         while (doRepeat) {
-            doRepeat = ExceptionHandler.run(() -> printResultOf(results, ladder));
+            doRepeat = ExceptionHandler.run(() -> inputNameAndPrintReward(rewardsOfPlayers));
         }
     }
 
-    private static boolean printResultOf(Results results, Ladder ladder) {
+    private static boolean inputNameAndPrintReward(RewardsOfPlayers rewardsOfPlayers) {
         String input = InputView.inputNameForResult();
-        if (input.equals("all")) {
-            OutputView.printAllResults(ladder.getAllResultLocation(), results);
-            return true;
-        }
+        return printRewardOf(rewardsOfPlayers, input);
+    }
+
+    private static boolean printRewardOf(RewardsOfPlayers rewardsOfPlayers, String input) {
         if (input.equals("qqqqqq")) {
             OutputView.printQuitMessage();
             return false;
         }
-        OutputView.printResultIndividual(results.getResultValue(ladder.getResultLocation(input)));
+        if (input.equals("all")) {
+            OutputView.printAllRewards(rewardsOfPlayers.getAllRewards());
+            return true;
+        }
+        OutputView.printRewardIndividual(rewardsOfPlayers.getRewardByName(input));
         return true;
     }
 
