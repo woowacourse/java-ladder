@@ -20,7 +20,7 @@ public class PointBuildStrategyTest {
         Points points = pointBuildStrategy.build(count);
 
         //then
-        assertEquals(points.points().size(), count);
+        assertEquals(points.getPointSize(), count);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class PointBuildStrategyTest {
         Points points = pointBuildStrategy.build(count);
 
         //then
-        for (int i = 0; i < points.points().size() - 1; i++) {
+        for (int i = 0; i < points.getPointSize() - 1; i++) {
             if (points.points().get(i).isBuilt()) {
                 assertFalse(points.points().get(i + 1).isBuilt());
             }

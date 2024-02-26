@@ -112,8 +112,8 @@ example feat: 사용자 입력 후 도메인 사용
 # 리뷰 요구사항 (step1)
 - [x] 사용자에게 에러 메세지에 다음 행동에 대해 알려준다.
 - [x] `Players`의 size를 조회하는 메서드 구현한다.
-- [ ] `points` 에게 마지막 지점인지 확인하는 메서드를 구현한다.
-- [ ] `points` 에게 0이 시작지점인지 물어보는 메서드를 구현한다.
+- [x] `points` 에게 마지막 지점인지 확인하는 메서드를 구현한다.
+- [x] `points` 에게 0이 시작지점인지 물어보는 메서드를 구현한다.
 - [ ] controller와 service 영역으로 분리한다.
 - [ ] view의 system call을 줄인다.(sout)
 - [ ] `ReservedWords` 패키지 변경

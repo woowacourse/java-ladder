@@ -13,8 +13,8 @@ public class Line {
     }
 
     private void validate(final int buildSize, final Points points) {
-        if (buildSize != points.points().size()) {
-            throw new IllegalStateException(String.format(BUILD_SIZE_ERROR, buildSize, points.points().size()));
+        if (buildSize != points.getPointSize()) {
+            throw new IllegalStateException(String.format(BUILD_SIZE_ERROR, buildSize, points.getPointSize()));
         }
     }
 
@@ -22,31 +22,31 @@ public class Line {
         if (position == 0) {
             return getFirstDirection();
         }
-        if (position == points.points().size()) {
+        if (position == points.getPointSize()) {
             return getLastDirection();
         }
         return getMiddleDirection(position);
     }
 
     private Direction getFirstDirection() {
-        if (points.points().get(0).isBuilt()) {
+        if (getPoints().isFirstPointBuilt()) {
             return Direction.RIGHT;
         }
         return Direction.DOWN;
     }
 
     private Direction getLastDirection() {
-        if (points.points().get(points.points().size() - 1).isBuilt()) {
+        if (getPoints().isLastPointBuilt()) {
             return Direction.LEFT;
         }
         return Direction.DOWN;
     }
 
     private Direction getMiddleDirection(final int position) {
-        if (points.points().get(position).isBuilt()) {
+        if (points.isPositionBuilt(position)) {
             return Direction.RIGHT;
         }
-        if (points.points().get(position - 1).isBuilt()) {
+        if (points.isPositionBuilt(position - 1)) {
             return Direction.LEFT;
         }
         return Direction.DOWN;

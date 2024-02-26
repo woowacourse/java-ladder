@@ -29,7 +29,7 @@ public class LadderTest {
 
         //then
         assertEquals(ladder.getLadderSize(), height.getHeight());
-        assertEquals(ladder.getLines().get(0).getPoints().points().size(), players.getPlayersSize() - 1);
+        assertEquals(ladder.getLines().get(0).getPoints().getPointSize(), players.getPlayersSize() - 1);
     }
 
     @Test
