@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 import laddergame.domain.Players;
-import laddergame.util.ReservedWords;
 
 public class InputView {
     private static final String IOEXCEPTION_ERROR = "입력 과정 도중 에러가 발생했습니다.";

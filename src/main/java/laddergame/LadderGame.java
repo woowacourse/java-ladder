@@ -9,7 +9,7 @@ import laddergame.domain.PlayersResults;
 import laddergame.domain.Results;
 import laddergame.domain.strategy.BuildStrategy;
 import laddergame.domain.strategy.PointBuildStrategy;
-import laddergame.util.ReservedWords;
+import laddergame.view.ReservedWords;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 

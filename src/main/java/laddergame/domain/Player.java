@@ -1,7 +1,7 @@
 package laddergame.domain;
 
 import java.util.Objects;
-import laddergame.util.ReservedWords;
+import laddergame.view.ReservedWords;
 
 public class Player {
     private static final int NAME_MAX_LENGTH = 5;
