@@ -1,82 +1,48 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class PeopleTest {
 
-    @Test
-    @DisplayName("사람 이름은 쉼표(,)를 기준으로 구분한다.")
-    void createNames() {
-        // given
-        String rawNames = "pobi,honux,crong,jk";
+    private List<Name> names;
 
-        // when
-        People people = new People(rawNames);
-
-        // then
-        assertThat(people.getNames()).contains("pobi", "honux", "crong", "jk");
+    @BeforeEach
+    void setUp() {
+        Name pobi = new Name("pobi");
+        Name honux = new Name("honux");
+        Name crong = new Name("crong");
+        Name jk = new Name("jk");
+        names = new ArrayList<>(List.of(pobi, honux, crong, jk));
     }
 
     @Test
     @DisplayName("사람 이름이 중복이라면 예외가 발생한다.")
     void createDuplicatedNames() {
+        names.add(new Name("pobi"));
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new People("pobi,pobi,crong,jk"));
+                .isThrownBy(() -> new People(names));
     }
 
     @Test
-    @DisplayName("이름이 5글자를 초과하면 예외가 발생한다.")
-    void createInvalidNames() {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new People("pobiii,honux,crong,jk"));
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {",pobi,honux,crong", "  ,pobi,honux,crong", "pobi,,honux,crong", "pobi,  ,honux,crong"})
-    @DisplayName("이름이 공백이라면 무시한다.")
-    void blankNameTest(String blankNames) {
-        // given
-        People people = new People(blankNames);
-
-        // when
-        int count = people.count();
-
-        // then
-        assertThat(count).isEqualTo(3);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {" ,pobi", ", , ,", ",,,", "pobi"})
     @DisplayName("이름이 2개 이하라면 예외가 발생한다.")
-    void nameLengthExceptionTest(String lessThanOneName) {
+    void nameLengthExceptionTest() {
+        List<Name> towNames = names.subList(0, 2);
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new People(lessThanOneName));
-    }
-
-    @Test
-    @DisplayName("이름에 공백은 포함하지 않는다.")
-    void createValidNames() {
-        // given
-        String names = "crong,     jk    ,pobi";
-
-        // when
-        People people = new People(names);
-
-        // then
-        assertThat(people.getNames()).contains("jk");
+                .isThrownBy(() -> new People(towNames));
     }
 
     @Test
     @DisplayName("가장 긴 이름의 길이를 찾을 수 있다.")
     void findMaxNameLength() {
         // given
-        String names = "pobi,honux,crong,jk";
         People people = new People(names);
 
         // when
