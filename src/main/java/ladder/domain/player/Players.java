@@ -8,6 +8,7 @@ public class Players {
     private final List<Player> values;
 
     private Players(List<Player> values) {
+        validate(values);
         this.values = values;
     }
 
@@ -19,8 +20,19 @@ public class Players {
     }
 
     private void validate(List<Player> values) {
+        validateSizeIsInRange(values);
+        validatePlayerIsDistinct(values);
+    }
+
+    private void validateSizeIsInRange(List<Player> values) {
         if (values.size() < MIN_PLAYERS) {
             throw new IllegalArgumentException("플레이어는 2명 이상 존재해야 합니다.");
+        }
+    }
+
+    private void validatePlayerIsDistinct(List<Player> values) {
+        if (values.size() != values.stream().distinct().count()) {
+            throw new IllegalArgumentException("플레이어가 중복 되어서는 안됩니다.");
         }
     }
 }
