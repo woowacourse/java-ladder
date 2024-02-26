@@ -29,7 +29,7 @@ public class OutputView {
     public static void printLadder(List<LineDto> ladder) {
         StringBuilder sb = new StringBuilder();
         for (LineDto ld : ladder) {
-            sb.append(OutputView.createLineString(ld));
+            sb.append(createLineString(ld));
         }
         System.out.println(sb);
     }
@@ -38,7 +38,7 @@ public class OutputView {
         return String.format("%-" + PLAYER_NAME_PAD_SIZE + "s", name);
     }
 
-    public static String createLineString(LineDto lineDto) {
+    private static String createLineString(LineDto lineDto) {
         StringBuilder sb = new StringBuilder();
         lineDto.getConnected()
                 .forEach(val -> sb.append(convertLine(val)));
