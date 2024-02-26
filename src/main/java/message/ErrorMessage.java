@@ -3,7 +3,7 @@ package message;
 public enum ErrorMessage {
 
     INVALID_LADDER_HEIGHT_EXCEPTION("사다리 높이는 1이상 이어야 합니다."),
-    INVALID_LADDER_LANGUAGE_EXCEPTION("사다리 높이는 숫자여야 합니다."),
+    INVALID_LADDER_HEIGHT_LANGUAGE_EXCEPTION("사다리 높이는 숫자여야 합니다."),
     NO_PLAYER_NAME_EXCEPTION("플레이어 이름을 입력해야 합니다."),
     INVALID_PLAYER_NAME_LANGUAGE_EXCEPTION("플레이어 이름은 영어여야 합니다."),
     INVALID_PLAYER_NAME_SIZE_EXCEPTION("플레이어 이름은 5자 이하여야 합니다."),
