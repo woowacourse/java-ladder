@@ -4,12 +4,28 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class MembersTest {
+
+    @Test
+    @DisplayName("성공: 인덱스 부여, findMemberByIndex() 테스트")
+    void findMemberByIndex() {
+        Members members = Members.from("a,b,c");
+        Member member0 = members.findMemberByIndex(0);
+        Member member1 = members.findMemberByIndex(1);
+        Member member2 = members.findMemberByIndex(2);
+
+        Assertions.assertAll(
+            () -> assertThat(member0.getName()).isEqualTo("a"),
+            () -> assertThat(member1.getName()).isEqualTo("b"),
+            () -> assertThat(member2.getName()).isEqualTo("c")
+        );
+    }
 
     @Test
     @DisplayName("참여자들 입력 성공: 사이즈 일치")

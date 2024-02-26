@@ -10,6 +10,6 @@ public class MemberTest {
     @Test
     @DisplayName("멤버 객체 생성 성공")
     void test_ok_constructor() {
-        assertThat(Member.from("name").getName()).isEqualTo("name");
+        assertThat(Member.from(0, "name").getName()).isEqualTo("name");
     }
 }

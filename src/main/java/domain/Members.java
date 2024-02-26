@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 public class Members {
 
@@ -21,6 +22,13 @@ public class Members {
         return new Members(initialize(rawNames));
     }
 
+    public Member findMemberByIndex(int index) {
+        return members.stream()
+            .filter(member -> member.getId() == index)
+            .findFirst()
+            .orElseThrow(RuntimeException::new);
+    }
+
     private static void validate(List<Member> members) {
         if (members.size() < MIN_MEMBER_COUNT || members.size() > MAX_MEMBER_COUNT) {
             throw new IllegalArgumentException(
@@ -32,8 +40,9 @@ public class Members {
         validateNull(rawNames);
         List<String> parsedNames = parse(rawNames);
         validateDuplication(parsedNames);
-        return parsedNames.stream()
-            .map(Member::from)
+
+        return IntStream.range(0, parsedNames.size())
+            .mapToObj(i -> Member.from(i, parsedNames.get(i)))
             .toList();
     }
 
