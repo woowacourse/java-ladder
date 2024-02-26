@@ -38,4 +38,21 @@ public class ParticipantsTest {
     static Stream<List<String>> getInvalidParticipantsNames() {
         return Stream.of(List.of("mia"), List.of());
     }
+
+    @Test
+    @DisplayName("입력된 순서대로 사다리 위치를 가진 참자들을 생성한다.")
+    void createOrderedParticipantsTest() {
+        // given
+        final List<String> names = List.of("mia", "pota", "dora", "jojo");
+
+        // when
+        final Participants participants = new Participants(names);
+
+        // then
+        List<Participant> createdParticipants = participants.getValues();
+        assertThat(createdParticipants)
+                .extracting(Participant::getPosition)
+                .extracting(ParticipantPosition::getValue)
+                .containsExactly(0, 1, 2, 3);
+    }
 }
