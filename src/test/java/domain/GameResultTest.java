@@ -14,7 +14,10 @@ import domain.player.Names;
 import domain.result.Result;
 import domain.result.Results;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class GameResultTest {
@@ -23,7 +26,6 @@ class GameResultTest {
     private static final Names NAMES_SIZE_OF_THREE = new Names(List.of("name1", "name2", "name3"));
     private static final Ladder DEFAULT_LADDER_SIZE_OF_THREE =
             new Ladder(new RandomBridgeConstructStrategy(), NAMES_SIZE_OF_THREE, new Height(5));
-
 
     @DisplayName("정상적으로 사다리게임이 생성된다.")
     @Test
@@ -55,9 +57,9 @@ class GameResultTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("사다리 게임의 각 결과가 정상적으로 조회된다.")
-    @Test
-    void resultForEachPlayerTest() { //TODO 테스트 완성
+    @Nested
+    @DisplayName("임의의 사다리 생성 후 결과 테스트")
+    class CustomLadderResultTest {
         /*
          pobi honux crong    jk
             |-----|     |-----|
@@ -67,26 +69,50 @@ class GameResultTest {
             |-----|     |-----|
             꽝 5000     꽝  3000
          */
-        Names names = new Names(List.of("pobi", "honux", "crong", "jk"));
-        Results results = new Results(List.of("꽝", "5000", "꽝", "3000"));
-        Ladder customLadder = new Ladder(
+        private static final Names NAMES = new Names(List.of("pobi", "honux", "crong", "jk"));
+        private static final Results RESULTS = new Results(List.of("꽝", "5000", "꽝", "3000"));
+        private static final Ladder CUSTOM_LADDER = new Ladder(
                 new CustomBridgeConstructStrategy(List.of(
                         List.of(Bridge.BUILT, Bridge.EMPTY, Bridge.BUILT),
                         List.of(Bridge.EMPTY, Bridge.BUILT, Bridge.EMPTY),
                         List.of(Bridge.BUILT, Bridge.EMPTY, Bridge.EMPTY),
                         List.of(Bridge.EMPTY, Bridge.BUILT, Bridge.EMPTY),
                         List.of(Bridge.BUILT, Bridge.EMPTY, Bridge.BUILT)
-                )), names, new Height(5)
+                )), NAMES, new Height(5)
         );
-        GameResult customGameResult = new GameResult(names, results, customLadder);
+        private static final GameResult CUSTOM_GAME_RESULT = new GameResult(NAMES, RESULTS, CUSTOM_LADDER);
 
-        assertThat(customGameResult.getResult(new Name("pobi")))
-                .isEqualTo(new Result("꽝"));
-        assertThat(customGameResult.getResult(new Name("honux")))
-                .isEqualTo(new Result("3000"));
-        assertThat(customGameResult.getResult(new Name("crong")))
-                .isEqualTo(new Result("꽝"));
-        assertThat(customGameResult.getResult(new Name("jk")))
-                .isEqualTo(new Result("5000"));
+        @DisplayName("사다리 게임의 각 결과가 정상적으로 조회된다.")
+        @Test
+        void resultForEachPlayerTest() {
+            assertThat(CUSTOM_GAME_RESULT.getResult(new Name("pobi")))
+                    .isEqualTo(new Result("꽝"));
+            assertThat(CUSTOM_GAME_RESULT.getResult(new Name("honux")))
+                    .isEqualTo(new Result("3000"));
+            assertThat(CUSTOM_GAME_RESULT.getResult(new Name("crong")))
+                    .isEqualTo(new Result("꽝"));
+            assertThat(CUSTOM_GAME_RESULT.getResult(new Name("jk")))
+                    .isEqualTo(new Result("5000"));
+        }
+
+        @DisplayName("존재하지 않는 사람의 결과를 조회하면 예외가 발생한다.")
+        @Test
+        void exceptionTestForNotExistPlayer() {
+            assertThatThrownBy(() -> CUSTOM_GAME_RESULT.getResult(new Name("takan")))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @DisplayName("사다리의 전체 결과를 조회할 수 있다.")
+        @Test
+        void resultForAllPlayerTest() {
+            assertThat(CUSTOM_GAME_RESULT.getAllResult())
+                    .containsExactlyInAnyOrderEntriesOf(
+                            Map.of(
+                                    new Name("pobi"), new Result("꽝"),
+                                    new Name("honux"), new Result("3000"),
+                                    new Name("crong"), new Result("꽝"),
+                                    new Name("jk"), new Result("5000")
+                            ));
+        }
     }
 }
