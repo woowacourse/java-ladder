@@ -7,6 +7,9 @@ public class OutputView {
     private static final int PLAYER_NAME_PAD_SIZE = 6;
     private static final String RESULT_DESCRIPTION = "실행 결과";
 
+    private OutputView() {
+    }
+
     public static void printResultDescription() {
         System.out.println(RESULT_DESCRIPTION);
     }

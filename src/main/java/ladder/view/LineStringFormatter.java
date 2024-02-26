@@ -8,6 +8,9 @@ public class LineStringFormatter {
     private static final String EMPTY_SPACE = " ";
     private static final int PATH_WIDTH = 5;
 
+    private LineStringFormatter() {
+    }
+
     public static String create(LineDto lineDto) {
         StringBuilder sb = new StringBuilder();
         lineDto.getConnected()

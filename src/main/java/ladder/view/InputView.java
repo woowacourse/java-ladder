@@ -11,6 +11,9 @@ public class InputView {
     private static final String NAME_DELIMITER = ",";
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+    private InputView() {
+    }
+
     public static List<String> inputPlayerNames() throws IOException {
         System.out.println(INPUT_NAME_DESCRIPTION);
         String rawNames = br.readLine();
