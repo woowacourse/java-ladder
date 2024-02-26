@@ -44,4 +44,15 @@ class ParticipantsTest {
                 .hasMessage(ParticipantsExceptionMessage.DUPLICATE_PARTICIPANTS.getExceptionMessage());
     }
 
+    @Test
+    @DisplayName("존재하지 않는 참가자의 이름이 입력되면 예외가 발생한다.")
+    void noExistNameExceptionTest() {
+        List<String> names = List.of("siso", "atto");
+        Participants participants = new Participants(names);
+
+        assertThatThrownBy(participants.getIndexOfName("tacan"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 존재하지 않는 참가자입니다.");
+    }
+
 }
