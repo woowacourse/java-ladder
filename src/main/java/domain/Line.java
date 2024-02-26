@@ -5,15 +5,15 @@ import java.util.List;
 
 public class Line {
 
-    private final List<Boolean> legs;
+    private final List<Leg> legs;
 
-    private Line(List<Boolean> legs) {
+    private Line(List<Leg> legs) {
         this.legs = legs;
     }
 
     public static Line createLineWithLegs(LegGenerateStrategy legGenerateStrategy, int legCount) {
-        List<Boolean> legs = new ArrayList<>();
-        legs.add(legGenerateStrategy.generateLeg());
+        List<Leg> legs = new ArrayList<>();
+        legs.add(new Leg(legGenerateStrategy.generateLeg()));
         for (int i = 1; i < legCount; i++) {
             decideLegExist(legGenerateStrategy, legs, i);
         }
@@ -21,15 +21,15 @@ public class Line {
     }
 
 
-    private static void decideLegExist(LegGenerateStrategy legGenerateStrategy, List<Boolean> legs, int legIndex) {
-        if (legs.get(legIndex - 1)) {
-            legs.add(false);
+    private static void decideLegExist(LegGenerateStrategy legGenerateStrategy, List<Leg> legs, int legIndex) {
+        if (legs.get(legIndex - 1).getLeg()) {
+            legs.add(new Leg(false));
             return;
         }
-        legs.add(legGenerateStrategy.generateLeg());
+        legs.add(new Leg(legGenerateStrategy.generateLeg()));
     }
 
-    public List<Boolean> getLegs() {
+    public List<Leg> getLegs() {
         return List.copyOf(legs);
     }
 }

@@ -39,10 +39,10 @@ public class LineTest {
             }
         }, 3);
 
-        List<Boolean> legs = line.getLegs();
+        List<Leg> legs = line.getLegs();
 
         for (int i = 1; i < legs.size(); i++) {
-            assertThat(legs.get(i)).isNotEqualTo(legs.get(i - 1));
+            assertThat(legs.get(i).getLeg()).isNotEqualTo(legs.get(i - 1).getLeg());
         }
     }
 }
