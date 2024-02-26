@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class People {
+
+    private static final int MINIMUM_PARTICIPANTS_SIZE = 2;
+
     private final List<Person> participants;
 
     public People(String names) {
@@ -27,8 +30,9 @@ public class People {
 
     private void validateSize(String inputNames) {
         int size = inputNames.split(",").length;
-        if (size < 2) {
-            throw new IllegalArgumentException("참가인원은 2명 이상이어야 합니다.");
+        if (size < MINIMUM_PARTICIPANTS_SIZE) {
+            throw new IllegalArgumentException(String
+                    .format("참가인원은 %s명 이상이어야 합니다.", MINIMUM_PARTICIPANTS_SIZE));
         }
     }
 
