@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
-import ladder.domain.PlayerName;
+import ladder.domain.player.Player;
 import ladder.domain.linegenerator.StickListGenerator;
 import ladder.domain.linegenerator.SticksPatternGenerator;
 import ladder.domain.linegenerator.RandomBooleanSupplier;
@@ -20,21 +20,21 @@ public class LadderGameController {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        List<PlayerName> playerNames = inputPlayerNames();
+        List<Player> players = inputPlayerNames();
         Height height = inputHeight();
 
         StickListGenerator stickListGenerator = new SticksPatternGenerator(new RandomBooleanSupplier());
-        Ladder ladder = Ladder.of(height, playerNames.size(), stickListGenerator);
+        Ladder ladder = Ladder.of(height, players.size(), stickListGenerator);
 
-        PlayerNamesDto playerNamesDto = toDto(playerNames);
+        PlayerNamesDto playerNamesDto = toDto(players);
         LadderDto ladderDto = toDto(ladder);
         outputView.printResult(ladderDto, playerNamesDto);
     }
 
-    private List<PlayerName> inputPlayerNames() {
+    private List<Player> inputPlayerNames() {
         try {
             return inputView.inputPlayerNames().stream()
-                    .map(PlayerName::new)
+                    .map(Player::new)
                     .toList();
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
@@ -51,9 +51,9 @@ public class LadderGameController {
         }
     }
 
-    private PlayerNamesDto toDto(List<PlayerName> playerNames) {
-        List<String> resultPlayerNames = playerNames.stream()
-                .map(PlayerName::getName)
+    private PlayerNamesDto toDto(List<Player> players) {
+        List<String> resultPlayerNames = players.stream()
+                .map(Player::getName)
                 .toList();
         return new PlayerNamesDto(resultPlayerNames);
     }
