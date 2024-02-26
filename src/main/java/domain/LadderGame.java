@@ -38,7 +38,7 @@ public class LadderGame {
 
     private void swapIfBridgeExist(Boolean bridge, int index) {
         if (bridge) {
-            names.swapNamePosition(index);
+            names.swapNamePosition(index + 1);
         }
     }
 }

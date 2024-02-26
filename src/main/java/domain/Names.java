@@ -31,11 +31,12 @@ public class Names {
     }
 
     public void swapNamePosition(int i) {
-        int temp = namesIndexTable.get(i);
-        namesIndexTable.put(i, i - 1);
-        namesIndexTable.put(i - 1, temp);
+        int right = namesIndexTable.get(i);
+        int left = namesIndexTable.get(i - 1);
+        namesIndexTable.put(i, left);
+        namesIndexTable.put(i - 1, right);
     }
-    
+
     int getNameCount() {
         return names.size();
     }
