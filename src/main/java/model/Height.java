@@ -1,16 +1,12 @@
 package model;
 
 import exception.Message;
-import java.util.Objects;
 
-public class Height {
+public record Height(int value) {
     private static final int UPPER_BOUND = 12;
 
-    private final int value;
-
-    public Height(int value) {
+    public Height {
         validate(value);
-        this.value = value;
     }
 
     private void validate(int value) {
@@ -21,15 +17,6 @@ public class Height {
 
     private boolean isOutOfRange(int value) {
         return value <= 0 || value > UPPER_BOUND;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(value);
     }
 
     @Override

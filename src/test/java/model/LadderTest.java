@@ -21,7 +21,7 @@ class LadderTest {
         Ladder ladder = Ladder.of(height, personCount);
 
         // when
-        Assertions.assertThat(ladder.size()).isEqualTo(height.getValue());
+        Assertions.assertThat(ladder.size()).isEqualTo(height.value());
     }
 
     @Test
@@ -65,7 +65,7 @@ class LadderTest {
         LadderResult ladderResult = ladder.findResult(players, result.getPrizes());
 
         //then
-        Assertions.assertThat(ladderResult.getPrize(target.getName())).isEqualTo(expected.getValue());
+        Assertions.assertThat(ladderResult.getPrize(target.getName())).isEqualTo(expected.value());
     }
 
 
@@ -104,7 +104,7 @@ class LadderTest {
 
         List<Line> lines = new ArrayList<>();
 
-        for (int i = 0; i < height.getValue(); i++) {
+        for (int i = 0; i < height.value(); i++) {
             lines.add(new Line(personCount, buildStrategy));
         }
 
@@ -117,7 +117,7 @@ class LadderTest {
 
         List<Line> lines = new ArrayList<>();
 
-        for (int i = 0; i < height.getValue(); i++) {
+        for (int i = 0; i < height.value(); i++) {
             if (i % 2 == 0) {
                 lines.add(new Line(personCount, evenBuildStrategy));
                 continue;

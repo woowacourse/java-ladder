@@ -13,7 +13,7 @@ public class Ladder {
 
     public static Ladder of(Height height, int width) {
         List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height.getValue(); i++) {
+        for (int i = 0; i < height.value(); i++) {
             lines.add(new Line(width, new RandomBuildStrategy()));
         }
         return new Ladder(lines);
@@ -55,7 +55,7 @@ public class Ladder {
         List<String> prizeResult = new ArrayList<>();
 
         for (int index = 0; index < players.size(); index++) {
-            prizeResult.add(result.get(findLadderBottomIndex(index, ladderSize)).getValue());
+            prizeResult.add(result.get(findLadderBottomIndex(index, ladderSize)).value());
         }
         return LadderResult.of(players.getNames(), prizeResult);
     }

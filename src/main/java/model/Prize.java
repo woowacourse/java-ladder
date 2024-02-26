@@ -2,19 +2,7 @@ package model;
 
 import java.util.Objects;
 
-//TODO: recode 고민해보기
-public class Prize {
-
-    private final String value;
-
-    public Prize(final String value) {
-        this.value = value;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(value);
-    }
+public record Prize(String value) {
 
     @Override
     public boolean equals(final Object obj) {
@@ -25,10 +13,6 @@ public class Prize {
             return false;
         }
         return Objects.equals(value, prize.value);
-    }
-
-    public String getValue() {
-        return value;
     }
 
     @Override
