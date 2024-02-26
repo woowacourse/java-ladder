@@ -1,20 +1,23 @@
+package controller;
+
 import domain.Ladder;
 import domain.Players;
-import java.util.List;
 import view.InputView;
 import view.OutputView;
 
-class Controller {
+import java.util.List;
+
+public class LadderGame {
 
     private final InputView inputView;
     private final OutputView outputView;
 
-    public Controller(InputView inputView, OutputView outputView) {
+    public LadderGame(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
-    public void run() {
+    public void play() {
         List<String> names = inputView.readNames();
         int height = inputView.readHeight();
         Players players = new Players(names);
