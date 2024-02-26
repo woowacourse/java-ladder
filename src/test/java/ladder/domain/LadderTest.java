@@ -33,7 +33,7 @@ class LadderTest {
 
     @DisplayName("이름을 입력하면 도착 위치를 반환한다.")
     @Test
-    void ladderResultTest() {
+    void findResultLocationTest() {
         Players players = new Players(List.of("poby", "honux"));
         Height height = new Height(3);
         Ladder ladder = new Ladder(players, height, () -> RIGHT);
@@ -42,5 +42,20 @@ class LadderTest {
                 () -> assertThat(ladder.findResultLocation("poby")).isEqualTo(1),
                 () -> assertThat(ladder.findResultLocation("honux")).isEqualTo(0)
         );
+    }
+
+    @DisplayName("Players의 전체 위치를 반환한다.")
+    @Test
+    void findAllResultLocationTest() {
+        Players players = new Players(List.of("poby", "honux"));
+        Height height = new Height(3);
+        Ladder ladder = new Ladder(players, height, () -> RIGHT);
+
+        List<Player> actual = ladder.findAllResultLocation();
+
+        assertThat(actual).isEqualTo(List.of(
+                new Player("poby", 1),
+                new Player("honux", 0)
+        ));
     }
 }

@@ -28,4 +28,13 @@ public class Ladder {
         }
         return currentLocation;
     }
+
+    public List<Player> findAllResultLocation() {
+        List<Player> resultPlayers = new ArrayList<>();
+        players.stream()
+                .forEach(player ->
+                        resultPlayers.add(new Player(player.name(), findResultLocation(player.name())))
+                );
+        return List.copyOf(resultPlayers);
+    }
 }
