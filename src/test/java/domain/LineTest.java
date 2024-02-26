@@ -34,5 +34,13 @@ public class LineTest {
         assertThat(line.isExistLeftStep(1)).isTrue();
     }
 
+    @Test
+    @DisplayName("해당 위치에서 오른쪽으로 갈 수 있는지 확인한다.")
+    void isExistRightStepTest() {
+        Line line = new Line(3, new PresentStepGenerator());
+
+        assertThat(line.isExistRightStep(1)).isTrue();
+    }
+
 
 }
