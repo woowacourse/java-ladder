@@ -2,6 +2,7 @@ package controller;
 
 import domain.Height;
 import domain.Ladder;
+import domain.LadderResults;
 import domain.Line;
 import domain.Participant;
 import domain.Participants;
@@ -27,6 +28,7 @@ public class LadderGame {
 
     public void start() {
         Participants participants = retryUntilSuccess(this::prepareParticipants);
+        LadderResults ladderResults = retryUntilSuccess(() -> inputLadderResults(participants.getParticipantsCount()));
         Height height = retryUntilSuccess(this::inputHeight);
 
         Ladder ladder = Ladder.of(height, participants.getParticipantsCount(), lineItemGenerator);
@@ -38,6 +40,12 @@ public class LadderGame {
         List<String> names = List.of(input.split(","));
 
         return new Participants(names);
+    }
+
+    private LadderResults inputLadderResults(int columnLength) {
+        String input = inputView.inputLadderResults();
+        List<String> ladderResults = List.of(input.split(","));
+        return new LadderResults(ladderResults, columnLength);
     }
 
     private Height inputHeight() {
