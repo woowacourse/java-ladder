@@ -9,13 +9,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class PlayerTest {
+class NameTest {
 
     @Test
-    @DisplayName("참가자들은 이름을 가진다.")
+    @DisplayName("참여자들은 이름을 가진다.")
     void testConstruct() {
-        Player player = new Player("pobi");
-        assertThat(player.getName()).isEqualTo("pobi");
+        Name name = new Name("pobi");
+        assertThat(name.getName()).isEqualTo("pobi");
     }
 
     @Nested
@@ -24,17 +24,17 @@ class PlayerTest {
 
         @ParameterizedTest
         @ValueSource(strings = {"", " ", "666666"})
-        @DisplayName("참가자들의 이름이 범위가 벗어나면 예외가 발생한다.")
+        @DisplayName("참여자들의 이름이 범위가 벗어나면 예외가 발생한다.")
         void testInvalidNameRange(String name) {
-            assertThatThrownBy(() -> new Player(name))
+            assertThatThrownBy(() -> new Name(name))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @ParameterizedTest
         @ValueSource(strings = {"abc!", "!@#"})
-        @DisplayName("참가자들의 이름은 영어, 숫자가 아니라면 예외가 발생한다.")
+        @DisplayName("참여자들의 이름은 영어, 숫자가 아니라면 예외가 발생한다.")
         void testInvalidNameFormat(String name) {
-            assertThatThrownBy(() -> new Player(name))
+            assertThatThrownBy(() -> new Name(name))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
