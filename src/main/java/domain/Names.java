@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Names {
@@ -35,10 +36,14 @@ public class Names {
         throw new IllegalArgumentException("존재하지 않는 이름입니다.");
     }
 
-    public List<String> getNames() {
+    public Name findNameByString(String target) {
         return names.stream()
-                .map(Name::getName)
-                .toList();
+                .filter((name) -> name.isSameName(target))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 이름입니다."));
     }
 
+    public List<Name> getNames() {
+        return Collections.unmodifiableList(names);
+    }
 }

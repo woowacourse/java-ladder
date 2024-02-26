@@ -25,8 +25,8 @@ public class Ladder {
     }
 
     // TODO Prize 객체를 사용해서 반환하는 것도 고민
-    public String findPrizeByName(String name) {
-        int index = names.findIndex(name);
+    public Result calculateResult(Name name) {
+        int index = names.findIndex(name.getName());
 
         for (Bridges bridge : bridges) {
             if (bridge.canCrossToLeft(index)) {
@@ -37,6 +37,14 @@ public class Ladder {
                 index++;
             }
         }
-        return prizes.findByIndex(index);
+        return new Result(name, prizes.findByIndex(index));
+    }
+
+    public Results calculateAllResult() {
+        List<Name> names = this.names.getNames();
+        List<Result> results = names.stream()
+                .map((this::calculateResult))
+                .toList();
+        return new Results(results);
     }
 }

@@ -33,4 +33,11 @@ public class InputView {
         return Arrays.stream(SCANNER.nextLine().split(","))
                 .toList();
     }
+
+    public static String readResultTarget() {
+        System.out.println("결과를 보고 싶은 사람은?");
+
+        return SCANNER.nextLine();
+
+    }
 }

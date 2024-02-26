@@ -3,8 +3,11 @@ package view;
 import domain.Bridge;
 import domain.Bridges;
 import domain.Ladder;
+import domain.Name;
 import domain.Names;
 import domain.Prizes;
+import domain.Result;
+import domain.Results;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,8 +17,8 @@ public class OutputView {
     }
 
     public static void printNames(Names names) {
-        for (String name : names.getNames()) {
-            System.out.printf("%5s ", name);
+        for (Name name : names.getNames()) {
+            System.out.printf("%5s ", name.getName());
         }
         System.out.println();
     }
@@ -51,5 +54,18 @@ public class OutputView {
 
     public static void printException(Exception exception) {
         System.out.println(exception.getMessage());
+    }
+
+    public static void printResults(Results results) {
+        List<Result> results1 = results.getResults();
+
+        System.out.println("실행 결과");
+        results1.forEach((result) -> {
+            System.out.printf("%s : %s\n", result.getName().getName(), result.getPrize());
+        });
+    }
+
+    public static void printResult(Result result) {
+        System.out.println(result.getPrize());
     }
 }

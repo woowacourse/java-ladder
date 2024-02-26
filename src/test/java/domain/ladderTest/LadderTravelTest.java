@@ -24,7 +24,7 @@ public class LadderTravelTest {
         Ladder ladder = new Ladder(new CheckPatternBridgeConstructStrategy(), names, prizes, DEFAULT_HEIGHT);
 
         //when
-        String result = ladder.findPrizeByName(name);
+        String result = ladder.calculateResult(name);
 
         //then
         Assertions.assertThat(result).isEqualTo(expected);
@@ -38,7 +38,7 @@ public class LadderTravelTest {
         Ladder ladder = new Ladder(new CheckPatternBridgeConstructStrategy(), names, prizes, new Height(5));
 
         //when
-        String result = ladder.findPrizeByName(name);
+        String result = ladder.calculateResult(name);
 
         //then
         Assertions.assertThat(result).isEqualTo(expected);
