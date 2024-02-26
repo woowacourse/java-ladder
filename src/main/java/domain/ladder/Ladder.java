@@ -33,15 +33,35 @@ public class Ladder {
     }
 
     public List<Direction> getDirectionAtHorizontalIndex(int index) {
-        validateIndex(index);
+        validateHorizontalIndex(index);
         return ladderLegs.stream()
                          .map(ladderLeg -> ladderLeg.getDirectionAtIndex(index))
                          .toList();
     }
 
-    private void validateIndex(int index) {
+    public Direction getDirectionOfLadderLegPieceAtSpecificCoordinate(int x, int y) {
+        validateCoordinate(x, y);
+        if (y == height.toInt()) {
+            return null;
+        }
+        return ladderLegs.get(x)
+                         .getDirectionAtIndex(y);
+    }
+
+    private void validateCoordinate(int x, int y) {
+        validateHorizontalIndex(x);
+        validateVerticalIndex(y);
+    }
+
+    private void validateHorizontalIndex(int index) {
         if (index < 0 || index >= this.width) {
             throw new IllegalArgumentException("존재하지 않은 LadderLeg를 조회하였습니다.");
+        }
+    }
+
+    private void validateVerticalIndex(int index) {
+        if (index < 0 || index >= this.height.toInt()) {
+            throw new IllegalArgumentException("존재하지 않은 LadderLegPiece를 조회하였습니다.");
         }
     }
 
