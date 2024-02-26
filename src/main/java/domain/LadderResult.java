@@ -1,8 +1,8 @@
 package domain;
 
 public class LadderResult {
+    public static final int MAX_LADDER_RESULT_LENGTH = 5;
     private static final int MIN_LADDER_RESULT_LENGTH = 1;
-    private static final int MAX_LADDER_RESULT_LENGTH = 5;
     private final String value;
 
     public LadderResult(String value) {

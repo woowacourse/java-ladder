@@ -14,7 +14,7 @@ public class Main {
             LadderGame ladderGame = RetryHelper.retry(() -> {
                 return createLadderGame(bufferedReader, outputView);
             });
-            outputView.printLadderResult(ladderGame.getNames(), ladderGame.getLadder());
+            outputView.printLadderResult(ladderGame.getNames(), ladderGame.getLadder(), ladderGame.getLadderResults());
         }
     }
 
@@ -27,7 +27,10 @@ public class Main {
         outputView.printHeightInput();
         int ladderHeight = Integer.parseInt(inputView.getInput());
 
-        return new LadderGame(nameInput, ladderHeight, new RowRandomGenerator());
+        outputView.printLadderResultInput();
+        String rawLadderResult = inputView.getInput();
+
+        return new LadderGame(nameInput, ladderHeight, rawLadderResult, new RowRandomGenerator());
     }
 
     static final class RetryHelper {
