@@ -6,6 +6,7 @@ import static java.util.stream.Collectors.toList;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.function.Supplier;
+import model.LadderHeight;
 import model.Participant;
 import model.Participants;
 
@@ -24,12 +25,13 @@ public class InputView {
         });
     }
 
-    public int readLadderHeight() {
+    public LadderHeight readLadderHeight() {
         return repeatUntilSuccess(() -> {
             System.out.println();
             System.out.println("최대 사다리 높이는 몇 개인가요?");
             String input = scanner.nextLine();
-            return parseInt(input);
+            int height = parseInt(input);
+            return new LadderHeight(height);
         });
     }
 

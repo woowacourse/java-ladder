@@ -2,6 +2,7 @@ package controller;
 
 import model.Ladder;
 import model.LadderGame;
+import model.LadderHeight;
 import model.Participants;
 import model.RandomGenerator;
 import view.InputView;
@@ -18,14 +19,14 @@ public class LadderGameController {
 
     public void run() {
         Participants participants = inputView.readParticipantNames();
-        int height = inputView.readLadderHeight();
+        LadderHeight height = inputView.readLadderHeight();
 
         Ladder ladder = createLadder(height, participants);
 
         printResult(participants, ladder);
     }
 
-    private Ladder createLadder(int height, Participants participants) {
+    private Ladder createLadder(LadderHeight height, Participants participants) {
         RandomGenerator generator = new RandomGenerator();
         LadderGame ladderGame = new LadderGame(height, participants, generator);
         return ladderGame.createLadder();
