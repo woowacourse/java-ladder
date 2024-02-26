@@ -13,7 +13,12 @@ public class LadderController {
     private Players ladderPlayers;
     private Ladder ladder;
 
-    public void init() throws IOException {
+    public void start() throws IOException {
+        init();
+        printResult();
+    }
+
+    private void init() throws IOException {
         ladderPlayers = Players.from(readPlayerNames());
 
         LadderSize ladderSize = new LadderSize(readLadderHeight(), ladderPlayers.getSize());
@@ -28,7 +33,7 @@ public class LadderController {
         return InputView.inputLadderHeight();
     }
 
-    public void printResult() {
+    private void printResult() {
         OutputView.printResultDescription();
         OutputView.printPlayerNames(ladderPlayers.getPlayerNames());
         OutputView.printLadder(ladder.toLineDtoList());
