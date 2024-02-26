@@ -1,7 +1,7 @@
 package laddergame.domain.gameelements;
 
 public class Element {
-    private static final String ELEMENT_NAME_RULE = "[a-zA-Z0-9]{1,5}";
+    private static final String ELEMENT_NAME_RULE = "[ㄱ-ㅎ가-힣a-zA-Z0-9]{1,5}";
     private final String element;
 
     public Element(String element) {
