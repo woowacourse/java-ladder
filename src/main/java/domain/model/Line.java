@@ -15,14 +15,6 @@ public class Line {
         makeLine(ruleGenerator, personCount);
     }
 
-    public List<Integer> findHorizontalPosition() {
-        return IntStream.range(0, points.size())
-                .sequential()
-                .filter(points::get)
-                .boxed()
-                .toList();
-    }
-
     private void makeLine(RuleGenerator generator, int personCount) {
         IntStream.range(0, personCount - 1)
                 .forEach(position -> makeHorizontalLine(generator, position));
@@ -33,6 +25,14 @@ public class Line {
         if (generator.generate()  && !hasLeftConnectedLine(position)) {
             points.set(position, true);
         }
+    }
+
+    public List<Integer> findRightConnectedPositions() {
+        return IntStream.range(0, points.size())
+                .sequential()
+                .filter(points::get)
+                .boxed()
+                .toList();
     }
 
     public boolean hasLeftConnectedLine(int position) {

@@ -33,7 +33,7 @@ public class LineTest {
         Line line=new Line(() -> true, 4);
         //when
         List<Integer> expect=List.of(0,2);
-        List<Integer> actual = line.findHorizontalPosition();
+        List<Integer> actual = line.findRightConnectedPositions();
         //then
         Assertions.assertThat(expect).isEqualTo(actual);
     }
