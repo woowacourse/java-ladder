@@ -17,6 +17,13 @@ public class Players {
         return new Players(convertToPlayer(players));
     }
 
+    public Player search(String playerName) {
+        return players.stream()
+                .filter(player -> player.isSameName(playerName))
+                .findFirst()
+                .orElseThrow(() ->  new IllegalArgumentException("입력한 참가자 중에서만 결과를 조회할 수 있습니다."));
+    }
+
     private void validate(List<Player> players) {
         if (hasDuplicate(players)) {
             throw new IllegalArgumentException("중복된 참가자를 입력할 수 없습니다.");

@@ -21,6 +21,10 @@ public class Player {
         }
     }
 
+    public boolean isSameName(String playerName) {
+        return this.name.equals(playerName);
+    }
+
     public String getName() {
         return name;
     }

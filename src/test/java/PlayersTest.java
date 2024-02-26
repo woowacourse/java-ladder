@@ -2,6 +2,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
+import domain.Player;
 import domain.Players;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -28,5 +29,16 @@ public class PlayersTest {
 
         // when & then
         assertThat(players.getCount()).isEqualTo(3);
+    }
+
+    @Test
+    void validSearch() {
+        Players players = Players.from(List.of("pobi", "kirby"));
+        assertThat(players.search("pobi")).isEqualTo(new Player("pobi"));
+    }
+    @Test
+    void invalidSearch() {
+        Players players = Players.from(List.of("pobi", "kirby"));
+        assertThatIllegalArgumentException().isThrownBy(() -> players.search("abc"));
     }
 }

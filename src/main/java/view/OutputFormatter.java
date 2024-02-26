@@ -1,6 +1,8 @@
 package view;
 
 import domain.Line;
+import domain.Player;
+import domain.Players;
 import domain.Step;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,8 +11,8 @@ public class OutputFormatter {
     private static final String SPACE = " ";
     private static final String BAR = "|";
 
-    public String toNameUnit(List<String> players) {
-        return players.stream()
+    public String toNameUnit(Players players) {
+        return players.getPlayers().stream()
                 .map(this::getNameUnit)
                 .collect(Collectors.joining());
     }
@@ -36,7 +38,8 @@ public class OutputFormatter {
         return prize + SPACE;
     }
 
-    private String getNameUnit(String name) {
+    private String getNameUnit(Player player) {
+        String name = player.getName();
         if (name.length() < 5) {
             String leftBlank = SPACE.repeat(4 - name.length());
             name = leftBlank + name + SPACE;

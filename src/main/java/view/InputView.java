@@ -48,6 +48,14 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
+    public String inputSearchingPlayer() {
+        printLine("결과를 보고 싶은 사람은?");
+        String input = readLineWithTrim();
+        inputValidator.validateSearchingPlayer(input);
+
+        return input;
+    }
+
     public void printLine(String message) {
         System.out.println(message);
     }

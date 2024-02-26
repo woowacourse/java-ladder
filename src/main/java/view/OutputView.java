@@ -2,6 +2,7 @@ package view;
 
 import domain.Ladder;
 import domain.Line;
+import domain.Players;
 import java.util.List;
 
 public class OutputView {
@@ -15,14 +16,14 @@ public class OutputView {
         return new OutputView(new OutputFormatter());
     }
 
-    public void printLadderMap(List<String> rawPlayers, Ladder ladder, List<String> prizes) {
+    public void printLadderMap(Players rawPlayers, Ladder ladder, List<String> prizes) {
         printLine("실행결과");
         printNames(rawPlayers);
         printLadder(ladder);
         printPrizes(prizes);
     }
 
-    private void printNames(List<String> players) {
+    private void printNames(Players players) {
         String nameUnit = outputFormatter.toNameUnit(players);
         printLine(nameUnit);
     }

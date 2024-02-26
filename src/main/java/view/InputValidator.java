@@ -24,6 +24,10 @@ public class InputValidator {
         validateRange(input);
     }
 
+    public void validateSearchingPlayer(String input) {
+        validateBlank(input);
+    }
+
     private void validateBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException("공백을 입력할 수 없습니다.");
