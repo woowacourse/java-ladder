@@ -51,17 +51,9 @@ public class LadderController {
     }
 
     private Prizes initPrizes(int playerCount) {
-        List<String> prizeNames = inputView.readPrizeNames();
-
-        validatePrizeCount(playerCount, prizeNames.size());
+        List<String> prizeNames = inputView.readPrizeNames(playerCount);
 
         return Prizes.from(prizeNames);
-    }
-
-    private static void validatePrizeCount(int playerCount, int prizeCount) {
-        if (prizeCount != playerCount) {
-            throw new IllegalArgumentException("참여자 수와 상품 수가 일치하지 않습니다.");
-        }
     }
 
     private Ladder initLadder(int playerCount) {

@@ -24,13 +24,22 @@ public class InputView {
         return parseToInt(input);
     }
 
-    public List<String> readPrizeNames() {
+    public List<String> readPrizeNames(int playerCount) {
         System.out.println();
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
 
         String input = readLine();
+        List<String> prizeNames = parseStringToList(input);
 
-        return parseStringToList(input);
+        validatePrizeSize(playerCount, prizeNames.size());
+
+        return prizeNames;
+    }
+
+    private void validatePrizeSize(int playerCount, int prizeCount) {
+        if (playerCount != prizeCount) {
+            throw new IllegalArgumentException("참가자 수와 결과 수가 일치해야 합니다.");
+        }
     }
 
     public String readSelectedPlayerName() {
