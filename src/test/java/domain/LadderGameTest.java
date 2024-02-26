@@ -46,7 +46,7 @@ class LadderGameTest {
 
 
     static class RowTestGenerator implements RowGenerator {
-        private List<Boolean> bridges;
+        private final List<Boolean> bridges;
 
         RowTestGenerator(List<Boolean> bridges) {
             this.bridges = bridges;
