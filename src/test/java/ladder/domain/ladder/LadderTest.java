@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.domain.generator.RandomLadderStepGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ public class LadderTest {
         final Height height = new Height(4);
 
         // when & then
-        assertThatCode(() -> new Ladder(height, stepWidth))
+        assertThatCode(() -> new Ladder(height, stepWidth, new RandomLadderStepGenerator()))
                 .doesNotThrowAnyException();
     }
 }

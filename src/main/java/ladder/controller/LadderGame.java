@@ -1,5 +1,7 @@
 package ladder.controller;
 
+import ladder.domain.generator.LadderStepGenerator;
+import ladder.domain.generator.RandomLadderStepGenerator;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.participant.Participants;
@@ -38,7 +40,8 @@ public class LadderGame {
 
     private Ladder createLadder(final int stepWidth) {
         final Height height = exceptionHandler.retryOnException(this::readLadderHeight);
-        return new Ladder(height, stepWidth);
+        final LadderStepGenerator ladderStepGenerator = new RandomLadderStepGenerator();
+        return new Ladder(height, stepWidth, ladderStepGenerator);
     }
 
     private Height readLadderHeight() {
