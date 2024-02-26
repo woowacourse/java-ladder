@@ -1,5 +1,9 @@
 package ladder.domain.participant;
 
+import ladder.domain.generator.LadderStepGenerator;
+import ladder.domain.generator.TestLadderStepGenerator;
+import ladder.domain.ladder.Height;
+import ladder.domain.ladder.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -53,5 +57,27 @@ public class ParticipantsTest {
         assertThat(createdParticipants)
                 .extracting(Participant::getPosition)
                 .containsExactly(0, 1, 2, 3);
+    }
+
+    @Test
+    @DisplayName("")
+    void play() {
+        // given
+        final List<String> names = List.of("mia", "pota", "dora", "jojo");
+        final Participants participants = new Participants(names);
+
+        final int stepWidth = 3;
+        final Height height = new Height(3);
+        final LadderStepGenerator ladderStepGenerator = new TestLadderStepGenerator();
+        final Ladder ladder = new Ladder(height, stepWidth, ladderStepGenerator);
+
+        // when
+        participants.playAll(ladder);
+
+        // then
+        List<Participant> finishedParticipants = participants.getValues();
+        assertThat(finishedParticipants)
+                .extracting(Participant::getPosition)
+                .containsExactly(1, 0, 3, 2);
     }
 }
