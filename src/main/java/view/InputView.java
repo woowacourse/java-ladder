@@ -33,4 +33,14 @@ public class InputView {
             throw new IllegalArgumentException("잘못된 입력입니다. 숫자를 입력해 주세요.");
         }
     }
+
+    public static String readMenu() {
+        System.out.println("메뉴를 입력하세요. 조회/종료");
+        return SCANNER.nextLine();
+    }
+
+    public static String readNameForResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return SCANNER.nextLine();
+    }
 }

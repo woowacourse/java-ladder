@@ -1,21 +1,27 @@
 package domain;
 
-import domain.GameResult;
 import domain.ladder.Ladder;
 import domain.player.Names;
-import domain.result.Results;
+import domain.result.Prizes;
+import java.math.BigDecimal;
 
 public class LadderGame {
     private final Names names;
-    private final Results results;
+    private final Prizes prizes;
     private final Ladder ladder;
-    private final GameResult gameResult;
+    private GameResult gameResult = null;
 
-    public LadderGame(Names names, Results results, Ladder ladder) {
+    public LadderGame(Names names, Prizes prizes, Ladder ladder) {
         this.names = names;
-        this.results = results;
+        this.prizes = prizes;
         this.ladder = ladder;
-        this.gameResult = new GameResult(names, results, ladder);
+    }
+
+    public GameResult createGameResult() {
+        if (gameResult == null) {
+            gameResult = new GameResult(names, prizes, ladder);
+        }
+        return gameResult;
     }
 
     public Names getNames() {
@@ -26,7 +32,7 @@ public class LadderGame {
         return ladder;
     }
 
-    public Results getResult() {
-        return results;
+    public Prizes getResult() {
+        return prizes;
     }
 }

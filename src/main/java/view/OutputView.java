@@ -3,9 +3,12 @@ package view;
 import domain.ladder.Bridge;
 import domain.ladder.Bridges;
 import domain.ladder.Ladder;
+import domain.player.Name;
 import domain.player.Names;
-import domain.result.Results;
+import domain.result.Prize;
+import domain.result.Prizes;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -38,7 +41,7 @@ public class OutputView {
         return " ".repeat(5);
     }
 
-    public static void printResults(Results result) {
+    public static void printResults(Prizes result) {
         for (String name : result.getResults()) {
             System.out.printf("%5s ", name);
         }
@@ -51,5 +54,17 @@ public class OutputView {
 
     public static void printException(Exception exception) {
         System.out.println(exception.getMessage());
+    }
+
+    public static void printAllResult(Map<Name, Prize> ladderGame) {
+        System.out.println("실행결과");
+        for (Name name : ladderGame.keySet()) {
+            System.out.println(name + " : " + ladderGame.get(name));
+        }
+    }
+
+    public static void printEachResult(Name name, Prize prize) {
+        System.out.println("실행결과");
+        System.out.println(name + " : " + prize);
     }
 }
