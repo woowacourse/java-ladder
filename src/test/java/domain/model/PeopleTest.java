@@ -19,7 +19,7 @@ public class PeopleTest {
     @Test
     @DisplayName("중복된 참가자 이름이 있으면 예외를 발생한다.")
     void duplicateParticipantTest() {
-        assertThatThrownBy(() -> new People(List.of("a","a","v")))
+        assertThatThrownBy(() -> new People(List.of("a", "a", "v")))
                 .isInstanceOf(IllegalStateException.class);
     }
 
