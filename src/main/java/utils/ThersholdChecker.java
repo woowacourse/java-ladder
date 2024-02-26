@@ -1,7 +1,7 @@
 package utils;
 
 
-public interface RuleGenerator {
+public interface ThersholdChecker {
     boolean isAboveThreshold();
 
 }

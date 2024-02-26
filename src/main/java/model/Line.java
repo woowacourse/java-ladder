@@ -1,6 +1,6 @@
 package model;
 
-import utils.RuleGenerator;
+import utils.ThersholdChecker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +10,9 @@ public class Line {
 
     private final List<Boolean> points;
 
-    public Line(RuleGenerator ruleGenerator, final int personCount) {
+    public Line(ThersholdChecker thersholdChecker, final int personCount) {
         points = new ArrayList<>(personCount);
-        draw(ruleGenerator, personCount);
+        draw(thersholdChecker, personCount);
     }
 
     public List<Integer> findHorizontalPosition() {
@@ -23,13 +23,13 @@ public class Line {
                 .toList();
     }
 
-    void draw(RuleGenerator generator, int personCount) {
+    void draw(ThersholdChecker generator, int personCount) {
         IntStream.range(0, personCount - 1)
                 .forEach(position -> makeHorizontalLine(generator, position));
 
     }
 
-    private void makeHorizontalLine(RuleGenerator generator, int position) {
+    private void makeHorizontalLine(ThersholdChecker generator, int position) {
         points.add(false);
         if (generator.isAboveThreshold() && !hasLeftConnectedLine(position)) {
             points.set(position, true);

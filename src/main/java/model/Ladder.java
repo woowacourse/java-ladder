@@ -1,6 +1,6 @@
 package model;
 
-import utils.RuleGeneratorImpl;
+import utils.ThersholdCheckerImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ public class Ladder {
 
     public Ladder(String input, int personCount) {
         this.height = new Height(input);
-        RuleGeneratorImpl ruleGenerator = new RuleGeneratorImpl();
+        ThersholdCheckerImpl ruleGenerator = new ThersholdCheckerImpl();
         for (int i = 0; i < height.getHeight(); i++) {
             lines.add(new Line(ruleGenerator, personCount));
         }
