@@ -14,7 +14,7 @@ public class Line {
         List<Step> steps = new ArrayList<>();
         Step previous = Step.from(StepStatus.EMPTY);
         while (steps.size() < width.size()) {
-            Step step = Step.of(previous, new RandomStepGenerator());
+            Step step = Step.of(previous, new RandomStatusGenerator());
             steps.add(step);
             previous = step;
         }

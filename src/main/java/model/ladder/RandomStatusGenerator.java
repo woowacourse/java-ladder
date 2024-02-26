@@ -2,7 +2,7 @@ package model.ladder;
 
 import java.util.Random;
 
-public class RandomStepGenerator implements StepStatusGenerator {
+public class RandomStatusGenerator implements StepStatusGenerator {
     @Override
     public StepStatus generate(final Step previous) {
         Random random = new Random();
