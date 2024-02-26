@@ -11,7 +11,7 @@ import static java.lang.System.lineSeparator;
 
 public class OutputView {
 
-    public static void printError(String message) {
+    public void printError(String message) {
         System.out.println(message);
     }
 
