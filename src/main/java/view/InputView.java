@@ -10,7 +10,7 @@ public class InputView {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public List<String> readNames() {
+    public List<String> readTokens() {
         String names = scanner.nextLine();
         String[] splitNames = names.split(NAME_SPLIT_DELIMITER);
 
