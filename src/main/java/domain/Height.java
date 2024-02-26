@@ -16,10 +16,6 @@ public class Height {
         }
     }
 
-    public boolean isBiggerThan(int buildHeight) {
-        return height > buildHeight;
-    }
-
     public int getHeight() {
         return height;
     }
