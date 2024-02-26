@@ -32,7 +32,7 @@ public class LadderController {
 
     public void run() {
         Players players = retryOnException(() -> Players.from(inputView.readPlayerNames()));
-        Prizes prizes = retryOnException(() -> Prizes.of(inputView.readPrizes(), players.size()));
+        Prizes prizes = retryOnException(() -> Prizes.of(inputView.readPrizeNames(), players.size()));
         Ladder ladder = retryOnException(() -> Ladder.of(inputView.readLadderHeight(), players.size(), rungGenerator));
 
         LadderGame ladderGame = LadderGame.of(players, ladder, prizes);
