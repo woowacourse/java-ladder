@@ -20,8 +20,8 @@ public class LadderGameController {
 
     public void run() {
         Names names = inputView.readNames();
-        Height height = inputView.readHeight();
         NonDecidedResults nonDecidedResults = inputView.readNonDecidedResults(names);
+        Height height = inputView.readHeight();
 
         Ladder ladder = Ladder.createFrom(new NonContinuousLineGenerator(), names.getNameCount(), height);
 
