@@ -1,2 +1,7 @@
-package domain;public enum Direction {
+package domain;
+
+public enum Direction {
+    LEFT,
+    RIGHT
+    ;
 }
