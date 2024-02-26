@@ -18,6 +18,14 @@ public class NameTest {
                 .hasMessage(NameExceptionMessage.OUT_OF_RANGE_NAME_LENGTH.getExceptionMessage());
     }
 
+    @Test
+    @DisplayName("이름에 종료 단어를 사용하면 예외가 발생한다.")
+    void unavailableNameExceptionTest() {
+        assertThatThrownBy(() -> new Name("종료"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(NameExceptionMessage.UNAVAILABLE_NAME.getExceptionMessage());
+    }
+
     @ParameterizedTest
     @DisplayName("이름이 없을 때 예외가 발생한다.")
     @NullAndEmptySource
