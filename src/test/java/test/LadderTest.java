@@ -7,10 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import test.linegenerator.AllFalseLineGenerator;
-<<<<<<< HEAD
-=======
 import test.linegenerator.AlternativeLineGenerator;
->>>>>>> step1
 
 import java.util.List;
 import java.util.Set;
@@ -50,8 +47,6 @@ class LadderTest {
 
         assertThat(connectionElement).containsExactly(Boolean.FALSE);
     }
-<<<<<<< HEAD
-=======
 
     @DisplayName("사다리 결과 테스트 : 가로선이 없는 경우")
     @ParameterizedTest
@@ -68,5 +63,4 @@ class LadderTest {
         Ladder testLadder = new Ladder(2, 5, new AlternativeLineGenerator());
         assertThat(testLadder.getResultOf(lineNumber)).isEqualTo(lineNumber);
     }
->>>>>>> step1
 }
