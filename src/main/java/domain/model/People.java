@@ -1,9 +1,6 @@
 package domain.model;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class People {
     private static final int SIZE_LIMIT=2;

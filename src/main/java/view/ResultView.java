@@ -18,7 +18,7 @@ public class ResultView {
 
         ladder.getLines()
                 .stream()
-                .map(line -> printLine(line.findHorizontalPosition(), people.numberOfParticipants()))
+                .map(line -> printLine(line.findHorizontalPosition(), people.getNumberOfParticipants()))
                 .forEach(System.out::println);
     }
 

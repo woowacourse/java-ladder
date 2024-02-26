@@ -24,7 +24,7 @@ public class LadderController {
         Supplier<People> peopleSupplier = () -> new People(getParticipants());
         People people = runWithHandler(peopleSupplier);
 
-        Supplier<Ladder> ladderSupplier = () -> new Ladder(getLadderHeight(), people.numberOfParticipants());
+        Supplier<Ladder> ladderSupplier = () -> new Ladder(getLadderHeight(), people.getNumberOfParticipants());
         Ladder ladder = runWithHandler(ladderSupplier);
 
         resultView.printResult(people, ladder);
