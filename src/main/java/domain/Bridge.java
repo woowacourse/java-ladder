@@ -6,19 +6,19 @@ public enum Bridge {
     BRIDGE(true),
     NON_BRIDGE(false);
 
-    private final boolean bridgeType;
+    private final boolean connection;
 
-    Bridge(final boolean bridgeType) {
-        this.bridgeType = bridgeType;
+    Bridge(final boolean connection) {
+        this.connection = connection;
     }
 
-    public boolean getBridge() {
-        return bridgeType;
+    public boolean isConnected() {
+        return connection;
     }
 
-    public static Bridge findByHasLine(final boolean bridgeType) {
+    public static Bridge findByConnection(final boolean connection) {
         return Arrays.stream(values())
-                .filter(value -> value.bridgeType == bridgeType)
+                .filter(value -> value.connection == connection)
                 .findAny()
                 .orElseThrow(()-> new IllegalArgumentException("bridgeType이 존재하지 않습니다."));
     }

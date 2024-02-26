@@ -26,29 +26,21 @@ public class LadderFactory {
 
     private static List<Bridge> generateLine(final int width) {
         final List<Bridge> bridges = new ArrayList<>();
-        bridges.add(getRandomBridge());
+        bridges.add(nextRandomBridge());
         IntStream.range(1, width)
                 .mapToObj(index -> bridges.get(index - 1))
-                .forEach(previousBridge -> bridges.add(getCurrentBridgeByPreviousBridge(previousBridge)));
+                .forEach(previousBridge -> bridges.add(calculateCurrentBridgeByPreviousBridge(previousBridge)));
         return bridges;
     }
 
-    private static Bridge getCurrentBridgeByPreviousBridge(final Bridge previousBridge) {
-        if (previousBridge.getBridge()) {
+    private static Bridge calculateCurrentBridgeByPreviousBridge(final Bridge previousBridge) {
+        if (previousBridge.isConnected()) {
             return Bridge.NON_BRIDGE;
         }
-        return getRandomBridge();
+        return nextRandomBridge();
     }
 
-    private static Bridge getRandomBridge() {
-        return Bridge.findByHasLine(RANDOM_GENERATOR.nextBoolean());
+    private static Bridge nextRandomBridge() {
+        return Bridge.findByConnection(RANDOM_GENERATOR.nextBoolean());
     }
-
 }
-
-
-/*
-
-    final을 꼭 써야할까..
-
- */

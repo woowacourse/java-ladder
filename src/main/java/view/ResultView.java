@@ -61,7 +61,7 @@ public class ResultView {
     }
 
     private static String drawBridge(final Bridge bridge) {
-        if (bridge.getBridge()) {
+        if (bridge.isConnected()) {
             return LINE;
         }
         return NONE_LINE;
