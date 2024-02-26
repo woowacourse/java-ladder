@@ -60,7 +60,8 @@ public class Ladder {
     }
 
     private boolean hasBridge(final int position, final int currentHeight) {
-        return ladder.get(currentHeight).getBridges().get(position).isConnected();
+        final Line currentLine = ladder.get(currentHeight);
+        return currentLine.checkConnectivity(position);
     }
 
     private boolean inRange(final int position) {

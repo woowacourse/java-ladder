@@ -66,6 +66,7 @@ public class ResultView {
         }
         return NONE_LINE;
     }
+
     public static void printTargetResultMessage() {
         System.out.println("실행결과");
         System.out.println();

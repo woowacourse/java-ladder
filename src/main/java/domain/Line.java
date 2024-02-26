@@ -29,7 +29,13 @@ public class Line {
     public List<Bridge> getBridges() {
         return bridges;
     }
-    public int getWidth(){
+
+    public int getWidth() {
         return bridges.size();
+    }
+
+    public boolean checkConnectivity(final int position) {
+        final Bridge bridge = bridges.get(position);
+        return bridge.isConnected();
     }
 }
