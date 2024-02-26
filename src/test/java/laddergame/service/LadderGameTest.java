@@ -5,13 +5,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.entry;
 
 import java.util.List;
 
-import laddergame.domain.Result;
+import laddergame.domain.result.Result;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderHeight;
 import laddergame.domain.ladder.Line;
-import laddergame.domain.move.LeftStrategy;
-import laddergame.domain.move.RightStrategy;
-import laddergame.domain.move.Trace;
 import laddergame.domain.player.Player;
 import laddergame.domain.player.Players;
 import laddergame.domain.point.Point;
@@ -69,9 +66,9 @@ public class LadderGameTest {
         Result result = ladderGame.start(players, targets, ladder);
 
         // then
-        assertThat(result.getResult()).contains(entry(new Player("pobi"), new Target("꽝")),
-                entry(new Player("honux"), new Target("3000")),
-                entry(new Player("crong"), new Target("꽝")),
-                entry(new Player("jk"), new Target("5000")));
+        assertThat(result.getResult()).contains(entry("pobi", "꽝"),
+                entry("honux", "3000"),
+                entry("crong", "꽝"),
+                entry("jk", "5000"));
     }
 }

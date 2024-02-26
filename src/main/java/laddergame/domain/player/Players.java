@@ -31,8 +31,8 @@ public class Players {
         return players.size();
     }
 
-    public Player getName(int index) {
-        return this.players.get(index);
+    public String getPlayerName(int index) {
+        return this.players.get(index).getName();
     }
 
     public List<Player> getPlayers() {

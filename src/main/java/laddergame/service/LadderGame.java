@@ -1,7 +1,6 @@
 package laddergame.service;
 
-import laddergame.domain.Result;
-import laddergame.domain.move.Trace;
+import laddergame.domain.result.Result;
 import laddergame.domain.player.Player;
 import laddergame.domain.point.PointGenerator;
 import laddergame.domain.ladder.Ladder;
@@ -30,11 +29,11 @@ public class LadderGame {
     }
 
     public Result start(final Players players, final Targets targets, final Ladder ladder) {
-        Map<Player, Target> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
 
         for (int i = 0; i < players.getSize(); i++) {
             Target target = targets.convertToTraceBy(ladder.moveLines(i));
-            map.put(players.getName(i), target);
+            map.put(players.getPlayerName(i), target.getResult());
         }
         return new Result(map);
     }
