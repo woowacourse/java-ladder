@@ -15,10 +15,11 @@ public class OutputView {
         return new OutputView(new OutputFormatter());
     }
 
-    public void printResult(List<String> rawPlayers, Ladder ladder) {
+    public void printLadderMap(List<String> rawPlayers, Ladder ladder, List<String> prizes) {
         printLine("실행결과");
         printNames(rawPlayers);
         printLadder(ladder);
+        printPrizes(prizes);
     }
 
     private void printNames(List<String> players) {
@@ -28,6 +29,11 @@ public class OutputView {
 
     private void printLadder(Ladder ladder) {
         ladder.getLines().forEach(this::printLadderLine);
+    }
+
+    private void printPrizes(List<String> rawPrizes) {
+        String prizes = outputFormatter.toPrize(rawPrizes);
+        printLine(prizes);
     }
 
     private void printLadderLine(Line rawLine) {

@@ -22,6 +22,20 @@ public class OutputFormatter {
         return "    " + line;
     }
 
+    public String toPrize(List<String> rawPrizes) {
+        return rawPrizes.stream()
+                .map(this::getPrizeUnit)
+                .collect(Collectors.joining());
+    }
+
+    private String getPrizeUnit(String prize) {
+        if (prize.length() < 5) {
+            String leftBlank = SPACE.repeat(4 - prize.length());
+            prize = leftBlank + prize + SPACE;
+        }
+        return prize + SPACE;
+    }
+
     private String getNameUnit(String name) {
         if (name.length() < 5) {
             String leftBlank = SPACE.repeat(4 - name.length());

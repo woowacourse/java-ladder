@@ -24,7 +24,7 @@ public class LadderController {
 
         final Ladder ladder = Ladder.create(height, PlayerCount.fromPlayers(players), new RandomStepGenerator());
 
-        outputView.printResult(players, ladder);
+        outputView.printLadderMap(players, ladder, prizes);
     }
 
     private <T> T readWithRetry(Supplier<T> supplier) {
