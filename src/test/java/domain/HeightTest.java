@@ -4,7 +4,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import util.ExceptionMessages;
 
 class HeightTest {
 
@@ -26,6 +25,6 @@ class HeightTest {
         //when & then
         Assertions.assertThatThrownBy(() -> new Height(rawHeight))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessages.INVALID_HEIGHT_RANGE);
+                .hasMessage(Height.INVALID_HEIGHT_RANGE);
     }
 }

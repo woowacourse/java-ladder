@@ -1,12 +1,12 @@
 package view;
 
-import util.ExceptionMessages;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
 
+    public static final String INVALID_HEIGHT_FORMAT = "높이는 숫자여야 합니다.";
     private static final String DELIMITER = ",";
     private static final InputView instance = new InputView();
     private final Scanner scanner = new Scanner(System.in);
@@ -14,7 +14,7 @@ public class InputView {
     private InputView() {
     }
 
-    public static final InputView getInstance() {
+    public static InputView getInstance() {
         return instance;
     }
 
@@ -29,7 +29,7 @@ public class InputView {
         try {
             return scanner.nextInt();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionMessages.INVALID_HEIGHT_FORMAT);
+            throw new IllegalArgumentException(INVALID_HEIGHT_FORMAT);
         }
     }
 }

@@ -8,7 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import util.ExceptionMessages;
 
 class NamesTest {
 
@@ -42,7 +41,7 @@ class NamesTest {
         //when & then
         Assertions.assertThatThrownBy(() -> new Names(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessages.INVALID_PLAYERS_COUNT);
+                .hasMessage(Names.INVALID_NAMES_COUNT);
     }
 
     @DisplayName("참가자의 수를 반환한다.")

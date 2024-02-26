@@ -1,6 +1,5 @@
 package domain;
 
-import util.ExceptionMessages;
 
 import java.util.Arrays;
 
@@ -9,6 +8,7 @@ public enum Bridge {
     BRIDGE(true),
     NO_BRIDGE(false);
 
+    public static final String NO_ENUM = "Bridge를 찾을 수 없습니다.";
     private final boolean exist;
 
     Bridge(final boolean exist) {
@@ -19,10 +19,10 @@ public enum Bridge {
         return Arrays.stream(values())
                 .filter(value -> value.exist == exist)
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessages.NO_ENUM));
+                .orElseThrow(() -> new IllegalArgumentException(NO_ENUM));
     }
 
-    public boolean exists(){
+    public boolean exists() {
         return this.exist;
     }
 
