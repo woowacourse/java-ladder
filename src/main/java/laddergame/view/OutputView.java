@@ -70,8 +70,7 @@ public class OutputView {
     }
 
     public void writeDesiredResult(final Result result) {
-        System.out.println();
-        System.out.println("실행 결과");
+        System.out.println(RESULT_TITLE);
         System.out.println(result.name());
     }
 

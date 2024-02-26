@@ -115,5 +115,5 @@ example feat: 사용자 입력 후 도메인 사용
 - [x] `points` 에게 마지막 지점인지 확인하는 메서드를 구현한다.
 - [x] `points` 에게 0이 시작지점인지 물어보는 메서드를 구현한다.
 - [x] controller와 service 영역으로 분리한다.
-- [ ] view의 system call을 줄인다.(sout)
+- [x] view의 system call을 줄인다.(sout)
 - [x] `ReservedWords` 패키지 변경
