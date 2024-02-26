@@ -78,4 +78,15 @@ class InputViewTest {
                     .hasMessage("정수를 입력해야 합니다.");
         }
     }
+
+    @DisplayName("실행결과에 대한 입력 테스트")
+    @Nested
+    class winningsTest {
+        @DisplayName("interface Reader로부터 받은 String을 List<String>으로 반환한다.")
+        @Test
+        void stringToListTest() {
+            Assertions.assertThat(InputView.readWinnings(() -> "a,b,c"))
+                    .isEqualTo(List.of("a", "b", "c"));
+        }
+    }
 }

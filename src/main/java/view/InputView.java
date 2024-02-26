@@ -46,4 +46,13 @@ public class InputView {
             throw new IllegalArgumentException("정수를 입력해야 합니다.");
         }
     }
+
+    public static List<String> readWinnings(Supplier<String> input) {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String inputString = input.get();
+        return Arrays.stream(inputString.split(","))
+                .peek(InputView::validateEmpty)
+                .map(String::trim)
+                .toList();
+    }
 }
