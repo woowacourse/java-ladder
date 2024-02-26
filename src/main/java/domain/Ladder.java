@@ -41,12 +41,13 @@ public class Ladder {
     public int playByPosition(int horizontalPosition) {
         final int ladderHeight = getHeight();
         final Position position = new Position(0, horizontalPosition);
-        while (position.getVerticalLocation() < ladderHeight) {
+//        while (position.getVerticalLocation() < ladderHeight) {
 //            position += horizontalMovement(position, currentHeight);
 //            position.move();
 //            position.next();
-        }
-        return position.getHorizontalLocation();
+//        }
+//        return position.getHorizontalLocation();
+        return 0;
     }
 
     private int horizontalMovement(final int position, final int currentHeight) {

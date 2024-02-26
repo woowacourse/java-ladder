@@ -9,17 +9,8 @@ public class Position {
         this.horizontalLocation = horizontalLocation;
         this.verticalLocation = verticalLocation;
     }
-
-
-    public int getVerticalLocation() {
-        return verticalLocation;
-    }
-
-    public int getHorizontalLocation() {
-        return horizontalLocation;
-    }
-
-    public void next() {
+    public int moveDown() {
         verticalLocation = verticalLocation + 1;
+        return verticalLocation;
     }
 }

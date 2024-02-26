@@ -10,10 +10,10 @@ class PositionTest {
     @Test
     @DisplayName("Position이 사다리의 다음 라인으로 넘어가는지 확인한다.")
     void next() {
-        Position position = new Position(0, 0);
+        final Position position = new Position(0, 0);
 
-        position.next();
+        final int newPosition = position.moveDown();
 
-        assertThat(position.getVerticalLocation()).isEqualTo(1);
+        assertThat(newPosition).isEqualTo(1);
     }
 }
