@@ -4,11 +4,13 @@ import java.util.List;
 
 public class Prizes {
 
-    private final List<String> prizes;
+    private final List<Prize> prizes;
 
     public Prizes(List<String> prizes, int numberOfPrize) {
         validateNumberOfPrize(prizes, numberOfPrize);
-        this.prizes = prizes;
+        this.prizes = prizes.stream()
+                .map(Prize::new)
+                .toList();
     }
 
     void validateNumberOfPrize(List<String> prizes, int numberOfPrize) {
@@ -18,6 +20,6 @@ public class Prizes {
     }
 
     String getPrizeOf(int indexOfPrize) {
-        return prizes.get(indexOfPrize);
+        return prizes.get(indexOfPrize).getPrize();
     }
 }
