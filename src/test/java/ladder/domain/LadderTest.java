@@ -2,6 +2,7 @@ package ladder.domain;
 
 import static ladder.domain.Direction.RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
@@ -31,27 +32,39 @@ class LadderTest {
         );
     }
 
+    @DisplayName("존재하지 않는 이름을 입력하면 예외를 던진다")
+    @Test
+    void invalidGetResultLocationTest() {
+        Players players = new Players(List.of("poby", "honux"));
+        Height height = new Height(3);
+        Ladder ladder = new Ladder(players, height, () -> RIGHT);
+
+        assertThatThrownBy(() -> ladder.getResultLocation("zeus"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("존재하지 않는 이름입니다.");
+    }
+
     @DisplayName("이름을 입력하면 도착 위치를 반환한다.")
     @Test
-    void findResultLocationTest() {
+    void getResultLocationTest() {
         Players players = new Players(List.of("poby", "honux"));
         Height height = new Height(3);
         Ladder ladder = new Ladder(players, height, () -> RIGHT);
 
         assertAll(
-                () -> assertThat(ladder.findResultLocation("poby")).isEqualTo(1),
-                () -> assertThat(ladder.findResultLocation("honux")).isEqualTo(0)
+                () -> assertThat(ladder.getResultLocation("poby")).isEqualTo(1),
+                () -> assertThat(ladder.getResultLocation("honux")).isEqualTo(0)
         );
     }
 
     @DisplayName("Players의 전체 위치를 반환한다.")
     @Test
-    void findAllResultLocationTest() {
+    void getAllResultLocationTest() {
         Players players = new Players(List.of("poby", "honux"));
         Height height = new Height(3);
         Ladder ladder = new Ladder(players, height, () -> RIGHT);
 
-        List<Player> actual = ladder.findAllResultLocation();
+        List<Player> actual = ladder.getAllResultLocation();
 
         assertThat(actual).isEqualTo(List.of(
                 new Player("poby", 1),

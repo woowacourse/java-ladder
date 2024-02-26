@@ -54,12 +54,4 @@ public class Players {
     public Stream<Player> stream() {
         return players.stream();
     }
-
-    public int getLocationByName(String name) {
-        return players.stream()
-                .filter(player -> player.name().equals(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."))
-                .location();
-    }
 }
