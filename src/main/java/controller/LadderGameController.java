@@ -2,6 +2,7 @@ package controller;
 
 import domain.Height;
 import domain.Ladder;
+import domain.LadderResult;
 import domain.NonDecidedResults;
 import domain.line.NonContinuousLineGenerator;
 import domain.name.Names;
@@ -24,6 +25,7 @@ public class LadderGameController {
         Height height = inputView.readHeight();
 
         Ladder ladder = Ladder.createFrom(new NonContinuousLineGenerator(), names.getNameCount(), height);
+        LadderResult ladderResult = LadderResult.of(ladder, names, nonDecidedResults);
 
         resultView.printLadder(ladder, names);
     }
