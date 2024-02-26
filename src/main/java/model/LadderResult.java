@@ -1,5 +1,6 @@
 package model;
 
+import exception.Message;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,10 @@ public class LadderResult { //TODO: 개인적으로 이름이 마음에 안듦
         return new LadderResult(result);
     }
 
-    public String getPrize(String name) { // TODO: 없는 경우 예외 처리 여기서 하기
+    public String getPrize(String name) {
+        if (!result.containsKey(name)) {
+            throw new IllegalArgumentException(Message.INVALID_PLAYER_NAME_ERROR.getMessage());
+        }
         return result.get(name);
     }
 
