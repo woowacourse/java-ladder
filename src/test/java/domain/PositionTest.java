@@ -19,11 +19,20 @@ class PositionTest {
 
     @Test
     @DisplayName("Position의 왼쪽 이동을 확인한다.")
-    void next() {
+    void moveLeft() {
         final Position position = new Position(0, 0);
 
         final int newPosition = position.moveLeft();
 
         assertThat(newPosition).isEqualTo(-1);
+    }
+    @Test
+    @DisplayName("Postition의 오른쪽 이동을 확인한다.")
+    void moveRight() {
+        final Position position = new Position(0, 0);
+
+        final int newPosition = position.moveRight();
+
+        assertThat(newPosition).isEqualTo(1);
     }
 }

@@ -18,4 +18,9 @@ public class Position {
         horizontalLocation = horizontalLocation - 1;
         return horizontalLocation;
     }
+
+    public int moveRight() {
+        horizontalLocation = horizontalLocation + 1;
+        return horizontalLocation;
+    }
 }
