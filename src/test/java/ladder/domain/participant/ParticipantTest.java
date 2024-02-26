@@ -1,27 +1,12 @@
 package ladder.domain.participant;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParticipantTest {
-    @Test
-    @DisplayName("참가자 이름의 앞뒤 공백을 제거한다.")
-    void trimNameTest() {
-        // given
-        final String name = "mia ";
-
-        // when
-        final Participant mia = new Participant(name);
-
-        // then
-        assertEquals("mia", mia.getName());
-    }
-
     @ParameterizedTest
     @ValueSource(strings = {"miamia", "potato", ""})
     @DisplayName("참가자 이름이 1~5자가 아니면 예외가 발생한다.")

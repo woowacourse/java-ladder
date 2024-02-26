@@ -31,7 +31,7 @@ public class OutputView {
     }
 
     private String getFormattedName(final Participant participant) {
-        final String name = participant.getName();
+        final String name = participant.getName().getValue();
         return String.format(NAME_FORMAT, name);
     }
 
