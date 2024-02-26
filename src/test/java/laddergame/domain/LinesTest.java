@@ -49,5 +49,39 @@ public class LinesTest {
         Lines lines = new Lines(linesGenerator, players.getPlayersCount() - 1);
         assertEquals(lines.findDirection(playerIndex), Direction.RIGHT);
     }
+
+    @Test
+    @DisplayName("플레이어의 왼쪽에 라인이 있을 경우 왼쪽을 반환한다.")
+    void returnLeftWhenLeftLine() {
+        List<Line> expected = List.of(Line.BRIDGE, Line.EMPTY, Line.BRIDGE);
+        LinesGenerator linesGenerator = new LinesGenerator() {
+            @Override
+            public List<Line> generate(int width) {
+                return expected;
+            }
+        };
+        final Players players = new Players(List.of("name1", "name2", "name3", "name4"));
+        final int playerIndex = 3;
+
+        Lines lines = new Lines(linesGenerator, players.getPlayersCount() - 1);
+        assertEquals(lines.findDirection(playerIndex), Direction.LEFT);
+    }
+
+    @Test
+    @DisplayName("플레이어의 오른쪽과 왼쪽에 모두 라인이 없을 경우 아래로 이동한다.")
+    void returnDownWhenEmptyLine() {
+        List<Line> expected = List.of(Line.EMPTY, Line.EMPTY, Line.EMPTY);
+        LinesGenerator linesGenerator = new LinesGenerator() {
+            @Override
+            public List<Line> generate(int width) {
+                return expected;
+            }
+        };
+        final Players players = new Players(List.of("name1", "name2", "name3", "name4"));
+        final int playerIndex = 0;
+
+        Lines lines = new Lines(linesGenerator, players.getPlayersCount() - 1);
+        assertEquals(lines.findDirection(playerIndex), Direction.DOWN);
+    }
 }
 
