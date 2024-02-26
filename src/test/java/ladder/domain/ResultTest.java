@@ -19,7 +19,7 @@ class ResultTest {
     }
 
     @Test
-    @DisplayName("결과가 5글자 초과이면 예외가 발생한다.")
+    @DisplayName("결과가 5글자 초과면 예외가 발생한다.")
     void createExtendedResult() {
         // given
         String value = "honux1";
