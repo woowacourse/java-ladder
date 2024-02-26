@@ -16,7 +16,7 @@ public class LadderTest {
                 .doesNotThrowAnyException();
     }
 
-    @DisplayName("사다리 높이와 사람수, RandomGenerator을 입력받아 사다리 줄을 설정한다.")
+    @DisplayName("사다리 높이와 사람 수, RandomGenerator을 입력받아 사다리 줄을 설정한다.")
     @Test
     void addLadderLine() {
         int height = 2;

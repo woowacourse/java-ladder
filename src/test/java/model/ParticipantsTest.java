@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 class ParticipantsTest {
 
-    @DisplayName("List<model.Participant>을 받아 model.Participants 객체를 생성한다.")
+    @DisplayName("List<model.Participant>을 받아 Participants 객체를 생성한다.")
     @Test
     void createParticipants() {
         List<Participant> given = List.of(
@@ -23,7 +23,7 @@ class ParticipantsTest {
                 .doesNotThrowAnyException();
     }
 
-    @DisplayName("model.Participants 객체에 null 값이 입력되면 예외가 발생한다")
+    @DisplayName("Participants 객체에 null 값이 입력되면 예외가 발생한다")
     @Test
     void validateParticipantsSizeWhenNull() {
         List<Participant> given = null;
@@ -31,7 +31,7 @@ class ParticipantsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("model.Participants 객체에 참여자 수가 없으면 예외가 발생한다")
+    @DisplayName("Participants 객체에 참여자 수가 없으면 예외가 발생한다")
     @Test
     void validateParticipantsSizeWhenZero() {
         List<Participant> given = List.of();
@@ -39,7 +39,7 @@ class ParticipantsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("model.Participants 객체에 참여자 수가 1명이면 예외가 발생한다.")
+    @DisplayName("Participants 객체에 참여자 수가 1명이면 예외가 발생한다.")
     @Test
     void validateParticipantsSizeWhenOne() {
         List<Participant> given = List.of(

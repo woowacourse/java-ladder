@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class LineTest {
 
-    @DisplayName("참여자 인원수와 참 거짓 결과들를 받아 model.Line 객체를 생성한다.")
+    @DisplayName("참여자 인원수와 참 거짓 결과들를 받아 Line 객체를 생성한다.")
     @Test
     void createLine() {
         int peopleCount = 3;

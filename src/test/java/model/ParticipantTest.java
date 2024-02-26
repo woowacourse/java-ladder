@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.*;
 
 class ParticipantTest {
 
-    @DisplayName("String 값을 받아 model.Participant 객체를 생성한다.")
+    @DisplayName("String 값을 받아 Participant 객체를 생성한다.")
     @Test
     void createParticipant() {
         String given = "lilly";
