@@ -6,15 +6,14 @@ import laddergame.util.ZoneGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ZonesBuildStrategy implements LineBuildStrategy {
+public class ZonesBuilder {
     private final ZoneGenerator zoneGenerator;
 
-    public ZonesBuildStrategy(ZoneGenerator zoneGenerator) {
+    public ZonesBuilder(ZoneGenerator zoneGenerator) {
         this.zoneGenerator = zoneGenerator;
     }
 
-    @Override
-    public List<Zone> apply(final int width) {
+    public List<Zone> build(final int width) {
         List<Zone> lineStatus = new ArrayList<>();
 
         lineStatus.add(zoneGenerator.generate());

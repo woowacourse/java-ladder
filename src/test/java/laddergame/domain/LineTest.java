@@ -1,6 +1,8 @@
 package laddergame.domain;
 
-import laddergame.domain.strategy.LineBuildStrategy;
+import laddergame.domain.strategy.ZonesBuilder;
+import laddergame.util.RandomZoneGenerator;
+import laddergame.util.ZoneGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,22 +13,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DisplayName("라인")
 public class LineTest {
     @Test
-    @DisplayName("랜덤값이 true일 경우 특정 위치에서 다리를 건설한다.")
+    @DisplayName("랜덤값이 Zone.Empty이면 다리를 건설하지 않는다.")
     public void buildBridgeTest() {
         //given
         final int personCount = 4;
-        final List<Zone> expected = List.of(Zone.BRIDGE, Zone.EMPTY, Zone.BRIDGE);
+        final List<Zone> expected = List.of(Zone.EMPTY, Zone.EMPTY, Zone.EMPTY);
 
-        LineBuildStrategy lineBuildStrategy = new LineBuildStrategy() {
+        ZoneGenerator zoneGenerator = new ZoneGenerator() {
             @Override
-            public List<Zone> apply(int count) {
-                return expected;
+            public Zone generate() {
+                return Zone.EMPTY;
             }
         };
-        lineBuildStrategy.apply(personCount);
+
+        ZonesBuilder zonesBuilder = new ZonesBuilder(zoneGenerator);
 
         //when
-        Line line = new Line(lineBuildStrategy, personCount);
+        Line line = new Line(zonesBuilder, personCount -1);
 
         //then
         assertEquals(line.getZones(), expected);

@@ -1,8 +1,8 @@
 package laddergame.domain;
 
-import laddergame.domain.strategy.LineBuildStrategy;
-import laddergame.domain.strategy.ZonesBuildStrategy;
+import laddergame.domain.strategy.ZonesBuilder;
 import laddergame.util.RandomZoneGenerator;
+import laddergame.util.ZoneGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ public class LadderTest {
 
         //when
         Ladder ladder = new Ladder(
-                new ZonesBuildStrategy(new RandomZoneGenerator()),
+                new ZonesBuilder(new RandomZoneGenerator()),
                 players,
                 height);
 
@@ -38,14 +38,15 @@ public class LadderTest {
         final Height height = new Height("1");
         final List<String> playersName = List.of("name1", "name2", "name3", "name4");
         final Players players = new Players(playersName);
-        final List<Zone> expected = List.of(Zone.BRIDGE, Zone.EMPTY, Zone.BRIDGE);
+        final List<Zone> expected = List.of(Zone.EMPTY, Zone.EMPTY, Zone.EMPTY);
 
-        LineBuildStrategy lineBuildStrategy = new LineBuildStrategy() {
+        ZoneGenerator zoneGenerator = new ZoneGenerator() {
             @Override
-            public List<Zone> apply(int count) {
-                return expected;
+            public Zone generate() {
+                return Zone.EMPTY;
             }
         };
+        ZonesBuilder lineBuildStrategy = new ZonesBuilder(zoneGenerator);
 
         //when
         Ladder ladder = new Ladder(lineBuildStrategy, players, height);
