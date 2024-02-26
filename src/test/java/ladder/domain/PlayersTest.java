@@ -13,11 +13,11 @@ public class PlayersTest {
     @Test
     void Players_인스턴스_생성() {
         // Given
-        final UserNames userNames = UserNames.of(List.of("kelly", "pobi", "con", "hi"));
+        final PlayerNames playerNames = PlayerNames.of(List.of("kelly", "pobi", "con", "hi"));
         final LadderHeight ladderHeight = new LadderHeight(5);
 
         // When
-        Players players = Players.of(userNames, ladderHeight);
+        Players players = Players.of(playerNames, ladderHeight);
 
         // Then
         assertThat(players).isNotNull();

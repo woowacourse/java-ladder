@@ -4,10 +4,10 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public record UserName(String value) {
+public record PlayerName(String value) {
     private static final Pattern NAME_PATTERN = Pattern.compile("[^ㄱ-ㅎ가-힣a-zA-Z0-9_\\-&]");
 
-    public UserName {
+    public PlayerName {
         validateNotEmpty(value);
         validateNameLength(value);
         validateNamePattern(value);
@@ -35,7 +35,7 @@ public record UserName(String value) {
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
-        if (!(o instanceof UserName userName)) return false;
-        return Objects.equals(value, userName.value);
+        if (!(o instanceof PlayerName playerName)) return false;
+        return Objects.equals(value, playerName.value);
     }
 }

@@ -8,12 +8,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class UserNameTest {
+public class PlayerNameTest {
     @DisplayName("이름의 길이가 5를 초과하면 예외를 던진다")
     @Test
     void createNameByOverLength() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new UserName("abcdef"))
+                .isThrownBy(() -> new PlayerName("abcdef"))
                 .withMessage("이름의 길이는 5 이하여야 합니다.");
     }
 
@@ -22,7 +22,7 @@ public class UserNameTest {
     @ParameterizedTest()
     void createNameByInvalidCharacter(final String name) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new UserName(name))
+                .isThrownBy(() -> new PlayerName(name))
                 .withMessage("이름에는 한글, 영문, 숫자, `-`, `_`, `&`만 포함될 수 있습니다.");
     }
 
@@ -32,7 +32,7 @@ public class UserNameTest {
     @ParameterizedTest
     void createNameByEmpty(final String name) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new UserName(name))
+                .isThrownBy(() -> new PlayerName(name))
                 .withMessage("이름에 공백을 입력할 수 없습니다");
     }
 }
