@@ -41,33 +41,27 @@ public class Ladder {
     public int playByPosition(int horizontalPosition) {
         final int ladderHeight = getHeight();
         final Position position = new Position(0, horizontalPosition);
-//        while (position.getVerticalLocation() < ladderHeight) {
-//            position += horizontalMovement(position, currentHeight);
-//            position.move();
-//            position.next();
-//        }
-//        return position.getHorizontalLocation();
-        return 0;
-    }
-
-    private int horizontalMovement(final int position, final int currentHeight) {
-        final int beforePosition = position - 1;
-        if (inRange(position) && hasBridge(position, currentHeight)) {
-            return 1;
+        while (position.getVerticalLocation() < ladderHeight) {
+            horizontalMovement(position);
+            position.moveDown();
         }
-        if (inRange(beforePosition) && hasBridge(beforePosition, currentHeight)) {
-            return -1;
-        }
-        return 0;
+        return position.getHorizontalLocation();
     }
 
-    private boolean hasBridge(final int position, final int currentHeight) {
-        final Line currentLine = ladder.get(currentHeight);
-        return currentLine.checkConnectivity(position);
+    private void horizontalMovement(final Position position) {
+        final int beforeHorizontalLocation = position.getHorizontalLocation() - 1;
+        position.moveLeft(inRange(beforeHorizontalLocation) && hasBridge(beforeHorizontalLocation,
+                position.getVerticalLocation()));
+        position.moveRight(hasBridge(position.getHorizontalLocation(), position.getVerticalLocation()));
     }
 
-    private boolean inRange(final int position) {
-        return position >= 0 && position < getWidth();
+    private boolean hasBridge(final int horizontalLocation, final int verticalLocation) {
+        final Line currentLine = ladder.get(verticalLocation);
+        return currentLine.checkConnectivity(horizontalLocation);
+    }
+
+    private boolean inRange(final int horizontalPosition) {
+        return horizontalPosition >= 0 && horizontalPosition < getWidth();
     }
 
     public List<Line> getLadder() {

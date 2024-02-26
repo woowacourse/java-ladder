@@ -9,18 +9,28 @@ public class Position {
         this.horizontalLocation = horizontalLocation;
         this.verticalLocation = verticalLocation;
     }
+
     public int moveDown() {
         verticalLocation = verticalLocation + 1;
         return verticalLocation;
     }
 
-    public int moveLeft() {
+    public void moveLeft(final boolean condition) {
+        if (!condition) {
+            return;
+        }
         horizontalLocation = horizontalLocation - 1;
-        return horizontalLocation;
     }
 
-    public int moveRight() {
+    public void moveRight(final boolean condition) {
         horizontalLocation = horizontalLocation + 1;
+    }
+
+    public int getVerticalLocation() {
+        return verticalLocation;
+    }
+
+    public int getHorizontalLocation() {
         return horizontalLocation;
     }
 }
