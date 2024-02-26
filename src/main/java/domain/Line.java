@@ -32,7 +32,7 @@ public class Line {
     }
 
     private LadderItem decideConnectable(int position, LadderItem isConnectable) {
-        if (points.get(position - 1).equals(LadderItem.UNCONNECTED)) {
+        if (isEqualWithPosition(position - 1, LadderItem.UNCONNECTED)) {
             return isConnectable;
         }
 
@@ -40,15 +40,19 @@ public class Line {
     }
 
     public int decideNextPosition(int position) {
-        if ((position == columnLength || position - 1 >= 0) && points.get(position -1).equals(LadderItem.CONNECTED)) {
+            if ((position == columnLength || position - 1 >= 0) && isEqualWithPosition(position-1, LadderItem.CONNECTED)) {
             return position - 1;
         }
 
-        if ((position == 0 || position < columnLength - 1) && points.get(position).equals(LadderItem.CONNECTED)) {
+        if ((position == 0 || position < columnLength - 1) &&isEqualWithPosition(position, LadderItem.UNCONNECTED)) {
             return position + 1;
         }
 
         return position;
+    }
+
+    private boolean isEqualWithPosition(int position, LadderItem ladderItem) {
+        return points.get(position).equals(ladderItem);
     }
 
     public List<LadderItem> getPoints() {
