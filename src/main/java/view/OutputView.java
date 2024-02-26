@@ -7,12 +7,20 @@ import model.Prize;
 public class OutputView {
     private static final String FINAL_RESULT_FORMAT = "%s%n%n";
     private static final String FINAL_RESULT_MESSAGE = "사다리 결과";
+    private static final String PRIZE_RESULT_MESSAGE = "실행 결과";
 
-    public void printResult(List<String> names, List<String> lines, List<Prize> prizes) { //TODO: prize 대신 string 고려
+    public void printLadderResult(List<String> names, List<String> lines,
+                                  List<Prize> prizes) { //TODO: prize 대신 string 고려
         System.out.printf(FINAL_RESULT_FORMAT, FINAL_RESULT_MESSAGE);
         printPlayers(names);
         printLadder(names.get(0).length(), lines);
         printPrizes(prizes);
+    }
+
+    public void printPlayerResult(String prize) {
+        System.out.println(PRIZE_RESULT_MESSAGE);
+        System.out.println(prize);
+        System.out.println();
     }
 
     private void printPlayers(List<String> names) {
@@ -29,6 +37,8 @@ public class OutputView {
         for (Prize prize : prizes) {
             System.out.printf(String.format("%-6s", prize.toString()));
         }
+        System.out.println();
+        System.out.println();
     }
 
     private String formatNames(List<String> names) {

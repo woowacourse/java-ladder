@@ -2,6 +2,7 @@ package controller;
 
 import model.Height;
 import model.Ladder;
+import model.Player;
 import model.Players;
 import model.Result;
 import view.InputView;
@@ -24,8 +25,9 @@ public class LadderController {
 
         Ladder ladder = Ladder.of(height, players.size());
 
-        inputView.readPlayerWantCheckResult();
 
-        outputView.printResult(players.getNames(), ladder.getFormattedLines(), result.getPrizes());
+        outputView.printLadderResult(players.getNames(), ladder.getFormattedLines(), result.getPrizes());
+        Player player = new Player(inputView.readPlayerWantCheckResult());
+        outputView.printPlayerResult(ladder.findResult(players, player, result.getPrizes()).toString());
     }
 }
