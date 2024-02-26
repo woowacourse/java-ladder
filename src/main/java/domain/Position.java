@@ -16,14 +16,15 @@ public class Position {
     }
 
     public void moveLeft(final boolean condition) {
-        if (!condition) {
-            return;
+        if (condition) {
+            horizontalLocation = horizontalLocation - 1;
         }
-        horizontalLocation = horizontalLocation - 1;
     }
 
     public void moveRight(final boolean condition) {
-        horizontalLocation = horizontalLocation + 1;
+        if (condition) {
+            horizontalLocation = horizontalLocation + 1;
+        }
     }
 
     public int getVerticalLocation() {
