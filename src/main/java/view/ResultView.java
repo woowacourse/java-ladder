@@ -4,6 +4,7 @@ import domain.Ladder;
 import domain.LadderResult;
 import domain.LadderResults;
 import domain.Names;
+import domain.Prizes;
 
 public class ResultView {
 
@@ -15,10 +16,8 @@ public class ResultView {
         this.messageResolver = messageResolver;
     }
 
-    public void printLadder(Ladder ladder, Names names) {
-        System.out.println(LINE_SEPARATOR + "실행결과" + LINE_SEPARATOR);
-        System.out.println(messageResolver.resolveNamesMessage(names));
-        System.out.println(messageResolver.resolveLadderMessage(ladder));
+    public void printLadder(Ladder ladder, Names names, Prizes prizes) {
+        System.out.println(messageResolver.resolveLadderMessage(ladder, names, prizes));
     }
 
     public void printResult(LadderResult result) {

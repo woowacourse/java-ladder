@@ -7,6 +7,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import domain.Ladder;
 import domain.Name;
 import domain.Names;
+import domain.Prize;
+import domain.Prizes;
 import domain.RowLine;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,27 +25,24 @@ class MessageResolverTest {
         messageResolver = new MessageResolver();
     }
 
-    @DisplayName("이름을 형식에 맞게 출력할 수 있다")
-    @Test
-    void testResolveNamesMessage() {
-        Names names = new Names(List.of(new Name("잉크"), new Name("리비")));
-
-        String result = messageResolver.resolveNamesMessage(names);
-
-        assertThat(result).isEqualTo("잉크    리비   ");
-    }
-
     @Test
     void testResolveLadderMessage() {
-        RowLine line1 = new RowLine(List.of(CONNECTED, DISCONNECTED, DISCONNECTED));
-        RowLine line2 = new RowLine(List.of(CONNECTED, DISCONNECTED, CONNECTED));
+        RowLine line1 = new RowLine(List.of(CONNECTED, DISCONNECTED));
+        RowLine line2 = new RowLine(List.of(DISCONNECTED, DISCONNECTED));
         List<RowLine> rowLines = List.of(line1, line2);
-        Ladder ladder = new Ladder(rowLines);
 
-        String result = messageResolver.resolveLadderMessage(ladder);
+        Ladder ladder = new Ladder(rowLines);
+        Names names = new Names(List.of(new Name("리비"), new Name("테니"), new Name("잉크")));
+        Prizes prizes = new Prizes(List.of(new Prize("1"), new Prize("2"), new Prize("3")));
+
+        String result = messageResolver.resolveLadderMessage(ladder, names, prizes);
 
         assertThat(result).isEqualTo(
-                "    |-----|     |     |" + System.lineSeparator()
-                        + "    |-----|     |-----|");
+                System.lineSeparator()
+                        + "사다리결과" + System.lineSeparator() + System.lineSeparator()
+                        + "리비    테니    잉크   " + System.lineSeparator()
+                        + "    |-----|     |" + System.lineSeparator()
+                        + "    |     |     |" + System.lineSeparator()
+                        + "1     2     3    ");
     }
 }
