@@ -1,9 +1,12 @@
 package ladderGame.controller;
 
-import ladderGame.model.Ladder;
-import ladderGame.model.Players;
+import ladderGame.model.*;
 import ladderGame.view.InputView;
 import ladderGame.view.ResultView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class LadderGameController {
     private final InputView inputView;
@@ -16,7 +19,13 @@ public class LadderGameController {
 
     public void run() {
         Players players = new Players(inputView.inputPlayerNames());
-        Ladder ladder = new Ladder(inputView.inputMaxLadderHeight(), players.getPlayerSize());
+
+        LineGenerator lineGenerator = new LineGenerator(new RandomBooleanGenerator());
+        List<Line> lines = Stream.generate(() -> new Line(lineGenerator.makeLine(players.getPlayerSize())))
+                .limit(inputView.inputMaxLadderHeight())
+                .toList();
+
+        Ladder ladder = new Ladder(new ArrayList<>(lines));
 
         resultView.printLadder(players.getPlayers(), ladder.getLines());
     }
