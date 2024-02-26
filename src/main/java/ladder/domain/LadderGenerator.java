@@ -25,12 +25,16 @@ public class LadderGenerator {
         return order;
     }
 
-    private static boolean existLeft(List<Boolean> line, int index) {
-        return index - 1 >= 0 && line.get(index - 1);
+    private static boolean existPrevious(List<Boolean> line, int index) {
+        boolean isNotFirstIndex = index != 0;
+        Boolean existPrevious = line.get(index - 1);
+        return isNotFirstIndex && existPrevious;
     }
 
-    private static boolean existRight(List<Boolean> line, int index) {
-        return index + 1 < line.size() && line.get(index + 1);
+    private static boolean existNext(List<Boolean> line, int index) {
+        boolean isNotLastIndex = index + 1 != line.size();
+        Boolean existNext = line.get(index + 1);
+        return isNotLastIndex && existNext;
     }
 
     private static Line generateRandomLine(int count) {
@@ -40,7 +44,7 @@ public class LadderGenerator {
     }
 
     private static void generateRandomScaffold(List<Boolean> line, int index) {
-        if (existLeft(line, index) || existRight(line, index)) {
+        if (existPrevious(line, index) || existNext(line, index)) {
             return;
         }
         line.set(index, RANDOM.nextBoolean());
