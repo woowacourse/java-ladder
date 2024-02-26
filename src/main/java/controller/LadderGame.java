@@ -4,6 +4,7 @@ import domain.*;
 import view.InputView;
 import view.OutputView;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -25,15 +26,16 @@ public class LadderGame {
 
         outputView.printResult(players, ladder, targets);
 
-        String result = inputView.inputResult();
-        if (result.equals("all")) {
-            for (Player player : players.getPlayers()) {
-                System.out.println(player.getName() + ":" + targets.getPrize(ladder.climbLadder(players.getOrder(player))).getTarget());
-            }
-        } else {
-            Player player = new Player(result);
-            System.out.println(player.getName() + ":" + targets.getPrize(ladder.climbLadder(players.getOrder(player))).getTarget());
+        findLadderResult(players, ladder, targets);
+    }
+
+    private void findLadderResult(Players players, Ladder ladder, Targets targets) {
+        HashMap<Player, Target> results = new HashMap<>();
+        for (Player player : players.getPlayers()) {
+            results.put(player, targets.getPrize(ladder.climbLadder(players.getOrder(player))));
         }
+        String result = inputView.inputResult();
+        outputView.printPrize(new Player(result), results.get(new Player(result)));
     }
 
     private Players readPlayers() {

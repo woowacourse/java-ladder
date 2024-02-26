@@ -1,9 +1,6 @@
 package view;
 
-import domain.Ladder;
-import domain.Line;
-import domain.Players;
-import domain.Targets;
+import domain.*;
 
 public class OutputView {
     private final OutputFormatter outputFormatter;
@@ -36,5 +33,10 @@ public class OutputView {
     private void printTargets(Targets targets) {
         String targetUnit = outputFormatter.toTargetUnit(targets);
         System.out.println(targetUnit);
+    }
+
+    public void printPrize(Player player, Target target) {
+        String result = outputFormatter.toResult(player, target);
+        System.out.println(result);
     }
 }

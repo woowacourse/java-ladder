@@ -53,4 +53,8 @@ public class OutputFormatter {
         }
         return name + SPACE;
     }
+
+    public String toResult(Player player, Target target) {
+        return player.getName() + " : " + target.getTarget();
+    }
 }
