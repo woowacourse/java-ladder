@@ -26,6 +26,7 @@ public class Ladder {
 
     private void validateLadderShape(final List<Line> ladder) {
         final int firstLineWidth = ladder.get(0).getWidth();
+
         if (ladder.stream().anyMatch(line -> line.getWidth() != firstLineWidth)) {
             throw new IllegalArgumentException("사다리의 가로 길이는 일정해야 합니다.");
         }
@@ -33,26 +34,32 @@ public class Ladder {
 
     private void validateMaxHeight(final List<Line> ladder) {
         final int height = ladder.size();
+
         if (height > MAX_HEIGHT) {
             throw new IllegalArgumentException(String.format("입력된 값: %d, 사다리 높이는 최대 %d입니다.", height, MAX_HEIGHT));
         }
     }
 
-    public int playByPosition(int horizontalPosition) {
-        final int ladderHeight = getHeight();
-        final Position position = new Position(0, horizontalPosition);
-        while (position.getVerticalLocation() < ladderHeight) {
-            horizontalMovement(position);
+    public int playByPosition(final int horizontalPosition) {
+        final Position position = new Position(horizontalPosition, 0);
+
+        while (position.getVerticalLocation() < getHeight()) {
+            moveHorizontally(position);
             position.moveDown();
         }
+
         return position.getHorizontalLocation();
     }
 
-    private void horizontalMovement(final Position position) {
+    private void moveHorizontally(final Position position) {
         final int beforeHorizontalLocation = position.getHorizontalLocation() - 1;
-        position.moveLeft(inRange(beforeHorizontalLocation) && hasBridge(beforeHorizontalLocation,
-                position.getVerticalLocation()));
-        position.moveRight(hasBridge(position.getHorizontalLocation(), position.getVerticalLocation()));
+        final boolean beforeConnectivity = inRange(beforeHorizontalLocation) &&
+                hasBridge(beforeHorizontalLocation, position.getVerticalLocation());
+        final boolean currentConnectivity = inRange(position.getHorizontalLocation()) &&
+                hasBridge(position.getHorizontalLocation(), position.getVerticalLocation());
+
+        position.moveLeft(beforeConnectivity);
+        position.moveRight(currentConnectivity);
     }
 
     private boolean hasBridge(final int horizontalLocation, final int verticalLocation) {

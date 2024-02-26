@@ -3,7 +3,7 @@ package domain;
 import java.util.regex.Pattern;
 
 public class UserName {
-    private static final Pattern SPECIAL_CHARACTER = Pattern.compile("[ !@#$%^&*().?\":{}|<>]");
+    private static final Pattern ALPHABET = Pattern.compile("^[a-zA-Z]*$");
     private static final int MAX_LENGTH = 5;
 
     private final String userName;
@@ -16,7 +16,7 @@ public class UserName {
     private void validate(final String userName) {
         validateLength(userName);
         validateEmpty(userName);
-        validateSpecialCharacter(userName);
+        validateCharacter(userName);
     }
 
     private void validateEmpty(final String userName) {
@@ -32,10 +32,9 @@ public class UserName {
         }
     }
 
-    private void validateSpecialCharacter(final String userName) {
-        if (SPECIAL_CHARACTER.matcher(userName).find()) {
-            throw new IllegalArgumentException(String.format("입력 된 값: %s, 특수기호는 들어갈 수 없습니다.", userName));
-
+    private void validateCharacter(final String userName) {
+        if (!ALPHABET.matcher(userName).find()) {
+            throw new IllegalArgumentException(String.format("입력 된 값: %s, 영문만 입력해주세요.", userName));
         }
     }
 
