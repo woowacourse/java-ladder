@@ -21,9 +21,9 @@ class LadderGameTest {
 
         Names names = new Names(List.of(new Name("리비"), new Name("잉크")));
         Ladder ladder = new Ladder(List.of(line1, line2));
-        LadderResults ladderResults = new LadderResults(List.of(new LadderResult("123"), new LadderResult("456")));
+        Prizes prizes = new Prizes(List.of(new Prize("123"), new Prize("456")));
 
-        LadderGame ladderGame = new LadderGame(ladder, names, ladderResults);
+        LadderGame ladderGame = new LadderGame(ladder, names, prizes);
         assertThat(ladderGame.drive("잉크").getResult()).isEqualTo("456");
     }
 
@@ -35,10 +35,10 @@ class LadderGameTest {
 
         Names names = new Names(List.of(new Name("리비"), new Name("잉크")));
         Ladder ladder = new Ladder(List.of(line1, line2));
-        LadderResults ladderResults = new LadderResults(
-                List.of(new LadderResult("123"), new LadderResult("456"), new LadderResult("789")));
+        Prizes prizes = new Prizes(
+                List.of(new Prize("123"), new Prize("456"), new Prize("789")));
 
-        assertThatThrownBy(() -> new LadderGame(ladder, names, ladderResults))
+        assertThatThrownBy(() -> new LadderGame(ladder, names, prizes))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 사다리 열과 결과의 개수가 일치하지 않습니다");
     }
@@ -50,10 +50,10 @@ class LadderGameTest {
 
         Names names = new Names(List.of(new Name("리비"), new Name("잉크")));
         Ladder ladder = new Ladder(List.of(line1, line2));
-        LadderResults ladderResults = new LadderResults(
-                List.of(new LadderResult("123"), new LadderResult("456")));
+        Prizes prizes = new Prizes(
+                List.of(new Prize("123"), new Prize("456")));
 
-        assertThatCode(() -> new LadderGame(ladder, names, ladderResults))
+        assertThatCode(() -> new LadderGame(ladder, names, prizes))
                 .doesNotThrowAnyException();
 
     }

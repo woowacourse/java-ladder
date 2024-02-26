@@ -1,10 +1,10 @@
 package controller;
 
 import domain.Height;
-import domain.LadderResult;
-import domain.LadderResults;
 import domain.Name;
 import domain.Names;
+import domain.Prize;
+import domain.Prizes;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,9 +24,9 @@ public class InputMapper {
         return new Height(Integer.parseInt(target));
     }
 
-    public LadderResults mapToLadderResults(String target) {
-        return new LadderResults(Arrays.stream(target.split(RESULT_DELIMITER))
-                .map(LadderResult::new)
+    public Prizes mapToPrizes(String target) {
+        return new Prizes(Arrays.stream(target.split(RESULT_DELIMITER))
+                .map(Prize::new)
                 .toList());
     }
 

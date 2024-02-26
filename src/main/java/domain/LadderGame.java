@@ -3,21 +3,22 @@ package domain;
 public class LadderGame {
     private final Ladder ladder;
     private final Names names;
-    private final LadderResults ladderResults;
+    private final Prizes prizes;
 
-    public LadderGame(Ladder ladder, Names names, LadderResults ladderResults) {
-        validateCountEqual(ladder, names, ladderResults);
+    public LadderGame(Ladder ladder, Names names, Prizes prizes) {
+        validateCountEqual(ladder, names, prizes);
         this.ladder = ladder;
         this.names = names;
-        this.ladderResults = ladderResults;
+        this.prizes = prizes;
     }
 
     public LadderResult drive(String name) {
-        return ladderResults.get(ladder.drive(names.indexOf(name)));
+        String prize = prizes.getPrize(ladder.drive(names.indexOf(name)));
+        return new LadderResult(prize, name);
     }
 
-    private void validateCountEqual(Ladder ladder, Names names, LadderResults ladderResults) {
-        if (ladder.getColumnCount() != ladderResults.getResultCount()) {
+    private void validateCountEqual(Ladder ladder, Names names, Prizes prizes) {
+        if (ladder.getColumnCount() != prizes.getPrizeCount()) {
             throw new IllegalArgumentException("[ERROR] 사다리 열과 결과의 개수가 일치하지 않습니다");
         }
     }

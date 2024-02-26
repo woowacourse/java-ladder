@@ -9,11 +9,7 @@ public class LadderResults {
         this.results = results;
     }
 
-    public int getResultCount() {
-        return results.size();
-    }
-
-    public LadderResult get(int index) {
-        return results.get(index);
+    public List<LadderResult> getResults() {
+        return results;
     }
 }

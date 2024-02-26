@@ -10,6 +10,14 @@ public class Prizes {
         this.prizes = prizes;
     }
 
+    public int getPrizeCount() {
+        return prizes.size();
+    }
+
+    public String getPrize(int index) {
+        return prizes.get(index).getPrize();
+    }
+
     public List<Prize> getPrizes() {
         return prizes;
     }

@@ -3,7 +3,9 @@ package controller;
 import domain.Height;
 import domain.Ladder;
 import domain.LadderCreator;
+import domain.LadderGame;
 import domain.Names;
+import domain.Prizes;
 import domain.RowLineGenerator;
 import view.InputView;
 import view.ResultView;
@@ -28,5 +30,8 @@ public class LadderGameController {
         Height height = inputMapper.mapToHeight(inputView.readHeight());
         Ladder ladder = new LadderCreator().createLadder(rowLineGenerator, names.getNameCount(), height);
         resultView.printLadder(ladder, names);
+
+        Prizes results = inputMapper.mapToPrizes(inputView.readResults());
+        LadderGame ladderGame = new LadderGame(ladder, names, results);
     }
 }
