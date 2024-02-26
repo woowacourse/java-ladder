@@ -2,9 +2,9 @@ package game;
 
 import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
+import domain.player.Players;
 import domain.result.Results;
 import dto.RowPatternDto;
-import domain.player.Players;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 import view.InputView;
