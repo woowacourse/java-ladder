@@ -20,7 +20,7 @@ class LineTest {
 
     @Test
     @DisplayName("오른쪽 경로 오른쪽에 왼쪽 경로가 없다면 예외가 발생한다.")
-    void throwsExceptionWhenNotRL() {
+    void throwsExceptionWhenLeftNotExistBeforeRight() {
         List<LadderPath> notRLPath = List.of(STAY, STAY, RIGHT, STAY, STAY);
 
         assertThatThrownBy(() -> new Line(notRLPath))
@@ -28,8 +28,8 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("왼쪽 경로 왼쪽에 오른쪽 경로가 없다면 예외가 발생한다.")
-    void throwsExceptionWhenNotLR() {
+    @DisplayName("왼쪽 경로 오른쪽에 오른쪽 경로가 없다면 예외가 발생한다.")
+    void throwsExceptionWhenRightNotExistAfterLeft() {
         List<LadderPath> notLRPath = List.of(STAY, STAY, LEFT, STAY, STAY);
 
         assertThatThrownBy(() -> new Line(notLRPath))

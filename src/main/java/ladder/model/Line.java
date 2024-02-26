@@ -17,7 +17,7 @@ public class Line {
         if (isLeftOnFirst(row) || isRightOnEnd(row)) {
             throw new IllegalArgumentException("유효한 가로줄이 아닙니다.");
         }
-        if (!isRLPatternAllMatched(row) || !isLRPatternAllMatched(row)) {
+        if (!isRightAlwaysExistAfterLeft(row) || !isLeftAlwaysExistBeforeRight(row)) {
             throw new IllegalArgumentException("유효한 가로줄이 아닙니다.");
         }
     }
@@ -30,14 +30,14 @@ public class Line {
         return row.get(row.size() - 1) == RIGHT;
     }
 
-    private boolean isRLPatternAllMatched(List<LadderPath> row) {
+    private boolean isRightAlwaysExistAfterLeft(List<LadderPath> row) {
         return IntStream.range(0, row.size())
                 .filter(i -> row.get(i).equals(RIGHT))
                 .map(idx -> idx + 1)
                 .allMatch(idx -> row.get(idx).equals(LEFT));
     }
 
-    private boolean isLRPatternAllMatched(List<LadderPath> row) {
+    private boolean isLeftAlwaysExistBeforeRight(List<LadderPath> row) {
         return IntStream.range(0, row.size())
                 .filter(i -> row.get(i).equals(LEFT))
                 .map(idx -> idx - 1)
