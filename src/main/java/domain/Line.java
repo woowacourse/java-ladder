@@ -3,6 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Line {
     private final List<Point> points = new ArrayList<>();
@@ -45,9 +46,16 @@ public class Line {
     }
 
     public List<Integer> getMovablePointIndexes() {
-        return points.stream()
+        List<Point> movablePoints = points.stream()
                 .filter(Point::isMovable)
-                .map(points::indexOf)
+                .toList();
+        return getMovableIndexes(movablePoints);
+    }
+
+    private List<Integer> getMovableIndexes(final List<Point> movablePoints) {
+        return IntStream.range(0, points.size())
+                .filter(index -> movablePoints.contains(points.get(index)))
+                .boxed()
                 .toList();
     }
 }

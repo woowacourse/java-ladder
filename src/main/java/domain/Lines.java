@@ -24,11 +24,9 @@ public class Lines {
     }
 
     public List<Integer> getAllMovablePointIndexes() {
-        List<Integer> movablePointIndexes = new ArrayList<>();
-        lines.stream()
+        return lines.stream()
                 .map(Line::getMovablePointIndexes)
-                .forEach(movablePointIndexes::addAll);
-
-        return movablePointIndexes;
+                .flatMap(List::stream)
+                .toList();
     }
 }
