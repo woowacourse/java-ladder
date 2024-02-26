@@ -2,6 +2,7 @@ import domain.Game;
 import domain.Height;
 import domain.Lines;
 import domain.Members;
+import domain.Results;
 import error.ErrorHandler;
 import strategy.PointStrategy;
 import strategy.RandomPointStrategy;
@@ -18,7 +19,9 @@ public class Main {
     public static void main(String[] args) {
         Members members = errorHandler.readUntilNoError(Main::makeMembers);
         Height height = errorHandler.readUntilNoError(Main::makeHeight);
-        Game game = Game.of(members, Lines.of(members.getCount(), height, pointStrategy));
+        Results results = errorHandler.readUntilNoError(() -> makeResults(members.getCount()));
+        Game game = Game.of(members, Lines.of(members.getCount(), height, pointStrategy), results);
+
         outputView.printResult(game);
     }
 
@@ -28,5 +31,10 @@ public class Main {
 
     private static Height makeHeight() {
         return Height.from(inputView.read("최대 사다리 높이는 몇 개인가요?"));
+    }
+
+    private static Results makeResults(int membersCount) {
+        return Results.from(
+            membersCount, inputView.read("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"));
     }
 }
