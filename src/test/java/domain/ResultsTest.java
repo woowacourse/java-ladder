@@ -20,7 +20,7 @@ public class ResultsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("실행 결과의 개수가 사람 이름의 개수와 일치하지 않습니다.");
     }
-    
+
     @Test
     @DisplayName("전체 실행 결과를 반환한다.")
     void getAllResults() {
@@ -33,7 +33,6 @@ public class ResultsTest {
     @Test
     @DisplayName("특정 위치의 실행 결과를 반환한다.")
     void getResultByIndex() {
-        Names names = new Names(Arrays.asList("pobi", "crong", "honux", "jk"));
         Results results = new Results(Arrays.asList("꽝", "5000", "꽝", "3000"), 4);
         String result = results.resultOf(1);
 
