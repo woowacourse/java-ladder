@@ -1,6 +1,7 @@
 package domain;
 
 import exception.domain.HeightExceptionMessage;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,6 +23,13 @@ public class HeightTest {
         assertThatThrownBy(() -> new Height(101))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(HeightExceptionMessage.OUT_OF_RANGE_HEIGHT.getExceptionMessage());
+    }
+
+    @Test
+    @DisplayName("주어진 값이 높이의 끝인지 확인한다.")
+    void isEndTest() {
+        Height height = new Height(5);
+        Assertions.assertThat(height.isEnd(4)).isTrue();
     }
 
 }
