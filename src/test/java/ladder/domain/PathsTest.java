@@ -15,7 +15,7 @@ public class PathsTest {
     void Paths_인스턴스_생성() {
         // Given
         final Supplier<Boolean> randomGenerator = new RandomBooleanGenerator();
-        final int ladderSpaceCount = 3;
+        final int ladderSpaceCount = 7;
 
         // When
         Paths paths = Paths.init(randomGenerator, ladderSpaceCount);
