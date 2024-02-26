@@ -22,7 +22,7 @@ public class Results {
         return results.stream()
                 .filter(result -> result.location() == location)
                 .findFirst()
-                .orElseThrow()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 위치입니다."))
                 .value();
     }
 }

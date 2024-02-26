@@ -56,10 +56,10 @@ public class Players {
     }
 
     public int getLocationByName(String name) {
-        Player targetPlayer = players.stream()
+        return players.stream()
                 .filter(player -> player.name().equals(name))
                 .findFirst()
-                .orElse(new Player("null", -1));
-        return targetPlayer.location();
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."))
+                .location();
     }
 }

@@ -41,7 +41,7 @@ class PlayersTest {
     }
 
     @DisplayName("Players는 이름으로 첫 위치를 반환할 수 있다.")
-    @Test()
+    @Test
     void getLocationByName() {
         Players players = new Players(List.of("명오", "제우스"));
 
@@ -49,5 +49,15 @@ class PlayersTest {
         int expected = 0;
 
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @DisplayName("존재하지 않는 이름의 위치를 반환하려 할 시 에러가 발생한다.")
+    @Test
+    void getLocationByNameNotExistThrowsException() {
+        Players players = new Players(List.of("명오", "제우스"));
+
+        assertThatThrownBy(() -> players.getLocationByName("배키"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("존재하지 않는 사용자입니다.");
     }
 }
