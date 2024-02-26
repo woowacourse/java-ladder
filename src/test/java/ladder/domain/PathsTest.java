@@ -1,13 +1,12 @@
 package ladder.domain;
 
 import ladder.util.RandomBooleanGenerator;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.function.Supplier;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PathsTest {
 
@@ -16,9 +15,10 @@ public class PathsTest {
     void Paths_인스턴스_생성() {
         // Given
         final Supplier<Boolean> randomGenerator = new RandomBooleanGenerator();
+        final int ladderSpaceCount = 3;
 
         // When
-        Paths paths = Paths.init(randomGenerator);
+        Paths paths = Paths.init(randomGenerator, ladderSpaceCount);
 
         // Then
         assertThat(paths).isNotNull();
