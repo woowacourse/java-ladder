@@ -32,6 +32,8 @@ public class Line {
     }
 
     public boolean checkRightConnection(int index) {
-        return false;
+        if(index >= connectionStatuses.size())
+            return false;
+        return connectionStatuses.get(index).equals(ConnectionStatus.CONNECTION);
     }
 }
