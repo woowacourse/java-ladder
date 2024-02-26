@@ -1,9 +1,12 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 import ladder.domain.dto.FloorResponseDto;
 import ladder.domain.dto.LadderResponseDto;
+import ladder.domain.participant.Name;
+import ladder.domain.participant.Participants;
 import ladder.domain.randomGenerator.RungGenerator;
 
 public class Ladder {
@@ -38,5 +41,20 @@ public class Ladder {
                 .toList();
 
         return new LadderResponseDto(floorResponseDtos);
+    }
+
+    public List<Name> getLadderGameResult(Participants participants) {
+        List<Name> participantsNames = participants.getNames();
+        climbDown(participantsNames);
+        return participantsNames;
+    }
+
+    private void climbDown(List<Name> names) {
+        for (Floor floor : floors) {
+            List<Integer> existRungPositions = floor.getExistRungPositions();
+            existRungPositions.forEach(
+                    existRungPosition -> Collections.swap(names, existRungPosition,
+                            existRungPosition + 1));
+        }
     }
 }
