@@ -1,12 +1,14 @@
 package model.ladder;
 
 public enum StepStatus {
-    CONNECTED(true),
-    UNCONNECTED(false);
-    
-    private final boolean isConnected;
+    CONNECTED,
+    DISCONNECTED,
+    EMPTY;
 
-    StepStatus(final boolean isConnected) {
-        this.isConnected = isConnected;
+    public static StepStatus from(final boolean status) {
+        if (status) {
+            return CONNECTED;
+        }
+        return DISCONNECTED;
     }
 }
