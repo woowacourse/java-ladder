@@ -11,6 +11,10 @@ public class LadderResult {
         this.value = value;
     }
 
+    public String getValue() {
+        return value;
+    }
+
     private void validateLadderResultCharacter(String value) {
         value.chars()
                 .filter(ch -> ch == ' ')
@@ -27,7 +31,5 @@ public class LadderResult {
         }
     }
 
-    public String getValue() {
-        return value;
-    }
+
 }
