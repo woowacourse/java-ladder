@@ -10,11 +10,15 @@ import java.util.function.BooleanSupplier;
 
 public class Ladder {
 
+    private final Players players;
+    private final Results results;
     private final List<LadderRow> rows = new ArrayList<>();
     private final LadderIndexConverter ladderIndexConverter;
 
     public Ladder(Players players, Results results, LadderHeight height) {
         createLadder(players, height);
+        this.players = players;
+        this.results = results;
         ladderIndexConverter = new LadderIndexConverter(players.size());
     }
 
@@ -25,8 +29,10 @@ public class Ladder {
         });
     }
 
-    public Result getResultByName(String string) {
-        return null;
+    public Result getResultByName(String name) {
+        int index = players.getIndexByName(name);
+        int resultIndex = ladderIndexConverter.getMappedIndexByPlayerIndex(index);
+        return results.get(resultIndex);
     }
 
     public List<RowPatternDto> getLadderPatterns() {

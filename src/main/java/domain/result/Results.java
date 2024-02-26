@@ -11,4 +11,8 @@ public class Results {
                 .map(Result::new)
                 .toList();
     }
+
+    public Result get(int index) {
+        return results.get(index);
+    }
 }

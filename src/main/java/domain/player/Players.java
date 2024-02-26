@@ -1,6 +1,8 @@
 package domain.player;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.IntStream;
 
 public class Players {
 
@@ -26,6 +28,14 @@ public class Players {
 
     public int size() {
         return names.size();
+    }
+
+    public int getIndexByName(String name) {
+        Name original = new Name(name);
+        return IntStream.range(0, names.size())
+                .filter(index -> names.get(index).equals(original))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("존재하지 않는 이름입니다."));
     }
 
     private void validateSize(List<String> names) {
