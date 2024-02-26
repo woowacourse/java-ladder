@@ -13,23 +13,26 @@ public class Members {
     private final List<Member> members;
 
     private Members(List<Member> members) {
+        validate(members);
         this.members = members;
     }
 
     public static Members from(String rawNames) {
-        validate(rawNames);
         return new Members(initialize(rawNames));
     }
 
-    private static void validate(String rawNames) {
-        validateNull(rawNames);
-        List<String> names = parse(rawNames);
-        validateDuplication(names);
-        validateCount(names);
+    private static void validate(List<Member> members) {
+        if (members.size() < MIN_MEMBER_COUNT || members.size() > MAX_MEMBER_COUNT) {
+            throw new IllegalArgumentException(
+                "참여자는 " + MIN_MEMBER_COUNT + "~" + MAX_MEMBER_COUNT + "명만 허용됩니다.");
+        }
     }
 
     private static List<Member> initialize(String rawNames) {
-        return parse(rawNames).stream()
+        validateNull(rawNames);
+        List<String> parsedNames = parse(rawNames);
+        validateDuplication(parsedNames);
+        return parsedNames.stream()
             .map(Member::from)
             .toList();
     }
@@ -50,13 +53,6 @@ public class Members {
         Set<String> nonDuplicated = new HashSet<>(names);
         if (names.size() != nonDuplicated.size()) {
             throw new IllegalArgumentException("이름은 서로 중복될 수 없습니다.");
-        }
-    }
-
-    private static void validateCount(List<String> names) {
-        if (names.size() < MIN_MEMBER_COUNT || names.size() > MAX_MEMBER_COUNT) {
-            throw new IllegalArgumentException(
-                "참여자는 " + MIN_MEMBER_COUNT + "~" + MAX_MEMBER_COUNT + "명만 허용됩니다.");
         }
     }
 
