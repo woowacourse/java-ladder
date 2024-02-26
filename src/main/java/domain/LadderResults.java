@@ -12,4 +12,8 @@ public class LadderResults {
     public int getResultCount() {
         return results.size();
     }
+
+    public LadderResult get(int index) {
+        return results.get(index);
+    }
 }

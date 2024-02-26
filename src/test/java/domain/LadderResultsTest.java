@@ -16,4 +16,15 @@ class LadderResultsTest {
                 new LadderResult("123"));
         assertThat(new LadderResults(ladderResults).getResultCount()).isEqualTo(3);
     }
+
+    @DisplayName("인덱스로 해당하는 결과를 가져올 수 있다")
+    @Test
+    void testGetResultByIndex() {
+        LadderResult result1 = new LadderResult("123");
+        LadderResult result2 = new LadderResult("456");
+        LadderResult result3 = new LadderResult("789");
+
+        List<LadderResult> ladderResults = List.of(result1, result2, result3);
+        assertThat(new LadderResults(ladderResults).get(0)).isEqualTo(result1);
+    }
 }
