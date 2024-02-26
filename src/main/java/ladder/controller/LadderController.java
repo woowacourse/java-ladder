@@ -55,7 +55,7 @@ public class LadderController {
 
         validatePrizeCount(playerCount, prizeNames.size());
 
-        return Prizes.from(inputView.readPrizeNames());
+        return Prizes.from(prizeNames);
     }
 
     private static void validatePrizeCount(int playerCount, int prizeCount) {

@@ -33,14 +33,14 @@ class LadderTest {
                 Rung.EXIST, Rung.EMPTY, Rung.EMPTY);
 
         Ladder ladder = Ladder.of(height, playerCount, new MockRungGenerator(rungs));
-        List<Line> lines = ladder.getLines();
+        List<Floor> floors = ladder.getFloors();
 
         assertSoftly(softly -> {
-            softly.assertThat(lines.get(0).getRungs())
+            softly.assertThat(floors.get(0).getRungs())
                     .containsExactly(Rung.EXIST, Rung.EMPTY, Rung.EXIST);
-            softly.assertThat(lines.get(1).getRungs())
+            softly.assertThat(floors.get(1).getRungs())
                     .containsExactly(Rung.EMPTY, Rung.EXIST, Rung.EMPTY);
-            softly.assertThat(lines.get(2).getRungs())
+            softly.assertThat(floors.get(2).getRungs())
                     .containsExactly(Rung.EXIST, Rung.EMPTY, Rung.EMPTY);
         });
     }

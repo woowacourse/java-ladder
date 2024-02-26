@@ -9,20 +9,20 @@ public class Ladder {
     private static final int MINIMUM_HEIGHT = 1;
     private static final int MAXIMUM_HEIGHT = 30;
 
-    private final List<Line> lines;
+    private final List<Floor> floors;
 
-    private Ladder(List<Line> lines) {
-        this.lines = lines;
+    private Ladder(List<Floor> floors) {
+        this.floors = floors;
     }
 
     public static Ladder of(int height, int playerCount, RungGenerator rungGenerator) {
         validateHeightRange(height);
 
-        List<Line> lines = Stream.generate(() -> new Line(playerCount, rungGenerator))
+        List<Floor> floors = Stream.generate(() -> new Floor(playerCount, rungGenerator))
                 .limit(height)
                 .toList();
 
-        return new Ladder(lines);
+        return new Ladder(floors);
     }
 
     private static void validateHeightRange(int height) {
@@ -36,8 +36,8 @@ public class Ladder {
         validateIndexRange(index);
 
         int currentIndex = index;
-        for (Line line : lines) {
-            currentIndex = line.findConnectedIndex(currentIndex);
+        for (Floor floor : floors) {
+            currentIndex = floor.findConnectedIndex(currentIndex);
         }
 
         return currentIndex;
@@ -52,10 +52,10 @@ public class Ladder {
     }
 
     public int getColumnSize() {
-        return lines.get(0).getRungs().size();
+        return floors.get(0).getRungs().size();
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    public List<Floor> getFloors() {
+        return Collections.unmodifiableList(floors);
     }
 }

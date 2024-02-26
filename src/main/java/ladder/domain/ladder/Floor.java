@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.List;
 import ladder.domain.ladder.generator.RungGenerator;
 
-public class Line {
+public class Floor {
     private final RungGenerator rungGenerator;
     private final List<Rung> rungs;
 
-    public Line(int playerCount, RungGenerator rungGenerator) {
+    public Floor(int playerCount, RungGenerator rungGenerator) {
         this.rungGenerator = rungGenerator;
         this.rungs = generateRungs(playerCount);
     }

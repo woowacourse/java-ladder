@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import ladder.dto.response.LadderAllResultsResponse;
 import ladder.dto.response.ladder.LadderResponse;
-import ladder.dto.response.ladder.LineResponse;
+import ladder.dto.response.ladder.FloorResponse;
 import ladder.dto.response.player.PlayerResponse;
 import ladder.dto.response.player.PlayersResponse;
 import ladder.dto.response.prize.PrizeResponse;
@@ -54,23 +54,23 @@ public class OutputView {
     }
 
     private void printLadder(LadderResponse ladderResponse) {
-        String ladderMessage = generateLadderMessage(ladderResponse.lineResponses());
+        String ladderMessage = generateLadderMessage(ladderResponse.floorResponses());
 
         System.out.println(ladderMessage);
     }
 
-    private String generateLadderMessage(List<LineResponse> lineResponses) {
-        return lineResponses.stream()
-                .map(lineDto -> generateLadderLine(lineDto.rungsExist()))
+    private String generateLadderMessage(List<FloorResponse> floorResponses) {
+        return floorResponses.stream()
+                .map(floorResponse -> generateLadderFloor(floorResponse.rungsExist()))
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    private String generateLadderLine(List<Boolean> rungsExist) {
-        String ladderLineMessage = rungsExist.stream()
+    private String generateLadderFloor(List<Boolean> rungsExist) {
+        String ladderFloorMessage = rungsExist.stream()
                 .map(this::generateRungMessage)
                 .collect(Collectors.joining(LADDER_SIDE_RAIL, LADDER_SIDE_RAIL, LADDER_SIDE_RAIL));
 
-        return LADDER_LEFT_MARGIN.concat(ladderLineMessage);
+        return LADDER_LEFT_MARGIN.concat(ladderFloorMessage);
     }
 
     private String generateRungMessage(boolean rungExist) {
