@@ -6,7 +6,7 @@ import static java.util.stream.Collectors.toList;
 import domain.booleanGenerator.BooleanGenerator;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
-import domain.player.PlayerName;
+import domain.player.Name;
 import domain.player.PlayerNames;
 import java.util.List;
 import view.InputView;
@@ -35,7 +35,7 @@ public class LadderController {
     private PlayerNames generatePlayers() {
         final List<String> names = InputView.inputPlayerNames();
         return names.stream()
-                .map(PlayerName::new)
+                .map(Name::new)
                 .collect(collectingAndThen(toList(), PlayerNames::new));
     }
 

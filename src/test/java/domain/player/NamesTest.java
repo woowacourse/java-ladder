@@ -6,14 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-public class PlayerNamesTest {
+public class NamesTest {
     @Test
     void 중복된_이름이_존재하면_예외가_발생한다() {
         // given
-        final PlayerName duplicateName1 = new PlayerName("prin");
-        final PlayerName duplicateName2 = new PlayerName("prin");
-        final PlayerName uniqueName = new PlayerName("ddang");
-        final List<PlayerName> names = List.of(duplicateName1, duplicateName2, uniqueName);
+        final Name duplicateName1 = new Name("prin");
+        final Name duplicateName2 = new Name("prin");
+        final Name uniqueName = new Name("ddang");
+        final List<Name> names = List.of(duplicateName1, duplicateName2, uniqueName);
 
         // when & then
         assertThatThrownBy(() -> new PlayerNames(names))
@@ -23,10 +23,10 @@ public class PlayerNamesTest {
     @Test
     void 중복된_이름이_없으면_예외가_발생하지_않는다() {
         // given
-        final PlayerName uniqueName1 = new PlayerName("prin");
-        final PlayerName uniqueName2 = new PlayerName("ddang");
-        final PlayerName uniqueName3 = new PlayerName("pobi");
-        final List<PlayerName> names = List.of(uniqueName1, uniqueName2, uniqueName3);
+        final Name uniqueName1 = new Name("prin");
+        final Name uniqueName2 = new Name("ddang");
+        final Name uniqueName3 = new Name("pobi");
+        final List<Name> names = List.of(uniqueName1, uniqueName2, uniqueName3);
 
         // when & then
         assertDoesNotThrow(() -> new PlayerNames(names));

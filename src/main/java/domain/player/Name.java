@@ -1,6 +1,6 @@
 package domain.player;
 
-public class PlayerName {
+public class Name {
     private static final int MINIMUM_NAME_LENGTH = 1;
     private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final String LENGTH_EXCEPTION_MESSAGE = "[ERROR] 이름의 길이는 " + MINIMUM_NAME_LENGTH +
@@ -8,7 +8,7 @@ public class PlayerName {
 
     private final String name;
 
-    public PlayerName(String name) {
+    public Name(String name) {
         validateLength(name);
         this.name = name;
     }
@@ -32,7 +32,7 @@ public class PlayerName {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof PlayerName name) {
+        if (obj instanceof Name name) {
             return this.name.equals(name.name);
         }
         return false;
