@@ -26,7 +26,7 @@ class RandomLadderStepsGeneratorTest {
         assertThat(ladderSteps.size())
                 .isEqualTo(expectedHeight);
         for (LadderStep ladderStep : ladderSteps) {
-            int ladderStepWidth = ladderStep.ladderPaths().size();
+            int ladderStepWidth = ladderStep.getLadderPaths().size();
             assertThat(ladderStepWidth).isEqualTo(expectedWidth);
         }
     }
