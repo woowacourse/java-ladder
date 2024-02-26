@@ -6,6 +6,7 @@ import utils.StepGenerator;
 
 public class Line {
 
+    public static final int ONE_STEP = 1;
     private final List<StepPoint> stepPoints = new ArrayList<>();
 
     public Line(int numberOfCell, StepGenerator stepGenerator) {
@@ -13,6 +14,13 @@ public class Line {
         for (int cellIndex = 1; cellIndex < numberOfCell; cellIndex++) {
             stepPoints.add(makeOnePoint(cellIndex, stepGenerator));
         }
+    }
+
+    public boolean isExistLeftStep(int nowStep) {
+        if (nowStep == 0) {
+            return false;
+        }
+        return isExistStep(nowStep - ONE_STEP);
     }
 
     private StepPoint makeOnePoint(int cellIndex, StepGenerator stepGenerator) {
