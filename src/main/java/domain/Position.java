@@ -13,4 +13,9 @@ public class Position {
         verticalLocation = verticalLocation + 1;
         return verticalLocation;
     }
+
+    public int moveLeft() {
+        horizontalLocation = horizontalLocation - 1;
+        return horizontalLocation;
+    }
 }

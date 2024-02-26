@@ -8,12 +8,22 @@ import org.junit.jupiter.api.Test;
 
 class PositionTest {
     @Test
-    @DisplayName("Position이 사다리의 다음 라인으로 넘어가는지 확인한다.")
-    void next() {
+    @DisplayName("Position의 아래 이동을 확인한다.")
+    void moveDown() {
         final Position position = new Position(0, 0);
 
         final int newPosition = position.moveDown();
 
         assertThat(newPosition).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("Position의 왼쪽 이동을 확인한다.")
+    void next() {
+        final Position position = new Position(0, 0);
+
+        final int newPosition = position.moveLeft();
+
+        assertThat(newPosition).isEqualTo(-1);
     }
 }
