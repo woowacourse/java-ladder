@@ -11,7 +11,7 @@ class PlayerDtoTest {
     @Test
     @DisplayName("dto로 변환한다.")
     void toDto() {
-        Player player = new Player("pobi");
+        Player player = new Player("pobi", 1);
         PlayerDto playerDto = PlayerDto.from(player);
 
         assertThat(playerDto.name()).isEqualTo("pobi");

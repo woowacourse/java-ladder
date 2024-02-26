@@ -36,7 +36,7 @@ public class Name {
                 .matches();
     }
 
-    public String getName() {
+    public String getValue() {
         return name;
     }
 }

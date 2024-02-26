@@ -15,7 +15,7 @@ class NameTest {
     @DisplayName("참여자들은 이름을 가진다.")
     void testConstruct() {
         Name name = new Name("pobi");
-        assertThat(name.getName()).isEqualTo("pobi");
+        assertThat(name.getValue()).isEqualTo("pobi");
     }
 
     @Nested
