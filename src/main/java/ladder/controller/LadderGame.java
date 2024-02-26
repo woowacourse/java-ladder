@@ -3,7 +3,7 @@ package ladder.controller;
 import ladder.domain.generator.LadderStepsGenerator;
 import ladder.domain.generator.RandomLadderStepsGenerator;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.dto.ParticipantsOutcome;
+import ladder.domain.ladder.ParticipantsOutcome;
 import ladder.domain.ladder.size.LadderSize;
 import ladder.domain.outcome.Outcomes;
 import ladder.domain.participant.Participants;
@@ -23,7 +23,9 @@ public class LadderGame {
         final int width = participants.getNecessaryLadderWidth();
         final Ladder ladder = createLadder(width);
         printLadderGame(participants, ladder, outcomes);
+
         final ParticipantsOutcome participantsOutcome = participants.assignOutcomesByLadder(ladder, outcomes);
+        printParticipantsOutcome(participantsOutcome);
     }
 
     private Participants createParticipants() {
@@ -62,6 +64,32 @@ public class LadderGame {
         outputView.printParticipants(participants);
         outputView.printLadder(ladder);
         outputView.printOutcomes(outcomes);
+    }
+
+    private void printParticipantsOutcome(final ParticipantsOutcome participantsOutcome) {
+        boolean isAllOutcomesPrinted = false;
+        while (!isAllOutcomesPrinted) {
+            String participantName = inputView.readParticipantNameOfOutcome();
+            isAllOutcomesPrinted = printOutcome(participantsOutcome, participantName);
+        }
+    }
+
+    private boolean printOutcome(final ParticipantsOutcome participantsOutcome, final String participantName) {
+        if (participantsOutcome.allOutcomesRequired(participantName)) {
+            outputView.printAllParticipantsOutcome(participantsOutcome.getValues());
+            return true;
+        }
+        return printIndividualOutcomeWithExceptionHandling(participantsOutcome, participantName);
+    }
+
+    private boolean printIndividualOutcomeWithExceptionHandling(final ParticipantsOutcome participantsOutcome, final String participantName) {
+        try {
+            final String outcome = participantsOutcome.getOutcome(participantName);
+            outputView.printIndividualOutcome(outcome);
+        } catch (IllegalArgumentException e) {
+            outputView.printException(e);
+        }
+        return false;
     }
 
     private <T, R> R retryOnException(final Function<T, R> retryOperation, T input) {

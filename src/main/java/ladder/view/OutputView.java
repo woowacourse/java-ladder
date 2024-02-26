@@ -8,6 +8,8 @@ import ladder.domain.participant.Participant;
 import ladder.domain.participant.Participants;
 
 import java.util.List;
+import java.util.Map;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -18,6 +20,8 @@ public class OutputView {
     private static final String STEP_PREFIX = "    ";
     private static final int OUTCOME_UNIT_LENGTH = 6;
     private static final String WHITESPACE = " ";
+    private static final String OUTCOME_PREFIX = "\n실행 결과";
+    private static final String OUTCOME_FORMAT = "%s : %s";
 
     public void printResultPrefix() {
         System.out.println(RESULT_PREFIX);
@@ -63,10 +67,25 @@ public class OutputView {
         System.out.println(outcomesBuilder);
     }
 
-    private static void appendNeededWhitespace(StringBuilder outcomesBuilder, int neededPrevLength) {
+    private void appendNeededWhitespace(StringBuilder outcomesBuilder, int neededPrevLength) {
         int neededPrevWhitespaceCount = neededPrevLength - outcomesBuilder.length();
         String whitespaces = WHITESPACE.repeat(neededPrevWhitespaceCount);
         outcomesBuilder.append(whitespaces);
+    }
+
+    public void printAllParticipantsOutcome(final Map<String, String> participantsOutcome) {
+        System.out.println(OUTCOME_PREFIX);
+        StringJoiner outcomesJoiner = new StringJoiner("\n");
+        participantsOutcome.forEach((participantName, outcome) -> {
+            String currentOutcome = String.format(OUTCOME_FORMAT, participantName, outcome);
+            outcomesJoiner.add(currentOutcome);
+        });
+        System.out.println(outcomesJoiner);
+    }
+
+    public void printIndividualOutcome(final String outcome) {
+        System.out.println(OUTCOME_PREFIX);
+        System.out.println(outcome);
     }
 
     public void printException(final RuntimeException exception) {
