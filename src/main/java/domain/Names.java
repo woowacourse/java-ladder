@@ -22,6 +22,14 @@ public class Names {
         return List.copyOf(names);
     }
 
+    public int indexOf(String input) {
+        int index = names.indexOf(new Name(input));
+        if (index == -1) {
+            throw new IllegalArgumentException("[ERROR] 해당하는 이름을 찾을 수 없습니다");
+        }
+        return index;
+    }
+
     private void validate(List<Name> names) {
         validateUnique(names);
         validateEntryAmount(names);
