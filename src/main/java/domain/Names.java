@@ -24,23 +24,18 @@ public class Names {
         return names;
     }
 
+    public List<Name> getSwappedNames() {
+        return IntStream.range(0, names.size())
+                .mapToObj(index -> names.get(namesIndexTable.get(index)))
+                .toList();
+    }
+
     public void swapNamePosition(int i) {
         int temp = namesIndexTable.get(i);
         namesIndexTable.put(i, i - 1);
         namesIndexTable.put(i - 1, temp);
     }
-
-    public Name getNameFromPosition(int position) {
-        validatePosition(position);
-        return names.get(namesIndexTable.get(position));
-    }
-
-    private void validatePosition(int position) {
-        if (position < 0 || position > names.size()) {
-            throw new LadderGameException(ExceptionType.INVALID_NAMES_POSITION);
-        }
-    }
-
+    
     int getNameCount() {
         return names.size();
     }

@@ -55,35 +55,17 @@ class NamesTest {
     }
 
     @Test
-    @DisplayName("참여자 위치를 전달하면 해당 참여자가 반환된다.")
-    void testGetNameFromPosition() {
-        List<Name> givenNames = List.of(new Name("a"), new Name("b"));
-        Names names = new Names(givenNames);
-        Name actual = names.getNameFromPosition(0);
-        Name expected = givenNames.get(0);
-        Assertions.assertThat(actual).isEqualTo(expected);
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {-1, 3})
-    @DisplayName("범위 외 참여자 위치를 전달하면 예외가 발생한다.")
-    void testGetNameFromPositionException(int invalidIndex) {
-        List<Name> givenNames = List.of(new Name("a"), new Name("b"));
-        Names names = new Names(givenNames);
-        Assertions.assertThatThrownBy(() -> names.getNameFromPosition(invalidIndex))
-                .isInstanceOf(LadderGameException.class)
-                .hasMessage(ExceptionType.INVALID_NAMES_POSITION.getMessage());
-
-    }
-
-    @Test
-    @DisplayName("위치 값이 주어지면 위치 - 1 참여자와 위치 참여자의 위치를 변경시킬 수 있다.")
+    @DisplayName("위치 값이 주어지면 [위치 - 1] 참여자와 [위치] 참여자의 위치를 변경")
     void testSwapName() {
         List<Name> givenNames = List.of(new Name("a"), new Name("b"));
         Names names = new Names(givenNames);
+
         names.swapNamePosition(1);
-        Name actual = names.getNameFromPosition(0);
-        Name expected = givenNames.get(1);
+        Name actual = names.getSwappedNames().get(1);
+        Name expected = givenNames.get(0);
+
         Assertions.assertThat(actual).isEqualTo(expected);
     }
+
+
 }
