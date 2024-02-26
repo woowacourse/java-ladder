@@ -21,11 +21,11 @@ public class MessageResolver {
     private static final String LADDER_MESSAGE_PREFIX = LINE_SEPARATOR + "사다리결과" + LINE_SEPARATOR;
 
     public String resolveResultMessage(LadderResult ladderResult) {
-        return LADDER_RESULT_PREFIX + ladderResult.getResult();
+        return LINE_SEPARATOR + LADDER_RESULT_PREFIX + ladderResult.getResult();
     }
 
     public String resolveResultsMessage(LadderResults results) {
-        return LADDER_RESULT_PREFIX + results.getResults().stream()
+        return LINE_SEPARATOR + LADDER_RESULT_PREFIX + results.getResults().stream()
                 .map(result -> String.format("%s : %s", result.getName(), result.getResult()))
                 .collect(Collectors.joining(System.lineSeparator()));
     }
