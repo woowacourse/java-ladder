@@ -32,7 +32,7 @@ public class LadderGame {
         Height height = retryUntilSuccess(this::inputHeight);
 
         Ladder ladder = Ladder.of(height, participants.getParticipantsCount(), lineItemGenerator);
-        printLadder(ladder, participants);
+        printLadder(ladder, participants, ladderResults);
     }
 
     private Participants prepareParticipants() {
@@ -62,12 +62,13 @@ public class LadderGame {
         }
     }
 
-    private void printLadder(Ladder ladder, Participants participants) {
+    private void printLadder(Ladder ladder, Participants participants, LadderResults ladderResults) {
         List<String> result = new ArrayList<>();
         List<Line> createdLadder = ladder.getLadder();
 
         createParticipantsLineUp(result, participants.getParticipants());
         createLadder(result, createdLadder);
+        createLadderResults(result, ladderResults.getLadderResults());
 
         outputView.printResultMessage();
         outputView.printLadder(result);
@@ -92,6 +93,15 @@ public class LadderGame {
 
             result.add(stringBuilder.toString());
         }
+    }
+
+    private void createLadderResults(List<String> result, List<String> ladderResults) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String ladderResult : ladderResults) {
+            stringBuilder.append(String.format("%5s ", ladderResult));
+        }
+
+        result.add(stringBuilder.toString());
     }
 
     private void createLine(Line line, StringBuilder stringBuilder) {

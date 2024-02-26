@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -28,5 +29,9 @@ public class LadderResults {
         if (ladderResults.size() != columnLength) {
             throw new IllegalArgumentException("실행 결과 개수는 참여자 수와 일치해야 합니다.");
         }
+    }
+
+    public List<String> getLadderResults() {
+        return Collections.unmodifiableList(ladderResults);
     }
 }
