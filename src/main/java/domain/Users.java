@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Users {
 
+    private static final int MIN_USER_SIZE = 2;
+    private static final int MAX_USER_SIZE = 50;
     private final List<UserName> users;
 
     public Users(final List<String> userNames) {
@@ -30,11 +32,11 @@ public class Users {
     }
 
     private void validate(final List<String> userNames) {
-        if (userNames.size() == 1) {
-            throw new IllegalArgumentException(String.format("입력된 값: %d, 사용자는 두명 이상이여야 합니다.", userNames.size()));
+        if (userNames.size() < MIN_USER_SIZE) {
+            throw new IllegalArgumentException(String.format("입력된 값: %d, 사용자는 %d명 이상이여야 합니다.", userNames.size(), MIN_USER_SIZE));
         }
-        if (userNames.size() > 50) {
-            throw new IllegalArgumentException(String.format("입력된 값: %d, 사용자는 최대 50명입니다.", userNames.size()));
+        if (userNames.size() > MAX_USER_SIZE) {
+            throw new IllegalArgumentException(String.format("입력된 값: %d, 사용자는 최대 %d명입니다.", userNames.size(), MAX_USER_SIZE));
         }
     }
 }

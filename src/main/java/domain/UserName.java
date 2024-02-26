@@ -3,6 +3,10 @@ package domain;
 import java.util.regex.Pattern;
 
 public class UserName {
+
+    private static final Pattern SPECIAL_CHARACTER = Pattern.compile("[ !@#$%^&*().?\":{}|<>]");
+    private static final int MAX_USERNAME_LENGTH = 5;
+
     private final String userName;
 
     public UserName(final String userName) {
@@ -24,15 +28,13 @@ public class UserName {
     }
 
     private void validateLength(final String userName) {
-        if (userName.length() > 5) {
-            throw new IllegalArgumentException(String.format("입력 된 값: %s, 사용자 이름은 5글자 이하로 입력해 주세요.", userName));
+        if (userName.length() > MAX_USERNAME_LENGTH) {
+            throw new IllegalArgumentException(String.format("입력 된 값: %s, 사용자 이름은 %d글자 이하로 입력해 주세요.", userName, MAX_USERNAME_LENGTH));
         }
     }
 
     private void validateSpecialCharacter(final String userName) {
-        final Pattern specialCharacter = Pattern.compile("[ !@#$%^&*().?\":{}|<>]");
-
-        if (specialCharacter.matcher(userName).find()) {
+        if (SPECIAL_CHARACTER.matcher(userName).find()) {
             throw new IllegalArgumentException(String.format("입력 된 값: %s, 특수기호는 들어갈 수 없습니다.", userName));
         }
     }

@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Ladder {
+    private static final int MAX_LADDER_HEIGHT = 100;
+
     private final List<Line> ladder = new ArrayList<>();
 
     public Ladder(final int maxHeight, final int personCount) {
@@ -17,8 +19,8 @@ public class Ladder {
     }
 
     private static void validateMaxHeight(int maxHeight) {
-        if (maxHeight > 100) {
-            throw new IllegalArgumentException(String.format("입력된 값: %d, 사다리 높이는 최대 100입니다.", maxHeight));
+        if (maxHeight > MAX_LADDER_HEIGHT) {
+            throw new IllegalArgumentException(String.format("입력된 값: %d, 사다리 높이는 최대 %d입니다.", maxHeight, MAX_LADDER_HEIGHT));
         }
     }
 
