@@ -7,10 +7,7 @@ import ladder.domain.outcome.Outcomes;
 import ladder.exception.participant.DuplicatedNamesException;
 import ladder.exception.participant.InvalidParticipantsCountException;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class Participants {
@@ -44,7 +41,7 @@ public class Participants {
     }
 
     public ParticipantsOutcome assignOutcomesByLadder(Ladder ladder, Outcomes outcomes) {
-        final Map<String, String> participantsOutcome = new HashMap<>();
+        final Map<String, String> participantsOutcome = new LinkedHashMap<>();
         for (Participant participant : participants) {
             final Position endPosition = ladder.determineFinalPositionOf(participant);
             final String outcome = outcomes.getValueOf(endPosition);
