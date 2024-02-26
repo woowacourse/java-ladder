@@ -30,8 +30,9 @@ public class Floor {
     }
 
     private Rung generateRung(int currentPosition, List<Rung> rungs) {
+        Rung randomStatusRung = rungGenerator.getRandomStatusRung();
         if (checkPreviousPositionNotExist(currentPosition, rungs)) {
-            return rungGenerator.getRandomStatusRung();
+            return randomStatusRung;
         }
         return Rung.NOT_EXIST;
     }
@@ -42,7 +43,7 @@ public class Floor {
         }
         return FIRST_POSITION_NOT_EXIST;
     }
-
+    
     public FloorResponseDto getRungs() {
         return FloorResponseDto.of(rungs);
     }
