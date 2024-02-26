@@ -12,6 +12,10 @@ public class LadderResult {
         this.result = result;
     }
 
+    public String getResult() {
+        return result;
+    }
+
     private void validateLength(String result) {
         if (isInvalidLengthName(result)) {
             throw new IllegalArgumentException("[ERROR] 결과의 길이는 " + MIN_LENGTH + "자에서 " + MAX_LENGTH + "자 사이여야 합니다");
