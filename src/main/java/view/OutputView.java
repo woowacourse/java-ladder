@@ -1,6 +1,7 @@
 package view;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import model.Prize;
 
@@ -8,6 +9,7 @@ public class OutputView {
     private static final String FINAL_RESULT_FORMAT = "%s%n%n";
     private static final String FINAL_RESULT_MESSAGE = "사다리 결과";
     private static final String PRIZE_RESULT_MESSAGE = "실행 결과";
+    private static final String RESULT_FORM = "%s : %s%n";
 
     public void printLadderResult(List<String> names, List<String> lines,
                                   List<Prize> prizes) { //TODO: prize 대신 string 고려
@@ -17,9 +19,15 @@ public class OutputView {
         printPrizes(prizes);
     }
 
-    public void printPlayerResult(String prize) {
+    public void printPlayerResult(Map<String, String> ladderResult, String target) {
         System.out.println(PRIZE_RESULT_MESSAGE);
-        System.out.println(prize);
+        if (target.equals("all")) {
+            for (String key : ladderResult.keySet()) {
+                System.out.printf(RESULT_FORM, key, ladderResult.get(key));
+            }
+            return;
+        }
+        System.out.printf(RESULT_FORM, target, ladderResult.get(target));
         System.out.println();
     }
 
