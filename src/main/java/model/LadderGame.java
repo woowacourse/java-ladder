@@ -20,8 +20,6 @@ public class LadderGame {
     }
 
     public Ladder createLadder() {
-        Ladder ladder = new Ladder();
-        ladder.generateLine(ladderHeight, participants.getSize(), generator);
-        return ladder;
+        return new Ladder(ladderHeight, participants.getSize(), generator);
     }
 }

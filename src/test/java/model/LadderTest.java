@@ -14,8 +14,7 @@ public class LadderTest {
         int height = 2;
         int peopleCount = 3;
         RandomGenerator randomGenerator = new RandomGenerator();
-        Ladder ladder = new Ladder();
-        ladder.generateLine(height, peopleCount, randomGenerator);
+        Ladder ladder = new Ladder(height, peopleCount, randomGenerator);
         List<Line> result = ladder.getLines();
 
         assertThat(result).hasSize(height);
