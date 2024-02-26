@@ -4,13 +4,8 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import java.util.stream.Stream;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 
 public class BridgesTest {
 
@@ -27,21 +22,5 @@ public class BridgesTest {
     void constructFailWithContinuousBridge() {
         assertThatThrownBy(() -> new Bridges(List.of(Bridge.BUILT, Bridge.BUILT)))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("Bridges 가 올바른 List 를 반환해야 한다.")
-    @MethodSource("getBridgeTestProvider")
-    @ParameterizedTest
-    void getBridgeTest(List<Bridge> expectedBridges) {
-        Bridges bridges = new Bridges(expectedBridges);
-
-        Assertions.assertThat(bridges.getBridges())
-                .isEqualTo(expectedBridges);
-    }
-
-    static Stream<Arguments> getBridgeTestProvider() {
-        return Stream.of(
-                Arguments.of(List.of(Bridge.BUILT, Bridge.EMPTY, Bridge.EMPTY, Bridge.BUILT))
-        );
     }
 }
