@@ -58,8 +58,4 @@ public class OutputView {
         }
         return "     ";
     }
-
-    public void printErrorMessage(String message) {
-        System.out.println(message);
-    }
 }
