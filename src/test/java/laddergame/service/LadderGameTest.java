@@ -12,6 +12,7 @@ import laddergame.domain.name.Names;
 import laddergame.domain.result.Result;
 import laddergame.domain.result.Results;
 import laddergame.dto.LadderResult;
+import laddergame.dto.MatchingResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -79,5 +80,34 @@ public class LadderGameTest {
 
         // then
         Assertions.assertThat(result).isEqualTo(new Result("3000"));
+    }
+
+    @DisplayName("all 입력시 전체 결과를 받을 수 있다.")
+    @Test
+    void findAll() {
+        // given
+        final Names names = new Names(List.of("pobi", "honux", "jk"));
+        final Results results = new Results(List.of("꽝", "3000", "5000"));
+        final LadderHeight height = new LadderHeight(5);
+
+        final LadderGame ladderGame = new LadderGame((i, j) -> new Ladder(List.of(
+                new Line(List.of(Point.EXIST, Point.EMPTY)),
+                new Line(List.of(Point.EXIST, Point.EMPTY)),
+                new Line(List.of(Point.EXIST, Point.EMPTY)),
+                new Line(List.of(Point.EXIST, Point.EMPTY)),
+                new Line(List.of(Point.EXIST, Point.EMPTY))
+        )));
+
+        ladderGame.createLadder(names, results, height);
+
+        // when
+        List<MatchingResult> matchingResults = ladderGame.findAll();
+
+        // then
+        Assertions.assertThat(matchingResults)
+                .isEqualTo(List.of(new MatchingResult("pobi", "3000"),
+                        new MatchingResult("honux", "꽝"),
+                        new MatchingResult("jk", "5000")));
+
     }
 }

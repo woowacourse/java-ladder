@@ -1,6 +1,6 @@
 package laddergame.service;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import laddergame.domain.ladder.Ladder;
@@ -13,11 +13,12 @@ import laddergame.domain.name.Names;
 import laddergame.domain.result.Result;
 import laddergame.domain.result.Results;
 import laddergame.dto.LadderResult;
+import laddergame.dto.MatchingResult;
 
 public class LadderGame {
 
     private final LadderGenerator ladderGenerator;
-    private final Map<Name, Result> matchRepository = new HashMap<>();
+    private final Map<Name, Result> matchRepository = new LinkedHashMap<>();
 
     public LadderGame(final LadderGenerator ladderGenerator) {
         this.ladderGenerator = ladderGenerator;
@@ -47,5 +48,11 @@ public class LadderGame {
 
     public Result findResultByName(final Name name) {
         return matchRepository.get(name);
+    }
+
+    public List<MatchingResult> findAll() {
+        return matchRepository.entrySet().stream()
+                .map(MatchingResult::from)
+                .toList();
     }
 }

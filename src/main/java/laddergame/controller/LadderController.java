@@ -1,9 +1,13 @@
 package laddergame.controller;
 
+import java.util.List;
 import laddergame.domain.ladder.LadderHeight;
+import laddergame.domain.name.Name;
 import laddergame.domain.name.Names;
+import laddergame.domain.result.Result;
 import laddergame.domain.result.Results;
 import laddergame.dto.LadderResult;
+import laddergame.dto.MatchingResult;
 import laddergame.exception.ExceptionHandler;
 import laddergame.service.LadderGame;
 import laddergame.view.InputView;
@@ -28,9 +32,21 @@ public class LadderController {
 
         final LadderResult ladderResult = ladderGame.createLadder(names, results, height);
 
+        outputView.printLadderResult(ladderResult);
 
+        while (true) {
+            String inputName = inputView.readName();
+            if (inputName.equals("all")) {
+                final List<MatchingResult> matchingResults = ladderGame.findAll();
+                outputView.printMatchingResults(matchingResults);
+                break;
+            }
 
-        outputView.printResult(ladderResult);
+            Name name = new Name(inputName);
+            final Result result = ladderGame.findResultByName(name);
+            outputView.printMatchingResult(result.getResult());
+        }
+
     }
 
     private Names receiveInputNames() {
