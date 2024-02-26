@@ -10,43 +10,38 @@ import view.OutputView;
 
 public class LadderGameController {
     public void run() {
-        Players players = retryPlayersOnException(this::preparePlayers);
-        LadderHeight ladderHeight = retryLadderHeightOnException(this::prepareLadderHeight);
+        Players players = preparePlayers();
+        LadderHeight ladderHeight = prepareLadderHeight();
         Ladder ladder = Ladder.of(ladderHeight, players);
         end(players, ladder);
     }
 
     private Players preparePlayers() {
-        List<String> playerNames = InputView.askPlayerNames();
-        return Players.of(playerNames);
+        return retryOnException(() -> {
+            List<String> playerNames = InputView.askPlayerNames();
+            return Players.of(playerNames);
+        });
     }
 
     private LadderHeight prepareLadderHeight() {
-        int ladderHeight = InputView.askLadderHeight();
-        return new LadderHeight(ladderHeight);
+        return retryOnException(() -> {
+            int ladderHeight = InputView.askLadderHeight();
+            return new LadderHeight(ladderHeight);
+        });
     }
 
-    public void end(Players players, Ladder ladder) {
+    private void end(Players players, Ladder ladder) {
         OutputView.printGameResultIntro();
         OutputView.printPlayerNames(players);
         OutputView.printLadder(ladder);
     }
 
-    private Players retryPlayersOnException(Supplier<Players> preparePlayers) {
+    private <T> T retryOnException(Supplier<T> retryOperation) {
         try {
-            return preparePlayers.get();
+            return retryOperation.get();
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
-            return retryPlayersOnException(preparePlayers);
-        }
-    }
-
-    private LadderHeight retryLadderHeightOnException(Supplier<LadderHeight> prepareLadderHeight) {
-        try {
-            return prepareLadderHeight.get();
-        } catch (IllegalArgumentException e) {
-            OutputView.printExceptionMessage(e.getMessage());
-            return retryLadderHeightOnException(prepareLadderHeight);
+            return retryOnException(retryOperation);
         }
     }
 }
