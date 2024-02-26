@@ -2,7 +2,6 @@ package domain;
 
 import domain.bridge.BridgeGenerator;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -28,6 +27,6 @@ public class Ladder {
     }
 
     public List<Floor> getFloors() {
-        return Collections.unmodifiableList(floors);
+        return floors;
     }
 }
