@@ -14,9 +14,9 @@ public class Players {
     }
 
     public static Players of(final PlayerNames playerNames, final LadderHeight ladderHeight) {
-        List<String> userNameValues = playerNames.getUserNames();
-        return range(0, userNameValues.size())
-                .mapToObj(userNameIndex -> Player.of(userNameValues.get(userNameIndex), userNameIndex + 1, ladderHeight.ladderHeight()))
+        List<String> playerNameValues = playerNames.getUserNames();
+        return range(0, playerNameValues.size())
+                .mapToObj(userNameIndex -> Player.of(playerNameValues.get(userNameIndex), userNameIndex + 1, ladderHeight.ladderHeight()))
                 .collect(collectingAndThen(toList(), Players::new));
     }
 }
