@@ -12,6 +12,7 @@ public class LadderGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    RandomGenerator generator = new RandomGenerator();
 
     public LadderGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -28,7 +29,6 @@ public class LadderGameController {
     }
 
     private Ladder createLadder(int height, Participants participants) {
-        RandomGenerator generator = new RandomGenerator();
         LadderGame ladderGame = new LadderGame(height, participants, generator);
         return ladderGame.createLadder();
     }
