@@ -5,9 +5,9 @@ import model.strategy.BuildStrategy;
 
 public class Line {
 
-    private final List<Step> points;
+    private final List<LadderStatus> points;
 
-    public Line(int personCount, BuildStrategy<Step> buildStrategy) {
+    public Line(int personCount, BuildStrategy<LadderStatus> buildStrategy) {
         this.points = buildStrategy.generate(personCount - 1);
     }
 
@@ -16,10 +16,10 @@ public class Line {
     }
 
     public boolean isConnected(int index) {
-        return points.get(index).hasStep();
+        return points.get(index).isConnected();
     }
 
-    public List<Step> getPoints() {
+    public List<LadderStatus> getPoints() {
         return points;
     }
 }

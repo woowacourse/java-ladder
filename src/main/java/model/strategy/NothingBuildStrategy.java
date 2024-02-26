@@ -2,15 +2,15 @@ package model.strategy;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.Step;
+import model.LadderStatus;
 
-public class NothingBuildStrategy implements BuildStrategy<Step> {
+public class NothingBuildStrategy implements BuildStrategy<LadderStatus> {
 
     @Override
-    public List<Step> generate(final int size) {
-        List<Step> result = new ArrayList<>();
+    public List<LadderStatus> generate(final int size) {
+        List<LadderStatus> result = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            result.add(new Step(false));
+            result.add(LadderStatus.UNCONNECTED);
         }
         return result;
     }
