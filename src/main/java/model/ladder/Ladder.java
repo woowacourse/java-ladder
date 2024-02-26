@@ -12,6 +12,7 @@ import model.player.Players;
 
 public class Ladder {
     private static final int CONNECTION_OFFSET = 1;
+
     private final List<Line> lines;
 
     private Ladder(List<Line> lines) {
