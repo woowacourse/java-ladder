@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import model.strategy.NothingBuildStrategy;
+import model.strategy.ZigZagStartFalseBuildStrategy;
+import model.strategy.ZigZagStartTrueBuildStrategy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,7 +44,7 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("원하는 참여자의 결과를 확인한다.")
+    @DisplayName("원하는 참여자의 결과를 확인한다. 사다리가 빈 경우")
     void createFindByPlayerName() {
         //given
         Height height = new Height(5);
@@ -65,6 +67,46 @@ class LadderTest {
     }
 
 
+    @Test
+    @DisplayName("원하는 참여자의 결과를 확인한다. 사다리가 지그재그 인 경우")
+        // TODO: 이름 변경 필요
+    void createFindByNameZigZag() {
+        //given
+        Height height = new Height(5);
+        int personCount = 4;
+        Ladder ladder = createZigZagBuildLadder(height, personCount);
+
+        List<String> names = List.of("레디", "안나", "브라운", "레나");
+        Players players = new Players(names);
+
+        List<String> prizes = List.of("당첨", "꽝1", "꽝2", "꽝3");
+
+        Result result = Result.of(prizes, personCount);
+
+        //when
+        Player target0 = new Player("레디");
+        Player target1 = new Player("안나");
+        Player target2 = new Player("브라운");
+        Player target3 = new Player("레나");
+
+        Prize expected0 = new Prize("꽝2");
+        Prize expected1 = new Prize("꽝3");
+        Prize expected2 = new Prize("당첨");
+        Prize expected3 = new Prize("꽝1");
+
+        var formattedLines = ladder.getFormattedLines();
+        for (String formattedLine : formattedLines) {
+            System.out.println(formattedLine);
+        }
+
+        // TODO: 리스트로 변경하여 확인
+
+        //then
+        Assertions.assertThat(ladder.findResult(players, target0, result.getPrizes())).isEqualTo(expected0);
+        Assertions.assertThat(ladder.findResult(players, target1, result.getPrizes())).isEqualTo(expected1);
+        Assertions.assertThat(ladder.findResult(players, target2, result.getPrizes())).isEqualTo(expected2);
+        Assertions.assertThat(ladder.findResult(players, target3, result.getPrizes())).isEqualTo(expected3);
+    }
 
     static Ladder createNothingBuildLadder(Height height, int personCount) {
         var buildStrategy = new NothingBuildStrategy();
@@ -73,6 +115,23 @@ class LadderTest {
 
         for (int i = 0; i < height.getValue(); i++) {
             lines.add(new Line(personCount, buildStrategy));
+        }
+
+        return new Ladder(lines);
+    }
+
+    static Ladder createZigZagBuildLadder(Height height, int personCount) {
+        var evenBuildStrategy = new ZigZagStartTrueBuildStrategy();
+        var oddBuildStrategy = new ZigZagStartFalseBuildStrategy();
+
+        List<Line> lines = new ArrayList<>();
+
+        for (int i = 0; i < height.getValue(); i++) {
+            if (i % 2 == 0) {
+                lines.add(new Line(personCount, evenBuildStrategy));
+                continue;
+            }
+            lines.add(new Line(personCount, oddBuildStrategy));
         }
 
         return new Ladder(lines);
