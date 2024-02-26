@@ -1,9 +1,9 @@
 package ladder.view;
 
+import static java.util.Arrays.stream;
+
 import java.util.List;
 import java.util.function.Supplier;
-
-import static java.util.Arrays.stream;
 
 public class InputView {
 
