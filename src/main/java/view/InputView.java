@@ -6,7 +6,8 @@ import java.util.Scanner;
 
 
 public class InputView {
-    public static final String NAME_DELIMITER = ",";
+    public static final String DELIMITER = ",";
+    public static final String DELIMITER_KOREAN = "쉼표";
 
     private final Scanner scanner = new Scanner(System.in);
     private final InputValidator inputValidator;
@@ -20,11 +21,21 @@ public class InputView {
     }
 
     public List<String> inputPlayers() {
-        printLine("참여할 사람 이름을 입력하세요. (이름은 쉼표(" + NAME_DELIMITER + ")로 구분하세요)");
+        printLine("참여할 사람 이름을 입력하세요. (이름은 " + DELIMITER_KOREAN + "(" + DELIMITER + ")로 구분하세요)");
         String input = readLineWithTrim();
         inputValidator.validatePlayers(input);
 
-        return Arrays.stream(input.split(NAME_DELIMITER))
+        return Arrays.stream(input.split(DELIMITER))
+                .map(String::trim)
+                .toList();
+    }
+
+    public List<String> inputPrizes() {
+        printLine("실행 결과를 입력하세요. (결과는 " + DELIMITER_KOREAN + "(" + DELIMITER + ")로 구분하세요)");
+        String input = readLineWithTrim();
+        inputValidator.validatePrizes(input);
+
+        return Arrays.stream(input.split(DELIMITER))
                 .map(String::trim)
                 .toList();
     }

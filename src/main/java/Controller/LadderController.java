@@ -19,6 +19,7 @@ public class LadderController {
 
     public void run() {
         final List<String> players = readWithRetry(inputView::inputPlayers);
+        final List<String> prizes = readWithRetry(inputView::inputPrizes);
         final int height = readWithRetry(inputView::inputHeight);
 
         final Ladder ladder = Ladder.create(height, PlayerCount.fromPlayers(players), new RandomStepGenerator());

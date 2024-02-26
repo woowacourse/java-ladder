@@ -1,9 +1,16 @@
 package view;
 
 public class InputValidator {
-    private static final String NAME_DELIMITER = InputView.NAME_DELIMITER;
+    private static final String NAME_DELIMITER = InputView.DELIMITER;
 
     public void validatePlayers(String input) {
+        validateBlank(input);
+        validateDoubleDelimiter(input);
+        validateStartWord(input);
+        validateEndWord(input);
+    }
+
+    public void validatePrizes(String input) {
         validateBlank(input);
         validateDoubleDelimiter(input);
         validateStartWord(input);
