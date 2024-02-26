@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import utils.ThersholdChecker;
+import utils.ThresholdChecker;
 
 
 public class LineTest {
@@ -71,15 +71,15 @@ public class LineTest {
         @DisplayName("리플랙션을 통한 테스트 방법")
         void reflectionTest() throws Exception {
             //given
-            ThersholdChecker thersholdChecker = () -> true;
+            ThresholdChecker thresholdChecker = () -> true;
             Line line = new Line(() -> true, 5);
 
             //when
             Method makeHorizontalLine = line.getClass()
-                    .getDeclaredMethod("makeHorizontalLine", ThersholdChecker.class, int.class);
+                    .getDeclaredMethod("makeHorizontalLine", ThresholdChecker.class, int.class);
             makeHorizontalLine.setAccessible(true);
 
-            makeHorizontalLine.invoke(line, thersholdChecker,4);
+            makeHorizontalLine.invoke(line, thresholdChecker,4);
 
             //then
             assertThat(line.hasLeftConnectedLine(5))

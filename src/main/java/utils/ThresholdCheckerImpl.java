@@ -2,7 +2,7 @@ package utils;
 
 import java.util.Random;
 
-public class ThersholdCheckerImpl implements ThersholdChecker {
+public class ThresholdCheckerImpl implements ThresholdChecker {
 
     private static final int THRESHOLD = 3;
 

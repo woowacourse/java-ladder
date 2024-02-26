@@ -1,7 +1,7 @@
 package utils;
 
 
-public interface ThersholdChecker {
+public interface ThresholdChecker {
     boolean isAboveThreshold();
 
 }
