@@ -3,8 +3,8 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,7 +17,7 @@ public class LineTest {
         int personCount = 5;
 
         // when
-        Line line = new Line(personCount, new RandomPointsGenerator(new Random()));
+        Line line = new Line(personCount, new RandomPointsGenerator());
         int pointsSize = line.getPoints().size();
 
         // then
@@ -29,15 +29,10 @@ public class LineTest {
     void createNonOverlappingLine() {
         // given
         int personCount = 5;
-        RandomPointsGenerator randomPointsGenerator = new RandomPointsGenerator(new Random() {
-            @Override
-            public boolean nextBoolean() {
-                return true;
-            }
-        });
+        PointsGenerator pointsGenerator = size -> new ArrayList<>(List.of(Point.ON, Point.ON, Point.ON, Point.ON));
 
         // when
-        Line line = new Line(personCount, randomPointsGenerator);
+        Line line = new Line(personCount, pointsGenerator);
 
         // then
         assertThat(line.getPoints()).isEqualTo(List.of(Point.ON, Point.OFF, Point.ON, Point.OFF));

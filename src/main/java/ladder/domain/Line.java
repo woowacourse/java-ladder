@@ -5,17 +5,17 @@ import java.util.List;
 
 public class Line {
 
-    private final RandomPointsGenerator randomPointsGenerator;
+    private final PointsGenerator pointsGenerator;
     private final List<Point> points;
 
-    public Line(int personCount, RandomPointsGenerator randomPointsGenerator) {
-        this.randomPointsGenerator = randomPointsGenerator;
+    public Line(int personCount, PointsGenerator pointsGenerator) {
+        this.pointsGenerator = pointsGenerator;
         this.points = createRandomPoints(personCount - 1);
         ensurePoints();
     }
 
     private List<Point> createRandomPoints(int size) {
-        List<Point> points = randomPointsGenerator.generate(size);
+        List<Point> points = pointsGenerator.generate(size);
         if (!points.contains(Point.ON)) {
             return createRandomPoints(size);
         }
