@@ -5,8 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PrizeTest {
 
@@ -23,13 +24,13 @@ public class PrizeTest {
     @Test
     @DisplayName("원하는 위치의 결과를 가져올 수 있다.")
     void getPrizeAtTest() {
-        List<String> prizes = List.of("1", "100", "1000", "10000");
+        List<String> prizes = List.of("1", "10", "100", "1000");
         Prize prize = new Prize(prizes, 4);
 
-        assertThat(prize.getPrizeOf(0)).isEqualTo("1");
-        assertThat(prize.getPrizeOf(1)).isEqualTo("10");
-        assertThat(prize.getPrizeOf(2)).isEqualTo("100");
-        assertThat(prize.getPrizeOf(3)).isEqualTo("1000");
+        assertAll(() -> assertEquals(prize.getPrizeOf(0), "1"),
+                () -> assertEquals(prize.getPrizeOf(1), "10"),
+                () -> assertEquals(prize.getPrizeOf(2), "100"),
+                () -> assertEquals(prize.getPrizeOf(3), "1000"));
     }
 
 }
