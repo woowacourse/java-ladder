@@ -3,11 +3,14 @@ package laddergame.domain.gameelements.people;
 import laddergame.domain.gameelements.Element;
 
 public class Name extends Element {
-    public Name(String playerName) {
-        super(playerName);
+    private final String name;
+
+    public Name(String name) {
+        super(name);
+        this.name = name;
     }
 
     public String getName() {
-        return super.getElement();
+        return name;
     }
 }
