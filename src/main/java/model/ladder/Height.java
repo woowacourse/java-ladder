@@ -40,7 +40,7 @@ public class Height {
         return Objects.hash(value);
     }
 
-    public int getValue() {
+    public int size() {
         return value;
     }
 }

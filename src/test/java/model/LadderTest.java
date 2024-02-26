@@ -19,6 +19,6 @@ class LadderTest {
         Ladder ladder = Ladder.of(height, width);
 
         // when
-        Assertions.assertThat(ladder.size()).isEqualTo(height.getValue());
+        Assertions.assertThat(ladder.size()).isEqualTo(height.size());
     }
 }

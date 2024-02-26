@@ -15,7 +15,7 @@ public class Line {
      */
     public Line(Width width) {
         List<Step> steps = new ArrayList<>();
-        for (int i = 0; i < width.getValue() - 1; i++) {
+        for (int i = 0; i < width.size() - 1; i++) {
             steps.add(s)
             steps.add(generate(steps))
             result.add(generate(result, i));

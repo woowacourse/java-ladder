@@ -30,7 +30,7 @@ public class Width {
         return Objects.hash(value);
     }
 
-    public int getValue() {
+    public int size() {
         return value;
     }
 }
