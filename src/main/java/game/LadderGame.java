@@ -6,7 +6,6 @@ import domain.player.Name;
 import domain.player.Players;
 import domain.result.Result;
 import domain.result.Results;
-import dto.RowPatternDto;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BooleanSupplier;
@@ -32,21 +31,11 @@ public class LadderGame {
 
         Ladder ladder = new Ladder(players, results, height);
         ladder.drawLines(supplier);
-        List<RowPatternDto> patterns = ladder.getLadderPatterns();
 
-        printLadderResult(players.getRawNames(), results.getRawResults(), patterns);
+        printLadder(ladder, players, results);
 
-        outputView.printReadNameForResult();
-        String playerName = inputView.readToken();
-        outputView.printResultMessage();
-
-        if (playerName.equals("all")) {
-            printAllResults(ladder);
-            return;
-        }
-
-        Result result = ladder.getResultByName(playerName);
-        outputView.printToken(result.rawResult());
+        String playerName = getPlayerName();
+        printLadderResult(ladder, playerName);
     }
 
     private Players getNames() {
@@ -67,15 +56,32 @@ public class LadderGame {
         return new LadderHeight(height);
     }
 
-    private void printLadderResult(List<String> names, List<String> results, List<RowPatternDto> rowPatterns) {
+    private String getPlayerName() {
+        outputView.printReadNameForResult();
+        return inputView.readToken();
+    }
+
+    private void printLadder(Ladder ladder, Players players, Results results) {
         outputView.printLadderCreationMessage();
-        outputView.printTokens(names);
-        outputView.printLadder(rowPatterns);
-        outputView.printTokens(results);
+        outputView.printTokens(players.getRawNames());
+        outputView.printLadder(ladder.getLadderPatterns());
+        outputView.printTokens(results.getRawResults());
     }
 
     private void printAllResults(Ladder ladder) {
         Map<Name, Result> results = ladder.getAllPlayerResults();
         results.forEach((name, result) -> outputView.printAllResults(name.rawName(), result.rawResult()));
+    }
+
+    private void printLadderResult(Ladder ladder, String playerName) {
+        outputView.printResultMessage();
+
+        if (playerName.equals("all")) {
+            printAllResults(ladder);
+            return;
+        }
+
+        Result result = ladder.getResultByName(playerName);
+        outputView.printToken(result.rawResult());
     }
 }
