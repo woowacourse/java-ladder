@@ -2,6 +2,7 @@ package ladder.domain.participant;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 public class Participants {
     private static final int MIN_PARTICIPANTS_COUNT = 2;
@@ -11,9 +12,7 @@ public class Participants {
     public Participants(final List<String> names) {
         validateParticipantsCount(names);
         validateDuplicatedNames(names);
-        this.participants = names.stream()
-                .map(Participant::new)
-                .toList();
+        this.participants = createParticipants(names);
     }
 
     private void validateParticipantsCount(final List<String> names) {
@@ -27,6 +26,12 @@ public class Participants {
         if (uniqueNames.size() < names.size()) {
             throw new IllegalArgumentException("중복된 이름이 입력되었습니다.");
         }
+    }
+
+    private List<Participant> createParticipants(final List<String> names) {
+        return IntStream.range(0, names.size())
+                .mapToObj(order -> new Participant(names.get(order), order))
+                .toList();
     }
 
     public int getNecessaryLadderWidth() {
