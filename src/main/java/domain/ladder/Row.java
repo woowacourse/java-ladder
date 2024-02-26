@@ -5,16 +5,16 @@ import java.util.List;
 
 import static java.util.Collections.unmodifiableList;
 
-public class Line {
+public class Row {
     private final BridgeMakingStrategy makingStrategy;
     private final List<Bridge> bridges = new ArrayList<>();
 
-    public Line(final int width, final BridgeMakingStrategy makingStrategy) {
+    public Row(final int width, final BridgeMakingStrategy makingStrategy) {
         this.makingStrategy = makingStrategy;
-        makeLine(width);
+        makeRow(width);
     }
 
-    private void makeLine(final int width) {
+    private void makeRow(final int width) {
         for (int i = 0; i < width; i++) {
             this.bridges.add(makeBridge());
         }

@@ -16,8 +16,8 @@ class LadderTest {
         int width = 3, height = 1;
         Ladder ladder = new Ladder(width, height, () -> Bridge.EXIST);
 
-        List<Line> lines = ladder.getLines();
+        List<Row> rows = ladder.getRows();
 
-        assertThat(lines.size()).isEqualTo(height);
+        assertThat(rows.size()).isEqualTo(height);
     }
 }

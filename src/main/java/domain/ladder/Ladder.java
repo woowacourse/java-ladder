@@ -8,24 +8,24 @@ import static java.util.Collections.unmodifiableList;
 
 public class Ladder {
     private final BridgeMakingStrategy strategy;
-    private final List<Line> lines;
+    private final List<Row> rows;
 
     public Ladder(final int width, final int height, BridgeMakingStrategy strategy) {
         this.strategy = strategy;
-        this.lines = generateLadder(width, height);
+        this.rows = generateLadder(width, height);
     }
 
-    private List<Line> generateLadder(final int width, final int height) {
+    private List<Row> generateLadder(final int width, final int height) {
         return IntStream.range(0, height)
-                .mapToObj(ignore -> new Line(width, strategy))
+                .mapToObj(ignore -> new Row(width, strategy))
                 .toList();
     }
 
-    public List<Line> getLines() {
-        return unmodifiableList(this.lines);
+    public List<Row> getRows() {
+        return unmodifiableList(this.rows);
     }
 
     public int getWidth() {
-        return this.lines.get(0).getWidth();
+        return this.rows.get(0).getWidth();
     }
 }

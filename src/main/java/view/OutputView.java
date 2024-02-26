@@ -6,7 +6,7 @@ import domain.db.Prize;
 import domain.db.Prizes;
 import domain.ladder.Bridge;
 import domain.ladder.Ladder;
-import domain.ladder.Line;
+import domain.ladder.Row;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,14 +39,14 @@ public class OutputView {
     }
 
     private static void printLadder(final Ladder ladder) {
-        ladder.getLines().stream()
+        ladder.getRows().stream()
                 .map(OutputView::makeLineMessage)
                 .forEach(System.out::println);
     }
 
-    private static String makeLineMessage(final Line line) {
+    private static String makeLineMessage(final Row row) {
         return BRIDGE_LEFT_MARGIN +
-                line.getBridges().stream()
+                row.getBridges().stream()
                         .map(OutputView::makeBridgeMessage)
                         .collect(Collectors.joining(BRIDGE_SEPARATOR, BRIDGE_SEPARATOR, BRIDGE_SEPARATOR));
     }

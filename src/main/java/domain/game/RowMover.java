@@ -1,7 +1,7 @@
 package domain.game;
 
 import domain.ladder.Bridge;
-import domain.ladder.Line;
+import domain.ladder.Row;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,11 +9,11 @@ import java.util.List;
 import static domain.ladder.Bridge.EMPTY;
 import static java.util.Collections.swap;
 
-public class LineMover {
+public class RowMover {
 
-    public static List<Integer> move(final Line line, final List<Integer> from) {
+    public static List<Integer> move(final Row row, final List<Integer> from) {
         final List<Integer> to = getModifiableListContainsElement(from.get(0));
-        for (final Bridge bridge : line.getBridges()) {
+        for (final Bridge bridge : row.getBridges()) {
             final Integer bridgeRightSideIndex = from.get(to.size());
             to.add(bridgeRightSideIndex);
             swapLastIfBridgeExist(bridge, to);
