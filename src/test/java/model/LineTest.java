@@ -1,6 +1,7 @@
 package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -36,4 +37,16 @@ public class LineTest {
 
         assertThat(lineState).isEqualTo(expected);
     }
+
+    @DisplayName("총 참여자 수와 랜덤 생성된 불린 값의 크기가 같지 않을 경우 예외가 발생한다.")
+    @Test
+    void validateIllegalInputException() {
+
+        int peopleCount = 3;
+        assertThatThrownBy(() -> new Line(peopleCount, List.of(false, false, false, true)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 랜덤 값 생성 개수가 총 참여자 수와 일치하지 않습니다.");
+
+    }
+
 }
