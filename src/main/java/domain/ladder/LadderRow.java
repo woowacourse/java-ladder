@@ -21,12 +21,12 @@ public class LadderRow {
         IntStream.range(0, rowPattern.size())
                 .forEach(index -> {
                     boolean value = patternGenerator.getAsBoolean();
-                    rowPattern.set(index, isPlaceableWithValue(index, value));
+                    rowPattern.set(index, isPlaceableWhenTryingToPlace(index, value));
                 });
     }
 
-    private boolean isPlaceableWithValue(int index, boolean value) {
-        return value && isPreviousIndexEmpty(index);
+    private boolean isPlaceableWhenTryingToPlace(int index, boolean isPlacing) {
+        return isPlacing && isPreviousIndexEmpty(index);
     }
 
     private boolean isPreviousIndexEmpty(int index) {
