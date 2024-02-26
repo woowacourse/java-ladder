@@ -16,18 +16,22 @@ public class RowLine {
         List<Connection> generatedConnection = generator.getConnections(peopleNumber);
         validateConnection(generatedConnection);
 
-        this.connections= new ArrayList<>();
+        this.connections = new ArrayList<>();
         this.connections.addAll(generatedConnection);
     }
-    //TODO depth 줄이기
+
     private void validateConnection(List<Connection> connections) {
         Connection beforeConnection = NOTCONNECTED;
 
         for (Connection currentConnection : connections) {
-            if (beforeConnection == CONNECTED && currentConnection == CONNECTED) {
-                throw new IllegalArgumentException("사다리 가로선이 연속되었습니다.");
-            }
+            validateSuccessive(currentConnection, beforeConnection);
             beforeConnection = currentConnection;
+        }
+    }
+
+    private void validateSuccessive(Connection currentConnection, Connection beforeConnection) {
+        if (beforeConnection == CONNECTED && currentConnection == CONNECTED) {
+            throw new IllegalArgumentException("사다리 가로선이 연속되었습니다.");
         }
     }
 
