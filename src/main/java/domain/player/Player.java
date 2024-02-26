@@ -13,8 +13,8 @@ public class Player {
         position += direction;
     }
 
-    public String getName() {
-        return name.getValue();
+    public Name getName() {
+        return name;
     }
 
     public int getPosition() {

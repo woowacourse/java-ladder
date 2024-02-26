@@ -16,7 +16,7 @@ public class NamesTest {
         final List<Name> names = List.of(duplicateName1, duplicateName2, uniqueName);
 
         // when & then
-        assertThatThrownBy(() -> new PlayerNames(names))
+        assertThatThrownBy(() -> new Players(names))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
@@ -29,6 +29,6 @@ public class NamesTest {
         final List<Name> names = List.of(uniqueName1, uniqueName2, uniqueName3);
 
         // when & then
-        assertDoesNotThrow(() -> new PlayerNames(names));
+        assertDoesNotThrow(() -> new Players(names));
     }
 }

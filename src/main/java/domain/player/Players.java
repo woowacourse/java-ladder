@@ -1,15 +1,22 @@
 package domain.player;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerNames {
+public class Players {
     private static final String DUPLICATE_EXCEPTION_MESSAGE = "[ERROR] 중복된 이름이 존재합니다.";
 
-    private final List<Name> names;
+    private final List<Player> players;
 
-    public PlayerNames(final List<Name> names) {
+    public Players(final List<Name> names) {
+        players = new ArrayList<>();
+
         validateDuplicateName(names);
-        this.names = names;
+        names.forEach(this::addPlayer);
+    }
+
+    private void addPlayer(final Name name) {
+        players.add(new Player(name, players.size()));
     }
 
     private void validateDuplicateName(List<Name> names) {
@@ -25,19 +32,23 @@ public class PlayerNames {
     }
 
     public int findMaxNameLength() {
-        return names.stream()
+        return getNames().stream()
                 .mapToInt(Name::getLength)
                 .max()
                 .orElse(0);
     }
 
     public int getPlayerCount() {
-        return names.size();
+        return players.size();
     }
 
-    public List<String> getNames() {
-        return names.stream()
-                .map(Name::getValue)
+    public List<Name> getNames() {
+        return players.stream()
+                .map(Player::getName)
                 .toList();
+    }
+
+    public Player findPlayerByIndex(final int index) {
+        return players.get(index);
     }
 }

@@ -3,7 +3,7 @@ package view;
 import domain.ladder.Ladder;
 import domain.ladder.LadderRow;
 import domain.ladder.LadderRung;
-import domain.player.PlayerNames;
+import domain.player.Players;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,13 +13,13 @@ public class OutputView {
     private static final String LADDER_COLUMN = "|";
     public static final String SPACE = " ";
 
-    public static void printPlayerNames(PlayerNames playerNames) {
+    public static void printPlayerNames(Players players) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        int maxLength = playerNames.findMaxNameLength();
-        playerNames.getNames()
+        int maxLength = players.findMaxNameLength();
+        players.getNames()
                 .stream()
-                .map(name -> alignStringCenter(name, maxLength + 1))
+                .map(name -> alignStringCenter(name.getValue(), maxLength + 1))
                 .forEach(stringBuilder::append);
 
         System.out.println(stringBuilder);
