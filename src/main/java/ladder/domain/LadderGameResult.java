@@ -20,4 +20,8 @@ public class LadderGameResult {
         }
         return result;
     }
+
+    public Map<Player, Product> getResults() {
+        return Map.copyOf(results);
+    }
 }

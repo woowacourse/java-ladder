@@ -38,4 +38,15 @@ class LadderGameResultTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("해당 플레이어는 게임에 참여하지 않았습니다");
     }
+
+    @DisplayName("전체 결과를 반환할 수 있다")
+    @Test
+    void getResultsTest() {
+        Map<Player, Product> results = Map.of(PLAYER1, PRODUCT1, PLAYER2, PRODUCT2);
+        LadderGameResult ladderGameResult = new LadderGameResult(results);
+
+        Map<Player, Product> actual = ladderGameResult.getResults();
+
+        assertThat(actual).isEqualTo(results);
+    }
 }
