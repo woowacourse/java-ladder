@@ -2,6 +2,8 @@ package view;
 
 import domain.db.Name;
 import domain.db.Names;
+import domain.db.Prize;
+import domain.db.Prizes;
 import domain.ladder.Bridge;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
@@ -15,11 +17,11 @@ public class OutputView {
     private static final String BRIDGE_LEFT_MARGIN = "     ";
 
 
-    public static void printResult(final Names names, final Ladder ladder) {
-        System.out.println("\n실행 결과");
-
+    public static void printResult(final Names names, final Ladder ladder, final Prizes prizes) {
+        System.out.println(System.lineSeparator() + "실행 결과");
         printPlayers(names.names());
         printLadder(ladder);
+        printPrizes(prizes.prizes());
     }
 
     public static void printErrorMessage(Exception e) {
@@ -51,5 +53,15 @@ public class OutputView {
 
     private static String makeBridgeMessage(final Bridge bridge) {
         return bridge.getSymbol().repeat(SINGLE_BRIDGE_LENGTH);
+    }
+
+    private static void printPrizes(final List<Prize> prizes) {
+        System.out.println(makePrizesNameMessage(prizes));
+    }
+
+    private static String makePrizesNameMessage(final List<Prize> prizes) {
+        return prizes.stream()
+                .map(prize -> String.format("%6s", prize.name()))
+                .collect(Collectors.joining());
     }
 }
