@@ -62,8 +62,10 @@ class LadderTest {
         Prize expected = new Prize("당첨");
         Player target = new Player("레디");
 
+        LadderResult ladderResult = ladder.findResult(players, result.getPrizes());
+
         //then
-        Assertions.assertThat(ladder.findResult(players, target, result.getPrizes())).isEqualTo(expected);
+        Assertions.assertThat(ladderResult.getPrize(target.getName())).isEqualTo(expected.getValue());
     }
 
 
@@ -84,28 +86,17 @@ class LadderTest {
         Result result = Result.of(prizes, personCount);
 
         //when
-        Player target0 = new Player("레디");
-        Player target1 = new Player("안나");
-        Player target2 = new Player("브라운");
-        Player target3 = new Player("레나");
+        LadderResult target = ladder.findResult(players, result.getPrizes());
 
-        Prize expected0 = new Prize("꽝2");
-        Prize expected1 = new Prize("꽝3");
-        Prize expected2 = new Prize("당첨");
-        Prize expected3 = new Prize("꽝1");
-
-        var formattedLines = ladder.getFormattedLines();
-        for (String formattedLine : formattedLines) {
+        for (String formattedLine : ladder.getFormattedLines()) {
             System.out.println(formattedLine);
         }
 
-        // TODO: 리스트로 변경하여 확인
+        LadderResult expected = LadderResult.of(names, List.of("꽝2", "꽝3", "당첨", "꽝1"));
 
         //then
-        Assertions.assertThat(ladder.findResult(players, target0, result.getPrizes())).isEqualTo(expected0);
-        Assertions.assertThat(ladder.findResult(players, target1, result.getPrizes())).isEqualTo(expected1);
-        Assertions.assertThat(ladder.findResult(players, target2, result.getPrizes())).isEqualTo(expected2);
-        Assertions.assertThat(ladder.findResult(players, target3, result.getPrizes())).isEqualTo(expected3);
+        Assertions.assertThat(target).isEqualTo(expected);
+
     }
 
     static Ladder createNothingBuildLadder(Height height, int personCount) {

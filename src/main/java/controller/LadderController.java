@@ -27,7 +27,8 @@ public class LadderController {
 
 
         outputView.printLadderResult(players.getNames(), ladder.getFormattedLines(), result.getPrizes());
-        Player player = new Player(inputView.readPlayerWantCheckResult());
-        outputView.printPlayerResult(ladder.findResult(players, player, result.getPrizes()).toString());
+        String name = inputView.readPlayerWantCheckResult();
+        Player player = new Player(name);
+        outputView.printPlayerResult(ladder.findResult(players, result.getPrizes()).toString());
     }
 }

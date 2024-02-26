@@ -48,26 +48,38 @@ public class Ladder {
         return LadderElement.EMPTY.getSymbol();
     }
 
-    public Prize findResult(final Players players, final Player target, final List<Prize> result) {
-        int index = players.getNames().indexOf(target.getName());
+    // tODO: players는 일급 컬렉션, result는 collections 형태임. 불일치 수정 필요
+    public LadderResult findResult(final Players players, final List<Prize> result) {
+
         final int ladderSize = players.size() - 1;
+        List<String> prizeResult = new ArrayList<>();
+
+        for (int index = 0; index < players.size(); index++) {
+            prizeResult.add(result.get(findLadderBottomIndex(index, ladderSize)).getValue());
+        }
+        return LadderResult.of(players.getNames(), prizeResult);
+    }
+
+
+    //TODO: 코드 전체적으로 수정
+    private int findLadderBottomIndex(int index, final int ladderWidthSize) {
         for (Line line : lines) {
             if (0 == index) {
                 if (line.isConnected(index)) {
                     index++;
                 }
-            } else if (0 < index && index < ladderSize) {
+            } else if (0 < index && index < ladderWidthSize) {
                 if (line.isConnected(index)) {
                     index++;
                 } else if (line.isConnected(index - 1)) {
                     index--;
                 }
-            } else if (index == ladderSize) {
+            } else if (index == ladderWidthSize) {
                 if (line.isConnected(index - 1)) {
                     index--;
                 }
             }
         }
-        return result.get(index);
+        return index;
     }
 }
