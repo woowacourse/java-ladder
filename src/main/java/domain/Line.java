@@ -2,33 +2,31 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import util.RandomGenerator;
 
 public class Line {
 
     private final List<Boolean> legs;
 
-    public Line() {
-        legs = new ArrayList<>();
+    private Line(List<Boolean> legs) {
+        this.legs = legs;
     }
 
-    public void makeLeg(int legCount) {
-        legs.add(generateLeg());
+    public static Line createLineWithLegs(LegGenerateStrategy legGenerateStrategy, int legCount) {
+        List<Boolean> legs = new ArrayList<>();
+        legs.add(legGenerateStrategy.generateLeg());
         for (int i = 1; i < legCount; i++) {
-            decideLegExist(i);
+            decideLegExist(legGenerateStrategy, legs, i);
         }
+        return new Line(legs);
     }
 
-    private void decideLegExist(int legIndex) {
+
+    private static void decideLegExist(LegGenerateStrategy legGenerateStrategy, List<Boolean> legs, int legIndex) {
         if (legs.get(legIndex - 1)) {
             legs.add(false);
             return;
         }
-        legs.add(generateLeg());
-    }
-
-    protected boolean generateLeg() {
-        return RandomGenerator.generateBoolean();
+        legs.add(legGenerateStrategy.generateLeg());
     }
 
     public List<Boolean> getLegs() {

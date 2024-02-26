@@ -5,6 +5,7 @@ import static message.ErrorMessage.INVALID_LADDER_HEIGHT_LANGUAGE_EXCEPTION;
 import domain.Height;
 import domain.Ladder;
 import domain.Players;
+import domain.RandomLegGenerateStrategy;
 import view.InputView;
 import view.OutputView;
 
@@ -17,7 +18,7 @@ public class LadderController {
         Players players = readPlayers();
         Height ladderHeight = readHeight();
         int ladderWidth = players.getPlayers().size() - 1;
-        Ladder ladder = Ladder.createLadderWithLines(ladderHeight, ladderWidth);
+        Ladder ladder = Ladder.createLadderWithLines(new RandomLegGenerateStrategy(), ladderHeight, ladderWidth);
 
         OutputView.printResult(players, ladder);
     }

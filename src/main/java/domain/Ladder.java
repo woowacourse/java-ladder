@@ -13,15 +13,14 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder createLadderWithLines(Height height, int width) {
-        return new Ladder(height, makeLines(height.getHeight(), width));
+    public static Ladder createLadderWithLines(LegGenerateStrategy legGenerateStrategy, Height height, int width) {
+        return new Ladder(height, makeLines(legGenerateStrategy, height.getHeight(), width));
     }
 
-    private static List<Line> makeLines(int height, int width) {
+    private static List<Line> makeLines(LegGenerateStrategy legGenerateStrategy, int height, int width) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            Line line = new Line();
-            line.makeLeg(width);
+            Line line = Line.createLineWithLegs(legGenerateStrategy, width);
             lines.add(line);
         }
         return lines;
