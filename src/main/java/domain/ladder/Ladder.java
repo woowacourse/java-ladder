@@ -7,15 +7,21 @@ import static java.util.Collections.unmodifiableList;
 
 
 public class Ladder {
-    private final BridgeMakingStrategy strategy;
     private final List<Row> rows;
 
-    public Ladder(final int width, final int height, BridgeMakingStrategy strategy) {
-        this.strategy = strategy;
-        this.rows = generateLadder(width, height);
+    public Ladder(
+            final int width,
+            final int height,
+            final BridgeMakingStrategy strategy
+    ) {
+        this.rows = generateLadder(width, height, strategy);
     }
 
-    private List<Row> generateLadder(final int width, final int height) {
+    private List<Row> generateLadder(
+            final int width,
+            final int height,
+            final BridgeMakingStrategy strategy
+    ) {
         return IntStream.range(0, height)
                 .mapToObj(ignore -> new Row(width, strategy))
                 .toList();
