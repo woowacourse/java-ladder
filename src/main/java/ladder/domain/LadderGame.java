@@ -3,7 +3,6 @@ package ladder.domain;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
@@ -18,6 +17,8 @@ public class LadderGame {
     }
 
     public static LadderGame of(Players players, Ladder ladder, Prizes prizes) {
+        validateSize(players, ladder, prizes);
+
         Map<Player, Prize> results = new LinkedHashMap<>();
 
         for (int i = 0; i < players.size(); i++) {
@@ -29,6 +30,16 @@ public class LadderGame {
         }
 
         return new LadderGame(results);
+    }
+
+    private static void validateSize(Players players, Ladder ladder, Prizes prizes) {
+        if (players.size() != ladder.getColumnSize() + 1) {
+            throw new IllegalArgumentException("참가자 수와 사다리의 출발 지점 수가 일치하지 않습니다.");
+        }
+
+        if (prizes.size() != ladder.getColumnSize() + 1) {
+            throw new IllegalArgumentException("상품 수와 사다리의 도착 지점 수가 일치하지 않습니다.");
+        }
     }
 
     public Prize getResultByPlayerName(String playerName) {

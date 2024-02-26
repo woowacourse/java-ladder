@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 import ladder.domain.LadderGame;
@@ -31,14 +32,42 @@ public class LadderController {
     }
 
     public void run() {
-        Players players = retryOnException(() -> Players.from(inputView.readPlayerNames()));
-        Prizes prizes = retryOnException(() -> Prizes.of(inputView.readPrizeNames(), players.size()));
-        Ladder ladder = retryOnException(() -> Ladder.of(inputView.readLadderHeight(), players.size(), rungGenerator));
+        Players players = retryOnException(this::initPlayers);
+        int playerCount = players.size();
+
+        Prizes prizes = retryOnException(() -> initPrizes(playerCount));
+        Ladder ladder = retryOnException(() -> initLadder(playerCount));
 
         LadderGame ladderGame = LadderGame.of(players, ladder, prizes);
 
         printLadderResult(players, ladder, prizes);
         printResultForSelectedPlayer(ladderGame);
+    }
+
+    private Players initPlayers() {
+        List<String> playerNames = inputView.readPlayerNames();
+
+        return Players.from(playerNames);
+    }
+
+    private Prizes initPrizes(int playerCount) {
+        List<String> prizeNames = inputView.readPrizeNames();
+
+        validatePrizeCount(playerCount, prizeNames.size());
+
+        return Prizes.from(inputView.readPrizeNames());
+    }
+
+    private static void validatePrizeCount(int playerCount, int prizeCount) {
+        if (prizeCount != playerCount) {
+            throw new IllegalArgumentException("참여자 수와 상품 수가 일치하지 않습니다.");
+        }
+    }
+
+    private Ladder initLadder(int playerCount) {
+        int height = inputView.readLadderHeight();
+
+        return Ladder.of(height, playerCount, rungGenerator);
     }
 
     private void printLadderResult(Players players, Ladder ladder, Prizes prizes) {

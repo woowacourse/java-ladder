@@ -10,9 +10,7 @@ public class Prizes {
         this.prizes = prizes;
     }
 
-    public static Prizes of(List<String> prizeNames, int playersCount) {
-        validateSize(prizeNames.size(), playersCount);
-
+    public static Prizes from(List<String> prizeNames) {
         List<Prize> prizes = prizeNames.stream()
                 .map(Prize::new)
                 .toList();
@@ -20,10 +18,8 @@ public class Prizes {
         return new Prizes(prizes);
     }
 
-    private static void validateSize(int prizesSize, int playersCount) {
-        if (prizesSize != playersCount) {
-            throw new IllegalArgumentException("참가자 수와 상품 수가 일치하지 않습니다.");
-        }
+    public int size() {
+        return prizes.size();
     }
 
     public List<Prize> getPrizes() {

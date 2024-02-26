@@ -44,11 +44,15 @@ public class Ladder {
     }
 
     private void validateIndexRange(int index) {
-        int columSize = lines.get(0).getRungs().size();
+        int columSize = getColumnSize();
 
         if (0 > index || index > columSize) {
             throw new IllegalArgumentException("index가 범위를 벗어났습니다.");
         }
+    }
+
+    public int getColumnSize() {
+        return lines.get(0).getRungs().size();
     }
 
     public List<Line> getLines() {

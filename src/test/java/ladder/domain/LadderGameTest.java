@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Rung;
+import ladder.domain.ladder.generator.RandomRungGenerator;
 import ladder.domain.player.Players;
 import ladder.domain.prize.Prize;
 import ladder.domain.prize.Prizes;
@@ -21,7 +22,7 @@ class LadderGameTest {
     @DisplayName("참가자와 상품을 매칭한다.")
     void matchPlayersAndPrizes(String playerName, String prize) {
         Players players = Players.from(List.of("a", "b", "c"));
-        Prizes prizes = Prizes.of(List.of("1", "2", "3"), players.size());
+        Prizes prizes = Prizes.from(List.of("1", "2", "3"));
 
         int height = 1;
         List<Rung> rungs = List.of(Rung.EXIST, Rung.EMPTY);
@@ -36,7 +37,7 @@ class LadderGameTest {
     @DisplayName("존재하지 않는 참가자일 경우 예외를 발생한다.")
     void getResultByPlayerName() {
         Players players = Players.from(List.of("a", "b"));
-        Prizes prizes = Prizes.of(List.of("1", "2"), players.size());
+        Prizes prizes = Prizes.from(List.of("1", "2"));
 
         int height = 1;
         List<Rung> rungs = List.of(Rung.EXIST);
@@ -45,6 +46,19 @@ class LadderGameTest {
         LadderGame ladderGame = LadderGame.of(players, ladder, prizes);
 
         assertThatThrownBy(() -> ladderGame.getResultByPlayerName("c"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("참가자 수, 사다리의 출발 지점 수, 상품 수가 일치하지 않으면 예외를 발생한다.")
+    void validateSize() {
+        Players players = Players.from(List.of("a", "b"));
+        Prizes prizes = Prizes.from(List.of("1", "2", "3"));
+
+        int height = 1;
+        Ladder ladder = Ladder.of(height, players.size(), new RandomRungGenerator());
+
+        assertThatThrownBy(() -> LadderGame.of(players, ladder, prizes))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
