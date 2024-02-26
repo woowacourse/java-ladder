@@ -6,6 +6,10 @@ public enum ErrorMessage {
     INVALID_LADDER_LANGUAGE_EXCEPTION("사다리 높이는 숫자여야 합니다."),
     INVALID_LADDER_WIDTH_EXCEPTION("사다리 너비는 1이상 이어야 합니다."),
     OVERLAPPED_LINE_EXCEPTION("사다리 라인은 연속될 수 없습니다."),
+
+    NO_RESULT_EXCEPTION("실행 결과를 입력해야 합니다."),
+    INVALID_RESULT_COUNT_EXCEPTION("실행 결과의 숫자는 플레이어의 수와 같아야합니다."),
+
     NO_PLAYER_NAME_EXCEPTION("플레이어 이름을 입력해야 합니다."),
     INVALID_PLAYER_NAME_LANGUAGE_EXCEPTION("플레이어 이름은 영어여야 합니다."),
     INVALID_PLAYER_NAME_SIZE_EXCEPTION("플레이어 이름은 5자 이하여야 합니다."),

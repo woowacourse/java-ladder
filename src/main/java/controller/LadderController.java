@@ -2,6 +2,7 @@ package controller;
 
 import domain.Ladder;
 import domain.Players;
+import domain.Results;
 import util.generator.RandomLineGenerator;
 import view.InputView;
 import view.OutputView;
@@ -15,6 +16,7 @@ public class LadderController {
 
     public void run() {
         Players players = readPlayers();
+        Results results = readResults(players.getPlayers().size());
         Ladder ladder = readLadder(players);
         OutputView.printResult(players, ladder);
     }
@@ -28,6 +30,15 @@ public class LadderController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readLadder(players);
+        }
+    }
+
+    private Results readResults(int playerCount) {
+        try {
+            return new Results(InputView.readResults(), playerCount);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readResults(playerCount);
         }
     }
 
