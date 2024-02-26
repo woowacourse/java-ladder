@@ -9,11 +9,11 @@ public class Participant {
         this.position = new Position(position);
     }
 
-    public Name getName() {
-        return name;
+    public String getName() {
+        return name.getValue();
     }
 
-    public Position getPosition() {
-        return position;
+    public int getPosition() {
+        return position.getValue();
     }
 }

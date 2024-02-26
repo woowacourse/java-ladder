@@ -52,7 +52,6 @@ public class ParticipantsTest {
         List<Participant> createdParticipants = participants.getValues();
         assertThat(createdParticipants)
                 .extracting(Participant::getPosition)
-                .extracting(Position::getValue)
                 .containsExactly(0, 1, 2, 3);
     }
 }
