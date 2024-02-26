@@ -1,16 +1,13 @@
 package domain;
 
-import domain.BooleanGenerator;
-import domain.RandomBooleanGenerator;
 import domain.line.Line;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class Lines {
-    final int height;
-    final int personCount;
+    private final int height;
+    private final int personCount;
     private final BooleanGenerator generator = new RandomBooleanGenerator();
 
     public Lines(final int height, final int personCount) {
