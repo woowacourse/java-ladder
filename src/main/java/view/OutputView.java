@@ -4,6 +4,7 @@ import domain.ladder.Bridge;
 import domain.ladder.Bridges;
 import domain.ladder.Ladder;
 import domain.player.Names;
+import domain.result.Results;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,10 +17,6 @@ public class OutputView {
         for (String name : names.getNames()) {
             System.out.printf("%5s ", name);
         }
-        System.out.println();
-    }
-
-    public static void printNewLine() {
         System.out.println();
     }
 
@@ -39,6 +36,17 @@ public class OutputView {
             return "-".repeat(5);
         }
         return " ".repeat(5);
+    }
+
+    public static void printResults(Results result) {
+        for (String name : result.getResults()) {
+            System.out.printf("%5s ", name);
+        }
+        System.out.println();
+    }
+
+    public static void printNewLine() {
+        System.out.println();
     }
 
     public static void printException(Exception exception) {

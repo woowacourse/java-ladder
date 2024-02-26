@@ -27,4 +27,10 @@ public class Results {
     public Result get(int index) {
         return results.get(index);
     }
+
+    public List<String> getResults() {
+        return results.stream()
+                .map(result -> result.getResultName())
+                .toList();
+    }
 }
