@@ -1,19 +1,25 @@
 package view;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import domain.BooleanGenerator;
-import domain.line.Line;
 import domain.Names;
-import java.util.List;
+import domain.line.Line;
+import domain.lines.CountToPoints;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ResultMessageTest {
     @Test
     @DisplayName("각 라인의 출력 메시지를 반환한다.")
     void generateLineResult() {
-        Line line = new Line(3, new FixedGenerator(true));
+        int personCount = 3;
+        FixedGenerator generator = new FixedGenerator(true);
+        CountToPoints countToPoints = new CountToPoints(personCount, generator);
+        Line line = new Line(countToPoints.value());
+
         String expected = "-----|     |\n";
         String actual = ResultMessage.of(line);
 
