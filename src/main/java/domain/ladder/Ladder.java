@@ -3,12 +3,11 @@ package domain.ladder;
 import domain.player.Name;
 import domain.player.Names;
 import domain.ladder.bridgeConstructstrategy.BridgeConstructStrategy;
-import domain.result.Result;
-import domain.result.Results;
+import domain.result.Prize;
+import domain.result.Prizes;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
@@ -23,11 +22,11 @@ public class Ladder {
                 .toList();
     }
 
-    public Map<Name, Result> getMatchResult(Names names, Results results) {
+    public Map<Name, Prize> getMatchResult(Names names, Prizes prizes) {
         List<Integer> matchIndexes = calculateResult(names);
-        Map<Name, Result> matchResults = new HashMap<>();
+        Map<Name, Prize> matchResults = new HashMap<>();
         for (int index = 0; index < names.size(); index++) {
-            matchResults.put(names.get(index), results.get(matchIndexes.get(index)));
+            matchResults.put(names.get(index), prizes.get(matchIndexes.get(index)));
         }
         return matchResults;
     }

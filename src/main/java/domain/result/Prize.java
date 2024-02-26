@@ -2,12 +2,12 @@ package domain.result;
 
 import java.util.Objects;
 
-public class Result {
+public class Prize {
     private static final int MAX_RESULT_LENGTH = 5;
 
     private final String resultName;
 
-    public Result(String resultName) {
+    public Prize(String resultName) {
         validate(resultName);
         this.resultName = resultName;
     }
@@ -32,8 +32,8 @@ public class Result {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Result result = (Result) o;
-        return Objects.equals(resultName, result.resultName);
+        Prize prize = (Prize) o;
+        return Objects.equals(resultName, prize.resultName);
     }
 
     @Override

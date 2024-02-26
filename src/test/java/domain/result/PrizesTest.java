@@ -10,20 +10,20 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class ResultsTest {
+class PrizesTest {
 
     @DisplayName("2개 이상의 결과를 포함할 경우 정상적으로 객체가 생성된다.")
     @Test
     void constructSuccessTest() {
         assertThatNoException()
-                .isThrownBy(() -> new Results(List.of("1", "2")));
+                .isThrownBy(() -> new Prizes(List.of("1", "2")));
     }
 
     @DisplayName("2개 미만의 결과로 객체를 생성할 경우 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("getSmallResultsTestProvider")
     void constructFailWithTooSmallResults(List<String> results) {
-        assertThatThrownBy(() -> new Results(results))
+        assertThatThrownBy(() -> new Prizes(results))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

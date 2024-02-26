@@ -2,15 +2,15 @@ package domain.result;
 
 import java.util.List;
 
-public class Results {
+public class Prizes {
     private static final int MIN_RESULT_SIZE = 2;
 
-    private final List<Result> results;
+    private final List<Prize> prizes;
 
-    public Results(List<String> resultNames) {
+    public Prizes(List<String> resultNames) {
         validate(resultNames);
-        this.results = resultNames.stream()
-                .map(Result::new)
+        this.prizes = resultNames.stream()
+                .map(Prize::new)
                 .toList();
     }
 
@@ -21,15 +21,15 @@ public class Results {
     }
 
     public int size() { // TODO : 얘가 정말 필요한 메서드인가?
-        return results.size();
+        return prizes.size();
     }
 
-    public Result get(int index) {
-        return results.get(index);
+    public Prize get(int index) {
+        return prizes.get(index);
     }
 
     public List<String> getResults() {
-        return results.stream()
+        return prizes.stream()
                 .map(result -> result.getResultName())
                 .toList();
     }
