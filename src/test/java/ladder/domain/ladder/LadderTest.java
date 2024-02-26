@@ -3,6 +3,7 @@ package ladder.domain.ladder;
 import ladder.domain.Position;
 import ladder.domain.generator.LadderStepsGenerator;
 import ladder.domain.participant.Participants;
+import ladder.testutil.TestLadderStepsGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,12 +38,5 @@ class LadderTest {
         );
         final LadderStepsGenerator ladderStepsGenerator = new TestLadderStepsGenerator(ladderSteps);
         return new Ladder(ladderStepsGenerator);
-    }
-
-    private record TestLadderStepsGenerator(List<LadderStep> ladderSteps) implements LadderStepsGenerator {
-        @Override
-        public List<LadderStep> generate() {
-                return ladderSteps;
-            }
     }
 }
