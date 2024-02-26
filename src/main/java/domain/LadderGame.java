@@ -8,6 +8,9 @@ public class LadderGame {
         if (steps.get(currentColumn).isExist()) {
             return currentColumn + 1;
         }
+        if (currentColumn > 0 && steps.get(currentColumn - 1).isExist()) {
+            return currentColumn - 1;
+        }
         return currentColumn;
     }
 }
