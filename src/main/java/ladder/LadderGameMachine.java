@@ -83,13 +83,6 @@ public class LadderGameMachine {
         OutputView.printAllResults(results);
     }
 
-    private List<AllResults> generateAllResults(final List<GameResult> gameResults) {
-        List<GameResult> results = new ArrayList<>(gameResults);
-        return results.stream()
-                .map(result -> new AllResults(result.getUserName().value(), result.getDestination().value()))
-                .toList();
-    }
-
     private RequestName initRequestName(UserNames userNames) {
         try {
             String input = InputView.readRequestName(CONSOLE);
@@ -100,4 +93,10 @@ public class LadderGameMachine {
         }
     }
 
+    private List<AllResults> generateAllResults(final List<GameResult> gameResults) {
+        List<GameResult> results = new ArrayList<>(gameResults);
+        return results.stream()
+                .map(result -> new AllResults(result.getUserName().value(), result.getDestination().value()))
+                .toList();
+    }
 }
