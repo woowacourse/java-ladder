@@ -15,7 +15,7 @@ public class OutPutView {
     private static final String NAMES_INPUT = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String LADDER_RESULT_INPUT = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String HEIGHT_INPUT = "최대 사다리 높이는 몇 개인가요?";
-    private static final String PREFIX_RESULT = "\n실행 결과\n";
+    private static final String LADDER_PREFIX = "\n사다리 결과\n";
 
     private static final String VERTICAL_BRIDGE = "|";
     private static final String EXIST_BRIDGE = "-----";
@@ -37,7 +37,7 @@ public class OutPutView {
         String namesString = makeNamesString(names);
         String ladderString = makeLadderString(ladder);
         String ladderResultString = makeLadderResultsString(ladderResults);
-        System.out.println(String.join("\n", PREFIX_RESULT, namesString, ladderString, ladderResultString));
+        System.out.println(String.join("\n", LADDER_PREFIX, namesString, ladderString, ladderResultString));
     }
 
 
