@@ -41,4 +41,14 @@ public class WinningsTest {
         Assertions.assertThat(test)
                 .isEqualTo(List.of(new Winning("test1").getWinning(), new Winning("test2").getWinning()));
     }
+
+    @DisplayName("Players 와 다른 개수의 실행결과를 받은 경우 예외를 출력한다.")
+    @Test
+    void getWinningNumberDifferentFromPlayersTest() {
+        Players players = new Players(List.of("1", "2", "3"));
+        Winnings winnings = new Winnings(List.of("1", "2"));
+        Assertions.assertThatThrownBy(() -> winnings.isSameNumberWithPlayers(players))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사람 이름과 같은 개수를 입력하여야 합니다.");
+    }
 }
