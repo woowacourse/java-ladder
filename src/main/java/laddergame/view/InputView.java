@@ -33,4 +33,7 @@ public class InputView {
         }
     }
 
+    public List<String> readResults() {
+        return null;
+    }
 }

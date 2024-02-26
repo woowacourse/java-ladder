@@ -1,14 +1,14 @@
 package laddergame.view;
 
-import laddergame.dto.Result;
+import laddergame.dto.LadderResult;
 
 public class OutputView {
 
-    public void printResult(final Result result) {
+    public void printResult(final LadderResult ladderResult) {
         System.out.println(
                 "실행결과" + System.lineSeparator() +
-                        NameFormatter.formatNames(result.names()) + System.lineSeparator() +
-                        LadderFormatter.formatLadder(result)
+                        NameFormatter.formatNames(ladderResult.names()) + System.lineSeparator() +
+                        LadderFormatter.formatLadder(ladderResult)
         );
     }
 

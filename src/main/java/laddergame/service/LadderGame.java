@@ -5,7 +5,8 @@ import laddergame.domain.ladder.LadderGenerator;
 import laddergame.domain.ladder.LadderHeight;
 import laddergame.domain.ladder.LineSize;
 import laddergame.domain.name.Names;
-import laddergame.dto.Result;
+import laddergame.domain.result.Results;
+import laddergame.dto.LadderResult;
 
 public class LadderGame {
 
@@ -15,10 +16,10 @@ public class LadderGame {
         this.ladderGenerator = ladderGenerator;
     }
 
-    public Result createLadder(final Names names, final LadderHeight ladderHeight) {
+    public LadderResult createLadder(final Names names, final Results results, final LadderHeight ladderHeight) {
         final LineSize lineSize = new LineSize(names);
         final Ladder ladder = ladderGenerator.generate(lineSize, ladderHeight);
 
-        return Result.of(names, ladder);
+        return LadderResult.of(names, ladder, results);
     }
 }
