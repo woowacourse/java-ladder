@@ -15,9 +15,8 @@ public class LadderTest {
     @Test
     void ladderHeight() {
         Height height = new Height(5);
-        Ladder ladder = new Ladder();
         Participants participants = new Participants(List.of("pobi", "left", "right"));
-        ladder.build(new LadderGenerateStrategy(), height, participants);
+        Ladder ladder = new Ladder(new LadderGenerateStrategy(), height, participants);
         assertThat(ladder.getLadderRows().size()).isEqualTo(height.getValue());
     }
 
@@ -26,9 +25,8 @@ public class LadderTest {
     @Test
     void build() {
         Height height = new Height(1);
-        Ladder ladder = new Ladder();
         Participants participants = new Participants(List.of("pobi", "left", "right"));
-        ladder.build((x) -> List.of(true, false), height, participants);
+        Ladder ladder = new Ladder((x) -> List.of(true, false), height, participants);
         assertThat(ladder.getRow(0).getSpaces()).isEqualTo(List.of(Space.LINE, Space.EMPTY));
     }
 }
