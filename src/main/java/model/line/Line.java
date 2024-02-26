@@ -6,39 +6,34 @@ import java.util.List;
 import model.bridge.Bridge;
 
 public final class Line {
-    private static final String INVALID_BRIDGE_CODE = "유효하지 않은 다리 코드입니다.";
-
     private final List<Bridge> bridges;
 
-    private Line(List<Bridge> bridges) {
-        this.bridges = bridges;
+    public Line(List<Bridge> bridgesSource) {
+        List<Bridge> bridges = getBridges(bridgesSource);
+        this.bridges = Collections.unmodifiableList(bridges);
     }
 
-    public static Line from(List<Integer> binaryNumbers) {
+    private List<Bridge> getBridges(List<Bridge> bridgesSource) {
         List<Bridge> bridges = new ArrayList<>();
-        for (int binaryNumber : binaryNumbers) {
-            bridges.add(generateBridge(binaryNumber, bridges));
+        for (Bridge bridgeSource : bridgesSource) {
+            Bridge bridge = chooseBridge(bridgeSource, bridges);
+            bridges.add(bridge);
         }
-        return new Line(bridges);
+        return bridges;
     }
 
-    private static Bridge generateBridge(int binaryNumber, List<Bridge> bridges) {
+    private Bridge chooseBridge(Bridge bridge, List<Bridge> bridges) {
         if (bridges.isEmpty() || getLastBridge(bridges).isUnconnected()) {
-            return getBridgeByCodeOrThrow(binaryNumber);
+            return bridge;
         }
         return Bridge.UNCONNECTED;
     }
 
-    private static Bridge getLastBridge(List<Bridge> bridges) {
+    private Bridge getLastBridge(List<Bridge> bridges) {
         return bridges.get(bridges.size() - 1);
     }
 
-    private static Bridge getBridgeByCodeOrThrow(int bridgeCode) {
-        return Bridge.findBridgeByCode(bridgeCode)
-                .orElseThrow(() -> new IllegalStateException(INVALID_BRIDGE_CODE));
-    }
-
     public List<Bridge> getBridges() {
-        return Collections.unmodifiableList(bridges);
+        return bridges;
     }
 }
