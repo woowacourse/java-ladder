@@ -27,16 +27,23 @@ public class Ladder {
     }
 
     private static List<LadderPath> makeRandomRow(int width) {
-        List<LadderPath> randomPath = new ArrayList<>();
+        List<LadderPath> randomPath = new ArrayList<>(generatePairableRandomPath(width));
 
-        while (randomPath.size() < width - 1) {
-            randomPath.addAll(generateRandomPath());
-        }
         if (randomPath.size() < width) {
             randomPath.add(LadderPath.STAY);
         }
 
         return randomPath;
+    }
+
+    private static List<LadderPath> generatePairableRandomPath(int maxWidth) {
+        List<LadderPath> randomPathWithPair = new ArrayList<>();
+
+        while (randomPathWithPair.size() < maxWidth - 1) {
+            randomPathWithPair.addAll(generateRandomPath());
+        }
+
+        return randomPathWithPair;
     }
 
     private static List<LadderPath> generateRandomPath() {
