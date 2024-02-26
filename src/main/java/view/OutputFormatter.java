@@ -16,7 +16,7 @@ public class OutputFormatter {
     }
 
     public String toLine(Line rawLine) {
-        String line = rawLine.getPoints().stream()
+        String line = rawLine.getSteps().stream()
                 .map(this::getStep)
                 .collect(Collectors.joining());
         return "    " + line;

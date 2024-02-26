@@ -62,7 +62,7 @@ public class Line {
         return Objects.hash(steps);
     }
 
-    public List<Step> getPoints() {
+    public List<Step> getSteps() {
         return Collections.unmodifiableList(steps);
     }
 }

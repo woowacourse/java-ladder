@@ -11,11 +11,11 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder create(int height, PlayerCount playerCount, RandomStepGenerator randomStepGenerator) {
+    public static Ladder create(int height, PlayerCount playerCount, StepGenerator randomStepGenerator) {
         return new Ladder(createLines(height, playerCount, randomStepGenerator));
     }
 
-    private static List<Line> createLines(int height, PlayerCount playerCount, RandomStepGenerator randomStepGenerator) {
+    private static List<Line> createLines(int height, PlayerCount playerCount, StepGenerator randomStepGenerator) {
         List<Line> lines = new ArrayList<>();
 
         for (int buildHeight = 0; buildHeight < height; buildHeight++) {
