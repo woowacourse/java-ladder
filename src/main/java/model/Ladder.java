@@ -33,19 +33,12 @@ public class Ladder {
 
     private String formatLine(Line line) {
         StringBuilder lineBuilder = new StringBuilder();
-        lineBuilder.append(LadderElement.COLUMN.getSymbol());
+        lineBuilder.append("|");
         for (int index = 0; index < line.size(); index++) {
-            lineBuilder.append(getElement(line.isConnected(index)));
-            lineBuilder.append(LadderElement.COLUMN.getSymbol());
+            lineBuilder.append(line.getLadderStatus(index).getLadderForm());
+            lineBuilder.append("|");
         }
         return lineBuilder.toString();
-    }
-
-    private String getElement(boolean hasBridge) {
-        if (hasBridge) {
-            return LadderElement.ROW.getSymbol();
-        }
-        return LadderElement.EMPTY.getSymbol();
     }
 
     // tODO: players는 일급 컬렉션, result는 collections 형태임. 불일치 수정 필요

@@ -19,6 +19,10 @@ public class Line {
         return points.get(index).isConnected();
     }
 
+    public LadderStatus getLadderStatus(int index) {
+        return points.get(index);
+    }
+
     public List<LadderStatus> getPoints() {
         return points;
     }
