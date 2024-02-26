@@ -53,13 +53,4 @@ class LadderTest {
         assertThatThrownBy(() -> Ladder.of(height, 4, rungGenerator))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    @Test
-    @DisplayName("시작 인덱스가 범위를 벗어날 경우 예외를 발생한다")
-    void testValidateIndexRange() {
-        RungGenerator rungGenerator = new RandomRungGenerator();
-        Ladder ladder = Ladder.of(3, 4, rungGenerator);
-        assertThatThrownBy(() -> ladder.findEndIndex(4))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }

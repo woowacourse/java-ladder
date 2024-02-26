@@ -33,22 +33,13 @@ public class Ladder {
     }
 
     public int findEndIndex(int index) {
-        validateIndexRange(index);
-
         int currentIndex = index;
+
         for (Floor floor : floors) {
             currentIndex = floor.findConnectedIndex(currentIndex);
         }
 
         return currentIndex;
-    }
-
-    private void validateIndexRange(int index) {
-        int columSize = getColumnSize();
-
-        if (0 > index || index > columSize) {
-            throw new IllegalArgumentException("index가 범위를 벗어났습니다.");
-        }
     }
 
     public int getColumnSize() {

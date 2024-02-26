@@ -1,20 +1,19 @@
 package ladder.domain.ladder;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import ladder.domain.ladder.generator.RungGenerator;
 
 public class Floor {
     private final RungGenerator rungGenerator;
-    private final List<Rung> rungs;
+    private final Rungs rungs;
 
     public Floor(int playerCount, RungGenerator rungGenerator) {
         this.rungGenerator = rungGenerator;
         this.rungs = generateRungs(playerCount);
     }
 
-    public List<Rung> generateRungs(int playerCount) {
+    public Rungs generateRungs(int playerCount) {
         List<Rung> rungs = new ArrayList<>();
 
         for (int i = 0; i < playerCount - 1; i++) {
@@ -22,7 +21,7 @@ public class Floor {
             rungs.add(rung);
         }
 
-        return rungs;
+        return new Rungs(rungs);
     }
 
     private Rung generateRung(List<Rung> rungs) {
@@ -39,28 +38,11 @@ public class Floor {
         return previousRungIsEmpty && currentRung.isExist();
     }
 
-
     public int findConnectedIndex(int index) {
-        if (canMoveLeft(index)) {
-            return index - 1;
-        }
-
-        if (canMoveRight(index)) {
-            return index + 1;
-        }
-
-        return index;
-    }
-
-    private boolean canMoveLeft(int index) {
-        return index > 0 && rungs.get(index - 1).isExist();
-    }
-
-    private boolean canMoveRight(int index) {
-        return index < rungs.size() && rungs.get(index).isExist();
+        return rungs.findConnectedIndex(index);
     }
 
     public List<Rung> getRungs() {
-        return Collections.unmodifiableList(rungs);
+        return rungs.getRungs();
     }
 }
