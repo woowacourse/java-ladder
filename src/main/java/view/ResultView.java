@@ -24,7 +24,7 @@ public class ResultView {
 
 
     private String printLine(List<Integer> indexes, int personCount) {
-        int maxHorizontalLines =personCount-1;
+        int maxHorizontalLines = personCount - 1;
         StringBuilder line = new StringBuilder(INTERVAL + VERTICAL_LINE);
         IntStream.range(0, maxHorizontalLines)
                 .forEach(index -> line
