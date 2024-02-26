@@ -12,8 +12,8 @@ public class LadderGame {
         this.ladderResults = ladderResults;
     }
 
-    public LadderResult drive(int index) {
-        return ladderResults.get(ladder.drive(index));
+    public LadderResult drive(String name) {
+        return ladderResults.get(ladder.drive(names.indexOf(name)));
     }
 
     private void validateCountEqual(Ladder ladder, Names names, LadderResults ladderResults) {

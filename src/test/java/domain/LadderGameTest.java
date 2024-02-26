@@ -24,7 +24,7 @@ class LadderGameTest {
         LadderResults ladderResults = new LadderResults(List.of(new LadderResult("123"), new LadderResult("456")));
 
         LadderGame ladderGame = new LadderGame(ladder, names, ladderResults);
-        assertThat(ladderGame.drive(1).getResult()).isEqualTo("456");
+        assertThat(ladderGame.drive("잉크").getResult()).isEqualTo("456");
     }
 
     @DisplayName("열 개수와 실행 결과 개수가 일치하지 않으면 생성에 실패한다")
