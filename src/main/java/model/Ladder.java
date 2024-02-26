@@ -61,25 +61,28 @@ public class Ladder {
     }
 
 
-    //TODO: 코드 전체적으로 수정
+    //TODO: 코드명 수정
     private int findLadderBottomIndex(int index, final int ladderWidthSize) {
         for (Line line : lines) {
-            if (0 == index) {
-                if (line.isConnected(index)) {
-                    index++;
-                }
-            } else if (0 < index && index < ladderWidthSize) {
-                if (line.isConnected(index)) {
-                    index++;
-                } else if (line.isConnected(index - 1)) {
-                    index--;
-                }
-            } else if (index == ladderWidthSize) {
-                if (line.isConnected(index - 1)) {
-                    index--;
-                }
-            }
+            index = move(index, ladderWidthSize, line);
         }
         return index;
+    }
+
+    private int move(int index, final int ladderWidthSize, final Line line) {
+        if (0 == index && line.isConnected(index)) {
+            index++;
+        } else if (isMiddle(index, ladderWidthSize) && line.isConnected(index)) {
+            index++;
+        } else if (isMiddle(index, ladderWidthSize) && line.isConnected(index - 1)) {
+            index--;
+        } else if (index == ladderWidthSize && line.isConnected(index - 1)) {
+            index--;
+        }
+        return index;
+    }
+
+    private boolean isMiddle(final int index, final int ladderWidthSize) {
+        return 0 < index && index < ladderWidthSize;
     }
 }
