@@ -15,7 +15,7 @@ public class Line {
 
     private void generateRandomBridge(final int personCount, Generator generator) {
         boolean randomLine = generator.generate();
-        final Bridge firstBridge = Bridge.findByHasLine(randomLine);
+        final Bridge firstBridge = Bridge.findByHasBridge(randomLine);
 
         bridges.add(firstBridge);
 
@@ -30,7 +30,7 @@ public class Line {
             bridges.add(Bridge.NON_BRIDGE);
             return;
         }
-        bridges.add(Bridge.findByHasLine(generator.generate()));
+        bridges.add(Bridge.findByHasBridge(generator.generate()));
     }
     public List<Bridge> getPoints() {
         return bridges;
