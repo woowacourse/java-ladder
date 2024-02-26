@@ -26,13 +26,13 @@ public class OutputView {
     }
 
     public void printResultMessage() {
-        System.out.println("실행결과" + System.lineSeparator());
+        System.out.println("사다리 결과" + System.lineSeparator());
     }
 
-    public void printNames(List<String> names) {
+    public void printTokens(List<String> tokens) {
         StringJoiner joiner = new StringJoiner(" ");
-        names.stream()
-                .map(this::formatName)
+        tokens.stream()
+                .map(this::formatToken)
                 .forEach(joiner::add);
 
         System.out.println(joiner.toString());
@@ -68,7 +68,7 @@ public class OutputView {
         return EMPTY_LADDER_CHARACTER.repeat(LADDER_WIDTH_UNIT);
     }
 
-    private String formatName(String name) {
-        return String.format(NAME_PRINT_FORMAT, name);
+    private String formatToken(String token) {
+        return String.format(NAME_PRINT_FORMAT, token);
     }
 }

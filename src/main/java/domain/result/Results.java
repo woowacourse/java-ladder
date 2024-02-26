@@ -15,4 +15,10 @@ public class Results {
     public Result get(int index) {
         return results.get(index);
     }
+
+    public List<String> getRawResults() {
+        return results.stream()
+                .map(Result::result)
+                .toList();
+    }
 }

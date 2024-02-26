@@ -31,7 +31,7 @@ public class LadderGame {
         ladder.drawLines(supplier);
         List<RowPatternDto> patterns = ladder.getLadderPatterns();
 
-        printLadderResult(players.getNames(), patterns);
+        printLadderResult(players.getRawNames(), results.getRawResults(), patterns);
     }
 
     private Players getNames() {
@@ -52,9 +52,10 @@ public class LadderGame {
         return new LadderHeight(height);
     }
 
-    private void printLadderResult(List<String> names, List<RowPatternDto> rowPatterns) {
+    private void printLadderResult(List<String> names, List<String> results, List<RowPatternDto> rowPatterns) {
         outputView.printResultMessage();
-        outputView.printNames(names);
+        outputView.printTokens(names);
         outputView.printLadder(rowPatterns);
+        outputView.printTokens(results);
     }
 }

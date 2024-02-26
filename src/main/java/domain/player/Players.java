@@ -20,7 +20,7 @@ public class Players {
                 .toList();
     }
 
-    public List<String> getNames() {
+    public List<String> getRawNames() {
         return names.stream()
                 .map(Name::name)
                 .toList();
