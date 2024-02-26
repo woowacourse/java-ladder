@@ -11,26 +11,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class LadderGameTest {
 
-    @DisplayName("사다리 높이가 0 이하면 예외가 발생한다.")
-    @ParameterizedTest
-    @ValueSource(ints = {-5, -1, 0})
-    void validateLadderHeight(int given) {
-        Participants participants = new Participants(List.of(
-                new Participant("daon"),
-                new Participant("ash"),
-                new Participant("ted")
-        ));
-        RandomGenerator randomGenerator = new RandomGenerator();
-
-        assertThatThrownBy(() -> new LadderGame(given, participants, randomGenerator))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 사다리 높이는 1 이상의 정수이어야 한다.");
-    }
-
     @DisplayName("사다리 높이와, 참여자 수, 생성기를 이용하여 사다리를 반환한다.")
     @Test
     void createLadder() {
-        int ladderHeight = 3;
+        Height ladderHeight = new Height("3");
         Participants participants = new Participants(List.of(
                 new Participant("daon"),
                 new Participant("ash"),
@@ -39,7 +23,6 @@ public class LadderGameTest {
         RandomGenerator randomGenerator = new RandomGenerator();
         LadderGame ladderGame = new LadderGame(ladderHeight, participants, randomGenerator);
         Ladder result = ladderGame.createLadder();
-
         assertThat(result).isNotNull();
     }
 }

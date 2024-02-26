@@ -5,6 +5,8 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
 import java.util.Scanner;
+
+import model.Height;
 import model.Participant;
 import model.Participants;
 
@@ -21,24 +23,16 @@ public class InputView {
                 .collect(collectingAndThen(toList(), Participants::new));
     }
 
-    public int readLadderHeight() {
+    public Height readLadderHeight() {
         System.out.println();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String input = scanner.nextLine();
-        return parseInt(input);
+        return new Height(input);
     }
 
     private void validateParticipantsNames(String input) {
         if (input == null || input.isBlank() || input.endsWith(DELIMITER)) {
             throw new IllegalArgumentException("[ERROR] 입력값은 공백이거나 구분자("+ DELIMITER +")로 끝날 수 없다.");
-        }
-    }
-
-    private int parseInt(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 숫자형식이어야 한다.");
         }
     }
 }

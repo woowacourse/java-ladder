@@ -7,14 +7,16 @@ public class Ladder {
 
     private final List<Line> lines = new ArrayList<>();
 
-    public Ladder(int height, int peopleCount, RandomGenerator randomGenerator) {
+    public Ladder(Height height, int peopleCount, RandomGenerator randomGenerator) {
         generateLine(height, peopleCount, randomGenerator);
     }
 
-    public void generateLine(int height, int peopleCount, RandomGenerator randomGenerator) {
-        for (int i = 0; i < height; i++) {
+    public void generateLine(Height height, int peopleCount, RandomGenerator randomGenerator) {
+        int count = 0;
+        while (!height.isDesignatedHeight(count)) {
             List<Boolean> generatedResult = randomGenerator.generate(peopleCount);
             lines.add(new Line(peopleCount, generatedResult));
+            count++;
         }
     }
 

@@ -11,12 +11,12 @@ public class LadderTest {
     @DisplayName("사다리 높이와 사람 수, RandomGenerator을 입력받아 사다리 줄을 설정한다.")
     @Test
     void addLadderLine() {
-        int height = 2;
+        Height height = new Height("2");
         int peopleCount = 3;
         RandomGenerator randomGenerator = new RandomGenerator();
         Ladder ladder = new Ladder(height, peopleCount, randomGenerator);
         List<Line> result = ladder.getLines();
 
-        assertThat(result).hasSize(height);
+        assertThat(result).hasSize(2);
     }
 }
