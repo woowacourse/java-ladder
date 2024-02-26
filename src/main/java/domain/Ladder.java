@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -9,6 +10,11 @@ public class Ladder {
     public Ladder(List<RowLine> lines) {
         validateLinesSizeEqual(lines);
         this.lines = lines;
+    }
+
+    public int drive(int index) {
+        return IntStream.range(0, getRowLineCount())
+                .reduce(index, (currentColumn, i) -> lines.get(i).navigateNextIndex(currentColumn));
     }
 
     public RowLine getLineByIndex(int index) {

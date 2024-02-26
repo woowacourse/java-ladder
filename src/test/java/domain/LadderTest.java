@@ -13,6 +13,20 @@ import org.junit.jupiter.api.Test;
 @DisplayName("사다리 테스트")
 class LadderTest {
 
+    @DisplayName("출발 인덱스를 전달받아 도착 인덱스를 계산할 수 있다")
+    @Test
+    void testDriveLadder() {
+        RowLine line1 = new RowLine(List.of(CONNECTED, DISCONNECTED, DISCONNECTED));
+        RowLine line2 = new RowLine(List.of(CONNECTED, DISCONNECTED, CONNECTED));
+        List<RowLine> rowLines = List.of(line1, line2);
+        Ladder ladder = new Ladder(rowLines);
+
+        assertThat(ladder.drive(0)).isEqualTo(0);
+        assertThat(ladder.drive(1)).isEqualTo(1);
+        assertThat(ladder.drive(2)).isEqualTo(3);
+        assertThat(ladder.drive(3)).isEqualTo(2);
+    }
+
     @DisplayName("인덱스를 전달받아 해당하는 줄을 반환할 수 있다")
     @Test
     void testGetRowLineByIndex() {
@@ -33,7 +47,7 @@ class LadderTest {
 
         assertThat(ladder.getRowLineCount()).isEqualTo(2);
     }
-    
+
     @DisplayName("모든 줄이 같은 사이즈를 가져야 생성 검증에 통과한다")
     @Test
     void testCreateLadderWithDifferentSizeLines() {
