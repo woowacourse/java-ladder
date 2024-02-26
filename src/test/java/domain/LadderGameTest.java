@@ -1,15 +1,16 @@
 package domain;
 
 import java.util.List;
+import java.util.Map;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LadderGameTest {
     private static final String VALID_NAMES = "a,b,c";
+    private static final String VALID_LADDER_RESULTS = "당첨,꽝,당첨";
     private static final int VALID_HEIGHT = 5;
 
-    private static final String VALID_LADDER_RESULTS = "당첨,당첨,꽝";
 
     @Test
     @DisplayName("적절한 참여자 이름과, 높이로 생성하면 예외가 발생하지 않음")
@@ -49,14 +50,14 @@ class LadderGameTest {
 
     @Test
     @DisplayName("사다리 게임 계산")
-    void calculateGameResult() {
-        List<Name> expected = List.of(new Name("b"), new Name("a"), new Name("d"), new Name("c"));
-        LadderGame ladderGame = new LadderGame("a,b,c,d", VALID_LADDER_RESULTS, VALID_HEIGHT,
-                new RowTestGenerator(List.of(true, false, true)));
-        ladderGame.calculateGameResult();
-        List<Name> actual = ladderGame.getNames().getSwappedNames();
+    void testCalculateLadderGameResult() {
+        LadderGame ladderGame = new LadderGame(VALID_NAMES, VALID_LADDER_RESULTS, VALID_HEIGHT,
+                new RowTestGenerator(List.of(true, false)));
+        LadderGameResult ladderGameResult = ladderGame.calculateLadderGameResult();
+        Map<Name, LadderResult> ladderGameResultMap = ladderGameResult.getLadderGameResult();
+        String actual = ladderGameResultMap.get(new Name("a")).getValue();
+        String expected = "꽝";
         Assertions.assertThat(actual).isEqualTo(expected);
-
     }
 
 

@@ -6,7 +6,6 @@ import java.util.stream.IntStream;
 public class LadderGame {
     private final Ladder ladder;
     private final Names names;
-
     private final LadderResults ladderResults;
 
     public LadderGame(String userNames, String rawLadderResults, int ladderHeight, RowGenerator generator) {
@@ -32,11 +31,12 @@ public class LadderGame {
         return ladderResults;
     }
 
-    public void calculateGameResult() {
+    public LadderGameResult calculateLadderGameResult() {
         ladder.getRows().stream()
                 .map(Row::getBridges)
                 .map(Bridges::getBridges)
                 .forEach(this::swapNames);
+        return new LadderGameResult(names, ladderResults);
     }
 
     private void swapNames(List<Boolean> bridges) {
