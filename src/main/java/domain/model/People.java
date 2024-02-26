@@ -3,14 +3,15 @@ package domain.model;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class People {
     private static final int SIZE_LIMIT=2;
     private final List<Person> participants;
 
-    public People(String names) {
+    public People(List<String> names) {
         validate(names);
-        this.participants = Arrays.stream(names.split(","))
+        this.participants = names.stream()
                 .map(Person::new)
                 .toList();
     }
@@ -23,21 +24,21 @@ public class People {
         return participants.size();
     }
 
-    private void validate(String inputNames) {
+    private void validate(List<String> inputNames) {
         validateSize(inputNames);
         validateDuplicateNames(inputNames);
     }
 
-    private void validateSize(String inputNames) {
-        int size = inputNames.split(",").length;
+    private void validateSize(List<String> inputNames) {
+        int size = inputNames.size();
         if (size < SIZE_LIMIT) {
             throw new IllegalArgumentException("참가인원은 2명 이상이어야 합니다.");
         }
     }
 
-    private void validateDuplicateNames(String inputNames) {
-        int numberOfOrigin = inputNames.split(",").length;
-        int numberOfDistinct = (int) Arrays.stream(inputNames.split(","))
+    private void validateDuplicateNames(List<String> inputNames) {
+        int numberOfOrigin = inputNames.size();
+        int numberOfDistinct = (int) inputNames.stream()
                 .distinct()
                 .count();
 

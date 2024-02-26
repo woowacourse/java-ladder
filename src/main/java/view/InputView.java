@@ -2,11 +2,14 @@ package view;
 
 import utils.Console;
 
-public class InputView {
+import java.util.List;
 
-    public String askParticipants() {
+public class InputView {
+    private static final String DELIMITER=",";
+    public List<String> askParticipants() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return Console.readLine();
+        String[] participants=Console.readLine().split(DELIMITER, -1);
+        return List.of(participants);
     }
 
     public String askLadderHeight() {
