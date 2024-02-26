@@ -1,6 +1,8 @@
 package domain;
 
 public class Position {
+    private static final int MIN_POSITION = 0;
+
     private int position;
 
     public Position(int position) {
@@ -9,7 +11,7 @@ public class Position {
     }
 
     private void validatePosition(int position) {
-        if (position < 0) {
+        if (position < MIN_POSITION) {
             throw new IllegalArgumentException("위치는 0이상이어야 합니다.");
         }
     }
