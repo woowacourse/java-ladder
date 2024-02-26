@@ -43,7 +43,14 @@ public class Floor {
         }
         return FIRST_POSITION_NOT_EXIST;
     }
-    
+
+    public List<Integer> getExistRungPositions() {
+        return IntStream.range(0, rungs.size())
+                .filter(position -> rungs.get(position) == Rung.EXIST)
+                .boxed()
+                .toList();
+    }
+
     public FloorResponseDto getRungs() {
         return FloorResponseDto.of(rungs);
     }

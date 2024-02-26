@@ -29,4 +29,15 @@ public class FloorTest {
         List<Boolean> rungBuiltStatus = floor.getRungs().buildStatusList();
         assertThat(rungBuiltStatus).containsExactly(false, false, false);
     }
+
+    @Test
+    @DisplayName("발판이 존재하는 위치들을 반환한다.")
+    void getExistRungPosition() {
+        List<Rung> mockedRungs = new ArrayList<>(List.of(Rung.EXIST, Rung.NOT_EXIST, Rung.EXIST, Rung.NOT_EXIST));
+        Floor floor = new Floor(new MockRungGenerator(mockedRungs), 5);
+
+        List<Integer> existRungPositions = floor.getExistRungPositions();
+
+        assertThat(existRungPositions).containsExactly(0, 2);
+    }
 }
