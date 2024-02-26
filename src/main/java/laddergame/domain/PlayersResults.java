@@ -11,6 +11,6 @@ public record PlayersResults(LinkedHashMap<Player, Result> playerResults) {
                 .filter(entry -> entry.getKey().getName().equals(playerName))
                 .map(Map.Entry::getValue)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(PLAYER_NOT_FOUND_ERROR));
+                .orElseThrow(() -> new IllegalArgumentException(String.format(PLAYER_NOT_FOUND_ERROR, playerName)));
     }
 }

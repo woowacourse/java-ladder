@@ -5,7 +5,7 @@ import static laddergame.domain.Player.NAME_BLANK_ERROR;
 import java.util.List;
 
 public class Results {
-    private static final String COUNT_DIFFERENT_ERROR = "플레이어 수와 결과 수는 같아야 합니다.";
+    private static final String COUNT_DIFFERENT_ERROR = "플레이어 수와 결과 수는 같아야 합니다. 입력된 플레이어 수: %d, 결과 수: %d ";
     private final List<Result> results;
 
     private Results(final List<Result> results) {
@@ -27,7 +27,7 @@ public class Results {
 
     private static void checkResultCounts(final List<String> resultNames, final int playerCount) {
         if (resultNames.size() != playerCount) {
-            throw new IllegalArgumentException(COUNT_DIFFERENT_ERROR);
+            throw new IllegalArgumentException(String.format(COUNT_DIFFERENT_ERROR, playerCount, resultNames.size()));
         }
     }
 

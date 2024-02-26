@@ -4,8 +4,8 @@ import java.util.regex.Pattern;
 
 public class Height {
     private static final Pattern NUMBER_REGEX = Pattern.compile("^[\\d]*$");
-    private static final String NATURAL_NUMBER_ERROR = "자연수를 입력해 주세요.";
-    private static final String INVALID_HEIGHT_RANGE = "적절한 높이 범위가 아닙니다.";
+    private static final String NATURAL_NUMBER_ERROR = "사다리 높이는 자연수만을 허용합니다. 입력된 사다리 높이는 %s 입니다.";
+    private static final String INVALID_HEIGHT_RANGE = "사다리 높이는 반드시 1 이상, 9 이하로 이루어져야 합니다. 입력된 사다리 높이는 %s 입니다.";
     private static final int MAX_HEIGHT = 9;
     private final int height;
 
@@ -22,19 +22,19 @@ public class Height {
 
     private void checkHeightRange(final String height) {
         if (Integer.parseInt(height) > MAX_HEIGHT) {
-            throw new IllegalArgumentException(INVALID_HEIGHT_RANGE);
+            throw new IllegalArgumentException(String.format(INVALID_HEIGHT_RANGE, height));
         }
     }
 
     private void checkIsNotMinus(final String height) {
         if (!NUMBER_REGEX.matcher(height).matches()) {
-            throw new IllegalArgumentException(NATURAL_NUMBER_ERROR);
+            throw new IllegalArgumentException(String.format(NATURAL_NUMBER_ERROR, height));
         }
     }
 
     private void checkIsZero(final String height) {
         if (Integer.parseInt(height) == 0) {
-            throw new IllegalArgumentException(NATURAL_NUMBER_ERROR);
+            throw new IllegalArgumentException(String.format(NATURAL_NUMBER_ERROR, height));
         }
     }
 
