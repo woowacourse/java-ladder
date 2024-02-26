@@ -22,9 +22,9 @@ public class Members {
         return new Members(initialize(rawNames));
     }
 
-    public Member findMemberByIndex(int index) {
+    public Member findMemberById(int id) {
         return members.stream()
-            .filter(member -> member.getId() == index)
+            .filter(member -> member.getId() == id)
             .findFirst()
             .orElseThrow(RuntimeException::new);
     }

@@ -13,12 +13,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class MembersTest {
 
     @Test
-    @DisplayName("성공: 인덱스 부여, findMemberByIndex() 테스트")
-    void findMemberByIndex() {
+    @DisplayName("성공: 인덱스 부여, findMemberById() 테스트")
+    void findMemberById() {
         Members members = Members.from("a,b,c");
-        Member member0 = members.findMemberByIndex(0);
-        Member member1 = members.findMemberByIndex(1);
-        Member member2 = members.findMemberByIndex(2);
+        Member member0 = members.findMemberById(0);
+        Member member1 = members.findMemberById(1);
+        Member member2 = members.findMemberById(2);
 
         Assertions.assertAll(
             () -> assertThat(member0.getName()).isEqualTo("a"),
