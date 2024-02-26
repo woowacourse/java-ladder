@@ -5,14 +5,13 @@ import java.util.stream.Collectors;
 import model.bridge.Bridge;
 import model.ladder.Ladder;
 import model.line.Line;
-import model.player.Player;
 import model.player.Players;
 
 public class OutputView {
     private static final String GAME_RESULT_INTRO = "\n실행결과\n";
-    private static final String PLAYER_NAMES_FORMAT = "%" + Player.MAX_NAME_LENGTH + "s";
+    private static final int BRIDGE_LENGTH = 5;
+    private static final String PLAYER_NAMES_FORMAT = "%" + BRIDGE_LENGTH + "s";
     private static final String PLAYER_NAMES_DELIMITER = " ";
-    private static final int BRIDGE_LENGTH = Player.MAX_NAME_LENGTH;
     private static final String IS_CONNECTED_BRIDGE = "-";
     private static final String IS_UNCONNECTED_BRIDGE = " ";
     private static final String BRIDGE_DELIMITER = "|";
