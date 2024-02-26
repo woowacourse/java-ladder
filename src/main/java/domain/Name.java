@@ -2,9 +2,7 @@ package domain;
 
 import java.util.regex.Pattern;
 
-import static message.ErrorMessage.INVALID_PLAYER_NAME_LANGUAGE_EXCEPTION;
-import static message.ErrorMessage.INVALID_PLAYER_NAME_SIZE_EXCEPTION;
-import static message.ErrorMessage.NO_PLAYER_NAME_EXCEPTION;
+import static message.ErrorMessage.*;
 
 public class Name {
 

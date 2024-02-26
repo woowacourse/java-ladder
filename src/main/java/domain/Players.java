@@ -1,8 +1,8 @@
 package domain;
 
-import static message.ErrorMessage.INVALID_PLAYER_COUNT_EXCEPTION;
-
 import java.util.List;
+
+import static message.ErrorMessage.INVALID_PLAYER_COUNT_EXCEPTION;
 
 public class Players {
 

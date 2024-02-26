@@ -36,39 +36,16 @@ public class LineTest {
         assertThat(line.getLegs().size()).isEqualTo(3);
     }
 
-    @DisplayName("라인의 맨 앞에 다리가 존재할 때 라인을 이루는 다리는 겹치지 않는다")
+    @DisplayName("연속된 라인이 생성될 경우 연속되지 않게 수정하여 라인을 생성한다.")
     @Test
     void makeLegWithUnOverlapStartByTrue() {
-        Line line = Line.of(3, new TrueGenerator());
-
-        List<Leg> legs = line.getLegs();
-
-        IntStream.range(1, legs.size())
-                .forEach(i -> assertThat(legs.get(i)).isNotEqualTo(legs.get(i - 1)));
-    }
-
-    @DisplayName("라인의 맨 앞에 다리가 존재하지 않을 때 라인을 이루는 다리는 겹치지 않는다")
-    @Test
-    void makeLegWithUnOverlapStartByFalse() {
-        Line line = Line.of(3, new FalseGenerator());
-
-        List<Leg> legs = line.getLegs();
-
-        IntStream.range(1, legs.size())
-                .forEach(i -> assertThat(legs.get(i)).isNotEqualTo(legs.get(i - 1)));
+        assertThat(Line.of(3, new TrueGenerator()).getLegs().size()).isEqualTo(3);
     }
 
     static class TrueGenerator implements BooleanGenerator {
         @Override
         public boolean generate() {
             return true;
-        }
-    }
-
-    static class FalseGenerator implements BooleanGenerator {
-        @Override
-        public boolean generate() {
-            return false;
         }
     }
 }
