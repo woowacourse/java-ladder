@@ -5,16 +5,18 @@ public class Reward {
     private static final int MIN_REWARD = 1;
     private static final int MAX_REWARD = 99999;
 
+    private final int id;
     private final String name;
 
-    private Reward(String name) {
+    private Reward(int id, String name) {
         validate(name);
+        this.id = id;
         this.name = name;
     }
 
-    public static Reward from(String rawName) {
+    public static Reward from(int id, String rawName) {
         validateNull(rawName);
-        return new Reward(rawName);
+        return new Reward(id, rawName);
     }
 
     private void validate(String name) {
@@ -44,6 +46,10 @@ public class Reward {
         if (name == null) {
             throw new IllegalArgumentException("null을 입력할 수 없습니다.");
         }
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {

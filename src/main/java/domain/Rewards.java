@@ -2,6 +2,7 @@ package domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Rewards {
 
@@ -17,6 +18,13 @@ public class Rewards {
         return new Rewards(membersCount, initialize(rawNames));
     }
 
+    public Reward findRewardById(int id) {
+        return rewards.stream()
+            .filter(reward -> reward.getId() == id)
+            .findFirst()
+            .orElseThrow(() -> new RuntimeException("findRewardById 예외 발생"));
+    }
+
     private void validate(int membersCount, List<Reward> rewards) {
         if (membersCount != rewards.size()) {
             throw new IllegalArgumentException("플레이어 수(" + membersCount + ")만큼 입력해주세요.");
@@ -30,9 +38,15 @@ public class Rewards {
     }
 
     private static List<Reward> initialize(String rawNames) {
-        return Arrays.stream(rawNames.split("\\s*,\\s*", -1))
+        List<String> parsedNames = parse(rawNames);
+        return IntStream.range(0, parsedNames.size())
+            .mapToObj(i -> Reward.from(i, parsedNames.get(i)))
+            .toList();
+    }
+
+    private static List<String> parse(String rawNames) {
+        return Arrays.stream(rawNames.split(",", -1))
             .map(String::trim)
-            .map(Reward::from)
             .toList();
     }
 
