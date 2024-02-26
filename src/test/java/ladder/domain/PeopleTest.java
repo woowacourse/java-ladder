@@ -28,10 +28,11 @@ public class PeopleTest {
                 .isEqualTo(expected);
     }
 
-    @DisplayName("콤마로 구분된 이름이 2개 이상이 아니라면 예외를 발생시킨다.")
+    @DisplayName("콤마로 구분된 이름이 2개 미만일 경우 예외를 발생시킨다.")
     @Test
     void peopleCountExceptionTest() {
         assertThatThrownBy(() -> People.from(List.of("pobi")))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("사다리 게임에 참여하는 사람의 수는 2명 이상 이여야 합니다.");
     }
 }

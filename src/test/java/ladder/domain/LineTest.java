@@ -28,6 +28,7 @@ public class LineTest {
     @Test
     void continueScaffoldExceptionTest() {
         assertThatThrownBy(() -> new Line(List.of(true, true, false)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("좌우 연속해서 발판이 존재할 수 없습니다.");
     }
 }

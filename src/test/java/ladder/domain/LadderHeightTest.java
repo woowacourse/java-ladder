@@ -30,14 +30,17 @@ public class LadderHeightTest {
     @DisplayName("숫자가 아니면 예외를 발생시킨다.")
     void numericHeightExceptionTest() {
         assertThatThrownBy(() -> LadderHeight.from("one"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("사다리의 높이는 숫자이어야 합니다.");
+
     }
 
-    @DisplayName("1 이상이 아니라면 예외를 발생시킨다.")
+    @DisplayName("1 미만이라면 예외를 발생시킨다.")
     @Test
     void minHeightExceptionTest() {
         assertThatThrownBy(() -> LadderHeight.from("0"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("사다리의 높이는 1 이상의 정수이어야 합니다.");
     }
 
     @DisplayName("사다리 높이 양쪽에 공백이 있는 경우 제거 한다.")

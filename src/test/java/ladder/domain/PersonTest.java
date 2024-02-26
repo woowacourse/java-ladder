@@ -28,7 +28,8 @@ public class PersonTest {
     @Test
     void nameLengthExceptionTest() {
         assertThatThrownBy(() -> new Person("naknak"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("사람 이름의 길이는 5자를 넘을 수 없습니다.");
     }
 
     @DisplayName("이름이 공백이거나 비어있는 경우 예외가 발생한다.")
@@ -36,7 +37,8 @@ public class PersonTest {
     @ValueSource(strings = {"", " ", "   "})
     void nameBlankExceptionTest(String name) {
         assertThatThrownBy(() -> new Person(name))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("사람 이름의 비어있거나 공백일 수 없습니다.");
     }
 
     @DisplayName("이름 양쪽에 공백이 있는 경우 제거한다.")
