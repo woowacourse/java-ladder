@@ -24,11 +24,11 @@ public class LadderController extends Controller {
         return ladder;
     }
 
-    public PlayerNames readPlayerNames() {
+    private PlayerNames readPlayerNames() {
         return retry(() -> createPlayerNames(inputView.readPlayerNames()));
     }
 
-    public PlayerNames createPlayerNames(final String[] splitPlayerNames) {
+    private PlayerNames createPlayerNames(final String[] splitPlayerNames) {
         List<PlayerName> playerNames = Arrays.stream(splitPlayerNames)
                 .map(PlayerName::new)
                 .toList();
@@ -36,7 +36,7 @@ public class LadderController extends Controller {
         return new PlayerNames(playerNames);
     }
 
-    public LadderHeight readLadderHeight() {
+    private LadderHeight readLadderHeight() {
         return retry(() -> new LadderHeight(inputView.readLadderHeight()));
     }
 }
