@@ -1,8 +1,5 @@
 package ladder.domain.participant;
 
-import ladder.exception.participant.DuplicatedNamesException;
-import ladder.exception.participant.InvalidParticipantsCountException;
-
 import java.util.List;
 import java.util.Set;
 
@@ -21,14 +18,14 @@ public class Participants {
 
     private void validateParticipantsCount(final List<String> names) {
         if (names.size() < MIN_PARTICIPANTS_COUNT) {
-            throw new InvalidParticipantsCountException();
+            throw new IllegalArgumentException("참가자 수는 2명 이상입니다.");
         }
     }
 
     private void validateDuplicatedNames(final List<String> names) {
         final Set<String> uniqueNames = Set.copyOf(names);
         if (uniqueNames.size() < names.size()) {
-            throw new DuplicatedNamesException();
+            throw new IllegalArgumentException("중복된 이름이 입력되었습니다.");
         }
     }
 

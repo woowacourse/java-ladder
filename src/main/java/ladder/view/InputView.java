@@ -1,8 +1,5 @@
 package ladder.view;
 
-import ladder.exception.participant.DelimiterBoundaryException;
-import ladder.exception.ladder.InvalidHeightNumberException;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -23,7 +20,7 @@ public class InputView {
 
     private void validateNameDelimiterPosition(final String names) {
         if (names.startsWith(NAME_DELIMITER) || names.endsWith(NAME_DELIMITER)) {
-            throw new DelimiterBoundaryException();
+            throw new IllegalArgumentException("구분자는 양 끝에 입력할 수 없습니다.");
         }
     }
 
@@ -42,7 +39,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new InvalidHeightNumberException();
+            throw new IllegalArgumentException("사다리 높이는 숫자로 입력해주세요.");
         }
     }
 

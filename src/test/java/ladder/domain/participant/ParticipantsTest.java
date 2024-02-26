@@ -1,6 +1,5 @@
 package ladder.domain.participant;
 
-import ladder.exception.participant.InvalidParticipantsCountException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -33,7 +32,7 @@ public class ParticipantsTest {
     void checkParticipantsCountTest(final List<String> names) {
         // given & when
         assertThatThrownBy(() -> new Participants(names))
-                .isInstanceOf(InvalidParticipantsCountException.class);
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("참가자 수는 2명 이상입니다.");
     }
 
     static Stream<List<String>> getInvalidParticipantsNames() {

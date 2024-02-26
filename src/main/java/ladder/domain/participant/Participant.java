@@ -1,8 +1,5 @@
 package ladder.domain.participant;
 
-import ladder.exception.participant.InvalidNameLengthException;
-import ladder.exception.participant.NonAlphabeticNameException;
-
 public class Participant {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String NAME_REGEX = "^[a-zA-Z]*$";
@@ -18,13 +15,13 @@ public class Participant {
 
     private void validateNameLength(final String name) {
         if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
-            throw new InvalidNameLengthException();
+            throw new IllegalArgumentException("이름은 1에서 5자 사이로 입력해 주세요.");
         }
     }
 
     private static void validateIsAlphabetic(final String name) {
         if (!name.matches(NAME_REGEX)) {
-            throw new NonAlphabeticNameException();
+            throw new IllegalArgumentException("이름은 영어로 입력해 주세요.");
         }
     }
 

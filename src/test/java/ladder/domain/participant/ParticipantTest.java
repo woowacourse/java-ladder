@@ -1,7 +1,5 @@
 package ladder.domain.participant;
 
-import ladder.exception.participant.InvalidNameLengthException;
-import ladder.exception.participant.NonAlphabeticNameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -30,7 +28,7 @@ public class ParticipantTest {
     void checkNameLengthTest(final String name) {
         // when & then
         assertThatThrownBy(() -> new Participant(name))
-                .isInstanceOf(InvalidNameLengthException.class);
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("이름은 1에서 5자 사이로 입력해 주세요.");
     }
 
     @ParameterizedTest
@@ -39,6 +37,6 @@ public class ParticipantTest {
     void checkAlphabeticNameTest(final String name) {
         // when & then
         assertThatThrownBy(() -> new Participant(name))
-                .isInstanceOf(NonAlphabeticNameException.class);
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("이름은 영어로 입력해 주세요.");
     }
 }
