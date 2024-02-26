@@ -1,9 +1,5 @@
 package domain;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -43,6 +39,13 @@ class LadderTest {
     void canMoveRightTest() {
         Ladder ladder = new Ladder(5, 5, new PresentStepGenerator());
         Assertions.assertThat(ladder.canMoveRight(0, 1)).isTrue();
+    }
+
+    @Test
+    @DisplayName("사다리의 끝까지 왔는지 확인한다.")
+    void isFinishTest() {
+        Ladder ladder = new Ladder(5, 5, new PresentStepGenerator());
+        Assertions.assertThat(ladder.isFinish(4)).isTrue();
     }
 
 }
