@@ -16,7 +16,7 @@ public class NamesCreator {
         boolean startsWith = names.startsWith(SEPARATOR);
         boolean endsWith = names.endsWith(SEPARATOR);
         if (startsWith || endsWith) {
-            throw new LadderGameException(ExceptionType.INVALID_NAMES_SEPARATOR);
+            throw new LadderGameException(ExceptionType.INVALID_SEPARATOR_POSITION);
         }
     }
 

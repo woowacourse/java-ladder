@@ -20,8 +20,6 @@ class NamesCreatorTest {
         var nameCreator = new NamesCreator();
         Assertions.assertThatThrownBy(() -> nameCreator.create(names))
                 .isInstanceOf(LadderGameException.class)
-                .hasMessage(ExceptionType.INVALID_NAMES_SEPARATOR.getMessage());
+                .hasMessage(ExceptionType.INVALID_SEPARATOR_POSITION.getMessage());
     }
-
-
 }

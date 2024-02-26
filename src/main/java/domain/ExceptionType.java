@@ -6,7 +6,7 @@ public enum ExceptionType {
     INVALID_NAME_CHARACTER("이름은 알파벳 대소문자로만 이루어져있어야 합니다."),
     INVALID_NAME_LENGTH_RANGE("이름의 길이는 1자 이상 5자 이하여야 합니다."),
     INVALID_NAMES_RANGE("사람은 최소 2명 최대 10명까지 받을 수 있습니다."),
-    INVALID_NAMES_SEPARATOR("구분자가 맨 앞이나 맨 뒤에 있으면 안됩니다."),
+    INVALID_SEPARATOR_POSITION("구분자가 맨 앞이나 맨 뒤에 있으면 안됩니다."),
     INVALID_BRIDGES_RANGE("다리 개수는 1이상 9 이하여야 합니다."),
     NOT_ALLOW_DUPLICATE_NAME("이름은 중복될 수 없습니다."),
     NOT_ALLOW_NEAR_BRIDGE("근처에 다리가 있으면 놓을 수 없습니다."),
