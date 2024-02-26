@@ -28,8 +28,8 @@ public class OutputView {
 
     public static void printLadder(List<LineDto> ladder) {
         StringBuilder sb = new StringBuilder();
-        for (LineDto ld : ladder) {
-            sb.append(createLineString(ld));
+        for (LineDto lineDto : ladder) {
+            sb.append(createLineString(lineDto));
         }
         System.out.println(sb);
     }
