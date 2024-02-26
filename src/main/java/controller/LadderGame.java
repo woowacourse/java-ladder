@@ -90,18 +90,27 @@ public class LadderGame {
     }
 
     private void printLadderGameResult(Participants participants, Results results) {
-        String name = inputView.inputResultName();
-        String result = "";
+        boolean keepInput = true;
 
-        if (!name.equals("all")) {
-            result = results.getResultByParticipantName(participants.findParticipantByName(name));
+        while (keepInput) {
+            String name = inputView.inputResultName();
+
+            keepInput = !name.isEmpty();
+
+            if (!keepInput) {
+                continue;
+            }
+
+            outputView.printResult(getLadderGameResult(name, participants, results));
         }
+    }
 
+    private String getLadderGameResult(String name, Participants participants, Results results) {
         if (name.equals("all")) {
-            result = getAllResult(results);
+            return getAllResult(results);
         }
 
-        outputView.printResult(result);
+        return results.getResultByParticipantName(participants.findParticipantByName(name));
     }
 
     private String getAllResult(Results results) {
