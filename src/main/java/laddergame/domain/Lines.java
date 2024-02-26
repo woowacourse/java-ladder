@@ -13,7 +13,7 @@ public class Lines {
         this.lines = linesBuilder.build(width);
     }
 
-    public List<Line> getZones() {
+    public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
 }

@@ -28,7 +28,7 @@ public class LadderTest {
 
         //then
         assertEquals(ladder.getLines().size(), height.getHeight());
-        assertEquals(ladder.getLines().get(0).getZones().size(), playersName.size() - 1);
+        assertEquals(ladder.getLines().get(0).getLines().size(), playersName.size() - 1);
     }
 
     @Test
@@ -52,6 +52,6 @@ public class LadderTest {
         Ladder ladder = new Ladder(lineBuildStrategy, players, height);
 
         //then
-        assertEquals(expected, ladder.getLines().get(0).getZones());
+        assertEquals(expected, ladder.getLines().get(0).getLines());
     }
 }

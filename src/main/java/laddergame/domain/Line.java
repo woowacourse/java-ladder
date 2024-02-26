@@ -14,7 +14,7 @@ public enum Line {
         return symbol;
     }
 
-    public static Line getZone(boolean buildStatus) {
+    public static Line getLine(boolean buildStatus) {
         if (buildStatus) {
             return BRIDGE;
         }

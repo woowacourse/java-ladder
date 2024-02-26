@@ -14,6 +14,6 @@ public class RandomLineGenerator implements LineGenerator {
 
     @Override
     public Line generate() {
-        return Line.getZone(random.nextBoolean());
+        return Line.getLine(random.nextBoolean());
     }
 }

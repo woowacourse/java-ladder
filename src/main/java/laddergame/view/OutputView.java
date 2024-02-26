@@ -21,7 +21,7 @@ public class OutputView {
     }
 
     private void writeLine(final Lines lines) {
-        String formatted = lines.getZones().stream()
+        String formatted = lines.getLines().stream()
                 .map(Line::getSymbol)
                 .collect(Collectors.joining(LADDER_SEPARATOR, SPACE + LADDER_SEPARATOR, LADDER_SEPARATOR));
 
