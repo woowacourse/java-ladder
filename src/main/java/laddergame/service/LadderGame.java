@@ -30,7 +30,7 @@ public class LadderGame {
         final LineSize lineSize = new LineSize(names);
         final Ladder ladder = ladderGenerator.generate(lineSize, ladderHeight);
 
-        saveMatchingResult(names.getNames(), results.getResults(), ladder);
+        saveMatchingResult(names, results, ladder);
 
         return LadderResult.of(names, ladder, results);
     }
@@ -41,15 +41,15 @@ public class LadderGame {
         }
     }
 
-    private void saveMatchingResult(final List<Name> names, final List<Result> results, final Ladder ladder) {
+    private void saveMatchingResult(final Names names, final Results results, final Ladder ladder) {
         final int size = names.size();
 
         for (int i = 0; i < size; i++) {
             final Position namePosition = new Position(i);
             final Position resultPosition = ladder.goDown(namePosition);
 
-            final Result result = results.get(resultPosition.getPosition());
-            final Name name = names.get(namePosition.getPosition());
+            final Result result = results.get(resultPosition);
+            final Name name = names.get(namePosition);
             matchRepository.put(name, result);
         }
     }

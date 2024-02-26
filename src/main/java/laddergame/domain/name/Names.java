@@ -3,6 +3,7 @@ package laddergame.domain.name;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import laddergame.domain.ladder.Position;
 
 public class Names {
 
@@ -36,6 +37,10 @@ public class Names {
 
     public int size() {
         return names.size();
+    }
+
+    public Name get(final Position namePosition) {
+        return names.get(namePosition.getPosition());
     }
 
     public List<Name> getNames() {
