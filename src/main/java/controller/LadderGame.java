@@ -26,16 +26,27 @@ public class LadderGame {
 
         outputView.printResult(players, ladder, targets);
 
-        findLadderResult(players, ladder, targets);
+        final LadderResults ladderResults = createLadderResults(players, ladder, targets);
+        findLadderResult(players, ladderResults);
     }
 
-    private void findLadderResult(Players players, Ladder ladder, Targets targets) {
+    private void findLadderResult(Players players, LadderResults ladderResults) {
+        String result = inputView.inputResult();
+        if (result.equals("all")) {
+            List<Target> matchingResults = ladderResults.getMatchingTarget(players.getPlayers());
+            outputView.printPrize(players.getPlayers(), matchingResults);
+            return;
+        }
+        List<Player> checkResult = List.of(new Player(result));
+        outputView.printPrize(checkResult, ladderResults.getMatchingTarget(checkResult));
+    }
+
+    private LadderResults createLadderResults(Players players, Ladder ladder, Targets targets) {
         HashMap<Player, Target> results = new HashMap<>();
         for (Player player : players.getPlayers()) {
             results.put(player, targets.getPrize(ladder.climbLadder(players.getOrder(player))));
         }
-        String result = inputView.inputResult();
-        outputView.printPrize(new Player(result), results.get(new Player(result)));
+        return new LadderResults(results);
     }
 
     private Players readPlayers() {

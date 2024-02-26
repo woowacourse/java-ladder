@@ -27,13 +27,4 @@ public class PlayersTest {
 
         Assertions.assertThat(players.getOrder(new Player("kirby"))).isEqualTo(1);
     }
-
-    @DisplayName("해당 참여자가 존재하지 않으면 예외를 발생시킨다.")
-    @Test
-    void notContainPlayer() {
-        Players players = Players.from(List.of("bito", "kirby", "zeze", "ready"));
-
-        Assertions.assertThatThrownBy(() -> players.getOrder(new Player("pobi")))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }

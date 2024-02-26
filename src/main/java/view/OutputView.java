@@ -2,6 +2,8 @@ package view;
 
 import domain.*;
 
+import java.util.List;
+
 public class OutputView {
     private final OutputFormatter outputFormatter;
 
@@ -35,8 +37,10 @@ public class OutputView {
         System.out.println(targetUnit);
     }
 
-    public void printPrize(Player player, Target target) {
-        String result = outputFormatter.toResult(player, target);
-        System.out.println(result);
+    public void printPrize(List<Player> players, List<Target> targets) {
+        for (int i = 0; i < players.size(); i++) {
+            String result = outputFormatter.toResult(players.get(i), targets.get(i));
+            System.out.println(result);
+        }
     }
 }
