@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class InputView {
     private static final String INPUT_DELIMITER = ",";
     private static final String REQUEST_PARTICIPANTS_NAME = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    private static final String REQUEST_GAME_RESULT = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String REQUEST_LADDER_GAME_RESULT = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String REQUEST_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
 
     private final Scanner scanner = new Scanner(System.in);
@@ -19,11 +19,11 @@ public class InputView {
         return splitInput(names);
     }
 
-    public List<String> readGameResult() {
-        System.out.println(REQUEST_GAME_RESULT);
-        final String gameResult = scanner.nextLine();
-        validateInputDelimiterPosition(gameResult);
-        return splitInput(gameResult);
+    public List<String> readLadderGameResult() {
+        System.out.println(REQUEST_LADDER_GAME_RESULT);
+        final String ladderGameResult = scanner.nextLine();
+        validateInputDelimiterPosition(ladderGameResult);
+        return splitInput(ladderGameResult);
     }
 
     private void validateInputDelimiterPosition(final String input) {
