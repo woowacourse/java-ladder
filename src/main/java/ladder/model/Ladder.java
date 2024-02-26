@@ -1,5 +1,6 @@
 package ladder.model;
 
+import java.util.stream.IntStream;
 import ladder.dto.LineDto;
 
 import java.util.ArrayList;
@@ -18,10 +19,9 @@ public class Ladder {
         int height = ladderSize.height();
         int width = ladderSize.width();
 
-        List<Line> ladder = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            ladder.add(new Line(makeRandomRow(width)));
-        }
+        List<Line> ladder = IntStream.range(0, height)
+                .mapToObj(idx -> new Line(makeRandomRow(width)))
+                .toList();
 
         return new Ladder(ladder);
     }
