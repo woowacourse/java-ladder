@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 public class PlayersTest {
 
@@ -15,8 +14,10 @@ public class PlayersTest {
     void createPlayers() {
         Player player1 = new Player("dodo");
         Player player2 = new Player("capy");
-        assertThatCode(() -> new Players(List.of(player1, player2)))
-                .doesNotThrowAnyException();
+        Players players = new Players(List.of(player1, player2));
+
+        assertThat(players.getPlayers().get(0)).isEqualTo(player1);
+        assertThat(players.getPlayers().get(1)).isEqualTo(player2);
     }
 
     @DisplayName("플레이어가 1명 이하인 경우 예외를 발생한다.")

@@ -5,16 +5,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 public class NameTest {
 
     @DisplayName("플레이어의 이름객체를 정상적으로 생성한다.")
     @Test
     void createName() {
-        assertThatCode(() -> new Name("dodo"))
-                .doesNotThrowAnyException();
+        assertThat(new Name("dodo").getName()).isEqualTo("dodo");
     }
 
     @DisplayName("플레이어의 이름이 5자 초과이면 예외가 발생한다.")

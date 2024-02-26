@@ -12,8 +12,7 @@ public class HeightTest {
     @DisplayName("높이 객체를 정상적으로 생성한다.")
     @Test
     void createHeight() {
-        assertThat(new Height(5))
-                .isInstanceOf(Height.class);
+        assertThat(new Height(5).getHeight()).isEqualTo(5);
     }
 
     @DisplayName("높이가 0이하면 예외가 발생한다.")

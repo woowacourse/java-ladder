@@ -13,8 +13,7 @@ public class LadderTest {
     @DisplayName("사다리 객체를 정상적으로 생성한다.")
     @Test
     void createLadder() {
-        assertThatCode(() -> Ladder.from(HEIGHT, WIDTH))
-                .doesNotThrowAnyException();
+        assertThat(Ladder.from(HEIGHT, WIDTH).getLines().size()).isEqualTo(HEIGHT);
     }
 
     @DisplayName("주어진 너비에 맞게 사다리의 다리의 개수를 생성한다.")
