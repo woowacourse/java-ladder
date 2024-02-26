@@ -15,7 +15,7 @@ public class Ladder {
     public Ladder(
             final Players players, final Height height, final Results results, final BuildStrategy pointBuildStrategy) {
         this.lines = IntStream.range(0, height.getHeight())
-                .mapToObj(i -> new Line(players.getPlayers().size(), pointBuildStrategy))
+                .mapToObj(i -> new Line(players.getPlayersSize(), pointBuildStrategy))
                 .collect(Collectors.toList());
         this.players = players;
         this.height = height;
@@ -28,7 +28,7 @@ public class Ladder {
 
     private PlayersResults makeResults(final Results results) {
         LinkedHashMap<Player, Result> playerResultMap = new LinkedHashMap<>();
-        for (int playerIndex = 0; playerIndex < players.getPlayers().size(); playerIndex++) {
+        for (int playerIndex = 0; playerIndex < players.getPlayersSize(); playerIndex++) {
             final int resultIndex = findResult(playerIndex);
             playerResultMap.put(players.getPlayers().get(playerIndex), results.getResults().get(resultIndex));
         }

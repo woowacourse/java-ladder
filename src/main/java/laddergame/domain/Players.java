@@ -71,6 +71,10 @@ public class Players {
                 .orElseThrow(() -> new IllegalArgumentException(String.format(PLAYER_NOT_FOUND_ERROR, name)));
     }
 
+    public int getPlayersSize() {
+        return players.size();
+    }
+
     public List<Player> getPlayers() {
         return players;
     }

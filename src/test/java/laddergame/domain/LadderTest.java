@@ -20,7 +20,7 @@ public class LadderTest {
         //given
         final Height height = new Height("4");
         final Players players = Players.from(List.of("choco", "lemon", "clova", "nyang"));
-        final Results results = Results.from(List.of("꽝", "꽝", "꽝", "꽝"), players.getPlayers().size());
+        final Results results = Results.from(List.of("꽝", "꽝", "꽝", "꽝"), players.getPlayersSize());
 
         BuildStrategy buildStrategy = count -> new Points(List.of(truePoint, falsePoint, truePoint));
 
@@ -29,7 +29,7 @@ public class LadderTest {
 
         //then
         assertEquals(ladder.getLadderSize(), height.getHeight());
-        assertEquals(ladder.getLines().get(0).getPoints().points().size(), players.getPlayers().size() - 1);
+        assertEquals(ladder.getLines().get(0).getPoints().points().size(), players.getPlayersSize() - 1);
     }
 
     @Test
@@ -38,7 +38,7 @@ public class LadderTest {
         //given
         final Height height = new Height("4");
         final Players players = Players.from(List.of("choco", "lemon", "clova", "nyang"));
-        final Results results = Results.from(List.of("꽝1", "꽝2", "꽝3", "꽝4"), players.getPlayers().size());
+        final Results results = Results.from(List.of("꽝1", "꽝2", "꽝3", "꽝4"), players.getPlayersSize());
 
         BuildStrategy buildStrategy = count -> new Points(List.of(falsePoint, falsePoint, falsePoint));
 
@@ -58,7 +58,7 @@ public class LadderTest {
         //given
         final Height height = new Height("5");
         final Players players = Players.from(List.of("choco", "lemon", "clova", "nyang"));
-        final Results results = Results.from(List.of("꽝1", "꽝2", "꽝3", "꽝4"), players.getPlayers().size());
+        final Results results = Results.from(List.of("꽝1", "꽝2", "꽝3", "꽝4"), players.getPlayersSize());
 
         BuildStrategy buildStrategy = count -> new Points(List.of(truePoint, falsePoint, truePoint));
 
@@ -78,7 +78,7 @@ public class LadderTest {
         //given
         final Height height = new Height("5");
         final Players players = Players.from(List.of("choco", "lemon", "clova", "nyang"));
-        final Results results = Results.from(List.of("꽝1", "꽝2", "꽝3", "꽝4"), players.getPlayers().size());
+        final Results results = Results.from(List.of("꽝1", "꽝2", "꽝3", "꽝4"), players.getPlayersSize());
 
         BuildStrategy buildStrategy = count -> new Points(List.of(falsePoint, falsePoint, falsePoint));
 
@@ -99,7 +99,7 @@ public class LadderTest {
         //given
         final Height height = new Height("5");
         final Players players = Players.from(List.of("choco", "lemon", "clova", "nyang"));
-        final Results results = Results.from(List.of("꽝1", "꽝2", "꽝3", "꽝4"), players.getPlayers().size());
+        final Results results = Results.from(List.of("꽝1", "꽝2", "꽝3", "꽝4"), players.getPlayersSize());
 
         BuildStrategy buildStrategy = count -> new Points(List.of(falsePoint, falsePoint, falsePoint));
 

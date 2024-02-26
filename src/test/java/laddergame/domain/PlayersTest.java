@@ -23,7 +23,7 @@ public class PlayersTest {
         final Players players = Players.from(List.of(playerName1, playerName2));
 
         //then
-        assertEquals(players.getPlayers().size(), 2);
+        assertEquals(players.getPlayersSize(), 2);
         assertEquals(players.getPlayers().get(0).getName(), playerName1);
         assertEquals(players.getPlayers().get(1).getName(), playerName2);
     }
