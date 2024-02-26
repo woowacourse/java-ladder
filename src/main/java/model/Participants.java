@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Participants {
+    private final int MIN_LIMIT = 2;
     private final List<Participant> participants;
 
     public Participants(List<Participant> participants) {
@@ -14,7 +15,7 @@ public class Participants {
     }
 
     private void validateParticipantsSize(List<Participant> participants) {
-        if (participants == null || participants.size() < 2) {
+        if (participants == null || participants.size() < MIN_LIMIT) {
             throw new IllegalArgumentException("[ERROR] 참여자는 2명 이상이어야 한다.");
         }
     }

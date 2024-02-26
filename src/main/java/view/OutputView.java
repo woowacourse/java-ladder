@@ -9,6 +9,10 @@ import model.Participant;
 import model.Participants;
 
 public class OutputView {
+    private final int PRINT_NAME_FORMAT = 5;
+    private final String LADDER_LINE_LENGTH = "|";
+    private final String LADDER_LINE_WIDTH_TRUE = "-----";
+    private final String LADDER_LINE_WIDTH_FALSE = "     ";
 
     public void printResultHeader() {
         System.out.println();
@@ -35,7 +39,7 @@ public class OutputView {
     }
 
     private String alignNameText(String name) {
-        if (name.length() < 5) {
+        if (name.length() < PRINT_NAME_FORMAT) {
             return String.format("%4s ", name);
         }
         return name;
@@ -45,19 +49,19 @@ public class OutputView {
         StringBuilder result = new StringBuilder("    ");
         for (int i = 0; i < lineStates.size() - 1; i++) {
             LineState now = lineStates.get(i);
-            result.append("|");
+            result.append(LADDER_LINE_LENGTH);
             String text = getDelimiterByState(now);
             result.append(text);
         }
-        result.append("|");
+        result.append(LADDER_LINE_LENGTH);
         return result;
     }
 
     private String getDelimiterByState(LineState now) {
         if (now == LineState.START) {
-            return "-----";
+            return LADDER_LINE_WIDTH_TRUE;
         }
-        return "     ";
+        return LADDER_LINE_WIDTH_FALSE;
     }
 
     public void printErrorMessage(String message) {
