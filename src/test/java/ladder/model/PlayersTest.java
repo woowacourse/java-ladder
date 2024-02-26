@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class PlayersTest {
+class PlayersTest {
     @Test
     @DisplayName("중복된 이름이 존재하는 경우 예외가 발생한다.")
     void duplicatedNamesTest() {

@@ -8,7 +8,7 @@ import java.util.List;
 import static ladder.model.LadderPath.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class LineTest {
+class LineTest {
     @Test
     @DisplayName("연속된 경로가 있다면 가로줄 생성에서 예외가 발생한다.")
     void throwsExceptionWhenContinuousPathExistTest() {
