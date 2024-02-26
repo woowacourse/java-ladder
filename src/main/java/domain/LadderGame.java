@@ -7,9 +7,13 @@ public class LadderGame {
     private final Ladder ladder;
     private final Names names;
 
-    public LadderGame(String userNames, int ladderHeight, RowGenerator generator) {
+    private final LadderResults ladderResults;
+
+    public LadderGame(String userNames, int ladderHeight, String rawLadderResults, RowGenerator generator) {
         NamesCreator namesCreator = new NamesCreator();
+        LadderResultCreator ladderResultCreator = new LadderResultCreator();
         names = namesCreator.create(userNames);
+        ladderResults = ladderResultCreator.create(rawLadderResults);
         int nameCount = names.getNameCount();
         Height height = new Height(ladderHeight);
         Width width = new Width(nameCount);
@@ -22,6 +26,10 @@ public class LadderGame {
 
     public Ladder getLadder() {
         return ladder;
+    }
+
+    public LadderResults getLadderResults() {
+        return ladderResults;
     }
 
     public void calculateGameResult() {
