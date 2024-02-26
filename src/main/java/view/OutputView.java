@@ -5,8 +5,8 @@ import domain.Line;
 import domain.Lines;
 import domain.Members;
 import domain.Point;
-import domain.Result;
-import domain.Results;
+import domain.Reward;
+import domain.Rewards;
 
 public class OutputView {
 
@@ -16,7 +16,7 @@ public class OutputView {
         System.out.println("사다리 결과");
         printMembers(game.getMembers());
         printLines(game.getLines());
-        printResults(game.getResults());
+        printRewards(game.getRewards());
     }
 
     public void printMembers(Members members) {
@@ -50,18 +50,18 @@ public class OutputView {
         System.out.print(" ".repeat(MAX_NAME_LENGTH));
     }
 
-    private void printResults(Results results) {
-        for (Result result : results.getResults()) {
-            printResult(result);
+    private void printRewards(Rewards rewards) {
+        for (Reward reward : rewards.getRewards()) {
+            printReward(reward);
         }
         System.out.println();
     }
 
-    private void printResult(Result result) {
-        if (result.getName().equals("꽝")) {
-            System.out.printf("%" + (MAX_NAME_LENGTH - 1) + "s ", result.getName());
+    private void printReward(Reward reward) {
+        if (reward.getName().equals("꽝")) {
+            System.out.printf("%" + (MAX_NAME_LENGTH - 1) + "s ", reward.getName());
             return;
         }
-        System.out.printf("%" + MAX_NAME_LENGTH + "s ", result.getName());
+        System.out.printf("%" + MAX_NAME_LENGTH + "s ", reward.getName());
     }
 }

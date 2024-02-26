@@ -1,20 +1,20 @@
 package domain;
 
-public class Result {
+public class Reward {
 
-    private static final int MIN_RESULT = 1;
-    private static final int MAX_RESULT = 99999;
+    private static final int MIN_REWARD = 1;
+    private static final int MAX_REWARD = 99999;
 
     private final String name;
 
-    private Result(String name) {
+    private Reward(String name) {
         validate(name);
         this.name = name;
     }
 
-    public static Result from(String rawName) {
+    public static Reward from(String rawName) {
         validateNull(rawName);
-        return new Result(rawName);
+        return new Reward(rawName);
     }
 
     private void validate(String name) {
@@ -33,10 +33,10 @@ public class Result {
     }
 
     private void validateRange(String name) {
-        int result = Integer.parseInt(name);
-        if (result < MIN_RESULT || result > MAX_RESULT) {
+        int reward = Integer.parseInt(name);
+        if (reward < MIN_REWARD || reward > MAX_REWARD) {
             throw new IllegalArgumentException(
-                MIN_RESULT + " 이상 " + MAX_RESULT + " 이하의 숫자만 입력 가능합니다.");
+                MIN_REWARD + " 이상 " + MAX_REWARD + " 이하의 숫자만 입력 가능합니다.");
         }
     }
 
