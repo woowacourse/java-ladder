@@ -23,7 +23,7 @@ public class PlayersTest {
     @DisplayName("해당 참여자가 몇번째 순서인지 반환한다.")
     @Test
     void getOrder() {
-        Players players = Players.from(List.of("bito", "kirby", "zeze", "ready"));
+        final Players players = Players.from(List.of("bito", "kirby", "zeze", "ready"));
 
         Assertions.assertThat(players.getOrder(new Player("kirby"))).isEqualTo(1);
     }

@@ -18,7 +18,7 @@ public class TargetsTest {
     @DisplayName("해당 순서의 실행 결과를 리턴한다.")
     @Test
     void getTarget() {
-        Targets targets = Targets.from(List.of("1000", "2000", "3000"), PlayerCount.from(3));
+        final Targets targets = Targets.from(List.of("1000", "2000", "3000"), PlayerCount.from(3));
 
         Assertions.assertThat(targets.getPrize(1)).isEqualTo(new Target("2000"));
     }

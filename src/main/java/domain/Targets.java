@@ -1,12 +1,13 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Targets {
     private final List<Target> targets;
 
-    private Targets(List<Target> targets, PlayerCount playerCount) {
+    private Targets(final List<Target> targets, final PlayerCount playerCount) {
         validate(targets, playerCount);
         this.targets = targets;
     }
@@ -28,7 +29,7 @@ public class Targets {
     }
 
     public List<Target> getTargets() {
-        return targets;
+        return Collections.unmodifiableList(targets);
     }
 
     public Target getPrize(int index) {
