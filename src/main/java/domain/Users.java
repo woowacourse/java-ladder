@@ -6,29 +6,29 @@ public class Users {
 
     private static final int MIN_USER_SIZE = 2;
     private static final int MAX_USER_SIZE = 50;
-    private final List<UserName> users;
+    private final List<UserName> userNames;
 
     public Users(final List<String> userNames) {
         validate(userNames);
-        users = userNames.stream()
+        this.userNames = userNames.stream()
                 .map(UserName::new)
                 .toList();
     }
 
     public int gerPersonCount() {
-        return users.size();
+        return userNames.size();
     }
 
     public UserName getFirst() {
-        return users.get(0);
+        return userNames.get(0);
     }
 
     public UserName getLast() {
-        return users.get(users.size() - 1);
+        return userNames.get(userNames.size() - 1);
     }
 
     public List<UserName> getMiddleUsers() {
-        return users.subList(1, users.size() - 1);
+        return userNames.subList(1, userNames.size() - 1);
     }
 
     private void validate(final List<String> userNames) {

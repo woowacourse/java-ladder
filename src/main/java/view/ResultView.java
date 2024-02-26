@@ -31,7 +31,7 @@ public class ResultView {
     }
 
     public static void printResult(final Ladder ladder) {
-        for (Line line : ladder.getLadder()) {
+        for (Line line : ladder.getLines()) {
             System.out.println(generateSingleLine(line));
         }
     }

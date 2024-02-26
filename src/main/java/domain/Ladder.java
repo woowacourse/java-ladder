@@ -9,13 +9,13 @@ import java.util.stream.IntStream;
 public class Ladder {
     private static final int MAX_LADDER_HEIGHT = 100;
 
-    private final List<Line> ladder = new ArrayList<>();
+    private final List<Line> lines = new ArrayList<>();
 
     public Ladder(final int maxHeight, final int personCount) {
         validateMaxHeight(maxHeight);
 
         IntStream.range(0, maxHeight)
-                .forEach(iterator -> ladder.add(new Line(personCount, new RandomGenerator())));
+                .forEach(iterator -> lines.add(new Line(personCount, new RandomGenerator())));
     }
 
     private static void validateMaxHeight(int maxHeight) {
@@ -24,11 +24,11 @@ public class Ladder {
         }
     }
 
-    public List<Line> getLadder() {
-        return ladder;
+    public List<Line> getLines() {
+        return lines;
     }
 
     public int getHeight() {
-        return ladder.size();
+        return lines.size();
     }
 }
