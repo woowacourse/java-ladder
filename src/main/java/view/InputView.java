@@ -1,6 +1,8 @@
 package view;
 
 import common.exception.message.ExceptionMessage;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -17,12 +19,13 @@ public class InputView {
         this.scanner = scanner;
     }
 
-    public String[] readPlayerNames() {
+    public List<String> readPlayerNames() {
         System.out.println(String.format("참여할 사람 이름을 입력하세요. (%s)로 구분하세요)", PLAYER_NAMES_INPUT_DELIMITER));
         String playerNamesInput = scanner.nextLine();
         playerNamesInput = playerNamesInput.replace(InputView.BLANK_SPACE, InputView.BLANK_EMPTY);
         validatePlayerNamesInput(playerNamesInput);
-        return playerNamesInput.split(PLAYER_NAMES_INPUT_DELIMITER);
+        return Arrays.stream(playerNamesInput.split(PLAYER_NAMES_INPUT_DELIMITER))
+                .toList();
     }
 
     private void validatePlayerNamesInput(final String playerNamesInput) {

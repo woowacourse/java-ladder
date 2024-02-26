@@ -28,8 +28,8 @@ public class LadderController extends Controller {
         return retry(() -> createPlayerNames(inputView.readPlayerNames()));
     }
 
-    private PlayerNames createPlayerNames(final String[] splitPlayerNames) {
-        List<PlayerName> playerNames = Arrays.stream(splitPlayerNames)
+    private PlayerNames createPlayerNames(final List<String> splitPlayerNames) {
+        List<PlayerName> playerNames = splitPlayerNames.stream()
                 .map(PlayerName::new)
                 .toList();
 
