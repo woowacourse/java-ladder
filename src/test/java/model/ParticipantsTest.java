@@ -18,7 +18,7 @@ class ParticipantsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("Participants 객체에 참여자 수가 없으면 예외가 발생한다")
+    @DisplayName("Participants 객체에 참여자 수가 0명이면 예외가 발생한다")
     @Test
     void validateParticipantsSizeWhenZero() {
         List<Participant> given = List.of();
@@ -36,7 +36,7 @@ class ParticipantsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("참여자 수를 반환한다.")
+    @DisplayName("전체 참여자 수를 반환한다.")
     @Test
     void getParticipantsSize() {
         List<Participant> given = List.of(
@@ -49,7 +49,7 @@ class ParticipantsTest {
         assertThat(result).isEqualTo(given.size());
     }
 
-    @DisplayName("참여자 중 이름이 중복되어 있으면 예외를 반환한다.")
+    @DisplayName("참여자 중 중복되는 이름이 있다면 예외를 반환한다.")
     @Test
     void validateDuplicatedParticipant() {
         List<Participant> given = List.of(
