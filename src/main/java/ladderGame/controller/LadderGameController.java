@@ -19,6 +19,7 @@ public class LadderGameController {
 
     public void run() {
         Players players = new Players(inputView.inputPlayerNames());
+        LadderResults ladderResults = new LadderResults(inputView.inputLadderResults());
 
         LineGenerator lineGenerator = new LineGenerator(new RandomBooleanGenerator());
         List<Line> lines = Stream.generate(() -> new Line(lineGenerator.makeLine(players.getPlayerSize())))
@@ -26,7 +27,5 @@ public class LadderGameController {
                 .toList();
 
         Ladder ladder = new Ladder(new ArrayList<>(lines));
-
-        resultView.printLadder(players.getPlayers(), ladder.getLines());
     }
 }
