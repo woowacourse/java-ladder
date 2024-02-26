@@ -9,8 +9,7 @@ import java.util.stream.Stream;
 
 public class Ladder {
     private final List<RowLine> rowLines;
-    //TODO 접근제어자+상수화
-    Height height;
+    private final Height height;
 
     public Ladder(int height, int peopleNumber) {
         this(height, peopleNumber, new RandomConnectionGenerator());
