@@ -13,7 +13,7 @@ public class Ladder {
         RandomPointsGenerator randomPointsGenerator = new RandomPointsGenerator(new Random());
         int personCount = people.count();
 
-        while (!height.isSame(lines.size())) {
+        while (!height.equals(lines.size())) {
             Line line = new Line(personCount, randomPointsGenerator);
             lines.add(line);
         }
