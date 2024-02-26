@@ -5,6 +5,7 @@ import domain.Bridges;
 import domain.Ladder;
 import domain.Name;
 import domain.Names;
+import domain.Prize;
 import domain.Prizes;
 import domain.Result;
 import domain.Results;
@@ -24,8 +25,8 @@ public class OutputView {
     }
 
     public static void printPrizes(Prizes prizes) {
-        for (String prize : prizes.getPrizes()) {
-            System.out.printf("%5s ", prize);
+        for (Prize prize : prizes.getPrizes()) {
+            System.out.printf("%5s ", prize.getValue());
         }
         System.out.println();
     }

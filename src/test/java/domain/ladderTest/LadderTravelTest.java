@@ -30,7 +30,7 @@ public class LadderTravelTest {
         Result result = ladder.calculateResult(name);
 
         //then
-        Assertions.assertThat(result.getPrize()).isEqualTo(expected);
+        Assertions.assertThat(result.getPrize().getValue()).isEqualTo(expected);
     }
 
     @DisplayName("체크 패턴이고 높이가 5인 경우, 사다리 순회가 정상적으로 동작한다.")
@@ -45,6 +45,6 @@ public class LadderTravelTest {
         Result result = ladder.calculateResult(name);
 
         //then
-        Assertions.assertThat(result.getPrize()).isEqualTo(expected);
+        Assertions.assertThat(result.getPrize().getValue()).isEqualTo(expected);
     }
 }
