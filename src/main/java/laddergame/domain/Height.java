@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 
 public class Height {
     private static final Pattern NUMBER_REGEX = Pattern.compile("^[\\d]*$");
+    private static final String HEIGHT_BLANK_ERROR = "사다리 높이는 빈 입력을 허용하지 않습니다. 자연수를 입력해주세요.";
     private static final String NATURAL_NUMBER_ERROR = "사다리 높이는 자연수만을 허용합니다. 입력된 사다리 높이는 %s 입니다.";
     private static final String INVALID_HEIGHT_RANGE = "사다리 높이는 반드시 1 이상, 9 이하로 이루어져야 합니다. 입력된 사다리 높이는 %s 입니다.";
     private static final int MAX_HEIGHT = 9;
@@ -15,9 +16,16 @@ public class Height {
     }
 
     private void validate(final String height) {
+        checkIsBlank(height);
         checkIsNotMinus(height);
         checkIsZero(height);
         checkHeightRange(height);
+    }
+
+    private void checkIsBlank(final String height) {
+        if (height.isBlank()) {
+            throw new IllegalArgumentException(HEIGHT_BLANK_ERROR);
+        }
     }
 
     private void checkHeightRange(final String height) {

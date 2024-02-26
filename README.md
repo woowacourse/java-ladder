@@ -117,3 +117,4 @@ example feat: 사용자 입력 후 도메인 사용
 - [x] controller와 service 영역으로 분리한다.
 - [x] view의 system call을 줄인다.(sout)
 - [x] `ReservedWords` 패키지 변경
+- [x] 높이 빈칸 예외 처리
