@@ -8,9 +8,10 @@ public class Prizes {
     public static final int MAX_OF_PRIZE_LENGTH = 5;
     List<String> prizes;
 
-    public Prizes(List<String> prizes) {
+    public Prizes(List<String> prizes, int expectedSize) {
         validateNoPrize(prizes);
         validatePrizeLength(prizes);
+        validatePrizeSize(prizes, expectedSize);
         this.prizes = prizes;
     }
 
@@ -30,5 +31,11 @@ public class Prizes {
                 .ifPresent(prize -> {
                     throw new IllegalArgumentException(PrizesExceptionMessage.NO_PRIZE.getExceptionMessage());
                 });
+    }
+
+    private void validatePrizeSize(List<String> prizes, int expectedSize) {
+        if (prizes.size() != expectedSize) {
+            throw new IllegalArgumentException(PrizesExceptionMessage.NOT_MATCH_SIZE.getExceptionMessage());
+        }
     }
 }
