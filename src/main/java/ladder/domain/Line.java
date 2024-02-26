@@ -8,31 +8,31 @@ import static java.util.Collections.unmodifiableList;
 
 public class Line {
     private final Supplier<Boolean> randomBooleanGenerator;
-    private final List<StepStatus> stepStatuses;
+    private final List<PathStatus> pathStatuses;
 
     public Line(final Supplier<Boolean> randomBooleanGenerator, final int userCount) {
         this.randomBooleanGenerator = randomBooleanGenerator;
-        this.stepStatuses = initStepStatuses(userCount);
+        this.pathStatuses = initStepStatuses(userCount);
     }
 
-    private List<StepStatus> initStepStatuses(final int userCount) {
+    private List<PathStatus> initStepStatuses(final int userCount) {
         int totalStepStatusesSize = userCount - 1;
-        final List<StepStatus> stepStatuses = new ArrayList<>(totalStepStatusesSize);
+        final List<PathStatus> pathStatuses = new ArrayList<>(totalStepStatusesSize);
         for (int i = 0; i < totalStepStatusesSize; i++) {
-            stepStatuses.add(generateStepStatus(stepStatuses, i));
+            pathStatuses.add(generateStepStatus(pathStatuses, i));
         }
-        return stepStatuses;
+        return pathStatuses;
     }
 
-    private StepStatus generateStepStatus(final List<StepStatus> stepStatuses, final int index) {
+    private PathStatus generateStepStatus(final List<PathStatus> pathStatuses, final int index) {
         int prevStepStatusIndex = index - 1;
-        if (index > 0 && stepStatuses.get(prevStepStatusIndex).isExist()) {
-            return StepStatus.getStepStatus(false);
+        if (index > 0 && pathStatuses.get(prevStepStatusIndex).isExist()) {
+            return PathStatus.getStepStatus(false);
         }
-        return StepStatus.getStepStatus(randomBooleanGenerator.get());
+        return PathStatus.getStepStatus(randomBooleanGenerator.get());
     }
 
-    public List<StepStatus> getStepStatuses() {
-        return unmodifiableList(stepStatuses);
+    public List<PathStatus> getStepStatuses() {
+        return unmodifiableList(pathStatuses);
     }
 }

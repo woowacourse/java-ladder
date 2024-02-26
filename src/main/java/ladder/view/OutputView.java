@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.StepStatus;
+import ladder.domain.PathStatus;
 import ladder.dto.LadderResult;
 import ladder.dto.LineResult;
 
@@ -49,8 +49,8 @@ public class OutputView {
         return prefix + steps;
     }
 
-    private static String drawStep(StepStatus stepStatus) {
-        if (stepStatus.isExist()) {
+    private static String drawStep(PathStatus pathStatus) {
+        if (pathStatus.isExist()) {
             return "-----|";
         }
         return "     |";

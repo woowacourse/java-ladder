@@ -4,8 +4,8 @@ import ladder.dto.LineResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static ladder.domain.StepStatus.EXIST;
-import static ladder.domain.StepStatus.NONE;
+import static ladder.domain.PathStatus.EXIST;
+import static ladder.domain.PathStatus.NONE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {

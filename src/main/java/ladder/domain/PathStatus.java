@@ -1,9 +1,9 @@
 package ladder.domain;
 
-public enum StepStatus {
+public enum PathStatus {
     EXIST, NONE;
 
-    public static StepStatus getStepStatus(final boolean current) {
+    public static PathStatus getStepStatus(final boolean current) {
         if (current) {
             return EXIST;
         }
