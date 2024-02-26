@@ -24,4 +24,30 @@ public class Ladder {
         }
         return information;
     }
+
+    public int getDestinationIndex(int start) {
+        int position = start;
+        for (Line line : lines) {
+            position = moveNextLine(position, line);
+        }
+        return position;
+    }
+
+    private int moveNextLine(int position, Line line) {
+        if (canMoveLeft(position, line)) {
+            return position - 1;
+        }
+        if (canMoveRight(position, line)) {
+            return position + 1;
+        }
+        return position;
+    }
+
+    private boolean canMoveRight(int position, Line line) {
+        return position != line.getBridgeCount() && line.getBridge(position).toBoolean();
+    }
+
+    private boolean canMoveLeft(int position, Line line) {
+        return position != 0 && line.getBridge(position - 1).toBoolean();
+    }
 }
