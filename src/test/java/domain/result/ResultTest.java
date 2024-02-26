@@ -27,4 +27,13 @@ class ResultTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("결과는 1글자에서 5글자 사이여야 합니다.");
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"a b", "!", "abc;"})
+    @DisplayName("결과가 한글, 영어 대소문자, 숫자로 이루어지지 않은 경우 예외를 발생한다.")
+    void invalidCharacterCreationTest(String result) {
+        assertThatThrownBy(() -> new Result(result))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("결과는 알파벳 대소문자, 숫자나 한글로 이루어져야 합니다.");
+    }
 }
