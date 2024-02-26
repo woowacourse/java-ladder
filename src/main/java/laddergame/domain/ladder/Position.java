@@ -26,6 +26,14 @@ public class Position {
         return new Position(position - 1);
     }
 
+    public boolean isGreaterThan(final int size) {
+        return position > size;
+    }
+
+    public boolean isNot(final int value) {
+        return position != value;
+    }
+
     public int getPosition() {
         return position;
     }
@@ -45,5 +53,4 @@ public class Position {
     public int hashCode() {
         return Objects.hash(position);
     }
-
 }

@@ -35,6 +35,35 @@ public class Line {
         }
     }
 
+    public Position goHorizontal(final Position position) {
+        // TODO : positon 에 points 전달해서 반환 생각해보기
+        validatePosition(position);
+
+        if (position.isNot(0) && canGoLeft(position)) {
+            return position.decrease();
+        }
+
+        if (position.isNot(points.size()) && canGoRight(position)) {
+            return position.increase();
+        }
+
+        return position;
+    }
+
+    private void validatePosition(final Position position) {
+        if (position.isGreaterThan(points.size())) {
+            throw new LadderGameException("[ERROR] Line 범위 밖의 포지션은 이동할 수 없습니다.");
+        }
+    }
+
+    private boolean canGoLeft(final Position position) {
+        return points.get(position.getPosition() - 1).isExist();
+    }
+
+    private boolean canGoRight(final Position position) {
+        return points.get(position.getPosition()).isExist();
+    }
+
     public int size() {
         return points.size();
     }
