@@ -34,5 +34,16 @@ class LadderResultsTest {
         List<LadderResult> expected = List.of(new LadderResult("꽝"), new LadderResult("당첨"));
         LadderResults ladderResults = new LadderResults(expected);
         List<LadderResult> actual = ladderResults.getLadderResults();
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("사다리 결과 개수가 적절하면 해당 개수를 반환할 수 있음")
+    void testGetLadderResultCount() {
+        List<LadderResult> givenLadderResults = List.of(new LadderResult("꽝"), new LadderResult("당첨"));
+        LadderResults ladderResults = new LadderResults(givenLadderResults);
+        int expected = 2;
+        int actual = ladderResults.getLadderResultCount();
+        Assertions.assertThat(actual).isEqualTo(expected);
     }
 }

@@ -22,4 +22,8 @@ public class LadderResults {
     public List<LadderResult> getLadderResults() {
         return ladderResults;
     }
+
+    public int getLadderResultCount() {
+        return ladderResults.size();
+    }
 }
