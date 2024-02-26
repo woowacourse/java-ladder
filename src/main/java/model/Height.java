@@ -6,16 +6,25 @@ public class Height {
     private final int height;
 
     public Height(final String heightText) {
-        validateNaturalNumber(heightText);
-        this.height = Integer.parseInt(heightText);
+        int parsedHeight = parseIntWithCustomException(heightText);
+        validateMinimumLimit(parsedHeight);
+        this.height = parsedHeight;
     }
 
     public int getHeight() {
         return height;
     }
 
-    private void validateNaturalNumber(String inputData) {
-        if (Integer.parseInt(inputData) <= MINIMUM_HEIGHT_LIMIT) {
+    private int parseIntWithCustomException(String heightText){
+        try{
+            return Integer.parseInt(heightText);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("사다리의 높이는 숫자만 입력해주세요.");
+        }
+    }
+
+    private void validateMinimumLimit(int parsedHeight) {
+        if (parsedHeight < MINIMUM_HEIGHT_LIMIT) {
             throw new IllegalArgumentException(String
                     .format("사다리의 길이는 최소 %s 이상이어야합니다.",MINIMUM_HEIGHT_LIMIT));
         }
