@@ -14,7 +14,7 @@ public class PathTest {
         final int endLineNumber = 2;
 
         // When
-        Path path = new Path.of(startLineNumber, endLineNumber);
+        Path path = Path.of(startLineNumber, endLineNumber);
 
         // Then
         Assertions.assertThat(path).isNotNull();
