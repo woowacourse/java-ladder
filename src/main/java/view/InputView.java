@@ -9,7 +9,7 @@ public class InputView {
     public static List<String> getNames() {
         printNameInputGuide();
         String input = scanner.nextLine();
-        return Parser.splitName(input);
+        return Parser.split(input);
     }
 
     private static void printNameInputGuide() {
@@ -25,5 +25,16 @@ public class InputView {
     private static void printHeightInputGuide() {
         System.out.println();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
+    }
+
+    public static List<String> getResults() {
+        printResultsInputGuide();
+        String input = scanner.nextLine();
+        return Parser.split(input);
+    }
+
+    private static void printResultsInputGuide() {
+        System.out.println();
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
     }
 }

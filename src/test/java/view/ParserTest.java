@@ -1,18 +1,19 @@
 package view;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ParserTest {
     @Test
     @DisplayName("사람 이름은 쉼표(,)를 기준으로 구분한다.")
     void nameSplitByComma() {
         String input = "pobi,crong,honux";
-        List<String> names = Parser.splitName(input);
+        List<String> names = Parser.split(input);
 
         assertEquals(List.of("pobi", "crong", "honux"), names);
     }
@@ -30,6 +31,6 @@ class ParserTest {
     void isNotEndWithComma() {
         String input = "pobi,gugu,";
 
-        assertThrows(IllegalArgumentException.class, () -> Parser.splitName(input));
+        assertThrows(IllegalArgumentException.class, () -> Parser.split(input));
     }
 }

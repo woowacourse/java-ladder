@@ -9,7 +9,7 @@ public class Parser {
     private Parser() {
     }
 
-    public static List<String> splitName(String input) {
+    public static List<String> split(String input) {
         validateInput(input);
         return Arrays.asList(input.split(DELIMITER));
     }
