@@ -1,5 +1,6 @@
 package domain.ladder;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
@@ -19,7 +20,7 @@ class FloorTest {
         Floor floor = Floor.createByStrategy(bridgeGenerator, new Width(4));
 
         //then
-        Assertions.assertThat(floor.getBridges()).containsExactly(Bridge.NO_BRIDGE, Bridge.BRIDGE, Bridge.NO_BRIDGE);
+        assertThat(floor.getBridges()).containsExactly(Bridge.NO_BRIDGE, Bridge.BRIDGE, Bridge.NO_BRIDGE);
     }
 
     @DisplayName("위치를 받으면 다리를 따라 이동한 결과 위치를 반환한다.")
@@ -33,10 +34,10 @@ class FloorTest {
         final int resultPosition = floor.move(0);
         //then
         assertAll(
-                () -> Assertions.assertThat(floor.move(0)).isEqualTo(1),
-                () -> Assertions.assertThat(floor.move(1)).isEqualTo(0),
-                () -> Assertions.assertThat(floor.move(2)).isEqualTo(3),
-                () -> Assertions.assertThat(floor.move(3)).isEqualTo(2)
+                () -> assertThat(floor.move(0)).isEqualTo(1),
+                () -> assertThat(floor.move(1)).isEqualTo(0),
+                () -> assertThat(floor.move(2)).isEqualTo(3),
+                () -> assertThat(floor.move(3)).isEqualTo(2)
         );
     }
 }

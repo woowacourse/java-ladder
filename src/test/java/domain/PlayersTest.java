@@ -1,8 +1,9 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.*;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -24,7 +25,7 @@ class PlayersTest {
         final Players players = new Players(names);
 
         //then
-        Assertions.assertThat(players.count()).isEqualTo(playerCount);
+        assertThat(players.count()).isEqualTo(playerCount);
     }
 
     @DisplayName("참가자 수가 2명 미만, 10명 초과이면 예외를 발생시킨다.")
@@ -38,7 +39,7 @@ class PlayersTest {
         }
 
         //when & then
-        Assertions.assertThatThrownBy(() -> new Players(names)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Players(names)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("참가자의 수를 반환한다.")
@@ -52,7 +53,7 @@ class PlayersTest {
         int playersCount = players.count();
 
         //then
-        Assertions.assertThat(playersCount).isEqualTo(names.size());
+        assertThat(playersCount).isEqualTo(names.size());
     }
 
     @DisplayName("참가자들의 이름 목록을 반환한다.")
@@ -66,6 +67,6 @@ class PlayersTest {
         List<String> returnedNames = players.getNames();
 
         //then
-        Assertions.assertThat(returnedNames).containsAll(names);
+        assertThat(returnedNames).containsAll(names);
     }
 }

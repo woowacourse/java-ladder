@@ -1,6 +1,7 @@
 package domain.player;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,7 +14,7 @@ class PlayerTest {
     @ValueSource(strings = {"a", "aaa12"})
     void validNameLength(String playerName) {
         //when & then
-        Assertions.assertThatCode(() -> new Player(playerName, 0))
+        assertThatCode(() -> new Player(playerName, 0))
                 .doesNotThrowAnyException();
     }
 
@@ -22,7 +23,7 @@ class PlayerTest {
     @ValueSource(strings = {"abc123", ""})
     void invalidNameLength(String playerName) {
         //when & then
-        Assertions.assertThatThrownBy(() -> new Player(playerName, 0)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Player(playerName, 0)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("참가자의 위치를 왼쪽으로 이동시킨다.")
@@ -36,7 +37,7 @@ class PlayerTest {
         player.moveLeft();
 
         //then
-        Assertions.assertThat(player.getPosition()).isEqualTo(expectedPosition);
+        assertThat(player.getPosition()).isEqualTo(expectedPosition);
     }
 
     @DisplayName("참가자의 위치를 오른쪽으로 이동시킨다.")
@@ -50,6 +51,6 @@ class PlayerTest {
         player.moveRight();
 
         //then
-        Assertions.assertThat(player.getPosition()).isEqualTo(expectedPosition);
+        assertThat(player.getPosition()).isEqualTo(expectedPosition);
     }
 }

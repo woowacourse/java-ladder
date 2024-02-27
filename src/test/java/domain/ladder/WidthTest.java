@@ -1,8 +1,9 @@
 package domain.ladder;
 
+import static org.assertj.core.api.Assertions.*;
+
 import domain.Players;
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +20,6 @@ class WidthTest {
         final Width width = Width.from(players);
 
         //then
-        Assertions.assertThat(width).isEqualTo(new Width(expectedWidth));
+        assertThat(width).isEqualTo(new Width(expectedWidth));
     }
 }
