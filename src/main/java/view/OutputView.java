@@ -1,5 +1,6 @@
 package view;
 
+import domain.Reward;
 import domain.ladder.common.Direction;
 import domain.player.Name;
 
@@ -24,14 +25,6 @@ public class OutputView {
         printNewLine();
     }
 
-    private static String padString(String name) {
-        return NAME_SPACE_UNIT.repeat(NAME_SPACE_SIZE - name.length()) + name;
-    }
-
-    private static void printNewLine() {
-        System.out.print(System.lineSeparator());
-    }
-
     public static void printDirections(List<Direction> directions) {
 
         StringBuilder resultStringBuilder = new StringBuilder();
@@ -44,6 +37,23 @@ public class OutputView {
 
         System.out.println(resultStringBuilder);
     }
+
+    public static void printRewards(List<Reward> rewards) {
+        rewards.stream()
+               .map(Reward::getValue)
+               .map(OutputView::padString)
+               .forEach(System.out::print);
+        printNewLine();
+    }
+
+    private static String padString(String name) {
+        return NAME_SPACE_UNIT.repeat(NAME_SPACE_SIZE - name.length()) + name;
+    }
+
+    private static void printNewLine() {
+        System.out.print(System.lineSeparator());
+    }
+
 
     private static EnumMap<Direction, String> initializedDirectionSymbol() {
         final EnumMap<Direction, String> directionSymbols = new EnumMap<>(Direction.class);

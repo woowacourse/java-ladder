@@ -28,4 +28,8 @@ public class Rewards {
     public Reward getRewardAt(int index) {
         return rewards.get(index);
     }
+
+    public List<Reward> getValue() {
+        return rewards;
+    }
 }
