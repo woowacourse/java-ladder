@@ -21,7 +21,7 @@ public class LadderRow {
     public void playRow(Players players) {
         for (int i = 0; i < rungs.size(); i++) {
             Player player = players.findPlayerByIndex(i);
-            player.move(rungs.get(i));
+            player.move(rungs.get(player.getPosition()));
         }
     }
 
