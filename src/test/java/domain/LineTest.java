@@ -33,20 +33,20 @@ class LineTest {
     @DisplayName("사다리의 LineItem이 columnLength에 맞게 생성되는지 확인한다.")
     @Test
     void checkCreatedLineItemCount() {
-        TestLineItemGenerator testDirectionGenerator = new TestLineItemGenerator(LineItem.CONNECTED);
+        TestLineItemGenerator lineItemGenerator = new TestLineItemGenerator(LineItem.CONNECTED);
         int columnLength = 4;
         Line line = new Line(columnLength);
 
-        assertThat(line.makeLine(testDirectionGenerator).size()).isEqualTo(columnLength-1);
+        assertThat(line.makeLine(lineItemGenerator).size()).isEqualTo(columnLength-1);
     }
 
     @DisplayName("현재 위치에서 사다리가 옆으로 연결되어 있으면 옆으로 이동한다.")
     @Test
     void moveLineIfConnected() {
-        TestLineItemGenerator testDirectionGenerator = new TestLineItemGenerator(LineItem.CONNECTED);
+        TestLineItemGenerator lineItemGenerator = new TestLineItemGenerator(LineItem.CONNECTED);
         int columnLength = 4;
         Line line = new Line(columnLength);
-        line.makeLine(testDirectionGenerator);
+        line.makeLine(lineItemGenerator);
 
         int position = 0;
         position = line.move(position);
