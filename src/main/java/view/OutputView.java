@@ -13,14 +13,14 @@ import java.util.List;
 
 public class OutputView {
 
-    private static final String RESULT = lineSeparator() + "사다리 결과" + lineSeparator();
+    private static final String LADDER_RESULT = lineSeparator() + "사다리 결과" + lineSeparator();
     private static final String STICK = "|";
     private static final String LEG_UNIT = "-";
     private static final String FORMAT_NAME = "%6s";
     private static final String FORMAT_REWARD = "%6s";
 
     public static void printLadder(Players players, Ladder ladder, Rewards rewards) {
-        System.out.println(RESULT);
+        System.out.println(LADDER_RESULT);
         printPlayers(players.getPlayers());
         printLines(players, ladder);
         printRewards(players, rewards.getRewards());
