@@ -55,7 +55,7 @@ public class Ladder {
     }
 
     public Direction getDirectionWithPoint(final Point point) {
-        return ladderLegs.get(point.getColumn())
-                         .getDirectionAtIndex(point.getRow());
+        return ladderLegs.get(point.row())
+                         .getDirectionAtIndex(point.column());
     }
 }

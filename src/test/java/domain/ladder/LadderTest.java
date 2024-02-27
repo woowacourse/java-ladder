@@ -1,5 +1,6 @@
 package domain.ladder;
 
+import domain.FixedDirectionGenerator;
 import domain.Point;
 import domain.ladder.common.Direction;
 import domain.ladder.common.Height;
@@ -48,12 +49,15 @@ class LadderTest {
     @Test
     @DisplayName("특정 Point 의 방향을 가져온다")
     public void getDirectionWithPoint() {
-        Point point = new Point(3, 4);
+        Point point1 = new Point(4,3);
+        Point point2 = new Point(1, 2);
 
         Ladder ladder = 오른쪽_왼쪽_오른쪽_왼쪽_아래_사다리_생성();
 
-        Direction direction = ladder.getDirectionWithPoint(point);
-        assertEquals(direction, Direction.DOWN);
+        Direction direction1 = ladder.getDirectionWithPoint(point1);
+        Direction direction2 = ladder.getDirectionWithPoint(point2);
+        assertEquals(direction1, Direction.DOWN);
+        assertEquals(direction2, Direction.LEFT);
     }
 
     private Ladder 오른쪽_왼쪽_오른쪽_왼쪽_아래_사다리_생성() {
