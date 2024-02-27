@@ -1,19 +1,16 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 public class ResultItem {
 
     public static final int MAX_LENGTH = 5;
 
     private final String content;
 
-    public ResultItem(String rawContent) {
-        String content = parse(rawContent);
+    public ResultItem(String content) {
         validate(content);
         this.content = content;
-    }
-
-    private String parse(String content) {
-        return content.trim();
     }
 
     private void validate(String content) {

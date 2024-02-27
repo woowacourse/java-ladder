@@ -6,20 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ResultItemTest {
-
-    @Test
-    @DisplayName("결과 항목의 앞뒤 공백은 제거한다.")
-    void trimSpaces() {
-        // when
-        ResultItem resultItem = new ResultItem("    꽝    ");
-
-        // then
-        assertThat(resultItem)
-                .extracting("content")
-                .asString()
-                .isEqualTo("꽝");
-    }
+class ResultsItemTest {
 
     @Test
     @DisplayName("결과 항목이 1글자 미만이면 예외가 발생한다.")

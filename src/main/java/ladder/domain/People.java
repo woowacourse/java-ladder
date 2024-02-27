@@ -1,28 +1,19 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class People {
 
-    private static final int MIN_PEOPLE_SIZE = 2;
-    private static final int MAX_NAME_LENGTH = 5;
+    private static final int MIN_SIZE = 2;
+    private static final int MAX_LENGTH = 5;
 
     private final List<String> names;
 
-    public People(String rawNames) {
-        List<String> names = parse(rawNames);
+    public People(List<String> names) {
         validate(names);
         this.names = new ArrayList<>(names);
-    }
-
-    private List<String> parse(String rawNames) {
-        String[] names = rawNames.split(",");
-        return Arrays.stream(names)
-                .map(String::trim)
-                .toList();
     }
 
     private void validate(List<String> names) {
@@ -32,8 +23,8 @@ public class People {
     }
 
     private void validateMinSize(List<String> names) {
-        if (names.size() < MIN_PEOPLE_SIZE) {
-            throw new IllegalArgumentException("사람이 최소 2명 필요합니다.");
+        if (names.size() < MIN_SIZE) {
+            throw new IllegalArgumentException("이름이 두 개 이상이 아닙니다.");
         }
     }
 
@@ -43,17 +34,17 @@ public class People {
                 .count();
 
         if (count > 0) {
-            throw new IllegalArgumentException("이름은 최소 1글자 부여해야 합니다.");
+            throw new IllegalArgumentException("1글자 이상이 아닌 이름이 있습니다.");
         }
     }
 
     private void validateMaxLength(List<String> names) {
         long count = names.stream()
-                .filter(name -> name.length() > MAX_NAME_LENGTH)
+                .filter(name -> name.length() > MAX_LENGTH)
                 .count();
 
         if (count > 0) {
-            throw new IllegalArgumentException("이름은 최대 5글자까지 부여할 수 있습니다.");
+            throw new IllegalArgumentException("5글자 이하가 아닌 이름이 있습니다.");
         }
     }
 
