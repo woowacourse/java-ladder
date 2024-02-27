@@ -18,6 +18,13 @@ public class Rewards {
         return new Rewards(membersCount, initialize(rawNames));
     }
 
+    public String findRewardNameByIndex(int index) {
+        if (index < 0 || index >= rewards.size()) {
+            throw new IllegalArgumentException("올바르지 않은 상품 인덱스입니다.");
+        }
+        return rewards.get(index).getName();
+    }
+
     public Reward findRewardById(int id) {
         return rewards.stream()
             .filter(reward -> reward.getId() == id)

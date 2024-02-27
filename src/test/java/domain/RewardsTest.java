@@ -72,4 +72,27 @@ public class RewardsTest {
         assertThatThrownBy(() -> Rewards.from(1, rawNames))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("인덱스로 Reward의 이름 찾기 성공")
+    void findRewardNameByIndex() {
+        Rewards rewards = Rewards.from(3, "꽝,10,20");
+        Assertions.assertAll(
+            () -> assertThat(rewards.findRewardNameByIndex(0)).isEqualTo("꽝"),
+            () -> assertThat(rewards.findRewardNameByIndex(1)).isEqualTo("10"),
+            () -> assertThat(rewards.findRewardNameByIndex(2)).isEqualTo("20")
+        );
+    }
+
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 3})
+    @DisplayName("인덱스로 Reward의 이름 찾기 실패")
+    void findRewardNameByIndex_exception(int index) {
+        Rewards rewards = Rewards.from(3, "꽝,10,20");
+        assertThatThrownBy(() -> rewards.findRewardNameByIndex(index))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("올바르지 않은 상품 인덱스입니다.");
+    }
+
 }
