@@ -23,8 +23,8 @@ public class GameBoard {
         this.gameResults = generateGameResult();
     }
 
-    public List<Direction> getDirectionAtHorizontalIndex(Integer index) {
-        return ladder.getDirectionAtHorizontalIndex(index);
+    public List<Direction> getDirectionsAtHorizontalIndex(int index) {
+        return ladder.getDirectionsAtHorizontalIndex(index);
     }
 
     private LinkedHashMap<Name, Prize> generateGameResult() {

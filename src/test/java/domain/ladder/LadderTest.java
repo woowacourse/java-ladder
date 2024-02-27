@@ -38,7 +38,7 @@ class LadderTest {
 
         Ladder ladder = new Ladder(height, playerCount, new FixedDirectionGenerator(fixedDirectionList));
 
-        List<Direction> directions = ladder.getDirectionAtHorizontalIndex(0);
+        List<Direction> directions = ladder.getDirectionsAtHorizontalIndex(0);
         List<Direction> expected = List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT, Direction.DOWN);
         assertEquals(directions, expected);
     }

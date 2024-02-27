@@ -32,12 +32,6 @@ public class Ladder {
         return generatedLadderLegs;
     }
 
-    public List<Direction> getDirectionAtHorizontalIndex(int index) {
-        validateHorizontalIndex(index);
-        return ladderLegs.stream()
-                         .map(ladderLeg -> ladderLeg.getDirectionAtIndex(index))
-                         .toList();
-    }
 
     public int moveCoordinateToResultPoint(int x, int y) {
         if (isReachResultPoint(y)) return x;
@@ -60,6 +54,13 @@ public class Ladder {
 
     private boolean isReachResultPoint(int y) {
         return y == height.getValue();
+    }
+
+    public List<Direction> getDirectionsAtHorizontalIndex(int index) {
+        validateVerticalIndex(index);
+        return ladderLegs.stream()
+                         .map(ladderLeg -> ladderLeg.getDirectionAtIndex(index))
+                         .toList();
     }
 
     private void validateCoordinate(int x, int y) {
