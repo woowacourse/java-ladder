@@ -1,6 +1,7 @@
 package domain;
 
 public class LadderGame {
+
     private final Ladder ladder;
     private final Names names;
     private final Prizes prizes;
@@ -22,7 +23,7 @@ public class LadderGame {
                 .map(name -> this.drive(name.getName()))
                 .toList());
     }
-    
+
     private void validateCountEqual(Ladder ladder, Names names, Prizes prizes) {
         if (ladder.getColumnCount() != prizes.getPrizeCount()) {
             throw new IllegalArgumentException("[ERROR] 사다리 열과 결과의 개수가 일치하지 않습니다");
