@@ -5,7 +5,6 @@ import java.util.List;
 public class LadderResults {
     private static final int MIN_LADDER_RESULTS_LENGTH = 2;
     private static final int MAX_LADDER_RESULTS_LENGTH = 10;
-
     private final List<LadderResult> ladderResults;
 
     public LadderResults(List<LadderResult> ladderResults) {

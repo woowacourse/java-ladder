@@ -3,7 +3,6 @@ package domain;
 class Width {
     private static final int MIN = 2;
     private static final int MAX = 10;
-
     private final int length;
 
     Width(int length) {

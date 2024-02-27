@@ -66,6 +66,4 @@ class NamesTest {
 
         Assertions.assertThat(actual).isEqualTo(expected);
     }
-
-
 }

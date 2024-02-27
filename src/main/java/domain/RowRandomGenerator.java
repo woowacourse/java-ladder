@@ -7,7 +7,6 @@ import java.util.stream.IntStream;
 
 public class RowRandomGenerator implements RowGenerator {
     private final Random random = new Random();
-
     private Boolean previousBridge = false;
 
     public Row generate(int width) {
