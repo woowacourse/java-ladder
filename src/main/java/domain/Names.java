@@ -60,4 +60,8 @@ public class Names {
     public String nameOf(int index) {
         return names.get(index).getValue();
     }
+
+    public List<Name> getNames() {
+        return names;
+    }
 }
