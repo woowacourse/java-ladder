@@ -23,7 +23,7 @@ class ResultsTest {
         Results results = new Results(List.of("1000", "꽝"));
         // when
         Assertions.assertThatThrownBy(() -> results.get(2))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(IndexOutOfBoundsException.class)
                 .hasMessage("주어진 인덱스가 범위를 벗어납니다.");
     }
 }

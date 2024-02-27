@@ -50,7 +50,7 @@ public class Players {
 
     private void validateIndex(int index) {
         if (index < 0 || index >= names.size()) {
-            throw new IllegalArgumentException("주어진 인덱스가 범위를 벗어납니다.");
+            throw new IndexOutOfBoundsException("주어진 인덱스가 범위를 벗어납니다.");
         }
     }
 

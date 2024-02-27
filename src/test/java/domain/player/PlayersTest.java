@@ -52,7 +52,7 @@ class PlayersTest {
         Players players = new Players(List.of("aru", "pobi"));
         // when
         Assertions.assertThatThrownBy(() -> players.get(2))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(IndexOutOfBoundsException.class)
                 .hasMessage("주어진 인덱스가 범위를 벗어납니다.");
     }
 
