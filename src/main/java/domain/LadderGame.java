@@ -32,7 +32,7 @@ public class LadderGame {
     }
 
     public List<String> getLadderShape() {
-        return LadderBuilder.getResult(players, ladder, winnings);
+        return LadderBuilder.getLadder(players, ladder, winnings);
     }
 
     public List<String> getClimbedNames() {
