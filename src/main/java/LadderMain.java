@@ -3,7 +3,6 @@ import domain.MatchingItems;
 import domain.Players;
 import domain.ladder.Height;
 import domain.ladder.RandomBridgeGenerator;
-import java.util.List;
 import view.InputView;
 import view.OutputView;
 
@@ -17,6 +16,7 @@ public class LadderMain {
         final LadderGame ladderGame = new LadderGame(players, matchingItems, height,
                 RandomBridgeGenerator.getInstance());
 
-        OutputView.printLadderMakingResult(ladderGame.getPlayerNames(), ladderGame.getLadder());
+        OutputView.printLadderMakingResult(
+                ladderGame.getPlayerNames(), ladderGame.getLadder(), matchingItems.getItems());
     }
 }

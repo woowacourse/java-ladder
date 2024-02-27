@@ -15,17 +15,19 @@ public class OutputView {
     private OutputView(){
     }
 
-    public static void printLadderMakingResult(final List<String> names, final Ladder ladder) {
+    public static void printLadderMakingResult(final List<String> names, final Ladder ladder,
+                                               final List<String> matchingItems) {
         printResultMessage();
-        printPlayers(names);
+        printWithFormat(names);
         printLadder(ladder);
+        printWithFormat(matchingItems);
     }
 
     private static void printResultMessage() {
         System.out.println(System.lineSeparator() + "실행결과");
     }
 
-    private static void printPlayers(List<String> names) {
+    private static void printWithFormat(List<String> names) {
         StringJoiner nameJoiner = new StringJoiner(NAME_DELIMITER);
         for (final String name : names) {
             nameJoiner.add(String.format("%5s", name));
@@ -38,7 +40,7 @@ public class OutputView {
         for (final Floor bridges : ladder.getLadder()) {
             ladderShapeJoiner.add(getBridgesShape(bridges));
         }
-        System.out.println(ladderShapeJoiner);
+        System.out.print(ladderShapeJoiner);
     }
 
     private static String getBridgesShape(final Floor bridges) {
