@@ -34,7 +34,7 @@ public class PlayersTest {
     @Test
     void validSearch() {
         Players players = Players.from(List.of("pobi", "kirby"));
-        assertThat(players.search("pobi")).isEqualTo(new Player("pobi"));
+        assertThat(players.search("pobi").getPlayers()).containsExactly(new Player("pobi"));
     }
     @Test
     void invalidSearch() {

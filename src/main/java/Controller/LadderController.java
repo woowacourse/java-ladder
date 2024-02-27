@@ -1,5 +1,6 @@
 package Controller;
 
+import domain.Height;
 import domain.Ladder;
 import domain.LadderGame;
 import domain.PlayerCount;
@@ -26,7 +27,7 @@ public class LadderController {
     public void run() {
         final Players players = readWithRetry(this::readPlayers);
         final Prizes prizes = readWithRetry(this::readPrizes, players);
-        final int height = readWithRetry(inputView::inputHeight);
+        final Height height = readWithRetry(this::readHeight, inputView.inputHeight());
 
         final Ladder ladder = Ladder.create(height, PlayerCount.fromPlayers(players), new RandomStepGenerator());
         outputView.printLadderMap(players, ladder, prizes);
@@ -42,6 +43,10 @@ public class LadderController {
     private Prizes readPrizes(Players players) {
         List<String> prizes = inputView.inputPrizes(players.getCount());
         return Prizes.from(prizes);
+    }
+
+    private Height readHeight(int height) {
+        return new Height(height);
     }
 
     private void showGameResult(PlayersPrize playersPrize, Players players) {
