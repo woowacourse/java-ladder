@@ -19,10 +19,6 @@ public class Ladder {
                 .toList();
     }
 
-    public List<Bridges> getBridge() {
-        return Collections.unmodifiableList(bridges);
-    }
-
     public Result calculateResult(Name name) {
         int index = names.findIndex(name.getName());
         for (Bridges bridge : bridges) {
@@ -47,5 +43,9 @@ public class Ladder {
                 .map((this::calculateResult))
                 .toList();
         return new Results(results);
+    }
+
+    public List<Bridges> getBridge() {
+        return Collections.unmodifiableList(bridges);
     }
 }
