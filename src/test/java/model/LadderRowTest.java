@@ -27,18 +27,17 @@ public class LadderRowTest {
 
     }
 
-//    |-----|     |-----|
+
     @DisplayName("사다리의 행 내에서 라인에 따라 이동할 수 있다.")
     @Test
     void move(){
         LadderRow ladderRow = new LadderRow(List.of(true, false, true));
         assertAll(
-                () -> assertThat(ladderRow.move(0)).isEqualTo(1),
-                () -> assertThat(ladderRow.move(1)).isEqualTo(0),
-                () -> assertThat(ladderRow.move(2)).isEqualTo(3),
-                () -> assertThat(ladderRow.move(3)).isEqualTo(2)
+                () -> assertThat(ladderRow.climb(0)).isEqualTo(1),
+                () -> assertThat(ladderRow.climb(1)).isEqualTo(0),
+                () -> assertThat(ladderRow.climb(2)).isEqualTo(3),
+                () -> assertThat(ladderRow.climb(3)).isEqualTo(2)
         );
-
     }
 
 }

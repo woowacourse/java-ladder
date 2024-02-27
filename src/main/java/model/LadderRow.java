@@ -30,34 +30,42 @@ public class LadderRow {
         return new ArrayList<>(spaces);
     }
 
-    public int move(int index) {
-        // 양끝에 위치한 index의 경우
-        if (index == 0) {
-            return checkRight(index);
+    public int climb(int position) {
+        if(isEitherEnds(position)){
+            return climbOnEnd(position);
         }
-        if (index == spaces.size()) {
-            return checkLeft(index);
-        }
-        return checkBoth(index);
+        return climbOnMiddle(position);
     }
 
-    private int checkRight(int index){
-        if(spaces.get(index) == Space.LINE){
-            return index+1;
-        }
-        return index;
-    }
-    private int checkLeft(int index){
-        if(spaces.get(index - 1) == Space.LINE){
-            return index-1;
-        }
-        return index;
+    private boolean isEitherEnds(int position){
+        return position == 0 || position == spaces.size();
     }
 
-    private int checkBoth(int index){
-        if(checkLeft(index) != index){
-            return checkLeft(index);
+    private int climbOnEnd(int position){
+        if(position == 0){
+            return climbRight(position);
         }
-        return checkRight(index);
+        return climbLeft(position);
+    }
+
+    private int climbRight(int position){
+        if(spaces.get(position) == Space.LINE){
+            return position+1;
+        }
+        return position;
+    }
+
+    private int climbLeft(int position){
+        if(spaces.get(position - 1) == Space.LINE){
+            return position-1;
+        }
+        return position;
+    }
+
+    private int climbOnMiddle(int position){
+        if(climbLeft(position) != position){
+            return climbLeft(position);
+        }
+        return climbRight(position);
     }
 }

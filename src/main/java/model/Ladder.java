@@ -32,7 +32,7 @@ public class Ladder {
 
     public int result(int participantsPosition) {
         for (LadderRow ladderRow : ladderRows){
-            participantsPosition = ladderRow.move(participantsPosition);
+            participantsPosition = ladderRow.climb(participantsPosition);
         }
         return participantsPosition;
     }
