@@ -13,7 +13,7 @@ public class LadderGameController {
 
     public void run() {
         Users users = generateUsers();
-        Results results = generateResults();
+        Results results = generateResults(users.gerPersonCount());
         Ladder ladder = generateLadders(users.gerPersonCount());
 
         LadderGame ladderGame = new LadderGame(users, ladder, results);
@@ -28,10 +28,10 @@ public class LadderGameController {
         return new Users(names);
     }
 
-    private Results generateResults() {
+    private Results generateResults(int personCount) {
         List<String> prizes = InputView.inputResults();
         List<Result> results = prizes.stream().map(Result::new).toList();
-        return new Results(results);
+        return Results.of(results, personCount);
     }
 
     private Ladder generateLadders(int userCount) {
