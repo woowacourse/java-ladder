@@ -31,7 +31,7 @@ public class LadderController {
         try {
             return Optional.of(supplier.get());
         } catch (IllegalArgumentException e) {
-            OutputView.printMessage(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return Optional.empty();
         }
     }
