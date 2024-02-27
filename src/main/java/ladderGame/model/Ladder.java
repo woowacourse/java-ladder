@@ -12,9 +12,7 @@ public class Ladder {
     }
 
     public void descendLadder(Players players) {
-        for(Line line : lines) {
-            players.move(line);
-        }
+        lines.forEach(line -> players.move(line));
     }
 
     public List<Line> getLines() {
