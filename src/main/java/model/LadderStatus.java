@@ -2,8 +2,8 @@ package model;
 
 public enum LadderStatus {
 
-    CONNECTED(true, "-".repeat(5)),
-    UNCONNECTED(false, " ".repeat(5)),
+    CONNECTED(true, "-----|"),
+    UNCONNECTED(false, "     |"),
     ;
 
     private final boolean connectionInfo;

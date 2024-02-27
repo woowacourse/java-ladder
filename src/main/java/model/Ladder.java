@@ -34,10 +34,8 @@ public class Ladder {
     private String formatLine(final Line line) {
         StringBuilder lineBuilder = new StringBuilder();
         lineBuilder.append("|");
-        //TODO: ladderStatus에 "|" 붙이기
         for (int index = 0; index < line.size(); index++) {
             lineBuilder.append(line.getLadderStatus(index).getLadderForm());
-            lineBuilder.append("|");
         }
         return lineBuilder.toString();
     }
