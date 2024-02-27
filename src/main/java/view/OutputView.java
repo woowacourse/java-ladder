@@ -1,8 +1,8 @@
 package view;
 
+import domain.ladder.DirectionalRung;
 import domain.ladder.Ladder;
 import domain.ladder.LadderRow;
-import domain.ladder.LadderRung;
 import domain.player.Players;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,15 +39,15 @@ public class OutputView {
                 .forEach(rungs -> System.out.println(makeLadderRowText(rungs, length)));
     }
 
-    private static String makeLadderRowText(List<LadderRung> rungs, int length) {
+    private static String makeLadderRowText(List<DirectionalRung> rungs, int length) {
         return SPACE.repeat(length) +
                 rungs.stream()
                         .map(rung -> makeLadderRungText(rung, length))
                         .collect(Collectors.joining(LADDER_COLUMN, LADDER_COLUMN, LADDER_COLUMN));
     }
 
-    private static String makeLadderRungText(LadderRung rung, int length) {
-        if (rung.isConnected()) {
+    private static String makeLadderRungText(DirectionalRung rung, int length) {
+        if (rung == DirectionalRung.RIGHT) {
             return CONNECTED_RUNG.repeat(length);
         }
         return NOT_CONNECTED_RUNG.repeat(length);

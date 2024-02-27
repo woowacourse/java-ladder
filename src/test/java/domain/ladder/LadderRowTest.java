@@ -32,12 +32,12 @@ public class LadderRowTest {
         LadderRow ladderRow = new LadderRow(trueGenerator, playerSize);
 
         // then
-        List<LadderRung> rungs = ladderRow.getRungs();
+        List<DirectionalRung> rungs = ladderRow.getRungs();
         assertAll(
-                () -> assertThat(rungs.get(0).isConnected()).isTrue(),
-                () -> assertThat(rungs.get(1).isConnected()).isFalse(),
-                () -> assertThat(rungs.get(2).isConnected()).isTrue(),
-                () -> assertThat(rungs.get(3).isConnected()).isFalse()
+                () -> assertThat(rungs.get(0)).isEqualTo(DirectionalRung.RIGHT),
+                () -> assertThat(rungs.get(1)).isEqualTo(DirectionalRung.LEFT),
+                () -> assertThat(rungs.get(2)).isEqualTo(DirectionalRung.RIGHT),
+                () -> assertThat(rungs.get(3)).isEqualTo(DirectionalRung.LEFT)
         );
     }
 }

@@ -6,31 +6,35 @@ import java.util.Collections;
 import java.util.List;
 
 public class LadderRow {
-    private final List<LadderRung> rungs;
+    private final List<DirectionalRung> rungs;
 
     public LadderRow(BooleanGenerator booleanGenerator, int size) {
         rungs = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            LadderRung ladderRung = findNextRung(booleanGenerator, getLastRung());
+            DirectionalRung ladderRung = findNextRung(booleanGenerator, getLastRung(), i);
             rungs.add(ladderRung);
         }
     }
 
-    private LadderRung findNextRung(final BooleanGenerator booleanGenerator, final LadderRung lastRung) {
-        if (lastRung.isConnected()) {
-            return LadderRung.findRung(LadderRung.NOT_CONNECTED.isConnected());
+    private DirectionalRung findNextRung(final BooleanGenerator booleanGenerator, final DirectionalRung lastRung,
+                                         final int currentIndex) {
+        if (lastRung == DirectionalRung.RIGHT) {
+            return DirectionalRung.LEFT;
         }
-        return LadderRung.findRung(booleanGenerator.generate());
+        if (currentIndex == rungs.size() - 1) {
+            return DirectionalRung.MID;
+        }
+        return DirectionalRung.findRung(booleanGenerator.generate());
     }
 
-    private LadderRung getLastRung() {
+    private DirectionalRung getLastRung() {
         if (!rungs.isEmpty()) {
             return rungs.get(rungs.size() - 1);
         }
-        return LadderRung.NOT_CONNECTED;
+        return DirectionalRung.MID;
     }
 
-    public List<LadderRung> getRungs() {
+    public List<DirectionalRung> getRungs() {
         return Collections.unmodifiableList(this.rungs);
     }
 }

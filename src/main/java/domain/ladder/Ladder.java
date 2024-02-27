@@ -11,13 +11,9 @@ public class Ladder {
     public Ladder(final BooleanGenerator booleanGenerator, final Height height, final int playerSize) {
         rows = new ArrayList<>();
         for (int i = 0; i < height.getValue(); i++) {
-            final LadderRow ladderRow = new LadderRow(booleanGenerator, getColumnSize(playerSize));
+            final LadderRow ladderRow = new LadderRow(booleanGenerator, playerSize);
             rows.add(ladderRow);
         }
-    }
-
-    private int getColumnSize(final int playerSize) {
-        return playerSize - 1;
     }
 
     public List<LadderRow> getRows() {
