@@ -30,40 +30,28 @@ public class LadderRow {
     }
 
     void crossRungs(List<String> names) {
-        for (int nowVerticalLine = 0; nowVerticalLine < names.size(); nowVerticalLine += 2) {
-            int nextVerticalLine = moveNextVerticalLine(nowVerticalLine);
-            Collections.swap(names, nowVerticalLine, nextVerticalLine);
+        for (int nowIndex = 0; nowIndex < names.size(); nowIndex += 2) {
+            int nextIndex = crossRung(nowIndex);
+            Collections.swap(names, nowIndex, nextIndex);
         }
     }
 
-    private int moveNextVerticalLine(int nowVerticalLine) {
-        int nextVerticalLine = crossLeftRung(nowVerticalLine);
-        if (nextVerticalLine != nowVerticalLine) {
-            return nextVerticalLine;
+    private int crossRung(int nowIndex) {
+        if (existsConnectedLeftRung(nowIndex)) {
+            return nowIndex - 1;
         }
-        return crossRightRung(nowVerticalLine);
+        if (existsConnectedRightRung(nowIndex)) {
+            return nowIndex + 1;
+        }
+        return nowIndex;
     }
 
-    private int crossLeftRung(int now) {
-        if (now <= 0) {
-            return now;
-        }
-        LadderRung leftRung = rungs.get(now - 1);
-        if (leftRung.isConnected()) {
-            return now - 1;
-        }
-        return now;
+    private boolean existsConnectedLeftRung(int nowIndex) {
+        return nowIndex > 0 && rungs.get(nowIndex - 1).isConnected();
     }
 
-    private int crossRightRung(int now) {
-        if (now >= rungs.size()) {
-            return now;
-        }
-        LadderRung rightRung = rungs.get(now);
-        if (rightRung.isConnected()) {
-            return now + 1;
-        }
-        return now;
+    private boolean existsConnectedRightRung(int nowIndex) {
+        return nowIndex < rungs.size() && rungs.get(nowIndex).isConnected();
     }
 
     public List<LadderRung> getRungs() {
