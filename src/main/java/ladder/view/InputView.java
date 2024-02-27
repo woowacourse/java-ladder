@@ -4,11 +4,13 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import ladder.dto.ResultRequestDto;
 
 public class InputView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final String NAME_DELIMITER = ",";
+    private static final String TOTAL_PLAYER_REQUEST = "all";
 
     public List<String> inputPlayerNames() {
         System.out.println();
@@ -46,5 +48,18 @@ public class InputView {
         } finally {
             SCANNER.reset();
         }
+    }
+
+    private ResultRequestDto inputResultRequest() {
+        System.out.println();
+        System.out.println("결과를 보고 싶은 사람은?");
+
+        String input = SCANNER.nextLine();
+        SCANNER.reset();
+
+        if (TOTAL_PLAYER_REQUEST.equals(input)) {
+            return ResultRequestDto.ALL;
+        }
+        return new ResultRequestDto(input);
     }
 }
