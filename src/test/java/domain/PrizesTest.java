@@ -18,7 +18,7 @@ public class PrizesTest {
         List<String> prizes = List.of("꽝", "5000", "꽝", "3000");
 
         Assertions.assertThatNoException()
-                .isThrownBy(() -> new Prizes(prizes, names));
+                .isThrownBy(() -> new Prizes(prizes, names.size()));
     }
 
     @DisplayName("상품목록 객체는 최소 2개 이상이여야 한다.")
@@ -26,7 +26,7 @@ public class PrizesTest {
     @MethodSource("constructorFailWithLessThen2TestProvider")
     void constructorFailWithLessThen2Test(List<String> prizes, Names names) {
 
-        Assertions.assertThatThrownBy(() -> new Prizes(prizes, names))
+        Assertions.assertThatThrownBy(() -> new Prizes(prizes, names.size()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -42,7 +42,7 @@ public class PrizesTest {
     @MethodSource("constructorFailWithMissMatchCountTestProvider")
     void constructorFailWithMissMatchCountTest(List<String> prizes, Names names) {
 
-        Assertions.assertThatThrownBy(() -> new Prizes(prizes, names))
+        Assertions.assertThatThrownBy(() -> new Prizes(prizes, names.size()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

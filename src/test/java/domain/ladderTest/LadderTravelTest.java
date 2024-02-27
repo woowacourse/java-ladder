@@ -16,7 +16,7 @@ public class LadderTravelTest {
 
     private static final Height DEFAULT_HEIGHT = new Height(4);
     private static final Names names = new Names(List.of("a", "b", "c", "d"));
-    private static final Prizes prizes = new Prizes(List.of("A", "B", "C", "D"), names);
+    private static final Prizes prizes = new Prizes(List.of("A", "B", "C", "D"), names.size());
 
     @DisplayName("체크 패턴이고 높이가 4인 경우, 사다리 순회가 정상적으로 동작한다.")
     @ParameterizedTest

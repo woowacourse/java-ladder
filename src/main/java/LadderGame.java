@@ -18,7 +18,7 @@ public class LadderGame {
     public static void run() {
         Names names = repeat(() -> new Names(InputView.readPersonNames()));
         OutputView.printNewLine();
-        Prizes prizes = repeat(() -> new Prizes(InputView.readPrizes(), names));
+        Prizes prizes = repeat(() -> new Prizes(InputView.readPrizes(), names.size()));
         OutputView.printNewLine();
         Height height = repeat(() -> new Height(InputView.readHeight()));
         OutputView.printNewLine();

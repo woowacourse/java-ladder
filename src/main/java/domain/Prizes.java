@@ -6,15 +6,15 @@ public class Prizes {
 
     private final List<Prize> prizes;
 
-    public Prizes(List<String> prizes, Names names) {
-        validate(prizes, names);
+    public Prizes(List<String> prizes, int personCount) {
+        validate(prizes, personCount);
         this.prizes = prizes.stream()
                 .map(Prize::new)
                 .toList();
     }
 
-    private void validate(List<String> prizes, Names names) {
-        if (prizes.size() != names.size()) {
+    private void validate(List<String> prizes, int personCount) {
+        if (prizes.size() != personCount) {
             throw new IllegalArgumentException("실행 결과 수는 사람 수와 동일해야합니다.");
         }
     }

@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 public class LadderConstructTest {
     private static final Height DEFAULT_HEIGHT = new Height(4);
     private static final Names names = new Names(List.of("a", "b", "c", "d"));
-    private static final Prizes prizes = new Prizes(List.of("A", "B", "C", "D"), names);
+    private static final Prizes prizes = new Prizes(List.of("A", "B", "C", "D"), names.size());
 
     @DisplayName("객체가 정상적으로 생성된다.")
     @Test
