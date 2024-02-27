@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import dto.RowPatternDto;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,8 +23,7 @@ public class LadderIndexConverter {
                 .orElseThrow(() -> new IllegalArgumentException("매핑 정보를 찾을 수 없습니다."));
     }
 
-    public void swapByRowPattern(RowPatternDto rowPatternDto) {
-        List<Boolean> rowPattern = rowPatternDto.rowPattern();
+    public void swapByRowPattern(List<Boolean> rowPattern) {
         validateRowPatternSize(rowPattern);
         IntStream.range(0, rowPattern.size())
                 .filter(rowPattern::get)

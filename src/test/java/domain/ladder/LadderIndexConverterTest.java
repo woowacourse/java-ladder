@@ -42,9 +42,9 @@ class LadderIndexConverterTest {
     void invalidPatternSizeTest() {
         // given
         LadderIndexConverter ladderIndexConverter = new LadderIndexConverter(5);
-        RowPatternDto rowPatternDto = new RowPatternDto(List.of(true, false, true, false, true));
+        List<Boolean> rowPattern = List.of(true, false, true, false, true);
         // when, then
-        assertThatThrownBy(() -> ladderIndexConverter.swapByRowPattern(rowPatternDto))
+        assertThatThrownBy(() -> ladderIndexConverter.swapByRowPattern(rowPattern))
                 .isInstanceOf(IndexOutOfBoundsException.class)
                 .hasMessage("주어진 사다리 패턴의 크기가 올바르지 않습니다.");
     }
@@ -54,9 +54,9 @@ class LadderIndexConverterTest {
     void swapByRowTest() {
         // given
         LadderIndexConverter ladderIndexConverter = new LadderIndexConverter(5);
-        RowPatternDto rowPatternDto = new RowPatternDto(List.of(true, false, true, false));
+        List<Boolean> rowPattern = List.of(true, false, true, false);
         // when
-        ladderIndexConverter.swapByRowPattern(rowPatternDto);
+        ladderIndexConverter.swapByRowPattern(rowPattern);
         List<Integer> actual = IntStream.range(0, 5)
                 .map(ladderIndexConverter::getMappedIndexByPlayerIndex)
                 .boxed()
