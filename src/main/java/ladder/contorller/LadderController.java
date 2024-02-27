@@ -22,7 +22,6 @@ public class LadderController {
         int numberOfUsers = users.getNumberOfUsers();
 
         Ladder ladder = createLadder(numberOfUsers);
-        inputView.closeScanner();
 
         outputView.printLadderGameResult(users, ladder);
     }

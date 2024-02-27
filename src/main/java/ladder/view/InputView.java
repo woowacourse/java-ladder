@@ -25,10 +25,6 @@ public class InputView {
         return convertInteger(input);
     }
 
-    public void closeScanner() {
-        scanner.close();
-    }
-
     private void validateInput(String input) {
         if (input.isEmpty() || input.endsWith(SEPARATOR)) {
             throw new IllegalArgumentException("[ERROR] 올바르지 않은 사용자 이름입니다.");
