@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 
 public class LadderTest {
@@ -24,9 +25,17 @@ public class LadderTest {
     @DisplayName("사다리를 생성할 수 있다.")
     @Test
     void build() {
-        Height height = new Height(1);
+        Height height = new Height(3);
         Participants participants = new Participants(List.of("pobi", "left", "right"));
-        Ladder ladder = new Ladder((x) -> List.of(true, false), height, participants);
-        assertThat(ladder.getRow(0).getSpaces()).isEqualTo(List.of(Space.LINE, Space.EMPTY));
+        Ladder ladder = new Ladder((x, y) -> List.of(
+                List.of(true, false),
+                List.of(true, false),
+                List.of(false, true)), height, participants);
+        assertAll(
+                () -> assertThat(ladder.getRow(0).getSpaces()).isEqualTo(List.of(Space.LINE, Space.EMPTY)),
+                () -> assertThat(ladder.getRow(1).getSpaces()).isEqualTo(List.of(Space.LINE, Space.EMPTY)),
+                () -> assertThat(ladder.getRow(2).getSpaces()).isEqualTo(List.of(Space.EMPTY, Space.LINE))
+        );
+
     }
 }

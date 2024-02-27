@@ -14,12 +14,17 @@ class LadderGenerateStrategyTest {
     @DisplayName("인자의 개수 만큼 랜덤한 값으로 구성된 리스트를 반환할 수 있다.")
     @RepeatedTest(100)
     void apply() {
-        int randomNumber = new Random().nextInt(10) + 1;
-        List<Boolean> result = new LadderGenerateStrategy().apply(randomNumber);
-        assertAll(
-                () -> assertThat(result).containsAnyOf(true, false),
-                () -> assertThat(result.size()).isEqualTo(randomNumber)
-        );
+        Integer rowCount = 5;
+        Integer columnCount = 7;
+        List<List<Boolean>> result = new LadderGenerateStrategy().apply(rowCount, columnCount);
+        for (int i = 0; i < columnCount; i++) {
+            List<Boolean> row = result.get(i);
+            assertAll(
+                    () -> assertThat(row).containsAnyElementsOf(List.of(true, false)),
+                    () -> assertThat(row.size()).isEqualTo(rowCount)
+            );
+        }
+
 
     }
 
