@@ -36,4 +36,10 @@ public class Products {
     public int size() {
         return values.size();
     }
+
+    public List<String> getNames() {
+        return values.stream()
+                .map(Product::getName)
+                .toList();
+    }
 }
