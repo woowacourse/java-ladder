@@ -7,15 +7,21 @@ public class Player {
 
     private final String name;
     private final Position position;
+    private String item;
 
     public Player(final String name, final Position position) {
         validate(name);
         this.name = name;
         this.position = position;
+        this.item = null;
     }
 
     public void moveLine(Direction direction) {
         position.move(direction);
+    }
+
+    public void assignItem(String item) {
+        this.item = item;
     }
 
     private void validate(final String name) {
@@ -40,6 +46,10 @@ public class Player {
     }
 
     public Position getPosition() {
-        return this.position;
+        return position;
+    }
+
+    public String getItem() {
+        return item;
     }
 }
