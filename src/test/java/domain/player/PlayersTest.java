@@ -17,4 +17,25 @@ class PlayersTest {
 
         assertIterableEquals(players.getPlayerNames(), names.getValue());
     }
+
+    @Test
+    @DisplayName("이름을 통해 플레이어를 받아온다.")
+    public void getPlayerAtName() {
+        Name name = new Name("도비");
+
+        Players players = new Players(Names.from(List.of("도비", "조이썬", "포비")));
+
+        assertEquals(players.getPlayerWithName(name)
+                            .getName(), name);
+    }
+
+    @Test
+    @DisplayName("없는 이름을 입력하면 예외를 발생한다.")
+    public void throwExceptionWhenNotExistedName() {
+        Name name = new Name("매머드");
+
+        Players players = new Players(Names.from(List.of("도비", "조이썬", "포비")));
+
+        assertThrows(IllegalArgumentException.class, () -> players.getPlayerWithName(name));
+    }
 }
