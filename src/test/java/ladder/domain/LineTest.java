@@ -16,10 +16,20 @@ class LineTest {
 
     @DisplayName("라인이 비어있으면 예외 발생")
     @Test
-    void validateEmptyLine() {
+    void validateTest_WhenLineIsEmpty() {
+
         assertThatThrownBy(() -> new Line(Collections.emptyList()))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("적어도 가로 라인이 하나이상 있어야 한다.");
+                .hasMessage("적어도 가로 라인이 하나 이상 있어야 한다.");
+    }
+
+    @DisplayName("라인이 null인 경우 예외 발생")
+    @Test
+    void validateTest_WhenLineIsNull() {
+
+        assertThatThrownBy(() -> new Line(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("적어도 가로 라인이 하나 이상 있어야 한다.");
     }
 
     @DisplayName("가로 라인이 겹칠 경우, 예외 발생")

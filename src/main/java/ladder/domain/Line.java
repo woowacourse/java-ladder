@@ -11,9 +11,8 @@ public class Line {
     private final List<Stick> sticks;
 
     public Line(List<Stick> sticks) {
-        List<Stick> copiedSticks = List.copyOf(sticks);
-        validate(copiedSticks);
-        this.sticks = copiedSticks;
+        validate(sticks);
+        this.sticks = List.copyOf(sticks);
     }
 
     private void validate(List<Stick> sticks) {
@@ -21,10 +20,10 @@ public class Line {
         validateIsNotOverlapped(sticks);
     }
 
-    // TODO nullPointerException 처리하기
+
     private void validateIsNotEmpty(List<Stick> sticks) {
-        if (sticks.isEmpty()) {
-            throw new IllegalArgumentException("적어도 가로 라인이 하나이상 있어야 한다.");
+        if (sticks == null || sticks.isEmpty()) {
+            throw new IllegalArgumentException("적어도 가로 라인이 하나 이상 있어야 한다.");
         }
     }
 
