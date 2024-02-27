@@ -25,7 +25,6 @@ class NamesTest {
     @Test
     @DisplayName("참여자 이름이 중복되면 예외 발생")
     void validateDuplicateName() {
-        var nameCreator = new NamesCreator();
         Assertions.assertThatThrownBy(() -> new Names(List.of(new Name("a"), new Name("a"))))
                 .isInstanceOf(LadderGameException.class)
                 .hasMessage(ExceptionType.NOT_ALLOW_DUPLICATE_NAME.getMessage());

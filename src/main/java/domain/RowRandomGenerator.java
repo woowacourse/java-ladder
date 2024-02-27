@@ -10,10 +10,10 @@ public class RowRandomGenerator implements RowGenerator {
     private Boolean previousBridge = false;
 
     public Row generate(int width) {
-        return new Row(generateBridges(width, random));
+        return new Row(generateBridges(width));
     }
 
-    private Bridges generateBridges(int width, Random random) {
+    private Bridges generateBridges(int width) {
         List<Boolean> rawBridges = IntStream.range(0, width)
                 .mapToObj(value -> nextBridge())
                 .collect(Collectors.toList());
