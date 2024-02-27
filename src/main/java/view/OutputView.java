@@ -2,6 +2,7 @@ package view;
 
 import domain.Ladder;
 import domain.Line;
+import domain.Player;
 import domain.Players;
 import java.util.List;
 
@@ -42,7 +43,19 @@ public class OutputView {
         printLine(line);
     }
 
+    public void printGameResult(Players allPlayers) {
+        System.out.println("실행 결과");
+        allPlayers.getPlayers().forEach(player -> printLine("%s : %s", player.getName()));
+    }
+
+    public void printGameResult(Player player) {
+    }
+
     public void printLine(String message) {
         System.out.println(message);
+    }
+    public void printLine(String message, Object... args) {
+        System.out.printf(message, args);
+        System.out.println();
     }
 }

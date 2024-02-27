@@ -5,6 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 public class LadderGame {
+    private final Ladder ladder;
+    private final Players players;
+
+
+    public LadderGame(Ladder ladder, Players players) {
+        this.ladder = ladder;
+        this.players = players;
+    }
+
     public int playLine(int currentColumn, Line line) {
         List<Step> steps = line.getSteps();
         if (steps.get(currentColumn).isExist()) {
@@ -34,6 +43,17 @@ public class LadderGame {
 
         return playerWithResultIndex;
     }
+
+    public Map<Player, Integer> playPlayers2() {
+        Map<Player, Integer> playerWithResultIndex = new LinkedHashMap<>();
+
+        for (int columnIndex = 0; columnIndex < players.getPlayers().size(); columnIndex++) {
+            Player player = players.getPlayers().get(columnIndex);
+            int resultColumnIndex = playLines(columnIndex, ladder.getLines());
+            playerWithResultIndex.put(player, resultColumnIndex);
+        }
+
+        return playerWithResultIndex;    }
 
     public Map<String, String> getPlayersWithPrize(Map<String, Integer> playersWithResultIndex, List<String> prizes) {
         Map<String, String> playersWithPrize = new LinkedHashMap<>();

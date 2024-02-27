@@ -1,7 +1,7 @@
 package Controller;
 
 import domain.Ladder;
-import domain.Player;
+import domain.LadderGame;
 import domain.PlayerCount;
 import domain.Players;
 import domain.RandomStepGenerator;
@@ -28,17 +28,30 @@ public class LadderController {
         final Ladder ladder = Ladder.create(height, PlayerCount.fromPlayers(players), new RandomStepGenerator());
         outputView.printLadderMap(players, ladder, prizes);
 
-        final Player searchedPlayer = readWithRetry(this::readSearchingPlayer, players);
-//        outputView.printSearchedPrize(searchedPlayer);
+        final LadderGame ladderGame = new LadderGame(ladder, players);
+
+//        showGameResult(ladderGame.getPlayersWithPrize(), players);
     }
+
+//    private void showGameResult(Map<String, String> playersWithPrize) {
+//        final List<Player> searchedPlayers = readWithRetry(this::readSearchingPlayers, playersWithPrize);
+//
+//    }
 
     private Players readPlayers() {
         return Players.from(inputView.inputPlayers());
     }
 
-    private Player readSearchingPlayer(Players players) {
-        return players.search(inputView.inputSearchingPlayer());
-    }
+//    private Players readSearchingPlayers(Players players) {
+//        String inputName = inputView.inputSearchingPlayer();
+//
+//        if (inputName.equals("all")) {
+//            return players;
+//        }
+//
+//        Player searchedPlayer = players.search(inputName);
+//        return readSearchingPlayers(players);
+//    }
 
     private <T, R> R readWithRetry(Function<T, R> function, T input) {
         try {

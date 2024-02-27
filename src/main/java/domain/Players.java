@@ -17,11 +17,21 @@ public class Players {
         return new Players(convertToPlayer(players));
     }
 
-    public Player search(String playerName) {
+    private static List<Player> convertToPlayer(List<String> players) {
         return players.stream()
-                .filter(player -> player.isSameName(playerName))
+                .map(Player::new)
+                .collect(Collectors.toList());
+    }
+
+    public Player search(String name) {
+        return players.stream()
+                .filter(player -> player.isSameName(name))
                 .findFirst()
                 .orElseThrow(() ->  new IllegalArgumentException("입력한 참가자 중에서만 결과를 조회할 수 있습니다."));
+    }
+
+    public int getCount() {
+        return players.size();
     }
 
     private void validate(List<Player> players) {
@@ -32,16 +42,6 @@ public class Players {
 
     private boolean hasDuplicate(List<Player> players) {
         return Set.copyOf(players).size() != players.size();
-    }
-
-    private static List<Player> convertToPlayer(List<String> players) {
-        return players.stream()
-                .map(Player::new)
-                .collect(Collectors.toList());
-    }
-
-    public int getCount() {
-        return players.size();
     }
 
     public List<Player> getPlayers() {
