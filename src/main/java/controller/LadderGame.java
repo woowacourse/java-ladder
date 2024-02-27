@@ -14,6 +14,7 @@ import java.util.Map;
 public class LadderGame {
 
     private static final String OUTPUT_FORMAT = "%5s ";
+    private static final String PRINT_ALL_COMMAND = "all";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -40,8 +41,15 @@ public class LadderGame {
 
     private Participants makeParticipants() {
         String input = inputView.inputName();
+        validateInputNameIsCommand(input);
 
         return new Participants(List.of(input.split(",")));
+    }
+
+    private void validateInputNameIsCommand(String name) {
+        if (name.contains(PRINT_ALL_COMMAND)) {
+            throw new IllegalArgumentException(PRINT_ALL_COMMAND + "는 사용할 수 없는 이름입니다.");
+        }
     }
 
     private Results makeResults(Participants participants) {
@@ -125,7 +133,7 @@ public class LadderGame {
     }
 
     private String getLadderGameResult(String name, Participants participants, Results results) {
-        if (name.equals("all")) {
+        if (name.equals(PRINT_ALL_COMMAND)) {
             return getAllResult(results);
         }
 
