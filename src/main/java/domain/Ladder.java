@@ -6,7 +6,8 @@ import java.util.List;
 public class Ladder {
 
     private static final int MIN_LADDER_HEIGHT = 1;
-    public final int height;
+
+    private final int height;
     private final List<Line> lines = new ArrayList<>();
 
     public Ladder(int height, int playerSize, StickGenerator stickGenerator) {
