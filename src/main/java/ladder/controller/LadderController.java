@@ -13,7 +13,7 @@ public class LadderController {
         ladderPlayers = Players.from(InputView.inputPlayerNames());
 
         ladderResult = new LadderResult(InputView.inputLadderResult());
-        ladderResult.isSameLengthWithLadderPlayers(ladderPlayers.getSize());
+        ladderResult.checkIfSameLengthWithLadderPlayers(ladderPlayers.getSize());
 
         LadderSize ladderSize = new LadderSize(InputView.inputLadderHeight(), ladderPlayers.getSize());
 

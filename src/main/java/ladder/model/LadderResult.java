@@ -12,7 +12,7 @@ public class LadderResult {
         this.ladderResult = new ArrayList<>(ladderResult);
     }
 
-    public void isSameLengthWithLadderPlayers(int playerSize) {
+    public void checkIfSameLengthWithLadderPlayers(int playerSize) {
         if (ladderResult.size() != playerSize) {
             throw new IllegalArgumentException("실행 결과 개수가 참여할 사람 이름의 수와 일치하지 않습니다.");
         }
