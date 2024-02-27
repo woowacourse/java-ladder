@@ -3,11 +3,11 @@ package ladder.domain;
 import java.util.List;
 
 public class Prizes {
-    private final List<String> name;
+    private final List<String> names;
 
     public Prizes(List<String> name, int personCount) {
         validatePrizesCount(name, personCount);
-        this.name = name;
+        this.names = name;
     }
 
     private void validatePrizesCount(List<String> name, int personCount) {
@@ -16,7 +16,11 @@ public class Prizes {
         }
     }
 
-    public List<String> name() {
-        return name;
+    public List<String> getNames() {
+        return names;
+    }
+
+    public String getNameByIndex(int index) {
+        return names.get(index);
     }
 }
