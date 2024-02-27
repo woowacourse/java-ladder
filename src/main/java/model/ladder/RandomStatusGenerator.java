@@ -3,9 +3,10 @@ package model.ladder;
 import java.util.Random;
 
 public class RandomStatusGenerator implements StepStatusGenerator {
+    private static final Random random = new Random();
+
     @Override
     public StepStatus generate(final Step previous) {
-        Random random = new Random();
         if (isNotOverlapped(previous)) {
             return StepStatus.from(random.nextBoolean());
         }
