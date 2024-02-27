@@ -19,6 +19,4 @@ class Width {
             throw new LadderGameException(ExceptionType.INVALID_WIDTH_RANGE);
         }
     }
-
-
 }

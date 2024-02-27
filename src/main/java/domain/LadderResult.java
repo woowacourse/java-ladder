@@ -22,7 +22,6 @@ public class LadderResult {
                 .ifPresent(ch -> {
                     throw new LadderGameException(ExceptionType.INVALID_LADDER_RESULT_CHARACTER);
                 });
-
     }
 
     private void validateLadderResultLength(String ladderResult) {
@@ -30,6 +29,4 @@ public class LadderResult {
             throw new LadderGameException(ExceptionType.INVALID_LADDER_RESULT_RANGE);
         }
     }
-
-
 }
