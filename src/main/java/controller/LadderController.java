@@ -8,6 +8,7 @@ import model.Height;
 import model.Ladder;
 import model.Participants;
 import model.Prizes;
+import model.Results;
 import view.InputView;
 import view.OutputView;
 
@@ -27,6 +28,8 @@ public class LadderController {
         outputView.printParticipantsName(participants.captureParticipantsName());
         outputView.printLadder(ladder.captureLayerSteps());
         outputView.printPrizeNames(prizes.capturePrizesName());
+
+        Results results = new Results(ladder, participants);
     }
 
     private Participants prepareParticipants() {

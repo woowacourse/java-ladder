@@ -34,4 +34,8 @@ public class Ladder {
     public List<LayerSteps> captureLayerSteps() {
         return layers.stream().map(LayerSteps::new).toList();
     }
+
+    public int getLadderHeight() {
+        return layers.size();
+    }
 }
