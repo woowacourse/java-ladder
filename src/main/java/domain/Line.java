@@ -25,17 +25,24 @@ public class Line {
     }
 
     private int findDirection(final int position) {
-        if (position < bridges.size() && bridges.get(position) == BRIDGE) {
+        if (canMoveToRight(position)) {
             return 1;
         }
 
-        if (position != 0 && bridges.get(position - 1) == BRIDGE) {
+        if (canMoveToLeft(position)) {
             return -1;
         }
 
         return 0;
     }
 
+    private boolean canMoveToRight(int position) {
+        return position < bridges.size() && bridges.get(position) == BRIDGE;
+    }
+
+    private boolean canMoveToLeft(int position) {
+        return position != 0 && bridges.get(position - 1) == BRIDGE;
+    }
 
     private static void generateRandomBridge(List<Bridge> bridges, final int personCount, Generator generator) {
         boolean randomLine = generator.generate();
