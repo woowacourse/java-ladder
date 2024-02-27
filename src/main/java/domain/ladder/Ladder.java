@@ -23,7 +23,7 @@ public class Ladder {
     public static Ladder create(Height height, Players players, Prizes prizes,
                                 LadderRungGenerator ladderRungGenerator) {
         validatePlayersAndPrizesCount(players, prizes);
-        int width = players.getPlayerCount() - 1;
+        int width = players.count() - 1;
         List<LadderRow> rows = new ArrayList<>();
         for (int i = 0; i < height.getValue(); i++) {
             LadderRow ladderRow = LadderRow.create(width, ladderRungGenerator);
@@ -33,7 +33,7 @@ public class Ladder {
     }
 
     private static void validatePlayersAndPrizesCount(Players players, Prizes prizes) {
-        int playerCount = players.getPlayerCount();
+        int playerCount = players.count();
         int prizeCount = prizes.count();
         if (playerCount != prizeCount) {
             throw new IllegalArgumentException(

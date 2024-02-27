@@ -59,7 +59,7 @@ public class Players {
                 .toList();
     }
 
-    public int getPlayerCount() {
+    public int count() {
         return names.size();
     }
 }
