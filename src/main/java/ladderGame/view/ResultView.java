@@ -46,8 +46,15 @@ public class ResultView {
         return DISCONNECTION_MARK;
     }
 
-    public void printResult(List<Player> players, List<Result> results) {
-        System.out.println("실행 결과");
+    public void printResult(Player player, List<Result> results) {
+        System.out.println(System.lineSeparator() + "실행 결과");
+
+        int index = player.getPosition();
+        System.out.printf("%s" + System.lineSeparator(), results.get(index).getResult());
+    }
+
+    public void printAllResults(List<Player> players, List<Result> results) {
+        System.out.println(System.lineSeparator() + "실행 결과");
 
         for(Player player : players) {
             int index = player.getPosition();

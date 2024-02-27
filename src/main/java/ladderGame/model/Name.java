@@ -15,6 +15,14 @@ public class Name {
         this.name = name;
     }
 
+    public Name(String name, Players players) {
+        if(!name.equals("all")) {
+            validate(new Name(name), players);
+        }
+
+        this.name = name;
+    }
+
     private void validate(String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_OVER_THAN_MAXIMUM);
@@ -22,6 +30,16 @@ public class Name {
         if(!NAME_PATTERN.matcher(name).matches()) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_UNDEFINED_NAME);
         }
+    }
+
+    private void validate(Name name, Players players) {
+        if(!players.contains(name)) {
+            throw new IllegalArgumentException("참여자 목록 중에서 골라야 합니다.");
+        }
+    }
+
+    public boolean isAll() {
+        return name.equals("all");
     }
 
     @Override

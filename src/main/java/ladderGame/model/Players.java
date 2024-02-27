@@ -55,11 +55,18 @@ public class Players {
 
     public boolean contains(Name name) {
         for(Player player : players) {
-            if(player.contains(name)) {
+            if(player.hasName(name)) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    public Player findPlayer(Name name) {
+        return players.stream()
+                .filter(player -> player.hasName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("일치하는 정보가 없습니다."));
     }
 }

@@ -21,7 +21,7 @@ public class Player {
         return position;
     }
 
-    public boolean contains(Name name) {
+    public boolean hasName(Name name) {
         return this.name.equals(name);
     }
 }

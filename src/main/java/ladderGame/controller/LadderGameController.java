@@ -1,9 +1,9 @@
 package ladderGame.controller;
 
 import ladderGame.model.Ladder;
+import ladderGame.model.Name;
 import ladderGame.model.Players;
 import ladderGame.model.Results;
-import ladderGame.model.Command;
 import ladderGame.view.InputView;
 import ladderGame.view.ResultView;
 
@@ -25,7 +25,16 @@ public class LadderGameController {
 
         ladder.descendLadder(players);
 
-        Command command = new Command(inputView.inputWantedName(), players);
-        resultView.printResult(players.getPlayers(), results.getResults());
+        printResults(players, results);
+    }
+
+    private void printResults(Players players, Results results) {
+        Name name = new Name(inputView.inputWantedName(), players);
+        while(!name.isAll()) {
+            resultView.printResult(players.findPlayer(name), results.getResults());
+            name = new Name(inputView.inputWantedName(), players);
+        }
+
+        resultView.printAllResults(players.getPlayers(), results.getResults());
     }
 }
