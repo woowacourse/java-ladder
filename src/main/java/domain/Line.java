@@ -40,7 +40,7 @@ public class Line {
     }
 
     public int decideNextPosition(int position) {
-            if ((position == columnLength || position - 1 >= 0) && isEqualWithPosition(position-1, LadderItem.CONNECTED)) {
+        if ((position == columnLength || position - 1 >= 0) && isEqualWithPosition(position-1, LadderItem.CONNECTED)) {
             return position - 1;
         }
 
