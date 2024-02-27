@@ -1,6 +1,7 @@
 package domain.ladder;
 
 import domain.booleanGenerator.BooleanGenerator;
+import domain.player.Players;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,5 +23,9 @@ public class Ladder {
 
     public int getHeight() {
         return rows.size();
+    }
+
+    public void play(final Players players) {
+        rows.forEach(row -> row.playRow(players));
     }
 }
