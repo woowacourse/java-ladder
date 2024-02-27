@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private static final int MIN_LADDER_HEIGHT = 1;
-
     private final List<Layer> layers;
+
+    public Ladder(List<Layer> layers) {
+        this.layers = layers;
+    }
 
     public Ladder(Height height, int numberOfParticipants) {
         this.layers = generateLayers(height, numberOfParticipants);
@@ -19,6 +21,14 @@ public class Ladder {
             layers.add(new Layer(StepExistenceGenerator.generate(numberOfParticipants)));
         }
         return layers;
+    }
+
+    public int climbDownEach(int startIndex) {
+        int currentIndex = startIndex;
+        for (Layer layer : layers) {
+            currentIndex = layer.move(currentIndex);
+        }
+        return currentIndex;
     }
 
     public List<LayerSteps> captureLayerSteps() {
