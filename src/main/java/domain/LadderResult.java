@@ -41,10 +41,6 @@ public class LadderResult {
         }
     }
 
-    public Map<Integer, Integer> getAllResult() {
-        return firstAndLastPosition;
-    }
-
     public int getOneResult(int firstPosition) {
         return firstAndLastPosition.get(firstPosition);
     }

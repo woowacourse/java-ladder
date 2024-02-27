@@ -31,7 +31,7 @@ public class PrizesTest {
     @Test
     @DisplayName("실행 결과가 참가자 수와 다를 때 예외가 발생한다.")
     void notMatchPrizeExceptionTest() {
-        assertThatThrownBy(() -> new Prizes(List.of("정상글자", "정상", "정상값"), new Participants(List.of("a", "b", "c"))))
+        assertThatThrownBy(() -> new Prizes(List.of("정상글자", "정상", "정상값"), new Participants(List.of("a", "b", "c", "d"))))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PrizesExceptionMessage.NOT_MATCH_SIZE.getExceptionMessage());
     }

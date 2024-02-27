@@ -38,7 +38,7 @@ public class LineTest {
     void isExistRightStepTest() {
         Line line = new Line(3, new PresentStepGenerator());
 
-        assertThat(line.isExistRightStep(1)).isTrue();
+        assertThat(line.isExistRightStep(1)).isFalse();
     }
 
 
