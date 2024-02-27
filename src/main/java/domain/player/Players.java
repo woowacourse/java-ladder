@@ -33,7 +33,7 @@ public class Players {
     }
 
     public Player findPlayerByIndex(final int index) {
-        if (index > 0 || players.size() <= index) {
+        if (index < 0 || players.size() <= index) {
             throw new IllegalArgumentException(OUT_OF_BOUND_EXCEPTION_MESSAGE);
         }
 
