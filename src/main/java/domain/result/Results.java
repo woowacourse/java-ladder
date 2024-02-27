@@ -6,7 +6,7 @@ public class Results {
 
     private final List<Result> results;
 
-    Results(List<String> results) {
+    public Results(List<String> results) {
         this.results = results.stream()
                 .map(Result::new)
                 .toList();

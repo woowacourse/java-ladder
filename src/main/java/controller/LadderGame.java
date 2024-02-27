@@ -5,6 +5,7 @@ import domain.ladder.Ladder;
 import domain.ladder.RandomStickGenerator;
 import domain.ladder.StickGenerator;
 import domain.player.Players;
+import domain.result.Results;
 import view.InputView;
 import view.OutputView;
 
@@ -23,6 +24,7 @@ public class LadderGame {
     public void play() {
         Players players = readPlayers();
         Height height = readHeight();
+        Results results = readResults();
 
         StickGenerator stickGenerator = new RandomStickGenerator();
         Ladder ladder = new Ladder(height, players.getPlayerSize(), stickGenerator);
@@ -47,6 +49,16 @@ public class LadderGame {
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return readPlayers();
+        }
+    }
+
+    private Results readResults() {
+        try {
+            List<String> results = inputView.readResults();
+            return new Results(results);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return readResults();
         }
     }
 }
