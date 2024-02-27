@@ -1,6 +1,5 @@
 package laddergame.domain.gameelements;
 
-import laddergame.domain.gameelements.people.People;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,7 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ElementTest {
+class ElementsTest {
 
     @DisplayName("게임 요소 이름에 예외적인 입력값이 들어왔을 때, Elements 객체를 생성할 수 없다.")
     @ParameterizedTest

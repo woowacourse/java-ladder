@@ -1,8 +1,7 @@
 package laddergame.view;
 
+import laddergame.domain.gameelements.Element;
 import laddergame.domain.gameelements.Elements;
-import laddergame.domain.gameelements.people.Name;
-import laddergame.domain.gameelements.results.Result;
 import laddergame.domain.ladder.Connection;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.RowLine;
@@ -32,13 +31,14 @@ public class MessageResolver {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    public static String resolvePlayerResultMessage(Result result) {
+    public static String resolvePlayerResultMessage(Element result) {
         return result.toString();
     }
 
-    public static String resolveAllPlayerResultMessage(Map<Name, Result> playerGameResult) {
+    public static String resolveAllPlayerResultMessage(Map<Element, Element> playerGameResult) {
         return playerGameResult.keySet()
-                .stream().map(key -> key.toString() + " : " + playerGameResult.get(key).toString())
+                .stream()
+                .map(key -> key.toString() + " : " + playerGameResult.get(key).toString())
                 .collect(Collectors.joining(LINE_SEPERATOR));
     }
 
