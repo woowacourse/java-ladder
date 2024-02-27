@@ -7,6 +7,7 @@ import domain.Members;
 import domain.Point;
 import domain.Reward;
 import domain.Rewards;
+import java.util.Map;
 
 public class OutputView {
 
@@ -17,6 +18,18 @@ public class OutputView {
         printMembers(game.getMembers());
         printLines(game.getLines());
         printRewards(game.getRewards());
+    }
+
+    public void print(String message) {
+        System.out.println("실행 결과");
+        System.out.println(message);
+    }
+
+    public void printRewardMap(Map<String, String> rewardMap) {
+        System.out.println("실행 결과");
+        for (String memberName : rewardMap.keySet()) {
+            System.out.println(memberName + " : " + rewardMap.get(memberName));
+        }
     }
 
     private void printMembers(Members members) {

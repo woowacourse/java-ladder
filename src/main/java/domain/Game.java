@@ -1,9 +1,7 @@
 package domain;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import strategy.PointStrategy;
 
 public class Game {
@@ -30,10 +28,10 @@ public class Game {
     public Map<String, String> findRewardMap() {
         return members.getNames()
             .stream()
-            .collect(Collectors.toMap(name -> name, this::findRewardNameByMemberName));
+            .collect(Collectors.toMap(name -> name, this::findRewardName));
     }
 
-    private String findRewardNameByMemberName(String memberName) {
+    private String findRewardName(String memberName) {
         int memberIndex = members.findIndexByName(memberName);
         int rewardIndex = lines.findRewardIndex(memberIndex);
         return rewards.findRewardNameByIndex(rewardIndex);

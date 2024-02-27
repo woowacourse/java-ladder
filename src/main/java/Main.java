@@ -3,6 +3,7 @@ import domain.Height;
 import domain.Members;
 import domain.Rewards;
 import error.ErrorHandler;
+import java.util.Map;
 import strategy.PointStrategy;
 import strategy.RandomPointStrategy;
 import view.InputView;
@@ -22,8 +23,17 @@ public class Main {
 
         Game game = Game.of(members, height, rewards, pointStrategy);
         outputView.printGame(game);
+        Map<String, String> rewardMap = game.findRewardMap();
 
-
+        // TODO: 리팩토링 필요
+        while (true) {
+            String memberName = inputView.readResult();
+            if (memberName.equals("all")) {
+                outputView.printRewardMap(rewardMap);
+                break;
+            }
+            outputView.print(rewardMap.get(memberName));
+        }
     }
 
     private static Members makeMembers() {
