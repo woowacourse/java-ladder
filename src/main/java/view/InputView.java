@@ -13,7 +13,6 @@ public class InputView {
     private static final String NOT_NUMERIC_INPUT = "입력이 숫자로 구성되어 있지 않습니다.";
     private static final String DELIMITER = ",";
     private static final Pattern NUMERIC_PATTERN = Pattern.compile("^[0-9]*$");
-
     private static final Scanner in = new Scanner(System.in);
 
     public List<String> inputParticipantsName() {

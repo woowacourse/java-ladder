@@ -7,13 +7,23 @@ public class Ladder {
 
     private final List<LadderRow> ladder;
 
-    public Ladder(Height height, BooleansGenerator generator) {
-        List<LadderRow> ladderRows = new ArrayList<>();
+    public Ladder(Height height, LadderRowGenerator generator, Participants participants) {
+        List<LadderRow> rows = new ArrayList<>();
         for (int i = 0; i < height.value(); i++) {
-            List<Boolean> rows = generator.generateNotConsecutiveTrue();
-            ladderRows.add(new LadderRow(rows));
+            LadderRow ladderRow = createLadderRow(generator, participants);
+            rows.add(ladderRow);
         }
-        this.ladder = ladderRows;
+        this.ladder = rows;
+    }
+
+    private LadderRow createLadderRow(LadderRowGenerator generator, Participants participants) {
+        List<Boolean> rows = new ArrayList<>();
+        rows.add(generator.generate(false));
+        for (int i = 0; i < participants.getParticipantsSize() - 1; i++) {
+            boolean generated = generator.generate(rows.get(i));
+            rows.add(generated);
+        }
+        return new LadderRow(rows);
     }
 
     public int getHeight() {

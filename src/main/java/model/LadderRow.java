@@ -22,4 +22,8 @@ public class LadderRow {
             throw new IllegalStateException("연속된 true 값이 존재하면 안됩니다");
         }
     }
+
+    public List<Boolean> getIsLines() {
+        return isLines;
+    }
 }

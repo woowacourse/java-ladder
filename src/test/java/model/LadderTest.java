@@ -12,7 +12,8 @@ public class LadderTest {
     @Test
     void ladderHeight() {
         Height height = new Height(5);
-//        Ladder ladder = new Ladder(height, () -> List.of(true, false, true));
-//        assertThat(ladder.getHeight()).isEqualTo(height.value());
+        Ladder ladder = new Ladder(height, new LadderRowGenerator(() -> true),
+                new Participants(List.of("hello", "hi")));
+        assertThat(ladder.getHeight()).isEqualTo(height.value());
     }
 }

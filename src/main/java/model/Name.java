@@ -8,7 +8,6 @@ public class Name {
 
     private final String value;
 
-
     public Name(String value) {
         validateNameNullAndBlank(value);
         validateNameLength(value);
