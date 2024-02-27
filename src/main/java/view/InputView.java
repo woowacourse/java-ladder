@@ -39,4 +39,9 @@ public class InputView {
             throw new IllegalArgumentException("사다리 높이는 숫자이어야한다");
         }
     }
+
+    public String requestFindName() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
+    }
 }

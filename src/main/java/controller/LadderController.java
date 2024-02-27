@@ -1,5 +1,6 @@
 package controller;
 
+import dto.ParticipantName;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -43,6 +44,11 @@ public class LadderController {
         List<String> prizes = inputView.requestPrizes();
         int numberOfParticipants = participants.getParticipantsSize();
         return new Prizes(prizes, numberOfParticipants);
+    }
+
+    private ParticipantName prepareParticipant(Participants participants) {
+        String name = inputView.requestFindName();
+        return participants.findByName(name);
     }
 
     private <T> T repeatUntilSuccess(Supplier<T> supplier) {
