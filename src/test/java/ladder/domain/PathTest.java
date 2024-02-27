@@ -1,8 +1,9 @@
 package ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PathTest {
 
@@ -17,6 +18,6 @@ public class PathTest {
         Path path = Path.of(startLineNumber, endLineNumber);
 
         // Then
-        Assertions.assertThat(path).isNotNull();
+        assertThat(path).isNotNull();
     }
 }
