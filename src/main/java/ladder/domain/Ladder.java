@@ -2,7 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.domain.linegenerator.LineGenerator;
+import ladder.domain.linegenerator.LinePatternGenerator;
 
 public class Ladder {
     private final List<Line> lines;
@@ -11,10 +11,10 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder makeLadder(Height height, int width, LineGenerator lineGenerator) {
+    public static Ladder makeLadder(Height height, int width, LinePatternGenerator linePatternGenerator) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height.getValue(); i++) {
-            Line line = lineGenerator.generate(width);
+            Line line = linePatternGenerator.generate(width);
             lines.add(line);
         }
         return new Ladder(lines);

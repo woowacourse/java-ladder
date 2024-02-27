@@ -5,7 +5,6 @@ import java.util.stream.IntStream;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.PlayerName;
-import ladder.domain.linegenerator.LineGenerator;
 import ladder.domain.linegenerator.LinePatternGenerator;
 import ladder.domain.linegenerator.RandomBooleanSupplier;
 import ladder.dto.LadderDto;
@@ -22,7 +21,7 @@ public class LadderGameController {
         List<PlayerName> playerNames = inputPlayerNames();
         Height height = inputHeight();
 
-        LineGenerator lineGenerator = new LinePatternGenerator(new RandomBooleanSupplier());
+        LinePatternGenerator lineGenerator = new LinePatternGenerator(new RandomBooleanSupplier());
         Ladder ladder = Ladder.makeLadder(height, playerNames.size(), lineGenerator);
 
         PlayerNamesDto playerNamesDto = toDto(playerNames);
