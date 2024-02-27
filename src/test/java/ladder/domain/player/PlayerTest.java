@@ -16,7 +16,6 @@ class PlayerTest {
         Player player = new Player("pobi", 3);
         player.moveTo(direction);
 
-        assertThat(player).extracting("position")
-                .isEqualTo(new Position(expected));
+        assertThat(player.getPosition()).isEqualTo(expected);
     }
 }
