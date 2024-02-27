@@ -24,7 +24,7 @@ public class LadderGame {
     public void play() {
         Players players = readPlayers();
         Height height = readHeight();
-        Results results = readResults();
+        Results results = readResultsOfSize(players.getPlayerSize());
 
         StickGenerator stickGenerator = new RandomStickGenerator();
         Ladder ladder = new Ladder(height, players.getPlayerSize(), stickGenerator);
@@ -52,13 +52,13 @@ public class LadderGame {
         }
     }
 
-    private Results readResults() {
+    private Results readResultsOfSize(int playerSize) {
         try {
             List<String> results = inputView.readResults();
-            return new Results(results);
+            return new Results(results, playerSize);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-            return readResults();
+            return readResultsOfSize(playerSize);
         }
     }
 }
