@@ -1,6 +1,7 @@
 package laddergame.util;
 
 import laddergame.domain.Line;
+import laddergame.domain.Lines;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,10 +23,10 @@ class RandomLinesGeneratorTest {
         final List<Line> lines = List.of(Line.values());
 
         //when
-        List<Line> canBuildBridges = randomLinesGenerator.generate(count);
+        Lines canBuildBridges = randomLinesGenerator.generate(count);
 
         //then
-        assertThat(canBuildBridges)
+        assertThat(canBuildBridges.getLines())
                 .containsOnlyElementsOf(lines);
     }
     @Test
@@ -37,10 +38,10 @@ class RandomLinesGeneratorTest {
         final int count = 4;
 
         //when
-        List<Line> canBuildBridges = randomLinesGenerator.generate(count);
+        Lines canBuildBridges = randomLinesGenerator.generate(count);
 
         //then
-        assertEquals(canBuildBridges.size(), count);
+        assertEquals(canBuildBridges.getLines().size(), count);
     }
 
     @Test
@@ -52,11 +53,11 @@ class RandomLinesGeneratorTest {
         final int count = 4;
 
         //when
-        List<Line> canBuildBridges = randomLinesGenerator.generate(count);
+        Lines canBuildBridges = randomLinesGenerator.generate(count);
 
         //then
-        IntStream.range(0, canBuildBridges.size() - 1)
-                .filter(i -> canBuildBridges.get(i).equals(Line.BRIDGE))
-                .forEach(i -> assertEquals(canBuildBridges.get(i + 1), Line.EMPTY));
+        IntStream.range(0, canBuildBridges.getLines().size() - 1)
+                .filter(i -> canBuildBridges.getLines().get(i).equals(Line.BRIDGE))
+                .forEach(i -> assertEquals(canBuildBridges.getLines().get(i + 1), Line.EMPTY));
     }
 }

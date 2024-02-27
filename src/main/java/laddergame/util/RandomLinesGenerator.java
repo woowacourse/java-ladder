@@ -1,6 +1,8 @@
 package laddergame.util;
 
+import laddergame.domain.Ladder;
 import laddergame.domain.Line;
+import laddergame.domain.Lines;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +18,7 @@ public class RandomLinesGenerator implements LinesGenerator {
     }
 
     @Override
-    public List<Line> generate(final int width) {
+    public Lines generate(final int width) {
         List<Line> lineStatus = new ArrayList<>();
 
         lineStatus.add(randomSelectLine());
@@ -24,7 +26,7 @@ public class RandomLinesGenerator implements LinesGenerator {
             Line beforeValue = lineStatus.get(lineStatus.size() -1);
             lineStatus.add(decideNextValue(beforeValue));
         }
-        return lineStatus;
+        return new Lines(lineStatus);
     }
 
     private Line randomSelectLine() {

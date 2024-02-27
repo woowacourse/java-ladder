@@ -42,8 +42,8 @@ public class LadderTest {
 
         LinesGenerator expectedLinesGenerator = new LinesGenerator() {
             @Override
-            public List<Line> generate(int width) {
-                return expected;
+            public Lines generate(int width) {
+                return new Lines(expected);
             }
         };
 
@@ -63,8 +63,8 @@ public class LadderTest {
         final List<Line> expected = List.of(Line.EMPTY, Line.BRIDGE, Line.EMPTY);
         LinesGenerator expectedLinesGenerator = new LinesGenerator() {
             @Override
-            public List<Line> generate(int width) {
-                return expected;
+            public Lines generate(int width) {
+                return new Lines(expected);
             }
         };
 

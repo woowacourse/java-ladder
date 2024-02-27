@@ -8,9 +8,8 @@ import java.util.List;
 public class Lines {
     private final List<Line> lines;
 
-    public Lines(final LinesGenerator linesGenerator,
-                 final int width) {
-        this.lines = linesGenerator.generate(width);
+    public Lines(List<Line> lines) {
+        this.lines = lines;
     }
 
     public List<Line> getLines() {

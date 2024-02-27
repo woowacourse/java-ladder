@@ -19,8 +19,8 @@ public class LadderGameTest {
         final Height height = new Height("4");
         LinesGenerator linesGenerator = new LinesGenerator() {
             @Override
-            public List<Line> generate(int width) {
-                return List.of(Line.BRIDGE, Line.EMPTY, Line.BRIDGE);
+            public Lines generate(int width) {
+                return new Lines(List.of(Line.BRIDGE, Line.EMPTY, Line.BRIDGE));
             }
         };
         final Ladder ladder = new Ladder(linesGenerator, players.getPlayersCount(), height);
@@ -40,13 +40,13 @@ public class LadderGameTest {
         final Players players = new Players(List.of("name1", "name2", "name3", "name4"));
         final Height height = new Height("3");
         final ResultItems resultItems = new ResultItems(List.of("a","b","c","d"), players.getPlayersCount());
-        LinesGenerator linesGenerator = new LinesGenerator() {
+        LinesGenerator expectedLinesGenerator = new LinesGenerator() {
             @Override
-            public List<Line> generate(int width) {
-                return List.of(Line.EMPTY, Line.BRIDGE, Line.EMPTY);
+            public Lines generate(int width) {
+                return new Lines(List.of(Line.EMPTY, Line.BRIDGE, Line.EMPTY));
             }
         };
-        final Ladder ladder = new Ladder(linesGenerator, players.getPlayersCount(), height);
+        final Ladder ladder = new Ladder(expectedLinesGenerator, players.getPlayersCount(), height);
         final LadderGame ladderGame = new LadderGame(players, ladder, resultItems);
 
         ladderGame.climb();
