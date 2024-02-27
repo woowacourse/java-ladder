@@ -42,4 +42,8 @@ public class User {
             throw new IllegalArgumentException("[ERROR] 사용자 이름 내에는 공백을 허용하지 않습니다.");
         }
     }
+
+    private void validateBannedName(String name) {
+
+    }
 }

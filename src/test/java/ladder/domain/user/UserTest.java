@@ -54,4 +54,16 @@ class UserTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 사용자 이름 내에는 공백을 허용하지 않습니다.");
     }
+
+    @DisplayName("사용자의 이름으로 'all'이 입력되는 경우 예외가 발생한다.")
+    @Test
+    void newUserTestByBannedName() {
+        //given
+        String userName = "all";
+
+        //when, then
+        assertThatThrownBy(() -> new User(userName))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 사용자의 이름으로 'all'은 허용하지 않습니다.");
+    }
 }
