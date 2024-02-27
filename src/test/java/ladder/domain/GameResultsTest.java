@@ -15,7 +15,7 @@ public class GameResultsTest {
     void beforeEach() {
         UserNames userNames = UserNames.from(List.of("a", "b"));
         List<Integer> stepPositions = List.of(0);
-        List<Destination> destinations = List.of(new Destination("꽝"), new Destination("3000"));
+        Destinations destinations = Destinations.of(List.of("꽝", "3000"), 2);
         this.gameResults = new GameResults(userNames, stepPositions, destinations);
     }
 

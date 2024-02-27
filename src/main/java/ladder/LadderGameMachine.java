@@ -28,7 +28,7 @@ public class LadderGameMachine {
         Destinations destinations = initDestinations(userNames.getUserCount());
         Ladder ladder = createLadder(userNames, lines, destinations);
         OutputView.printLadder(ladder);
-        GameResults gameResults = new GameResults(userNames, lines.findStepPositions(), destinations.getDestinations());
+        GameResults gameResults = new GameResults(userNames, lines.findStepPositions(), destinations);
         printGameResult(gameResults, userNames);
     }
 

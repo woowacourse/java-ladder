@@ -13,20 +13,17 @@ public class GameResults {
     public GameResults(
             UserNames userNames,
             List<Integer> stepPositions,
-            List<Destination> destinations) {
+            Destinations destinations) {
         this.gameResults = generateGameResults(userNames, stepPositions, destinations);
     }
 
-    private static List<GameResult> generateGameResults(
+    private List<GameResult> generateGameResults(
             UserNames userNames,
             final List<Integer> stepPositions,
-            final List<Destination> destinations) {
-        List<Destination> finalDestinations = new ArrayList<>(destinations);
-        for (int position : stepPositions) {
-            Collections.swap(finalDestinations, position, position + 1);
-        }
+            Destinations destinations) {
+        List<Destination> swappedDestinations = destinations.swapDestinations(stepPositions);
         return IntStream.range(0, userNames.getUserCount())
-                .mapToObj(i -> new GameResult(userNames.findByOrder(i), finalDestinations.get(i)))
+                .mapToObj(i -> new GameResult(userNames.findByOrder(i), swappedDestinations.get(i)))
                 .toList();
     }
 
