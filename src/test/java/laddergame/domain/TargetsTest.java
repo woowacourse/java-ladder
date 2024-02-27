@@ -1,8 +1,6 @@
 package laddergame.domain;
 
-import laddergame.domain.move.LeftStrategy;
-import laddergame.domain.move.RightStrategy;
-import laddergame.domain.move.Trace;
+import laddergame.domain.result.Trace;
 import laddergame.domain.target.Targets;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -16,13 +14,13 @@ public class TargetsTest {
     @Test
     void testConvertToTraceBy() {
         // given
-        Trace leftTrace = new Trace(0, new LeftStrategy());
-        Trace rightTrace = new Trace(2, new RightStrategy());
+        Trace leftTrace = new Trace(0);
+        Trace rightTrace = new Trace(3);
         Targets targets = new Targets(List.of("꽝","5000","꽝","3000"));
 
         // when
-        laddergame.domain.target.Target leftTarget = targets.convertToTraceBy(leftTrace);
-        laddergame.domain.target.Target rightTarget = targets.convertToTraceBy(rightTrace);
+        laddergame.domain.target.Target leftTarget = targets.convertToTarget(leftTrace);
+        laddergame.domain.target.Target rightTarget = targets.convertToTarget(rightTrace);
 
         // then
         Assertions.assertThat(leftTarget).isEqualTo(new laddergame.domain.target.Target("꽝"));

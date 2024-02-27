@@ -1,8 +1,6 @@
 package laddergame.domain.target;
 
-import laddergame.domain.move.LeftStrategy;
-import laddergame.domain.move.MovableStrategy;
-import laddergame.domain.move.Trace;
+import laddergame.domain.result.Trace;
 
 import java.util.List;
 
@@ -13,15 +11,10 @@ public class Targets {
         this.targets = convertToTargets(input);
     }
 
-    public Target convertToTraceBy(final Trace trace) {
+    public Target convertToTarget(final Trace trace) {
         int position = trace.getPosition();
-        MovableStrategy movableStrategy = trace.getMovableStrategy();
 
-        if (movableStrategy instanceof LeftStrategy) {
-            return targets.get(position);
-        }
-
-        return targets.get(position + 1);
+        return targets.get(position);
     }
 
     public List<Target> getTargets() {

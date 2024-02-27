@@ -9,11 +9,9 @@ import laddergame.domain.result.Result;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderHeight;
 import laddergame.domain.ladder.Line;
-import laddergame.domain.player.Player;
 import laddergame.domain.player.Players;
 import laddergame.domain.point.Point;
 import laddergame.domain.point.RandomPointGenerator;
-import laddergame.domain.target.Target;
 import laddergame.domain.target.Targets;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -63,7 +61,7 @@ public class LadderGameTest {
         LadderGame ladderGame = new LadderGame(new RandomPointGenerator());
 
         // when
-        Result result = ladderGame.start(players, targets, ladder);
+        Result result = ladderGame.start(players, ladder, targets);
 
         // then
         assertThat(result.getResult()).contains(entry("pobi", "꽝"),

@@ -1,5 +1,6 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.result.Trace;
 import laddergame.domain.point.Point;
 import laddergame.domain.point.PointGenerator;
 
@@ -37,20 +38,33 @@ public class Line {
         return pointGenerator.generate();
     }
 
+    public Trace move(final Trace trace) {
+        if (trace.isNot(0) && canMoveLeft(trace)) {
+            return trace.moveLeft();
+        }
+
+        if (trace.isNot(points.size()) && canMoveRight(trace)) {
+            return trace.moveRight();
+        }
+
+        return trace;
+    }
+
+    private boolean canMoveLeft(final Trace trace) {
+        return hasPoint(trace.getPosition() - 1);
+    }
+
+    private boolean canMoveRight(final Trace trace) {
+        return hasPoint(trace.getPosition());
+    }
+
+    private boolean hasPoint(int position) {
+        return points.get(position).isExist();
+    }
+
     public List<Boolean> getPointsState() {
         return points.stream()
                 .map(Point::isExist)
                 .toList();
-    }
-
-    public boolean hasPoint(int position) {
-        if (position == -1 || position == points.size()) {
-            return false;
-        }
-        return points.get(position).isExist();
-    }
-
-    public int getSize() {
-        return points.size();
     }
 }

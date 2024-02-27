@@ -1,7 +1,6 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.move.LeftStrategy;
-import laddergame.domain.move.Trace;
+import laddergame.domain.result.Trace;
 import laddergame.domain.point.PointGenerator;
 
 import java.util.Collections;
@@ -28,11 +27,11 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public Trace moveLines(int index) {
-        Trace trace = Trace.init(index, new LeftStrategy());
+    public Trace move(final int playerIndex) {
+        Trace trace = new Trace(playerIndex);
 
         for(Line line : lines) {
-            trace = trace.next(line);
+            trace = line.move(trace);
         }
 
         return trace;

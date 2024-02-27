@@ -9,13 +9,13 @@ public class Players {
     private final List<Player> players;
 
     public Players(final List<String> input) {
-        final List<Player> names = convertToNames(input);
+        final List<Player> names = convertToPlayers(input);
         validateDuplication(names);
 
         this.players = names;
     }
 
-    private List<Player> convertToNames(final List<String> input) {
+    private List<Player> convertToPlayers(final List<String> input) {
         return input.stream()
                 .map(Player::new)
                 .toList();
@@ -32,24 +32,20 @@ public class Players {
     }
 
     public String getPlayerName(int index) {
-        return this.players.get(index).getName();
+        return players.get(index).getName();
     }
 
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
     }
 
-    public List<Player> find(final String input) {
-        if (input.equals("all")) {
-            return players;
-        }
-
-        return List.of(findOne(input));
+    public List<Player> findAll() {
+        return players;
     }
 
-    private Player findOne(final String input) {
+    public Player findByName(final String name) {
         return players.stream()
-                .filter(player -> player.getName().equals(input))
+                .filter(player -> player.getName().equals(name))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 참가자이름입니다."));
     }
