@@ -32,7 +32,7 @@ class ApplicationTest extends NsTest {
     void testInvalidPlayerNameLength() {
         assertSimpleTest(() -> {
             runException("jojojo,dora");
-            assertThat(output()).contains("[ERROR] 참여자 이름은 최대 5글지입니다.");
+            assertThat(output()).contains("[ERROR] 참여자 이름은 최대 5글자입니다.");
         });
     }
 
