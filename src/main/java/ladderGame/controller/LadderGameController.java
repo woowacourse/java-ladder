@@ -35,13 +35,17 @@ public class LadderGameController {
         Players players = new Players(inputView.inputPlayerNames());
         LadderResults ladderResults = new LadderResults(inputView.inputLadderResults());
 
-        if (players.getPlayerSize() != ladderResults.getLadderResultsSize()) {
-            throw new IllegalArgumentException(EXCEPTION_MESSAGE_NOT_EQUALS_PLAYERS_LADDER_RESULTS);
-        }
+        validatePlayerCountToLadderResultCount(players, ladderResults);
 
         Ladder ladder = makeLadder(players.getPlayerSize());
         resultView.printLadder(players.getPlayers(), ladder.getLines(), ladderResults.getLadderResults());
         return new LadderGame(players, ladderResults, ladder);
+    }
+
+    private void validatePlayerCountToLadderResultCount(Players players, LadderResults ladderResults) {
+        if (players.getPlayerSize() != ladderResults.getLadderResultsSize()) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_NOT_EQUALS_PLAYERS_LADDER_RESULTS);
+        }
     }
 
     private Ladder makeLadder(int playerCount) {
