@@ -39,4 +39,18 @@ class LineTest {
 
         assertThat(line.makeLine(testDirectionGenerator).size()).isEqualTo(columnLength-1);
     }
+
+    @DisplayName("현재 위치에서 사다리가 옆으로 연결되어 있으면 옆으로 이동한다.")
+    @Test
+    void moveLineIfConnected() {
+        TestLineItemGenerator testDirectionGenerator = new TestLineItemGenerator(LineItem.CONNECTED);
+        int columnLength = 4;
+        Line line = new Line(columnLength);
+        line.makeLine(testDirectionGenerator);
+
+        int position = 0;
+        position = line.move(position);
+
+        assertThat(position).isEqualTo(1);
+    }
 }
