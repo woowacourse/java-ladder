@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("사람")
 public class PersonTest {
-    @DisplayName("이름이 올바르면 생성한다.")
+    @DisplayName("생성 테스트")
     @Test
     void createTest() {
         // given

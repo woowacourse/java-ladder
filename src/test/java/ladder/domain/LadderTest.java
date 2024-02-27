@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("사다리")
 public class LadderTest {
-    @DisplayName("생성한다.")
+    @DisplayName("생성 테스트")
     @Test
     void createTest() {
         // given

@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("사다리 높이")
 public class LadderHeightTest {
-    @DisplayName("개수를 가진 객체를 생성한다.")
+    @DisplayName("생성 테스트")
     @Test
     void createTest() {
         // given
