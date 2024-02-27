@@ -24,4 +24,8 @@ public class Line {
     public int size() {
         return steps.size();
     }
+
+    public boolean isConnected(final int index) {
+        return steps.get(index).isConnected();
+    }
 }

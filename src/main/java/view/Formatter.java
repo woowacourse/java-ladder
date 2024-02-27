@@ -43,8 +43,8 @@ public class Formatter {
         return lineBuilder.toString();
     }
 
-    private static String getElement(boolean hasBridge) {
-        if (hasBridge) {
+    private static String getElement(boolean isConnected) {
+        if (isConnected) {
             return LadderElement.ROW.getSymbol();
         }
         return LadderElement.EMPTY.getSymbol();

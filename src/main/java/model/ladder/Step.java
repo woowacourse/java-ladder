@@ -21,6 +21,10 @@ public class Step {
         return status.equals(StepStatus.EMPTY);
     }
 
+    public boolean isConnected() {
+        return status.equals(StepStatus.CONNECTED);
+    }
+
     public boolean isDisconnected() {
         return status.equals(StepStatus.DISCONNECTED);
     }
