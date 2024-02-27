@@ -1,9 +1,9 @@
 package domain;
 
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
 
-public class Winnings implements Iterable<Winning>{
+public class Winnings {
 
     private final List<Winning> winnings;
 
@@ -14,9 +14,8 @@ public class Winnings implements Iterable<Winning>{
                 .toList();
     }
 
-    @Override
-    public Iterator<Winning> iterator() {
-        return winnings.iterator();
+    public List<Winning> getWinnings() {
+        return Collections.unmodifiableList(winnings);
     }
 
     public void isSameNumberWithPlayers(Players players) {

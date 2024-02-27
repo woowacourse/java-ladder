@@ -7,8 +7,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -33,12 +31,10 @@ public class WinningsTest {
     @Test
     void getWinningFromIteratorTest() {
         Winnings winnings = new Winnings(List.of("test1", "test2"));
-        Iterator<Winning> iterator = winnings.iterator();
-        List<String> test = new ArrayList<>();
-        while (iterator.hasNext()) {
-            test.add(iterator.next().getWinning());
-        }
-        Assertions.assertThat(test)
+        List<String> winning = winnings.getWinnings().stream()
+                .map(Winning::getWinning)
+                .toList();
+        Assertions.assertThat(winning)
                 .isEqualTo(List.of(new Winning("test1").getWinning(), new Winning("test2").getWinning()));
     }
 
