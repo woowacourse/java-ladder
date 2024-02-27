@@ -25,6 +25,10 @@ public class Users {
     }
 
     public boolean isExistUserName(String name) {
+        List<String> userNames = getUsersNames();
+        if (!userNames.contains(name)) {
+            throw new IllegalArgumentException("[ERROR] 존재하지 않는 사용자의 이름입니다.");
+        }
         return true;
     }
 
