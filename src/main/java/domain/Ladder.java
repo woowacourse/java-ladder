@@ -5,16 +5,13 @@ import java.util.List;
 
 public class Ladder {
 
-    private static final int MIN_LADDER_HEIGHT = 1;
-
-    private final int height;
+    private final Height height;
     private final List<Line> lines = new ArrayList<>();
 
-    public Ladder(int height, int playerSize, StickGenerator stickGenerator) {
-        validateLadderHeight(height);
+    public Ladder(Height height, int playerSize, StickGenerator stickGenerator) {
         this.height = height;
 
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < height.getHeight(); i++) {
             addLine(stickGenerator, playerSize);
         }
     }
@@ -23,17 +20,11 @@ public class Ladder {
         this.lines.add(new Line(stickGenerator, playerSize));
     }
 
-    private void validateLadderHeight(int height) {
-        if (height < MIN_LADDER_HEIGHT) {
-            throw new IllegalArgumentException(String.format("사다리의 높이는 최소 %d 이어야 합니다.", MIN_LADDER_HEIGHT));
-        }
-    }
-
     public List<Line> getLines() {
         return this.lines;
     }
 
     public int getHeight() {
-        return this.height;
+        return this.height.getHeight();
     }
 }

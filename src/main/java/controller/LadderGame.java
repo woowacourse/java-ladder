@@ -1,9 +1,6 @@
 package controller;
 
-import domain.Ladder;
-import domain.Players;
-import domain.RandomStickGenerator;
-import domain.StickGenerator;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
@@ -21,16 +18,17 @@ public class LadderGame {
 
     public void play() {
         Players players = readPlayers();
-        int height = readHeight();
+        Height height = readHeight();
 
         StickGenerator stickGenerator = new RandomStickGenerator();
-        Ladder ladder = makeLadder(height, players.getPlayerSize(), stickGenerator);
+        Ladder ladder = new Ladder(height, players.getPlayerSize(), stickGenerator);
         outputView.printLadder(players, ladder);
     }
 
-    private int readHeight() {
+    private Height readHeight() {
         try {
-            return inputView.readHeight();
+            int height = inputView.readHeight();
+            return new Height(height);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readHeight();
@@ -44,15 +42,6 @@ public class LadderGame {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readPlayers();
-        }
-    }
-
-    private Ladder makeLadder(int height, int width, StickGenerator stickGenerator) {
-        try {
-            return new Ladder(height, width, stickGenerator);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return makeLadder(readHeight(), width, stickGenerator);
         }
     }
 }
