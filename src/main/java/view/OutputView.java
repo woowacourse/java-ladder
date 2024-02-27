@@ -4,6 +4,7 @@ import domain.Ladder;
 import domain.Line;
 import domain.Name;
 import domain.Participants;
+import domain.Prizes;
 import domain.StepPoint;
 import java.util.List;
 
@@ -13,10 +14,11 @@ public class OutputView {
     public static final String EXIST_POINT = "-----|";
     public static final String EMPTY_POINT = "     |";
 
-    public void printResult(Participants participants, Ladder ladder) {
-        System.out.println("\n실행결과\n");
+    public void printResult(Participants participants, Ladder ladder, Prizes prizes) {
+        System.out.println("\n사다리 결과\n");
         printNames(participants);
         printLadder(ladder);
+        printPrizes(prizes);
     }
 
     private void printNames(Participants participants) {
@@ -32,6 +34,14 @@ public class OutputView {
         for (Line line : lines) {
             printOneLine(line);
         }
+    }
+
+    private void printPrizes(Prizes prizes) {
+        List<String> prizeValues = prizes.getPrizes();
+        for (String prizeValue : prizeValues) {
+            System.out.printf("%5s ", prizeValue);
+        }
+        System.out.println();
     }
 
     private void printOneLine(Line line) {

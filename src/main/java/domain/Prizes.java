@@ -39,4 +39,8 @@ public class Prizes {
             throw new IllegalArgumentException(PrizesExceptionMessage.NOT_MATCH_SIZE.getExceptionMessage());
         }
     }
+
+    public List<String> getPrizes() {
+        return prizes;
+    }
 }

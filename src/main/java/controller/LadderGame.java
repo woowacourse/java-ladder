@@ -2,6 +2,7 @@ package controller;
 
 import domain.Ladder;
 import domain.Participants;
+import domain.Prizes;
 import exception.controller.LadderGameExceptionMessage;
 import java.util.List;
 import utils.RandomStepGenerator;
@@ -24,8 +25,9 @@ public class LadderGame {
 
     private void run() {
         participants = recruitParticipants();
+        Prizes prizes = readPrizes(participants);
         Ladder ladder = makeLadder();
-        outputView.printResult(participants, ladder);
+        outputView.printResult(participants, ladder, prizes);
     }
 
     private Participants recruitParticipants() {
@@ -35,6 +37,16 @@ public class LadderGame {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return recruitParticipants();
+        }
+    }
+
+    private Prizes readPrizes(Participants participants) {
+        try {
+            List<String> prizes = inputView.readResults();
+            return new Prizes(prizes, participants);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readPrizes(participants);
         }
     }
 
