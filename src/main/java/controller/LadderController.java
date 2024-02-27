@@ -8,6 +8,8 @@ import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.player.Name;
 import domain.player.Players;
+import domain.result.Result;
+import domain.result.Results;
 import java.util.List;
 import view.InputView;
 import view.OutputView;
@@ -22,11 +24,13 @@ public class LadderController {
     public void run() {
         try {
             final Players players = generatePlayers();
+            final Results results = generateResults();
             final Height height = generateHeight();
             final Ladder ladder = generateLadder(players, height);
 
             OutputView.printPlayerNames(players);
             OutputView.printLadder(ladder, players.findMaxNameLength());
+            OutputView.printResults(results);
         } catch (Exception e) {
             OutputView.printErrorMessage(e);
         }
@@ -37,6 +41,13 @@ public class LadderController {
         return names.stream()
                 .map(Name::new)
                 .collect(collectingAndThen(toList(), Players::new));
+    }
+
+    private Results generateResults() {
+        final List<String> results = InputView.inputResults();
+        return results.stream()
+                .map(Result::new)
+                .collect(collectingAndThen(toList(), Results::new));
     }
 
     private Height generateHeight() {

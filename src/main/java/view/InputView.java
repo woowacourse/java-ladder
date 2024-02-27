@@ -19,9 +19,18 @@ public class InputView {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
         String rawNames = scanner.nextLine();
-        validatePlayerNames(rawNames);
+        validateStringWithDelimiter(rawNames);
 
         return Arrays.asList(rawNames.split(DEFAULT_DELIMITER, -1));
+    }
+
+    public static List<String> inputResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+        String rawResults = scanner.nextLine();
+        validateStringWithDelimiter(rawResults);
+
+        return Arrays.asList(rawResults.split(DEFAULT_DELIMITER, -1));
     }
 
     public static int inputHeight() {
@@ -33,7 +42,7 @@ public class InputView {
         return Integer.parseInt(rawHeight);
     }
 
-    private static void validatePlayerNames(String input) {
+    private static void validateStringWithDelimiter(String input) {
         validateBlank(input);
         validateContainsSpace(input);
         validatePattern(input);

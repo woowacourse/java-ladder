@@ -17,4 +17,8 @@ public class Results {
         }
         return results.get(index);
     }
+
+    public List<Result> getResults() {
+        return results;
+    }
 }

@@ -4,6 +4,7 @@ import domain.ladder.DirectionalRung;
 import domain.ladder.Ladder;
 import domain.ladder.LadderRow;
 import domain.player.Players;
+import domain.result.Results;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,8 +25,19 @@ public class OutputView {
         System.out.println(stringBuilder);
     }
 
+    public static void printResults(final Results results) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        results.getResults()
+                .stream()
+                .map(result -> alignStringCenter(result.getValue()))
+                .forEach(stringBuilder::append);
+
+        System.out.println(stringBuilder);
+    }
+
     private static String alignStringCenter(String input) {
-        int spaces = 5 - input.length();
+        int spaces = 6 - input.length();
         int left = spaces / 2;
         int right = spaces - left;
         return SPACE.repeat(left) + input + SPACE.repeat(right);
