@@ -25,7 +25,7 @@ public class Results {
     }
 
     public String findByPosition(int position) {
-        return results.get(position).getResult();
+        return results.get(position).getData();
     }
 
     public List<Result> getResults() {

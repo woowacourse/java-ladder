@@ -49,7 +49,7 @@ public class ResultView {
         StringBuilder resultLine = new StringBuilder();
 
         for (int i = 0; i < results.size(); i++) {
-            resultLine.append(String.format("%-6s", results.getResults().get(i).getResult()));
+            resultLine.append(String.format("%-6s", results.getResults().get(i).getData()));
         }
         System.out.println(resultLine);
     }

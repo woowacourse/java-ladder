@@ -1,13 +1,13 @@
 package domain;
 
 public class Result {
-    private final String result;
+    private final String data;
 
-    public Result(String result) {
-        this.result = result;
+    public Result(String data) {
+        this.data = data;
     }
 
-    public String getResult() {
-        return result;
+    public String getData() {
+        return data;
     }
 }
