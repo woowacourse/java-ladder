@@ -15,11 +15,18 @@ class LadderTest {
     @Test
     @DisplayName("사용자의 사다리 시작 위치를 통해 사다리 결과 위치를 알려준다.")
     void findLadderResultPosition() {
-        List<Line> lines = Stream.generate(() -> new Line(List.of(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION, ConnectionStatus.CONNECTION)))
+        List<Line> lines = Stream.generate(() -> new Line(List.of(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION)))
                 .limit(4)
                 .toList();
 
         Ladder ladder = new Ladder(new ArrayList<>(lines));
+
+        /*
+           |-----|     |
+           |-----|     |
+           |-----|     |
+           |-----|     |
+        */
 
         assertAll(
                 () -> assertEquals(ladder.findLadderResultPosition(0), 0),
