@@ -2,7 +2,6 @@ package laddergame.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import laddergame.model.Ladder;
 import laddergame.model.Line;
 import laddergame.model.LineState;
 import laddergame.model.Participant;
@@ -24,13 +23,11 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public void printLadder(Ladder ladder) {
-        List<Line> lines = ladder.getLines();
-        for (Line line : lines) {
-            List<LineState> lineStates = line.getLineStates();
-            StringBuilder result = getStringBuilder(lineStates);
-            System.out.println(result);
-        }
+    public void printLadder(List<Line> lines) {
+        lines.stream()
+                .map(Line::getLineStates)
+                .map(this::getStringBuilder)
+                .forEach(System.out::println);
     }
 
     private String alignNameText(String name) {
