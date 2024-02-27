@@ -3,10 +3,10 @@ package domain;
 import util.Generator;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
 
-public class Ladder implements Iterable<Line> {
+public class Ladder {
 
     private final List<Line> ladder;
     private final Height height;
@@ -23,9 +23,8 @@ public class Ladder implements Iterable<Line> {
         }
     }
 
-    @Override
-    public Iterator<Line> iterator() {
-        return ladder.iterator();
+    public List<Line> getLadder() {
+        return Collections.unmodifiableList(ladder);
     }
 
     private void validateHeight(Height height) {

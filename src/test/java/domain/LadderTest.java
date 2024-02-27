@@ -23,9 +23,9 @@ public class LadderTest {
     @DisplayName("Generator로 만들어진 List로 Line을 생성한다.")
     @Test
     void ladderInitTest() {
-        Ladder ladder = new Ladder(new Height(5));
-        ladder.init(5, new CustomGenerator(List.of(false, true, false, true, false)));
-        Assertions.assertThat(ladder.iterator().next())
-                .isEqualTo(new Line(List.of(4, 5, 4, 5, 4)));
+        Ladder ladder = new Ladder(new Height(1));
+        ladder.init(2, new CustomGenerator(List.of(false, true)));
+        Assertions.assertThat(ladder.getLadder())
+                .isEqualTo(List.of(new Line(List.of(4, 5))));
     }
 }
