@@ -42,10 +42,10 @@ public class Ladder {
         return new LadderResponseDto(floorResponseDtos);
     }
 
-    public List<Name> getParticipantsResult(Participants participants) {
+    public Participants getParticipantsResult(Participants participants) {
         List<Name> participantsNames = participants.getNames();
         climbDown(participantsNames);
-        return participantsNames;
+        return new Participants(participantsNames);
     }
 
     private void climbDown(List<Name> names) {

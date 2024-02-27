@@ -1,6 +1,7 @@
 package ladder.domain.participant;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,6 +15,10 @@ public class Participants {
     public Participants(List<String> inputNames) {
         validate(inputNames);
         this.names = inviteParticipants(inputNames);
+    }
+
+    public Participants(Collection<Name> participantsName) {
+        this.names = new ArrayList<>(participantsName);
     }
 
     private void validate(List<String> names) {
