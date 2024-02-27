@@ -7,13 +7,10 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class InputView {
-    private final Scanner scanner;
-
-    // TODO : 현재 정규식은 DELIMITER가 변경되어도 ","에 대해서만 확인하고 있음.
-    public static final Pattern PLAYER_NAMES_INPUT_PATTERN = Pattern.compile("[가-힣a-zA-Z]{1,5}(,[가-힣a-zA-Z]{1,5})*");
     public static final String PLAYER_NAMES_INPUT_DELIMITER = ",";
     private static final String BLANK_SPACE = " ";
     private static final String BLANK_EMPTY = "";
+    private final Scanner scanner;
 
     public InputView(Scanner scanner) {
         this.scanner = scanner;
@@ -29,7 +26,7 @@ public class InputView {
     }
 
     private void validatePlayerNamesInput(final String playerNamesInput) {
-        if (!InputView.PLAYER_NAMES_INPUT_PATTERN.matcher(playerNamesInput).matches()) {
+        if (!playerNamesInput.contains(PLAYER_NAMES_INPUT_DELIMITER)) {
             throw new IllegalArgumentException(ExceptionMessage.PLAYER_NAMES_INPUT_FORMAT);
         }
     }
