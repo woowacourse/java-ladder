@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 
 public class LadderResult {
 
+    public static final int ONE_STEP = 1;
     private Map<Integer, Integer> firstAndLastPosition;
 
     public LadderResult(Ladder ladder, int participantsCount) {
@@ -31,11 +32,11 @@ public class LadderResult {
 
     private void canMove(Ladder ladder, int floor, int i) {
         if (ladder.canMoveLeft(floor, firstAndLastPosition.get(i))) {
-            firstAndLastPosition.put(i, firstAndLastPosition.get(i) - 1);
+            firstAndLastPosition.put(i, firstAndLastPosition.get(i) - ONE_STEP);
             return;
         }
         if (ladder.canMoveRight(floor, firstAndLastPosition.get(i))) {
-            firstAndLastPosition.put(i, firstAndLastPosition.get(i) + 1);
+            firstAndLastPosition.put(i, firstAndLastPosition.get(i) + ONE_STEP);
         }
     }
 
