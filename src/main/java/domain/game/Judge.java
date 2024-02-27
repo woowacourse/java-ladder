@@ -15,27 +15,25 @@ public class Judge {
         this.pathMapper = pathMapper;
     }
 
-    // TODO: 캐싱 고려
     public Prize getPrize(final String name) throws IllegalArgumentException {
-        final int from = getSequenceByName(name);
-        return getPrize(from);
+        final int departure = getDeparture(name);
+        return getPrize(departure);
     }
 
-    private int getSequenceByName(final String name) {
-        try {
-            return this.names.getSequence(name);
-        } catch (IllegalArgumentException e) {
+    private int getDeparture(final String name) {
+        final int departure = this.names.getSequence(name);
+        if (departure == -1) {
             throw new IllegalArgumentException("존재하지 않는 이름입니다.");
         }
+        return departure;
     }
 
-    private Prize getPrize(final int from) {
+    private Prize getPrize(final int departure) {
         try {
-            final int to = this.pathMapper.find(from);
-            return this.prizes.prizes().get(to);
+            final int arrival = this.pathMapper.find(departure);
+            return this.prizes.prizes().get(arrival);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new IllegalArgumentException("상품이 존재하지 않습니다.");
         }
     }
-
 }
