@@ -1,11 +1,15 @@
 package util;
 
-import domain.*;
+import domain.CustomGenerator;
+import domain.Height;
+import domain.Ladder;
+import domain.Line;
+import domain.Players;
+import domain.Winnings;
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 public class LadderBuilderTest {
     @DisplayName("Line 에서 출력 형태를 반환한다.")

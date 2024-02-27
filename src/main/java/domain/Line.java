@@ -1,24 +1,27 @@
 package domain;
 
-import util.Connection;
+import static util.Connection.CONNECTED;
+import static util.Connection.UNCONNECTED;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
-
-import static util.Connection.CONNECTED;
-import static util.Connection.UNCONNECTED;
+import util.Connection;
 
 public class Line {
     private final List<Connection> line;
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Line line1 = (Line) o;
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Line line1 = (Line) obj;
         return Objects.equals(line, line1.line);
     }
 
@@ -44,10 +47,6 @@ public class Line {
         }
     }
 
-    public List<Connection> getLine() {
-        return Collections.unmodifiableList(line);
-    }
-
     public List<Integer> getUnconnectedIndex() {
         return IntStream.range(0, line.size())
                 .filter(value -> line.get(value).equals(CONNECTED))
@@ -63,5 +62,9 @@ public class Line {
 
     private boolean hasConnection(int threshold) {
         return (threshold >= 5);
+    }
+
+    public List<Connection> getLine() {
+        return Collections.unmodifiableList(line);
     }
 }

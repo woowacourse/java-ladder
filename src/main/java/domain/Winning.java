@@ -11,10 +11,6 @@ public class Winning {
         this.winning = inputWinning;
     }
 
-    public String getWinning() {
-        return winning;
-    }
-
     private void validateLength(String inputWinning) {
         if (inputWinning.isEmpty() || inputWinning.length() > 5) {
             throw new IllegalArgumentException("실행결과의 길이는 1글자 이상 5글자 이하여야 합니다.");
@@ -22,8 +18,12 @@ public class Winning {
     }
 
     private void validateStyle(String inputName) {
-        if (!inputName.matches(WINNING_STYLE)){
+        if (!inputName.matches(WINNING_STYLE)) {
             throw new IllegalArgumentException("실행결과는 영어, 한글, 숫자, '_', '-'로만 이루어져야 합니다.");
         }
+    }
+
+    public String getWinning() {
+        return winning;
     }
 }

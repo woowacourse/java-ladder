@@ -1,8 +1,7 @@
 package domain;
 
-import util.Generator;
-
 import java.util.List;
+import util.Generator;
 
 public class CustomGenerator implements Generator {
 

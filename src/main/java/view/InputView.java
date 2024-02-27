@@ -1,7 +1,6 @@
 package view;
 
 import domain.Height;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
@@ -26,7 +25,7 @@ public class InputView {
     }
 
     private static void validateEndedWithComma(String inputString) {
-        if (inputString.endsWith(",")){
+        if (inputString.endsWith(",")) {
             throw new IllegalArgumentException("null 혹은 빈 문자열을 입력할 수 없습니다.");
         }
     }

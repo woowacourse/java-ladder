@@ -1,7 +1,11 @@
 package util;
 
-import domain.*;
-
+import domain.Ladder;
+import domain.Line;
+import domain.Name;
+import domain.Players;
+import domain.Winning;
+import domain.Winnings;
 import java.util.ArrayList;
 import java.util.List;
 

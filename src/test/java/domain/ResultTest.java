@@ -1,11 +1,10 @@
 package domain;
 
+import java.util.List;
+import java.util.Map;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-import java.util.Map;
 
 public class ResultTest {
     @DisplayName("입력받은 이름에 맞는 사다리 타기 결과를 반환한다.")

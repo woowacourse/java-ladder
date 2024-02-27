@@ -14,13 +14,13 @@ public class Players {
                 .toList();
     }
 
-    public List<Name> getPlayers() {
-        return new ArrayList<>(players);
-    }
-
     private void validateNumber(List<String> names) {
-        if (names.size() < 2 || names.size() > 10){
+        if (names.size() < 2 || names.size() > 10) {
             throw new IllegalArgumentException("이름의 수는 2이상 10이하여야 합니다.");
         }
+    }
+
+    public List<Name> getPlayers() {
+        return new ArrayList<>(players);
     }
 }

@@ -1,16 +1,21 @@
 package controller;
 
-import domain.*;
+import domain.Height;
+import domain.LadderGame;
+import domain.Players;
+import domain.Result;
+import domain.ResultName;
+import domain.Winnings;
+import java.util.Objects;
 import util.ConsoleReader;
 import view.InputView;
 import view.OutputView;
 
-import java.util.Objects;
-
 public class LadderController {
 
-    private final ConsoleReader consoleReader;
     private static final int MAX_DEPTH = 5;
+
+    private final ConsoleReader consoleReader;
 
     public LadderController() {
         this.consoleReader = new ConsoleReader();
@@ -56,13 +61,17 @@ public class LadderController {
             throw new IllegalArgumentException("입력 허용횟수 5회를 초과했습니다.");
         }
         try {
-            Winnings winnings = new Winnings(InputView.readWinnings(consoleReader));
-            winnings.isSameNumberWithPlayers(players);
-            return winnings;
+            return getWinnings(players);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
             return winningsInput(depth - 1, players);
         }
+    }
+
+    private Winnings getWinnings(Players players) {
+        Winnings winnings = new Winnings(InputView.readWinnings(consoleReader));
+        winnings.isSameNumberWithPlayers(players);
+        return winnings;
     }
 
     private ResultName resultNameInput(int depth, Players players) {

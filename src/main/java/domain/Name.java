@@ -18,7 +18,7 @@ public class Name {
     }
 
     private void validateStyle(String inputName) {
-        if (!inputName.matches(NAME_STYLE)){
+        if (!inputName.matches(NAME_STYLE)) {
             throw new IllegalArgumentException("이름은 영어, 숫자, '_', '-'로만 이루어져야 합니다.");
         }
     }

@@ -1,14 +1,13 @@
 package domain;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static util.Connection.CONNECTED;
+import static util.Connection.UNCONNECTED;
 
 import java.util.List;
 import java.util.Map;
-
-import static util.Connection.CONNECTED;
-import static util.Connection.UNCONNECTED;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 public class LadderGameTest {
 
