@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -44,5 +45,21 @@ public class LineTest {
         for (int i = 1; i < legs.size(); i++) {
             assertThat(legs.get(i).isExistLeg()).isNotEqualTo(legs.get(i - 1).isExistLeg());
         }
+    }
+
+    @DisplayName("현재위치(Index)를 받으면 다음 라인의 위치를 반환한다.")
+    @Test
+    void findNextIndex() {
+        Line line = Line.createLineWithLegs(new RandomLegGenerateStrategy() {
+            @Override
+            public boolean generateLeg() {
+                return true;
+            }
+        }, 3);
+        Assertions.assertAll(
+                () -> assertThat(line.findNextIndex(0)).isEqualTo(1),
+                () -> assertThat(line.findNextIndex(3)).isEqualTo(2)
+        );
+
     }
 }

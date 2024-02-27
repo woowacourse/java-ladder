@@ -32,4 +32,14 @@ public class Line {
     public List<Leg> getLegs() {
         return List.copyOf(legs);
     }
+
+    public int findNextIndex(int index) {
+        if (index < legs.size() && getLegs().get(index).isExistLeg()) {
+            return index + 1;
+        }
+        if (index > 0 && getLegs().get(index - 1).isExistLeg()) {
+            return index - 1;
+        }
+        return index;
+    }
 }
