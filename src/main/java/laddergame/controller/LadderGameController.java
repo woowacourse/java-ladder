@@ -9,13 +9,14 @@ import laddergame.view.ResultView;
 import static laddergame.view.ExceptionHandledReader.retryUntilNoError;
 
 public class LadderGameController {
+
     private LadderGameController() {
     }
 
     public static void run() {
-        Elements people = retryUntilNoError(LadderGameController::makePeople);
+        Elements people = retryUntilNoError(() -> new Elements(InputView.readNames()));
         Ladder ladder = retryUntilNoError(() -> makeLadder(people));
-        Elements results = retryUntilNoError(() -> makeResults());
+        Elements results = retryUntilNoError(() -> makeResults(people, ladder));
 
         LadderGame ladderGame = new LadderGame(people, ladder, results);
 
@@ -23,8 +24,10 @@ public class LadderGameController {
         retryUntilNoError(() -> printPlayerResults(ladderGame));
     }
 
-    private static Elements makePeople() {
-        return new Elements(InputView.readNames());
+    private static Elements makeResults(Elements people, Ladder ladder) {
+        Elements results = retryUntilNoError(() -> new Elements(InputView.readGameResult()));
+        new LadderGame(people, ladder, results);
+        return results;
     }
 
     private static Ladder makeLadder(Elements people) {
@@ -32,12 +35,8 @@ public class LadderGameController {
         return new Ladder(InputView.readHeight(), peopleNumber);
     }
 
-    private static Elements makeResults() {
-        return new Elements(InputView.readGameResult());
-    }
-
-    private static int printPlayerResults(LadderGame ladderGame) {
+    private static boolean printPlayerResults(LadderGame ladderGame) {
         ResultView.printPlayerResult(InputView.readPlayerName(), ladderGame);
-        return 0;
+        return true;
     }
 }
