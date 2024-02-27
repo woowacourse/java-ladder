@@ -10,15 +10,15 @@ import java.util.stream.IntStream;
 public class Line {
     private final List<StepStatus> stepStatuses;
 
-    public Line(Supplier<Boolean> generator, final int userCount) {
-        this.stepStatuses = createStepStatuses(generator, userCount);
+    public Line(Supplier<Boolean> stepGenerator, final int userCount) {
+        this.stepStatuses = createStepStatuses(stepGenerator, userCount);
     }
 
-    private List<StepStatus> createStepStatuses(Supplier<Boolean> generator, final int userCount) {
+    private List<StepStatus> createStepStatuses(Supplier<Boolean> stepGenerator, final int userCount) {
         final int totalSteps = userCount - 1;
         final List<StepStatus> stepStatuses = new ArrayList<>(totalSteps);
         for (int i = 0; i < totalSteps; i++) {
-            stepStatuses.add(generateStepStatus(generator, stepStatuses, i));
+            stepStatuses.add(generateStepStatus(stepGenerator, stepStatuses, i));
         }
         return stepStatuses;
     }

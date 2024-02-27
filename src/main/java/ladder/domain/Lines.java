@@ -13,13 +13,13 @@ public class Lines {
         this.lines = lines;
     }
 
-    public static Lines of(Supplier<Boolean> generator, final int ladderHeight, final int userCount) {
-        return new Lines(createLines(generator, ladderHeight, userCount));
+    public static Lines of(Supplier<Boolean> stepGenerator, final int ladderHeight, final int userCount) {
+        return new Lines(createLines(stepGenerator, ladderHeight, userCount));
     }
 
-    private static List<Line> createLines(Supplier<Boolean> generator, final int ladderHeight, final int userCount) {
+    private static List<Line> createLines(Supplier<Boolean> stepGenerator, final int ladderHeight, final int userCount) {
         return IntStream.rangeClosed(1, ladderHeight)
-                .mapToObj(i -> new Line(generator, userCount))
+                .mapToObj(i -> new Line(stepGenerator, userCount))
                 .toList();
     }
 
