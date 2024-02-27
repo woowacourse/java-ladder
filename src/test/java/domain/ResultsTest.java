@@ -1,17 +1,24 @@
 package domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class ResultsTest {
 
-    @DisplayName("Results에서 result들을 조회할 수 있다.")
+    @DisplayName("실행 결과 목록에서 실행 결과들을 조회할 수 있다.")
     @Test
     void create() {
-        Results results = new Results();
+        String value = "1";
+        Results results = new Results(List.of(value));
 
-        Assertions.assertThatCode(() -> results.getResults())
-                .doesNotThrowAnyException();
+        List<String> values = results.getResults().stream()
+                .map(Result::getValue)
+                .toList();
+
+        assertThat(values).containsExactly(value);
     }
 }
