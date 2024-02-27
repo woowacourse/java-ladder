@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class LineTest {
+class LineTest {
     @DisplayName("첫 인덱스가 END이거나 마지막 인덱스가 START이면 예외를 발생한다.")
     @ParameterizedTest
     @CsvSource(value = {"END,END", "START,START"})

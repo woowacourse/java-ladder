@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LineGeneratorTest {
+class LineGeneratorTest {
     @DisplayName("불린 리스트로 Line 객체를 반환한다.")
     @Test
     void generateLineTest() {

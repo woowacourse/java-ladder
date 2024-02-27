@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class RandomBooleanGeneratorTest {
+class RandomBooleanGeneratorTest {
     @DisplayName("높이와 수량을 입력받아 선 리스트를 반환한다.")
     @Nested
     class getLines {
