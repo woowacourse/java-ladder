@@ -87,7 +87,10 @@ public class LadderGame {
         );
     }
 
-    private void printSingleResult(Map<Integer, Integer> ladderResults, Players players, Results results, String playerName) {
+    private void printSingleResult(Map<Integer, Integer> ladderResults,
+                                   Players players,
+                                   Results results,
+                                   String playerName) {
         int playerIndex = players.getIndexByName(playerName);
         Result result = results.get(ladderResults.get(playerIndex));
         outputView.printToken(result.rawResult());
