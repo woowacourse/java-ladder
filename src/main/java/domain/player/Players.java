@@ -31,6 +31,7 @@ public class Players {
     }
 
     public Name get(int index) {
+        validateIndex(index);
         return names.get(index);
     }
 
@@ -45,6 +46,12 @@ public class Players {
         return names.get(index)
                 .rawName()
                 .equals(name);
+    }
+
+    private void validateIndex(int index) {
+        if (index < 0 || index >= names.size()) {
+            throw new IllegalArgumentException("주어진 인덱스가 범위를 벗어납니다.");
+        }
     }
 
     private void validateSize(List<String> names) {

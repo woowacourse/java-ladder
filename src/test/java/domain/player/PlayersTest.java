@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.Arrays;
 import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -41,5 +42,16 @@ class PlayersTest {
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("중복된 이름이 존재합니다.");
+    }
+
+    @Test
+    @DisplayName("범위를 넘어가는 경우, 예외를 발생한다.")
+    void getIndexOutOfBoundTest() {
+        // given
+        Players players = new Players(List.of("aru", "pobi"));
+        // when
+        Assertions.assertThatThrownBy(() -> players.get(2))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("주어진 인덱스가 범위를 벗어납니다.");
     }
 }
