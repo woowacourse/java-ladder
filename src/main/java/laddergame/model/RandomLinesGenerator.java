@@ -1,5 +1,8 @@
 package laddergame.model;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -7,12 +10,12 @@ import java.util.Random;
 public class RandomLinesGenerator {
     private final Random random = new Random();
 
-    public List<Line> getLines(LadderHeight ladderHeight, Participants participants) {
+    public LadderGame getLadderGame(LadderHeight ladderHeight, Participants participants) {
         List<List<Boolean>> booleans = generateBooleans(ladderHeight.getHeight(), participants.getSize());
         return booleans.stream()
                 .map(LineGenerator::new)
                 .map(LineGenerator::generate)
-                .toList();
+                .collect(collectingAndThen(toList(), LadderGame::new));
     }
 
     private List<List<Boolean>> generateBooleans(int row, int col) {

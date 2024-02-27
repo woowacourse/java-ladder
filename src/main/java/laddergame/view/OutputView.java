@@ -2,6 +2,7 @@ package laddergame.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import laddergame.model.LadderGame;
 import laddergame.model.Line;
 import laddergame.model.LineState;
 import laddergame.model.Participant;
@@ -23,7 +24,8 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public void printLadder(List<Line> lines) {
+    public void printLadder(LadderGame ladderGame) {
+        List<Line> lines = ladderGame.getLines();
         lines.stream()
                 .map(Line::getLineStates)
                 .map(this::getStringBuilder)

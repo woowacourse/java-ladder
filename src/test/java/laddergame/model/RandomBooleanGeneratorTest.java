@@ -26,7 +26,8 @@ class RandomBooleanGeneratorTest {
                             new Participant("ted")
                     ));
             RandomLinesGenerator randomGenerator = new RandomLinesGenerator();
-            List<Line> result = randomGenerator.getLines(given, participants);
+            LadderGame ladderGame = randomGenerator.getLadderGame(given, participants);
+            List<Line> result = ladderGame.getLines();
 
             assertThat(result).hasSize(height);
         }
@@ -38,7 +39,8 @@ class RandomBooleanGeneratorTest {
             LadderHeight ladderHeight = new LadderHeight(3);
             Participants participants = generateParticipants(count);
             RandomLinesGenerator randomGenerator = new RandomLinesGenerator();
-            List<Line> result = randomGenerator.getLines(ladderHeight, participants);
+            LadderGame ladderGame = randomGenerator.getLadderGame(ladderHeight, participants);
+            List<Line> result = ladderGame.getLines();
 
             assertAll(
                     () -> assertThat(result.get(0).getLineStates()).hasSize(count),

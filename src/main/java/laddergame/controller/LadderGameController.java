@@ -1,8 +1,7 @@
 package laddergame.controller;
 
-import java.util.List;
+import laddergame.model.LadderGame;
 import laddergame.model.LadderHeight;
-import laddergame.model.Line;
 import laddergame.model.Participants;
 import laddergame.model.RandomLinesGenerator;
 import laddergame.view.InputView;
@@ -21,14 +20,14 @@ public class LadderGameController {
         Participants participants = inputView.readParticipantNames();
         LadderHeight ladderHeight = inputView.readLadderHeight();
         RandomLinesGenerator randomGenerator = new RandomLinesGenerator();
-        List<Line> lines = randomGenerator.getLines(ladderHeight, participants);
+        LadderGame ladderGame = randomGenerator.getLadderGame(ladderHeight, participants);
 
-        printResult(participants, lines);
+        printResult(participants, ladderGame);
     }
 
-    private void printResult(Participants participants, List<Line> lines) {
+    private void printResult(Participants participants, LadderGame ladderGame) {
         outputView.printResultHeader();
         outputView.printParticipantsNames(participants);
-        outputView.printLadder(lines);
+        outputView.printLadder(ladderGame);
     }
 }
