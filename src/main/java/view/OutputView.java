@@ -5,16 +5,19 @@ import domain.ladder.Line;
 import domain.ladder.Stick;
 import domain.player.Player;
 import domain.player.Players;
+import domain.result.Result;
+import domain.result.Results;
 
 import java.util.List;
 
 public class OutputView {
 
-    public void printLadder(Players players, Ladder ladder) {
-        System.out.println("실행결과");
+    public void printLadder(Players players, Ladder ladder, Results results) {
+        System.out.println("사다리 결과");
 
         printPlayerNames(players);
         printLadder(ladder);
+        printResults(results);
     }
 
     public void printError(String message) {
@@ -46,4 +49,13 @@ public class OutputView {
 
         System.out.printf("     |%s%n", sb);
     }
+
+    private void printResults(Results results) {
+        results.getResults().forEach(this::printEachResultValue);
+    }
+
+    private void printEachResultValue(Result result) {
+        System.out.printf("%5s ", result.getValue());
+    }
+
 }

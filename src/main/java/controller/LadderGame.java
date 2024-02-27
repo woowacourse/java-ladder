@@ -29,7 +29,7 @@ public class LadderGame {
         StickGenerator stickGenerator = new RandomStickGenerator();
         Ladder ladder = new Ladder(height, players.getPlayerSize(), stickGenerator);
 
-        outputView.printLadder(players, ladder);
+        outputView.printLadder(players, ladder, results);
     }
 
     private Height readHeight() {
