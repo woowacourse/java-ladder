@@ -4,13 +4,12 @@ import domain.db.Prizes;
 import domain.game.Judge;
 import domain.game.LadderGame;
 import domain.game.Result;
-import domain.ladder.Bridge;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
+import domain.ladder.RandomBridgeMakingStrategy;
 import view.InputView;
 import view.OutputView;
 
-import java.util.Random;
 import java.util.function.Supplier;
 
 import static view.OutputView.printResult;
@@ -39,9 +38,8 @@ public class LadderController {
     }
 
     private static Ladder getLadder(final Names names, final Height height) {
-        final Random random = new Random();
         final int width = names.names().size() - 1;
-        return new Ladder(width, height.height(), () -> Bridge.getOne(random.nextBoolean()));
+        return new Ladder(width, height.height(), new RandomBridgeMakingStrategy());
     }
 
     private static Names getNames() {

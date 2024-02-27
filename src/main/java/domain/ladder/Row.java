@@ -6,32 +6,21 @@ import java.util.List;
 import static java.util.Collections.unmodifiableList;
 
 public class Row {
-    private final BridgeMakingStrategy makingStrategy;
-    private final List<Bridge> bridges = new ArrayList<>();
+    private final List<Bridge> bridges;
 
-    public Row(final int width, final BridgeMakingStrategy makingStrategy) {
-        this.makingStrategy = makingStrategy;
-        makeRow(width);
+    public Row(final int width, final BridgeMakingStrategy strategy) {
+        this.bridges = makeRow(width, strategy);
+        // TODO: 연속한 다리가 있는지 확인
     }
 
-    private void makeRow(final int width) {
+    private List<Bridge> makeRow(final int width, final BridgeMakingStrategy strategy) {
+        final List<Bridge> bridges = new ArrayList<>();
+        Bridge current = null;
         for (int i = 0; i < width; i++) {
-            this.bridges.add(makeBridge());
+            current = strategy.getOne(current);
+            bridges.add(current);
         }
-    }
-
-    private Bridge makeBridge() {
-        if (doesBridgeExistAtLast()) {
-            return Bridge.EMPTY;
-        }
-        return makingStrategy.getOne();
-    }
-
-    private boolean doesBridgeExistAtLast() {
-        if (this.bridges.size() == 0) {
-            return false;
-        }
-        return Bridge.EXIST == this.bridges.get(this.bridges.size() - 1);
+        return bridges;
     }
 
     public List<Bridge> getBridges() {

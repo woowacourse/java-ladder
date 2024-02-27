@@ -22,11 +22,7 @@ public class RowMover {
     }
 
     private static List<Integer> getModifiableListContainsElement(final Integer elem) {
-        return new ArrayList<>() {
-            {
-                add(elem);
-            }
-        };
+        return new ArrayList<>(List.of(elem));
     }
 
     private static void swapLastIfBridgeExist(final Bridge bridge, final List<Integer> to) {

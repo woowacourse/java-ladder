@@ -17,6 +17,8 @@ public class Ladder {
         this.rows = generateLadder(width, height, strategy);
     }
 
+    // TODO: LADDER를 만드는 역할을 누구까지 알아야 하는게 맞나
+
     private List<Row> generateLadder(
             final int width,
             final int height,
