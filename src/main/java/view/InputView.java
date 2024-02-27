@@ -12,8 +12,6 @@ public class InputView {
     public static final String INTEGER_FORMAT = "정수 형태만 입력 가능합니다";
     public static final String PLAYER_NAMES_INPUT_DELIMITER = ",";
     public static final String LADDER_RESULTS_INPUT_DELIMITER = ",";
-    public static final String BLANK_SPACE = " ";
-    public static final String BLANK_EMPTY = "";
 
     private final Scanner scanner;
 
@@ -36,7 +34,7 @@ public class InputView {
     }
 
     private String[] splitPlayerNames(String playerNamesInput) {
-        playerNamesInput = playerNamesInput.replace(InputView.BLANK_SPACE, InputView.BLANK_EMPTY);
+        playerNamesInput = playerNamesInput.replace(" ", "");
         return playerNamesInput.split(InputView.PLAYER_NAMES_INPUT_DELIMITER);
     }
 
@@ -50,7 +48,7 @@ public class InputView {
 
     private String[] splitLadderResults(String playerNamesInput) {
         validateLadderResultFormat(playerNamesInput);
-        playerNamesInput = playerNamesInput.replace(InputView.BLANK_SPACE, InputView.BLANK_EMPTY);
+        playerNamesInput = playerNamesInput.replace(" ", "");
         return playerNamesInput.split(InputView.LADDER_RESULTS_INPUT_DELIMITER);
     }
 
