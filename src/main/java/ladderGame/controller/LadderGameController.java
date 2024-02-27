@@ -23,9 +23,9 @@ public class LadderGameController {
     public void run() {
         LadderGame ladderGame = makeLadderGame();
 
-        String wantName;
-        while (!(wantName = inputView.inputResultWantPlayerName()).equals(ALL_RESULT_COMMAND)) {
-            resultView.printLadderResult(ladderGame.findLadderGameResult(wantName));
+        String playerName;
+        while (!(playerName = inputView.inputResultWantPlayerName()).equals(ALL_RESULT_COMMAND)) {
+            resultView.printLadderResult(ladderGame.findLadderGameResult(playerName));
         }
 
         resultView.printAllLadderResult(ladderGame.findAllLadderGameResults());
