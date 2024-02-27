@@ -44,24 +44,6 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("특정 index의 LadderLeg에 있는 특정 index의 LadderLegPiece에서의 진행 방향을 결정한다.")
-    void determineMovingDirectionAtLadderLegPiece() {
-        Height height = new Height("1");
-        int playerCount = 2;
-        List<Direction> fixedDirectionList = List.of(Direction.RIGHT);
-
-        Ladder ladder = new Ladder(height, playerCount, new FixedDirectionGenerator(fixedDirectionList));
-        Direction direction1 = ladder.getDirectionOfLadderLegPieceAtSpecificCoordinate(1, 0);
-        Direction direction2 = ladder.getDirectionOfLadderLegPieceAtSpecificCoordinate(0, 0);
-
-        assertAll(() -> {
-            assertEquals(Direction.LEFT, direction1);
-            assertEquals(Direction.RIGHT, direction2);
-        });
-
-    }
-
-    @Test
     @DisplayName("사다리의 특정 지점의 인덱스가 주어지면 재귀적으로 함수를 호출하여 최종 지점의 인덱스를 반환한다")
     void moveFromStartingPointToResultPoint() {
         // Given

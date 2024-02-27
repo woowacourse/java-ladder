@@ -52,7 +52,7 @@ public class Ladder {
         return moveCoordinateToResultPoint(x, y);
     }
 
-    public Direction getDirectionOfLadderLegPieceAtSpecificCoordinate(int x, int y) {
+    private Direction getDirectionOfLadderLegPieceAtSpecificCoordinate(int x, int y) {
         validateCoordinate(x, y);
         return ladderLegs.get(x)
                          .getDirectionAtIndex(y);
