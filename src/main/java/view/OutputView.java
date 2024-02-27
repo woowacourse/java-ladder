@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
-import model.Prize;
 
 public class OutputView {
     private static final String FINAL_RESULT_FORMAT = "%s%n%n";
@@ -12,8 +11,7 @@ public class OutputView {
     private static final String PRIZE_RESULT_MESSAGE = "실행 결과";
     private static final String RESULT_FORM = "%s : %s%n";
 
-    public void printLadderResult(List<String> names, List<String> lines,
-                                  List<Prize> prizes) { //TODO: prize 대신 string 고려
+    public void printLadderResult(List<String> names, List<String> lines, List<String> prizes) {
         System.out.printf(FINAL_RESULT_FORMAT, FINAL_RESULT_MESSAGE);
         printPlayers(names);
         printLadder(names.get(0).length(), lines);
@@ -43,9 +41,9 @@ public class OutputView {
         }
     }
 
-    private void printPrizes(List<Prize> prizes) {
-        for (Prize prize : prizes) {
-            System.out.printf(String.format("%-6s", prize.toString()));
+    private void printPrizes(List<String> prizes) {
+        for (String name : prizes) {
+            System.out.printf(String.format("%-6s", name));
         }
         System.out.println();
         System.out.println();

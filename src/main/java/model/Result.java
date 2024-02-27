@@ -28,4 +28,10 @@ public class Result {
     public List<Prize> getPrizes() {
         return prizes;
     }
+
+    public List<String> getPrizeNames() {
+        return prizes.stream()
+                .map(Prize::value)
+                .toList();
+    }
 }
