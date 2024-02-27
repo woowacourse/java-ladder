@@ -9,14 +9,13 @@ public class Names {
     private static final int MIN_NAMES_COUNT = 2;
     private static final int MAX_NAMES_COUNT = 10;
     private final List<Name> names;
-
-    private final Map<Integer, Integer> namesIndexTable = new ConcurrentHashMap<>();
+    private final Map<Integer, Integer> swappedNameIndices = new ConcurrentHashMap<>();
 
     Names(List<Name> names) {
         validateDuplicateName(names);
         validateNameCount(names);
         this.names = names;
-        initNamesIndexTable();
+        initSwappedNameIndices();
     }
 
 
@@ -26,24 +25,24 @@ public class Names {
 
     public List<Name> getSwappedNames() {
         return IntStream.range(0, names.size())
-                .mapToObj(index -> names.get(namesIndexTable.get(index)))
+                .mapToObj(index -> names.get(swappedNameIndices.get(index)))
                 .toList();
     }
 
     public void swapNamePosition(int i) {
-        int right = namesIndexTable.get(i);
-        int left = namesIndexTable.get(i - 1);
-        namesIndexTable.put(i, left);
-        namesIndexTable.put(i - 1, right);
+        int right = swappedNameIndices.get(i);
+        int left = swappedNameIndices.get(i - 1);
+        swappedNameIndices.put(i, left);
+        swappedNameIndices.put(i - 1, right);
     }
 
     int getNameCount() {
         return names.size();
     }
 
-    private void initNamesIndexTable() {
+    private void initSwappedNameIndices() {
         IntStream.range(0, names.size())
-                .forEach(index -> namesIndexTable.put(index, index));
+                .forEach(index -> swappedNameIndices.put(index, index));
     }
 
 
