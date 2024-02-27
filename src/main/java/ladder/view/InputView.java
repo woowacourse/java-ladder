@@ -26,6 +26,11 @@ public class InputView {
         return parseHeightInputToInteger(heightInput);
     }
 
+    public List<String> getPrizeNames() {
+        System.out.println("실행 결과를 입력하세요. (결과를 쉼표(,)로 구분하세요");
+        return divideInput();
+    }
+
     private int parseHeightInputToInteger(String heightInput) {
         try {
             return Integer.parseInt(heightInput);
