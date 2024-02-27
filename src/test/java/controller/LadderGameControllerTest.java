@@ -8,8 +8,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.time.Duration;
+import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.function.BooleanSupplier;
+import java.util.Random;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -54,13 +56,13 @@ public class LadderGameControllerTest {
 				"사다리 결과",
 				"a     b     c",
 				"|-----|     |",
-				"|-----|     |",
+				"|     |-----|",
 				"d     e     f",
 				"결과를 보고 싶은 사람은?",
 				"실행 결과",
-				"a : d",
-				"b : e",
-				"c : f"
+				"a : f",
+				"b : d",
+				"c : e"
 			);
 	}
 
@@ -134,8 +136,15 @@ public class LadderGameControllerTest {
 	private void run() {
 		InputView inputView = new InputView();
 		OutputView outputView = new OutputView();
-		BooleanSupplier supplier = () -> true;
-		LadderFloorGenerator generator = new LadderFloorGenerator(supplier);
+		Random random = new Random() {
+			final Iterator<Boolean> iterator = List.of(true, false, true).iterator();
+
+			@Override
+			public boolean nextBoolean() {
+				return iterator.next();
+			}
+		};
+		LadderFloorGenerator generator = new LadderFloorGenerator(random);
 		LadderGame ladderGame = new LadderGame(generator);
 		LadderGameController controller = new LadderGameController(inputView, outputView, ladderGame);
 

@@ -2,7 +2,7 @@ package domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.function.BooleanSupplier;
+import java.util.Random;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ import generator.LadderFloorGenerator;
 class PlayerTest {
 
 	@Test
-	@DisplayName("모든 막대가 연결된 사다리를 타고 내려온다.")
+	@DisplayName("모든 막대가 연결된 3층 사다리를 타고 내려온다.")
 	void playWithAllConnectedLadder() {
 		// given
 		Ladder ladder = createAllConnectedLadder();
@@ -31,7 +31,7 @@ class PlayerTest {
 	}
 
 	@Test
-	@DisplayName("모든 막대가 연결되지 않은 사다리를 타고 내려온다.")
+	@DisplayName("모든 막대가 연결되지 않은 3층 사다리를 타고 내려온다.")
 	void playWithNotConnectedLadder() {
 		// given
 		Ladder ladder = createNotConnectedLadder();
@@ -53,19 +53,25 @@ class PlayerTest {
 	 * @return 두 막대가 모두 연결된 3층 사다리
 	 */
 	private Ladder createAllConnectedLadder() {
-		return createTestLadder(() -> true);
+		return createTestLadder(true);
 	}
 
 	/**
 	 * @return 두 막대가 모두 연결되지 않은 3층 사다리
 	 */
 	private Ladder createNotConnectedLadder() {
-		return createTestLadder(() -> false);
+		return createTestLadder(false);
 	}
 
-	private Ladder createTestLadder(BooleanSupplier supplier) {
+	private Ladder createTestLadder(boolean value) {
 		Ladder ladder = Ladder.of(2, 3);
-		LadderFloorGenerator generator = new LadderFloorGenerator(supplier);
+		Random random = new Random() {
+			@Override
+			public boolean nextBoolean() {
+				return value;
+			}
+		};
+		LadderFloorGenerator generator = new LadderFloorGenerator(random);
 		ladder.drawLines(generator);
 
 		return ladder;

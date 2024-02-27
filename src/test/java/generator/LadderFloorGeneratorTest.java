@@ -3,7 +3,7 @@ package generator;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
-import java.util.function.BooleanSupplier;
+import java.util.Random;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,8 +16,14 @@ class LadderFloorGeneratorTest {
 	@DisplayName("연속해서 연결되지 않는 한 층을 생성한다.")
 	void generateFalseAfterTrueTest() {
 		// given
-		BooleanSupplier trueSupplier = () -> true;
-		LadderFloorGenerator ladderGenerator = new LadderFloorGenerator(trueSupplier);
+		Random random = new Random() {
+			@Override
+			public boolean nextBoolean() {
+				return true;
+			}
+		};
+		LadderFloorGenerator ladderGenerator = new LadderFloorGenerator(random);
+
 		// when
 		List<Bar> actual = ladderGenerator.generate(5);
 		List<Bar> expected = List.of(
@@ -27,6 +33,7 @@ class LadderFloorGeneratorTest {
 			Bar.CONNECTED_TO_LEFT,
 			Bar.NOT_CONNECTED
 		);
+
 		// then
 		assertThat(actual).containsExactlyElementsOf(expected);
 	}

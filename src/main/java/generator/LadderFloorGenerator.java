@@ -2,23 +2,25 @@ package generator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.function.BooleanSupplier;
+import java.util.random.RandomGenerator;
 
 import domain.Bar;
 
 public class LadderFloorGenerator {
 
-	private final BooleanSupplier supplier;
+	private final RandomGenerator random;
 
-	public LadderFloorGenerator(BooleanSupplier supplier) {
-		this.supplier = supplier;
+	public LadderFloorGenerator(RandomGenerator random) {
+		this.random = random;
 	}
 
-	public List<Bar> generate(int size) {
+	public List<Bar> generate(int floorWidth) {
 		List<Bar> bars = new ArrayList<>();
 
 		Bar previous = Bar.NOT_CONNECTED;
-		for (int order = 0; order < size - 1; order++) {
+		for (int order = 0; order < floorWidth - 1; order++) {
 			Bar current = getConnection(previous);
 			bars.add(current);
 			previous = current;
@@ -33,7 +35,7 @@ public class LadderFloorGenerator {
 			return Bar.CONNECTED_TO_LEFT;
 		}
 
-		boolean canConnect = supplier.getAsBoolean();
+		boolean canConnect = random.nextBoolean();
 		if (canConnect) {
 			return Bar.CONNECTED_TO_RIGHT;
 		}
