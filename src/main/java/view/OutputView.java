@@ -16,7 +16,7 @@ public class OutputView {
     private static final String LEG_UNIT = "-";
     private static final String FORMAT_NAME = "%6s";
 
-    public static void printResult(Players players, Ladder ladder) {
+    public static void printLadder(Players players, Ladder ladder) {
         System.out.println(RESULT);
         printPlayers(players.getPlayers());
         printLines(players, ladder);

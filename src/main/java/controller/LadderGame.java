@@ -17,7 +17,7 @@ public class LadderGame {
         int ladderWidth = players.getPlayers().size() - 1;
         Ladder ladder = Ladder.createLadderWithLines(new RandomLegGenerateStrategy(), ladderHeight, ladderWidth);
 
-        OutputView.printResult(players, ladder);
+        OutputView.printLadder(players, ladder);
     }
 
     private Height readHeight() {
