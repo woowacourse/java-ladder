@@ -45,6 +45,7 @@ public class OutputView {
             stringBuilder.append(resolveLine(line));
             stringBuilder.append("\n");
         }
+        stringBuilder.deleteCharAt(stringBuilder.lastIndexOf("\n"));
         return stringBuilder.toString();
     }
 
