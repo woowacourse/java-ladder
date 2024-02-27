@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class OutputView {
+    private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String EXECUTION_RESULT = "실행결과" + System.lineSeparator();
     private static final String PEOPLE_NAMES_DELIMITER = " ";
     private static final String LADDER_FORMAT = String.format("%%%ds", Person.getMaxLength());
@@ -19,6 +20,14 @@ public class OutputView {
 
     public static void printMessage(String message) {
         System.out.println(message);
+    }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(ERROR_PREFIX + errorMessage);
+    }
+
+    public static void printNewLine() {
+        System.out.println(System.lineSeparator());
     }
 
     public static void printResult(List<String> names, List<List<Boolean>> lines) {
