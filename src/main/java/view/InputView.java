@@ -57,4 +57,12 @@ public class InputView {
                 .map(String::trim)
                 .toList();
     }
+
+    public static String readResultName(Supplier<String> input) {
+        System.out.println("결과를 보고 싶은 사람은?");
+        String inputString = input.get();
+        validateEmpty(inputString);
+        validateEndedWithComma(inputString);
+        return inputString.trim();
+    }
 }

@@ -99,4 +99,18 @@ class InputViewTest {
                     .hasMessage("null 혹은 빈 문자열을 입력할 수 없습니다.");
         }
     }
+
+    @DisplayName("결과 이름에 대한 입력 테스트")
+    @Nested
+    class ResultNameTest {
+        @DisplayName("null 혹은 빈 문자열을 받으면 예외를 발생한다.")
+        @ParameterizedTest
+        @NullAndEmptySource
+        @ValueSource(strings = {" ", "\t", "\n"})
+        void emptyInputTest(String input) {
+            Assertions.assertThatThrownBy(() -> InputView.readResultName(() -> input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("null 혹은 빈 문자열을 입력할 수 없습니다.");
+        }
+    }
 }
