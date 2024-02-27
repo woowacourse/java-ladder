@@ -50,6 +50,11 @@ public class Players {
         return foundPosition.get(0);
     }
 
+    public String getName(final int playerIndex) {
+        final Player player = players.get(playerIndex);
+        return player.getName();
+    }
+
     public int count() {
         return players.size();
     }

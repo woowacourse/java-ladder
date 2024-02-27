@@ -4,8 +4,11 @@ import domain.ladder.BridgeGenerator;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.Width;
+import domain.player.Player;
 import domain.player.Position;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LadderGame {
 
@@ -35,10 +38,28 @@ public class LadderGame {
         return players;
     }
 
-    public String matchResult(final String playerName) {
-        final Position position = players.getPositionBy(playerName);
+    public List<GameResult> matchResult(final String playerName, final String selectAll) {
+        if (Objects.equals(playerName, selectAll)) {
+            return getAllResults();
+        }
 
-        return matchingItems.get(position.value());
+        final Position position = players.getPositionBy(playerName);
+        final String matchingItem = matchingItems.get(position.value());
+        final GameResult gameResult = new GameResult(playerName, matchingItem);
+
+        return List.of(gameResult);
+    }
+
+    private List<GameResult> getAllResults() {
+        final List<GameResult> allResults = new ArrayList<>();
+        for (int i = 0; i < players.count(); i++) {
+            final Position position = players.getPositionBy(players.getName(i));
+            final String matchingItem = matchingItems.get(position.value());
+            final GameResult eachResult = new GameResult(players.getName(i), matchingItem);
+
+            allResults.add(eachResult);
+        }
+        return allResults;
     }
 
     public List<String> getPlayerNames() {

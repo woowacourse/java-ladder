@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 
 class LadderGameTest {
 
+    private static final String SELECT_ALL = "all";
+
     @DisplayName("결과에 맞게 참가자의 위치를 변경한다.")
     @Test
     void reflectLadderGamePlay() {
@@ -58,17 +60,46 @@ class LadderGameTest {
                 bridgeGenerator);
 
         ladderGame.play();
-        final String pobiResult = ladderGame.matchResult("pobi");
-        final String honuxResult = ladderGame.matchResult("honux");
-        final String crongResult = ladderGame.matchResult("crong");
-        final String jkResult = ladderGame.matchResult("jk");
+        final List<GameResult> pobiResult = ladderGame.matchResult("pobi", SELECT_ALL);
+        final List<GameResult> honuxResult = ladderGame.matchResult("honux", SELECT_ALL);
+        final List<GameResult> crongResult = ladderGame.matchResult("crong", SELECT_ALL);
+        final List<GameResult> jkResult = ladderGame.matchResult("jk", SELECT_ALL);
 
         // when & then
         assertAll(
-                () -> assertThat(pobiResult).isEqualTo("꽝"),
-                () -> assertThat(honuxResult).isEqualTo("3000"),
-                () -> assertThat(crongResult).isEqualTo("꽝"),
-                () -> assertThat(jkResult).isEqualTo("5000")
+                () -> assertThat(pobiResult.get(0)).isEqualTo(new GameResult("pobi", "꽝")),
+                () -> assertThat(honuxResult.get(0)).isEqualTo(new GameResult("honux", "3000")),
+                () -> assertThat(crongResult.get(0)).isEqualTo(new GameResult("crong" ,"꽝")),
+                () -> assertThat(jkResult.get(0)).isEqualTo(new GameResult("jk", "5000"))
+        );
+    }
+
+    @DisplayName("all을 입력하면 전체 결과를 알려준다.")
+    @Test
+    void informAllResults() {
+        //given
+        BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(List.of(
+                true, false, true,
+                false, true, false,
+                true, false, false,
+                false, true, false,
+                true, false, true
+        ));
+        final LadderGame ladderGame = new LadderGame(
+                List.of("pobi", "honux", "crong", "jk"),
+                List.of("꽝", "5000", "꽝", "3000"),
+                5,
+                bridgeGenerator);
+
+        ladderGame.play();
+        final List<GameResult> gameResults = ladderGame.matchResult("all", "all");
+
+        //when & then
+        assertAll(
+                () -> assertThat(gameResults.get(0)).isEqualTo(new GameResult("pobi", "꽝")),
+                () -> assertThat(gameResults.get(1)).isEqualTo(new GameResult("honux", "3000")),
+                () -> assertThat(gameResults.get(2)).isEqualTo(new GameResult("crong" ,"꽝")),
+                () -> assertThat(gameResults.get(3)).isEqualTo(new GameResult("jk", "5000"))
         );
     }
 }
