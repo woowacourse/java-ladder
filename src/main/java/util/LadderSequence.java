@@ -4,7 +4,6 @@ import domain.Ladder;
 import domain.Line;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class LadderSequence {
@@ -12,20 +11,20 @@ public class LadderSequence {
     private LadderSequence() {}
 
     public static List<String> from(Ladder ladder) {
-        Iterator<Line> iterator = ladder.iterator();
+        List<Line> lines = ladder.getLines();
         List<String> ladderSequence = new ArrayList<>();
-        while (iterator.hasNext()) {
-            ladderSequence.add(getLineSequence(iterator.next()));
-        }
+        lines.stream()
+                .map(LadderSequence::getLineSequence)
+                .forEach(ladderSequence::add);
         return ladderSequence;
     }
 
     private static String getLineSequence(Line line) {
-        Iterator<Connection> iterator = line.iterator();
+        List<Connection> connections = line.getConnections();
         StringBuilder stringBuilder = new StringBuilder();
-        while (iterator.hasNext()) {
-            stringBuilder.append(iterator.next().getBridge());
-        }
+        connections.stream()
+                .map(Connection::getBridge)
+                .forEach(stringBuilder::append);
         return stringBuilder.toString();
     }
 }

@@ -1,15 +1,15 @@
 package domain;
 
+import java.util.Collections;
 import util.Connection;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
 import static util.Connection.UNCONNECTED;
 
-public class Line implements Iterable<Connection>{
+public class Line{
     private final List<Connection> line;
 
     public Line (List<Integer> numbers) {
@@ -35,6 +35,10 @@ public class Line implements Iterable<Connection>{
         return (threshold >= 5);
     }
 
+    public List<Connection> getConnections() {
+        return Collections.unmodifiableList(this.line);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -46,10 +50,5 @@ public class Line implements Iterable<Connection>{
     @Override
     public int hashCode() {
         return Objects.hash(line);
-    }
-
-    @Override
-    public Iterator<Connection> iterator() {
-        return line.iterator();
     }
 }
