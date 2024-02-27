@@ -40,6 +40,15 @@ public class Players {
         return players.get(index);
     }
 
+    public Player findPlayerByName(final String name) {
+        return players.stream()
+                .filter(player -> player.getName()
+                        .getValue()
+                        .equals(name)
+                ).findAny()
+                .orElseThrow(() -> new IllegalArgumentException(""));
+    }
+
     public int findMaxNameLength() {
         return getNames().stream()
                 .mapToInt(Name::getLength)
@@ -56,4 +65,5 @@ public class Players {
                 .map(Player::getName)
                 .toList();
     }
+
 }
