@@ -27,15 +27,19 @@ public class LadderGenerator {
     }
 
     private static boolean existPrevious(List<Boolean> line, int index) {
-        boolean isNotFirstIndex = index != 0;
-        Boolean existPrevious = line.get(index - 1);
-        return isNotFirstIndex && existPrevious;
+        boolean isFirstIndex = index == 0;
+        if (isFirstIndex) {
+            return false;
+        }
+        return line.get(index - 1);
     }
 
     private static boolean existNext(List<Boolean> line, int index) {
-        boolean isNotLastIndex = index + 1 != line.size();
-        Boolean existNext = line.get(index + 1);
-        return isNotLastIndex && existNext;
+        boolean isLastIndex = index == line.size() - 1;
+        if (isLastIndex) {
+            return false;
+        }
+        return line.get(index + 1);
     }
 
     private static Line generateRandomLine(int count) {
