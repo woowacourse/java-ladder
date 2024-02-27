@@ -27,6 +27,12 @@ public class LadderGame {
 
     public List<LadderResult> findAllLadderGameResults() {
         List<LadderResult> results = new ArrayList<>();
+        List<LadderResult> originalResults = ladderResults.getLadderResults();
+        for (int index = 0; index < players.getPlayerSize(); index++) {
+            int resultIndex = ladder.findLadderResultIndex(index);
+            results.add(originalResults.get(resultIndex));
+        }
+
         return results;
     }
 }
