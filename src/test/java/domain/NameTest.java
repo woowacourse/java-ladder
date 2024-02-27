@@ -49,4 +49,12 @@ class NameTest {
         String actual = name.getName();
         Assertions.assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("프로그램 예약어로 생성하면 예외 발생")
+    void validateNameReservedWord() {
+        assertThatThrownBy(() -> new Name("all"))
+                .isInstanceOf(LadderGameException.class)
+                .hasMessage(ExceptionType.NOT_ALLOW_RESERVED_WORD.getMessage());
+    }
 }

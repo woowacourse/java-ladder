@@ -13,7 +13,8 @@ public enum ExceptionType {
     INVALID_LADDER_RESULT_CHARACTER("사다리 결과는 공백이 포함될 수 없습니다."),
     NOT_ALLOW_DUPLICATE_NAME("이름은 중복될 수 없습니다."),
     NOT_ALLOW_NEAR_BRIDGE("근처에 다리가 있으면 놓을 수 없습니다."),
-    NOT_ALLOW_DIFFERENT_NAMES_LADDER_RESULTS_LENGTH("사다리 결과와 참여자 이름 개수가 같아야 합니다.");
+    NOT_ALLOW_DIFFERENT_NAMES_LADDER_RESULTS_LENGTH("사다리 결과와 참여자 이름 개수가 같아야 합니다."),
+    NOT_ALLOW_RESERVED_WORD("프로그램에서 사용하는 단어를 이름으로 사용할 수 없습니다.");
 
     private final String message;
 
