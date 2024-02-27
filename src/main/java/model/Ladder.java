@@ -34,6 +34,7 @@ public class Ladder {
     private String formatLine(final Line line) {
         StringBuilder lineBuilder = new StringBuilder();
         lineBuilder.append("|");
+        //TODO: ladderStatus에 "|" 붙이기
         for (int index = 0; index < line.size(); index++) {
             lineBuilder.append(line.getLadderStatus(index).getLadderForm());
             lineBuilder.append("|");
@@ -42,7 +43,6 @@ public class Ladder {
     }
 
     public LadderResult findResult(final Players players, final Result prizes) {
-
         final int ladderSize = players.size() - 1;
         List<String> prizeResult = new ArrayList<>();
         List<Prize> result = prizes.getPrizes();
@@ -61,6 +61,7 @@ public class Ladder {
     }
 
     private int find(int index, final int ladderWidthSize, final Line line) {
+        // TODO: 개선하기
         if (0 == index && line.isConnected(index)) {
             index++;
         } else if (isMiddle(index, ladderWidthSize) && line.isConnected(index)) {

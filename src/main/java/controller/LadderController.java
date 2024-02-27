@@ -23,13 +23,10 @@ public class LadderController {
     public void run() {
         Players players = new Players(inputView.readPlayersName());
         Result result = Result.of(inputView.readResult(), players.size());
-
         Height height = new Height(inputView.readHeight());
-
         Ladder ladder = Ladder.of(height, players.size());
 
         outputView.printLadderResult(players.getNames(), ladder.getFormattedLines(), result.getPrizeNames());
-
         printResult(ladder.findResult(players, result), players);
     }
 
