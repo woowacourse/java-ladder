@@ -31,6 +31,10 @@ public class LadderResults {
         }
     }
 
+    public String findLadderResultByPosition(int position) {
+        return ladderResults.get(position);
+    }
+
     public List<String> getLadderResults() {
         return Collections.unmodifiableList(ladderResults);
     }
