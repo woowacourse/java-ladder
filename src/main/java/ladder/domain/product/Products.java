@@ -25,4 +25,12 @@ public class Products {
             throw new IllegalArgumentException("상품은 적어도 2개 이상 있어야 합니다.");
         }
     }
+
+    public Product get(int index) {
+        return values.get(index);
+    }
+
+    public int size() {
+        return values.size();
+    }
 }
