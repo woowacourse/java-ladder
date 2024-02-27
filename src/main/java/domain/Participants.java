@@ -26,6 +26,17 @@ public class Participants {
         }
     }
 
+    public int findIndexOfParticipant(String name) {
+        return participants.indexOf(findParticipantByName(name));
+    }
+
+    private Participant findParticipantByName(String name) {
+        return participants.stream()
+                .filter(participant -> participant.getName().equals(name))
+                .findAny()
+                .orElseThrow();
+    }
+
     public int getParticipantsCount() {
         return participants.size();
     }
