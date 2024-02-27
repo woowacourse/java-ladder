@@ -12,9 +12,4 @@ public class Path {
     public static Path of(int startLineNumber, int endLineNumber) {
         return new Path(new LineNumber(startLineNumber), new LineNumber(endLineNumber));
     }
-
-    @Override
-    public String toString() {
-        return "start : " + startLineNumber.toString() + "  end : " + endLineNumber.toString();
-    }
 }
