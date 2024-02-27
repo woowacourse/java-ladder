@@ -30,27 +30,28 @@ public class LadderGame {
 
     public void start() {
         Players players = retryUntilSuccess(this::preparePlayers);
-        Prizes prizes = retryUntilSuccess(() -> inputLadderResults(players.getPlayersCount()));
+        Prizes prizes = retryUntilSuccess(() -> inputPrizes(players.getPlayerCount()));
         Height height = retryUntilSuccess(this::inputHeight);
 
-        Ladder ladder = Ladder.of(height, players.getPlayersCount(), lineItemGenerator);
+        Ladder ladder = Ladder.of(height, players.getPlayerCount(), lineItemGenerator);
         printLadder(ladder, players, prizes);
 
-
-        printLadderGameResult(ladder, players, prizes);
+        while (true) {
+            String input = retryUntilSuccess(() -> inputView.inputPlayerName(players.getPlayerNames()));
+            printLadderGameResult(ladder, players, prizes, input);
+        }
     }
 
     private Players preparePlayers() {
         String input = inputView.inputName();
         List<String> names = List.of(input.split(","));
-
         return new Players(names);
     }
 
-    private Prizes inputLadderResults(int columnLength) {
+    private Prizes inputPrizes(int playerCount) {
         String input = inputView.inputPrizes();
-        List<String> ladderResults = List.of(input.split(","));
-        return new Prizes(ladderResults, columnLength);
+        List<String> prizes = List.of(input.split(","));
+        return new Prizes(prizes, playerCount);
     }
 
     private Height inputHeight() {
@@ -105,18 +106,15 @@ public class LadderGame {
         }
     }
 
-    private void printLadderGameResult(Ladder ladder, Players players, Prizes prizes) {
-        while (true) {
-            String input = retryUntilSuccess(() -> inputView.inputPlayerName(players.getPlayerNames()));
+    private void printLadderGameResult(Ladder ladder, Players players, Prizes prizes, String input) {
+        outputView.printResultMessage();
 
-            outputView.printResultMessage();
-            if (input.equals("all")) {
-                printAllPlayerResults(ladder, players, prizes);
-                return;
-            }
-
-            printPlayerResult(ladder, players, prizes, input);
+        if (input.equals("all")) {
+            printAllPlayerResults(ladder, players, prizes);
+            return;
         }
+
+        printPlayerResult(ladder, players, prizes, input);
     }
 
     private void printAllPlayerResults(Ladder ladder, Players players, Prizes prizes) {

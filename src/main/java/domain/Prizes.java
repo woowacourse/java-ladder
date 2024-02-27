@@ -11,9 +11,9 @@ public class Prizes {
 
     private final List<String> prizes;
 
-    public Prizes(List<String> prizes, int columnLength) {
+    public Prizes(List<String> prizes, int playerCount) {
         validateIsNotLoseOrNaturalNumber(prizes);
-        validatePrizesLength(prizes, columnLength);
+        validatePrizesLength(prizes, playerCount);
         this.prizes = prizes;
     }
 

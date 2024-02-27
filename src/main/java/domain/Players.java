@@ -44,7 +44,7 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public int getPlayersCount() {
+    public int getPlayerCount() {
         return players.size();
     }
 
