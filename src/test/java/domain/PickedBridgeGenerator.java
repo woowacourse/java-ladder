@@ -1,8 +1,10 @@
-package domain.ladder;
+package domain;
 
+import domain.ladder.Bridge;
+import domain.ladder.BridgeGenerator;
 import java.util.List;
 
-class PickedBridgeGenerator implements BridgeGenerator {
+public class PickedBridgeGenerator implements BridgeGenerator {
 
     private final List<Boolean> test;
     private int index = 0;
