@@ -3,12 +3,15 @@ package domain.ladder;
 import domain.TestBridgeMakingStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
 import static domain.ladder.Bridge.EMPTY;
 import static domain.ladder.Bridge.EXIST;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 class LadderTest {
@@ -54,5 +57,14 @@ class LadderTest {
             List<Bridge> actual = List.of(EXIST, EMPTY, EXIST);
             assertThat(row.getBridges()).isEqualTo(actual);
         }
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1,1", "11,1", "2,0", "2,11"}, delimiter = ',')
+    @DisplayName("잘못된 크기의 사다리는 예외를 발생하는가")
+    void wrong_size_ladder_throws_exception(int width, int height) {
+        assertThatThrownBy(() -> new Ladder(width, height, null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("잘못된 크기가 입력됐습니다. ");
     }
 }

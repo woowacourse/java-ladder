@@ -7,6 +7,8 @@ import static java.util.stream.IntStream.range;
 
 
 public class Ladder {
+    private static final int WIDTH_MIN = 2, WIDTH_MAX = 10;
+    private static final int HEIGHT_MIN = 1, HEIGHT_MAX = 10;
     private final List<Row> rows;
 
     public Ladder(
@@ -14,7 +16,17 @@ public class Ladder {
             final int height,
             final BridgeMakingStrategy strategy
     ) {
+        validateSize(width, height);
         this.rows = makeLadder(width, height, strategy);
+    }
+
+    private void validateSize(final int width, final int height) {
+        if (WIDTH_MIN > width || width > WIDTH_MAX) {
+            throw new IllegalArgumentException("잘못된 크기가 입력됐습니다. ");
+        }
+        if(HEIGHT_MIN > height || height > HEIGHT_MAX) {
+            throw new IllegalArgumentException("잘못된 크기가 입력됐습니다. ");
+        }
     }
 
     private List<Row> makeLadder(
