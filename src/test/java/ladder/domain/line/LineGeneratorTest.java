@@ -10,7 +10,7 @@ import ladder.domain.direction.RightDirectionGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LineGeneratorTest {
+class LineGeneratorTest {
 
     @DisplayName("정해진 수만큼 라인의 너비를 가지는 라인을 생성한다.")
     @Test
