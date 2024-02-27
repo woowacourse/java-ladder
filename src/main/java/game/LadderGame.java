@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import domain.HorizontalLineStatus;
+import domain.FloorConnectionStatusDto;
 import domain.Ladder;
 import domain.LadderHeight;
 import domain.Player;
@@ -47,7 +47,7 @@ public class LadderGame {
 		this.ladder = ladder;
 	}
 
-	public List<HorizontalLineStatus> getCurrentLadder() {
+	public List<FloorConnectionStatusDto> getCurrentLadder() {
 		return ladder.createStatuses();
 	}
 }

@@ -24,7 +24,7 @@ public class Ladder {
 		lines.forEach(line -> line.createCrossingLines(generator));
 	}
 
-	public List<HorizontalLineStatus> createStatuses() {
+	public List<FloorConnectionStatusDto> createStatuses() {
 		return lines.stream()
 			.map(Floor::createStatus)
 			.toList();

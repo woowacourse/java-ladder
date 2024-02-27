@@ -23,8 +23,16 @@ public class Floor {
 		bars.addAll(generatedFloor);
 	}
 
-	public HorizontalLineStatus createStatus() {
-		return new HorizontalLineStatus(List.copyOf(bars));
+	public FloorConnectionStatusDto createStatus() {
+		List<Boolean> connectionStatus = bars.stream()
+			.map(bar -> {
+				if (bar.isConnectedToRight()) {
+					return true;
+				}
+				return false;
+			})
+			.toList();
+		return new FloorConnectionStatusDto(connectionStatus);
 	}
 
 	private void validatePlayerCount(int playerCount) {

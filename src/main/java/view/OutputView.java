@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.StringJoiner;
 
 import domain.Bar;
-import domain.HorizontalLineStatus;
+import domain.FloorConnectionStatusDto;
 
 public class OutputView {
 
@@ -47,9 +47,9 @@ public class OutputView {
 		System.out.println(joiner);
 	}
 
-	public void printLadder(List<HorizontalLineStatus> statuses) {
+	public void printLadder(List<FloorConnectionStatusDto> statuses) {
 		statuses.stream()
-			.map(HorizontalLineStatus::bars)
+			.map(FloorConnectionStatusDto::connections)
 			.forEach(this::printHorizontalLine);
 	}
 
@@ -57,20 +57,20 @@ public class OutputView {
 		System.out.println("[ERROR] " + message + System.lineSeparator());
 	}
 
-	private void printHorizontalLine(List<Bar> bars) {
+	private void printHorizontalLine(List<Boolean> connections) {
 		StringBuilder builder = new StringBuilder();
 
 		builder.append(LADDER_PREFIX_SPACES);
-		bars.forEach(connectionStatus ->
+		connections.forEach(connection ->
 			builder.append(VERTICAL_LADDER_CHARACTER)
-				.append(getHorizontalLadderCharacter(connectionStatus))
+				.append(getHorizontalLadderCharacter(connection))
 		);
 
 		System.out.println(builder);
 	}
 
-	private String getHorizontalLadderCharacter(Bar bar) {
-		if (bar.isConnectedToRight()) {
+	private String getHorizontalLadderCharacter(Boolean connection) {
+		if (connection) {
 			return HORIZONTAL_LADDER_CHARACTER.repeat(LADDER_WIDTH_UNIT);
 		}
 		return EMPTY_LADDER_CHARACTER.repeat(LADDER_WIDTH_UNIT);
