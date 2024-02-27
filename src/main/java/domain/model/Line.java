@@ -11,18 +11,20 @@ public class Line {
     private final List<Boolean> points;
 
     public Line(RuleGenerator ruleGenerator, final int personCount) {
-        points = new ArrayList<>(personCount);
+        points = new ArrayList<>();
         makeLine(ruleGenerator, personCount);
     }
 
     private void makeLine(RuleGenerator generator, int personCount) {
         IntStream.range(0, personCount - 1)
-                .forEach(position -> makeHorizontalLine(generator, position));
+                .forEach(position -> connectToRight(generator, position));
+        points.add(false);
     }
 
-    private void makeHorizontalLine(RuleGenerator generator, int position) {
+    private void connectToRight(RuleGenerator generator, int position) {
         points.add(false);
-        if (generator.generate()  && !hasLeftConnectedLine(position)) {
+        if (generator.generate()
+                && !hasLeftConnectedLine(position)) {
             points.set(position, true);
         }
     }

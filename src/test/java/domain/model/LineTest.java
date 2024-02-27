@@ -1,16 +1,36 @@
 package domain.model;
 
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static domain.model.Direction.*;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 public class LineTest {
+    @Test
+    @DisplayName("사다리 생성 규칙에 맞게 사다리가 생성되는지 확인")
+    void buildLineTest() {
+        Line line=new Line(()->true,4);
+        Line line2=new Line(()->false,4);
 
+        List<Direction> actual=new ArrayList<>();
+        List<Direction> actual2=new ArrayList<>();
+        for(int i=0;i<4;i++){
+            actual.add(line.showDirection(i));
+            actual2.add(line2.showDirection(i));
+        }
+        List<Direction> expected=List.of(RIGHT,LEFT,RIGHT,LEFT);
+        List<Direction> expected2=List.of(NONE,NONE,NONE,NONE);
+
+        assertThat(actual).isEqualTo(expected);
+        assertThat(actual2).isEqualTo(expected2);
+
+    }
     @Test
     @DisplayName("우측으로 가로 라인이 있는 위치들을 반환한다")
     void findHorizontalTest() {
@@ -20,7 +40,7 @@ public class LineTest {
         List<Integer> expect = List.of(0, 2);
         List<Integer> actual = line.findRightConnectedPositions();
         //then
-        Assertions.assertThat(expect).isEqualTo(actual);
+        assertThat(expect).isEqualTo(actual);
     }
 
     @Test
@@ -32,8 +52,8 @@ public class LineTest {
         Direction leftDirection = line.showDirection(1);
         Direction rightDirection = line.showDirection(2);
         //then
-        Assertions.assertThat(leftDirection).isEqualTo(Direction.LEFT);
-        Assertions.assertThat(rightDirection).isEqualTo(Direction.RIGHT);
+        assertThat(leftDirection).isEqualTo(LEFT);
+        assertThat(rightDirection).isEqualTo(RIGHT);
     }
 
 }

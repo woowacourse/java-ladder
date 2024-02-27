@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RuleGeneratorImpl implements RuleGenerator {
 
-    private static final int THRESHOLD = 3;
+    private static final int THRESHOLD = 5;
 
     @Override
     public boolean generate() {
