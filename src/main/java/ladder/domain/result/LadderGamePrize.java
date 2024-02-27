@@ -8,10 +8,10 @@ import java.util.List;
 
 import static java.util.Collections.unmodifiableList;
 
-public class LadderGameResult {
+public class LadderGamePrize {
     private final List<String> values;
 
-    public LadderGameResult(final List<String> values) {
+    public LadderGamePrize(final List<String> values) {
         this.values = unmodifiableList(values);
     }
 

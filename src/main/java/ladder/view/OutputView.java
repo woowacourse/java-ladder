@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.domain.ladder.Ladder;
-import ladder.domain.result.LadderGameResult;
+import ladder.domain.result.LadderGamePrize;
 import ladder.domain.ladder.LadderStep;
 import ladder.domain.ladder.Path;
 import ladder.domain.participant.Participant;
@@ -44,8 +44,8 @@ public class OutputView {
         System.out.println(ladderShape);
     }
 
-    public void printLadderGameResult(final LadderGameResult ladderGameResult) {
-        final String ladderResult = ladderGameResult.getValues()
+    public void printLadderGamePrize(final LadderGamePrize ladderGamePrize) {
+        final String ladderResult = ladderGamePrize.getValues()
                 .stream()
                 .map(result -> String.format(NAME_FORMAT, result))
                 .collect(Collectors.joining(" "));
