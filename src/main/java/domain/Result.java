@@ -7,4 +7,8 @@ public class Result {
     public Result(String prize) {
         this.prize = prize;
     }
+
+    public String getPrize() {
+        return prize;
+    }
 }
