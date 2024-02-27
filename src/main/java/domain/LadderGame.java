@@ -16,17 +16,17 @@ public class LadderGame {
         this.prizes = prizes;
     }
 
-    public Map<Player, Prize> getPlayersWithPrize() {
-        Map<Player, Prize> playersWithPrize = new LinkedHashMap<>();
+    public PlayersPrize getPlayersPrize() {
+        Map<Player, Prize> playersPrize = new LinkedHashMap<>();
 
         for (int columnIndex = 0; columnIndex < players.getPlayers().size(); columnIndex++) {
             Player player = players.getPlayers().get(columnIndex);
             int resultColumnIndex = playLines(columnIndex, ladder.getLines());
             Prize prize = prizes.getPrizes().get(resultColumnIndex);
-            playersWithPrize.put(player, prize);
+            playersPrize.put(player, prize);
         }
 
-        return playersWithPrize;
+        return new PlayersPrize(playersPrize);
     }
 
     private int playLines(int currentColumn, List<Line> lines) {

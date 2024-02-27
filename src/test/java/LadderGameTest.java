@@ -37,7 +37,7 @@ public class LadderGameTest {
         LadderGame ladderGame = new LadderGame(ladder, players, prizes);
 
         // when & then
-        assertThat(ladderGame.getPlayersWithPrize()).containsExactlyInAnyOrderEntriesOf(Map.of(
+        assertThat(ladderGame.getPlayersPrize().getPlayersPrize()).containsExactlyInAnyOrderEntriesOf(Map.of(
                 new Player("a"), prizeA,
                 new Player("b"), prizeB,
                 new Player("c"), prizeD,

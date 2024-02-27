@@ -23,15 +23,22 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public Player search(String name) {
+    public Players search(String name) {
+        if (name.equals("all")) {
+            return players;
+        }
+//        validatePlayer(name); // TODO
         return players.stream()
                 .filter(player -> player.isSameName(name))
-                .findFirst()
-                .orElseThrow(() ->  new IllegalArgumentException("입력한 참가자 중에서만 결과를 조회할 수 있습니다."));
+                .collect(Collectors.toList());
     }
 
     public int getCount() {
         return players.size();
+    }
+
+    public boolean isCountOne() {
+        return players.size() == 1;
     }
 
     private void validate(List<Player> players) {

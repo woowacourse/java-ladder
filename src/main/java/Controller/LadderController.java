@@ -2,14 +2,13 @@ package Controller;
 
 import domain.Ladder;
 import domain.LadderGame;
-import domain.Player;
 import domain.PlayerCount;
 import domain.Players;
+import domain.PlayersPrize;
 import domain.Prize;
 import domain.Prizes;
 import domain.RandomStepGenerator;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import view.InputView;
@@ -33,7 +32,11 @@ public class LadderController {
         outputView.printLadderMap(players, ladder, prizes);
 
         final LadderGame ladderGame = new LadderGame(ladder, players, prizes);
-        showGameResult(ladderGame.getPlayersWithPrize(), players);
+        showGameResult(ladderGame.getPlayersPrize(), players);
+    }
+
+    private Players readPlayers() {
+        return Players.from(inputView.inputPlayers());
     }
 
     private Prizes readPrizes(Players players) {
@@ -41,23 +44,22 @@ public class LadderController {
         return Prizes.from(prizes);
     }
 
-    private void showGameResult(Map<Player, Prize> playersWithPrize2, Players players) {
-        String inputName = readWithRetry(inputView::inputSearchingPlayer);
-        Player searchedPlayer = players.search(inputName);      // TODO: 재입력 적용
+    private void showGameResult(PlayersPrize playersPrize, Players players) {
+        Players player = readWithRetry(this::readSearchingPlayers, players);
 
-        if (inputName.equals("all")) {
-            outputView.printGameResult(playersWithPrize2);
+        if (player.isCountOne()) {
+            Prize prize = playersPrize.searchPrize(player);
+            outputView.printGameResult(prize);
+            showGameResult(playersPrize, players);
         }
-        if (!inputName.equals("all")) {
-
-            Prize searchedPrize = playersWithPrize2.get(searchedPlayer);
-            outputView.printGameResult(searchedPrize);
-            showGameResult(playersWithPrize2, players);
+        if (!player.isCountOne()) {
+            outputView.printGameResult(playersPrize);
         }
     }
 
-    private Players readPlayers() {
-        return Players.from(inputView.inputPlayers());
+    private Players readSearchingPlayers(Players players) {
+        String inputName = readWithRetry(inputView::inputSearchingPlayer);
+        return players.search(inputName);
     }
 
     private <T, R> R readWithRetry(Function<T, R> function, T input) {

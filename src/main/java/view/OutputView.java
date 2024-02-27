@@ -2,11 +2,10 @@ package view;
 
 import domain.Ladder;
 import domain.Line;
-import domain.Player;
 import domain.Players;
+import domain.PlayersPrize;
 import domain.Prize;
 import domain.Prizes;
-import java.util.Map;
 
 public class OutputView {
     private final OutputFormatter outputFormatter;
@@ -45,9 +44,9 @@ public class OutputView {
         printLine(line);
     }
 
-    public void printGameResult(Map<Player, Prize> playersWithPrize) {
+    public void printGameResult(PlayersPrize playersWithPrize) {
         printLine("실행 결과");
-        playersWithPrize.forEach((key, value) -> printLine("%s : %s", key.getName(), value));
+        playersWithPrize.getPlayersPrize().forEach((key, value) -> printLine("%s : %s", key.getName(), value.getPrize()));
     }
 
     public void printGameResult(Prize searchedPlayer) {
