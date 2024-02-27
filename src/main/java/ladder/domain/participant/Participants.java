@@ -2,6 +2,7 @@ package ladder.domain.participant;
 
 import ladder.domain.ladder.Ladder;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.IntStream;
@@ -24,7 +25,7 @@ public class Participants {
     }
 
     private void validateDuplicatedNames(final List<String> names) {
-        final Set<String> uniqueNames = Set.copyOf(names);
+        final Set<String> uniqueNames = new HashSet<>(names);
         if (uniqueNames.size() < names.size()) {
             throw new IllegalArgumentException("중복된 이름이 입력되었습니다.");
         }
