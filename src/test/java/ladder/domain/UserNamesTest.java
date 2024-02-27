@@ -2,12 +2,15 @@ package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatIndexOutOfBoundsException;
 
 import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class UserNamesTest {
 
@@ -58,5 +61,16 @@ class UserNamesTest {
         UserNames userNames = UserNames.from(List.of("kelly", "liv"));
 
         assertThat(userNames.findByOrder(1)).isEqualTo(new UserName("liv"));
+    }
+
+    @DisplayName("인덱스 값으로 이름을 찾을 때 0 미만의 값이나 총 이름의 개수를 초과하는 값을 입력하면 예외를 던진다.")
+    @ValueSource(ints = {-1, 2})
+    @ParameterizedTest
+    void findUserNameByOutOfBoundsOrder(int order) {
+        UserNames userNames = UserNames.from(List.of("kelly", "liv"));
+
+        assertThatIndexOutOfBoundsException()
+                .isThrownBy(() -> userNames.findByOrder(order))
+                .withMessage("유효하지 않은 값입니다.");
     }
 }

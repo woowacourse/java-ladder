@@ -46,6 +46,9 @@ public class UserNames {
     }
 
     public UserName findByOrder(final int order) {
+        if (order < 0 || order >= userNames.size()) {
+            throw new IndexOutOfBoundsException("유효하지 않은 값입니다.");
+        }
         return userNames.get(order);
     }
 
