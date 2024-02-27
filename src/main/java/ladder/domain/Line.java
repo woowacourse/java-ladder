@@ -1,7 +1,10 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
+import ladder.domain.player.Player;
 
 public class Line {
 
@@ -18,6 +21,7 @@ public class Line {
         validateIsNotOverlapped(sticks);
     }
 
+    // TODO nullPointerException 처리하기
     private void validateIsNotEmpty(List<Stick> sticks) {
         if (sticks.isEmpty()) {
             throw new IllegalArgumentException("적어도 가로 라인이 하나이상 있어야 한다.");
@@ -36,6 +40,15 @@ public class Line {
         if (before.isExist() && current.isExist()) {
             throw new IllegalArgumentException("가로 라인이 이어지면 안된다.");
         }
+    }
+
+    public List<Player> progressSwitching(List<Player> players) {
+        // TODO players의 크기와 sticks의 크기 비교
+        List<Player> result = new ArrayList<>(players);
+        IntStream.range(0, sticks.size())
+                .filter(index -> sticks.get(index).isExist())
+                .forEach(index -> Collections.swap(result, index, index + 1));
+        return result;
     }
 
     public boolean isExist(int position) {
