@@ -17,11 +17,13 @@ public class LadderGameTest {
     void getLadderShapeTest() {
         List<String> names = List.of("1", "2");
         CustomGenerator customGenerator = new CustomGenerator(List.of(false, true));
-        LadderGame ladderGame = new LadderGame(names, new Height(1), customGenerator);
+        Winnings winnings = new Winnings(List.of("꽝", "당첨"));
+        LadderGame ladderGame = new LadderGame(names, new Height(1), winnings, customGenerator);
         Assertions.assertThat(ladderGame.getLadderShape())
                 .isEqualTo(List.of(
                         "     1     2",
-                        UNCONNECTED.getBridge() + CONNECTED.getBridge()
+                        UNCONNECTED.getBridge() + CONNECTED.getBridge(),
+                        "     꽝    당첨"
                 ));
     }
 
@@ -30,7 +32,8 @@ public class LadderGameTest {
     void getResultTest() {
         List<String> names = List.of("1", "2");
         CustomGenerator customGenerator = new CustomGenerator(List.of(false, true));
-        LadderGame ladderGame = new LadderGame(names, new Height(1), customGenerator);
+        Winnings winnings = new Winnings(List.of("꽝", "당첨"));
+        LadderGame ladderGame = new LadderGame(names, new Height(1), winnings, customGenerator);
         Assertions.assertThat(ladderGame.getResult())
                 .isEqualTo(List.of("2", "1"));
     }

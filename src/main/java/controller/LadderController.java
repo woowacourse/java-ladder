@@ -3,6 +3,7 @@ package controller;
 import domain.Height;
 import domain.LadderGame;
 import domain.Players;
+import domain.Winnings;
 import util.ConsoleReader;
 import view.InputView;
 import view.OutputView;
@@ -19,7 +20,8 @@ public class LadderController {
     public void run() {
         Players players = nameInput(MAX_DEPTH);
         Height height = heightInput(MAX_DEPTH);
-        LadderGame ladderGame = new LadderGame(players, height);
+        Winnings winnings = winningsInput(MAX_DEPTH);
+        LadderGame ladderGame = new LadderGame(players, height, winnings);
         OutputView.printResult(ladderGame.getLadderShape());
     }
 
@@ -42,6 +44,17 @@ public class LadderController {
             return InputView.readHeight(consoleReader);
         } catch (IllegalArgumentException e) {
             return heightInput(depth - 1);
+        }
+    }
+
+    private Winnings winningsInput(int depth) {
+        if (depth <= 0) {
+            throw new IllegalArgumentException("입력 허용횟수 5회를 초과했습니다.");
+        }
+        try {
+            return new Winnings(InputView.readWinnings(consoleReader));
+        } catch (IllegalArgumentException e) {
+            return winningsInput(depth - 1);
         }
     }
 }

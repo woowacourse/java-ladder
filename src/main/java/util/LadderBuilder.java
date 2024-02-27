@@ -1,9 +1,6 @@
 package util;
 
-import domain.Ladder;
-import domain.Line;
-import domain.Name;
-import domain.Players;
+import domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,15 +9,28 @@ public class LadderBuilder {
 
     private LadderBuilder() {}
 
-    public static List<String> getResult(Players players, Ladder ladder) {
+    public static List<String> getResult(Players players, Ladder ladder, Winnings winnings) {
+        List<String> results = new ArrayList<>();
+        results.add(nameBuilder(players));
+        results.addAll(LadderBuilder.fromLadder(ladder));
+        results.add(winningBuilder(winnings));
+        return results;
+    }
+
+    private static String winningBuilder(Winnings winnings) {
+        StringBuilder winningResult = new StringBuilder();
+        for (Winning winning : winnings.getWinnings()) {
+            winningResult.append(String.format("%6s", winning.getWinning()));
+        }
+        return winningResult.toString();
+    }
+
+    private static String nameBuilder(Players players) {
         StringBuilder nameResult = new StringBuilder();
         for (Name player : players.getPlayers()) {
             nameResult.append(String.format("%6s", player.getName()));
         }
-        List<String> results = new ArrayList<>();
-        results.add(nameResult.toString());
-        results.addAll(LadderBuilder.fromLadder(ladder));
-        return results;
+        return nameResult.toString();
     }
 
     private static List<String> fromLadder(Ladder ladder) {
