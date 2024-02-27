@@ -30,6 +30,12 @@ public class OutputView {
     }
 
     public void printExceptionMessage(final String message) {
+        printLine();
         System.out.println(message);
+        printLine();
+    }
+
+    public void printLine() {
+        System.out.println();
     }
 }

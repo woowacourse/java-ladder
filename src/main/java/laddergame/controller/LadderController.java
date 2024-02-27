@@ -32,25 +32,35 @@ public class LadderController {
         final LadderHeight height = getLadderHeight();
 
         final Ladder ladder = ladderGame.createLadder(players, height);
-        final Result result = ladderGame.start(players, targets, ladder);
-
         printDrawnLadder(players, targets, ladder);
 
+        final Result result = ladderGame.start(players, ladder, targets);
         List<Player> playerToShowResult = players.find(getPlayersToShowResult());
         outputView.printResult(playerToShowResult, result);
     }
 
     private Players getPlayers() {
-        return ExceptionHandler.retryUntilInputIsValid(() -> new Players(inputView.readNames()), outputView);
+        Players players = ExceptionHandler.retryUntilInputIsValid(
+                () -> new Players(inputView.readNames()), outputView
+        );
+        outputView.printLine();
+        return players;
     }
 
     private Targets getTargets() {
-        return ExceptionHandler.retryUntilInputIsValid(() -> new Targets(inputView.readTargets()), outputView);
+        Targets targets = ExceptionHandler.retryUntilInputIsValid(
+                () -> new Targets(inputView.readTargets()), outputView
+        );
+        outputView.printLine();
+        return targets;
     }
 
     private LadderHeight getLadderHeight() {
-        return ExceptionHandler.retryUntilInputIsValid(() -> new LadderHeight(inputView.readLadderHeight()),
-                outputView);
+        LadderHeight ladderHeight = ExceptionHandler.retryUntilInputIsValid(
+                () -> new LadderHeight(inputView.readLadderHeight()), outputView
+        );
+        outputView.printLine();
+        return ladderHeight;
     }
 
     private void printDrawnLadder(final Players players, final Targets targets, final Ladder ladder) {
