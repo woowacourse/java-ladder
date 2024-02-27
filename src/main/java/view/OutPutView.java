@@ -10,7 +10,7 @@ import domain.LadderResult;
 import domain.LadderResults;
 import domain.Name;
 import domain.Names;
-import domain.Row;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -74,17 +74,17 @@ public class OutPutView {
     }
 
     private String makeLadderString(Ladder ladder) {
-        return ladder.getRows().stream()
-                .map(this::makeRowString)
+        return ladder.getLadder().stream()
+                .map(Bridges::getBridges)
+                .map(this::makeBridgesString)
                 .collect(Collectors.joining("\n"));
     }
 
-    private String makeRowString(Row row) {
-        Bridges bridges = row.getBridges();
-        String rawRowString = bridges.getBridges().stream()
+    private String makeBridgesString(List<Boolean> bridges) {
+        String rawBridgesString = bridges.stream()
                 .map(this::makeBridge)
                 .collect(Collectors.joining(VERTICAL_BRIDGE));
-        return "    |%s|".formatted(rawRowString);
+        return "    |%s|".formatted(rawBridgesString);
     }
 
     private String makeBridge(Boolean aBoolean) {

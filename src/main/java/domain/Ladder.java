@@ -4,15 +4,15 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final List<Row> rows;
+    private final List<Bridges> ladder;
 
-    Ladder(Height height, Width width, RowGenerator rowGenerator) {
-        rows = IntStream.range(0, height.getLength())
-                .mapToObj(value -> rowGenerator.generate(width.getLength() - 1))
+    Ladder(Height height, Width width, BridgesGenerator bridgesGenerator) {
+        ladder = IntStream.range(0, height.getLength())
+                .mapToObj(value -> bridgesGenerator.generate(width.getLength() - 1))
                 .toList();
     }
 
-    public List<Row> getRows() {
-        return rows;
+    public List<Bridges> getLadder() {
+        return ladder;
     }
 }

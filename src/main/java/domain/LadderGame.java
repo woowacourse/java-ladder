@@ -8,7 +8,7 @@ public class LadderGame {
     private final Names names;
     private final LadderResults ladderResults;
 
-    public LadderGame(String userNames, String rawLadderResults, int ladderHeight, RowGenerator generator) {
+    public LadderGame(String userNames, String rawLadderResults, int ladderHeight, BridgesGenerator generator) {
         NamesCreator namesCreator = new NamesCreator();
         LadderResultCreator ladderResultCreator = new LadderResultCreator();
         names = namesCreator.create(userNames);
@@ -32,8 +32,7 @@ public class LadderGame {
     }
 
     public LadderGameResult calculateLadderGameResult() {
-        ladder.getRows().stream()
-                .map(Row::getBridges)
+        ladder.getLadder().stream()
                 .map(Bridges::getBridges)
                 .forEach(this::swapNames);
         return new LadderGameResult(names, ladderResults);

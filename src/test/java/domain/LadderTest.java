@@ -10,8 +10,8 @@ class LadderTest {
     void validateRowCount() {
         Height height = new Height(5);
         Width width = new Width(5);
-        Ladder ladder = new Ladder(height, width, new RowRandomGenerator());
-        Assertions.assertThat(ladder.getRows().size())
+        Ladder ladder = new Ladder(height, width, new BridgesRandomGenerator());
+        Assertions.assertThat(ladder.getLadder().size())
                 .isEqualTo(5);
     }
 
@@ -21,7 +21,7 @@ class LadderTest {
         Height height = new Height(5);
         Width width = new Width(5);
 
-        Assertions.assertThatCode(() -> new Ladder(height, width, new RowRandomGenerator()))
+        Assertions.assertThatCode(() -> new Ladder(height, width, new BridgesRandomGenerator()))
                 .doesNotThrowAnyException();
 
     }

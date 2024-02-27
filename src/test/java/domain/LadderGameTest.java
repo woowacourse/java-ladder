@@ -17,7 +17,7 @@ class LadderGameTest {
     void testCreateLadderGame() {
         Assertions.assertThatCode(
                         () -> new LadderGame(VALID_NAMES, VALID_LADDER_RESULTS, VALID_HEIGHT,
-                                new RowTestGenerator(List.of(true, false))))
+                                new BridgesTestGenerator(List.of(true, false))))
                 .doesNotThrowAnyException();
     }
 
@@ -25,7 +25,7 @@ class LadderGameTest {
     @DisplayName("적절한 참여자 이름과, 높이로 게임이 생성되면 사다리를 반환 할 수 있음")
     void testGetLadder() {
         LadderGame ladderGame = new LadderGame(VALID_NAMES, VALID_LADDER_RESULTS, VALID_HEIGHT,
-                new RowTestGenerator(List.of(true, false)));
+                new BridgesTestGenerator(List.of(true, false)));
         Assertions.assertThat(ladderGame.getLadder()).isNotNull();
 
     }
@@ -34,7 +34,7 @@ class LadderGameTest {
     @DisplayName("적절한 참여자 이름과, 높이로 게임이 생성되면 이름을 반환할 수 있음")
     void testGetNames() {
         LadderGame ladderGame = new LadderGame(VALID_NAMES, VALID_LADDER_RESULTS, VALID_HEIGHT,
-                new RowTestGenerator(List.of(true, false)));
+                new BridgesTestGenerator(List.of(true, false)));
         Assertions.assertThat(ladderGame.getNames()).isNotNull();
 
     }
@@ -43,7 +43,7 @@ class LadderGameTest {
     @DisplayName("적절한 참여자 이름과, 높이로 게임이 생성되면 사다리 결과들을 반환할 수 있음")
     void testGetLadderResults() {
         LadderGame ladderGame = new LadderGame(VALID_NAMES, VALID_LADDER_RESULTS, VALID_HEIGHT,
-                new RowTestGenerator(List.of(true, false)));
+                new BridgesTestGenerator(List.of(true, false)));
         Assertions.assertThat(ladderGame.getLadderResults()).isNotNull();
 
     }
@@ -52,7 +52,7 @@ class LadderGameTest {
     @DisplayName("사다리 게임 계산")
     void testCalculateLadderGameResult() {
         LadderGame ladderGame = new LadderGame(VALID_NAMES, VALID_LADDER_RESULTS, VALID_HEIGHT,
-                new RowTestGenerator(List.of(true, false)));
+                new BridgesTestGenerator(List.of(true, false)));
         LadderGameResult ladderGameResult = ladderGame.calculateLadderGameResult();
         Map<Name, LadderResult> ladderGameResultMap = ladderGameResult.getLadderGameResult();
         String actual = ladderGameResultMap.get(new Name("a")).getLadderResult();
@@ -61,16 +61,16 @@ class LadderGameTest {
     }
 
 
-    static class RowTestGenerator implements RowGenerator {
+    static class BridgesTestGenerator implements BridgesGenerator {
         private final List<Boolean> bridges;
 
-        RowTestGenerator(List<Boolean> bridges) {
+        BridgesTestGenerator(List<Boolean> bridges) {
             this.bridges = bridges;
         }
 
         @Override
-        public Row generate(int width) {
-            return new Row(new Bridges(bridges));
+        public Bridges generate(int width) {
+            return new Bridges(bridges);
         }
     }
 }
