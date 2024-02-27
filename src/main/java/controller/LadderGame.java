@@ -6,6 +6,7 @@ import view.OutputView;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class LadderGame {
@@ -43,7 +44,7 @@ public class LadderGame {
     }
 
     private LadderResults createLadderResults(Players players, Ladder ladder, Targets targets) {
-        HashMap<Player, Target> results = new HashMap<>();
+        Map<Player, Target> results = new HashMap<>();
         for (Player player : players.getPlayers()) {
             results.put(player, targets.getPrize(ladder.climbLadder(players.getOrder(player))));
         }

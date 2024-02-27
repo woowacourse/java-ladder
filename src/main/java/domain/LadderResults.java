@@ -1,14 +1,11 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class LadderResults {
-    private final HashMap<Player, Target> results;
+    private final Map<Player, Target> results;
 
-    public LadderResults(final HashMap<Player, Target> results) {
+    public LadderResults(final Map<Player, Target> results) {
         this.results = results;
     }
 
