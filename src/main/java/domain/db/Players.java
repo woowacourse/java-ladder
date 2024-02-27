@@ -4,15 +4,25 @@ import java.util.Arrays;
 import java.util.List;
 
 public record Players(List<Player> players) {
+    private static final int PLAYER_LENGTH_MIN = 2;
+    private static final int PLAYER_LENGTH_MAX = 10;
 
     public Players(String[] names) {
         this(Arrays.stream(names).map(Player::new).toList());
+        validatePlayerLength();
         validateDuplicateNames();
+    }
+
+    private void validatePlayerLength() {
+        if (PLAYER_LENGTH_MIN > this.players.size() || this.players.size() > PLAYER_LENGTH_MAX) {
+            String errorMessage = String.format("%d명 이상 %d명 이하의 플레이어를 입력해 주세요.", PLAYER_LENGTH_MIN, PLAYER_LENGTH_MAX);
+            throw new IllegalArgumentException(errorMessage);
+        }
     }
 
     private void validateDuplicateNames() {
         if (this.players.size() != getUniqueNameCount()) {
-            throw new IllegalArgumentException("중복된 이름은 허용하지 않습니다");
+            throw new IllegalArgumentException("중복된 이름은 허용하지 않습니다.");
         }
     }
 
