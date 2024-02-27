@@ -42,7 +42,6 @@ class UsersTest {
                 .hasMessage("[ERROR] 사용자는 2~10명 까지만 등록 가능합니다.");
     }
 
-
     @DisplayName("사용자의 이름이 중복된다면 예외가 발생한다.")
     @Test
     void newUsersTestByDuplicatedUserName() {

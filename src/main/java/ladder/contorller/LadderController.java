@@ -43,7 +43,6 @@ public class LadderController {
     private Ladder createLadder(int ladderWidth) {
         try {
             int ladderHeight = inputView.readLadderHeight();
-
             return new Ladder(ladderHeight, ladderWidth);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());

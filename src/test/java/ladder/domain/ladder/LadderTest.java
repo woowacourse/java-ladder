@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LadderTest {
+
     @DisplayName("사다리의 라인의 개수가 50개를 초과할 경우 예외가 발생한다.")
     @Test
     void newLadderTestByLineCount() {
