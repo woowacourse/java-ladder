@@ -111,4 +111,14 @@ public class OutPutView {
     public void printSearchNameInput() {
         System.out.println(SEARCH_NAME_INPUT);
     }
+
+    public void printSearchNameLadderResult(String searchName, LadderGameResult ladderGameResult) {
+        Name searchForName = new Name(searchName);
+        Map<Name, LadderResult> nameLadderResultMap = ladderGameResult.getLadderGameResult();
+        if (nameLadderResultMap.containsKey(searchForName)) {
+            System.out.println(
+                    String.join("\n", LADDER_RESULT_PREFIX, nameLadderResultMap.get(searchForName).getValue() + "\n"));
+        }
+
+    }
 }

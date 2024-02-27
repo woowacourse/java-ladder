@@ -31,6 +31,7 @@ public class Main {
                 outputView.printAllNameLadderResult(names, ladderGameResult);
                 break;
             }
+            outputView.printSearchNameLadderResult(searchName, ladderGameResult);
         }
         return true;
     }
