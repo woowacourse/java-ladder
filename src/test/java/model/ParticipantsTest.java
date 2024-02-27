@@ -36,7 +36,14 @@ class ParticipantsTest {
                 () -> assertThat(participants.getPosition("left")).isEqualTo(1),
                 () -> assertThat(participants.getPosition("right")).isEqualTo(2)
         );
-
     }
 
+    @DisplayName("존재하지 않는 참가자의 시작 순서를 알려고 한다면 예외가 발생한다.")
+    @Test
+    void notExistParticipants(){
+        Participants participants = new Participants(List.of("pobi", "left", "right"));
+        assertThatThrownBy(() -> participants.getPosition("tobi"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("존재하지 않는 참가자의 이름입니다.");
+    }
 }

@@ -45,6 +45,10 @@ public class Participants {
     }
 
     public int getPosition(String name) {
-        return participants.get(new Participant(name));
+        Participant participant = new Participant(name);
+        if(participants.containsKey(participant)){
+            return participants.get(participant);
+        }
+        throw new IllegalArgumentException("존재하지 않는 참가자의 이름입니다.");
     }
 }
