@@ -24,4 +24,8 @@ public class Rewards {
             throw new IllegalArgumentException("플레이어 수와 보상의 수가 다릅니다.");
         }
     }
+
+    public Reward getRewardAt(int index) {
+        return rewards.get(index);
+    }
 }

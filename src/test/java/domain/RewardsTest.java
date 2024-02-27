@@ -27,4 +27,15 @@ public class RewardsTest {
         assertThrows(IllegalArgumentException.class, () -> Rewards.from(value, playerSize));
     }
 
+    @Test
+    @DisplayName("특정 인덱스의 보상을 받아온다.")
+    public void getRewardAtIndex() {
+        List<String> value = List.of("꽝", "5000", "꽝", "3000");
+        Rewards rewards = Rewards.from(value, value.size());
+
+        Reward reward = rewards.getRewardAt(2);
+
+        assertEquals(reward.getValue(), value.get(2));
+    }
+
 }
