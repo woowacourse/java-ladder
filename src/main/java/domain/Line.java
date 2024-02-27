@@ -40,20 +40,20 @@ public class Line {
     }
 
     public int getNextPosition(int position) {
-        if (canMoveLeft(position)) {
+        if (isMovableLeft(position)) {
             return position - 1;
         }
-        if (canMoveRight(position)) {
+        if (isMovableRight(position)) {
             return position + 1;
         }
         return position;
     }
 
-    private boolean canMoveRight(int position) {
-        return position != bridges.size() && bridges.get(position).toBoolean();
+    private boolean isMovableLeft(int position) {
+        return position != 0 && bridges.get(position - 1).toBoolean();
     }
 
-    private boolean canMoveLeft(int position) {
-        return position != 0 && bridges.get(position - 1).toBoolean();
+    private boolean isMovableRight(int position) {
+        return position != bridges.size() && bridges.get(position).toBoolean();
     }
 }
