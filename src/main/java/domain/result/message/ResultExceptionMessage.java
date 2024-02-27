@@ -9,4 +9,5 @@ public class ResultExceptionMessage {
             LadderResult.MIN_RESULT_LENGTH, LadderResult.MAX_RESULT_LENGTH);
     public static final String LADDER_RESULT_INPUT_FORMAT = String.format("실행 결과는 %s로 구분하여 입력해야합니다",
             InputView.INPUT_DELIMITER);
+    public static final String LADDER_RESULT_BLANK = "실행 결과에 공백을 사용할 수 없습니다";
 }
