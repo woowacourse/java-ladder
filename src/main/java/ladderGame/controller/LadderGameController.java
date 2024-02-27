@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class LadderGameController {
+    private final String EXCEPTION_MESSAGE_NOT_EQUALS_PLAYERS_LADDER_RESULTS = "사다리 결과 수가 참여자 수와 동일하지 않습니다.";
     private final String ALL_RESULT_COMMAND = "all";
 
     private final InputView inputView;
@@ -34,9 +35,12 @@ public class LadderGameController {
         Players players = new Players(inputView.inputPlayerNames());
         LadderResults ladderResults = new LadderResults(inputView.inputLadderResults());
 
+        if (players.getPlayerSize() != ladderResults.getLadderResultsSize()) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_NOT_EQUALS_PLAYERS_LADDER_RESULTS);
+        }
+
         Ladder ladder = makeLadder(players.getPlayerSize());
         resultView.printLadder(players.getPlayers(), ladder.getLines(), ladderResults.getLadderResults());
-
         return new LadderGame(players, ladderResults, ladder);
     }
 
