@@ -30,4 +30,18 @@ public class Bridges {
     public List<Bridge> getBridges() {
         return Collections.unmodifiableList(bridges);
     }
+
+    public boolean canCrossToLeft(int index) {
+        if (index == 0) {
+            return false;
+        }
+        return bridges.get(index - 1) == Bridge.BUILT;
+    }
+
+    public boolean canCrossToRight(int index) {
+        if (index == bridges.size()) {
+            return false;
+        }
+        return bridges.get(index) == Bridge.BUILT;
+    }
 }

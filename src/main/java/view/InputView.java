@@ -20,7 +20,23 @@ public class InputView {
 
     public static int readHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
+        try {
+            return Integer.parseInt(SCANNER.nextLine());
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
+        }
+    }
 
-        return Integer.parseInt(SCANNER.nextLine()); // TODO 숫자 검증
+    public static List<String> readPrizes() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+        return Arrays.stream(SCANNER.nextLine().split(","))
+                .toList();
+    }
+
+    public static String readResultTarget() {
+        System.out.println("결과를 보고 싶은 사람은?");
+
+        return SCANNER.nextLine();
     }
 }

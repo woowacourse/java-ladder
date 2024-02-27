@@ -1,6 +1,8 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Names {
 
@@ -25,9 +27,21 @@ public class Names {
         return names.size();
     }
 
-    public List<String> getNames() {
+    public int findIndex(String findName) {
+        return IntStream.range(0, names.size())
+                .filter((index) -> names.get(index).isSameName(findName))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 이름입니다."));
+    }
+
+    public Name findNameByString(String target) {
         return names.stream()
-                .map(Name::getName)
-                .toList();
+                .filter((name) -> name.isSameName(target))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 이름입니다."));
+    }
+
+    public List<Name> getNames() {
+        return Collections.unmodifiableList(names);
     }
 }
