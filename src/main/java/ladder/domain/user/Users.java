@@ -24,6 +24,10 @@ public class Users {
         return this.users.stream().map(User::getUserName).collect(Collectors.toList());
     }
 
+    public boolean isExistUserName(String name) {
+        return true;
+    }
+
     private void validateUsers(List<User> users) {
         validateUsersSize(users);
         validateDuplicatedUserName(users);

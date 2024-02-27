@@ -55,4 +55,21 @@ class UsersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 중복된 사용자명이 존재합니다.");
     }
+
+    @DisplayName("결과를 보고 싶은 사람의 이름이 사용자로 입력되지 않았다면 예외가 발생한다.")
+    @Test
+    void isExistUserTest() {
+        //given
+        Users users = new Users(
+                List.of(new User("mason"),
+                new User("ted"),
+                new User("pobi"))
+        );
+        String userName = "gamza";
+
+        //when, then
+        assertThatThrownBy(() -> users.isExistUserName(userName))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 존재하지 않는 사용자의 이름입니다.");
+    }
 }
