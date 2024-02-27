@@ -19,6 +19,14 @@ public class Lines {
             .toList());
     }
 
+    public int findRewardIndex(int memberIndex) {
+        int rewardIndex = memberIndex;
+        for (Line line : lines) {
+            rewardIndex = line.findNextIndex(rewardIndex);
+        }
+        return rewardIndex;
+    }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
