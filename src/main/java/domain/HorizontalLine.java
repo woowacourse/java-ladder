@@ -24,8 +24,7 @@ public class HorizontalLine {
 	}
 
 	public HorizontalLineStatus createStatus() {
-		List<Bar> placeStatuses = List.copyOf(bars);
-		return new HorizontalLineStatus(placeStatuses);
+		return new HorizontalLineStatus(List.copyOf(bars));
 	}
 
 	private void validatePlayerCount(int playerCount) {
@@ -34,7 +33,7 @@ public class HorizontalLine {
 		}
 	}
 
-	public Bar getBar(int location) {
-		return bars.get(location);
+	public Bar getBar(int index) {
+		return bars.get(index);
 	}
 }
