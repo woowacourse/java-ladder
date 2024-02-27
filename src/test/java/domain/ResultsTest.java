@@ -9,7 +9,7 @@ import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class ResultsTest {
+class ResultsTest {
     @Test
     @DisplayName("실행 결과는 사람 이름 수와 정확하게 일치해야 한다.")
     void isResultCountMatchNamesCount() {
@@ -54,7 +54,7 @@ public class ResultsTest {
     void matchNamesWithResults() {
         Results results = new Results(Arrays.asList("꽝", "5000", "꽝", "3000"), 4);
         List<String> namesAfterMove = Arrays.asList("pobi", "crong", "honux", "jk");
-        
+
         assertThat(results.matchNamesWithResults(namesAfterMove)).containsExactlyInAnyOrderEntriesOf(
                 Map.of("pobi", "꽝", "crong", "5000", "honux", "꽝", "jk", "3000"));
     }
