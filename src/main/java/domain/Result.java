@@ -9,18 +9,11 @@ public class Result {
         this.results = results;
     }
 
-    public String getResultByPerson(String name) {
-        validateName(name);
-        return results.get(name);
+    public String getResultByPerson(ResultName name) {
+        return results.get(name.getName());
     }
 
     public Map<String, String> getResultByAll() {
         return results;
-    }
-
-    private void validateName(String name) {
-        if (!results.containsKey(name)) {
-            throw new IllegalArgumentException("이름은 이전에 입력한 이름 중에 하나여야 합니다.");
-        }
     }
 }

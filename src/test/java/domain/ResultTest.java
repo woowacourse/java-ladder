@@ -17,7 +17,7 @@ public class ResultTest {
         Winnings winnings = new Winnings(List.of("꽝", "당첨"));
         LadderGame ladderGame = new LadderGame(names, new Height(1), winnings, customGenerator);
         Result result = new Result(ladderGame.getResult());
-        Assertions.assertThat(result.getResultByPerson("1"))
+        Assertions.assertThat(result.getResultByPerson(new ResultName("1", new Players(names))))
                 .isEqualTo("당첨");
     }
 
@@ -29,7 +29,7 @@ public class ResultTest {
         Winnings winnings = new Winnings(List.of("꽝", "당첨"));
         LadderGame ladderGame = new LadderGame(names, new Height(1), winnings, customGenerator);
         Result result = new Result(ladderGame.getResult());
-        Assertions.assertThatThrownBy(() -> result.getResultByPerson("3"))
+        Assertions.assertThatThrownBy(() -> result.getResultByPerson(new ResultName("3", new Players(names))))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 이전에 입력한 이름 중에 하나여야 합니다.");
     }
