@@ -41,4 +41,12 @@ public class DestinationsTest {
 
         assertThat(destinations.swapDestinations(List.of(0, 2))).isEqualTo(expected);
     }
+
+    @DisplayName("인덱스 넘버로 해당 위치에 존재하는 Destination을 반환한다.")
+    @Test
+    void findDestinationByOrder() {
+        Destinations destinations = Destinations.of(List.of("꽝", "5000"), 2);
+
+        assertThat(destinations.findByOrder(1)).isEqualTo(new Destination("5000"));
+    }
 }
