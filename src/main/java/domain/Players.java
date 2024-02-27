@@ -25,12 +25,19 @@ public class Players {
 
     public Players search(String name) {
         if (name.equals("all")) {
-            return players;
+            return this;
         }
-//        validatePlayer(name); // TODO
+        validateExist(name);
         return players.stream()
                 .filter(player -> player.isSameName(name))
-                .collect(Collectors.toList());
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Players::new));
+    }
+
+    private void validateExist(String name) {
+        players.stream()
+                .filter(player -> player.isSameName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("참여자 중에서만 입력할 수 있습니다."));
     }
 
     public int getCount() {
