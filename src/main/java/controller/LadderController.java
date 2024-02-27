@@ -1,10 +1,10 @@
 package controller;
 
-import domain.Ladder;
-import domain.LadderHeight;
-import domain.PlayerName;
-import domain.PlayerNames;
-import domain.bridge.strategy.RandomBridgeGenerator;
+import domain.ladder.Ladder;
+import domain.ladder.LadderHeight;
+import domain.player.PlayerName;
+import domain.player.PlayerNames;
+import domain.ladder.strategy.RandomBridgeGenerator;
 import java.util.List;
 import view.InputView;
 import view.OutputView;

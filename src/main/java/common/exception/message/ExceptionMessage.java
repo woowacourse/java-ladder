@@ -1,8 +1,8 @@
 package common.exception.message;
 
 import controller.RetryHandler;
-import domain.LadderHeight;
-import domain.PlayerNames;
+import domain.ladder.LadderHeight;
+import domain.player.PlayerNames;
 import view.InputView;
 
 public class ExceptionMessage {

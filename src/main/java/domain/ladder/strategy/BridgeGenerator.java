@@ -1,6 +1,6 @@
-package domain.bridge;
+package domain.ladder.strategy;
 
-import domain.LadderBridge;
+import domain.ladder.LadderBridge;
 import java.util.List;
 
 public interface BridgeGenerator {

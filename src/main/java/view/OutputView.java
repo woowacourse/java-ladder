@@ -1,9 +1,9 @@
 package view;
 
-import domain.Floor;
-import domain.Ladder;
-import domain.LadderBridge;
-import domain.PlayerNames;
+import domain.ladder.Floor;
+import domain.ladder.Ladder;
+import domain.ladder.LadderBridge;
+import domain.player.PlayerNames;
 import java.util.StringJoiner;
 
 public class OutputView {

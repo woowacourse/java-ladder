@@ -1,6 +1,7 @@
-package domain;
+package domain.ladder;
 
-import domain.bridge.BridgeGenerator;
+import domain.ladder.strategy.BridgeGenerator;
+import domain.player.PlayerNames;
 import java.util.ArrayList;
 import java.util.List;
 

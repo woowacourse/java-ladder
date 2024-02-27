@@ -1,6 +1,7 @@
 package domain;
 
 import common.exception.message.ExceptionMessage;
+import domain.ladder.LadderHeight;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

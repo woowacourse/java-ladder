@@ -1,5 +1,5 @@
 
-package domain;
+package domain.player;
 
 import common.exception.message.ExceptionMessage;
 import java.util.List;

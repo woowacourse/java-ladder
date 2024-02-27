@@ -1,4 +1,4 @@
-package domain;
+package domain.player;
 
 import common.exception.message.ExceptionMessage;
 
