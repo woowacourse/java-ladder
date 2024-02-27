@@ -1,16 +1,16 @@
-package game;
+package domain.ladder;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import domain.FloorConnectionStatusDto;
-import domain.Ladder;
-import domain.LadderHeight;
-import domain.Player;
-import domain.Players;
-import domain.Prize;
-import domain.Prizes;
+import dto.FloorConnectionStatusDto;
+import domain.ladder.Ladder;
+import domain.ladder.LadderHeight;
+import domain.player.Player;
+import domain.player.Players;
+import domain.prize.Prize;
+import domain.prize.Prizes;
 import generator.LadderFloorGenerator;
 
 public class LadderGame {

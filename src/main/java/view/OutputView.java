@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
-import domain.FloorConnectionStatusDto;
+import dto.FloorConnectionStatusDto;
 
 public class OutputView {
 

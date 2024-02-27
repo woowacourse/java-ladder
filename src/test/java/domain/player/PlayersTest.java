@@ -1,4 +1,4 @@
-package domain;
+package domain.player;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -6,6 +6,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import domain.player.Player;
+import domain.player.Players;
 
 class PlayersTest {
 

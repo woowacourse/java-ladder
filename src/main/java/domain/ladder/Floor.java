@@ -1,8 +1,9 @@
-package domain;
+package domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.FloorConnectionStatusDto;
 import generator.LadderFloorGenerator;
 
 public class Floor {

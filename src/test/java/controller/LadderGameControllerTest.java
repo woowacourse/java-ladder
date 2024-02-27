@@ -18,7 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import game.LadderGame;
+import domain.ladder.LadderGame;
 import generator.LadderFloorGenerator;
 import view.InputView;
 import view.OutputView;

@@ -1,6 +1,11 @@
-package domain;
+package domain.player;
 
 import java.util.List;
+
+import domain.Name;
+import domain.ladder.Bar;
+import domain.ladder.Floor;
+import domain.ladder.Ladder;
 
 public class Player {
 

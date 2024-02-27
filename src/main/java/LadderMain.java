@@ -1,7 +1,7 @@
 import java.util.Random;
 
 import controller.LadderGameController;
-import game.LadderGame;
+import domain.ladder.LadderGame;
 import generator.LadderFloorGenerator;
 import view.InputView;
 import view.OutputView;

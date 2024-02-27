@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import domain.LadderHeight;
-import domain.Player;
-import domain.Players;
-import domain.Prizes;
-import game.LadderGame;
+import domain.ladder.LadderHeight;
+import domain.player.Player;
+import domain.player.Players;
+import domain.prize.Prizes;
+import domain.ladder.LadderGame;
 import view.InputView;
 import view.OutputView;
 

@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 public enum Bar {
 	CONNECTED_TO_LEFT,

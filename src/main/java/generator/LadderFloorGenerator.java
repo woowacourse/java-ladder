@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.random.RandomGenerator;
 
-import domain.Bar;
+import domain.ladder.Bar;
 
 public class LadderFloorGenerator {
 

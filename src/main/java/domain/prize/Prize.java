@@ -1,4 +1,6 @@
-package domain;
+package domain.prize;
+
+import domain.Name;
 
 public class Prize {
 

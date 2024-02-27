@@ -1,4 +1,4 @@
-package game;
+package domain.ladder;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -11,10 +11,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import domain.LadderHeight;
-import domain.Player;
-import domain.Players;
-import domain.Prizes;
+import domain.ladder.LadderGame;
+import domain.ladder.LadderHeight;
+import domain.player.Player;
+import domain.player.Players;
+import domain.prize.Prizes;
 import generator.LadderFloorGenerator;
 
 class LadderGameTest {
