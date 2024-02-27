@@ -30,4 +30,9 @@ public class InputView {
             throw new IllegalArgumentException("높이는 숫자여야 합니다.");
         }
     }
+
+    public static String selectPlayer() {
+        System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
+        return scanner.nextLine().trim();
+    }
 }
