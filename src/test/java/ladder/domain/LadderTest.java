@@ -37,7 +37,7 @@ class LadderTest {
         Height height = new Height(3);
         Ladder ladder = new Ladder(players, height, () -> RIGHT);
 
-        List<Player> actual = ladder.getAllResultLocation();
+        List<Player> actual = ladder.getResultPlayers();
 
         assertThat(actual).isEqualTo(List.of(
                 new Player("poby", 1),

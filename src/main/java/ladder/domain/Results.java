@@ -23,7 +23,7 @@ public class Results {
         return results.stream();
     }
 
-    public String getResultValue(int location) {
+    public String getResultReward(int location) {
         return results.stream()
                 .filter(result -> result.hasSameLocation(location))
                 .findFirst()

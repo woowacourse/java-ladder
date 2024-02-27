@@ -20,6 +20,6 @@ public class ResultsTest {
     void getResultByLocation() {
         Results results = new Results(List.of("꽝", "5000", "꽝", "3000"), 4);
 
-        assertThat(results.getResultValue(1)).isEqualTo("5000");
+        assertThat(results.getResultReward(1)).isEqualTo("5000");
     }
 }

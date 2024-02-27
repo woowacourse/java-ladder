@@ -21,7 +21,7 @@ public class Ladder {
         return ladderLevels.stream();
     }
 
-    public List<Player> getAllResultLocation() {
+    public List<Player> getResultPlayers() {
         return List.copyOf(resultPlayers);
     }
 

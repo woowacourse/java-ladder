@@ -17,7 +17,7 @@ public class RewardsOfPlayersTest {
         Height height = new Height(3);
         Results results = new Results(List.of("100", "200"), players.count());
         Ladder ladder = new Ladder(players, height, () -> RIGHT);
-        RewardsOfPlayers rewardsOfPlayers = new RewardsOfPlayers(ladder.getAllResultLocation(), results);
+        RewardsOfPlayers rewardsOfPlayers = new RewardsOfPlayers(ladder.getResultPlayers(), results);
 
         assertThat(rewardsOfPlayers.getRewardByName("poby")).isEqualTo("200");
     }
@@ -29,7 +29,7 @@ public class RewardsOfPlayersTest {
         Height height = new Height(3);
         Results results = new Results(List.of("100", "200"), players.count());
         Ladder ladder = new Ladder(players, height, () -> RIGHT);
-        RewardsOfPlayers rewardsOfPlayers = new RewardsOfPlayers(ladder.getAllResultLocation(), results);
+        RewardsOfPlayers rewardsOfPlayers = new RewardsOfPlayers(ladder.getResultPlayers(), results);
 
         assertThatThrownBy(() -> rewardsOfPlayers.getRewardByName("zeus"))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -43,7 +43,7 @@ public class RewardsOfPlayersTest {
         Height height = new Height(3);
         Results results = new Results(List.of("100", "200"), players.count());
         Ladder ladder = new Ladder(players, height, () -> RIGHT);
-        RewardsOfPlayers rewardsOfPlayers = new RewardsOfPlayers(ladder.getAllResultLocation(), results);
+        RewardsOfPlayers rewardsOfPlayers = new RewardsOfPlayers(ladder.getResultPlayers(), results);
 
         assertAll(
                 () -> assertThat(rewardsOfPlayers.getAllRewards().get("poby")).isEqualTo("200"),

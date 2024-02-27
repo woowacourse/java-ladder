@@ -14,7 +14,7 @@ public class RewardsOfPlayers {
                 .forEach(location ->
                         rewardsOfPlayers.put(
                                 getNameByLocation(resultPlayers, location),
-                                results.getResultValue(location)
+                                results.getResultReward(location)
                         )
                 );
     }

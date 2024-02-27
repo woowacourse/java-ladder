@@ -19,9 +19,9 @@ public class Controller {
         Players players = createPlayers();
         Results results = createResults(players.count());
         Height height = createHeight();
-        DirectionGenerator directionGenerator = new RandomDirectionGenerator();
-        Ladder ladder = new Ladder(players, height, directionGenerator);
-        RewardsOfPlayers rewardsOfPlayers = new RewardsOfPlayers(ladder.getAllResultLocation(), results);
+        DirectionGenerator randomDirectionGenerator = new RandomDirectionGenerator();
+        Ladder ladder = new Ladder(players, height, randomDirectionGenerator);
+        RewardsOfPlayers rewardsOfPlayers = new RewardsOfPlayers(ladder.getResultPlayers(), results);
         OutputView.printLadderResult(players, ladder, results);
         repeatPrintingReward(rewardsOfPlayers);
     }
