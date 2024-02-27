@@ -1,8 +1,5 @@
 package ladder.domain;
 
-import static ladder.constant.ErrorMessage.MAX_PERSON_NAME_LENGTH;
-import static ladder.constant.ErrorMessage.PERSON_NAME_NOT_BLANK;
-
 public class Person {
     private static final int MAX_LENGTH = 5;
 
@@ -24,13 +21,13 @@ public class Person {
 
     private void validateLength(String name) {
         if (name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException(MAX_PERSON_NAME_LENGTH.generate());
+            throw new IllegalArgumentException("사람 이름의 길이는 5자를 넘을 수 없습니다.");
         }
     }
 
     private void validateBlank(String name) {
         if (name.isBlank()) {
-            throw new IllegalArgumentException(PERSON_NAME_NOT_BLANK.generate());
+            throw new IllegalArgumentException("사람 이름의 비어있거나 공백일 수 없습니다.");
         }
     }
 

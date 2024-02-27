@@ -4,9 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import static ladder.constant.ErrorMessage.LADDER_HEIGHT_NUMBER_FORMAT;
-import static ladder.constant.ErrorMessage.PEOPLE_NAMES_STARTS_OR_ENDS_WITH_DELIMITER;
-
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String PEOPLE_NAMES_INPUT_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
@@ -33,7 +30,7 @@ public class InputView {
 
     private static void validateStartsOrEndsWithDelimiter(String peopleNames) {
         if (peopleNames.startsWith(PEOPLE_NAMES_DELIMITER) || peopleNames.endsWith(PEOPLE_NAMES_DELIMITER)) {
-            throw new IllegalArgumentException(PEOPLE_NAMES_STARTS_OR_ENDS_WITH_DELIMITER.generate());
+            throw new IllegalArgumentException("사람들의 이름은 콤마(,)로 시작하거나 끝날 수 없습니다.");
         }
     }
 
@@ -49,7 +46,7 @@ public class InputView {
         try {
             return Integer.parseInt(ladderHeight);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(LADDER_HEIGHT_NUMBER_FORMAT.generate());
+            throw new IllegalArgumentException("사다리의 높이는 숫자이어야 합니다.");
         }
     }
 }

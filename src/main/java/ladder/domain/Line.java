@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static ladder.constant.ErrorMessage.CONTINUE_SCAFFOLD;
-
 public class Line {
     private final List<Connection> connections;
 
@@ -16,7 +14,7 @@ public class Line {
 
     private void validateContinue(List<Connection> connections) {
         if (isContinue(connections)) {
-            throw new IllegalArgumentException(CONTINUE_SCAFFOLD.generate());
+            throw new IllegalArgumentException("좌우 연속해서 발판이 존재할 수 없습니다.");
         }
     }
 

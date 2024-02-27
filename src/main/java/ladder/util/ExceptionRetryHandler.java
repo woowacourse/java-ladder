@@ -22,7 +22,7 @@ public class ExceptionRetryHandler {
         try {
             return Optional.of(supplier.get());
         } catch (IllegalArgumentException e) {
-            OutputView.printMessage(e.getMessage());
+            OutputView.printMessage("[ERROR] " + e.getMessage());
             return Optional.empty();
         }
     }
