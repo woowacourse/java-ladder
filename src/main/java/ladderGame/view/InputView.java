@@ -59,4 +59,10 @@ public class InputView {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_OVER_INT_RANGE);
         }
     }
+
+    public String inputWantedName() {
+        System.out.println("결과를 보고 싶은 사람은?");
+
+        return scanner.nextLine();
+    }
 }

@@ -3,6 +3,7 @@ package ladderGame.controller;
 import ladderGame.model.Ladder;
 import ladderGame.model.Players;
 import ladderGame.model.Results;
+import ladderGame.model.WantedName;
 import ladderGame.view.InputView;
 import ladderGame.view.ResultView;
 
@@ -24,8 +25,7 @@ public class LadderGameController {
 
         ladder.descendLadder(players);
 
-        
-
+        WantedName wantedName = new WantedName(inputView.inputWantedName(), players);
         resultView.printResult(players.getPlayers(), results.getResults());
     }
 }
