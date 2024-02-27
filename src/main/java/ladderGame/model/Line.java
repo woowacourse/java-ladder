@@ -36,4 +36,14 @@ public class Line {
         return new ArrayList<>(connectionStatuses);
     }
 
+    public int descend(int index) {
+        if(index >= connectionStatuses.size()) {
+            return index;
+        }
+        ConnectionStatus connectionStatus = connectionStatuses.get(index);
+        if(connectionStatus.equals(ConnectionStatus.CONNECTION)) {
+            return index + 1;
+        }
+        return 0;
+    }
 }

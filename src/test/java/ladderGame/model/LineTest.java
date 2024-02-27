@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -31,5 +32,19 @@ class LineTest {
         }
 
         assertFalse(isConsecutive);
+    }
+
+    @Test
+    @DisplayName("사다리를 내려갈 때 왼쪽은 true, 오른쪽은 false면 왼쪽으로 이동한다.")
+    void moveLeft() {
+        Line line = new Line(new BooleanGenerator() {
+            @Override
+            public boolean generate() {
+                return true;
+            }
+        }, 3);
+
+        assertThat(line.descend(0)).isEqualTo(1);
+        assertThat(line.descend(2)).isEqualTo(2);
     }
 }
