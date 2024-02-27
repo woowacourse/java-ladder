@@ -1,16 +1,32 @@
 package domain;
 
 public enum Step {
-    EXIST, EMPTY;
+    LEFT {
+        public int move(int index) {
+            return index - 1;
+        }
+    },
+    RIGHT {
+        public int move(int index) {
+            return index + 1;
+        }
+    },
+    EMPTY {
+        public int move(int index) {
+            return index;
+        }
+    };
 
     public static Step from(boolean hasStep) {
         if (hasStep) {
-            return EXIST;
+            return RIGHT;
         }
         return EMPTY;
     }
 
-    public boolean isExist() {
-        return this.equals(EXIST);
+    public boolean isRight() {
+        return this == RIGHT;
     }
+
+    public abstract int move(int index);
 }

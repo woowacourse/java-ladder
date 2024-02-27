@@ -11,10 +11,6 @@ public class PlayerCount {
         return new PlayerCount(count);
     }
 
-    public static PlayerCount fromPlayers(Players players) {
-        return new PlayerCount(players.getCount());
-    }
-
     public boolean isSameWith(int otherCount) {
         return count == otherCount;
     }

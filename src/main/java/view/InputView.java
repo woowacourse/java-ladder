@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    public static final String NAME_DELIMITER = ",";
+    public static final String DELIMITER = ",";
 
     private final Scanner scanner;
 
@@ -17,14 +17,13 @@ public class InputView {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String input = scanner.nextLine();
         validatePlayers(input);
-        return Arrays.stream(input.split(NAME_DELIMITER)).map(String::trim).toList();
+        return Arrays.stream(input.split(DELIMITER)).map(String::trim).toList();
     }
 
     private void validatePlayers(String input) {
         validateBlank(input);
         validateDoubleDelimiter(input);
-        validateStartWord(input);
-        validateEndWord(input);
+        validateStartAndEndWord(input);
     }
 
     private void validateBlank(String input) {
@@ -34,21 +33,28 @@ public class InputView {
     }
 
     private void validateDoubleDelimiter(String input) {
-        if (input.contains(NAME_DELIMITER.repeat(2))) {
+        if (input.contains(DELIMITER.repeat(2))) {
             throw new IllegalArgumentException("올바른 형태로 구분자로 나뉘어 입력해주세요.");
         }
     }
 
-    private void validateStartWord(String input) {
-        if (input.startsWith(NAME_DELIMITER)) {
-            throw new IllegalArgumentException("입력은 구분자로 시작할 수 없습니다.");
+    private void validateStartAndEndWord(String input) {
+        if (input.startsWith(DELIMITER) || input.endsWith(DELIMITER)) {
+            throw new IllegalArgumentException("입력은 구분자로 시작 혹은 끝날 수 없습니다");
         }
     }
 
-    private void validateEndWord(String input) {
-        if (input.endsWith(NAME_DELIMITER)) {
-            throw new IllegalArgumentException("입력은 구분자로 끝날 수 없습니다.");
-        }
+    public List<String> inputTarget() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String input = scanner.nextLine();
+        validateTargets(input);
+        return Arrays.stream(input.split(DELIMITER)).map(String::trim).toList();
+    }
+
+    private void validateTargets(String input) {
+        validateBlank(input);
+        validateDoubleDelimiter(input);
+        validateStartAndEndWord(input);
     }
 
     public int inputHeight() {
@@ -76,5 +82,10 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("정상적인 범위의 수를 입력해주세요.");
         }
+    }
+
+    public String inputResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
     }
 }

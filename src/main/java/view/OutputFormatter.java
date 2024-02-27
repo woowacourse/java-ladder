@@ -1,14 +1,13 @@
 package view;
 
-import domain.Line;
-import domain.Player;
-import domain.Players;
-import domain.Step;
+import domain.*;
+
 import java.util.stream.Collectors;
 
 public class OutputFormatter {
     private static final String SPACE = " ";
     private static final String BAR = "|";
+    private static final String BRIDGE = "-----";
 
     public String toNameUnit(Players players) {
         return players.getPlayers().stream()
@@ -19,9 +18,7 @@ public class OutputFormatter {
     private String getNameUnit(Player player) {
         String name = player.getName();
         if (name.length() < 5) {
-            String leftBlank = SPACE.repeat(4 - name.length());
-            String rightBlank = SPACE;
-            name = leftBlank + name + rightBlank;
+            name = String.format("%4s ", name);
         }
         return name + SPACE;
     }
@@ -34,9 +31,27 @@ public class OutputFormatter {
     }
 
     private String getStep(Step step) {
-        if (step.equals(Step.EXIST)) {
-            return BAR + "-----";
+        if (step.isRight()) {
+            return BAR + BRIDGE;
         }
         return BAR + "     ";
+    }
+
+    public String toTargetUnit(Targets targets) {
+        return targets.getTargets().stream()
+                .map(this::getTargetUnit)
+                .collect(Collectors.joining());
+    }
+
+    private String getTargetUnit(Target target) {
+        String name = target.getTarget();
+        if (name.length() < 5) {
+            name = String.format("%4s ", name);
+        }
+        return name + SPACE;
+    }
+
+    public String toResult(Player player, Target target) {
+        return String.join(" : ", player.getName(), target.getTarget());
     }
 }
