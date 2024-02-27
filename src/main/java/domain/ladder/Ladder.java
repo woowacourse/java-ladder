@@ -20,18 +20,12 @@ public class Ladder {
     private final LadderIndexConverter ladderIndexConverter;
 
     public Ladder(Players players, Results results, LadderHeight height) {
+        validateHasSameSize(players, results);
         this.players = players;
         this.results = results;
-        validateHasSameSize(players, results);
 
         createLadder(height);
         ladderIndexConverter = new LadderIndexConverter(players.size());
-    }
-
-    private void validateHasSameSize(Players players, Results results) {
-        if (players.size() != results.size()) {
-            throw new IllegalArgumentException("사람의 수와 결과의 개수가 일치하지 않습니다.");
-        }
     }
 
     public void drawLines(BooleanSupplier patternCreationStrategy) {
@@ -72,6 +66,12 @@ public class Ladder {
             LadderRow line = new LadderRow(players.size());
             rows.add(line);
             createdRowCount++;
+        }
+    }
+
+    private void validateHasSameSize(Players players, Results results) {
+        if (players.size() != results.size()) {
+            throw new IllegalArgumentException("사람의 수와 결과의 개수가 일치하지 않습니다.");
         }
     }
 }
