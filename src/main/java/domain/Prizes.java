@@ -10,4 +10,8 @@ public class Prizes {
                 .map(Prize::new)
                 .toList();
     }
+
+    public int getSize() {
+        return prizes.size();
+    }
 }
