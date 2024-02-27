@@ -19,14 +19,13 @@ class PlayersTest {
     }
 
     @Test
-    @DisplayName("이름을 통해 플레이어를 받아온다.")
+    @DisplayName("이름을 통해 플레이어 순서를 받아온다.")
     public void getPlayerAtName() {
         Name name = new Name("도비");
 
         Players players = new Players(Names.from(List.of("도비", "조이썬", "포비")));
 
-        assertEquals(players.getPlayerWithName(name)
-                            .getName(), name);
+        assertEquals(players.getPlayerIndexWithName(name), 0);
     }
 
     @Test
@@ -36,6 +35,6 @@ class PlayersTest {
 
         Players players = new Players(Names.from(List.of("도비", "조이썬", "포비")));
 
-        assertThrows(IllegalArgumentException.class, () -> players.getPlayerWithName(name));
+        assertThrows(IllegalArgumentException.class, () -> players.getPlayerIndexWithName(name));
     }
 }
