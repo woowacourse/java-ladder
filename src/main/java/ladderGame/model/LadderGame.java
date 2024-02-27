@@ -26,7 +26,7 @@ public class LadderGame {
     }
 
     public LadderResult findLadderGameResult(String name) {
-        Integer startIndex = players.indexOfPlayerByName(name);
+        Integer startIndex = players.indexOf(name);
 
         if (startIndex == null) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_NOT_CONTAIN_PLAYERS);

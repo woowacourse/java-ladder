@@ -3,6 +3,8 @@ package ladderGame.model;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
 
 public class Players {
     private static final String EXCEPTION_MESSAGE_DUPLICATION_NAME = "참여자들의 이름은 중복될 수 없습니다.";
@@ -26,16 +28,15 @@ public class Players {
         }
     }
 
-    public Integer indexOfPlayerByName(String name) {
-        int startIndex = 0;
-        for (Player player : players) {
-            if (player.getName().equals(name)) {
-                return startIndex;
-            }
-            startIndex++;
-        }
+    public Integer indexOf(String name) {
+        OptionalInt index = IntStream.range(0, players.size())
+                .filter(i -> players.get(i).getName().equals(name))
+                .findFirst();
 
-        return null;
+        if(index.isEmpty()) {
+            return null;
+        }
+        return index.getAsInt();
     }
 
     public int getPlayerSize() {
