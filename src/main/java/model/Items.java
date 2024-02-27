@@ -11,6 +11,6 @@ public class Items {
     }
 
     public String get(final int finalPosition) {
-        return "꽝";
+        return items.get(finalPosition);
     }
 }
