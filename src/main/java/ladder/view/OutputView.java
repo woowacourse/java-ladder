@@ -11,7 +11,8 @@ import java.util.stream.IntStream;
 public class OutputView {
 
     public static void printLadderResult(LadderStatus ladderStatus) {
-        System.out.println("실행결과");
+        System.out.println();
+        System.out.println("사다리 결과");
         System.out.println();
         System.out.println(makeNameMessage(ladderStatus.playerNames()));
         System.out.println(drawRadder(ladderStatus.pathStatuses()));
