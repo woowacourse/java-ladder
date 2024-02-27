@@ -13,11 +13,11 @@ public class PlayerName {
     public static final int LENGTH_MAX = 5;
     private static final Pattern PLAYER_NAME_PATTERN = Pattern.compile("[가-힣a-zA-Z]+");
 
-    private final String name;
+    private final String value;
 
-    public PlayerName(String name) {
-        validate(name);
-        this.name = name;
+    public PlayerName(String value) {
+        validate(value);
+        this.value = value;
     }
 
     private void validate(String name) {
@@ -44,7 +44,7 @@ public class PlayerName {
         }
     }
 
-    public String getName() {
-        return name;
+    public String getValue() {
+        return value;
     }
 }

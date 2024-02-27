@@ -34,7 +34,7 @@ public class PlayerNames {
 
     private void validateDuplication(List<PlayerName> playerNames) {
         int playerCount = playerNames.size();
-        long distinctCount = playerNames.stream().map(PlayerName::getName).distinct().count();
+        long distinctCount = playerNames.stream().map(PlayerName::getValue).distinct().count();
 
         if (playerCount != distinctCount) {
             throw new ValidationException(DUPLICATION_ERROR_MESSAGE);
@@ -46,12 +46,12 @@ public class PlayerNames {
     }
 
     public String getNameOfIndex(int index) {
-        return values.get(index).getName();
+        return values.get(index).getValue();
     }
 
     public int getIndexOfName(String name) {
         for (int i = 0; i < values.size(); i++) {
-            if(values.get(i).getName().equals(name)) {
+            if(values.get(i).getValue().equals(name)) {
                 return i;
             }
         }
