@@ -9,7 +9,7 @@ public class Line {
         this.steps = makeLine(playerCount);
     }
 
-    private static List<Step> makeLine(PlayerCount playerCount) {
+    private List<Step> makeLine(PlayerCount playerCount) {
         List<Step> steps = new ArrayList<>();
         int count = playerCount.getCount();
         for (int index = 0; index < count; index++) {
@@ -18,7 +18,7 @@ public class Line {
         return steps;
     }
 
-    private static Step makeStep(List<Step> steps, PlayerCount playerCount) {
+    public Step makeStep(List<Step> steps, PlayerCount playerCount) {
         if (hasBeforeStep(steps)) {
             return Step.LEFT;
         }
@@ -29,18 +29,18 @@ public class Line {
         return Step.from(random.nextBoolean());
     }
 
-    private static boolean hasBeforeStep(List<Step> steps) {
+    private boolean hasBeforeStep(List<Step> steps) {
         if (isFirstPoint(steps)) {
             return false;
         }
         return steps.get(steps.size() - 1).isRight();
     }
 
-    private static boolean isFirstPoint(List<Step> steps) {
+    private boolean isFirstPoint(List<Step> steps) {
         return steps.isEmpty();
     }
 
-    private static boolean isLastPoint(List<Step> steps, PlayerCount playerCount) {
+    private boolean isLastPoint(List<Step> steps, PlayerCount playerCount) {
         return playerCount.isSameWith(steps.size() + 1);
     }
 

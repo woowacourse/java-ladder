@@ -11,7 +11,7 @@ public class Ladder {
         this.lines = makeLadder(height, playerCount);
     }
 
-    private static List<Line> makeLadder(Height height, PlayerCount playerCount) {
+    private List<Line> makeLadder(Height height, PlayerCount playerCount) {
         List<Line> lines = new ArrayList<>();
         int count = height.getHeight();
         for (int index = 0; index < count; index++){
