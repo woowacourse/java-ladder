@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public record Name(String name) {
     private static final int NAME_LENGTH_MIN = 1;
     private static final int NAME_LENGTH_MAX = 5;
-    private static final String NAME_REGEX_POLICY = "^[A-Za-z0-9]+";
+    private static final Pattern NAME_REGEX_PATTERN = Pattern.compile("^[A-Za-z0-9]+");
 
     public Name(final String name) {
         this.name = name;
@@ -21,7 +21,7 @@ public record Name(String name) {
     }
 
     private void validateAlphanumericName() {
-        if (!Pattern.matches(NAME_REGEX_POLICY, this.name)) {
+        if (!NAME_REGEX_PATTERN.matcher(this.name).matches()) {
             throw new IllegalArgumentException("이름은 영어와 숫자만 허용합니다.");
         }
     }
