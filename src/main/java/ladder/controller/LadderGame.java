@@ -31,7 +31,7 @@ public class LadderGame {
         final LadderGameResult ladderGameResult = exceptionHandler.retryOnException(this::readLadderGameResult);
         final int width = participants.getNecessaryLadderWidth();
         final Ladder ladder = createLadder(width);
-        printLadder(participants, ladder);
+        printLadder(participants, ladder, ladderGameResult);
         inputView.closeResource();
     }
 
@@ -56,9 +56,13 @@ public class LadderGame {
         return new Height(ladderHeight);
     }
 
-    private void printLadder(final Participants participants, final Ladder ladder) {
+    private void printLadder(
+            final Participants participants,
+            final Ladder ladder,
+            final LadderGameResult ladderGameResult) {
         outputView.printResultPrefix();
         outputView.printParticipants(participants);
         outputView.printLadder(ladder);
+        outputView.printLadderGameResult(ladderGameResult);
     }
 }

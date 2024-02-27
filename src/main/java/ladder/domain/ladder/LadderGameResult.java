@@ -10,4 +10,8 @@ public class LadderGameResult {
     public LadderGameResult(final List<String> values) {
         this.values = unmodifiableList(values);
     }
+
+    public List<String> getValues() {
+        return values;
+    }
 }
