@@ -20,4 +20,11 @@ public class ParticipantTest {
 
         assertThatThrownBy(() -> new Participant(name)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 참여자_이름이_all이면_예외가_발생한다() {
+        String name = "all";
+
+        assertThatThrownBy(() -> new Participant(name)).isInstanceOf(IllegalArgumentException.class);
+    }
 }

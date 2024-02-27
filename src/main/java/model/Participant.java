@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Objects;
-
 public class Participant {
     private static final int MAX_NAME_LENGTH = 5;
 
@@ -16,11 +14,11 @@ public class Participant {
         if (name == null) {
             throw new IllegalArgumentException("이름은 null일 수 없다.");
         }
-        if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름은 최대 다섯글자까지 입력 가능하다.");
+        if (name.isEmpty() || name.isBlank() || name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("이름은 한글자 이상 다섯글자 이하로 입력해야합니다.");
         }
-        if (name.isEmpty() || name.isBlank()) {
-            throw new IllegalArgumentException("이름은 한글자 이상 입력해야합니다.");
+        if (name.equals("all")) {
+            throw new IllegalArgumentException("\"all\"이라는 이름은 입력할 수 없다.");
         }
     }
 
