@@ -11,23 +11,15 @@ public class ResultsTest {
     @Test
     @DisplayName("결과 객체 생성 성공: 성공적으로 도메인이 생성된다.")
     void test_ok_createObject() {
-        assertThatCode(() -> new Results(List.of(
-                new Result("1"),
-                new Result("2")),
-                2))
+        assertThatCode(() -> Results.of(List.of("1", "2"), 2))
                 .doesNotThrowAnyException();
-    }
+    } // TODO: 보완
 
     @Test
     @DisplayName("결과 객체 생성 실패: 참여자 수와 개수가 같지 않으면 에러를 반환한다.")
     void test_exception_NotEqualCount() {
         Members members = Members.from("a,b,c,d");
-
-        assertThatCode(() -> new Results(List.of(
-                new Result("1"),
-                new Result("2"),
-                new Result("3")),
-                members.getCount()))
+        assertThatCode(() -> Results.of(List.of("1", "2", "3"), members.getCount()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("결과의 수는 참여자의 수와 같아야 합니다.");
     }

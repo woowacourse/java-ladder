@@ -6,10 +6,16 @@ public class Results {
 
     private final List<Result> results;
 
-    public Results(List<Result> results, int memberCount) {
+    private Results(List<Result> results, int memberCount) {
         validateCount(results, memberCount);
         this.results = results;
     } // TODO: memberCount 주입 과정 어색
+
+    public static Results of(List<String> results, int memberCount) {
+        return new Results(results.stream()
+                .map(Result::new)
+                .toList(), memberCount);
+    }
 
     private void validateCount(List<Result> results, int memberCount) {
         if (results.size() != memberCount) {

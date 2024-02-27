@@ -34,24 +34,15 @@ public class GameTest {
             }
         });
 
-        Result aResult = new Result("a!");
-        Result bResult = new Result("b!");
-        Result cResult = new Result("c!");
-        Result dResult = new Result("d!");
-        Results results = new Results(List.of(
-                aResult,
-                bResult,
-                cResult,
-                dResult),
-                4);
+        Results results = Results.of(List.of("a!", "b!", "c!", "d!"), 4);
 
         Game game = new Game(members, lines);
 
         HashMap<String, Result> actual = game.matchResult(results);
 
-        assertThat(actual.get("a")).isEqualTo(aResult);
-        assertThat(actual.get("b")).isEqualTo(bResult);
-        assertThat(actual.get("c")).isEqualTo(cResult);
-        assertThat(actual.get("d")).isEqualTo(dResult);
+        assertThat(actual.get("a").getValue()).isEqualTo("a!");
+        assertThat(actual.get("b").getValue()).isEqualTo("b!");
+        assertThat(actual.get("c").getValue()).isEqualTo("c!");
+        assertThat(actual.get("d").getValue()).isEqualTo("d!");
     }
 }

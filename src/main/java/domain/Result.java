@@ -24,4 +24,8 @@ public class Result {
             throw new IllegalArgumentException("1~5자의 결과만 허용합니다.");
         }
     }
+
+    public String getValue() {
+        return value;
+    }
 }
