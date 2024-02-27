@@ -1,8 +1,10 @@
-package util;
+package domain;
+
+import util.Generator;
 
 import java.util.List;
 
-public class CustomGenerator implements Generator{
+public class CustomGenerator implements Generator {
 
     private final List<Boolean> customNumbers;
 

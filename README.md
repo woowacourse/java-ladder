@@ -95,7 +95,7 @@ jk : 5000
 - getResult 분리 이후 단위 테스트
 - [x] Line - 반복문 추출 - 명시적인 메서드로 분리
 - [x] Name - isEmpty
-- CustomGenerator - 테스트 패키지로 이동, 공통 클래스로 만들어 참조
+- [x] CustomGenerator - 테스트 패키지로 이동, 공통 클래스로 만들어 참조
 - LadderController - 컨벤션 지키기
 
 ## 프로그래밍 요구 사항
