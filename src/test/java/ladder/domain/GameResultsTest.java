@@ -37,9 +37,15 @@ public class GameResultsTest {
     @DisplayName("모든 결과를 반환한다")
     @Test
     void findAll() {
-        List<String> destinations = gameResults.findAll().stream()
+        List<UserDestination> userDestinations = gameResults.findAll();
+        List<String> actualUserNames = userDestinations.stream()
+                .map(UserDestination::getUserName)
+                .toList();
+        List<String> actualDestinations = userDestinations.stream()
                 .map(UserDestination::getDestination)
                 .toList();
-        assertThat(destinations).containsExactly("3000", "꽝");
+
+        assertThat(actualUserNames).containsExactly("a", "b");
+        assertThat(actualDestinations).containsExactly("3000", "꽝");
     }
 }
