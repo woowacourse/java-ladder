@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Line {
     private final List<Step> steps;
 
-    public Line(final List<Step> steps) {
+    private Line(final List<Step> steps) {
         this.steps = steps;
     }
 
