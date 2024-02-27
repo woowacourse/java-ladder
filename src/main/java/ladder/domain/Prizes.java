@@ -12,8 +12,8 @@ public class Prizes {
         validateCount(this.values, count);
     }
 
-    public static Prizes from(List<String> prizes, int count) {
-        return new Prizes(prizes.stream()
+    public static Prizes from(List<String> names, int count) {
+        return new Prizes(names.stream()
                 .map(String::strip)
                 .toList(), count);
     }
