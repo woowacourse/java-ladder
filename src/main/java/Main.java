@@ -20,20 +20,10 @@ public class Main {
         Members members = errorHandler.readUntilNoError(Main::makeMembers);
         Height height = errorHandler.readUntilNoError(Main::makeHeight);
         Rewards rewards = errorHandler.readUntilNoError(() -> makeRewards(members));
-
         Game game = Game.of(members, height, rewards, pointStrategy);
-        outputView.printGame(game);
-        Map<String, String> rewardMap = game.findRewardMap();
 
-        // TODO: 리팩토링 필요, 에러 처리 필요
-        while (true) {
-            String memberName = inputView.readResult();
-            if (memberName.equals("all")) {
-                outputView.printAllResult(rewardMap);
-                break;
-            }
-            outputView.printOneResult(rewardMap.get(memberName));
-        }
+        outputView.printGame(game);
+        processGameResult(game.findRewardMap());
     }
 
     private static Members makeMembers() {
@@ -46,5 +36,34 @@ public class Main {
 
     private static Rewards makeRewards(Members members) {
         return Rewards.from(members.getCount(), inputView.readRewards());
+    }
+
+    // TODO: 구조가 너무 복잡함. 구조를 간소화하는 작업 필요
+    private static void processGameResult(Map<String, String> rewardMap) {
+        boolean isEnd = false;
+        while (!isEnd) {
+            String memberName = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap));
+            isEnd = printResult(memberName, rewardMap);
+        }
+    }
+
+    private static boolean printResult(String memberName, Map<String, String> rewardMap) {
+        if (memberName.equals("all")) {
+            outputView.printAllResult(rewardMap);
+            return true;
+        }
+        outputView.printOneResult(memberName, rewardMap);
+        return false;
+    }
+
+    private static String makeMemberName(Map<String, String> rewardMap) {
+        String memberName = inputView.readMemberName();
+        if (memberName.equals("all")) {
+            return memberName;
+        }
+        if (!rewardMap.containsKey(memberName)) {
+            throw new IllegalArgumentException("존재하지 않는 플레이어입니다.");
+        }
+        return memberName;
     }
 }
