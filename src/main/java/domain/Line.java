@@ -9,12 +9,12 @@ public class Line {
 
     private final List<Bridge> bridges = new ArrayList<>();
 
-    public Line(Players players, BooleanGenerator booleanGenerator) {
-        generate(players, booleanGenerator);
+    public Line(int playersCount, BooleanGenerator booleanGenerator) {
+        generate(playersCount, booleanGenerator);
     }
 
-    private void generate(Players players, BooleanGenerator booleanGenerator) {
-        for (int position = 0; position < players.getTotalPlayerSize() - 1; position++) {
+    private void generate(int playersCount, BooleanGenerator booleanGenerator) {
+        for (int position = 0; position < playersCount - 1; position++) {
             makePoint(booleanGenerator);
         }
     }
@@ -28,7 +28,7 @@ public class Line {
     }
 
     private boolean isPreviousBridgeBlank() {
-        return !Bridge.isExist(bridges.get(bridges.size() - 1));
+        return !Bridge.isExist(bridges.get(getBridgeCount() - 1));
     }
 
     private void addBlankBridge() {

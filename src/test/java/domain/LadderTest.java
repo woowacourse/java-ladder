@@ -28,10 +28,10 @@ public class LadderTest {
 
         assertAll(
                 () -> assertThatCode(
-                        () -> ladder.getLines().add(new Line(new Players(List.of("pobi", "tommy")), () -> true)))
+                        () -> ladder.getLines().add(new Line(2, () -> true)))
                         .isInstanceOf(UnsupportedOperationException.class),
                 () -> assertThatCode(
-                        () -> ladder.getLines().set(0, new Line(new Players(List.of("pobi", "tommy")), () -> true)))
+                        () -> ladder.getLines().set(0, new Line(2, () -> true)))
                         .isInstanceOf(UnsupportedOperationException.class),
                 () -> assertThatCode(() -> ladder.getLines().remove(0))
                         .isInstanceOf(UnsupportedOperationException.class),
