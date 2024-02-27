@@ -23,7 +23,7 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public Players search(String name) {
+    public Players search(String name) {    // TODO: 방식 개선
         if (name.equals("all")) {
             return this;
         }

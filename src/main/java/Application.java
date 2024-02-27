@@ -4,7 +4,7 @@ import view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        LadderController ladderController = new LadderController(InputView.of(), OutputView.from());
+        LadderController ladderController = new LadderController(InputView.create(), OutputView.create());
         ladderController.run();
     }
 }

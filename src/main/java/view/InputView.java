@@ -16,7 +16,7 @@ public class InputView {
         this.inputValidator = inputValidator;
     }
 
-    public static InputView of() {
+    public static InputView create() {
         return new InputView(new InputValidator());
     }
 

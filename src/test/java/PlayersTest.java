@@ -41,4 +41,11 @@ public class PlayersTest {
         Players players = Players.from(List.of("pobi", "kirby"));
         assertThatIllegalArgumentException().isThrownBy(() -> players.search("abc"));
     }
+
+    @Test
+    void search() {
+        Players players = Players.from(List.of("pobi", "kirby"));
+        Players pobi = players.search("pobi");
+        assertThat(pobi.getPlayers()).containsExactly(new Player("pobi"));
+    }
 }

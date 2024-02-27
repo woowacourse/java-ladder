@@ -14,7 +14,7 @@ public class OutputView {
         this.outputFormatter = outputFormatter;
     }
 
-    public static OutputView from() {
+    public static OutputView create() {
         return new OutputView(new OutputFormatter());
     }
 
@@ -44,14 +44,14 @@ public class OutputView {
         printLine(line);
     }
 
+    public void printGameResult(Prize prize) {
+        printLine("실행 결과");
+        printLine(prize.getPrize());
+    }
+
     public void printGameResult(PlayersPrize playersWithPrize) {
         printLine("실행 결과");
         playersWithPrize.getPlayersPrize().forEach((key, value) -> printLine("%s : %s", key.getName(), value.getPrize()));
-    }
-
-    public void printGameResult(Prize searchedPlayer) {
-        printLine("실행 결과");
-        printLine(searchedPlayer.getPrize());
     }
     public void printLine(String message) {
         System.out.println(message);

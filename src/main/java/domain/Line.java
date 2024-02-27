@@ -16,7 +16,7 @@ public class Line {
         return new Line(createSteps(playerCount, randomBooleanGenerator));
     }
 
-    public static List<Step> createSteps(PlayerCount playerCount, StepGenerator randomBooleanGenerator) {
+    private static List<Step> createSteps(PlayerCount playerCount, StepGenerator randomBooleanGenerator) {
         List<Step> steps = new ArrayList<>();
 
         for (int buildCount = 0; playerCount.isBiggerThan(buildCount); buildCount++) {
