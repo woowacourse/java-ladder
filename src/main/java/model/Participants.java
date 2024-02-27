@@ -11,12 +11,12 @@ public class Participants {
     private static final String UNDER_PARTICIPANT_SIZE
             = "참가자가 %d명 미만인 경우는 존재할 수 없습니다.".formatted(MINIMUM_PARTICIPANT_SIZE);
 
-    private final List<Participant> participants;
+    private final List<Name> participantNames;
 
     public Participants(List<String> participantsName) {
         validateNotDuplicateName(participantsName);
         validateParticipantSize(participantsName);
-        this.participants = create(participantsName);
+        this.participantNames = createNames(participantsName);
     }
 
     private void validateNotDuplicateName(List<String> participantsName) {
@@ -32,17 +32,17 @@ public class Participants {
         }
     }
 
-    private List<Participant> create(List<String> participantsName) {
+    private List<Name> createNames(List<String> participantsName) {
         return participantsName.stream()
-                .map(name -> new Participant(new Name(name)))
+                .map(Name::new)
                 .toList();
     }
 
     public int getParticipantsSize() {
-        return this.participants.size();
+        return this.participantNames.size();
     }
 
-    public List<Participant> getParticipants() {
-        return List.copyOf(participants);
+    public List<Name> getParticipants() {
+        return List.copyOf(participantNames);
     }
 }

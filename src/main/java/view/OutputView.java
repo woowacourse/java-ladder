@@ -4,7 +4,6 @@ import java.util.List;
 import model.Ladder;
 import model.LadderRow;
 import model.Name;
-import model.Participant;
 import model.Participants;
 
 public class OutputView {
@@ -17,8 +16,8 @@ public class OutputView {
     }
 
     public void printParticipantsName(Participants participants) {
-        List<Name> participantsName = participants.getParticipants().stream()
-                .map(Participant::getName)
+        List<String> participantsName = participants.getParticipants().stream()
+                .map(Name::toString)
                 .toList();
         participantsName.forEach(name -> System.out.print(NAME_FORMAT.formatted(name)));
         System.out.println();
