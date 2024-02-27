@@ -46,6 +46,29 @@ public class LadderController {
         outputView.printEndMessage();
     }
 
+    <R> R retry(final Supplier<R> supplier) {
+        validateRetryCountLimit();
+        try {
+            R value = supplier.get();
+            retryCount = 0;
+            return value;
+        } catch (Exception exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            return retry(supplier);
+        }
+    }
+
+    void retry(final Runnable runnable) {
+        validateRetryCountLimit();
+        try {
+            runnable.run();
+            retryCount = 0;
+        } catch (Exception exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            retry(runnable);
+        }
+    }
+
     private void findPlayerResult(final Ladder ladder) {
         String playerName;
         while (!(playerName = inputView.readPlayerNameForGetResult()).equals(Command.FINISH.getText())) {
@@ -78,29 +101,6 @@ public class LadderController {
 
     private LadderResults readLadderResults(final int playerCount) {
         return retry(() -> new LadderResults(inputView.readLadderResults(), playerCount));
-    }
-
-    protected <R> R retry(final Supplier<R> supplier) {
-        validateRetryCountLimit();
-        try {
-            R value = supplier.get();
-            retryCount = 0;
-            return value;
-        } catch (Exception exception) {
-            outputView.printErrorMessage(exception.getMessage());
-            return retry(supplier);
-        }
-    }
-
-    protected void retry(final Runnable runnable) {
-        validateRetryCountLimit();
-        try {
-            runnable.run();
-            retryCount = 0;
-        } catch (Exception exception) {
-            outputView.printErrorMessage(exception.getMessage());
-            retry(runnable);
-        }
     }
 
     private void validateRetryCountLimit() {

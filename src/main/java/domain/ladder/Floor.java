@@ -13,6 +13,10 @@ public class Floor {
         this.bridges = List.copyOf(bridges);
     }
 
+    public List<LadderBridge> getBridges() {
+        return bridges;
+    }
+
     private void validateBridgesNotExistSerially(List<LadderBridge> bridges) {
         for (int i = 1; i < bridges.size(); i++) {
             LadderBridge before = bridges.get(i - 1);
@@ -24,10 +28,6 @@ public class Floor {
         if (now.equals(before) && now.equals(LadderBridge.BRIDGE)) {
             throw new ValidationException(SEQUENCE_ERROR_MESSAGE);
         }
-    }
-
-    public List<LadderBridge> getBridges() {
-        return bridges;
     }
 
     public BridgeDirection getBridgeAroundAt(int playerPosition) {

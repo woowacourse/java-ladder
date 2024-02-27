@@ -26,18 +26,18 @@ public class PlayerNames {
         validateRange(playerNames);
     }
 
-    private void validateRange(List<PlayerName> playerNames) {
-        if (playerNames.size() < RANGE_MIN || playerNames.size() > RANGE_MAX) {
-            throw new ValidationException(RANGE_ERROR_MESSAGE);
-        }
-    }
-
     private void validateDuplication(List<PlayerName> playerNames) {
         int playerCount = playerNames.size();
         long distinctCount = playerNames.stream().map(PlayerName::getValue).distinct().count();
 
         if (playerCount != distinctCount) {
             throw new ValidationException(DUPLICATION_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateRange(List<PlayerName> playerNames) {
+        if (playerNames.size() < RANGE_MIN || playerNames.size() > RANGE_MAX) {
+            throw new ValidationException(RANGE_ERROR_MESSAGE);
         }
     }
 

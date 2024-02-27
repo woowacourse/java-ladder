@@ -33,18 +33,6 @@ public class Ladder {
         return playerNames.getCount() - 1;
     }
 
-    public String getLadderResultByIndex(int index) {
-        return ladderResults.getValueByIndex(index);
-    }
-
-    public List<Floor> getFloors() {
-        return floors;
-    }
-
-    public int getResultSize() {
-        return ladderResults.size();
-    }
-
     public Map<String, String> findAllPlayersLadderResultValue() {
         Map<String, String> playersLadderResult = new HashMap<>();
         for (int i = 0; i < playerNames.getCount(); i++) {
@@ -70,5 +58,17 @@ public class Ladder {
             playerPosition += direction.getValue();
         }
         return ladderResults.getValueByIndex(playerPosition);
+    }
+
+    public List<Floor> getFloors() {
+        return floors;
+    }
+
+    public String getLadderResultByIndex(int index) {
+        return ladderResults.getValueByIndex(index);
+    }
+
+    public int getResultSize() {
+        return ladderResults.size();
     }
 }

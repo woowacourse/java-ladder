@@ -26,12 +26,6 @@ public class PlayerName {
         validateFormat(name);
     }
 
-    private void validateFormat(String name) {
-        if (!PLAYER_NAME_PATTERN.matcher(name).matches()) {
-            throw new ValidationException(FORMAT_ERROR_MESSAGE);
-        }
-    }
-
     private void validateLength(String name) {
         if (name.length() < LENGTH_MIN || name.length() > LENGTH_MAX) {
             throw new ValidationException(LENGTH_ERROR_MESSAGE);
@@ -41,6 +35,12 @@ public class PlayerName {
     private void validateIsBlank(String name) {
         if (name.isBlank()) {
             throw new ValidationException(BLANK_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateFormat(String name) {
+        if (!PLAYER_NAME_PATTERN.matcher(name).matches()) {
+            throw new ValidationException(FORMAT_ERROR_MESSAGE);
         }
     }
 
