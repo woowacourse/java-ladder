@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.Players;
 import java.util.List;

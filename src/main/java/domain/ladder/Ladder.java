@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import domain.Players;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
