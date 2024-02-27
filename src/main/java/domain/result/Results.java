@@ -1,5 +1,6 @@
 package domain.result;
 
+import domain.player.Player;
 import java.util.List;
 
 public class Results {
@@ -16,6 +17,10 @@ public class Results {
             throw new IllegalArgumentException(OUT_OF_BOUND_EXCEPTION_MESSAGE);
         }
         return results.get(index);
+    }
+
+    public Result findResultByPlayer(final Player player) {
+        return findResultByIndex(player.getPosition());
     }
 
     public List<Result> getResults() {
