@@ -21,7 +21,7 @@ class LadderGamePrizeTest {
 
         // then
         assertThat(personalGameResults)
-                .extracting(PersonalGameResult::getResult)
+                .extracting(PersonalGameResult::getPrize)
                 .containsExactly("꽝", "당첨", "꽝");
     }
 }

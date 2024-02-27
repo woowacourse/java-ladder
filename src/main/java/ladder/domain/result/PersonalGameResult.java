@@ -4,14 +4,14 @@ import ladder.domain.participant.Participant;
 
 public class PersonalGameResult {
     private final Participant participant;
-    private final String result;
+    private final String prize;
 
     public PersonalGameResult(final Participant participant, final String result) {
         this.participant = participant;
-        this.result = result;
+        this.prize = result;
     }
 
-    public String getResult() {
-        return result;
+    public String getPrize() {
+        return prize;
     }
 }
