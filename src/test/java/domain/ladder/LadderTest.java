@@ -1,5 +1,6 @@
 package domain.ladder;
 
+import domain.Point;
 import domain.ladder.common.Direction;
 import domain.ladder.common.Height;
 import org.junit.jupiter.api.DisplayName;
@@ -42,6 +43,26 @@ class LadderTest {
         List<Direction> directions = ladder.getDirectionAtHorizontalIndex(0);
         List<Direction> expected = List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT, Direction.DOWN);
         assertEquals(expected, directions);
+    }
+
+    @Test
+    @DisplayName("특정 Point 의 방향을 가져온다")
+    public void getDirectionWithPoint() {
+        Point point = new Point(3, 4);
+
+        Ladder ladder = 오른쪽_왼쪽_오른쪽_왼쪽_아래_사다리_생성();
+
+        Direction direction = ladder.getDirectionWithPoint(point);
+        assertEquals(direction, Direction.DOWN);
+    }
+
+    private Ladder 오른쪽_왼쪽_오른쪽_왼쪽_아래_사다리_생성() {
+        Height height = new Height("5");
+        Integer playerCount = 5;
+        List<Direction> fixedDirectionList = IntStream.rangeClosed(0, 20)
+                                                      .mapToObj((value) -> Direction.RIGHT)
+                                                      .toList();
+        return new Ladder(height, playerCount, new FixedDirectionGenerator(fixedDirectionList));
     }
 
 

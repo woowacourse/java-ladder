@@ -1,5 +1,6 @@
 package domain.ladder;
 
+import domain.Point;
 import domain.ladder.common.Direction;
 import util.DirectionGenerator;
 import domain.ladder.common.Height;
@@ -53,4 +54,8 @@ public class Ladder {
         return height.getHeight();
     }
 
+    public Direction getDirectionWithPoint(final Point point) {
+        return ladderLegs.get(point.getColumn())
+                         .getDirectionAtIndex(point.getRow());
+    }
 }
