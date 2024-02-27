@@ -36,7 +36,7 @@
     - Prize 일급컬렉션.
 
 9. PrizeResults
-    - 각 사람의 Prize 정보를 맵형태로 가진다.
+    - 각 Player의 Prize 정보를 맵형태로 가진다.
     - Players, Prizes 의 크기가 다르면 예외를 발생시킨다.
     - 입력에 따라 종료 시킬지 아닐지를 분기한다.(all을 입력하면 false, 그 외 true)
     - Player(key)을 인자로, Prize(value)를 리턴하는 기능.
