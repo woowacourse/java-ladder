@@ -7,8 +7,8 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import model.path.FixedPathGenerator;
-import model.path.RandomPathGenerator;
+import model.path.FixedLinesGenerator;
+import model.path.RandomLinesGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,7 +21,7 @@ class LadderTest {
     void createLadder() {
         Line line = new Line(List.of(EXIST, NOT_EXIST));
         List<Line> expectedLines = List.of(line);
-        FixedPathGenerator pathGenerator = new FixedPathGenerator(expectedLines);
+        FixedLinesGenerator pathGenerator = new FixedLinesGenerator(expectedLines);
         int height = 1;
         int personCount = 2;
 
@@ -32,14 +32,14 @@ class LadderTest {
     @ParameterizedTest(name = "사다리의 높이는 1 이상이다.")
     @ValueSource(ints = {1, 5})
     void createLadder(int height) {
-        assertThatCode(() -> Ladder.from(height, 4, new RandomPathGenerator()));
+        assertThatCode(() -> Ladder.from(height, 4, new RandomLinesGenerator()));
     }
 
     @Test
     @DisplayName("사다리의 높이는 1 미만은 불가능이다.")
     void createLadderThrowException() {
         int height = 0;
-        assertThatThrownBy(() -> Ladder.from(height, 4, new RandomPathGenerator()))
+        assertThatThrownBy(() -> Ladder.from(height, 4, new RandomLinesGenerator()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리의 높이는 1 이상이어야 합니다.");
     }
@@ -49,7 +49,7 @@ class LadderTest {
     void climbLadderPersonResult() {
         int height = 5;
         int personCount = 4;
-        FixedPathGenerator pathGenerator = new FixedPathGenerator(
+        FixedLinesGenerator pathGenerator = new FixedLinesGenerator(
                 List.of(new Line(List.of(EXIST, NOT_EXIST, EXIST)),
                         new Line(List.of(NOT_EXIST, EXIST, NOT_EXIST)),
                         new Line(List.of(EXIST, NOT_EXIST, NOT_EXIST)),

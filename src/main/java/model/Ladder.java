@@ -1,7 +1,7 @@
 package model;
 
 import java.util.List;
-import model.path.PathGenerator;
+import model.path.LinesGenerator;
 
 public class Ladder {
     private final List<Line> lines;
@@ -10,10 +10,10 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder from(final int height, final int personCount, final PathGenerator pathGenerator) {
+    public static Ladder from(final int height, final int personCount, final LinesGenerator linesGenerator) {
         validateHeight(height);
         int pathCount = personCount - 1;
-        final List<Line> lines = pathGenerator.generate(height, pathCount);
+        final List<Line> lines = linesGenerator.generate(height, pathCount);
         return new Ladder(lines);
     }
 

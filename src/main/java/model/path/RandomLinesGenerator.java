@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Random;
 import model.Line;
 
-public class RandomPathGenerator implements PathGenerator {
+public class RandomLinesGenerator implements LinesGenerator {
     private final Random random = new Random();
 
     @Override
     public List<Line> generate(final int height, final int pathCount) {
         final List<Line> lines = new ArrayList<>();
-        while (lines.size() <height) {
+        while (lines.size() < height) {
             final Line generatedLine = generateLine(pathCount);
             lines.add(generatedLine);
         }

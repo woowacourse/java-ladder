@@ -3,10 +3,10 @@ package model.path;
 import java.util.List;
 import model.Line;
 
-public class FixedPathGenerator implements PathGenerator {
+public class FixedLinesGenerator implements LinesGenerator {
     private final List<Line> lines;
 
-    public FixedPathGenerator(final List<Line> lines) {
+    public FixedLinesGenerator(final List<Line> lines) {
         this.lines = lines;
     }
 
