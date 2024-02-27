@@ -62,9 +62,9 @@ class LadderTest {
         List<Boolean> expected = List.of(true, false, true);
         // when
         ladder.drawLines(() -> true);
-        // then
         List<RowPatternDto> ladderPatterns = ladder.getLadderPatterns();
         List<Boolean> actual = ladderPatterns.get(0).rowPattern();
+        // then
         assertThat(actual).containsExactlyElementsOf(expected);
     }
 
@@ -74,14 +74,14 @@ class LadderTest {
         // given
         Iterator<Boolean> it = Stream.of(true, false, false, true).iterator();
         Ladder ladder = createDummyLadder(3, 2);
-        // when
-        ladder.drawLines(it::next);
-        Map<Integer, Integer> actual = ladder.getMappedIndices();
         Map<Integer, Integer> expected = Map.of(
                 0, 2,
                 1, 0,
                 2, 1
         );
+        // when
+        ladder.drawLines(it::next);
+        Map<Integer, Integer> actual = ladder.getMappedIndices();
         // then
         assertThat(actual).containsExactlyInAnyOrderEntriesOf(expected);
     }

@@ -36,10 +36,10 @@ class LadderRowTest {
         // given
         BooleanSupplier trueSupplier = () -> true;
         LadderRow ladderRow = new LadderRow(6);
+        List<Boolean> expected = List.of(true, false, true, false, true);
         // when
         ladderRow.createPattern(trueSupplier);
         List<Boolean> actual = ladderRow.getRowPattern();
-        List<Boolean> expected = List.of(true, false, true, false, true);
         // then
         assertThat(actual).containsExactlyElementsOf(expected);
     }

@@ -39,11 +39,11 @@ class LadderIndexConverterTest {
         // given
         LadderIndexConverter ladderIndexConverter = new LadderIndexConverter(5);
         List<Boolean> rowPattern = List.of(true, false, true, false);
+        List<Integer> expected = List.of(1, 0, 3, 2, 4);
         // when
         ladderIndexConverter.swapByRowPattern(rowPattern);
         List<Integer> actual = ladderIndexConverter.getResultIndex();
         // then
-        List<Integer> expected = List.of(1, 0, 3, 2, 4);
         assertThat(actual).containsExactlyElementsOf(expected);
     }
 }

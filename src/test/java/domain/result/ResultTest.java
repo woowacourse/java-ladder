@@ -14,7 +14,6 @@ class ResultTest {
     @ValueSource(strings = {"꽝", "10000"})
     @DisplayName("결과는 정해진 글자 수 범위 안에서 정상적으로 생성된다.")
     void validCreationTest(String result) {
-        System.out.println(result.getBytes().length);
         assertDoesNotThrow(() -> new Result(result));
     }
 

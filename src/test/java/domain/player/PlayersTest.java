@@ -1,5 +1,6 @@
 package domain.player;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -62,9 +63,9 @@ class PlayersTest {
         // given
         Players players = new Players(List.of("aru", "pobi"));
         // when
-        int actual = players.getIndexByName("aru");
+        int actual = players.getIndexByName("pobi");
         // then
-        Assertions.assertThat(actual).isEqualTo(0);
+        assertThat(actual).isEqualTo(1);
     }
 
     @Test
