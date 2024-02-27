@@ -5,24 +5,23 @@ import domain.ladder.LadderBridge;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomBridgeGenerator implements BridgeGenerator {
-    private final Random random = new Random();
 
     @Override
     public List<LadderBridge> generate(int bridgeCount) {
         List<LadderBridge> bridges = new ArrayList<>(bridgeCount);
         for (int i = 0; i < bridgeCount; i++) {
-            addBridge(i, bridges, LadderBridge.getByExist(random.nextBoolean()));
+            addBridge(i, bridges);
         }
 
         return bridges;
     }
 
-    private void addBridge(int index, List<LadderBridge> bridge, LadderBridge now) {
+    private void addBridge(int index, List<LadderBridge> bridge) {
         if (index == 0) {
-            bridge.add(now);
+            bridge.add(getRandomBridge());
             return;
         }
         bridge.add(generateBridge(bridge.get(index - 1)));
@@ -32,6 +31,10 @@ public class RandomBridgeGenerator implements BridgeGenerator {
         if(before.equals(LadderBridge.BRIDGE)) {
             return LadderBridge.NONE;
         }
-        return LadderBridge.getByExist(random.nextBoolean());
+        return getRandomBridge();
+    }
+
+    private LadderBridge getRandomBridge() {
+        return LadderBridge.getByExist(ThreadLocalRandom.current().nextBoolean());
     }
 }
