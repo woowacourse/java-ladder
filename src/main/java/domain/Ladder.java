@@ -25,15 +25,13 @@ public class Ladder {
         }
     }
 
-    public List<Line> makeLadder(int columnLength, BooleanGenerator booleanGenerator) {
+    public void makeLadder(int columnLength, BooleanGenerator booleanGenerator) {
         for (int i = 0; i < height; i++) {
             Line line = new Line(columnLength);
             line.makeLine(booleanGenerator);
 
             ladder.add(line);
         }
-
-        return ladder;
     }
 
     public void playLadder(Results results, Participants participants) {

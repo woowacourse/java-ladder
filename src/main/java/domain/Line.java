@@ -14,7 +14,7 @@ public class Line {
         this.columnLength = columnLength;
     }
 
-    public List<LadderItem> makeLine(BooleanGenerator booleanGenerator) {
+    public void makeLine(BooleanGenerator booleanGenerator) {
         // 0번째 point는 이전 point의 영향을 받지 않으므로 미리 추가
         points.add(makeRandomLadderItem(booleanGenerator));
 
@@ -23,8 +23,6 @@ public class Line {
 
             points.add(decideConnectable(position, isConnectable));
         }
-
-        return points;
     }
 
     private LadderItem makeRandomLadderItem(BooleanGenerator booleanGenerator) {

@@ -27,8 +27,9 @@ class LineTest {
     void makeLineTest(boolean actual, List<LadderItem> expected) {
         TestBooleanGenerator testDirectionGenerator = new TestBooleanGenerator(actual);
         Line line = new Line(4);
+        line.makeLine(testDirectionGenerator);
 
-        assertThat(line.makeLine(testDirectionGenerator)).isEqualTo(expected);
+        assertThat(line).extracting("points").isEqualTo(expected);
     }
 
     @DisplayName("라인 상에서 이동 결과 탐색")
