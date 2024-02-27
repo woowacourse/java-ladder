@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import ladder.util.PointsGenerator;
 
@@ -36,6 +37,13 @@ public class Line {
         if (hasConsecutiveUsage) {
             throw new IllegalArgumentException("사다리 타기가 정상적으로 동작하려면 좌표가 연속적으로 사용되어서는 안 됩니다.");
         }
+    }
+
+    public List<Integer> findUsedPointIndexes() {
+        return IntStream.range(0, points.size())
+                .filter(i -> points.get(i).isUsed())
+                .boxed()
+                .collect(Collectors.toList());
     }
 
     public List<Point> getPoints() {
