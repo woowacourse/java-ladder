@@ -3,8 +3,9 @@ package view;
 import domain.Line;
 import domain.Player;
 import domain.Players;
+import domain.Prize;
+import domain.Prizes;
 import domain.Step;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputFormatter {
@@ -24,13 +25,14 @@ public class OutputFormatter {
         return "    " + line;
     }
 
-    public String toPrize(List<String> rawPrizes) {
-        return rawPrizes.stream()
+    public String toPrize(Prizes rawPrizes) {
+        return rawPrizes.getPrizes().stream()
                 .map(this::getPrizeUnit)
                 .collect(Collectors.joining());
     }
 
-    private String getPrizeUnit(String prize) {
+    private String getPrizeUnit(Prize rawPrize) {
+        String prize = rawPrize.getPrize();
         if (prize.length() < 5) {
             String leftBlank = SPACE.repeat(4 - prize.length());
             prize = leftBlank + prize + SPACE;

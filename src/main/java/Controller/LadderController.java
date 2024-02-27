@@ -5,6 +5,8 @@ import domain.LadderGame;
 import domain.Player;
 import domain.PlayerCount;
 import domain.Players;
+import domain.Prize;
+import domain.Prizes;
 import domain.RandomStepGenerator;
 import java.util.List;
 import java.util.Map;
@@ -24,25 +26,31 @@ public class LadderController {
 
     public void run() {
         final Players players = readWithRetry(this::readPlayers);
-        final List<String> prizes = readWithRetry(inputView::inputPrizes, players.getCount());
+        final Prizes prizes = readWithRetry(this::readPrizes, players);
         final int height = readWithRetry(inputView::inputHeight);
 
         final Ladder ladder = Ladder.create(height, PlayerCount.fromPlayers(players), new RandomStepGenerator());
         outputView.printLadderMap(players, ladder, prizes);
 
         final LadderGame ladderGame = new LadderGame(ladder, players, prizes);
-
-        showGameResult(ladderGame.getPlayersWithPrize2(), players);
+        showGameResult(ladderGame.getPlayersWithPrize(), players);
     }
 
-    private void showGameResult(Map<Player, String> playersWithPrize2, Players players) { // TODO: prize 원시값 포장
-        String inputName = inputView.inputSearchingPlayer();
+    private Prizes readPrizes(Players players) {
+        List<String> prizes = inputView.inputPrizes(players.getCount());
+        return Prizes.from(prizes);
+    }
+
+    private void showGameResult(Map<Player, Prize> playersWithPrize2, Players players) {
+        String inputName = readWithRetry(inputView::inputSearchingPlayer);
+        Player searchedPlayer = players.search(inputName);      // TODO: 재입력 적용
+
         if (inputName.equals("all")) {
             outputView.printGameResult(playersWithPrize2);
         }
         if (!inputName.equals("all")) {
-            Player searchedPlayer = players.search(inputName);
-            String searchedPrize = playersWithPrize2.get(searchedPlayer);
+
+            Prize searchedPrize = playersWithPrize2.get(searchedPlayer);
             outputView.printGameResult(searchedPrize);
             showGameResult(playersWithPrize2, players);
         }

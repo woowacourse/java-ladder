@@ -4,7 +4,8 @@ import domain.Ladder;
 import domain.Line;
 import domain.Player;
 import domain.Players;
-import java.util.List;
+import domain.Prize;
+import domain.Prizes;
 import java.util.Map;
 
 public class OutputView {
@@ -18,7 +19,7 @@ public class OutputView {
         return new OutputView(new OutputFormatter());
     }
 
-    public void printLadderMap(Players rawPlayers, Ladder ladder, List<String> prizes) {
+    public void printLadderMap(Players rawPlayers, Ladder ladder, Prizes prizes) {
         printLine("실행결과");
         printNames(rawPlayers);
         printLadder(ladder);
@@ -34,7 +35,7 @@ public class OutputView {
         ladder.getLines().forEach(this::printLadderLine);
     }
 
-    private void printPrizes(List<String> rawPrizes) {
+    private void printPrizes(Prizes rawPrizes) {
         String prizes = outputFormatter.toPrize(rawPrizes);
         printLine(prizes);
     }
@@ -44,14 +45,14 @@ public class OutputView {
         printLine(line);
     }
 
-    public void printGameResult(Map<Player, String> playersWithPrize) {
+    public void printGameResult(Map<Player, Prize> playersWithPrize) {
         printLine("실행 결과");
         playersWithPrize.forEach((key, value) -> printLine("%s : %s", key.getName(), value));
     }
 
-    public void printGameResult(String searchedPlayer) {
+    public void printGameResult(Prize searchedPlayer) {
         printLine("실행 결과");
-        printLine(searchedPlayer);
+        printLine(searchedPlayer.getPrize());
     }
     public void printLine(String message) {
         System.out.println(message);
