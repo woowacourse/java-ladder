@@ -31,4 +31,18 @@ class LadderGameTest {
         );
     }
 
+    @Test
+    @DisplayName("모든 참여자의 결과를 알려준다.")
+    void findAllLadderGameResults() {
+        LineGenerator lineGenerator = new LineGenerator(() -> true);
+        List<Line> lines = Stream.generate(() -> new Line(lineGenerator.makeLine(3)))
+                .limit(4)
+                .toList();
+
+        Ladder ladder = new Ladder(new ArrayList<>(lines));
+
+        LadderGame ladderGame = new LadderGame(new Players(List.of("포비", "왼손", "준")), new LadderResults(List.of("꽝", "5000", "3000")), ladder);
+
+        assertEquals(ladderGame.findAllLadderGameResults(),List.of(new LadderResult("꽝"), new LadderResult("5000"), new LadderResult("3000")));
+    }
 }

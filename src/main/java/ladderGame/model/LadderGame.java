@@ -1,5 +1,8 @@
 package ladderGame.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LadderGame {
     private final Ladder ladder;
     private final Players players;
@@ -20,5 +23,10 @@ public class LadderGame {
 
         int resultIndex = ladder.findLadderResultIndex(startIndex);
         return ladderResults.getLadderResults().get(resultIndex);
+    }
+
+    public List<LadderResult> findAllLadderGameResults() {
+        List<LadderResult> results = new ArrayList<>();
+        return results;
     }
 }
