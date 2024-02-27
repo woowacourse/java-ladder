@@ -2,8 +2,8 @@ package view;
 
 public enum LadderElement {
     COLUMN("|"),
-    ROW("-".repeat(5)),
-    EMPTY(" ".repeat(5));
+    ROW("-----"),
+    EMPTY("     ");
 
     private final String symbol;
 
