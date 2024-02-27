@@ -30,7 +30,7 @@ public class Ladder {
         return ladderSteps;
     }
 
-    public int playAt(int startPosition) {
+    public int playFrom(int startPosition) {
         int nextPosition = -1;
         for (LadderStep step: ladderSteps) {
             nextPosition = step.findNextParticipantPosition(startPosition);

@@ -38,7 +38,7 @@ public class LadderTest {
         final Ladder ladder = new Ladder(height, stepWidth, ladderStepGenerator);
 
         // when
-        int finalPosition = ladder.playAt(startPosition);
+        int finalPosition = ladder.playFrom(startPosition);
 
         // then
         assertThat(finalPosition).isEqualTo(expectedPosition);

@@ -42,7 +42,7 @@ public class Participants {
 
     public void playAll(final Ladder ladder) {
         for (final Participant participant: participants) {
-            int finalPosition = ladder.playAt(participant.getPosition());
+            int finalPosition = ladder.playFrom(participant.getPosition());
             participant.setFinalPosition(finalPosition);
         }
     }
