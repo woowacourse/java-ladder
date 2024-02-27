@@ -8,7 +8,15 @@ public class OutputView {
         System.out.println(String.join("\n", ladder));
     }
 
-    public void printResult(String result) {
+    public void printParticipantLineUp(String result) {
         System.out.println("\n실행 결과\n" + result);
+    }
+
+    public void printLadderOutput(List<String> ladder) {
+        System.out.println(String.join("\n", ladder));
+    }
+
+    public void printResultsOutput(String result) {
+        System.out.println(result);
     }
 }

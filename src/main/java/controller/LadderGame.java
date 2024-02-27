@@ -28,7 +28,6 @@ public class LadderGame {
         Ladder ladder = new Ladder(inputView.inputHeight());
 
         ladder.makeLadder(participants.getParticipantsCount(), booleanGenerator);
-
         printLadder(ladder, participants, results);
 
         ladder.playLadder(results, participants);
@@ -43,50 +42,50 @@ public class LadderGame {
     }
 
     private void printLadder(Ladder ladder, Participants participants, Results results) {
-        List<String> output = new ArrayList<>();
-        List<Line> createdLadder = ladder.getLadder();
-
-        createParticipantsLineUp(output, participants.getParticipants());
-        createLadderOutput(output, createdLadder);
-        createResultsOutput(output, results);
-
-        outputView.printLadder(output);
+        printParticipantsLineUp(participants);
+        printLadderOutput(ladder);
+        printResultsOutput(results);
     }
 
-    private void createParticipantsLineUp(List<String> result, List<Participant> participants) {
+    private void printParticipantsLineUp(Participants participants) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Participant participant : participants) {
+
+        for (Participant participant : participants.getParticipants()) {
             stringBuilder.append(String.format("%5s ", participant.getName()));
         }
 
-        result.add(stringBuilder.toString());
+        outputView.printParticipantLineUp(stringBuilder.toString());
     }
 
-    private void createLadderOutput(List<String> result, List<Line> createdLadder) {
-        for (Line line : createdLadder) {
+    private void printLadderOutput(Ladder ladder) {
+        List<String> output = new ArrayList<>();
+
+        for (Line line : ladder.getLadder()) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("    |");
 
-            createLine(line, stringBuilder);
+            createLineOutput(line, stringBuilder);
 
-            result.add(stringBuilder.toString());
+            output.add(stringBuilder.toString());
         }
+
+        outputView.printLadderOutput(output);
     }
 
-    private void createLine(Line line, StringBuilder stringBuilder) {
+    private void createLineOutput(Line line, StringBuilder stringBuilder) {
         for (LadderItem point : line.getPoints()) {
             stringBuilder.append(LadderShape.getShapeByLadderItem(point));
         }
     }
 
-    private void createResultsOutput(List<String> result, Results results) {
+    private void printResultsOutput(Results results) {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (String gameResult : results.getResults()) {
             stringBuilder.append(String.format("%5s ", gameResult));
         }
 
-        result.add(stringBuilder.toString());
+        outputView.printResultsOutput(stringBuilder.toString());
     }
 
     private void printLadderGameResult(Participants participants, Results results) {
@@ -98,7 +97,7 @@ public class LadderGame {
             keepInput = !name.isEmpty();
 
             if (keepInput) {
-                outputView.printResult(getLadderGameResult(name, participants, results));
+                outputView.printResultsOutput(getLadderGameResult(name, participants, results));
             }
         }
     }
