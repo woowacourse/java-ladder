@@ -10,9 +10,9 @@ public class Ladder {
         this.lines = new ArrayList<>(lines);
     }
 
-    public List<List<Boolean>> getScaffolds() {
+    public List<List<Connection>> getConnections() {
         return lines.stream()
-                .map(Line::getScaffold)
+                .map(Line::getConnections)
                 .toList();
     }
 }

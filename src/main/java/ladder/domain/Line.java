@@ -7,21 +7,29 @@ import java.util.stream.IntStream;
 import static ladder.constant.ErrorMessage.CONTINUE_SCAFFOLD;
 
 public class Line {
-    private final List<Boolean> scaffold;
+    private final List<Connection> connections;
 
-    public Line(List<Boolean> scaffold) {
-        this.scaffold = new ArrayList<>(scaffold);
-        validateContinue(this.scaffold);
+    public Line(List<Connection> connections) {
+        this.connections = new ArrayList<>(connections);
+        validateContinue(this.connections);
     }
 
-    private static void validateContinue(List<Boolean> scaffold) {
-        if (IntStream.range(0, scaffold.size() - 1)
-                .anyMatch(i -> scaffold.get(i) && scaffold.get(i + 1))) {
+    private void validateContinue(List<Connection> connections) {
+        if (isContinue(connections)) {
             throw new IllegalArgumentException(CONTINUE_SCAFFOLD.generate());
         }
     }
 
-    public List<Boolean> getScaffold() {
-        return List.copyOf(scaffold);
+    private boolean isContinue(List<Connection> connections) {
+        return IntStream.range(0, connections.size() - 1)
+                .anyMatch(order -> isRung(order) && isRung(order + 1));
+    }
+
+    private boolean isRung(int order) {
+        return Connection.RUNG.equals(connections.get(order));
+    }
+
+    public List<Connection> getConnections() {
+        return List.copyOf(connections);
     }
 }

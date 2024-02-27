@@ -15,21 +15,21 @@ public class LineTest {
     void createTest() {
         // given
         int count = 3;
-        List<Boolean> expected = List.of(true, false, true);
+        List<Connection> expected = List.of(Connection.RUNG, Connection.EMPTY, Connection.RUNG);
 
         // when
-        Line line = new Line(List.of(true, false, true));
+        Line line = new Line(List.of(Connection.RUNG, Connection.EMPTY, Connection.RUNG));
 
         // then
         assertThat(line)
-                .extracting("scaffold")
+                .extracting("connections")
                 .isEqualTo(expected);
     }
 
     @DisplayName("연속으로 발판이 있는 경우 예외를 발생시킨다.")
     @Test
     void continueScaffoldExceptionTest() {
-        assertThatThrownBy(() -> new Line(List.of(true, true, false)))
+        assertThatThrownBy(() -> new Line(List.of(Connection.RUNG, Connection.RUNG, Connection.EMPTY)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

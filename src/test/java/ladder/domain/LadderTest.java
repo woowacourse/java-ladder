@@ -14,15 +14,15 @@ public class LadderTest {
     void createTest() {
         // given
         List<Line> expected = List.of(
-                new Line(List.of(true, false, true)),
-                new Line(List.of(false, true, false)),
-                new Line(List.of(true, false, false)));
+                new Line(List.of(Connection.RUNG, Connection.EMPTY, Connection.RUNG)),
+                new Line(List.of(Connection.EMPTY, Connection.RUNG, Connection.EMPTY)),
+                new Line(List.of(Connection.RUNG, Connection.EMPTY, Connection.EMPTY)));
 
         // when
         Ladder ladder = new Ladder(List.of(
-                new Line(List.of(true, false, true)),
-                new Line(List.of(false, true, false)),
-                new Line(List.of(true, false, false))));
+                new Line(List.of(Connection.RUNG, Connection.EMPTY, Connection.RUNG)),
+                new Line(List.of(Connection.EMPTY, Connection.RUNG, Connection.EMPTY)),
+                new Line(List.of(Connection.RUNG, Connection.EMPTY, Connection.EMPTY))));
 
         // then
         assertThat(ladder)

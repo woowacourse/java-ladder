@@ -1,24 +1,24 @@
 package ladder.domain.creator;
 
+import ladder.domain.Connection;
 import ladder.domain.Line;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 
 public class RandomLineCreator {
-    private static final Random RANDOM = new Random();
-
     public Line create(int width) {
-        List<Boolean> scaffolds = new ArrayList<>(Collections.nCopies(width, false));
+        List<Connection> randomConnections = new ArrayList<>(Collections.nCopies(width, Connection.EMPTY));
 
         for (int index : shuffleOrder(width)) {
-            placeRandomScaffold(scaffolds, index);
+            placeRandomScaffold(randomConnections, index);
         }
 
-        return new Line(scaffolds);
+        return new Line(randomConnections);
     }
 
     private List<Integer> shuffleOrder(int width) {
@@ -26,22 +26,27 @@ public class RandomLineCreator {
                 .boxed()
                 .toList());
         Collections.shuffle(order);
+
         return order;
     }
 
-    private void placeRandomScaffold(List<Boolean> scaffolds, int index) {
-        if (isLeftExist(scaffolds, index) || isRightExist(scaffolds, index)) {
+    private void placeRandomScaffold(List<Connection> randomConnections, int index) {
+        if (isLeftExist(randomConnections, index) || isRightExist(randomConnections, index)) {
             return;
         }
 
-        scaffolds.set(index, RANDOM.nextBoolean());
+        List<Connection> connections = Arrays.stream(Connection.values())
+                .toList();
+        Connection randomConnection = connections.get(ThreadLocalRandom.current().nextInt(connections.size()));
+
+        randomConnections.set(index, randomConnection);
     }
 
-    private boolean isLeftExist(List<Boolean> line, int index) {
-        return index - 1 >= 0 && line.get(index - 1);
+    private boolean isLeftExist(List<Connection> randomConnections, int index) {
+        return index - 1 >= 0 && Connection.RUNG.equals(randomConnections.get(index - 1));
     }
 
-    private boolean isRightExist(List<Boolean> line, int index) {
-        return index + 1 < line.size() && line.get(index + 1);
+    private boolean isRightExist(List<Connection> randomConnections, int index) {
+        return index + 1 < randomConnections.size() && Connection.RUNG.equals(randomConnections.get(index + 1));
     }
 }
