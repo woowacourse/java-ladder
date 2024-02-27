@@ -33,7 +33,7 @@ public class LadderGame {
         return LadderBuilder.getResult(players, ladder, winnings);
     }
 
-    public List<String> getResult() {
+    public List<String> getClimbedNames() {
         List<Name> names = players.getPlayers();
         for (Line line : ladder.getLadder()) {
             climb(line, names);

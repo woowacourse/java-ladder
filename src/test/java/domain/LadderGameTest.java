@@ -29,12 +29,12 @@ public class LadderGameTest {
 
     @DisplayName("사다리 타기 결과의 순서와 상응하는 이름들을 List로 반환한다.")
     @Test
-    void getResultTest() {
+    void getClimbedNamesTest() {
         List<String> names = List.of("1", "2");
         CustomGenerator customGenerator = new CustomGenerator(List.of(false, true));
         Winnings winnings = new Winnings(List.of("꽝", "당첨"));
         LadderGame ladderGame = new LadderGame(names, new Height(1), winnings, customGenerator);
-        Assertions.assertThat(ladderGame.getResult())
+        Assertions.assertThat(ladderGame.getClimbedNames())
                 .isEqualTo(List.of("2", "1"));
     }
 }
