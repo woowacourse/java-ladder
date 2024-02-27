@@ -12,6 +12,9 @@ public class InputView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
+    private InputView() {
+    }
+
     public static Players inputNames() {
         return ExceptionHandler.run(() -> {
             System.out.println("\n참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
@@ -20,14 +23,14 @@ public class InputView {
         });
     }
 
+    private static String readLine() {
+        return SCANNER.nextLine().replace(" ", "");
+    }
+
     public static Height inputHeight() {
         return ExceptionHandler.run(() -> {
             System.out.println("\n최대 사다리 높이는 몇 개인가요?");
             return new Height(Integer.parseInt(readLine()));
         });
-    }
-
-    private static String readLine() {
-        return SCANNER.nextLine().replace(" ", "");
     }
 }

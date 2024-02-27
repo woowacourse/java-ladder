@@ -34,7 +34,7 @@ public class LadderLevelBuilder {
     }
 
     public LadderLevel build() {
-        IntStream.range(0, size).forEach((__) -> ladderLevel.add(LadderDirection.NONE));
+        IntStream.range(0, size).forEach(__ -> ladderLevel.add(LadderDirection.NONE));
         IntStream.range(0, size - 1).forEach(this::selectDirectionIfNotExistsAt);
         return new LadderLevel(ladderLevel);
     }

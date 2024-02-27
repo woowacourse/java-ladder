@@ -11,7 +11,7 @@ public class LadderLevel {
         ladderLevel = ladderDirections;
     }
 
-    public List<LadderDirection> toLadderDirectionList() {
+    public List<LadderDirection> getLadderDirections() {
         return Collections.unmodifiableList(ladderLevel);
     }
 }

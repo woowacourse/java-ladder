@@ -16,7 +16,7 @@ public class Ladder {
     public static Ladder of(Players players, Height height, LadderDirectionSelector ladderDirectionSelector) {
         List<LadderLevel> ladder = new ArrayList<>();
         IntStream.range(0, height.value()).forEach(
-                (__) -> ladder.add(LadderLevelBuilder.builder()
+                __ -> ladder.add(LadderLevelBuilder.builder()
                         .size(players.count())
                         .directionSelector(ladderDirectionSelector)
                         .build())
@@ -24,7 +24,7 @@ public class Ladder {
         return new Ladder(ladder);
     }
 
-    public List<LadderLevel> toLadderLevelList() {
+    public List<LadderLevel> getLadderLevels() {
         return Collections.unmodifiableList(ladder);
     }
 }

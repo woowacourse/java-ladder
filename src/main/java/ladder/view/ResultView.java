@@ -16,6 +16,9 @@ public class ResultView {
     private static final String LINE = "|-----";
     private static final String EMPTY_LINE = "|     ";
 
+    private ResultView() {
+    }
+
     public static void printResult(Players players, Ladder ladder) {
         System.out.println("\n실행 결과\n");
         printPlayers(players);
@@ -24,17 +27,17 @@ public class ResultView {
 
     private static void printPlayers(Players players) {
         StringJoiner stringJoiner = new StringJoiner(NAME_DELIMITER);
-        players.stream().forEach(player -> stringJoiner.add(NAME_FORMAT.formatted(player.name())));
+        players.getPlayers().forEach(player -> stringJoiner.add(NAME_FORMAT.formatted(player.name())));
         System.out.println(stringJoiner);
     }
 
     private static void printLadder(Ladder ladder) {
-        ladder.toLadderLevelList().forEach(ResultView::printLadderLevel);
+        ladder.getLadderLevels().forEach(ResultView::printLadderLevel);
     }
 
     private static void printLadderLevel(LadderLevel ladderLevel) {
         System.out.print("\t");
-        ladderLevel.toLadderDirectionList().forEach(ResultView::printLine);
+        ladderLevel.getLadderDirections().forEach(ResultView::printLine);
         System.out.println();
     }
 
