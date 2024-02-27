@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import laddergame.domain.gameelements.people.Name;
 import laddergame.domain.gameelements.people.People;
 import laddergame.domain.gameelements.results.Result;
 import laddergame.domain.gameelements.results.Results;
@@ -7,17 +8,24 @@ import laddergame.domain.ladder.Connection;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.RowLine;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 import static laddergame.domain.ladder.Connection.CONNECTED;
 
 public class LadderGame {
-    private final List<String> gameResult;
+    private final Map<Name, Result> playerGameResult;
 
     LadderGame(People people, Ladder ladder, Results results) {
         validateSameLength(people, results);
-        this.gameResult = initializeGameResult(ladder, results);
+        List<Result> gameResult = initializeGameResult(ladder, results);
+
+        playerGameResult = new LinkedHashMap<>();
+        for (int i = 0; i < people.getNames().size(); i++) {
+            playerGameResult.put(people.getNames().get(i), gameResult.get(i));
+        }
     }
 
     private void validateSameLength(People people, Results results) {
@@ -26,11 +34,10 @@ public class LadderGame {
         }
     }
 
-    private List<String> initializeGameResult(Ladder ladder, Results results) {
-        List<Result> gameResults = results.getResults();
-        List<Integer> resultIdx = moveByLadder(ladder, gameResults.size());
+    private List<Result> initializeGameResult(Ladder ladder, Results results) {
+        List<Integer> resultIdx = moveByLadder(ladder, results.getResults().size());
         return resultIdx.stream()
-                .map(idx -> gameResults.get(idx).getResult())
+                .map(idx -> results.getResults().get(idx))
                 .toList();
     }
 
@@ -70,7 +77,7 @@ public class LadderGame {
         return playerPosition;
     }
 
-    public List<String> getGameResult() {
-        return gameResult;
+    public Map<Name, Result> getPlayerGameResult() {
+        return playerGameResult;
     }
 }

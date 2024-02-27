@@ -19,17 +19,17 @@ public class Element {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj ==this){
+        if (obj == this) {
             return true;
         }
-        if (obj instanceof Element){
-            Element otherElement = (Element)obj;
+        if (obj instanceof Element otherElement) {
             return element.equals(otherElement.element);
         }
         return false;
     }
+
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return Objects.hash(element);
     }
 
