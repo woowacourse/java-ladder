@@ -14,4 +14,9 @@ public class PersonalGameResult {
     public String getPrize() {
         return prize;
     }
+
+    public boolean isResultOf(final String participantName) {
+        final String owner = participant.getName();
+        return owner.equals(participantName);
+    }
 }
