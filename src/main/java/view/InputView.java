@@ -6,15 +6,15 @@ import java.util.Scanner;
 
 public class InputView {
 
-    private static final String NAME_SPLIT_DELIMITER = ",";
+    private static final String SPLIT_DELIMITER = ",";
 
     private final Scanner scanner = new Scanner(System.in);
 
     public List<String> readTokens() {
         String names = scanner.nextLine();
-        String[] splitNames = names.split(NAME_SPLIT_DELIMITER);
+        String[] splitTokens = names.split(SPLIT_DELIMITER);
 
-        return Arrays.stream(splitNames)
+        return Arrays.stream(splitTokens)
                 .toList();
     }
 
