@@ -56,16 +56,6 @@ public class LadderGame {
         return new Height(inputView.inputHeight());
     }
 
-    private <T> T retryUntilSuccess(Supplier<T> supplier) {
-        while (true) {
-            try {
-                return supplier.get();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
     private void printLadder(Ladder ladder, Players players, Prizes prizes) {
         List<String> result = new ArrayList<>();
         List<Line> createdLadder = ladder.getLadder();
@@ -76,33 +66,6 @@ public class LadderGame {
 
         outputView.printLadderResultMessage();
         outputView.printLadder(result);
-    }
-
-    private void printLadderGameResult(Ladder ladder, Players players, Prizes prizes) {
-        String input = inputView.inputPlayerName();
-
-        outputView.printResultMessage();
-        if (input.equals("all")) {
-            printAllPlayerResults(ladder, players, prizes);
-            return;
-        }
-
-        printPlayerResult(ladder, players, prizes, input);
-    }
-
-    private void printAllPlayerResults(Ladder ladder, Players players, Prizes prizes) {
-        Map<String, String> results = new HashMap<>();
-        for (Player player : players.getPlayers()) {
-            String name = player.getName();
-            int resultPosition = ladder.playLadderGame(players.findPositionOfPlayer(name));
-            results.put(name, prizes.findPrizeByPosition(resultPosition));
-        }
-        outputView.printAllPlayerResults(results);
-    }
-
-    private void printPlayerResult(Ladder ladder, Players players, Prizes prizes, String name) {
-        int resultPosition = ladder.playLadderGame(players.findPositionOfPlayer(name));
-        outputView.printPlayerResult(prizes.findPrizeByPosition(resultPosition));
     }
 
     private void createPlayersLineUp(List<String> result, List<Player> players) {
@@ -138,6 +101,43 @@ public class LadderGame {
     private void createLine(Line line, StringBuilder stringBuilder) {
         for (LineItem point : line.getLineItems()) {
             stringBuilder.append(point.getShape());
+        }
+    }
+
+    private void printLadderGameResult(Ladder ladder, Players players, Prizes prizes) {
+        String input = retryUntilSuccess(() -> inputView.inputPlayerName(players.getPlayerNames()));
+
+        outputView.printResultMessage();
+        if (input.equals("all")) {
+            printAllPlayerResults(ladder, players, prizes);
+            return;
+        }
+
+        printPlayerResult(ladder, players, prizes, input);
+    }
+
+    private void printAllPlayerResults(Ladder ladder, Players players, Prizes prizes) {
+        Map<String, String> results = new HashMap<>();
+        for (Player player : players.getPlayers()) {
+            String name = player.getName();
+            int resultPosition = ladder.playLadderGame(players.findPositionOfPlayer(name));
+            results.put(name, prizes.findPrizeByPosition(resultPosition));
+        }
+        outputView.printAllPlayerResults(results);
+    }
+
+    private void printPlayerResult(Ladder ladder, Players players, Prizes prizes, String name) {
+        int resultPosition = ladder.playLadderGame(players.findPositionOfPlayer(name));
+        outputView.printPlayerResult(prizes.findPrizeByPosition(resultPosition));
+    }
+
+    private <T> T retryUntilSuccess(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }

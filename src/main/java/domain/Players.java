@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Players {
 
@@ -37,14 +38,10 @@ public class Players {
                 .orElseThrow();
     }
 
-    public boolean isContained(String name) {
-        boolean isContained = false;
-        for (Player player : players) {
-            if (player.getName().equals(name)) {
-                return true;
-            }
-        }
-        return isContained;
+    public List<String> getPlayerNames() {
+        return players.stream()
+                .map(Player::getName)
+                .collect(Collectors.toList());
     }
 
     public int getPlayersCount() {
