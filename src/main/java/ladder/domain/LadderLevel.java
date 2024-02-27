@@ -2,17 +2,18 @@ package ladder.domain;
 
 import static ladder.domain.Direction.NONE;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class LadderLevel {
-    private final LinkedList<Direction> ladderLevel;
+    private final List<Direction> ladderLevel;
 
     private Direction latest;
 
     public LadderLevel(int size, DirectionGenerator directionGenerator) {
-        ladderLevel = new LinkedList<>();
+        ladderLevel = new ArrayList<>();
         latest = NONE;
         IntStream.range(0, size)
                 .forEach((index) -> addDirection(directionGenerator));
@@ -34,7 +35,7 @@ public class LadderLevel {
 
     private void replaceLast() {
         if (latest.isInvalidLastDirection()) {
-            ladderLevel.removeLast();
+            ladderLevel.remove(ladderLevel.size() - 1);
             ladderLevel.add(NONE);
         }
     }
