@@ -1,6 +1,7 @@
 package domain.lines;
 
 import domain.BooleanGenerator;
+import domain.Player;
 import domain.line.Line;
 import domain.line.Point;
 
@@ -31,6 +32,13 @@ public class Lines {
         this.lines = IntStream.range(0, height)
                 .mapToObj(index -> new Line(createPoints()))
                 .toList();
+    }
+
+    public void climb(Player player) {
+        getLines().forEach(line -> {
+            int currPosition = player.getPosition();
+            player.move(line.nextPosition(currPosition));
+        });
     }
 
     private List<Point> createPoints() {

@@ -1,5 +1,7 @@
 package domain.line;
 
+import domain.Direction;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -12,6 +14,16 @@ public class Line {
     public Line(List<Point> points) {
         validateNoDuplicatePoints(points);
         this.points = points;
+    }
+
+    public Direction nextPosition(int position) {
+        if (position < points.size() && points.get(position).isConnected()) {
+            return Direction.RIGHT;
+        }
+        if (position > 0 && points.get(position - 1).isConnected()) {
+            return Direction.LEFT;
+        }
+        return Direction.DOWN;
     }
 
     private void validateNoDuplicatePoints(List<Point> points) {

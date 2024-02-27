@@ -2,6 +2,7 @@ package domain;
 
 public enum Direction {
     LEFT,
-    RIGHT
+    RIGHT,
+    DOWN,
     ;
 }

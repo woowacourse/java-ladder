@@ -9,7 +9,7 @@ public class Player {
         this.position = new Position(position);
     }
 
-    void move(Direction direction) {
+    public void move(Direction direction) {
         position.move(direction);
     }
 
