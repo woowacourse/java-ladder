@@ -4,9 +4,7 @@ import domain.*;
 import view.InputView;
 import view.OutputView;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Supplier;
 
 public class LadderGame {
@@ -26,7 +24,7 @@ public class LadderGame {
         final Height height = readWithRetry(this::readHeight);
 
         final Ladder ladder = new Ladder(height, PlayerCount.from(players.getCount()));
-        final LadderResults ladderResults = createLadderResults(players, ladder, targets);
+        final LadderResults ladderResults = LadderResults.of(players, ladder, targets);
         
         outputView.printResult(players, ladder, targets);
         findLadderResult(players, ladderResults);
@@ -45,14 +43,6 @@ public class LadderGame {
     private Height readHeight() {
         final int height = inputView.inputHeight();
         return new Height(height);
-    }
-
-    private LadderResults createLadderResults(Players players, Ladder ladder, Targets targets) {
-        Map<Player, Target> results = new HashMap<>();
-        for (Player player : players.getPlayers()) {
-            results.put(player, targets.getPrize(ladder.climbLadder(players.getOrder(player))));
-        }
-        return new LadderResults(results);
     }
 
     private void findLadderResult(Players players, LadderResults ladderResults) {
