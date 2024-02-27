@@ -1,8 +1,10 @@
 package ladder.view;
 
+import java.util.List;
 import ladder.dto.LadderDto;
 import ladder.dto.LineDto;
-import ladder.dto.PlayerNamesDto;
+import ladder.dto.PlayersDto;
+import ladder.dto.ProductsDto;
 
 public class OutputView {
 
@@ -11,10 +13,11 @@ public class OutputView {
     private static final String BLANK_STICK = "     |";
     private static final String ERROR_PREFIX = "[ERROR] ";
 
-    public void printResult(LadderDto ladderDto, PlayerNamesDto playerNamesDto) {
+    public void printResult(LadderDto ladderDto, PlayersDto playersDto, ProductsDto productsDto) {
         printResultTitle();
-        printPlayerNames(playerNamesDto);
+        printNames(playersDto.names());
         printLadder(ladderDto);
+        printNames(productsDto.names());
     }
 
     private void printResultTitle() {
@@ -23,9 +26,9 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printPlayerNames(PlayerNamesDto playerNames) {
-        for (String playerName : playerNames.playerNames()) {
-            System.out.printf("%5s ", playerName);
+    private void printNames(List<String> names) {
+        for (String name : names) {
+            System.out.printf("%5s ", name);
         }
         System.out.println();
     }

@@ -10,7 +10,8 @@ import ladder.domain.linegenerator.SticksPatternGenerator;
 import ladder.domain.linegenerator.RandomBooleanSupplier;
 import ladder.dto.LadderDto;
 import ladder.dto.LineDto;
-import ladder.dto.PlayerNamesDto;
+import ladder.dto.PlayersDto;
+import ladder.dto.ProductsDto;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -26,9 +27,9 @@ public class LadderGameController {
         StickListGenerator stickListGenerator = new SticksPatternGenerator(new RandomBooleanSupplier());
         Ladder ladder = Ladder.of(height, players.size(), stickListGenerator);
 
-        PlayerNamesDto playerNamesDto = toDto(players);
+        PlayersDto playersDto = toDto(players);
         LadderDto ladderDto = toDto(ladder);
-        outputView.printResult(ladderDto, playerNamesDto);
+        outputView.printResult(ladderDto, playersDto, new ProductsDto(List.of()));
     }
 
     private List<Player> inputPlayerNames() {
@@ -51,11 +52,11 @@ public class LadderGameController {
         }
     }
 
-    private PlayerNamesDto toDto(List<Player> players) {
+    private PlayersDto toDto(List<Player> players) {
         List<String> resultPlayerNames = players.stream()
                 .map(Player::getName)
                 .toList();
-        return new PlayerNamesDto(resultPlayerNames);
+        return new PlayersDto(resultPlayerNames);
     }
 
     private LadderDto toDto(Ladder ladder) {
