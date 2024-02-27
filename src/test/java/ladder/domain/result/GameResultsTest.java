@@ -19,10 +19,10 @@ class GameResultsTest {
         GameResults gameResults = new GameResults(List.of(gameResultOfMia, gameResultOfPota));
 
         // when
-        String prize = gameResults.findPrizeByName("mia");
+        PersonalGameResult askedGameResult = gameResults.findPrizeByName("mia");
 
         // then
-        assertThat(prize).isEqualTo("꽝");
+        assertThat(askedGameResult.getPrize()).isEqualTo("꽝");
     }
 
     @Test

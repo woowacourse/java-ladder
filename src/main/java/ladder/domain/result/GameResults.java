@@ -9,11 +9,10 @@ public class GameResults {
         this.values = values;
     }
 
-    public String findPrizeByName(final String participantName) {
+    public PersonalGameResult findPrizeByName(final String participantName) {
         return values.stream()
                 .filter(result -> result.isResultOf(participantName))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참가자입니다."))
-                .getPrize();
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참가자입니다."));
     }
 }
