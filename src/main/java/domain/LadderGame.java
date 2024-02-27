@@ -27,7 +27,7 @@ public class LadderGame {
         this.ladder.init(names.size(), this.generator);
     }
 
-    public List<String> getResult() {
+    public List<String> getLadderShape() {
         return LadderBuilder.getResult(players, ladder);
     }
 }
