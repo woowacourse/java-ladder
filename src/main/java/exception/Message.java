@@ -12,13 +12,13 @@ public enum Message {
     INVALID_RESULT_ERROR("잘못된 실행 결과 입력입니다. 다시 입력해주세요."),
     INVALID_SEPARATOR_ERROR("잘못된 구분자 입력입니다. 다시 입력해주세요.");
 
-    private final String message;
+    private final String value;
 
-    Message(String message) {
-        this.message = message;
+    Message(String value) {
+        this.value = value;
     }
 
-    public String getMessage() {
-        return message;
+    public String getValue() {
+        return value;
     }
 }

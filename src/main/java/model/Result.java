@@ -21,7 +21,7 @@ public class Result {
 
     private static void validate(final List<String> values, final int personCount) {
         if (values.size() != personCount) {
-            throw new IllegalArgumentException(Message.INVALID_RESULT_ERROR.getMessage());
+            throw new IllegalArgumentException(Message.INVALID_RESULT_ERROR.getValue());
         }
     }
 

@@ -11,7 +11,7 @@ public record Height(int value) {
 
     private void validate(int value) {
         if (isOutOfRange(value)) {
-            throw new IllegalArgumentException(Message.INVALID_HEIGHT_ERROR.getMessage());
+            throw new IllegalArgumentException(Message.INVALID_HEIGHT_ERROR.getValue());
         }
     }
 

@@ -29,13 +29,13 @@ public class InputView {
 
     private void validateBlank(String rawNames) {
         if (rawNames == null || rawNames.trim().isEmpty()) {
-            throw new IllegalArgumentException(Message.BLANK_INPUT_ERROR.getMessage());
+            throw new IllegalArgumentException(Message.BLANK_INPUT_ERROR.getValue());
         }
     }
 
     private void validateSeparators(String rawNames) {
         if (rawNames.startsWith(SEPARATOR) || rawNames.endsWith(SEPARATOR) || rawNames.contains(SEPARATOR.repeat(2))) {
-            throw new IllegalArgumentException(Message.INVALID_SEPARATOR_ERROR.getMessage());
+            throw new IllegalArgumentException(Message.INVALID_SEPARATOR_ERROR.getValue());
         }
     }
 
@@ -52,7 +52,7 @@ public class InputView {
         try {
             return Integer.parseInt(rawHeight);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(Message.INVALID_HEIGHT_ERROR.getMessage());
+            throw new IllegalArgumentException(Message.INVALID_HEIGHT_ERROR.getValue());
         }
     }
 

@@ -25,13 +25,13 @@ public class Players {
 
     private void validateSize(List<String> players) {
         if (players.size() < MIN_PLAYERS || players.size() > MAX_PLAYERS) {
-            throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
+            throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getValue());
         }
     }
 
     private void validateDuplicates(List<String> players) {
         if (isDuplicated(players)) {
-            throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
+            throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getValue());
         }
     }
 

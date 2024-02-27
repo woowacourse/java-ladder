@@ -15,7 +15,7 @@ public class Player {
 
     private void validate(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
+            throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getValue());
         }
     }
 

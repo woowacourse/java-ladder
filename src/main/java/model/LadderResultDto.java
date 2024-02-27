@@ -19,13 +19,13 @@ public record LadderResultDto(Map<String, String> playersPrizeResults) {
 
     private static void validate(final List<String> playerNames, final List<String> prizes) {
         if (playerNames.size() != prizes.size()) {
-            throw new IllegalStateException(Message.INVALID_PLAYERS_AND_PRIZES_SIZE.getMessage());
+            throw new IllegalStateException(Message.INVALID_PLAYERS_AND_PRIZES_SIZE.getValue());
         }
     }
 
     public String getPrize(String name) {
         if (!playersPrizeResults.containsKey(name)) {
-            throw new IllegalArgumentException(Message.INVALID_PLAYER_NAME_ERROR.getMessage());
+            throw new IllegalArgumentException(Message.INVALID_PLAYER_NAME_ERROR.getValue());
         }
         return playersPrizeResults.get(name);
     }
