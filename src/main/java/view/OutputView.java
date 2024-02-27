@@ -1,7 +1,7 @@
 package view;
 
 import java.util.List;
-import model.Step;
+import model.ExecutionResult;
 import model.dto.LayerSteps;
 import model.dto.ParticipantName;
 
@@ -40,5 +40,13 @@ public class OutputView {
             return STEP_EXIST_BASE.repeat(STEP_BASE_LENGTH);
         }
         return " ".repeat(STEP_BASE_LENGTH);
+    }
+
+    public void printExecutionResultBottomLadder(ExecutionResult executionResult) {
+        List<String> formattedExecutionResult = executionResult.getExecutionResult().stream()
+                .map(result -> String.format(NAME_FORMAT, result))
+                .toList();
+        String joinedExecutionResult = String.join(" ", formattedExecutionResult);
+        System.out.println(joinedExecutionResult);
     }
 }

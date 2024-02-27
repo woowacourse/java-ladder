@@ -15,4 +15,8 @@ public class ExecutionResult {
             throw new IllegalArgumentException("실행 결과는 참여할 사람 수만큼 있어야 한다");
         }
     }
+
+    public List<String> getExecutionResult() {
+        return executionResult;
+    }
 }

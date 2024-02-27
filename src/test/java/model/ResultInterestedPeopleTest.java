@@ -19,7 +19,7 @@ public class ResultInterestedPeopleTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"", " "})
-    void 결과를_보고_싶은_사람이_한명_미만이면_예외가_발생한다(String name) {
+    void 결과를_보고_싶은_사람이_빈값이면_예외가_발생한다(String name) {
         assertThatThrownBy(() -> new ResultInterestedPeople(List.of(name), participantsNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
