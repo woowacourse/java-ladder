@@ -8,10 +8,10 @@ public class Prizes {
     public static final int MAX_OF_PRIZE_LENGTH = 5;
     List<String> prizes;
 
-    public Prizes(List<String> prizes, int expectedSize) {
+    public Prizes(List<String> prizes, Participants participants) {
         validateNoPrize(prizes);
         validatePrizeLength(prizes);
-        validatePrizeSize(prizes, expectedSize);
+        validatePrizeSize(prizes, participants);
         this.prizes = prizes;
     }
 
@@ -34,8 +34,8 @@ public class Prizes {
                 });
     }
 
-    private void validatePrizeSize(List<String> prizes, int expectedSize) {
-        if (prizes.size() != expectedSize) {
+    private void validatePrizeSize(List<String> prizes, Participants participants) {
+        if (!participants.isMatchCount(prizes.size())) {
             throw new IllegalArgumentException(PrizesExceptionMessage.NOT_MATCH_SIZE.getExceptionMessage());
         }
     }
