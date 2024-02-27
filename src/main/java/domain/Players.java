@@ -58,6 +58,14 @@ public class Players {
         return Set.copyOf(players).size() != players.size();
     }
 
+    public Player findByIndex(int index) {
+        return players.get(index);
+    }
+
+    public boolean isCountMoreThan(int index) {
+        return players.size() > index;
+    }
+
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
     }

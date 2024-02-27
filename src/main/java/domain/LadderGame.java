@@ -19,31 +19,31 @@ public class LadderGame {
     public PlayersPrize getPlayersPrize() {
         Map<Player, Prize> playersPrize = new LinkedHashMap<>();
 
-        for (int columnIndex = 0; columnIndex < players.getPlayers().size(); columnIndex++) {
-            Player player = players.getPlayers().get(columnIndex);
-            int resultColumnIndex = playLines(columnIndex, ladder.getLines());
-            Prize prize = prizes.getPrizes().get(resultColumnIndex);
+        for (int index = 0; players.isCountMoreThan(index); index++) {
+            Player player = players.findByIndex(index);
+            int resultIndex = playLadder(index);
+            Prize prize = prizes.findByIndex(resultIndex);
             playersPrize.put(player, prize);
         }
 
         return new PlayersPrize(playersPrize);
     }
 
-    private int playLines(int currentColumn, List<Line> lines) {
-        for (Line line : lines) {
-            currentColumn = playLine(currentColumn, line);
+    private int playLadder(int currentIndex) {
+        for (Line line : ladder.getLines()) {
+            currentIndex = playLine(currentIndex, line);
         }
-        return currentColumn;
+        return currentIndex;
     }
 
-    private int playLine(int currentColumn, Line line) {
+    private int playLine(int currentIndex, Line line) {
         List<Step> steps = line.getSteps();
-        if (steps.get(currentColumn).isExist()) {
-            return currentColumn + 1;
+        if (steps.get(currentIndex).isExist()) {
+            return currentIndex + 1;
         }
-        if (currentColumn > 0 && steps.get(currentColumn - 1).isExist()) {
-            return currentColumn - 1;
+        if (currentIndex > 0 && steps.get(currentIndex - 1).isExist()) {
+            return currentIndex - 1;
         }
-        return currentColumn;
+        return currentIndex;
     }
 }

@@ -20,6 +20,10 @@ public class Prizes {
                 .collect(Collectors.toList());
     }
 
+    public Prize findByIndex(int index) {
+        return prizes.get(index);
+    }
+
     public List<Prize> getPrizes() {
         return prizes;
     }
