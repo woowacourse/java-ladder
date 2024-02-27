@@ -9,8 +9,9 @@ public class People {
     private final List<Person> values;
 
     public People(List<Person> values) {
-        this.values = new ArrayList<>(values);
-        validateCount(this.values);
+        List<Person> copy = new ArrayList<>(values);
+        validateCount(copy);
+        this.values = new ArrayList<>(copy);
     }
 
     private static void validateCount(List<Person> values) {

@@ -6,8 +6,8 @@ public class LadderHeight {
     private final int value;
 
     public LadderHeight(int value) {
+        validateMin(value);
         this.value = value;
-        validateMin(this.value);
     }
 
     private static void validateMin(int value) {

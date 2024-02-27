@@ -8,8 +8,9 @@ public class Line {
     private final List<Connection> connections;
 
     public Line(List<Connection> connections) {
-        this.connections = new ArrayList<>(connections);
-        validateContinue(this.connections);
+        List<Connection> copy = new ArrayList<>(connections);
+        validateContinue(copy);
+        this.connections = copy;
     }
 
     private void validateContinue(List<Connection> connections) {
@@ -20,10 +21,10 @@ public class Line {
 
     private boolean isContinue(List<Connection> connections) {
         return IntStream.range(0, connections.size() - 1)
-                .anyMatch(order -> isRung(order) && isRung(order + 1));
+                .anyMatch(order -> isRung(connections, order) && isRung(connections, order + 1));
     }
 
-    private boolean isRung(int order) {
+    private boolean isRung(List<Connection> connections, int order) {
         return Connection.RUNG.equals(connections.get(order));
     }
 
