@@ -46,10 +46,10 @@ public class Players {
         if (result.equals("all")) {
             return players;
         }
-        return List.of(isContainPlayer(result));
+        return List.of(getCheckPlayer(result));
     }
 
-    private Player isContainPlayer(String result) {
+    private Player getCheckPlayer(String result) {
         Player player = new Player(result);
         if (players.contains(player)) {
             return player;
