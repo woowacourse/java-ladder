@@ -5,7 +5,7 @@ import laddergame.domain.ladder.Connection;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class SuccessiveConnectionGenerator implements ConnectionGenerator {
+public class AllTrueConnectionGenerator implements ConnectionGenerator {
     @Override
     public List<Connection> generate(int connectionNumber) {
         return Stream.iterate(Connection.CONNECTED, connection -> connection)
