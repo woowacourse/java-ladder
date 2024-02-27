@@ -2,8 +2,6 @@ package domain;
 
 import constant.domain.NameExceptionMessage;
 
-import java.util.Objects;
-
 public class Name {
 
     public static final int MAX_OF_NAME_LENGTH = 5;
@@ -30,8 +28,8 @@ public class Name {
     }
 
     private void validateForbidName(String name) {
-        if (Objects.equals(name, "all") || Objects.equals(name, "exit")) {
-            throw new IllegalArgumentException("[ERROR] all 또는 exit는 이름이 될 수 없습니다.");
+        if (Command.contains(name)) {
+            throw new IllegalArgumentException("[ERROR] " + Command.getCommandToString() + "는 이름이 될 수 없습니다.");
         }
     }
 
