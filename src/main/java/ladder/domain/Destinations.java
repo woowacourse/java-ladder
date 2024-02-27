@@ -38,6 +38,9 @@ public class Destinations {
     }
 
     public Destination findByOrder(final int order) {
+        if (order < 0 || order >= destinations.size()) {
+            throw new IndexOutOfBoundsException("유효하지 않은 값입니다.");
+        }
         return destinations.get(order);
     }
 
