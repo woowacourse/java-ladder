@@ -20,6 +20,6 @@ public enum Bridge {
         return Arrays.stream(values())
                 .filter(value -> value.connection == connection)
                 .findAny()
-                .orElseThrow(()-> new IllegalArgumentException("bridgeType이 존재하지 않습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("bridgeType이 존재하지 않습니다."));
     }
 }

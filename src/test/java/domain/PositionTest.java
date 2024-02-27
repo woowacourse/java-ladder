@@ -32,7 +32,7 @@ class PositionTest {
     @ParameterizedTest
     @CsvSource(value = {"true, 1", "false, 0"})
     @DisplayName("Position은 주어진 조건에 따라 오른쪽 이동을 한다.")
-    void moveRIght(boolean condition, int expectedPosition) {
+    void moveRight(boolean condition, int expectedPosition) {
         final Position position = new Position(0, 0);
 
         position.moveRight(condition);
