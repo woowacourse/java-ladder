@@ -16,17 +16,16 @@ public class OutputView {
     public static void printPlayerNames(Players players) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        int maxLength = players.findMaxNameLength();
         players.getNames()
                 .stream()
-                .map(name -> alignStringCenter(name.getValue(), maxLength + 1))
+                .map(name -> alignStringCenter(name.getValue()))
                 .forEach(stringBuilder::append);
 
         System.out.println(stringBuilder);
     }
 
-    private static String alignStringCenter(String input, int length) {
-        int spaces = length - input.length();
+    private static String alignStringCenter(String input) {
+        int spaces = 5 - input.length();
         int left = spaces / 2;
         int right = spaces - left;
         return SPACE.repeat(left) + input + SPACE.repeat(right);
@@ -57,4 +56,5 @@ public class OutputView {
     public static void printErrorMessage(Exception e) {
         System.out.println(e.getMessage());
     }
+
 }
