@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    public static final String PLAYER_NAMES_INPUT_DELIMITER = ",";
+    public static final String INPUT_DELIMITER = ",";
     private static final String BLANK_SPACE = " ";
     private static final String BLANK_EMPTY = "";
 
@@ -17,16 +17,16 @@ public class InputView {
     }
 
     public List<String> readPlayerNames() {
-        System.out.println(String.format("참여할 사람 이름을 입력하세요. (%s)로 구분하세요)", PLAYER_NAMES_INPUT_DELIMITER));
+        System.out.println(String.format("참여할 사람 이름을 입력하세요. (%s)로 구분하세요)", INPUT_DELIMITER));
         String playerNamesInput = scanner.nextLine();
         playerNamesInput = playerNamesInput.replace(InputView.BLANK_SPACE, InputView.BLANK_EMPTY);
         validatePlayerNamesInput(playerNamesInput);
-        return Arrays.stream(playerNamesInput.split(PLAYER_NAMES_INPUT_DELIMITER))
+        return Arrays.stream(playerNamesInput.split(INPUT_DELIMITER))
                 .toList();
     }
 
     private void validatePlayerNamesInput(final String playerNamesInput) {
-        if (!playerNamesInput.contains(PLAYER_NAMES_INPUT_DELIMITER)) {
+        if (!playerNamesInput.contains(INPUT_DELIMITER)) {
             throw new IllegalArgumentException(ExceptionMessage.PLAYER_NAMES_INPUT_FORMAT);
         }
     }
@@ -43,6 +43,21 @@ public class InputView {
             Integer.parseInt(value);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ExceptionMessage.INTEGER_FORMAT);
+        }
+    }
+
+    public List<String> readLadderResult() {
+        System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String ladderResult = scanner.nextLine();
+        validateLadderResultInput(ladderResult);
+        return Arrays.stream(ladderResult.split(INPUT_DELIMITER))
+                .map(String::trim)
+                .toList();
+    }
+
+    private void validateLadderResultInput(String ladderResult) {
+        if (!ladderResult.contains(INPUT_DELIMITER)) {
+            throw new IllegalArgumentException(ExceptionMessage.LADDER_RESULT_INPUT_FORMAT);
         }
     }
 }
