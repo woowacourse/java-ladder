@@ -34,8 +34,9 @@ public class LadderGame {
         Ladder ladder = Ladder.of(height, players.getPlayerCount(), lineItemGenerator);
         printLadder(ladder, players, prizes);
 
-        while (true) {
-            String input = retryUntilSuccess(() -> inputView.inputPlayerName(players.getPlayerNames()));
+        String input = "";
+        while (!input.equals("all")) {
+            input = retryUntilSuccess(() -> inputView.inputPlayerName(players.getPlayerNames()));
             printLadderGameResult(ladder, players, prizes, input);
         }
     }
