@@ -12,7 +12,7 @@ public class OutputView {
     private static final String LINE_VERTICAL = "|";
     private static final String LINE_HORIZONTAL = "-----";
     private static final int MAX_NAME_LENGTH = 5;
-    public static final int USERNAME_BLANK_DEFAULT = 4;
+    public static final int BLANK_DEFAULT_COUNT = 4;
 
     public void printError(String message) {
         System.out.println(message);
@@ -34,7 +34,7 @@ public class OutputView {
 
     private void appendNameFormat(StringBuilder sb, String userName) {
         if (userName.length() < MAX_NAME_LENGTH) {
-            sb.append(BLANK.repeat(USERNAME_BLANK_DEFAULT - userName.length()));
+            sb.append(BLANK.repeat(BLANK_DEFAULT_COUNT - userName.length()));
         }
 
         sb.append(userName).append(BLANK);
@@ -54,7 +54,7 @@ public class OutputView {
     }
 
     private void printLine(StringBuilder sb, List<Direction> directionsInfo) {
-        sb.append(BLANK.repeat(4));
+        sb.append(BLANK.repeat(BLANK_DEFAULT_COUNT));
         for (int i = 0; i < directionsInfo.size() - 1; i++) {
             sb.append(LINE_VERTICAL)
                     .append(printDirections(directionsInfo.get(i)));
@@ -66,6 +66,6 @@ public class OutputView {
         if (direction == Direction.RIGHT) {
             return LINE_HORIZONTAL;
         }
-        return BLANK.repeat(5);
+        return BLANK.repeat(MAX_NAME_LENGTH);
     }
 }
