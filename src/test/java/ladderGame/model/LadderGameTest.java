@@ -18,8 +18,7 @@ class LadderGameTest {
     @Test
     @DisplayName("참여자 이름을 통해 사다리 결과를 알려준다.")
     void findLadderGameResult() {
-        LineGenerator lineGenerator = new LineGenerator(() -> true);
-        List<Line> lines = Stream.generate(() -> new Line(lineGenerator.makeLine(3)))
+        List<Line> lines = Stream.generate(() -> new Line(List.of(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION, ConnectionStatus.CONNECTION)))
                 .limit(4)
                 .toList();
 
@@ -37,8 +36,7 @@ class LadderGameTest {
     @Test
     @DisplayName("모든 참여자의 결과를 알려준다.")
     void findAllLadderGameResults() {
-        LineGenerator lineGenerator = new LineGenerator(() -> true);
-        List<Line> lines = Stream.generate(() -> new Line(lineGenerator.makeLine(3)))
+        List<Line> lines = Stream.generate(() -> new Line(List.of(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION, ConnectionStatus.CONNECTION)))
                 .limit(4)
                 .toList();
 
@@ -58,8 +56,7 @@ class LadderGameTest {
     @Test
     @DisplayName("사다리 결과 수가 참여자 수와 동일하지 않을 시 예외가 발생합니다.")
     void validateCounts() {
-        LineGenerator lineGenerator = new LineGenerator(() -> true);
-        List<Line> lines = Stream.generate(() -> new Line(lineGenerator.makeLine(3)))
+        List<Line> lines = Stream.generate(() -> new Line(List.of(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION, ConnectionStatus.CONNECTION)))
                 .limit(4)
                 .toList();
 

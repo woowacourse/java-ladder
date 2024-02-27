@@ -15,8 +15,7 @@ class LadderTest {
     @Test
     @DisplayName("사용자의 사다리 시작 위치를 통해 사다리 결과 위치를 알려준다.")
     void findLadderResultIndex() {
-        LineGenerator lineGenerator = new LineGenerator(() -> true);
-        List<Line> lines = Stream.generate(() -> new Line(lineGenerator.makeLine(3)))
+        List<Line> lines = Stream.generate(() -> new Line(List.of(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION, ConnectionStatus.CONNECTION)))
                 .limit(4)
                 .toList();
 
