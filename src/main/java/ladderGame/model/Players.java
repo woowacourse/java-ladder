@@ -28,7 +28,7 @@ public class Players {
         }
     }
 
-    public Integer indexOf(String name) {
+    public Integer indexOfByName(String name) {
         OptionalInt position = IntStream.range(0, players.size())
                 .filter(i -> players.get(i).getName().equals(name))
                 .findFirst();

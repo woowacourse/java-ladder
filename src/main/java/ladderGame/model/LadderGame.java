@@ -26,7 +26,7 @@ public class LadderGame {
     }
 
     public LadderResult findLadderGameResult(String name) {
-        Integer startPosition = players.indexOf(name);
+        Integer startPosition = players.indexOfByName(name);
 
         if (startPosition == null) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_NOT_CONTAIN_PLAYERS);
@@ -38,9 +38,9 @@ public class LadderGame {
 
     public Map<Player, LadderResult> findAllLadderGameResults() {
         Map<Player, LadderResult> ladderResultToPlayers = new LinkedHashMap<>();
-        for (int position = 0; position < players.getPlayerSize(); position++) {
-            int resultPosition = ladder.findLadderResultPosition(position);
-            ladderResultToPlayers.put(players.getPlayer(position), ladderResults.getLadderResult(resultPosition));
+        for (int index = 0; index < players.getPlayerSize(); index++) {
+            int resultIndex = ladder.findLadderResultPosition(index);
+            ladderResultToPlayers.put(players.getPlayer(index), ladderResults.getLadderResult(resultIndex));
         }
 
         return ladderResultToPlayers;
