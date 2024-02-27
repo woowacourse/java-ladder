@@ -2,7 +2,6 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import domain.booleangenerator.BooleanGenerator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,17 +22,28 @@ public class LineTest {
         assertThat(line.getBridgesInformation()).isEqualTo(List.of(true, false, true));
     }
 
-    static class FixedBooleanGenerator implements BooleanGenerator {
+    @Test
+    @DisplayName("왼쪽으로 이동가능한지 판단한다.")
+    void canMoveLeft() {
+        Line line = new Line(4, new FixedBooleanGenerator(true));
+        int movableIndex = 1;
+        int immovableIndex = 2;
 
-        private final boolean value;
+        assertThat(line.canMoveLeft(movableIndex)).isTrue();
+        assertThat(line.canMoveLeft(immovableIndex)).isFalse();
 
-        public FixedBooleanGenerator(boolean value) {
-            this.value = value;
-        }
+    }
 
-        @Override
-        public boolean generate() {
-            return value;
-        }
+    @Test
+    @DisplayName("오른쪽으로 이동가능한지 판단한다.")
+    void canMoveRight() {
+        Line line = new Line(4, new FixedBooleanGenerator(true));
+        int movableIndex = 2;
+        int immovableIndex = 1;
+
+        assertThat(line.canMoveRight(movableIndex)).isTrue();
+        assertThat(line.canMoveRight(immovableIndex)).isFalse();
+
     }
 }
+
