@@ -24,4 +24,14 @@ public class LadderGameTest {
                         UNCONNECTED.getBridge() + CONNECTED.getBridge()
                 ));
     }
+
+    @DisplayName("사다리 타기 결과의 순서와 상응하는 이름들을 List로 반환한다.")
+    @Test
+    void getResultTest() {
+        List<String> names = List.of("1", "2");
+        CustomGenerator customGenerator = new CustomGenerator(List.of(false, true));
+        LadderGame ladderGame = new LadderGame(names, new Height(1), customGenerator);
+        Assertions.assertThat(ladderGame.getResult())
+                .isEqualTo(List.of("2", "1"));
+    }
 }

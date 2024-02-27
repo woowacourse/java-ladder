@@ -1,9 +1,11 @@
 package domain;
 
+import util.Connection;
 import util.Generator;
 import util.LadderBuilder;
 import util.RandomGenerator;
 
+import java.util.Collections;
 import java.util.List;
 
 public class LadderGame {
@@ -29,5 +31,24 @@ public class LadderGame {
 
     public List<String> getLadderShape() {
         return LadderBuilder.getResult(players, ladder);
+    }
+
+    public List<String> getResult() {
+        List<Name> names = players.getPlayers();
+        for (Line line : ladder.getLadder()) {
+            climb(line, names);
+        }
+        return names.stream()
+                .map(Name::getName)
+                .toList();
+    }
+
+    private void climb(Line line, List<Name> names) {
+        List<Connection> connections = line.getLine();
+        for (int index = 1; index < names.size(); index++) {
+            if (connections.get(index).equals(Connection.CONNECTED)) {
+                Collections.swap(names, index, index - 1);
+            }
+        }
     }
 }

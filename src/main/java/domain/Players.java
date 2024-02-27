@@ -1,6 +1,6 @@
 package domain;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Players {
@@ -15,7 +15,7 @@ public class Players {
     }
 
     public List<Name> getPlayers() {
-        return Collections.unmodifiableList(players);
+        return new ArrayList<>(players);
     }
 
     private void validateNumber(List<String> names) {
