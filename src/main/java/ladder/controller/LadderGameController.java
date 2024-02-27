@@ -9,7 +9,7 @@ import ladder.view.OutputView;
 import ladder.view.Result;
 import ladder.view.ResultView;
 
-import static ladder.utils.InputUtility.retryUntilGet;
+import static ladder.utils.InputUtility.retryWhileThrowArgumentException;
 
 public class LadderGameController {
     private final LadderGameService gameService;
@@ -19,11 +19,12 @@ public class LadderGameController {
     }
 
     public void run() {
-        People people = retryUntilGet(() -> gameService.getPeople(InputView.readNames()));
-        Compensation compensation = retryUntilGet(
-                () -> gameService.getCompensation(InputView.readCompensation(), people));
-        Ladder ladder = retryUntilGet(
-                () -> gameService.getLadder(InputView.readHeight(), people));
+        People people = retryWhileThrowArgumentException(() ->
+                gameService.getPeople(InputView.readNames()));
+        Compensation compensation = retryWhileThrowArgumentException(() ->
+                gameService.getCompensation(InputView.readCompensation(), people));
+        Ladder ladder = retryWhileThrowArgumentException(() ->
+                gameService.getLadder(InputView.readHeight(), people));
 
         printGame(people, ladder, compensation);
         printResult(people, ladder, compensation);
