@@ -15,6 +15,7 @@ public class OutputView {
 	private static final String EMPTY_LADDER_CHARACTER = " ";
 	private static final String LADDER_PREFIX_SPACES = "    ";
 	private static final String NAME_PRINT_FORMAT = "%" + LADDER_WIDTH_UNIT + "s";
+	private static final String COLON_WITH_SPACE = " : ";
 
 	public void printReadNames() {
 		System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
@@ -80,9 +81,8 @@ public class OutputView {
 	}
 
 	public void printAllPlayersResult(Map<String, String> result) {
-		String format = "%s : %s\n";
 		printGameResult();
-		result.forEach((name, prize) -> System.out.printf(format, name, prize));
+		result.forEach((name, prize) -> System.out.println(name + COLON_WITH_SPACE + prize));
 	}
 
 	public void printOnePlayerResult(String name) {
