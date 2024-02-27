@@ -1,6 +1,6 @@
 package ladderGame.model;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LadderGame {
@@ -37,7 +37,7 @@ public class LadderGame {
     }
 
     public Map<Player, LadderResult> findAllLadderGameResults() {
-        Map<Player, LadderResult> ladderResultToPlayers = new HashMap<>();
+        Map<Player, LadderResult> ladderResultToPlayers = new LinkedHashMap<>();
         for (int index = 0; index < players.getPlayerSize(); index++) {
             int resultIndex = ladder.findLadderResultIndex(index);
             ladderResultToPlayers.put(players.getPlayer(index), ladderResults.getLadderResult(resultIndex));

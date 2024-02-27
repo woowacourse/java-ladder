@@ -7,7 +7,6 @@ import ladderGame.model.Player;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class ResultView {
     private static final String RESULT_PROMPT = "사다리 결과";
@@ -64,9 +63,8 @@ public class ResultView {
 
     public void printAllLadderResult(Map<Player, LadderResult> results) {
         System.out.println(System.lineSeparator() + LADDER_RESULT_PROMPT);
-        Set<Player> players = results.keySet();
-        for (Player player : players) {
-            System.out.println(player.getName() + " : " + results.get(player).getLadderResult());
+        for (Map.Entry<Player, LadderResult> result : results.entrySet()) {
+            System.out.println(result.getKey().getName() + " : " + result.getValue().getLadderResult());
         }
     }
 }
