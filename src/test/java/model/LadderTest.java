@@ -60,4 +60,20 @@ class LadderTest {
         Ladder ladder = Ladder.from(height, personCount, pathGenerator);
         assertThat(ladder.climb(0)).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("사다리의 전체 결과를 확인한다.")
+    void climbLadderAllResult() {
+        int height = 5;
+        int personCount = 4;
+        FixedLinesGenerator pathGenerator = new FixedLinesGenerator(
+                List.of(new Line(List.of(EXIST, NOT_EXIST, EXIST)),
+                        new Line(List.of(NOT_EXIST, EXIST, NOT_EXIST)),
+                        new Line(List.of(EXIST, NOT_EXIST, NOT_EXIST)),
+                        new Line(List.of(NOT_EXIST, EXIST, NOT_EXIST)),
+                        new Line(List.of(EXIST, NOT_EXIST, EXIST)))
+        );
+        Ladder ladder = Ladder.from(height, personCount, pathGenerator);
+        assertThat(ladder.climbAll()).isEqualTo(List.of(0, 3, 2, 1));
+    }
 }

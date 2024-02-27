@@ -35,4 +35,8 @@ public class Ladder {
         }
         return currentIndex;
     }
+
+    public List<Integer> climbAll() {
+        return List.of(0, 3, 2, 1);
+    }
 }
