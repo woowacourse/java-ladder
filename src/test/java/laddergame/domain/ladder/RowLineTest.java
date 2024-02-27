@@ -2,7 +2,7 @@ package laddergame.domain.ladder;
 
 import laddergame.domain.connectiongenerator.ConnectionGenerator;
 import laddergame.domain.connectiongenerator.RandomConnectionGenerator;
-import laddergame.domain.connectiongenerator.SuccessiveConnectionGenerator;
+import laddergame.domain.connectiongenerator.AllTrueConnectionGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +19,7 @@ class RowLineTest {
     @DisplayName("연속된 가로선이 있는 domain.RowLine 객체는 생성되지 않는다")
     @Test
     void successiveRowLineTest() {
-        ConnectionGenerator successiveConnectionGenerator = new SuccessiveConnectionGenerator();
+        ConnectionGenerator successiveConnectionGenerator = new AllTrueConnectionGenerator();
         assertThrows(IllegalArgumentException.class
                 , () -> { new RowLine(5, successiveConnectionGenerator); });
     }
