@@ -22,11 +22,11 @@ public class Members {
         return new Members(initialize(rawNames));
     }
 
-    public Member findMemberById(int id) {
-        return members.stream()
-            .filter(member -> member.getId() == id)
+    public int findIndexByName(String name) {
+        return IntStream.range(0, members.size())
+            .filter(i -> members.get(i).getName().equals(name))
             .findFirst()
-            .orElseThrow(RuntimeException::new);
+            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어입니다."));
     }
 
     private static void validate(List<Member> members) {

@@ -13,21 +13,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class MembersTest {
 
     @Test
-    @DisplayName("성공: 인덱스 부여, findMemberById() 테스트")
-    void findMemberById() {
-        Members members = Members.from("a,b,c");
-        Member member0 = members.findMemberById(0);
-        Member member1 = members.findMemberById(1);
-        Member member2 = members.findMemberById(2);
-
-        Assertions.assertAll(
-            () -> assertThat(member0.getName()).isEqualTo("a"),
-            () -> assertThat(member1.getName()).isEqualTo("b"),
-            () -> assertThat(member2.getName()).isEqualTo("c")
-        );
-    }
-
-    @Test
     @DisplayName("참여자들 입력 성공: 사이즈 일치")
     void test_ok_constructor() {
         Members members = Members.from("a,bb,ccc,ddddd");
@@ -81,5 +66,25 @@ public class MembersTest {
         assertThatThrownBy(() -> Members.from(null))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("null을 입력할 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("멤버 이름으로 인덱스 찾기 성공")
+    void findIndexByName() {
+        Members members = Members.from("a,b,c");
+        Assertions.assertAll(
+            () -> assertThat(members.findIndexByName("a")).isEqualTo(0),
+            () -> assertThat(members.findIndexByName("b")).isEqualTo(1),
+            () -> assertThat(members.findIndexByName("c")).isEqualTo(2)
+        );
+    }
+
+    @Test
+    @DisplayName("멤버 이름으로 인덱스 찾기 실패")
+    void findIndexByName_exception() {
+        Members members = Members.from("a,b,c");
+        assertThatThrownBy(() -> members.findIndexByName("d"))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("존재하지 않는 플레이어입니다.");
     }
 }
