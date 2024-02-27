@@ -1,6 +1,7 @@
 package domain;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 public class LadderResults {
     private final Map<Player, Target> results;
@@ -10,10 +11,6 @@ public class LadderResults {
     }
 
     public List<Target> getMatchingTargets(List<Player> players) {
-        List<Target> matchingTargets = new ArrayList<>();
-        for (Player player : players) {
-            matchingTargets.add(results.get(player));
-        }
-        return Collections.unmodifiableList(matchingTargets);
+        return players.stream().map(results::get).toList();
     }
 }
