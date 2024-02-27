@@ -21,7 +21,7 @@ public class LadderGame {
 
     private void validate(Players players, LadderResults ladderResults) {
         if (players.getPlayerSize() != ladderResults.getLadderResultsSize()) {
-            throw new IllegalStateException(EXCEPTION_MESSAGE_NOT_EQUALS_PLAYERS_LADDER_RESULTS);
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_NOT_EQUALS_PLAYERS_LADDER_RESULTS);
         }
     }
 

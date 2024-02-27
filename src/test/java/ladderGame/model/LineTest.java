@@ -14,7 +14,7 @@ class LineTest {
     @DisplayName("연속으로 줄이 연결되어 있을 시 예외처리 된다.")
     void notConsecutiveDraw() {
         assertThatThrownBy(() -> new Line(List.of(ConnectionStatus.CONNECTION, ConnectionStatus.CONNECTION)))
-                .isInstanceOf(IllegalStateException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

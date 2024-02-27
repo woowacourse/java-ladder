@@ -17,7 +17,7 @@ public class Line {
 
     private void validateContinuousLine(ConnectionStatus preStatus, ConnectionStatus currentStatus) {
         if (preStatus.equals(ConnectionStatus.CONNECTION) && currentStatus.equals(ConnectionStatus.CONNECTION)) {
-            throw new IllegalStateException(EXCEPTION_MESSAGE_CONTINUOUS_LINE);
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_CONTINUOUS_LINE);
         }
     }
 

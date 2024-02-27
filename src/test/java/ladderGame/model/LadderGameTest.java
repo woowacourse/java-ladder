@@ -63,6 +63,6 @@ class LadderGameTest {
         Ladder ladder = new Ladder(new ArrayList<>(lines));
 
         assertThatThrownBy(() -> new LadderGame(new Players(List.of("포비", "왼손", "준")), new LadderResults(List.of("꽝", "5000")), ladder))
-                .isInstanceOf(IllegalStateException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
