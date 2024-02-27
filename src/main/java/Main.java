@@ -1,4 +1,6 @@
 import domain.LadderGame;
+import domain.LadderGameResult;
+import domain.Names;
 import domain.RowRandomGenerator;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,13 +13,29 @@ public class Main {
     public static void main(String[] args) throws IOException {
         var outputView = new OutPutView();
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
-            LadderGame ladderGame = RetryHelper.retry(() -> createLadderGame(bufferedReader, outputView));
+            var inputView = new InputView(bufferedReader);
+            LadderGame ladderGame = RetryHelper.retry(() -> createLadderGame(outputView, inputView));
             outputView.printLadderResult(ladderGame.getNames(), ladderGame.getLadder(), ladderGame.getLadderResults());
+            RetryHelper.retry(
+                    () -> searchLadderResultFromName(outputView, inputView, ladderGame.getNames(),
+                            ladderGame.calculateLadderGameResult()));
         }
     }
 
-    private static LadderGame createLadderGame(BufferedReader bufferedReader, OutPutView outputView) {
-        var inputView = new InputView(bufferedReader);
+    private static boolean searchLadderResultFromName(OutPutView outputView, InputView inputView,
+                                                      Names names, LadderGameResult ladderGameResult) {
+        while (true) {
+            outputView.printSearchNameInput();
+            String searchName = inputView.getInput();
+            if (searchName.equals("all")) {
+                outputView.printAllNameLadderResult(names, ladderGameResult);
+                break;
+            }
+        }
+        return true;
+    }
+
+    private static LadderGame createLadderGame(OutPutView outputView, InputView inputView) {
 
         outputView.printNamesInput();
         String nameInput = inputView.getInput();
