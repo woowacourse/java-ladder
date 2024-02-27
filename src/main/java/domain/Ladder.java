@@ -7,12 +7,12 @@ import generator.LadderFloorGenerator;
 
 public class Ladder {
 
-	private final List<HorizontalLine> lines;
+	private final List<Floor> lines;
 
 	private Ladder(int playerCount, int height) {
 		this.lines = new ArrayList<>();
 		for (int i = 0; i < height; i++) {
-			lines.add(new HorizontalLine(playerCount));
+			lines.add(new Floor(playerCount));
 		}
 	}
 
@@ -26,11 +26,11 @@ public class Ladder {
 
 	public List<HorizontalLineStatus> createStatuses() {
 		return lines.stream()
-			.map(HorizontalLine::createStatus)
+			.map(Floor::createStatus)
 			.toList();
 	}
 
-	public List<HorizontalLine> getLines() {
+	public List<Floor> getLines() {
 		return lines;
 	}
 }

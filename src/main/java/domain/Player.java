@@ -13,11 +13,11 @@ public class Player {
 	}
 
 	public void playLadder(Ladder ladder) {
-		List<HorizontalLine> lines = ladder.getLines();
+		List<Floor> lines = ladder.getLines();
 		lines.forEach(this::move);
 	}
 
-	private void move(HorizontalLine line) {
+	private void move(Floor line) {
 		Bar bar = line.getBar(position);
 		if (bar.isConnectedToRight()) {
 			position++;

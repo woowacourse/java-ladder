@@ -5,7 +5,7 @@ import java.util.List;
 
 import generator.LadderFloorGenerator;
 
-public class HorizontalLine {
+public class Floor {
 
 	private static final int MIN_PLAYER_COUNT = 2;
 	private static final int MAX_PLAYER_COUNT = 10;
@@ -13,7 +13,7 @@ public class HorizontalLine {
 	private final int playerCount;
 	private final List<Bar> bars = new ArrayList<>();
 
-	public HorizontalLine(int playerCount) {
+	public Floor(int playerCount) {
 		validatePlayerCount(playerCount);
 		this.playerCount = playerCount;
 	}
