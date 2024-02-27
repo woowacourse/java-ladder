@@ -14,7 +14,7 @@ class WidthTest {
     void calculateLadderWidth() {
         //given
         final Players players = new Players(List.of("a", "b", "c", "d"));
-        final int expectedWidth = 4;
+        final int expectedWidth = 3;
 
         //when
         final Width width = Width.from(players);
