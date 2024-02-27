@@ -39,14 +39,26 @@ public class Ladder {
                          .toList();
     }
 
+    public int moveCoordinateToResultPoint(int x, int y) {
+        if (isReachResultPoint(y)) return x;
+        Direction currentDirection = getDirectionOfLadderLegPieceAtSpecificCoordinate(x, y);
+        if (currentDirection.equals(Direction.RIGHT)) {
+            x += 1;
+        }
+        if (currentDirection.equals(Direction.LEFT)) {
+            x -= 1;
+        }
+        y += 1;
+        return moveCoordinateToResultPoint(x, y);
+    }
+
     public Direction getDirectionOfLadderLegPieceAtSpecificCoordinate(int x, int y) {
-        if (isReachEndPoint(y)) return null;
         validateCoordinate(x, y);
         return ladderLegs.get(x)
                          .getDirectionAtIndex(y);
     }
 
-    private boolean isReachEndPoint(int y) {
+    private boolean isReachResultPoint(int y) {
         return y == height.toInt();
     }
 

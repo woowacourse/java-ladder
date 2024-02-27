@@ -60,4 +60,25 @@ class LadderTest {
         });
 
     }
+
+    @Test
+    @DisplayName("사다리의 특정 지점의 인덱스가 주어지면 재귀적으로 함수를 호출하여 최종 지점의 인덱스를 반환한다")
+    void moveFromStartingPointToResultPoint() {
+        // Given
+        Height height = new Height("3");
+        int playerCount = 2;
+        List<Direction> fixedDirectionList = List.of(Direction.RIGHT, Direction.RIGHT, Direction.RIGHT);
+        Ladder ladder = new Ladder(height, playerCount, new FixedDirectionGenerator(fixedDirectionList));
+
+        // When
+        int result1 = ladder.moveCoordinateToResultPoint(0, 0);
+        int result2 = ladder.moveCoordinateToResultPoint(1, 0);
+
+        // Then
+        assertAll(() -> {
+            assertEquals(1, result1);
+            assertEquals(0, result2);
+        });
+    }
+
 }
