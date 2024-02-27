@@ -10,12 +10,12 @@ public class Player {
 
     private final String name;
 
-    public Player(String name) {
-        validate(name);
-        this.name = name;
+    public Player(final String name) {
+        validate(name.trim());
+        this.name = name.trim();
     }
 
-    private void validate(String name) {
+    private void validate(final String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getValue());
         }

@@ -30,4 +30,15 @@ class PlayerTest {
         Assertions.assertThatThrownBy(() -> new Player(name))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @DisplayName("이름 양끝에 공백이 있다면 제거하여 저장한다.")
+    @ValueSource(strings = {"reddy ", " reddy", " reddy "})
+    void createContainsSpaceName(String name) {
+        //given
+        var player = new Player(name);
+
+        //when & then
+        Assertions.assertThat(player.getName()).isEqualTo(name.trim());
+    }
 }
