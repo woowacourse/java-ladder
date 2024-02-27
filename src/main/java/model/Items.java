@@ -9,4 +9,8 @@ public class Items {
     public Items(final List<String> items) {
         this.items = items;
     }
+
+    public String get(final int finalPosition) {
+        return "꽝";
+    }
 }
