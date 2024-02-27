@@ -11,10 +11,9 @@ class PrizeTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"일", "일이삼사오"})
-    @DisplayName("5글자 이내의 상은 예외를 던지지 않는가")
+    @DisplayName("5글자 이내의 상 이름은 예외를 던지지 않는가")
     void normal_prize_doesnt_throws_exception(String name) {
-        assertThatCode(() -> new Prize(name))
-                .doesNotThrowAnyException();
+        assertThatCode(() -> new Prize(name)).doesNotThrowAnyException();
     }
 
     @ParameterizedTest
@@ -22,7 +21,8 @@ class PrizeTest {
     @DisplayName("1 미만, 5 초과하는 상 이름은 예외를 던지는가")
     void prize_name_exceed_five_throws_exception(String name) {
         assertThatThrownBy(() -> new Prize(name))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContainingAll("이름의 길이는", "자 이어야 합니다.");
     }
 
 

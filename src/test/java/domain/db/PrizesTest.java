@@ -12,8 +12,6 @@ class PrizesTest {
     void do_prizes_creat_correctly() {
         String[] prizeNames = {"꽝", "5000", "꽝", "3000"};
 
-        assertThatCode(() -> new Prizes(prizeNames))
-                .doesNotThrowAnyException();
+        assertThatCode(() -> new Prizes(prizeNames)).doesNotThrowAnyException();
     }
-
 }
