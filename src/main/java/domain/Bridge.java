@@ -23,5 +23,4 @@ public enum Bridge {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("해당 Bridge가 존재하지 않습니다."));
     }
-
 }

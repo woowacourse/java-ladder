@@ -14,7 +14,6 @@ public class UserName {
         this.name = name;
     }
 
-
     private void validate(final String name) {
         validateLength(name);
         validateEmpty(name);

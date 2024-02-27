@@ -23,6 +23,7 @@ public class Results {
     public Result getLast() {
         return prizes.get(prizes.size() - 1);
     }
+
     public List<Result> getMiddleResult() {
         return prizes.subList(1, prizes.size() - 1);
     }

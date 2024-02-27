@@ -15,5 +15,4 @@ class ResultTest {
         Assertions.assertThatCode(() -> new Result("꽝"))
                 .doesNotThrowAnyException();
     }
-
 }

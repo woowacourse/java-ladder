@@ -66,5 +66,4 @@ class LineTest {
                 () -> assertThat(line.moveFrom(4)).isEqualTo(3)
         );
     }
-
 }

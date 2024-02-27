@@ -54,5 +54,4 @@ class LadderGameTest {
                 () -> assertThat(gameResult.findByUserName("jk")).isEqualTo("5000")
         );
     }
-
 }

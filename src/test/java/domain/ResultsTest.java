@@ -21,5 +21,4 @@ class ResultsTest {
                 new Result("꽝"), new Result("3000"))
         )).doesNotThrowAnyException();
     }
-
 }
