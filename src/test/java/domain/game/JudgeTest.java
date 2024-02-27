@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 class JudgeTest {
@@ -46,4 +47,17 @@ class JudgeTest {
         );
     }
 
+    @Test
+    @DisplayName("존재하지 않는 이름에 대한 상품을 요구하면 예외가 발생하는가")
+    void throws_exception_when_require_prize_for_non_exist_name() {
+        Names names = new Names(new String[]{"mang", "cho", "pobi"});
+        Prizes prizes = new Prizes(new String[]{"1000", "500", "30000"});
+        PathMapper pathMapper = new PathMapper(List.of(2, 1, 0));
+
+        Judge judge = new Judge(names, prizes, pathMapper);
+
+        assertThatThrownBy(() -> judge.getPrize("none"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("존재하지 않는 이름입니다.");
+    }
 }
