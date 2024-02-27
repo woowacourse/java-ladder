@@ -3,6 +3,7 @@ package domain.ladder;
 import java.util.ArrayList;
 import java.util.List;
 
+import static domain.ladder.Bridge.EXIST;
 import static java.util.Collections.unmodifiableList;
 
 public class Row {
@@ -10,7 +11,7 @@ public class Row {
 
     public Row(final int width, final BridgeMakingStrategy strategy) {
         this.bridges = makeRow(width, strategy);
-        // TODO: 연속한 다리가 있는지 확인
+        validateRow();
     }
 
     private List<Bridge> makeRow(final int width, final BridgeMakingStrategy strategy) {
@@ -21,6 +22,18 @@ public class Row {
             bridges.add(current);
         }
         return bridges;
+    }
+
+    private void validateRow() {
+        for (int current = 1; current < this.bridges.size(); current++) {
+            checkContinuousBridge(bridges.get(current - 1), bridges.get(current));
+        }
+    }
+
+    private void checkContinuousBridge(final Bridge previous, final Bridge current) {
+        if (previous == EXIST && current == EXIST) {
+            throw new IllegalArgumentException("연속된 다리가 존재합니다.");
+        }
     }
 
     public List<Bridge> getBridges() {
