@@ -16,6 +16,7 @@ public class OutputView {
         System.out.println();
         System.out.println(makeNameMessage(ladderStatus.playerNames()));
         System.out.println(drawRadder(ladderStatus.pathStatuses()));
+        System.out.println(makeGameResultMessage(ladderStatus.gameResults()));
     }
 
     private static String makeNameMessage(List<String> userNames) {
@@ -59,5 +60,10 @@ public class OutputView {
 
     public static void printErrorMessage(String message) {
         System.out.println(message);
+    }
+
+    private static String makeGameResultMessage(List<String> gameResults) {
+        int gameResultsSize = gameResults.size();
+        return makeName(0, gameResultsSize, "%-5s", gameResults);
     }
 }

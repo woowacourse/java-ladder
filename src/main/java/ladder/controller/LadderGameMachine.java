@@ -25,7 +25,7 @@ public class LadderGameMachine {
                 ladderHeight,
                 playerNames
         );
-        OutputView.printLadderResult(LadderStatus.of(playerNames, ladder));
+        OutputView.printLadderResult(LadderStatus.of(playerNames, ladder, gameResults));
     }
 
     private PlayerNames initNames() {
