@@ -3,13 +3,13 @@ package domain;
 import util.Connection;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 import static util.Connection.UNCONNECTED;
 
-public class Line implements Iterable<Connection>{
+public class Line {
     private final List<Connection> line;
 
     @Override
@@ -25,11 +25,6 @@ public class Line implements Iterable<Connection>{
         return Objects.hash(line);
     }
 
-    @Override
-    public Iterator<Connection> iterator() {
-        return line.iterator();
-    }
-
     public Line (List<Integer> numbers) {
         validateRange(numbers.size());
         List<Connection> line = new ArrayList<>();
@@ -41,6 +36,10 @@ public class Line implements Iterable<Connection>{
             ));
         }
         this.line = line;
+    }
+
+    public List<Connection> getLine() {
+        return Collections.unmodifiableList(line);
     }
 
     private void validateRange(int height) {

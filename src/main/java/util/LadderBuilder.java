@@ -6,7 +6,6 @@ import domain.Name;
 import domain.Players;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class LadderBuilder {
@@ -25,19 +24,15 @@ public class LadderBuilder {
     }
 
     private static List<String> fromLadder(Ladder ladder) {
-        Iterator<Line> iterator = ladder.iterator();
-        List<String> ladderString = new ArrayList<>();
-        while (iterator.hasNext()) {
-            ladderString.add(fromLine(iterator.next()));
-        }
-        return ladderString;
+        return ladder.getLadder().stream()
+                .map(LadderBuilder::fromLine)
+                .toList();
     }
 
     private static String fromLine(Line line) {
-        Iterator<Connection> iterator = line.iterator();
         StringBuilder stringBuilder = new StringBuilder();
-        while (iterator.hasNext()) {
-            stringBuilder.append(iterator.next().getBridge());
+        for (Connection connection : line.getLine()) {
+            stringBuilder.append(connection.getBridge());
         }
         return stringBuilder.toString();
     }
