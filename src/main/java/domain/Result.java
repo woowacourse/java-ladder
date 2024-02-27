@@ -14,6 +14,10 @@ public class Result {
         return results.get(name);
     }
 
+    public Map<String, String> getResultByAll() {
+        return results;
+    }
+
     private void validateName(String name) {
         if (!results.containsKey(name)) {
             throw new IllegalArgumentException("이름은 이전에 입력한 이름 중에 하나여야 합니다.");
