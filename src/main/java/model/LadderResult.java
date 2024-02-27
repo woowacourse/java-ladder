@@ -35,6 +35,10 @@ public final class LadderResult {
         return playersPrizeResults.get(name);
     }
 
+    public Map<String, String> getPlayersPrizeResults() {
+        return playersPrizeResults;
+    }
+
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {

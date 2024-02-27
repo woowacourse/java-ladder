@@ -1,6 +1,7 @@
 package model;
 
 import exception.Message;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class Player {
@@ -26,6 +27,22 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(name);
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Player player)) {
+            return false;
+        }
+        return Objects.equals(name, player.name);
     }
 
     @Override

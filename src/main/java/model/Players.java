@@ -68,4 +68,8 @@ public class Players {
     private String formatLastPlayer() {
         return String.format("%5s", players.get(players.size() - 1).getName());
     }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
 }

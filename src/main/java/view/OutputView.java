@@ -20,15 +20,16 @@ public class OutputView {
         printPrizes(prizes);
     }
 
-    public void printPlayerResult(Map<String, String> ladderResult, String target) {
+    public void printAllPlayerResult(Map<String, String> ladderResult) {
         System.out.println(PRIZE_RESULT_MESSAGE);
-        if (target.equals("all")) {
-            for (Entry<String, String> result : ladderResult.entrySet()) {
-                System.out.printf(RESULT_FORM, result.getKey(), result.getValue());
-            }
-            return;
+        for (Entry<String, String> result : ladderResult.entrySet()) {
+            System.out.printf(RESULT_FORM, result.getKey(), result.getValue());
         }
-        System.out.printf(RESULT_FORM, target, ladderResult.get(target));
+    }
+
+    public void printOnePlayerPrize(String name, String prize) {
+        System.out.println(PRIZE_RESULT_MESSAGE);
+        System.out.printf(RESULT_FORM, name, prize);
         System.out.println();
     }
 
