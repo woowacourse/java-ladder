@@ -12,7 +12,7 @@ class LinesTest {
     void createLines() {
         int height = 5;
         int personCount = 4;
-        Lines lines = new Lines(height, personCount);
+        Lines lines = new Lines(height, personCount, new RandomBooleanGenerator());
 
         assertEquals(height, lines.getLines().size());
     }

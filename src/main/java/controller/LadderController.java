@@ -2,6 +2,7 @@ package controller;
 
 import domain.Height;
 import domain.Names;
+import domain.RandomBooleanGenerator;
 import domain.lines.Lines;
 import view.InputView;
 import view.ResultView;
@@ -16,7 +17,7 @@ public class LadderController {
         int rawHeight = InputView.getHeight();
         Height height = new Height(rawHeight);
 
-        Lines lines = new Lines(height.getValue(), names.size());
+        Lines lines = new Lines(height.getValue(), names.size(), new RandomBooleanGenerator());
 
         ResultView.printResult(names, lines);
     }

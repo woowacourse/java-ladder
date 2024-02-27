@@ -1,6 +1,6 @@
 package domain.lines;
 
-import domain.RandomBooleanGenerator;
+import domain.BooleanGenerator;
 import domain.line.Line;
 import domain.line.Point;
 
@@ -14,9 +14,9 @@ public class Lines {
     private final int height;
     private final CountToPoints countToPoints;
 
-    public Lines(final int height, final int personCount) {
+    public Lines(final int height, final int personCount, BooleanGenerator booleanGenerator) {
         this.height = height;
-        this.countToPoints = new CountToPoints(personCount, new RandomBooleanGenerator());
+        this.countToPoints = new CountToPoints(personCount, booleanGenerator);
         this.lines = new ArrayList<>();
     }
 
