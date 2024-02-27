@@ -4,12 +4,12 @@ import common.exception.message.ExceptionMessage;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class InputView {
     public static final String PLAYER_NAMES_INPUT_DELIMITER = ",";
     private static final String BLANK_SPACE = " ";
     private static final String BLANK_EMPTY = "";
+
     private final Scanner scanner;
 
     public InputView(Scanner scanner) {

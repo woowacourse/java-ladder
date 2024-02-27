@@ -6,11 +6,11 @@ import view.InputView;
 import view.OutputView;
 
 public class RetryHandler {
+    public static final int READ_LIMIT = 10;
+
     private final InputView inputView;
     private final OutputView outputView;
     private int retryCount;
-
-    public static final int READ_LIMIT = 10;
 
     public RetryHandler(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;

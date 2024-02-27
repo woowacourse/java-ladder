@@ -3,10 +3,10 @@ package domain;
 import common.exception.message.ExceptionMessage;
 
 public class LadderHeight {
-    private final int value;
-
     public static final int HEIGHT_MIN_RANGE = 2;
     public static final int HEIGHT_MAX_RANGE = 10;
+
+    private final int value;
 
     public LadderHeight(final int value) {
         validateRange(value);

@@ -5,6 +5,7 @@ import common.exception.message.ExceptionMessage;
 public class PlayerName {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_NAME_LENGTH = 1;
+
     private final String name;
 
     public PlayerName(final String name) {
