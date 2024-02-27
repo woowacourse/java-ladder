@@ -19,7 +19,7 @@ public class LadderGame {
 
     public void run() {
         final Participants participants = createParticipants();
-        final Outcomes outcomes = readOutComes(participants.getCount());
+        final Outcomes outcomes = retryOnException(this::readOutcomes, participants.getCount());
         final int width = participants.getNecessaryLadderWidth();
         final Ladder ladder = createLadder(width);
         printLadderGame(participants, ladder, outcomes);
@@ -38,14 +38,9 @@ public class LadderGame {
         }
     }
 
-    private Outcomes readOutComes(final int neededOutcomesCount) {
-        try {
-            final List<String> outcomes = inputView.readOutcomes();
-            return new Outcomes(outcomes, neededOutcomesCount);
-        } catch (IllegalArgumentException e) {
-            outputView.printException(e);
-            return readOutComes(neededOutcomesCount);
-        }
+    private Outcomes readOutcomes(final int neededOutcomesCount) {
+        final List<String> outcomes = inputView.readOutcomes();
+        return new Outcomes(outcomes, neededOutcomesCount);
     }
 
     private Ladder createLadder(final int ladderWidth) {
