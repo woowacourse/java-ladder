@@ -1,7 +1,6 @@
-package model.path;
+package model.line;
 
 import java.util.List;
-import model.Line;
 
 public class FixedLinesGenerator implements LinesGenerator {
     private final List<Line> lines;
