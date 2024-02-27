@@ -16,4 +16,15 @@ class NameTest {
         // then
         assertThat(name).extracting("value").isEqualTo("pobi");
     }
+
+    @DisplayName("이름 값이 동일하면 같은 이름으로 취급한다.")
+    @Test
+    void equals() {
+        // when
+        Name name1 = new Name("pobi");
+        Name name2 = new Name("pobi");
+
+        // then
+        assertThat(name1).isEqualTo(name2);
+    }
 }
