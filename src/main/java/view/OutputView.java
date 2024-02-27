@@ -2,6 +2,7 @@ package view;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import model.Prize;
 
@@ -22,8 +23,8 @@ public class OutputView {
     public void printPlayerResult(Map<String, String> ladderResult, String target) {
         System.out.println(PRIZE_RESULT_MESSAGE);
         if (target.equals("all")) {
-            for (String key : ladderResult.keySet()) {
-                System.out.printf(RESULT_FORM, key, ladderResult.get(key));
+            for (Entry<String, String> result : ladderResult.entrySet()) {
+                System.out.printf(RESULT_FORM, result.getKey(), result.getValue());
             }
             return;
         }
@@ -50,11 +51,7 @@ public class OutputView {
     }
 
     private String formatNames(List<String> names) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(formatFirstName(names));
-        stringBuilder.append(formatMiddleNames(names));
-        stringBuilder.append(formatLastName(names));
-        return stringBuilder.toString();
+        return formatFirstName(names) + formatMiddleNames(names) + formatLastName(names);
     }
 
     private String formatLastName(List<String> names) {
