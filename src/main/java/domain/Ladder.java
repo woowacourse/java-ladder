@@ -27,7 +27,6 @@ public class Ladder {
         int currentPosition = position;
         for (Line line : lines) {
             currentPosition += line.findDirection(currentPosition).getValue();
-            System.out.println(currentPosition);
         }
 
         return currentPosition;
