@@ -52,6 +52,6 @@ public class OutputFormatter {
     }
 
     public String toResult(Player player, Target target) {
-        return player.getName() + " : " + target.getTarget();
+        return String.join(" : ", player.getName(), target.getTarget());
     }
 }
