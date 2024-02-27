@@ -24,15 +24,13 @@ public class Main {
 
     private static boolean searchLadderResultFromName(OutPutView outputView, InputView inputView,
                                                       Names names, LadderGameResult ladderGameResult) {
-        while (true) {
+        String searchName = "";
+        while (!searchName.equals("all")) {
             outputView.printSearchNameInput();
-            String searchName = inputView.getInput();
-            if (searchName.equals("all")) {
-                outputView.printAllNameLadderResult(names, ladderGameResult);
-                break;
-            }
+            searchName = inputView.getInput();
             outputView.printSearchNameLadderResult(searchName, ladderGameResult);
         }
+        outputView.printAllNameLadderResult(names, ladderGameResult);
         return true;
     }
 
