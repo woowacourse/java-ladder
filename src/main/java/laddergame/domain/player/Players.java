@@ -39,10 +39,6 @@ public class Players {
         return Collections.unmodifiableList(players);
     }
 
-    public List<Player> findAll() {
-        return players;
-    }
-
     public Player findByName(final String name) {
         return players.stream()
                 .filter(player -> player.getName().equals(name))

@@ -34,18 +34,4 @@ public class PlayersTest {
         // then
         Assertions.assertThat(playerByName.getName()).isEqualTo(player);
     }
-
-    @DisplayName("all을 입력하면 전체 플레이어를 반환한다.")
-    @Test
-    void testFindAll() {
-        // given
-        Players players = new Players(List.of("pobi", "zeze", "crong", "jk"));
-
-        // when
-        List<Player> result = players.findAll();
-
-        // then
-        Assertions.assertThat(result).extracting("name")
-                .containsExactly("pobi", "zeze", "crong", "jk");
-    }
 }
