@@ -53,26 +53,25 @@ public class Ladder {
 
     private int findLadderBottomIndex(int index, final int ladderWidthSize) {
         for (Line line : lines) {
-            index = find(index, ladderWidthSize, line);
+            index = move(index, ladderWidthSize, line);
         }
         return index;
     }
 
-    private int find(int index, final int ladderWidthSize, final Line line) {
-        // TODO: 개선하기
-        if (0 == index && line.isConnected(index)) {
-            index++;
-        } else if (isMiddle(index, ladderWidthSize) && line.isConnected(index)) {
-            index++;
-        } else if (isMiddle(index, ladderWidthSize) && line.isConnected(index - 1)) {
-            index--;
-        } else if (index == ladderWidthSize && line.isConnected(index - 1)) {
-            index--;
+    private int move(final int index, final int ladderWidthSize, final Line line) {
+        if (canMoveLeft(index, line)) {
+            return index - 1;
+        } else if (canMoveRight(index, ladderWidthSize, line)) {
+            return index + 1;
         }
         return index;
     }
 
-    private boolean isMiddle(final int index, final int ladderWidthSize) {
-        return 0 < index && index < ladderWidthSize;
+    private boolean canMoveRight(final int index, final int ladderWidthSize, final Line line) {
+        return index < ladderWidthSize && line.isConnected(index);
+    }
+
+    private boolean canMoveLeft(final int index, final Line line) {
+        return 0 < index && line.isConnected(index - 1);
     }
 }
