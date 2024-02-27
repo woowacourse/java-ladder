@@ -20,6 +20,16 @@ public class Line {
         return new Line(points);
     }
 
+    public int findNextIndex(int previousIndex) {
+        if (previousIndex < points.size() && points.get(previousIndex) == Point.CONNECTED) {
+            return previousIndex + 1;
+        }
+        if (previousIndex > 0 && points.get(previousIndex - 1) == Point.CONNECTED) {
+            return previousIndex - 1;
+        }
+        return previousIndex;
+    }
+
     private static Point findNextPoint(Point previous, PointStrategy pointStrategy) {
         if (previous.equals(Point.CONNECTED)) {
             return Point.DISCONNECTED;
