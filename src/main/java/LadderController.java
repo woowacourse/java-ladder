@@ -11,6 +11,7 @@ import domain.ladder.RandomBridgeMakingStrategy;
 import view.InputView;
 import view.OutputView;
 
+import java.util.Map;
 import java.util.function.Supplier;
 
 import static view.OutputView.printLadderGame;
@@ -33,17 +34,17 @@ public class LadderController {
     private static void searchGameResult(final Judge judge) {
         while (true) {
             try {
-                final Prize prize = getPrizeByName(judge);
-                OutputView.printPrize(prize);
+                final Map<Name, Prize> result = getPrizeByName(judge);
+                OutputView.printSearchResult(result);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e);
             }
         }
     }
 
-    private static Prize getPrizeByName(final Judge judge) throws IllegalArgumentException {
+    private static Map<Name, Prize> getPrizeByName(final Judge judge) throws IllegalArgumentException {
         final Name nameToSearch = getNameToSearch();
-        return judge.getPrize(nameToSearch.name());
+        return judge.search(nameToSearch.name());
     }
 
     private static Ladder getLadder(final Names names, final Height height) {

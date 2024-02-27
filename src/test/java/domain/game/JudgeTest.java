@@ -1,5 +1,6 @@
 package domain.game;
 
+import domain.db.Name;
 import domain.db.Names;
 import domain.db.Prize;
 import domain.db.Prizes;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
@@ -21,11 +23,12 @@ class JudgeTest {
         PathMapper pathMapper = new PathMapper(List.of(0, 1, 2));
 
         Judge judge = new Judge(names, prizes, pathMapper);
+        Map<Name, Prize> totalResult = judge.search("all");
 
         assertSoftly(softly -> {
-                    softly.assertThat(judge.getPrize("mang")).isEqualTo(new Prize("1000"));
-                    softly.assertThat(judge.getPrize("cho")).isEqualTo(new Prize("500"));
-                    softly.assertThat(judge.getPrize("pobi")).isEqualTo(new Prize("30000"));
+                    softly.assertThat(totalResult.get(new Name("mang"))).isEqualTo(new Prize("1000"));
+                    softly.assertThat(totalResult.get(new Name("cho"))).isEqualTo(new Prize("500"));
+                    softly.assertThat(totalResult.get(new Name("pobi"))).isEqualTo(new Prize("30000"));
                 }
         );
     }
@@ -38,11 +41,12 @@ class JudgeTest {
         PathMapper pathMapper = new PathMapper(List.of(2, 1, 0));
 
         Judge judge = new Judge(names, prizes, pathMapper);
+        Map<Name, Prize> totalResult = judge.search("all");
 
         assertSoftly(softly -> {
-                    softly.assertThat(judge.getPrize("mang")).isEqualTo(new Prize("30000"));
-                    softly.assertThat(judge.getPrize("cho")).isEqualTo(new Prize("500"));
-                    softly.assertThat(judge.getPrize("pobi")).isEqualTo(new Prize("1000"));
+                    softly.assertThat(totalResult.get(new Name("mang"))).isEqualTo(new Prize("30000"));
+                    softly.assertThat(totalResult.get(new Name("cho"))).isEqualTo(new Prize("500"));
+                    softly.assertThat(totalResult.get(new Name("pobi"))).isEqualTo(new Prize("1000"));
                 }
         );
     }
@@ -56,7 +60,7 @@ class JudgeTest {
 
         Judge judge = new Judge(names, prizes, pathMapper);
 
-        assertThatThrownBy(() -> judge.getPrize("none"))
+        assertThatThrownBy(() -> judge.search("none"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("존재하지 않는 이름입니다.");
     }

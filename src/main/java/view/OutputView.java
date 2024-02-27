@@ -9,6 +9,7 @@ import domain.ladder.Ladder;
 import domain.ladder.Row;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -25,8 +26,26 @@ public class OutputView {
         printPrizes(prizes.prizes());
     }
 
-    public static void printPrize(final Prize prize) {
-        System.out.println("[" + prize.name() + "] " + "당첨 🎉🎉");
+    public static void printSearchResult(final Map<Name, Prize> result) {
+        if (result.entrySet().size() == 1) {
+            printResultOne(result);
+            return;
+        }
+        printResultMulti(result);
+    }
+
+    private static void printResultOne(Map<Name, Prize> results) {
+        for (Map.Entry<Name, Prize> result : results.entrySet()) {
+            System.out.println(result.getValue().name());
+        }
+    }
+
+    private static void printResultMulti(Map<Name, Prize> results) {
+        for (Map.Entry<Name, Prize> result : results.entrySet()) {
+            final String name = result.getKey().name();
+            final String prize = result.getValue().name();
+            System.out.println(name + " : " + prize);
+        }
     }
 
     public static void printErrorMessage(Exception e) {
