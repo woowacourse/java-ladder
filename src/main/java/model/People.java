@@ -28,6 +28,10 @@ public class People {
         return new People(personGroup);
     }
 
+    public void climbDown(Ladder ladder) {
+        personGroup.forEach(person -> person.climbDown(ladder));
+    }
+
     public List<String> getNames() {
         return personGroup.stream()
                 .map(Person::getName)
