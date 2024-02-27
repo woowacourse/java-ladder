@@ -10,4 +10,8 @@ public class Player {
     public Name getName() {
         return name;
     }
+
+    public boolean isNameEqual(Name name) {
+        return this.name.equals(name);
+    }
 }
