@@ -34,6 +34,16 @@ public class Line {
         }
     }
 
+    public int move(int index) {
+        if (LineState.START.equals(lineStates.get(index))) {
+            return index + 1;
+        }
+        if (LineState.END.equals(lineStates.get(index))) {
+            return index - 1;
+        }
+        return index;
+    }
+
     public List<LineState> getLineStates() {
         return lineStates;
     }
