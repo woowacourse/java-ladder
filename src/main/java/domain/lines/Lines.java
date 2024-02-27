@@ -21,11 +21,11 @@ public class Lines {
         this.lines = new ArrayList<>();
     }
 
-    public List<Line> getLines() {
-        if (lines.isEmpty()) {
-            createLines();
-        }
-        return Collections.unmodifiableList(lines);
+    public void climb(Player player) {
+        getLines().forEach(line -> {
+            int currPosition = player.getPosition();
+            player.move(line.nextPosition(currPosition));
+        });
     }
 
     private void createLines() {
@@ -34,14 +34,14 @@ public class Lines {
                 .toList();
     }
 
-    public void climb(Player player) {
-        getLines().forEach(line -> {
-            int currPosition = player.getPosition();
-            player.move(line.nextPosition(currPosition));
-        });
-    }
-
     private List<Point> createPoints() {
         return countToPoints.value();
+    }
+
+    public List<Line> getLines() {
+        if (lines.isEmpty()) {
+            createLines();
+        }
+        return Collections.unmodifiableList(lines);
     }
 }

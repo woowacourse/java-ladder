@@ -21,16 +21,16 @@ public class Names {
         }
     }
 
-    private List<Name> createNames(List<String> names) {
-        return names.stream()
-                .map(Name::new)
-                .toList();
-    }
-
     private void validateNameDuplication(List<String> rawNames) {
         if (hasDuplicatedName(rawNames)) {
             throw new IllegalArgumentException("이름은 중복하여 입력할 수 없습니다.");
         }
+    }
+
+    private List<Name> createNames(List<String> names) {
+        return names.stream()
+                .map(Name::new)
+                .toList();
     }
 
     private boolean hasDuplicatedName(List<String> rawNames) {
