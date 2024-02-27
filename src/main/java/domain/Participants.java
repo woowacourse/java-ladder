@@ -43,7 +43,7 @@ public class Participants {
 
     public int checkParticipantOrder(String name) {
         return IntStream.range(0, names.size())
-                .filter(i -> names.get(i).getName().equals(name))
+                .filter(i -> names.get(i).isSameName(name))
                 .findFirst()
                 .getAsInt();
     }
