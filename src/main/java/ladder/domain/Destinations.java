@@ -3,6 +3,7 @@ package ladder.domain;
 import static java.util.Collections.unmodifiableList;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +26,14 @@ public class Destinations {
         if (destinations.size() != userCount) {
             throw new IllegalArgumentException("실행 결과 수는 사용자 수와 같아야 합니다.");
         }
+    }
+
+    public List<Destination> swapDestinations(final List<Integer> stepPositions) {
+        List<Destination> result = new ArrayList<>(destinations);
+        for (int position : stepPositions) {
+            Collections.swap(result, position, position + 1);
+        }
+        return result;
     }
 
     public List<Destination> getDestinations() {

@@ -27,4 +27,18 @@ public class DestinationsTest {
         assertThat(Destinations.of(destinations, 2).getDestinations())
                 .containsExactly(new Destination("꽝"), new Destination("5000"));
     }
+
+    @DisplayName("Step이 있는 위치를 받으면 해당 위치와 다음에 위치한 결과를 서로 바꾼다")
+    @Test
+    void swapDestinations() {
+        Destinations destinations = Destinations.of(List.of("꽝", "5000", "꽝", "3000"), 4);
+        List<Destination> expected = List.of(
+                new Destination("5000"),
+                new Destination("꽝"),
+                new Destination("3000"),
+                new Destination("꽝")
+        );
+
+        assertThat(destinations.swapDestinations(List.of(0, 2))).isEqualTo(expected);
+    }
 }
