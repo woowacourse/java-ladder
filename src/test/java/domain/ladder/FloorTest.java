@@ -1,6 +1,7 @@
 package domain.ladder;
 
-import domain.Players;
+import static org.junit.jupiter.api.Assertions.assertAll;
+
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -12,25 +13,30 @@ class FloorTest {
     @Test
     void createFloor() {
         //given
-        final Players players = new Players(List.of("a", "b", "c", "d"));
         BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(List.of(false, true, false));
 
         //when
-        Floor floor = Floor.createByStrategy(bridgeGenerator, Width.from(players));
+        Floor floor = Floor.createByStrategy(bridgeGenerator, new Width(4));
 
         //then
         Assertions.assertThat(floor.getBridges()).containsExactly(Bridge.NO_BRIDGE, Bridge.BRIDGE, Bridge.NO_BRIDGE);
     }
 
-    @DisplayName("다리를 따라 참가자의 위치를 이동시킨다.")
+    @DisplayName("위치를 받으면 다리를 따라 이동한 결과 위치를 반환한다.")
     @Test
-    void moveLeftAlongBridge() {
+    void moveAlongBridge() {
         //given
-        final Players players = new Players(List.of("a", "b", "c", "d"));
-        BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(List.of(false, true, false));
-        Floor floor = Floor.createByStrategy(bridgeGenerator, Width.from(players));
+        BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(List.of(true, false, true));
+        Floor floor = Floor.createByStrategy(bridgeGenerator, new Width(4));
 
         //when
+        final int resultPosition = floor.move(0);
         //then
+        assertAll(
+                () -> Assertions.assertThat(floor.move(0)).isEqualTo(1),
+                () -> Assertions.assertThat(floor.move(1)).isEqualTo(0),
+                () -> Assertions.assertThat(floor.move(2)).isEqualTo(3),
+                () -> Assertions.assertThat(floor.move(3)).isEqualTo(2)
+        );
     }
 }

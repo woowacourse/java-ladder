@@ -39,8 +39,29 @@ public class Floor {
     }
 
 
+    public int move(final int startPosition) {
+        if (startPosition == 0) {
+            if (bridges.get(startPosition) == Bridge.BRIDGE) {
+                return startPosition + 1;
+            }
+            return startPosition;
+        }
+        if (startPosition == bridges.size()) {
+            if (bridges.get(startPosition - 1) == Bridge.BRIDGE) {
+                return startPosition - 1;
+            }
+            return startPosition;
+        }
+        if (bridges.get(startPosition - 1) == Bridge.BRIDGE) {
+            return startPosition - 1;
+        }
+        if (bridges.get(startPosition) == Bridge.BRIDGE) {
+            return startPosition + 1;
+        }
+        return startPosition;
+    }
+
     public List<Bridge> getBridges() {
         return Collections.unmodifiableList(bridges);
     }
-
 }
