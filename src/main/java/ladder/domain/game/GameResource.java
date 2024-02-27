@@ -6,11 +6,11 @@ import ladder.domain.resource.user.Users;
 
 public class GameResource {
 
+    public static final String RESOURCE_NAME_USERS = "사용자";
+    public static final String RESOURCE_NAME_LADDER = "사다리";
+    public static final String RESOURCE_NAME_PRIZES = "당첨품";
     private static final String SYSTEM_ERROR_ALREADY_EXIST = "[ERROR] 게임 리소스에 %s가(이) 이미 존재하는 경우 변경할 수 없습니다.";
     private static final String SYSTEM_ERROR_ADD_NULL = "[ERROR] 게임 리소스에 추가할 %s가(이) 존재하지 않습니다.";
-    private static final String RESOURCE_NAME_USERS = "사용자";
-    private static final String RESOURCE_NAME_LADDER = "사다리";
-    private static final String RESOURCE_NAME_PRIZES = "당첨품";
 
 
     private Users users;
