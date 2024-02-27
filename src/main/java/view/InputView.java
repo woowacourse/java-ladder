@@ -42,6 +42,16 @@ public class InputView {
         return Integer.parseInt(rawHeight);
     }
 
+    public static String inputResultTargetName() {
+        System.out.println("결과를 보고 싶은 사람은?");
+
+        String rawTargetName = scanner.nextLine();
+        validateBlank(rawTargetName);
+        validateContainsSpace(rawTargetName);
+
+        return rawTargetName;
+    }
+
     private static void validateStringWithDelimiter(String input) {
         validateBlank(input);
         validateContainsSpace(input);

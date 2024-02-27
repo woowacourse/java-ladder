@@ -27,6 +27,7 @@ public class LadderController {
             final Results results = generateResults();
             final Height height = generateHeight();
             final Ladder ladder = generateLadder(players, height);
+            final String targetName = InputView.inputResultTargetName();
 
             OutputView.printPlayerNames(players);
             OutputView.printLadder(ladder, players.findMaxNameLength());
