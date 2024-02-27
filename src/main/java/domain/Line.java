@@ -44,7 +44,7 @@ public class Line {
         return Collections.unmodifiableList(line);
     }
 
-    public List<Integer> getUnconnectedCoordinate() {
+    public List<Integer> getUnconnectedIndex() {
         return IntStream.range(0, line.size())
                 .filter(value -> line.get(value).equals(CONNECTED))
                 .boxed()

@@ -1,6 +1,5 @@
 package domain;
 
-import util.Connection;
 import util.Generator;
 import util.LadderBuilder;
 import util.RandomGenerator;
@@ -44,11 +43,9 @@ public class LadderGame {
     }
 
     private void climb(Line line, List<Name> names) {
-        List<Connection> connections = line.getLine();
-        for (int index = 1; index < names.size(); index++) {
-            if (connections.get(index).equals(Connection.CONNECTED)) {
-                Collections.swap(names, index, index - 1);
-            }
+        List<Integer> indices = line.getUnconnectedIndex();
+        for (int index : indices) {
+            Collections.swap(names, index, index - 1);
         }
     }
 }
