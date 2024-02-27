@@ -39,5 +39,11 @@ public class Line {
         return bridges.stream().map(Bridge::toBoolean).toList();
     }
 
+    public boolean canMoveRight(int position) {
+        return position != bridges.size() && bridges.get(position).toBoolean();
+    }
 
+    public boolean canMoveLeft(int position) {
+        return position != 0 && bridges.get(position - 1).toBoolean();
+    }
 }
