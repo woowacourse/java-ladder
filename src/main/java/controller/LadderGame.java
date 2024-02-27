@@ -2,10 +2,10 @@ package controller;
 
 import domain.Height;
 import domain.Ladder;
-import domain.LadderResults;
 import domain.Line;
-import domain.Participant;
-import domain.Participants;
+import domain.Player;
+import domain.Players;
+import domain.Prizes;
 import view.LineItem;
 import util.LineItemGenerator;
 import view.InputView;
@@ -27,27 +27,27 @@ public class LadderGame {
     }
 
     public void start() {
-        Participants participants = retryUntilSuccess(this::prepareParticipants);
-        LadderResults ladderResults = retryUntilSuccess(() -> inputLadderResults(participants.getParticipantsCount()));
+        Players players = retryUntilSuccess(this::preparePlayers);
+        Prizes prizes = retryUntilSuccess(() -> inputLadderResults(players.getPlayersCount()));
         Height height = retryUntilSuccess(this::inputHeight);
 
-        Ladder ladder = Ladder.of(height, participants.getParticipantsCount(), lineItemGenerator);
-        printLadder(ladder, participants, ladderResults);
+        Ladder ladder = Ladder.of(height, players.getPlayersCount(), lineItemGenerator);
+        printLadder(ladder, players, prizes);
 
-        printLadderGameResult(ladder, participants, ladderResults);
+        printLadderGameResult(ladder, players, prizes);
     }
 
-    private Participants prepareParticipants() {
+    private Players preparePlayers() {
         String input = inputView.inputName();
         List<String> names = List.of(input.split(","));
 
-        return new Participants(names);
+        return new Players(names);
     }
 
-    private LadderResults inputLadderResults(int columnLength) {
-        String input = inputView.inputLadderResults();
+    private Prizes inputLadderResults(int columnLength) {
+        String input = inputView.inputPrizes();
         List<String> ladderResults = List.of(input.split(","));
-        return new LadderResults(ladderResults, columnLength);
+        return new Prizes(ladderResults, columnLength);
     }
 
     private Height inputHeight() {
@@ -64,42 +64,42 @@ public class LadderGame {
         }
     }
 
-    private void printLadder(Ladder ladder, Participants participants, LadderResults ladderResults) {
+    private void printLadder(Ladder ladder, Players players, Prizes prizes) {
         List<String> result = new ArrayList<>();
         List<Line> createdLadder = ladder.getLadder();
 
-        createParticipantsLineUp(result, participants.getParticipants());
+        createPlayersLineUp(result, players.getPlayers());
         createLadder(result, createdLadder);
-        createLadderResults(result, ladderResults.getLadderResults());
+        createLadderResults(result, prizes.getPrizes());
 
         outputView.printLadderResultMessage();
         outputView.printLadder(result);
     }
 
-    private void printLadderGameResult(Ladder ladder, Participants participants, LadderResults ladderResults) {
+    private void printLadderGameResult(Ladder ladder, Players players, Prizes prizes) {
         String resultName = inputView.inputResultName();
 
         outputView.printResultMessage();
         if (resultName.equals("all")) {
-            for (Participant participant : participants.getParticipants()) {
-                String name = participant.getName();
-                int playerPosition = participants.findIndexOfParticipant(name);
+            for (Player player : players.getPlayers()) {
+                String name = player.getName();
+                int playerPosition = players.findIndexOfPlayer(name);
                 int resultPosition = ladder.playLadderGame(playerPosition);
-                System.out.println(name + " : " + ladderResults.findLadderResultByPosition(resultPosition));
+                System.out.println(name + " : " + prizes.findPrizeByPosition(resultPosition));
             }
             return;
         }
 
-        int playerPosition = participants.findIndexOfParticipant(resultName);
+        int playerPosition = players.findIndexOfPlayer(resultName);
         int resultPosition = ladder.playLadderGame(playerPosition);
-        System.out.println(ladderResults.findLadderResultByPosition(resultPosition));
+        System.out.println(prizes.findPrizeByPosition(resultPosition));
     }
 
-    private void createParticipantsLineUp(List<String> result, List<Participant> participants) {
+    private void createPlayersLineUp(List<String> result, List<Player> players) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\n");
-        for (Participant participant : participants) {
-            stringBuilder.append(String.format("%5s ", participant.getName()));
+        for (Player player : players) {
+            stringBuilder.append(String.format("%5s ", player.getName()));
         }
 
         result.add(stringBuilder.toString());
