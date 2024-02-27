@@ -2,8 +2,6 @@ package ladder.domain;
 
 import static java.util.Collections.unmodifiableList;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -21,9 +19,9 @@ public class GameResults {
             UserNames userNames,
             final List<Integer> stepPositions,
             Destinations destinations) {
-        List<Destination> swappedDestinations = destinations.swapDestinations(stepPositions);
+        Destinations swappedDestinations = destinations.swapDestinations(stepPositions);
         return IntStream.range(0, userNames.getUserCount())
-                .mapToObj(i -> new GameResult(userNames.findByOrder(i), swappedDestinations.get(i)))
+                .mapToObj(i -> new GameResult(userNames.findByOrder(i), swappedDestinations.findByOrder(i)))
                 .toList();
     }
 

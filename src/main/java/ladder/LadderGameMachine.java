@@ -2,7 +2,6 @@ package ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.domain.Destination;
 import ladder.domain.Destinations;
 import ladder.domain.GameResult;
 import ladder.domain.GameResults;
@@ -66,10 +65,7 @@ public class LadderGameMachine {
         List<LineResult> lineResults = lines.getLines().stream()
                 .map(line -> new LineResult(line.getLine()))
                 .toList();
-        List<String> destinationValues = destinations.getDestinations().stream()
-                .map(Destination::value)
-                .toList();
-        return new Ladder(userNames.getUserNames(), lineResults, destinationValues);
+        return new Ladder(userNames.getUserNames(), lineResults, destinations.getDestinations());
     }
 
     private void printGameResult(GameResults gameResults, UserNames userNames) {

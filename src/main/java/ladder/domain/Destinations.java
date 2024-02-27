@@ -1,8 +1,5 @@
 package ladder.domain;
 
-import static java.util.Collections.replaceAll;
-import static java.util.Collections.unmodifiableList;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,12 +26,12 @@ public class Destinations {
         }
     }
 
-    public List<Destination> swapDestinations(final List<Integer> stepPositions) {
+    public Destinations swapDestinations(final List<Integer> stepPositions) {
         List<Destination> swappedDestinations = new ArrayList<>(destinations);
         for (int position : stepPositions) {
             Collections.swap(swappedDestinations, position, position + 1);
         }
-        return swappedDestinations;
+        return new Destinations(swappedDestinations);
     }
 
     public Destination findByOrder(final int order) {
@@ -44,7 +41,9 @@ public class Destinations {
         return destinations.get(order);
     }
 
-    public List<Destination> getDestinations() {
-        return unmodifiableList(destinations);
+    public List<String> getDestinations() {
+        return destinations.stream()
+                .map(Destination::value)
+                .toList();
     }
 }

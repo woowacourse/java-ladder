@@ -22,27 +22,21 @@ public class DestinationsTest {
                 .withMessage("실행 결과 수는 사용자 수와 같아야 합니다.");
     }
 
-    @DisplayName("List<String>으로 전달 받은 destinations들을 List<Destination>으로 반환한다.")
+    @DisplayName("도착지들을 List<String> 형태로 가공하여 반환한다.")
     @Test
-    void makeStringToDestination() {
-        List<String> destinations = List.of("꽝", "5000");
+    void getUserNames() {
+        Destinations destinations = Destinations.of(List.of("꽝", "3000"), 2);
 
-        assertThat(Destinations.of(destinations, 2).getDestinations())
-                .containsExactly(new Destination("꽝"), new Destination("5000"));
+        assertThat(destinations.getDestinations()).containsExactly("꽝", "3000");
     }
 
     @DisplayName("Step이 있는 위치를 받으면 해당 위치와 다음에 위치한 결과를 서로 바꾼다")
     @Test
     void swapDestinations() {
         Destinations destinations = Destinations.of(List.of("꽝", "5000", "꽝", "3000"), 4);
-        List<Destination> expected = List.of(
-                new Destination("5000"),
-                new Destination("꽝"),
-                new Destination("3000"),
-                new Destination("꽝")
-        );
+        List<String> expected = List.of("5000", "꽝", "3000", "꽝");
 
-        assertThat(destinations.swapDestinations(List.of(0, 2))).isEqualTo(expected);
+        assertThat(destinations.swapDestinations(List.of(0, 2)).getDestinations()).isEqualTo(expected);
     }
 
     @DisplayName("인덱스 넘버로 해당 위치에 존재하는 Destination을 반환한다.")
