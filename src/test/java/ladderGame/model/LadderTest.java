@@ -12,13 +12,13 @@ class LadderTest {
     @Test
     @DisplayName("Player들이 사다리를 타고 내려간다.")
     void descendLadder() {
-        Ladder ladder = new Ladder(List.of(
+        Ladder ladder = new Ladder(
                 new Line(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION, ConnectionStatus.CONNECTION),
                 new Line(ConnectionStatus.DISCONNECTION, ConnectionStatus.DISCONNECTION, ConnectionStatus.CONNECTION),
                 new Line(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION, ConnectionStatus.CONNECTION),
                 new Line(ConnectionStatus.DISCONNECTION, ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION),
                 new Line(ConnectionStatus.DISCONNECTION, ConnectionStatus.DISCONNECTION, ConnectionStatus.CONNECTION)
-        ));
+        );
 
         Players players = new Players(List.of("pobi", "crong", "honux", "jk"));
 
