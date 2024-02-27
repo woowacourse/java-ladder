@@ -16,4 +16,8 @@ public class Player {
     public int getPosition() {
         return position.getPosition();
     }
+
+    public String getName() {
+        return name.getValue();
+    }
 }

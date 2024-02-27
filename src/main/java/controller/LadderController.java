@@ -1,9 +1,6 @@
 package controller;
 
-import domain.Height;
-import domain.Names;
-import domain.RandomBooleanGenerator;
-import domain.Results;
+import domain.*;
 import domain.lines.Lines;
 import view.InputView;
 import view.ResultView;
@@ -22,7 +19,10 @@ public class LadderController {
         Height height = new Height(rawHeight);
 
         Lines lines = new Lines(height.getValue(), names.size(), new RandomBooleanGenerator());
+        Players players = new Players(names);
+        players.playGame(lines);
 
         ResultView.printLadder(names, lines, results);
+        ResultView.printGameResult(results, players);
     }
 }
