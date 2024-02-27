@@ -9,6 +9,10 @@ public class GameResult {
         this.destination = destination;
     }
 
+    public boolean isSameName(final String name) {
+        return userName.isSame(name);
+    }
+
     public UserName getUserName() {
         return userName;
     }

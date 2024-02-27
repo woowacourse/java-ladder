@@ -27,7 +27,7 @@ public class GameResults {
 
     public String findByUserName(final String requestName) {
         GameResult gameResult = gameResults.stream()
-                .filter(result -> result.getUserName().isSame(requestName))
+                .filter(result -> result.isSameName(requestName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참여자입니다."));
         return gameResult.getDestination().value();
