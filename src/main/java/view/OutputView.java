@@ -26,7 +26,7 @@ public class OutputView {
     }
 
     public static void printPrize(final Prize prize) {
-        System.out.println(prize.name() + "당첨 🎉🎉");
+        System.out.println("[" + prize.name() + "] " + "당첨 🎉🎉");
     }
 
     public static void printErrorMessage(Exception e) {
