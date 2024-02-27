@@ -18,7 +18,7 @@ public class Players {
     }
 
     public Player findByName(String name) {
-        return players.stream().filter(player -> player.getName().equals(name)).findAny().orElseThrow(NoSuchElementException::new);
+        return players.stream().filter(player -> player.getName().equals(name)).findAny().orElseThrow(() -> new NoSuchElementException("존재하지 않는 이름입니다."));
     }
 
     public List<Player> getPlayers() {
