@@ -38,4 +38,29 @@ public class LadderTest {
         );
 
     }
+
+
+        //        |-----|     |-----|
+//                |     |-----|     |
+//                |-----|     |     |
+
+    @DisplayName("사다리의 결과를 알 수 있다.")
+    @Test
+    void moveAll(){
+        Height height = new Height(3);
+        Participants participants = new Participants(List.of("pobi", "left", "right", "both"));
+        Ladder ladder = new Ladder((x, y) -> List.of(
+                List.of(true, false, true),
+                List.of(false, true, false),
+                List.of(true, false, false)), height, participants);
+        assertAll(
+                () -> assertThat(ladder.result(0)).isEqualTo(2),
+                () -> assertThat(ladder.result(1)).isEqualTo(1),
+                () -> assertThat(ladder.result(2)).isEqualTo(3),
+                () -> assertThat(ladder.result(3)).isEqualTo(0)
+        );
+
+
+    }
+
 }

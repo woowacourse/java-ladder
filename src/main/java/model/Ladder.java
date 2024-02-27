@@ -29,4 +29,8 @@ public class Ladder {
     public List<LadderRow> getLadderRows() {
         return new ArrayList<>(ladderRows);
     }
+
+    public int result(int i) {
+        return 0;
+    }
 }
