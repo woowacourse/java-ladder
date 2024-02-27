@@ -1,9 +1,9 @@
 package domain;
 
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
 
-public class Players implements Iterable<Name> {
+public class Players{
 
     private final List<Name> players;
 
@@ -24,8 +24,7 @@ public class Players implements Iterable<Name> {
         }
     }
 
-    @Override
-    public Iterator<Name> iterator() {
-        return players.iterator();
+    public List<Name> getNames() {
+        return Collections.unmodifiableList(this.players);
     }
 }
