@@ -12,4 +12,8 @@ public class Rewards {
     public String getRewardByIndex(int index) {
         return rewards.get(index).getReward();
     }
+
+    public List<Reward> getRewards() {
+        return rewards;
+    }
 }

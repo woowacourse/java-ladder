@@ -19,14 +19,13 @@ public class LadderGame {
         int ladderWidth = players.getPlayers().size() - 1;
         Ladder ladder = Ladder.createLadderWithLines(new RandomLegGenerateStrategy(), ladderHeight, ladderWidth);
 
-        OutputView.printLadder(players, ladder);
-
+        OutputView.printLadder(players, ladder, rewards);
     }
 
     private Rewards readReward() {
         try {
             return new Rewards(InputView.readRewards());
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return readReward();
         }
     }
