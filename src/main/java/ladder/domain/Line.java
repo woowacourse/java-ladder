@@ -9,17 +9,17 @@ public class Line {
 
     public Line(List<Connection> connections) {
         List<Connection> copy = new ArrayList<>(connections);
-        validateContinue(copy);
+        validateConnectionContinuous(copy);
         this.connections = copy;
     }
 
-    private void validateContinue(List<Connection> connections) {
-        if (isContinue(connections)) {
+    private void validateConnectionContinuous(List<Connection> connections) {
+        if (isContinuous(connections)) {
             throw new IllegalArgumentException("좌우 연속해서 발판이 존재할 수 없습니다.");
         }
     }
 
-    private boolean isContinue(List<Connection> connections) {
+    private boolean isContinuous(List<Connection> connections) {
         return IntStream.range(0, connections.size() - 1)
                 .anyMatch(order -> isRung(connections, order) && isRung(connections, order + 1));
     }
