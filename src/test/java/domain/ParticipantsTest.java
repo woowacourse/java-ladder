@@ -43,4 +43,12 @@ class ParticipantsTest {
                 .hasMessage(ParticipantsExceptionMessage.DUPLICATE_PARTICIPANTS.getExceptionMessage());
     }
 
+    @Test
+    @DisplayName("참가자 수와 들어오는 수가 같은지 확인한다.")
+    void isMatchCountTest() {
+        List<String> names = List.of("siso", "atto");
+        Participants participants = new Participants(names);
+        participants.isMatchCount(2);
+    }
+
 }
