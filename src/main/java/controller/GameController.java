@@ -27,10 +27,10 @@ public class GameController {
         Ladder ladder = new Ladder(height, numberOfPlayers, new RandomDirectionGenerator());
         GameBoard gameBoard = new GameBoard(players, ladder, prizes);
 
-        printGeneratedLadderResult(gameBoard);
+        printGeneratedGameBoard(gameBoard);
     }
 
-    private void printGeneratedLadderResult(GameBoard gameBoard) {
+    private void printGeneratedGameBoard(GameBoard gameBoard) {
         System.out.println(LADDER_GENERATE_RESULT_HEADER);
         System.out.println(System.lineSeparator());
         OutputView.printObjectNames(gameBoard.getPlayers()
