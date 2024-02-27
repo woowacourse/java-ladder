@@ -1,7 +1,5 @@
 package ladder.util;
 
-import ladder.view.OutputView;
-
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -22,7 +20,7 @@ public class ExceptionRetryHandler {
         try {
             return Optional.of(supplier.get());
         } catch (IllegalArgumentException e) {
-            OutputView.printMessage("[ERROR] " + e.getMessage());
+            System.out.println("[ERROR] " + e.getMessage());
             return Optional.empty();
         }
     }

@@ -25,24 +25,21 @@ public class OutputView {
         CONNECTION_FORMAT.put(Connection.EMPTY, LADDER_EMPTY);
     }
 
-    private OutputView() {
-    }
-
-    public static void printMessage(String message) {
+    public void printMessage(String message) {
         System.out.println(message);
     }
 
-    public static void printResult(People people, Ladder ladder) {
+    public void printResult(People people, Ladder ladder) {
         printResultTitle();
         printPeopleNames(people);
         printLadder(ladder);
     }
 
-    private static void printResultTitle() {
+    private void printResultTitle() {
         System.out.println(EXECUTION_RESULT);
     }
 
-    private static void printPeopleNames(People people) {
+    private void printPeopleNames(People people) {
         StringJoiner joiner = new StringJoiner(PEOPLE_NAMES_DELIMITER);
         for (String name : people.getNames()) {
             joiner.add(String.format(LADDER_FORMAT, name));
@@ -51,11 +48,11 @@ public class OutputView {
         System.out.println(joiner);
     }
 
-    private static void printLadder(Ladder ladder) {
-        ladder.getConnections().forEach(OutputView::printConnections);
+    private void printLadder(Ladder ladder) {
+        ladder.getConnections().forEach(this::printConnections);
     }
 
-    private static void printConnections(List<Connection> connections) {
+    private void printConnections(List<Connection> connections) {
         StringJoiner joiner = new StringJoiner(LINE_PILLAR, LINE_PREFIX, LINE_PILLAR);
         for (Connection connection : connections) {
             joiner.add(CONNECTION_FORMAT.get(connection));

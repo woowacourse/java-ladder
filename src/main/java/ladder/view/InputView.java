@@ -10,39 +10,36 @@ public class InputView {
     private static final String PEOPLE_NAMES_DELIMITER = ",";
     private static final String LADDER_HEIGHT_INPUT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
 
-    private InputView() {
-    }
-
-    public static List<String> readPeopleNames() {
-        OutputView.printMessage(PEOPLE_NAMES_INPUT_MESSAGE);
+    public List<String> readPeopleNames() {
+        System.out.println(PEOPLE_NAMES_INPUT_MESSAGE);
         String peopleNames = scanner.nextLine().strip();
         validateStartsOrEndsWithDelimiter(peopleNames);
 
-        OutputView.printMessage("");
+        System.out.println();
         return splitByDelimiter(peopleNames);
     }
 
-    private static List<String> splitByDelimiter(String peopleNames) {
+    private List<String> splitByDelimiter(String peopleNames) {
         return Arrays.stream(peopleNames.split(PEOPLE_NAMES_DELIMITER))
                 .map(String::strip)
                 .toList();
     }
 
-    private static void validateStartsOrEndsWithDelimiter(String peopleNames) {
+    private void validateStartsOrEndsWithDelimiter(String peopleNames) {
         if (peopleNames.startsWith(PEOPLE_NAMES_DELIMITER) || peopleNames.endsWith(PEOPLE_NAMES_DELIMITER)) {
             throw new IllegalArgumentException("사람들의 이름은 콤마(,)로 시작하거나 끝날 수 없습니다.");
         }
     }
 
-    public static int readLadderHeight() {
-        OutputView.printMessage(LADDER_HEIGHT_INPUT_MESSAGE);
+    public int readLadderHeight() {
+        System.out.println(LADDER_HEIGHT_INPUT_MESSAGE);
         String ladderHeight = scanner.nextLine().strip();
 
-        OutputView.printMessage("");
+        System.out.println();
         return toInt(ladderHeight);
     }
 
-    private static int toInt(String ladderHeight) {
+    private int toInt(String ladderHeight) {
         try {
             return Integer.parseInt(ladderHeight);
         } catch (NumberFormatException e) {

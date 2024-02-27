@@ -13,35 +13,40 @@ import ladder.view.OutputView;
 import java.util.List;
 
 public class LadderController {
-    private LadderController() {
+    private final InputView inputView;
+    private final OutputView outputView;
+
+    public LadderController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
-    public static void start() {
+    public void start() {
         People people = requestPeopleUntilValid();
         LadderHeight ladderHeight = requestLadderHeightUntilValid();
 
         RandomLadderCreator randomLadderCreator = new RandomLadderCreator(new RandomLineCreator());
         Ladder ladder = randomLadderCreator.create(people.getCount() - 1, ladderHeight.getValue());
 
-        OutputView.printResult(people, ladder);
+        outputView.printResult(people, ladder);
     }
 
-    private static People requestPeopleUntilValid() {
-        return ExceptionRetryHandler.handle(LadderController::requestPeople);
+    private People requestPeopleUntilValid() {
+        return ExceptionRetryHandler.handle(this::requestPeople);
     }
 
-    private static People requestPeople() {
-        List<String> peopleNames = InputView.readPeopleNames();
+    private People requestPeople() {
+        List<String> peopleNames = inputView.readPeopleNames();
         return new People(peopleNames.stream()
                 .map(Person::new)
                 .toList());
     }
 
-    private static LadderHeight requestLadderHeightUntilValid() {
-        return ExceptionRetryHandler.handle(LadderController::requestLadderHeight);
+    private LadderHeight requestLadderHeightUntilValid() {
+        return ExceptionRetryHandler.handle(this::requestLadderHeight);
     }
 
-    private static LadderHeight requestLadderHeight() {
-        return new LadderHeight(InputView.readLadderHeight());
+    private LadderHeight requestLadderHeight() {
+        return new LadderHeight(inputView.readLadderHeight());
     }
 }
