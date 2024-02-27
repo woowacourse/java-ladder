@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PrizesTest {
+public class ResultTest {
 
     @Test
     @DisplayName("결과의 개수가 참여자의 인원수와 다르면 예외가 발생한다.")
