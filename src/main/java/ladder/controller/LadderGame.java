@@ -4,7 +4,7 @@ import ladder.domain.generator.LadderStepGenerator;
 import ladder.domain.generator.RandomLadderStepGenerator;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderGameResult;
+import ladder.domain.result.LadderGameResult;
 import ladder.domain.participant.Participants;
 import ladder.exception.ExceptionHandler;
 import ladder.view.InputView;
