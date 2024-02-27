@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static java.lang.System.lineSeparator;
+
 public class OutputView {
     private static final int SINGLE_BRIDGE_LENGTH = 5;
     private static final String BRIDGE_SEPARATOR = "|";
@@ -20,7 +22,7 @@ public class OutputView {
     private static final String BRIDGE_EMPTY_SYMBOL = " ";
 
     public static void printLadderGame(final Players players, final Ladder ladder, final Prizes prizes) {
-        System.out.println(System.lineSeparator() + "실행 결과");
+        System.out.println(lineSeparator() + "실행 결과");
         printPlayers(players.players());
         printLadder(ladder);
         printPrizes(prizes.prizes());
@@ -71,6 +73,7 @@ public class OutputView {
     }
 
     public static void printSearchResult(final Map<Player, Prize> result) {
+        System.out.println(lineSeparator() + "실행 결과");
         if (result.entrySet().size() == 1) {
             printResultOne(result);
             return;
