@@ -7,14 +7,14 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class InputView {
-    public static final String LADDER_RESULT_INPUT_FORMAT_ERROR_MESSAGE = String.format("사다리 실행 결과는 %s로 구분하여 입력해야합니다",
+    private static final String LADDER_RESULT_INPUT_FORMAT_ERROR_MESSAGE = String.format("사다리 실행 결과는 %s로 구분하여 입력해야합니다",
             InputView.LADDER_RESULTS_INPUT_DELIMITER);
-    public static final String PLAYER_NAMES_INPUT_FORMAT_ERROR_MESSAGE = String.format("참가자 이름은 문자(영어 or 한글)이어야 하며 %s로 구분하여 입력해야합니다",
+    private static final String PLAYER_NAMES_INPUT_FORMAT_ERROR_MESSAGE = String.format("참가자 이름은 문자(영어 or 한글)이어야 하며 %s로 구분하여 입력해야합니다",
             InputView.PLAYER_NAMES_INPUT_DELIMITER);
-    public static final String BANNED_PLAYER_NAMES_INPUT_ERROR_MESSAGE = "사용할 수 없는 이름이 포함되어 있습니다";
-    public static final String INTEGER_FORMAT_ERROR_MESSAGE = "정수 형태만 입력 가능합니다";
-    public static final String PLAYER_NAMES_INPUT_DELIMITER = ",";
-    public static final String LADDER_RESULTS_INPUT_DELIMITER = ",";
+    private static final String BANNED_PLAYER_NAMES_INPUT_ERROR_MESSAGE = "사용할 수 없는 이름이 포함되어 있습니다";
+    private static final String INTEGER_FORMAT_ERROR_MESSAGE = "정수 형태만 입력 가능합니다";
+    private static final String PLAYER_NAMES_INPUT_DELIMITER = ",";
+    private static final String LADDER_RESULTS_INPUT_DELIMITER = ",";
 
     private final Scanner scanner;
 
