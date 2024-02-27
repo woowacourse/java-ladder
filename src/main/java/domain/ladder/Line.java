@@ -13,6 +13,10 @@ public class Line {
         }
     }
 
+    public int climb(int startPosition) {
+        return startPosition + 1;
+    }
+
     private Stick getEmptyStickOrNotRepeatedFilledStick(StickGenerator stickGenerator) {
         Stick stick = stickGenerator.generateOne();
 
