@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LadderGame {
+    private final String EXCEPTION_MESSAGE_NOT_EQUALS_PLAYERS_LADDER_RESULTS = "사다리 결과 수가 참여자 수와 동일하지 않습니다.";
     private final String EXCEPTION_MESSAGE_NOT_CONTAIN_PLAYERS = "존재하지 않는 참가자 이름입니다.";
 
     private final Ladder ladder;
@@ -11,6 +12,10 @@ public class LadderGame {
     private final LadderResults ladderResults;
 
     public LadderGame(Players players, LadderResults ladderResults, Ladder ladder) {
+        if(players.getPlayerSize() != ladderResults.getLadderResultsSize()) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_NOT_EQUALS_PLAYERS_LADDER_RESULTS);
+        }
+
         this.players = players;
         this.ladderResults = ladderResults;
         this.ladder = ladder;

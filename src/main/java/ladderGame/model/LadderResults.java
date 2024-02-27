@@ -13,6 +13,10 @@ public class LadderResults {
         }
     }
 
+    public int getLadderResultsSize() {
+        return ladderResults.size();
+    }
+
     public LadderResult getLadderResult(int index) {
         return ladderResults.get(index);
     }
