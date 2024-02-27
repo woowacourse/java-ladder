@@ -17,7 +17,7 @@ public class Players {
                       .filter(player -> player.name()
                                               .equals(targetPlayerName))
                       .findFirst()
-                      .orElse(null);
+                      .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어입니다."));
     }
 
     public List<Name> getPlayerNames() {
