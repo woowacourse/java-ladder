@@ -50,4 +50,18 @@ public class PlayerResultsTest {
         //then
         Assertions.assertThat(result.getValue()).isEqualTo(expectedResult);
     }
+
+    @DisplayName("존재하지 않는 참가자 이름으로 찾으면 예외를 던진다.")
+    @Test
+    void findPlayerResultByUnknownName() {
+        //given
+        PlayerResults playerResults = new PlayerResults(rawPlayerResults);
+
+        String unknownName = "unknown";
+
+        //then
+        Assertions.assertThatThrownBy(() -> playerResults.findResult(unknownName))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(PlayerResults.UNKNOWN_NAME);
+    }
 }

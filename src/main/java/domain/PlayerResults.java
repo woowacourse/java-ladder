@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class PlayerResults {
 
+    public static final String UNKNOWN_NAME = "존재하지 않는 참가자 이름입니다.";
     private final HashMap<Name, Result> playerResults;
 
     public PlayerResults(final HashMap<Name, Result> playerResults) {
@@ -16,6 +17,6 @@ public class PlayerResults {
                 .filter(entry -> entry.getKey().getValue().equals(name))
                 .map(Map.Entry::getValue)
                 .findAny()
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException(UNKNOWN_NAME));
     }
 }
