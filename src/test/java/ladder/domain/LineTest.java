@@ -10,6 +10,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
 
+    private final PointsGenerator pointsGenerator = size -> new ArrayList<>(
+            List.of(Point.ON, Point.ON, Point.ON, Point.ON)
+    );
+
     @Test
     @DisplayName("라인에는 사람의 수 - 1 만큼 좌표가 있다.")
     void createLine() {
@@ -17,7 +21,7 @@ public class LineTest {
         int personCount = 5;
 
         // when
-        Line line = new Line(personCount, new RandomPointsGenerator());
+        Line line = new Line(personCount, pointsGenerator);
         int pointsSize = line.getPoints().size();
 
         // then
@@ -29,12 +33,37 @@ public class LineTest {
     void createNonOverlappingLine() {
         // given
         int personCount = 5;
-        PointsGenerator pointsGenerator = size -> new ArrayList<>(List.of(Point.ON, Point.ON, Point.ON, Point.ON));
 
         // when
         Line line = new Line(personCount, pointsGenerator);
 
         // then
         assertThat(line.getPoints()).isEqualTo(List.of(Point.ON, Point.OFF, Point.ON, Point.OFF));
+    }
+
+    @Test
+    @DisplayName("사다리가 오른쪽으로 연결되어 있다면 오른쪽으로 내려온다.")
+    public void rideRight() {
+        // given
+        Line line = new Line(5, pointsGenerator);
+
+        // when
+        int positionIndex = line.ride(0);
+
+        // then
+        assertThat(positionIndex).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("사다리가 왼쪽으로 연결되어 있다면 왼쪽으로 내려온다.")
+    public void rideLeft() {
+        // given
+        Line line = new Line(5, pointsGenerator);
+
+        // when
+        int position = line.ride(1);
+
+        // then
+        assertThat(position).isEqualTo(0);
     }
 }
