@@ -26,7 +26,7 @@
 - [x] 참여자 이름 목록을 통해 참여자들을 생성한다.
   - [x] 이름은 중복될 수 없다.
   - [x] 이름은 두명 이상이여야한다.
-- [ ] 현재 참여자들의 높이를 가지고 있다. 
+- [ ] Player들을 이동시킨다.
 
 ## 참여자 (Player)
 - [x] 이름(Name)을 가지고 있다.
@@ -40,11 +40,16 @@
 
 ## 사다리 (Ladder)
 - [x] 최대 사다리 높이만큼 가로줄(Line)을 가지고 있다.
+- [ ] 각 Line별로 Player들이 이동한다.
 
 ## 가로줄 (Line)
 - [x] 가로줄 연결 여부는 생성자에서 정해진다.
 - [x] 사다리가 연결되었는지 여부를 가지고 있다.
   - [x] 연속으로 사다리가 연결되면 안된다.
+- [ ] index가 주어졌을 때 Line.get(index)와 Line.get(index-1)을 확인 후 index를 변경한다.
+  - [ ] Line.get(index)가 true, Line.get(index-1)이 false면 index를 1 증가시킨다.
+  - [ ] Line.get(index)가 false, Line.get(index-1)이 true면 index를 1 감소시킨다.
+  - [ ] Line.get(index)가 false, Line.get(index-1)이 false면 inde를 유지한다.
 
 ## 전체 실행 결과(Results)
 - [x] 실행 결과 목록을 통해 전체 실행 결과를 생성한다.
