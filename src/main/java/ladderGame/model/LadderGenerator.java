@@ -20,7 +20,7 @@ public class LadderGenerator {
         for (int i = 0; i <  playerCount- 1; i++) {
             if (i == 0 || connectionStatuses.get(i - 1).equals(ConnectionStatus.DISCONNECTION)) {
                 connectionStatuses.add(decideConnectionStatus());
-                break;
+                continue;
             }
             connectionStatuses.add(ConnectionStatus.DISCONNECTION);
         }
