@@ -41,30 +41,27 @@ public class Line {
     }
 
     public int move(int currentIndex) {
-        currentIndex = moveRight(currentIndex);
-        currentIndex = moveLeft(currentIndex);
-        return currentIndex;
-    }
-    
-    private int moveRight(int currentIndex) {
-        Path right = paths.get(currentIndex);
-        if (right.isExist()) {
+        if (canMoveRight(currentIndex)) {
             currentIndex++;
         }
-        return currentIndex;
-    }
-    
-    private int moveLeft(int currentIndex) {
-        int leftIndex = currentIndex - 1;
-        Path left = paths.get(leftIndex);
-        if (canMove(leftIndex) && left.isExist()) {
+
+        if (canMoveLeft(currentIndex)) {
             currentIndex--;
         }
         return currentIndex;
     }
 
-    // TODO: 기똥찬 이름 고민
-    private boolean canMove(final int leftIndex) {
-        return leftIndex > 0;
+    private boolean canMoveRight(int currentIndex) {
+        Path right = paths.get(currentIndex);
+        return right.isExist();
+    }
+
+    private boolean canMoveLeft(int currentIndex) {
+        int leftIndex = currentIndex - 1;
+        if (leftIndex >= 0) {
+            Path left = paths.get(leftIndex);
+            return left.isExist();
+        }
+        return false;
     }
 }

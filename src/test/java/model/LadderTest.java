@@ -58,6 +58,6 @@ class LadderTest {
                         new Line(List.of(EXIST, NOT_EXIST, EXIST)))
         );
         Ladder ladder = Ladder.from(height, personCount, pathGenerator);
-        assertThat(ladder.climb(1)).isEqualTo(1);
+        assertThat(ladder.climb(0)).isEqualTo(0);
     }
 }
