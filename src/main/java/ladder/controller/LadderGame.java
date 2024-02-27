@@ -18,18 +18,9 @@ import java.util.Objects;
 public class LadderGame {
     private static final String FINISH_COMMAND = "all";
 
-    private final InputView inputView;
-    private final OutputView outputView;
-    private final ExceptionHandler exceptionHandler;
-
-    public LadderGame(
-            final InputView inputView,
-            final OutputView outputView,
-            final ExceptionHandler exceptionHandler) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-        this.exceptionHandler = exceptionHandler;
-    }
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final ExceptionHandler exceptionHandler = new ExceptionHandler(outputView);
 
     public void run() {
         final Participants participants = exceptionHandler.retryOnException(this::createParticipants);
