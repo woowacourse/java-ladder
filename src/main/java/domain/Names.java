@@ -1,9 +1,8 @@
 package domain;
 
-
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Names {
 
@@ -11,13 +10,13 @@ public class Names {
     private static final int MINIMUM_PLAYERS_COUNT = 2;
     private static final int MAXIMUM_PLAYERS_COUNT = 10;
 
-    private final List<Name> values = new ArrayList<>();
+    private final List<Name> values;
 
     public Names(final List<String> values) {
         validateNameCount(values.size());
-        for (final String name : values) {
-            this.values.add(new Name(name));
-        }
+        this.values = values.stream()
+                .map(Name::new)
+                .collect(Collectors.toList());
     }
 
     private void validateNameCount(final int count) {
