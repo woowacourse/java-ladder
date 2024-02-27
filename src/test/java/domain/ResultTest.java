@@ -19,4 +19,17 @@ public class ResultTest {
         Assertions.assertThat(result.getResultByPerson("1"))
                 .isEqualTo("당첨");
     }
+
+    @DisplayName("이름 목록에 없는 이름을 입력한 경우 예외를 발생한다.")
+    @Test
+    void validateNameTest() {
+        List<String> names = List.of("1", "2");
+        CustomGenerator customGenerator = new CustomGenerator(List.of(false, true));
+        Winnings winnings = new Winnings(List.of("꽝", "당첨"));
+        LadderGame ladderGame = new LadderGame(names, new Height(1), winnings, customGenerator);
+        Result result = new Result(ladderGame.getResult());
+        Assertions.assertThatThrownBy(() -> result.getResultByPerson("3"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 이전에 입력한 이름 중에 하나여야 합니다.");
+    }
 }
