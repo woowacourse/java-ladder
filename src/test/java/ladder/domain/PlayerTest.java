@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,9 +17,22 @@ public class PlayerTest {
         final int lineFloor = 5;
 
         // When
-        Player player = Player.of(userName, lineNumber, lineFloor);
+        final Player player = Player.of(userName, lineNumber, lineFloor);
 
         // Then
         assertThat(player).isNotNull();
+    }
+
+    @DisplayName("플레이어가 사다리에서 내려왔다면 true를 반환한다.")
+    @Test
+    void 플레이어_사다리_내려_오면_true_반환() {
+        // Given
+        final Player player = Player.of("kelly", 1, 0);
+
+        // When
+        final boolean isEscapeLadder = player.escapeLadder();
+
+        // Then
+        Assertions.assertThat(isEscapeLadder).isTrue();
     }
 }
