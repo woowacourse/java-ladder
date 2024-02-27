@@ -48,6 +48,10 @@ public class GameBoard {
         return gameResults;
     }
 
+    public Prize getSpecificPlayerResult(Name targetName) {
+        return gameResults.get(targetName);
+    }
+
     public Players getPlayers() {
         return players;
     }

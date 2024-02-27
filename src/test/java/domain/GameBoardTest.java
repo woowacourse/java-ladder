@@ -52,6 +52,7 @@ class GameBoardTest {
         private final Prizes prizes = new Prizes(List.of("1", "2", "3", "4"), 4);
         private Players players;
         private Map<Name, Prize> results;
+        private GameBoard gameBoard;
 
         @BeforeEach
         void setUp() {
@@ -62,7 +63,7 @@ class GameBoardTest {
                                                           .mapToObj((value) -> Direction.DOWN)
                                                           .toList();
             Ladder ladder = new Ladder(height, players.getPlayerCount(), new FixedDirectionGenerator(fixedDirectionList));
-            GameBoard gameBoard = new GameBoard(players, ladder, prizes);
+            gameBoard = new GameBoard(players, ladder, prizes);
 
             // When
             results = gameBoard.getAllPlayerResult();
@@ -123,10 +124,40 @@ class GameBoardTest {
                                          .get(3);
 
             // Then
-            assertEquals(expectedPrize1, results.get(new Name("도비")));
-            assertEquals(expectedPrize2, results.get(new Name("조이썬")));
-            assertEquals(expectedPrize3, results.get(new Name("포비")));
-            assertEquals(expectedPrize4, results.get(new Name("오리")));
+            assertAll(() -> {
+                assertEquals(expectedPrize1, results.get(new Name("도비")));
+                assertEquals(expectedPrize2, results.get(new Name("조이썬")));
+                assertEquals(expectedPrize3, results.get(new Name("포비")));
+                assertEquals(expectedPrize4, results.get(new Name("오리")));
+            });
+        }
+
+        @Test
+        @DisplayName("특정 플레이어의 Prize를 검색하여 반환한다.")
+        void searchSpecificPlayersPrize() {
+            // When
+            Prize resultPrize1 = gameBoard.getSpecificPlayerResult(new Name("도비"));
+            Prize resultPrize2 = gameBoard.getSpecificPlayerResult(new Name("조이썬"));
+            Prize resultPrize3 = gameBoard.getSpecificPlayerResult(new Name("포비"));
+            Prize resultPrize4 = gameBoard.getSpecificPlayerResult(new Name("오리"));
+
+            Prize expectedPrize1 = prizes.getValue()
+                                         .get(0);
+            Prize expectedPrize2 = prizes.getValue()
+                                         .get(1);
+            Prize expectedPrize3 = prizes.getValue()
+                                         .get(2);
+            Prize expectedPrize4 = prizes.getValue()
+                                         .get(3);
+
+            // Then
+            assertAll(() -> {
+                assertEquals(expectedPrize1, resultPrize1);
+                assertEquals(expectedPrize2, resultPrize2);
+                assertEquals(expectedPrize3, resultPrize3);
+                assertEquals(expectedPrize4, resultPrize4);
+            });
+
         }
     }
 
