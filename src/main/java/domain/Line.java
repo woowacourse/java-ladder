@@ -4,6 +4,8 @@ import utils.Generator;
 
 import java.util.*;
 
+import static domain.Bridge.*;
+
 public class Line {
 
     private final List<Bridge> bridges = new ArrayList<>();
@@ -12,10 +14,30 @@ public class Line {
         generateRandomBridge(personCount, generator);
     }
 
+    public Line(final List<Bridge> bridges) {
+        this.bridges.addAll(bridges);
+    }
+
+    public int moveFrom(final int position) {
+        return position + findDirection(position);
+    }
+
+    private int findDirection(final int position) {
+        if (position < bridges.size() && bridges.get(position) == BRIDGE) {
+            return 1;
+        }
+
+        if (position != 0 && bridges.get(position - 1) == BRIDGE) {
+            return -1;
+        }
+
+        return 0;
+    }
+
 
     private void generateRandomBridge(final int personCount, Generator generator) {
         boolean randomLine = generator.generate();
-        final Bridge firstBridge = Bridge.findByHasBridge(randomLine);
+        final Bridge firstBridge = findByHasBridge(randomLine);
 
         bridges.add(firstBridge);
 
@@ -27,12 +49,13 @@ public class Line {
     private void addBridge(final Generator generator, final int index) {
         final Bridge before = bridges.get(index - 1);
         if (before.getBridge()) {
-            bridges.add(Bridge.NON_BRIDGE);
+            bridges.add(NON_BRIDGE);
             return;
         }
-        bridges.add(Bridge.findByHasBridge(generator.generate()));
+        bridges.add(findByHasBridge(generator.generate()));
     }
-    public List<Bridge> getPoints() {
+
+    public List<Bridge> getBridges() {
         return bridges;
     }
 }

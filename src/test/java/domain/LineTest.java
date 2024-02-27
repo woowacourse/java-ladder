@@ -1,5 +1,6 @@
 package domain;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.RandomGenerator;
@@ -7,6 +8,7 @@ import utils.TrueGenerator;
 
 import java.util.List;
 
+import static domain.Bridge.*;
 import static org.assertj.core.api.Assertions.*;
 
 class LineTest {
@@ -30,10 +32,39 @@ class LineTest {
         List<Boolean> expectedPoint = List.of(true, false, true);
         //when
         Line line = new Line(personCount, new TrueGenerator());
-        List<Boolean> list = line.getPoints().stream()
+        List<Boolean> list = line.getBridges().stream()
                 .map(Bridge::getBridge)
                 .toList();
         //then
         assertThat(list).isEqualTo(expectedPoint);
     }
+
+    @Test
+    @DisplayName("양 옆에 Bridge가 없다면, 현재 위치 Line 값을 반환한다.")
+    void moveDirectly() {
+        // given
+        List<Bridge> bridges = List.of(NON_BRIDGE, BRIDGE, NON_BRIDGE);
+        Line line = new Line(bridges);
+        // when
+        int nextBridgeIndex = line.moveFrom(1);
+        // then
+        assertThat(nextBridgeIndex).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("Bridge를 만나면, 좌 우로 이동한다.")
+    void moveWithBridge() {
+        //given
+        Line line = new Line(
+                List.of(NON_BRIDGE, BRIDGE, NON_BRIDGE, BRIDGE)
+        );
+
+        //when
+        //then
+        Assertions.assertAll(
+                () -> assertThat(line.moveFrom(1)).isEqualTo(2),
+                () -> assertThat(line.moveFrom(4)).isEqualTo(3)
+        );
+    }
+
 }
