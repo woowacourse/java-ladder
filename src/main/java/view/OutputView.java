@@ -1,40 +1,41 @@
 package view;
 
 import domain.ladder.Floor;
-import domain.ladder.Ladder;
 import domain.ladder.LadderBridge;
-import domain.player.PlayerNames;
+import domain.result.LadderResults;
 import java.util.StringJoiner;
 
 public class OutputView {
     private static final String LADDER_FRAME = "|";
     private static final String BRIDGE_EXIST = "-----";
     private static final String BRIDGE_NONE = "     ";
-    private static final String PLAYER_NAMES_FORMAT = "%5s";
+    private static final String JOIN_DELIMITER = " ";
+    private static final String OUTPUT_FORMAT = "%5s";
 
-    public void printLadder(final PlayerNames playerNames, final Ladder ladder) {
-        System.out.println("\n실행 결과\n");
-        printPlayerNames(playerNames);
-        printLadder(ladder);
+    public void printLadderResults(final LadderResults ladderResults) {
+        System.out.println("\n사다리 결과\n");
+        printPlayerNames(ladderResults);
+        printLadder(ladderResults);
+        printExecutionResult(ladderResults);
     }
 
     public void printErrorMessage(final String errorMessage) {
         System.out.println(errorMessage);
     }
 
-    private void printPlayerNames(final PlayerNames playerNames) {
-        StringJoiner playerNamesJoiner = new StringJoiner(" ");
+    private void printPlayerNames(final LadderResults ladderResults) {
+        StringJoiner playerNamesJoiner = new StringJoiner(JOIN_DELIMITER);
 
-        for (int i = 0; i < playerNames.getCount(); i++) {
-            String playerName = String.format(PLAYER_NAMES_FORMAT, playerNames.getNameOfIndex(i));
+        for (int i = 0; i < ladderResults.getPlayerCount(); i++) {
+            String playerName = String.format(OUTPUT_FORMAT, ladderResults.getPlayerNameOfIndex(i));
             playerNamesJoiner.add(playerName);
         }
         System.out.println(playerNamesJoiner);
     }
 
-    private void printLadder(final Ladder ladder) {
+    private void printLadder(final LadderResults ladderResults) {
         StringJoiner ladderJoiner;
-        for (Floor floor : ladder.getFloors()) {
+        for (Floor floor : ladderResults.getFloors()) {
             ladderJoiner = new StringJoiner(LADDER_FRAME, LADDER_FRAME, LADDER_FRAME);
             printLadderLine(floor, ladderJoiner);
         }
@@ -54,5 +55,14 @@ public class OutputView {
             return;
         }
         ladderJoiner.add(BRIDGE_NONE);
+    }
+
+    private void printExecutionResult(final LadderResults ladderResults) {
+        StringJoiner resultJoiner = new StringJoiner(JOIN_DELIMITER);
+        for (int i = 0; i < ladderResults.getLadderResultsSize(); i++) {
+            String formattedResult = String.format(OUTPUT_FORMAT, ladderResults.getLadderResultOfIndex(i));
+            resultJoiner.add(formattedResult);
+        }
+        System.out.println(resultJoiner);
     }
 }

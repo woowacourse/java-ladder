@@ -30,4 +30,8 @@ public class LadderResult {
             throw new IllegalArgumentException(ResultExceptionMessage.LADDER_RESULT_LENGTH);
         }
     }
+
+    public String getResult() {
+        return result;
+    }
 }
