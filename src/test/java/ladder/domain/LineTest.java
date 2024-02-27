@@ -12,8 +12,8 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 public class LineTest {
 
-    @Test
     @DisplayName("라인에 사람의 수 - 1만큼 좌표를 생성한다.")
+    @Test
     void createLine() {
         // given
         int personCount = 5;
@@ -26,8 +26,8 @@ public class LineTest {
         assertThat(pointsSize).isEqualTo(personCount - 1);
     }
 
-    @Test
     @DisplayName("좌표가 하나 이상 사용되어야 한다.")
+    @Test
     void createAllUnusedPoints() {
         // given
         int personCount = 5;
@@ -43,8 +43,8 @@ public class LineTest {
                 .isThrownBy(() -> new Line(personCount, randomPointsGenerator));
     }
 
-    @Test
     @DisplayName("좌표가 연속적으로 사용되어서는 안 된다.")
+    @Test
     void createConsecutiveUsage() {
         // given
         int personCount = 5;
@@ -58,5 +58,20 @@ public class LineTest {
         // when & then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Line(personCount, randomPointsGenerator));
+    }
+
+    @DisplayName("사용된 좌표의 인덱스를 찾는다.")
+    @Test
+    void findUsedPointIndexes() {
+        // given
+        Line line = new Line(5, (size) -> {
+            return List.of(Point.USED, Point.UNUSED, Point.USED, Point.UNUSED);
+        });
+
+        // when
+        List<Integer> usedPointIndexes = line.findUsedPointIndexes();
+
+        // then
+        assertThat(usedPointIndexes).isEqualTo(List.of(0, 2));
     }
 }
