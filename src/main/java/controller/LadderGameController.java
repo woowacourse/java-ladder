@@ -28,6 +28,10 @@ public class LadderGameController {
         resultView.printLadder(ladder, names, undecidedResults);
 
         LadderResult ladderResult = LadderResult.of(ladder, names, undecidedResults);
+        printResult(ladderResult, names);
+    }
+
+    private void printResult(LadderResult ladderResult, Names names) {
         String oneNameOrAll = "";
         while (!oneNameOrAll.equals("all")) {
             oneNameOrAll = inputView.readOneNameOrAll();
