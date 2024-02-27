@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import domain.ladder.BridgeGenerator;
+import domain.ladder.Height;
 import domain.player.Player;
 import domain.player.Position;
 import java.util.List;
@@ -25,12 +26,17 @@ class LadderGameTest {
                 false, true, false,
                 true, false, true
         ));
+        final Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
+        final MatchingItems matchingItems = new MatchingItems(List.of("꽝", "5000", "꽝", "3000"), players.count());
+        final Height height = new Height(5);
+
         final LadderGame ladderGame = new LadderGame(
-                List.of("pobi", "honux", "crong", "jk"),
-                List.of("꽝", "5000", "꽝", "3000"),
-                5,
+                players,
+                matchingItems,
+                height,
                 bridgeGenerator);
-        final Players players = ladderGame.play();
+
+        ladderGame.play();
         final List<Player> rawPlayers = players.getPlayers();
 
         // when & then
@@ -53,42 +59,14 @@ class LadderGameTest {
                 false, true, false,
                 true, false, true
         ));
+        final Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
+        final MatchingItems matchingItems = new MatchingItems(List.of("꽝", "5000", "꽝", "3000"), players.count());
+        final Height height = new Height(5);
+
         final LadderGame ladderGame = new LadderGame(
-                List.of("pobi", "honux", "crong", "jk"),
-                List.of("꽝", "5000", "꽝", "3000"),
-                5,
-                bridgeGenerator);
-
-        ladderGame.play();
-        final List<GameResult> pobiResult = ladderGame.matchResult("pobi", SELECT_ALL);
-        final List<GameResult> honuxResult = ladderGame.matchResult("honux", SELECT_ALL);
-        final List<GameResult> crongResult = ladderGame.matchResult("crong", SELECT_ALL);
-        final List<GameResult> jkResult = ladderGame.matchResult("jk", SELECT_ALL);
-
-        // when & then
-        assertAll(
-                () -> assertThat(pobiResult.get(0)).isEqualTo(new GameResult("pobi", "꽝")),
-                () -> assertThat(honuxResult.get(0)).isEqualTo(new GameResult("honux", "3000")),
-                () -> assertThat(crongResult.get(0)).isEqualTo(new GameResult("crong" ,"꽝")),
-                () -> assertThat(jkResult.get(0)).isEqualTo(new GameResult("jk", "5000"))
-        );
-    }
-
-    @DisplayName("all을 입력하면 전체 결과를 알려준다.")
-    @Test
-    void informAllResults() {
-        //given
-        BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(List.of(
-                true, false, true,
-                false, true, false,
-                true, false, false,
-                false, true, false,
-                true, false, true
-        ));
-        final LadderGame ladderGame = new LadderGame(
-                List.of("pobi", "honux", "crong", "jk"),
-                List.of("꽝", "5000", "꽝", "3000"),
-                5,
+                players,
+                matchingItems,
+                height,
                 bridgeGenerator);
 
         ladderGame.play();

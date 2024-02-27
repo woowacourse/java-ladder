@@ -4,7 +4,6 @@ import domain.ladder.BridgeGenerator;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.Width;
-import domain.player.Player;
 import domain.player.Position;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +16,15 @@ public class LadderGame {
     private final Ladder ladder;
 
     public LadderGame(
-            final List<String> playerNames,
-            final List<String> matchingItems,
-            final int height,
+            final Players players,
+            final MatchingItems matchingItems,
+            final Height height,
             final BridgeGenerator bridgeGenerator) {
-        this.players = new Players(playerNames);
-        this.matchingItems = new MatchingItems(matchingItems, players.count());
+        this.players = players;
+        this.matchingItems = matchingItems;
         this.ladder = Ladder.createByStrategy(
                 bridgeGenerator,
-                new Height(height),
+                height,
                 Width.from(players)
         );
     }
