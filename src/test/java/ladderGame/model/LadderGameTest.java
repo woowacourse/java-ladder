@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class LadderGameTest {
 
     private LadderGame ladderGame;
+
     @BeforeEach
     void setUp() {
         List<Line> lines = Stream.generate(() -> new Line(List.of(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION)))
