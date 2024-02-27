@@ -1,9 +1,7 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Ladder {
@@ -23,5 +21,15 @@ public class Ladder {
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public int climb(final int position) {
+        int currentPosition = position;
+        for (Line line : lines) {
+            currentPosition += line.findDirection(currentPosition).getValue();
+            System.out.println(currentPosition);
+        }
+
+        return currentPosition;
     }
 }
