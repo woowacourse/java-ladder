@@ -1,6 +1,5 @@
 package domain;
 
-import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidationException;
 import domain.player.PlayerName;
 import org.assertj.core.api.Assertions;
@@ -30,7 +29,7 @@ public class PlayerNameTest {
         void createPlayerNameFailByFormat(String value) {
             Assertions.assertThatThrownBy(() -> new PlayerName(value))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(ExceptionMessage.PLAYER_NAMES_FORMAT);
+                    .hasMessage(PlayerName.PLAYER_NAME_FORMAT);
         }
     }
 
@@ -43,7 +42,7 @@ public class PlayerNameTest {
         void createPlayerNameFailByBlank() {
             Assertions.assertThatThrownBy(() -> new PlayerName(" "))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(ExceptionMessage.PLAYER_NAME_BLANK);
+                    .hasMessage(PlayerName.PLAYER_NAME_BLANK);
         }
     }
 
@@ -65,7 +64,7 @@ public class PlayerNameTest {
         void createPlayerNameFailByLength(String name) {
             Assertions.assertThatThrownBy(() -> new PlayerName(name))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(ExceptionMessage.PLAYER_NAME_LENGTH);
+                    .hasMessage(PlayerName.PLAYER_NAME_LENGTH);
         }
     }
 }

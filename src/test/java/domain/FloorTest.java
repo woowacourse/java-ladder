@@ -1,6 +1,5 @@
 package domain;
 
-import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidationException;
 import domain.bridge.strategy.BridgeGeneratorStub;
 import domain.ladder.Floor;
@@ -27,6 +26,6 @@ public class FloorTest {
         Assertions.assertThatThrownBy(
                         () -> new Floor(bridgeGenerator.generate(bridgeCount)))
                 .isInstanceOf(ValidationException.class)
-                .hasMessage(ExceptionMessage.SERIAL_LADDER_BRIDGE);
+                .hasMessage(Floor.SERIAL_LADDER_BRIDGE);
     }
 }

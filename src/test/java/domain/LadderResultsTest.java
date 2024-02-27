@@ -1,6 +1,5 @@
 package domain;
 
-import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidationException;
 import domain.ladder.LadderResults;
 import domain.player.PlayerName;
@@ -49,7 +48,7 @@ public class LadderResultsTest {
             //when, then
             Assertions.assertThatThrownBy(() -> new LadderResults(ladderResults, playerCount))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(ExceptionMessage.LADDER_RESULTS_SIZE);
+                    .hasMessage(LadderResults.LADDER_RESULTS_SIZE);
         }
 
         private static Stream<Arguments> createLadderResultsFailBySizeArguments() {

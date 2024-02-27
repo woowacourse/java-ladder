@@ -1,6 +1,5 @@
 package domain;
 
-import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidationException;
 import domain.bridge.strategy.BridgeGeneratorStub;
 import domain.ladder.Ladder;
@@ -67,7 +66,7 @@ public class LadderTest {
             Assertions.assertThatThrownBy(
                             () -> Ladder.create(height, new PlayerNames(playerNames), results, new BridgeGeneratorStub()))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(ExceptionMessage.PLAYER_NAMES_RANGE);
+                    .hasMessage(PlayerNames.PLAYER_NAMES_RANGE);
         }
 
         private static Stream<Arguments> createLadderFailByPlayerCountArguments() {

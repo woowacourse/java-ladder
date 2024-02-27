@@ -1,6 +1,5 @@
 package controller;
 
-import common.exception.message.ExceptionMessage;
 import common.exception.model.IOException;
 import common.exception.model.ValidationException;
 import org.assertj.core.api.Assertions;
@@ -20,7 +19,7 @@ class RetryableControllerTest {
 
         Assertions.assertThatThrownBy(() -> repeatMethodOverLimitCount(retryableController))
                 .isInstanceOf(IOException.class)
-                .hasMessage(ExceptionMessage.READ_LIMIT_OVER);
+                .hasMessage(RetryableController.READ_LIMIT_OVER);
     }
 
     private void repeatMethodOverLimitCount(RetryableController retryableController) {

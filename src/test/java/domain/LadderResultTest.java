@@ -1,6 +1,5 @@
 package domain;
 
-import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidationException;
 import domain.ladder.LadderResult;
 import org.assertj.core.api.Assertions;
@@ -29,7 +28,7 @@ public class LadderResultTest {
         void createLadderResultFailByLength(String value) {
             Assertions.assertThatThrownBy(() -> new LadderResult(value))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(ExceptionMessage.LADDER_RESULT_LENGTH);
+                    .hasMessage(LadderResult.LADDER_RESULT_LENGTH);
         }
     }
 
@@ -42,7 +41,7 @@ public class LadderResultTest {
         void createLadderResultFailByNull() {
             Assertions.assertThatThrownBy(() -> new LadderResult(" "))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(ExceptionMessage.LADDER_RESULT_BLANK);
+                    .hasMessage(LadderResult.LADDER_RESULT_BLANK);
         }
 
         @Test
@@ -50,7 +49,7 @@ public class LadderResultTest {
         void createLadderResultFailByBlank() {
             Assertions.assertThatThrownBy(() -> new LadderResult(null))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(ExceptionMessage.LADDER_RESULT_NULL);
+                    .hasMessage(LadderResult.LADDER_RESULT_NULL);
         }
     }
 }

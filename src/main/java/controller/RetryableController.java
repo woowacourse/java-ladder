@@ -1,6 +1,5 @@
 package controller;
 
-import common.exception.message.ExceptionMessage;
 import common.exception.model.IOException;
 import view.InputView;
 import view.OutputView;
@@ -8,6 +7,7 @@ import view.OutputView;
 import java.util.function.Supplier;
 
 public class RetryableController {
+    public static final String READ_LIMIT_OVER = String.format("입력 횟수 제한(%d)를 초과하였습니다", RetryableController.READ_LIMIT);
     public static final int READ_LIMIT = 10;
 
     protected final InputView inputView;
@@ -45,7 +45,7 @@ public class RetryableController {
 
     private void validateRetryCountLimit() {
         if (retryCount++ == READ_LIMIT) {
-            throw new IOException(ExceptionMessage.READ_LIMIT_OVER);
+            throw new IOException(READ_LIMIT_OVER);
         }
     }
 }

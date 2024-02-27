@@ -1,13 +1,15 @@
 
 package domain.player;
 
-import common.exception.message.ExceptionMessage;
 import common.exception.model.NotFoundException;
 import common.exception.model.ValidationException;
 
 import java.util.List;
 
 public class PlayerNames {
+    public static final String PLAYER_NAMES_RANGE = String.format("참가자의 수는 %d 이상, %d 이하여야 합니다",
+            PlayerNames.PLAYER_NAMES_MIN_RANGE, PlayerNames.PLAYER_NAMES_MAX_RANGE);
+    public static final String PLAYER_NAMES_DUPLICATION = "참가자 이름은 중복될 수 없습니다";
     public static final int PLAYER_NAMES_MIN_RANGE = 2;
     public static final int PLAYER_NAMES_MAX_RANGE = 10;
 
@@ -25,7 +27,7 @@ public class PlayerNames {
 
     private void validateRange(List<PlayerName> playerNames) {
         if (playerNames.size() < PLAYER_NAMES_MIN_RANGE || playerNames.size() > PLAYER_NAMES_MAX_RANGE) {
-            throw new ValidationException(ExceptionMessage.PLAYER_NAMES_RANGE);
+            throw new ValidationException(PLAYER_NAMES_RANGE);
         }
     }
 
@@ -34,7 +36,7 @@ public class PlayerNames {
         long distinctCount = playerNames.stream().map(PlayerName::getName).distinct().count();
 
         if (playerCount != distinctCount) {
-            throw new ValidationException(ExceptionMessage.PLAYER_NAMES_DUPLICATION);
+            throw new ValidationException(PLAYER_NAMES_DUPLICATION);
         }
     }
 

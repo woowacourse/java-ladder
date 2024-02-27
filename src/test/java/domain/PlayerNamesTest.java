@@ -1,6 +1,5 @@
 package domain;
 
-import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidationException;
 import domain.player.PlayerName;
 import domain.player.PlayerNames;
@@ -44,7 +43,7 @@ class PlayerNamesTest {
         void createPlayerNamesFailByRange(List<PlayerName> playerNames) {
             Assertions.assertThatThrownBy(() -> new PlayerNames(playerNames))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(ExceptionMessage.PLAYER_NAMES_RANGE);
+                    .hasMessage(PlayerNames.PLAYER_NAMES_RANGE);
         }
 
         private static Stream<Arguments> createPlayerNamesFailByRangeArguments() {
@@ -81,7 +80,7 @@ class PlayerNamesTest {
             // then
             Assertions.assertThatThrownBy(() -> new PlayerNames(playerNames))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(ExceptionMessage.PLAYER_NAMES_DUPLICATION);
+                    .hasMessage(PlayerNames.PLAYER_NAMES_DUPLICATION);
         }
     }
 }

@@ -1,11 +1,15 @@
 package view;
 
-import common.exception.message.ExceptionMessage;
 import common.exception.model.IOException;
 
 import java.util.Scanner;
 
 public class InputView {
+    public static final String LADDER_RESULT_FORMAT = String.format("사다리 실행 결과는 %s로 구분하여 입력해야합니다",
+            InputView.LADDER_RESULTS_INPUT_DELIMITER);
+    public static final String PLAYER_NAMES_FORMAT = String.format("참가자 이름은 문자(영어 or 한글)이어야 하며 %s로 구분하여 입력해야합니다",
+            InputView.PLAYER_NAMES_INPUT_DELIMITER);
+    public static final String INTEGER_FORMAT = "정수 형태만 입력 가능합니다";
     public static final String PLAYER_NAMES_INPUT_DELIMITER = ",";
     public static final String LADDER_RESULTS_INPUT_DELIMITER = ",";
     public static final String BLANK_SPACE = " ";
@@ -27,7 +31,7 @@ public class InputView {
 
     private void validatePlayerNamesFormat(String playerNamesInput) {
         if(playerNamesInput.endsWith(PLAYER_NAMES_INPUT_DELIMITER)) {
-            throw new IOException(ExceptionMessage.PLAYER_NAMES_FORMAT);
+            throw new IOException(PLAYER_NAMES_FORMAT);
         }
     }
 
@@ -52,7 +56,7 @@ public class InputView {
 
     private void validateLadderResultFormat(String playerNamesInput) {
         if(playerNamesInput.endsWith(LADDER_RESULTS_INPUT_DELIMITER)) {
-            throw new IOException(ExceptionMessage.LADDER_RESULT_FORMAT);
+            throw new IOException(LADDER_RESULT_FORMAT);
         }
     }
 
@@ -68,7 +72,7 @@ public class InputView {
         try {
             Integer.parseInt(value);
         } catch (NumberFormatException exception) {
-            throw new IOException(ExceptionMessage.INTEGER_FORMAT);
+            throw new IOException(INTEGER_FORMAT);
         }
     }
 

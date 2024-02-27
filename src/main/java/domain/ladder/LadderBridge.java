@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import common.exception.message.ExceptionMessage;
 import common.exception.model.NotFoundException;
 
 import java.util.Arrays;
@@ -8,6 +7,8 @@ import java.util.Arrays;
 public enum LadderBridge {
     BRIDGE("-----", true),
     NONE("     ", false);
+
+    public static final String NOT_FOUND_BRIDGE = "존재하지 않는 Bridge 입니다";
 
     private final String value;
     private final boolean exist;
@@ -21,7 +22,7 @@ public enum LadderBridge {
         return Arrays.stream(values())
                 .filter(value -> value.exist == exist)
                 .findFirst()
-                .orElseThrow(() -> new NotFoundException(ExceptionMessage.NOT_FOUND_BRIDGE));
+                .orElseThrow(() -> new NotFoundException(NOT_FOUND_BRIDGE));
     }
 
     public String getValue() {

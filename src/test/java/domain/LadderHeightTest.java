@@ -1,6 +1,5 @@
 package domain;
 
-import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidationException;
 import domain.ladder.LadderHeight;
 import org.assertj.core.api.Assertions;
@@ -40,7 +39,7 @@ public class LadderHeightTest {
         void createLadderHeightFailByRange(int value) {
             Assertions.assertThatThrownBy(() -> new LadderHeight(value))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(ExceptionMessage.LADDER_HEIGHT_RANGE);
+                    .hasMessage(LadderHeight.LADDER_HEIGHT_RANGE);
         }
     }
 }

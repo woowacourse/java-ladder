@@ -1,11 +1,11 @@
 package domain.ladder;
 
-import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidationException;
 
 import java.util.List;
 
 public class Floor {
+    public static final String SERIAL_LADDER_BRIDGE = "한 층 내에서 사디리의 다리는 연속될 수 없습니다";
     private final List<LadderBridge> bridges;
 
     public Floor(List<LadderBridge> bridges) {
@@ -22,7 +22,7 @@ public class Floor {
 
     private void compareBridgeStatus(LadderBridge before, LadderBridge now) {
         if (now.equals(before) && now.equals(LadderBridge.BRIDGE)) {
-            throw new ValidationException(ExceptionMessage.SERIAL_LADDER_BRIDGE);
+            throw new ValidationException(SERIAL_LADDER_BRIDGE);
         }
     }
 
