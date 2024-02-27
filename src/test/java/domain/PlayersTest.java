@@ -23,17 +23,15 @@ public class PlayersTest {
         int testHeight = 3;
         int testPersonCount = 2;
 
-
         BooleanGenerator booleanGenerator = new FixedBooleanGenerator(true);
         Lines lines = new Lines(testHeight, testPersonCount, booleanGenerator);
-
-        Names names = new Names(List.of("pobi", "tebah"));
         // 사다리 생성 결과
         // pobi  tebah
         //     |-----|
         //     |-----|
         //     |-----|
 
+        Names names = new Names(List.of("pobi", "tebah"));
         Players players = new Players(names);
         players.playGame(lines);
         List<Player> playersAfterPlay = players.getPlayers();
@@ -50,7 +48,6 @@ public class PlayersTest {
         int testHeight = 3;
         int testPersonCount = 4;
 
-
         BooleanGenerator booleanGenerator = new FixedBooleanGenerator(true);
         Lines lines = new Lines(testHeight, testPersonCount, booleanGenerator);
         // 사다리 생성 결과
@@ -58,8 +55,8 @@ public class PlayersTest {
         //       |-----|     |-----|
         //       |-----|     |-----|
         //       |-----|     |-----|
-        Names names = new Names(List.of("pobi", "tebah", "honux", "crong"));
 
+        Names names = new Names(List.of("pobi", "tebah", "honux", "crong"));
         Players players = new Players(names);
         players.playGame(lines);
         List<Player> playersAfterPlay = players.getPlayers();
