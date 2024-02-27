@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,7 +8,7 @@ public class Compensation {
 
     public Compensation(List<String> compensations, int size) {
         validateSize(compensations, size);
-        this.compensations = new ArrayList<>(compensations);
+        this.compensations = Collections.unmodifiableList(compensations);
     }
 
     public String get(int index) {
@@ -17,7 +16,7 @@ public class Compensation {
     }
 
     public List<String> getAll() {
-        return Collections.unmodifiableList(compensations);
+        return compensations;
     }
 
     private void validateSize(List<String> compensations, int size) {

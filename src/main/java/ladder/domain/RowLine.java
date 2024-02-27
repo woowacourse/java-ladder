@@ -2,24 +2,23 @@ package ladder.domain;
 
 import ladder.domain.linegenerator.LineGenerator;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class RowLine {
     private static final int MIN_PEOPLE_NUMBER = 1;
     private static final int MAX_PEOPLE_NUMBER = 100;
-    private final List<Boolean> connection = new ArrayList<>();
+    private final List<Boolean> connection;
 
     public RowLine(int peopleNumber, LineGenerator generator) {
         validatePeopleNumber(peopleNumber);
         List<Boolean> generatedConnection = generator.getLine(peopleNumber);
         validateSuccessiveLine(generatedConnection);
-        this.connection.addAll(generatedConnection);
+        this.connection = Collections.unmodifiableList(generatedConnection);
     }
 
     public List<Boolean> getConnection() {
-        return Collections.unmodifiableList(connection);
+        return connection;
     }
 
     public void move(PositionRow positionRow) {

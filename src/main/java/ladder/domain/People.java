@@ -2,7 +2,6 @@ package ladder.domain;
 
 import ladder.view.enums.Command;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,7 +9,7 @@ public class People {
     private static final String NAME_RULE = "[a-zA-Z0-9]{1,5}";
     private static final int MIN_PEOPLE_NUMBERS = 1;
     private static final int MAX_PEOPLE_NUMBERS = 100;
-    private final List<String> names = new ArrayList<>();
+    private final List<String> names;
 
     public People(List<String> names) {
         validatePeopleNumber(names);
@@ -19,11 +18,11 @@ public class People {
             validateNameRule(name);
             validateNotCommand(name);
         }
-        this.names.addAll(names);
+        this.names = Collections.unmodifiableList(names);
     }
 
     public List<String> getNames() {
-        return Collections.unmodifiableList(names);
+        return names;
     }
 
     private void validatePeopleNumber(List<String> names) {

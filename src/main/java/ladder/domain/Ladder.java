@@ -11,7 +11,7 @@ public class Ladder {
     private static final int MIN_LADDER_HEIGHT = 1;
     private static final int MAX_LADDER_HEIGHT = 100;
 
-    private final List<RowLine> rowLines = new ArrayList<>();
+    private final List<RowLine> rowLines;
     private final int peopleNumber;
 
     public Ladder(int height, int peopleNumber) {
@@ -22,13 +22,15 @@ public class Ladder {
         validateLadderHeight(height);
         this.peopleNumber = peopleNumber;
 
+        List<RowLine> rowLines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            this.rowLines.add(new RowLine(peopleNumber, lineGenerator));
+            rowLines.add(new RowLine(peopleNumber, lineGenerator));
         }
+        this.rowLines = Collections.unmodifiableList(rowLines);
     }
 
     public List<RowLine> getRowLines() {
-        return Collections.unmodifiableList(rowLines);
+        return rowLines;
     }
 
     public int getResultOf(int lineNumber) {
