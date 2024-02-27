@@ -5,6 +5,7 @@ import domain.Game;
 import domain.Line;
 import domain.Lines;
 import domain.Members;
+import domain.Results;
 import java.util.List;
 
 public class OutputView {
@@ -14,15 +15,24 @@ public class OutputView {
     private static final String DISCONNECTED_CHARACTER = " ";
     private static final String FRAME_OF_LADDER = "|";
 
-    public void printResult(Game game) {
-        System.out.println("실행결과");
+    public void printLadder(Game game) {
+        System.out.println("사다리 결과");
         System.out.println(resolveMembers(game.getMembers()));
         System.out.println(resolveLines(game.getLines()));
+        System.out.println(resolveResults(game.getResults()));
     }
 
     private String resolveMembers(Members members) {
         StringBuilder stringBuilder = new StringBuilder();
         for (String name : members.getNames()) {
+            stringBuilder.append(String.format("%" + MAX_NAME_LENGTH + "s ", name));
+        }
+        return stringBuilder.toString();
+    }
+
+    private String resolveResults(Results results) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String name : results.getValues()) {
             stringBuilder.append(String.format("%" + MAX_NAME_LENGTH + "s ", name));
         }
         return stringBuilder.toString();

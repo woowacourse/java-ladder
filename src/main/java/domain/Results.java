@@ -26,4 +26,10 @@ public class Results {
     public Result getResultByIndex(int index) {
         return results.get(index);
     }
+
+    public List<String> getValues() {
+        return results.stream()
+                .map(Result::getValue)
+                .toList();
+    }
 }
