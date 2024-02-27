@@ -29,14 +29,6 @@ public class Line {
         }
     }
 
-    public List<Integer> findRightConnectedPositions() {
-        return IntStream.range(0, points.size())
-                .sequential()
-                .filter(points::get)
-                .boxed()
-                .toList();
-    }
-
     private boolean hasLeftConnectedLine(int position) {
         if (position == 0) {
             return false;

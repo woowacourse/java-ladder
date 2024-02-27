@@ -5,6 +5,8 @@ import domain.model.*;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static domain.model.Direction.*;
+
 public class ResultView {
     private static final int MAX_INTERVAL = 6;
     private static final int START_POSITION = 0;
@@ -18,24 +20,23 @@ public class ResultView {
 
         ladder.getLines()
                 .stream()
-                .map(line -> printLine(line.findRightConnectedPositions(), people.getNumberOfParticipants()))
+                .map(line -> printLine(line, people.getNumberOfParticipants()))
                 .forEach(System.out::println);
     }
 
+    private String printLine(Line line, int personCount) {
+        int points = personCount;
+        StringBuilder result = new StringBuilder(INTERVAL);
+        IntStream.range(0, points)
+                .forEach(index -> result
+                        .append(VERTICAL_LINE)
+                        .append(drawHorizontalLine(line.showDirection(index))));
 
-    private String printLine(List<Integer> indexes, int personCount) {
-        int maxHorizontalLines = personCount - 1;
-        StringBuilder line = new StringBuilder(INTERVAL + VERTICAL_LINE);
-        IntStream.range(0, maxHorizontalLines)
-                .forEach(index -> line
-                        .append(drawHorizontalLine(indexes.contains(index)))
-                        .append(VERTICAL_LINE));
-
-        return line.toString();
+        return result.toString();
     }
 
-    private String drawHorizontalLine(boolean hasHorizontalLine) {
-        if (hasHorizontalLine) {
+    private String drawHorizontalLine(Direction direction) {
+        if (direction == RIGHT) {
             return HORIZONTAL_LINE;
         }
         return INTERVAL;

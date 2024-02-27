@@ -33,18 +33,6 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("우측으로 가로 라인이 있는 위치들을 반환한다")
-    void findHorizontalTest() {
-        //given
-        Line line = new Line(() -> true, 4);
-        //when
-        List<Integer> expect = List.of(0, 2);
-        List<Integer> actual = line.findRightConnectedPositions();
-        //then
-        assertThat(expect).isEqualTo(actual);
-    }
-
-    @Test
     @DisplayName("특정 위치를 지정하면 이동할 방향을 정해준다.")
     void showDirectionTest() {
         //given
