@@ -2,7 +2,6 @@ package view;
 
 import domain.Ladder;
 import domain.Line;
-
 import domain.Name;
 import domain.Participants;
 import domain.StepPoint;

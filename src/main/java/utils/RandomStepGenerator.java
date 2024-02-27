@@ -9,7 +9,7 @@ public class RandomStepGenerator implements StepGenerator {
 
     @Override
     public StepPoint generate() {
-        if(random.nextBoolean()) {
+        if (random.nextBoolean()) {
             return StepPoint.PRESENT;
         }
         return StepPoint.ABSENT;

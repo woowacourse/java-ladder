@@ -20,7 +20,8 @@ public class Prizes {
                 .filter(prize -> prize.length() > MAX_OF_PRIZE_LENGTH)
                 .findFirst()
                 .ifPresent(prize -> {
-                    throw new IllegalArgumentException(PrizesExceptionMessage.OUT_OF_RANGE_PRIZE_LENGTH.getExceptionMessage());
+                    throw new IllegalArgumentException(
+                            PrizesExceptionMessage.OUT_OF_RANGE_PRIZE_LENGTH.getExceptionMessage());
                 });
     }
 

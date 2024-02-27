@@ -30,6 +30,7 @@ public class InputView {
         validateResults(results);
         return List.of(results.split(DELIMITER));
     }
+
     private void validateResults(String results) {
         if (FINISH_WITH_DELIMITER_REGEX.matcher(results).matches()) {
             throw new IllegalArgumentException(InputException.NO_LAST_RESULT.getExceptionMessage());

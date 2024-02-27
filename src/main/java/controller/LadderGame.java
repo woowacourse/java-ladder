@@ -3,11 +3,10 @@ package controller;
 import domain.Ladder;
 import domain.Participants;
 import exception.controller.LadderGameExceptionMessage;
+import java.util.List;
 import utils.RandomStepGenerator;
 import view.InputView;
 import view.OutputView;
-
-import java.util.List;
 
 public class LadderGame {
 

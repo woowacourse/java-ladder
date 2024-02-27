@@ -18,14 +18,16 @@ public class Participants {
     }
 
     private void validateCount(List<String> names) {
-        if (names.size() < MIN_OF_PARTICIPANTS_COUNT || MAX_OF_PARTICIPANTS_COUNT < names.size() ) {
-            throw new IllegalArgumentException(ParticipantsExceptionMessage.OUT_OF_RANGE_PARTICIPANTS_COUNT.getExceptionMessage());
+        if (names.size() < MIN_OF_PARTICIPANTS_COUNT || MAX_OF_PARTICIPANTS_COUNT < names.size()) {
+            throw new IllegalArgumentException(
+                    ParticipantsExceptionMessage.OUT_OF_RANGE_PARTICIPANTS_COUNT.getExceptionMessage());
         }
     }
 
     private void validateDuplicate(List<String> names) {
         if (names.stream().distinct().count() != names.size()) {
-            throw new IllegalArgumentException(ParticipantsExceptionMessage.DUPLICATE_PARTICIPANTS.getExceptionMessage());
+            throw new IllegalArgumentException(
+                    ParticipantsExceptionMessage.DUPLICATE_PARTICIPANTS.getExceptionMessage());
         }
     }
 
