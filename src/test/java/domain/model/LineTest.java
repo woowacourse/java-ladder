@@ -15,22 +15,23 @@ public class LineTest {
     @Test
     @DisplayName("사다리 생성 규칙에 맞게 사다리가 생성되는지 확인")
     void buildLineTest() {
-        Line line=new Line(()->true,4);
-        Line line2=new Line(()->false,4);
+        Line line = new Line(() -> true, 4);
+        Line line2 = new Line(() -> false, 4);
 
-        List<Direction> actual=new ArrayList<>();
-        List<Direction> actual2=new ArrayList<>();
-        for(int i=0;i<4;i++){
+        List<Direction> actual = new ArrayList<>();
+        List<Direction> actual2 = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
             actual.add(line.showDirection(i));
             actual2.add(line2.showDirection(i));
         }
-        List<Direction> expected=List.of(RIGHT,LEFT,RIGHT,LEFT);
-        List<Direction> expected2=List.of(NONE,NONE,NONE,NONE);
+        List<Direction> expected = List.of(RIGHT, LEFT, RIGHT, LEFT);
+        List<Direction> expected2 = List.of(NONE, NONE, NONE, NONE);
 
         assertThat(actual).isEqualTo(expected);
         assertThat(actual2).isEqualTo(expected2);
 
     }
+
     @Test
     @DisplayName("우측으로 가로 라인이 있는 위치들을 반환한다")
     void findHorizontalTest() {
