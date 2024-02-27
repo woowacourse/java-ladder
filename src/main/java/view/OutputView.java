@@ -6,11 +6,29 @@ import java.util.Map;
 public class OutputView {
 
     public void printLadderResultMessage() {
-        System.out.println("\n사다리 결과");
+        System.out.println("\n사다리 결과\n");
     }
 
-    public void printLadder(List<String> ladder) {
-        System.out.println(String.join("\n", ladder));
+    public void printPlayerNames(List<String> playerNames) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String playerName : playerNames) {
+            stringBuilder.append(String.format("%5s ", playerName));
+        }
+
+        System.out.println(stringBuilder);
+    }
+
+    public void printLadder(String ladder) {
+        System.out.println(ladder);
+    }
+
+    public void printPrizes(List<String> prizes) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String prize : prizes) {
+            stringBuilder.append(String.format("%5s ", prize));
+        }
+
+        System.out.println(stringBuilder);
     }
 
     public void printResultMessage() {

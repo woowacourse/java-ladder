@@ -2,15 +2,13 @@ package controller;
 
 import domain.Height;
 import domain.Ladder;
-import domain.Line;
 import domain.Player;
 import domain.Players;
 import domain.Prizes;
-import view.LineItem;
+import view.LadderView;
 import util.LineItemGenerator;
 import view.InputView;
 import view.OutputView;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +20,7 @@ public class LadderGame {
     private final OutputView outputView;
     private final LineItemGenerator lineItemGenerator;
 
-    public LadderGame(InputView inputView, OutputView outputView, LineItemGenerator lineItemGenerator) {
+    public LadderGame(InputView inputView, OutputView outputView,  LineItemGenerator lineItemGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lineItemGenerator = lineItemGenerator;
@@ -59,51 +57,10 @@ public class LadderGame {
     }
 
     private void printLadder(Ladder ladder, Players players, Prizes prizes) {
-        List<String> result = new ArrayList<>();
-        List<Line> createdLadder = ladder.getLadder();
-
-        createPlayersLineUp(result, players.getPlayers());
-        createLadder(result, createdLadder);
-        createLadderResults(result, prizes.getPrizes());
-
         outputView.printLadderResultMessage();
-        outputView.printLadder(result);
-    }
-
-    private void createPlayersLineUp(List<String> result, List<Player> players) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("\n");
-        for (Player player : players) {
-            stringBuilder.append(String.format("%5s ", player.getName()));
-        }
-
-        result.add(stringBuilder.toString());
-    }
-
-    private void createLadder(List<String> result, List<Line> createdLadder) {
-        for (Line line : createdLadder) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("    |");
-
-            createLine(line, stringBuilder);
-
-            result.add(stringBuilder.toString());
-        }
-    }
-
-    private void createLadderResults(List<String> result, List<String> ladderResults) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (String ladderResult : ladderResults) {
-            stringBuilder.append(String.format("%5s ", ladderResult));
-        }
-
-        result.add(stringBuilder.toString());
-    }
-
-    private void createLine(Line line, StringBuilder stringBuilder) {
-        for (LineItem point : line.getLineItems()) {
-            stringBuilder.append(point.getShape());
-        }
+        outputView.printPlayerNames(players.getPlayerNames());
+        outputView.printLadder(LadderView.createLadder(ladder.getLadder()));
+        outputView.printPrizes(prizes.getPrizes());
     }
 
     private void printLadderGameResult(Ladder ladder, Players players, Prizes prizes, String input) {
