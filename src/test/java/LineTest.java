@@ -12,7 +12,7 @@ public class LineTest {
     @Test
     void makeStepLeft() {
         Line line = new Line(PlayerCount.from(5));
-        Step step = line.makeStep(List.of(Step.RIGHT), PlayerCount.from(5));
+        Step step = line.nextStep(List.of(Step.RIGHT), PlayerCount.from(5));
 
         Assertions.assertThat(step).isEqualTo(Step.LEFT);
     }
@@ -21,7 +21,7 @@ public class LineTest {
     @Test
     void makeStepEmpty() {
         Line line = new Line(PlayerCount.from(5));
-        Step step = line.makeStep(List.of(Step.RIGHT, Step.LEFT, Step.RIGHT, Step.LEFT), PlayerCount.from(5));
+        Step step = line.nextStep(List.of(Step.RIGHT, Step.LEFT, Step.RIGHT, Step.LEFT), PlayerCount.from(5));
 
         Assertions.assertThat(step).isEqualTo(Step.EMPTY);
     }

@@ -13,12 +13,12 @@ public class Line {
         List<Step> steps = new ArrayList<>();
         int count = playerCount.getCount();
         for (int index = 0; index < count; index++) {
-            steps.add(makeStep(steps, playerCount));
+            steps.add(nextStep(steps, playerCount));
         }
         return steps;
     }
 
-    public Step makeStep(List<Step> steps, PlayerCount playerCount) {
+    public Step nextStep(List<Step> steps, PlayerCount playerCount) {
         if (hasBeforeStep(steps)) {
             return Step.LEFT;
         }
