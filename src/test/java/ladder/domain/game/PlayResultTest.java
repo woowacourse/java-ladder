@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.entry;
 
 class PlayResultTest {
 
@@ -15,8 +16,8 @@ class PlayResultTest {
     @DisplayName("참여자 이름에 해당하는 결과를 얻을 수 있다.")
     void findByName(String name, String expected) {
         PlayResult playResult = new PlayResult(Map.of("pobi", "5000", "crong", "꽝", "honux", "3000", "jk", "꽝"));
-        String actual = playResult.findByName(name);
+        Map<String, String> result = playResult.findByName(name);
 
-        assertThat(actual).isEqualTo(expected);
+        assertThat(result).containsExactly(entry(name, expected));
     }
 }

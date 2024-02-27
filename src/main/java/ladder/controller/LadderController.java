@@ -1,5 +1,7 @@
 package ladder.controller;
 
+import ladder.domain.game.LadderGame;
+import ladder.domain.game.PlayResult;
 import ladder.domain.generator.BooleanGenerator;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
@@ -12,6 +14,7 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class LadderController {
@@ -29,10 +32,20 @@ public class LadderController {
 
     public void run() {
         final Players players = retryOnException(this::readPlayers);
+        final String readPrizes = inputView.readPrizes();
+        final List<String> prizes = Converter.stringToList(readPrizes);
         final Height height = retryOnException(this::readLadderHeight);
 
         final Ladder ladder = ladderGenerator.generate(players, height);
-        printLadder(players, ladder);
+        printLadder(players, ladder, prizes);
+
+        final LadderGame ladderGame = new LadderGame(ladder, players, prizes);
+        final PlayResult playResult = ladderGame.play();
+        while (playResult.canAskResult()) {
+            final String name = inputView.readNameToSeeResult();
+            final Map<String, String> result = playResult.findByName(name);
+            outputView.printResult(result, name);
+        }
     }
 
     public Players readPlayers() {
@@ -48,10 +61,11 @@ public class LadderController {
         return new Height(height);
     }
 
-    private void printLadder(final Players players, final Ladder ladder) {
+    private void printLadder(final Players players, final Ladder ladder, final List<String> prizes) {
         outputView.printLadderResultMessage();
         outputView.printPlayerNames(PlayersDto.from(players));
         outputView.printLadder(LadderDto.from(ladder));
+        outputView.printPrizes(prizes);
     }
 
     private <T> T retryOnException(final Supplier<T> supplier) {

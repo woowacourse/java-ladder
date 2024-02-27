@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class PlayResult {
     private final Map<String, String> result;
+    private Status status = Status.EXECUTABLE;
 
     PlayResult(final Map<String, String> result) {
         this.result = new LinkedHashMap<>(result);
@@ -29,8 +30,16 @@ public class PlayResult {
         return result;
     }
 
-    public String findByName(final String name) {
-        return result.get(name);
+    public Map<String, String> findByName(final String name) {
+        if (name.equals("all")) {
+            status = Status.NON_EXECUTABLE;
+            return result;
+        }
+        return Map.of(name, result.get(name));
+    }
+
+    public boolean canAskResult() {
+        return status.isExecutable();
     }
 
     public Map<String, String> getResult() {
