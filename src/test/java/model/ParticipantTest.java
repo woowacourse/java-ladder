@@ -1,5 +1,6 @@
 package model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
@@ -26,5 +27,15 @@ public class ParticipantTest {
         String name = "all";
 
         assertThatThrownBy(() -> new Participant(name)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 참여자_이름이_일치하는지_확인할_수_있다() {
+        String validName = "릴리";
+        String invalidName = "엘라";
+        Participant participant = new Participant(validName);
+
+        assertThat(participant.hasEquivalentName(validName)).isTrue();
+        assertThat(participant.hasEquivalentName(invalidName)).isFalse();
     }
 }
