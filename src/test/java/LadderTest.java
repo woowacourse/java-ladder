@@ -2,6 +2,7 @@ import domain.Ladder;
 import domain.Leg;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import util.CustomLineGenerator;
 import util.generator.LineGenerator;
 import util.generator.RandomLineGenerator;
 
@@ -53,12 +54,5 @@ public class LadderTest {
         Ladder ladder = Ladder.from(HEIGHT, WIDTH, new CustomLineGenerator());
 
         assertThat(ladder.climb(3)).isEqualTo(2);
-    }
-
-    static class CustomLineGenerator implements LineGenerator {
-        @Override
-        public List<Leg> generate(int legCount) {
-            return List.of(Leg.from(true), Leg.from(false), Leg.from(true));
-        }
     }
 }
