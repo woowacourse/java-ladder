@@ -19,7 +19,7 @@ public class LadderController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public LadderController(InputView inputView, OutputView outputView) {
+    public LadderController(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
@@ -41,7 +41,7 @@ public class LadderController {
     }
 
     private Prizes readPrizes(Players players) {
-        List<String> prizes = inputView.inputPrizes(players.getCount());
+        final List<String> prizes = inputView.inputPrizes(players.getCount());
         return Prizes.from(prizes);
     }
 
@@ -50,10 +50,10 @@ public class LadderController {
     }
 
     private void showGameResult(PlayersPrize playersPrize, Players players) {
-        Players searchedPlayer = readWithRetry(this::readSearchingPlayers, players);
+        final Players searchedPlayer = readWithRetry(this::readSearchingPlayers, players);
 
         if (searchedPlayer.isCountOne()) {
-            Prize prize = playersPrize.searchOnePlayerPrize(searchedPlayer);
+            final Prize prize = playersPrize.searchOnePlayerPrize(searchedPlayer);
             outputView.printGameResult(prize);
             showGameResult(playersPrize, players);
         }
@@ -63,7 +63,7 @@ public class LadderController {
     }
 
     private Players readSearchingPlayers(Players players) {
-        String inputName = readWithRetry(inputView::inputSearchingPlayer);
+        final String inputName = readWithRetry(inputView::inputSearchingPlayer);
         return players.search(inputName);
     }
 

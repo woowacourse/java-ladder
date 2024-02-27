@@ -6,7 +6,7 @@ import java.util.Map;
 public class PlayersPrize {
     private final Map<Player, Prize> playersPrize;
 
-    public PlayersPrize(Map<Player, Prize> playersPrize) {
+    public PlayersPrize(final Map<Player, Prize> playersPrize) {
         this.playersPrize = playersPrize;
     }
 

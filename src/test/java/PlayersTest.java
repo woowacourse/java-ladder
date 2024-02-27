@@ -25,7 +25,7 @@ public class PlayersTest {
     @DisplayName("참가자들의 인원수를 반환한다.")
     void getCount() {
         // given
-        Players players = Players.from(List.of("kirby", "bito", "ready"));
+        final Players players = Players.from(List.of("kirby", "bito", "ready"));
 
         // when & then
         assertThat(players.getCount()).isEqualTo(3);
@@ -33,19 +33,19 @@ public class PlayersTest {
 
     @Test
     void validSearch() {
-        Players players = Players.from(List.of("pobi", "kirby"));
+        final Players players = Players.from(List.of("pobi", "kirby"));
         assertThat(players.search("pobi").getPlayers()).containsExactly(new Player("pobi"));
     }
     @Test
     void invalidSearch() {
-        Players players = Players.from(List.of("pobi", "kirby"));
+        final Players players = Players.from(List.of("pobi", "kirby"));
         assertThatIllegalArgumentException().isThrownBy(() -> players.search("abc"));
     }
 
     @Test
     void search() {
-        Players players = Players.from(List.of("pobi", "kirby"));
-        Players pobi = players.search("pobi");
+        final Players players = Players.from(List.of("pobi", "kirby"));
+        final Players pobi = players.search("pobi");
         assertThat(pobi.getPlayers()).containsExactly(new Player("pobi"));
     }
 }
