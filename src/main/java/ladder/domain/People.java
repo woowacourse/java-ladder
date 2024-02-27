@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class People {
@@ -9,11 +7,17 @@ public class People {
     private static final int MIN_SIZE = 2;
     private static final int MAX_LENGTH = 5;
 
-    private final List<String> names;
+    private final List<Name> names;
 
-    public People(List<String> names) {
-        validate(names);
-        this.names = new ArrayList<>(names);
+    public People(List<String> rawNames) {
+//        validate(names);
+        this.names = rawNames.stream()
+                .map(Name::new)
+                .toList();
+    }
+
+    public People(String rawNames) {
+        this.names = List.of();
     }
 
     private void validate(List<String> names) {
@@ -52,7 +56,12 @@ public class People {
         return names.size();
     }
 
-    public List<String> getNames() {
-        return Collections.unmodifiableList(names);
+    public List<String> getNames3() {
+//        return Collections.unmodifiableList(names);
+        return null;
+    }
+
+    public List<Name> getNames() {
+        return names;
     }
 }
