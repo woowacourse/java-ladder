@@ -6,6 +6,7 @@ import java.util.function.Supplier;
 import model.Height;
 import model.Ladder;
 import model.Participants;
+import model.Prizes;
 import view.InputView;
 import view.OutputView;
 
@@ -20,6 +21,7 @@ public class LadderController {
 
     public void run() {
         Participants participants = repeatUntilSuccess(this::prepareParticipants);
+        Prizes prizes = repeatUntilSuccess(this::preparePrizes, participants);
         Ladder ladder = repeatUntilSuccess(this::prepareLadder, participants);
         outputView.printParticipantsName(participants.captureParticipantsName());
         outputView.printLadder(ladder.captureLayerSteps());
@@ -34,6 +36,12 @@ public class LadderController {
         Height ladderHeight = new Height(inputView.requestLadderHeight());
         int numberOfParticipants = participants.getParticipantsSize();
         return new Ladder(ladderHeight, numberOfParticipants);
+    }
+
+    private Prizes preparePrizes(Participants participants) {
+        List<String> prizes = inputView.requestPrizes();
+        int numberOfParticipants = participants.getParticipantsSize();
+        return new Prizes(prizes, numberOfParticipants);
     }
 
     private <T> T repeatUntilSuccess(Supplier<T> supplier) {
