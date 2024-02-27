@@ -17,7 +17,7 @@ class FloorTest {
         BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(List.of(false, true, false));
 
         //when
-        Floor floor = Floor.createByStrategy(bridgeGenerator, new Width(4));
+        Floor floor = Floor.createByStrategy(bridgeGenerator, new Width(3));
 
         //then
         assertThat(floor.getBridges()).containsExactly(Bridge.NO_BRIDGE, Bridge.BRIDGE, Bridge.NO_BRIDGE);
@@ -28,11 +28,9 @@ class FloorTest {
     void moveAlongBridge() {
         //given
         BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(List.of(true, false, true));
-        Floor floor = Floor.createByStrategy(bridgeGenerator, new Width(4));
+        Floor floor = Floor.createByStrategy(bridgeGenerator, new Width(3));
 
-        //when
-        final int resultPosition = floor.move(0);
-        //then
+        //when & then
         assertAll(
                 () -> assertThat(floor.move(0)).isEqualTo(1),
                 () -> assertThat(floor.move(1)).isEqualTo(0),
