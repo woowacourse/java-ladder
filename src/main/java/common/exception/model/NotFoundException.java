@@ -1,8 +1,6 @@
 package common.exception.model;
 
-import common.exception.CustomException;
-
-public class NotFoundException extends CustomException {
+public class NotFoundException extends RuntimeException {
 
     public NotFoundException(String message) {
         super(message);
