@@ -7,6 +7,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Players {
+    public static final String ALL = "all";
+
     private final List<Player> players;
 
     private Players(final List<Player> players) {
@@ -43,7 +45,7 @@ public class Players {
     }
 
     public List<Player> getCheckPlayers(String result) {
-        if (result.equals("all")) {
+        if (result.equals(ALL)) {
             return players;
         }
         return List.of(getCheckPlayer(result));

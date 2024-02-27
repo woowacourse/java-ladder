@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Player {
     private static final int MAX_NAME_LENGTH = 5;
+    public static final String ALL = "all";
 
     private final String name;
 
@@ -24,7 +25,7 @@ public class Player {
     }
 
     private void validateIsAll(String name) {
-        if (name.equals("all")) {
+        if (name.equals(ALL)) {
             throw new IllegalArgumentException("참가자 이름으로 'all'은 입력할 수 없습니다.");
         }
     }

@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Target {
     private static final int MAX_NAME_LENGTH = 5;
+
     private final String target;
 
     public Target(final String target) {
