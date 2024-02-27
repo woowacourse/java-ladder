@@ -13,7 +13,8 @@ public enum ErrorMessage {
     NO_PLAYER_NAME_EXCEPTION("플레이어 이름을 입력해야 합니다."),
     INVALID_PLAYER_NAME_LANGUAGE_EXCEPTION("플레이어 이름은 영어여야 합니다."),
     INVALID_PLAYER_NAME_SIZE_EXCEPTION("플레이어 이름은 5자 이하여야 합니다."),
-    INVALID_PLAYER_COUNT_EXCEPTION("플레이어의 숫자는 2명 이상이어야 합니다.");
+    INVALID_PLAYER_COUNT_EXCEPTION("플레이어의 숫자는 2명 이상이어야 합니다."),
+    NOT_EXIST_PLAYER_NAME_EXCEPTION("존재하지 않는 플레이어 이름입니다.");
 
     private final String message;
 

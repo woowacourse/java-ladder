@@ -3,6 +3,7 @@ package domain;
 import java.util.List;
 
 import static message.ErrorMessage.INVALID_PLAYER_COUNT_EXCEPTION;
+import static message.ErrorMessage.NOT_EXIST_PLAYER_NAME_EXCEPTION;
 
 public class Players {
 
@@ -24,7 +25,7 @@ public class Players {
         return players.stream()
                 .filter(player -> player.getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어 이름입니다."));
+                .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_PLAYER_NAME_EXCEPTION.getMessageWithCause(name)));
     }
 
     public int getWidth() {
