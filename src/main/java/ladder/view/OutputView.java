@@ -67,8 +67,7 @@ public class OutputView {
         System.out.println();
         System.out.println("실행 결과");
 
-        results.playerToProduct().entrySet().stream()
-                .forEach(entry -> printResult(entry.getKey(), entry.getValue()));
+        results.playerToProduct().forEach(this::printResult);
     }
 
     private void printResult(String playerName, String productName) {
