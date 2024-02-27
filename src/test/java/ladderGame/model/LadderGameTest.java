@@ -49,7 +49,7 @@ class LadderGameTest {
         Map<Player, LadderResult> results = ladderGame.findAllLadderGameResults();
         List<String> printResult = List.of("포비 : 꽝", "왼손 : 5000", "준 : 3000");
 
-        for(Player player : results.keySet()) {
+        for (Player player : results.keySet()) {
             assertThat(String.format(player.getName() + " : " + results.get(player).getLadderResult()))
                     .isIn(printResult);
         }

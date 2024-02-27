@@ -1,6 +1,9 @@
 package ladderGame.view;
 
-import ladderGame.model.*;
+import ladderGame.model.ConnectionStatus;
+import ladderGame.model.LadderResult;
+import ladderGame.model.Line;
+import ladderGame.model.Player;
 
 import java.util.List;
 import java.util.Map;
@@ -62,7 +65,7 @@ public class ResultView {
     public void printAllLadderResult(Map<Player, LadderResult> results) {
         System.out.println(System.lineSeparator() + LADDER_RESULT_PROMPT);
         Set<Player> players = results.keySet();
-        for(Player player : players) {
+        for (Player player : players) {
             System.out.println(player.getName() + " : " + results.get(player).getLadderResult());
         }
     }

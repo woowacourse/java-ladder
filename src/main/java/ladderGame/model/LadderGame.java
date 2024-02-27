@@ -12,7 +12,7 @@ public class LadderGame {
     private final LadderResults ladderResults;
 
     public LadderGame(Players players, LadderResults ladderResults, Ladder ladder) {
-        if(players.getPlayerSize() != ladderResults.getLadderResultsSize()) {
+        if (players.getPlayerSize() != ladderResults.getLadderResultsSize()) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_NOT_EQUALS_PLAYERS_LADDER_RESULTS);
         }
 
