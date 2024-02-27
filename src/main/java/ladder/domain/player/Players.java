@@ -1,5 +1,10 @@
 package ladder.domain.player;
 
+import ladder.domain.Direction;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
+import ladder.domain.ladder.Rung;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -8,7 +13,7 @@ import java.util.stream.IntStream;
 public class Players {
     private static final int MAXIMUM_PLAYER_SIZE = 10;
     private static final int MINIMUM_PLAYER_SIZE = 2;
-    
+
     private final List<Player> players;
 
     public Players(final List<String> playerNames) {
@@ -24,7 +29,7 @@ public class Players {
     }
 
     private Player generatePlayer(final List<String> playerNames, final Integer index) {
-        return new Player(playerNames.get(index), index + 1);
+        return new Player(playerNames.get(index), index);
     }
 
     private void validatePlayers(final List<String> playerNames) {
@@ -49,6 +54,20 @@ public class Players {
 
     public int count() {
         return players.size();
+    }
+
+    public void climb(final Ladder ladder) {
+        for (final Line line : ladder.getLines()) {
+            final List<Rung> rungs = line.getRungs();
+            move(rungs);
+        }
+    }
+
+    private void move(final List<Rung> rungs) {
+        for (final Player player : players) {
+            final Direction direction = player.findMovableDirection(rungs);
+            player.moveTo(direction);
+        }
     }
 
     public List<Player> getPlayers() {

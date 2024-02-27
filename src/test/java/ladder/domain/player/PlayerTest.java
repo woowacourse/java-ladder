@@ -14,7 +14,7 @@ class PlayerTest {
     @DisplayName("참여자는 이동 방향에 따라 이동할 수 있다.")
     void move(Direction direction, int expected) {
         Player player = new Player("pobi", 3);
-        player.move(direction);
+        player.moveTo(direction);
 
         assertThat(player).extracting("position")
                 .isEqualTo(new Position(expected));

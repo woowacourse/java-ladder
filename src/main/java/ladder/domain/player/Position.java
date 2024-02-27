@@ -1,9 +1,13 @@
 package ladder.domain.player;
 
+import ladder.domain.Direction;
+import ladder.domain.ladder.Rung;
+
+import java.util.List;
 import java.util.Objects;
 
 public class Position {
-    private static final int MINIMUM_POSITION = 1;
+    private static final int MINIMUM_POSITION = 0;
 
     private int position;
 
@@ -21,6 +25,28 @@ public class Position {
 
     public void add(final int value) {
         this.position += value;
+    }
+
+    public Direction findMovableDirection(final List<Rung> rungs) {
+        if (canMoveToLeft(rungs)) {
+            return Direction.LEFT;
+        }
+        if (canMoveToRight(rungs)) {
+            return Direction.RIGHT;
+        }
+        return Direction.CENTER;
+    }
+
+    private boolean canMoveToLeft(final List<Rung> rungs) {
+        return position - 1 >= 0 && rungs.get(position - 1).isExist();
+    }
+
+    private boolean canMoveToRight(final List<Rung> rungs) {
+        return position < rungs.size() && rungs.get(position).isExist();
+    }
+
+    public int getValue() {
+        return position;
     }
 
     @Override
