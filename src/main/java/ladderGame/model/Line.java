@@ -37,13 +37,33 @@ public class Line {
     }
 
     public int descend(int index) {
-        if(index >= connectionStatuses.size()) {
-            return index;
+        ConnectionStatus connectionLeft = decideConnectionLeft(index);
+        ConnectionStatus connectionRight = decideConnectionRight(index);
+
+        if(connectionLeft.equals(ConnectionStatus.CONNECTION)) {
+            return index - 1;
         }
-        ConnectionStatus connectionStatus = connectionStatuses.get(index);
-        if(connectionStatus.equals(ConnectionStatus.CONNECTION)) {
+        if(connectionRight.equals(ConnectionStatus.CONNECTION)) {
             return index + 1;
         }
-        return 0;
+        return index;
+    }
+
+    private ConnectionStatus decideConnectionLeft(int index) {
+        ConnectionStatus connectionLeft = ConnectionStatus.DISCONNECTION;
+        if(index != 0) {
+            connectionLeft = connectionStatuses.get(index - 1);
+        }
+
+        return connectionLeft;
+    }
+
+    private ConnectionStatus decideConnectionRight(int index) {
+        ConnectionStatus connectionRight = ConnectionStatus.DISCONNECTION;
+        if(index < connectionStatuses.size()) {
+            connectionRight = connectionStatuses.get(index);
+        }
+
+        return connectionRight;
     }
 }

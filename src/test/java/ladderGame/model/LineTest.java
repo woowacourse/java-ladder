@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class LineTest {
@@ -44,7 +45,25 @@ class LineTest {
             }
         }, 3);
 
-        assertThat(line.descend(0)).isEqualTo(1);
-        assertThat(line.descend(2)).isEqualTo(2);
+        assertAll(
+                () -> assertThat(line.descend(0)).isEqualTo(1),
+                () -> assertThat(line.descend(2)).isEqualTo(2)
+        );
+    }
+
+    @Test
+    @DisplayName("사다리를 내려갈 때 왼쪽은 false, 오른쪽은 true면 오른쪽으로 이동한다.")
+    void moveRight() {
+        Line line = new Line(new BooleanGenerator() {
+            @Override
+            public boolean generate() {
+                return true;
+            }
+        }, 3);
+
+        assertAll(
+                () -> assertThat(line.descend(1)).isEqualTo(0),
+                () -> assertThat(line.descend(2)).isEqualTo(2)
+        );
     }
 }

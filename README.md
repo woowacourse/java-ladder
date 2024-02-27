@@ -46,10 +46,10 @@
 - [x] 가로줄 연결 여부는 생성자에서 정해진다.
 - [x] 사다리가 연결되었는지 여부를 가지고 있다.
   - [x] 연속으로 사다리가 연결되면 안된다.
-- [ ] index가 주어졌을 때 Line.get(index)와 Line.get(index-1)을 확인 후 index를 변경한다.
-  - [ ] Line.get(index)가 true, Line.get(index-1)이 false면 index를 1 증가시킨다.
-  - [ ] Line.get(index)가 false, Line.get(index-1)이 true면 index를 1 감소시킨다.
-  - [ ] Line.get(index)가 false, Line.get(index-1)이 false면 inde를 유지한다.
+- [x] index가 주어졌을 때 Line.get(index)와 Line.get(index-1)을 확인 후 index를 변경한다.
+  - [x] Line.get(index)가 true, Line.get(index-1)이 false면 index를 1 증가시킨다.
+  - [x] Line.get(index)가 false, Line.get(index-1)이 true면 index를 1 감소시킨다.
+  - [x] Line.get(index)가 false, Line.get(index-1)이 false면 inde를 유지한다.
 
 ## 전체 실행 결과(Results)
 - [x] 실행 결과 목록을 통해 전체 실행 결과를 생성한다.
