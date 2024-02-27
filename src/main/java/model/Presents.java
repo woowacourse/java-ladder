@@ -26,4 +26,10 @@ public class Presents {
     public Present getPresent(int column) {
         return presentGroup.get(column);
     }
+
+    public List<String> getPresentNames() {
+        return presentGroup.stream()
+                .map(Present::name)
+                .toList();
+    }
 }
