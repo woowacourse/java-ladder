@@ -10,10 +10,11 @@ public class OutputView {
     public static final String EXIST_POINT = "-----|";
     public static final String EMPTY_POINT = "     |";
 
-    public void printResult(Participants participants, Ladder ladder) {
-        System.out.println("\n실행결과\n");
+    public void printResult(Participants participants, Ladder ladder, Result prizes) {
+        System.out.println("\n사다리 결과\n");
         printNames(participants);
         printLadder(ladder);
+        printPrizes(prizes);
     }
 
     private void printNames(Participants participants) {
@@ -46,5 +47,13 @@ public class OutputView {
             return;
         }
         System.out.print(EMPTY_POINT);
+    }
+
+    private void printPrizes(Result result) {
+        List<Prize> prizes = result.getPrizes();
+        for (Prize prize : prizes) {
+            System.out.printf("%5s ", prize.getPrize());
+        }
+        System.out.println();
     }
 }

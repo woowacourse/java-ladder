@@ -2,11 +2,11 @@ package domain;
 
 import java.util.List;
 
-public class Prizes {
+public class Result {
 
     private final List<Prize> prizes;
 
-    public Prizes(List<String> prizes, int numberOfPrize) {
+    public Result(List<String> prizes, int numberOfPrize) {
         validateNumberOfPrize(prizes, numberOfPrize);
         this.prizes = prizes.stream()
                 .map(Prize::new)
@@ -21,5 +21,9 @@ public class Prizes {
 
     String getPrizeOf(int indexOfPrize) {
         return prizes.get(indexOfPrize).getPrize();
+    }
+
+    public List<Prize> getPrizes() {
+        return prizes;
     }
 }

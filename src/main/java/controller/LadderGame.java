@@ -3,7 +3,7 @@ package controller;
 import constant.controller.LadderGameExceptionMessage;
 import domain.Ladder;
 import domain.Participants;
-import domain.Prizes;
+import domain.Result;
 import view.InputView;
 import view.OutputView;
 
@@ -14,7 +14,7 @@ public class LadderGame {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private Participants participants;
-    private Prizes prizes;
+    private Result result;
     private Ladder ladder;
 
     public void play() {
@@ -27,9 +27,9 @@ public class LadderGame {
 
     private void run() {
         participants = recruitParticipants();
-        prizes = decidePrizes(participants.getParticipantsCount());
+        result = decideResult(participants.getParticipantsCount());
         ladder = makeLadder();
-        outputView.printResult(participants, ladder);
+        outputView.printResult(participants, ladder, result);
     }
 
     private Participants recruitParticipants() {
@@ -42,13 +42,13 @@ public class LadderGame {
         }
     }
 
-    private Prizes decidePrizes(int participantsCount) {
+    private Result decideResult(int participantsCount) {
         try {
             List<String> prizes = inputView.readPrizes();
-            return new Prizes(prizes, participantsCount);
+            return new Result(prizes, participantsCount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return decidePrizes(participantsCount);
+            return decideResult(participantsCount);
         }
     }
 
