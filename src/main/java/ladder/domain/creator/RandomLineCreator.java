@@ -31,7 +31,7 @@ public class RandomLineCreator {
     }
 
     private void placeRandomScaffold(List<Connection> randomConnections, int index) {
-        if (isLeftExist(randomConnections, index) || isRightExist(randomConnections, index)) {
+        if (isLeftRung(randomConnections, index) || isRightRung(randomConnections, index)) {
             return;
         }
 
@@ -42,11 +42,23 @@ public class RandomLineCreator {
         randomConnections.set(index, randomConnection);
     }
 
-    private boolean isLeftExist(List<Connection> randomConnections, int index) {
-        return index - 1 >= 0 && Connection.RUNG.equals(randomConnections.get(index - 1));
+    private boolean isLeftRung(List<Connection> randomConnections, int index) {
+        int leftIndex = index - 1;
+        if (leftIndex < 0) {
+            return false;
+        }
+
+        Connection leftConnection = randomConnections.get(leftIndex);
+        return Connection.RUNG.equals(leftConnection);
     }
 
-    private boolean isRightExist(List<Connection> randomConnections, int index) {
-        return index + 1 < randomConnections.size() && Connection.RUNG.equals(randomConnections.get(index + 1));
+    private boolean isRightRung(List<Connection> randomConnections, int index) {
+        int rightIndex = index + 1;
+        if (rightIndex >= randomConnections.size()) {
+            return false;
+        }
+
+        Connection rightConnection = randomConnections.get(rightIndex);
+        return Connection.RUNG.equals(rightConnection);
     }
 }
