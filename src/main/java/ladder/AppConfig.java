@@ -1,12 +1,11 @@
 package ladder;
 
 import ladder.controller.LadderController;
-import ladder.domain.generator.BooleanGenerator;
-import ladder.domain.generator.RandomBooleanGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class AppConfig {
+
     private AppConfig() {
     }
 
@@ -18,15 +17,7 @@ public class AppConfig {
         return new OutputView();
     }
 
-    public static BooleanGenerator randomBooleanGenerator() {
-        return new RandomBooleanGenerator();
-    }
-
     public static LadderController ladderController() {
-        return new LadderController(
-                inputView(),
-                outputView(),
-                randomBooleanGenerator()
-        );
+        return new LadderController(inputView(), outputView());
     }
 }

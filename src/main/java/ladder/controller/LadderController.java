@@ -2,10 +2,10 @@ package ladder.controller;
 
 import ladder.domain.game.LadderGame;
 import ladder.domain.game.PlayResult;
-import ladder.domain.generator.BooleanGenerator;
+import ladder.domain.game.Players;
+import ladder.domain.generator.RandomBooleanGenerator;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.game.Players;
 import ladder.dto.LadderDto;
 import ladder.dto.PlayersDto;
 import ladder.utils.Converter;
@@ -19,23 +19,17 @@ import java.util.function.Supplier;
 public class LadderController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final BooleanGenerator booleanGenerator;
 
-    public LadderController(final InputView inputView,
-                            final OutputView outputView,
-                            final BooleanGenerator booleanGenerator) {
+    public LadderController(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.booleanGenerator = booleanGenerator;
     }
 
     public void run() {
         final Players players = retryOnException(this::readPlayers);
-        final String readPrizes = inputView.readPrizes();
-        final List<String> prizes = Converter.stringToList(readPrizes);
+        final List<String> prizes = retryOnException(this::readPrizes);
         final Height height = retryOnException(this::readLadderHeight);
-
-        final Ladder ladder = new Ladder(players.count(), height.getValue(), booleanGenerator);
+        final Ladder ladder = new Ladder(players.count(), height.getValue(), new RandomBooleanGenerator());
         printLadder(players, ladder, prizes);
 
         final LadderGame ladderGame = new LadderGame(ladder, players, prizes);
@@ -52,6 +46,12 @@ public class LadderController {
         final List<String> playerNames = Converter.stringToList(input);
 
         return new Players(playerNames);
+    }
+
+    private List<String> readPrizes() {
+        final String readPrizes = inputView.readPrizes();
+
+        return Converter.stringToList(readPrizes);
     }
 
     public Height readLadderHeight() {
