@@ -8,12 +8,13 @@ import java.util.List;
 
 public class InputView {
 
-    public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private static final String SEPERATOR = ",";
 
     public static List<String> readNames() throws IOException {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        System.out.printf("참여할 사람 이름을 입력하세요. (이름은 쉼표(%s)로 구분하세요)%n", SEPERATOR);
 
-        String[] splitInput = br.readLine().split(",");
+        String[] splitInput = br.readLine().split(SEPERATOR);
         return Arrays.stream(splitInput)
                 .map(String::trim)
                 .toList();
