@@ -26,21 +26,21 @@ public class LadderGame {
     }
 
     public LadderResult findLadderGameResult(String name) {
-        Integer startIndex = players.indexOf(name);
+        Integer startPosition = players.indexOf(name);
 
-        if (startIndex == null) {
+        if (startPosition == null) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_NOT_CONTAIN_PLAYERS);
         }
 
-        int resultIndex = ladder.findLadderResultIndex(startIndex);
-        return ladderResults.getLadderResults().get(resultIndex);
+        int resultPosition = ladder.findLadderResultPosition(startPosition);
+        return ladderResults.getLadderResults().get(resultPosition);
     }
 
     public Map<Player, LadderResult> findAllLadderGameResults() {
         Map<Player, LadderResult> ladderResultToPlayers = new LinkedHashMap<>();
-        for (int index = 0; index < players.getPlayerSize(); index++) {
-            int resultIndex = ladder.findLadderResultIndex(index);
-            ladderResultToPlayers.put(players.getPlayer(index), ladderResults.getLadderResult(resultIndex));
+        for (int position = 0; position < players.getPlayerSize(); position++) {
+            int resultPosition = ladder.findLadderResultPosition(position);
+            ladderResultToPlayers.put(players.getPlayer(position), ladderResults.getLadderResult(resultPosition));
         }
 
         return ladderResultToPlayers;

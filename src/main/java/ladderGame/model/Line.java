@@ -21,28 +21,28 @@ public class Line {
         }
     }
 
-    public int checkConnectionAndFindNextIndex(int index) {
-        if (checkLeftConnection(index)) {
-            return index - 1;
+    public int checkConnectionAndFindNextPosition(int position) {
+        if (checkLeftConnection(position)) {
+            return position - 1;
         }
-        if (checkRightConnection(index)) {
-            return index + 1;
+        if (checkRightConnection(position)) {
+            return position + 1;
         }
-        return index;
+        return position;
     }
 
-    private boolean checkLeftConnection(int index) {
-        if (index == 0) {
+    private boolean checkLeftConnection(int position) {
+        if (position == 0) {
             return false;
         }
-        return connectionStatuses.get(index - 1).equals(ConnectionStatus.CONNECTION);
+        return connectionStatuses.get(position - 1).equals(ConnectionStatus.CONNECTION);
     }
 
-    private boolean checkRightConnection(int index) {
-        if (index >= connectionStatuses.size()) {
+    private boolean checkRightConnection(int position) {
+        if (position >= connectionStatuses.size()) {
             return false;
         }
-        return connectionStatuses.get(index).equals(ConnectionStatus.CONNECTION);
+        return connectionStatuses.get(position).equals(ConnectionStatus.CONNECTION);
     }
 
     public List<ConnectionStatus> getConnectionStatuses() {

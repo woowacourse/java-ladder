@@ -29,22 +29,22 @@ public class Players {
     }
 
     public Integer indexOf(String name) {
-        OptionalInt index = IntStream.range(0, players.size())
+        OptionalInt position = IntStream.range(0, players.size())
                 .filter(i -> players.get(i).getName().equals(name))
                 .findFirst();
 
-        if (index.isEmpty()) {
+        if (position.isEmpty()) {
             return null;
         }
-        return index.getAsInt();
+        return position.getAsInt();
     }
 
     public int getPlayerSize() {
         return players.size();
     }
 
-    public Player getPlayer(int index) {
-        return players.get(index);
+    public Player getPlayer(int position) {
+        return players.get(position);
     }
 
     public List<Player> getPlayers() {

@@ -14,8 +14,8 @@ public class LadderResults {
         return ladderResults.size();
     }
 
-    public LadderResult getLadderResult(int index) {
-        return ladderResults.get(index);
+    public LadderResult getLadderResult(int position) {
+        return ladderResults.get(position);
     }
 
     public List<LadderResult> getLadderResults() {

@@ -10,13 +10,13 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public int findLadderResultIndex(int index) {
-        int resultIndex = index;
+    public int findLadderResultPosition(int position) {
+        int resultPosition = position;
         for (Line line : lines) {
-            resultIndex = line.checkConnectionAndFindNextIndex(resultIndex);
+            resultPosition = line.checkConnectionAndFindNextPosition(resultPosition);
         }
 
-        return resultIndex;
+        return resultPosition;
     }
 
     public List<Line> getLines() {

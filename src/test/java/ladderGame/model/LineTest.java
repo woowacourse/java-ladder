@@ -18,14 +18,14 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("해당 위치에서 연결된 길 최종 index를 알려준다.")
-    void checkConnectionAndFindMoveIndex() {
+    @DisplayName("해당 위치에서 연결된 길 최종 위치를 알려준다.")
+    void checkConnectionAndFindMovePosition() {
         Line line = new Line(List.of(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION));
 
         assertAll(
-                () -> assertEquals(line.checkConnectionAndFindNextIndex(0), 1),
-                () -> assertEquals(line.checkConnectionAndFindNextIndex(1), 0),
-                () -> assertEquals(line.checkConnectionAndFindNextIndex(2), 2)
+                () -> assertEquals(line.checkConnectionAndFindNextPosition(0), 1),
+                () -> assertEquals(line.checkConnectionAndFindNextPosition(1), 0),
+                () -> assertEquals(line.checkConnectionAndFindNextPosition(2), 2)
         );
     }
 }
