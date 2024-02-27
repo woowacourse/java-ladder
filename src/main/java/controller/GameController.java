@@ -14,18 +14,21 @@ import java.util.stream.IntStream;
 
 public class GameController {
     public void execute() {
-        Names names = Names.from(InputView.inputPlayerNames());
-        Players players = new Players(names);
+        Players players = createPlayers();
 
         Rewards rewards = Rewards.from(InputView.inputRewards(), players.getPlayerCount());
 
         Height height = new Height(InputView.inputHeight());
-
-
+        
         Ladder ladder = new Ladder(height, players.getPlayerCount(), new RandomDirectionGenerator());
         GameBoard gameBoard = new GameBoard(players, ladder, rewards);
 
         printResult(gameBoard);
+    }
+
+    private Players createPlayers() {
+        Names names = Names.from(InputView.inputPlayerNames());
+        return new Players(names);
     }
 
     private void printResult(GameBoard gameBoard) {
@@ -35,5 +38,8 @@ public class GameController {
         IntStream.range(0, gameBoard.getLadderHeight())
                  .mapToObj(gameBoard::getDirectionAtHorizontalIndex)
                  .forEach(OutputView::printDirections);
+
+        OutputView.printRewards(gameBoard.getRewards()
+                                         .getValue());
     }
 }
