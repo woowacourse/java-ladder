@@ -9,11 +9,11 @@ public class Players {
     private static final int MIN_PLAYERS = 2;
     private static final int MAX_PLAYERS = 12;
 
-    private final List<Player> players;
+    private final List<Player> playerNames;
 
-    public Players(List<String> players) {
-        validate(players);
-        this.players = players.stream()
+    public Players(List<String> playerNames) {
+        validate(playerNames);
+        this.playerNames = playerNames.stream()
                 .map(Player::new)
                 .toList();
     }
@@ -40,13 +40,13 @@ public class Players {
     }
 
     public List<String> getNames() {
-        return players.stream()
+        return playerNames.stream()
                 .map(Player::getName)
                 .toList();
     }
 
     public int size() {
-        return players.size();
+        return playerNames.size();
     }
 
     public String format() {
@@ -54,22 +54,22 @@ public class Players {
     }
 
     private String formatFirstPlayer() {
-        return String.format("%s ", players.get(0).getName());
+        return String.format("%s ", playerNames.get(0).getName());
     }
 
     private String formatMiddlePlayer() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Player player : players.subList(1, players.size() - 1)) {
+        for (Player player : playerNames.subList(1, playerNames.size() - 1)) {
             stringBuilder.append(String.format("%6s", player.getName()));
         }
         return stringBuilder.toString();
     }
 
     private String formatLastPlayer() {
-        return String.format("%5s", players.get(players.size() - 1).getName());
+        return String.format("%5s", playerNames.get(playerNames.size() - 1).getName());
     }
 
-    public List<Player> getPlayers() {
-        return players;
+    public List<Player> getPlayerNames() {
+        return playerNames;
     }
 }

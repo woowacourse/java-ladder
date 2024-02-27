@@ -34,7 +34,7 @@ public class LadderController {
     }
 
     private void printResult(LadderResult ladderResult, Players players) {
-        var playerNames = new HashSet<>(players.getPlayers());
+        var playerNames = new HashSet<>(players.getPlayerNames());
         while (!playerNames.isEmpty()) {
             readNameAndPrintResult(ladderResult, playerNames);
         }
