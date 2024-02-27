@@ -1,9 +1,10 @@
 package domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import static message.ErrorMessage.INVALID_PLAYER_COUNT_EXCEPTION;
-import static message.ErrorMessage.NOT_EXIST_PLAYER_NAME_EXCEPTION;
+import static message.ErrorMessage.*;
 
 public class Players {
 
@@ -12,12 +13,23 @@ public class Players {
 
     public Players(List<Player> players) {
         validatePlayerSize(players);
+        validateDuplicated(players);
         this.players = players;
     }
 
     private static void validatePlayerSize(List<Player> players) {
         if (players.size() < MINIMUM_PLAYER_COUNT) {
             throw new IllegalArgumentException(INVALID_PLAYER_COUNT_EXCEPTION.getMessageWithCause(players.size()));
+        }
+    }
+
+    private static void validateDuplicated(List<Player> players) {
+        HashSet<String> uniquePlayers = new HashSet<>();
+        players.stream()
+                .forEach(player ->uniquePlayers.add(player.getName()));
+
+        if(players.size() != uniquePlayers.size()){
+            throw new IllegalArgumentException(DUPLICATED_PLAYER_NAME_EXCEPTION.getMessage());
         }
     }
 
