@@ -44,4 +44,11 @@ public class Names {
     public List<Name> getNames() {
         return List.copyOf(names);
     }
+
+    public Name findName(String findingName) {
+        return names.stream()
+                .filter(name -> name.getName().equals(findingName))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 찾는 이름이 없습니다."));
+    }
 }
