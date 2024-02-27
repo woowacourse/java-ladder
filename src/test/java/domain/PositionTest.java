@@ -21,6 +21,6 @@ public class PositionTest {
         Direction direction = Direction.LEFT;
         position.move(direction);
 
-        Assertions.assertEquals(0, position.getPosition());
+        Assertions.assertEquals(0, position.getValue());
     }
 }

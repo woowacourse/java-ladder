@@ -25,7 +25,7 @@ public class Position {
         }
     }
 
-    public int getPosition() {
+    public int getValue() {
         return position;
     }
 }
