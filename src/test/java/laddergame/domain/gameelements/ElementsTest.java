@@ -53,13 +53,9 @@ class ElementsTest {
 
         assertAll(
                 () -> assertThrows(IllegalArgumentException.class,
-                        () -> {
-                            new Elements(zeroNames);
-                        }),
+                        () -> new Elements(zeroNames)),
                 () -> assertThrows(IllegalArgumentException.class,
-                        () -> {
-                            new Elements(exceedNames);
-                        })
+                        () -> new Elements(exceedNames))
         );
 
     }
