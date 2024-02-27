@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class RewardTest {
 
@@ -13,6 +14,11 @@ public class RewardTest {
     @Test
     void reward() {
         Reward reward = new Reward(List.of("꽝", "5000", "꽝", "3000"));
-        assertThat(reward.valueOf(0)).isEqualTo("꽝");
+        assertAll(
+                () -> assertThat(reward.valueOf(0)).isEqualTo("꽝"),
+                () -> assertThat(reward.valueOf(1)).isEqualTo("5000"),
+                () -> assertThat(reward.valueOf(2)).isEqualTo("꽝"),
+                () -> assertThat(reward.valueOf(3)).isEqualTo("3000")
+        );
     }
 }

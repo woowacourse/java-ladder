@@ -14,7 +14,7 @@ public class Reward {
         }
     }
 
-    public boolean valueOf(int i) {
-        return true;
+    public String valueOf(int index) {
+        return this.rewards.get(index);
     }
 }
