@@ -21,7 +21,7 @@ public class Line {
         }
     }
 
-    public int checkConnectionAndFindNextPosition(int position) {
+    public int findNextPosition(int position) {
         if (checkLeftConnection(position)) {
             return position - 1;
         }

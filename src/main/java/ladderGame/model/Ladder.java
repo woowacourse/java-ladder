@@ -13,7 +13,7 @@ public class Ladder {
     public int findLadderResultPosition(int position) {
         int resultPosition = position;
         for (Line line : lines) {
-            resultPosition = line.checkConnectionAndFindNextPosition(resultPosition);
+            resultPosition = line.findNextPosition(resultPosition);
         }
 
         return resultPosition;

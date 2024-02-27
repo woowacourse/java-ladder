@@ -23,9 +23,9 @@ class LineTest {
         Line line = new Line(List.of(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION));
 
         assertAll(
-                () -> assertEquals(line.checkConnectionAndFindNextPosition(0), 1),
-                () -> assertEquals(line.checkConnectionAndFindNextPosition(1), 0),
-                () -> assertEquals(line.checkConnectionAndFindNextPosition(2), 2)
+                () -> assertEquals(line.findNextPosition(0), 1),
+                () -> assertEquals(line.findNextPosition(1), 0),
+                () -> assertEquals(line.findNextPosition(2), 2)
         );
     }
 }
