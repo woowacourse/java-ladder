@@ -14,10 +14,6 @@ public class LadderGameResult {
         }
     }
 
-    public void put(Player player, Result result) {
-        ladderGameResult.put(player, result);
-    }
-
     public Result get(Player player) {
         return ladderGameResult.get(player);
     }
