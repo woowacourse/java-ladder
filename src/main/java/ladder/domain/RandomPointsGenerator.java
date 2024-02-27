@@ -1,22 +1,31 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
-public class RandomPointsGenerator implements PointsGenerator {
+public class RandomPointsGenerator {
+    private final Random random = new Random();
 
     public RandomPointsGenerator() {
     }
 
-    @Override
     public List<Point> generate(int size) {
-        List<Point> list = new ArrayList<>();
-        Random random = new Random();
-        for (int i = 0; i < size; i++) {
-            Point point = Point.match(random.nextBoolean());
-            list.add(point);
+        List<Point> points = Stream.iterate(Point.OFF, this::getPoints)
+                .skip(1)
+                .limit(size)
+                .toList();
+
+        if (!points.contains(Point.ON)) {
+            return generate(size);
         }
-        return list;
+        return points;
+    }
+
+    private Point getPoints(Point previous) {
+        if (Point.ON.equals(previous)) {
+            return Point.OFF;
+        }
+        return Point.match(random.nextBoolean());
     }
 }
