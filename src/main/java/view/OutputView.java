@@ -17,13 +17,13 @@ public class OutputView {
         List<Player> gamePlayers = players.getPlayers();
         printPlayers(gamePlayers);
 
-        List<Line> lines = ladder.getLines();
-        for (Line line : lines) {
+        for (Line line : ladder.getLines()) {
             printPrefixSpace(gamePlayers);
             printLine(line.getLegs());
         }
 
         printResults(players, results);
+        System.out.println();
     }
 
 
@@ -69,5 +69,11 @@ public class OutputView {
     public static void printOnePlayerResult(Result result) {
         System.out.println(EXECUTED_RESULT);
         System.out.println(result.getResult());
+    }
+
+    public static void printPlayersResult(Players players, LadderGameResult ladderGameResult) {
+        System.out.println(EXECUTED_RESULT);
+        players.getPlayers().stream()
+                .forEach(player -> System.out.println(player.getName() + " : " + ladderGameResult.get(player).getResult()));
     }
 }

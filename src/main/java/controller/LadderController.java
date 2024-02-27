@@ -18,11 +18,7 @@ public class LadderController {
         Ladder ladder = readLadder(players);
         OutputView.printResult(players, ladder, results);
         LadderGameResult ladderGameResult = new LadderGameResult(ladder, players, results);
-        while(true) {
-            Result result = ladderGameResult.get(players.findByName(InputView.readPlayer()));
-            OutputView.printOnePlayerResult(result);
-        }
-
+        showLadderGameResult(players, ladderGameResult);
     }
 
     private Ladder readLadder(Players players) {
@@ -55,8 +51,18 @@ public class LadderController {
         }
     }
 
-    private void readPlayer() {
-        String player = InputView.readPlayer();
+    private void showLadderGameResult(Players players, LadderGameResult ladderGameResult) {
+        String input = InputView.readPlayer();
+        if (isAll(input)) {
+            OutputView.printPlayersResult(players, ladderGameResult);
+            return;
+        }
+        Result result = ladderGameResult.get(players.findByName(input));
+        OutputView.printOnePlayerResult(result);
+        showLadderGameResult(players, ladderGameResult);
+    }
 
+    private boolean isAll(String input) {
+        return input.equals("all");
     }
 }
