@@ -1,6 +1,7 @@
 package laddergame.controller;
 
 import laddergame.domain.gameelements.people.People;
+import laddergame.domain.gameelements.results.Results;
 import laddergame.domain.ladder.Ladder;
 import laddergame.view.ExceptionHandledReader;
 import laddergame.view.InputView;
@@ -14,8 +15,9 @@ public class LadderGameController {
     public static void run() {
         People people = ExceptionHandledReader.readUntilNoError(LadderGameController::getPeople);
         Ladder ladder = ExceptionHandledReader.readUntilNoError(() -> getLadder(people));
+        Results results = ExceptionHandledReader.readUntilNoError(() -> getResults(people.getNames().size()));
 
-        ResultView.printLadder(people, ladder);
+        ResultView.printLadder(people, ladder, results);
     }
 
     private static People getPeople() {
@@ -27,4 +29,7 @@ public class LadderGameController {
         return new Ladder(InputView.readHeight(), peopleNumber);
     }
 
+    private static Results getResults(int peopleNumber) {
+        return new Results(InputView.readGameResult(), peopleNumber);
+    }
 }

@@ -1,6 +1,7 @@
 package laddergame.view;
 
 import laddergame.domain.gameelements.people.People;
+import laddergame.domain.gameelements.results.Results;
 import laddergame.domain.ladder.Ladder;
 
 public class ResultView {
@@ -9,10 +10,11 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printLadder(People people, Ladder ladder) {
+    public static void printLadder(People people, Ladder ladder, Results results) {
         System.out.println(LINE_SEPERATOR + "실행 결과" + LINE_SEPERATOR);
-        System.out.println(MessageResolver.resolvePeopleMessage(people));
+        System.out.println(MessageResolver.resolveElementMessage(people));
         System.out.println(MessageResolver.resolveLadderMessage(ladder));
+        System.out.println(MessageResolver.resolveElementMessage(results));
     }
 
 }
