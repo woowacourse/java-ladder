@@ -29,20 +29,6 @@ public class InputView {
 		return convertToInteger(input);
 	}
 
-	private int convertToInteger(String input) {
-		try {
-			return Integer.parseInt(input);
-		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("사다리 높이는 정수로 입력해야 합니다.");
-		}
-	}
-
-	private void validatePrizeCount(List<String> prizeNames, int playerCount) {
-		if (prizeNames.size() != playerCount) {
-			throw new IllegalArgumentException("상품의 개수는 플레이어 수와 동일해야 합니다.");
-		}
-	}
-
 	public String readPlayersToShowResult(List<String> playerNames) {
 		String input = scanner.nextLine();
 		if ("all".equals(input)) {
@@ -52,6 +38,20 @@ public class InputView {
 			throw new IllegalArgumentException("존재하지 않은 플레이어입니다.");
 		}
 		return input;
+	}
+
+	private void validatePrizeCount(List<String> prizeNames, int playerCount) {
+		if (prizeNames.size() != playerCount) {
+			throw new IllegalArgumentException("결과 개수와 플레이어 수는 동일해야 합니다.");
+		}
+	}
+
+	private int convertToInteger(String input) {
+		try {
+			return Integer.parseInt(input);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("사다리 높이는 정수로 입력해야 합니다.");
+		}
 	}
 
 	private boolean isNotExistPlayerName(String playerName, List<String> playerNames) {
