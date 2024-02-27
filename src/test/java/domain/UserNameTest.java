@@ -25,7 +25,7 @@ class UserNameTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"미르종이러쉬", "!!#$@!", "\uD83D\uDE03\uD83D\uDE03\uD83D\uDE03"})
+    @ValueSource(strings = {"종이러쉬", "!!#", "\uD83D\uDE03\uD83D"})
     @DisplayName("사용자 이름은 영문만 가능하다")
     void userNameSpecialCharacter(String userName) {
         assertThatThrownBy(() -> new UserName(userName)).isInstanceOf(IllegalArgumentException.class);
