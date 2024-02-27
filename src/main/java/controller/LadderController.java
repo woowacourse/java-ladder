@@ -22,7 +22,7 @@ public class LadderController {
         Height height = heightInput(MAX_DEPTH);
         Winnings winnings = winningsInput(MAX_DEPTH, players);
         LadderGame ladderGame = new LadderGame(players, height, winnings);
-        OutputView.printResult(ladderGame.getLadderShape());
+        OutputView.printLadder(ladderGame.getLadderShape());
     }
 
     private Players nameInput(int depth) {
