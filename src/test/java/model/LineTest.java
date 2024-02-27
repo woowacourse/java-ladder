@@ -21,7 +21,7 @@ class LineTest {
 
 
     @RepeatedTest(10)
-    @DisplayName("연속한 두개의 Step이 true 값을 가지지 않는지 확인한다.")
+    @DisplayName("연속한 두개의 LadderStatus가 true 값을 가지지 않는지 확인한다.")
     void overlapConnection() {
         //given
         Line line = new Line(4, new RandomBuildStrategy());
@@ -41,7 +41,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("아무 Step이 없는 라인을 생성한다.")
+    @DisplayName("LadderStatus가 flase인 라인을 생성한다.")
     void createNonStepLine() {
         //given
         Line line = new Line(4, new NothingBuildStrategy());

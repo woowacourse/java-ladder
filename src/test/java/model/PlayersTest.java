@@ -52,7 +52,7 @@ class PlayersTest {
 
     @ParameterizedTest
     @MethodSource("createFormatPlayersParametersProvider")
-    @DisplayName("이름 사이에 공백을 추가하여 반환한다.")
+    @DisplayName("이름 사이에 공백을 패딩하여 반환한다.")
     void createFormatPlayers(List<String> rawNames, String expected) {
         //give & when
         Players players = new Players(rawNames);
