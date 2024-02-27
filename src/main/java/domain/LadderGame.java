@@ -7,11 +7,13 @@ import java.util.Map;
 public class LadderGame {
     private final Ladder ladder;
     private final Players players;
+    private final List<String> prizes;
 
 
-    public LadderGame(Ladder ladder, Players players) {
+    public LadderGame(Ladder ladder, Players players, List<String> prizes) {
         this.ladder = ladder;
         this.players = players;
+        this.prizes = prizes;
     }
 
     public int playLine(int currentColumn, Line line) {
@@ -32,18 +34,6 @@ public class LadderGame {
         return currentColumn;
     }
 
-    public Map<String, Integer> playPlayers(List<Line> lines, List<String> players) {
-        Map<String, Integer> playerWithResultIndex = new LinkedHashMap<>();
-
-        for (int columnIndex = 0; columnIndex < players.size(); columnIndex++) {
-            String player = players.get(columnIndex);
-            int resultColumnIndex = playLines(columnIndex, lines);
-            playerWithResultIndex.put(player, resultColumnIndex);
-        }
-
-        return playerWithResultIndex;
-    }
-
     public Map<Player, Integer> playPlayers2() {
         Map<Player, Integer> playerWithResultIndex = new LinkedHashMap<>();
 
@@ -53,10 +43,21 @@ public class LadderGame {
             playerWithResultIndex.put(player, resultColumnIndex);
         }
 
-        return playerWithResultIndex;    }
+        return playerWithResultIndex;
+    }
 
     public Map<String, String> getPlayersWithPrize(Map<String, Integer> playersWithResultIndex, List<String> prizes) {
         Map<String, String> playersWithPrize = new LinkedHashMap<>();
+        playersWithResultIndex.forEach((player, index) -> {
+            playersWithPrize.put(player, prizes.get(index));
+        });
+        return playersWithPrize;
+    }
+
+    public Map<Player, String> getPlayersWithPrize2() {
+        Map<Player, Integer> playersWithResultIndex = playPlayers2();
+        Map<Player, String> playersWithPrize = new LinkedHashMap<>();
+
         playersWithResultIndex.forEach((player, index) -> {
             playersWithPrize.put(player, prizes.get(index));
         });

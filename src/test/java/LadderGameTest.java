@@ -131,12 +131,13 @@ public class LadderGameTest {
 
         Ladder ladder = new Ladder(List.of(line1));
         Players players = Players.from(List.of("a", "b", "c", "d"));
-        LadderGame ladderGame = new LadderGame(ladder, players);
-        assertThat(ladderGame.playPlayers2()).containsExactlyInAnyOrderEntriesOf(Map.of(
-                new Player("a"), 1,
-                new Player("b"), 0,
-                new Player("c"), 2,
-                new Player("d"), 3
+        List<String> prizes = List.of("A", "B", "C", "D");
+        LadderGame ladderGame = new LadderGame(ladder, players, prizes);
+        assertThat(ladderGame.getPlayersWithPrize2()).containsExactlyInAnyOrderEntriesOf(Map.of(
+                new Player("a"), "B",
+                new Player("b"), "A",
+                new Player("c"), "C",
+                new Player("d"), "D"
         ));
     }
 }

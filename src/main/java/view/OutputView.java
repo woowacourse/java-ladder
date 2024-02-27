@@ -5,6 +5,7 @@ import domain.Line;
 import domain.Player;
 import domain.Players;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     private final OutputFormatter outputFormatter;
@@ -43,17 +44,19 @@ public class OutputView {
         printLine(line);
     }
 
-    public void printGameResult(Players allPlayers) {
-        System.out.println("실행 결과");
-        allPlayers.getPlayers().forEach(player -> printLine("%s : %s", player.getName()));
+    public void printGameResult(Map<Player, String> playersWithPrize) {
+        printLine("실행 결과");
+        playersWithPrize.forEach((key, value) -> printLine("%s : %s", key.getName(), value));
     }
 
-    public void printGameResult(Player player) {
+    public void printGameResult(String searchedPlayer) {
+        printLine("실행 결과");
+        printLine(searchedPlayer);
     }
-
     public void printLine(String message) {
         System.out.println(message);
     }
+
     public void printLine(String message, Object... args) {
         System.out.printf(message, args);
         System.out.println();

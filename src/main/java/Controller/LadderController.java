@@ -2,10 +2,12 @@ package Controller;
 
 import domain.Ladder;
 import domain.LadderGame;
+import domain.Player;
 import domain.PlayerCount;
 import domain.Players;
 import domain.RandomStepGenerator;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import view.InputView;
@@ -28,30 +30,27 @@ public class LadderController {
         final Ladder ladder = Ladder.create(height, PlayerCount.fromPlayers(players), new RandomStepGenerator());
         outputView.printLadderMap(players, ladder, prizes);
 
-        final LadderGame ladderGame = new LadderGame(ladder, players);
+        final LadderGame ladderGame = new LadderGame(ladder, players, prizes);
 
-//        showGameResult(ladderGame.getPlayersWithPrize(), players);
+        showGameResult(ladderGame.getPlayersWithPrize2(), players);
     }
 
-//    private void showGameResult(Map<String, String> playersWithPrize) {
-//        final List<Player> searchedPlayers = readWithRetry(this::readSearchingPlayers, playersWithPrize);
-//
-//    }
+    private void showGameResult(Map<Player, String> playersWithPrize2, Players players) { // TODO: prize 원시값 포장
+        String inputName = inputView.inputSearchingPlayer();
+        if (inputName.equals("all")) {
+            outputView.printGameResult(playersWithPrize2);
+        }
+        if (!inputName.equals("all")) {
+            Player searchedPlayer = players.search(inputName);
+            String searchedPrize = playersWithPrize2.get(searchedPlayer);
+            outputView.printGameResult(searchedPrize);
+            showGameResult(playersWithPrize2, players);
+        }
+    }
 
     private Players readPlayers() {
         return Players.from(inputView.inputPlayers());
     }
-
-//    private Players readSearchingPlayers(Players players) {
-//        String inputName = inputView.inputSearchingPlayer();
-//
-//        if (inputName.equals("all")) {
-//            return players;
-//        }
-//
-//        Player searchedPlayer = players.search(inputName);
-//        return readSearchingPlayers(players);
-//    }
 
     private <T, R> R readWithRetry(Function<T, R> function, T input) {
         try {
