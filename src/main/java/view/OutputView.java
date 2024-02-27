@@ -5,7 +5,6 @@ import domain.Line;
 import domain.Name;
 
 import java.util.List;
-import java.util.Scanner;
 import java.util.StringJoiner;
 
 public class OutputView {
@@ -58,5 +57,13 @@ public class OutputView {
             return BRIDGE;
         }
         return NO_BRIDGE;
+    }
+
+    public void printResult(String result) {
+        System.out.println(result);
+    }
+
+    public void printPlayerResult(String name, String result) {
+        System.out.println(name + " : " + result);
     }
 }
