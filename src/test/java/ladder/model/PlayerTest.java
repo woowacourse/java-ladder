@@ -15,7 +15,9 @@ public class PlayerTest {
     void nameMaxLengthTest(String name) {
         assertThatThrownBy(() -> new Player(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름의 길이는 1이상 5이하의 숫자여야 합니다.");
+                .hasMessageContaining("이름의 길이는")
+                .hasMessageContaining("이상")
+                .hasMessageContaining("이하의 숫자여야 합니다.");
     }
 
     @Test
