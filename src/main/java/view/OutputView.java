@@ -55,13 +55,13 @@ public class OutputView {
     public static void printAllResult(Map<Name, Prize> ladderGame) {
         System.out.println("실행결과");
         for (Name name : ladderGame.keySet()) {
-            System.out.println(name + " : " + ladderGame.get(name));
+            System.out.println(name.getName() + " : " + ladderGame.get(name).getPrizeName());
         }
     }
 
     public static void printEachResult(Name name, Prize prize) {
         System.out.println("실행결과");
-        System.out.println(name + " : " + prize);
+        System.out.println(name.getName() + " : " + prize.getPrizeName());
     }
   
     public static void printException(Exception exception) {
