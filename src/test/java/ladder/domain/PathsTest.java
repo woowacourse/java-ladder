@@ -1,9 +1,11 @@
 package ladder.domain;
 
 import ladder.util.RandomBooleanGenerator;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,5 +24,19 @@ public class PathsTest {
 
         // Then
         assertThat(paths).isNotNull();
+    }
+
+    @DisplayName("Path들의 상태를 반환한다.")
+    @Test
+    void Path들_상태_반환() {
+        // Given
+        final int ladderSpaceCount = 7;
+        final Paths paths = Paths.init(new RandomBooleanGenerator(), ladderSpaceCount);
+
+        // When
+        List<PathStatus> pathStatuses = paths.getPathStatuses();
+
+        // Then
+        Assertions.assertThat(pathStatuses).hasSize(ladderSpaceCount);
     }
 }
