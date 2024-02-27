@@ -2,6 +2,7 @@ package view;
 
 import domain.ConnectionStatus;
 import domain.Ladder;
+import domain.NonDecidedResults;
 import domain.line.RowLine;
 import domain.name.Names;
 
@@ -11,24 +12,25 @@ public class ResultView {
 
     private static final String LINE_SEPARATOR = System.lineSeparator();
     private static final String COLUMN_LINE = "|";
-    private static final String NAME_FORMAT = "%-5s";
+    private static final String FIVE_INTERVAL_FORMAT = "%-5s";
     private static final String BLANK = " ";
     private static final String ROW_LINE = "-----";
     private static final String EMPTY_LINE = "     ";
 
-    public void printLadder(Ladder ladder, Names names) {
-        System.out.println(LINE_SEPARATOR + "실행결과" + LINE_SEPARATOR);
+    public void printLadder(Ladder ladder, Names names, NonDecidedResults nonDecidedResults) {
+        System.out.println(LINE_SEPARATOR + "사다리 결과" + LINE_SEPARATOR);
         System.out.println(resolveNamesMessage(names));
         System.out.println(resolveLadderMessage(ladder));
+        System.out.println(resolveResultMessage(nonDecidedResults));
     }
 
     private String resolveNamesMessage(Names names) {
         return names.getNames().stream()
-                .map(name -> String.format(NAME_FORMAT, name.getName()))
+                .map(name -> String.format(FIVE_INTERVAL_FORMAT, name.getName()))
                 .collect(Collectors.joining(BLANK));
     }
 
-    public String resolveLadderMessage(Ladder ladder) {
+    private String resolveLadderMessage(Ladder ladder) {
         return ladder.getLines().stream()
                 .map(this::resolveLineMessage)
                 .collect(Collectors.joining(System.lineSeparator()));
@@ -46,5 +48,11 @@ public class ResultView {
             return ROW_LINE;
         }
         return EMPTY_LINE;
+    }
+
+    private String resolveResultMessage(NonDecidedResults nonDecidedResults) {
+        return nonDecidedResults.getNonDecidedResults().stream()
+                .map(result -> String.format(FIVE_INTERVAL_FORMAT, result))
+                .collect(Collectors.joining(BLANK));
     }
 }
