@@ -19,14 +19,14 @@ public class OutputView {
         printRewards(game.getRewards());
     }
 
-    public void printMembers(Members members) {
+    private void printMembers(Members members) {
         for (String name : members.getNames()) {
             System.out.printf("%" + MAX_NAME_LENGTH + "s ", name);
         }
         System.out.println();
     }
 
-    public void printLines(Lines lines) {
+    private void printLines(Lines lines) {
         for (Line line : lines.getLines()) {
             printLine(line);
         }
