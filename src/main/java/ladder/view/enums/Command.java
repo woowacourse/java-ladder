@@ -9,7 +9,7 @@ public enum Command {
     Command(String input) {
         this.input = input;
     }
-    
+
     public static boolean contains(String s) {
         boolean isContaining = false;
 

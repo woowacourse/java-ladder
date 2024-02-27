@@ -15,9 +15,6 @@ public class AlternativeLineGenerator implements LineGenerator {
     }
 
     private boolean nextBoolean(boolean before) {
-        if (before) {
-            return false;
-        }
-        return true;
+        return !before;
     }
 }

@@ -5,7 +5,7 @@ import ladder.service.LadderGameService;
 
 public class Main {
     public static void main(String[] args) {
-        LadderGameController  ladderGameController =
+        LadderGameController ladderGameController =
                 new LadderGameController(new LadderGameService());
         ladderGameController.run();
     }

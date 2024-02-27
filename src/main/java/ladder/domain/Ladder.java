@@ -35,10 +35,10 @@ public class Ladder {
 
     public int getResultOf(int lineNumber) {
         PositionRow positionRow = new PositionRow(lineNumber, peopleNumber);
+
         for (RowLine rowLine : rowLines) {
             rowLine.move(positionRow);
         }
-
         return positionRow.getPosition();
     }
 

@@ -39,7 +39,7 @@ public class People {
 
     private void validateNotCommand(String name) {
         if (Command.contains(name)) {
-            throw new IllegalArgumentException("명령어를 이름으로 할 수 없습니다: "+ name);
+            throw new IllegalArgumentException("명령어를 이름으로 할 수 없습니다: " + name);
         }
     }
 }
