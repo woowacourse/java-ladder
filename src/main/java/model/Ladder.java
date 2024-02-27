@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 import model.path.PathGenerator;
 
@@ -13,18 +12,7 @@ public class Ladder {
 
     public static Ladder from(final int height, final int personCount, final PathGenerator pathGenerator) {
         validateHeight(height);
-        final List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            int pathCount = personCount - 1;
-            final Line line = new Line(pathGenerator.generate(pathCount));
-            lines.add(line);
-        }
-        return new Ladder(lines);
-    }
-
-    public static Ladder from2(final int height, final int personCount, final PathGenerator pathGenerator) {
-        validateHeight(height);
-        final int pathCount = personCount - 1;
+        int pathCount = personCount - 1;
         final List<Line> lines = pathGenerator.generate(height, pathCount);
         return new Ladder(lines);
     }

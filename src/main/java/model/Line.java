@@ -41,18 +41,6 @@ public class Line {
                 .toList();
     }
 
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Line line = (Line) o;
-        return Objects.equals(paths, line.paths);
-    }
-
     public int move(int currentIndex) {
         currentIndex = moveRight(currentIndex);
         currentIndex = moveLeft(currentIndex);

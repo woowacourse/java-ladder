@@ -8,7 +8,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import model.path.FixedPathGenerator;
-import model.path.Path;
 import model.path.RandomPathGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,14 +19,14 @@ class LadderTest {
     @Test
     @DisplayName("사다리를 생성한다.")
     void createLadder() {
-        List<Path> expectedPaths = List.of(EXIST, NOT_EXIST);
-        FixedPathGenerator pathGenerator = new FixedPathGenerator(expectedPaths, null);
+        Line line = new Line(List.of(EXIST, NOT_EXIST));
+        List<Line> expectedLines = List.of(line);
+        FixedPathGenerator pathGenerator = new FixedPathGenerator(expectedLines);
         int height = 1;
         int personCount = 2;
 
         Ladder ladder = Ladder.from(height, personCount, pathGenerator);
-        Line actualLine = ladder.getLines().get(height - 1);
-        assertThat(actualLine).isEqualTo(new Line(expectedPaths));
+        assertThat(ladder.getLines()).isEqualTo(expectedLines);
     }
 
     @ParameterizedTest(name = "사다리의 높이는 1 이상이다.")
@@ -57,7 +56,7 @@ class LadderTest {
                         new Line(List.of(NOT_EXIST, EXIST, NOT_EXIST)),
                         new Line(List.of(EXIST, NOT_EXIST, EXIST)))
         );
-        Ladder ladder = Ladder.from2(height, personCount, pathGenerator);
+        Ladder ladder = Ladder.from(height, personCount, pathGenerator);
         assertThat(ladder.climb(1)).isEqualTo(1);
     }
 }
