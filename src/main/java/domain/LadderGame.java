@@ -8,19 +8,26 @@ public class LadderGame {
     private final Names names;
     private final Prizes prizes;
     private final Ladder ladder;
-    private GameResult gameResult = null;
 
     public LadderGame(Names names, Prizes prizes, Ladder ladder) {
+        validate(names, prizes, ladder);
         this.names = names;
         this.prizes = prizes;
         this.ladder = ladder;
     }
 
-    public GameResult createGameResult() {
-        if (gameResult == null) {
-            gameResult = new GameResult(names, prizes, ladder);
+    private void validate(Names names, Prizes prizes, Ladder ladder) {
+        if (names == null || prizes == null || ladder == null) {
+            throw new IllegalArgumentException("null 객체를 사용해 LadderGame을 생성할 수 없습니다.");
         }
-        return gameResult;
+        if (names.size() != prizes.size()) {
+            throw new IllegalArgumentException("이름과 결과의 개수는 같아야 합니다.\n"
+                    + "이름의 개수 : " + names.size() + ", 결과의 개수 : " + prizes.size());
+        }
+        if (names.size() != ladder.getLegSize()) {
+            throw new IllegalArgumentException("이름의 개수와 사다리의 다리 개수는 같아야 합니다.\n"
+                    + "이름의 개수 : " + names.size() + ", 다리 개수 : " + ladder.getLegSize());
+        }
     }
 
     public Names getNames() {

@@ -32,6 +32,7 @@ public class Ladder {
     }
 
     private List<Integer> calculateResult(Names names) {
+        // TODO 메서드 이름 직관적이게 변경
         List<Integer> list = new ArrayList<>();
         IntStream.range(0, names.size())
                 .forEach(list::add);

@@ -37,7 +37,7 @@ public class LadderGameController {
     public static void run() {
         LadderGame ladderGame = createLadderGame();
         printLadderGame(ladderGame);
-        GameResult gameResult = ladderGame.createGameResult();
+        GameResult gameResult = new GameResult(ladderGame);
         while (true) {
             Menu menu = readMenu();
             if (menu == Menu.QUIT) {
