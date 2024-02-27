@@ -10,12 +10,12 @@ public class InputView {
     private InputView() {
     }
 
-    public static List<String> readNames(Supplier<String> reader) {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+    public static List<String> readStringsWithDelimiter(Supplier<String> reader, String message) {
+        System.out.println(message);
         String input = reader.get();
         validateEmpty(input);
         System.out.println();
-        return parseNames(input);
+        return parseStringWithDelimiter(input);
     }
 
     public static int readLadderHeight(Supplier<String> reader) {
@@ -31,8 +31,8 @@ public class InputView {
         }
     }
 
-    private static List<String> parseNames(String names) {
-        return stream(names.split(","))
+    private static List<String> parseStringWithDelimiter(String input) {
+        return stream(input.split(","))
                 .toList();
     }
 
