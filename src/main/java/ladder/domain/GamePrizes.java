@@ -2,13 +2,17 @@ package ladder.domain;
 
 import java.util.List;
 
-public class GamePrize {
+public class GamePrizes {
 
     private final List<String> prizes;
 
-    public GamePrize(List<String> gamePrizeInput) {
+    public GamePrizes(List<String> gamePrizeInput) {
         validate(gamePrizeInput);
         this.prizes = gamePrizeInput;
+    }
+
+    public String findPrize(int position) {
+        return prizes.get(position);
     }
 
     private void validate(List<String> gamePrizeInput) {
