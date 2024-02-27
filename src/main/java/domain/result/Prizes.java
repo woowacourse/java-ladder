@@ -21,7 +21,7 @@ public class Prizes {
         }
     }
 
-    public int size() { // TODO : 얘가 정말 필요한 메서드인가?
+    public int size() {
         return prizes.size();
     }
 
