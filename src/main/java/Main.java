@@ -16,9 +16,10 @@ public class Main {
             var inputView = new InputView(bufferedReader);
             LadderGame ladderGame = RetryHelper.retry(() -> createLadderGame(outputView, inputView));
             outputView.printLadderResult(ladderGame);
+
+            LadderGameResult ladderGameResult = ladderGame.calculateLadderGameResult();
             RetryHelper.retry(
-                    () -> searchLadderResultFromName(outputView, inputView, ladderGame.getNames(),
-                            ladderGame.calculateLadderGameResult()));
+                    () -> searchLadderResultFromName(outputView, inputView, ladderGame.getNames(), ladderGameResult));
         }
     }
 

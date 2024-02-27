@@ -21,11 +21,9 @@ public class OutPutView {
     private static final String HEIGHT_INPUT = "최대 사다리 높이는 몇 개인가요?";
     private static final String LADDER_PREFIX = "\n사다리 결과\n";
     private static final String LADDER_RESULT_PREFIX = "\n실행 결과";
-
     private static final String VERTICAL_BRIDGE = "|";
     private static final String EXIST_BRIDGE = "-----";
     private static final String NONE_BRIDGE = "     ";
-
     private static final String NAME_LADDER_RESULT_FORMAT = "%s : %s";
 
     public void printNamesInput() {
@@ -48,10 +46,31 @@ public class OutPutView {
         String namesString = makeNamesString(names);
         String ladderString = makeLadderString(ladder);
         String ladderResultString = makeLadderResultsString(ladderResults);
-        
+
         System.out.println(String.join("\n", LADDER_PREFIX, namesString, ladderString, ladderResultString, "\n"));
     }
 
+    public void printAllNameLadderResult(Names names, LadderGameResult ladderGameResult) {
+        Map<Name, LadderResult> nameLadderResultMap = ladderGameResult.getLadderGameResult();
+        String allNameLadderResult = names.getNames().stream()
+                .map(name -> NAME_LADDER_RESULT_FORMAT
+                        .formatted(name.getName(), nameLadderResultMap.get(name).getValue()))
+                .collect(Collectors.joining("\n"));
+        System.out.println(String.join("\n", LADDER_RESULT_PREFIX, allNameLadderResult));
+    }
+
+    public void printSearchNameInput() {
+        System.out.println(SEARCH_NAME_INPUT);
+    }
+
+    public void printSearchNameLadderResult(String searchName, LadderGameResult ladderGameResult) {
+        Name searchForName = new Name(searchName);
+        Map<Name, LadderResult> nameLadderResultMap = ladderGameResult.getLadderGameResult();
+        if (nameLadderResultMap.containsKey(searchForName)) {
+            System.out.println(
+                    String.join("\n", LADDER_RESULT_PREFIX, nameLadderResultMap.get(searchForName).getValue() + "\n"));
+        }
+    }
 
     private String makeLadderString(Ladder ladder) {
         return ladder.getRows().stream()
@@ -102,29 +121,5 @@ public class OutPutView {
         }
         int nameStringLength = ladderResultString.length();
         return " ".repeat(MAX_NAME_LENGTH - nameStringLength) + ladderResultString;
-    }
-
-
-    public void printAllNameLadderResult(Names names, LadderGameResult ladderGameResult) {
-        Map<Name, LadderResult> nameLadderResultMap = ladderGameResult.getLadderGameResult();
-        String allNameLadderResult = names.getNames().stream()
-                .map(name -> NAME_LADDER_RESULT_FORMAT
-                        .formatted(name.getName(), nameLadderResultMap.get(name).getValue()))
-                .collect(Collectors.joining("\n"));
-        System.out.println(String.join("\n", LADDER_RESULT_PREFIX, allNameLadderResult));
-    }
-
-    public void printSearchNameInput() {
-        System.out.println(SEARCH_NAME_INPUT);
-    }
-
-    public void printSearchNameLadderResult(String searchName, LadderGameResult ladderGameResult) {
-        Name searchForName = new Name(searchName);
-        Map<Name, LadderResult> nameLadderResultMap = ladderGameResult.getLadderGameResult();
-        if (nameLadderResultMap.containsKey(searchForName)) {
-            System.out.println(
-                    String.join("\n", LADDER_RESULT_PREFIX, nameLadderResultMap.get(searchForName).getValue() + "\n"));
-        }
-
     }
 }
