@@ -15,7 +15,7 @@ import laddergame.view.OutputView;
 
 public class LadderController {
 
-    private static final String FIND_ALL_KEY = "all";
+    public static final String FIND_ALL_KEY = "all";
 
     private final InputView inputView;
     private final OutputView outputView;

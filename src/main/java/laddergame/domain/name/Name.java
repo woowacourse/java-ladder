@@ -1,11 +1,11 @@
 package laddergame.domain.name;
 
 import java.util.Objects;
+import laddergame.controller.LadderController;
 
 public class Name {
 
     private static final int MAX_LENGTH = 5;
-    private static final String INVALID_NAME = "all";
 
     private final String name;
 
@@ -29,8 +29,8 @@ public class Name {
     }
 
     private void validateInvalidName(final String input) {
-        if (INVALID_NAME.equals(input)) {
-            throw new IllegalArgumentException("[ERROR] 이름을 " + INVALID_NAME + "로 지을 수 없습니다.");
+        if (LadderController.FIND_ALL_KEY.equals(input)) {
+            throw new IllegalArgumentException("[ERROR] 이름을 " + LadderController.FIND_ALL_KEY + "로 지을 수 없습니다.");
         }
     }
 

@@ -38,11 +38,11 @@ public class Line {
     public Position goHorizontal(final Position position) {
         validatePosition(position);
 
-        if (position.isNot(0) && canGoLeft(position)) {
+        if (canGoLeft(position)) {
             return position.decrease();
         }
 
-        if (position.isNot(points.size()) && canGoRight(position)) {
+        if (canGoRight(position)) {
             return position.increase();
         }
 
@@ -56,11 +56,11 @@ public class Line {
     }
 
     private boolean canGoLeft(final Position position) {
-        return points.get(position.getPosition() - 1).isExist();
+        return position.isNot(0) && points.get(position.getPosition() - 1).isExist();
     }
 
     private boolean canGoRight(final Position position) {
-        return points.get(position.getPosition()).isExist();
+        return position.isNot(points.size()) && points.get(position.getPosition()).isExist();
     }
 
     public int size() {
