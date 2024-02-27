@@ -42,7 +42,7 @@ class LadderGameTest {
 	@DisplayName("올바른 입력인 경우, 올바르게 작동 후 종료한다.")
 	void validGameTest() {
 		// given
-		command("a,b,c", "d,e,f", "2");
+		command("a,b,c", "d,e,f", "2", "all");
 		// when
 		run();
 		// then
@@ -50,11 +50,16 @@ class LadderGameTest {
 			.containsSubsequence(
 				"참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)",
 				"최대 사다리 높이는 몇 개인가요?",
-				"실행결과",
+				"사다리 결과",
 				"a     b     c",
 				"|-----|     |",
 				"|-----|     |",
-				"d     e     f"
+				"d     e     f",
+				"결과를 보고 싶은 사람은?",
+				"실행 결과",
+				"a : d",
+				"b : e",
+				"c : f"
 			);
 	}
 

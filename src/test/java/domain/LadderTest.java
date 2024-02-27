@@ -2,6 +2,7 @@ package domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.List;
 import java.util.function.BooleanSupplier;
 
 import org.junit.jupiter.api.DisplayName;
@@ -20,12 +21,15 @@ class LadderTest {
 		Player playerB = new Player("B", 1);
 
 		// when
-		ladder.play(playerA);
-		ladder.play(playerB);
+		Prize expectedPlayerAPrize = new Prize("당첨");
+		Prize expectedPlayerBPrize = new Prize("꽝");
+
+		Prize actualPlayerAPrize = ladder.play(playerA);
+		Prize actualPlayerBPrize = ladder.play(playerB);
 
 		// then
-		assertThat(playerA.getPosition()).isEqualTo(1);
-		assertThat(playerB.getPosition()).isEqualTo(0);
+		assertThat(actualPlayerAPrize).isEqualTo(expectedPlayerAPrize);
+		assertThat(actualPlayerBPrize).isEqualTo(expectedPlayerBPrize);
 	}
 
 	@Test
@@ -37,12 +41,15 @@ class LadderTest {
 		Player playerB = new Player("B", 1);
 
 		// when
-		ladder.play(playerA);
-		ladder.play(playerB);
+		Prize expectedPlayerAPrize = new Prize("꽝");
+		Prize expectedPlayerBPrize = new Prize("당첨");
+
+		Prize actualPlayerAPrize = ladder.play(playerA);
+		Prize actualPlayerBPrize = ladder.play(playerB);
 
 		// then
-		assertThat(playerA.getPosition()).isEqualTo(0);
-		assertThat(playerB.getPosition()).isEqualTo(1);
+		assertThat(actualPlayerAPrize).isEqualTo(expectedPlayerAPrize);
+		assertThat(actualPlayerBPrize).isEqualTo(expectedPlayerBPrize);
 	}
 
 	/**
@@ -60,7 +67,7 @@ class LadderTest {
 	}
 
 	private Ladder createLadder(BooleanSupplier supplier) {
-		Ladder ladder = Ladder.of(2, 3);
+		Ladder ladder = Ladder.of(2, 3, List.of(new Prize("꽝"), new Prize("당첨")));
 		LadderFloorGenerator generator = new LadderFloorGenerator(supplier);
 		ladder.drawLines(generator);
 

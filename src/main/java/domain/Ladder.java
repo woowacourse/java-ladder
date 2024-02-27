@@ -8,16 +8,19 @@ import generator.LadderFloorGenerator;
 public class Ladder {
 
 	private final List<HorizontalLine> lines;
+	private final List<Prize> prizes;
 
-	private Ladder(int playerCount, int height) {
-		lines = new ArrayList<>();
+	private Ladder(int playerCount, int height, List<Prize> prizes) {
+		this.lines = new ArrayList<>();
 		for (int i = 0; i < height; i++) {
 			lines.add(new HorizontalLine(playerCount));
 		}
+
+		this.prizes = prizes;
 	}
 
-	public static Ladder of(int playerCount, int height) {
-		return new Ladder(playerCount, height);
+	public static Ladder of(int playerCount, int height, List<Prize> prizes) {
+		return new Ladder(playerCount, height, prizes);
 	}
 
 	public void drawLines(LadderFloorGenerator generator) {
@@ -30,9 +33,11 @@ public class Ladder {
 			.toList();
 	}
 
-	public void play(Player player) {
+	public Prize play(Player player) {
 		for (HorizontalLine line : lines) {
 			player.move(line);
 		}
+
+		return prizes.get(player.getPosition());
 	}
 }

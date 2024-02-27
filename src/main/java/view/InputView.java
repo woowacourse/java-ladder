@@ -42,4 +42,19 @@ public class InputView {
 			throw new IllegalArgumentException("상품의 개수는 플레이어 수와 동일해야 합니다.");
 		}
 	}
+
+	public String readPlayersToShowResult(List<String> playerNames) {
+		String input = scanner.nextLine();
+		if ("all".equals(input)) {
+			return input;
+		}
+		if (isNotExistPlayerName(input, playerNames)) {
+			throw new IllegalArgumentException("존재하지 않은 플레이어입니다.");
+		}
+		return input;
+	}
+
+	private boolean isNotExistPlayerName(String playerName, List<String> playerNames) {
+		return !playerNames.contains(playerName);
+	}
 }

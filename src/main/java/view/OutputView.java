@@ -1,6 +1,7 @@
 package view;
 
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
 
 import domain.Bar;
@@ -27,8 +28,12 @@ public class OutputView {
 		System.out.println("최대 사다리 높이는 몇 개인가요?");
 	}
 
+	public void printReadPlayer() {
+		System.out.println("결과를 보고 싶은 사람은?");
+	}
+
 	public void printResultMessage() {
-		System.out.println("실행결과" + System.lineSeparator());
+		System.out.println("사다리 결과" + System.lineSeparator());
 	}
 
 	public void printNames(List<String> names) {
@@ -72,5 +77,24 @@ public class OutputView {
 
 	private String formatName(String name) {
 		return String.format(NAME_PRINT_FORMAT, name);
+	}
+
+	public void printAllPlayersResult(Map<String, String> result) {
+		String format = "%s : %s\n";
+		printGameResult();
+		result.forEach((name, prize) -> System.out.printf(format, name, prize));
+	}
+
+	public void printOnePlayerResult(String name) {
+		printGameResult();
+		System.out.println(name);
+	}
+
+	private void printGameResult() {
+		System.out.println("실행 결과");
+	}
+
+	public void printEmptyLine() {
+		System.out.println();
 	}
 }

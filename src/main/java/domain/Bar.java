@@ -12,8 +12,4 @@ public enum Bar {
 	public boolean isConnectedToLeft() {
 		return this == CONNECTED_TO_LEFT;
 	}
-
-	public boolean isNotConnected() {
-		return this == NOT_CONNECTED;
-	}
 }
