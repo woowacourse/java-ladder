@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.Objects;
 
 public final class LadderResult {
+
+    private final static String CMD_ALL_RESULT = "all";
+
     private final Map<String, String> playersPrizeResults;
 
     public LadderResult(final Map<String, String> playersPrizeResults) {
@@ -26,6 +29,10 @@ public final class LadderResult {
         if (playerNames.size() != prizes.size()) {
             throw new IllegalStateException(Message.INVALID_PLAYERS_AND_PRIZES_SIZE.getValue());
         }
+    }
+
+    public boolean isCmdAllResult(String cmd) {
+        return CMD_ALL_RESULT.equals(cmd);
     }
 
     public String getPrize(final String name) {
