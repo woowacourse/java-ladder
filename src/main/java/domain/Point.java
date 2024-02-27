@@ -11,6 +11,22 @@ public class Point {
         this.column = column;
     }
 
+    public int getColumn() {
+        return column;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public Point move(Direction direction) {
+        return switch (direction) {
+            case LEFT -> new Point(row - 1, column + 1);
+            case RIGHT -> new Point(row + 1, column + 1);
+            case DOWN -> new Point(row, column + 1);
+        };
+    }
+
     public static class Builder {
         private int row;
         private int column;
@@ -31,11 +47,5 @@ public class Point {
         }
     }
 
-    public int getColumn() {
-        return column;
-    }
 
-    public int getRow() {
-        return row;
-    }
 }
