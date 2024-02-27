@@ -12,7 +12,7 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(List<Line> line) {
+    public Ladder(final List<Line> line) {
         lines = line;
     }
 
@@ -32,7 +32,7 @@ public class Ladder {
         return position;
     }
 
-    private static void validateMaxHeight(int maxHeight) {
+    private static void validateMaxHeight(final int maxHeight) {
         if (maxHeight > MAX_LADDER_HEIGHT) {
             throw new IllegalArgumentException(String.format("입력된 값: %d, 사다리 높이는 최대 %d입니다.", maxHeight, MAX_LADDER_HEIGHT));
         }

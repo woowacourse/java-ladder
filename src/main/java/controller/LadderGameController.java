@@ -28,25 +28,25 @@ public class LadderGameController {
         return new Users(names);
     }
 
-    private Results generateResults(int personCount) {
+    private Results generateResults(final int personCount) {
         List<String> prizes = InputView.inputResults();
         List<Result> results = prizes.stream().map(Result::new).toList();
         return Results.of(results, personCount);
     }
 
-    private Ladder generateLadders(int userCount) {
+    private Ladder generateLadders(final int userCount) {
         int height = InputView.inputHeight();
         return Ladder.of(height, userCount);
     }
 
-    private static void printLadderResult(Users users, Ladder ladder, Results ladderResults) {
+    private static void printLadderResult(final Users users, final Ladder ladder, final Results ladderResults) {
         ResultView.printLadderResultMessage();
         ResultView.printNames(users);
         ResultView.printLadder(ladder);
         ResultView.printResults(ladderResults);
     }
 
-    private void printPrize(GameResult gameResult) {
+    private void printPrize(final GameResult gameResult) {
         String findOption = InputView.inputFindOption();
         while (!ALL.equals(findOption)) {
             printSinglePrize(gameResult, findOption);
@@ -55,12 +55,12 @@ public class LadderGameController {
         printAllPrize(gameResult);
     }
 
-    private void printSinglePrize(GameResult gameResult, String findUserName) {
+    private void printSinglePrize(final GameResult gameResult, final String findUserName) {
         String prize = gameResult.findByUserName(findUserName);
         ResultView.printPrize(prize);
     }
 
-    private void printAllPrize(GameResult gameResult) {
+    private void printAllPrize(final GameResult gameResult) {
         Map<String, String> repository = gameResult.repository();
         ResultView.printPrize(repository);
     }

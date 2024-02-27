@@ -10,7 +10,7 @@ public class Line {
 
     private final List<Bridge> bridges;
 
-    public Line(List<Bridge> bridges) {
+    public Line(final List<Bridge> bridges) {
         this.bridges = bridges;
     }
 
@@ -36,15 +36,15 @@ public class Line {
         return 0;
     }
 
-    private boolean canMoveToRight(int position) {
+    private boolean canMoveToRight(final int position) {
         return position < bridges.size() && bridges.get(position) == BRIDGE;
     }
 
-    private boolean canMoveToLeft(int position) {
+    private boolean canMoveToLeft(final int position) {
         return position != 0 && bridges.get(position - 1) == BRIDGE;
     }
 
-    private static void generateRandomBridge(List<Bridge> bridges, final int personCount, Generator generator) {
+    private static void generateRandomBridge(final List<Bridge> bridges, final int personCount, Generator generator) {
         boolean randomLine = generator.generate();
         final Bridge firstBridge = findByHasBridge(randomLine);
 
@@ -55,7 +55,7 @@ public class Line {
         }
     }
 
-    private static void addBridge(List<Bridge> bridges, final Generator generator, final int index) {
+    private static void addBridge(final List<Bridge> bridges, final Generator generator, final int index) {
         final Bridge before = bridges.get(index - 1);
         if (before.getBridge()) {
             bridges.add(NON_BRIDGE);

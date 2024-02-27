@@ -6,16 +6,16 @@ public class Results {
 
     List<Result> prizes;
 
-    private Results(List<Result> prizes) {
+    private Results(final List<Result> prizes) {
         this.prizes = prizes;
     }
 
-    public static Results of(List<Result> prizes, int personCount) {
+    public static Results of(final List<Result> prizes, final int personCount) {
         validate(prizes.size(), personCount);
         return new Results(prizes);
     }
 
-    private static void validate(int prizeCount, int personCount) {
+    private static void validate(final int prizeCount, final int personCount) {
         if (personCount != prizeCount) {
             throw new IllegalArgumentException(String.format("입력된 값: %d, 사용자 수와 실행 결과 수는 같아야 합니다.", personCount));
         }
