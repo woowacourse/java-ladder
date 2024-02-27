@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -46,5 +47,15 @@ public class ResultsTest {
         int size = results.size();
 
         assertThat(size).isEqualTo(4);
+    }
+
+    @Test
+    @DisplayName("사람 이름과 실행 결과를 매칭한다.")
+    void matchNamesWithResults() {
+        Results results = new Results(Arrays.asList("꽝", "5000", "꽝", "3000"), 4);
+        List<String> namesAfterMove = Arrays.asList("pobi", "crong", "honux", "jk");
+        
+        assertThat(results.matchNamesWithResults(namesAfterMove)).containsExactlyInAnyOrderEntriesOf(
+                Map.of("pobi", "꽝", "crong", "5000", "honux", "꽝", "jk", "3000"));
     }
 }
