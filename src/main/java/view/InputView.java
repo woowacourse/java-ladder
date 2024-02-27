@@ -1,13 +1,11 @@
 package view;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class InputView implements AutoCloseable {
+public class InputView {
 
     private static final String INPUT_PARTICIPANT_NAMES = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String INPUT_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
@@ -16,15 +14,11 @@ public class InputView implements AutoCloseable {
     private static final String DELIMITER = ",";
     private static final Pattern NUMERIC_PATTERN = Pattern.compile("^[0-9]*$");
 
-    private final BufferedReader reader;
+    private static final Scanner in = new Scanner(System.in);
 
-    public InputView() {
-        this.reader = new BufferedReader(new InputStreamReader(System.in));
-    }
-
-    public List<String> inputParticipantsName() throws IOException {
+    public List<String> inputParticipantsName() {
         System.out.println(INPUT_PARTICIPANT_NAMES);
-        String input = reader.readLine();
+        String input = in.nextLine();
         validateNotNullAndBlank(input);
         return Arrays.stream(input.split(DELIMITER))
                 .map(String::trim)
@@ -37,9 +31,9 @@ public class InputView implements AutoCloseable {
         }
     }
 
-    public int inputLadderHeight() throws IOException {
+    public int inputLadderHeight() {
         System.out.println(INPUT_LADDER_HEIGHT);
-        String input = reader.readLine();
+        String input = in.nextLine();
         validateNotNullAndBlank(input);
         validateNumeric(input);
         return Integer.parseInt(input);
@@ -49,10 +43,5 @@ public class InputView implements AutoCloseable {
         if (!NUMERIC_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException(NOT_NUMERIC_INPUT);
         }
-    }
-
-    @Override
-    public void close() throws Exception {
-        reader.close();
     }
 }
