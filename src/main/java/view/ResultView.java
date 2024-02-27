@@ -22,8 +22,8 @@ public class ResultView {
         System.out.println(stringBuilder);
     }
 
-    public static void printResultMessage() {
-        System.out.println("실행결과");
+    public static void printLadderResult() {
+        System.out.println("사다리 결과");
         System.out.println();
     }
 
@@ -41,6 +41,12 @@ public class ResultView {
         for (Line line : ladder.getLines()) {
             System.out.println(generateSingleLine(line));
         }
+    }
+
+    public static void findPrize(String prize) {
+        System.out.println();
+        System.out.println("실행결과");
+        System.out.println(prize);
     }
 
     private static String generateSingleLine(final Line line) {

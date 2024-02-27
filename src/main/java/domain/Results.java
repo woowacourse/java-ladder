@@ -10,6 +10,12 @@ public class Results {
         this.prizes = prizes;
     }
 
+    public List<String> getPrizeNames() {
+        return prizes.stream()
+                .map(Result::toString)
+                .toList();
+    }
+
     public Result getFirst() {
         return prizes.get(0);
     }

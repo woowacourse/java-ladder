@@ -17,4 +17,8 @@ public class GameResult {
     public String findByUserName(String userName) {
         return repository.get(userName);
     }
+
+    public Map<String, String> getRepository() {
+        return repository;
+    }
 }

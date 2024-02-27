@@ -47,6 +47,4 @@ class GameResultTest {
         Assertions.assertThat(gameResult.findByUserName(userName.toString()))
                 .isEqualTo(result.toString());
     }
-
-
 }
