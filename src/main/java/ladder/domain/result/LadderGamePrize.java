@@ -19,8 +19,8 @@ public class LadderGamePrize {
         final List<PersonalGameResult> results = new ArrayList<>();
         for (final Participant participant: participants.getValues()) {
             final int position = participant.getPosition();
-            final String result = values.get(position);
-            results.add(new PersonalGameResult(participant, result));
+            final String prize = values.get(position);
+            results.add(new PersonalGameResult(participant, prize));
         }
         return new GameResults(results);
     }
