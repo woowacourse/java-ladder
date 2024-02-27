@@ -19,8 +19,8 @@ public class LineGenerator {
     }
 
     private void add(List<ConnectionStatus> connectionStatuses) {
-        int index = connectionStatuses.size();
-        if (index == 0 || !connectionStatuses.get(index - 1).equals(ConnectionStatus.CONNECTION)) {
+        int po = connectionStatuses.size();
+        if (po == 0 || !connectionStatuses.get(po - 1).equals(ConnectionStatus.CONNECTION)) {
             connectionStatuses.add(decideConnectionStatus());
             return;
         }
