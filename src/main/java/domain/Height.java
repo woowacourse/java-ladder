@@ -20,6 +20,4 @@ class Height {
             throw new LadderGameException(ExceptionType.INVALID_HEIGHT_RANGE);
         }
     }
-
-
 }
