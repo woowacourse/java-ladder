@@ -1,10 +1,12 @@
 package domain.ladder;
 
 import static fixture.PlayersFixture.참가자들;
+import static fixture.PrizesFixture.상품들;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.height.Height;
 import domain.player.Players;
+import domain.prize.Prizes;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import support.ConnectedLadderRungGenerator;
@@ -17,10 +19,9 @@ public class LadderTest {
     void 주어진_높이에_맞게_사다리를_생성한다() {
         // given
         Height height = new Height(5);
-        Players players = 참가자들(3);
 
         // when
-        Ladder ladder = Ladder.create(height, players, ladderRungGenerator);
+        Ladder ladder = Ladder.create(height, 참가자들(3), 상품들(3), new ConnectedLadderRungGenerator());
 
         // then
         assertThat(ladder.getRows()).hasSize(height.getValue());
@@ -38,6 +39,7 @@ public class LadderTest {
         // given
         Height height = new Height(3);
         Players players = 참가자들("프린", "땡이", "포비", "토미", "네오");
+        Prizes prizes = 상품들("꽝", "꽝", "꽝", "꽝", "10000");
         List<LadderRung> ladderRungs = List.of(
                 LadderRung.CONNECTED, LadderRung.DISCONNECTED, LadderRung.CONNECTED, LadderRung.DISCONNECTED,
                 LadderRung.DISCONNECTED, LadderRung.CONNECTED, LadderRung.DISCONNECTED, LadderRung.DISCONNECTED,
@@ -45,8 +47,8 @@ public class LadderTest {
         );
 
         // when
-        Ladder ladder = Ladder.create(height, players, new FixedLadderRungGenerator(ladderRungs));
-        List<String> resultNames = ladder.climb(players);
+        Ladder ladder = Ladder.create(height, players, prizes, new FixedLadderRungGenerator(ladderRungs));
+        List<String> resultNames = ladder.climb();
 
         // then
         assertThat(resultNames).containsExactly("토미", "땡이", "프린", "네오", "포비");

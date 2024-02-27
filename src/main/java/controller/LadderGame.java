@@ -4,6 +4,7 @@ import domain.height.Height;
 import domain.ladder.Ladder;
 import domain.ladder.LadderRungGenerator;
 import domain.player.Players;
+import domain.prize.Prizes;
 import java.util.List;
 import view.InputView;
 import view.OutputView;
@@ -19,7 +20,8 @@ public class LadderGame {
         try {
             Players players = generatePlayers();
             Height height = generateHeight();
-            Ladder ladder = Ladder.create(height, players, ladderRungGenerator);
+            Prizes prizes = generatePrizes();
+            Ladder ladder = Ladder.create(height, players, prizes, ladderRungGenerator);
             OutputView.printResultMessage();
             OutputView.printPlayerNames(players);
             OutputView.printLadder(players.findMaxNameLength(), ladder);
@@ -36,5 +38,10 @@ public class LadderGame {
     private Height generateHeight() {
         int height = InputView.inputHeight();
         return new Height(height);
+    }
+
+    private Prizes generatePrizes() {
+        List<String> rawPrizes = InputView.inputPrizeNames();
+        return Prizes.from(rawPrizes);
     }
 }
