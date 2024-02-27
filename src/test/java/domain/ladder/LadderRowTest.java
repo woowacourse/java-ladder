@@ -18,27 +18,25 @@ import support.FixedLadderRungGenerator;
 
 @TestInstance(Lifecycle.PER_CLASS)
 public class LadderRowTest {
-    private final LadderRungGenerator connectedLadderRungGenerator = new ConnectedLadderRungGenerator();
-
     @Test
-    void 플레이어_수만큼_가로대를_생성한다() {
+    void 주어진_너비만큼_가로대를_생성한다() {
         // given
-        final int playerSize = 5;
+        final int width = 5;
 
         // when
-        LadderRow ladderRow = LadderRow.create(playerSize, connectedLadderRungGenerator);
+        LadderRow ladderRow = LadderRow.create(width, new ConnectedLadderRungGenerator());
 
         // then
-        assertThat(ladderRow.getRungs()).hasSize(playerSize);
+        assertThat(ladderRow.getRungs()).hasSize(width);
     }
 
     @Test
     void 이전_가로대가_연결되어_있으면_가로대를_연속해서_놓을_수_없다() {
         // given
-        final int playerSize = 4;
+        LadderRungGenerator connectedLadderRungGenerator = new ConnectedLadderRungGenerator();
 
         // when
-        LadderRow ladderRow = LadderRow.create(playerSize, connectedLadderRungGenerator);
+        LadderRow ladderRow = LadderRow.create(4, connectedLadderRungGenerator);
 
         // then
         List<LadderRung> rungs = ladderRow.getRungs();
@@ -53,10 +51,11 @@ public class LadderRowTest {
     @Test
     void 가로대가_연결되어_있으면_타고_이동한다() {
         // given
+        LadderRungGenerator connectedLadderRungGenerator = new ConnectedLadderRungGenerator();
         List<String> names = new ArrayList<>(List.of("프린", "땡이", "포비", "토미"));
-        LadderRow ladderRow = LadderRow.create(names.size() - 1, connectedLadderRungGenerator);
 
         // when
+        LadderRow ladderRow = LadderRow.create(names.size() - 1, connectedLadderRungGenerator);
         ladderRow.crossRungs(names);
 
         // then
@@ -66,10 +65,11 @@ public class LadderRowTest {
     @Test
     void 가로대가_연결되어_있지_않으면_타고_이동하지_않는다() {
         // given
+        LadderRungGenerator disconnectedLadderRungGenerator = new DisconnectedLadderRungGenerator();
         List<String> names = new ArrayList<>(List.of("프린", "땡이", "포비", "토미"));
-        LadderRow ladderRow = LadderRow.create(names.size() - 1, new DisconnectedLadderRungGenerator());
 
         // when
+        LadderRow ladderRow = LadderRow.create(names.size() - 1, disconnectedLadderRungGenerator);
         ladderRow.crossRungs(names);
 
         // then
@@ -80,10 +80,11 @@ public class LadderRowTest {
     @MethodSource("provideRungConnections")
     void 주어진_가로대_연결정보로_타고_이동한다(List<LadderRung> ladderRungs, List<String> result) {
         // given
+        LadderRungGenerator fixedLadderRungGenerator = new FixedLadderRungGenerator(ladderRungs);
         List<String> names = new ArrayList<>(List.of("프린", "땡이", "포비", "토미"));
-        LadderRow ladderRow = LadderRow.create(names.size() - 1, new FixedLadderRungGenerator(ladderRungs));
 
         // when
+        LadderRow ladderRow = LadderRow.create(names.size() - 1, fixedLadderRungGenerator);
         ladderRow.crossRungs(names);
 
         // then
