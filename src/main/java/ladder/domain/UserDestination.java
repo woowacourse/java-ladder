@@ -13,11 +13,11 @@ public class UserDestination {
         return userName.isSame(name);
     }
 
-    public UserName getUserName() {
-        return userName;
+    public String getUserName() {
+        return userName.value();
     }
 
-    public Destination getDestination() {
-        return destination;
+    public String getDestination() {
+        return destination.value();
     }
 }

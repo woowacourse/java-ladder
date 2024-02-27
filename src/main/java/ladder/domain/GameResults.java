@@ -30,7 +30,7 @@ public class GameResults {
                 .filter(result -> result.isSameName(requestName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참여자입니다."));
-        return userDestination.getDestination().value();
+        return userDestination.getDestination();
     }
 
     public List<UserDestination> findAll() {

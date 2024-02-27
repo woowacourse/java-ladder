@@ -38,7 +38,7 @@ public class GameResultsTest {
     @Test
     void findAll() {
         List<String> destinations = gameResults.findAll().stream()
-                .map(result -> result.getDestination().value())
+                .map(UserDestination::getDestination)
                 .toList();
         assertThat(destinations).containsExactly("3000", "꽝");
     }

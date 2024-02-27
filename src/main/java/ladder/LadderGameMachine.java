@@ -92,7 +92,7 @@ public class LadderGameMachine {
     private List<AllResults> generateAllResults(final List<UserDestination> userDestinations) {
         List<UserDestination> results = new ArrayList<>(userDestinations);
         return results.stream()
-                .map(result -> new AllResults(result.getUserName().value(), result.getDestination().value()))
+                .map(result -> new AllResults(result.getUserName(), result.getDestination()))
                 .toList();
     }
 }
