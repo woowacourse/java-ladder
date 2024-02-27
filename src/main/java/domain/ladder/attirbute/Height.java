@@ -27,7 +27,7 @@ public class Height {
         }
     }
 
-    public int toInt() {
+    public int getValue() {
         return height;
     }
 }

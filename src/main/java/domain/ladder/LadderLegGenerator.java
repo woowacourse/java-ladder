@@ -17,12 +17,12 @@ public class LadderLegGenerator {
     }
 
     public LadderLeg generateDownLadderLeg() {
-        return new LadderLeg(convertDirectionToLegPieceList(IntStream.range(0, height.toInt())
+        return new LadderLeg(convertDirectionToLegPieceList(IntStream.range(0, height.getValue())
                                                                      .mapToObj(index -> Direction.DOWN)));
     }
 
     public LadderLeg generateLadderLeg(LadderLeg previousLadderLeg, Supplier<Direction> directionSupplier) {
-        return new LadderLeg(convertDirectionToLegPieceList(IntStream.range(0, height.toInt())
+        return new LadderLeg(convertDirectionToLegPieceList(IntStream.range(0, height.getValue())
                                                                      .mapToObj(previousLadderLeg::hasRightDirectionAtIndex)
                                                                      .map(flag -> determineDirection(flag, directionSupplier))));
     }

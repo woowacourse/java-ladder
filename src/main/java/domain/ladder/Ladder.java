@@ -59,7 +59,7 @@ public class Ladder {
     }
 
     private boolean isReachResultPoint(int y) {
-        return y == height.toInt();
+        return y == height.getValue();
     }
 
     private void validateCoordinate(int x, int y) {
@@ -74,12 +74,12 @@ public class Ladder {
     }
 
     private void validateVerticalIndex(int index) {
-        if (index < 0 || index >= this.height.toInt()) {
+        if (index < 0 || index >= this.height.getValue()) {
             throw new IllegalArgumentException("존재하지 않은 LadderLegPiece를 조회하였습니다.");
         }
     }
 
     public int getHeight() {
-        return height.toInt();
+        return height.getValue();
     }
 }
