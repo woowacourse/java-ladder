@@ -3,6 +3,7 @@ package model.path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import model.Line;
 
 public class RandomPathGenerator implements PathGenerator {
     private final Random random = new Random();
@@ -15,6 +16,11 @@ public class RandomPathGenerator implements PathGenerator {
             paths.add(randomPath);
         }
         return paths;
+    }
+
+    @Override
+    public List<Line> generate(final int height, final int pathCount) {
+        return null;
     }
 
     private Path getNextPath(final List<Path> paths) {

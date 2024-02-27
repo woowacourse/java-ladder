@@ -21,7 +21,7 @@ class LadderTest {
     @DisplayName("사다리를 생성한다.")
     void createLadder() {
         List<Path> expectedPaths = List.of(EXIST, NOT_EXIST);
-        FixedPathGenerator pathGenerator = new FixedPathGenerator(expectedPaths);
+        FixedPathGenerator pathGenerator = new FixedPathGenerator(expectedPaths, null);
         int height = 1;
         int personCount = 2;
 
@@ -43,5 +43,21 @@ class LadderTest {
         assertThatThrownBy(() -> Ladder.from(height, 4, new RandomPathGenerator()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리의 높이는 1 이상이어야 합니다.");
+    }
+
+    @Test
+    @DisplayName("사다리의 개인별 결과를 확인한다.")
+    void climbLadderPersonResult() {
+        int height = 5;
+        int personCount = 4;
+        FixedPathGenerator pathGenerator = new FixedPathGenerator(
+                List.of(new Line(List.of(EXIST, NOT_EXIST, EXIST)),
+                        new Line(List.of(NOT_EXIST, EXIST, NOT_EXIST)),
+                        new Line(List.of(EXIST, NOT_EXIST, NOT_EXIST)),
+                        new Line(List.of(NOT_EXIST, EXIST, NOT_EXIST)),
+                        new Line(List.of(EXIST, NOT_EXIST, EXIST)))
+        );
+        Ladder ladder = Ladder.from2(height, personCount, pathGenerator);
+        assertThat(ladder.climb(1)).isEqualTo(1);
     }
 }
