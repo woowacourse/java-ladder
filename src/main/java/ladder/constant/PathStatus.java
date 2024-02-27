@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.constant;
 
 public enum PathStatus {
     EXIST, NONE;

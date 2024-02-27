@@ -1,12 +1,14 @@
 package ladder.domain;
 
+import ladder.constant.PathStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import static ladder.domain.PathStatus.EXIST;
-import static ladder.domain.PathStatus.NONE;
+import static ladder.constant.PathStatus.EXIST;
+import static ladder.constant.PathStatus.NONE;
 
 public class Paths {
     private final List<Optional<Path>> paths;
@@ -22,8 +24,6 @@ public class Paths {
             paths.add(convertToPath(pathStatuses.get(startLineNumber - 1), startLineNumber));
         }
 
-        System.out.println(pathStatuses.toString());
-        System.out.println(paths.toString());
         return new Paths(paths);
     }
 

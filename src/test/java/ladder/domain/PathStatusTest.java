@@ -1,9 +1,10 @@
 package ladder.domain;
 
+import ladder.constant.PathStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static ladder.domain.PathStatus.EXIST;
+import static ladder.constant.PathStatus.EXIST;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PathStatusTest {

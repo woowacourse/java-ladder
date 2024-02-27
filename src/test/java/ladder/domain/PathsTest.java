@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.constant.PathStatus;
 import ladder.util.RandomBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
