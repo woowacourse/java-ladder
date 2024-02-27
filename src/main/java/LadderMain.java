@@ -1,5 +1,6 @@
 import java.util.Random;
 
+import controller.LadderGameController;
 import game.LadderGame;
 import generator.LadderFloorGenerator;
 import view.InputView;
@@ -12,8 +13,9 @@ public class LadderMain {
 		OutputView outputView = new OutputView();
 		Random random = new Random();
 		LadderFloorGenerator floorGenerator = new LadderFloorGenerator(random::nextBoolean);
+		LadderGame ladderGame = new LadderGame(floorGenerator);
 
-		LadderGame ladderGame = new LadderGame(inputView, outputView, floorGenerator);
-		ladderGame.play();
+		LadderGameController controller = new LadderGameController(inputView, outputView, ladderGame);
+		controller.run();
 	}
 }
