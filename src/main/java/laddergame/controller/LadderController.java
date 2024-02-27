@@ -3,7 +3,6 @@ package laddergame.controller;
 import laddergame.domain.result.Result;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderHeight;
-import laddergame.domain.player.Player;
 import laddergame.domain.player.Players;
 import laddergame.domain.target.Targets;
 import laddergame.dto.DrawnLadderDto;
@@ -11,8 +10,6 @@ import laddergame.exception.ExceptionHandler;
 import laddergame.service.LadderGame;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
-
-import java.util.List;
 
 public class LadderController {
 
@@ -35,8 +32,7 @@ public class LadderController {
         printDrawnLadder(players, targets, ladder);
 
         final Result result = ladderGame.start(players, ladder, targets);
-        List<Player> playerToShowResult = players.find(getPlayersToShowResult());
-        outputView.printResult(playerToShowResult, result);
+        printResult(players, result);
     }
 
     private Players getPlayers() {
@@ -67,7 +63,18 @@ public class LadderController {
         outputView.printDrawnLadder(DrawnLadderDto.of(players, targets, ladder));
     }
 
-    private String getPlayersToShowResult() {
+    private void printResult(final Players players, final Result result) {
+        String input = getDisplayingPlayers();
+
+        if (input.equals("all")) {
+            outputView.printResultAll(players.findAll(), result);
+            return;
+        }
+
+        outputView.printResult(players.findByName(input), result);
+    }
+
+    private String getDisplayingPlayers() {
         return inputView.readPlayersToShowResult();
     }
 }

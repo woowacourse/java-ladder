@@ -29,10 +29,10 @@ public class PlayersTest {
         String player = "pobi";
 
         // when
-        List<Player> result = players.find(player);
+        Player playerByName = players.findByName(player);
 
         // then
-        Assertions.assertThat(result).extracting("name").containsExactly(player);
+        Assertions.assertThat(playerByName.getName()).isEqualTo(player);
     }
 
     @DisplayName("all을 입력하면 전체 플레이어를 반환한다.")
@@ -42,7 +42,7 @@ public class PlayersTest {
         Players players = new Players(List.of("pobi", "zeze", "crong", "jk"));
 
         // when
-        List<Player> result = players.find("all");
+        List<Player> result = players.findAll();
 
         // then
         Assertions.assertThat(result).extracting("name")

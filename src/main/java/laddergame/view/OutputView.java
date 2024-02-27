@@ -17,16 +17,16 @@ public class OutputView {
         );
     }
 
-    public void printResult(final List<Player> player, final Result result) {
+    public void printResultAll(final List<Player> players, final Result result) {
         System.out.println("실행 결과");
+        result.getResult().entrySet()
+                .stream()
+                .forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
+    }
 
-        if (player.size()==1) {
-            System.out.println(result.getResult().get(player.get(0).getName()));
-        } else {
-            result.getResult().entrySet()
-                    .stream()
-                    .forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
-        }
+    public void printResult(final Player player, final Result result) {
+        System.out.println("실행 결과");
+        System.out.println(result.getResult().get(player.getName()));
     }
 
     public void printExceptionMessage(final String message) {
