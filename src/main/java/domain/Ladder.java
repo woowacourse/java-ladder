@@ -24,6 +24,13 @@ public class Ladder {
         return new Ladder(ladder);
     }
 
+    public int playLadderGame(int position) {
+        for (Line line : ladder) {
+            position = line.move(position);
+        }
+        return position;
+    }
+
     public List<Line> getLadder() {
         return Collections.unmodifiableList(ladder);
     }

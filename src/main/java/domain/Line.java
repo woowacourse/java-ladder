@@ -2,7 +2,6 @@ package domain;
 
 import util.LineItemGenerator;
 import view.LineItem;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +30,18 @@ public class Line {
         }
 
         return LineItem.UNCONNECTED;
+    }
+
+    public int move(int position) {
+        if (position < lineItems.size() && LineItem.isConnected(lineItems.get(position))) {
+            return position + 1;
+        }
+
+        if (position > 0 && LineItem.isConnected(lineItems.get(position - 1))) {
+            return position - 1;
+        }
+
+        return position;
     }
 
     public List<LineItem> getLineItems() {
