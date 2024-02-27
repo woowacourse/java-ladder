@@ -17,15 +17,15 @@ public class Ladder {
         }
     }
 
+    public void play(final Players players) {
+        rows.forEach(row -> row.playRow(players));
+    }
+
     public List<LadderRow> getRows() {
         return Collections.unmodifiableList(rows);
     }
 
     public int getHeight() {
         return rows.size();
-    }
-
-    public void play(final Players players) {
-        rows.forEach(row -> row.playRow(players));
     }
 }
