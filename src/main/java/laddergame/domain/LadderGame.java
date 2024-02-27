@@ -12,7 +12,7 @@ public class LadderGame {
     }
 
     public void start() {
-        for(Player player : players.getPlayers()) {
+        for (Player player : players.getPlayers()) {
             while (true) {
                 Direction direction = ladder.move(player.getPosition().getX(), player.getPosition().getY());
                 player.moveLine(direction);

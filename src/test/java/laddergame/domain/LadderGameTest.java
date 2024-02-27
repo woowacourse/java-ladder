@@ -9,6 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@DisplayName("사다리 게임")
 public class LadderGameTest {
 
     @Test
