@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import model.Height;
 import model.Ladder;
 import model.Participants;
 import view.InputView;
@@ -30,7 +31,7 @@ public class LadderController {
     }
 
     private Ladder prepareLadder(Participants participants) {
-        int ladderHeight = inputView.requestLadderHeight();
+        Height ladderHeight = new Height(inputView.requestLadderHeight());
         int numberOfParticipants = participants.getParticipantsSize();
         return new Ladder(ladderHeight, numberOfParticipants);
     }
