@@ -49,11 +49,11 @@ public class Line {
         return position;
     }
 
-    public boolean canMoveRight(int position) {
+    private boolean canMoveRight(int position) {
         return position != bridges.size() && bridges.get(position).toBoolean();
     }
 
-    public boolean canMoveLeft(int position) {
+    private boolean canMoveLeft(int position) {
         return position != 0 && bridges.get(position - 1).toBoolean();
     }
 }
