@@ -26,6 +26,15 @@ public class Ladder {
         return lines;
     }
 
+    public String findPlayerReward(int playerOrderNumber, Rewards rewards) {
+        int index = playerOrderNumber;
+        for (int i = 0; i < height.getHeight(); i++) {
+            Line presentLine = lines.get(i);
+            index = presentLine.findNextIndex(index);
+        }
+        return rewards.getRewardByIndex(index);
+    }
+
     public List<Line> getLines() {
         return List.copyOf(lines);
     }
