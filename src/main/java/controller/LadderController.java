@@ -25,6 +25,7 @@ public class LadderController {
         Ladder ladder = repeatUntilSuccess(this::prepareLadder, participants);
         outputView.printParticipantsName(participants.captureParticipantsName());
         outputView.printLadder(ladder.captureLayerSteps());
+        outputView.printPrizeNames(prizes.capturePrizesName());
     }
 
     private Participants prepareParticipants() {

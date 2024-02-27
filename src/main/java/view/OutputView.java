@@ -2,11 +2,13 @@ package view;
 
 import dto.LayerSteps;
 import dto.ParticipantName;
+import dto.PrizeName;
 import java.util.List;
 import model.Step;
 
 public class OutputView {
     private static final String NAME_FORMAT = "%5s";
+    private static final String PRIZE_FORMAT = "%5s";
     private static final String LADDER_BASE = "|";
     private static final String LEFT_LADDER_BASE = "   |";
     private static final String STEP_BASE = "-";
@@ -18,6 +20,7 @@ public class OutputView {
     }
 
     public void printParticipantsName(List<ParticipantName> participantsNames) {
+        System.out.println("실행 결과\n");
         List<String> formattedParticipantsName = participantsNames.stream()
                 .map(participantName -> String.format(NAME_FORMAT, participantName.name()))
                 .toList();
@@ -26,6 +29,13 @@ public class OutputView {
 
     public void printLadder(List<LayerSteps> layerSteps) {
         layerSteps.forEach(this::printEachLayer);
+    }
+
+    public void printPrizeNames(List<PrizeName> prizeNames) {
+        List<String> formattedParticipantsName = prizeNames.stream()
+                .map(prizeName -> String.format(PRIZE_FORMAT, prizeName.prizeName()))
+                .toList();
+        System.out.println(String.join(" ", formattedParticipantsName));
     }
 
     private void printEachLayer(LayerSteps layerSteps) {

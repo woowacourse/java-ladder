@@ -18,4 +18,8 @@ public class Prize {
             throw new IllegalArgumentException("결과 이름은 한글자 이상 다섯글자 이하로 입력해야합니다.");
         }
     }
+
+    public String getPrizeName() {
+        return prizeName;
+    }
 }

@@ -1,5 +1,6 @@
 package model;
 
+import dto.PrizeName;
 import java.util.List;
 
 public class Prizes {
@@ -14,7 +15,11 @@ public class Prizes {
 
     private void validatePrizeNamesSize(List<String> names, int numberOfParticipants) {
         if (names.size() != numberOfParticipants) {
-            throw new IllegalArgumentException("참여할 사람은 두명 이상이어야한다.");
+            throw new IllegalArgumentException("결과의 갯수는 참여한 사람 수와 같아야한다.");
         }
+    }
+
+    public List<PrizeName> capturePrizesName() {
+        return prizes.stream().map(PrizeName::new).toList();
     }
 }
