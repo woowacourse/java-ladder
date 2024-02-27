@@ -1,8 +1,10 @@
 package ladder.domain.ladder;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
+import ladder.domain.Prizes;
 import ladder.domain.dto.FloorResponseDto;
 import ladder.domain.dto.LadderResponseDto;
 import ladder.domain.participant.Name;
@@ -42,17 +44,31 @@ public class Ladder {
         return new LadderResponseDto(floorResponseDtos);
     }
 
-    public Participants getParticipantsResult(Participants participants) {
-        List<Name> participantsNames = participants.getNames();
-        climbDown(participantsNames);
-        return new Participants(participantsNames);
+    public Prizes getSortedPrizes(Participants participants, Prizes prizes) {
+        List<Name> copiedParticipants = participants.getNames();
+        List<Name> participantsResult = climbDown(copiedParticipants);
+
+        List<String> sortedPrizeNames = getSortedPrizeNames(participants, participantsResult, prizes);
+
+        return new Prizes(sortedPrizeNames, participants.getCount());
     }
 
-    private void climbDown(List<Name> names) {
+    private List<Name> climbDown(List<Name> names) {
         for (Floor floor : floors) {
             List<Integer> existRungPositions = floor.getExistRungPositions();
             existRungPositions.forEach(
                     existRungPosition -> Collections.swap(names, existRungPosition, existRungPosition + 1));
         }
+        return names;
+    }
+
+    private List<String> getSortedPrizeNames(Participants participants, List<Name> participantsResult,
+                                             Prizes prizes) {
+        List<String> sortedPrizeNames = new ArrayList<>();
+        for (Name participantName : participants.getNames()) {
+            int resultPosition = participantsResult.indexOf(participantName);
+            sortedPrizeNames.add(prizes.getNameByIndex(resultPosition));
+        }
+        return sortedPrizeNames;
     }
 }
