@@ -20,7 +20,7 @@ class LadderGamePrizeTest {
         final GameResults personalGameResults = gameResult.determinePersonalResult(participants);
 
         // then
-        assertThat(personalGameResults.findAll())
+        assertThat(personalGameResults.getValues())
                 .extracting(PersonalGameResult::getPrize)
                 .containsExactly("꽝", "당첨", "꽝");
     }

@@ -76,7 +76,7 @@ public class OutputView {
     }
 
     public void printAllGameResults(final GameResults gameResults) {
-        final List<PersonalGameResult> allGameResults = gameResults.findAll();
+        final List<PersonalGameResult> allGameResults = gameResults.getValues();
         final String formattedResults = allGameResults.stream()
                 .map(result -> String.format(RESULT_FORMAT, result.getParticipantName(), result.getPrize()))
                 .collect(Collectors.joining("\n"));

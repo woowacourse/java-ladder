@@ -16,7 +16,7 @@ public class GameResults {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참가자입니다."));
     }
 
-    public List<PersonalGameResult> findAll() {
+    public List<PersonalGameResult> getValues() {
         return values;
     }
 }
