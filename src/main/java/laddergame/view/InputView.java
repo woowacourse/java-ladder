@@ -43,6 +43,16 @@ public class InputView {
         }
     }
 
+    public String readPlayerNameWantToSeeResult() {
+        System.out.println(LINE_SEPARATOR + "결과를 보고 싶은 사람은?");
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            return bufferedReader.readLine();
+        } catch (IOException exception) {
+            throw new IllegalArgumentException(IOEXCEPTION_ERROR);
+        }
+    }
+
     private List<String> splitToSeparator(String input) {
         return Arrays.stream(input.split(ELEMENTS_DELIMITER))
                 .map(String::trim)

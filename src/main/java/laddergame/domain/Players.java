@@ -21,6 +21,15 @@ public class Players {
                 .toList();
     }
 
+    public String findItemByName(String name) {
+        for (Player player : players) {
+            if (player.getName().equals(name)) {
+                return player.getItem();
+            }
+        }
+        throw new IllegalArgumentException("이름 없음");
+    }
+
     private void validate(final List<String> playerNames) {
         checkBlankName(playerNames);
         checkDuplicated(playerNames);

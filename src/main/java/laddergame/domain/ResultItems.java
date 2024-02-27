@@ -23,4 +23,8 @@ public class ResultItems {
     public String findByIndex(int index) {
         return elements.get(index);
     }
+
+    public List<String> getElements() {
+        return elements;
+    }
 }
