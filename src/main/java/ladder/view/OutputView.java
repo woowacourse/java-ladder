@@ -5,6 +5,7 @@ import ladder.dto.LineDto;
 import ladder.dto.PlayersDto;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -22,17 +23,17 @@ public class OutputView {
         final List<String> playerNames = playersDto.playerNames();
 
         System.out.println();
-        System.out.println(generatePlayerNamesMessage(playerNames));
+        System.out.println(generateResultsMessage(playerNames));
     }
 
-    private String generatePlayerNamesMessage(final List<String> playerNames) {
-        return playerNames.stream()
-                .map(this::generatePlayerNameMessage)
+    private String generateResultsMessage(final List<String> sources) {
+        return sources.stream()
+                .map(this::generateResultMessage)
                 .collect(Collectors.joining());
     }
 
-    private String generatePlayerNameMessage(final String playerName) {
-        return String.format("%5s ", playerName);
+    private String generateResultMessage(final String input) {
+        return String.format("%6s", input);
     }
 
     public void printLadder(final LadderDto ladderDto) {
@@ -61,6 +62,35 @@ public class OutputView {
         return LADDER_RUNG_EMPTY;
     }
 
+    public void printPrizes(final List<String> prizes) {
+        System.out.println(generateResultsMessage(prizes));
+    }
+
+    public void printResult(final Map<String, String> result, final String name) {
+        System.out.println();
+        System.out.println("실행 결과");
+
+        final String message = generateMessage(result, name);
+        System.out.println(message);
+    }
+
+    private String generateMessage(final Map<String, String> result, final String name) {
+        if (name.equals("all")) {
+            return generateAllMessage(result);
+        }
+        return result.get(name);
+    }
+
+    private String generateAllMessage(final Map<String, String> result) {
+        return result.keySet()
+                .stream()
+                .map(key -> generateMessage(key, result.get(key)))
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    private String generateMessage(final String name, final String prize) {
+        return name + " : " + prize;
+    }
 
     public void printErrorMessage(String message) {
         System.out.printf("%s %s%n", ERROR_PREFIX, message);
