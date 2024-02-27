@@ -1,9 +1,11 @@
 package domain;
 
 import domain.player.Player;
+import domain.player.Position;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Players {
@@ -28,13 +30,28 @@ public class Players {
         }
     }
 
-    public int count() {
-        return players.size();
-    }
+
 
     public void setPosition(final int playerIndex, final int resultPosition) {
         final Player player = players.get(playerIndex);
         player.setPosition(resultPosition);
+    }
+
+    public Position getPositionBy(final String name) {
+        final List<Position> foundPosition = players.stream()
+                .filter(player -> Objects.equals(player.getName(), name))
+                .map(Player::getPosition)
+                .collect(Collectors.toList());
+
+        if (foundPosition.size() != 1) {
+            throw new IllegalArgumentException(name + "은/는 참가자가 아닙니다.");
+        }
+
+        return foundPosition.get(0);
+    }
+
+    public int count() {
+        return players.size();
     }
 
     public List<String> getNames() {

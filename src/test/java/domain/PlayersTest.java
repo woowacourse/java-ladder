@@ -44,18 +44,34 @@ class PlayersTest {
         assertThatThrownBy(() -> new Players(names)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("참가자의 수를 반환한다.")
+    @DisplayName("참가자의 이름을 보고 위치를 반환한다.")
     @Test
-    void getPlayersCount() {
+    void getPlayerPositonByName() {
         //given
         final List<String> names = List.of("pobi", "honux", "crong", "jk");
+        final Players players = new Players(names);
+
+        players.setPosition(0, 1);
 
         //when
-        final Players players = new Players(names);
-        int playersCount = players.count();
+        final Position position = players.getPositionBy("pobi");
 
         //then
-        assertThat(playersCount).isEqualTo(names.size());
+        assertThat(position).isEqualTo(new Position(1));
+    }
+
+    @DisplayName("존재하지 않는 참가자의 이름으로 위치를 찾으려 하면 예외가 발생한다.")
+    @Test
+    void getPlayerPositonByNotRegisteredName() {
+        //given
+        final List<String> names = List.of("pobi", "honux", "crong", "jk");
+        final Players players = new Players(names);
+
+        players.setPosition(0, 1);
+
+        //when & then
+        assertThatThrownBy(() -> players.getPositionBy("a"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("참가자들의 이름 목록을 반환한다.")
@@ -70,6 +86,20 @@ class PlayersTest {
 
         //then
         assertThat(returnedNames).containsAll(names);
+    }
+
+    @DisplayName("참가자의 수를 반환한다.")
+    @Test
+    void getPlayersCount() {
+        //given
+        final List<String> names = List.of("pobi", "honux", "crong", "jk");
+
+        //when
+        final Players players = new Players(names);
+        int playersCount = players.count();
+
+        //then
+        assertThat(playersCount).isEqualTo(names.size());
     }
 
     @DisplayName("참가자의 위치를 변경한다.")
