@@ -30,7 +30,10 @@ public class Ladder {
         return new ArrayList<>(ladderRows);
     }
 
-    public int result(int i) {
-        return 0;
+    public int result(int participantsPosition) {
+        for (LadderRow ladderRow : ladderRows){
+            participantsPosition = ladderRow.move(participantsPosition);
+        }
+        return participantsPosition;
     }
 }
