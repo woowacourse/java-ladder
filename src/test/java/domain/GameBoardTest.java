@@ -123,14 +123,11 @@ class GameBoardTest {
                                          .get(3);
 
             // Then
-            assertEquals(expectedPrize1, results.get(players.getPlayerNames()
-                                                            .get(0)));
-            assertEquals(expectedPrize2, results.get(players.getPlayerNames()
-                                                            .get(1)));
-            assertEquals(expectedPrize3, results.get(players.getPlayerNames()
-                                                            .get(2)));
-            assertEquals(expectedPrize4, results.get(players.getPlayerNames()
-                                                            .get(3)));
+            assertEquals(expectedPrize1, results.get(new Name("도비")));
+            assertEquals(expectedPrize2, results.get(new Name("조이썬")));
+            assertEquals(expectedPrize3, results.get(new Name("포비")));
+            assertEquals(expectedPrize4, results.get(new Name("오리")));
         }
     }
+
 }
