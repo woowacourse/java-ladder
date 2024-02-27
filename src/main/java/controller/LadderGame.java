@@ -11,7 +11,9 @@ import util.LineItemGenerator;
 import view.InputView;
 import view.OutputView;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class LadderGame {
@@ -77,22 +79,30 @@ public class LadderGame {
     }
 
     private void printLadderGameResult(Ladder ladder, Players players, Prizes prizes) {
-        String resultName = inputView.inputResultName();
+        String input = inputView.inputPlayerName();
 
         outputView.printResultMessage();
-        if (resultName.equals("all")) {
-            for (Player player : players.getPlayers()) {
-                String name = player.getName();
-                int playerPosition = players.findIndexOfPlayer(name);
-                int resultPosition = ladder.playLadderGame(playerPosition);
-                System.out.println(name + " : " + prizes.findPrizeByPosition(resultPosition));
-            }
+        if (input.equals("all")) {
+            printAllPlayerResults(ladder, players, prizes);
             return;
         }
 
-        int playerPosition = players.findIndexOfPlayer(resultName);
-        int resultPosition = ladder.playLadderGame(playerPosition);
-        System.out.println(prizes.findPrizeByPosition(resultPosition));
+        printPlayerResult(ladder, players, prizes, input);
+    }
+
+    private void printAllPlayerResults(Ladder ladder, Players players, Prizes prizes) {
+        Map<String, String> results = new HashMap<>();
+        for (Player player : players.getPlayers()) {
+            String name = player.getName();
+            int resultPosition = ladder.playLadderGame(players.findPositionOfPlayer(name));
+            results.put(name, prizes.findPrizeByPosition(resultPosition));
+        }
+        outputView.printAllPlayerResults(results);
+    }
+
+    private void printPlayerResult(Ladder ladder, Players players, Prizes prizes, String name) {
+        int resultPosition = ladder.playLadderGame(players.findPositionOfPlayer(name));
+        outputView.printPlayerResult(prizes.findPrizeByPosition(resultPosition));
     }
 
     private void createPlayersLineUp(List<String> result, List<Player> players) {
