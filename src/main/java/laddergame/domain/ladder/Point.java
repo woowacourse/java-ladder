@@ -4,6 +4,6 @@ public enum Point {
     EMPTY, EXIST;
 
     public boolean isExist() {
-        return this.equals(EXIST);
+        return this == EXIST;
     }
 }
