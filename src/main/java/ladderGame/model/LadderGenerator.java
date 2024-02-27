@@ -17,15 +17,19 @@ public class LadderGenerator {
 
     private static Line makeLine(int playerCount) {
         List<ConnectionStatus> connectionStatuses = new ArrayList<>();
-        for (int i = 0; i <  playerCount- 1; i++) {
-            if (i == 0 || connectionStatuses.get(i - 1).equals(ConnectionStatus.DISCONNECTION)) {
-                connectionStatuses.add(decideConnectionStatus());
-                continue;
-            }
-            connectionStatuses.add(ConnectionStatus.DISCONNECTION);
+        connectionStatuses.add(decideConnectionStatus());
+        for (int i = 1; i <  playerCount- 1; i++) {
+            connectionStatuses.add(makeConnectionStatus(connectionStatuses.get(i - 1)));
         }
 
         return new Line(connectionStatuses);
+    }
+
+    private static ConnectionStatus makeConnectionStatus(ConnectionStatus connectionStatus) {
+        if (connectionStatus.equals(ConnectionStatus.DISCONNECTION)) {
+            return decideConnectionStatus();
+        }
+        return ConnectionStatus.DISCONNECTION;
     }
 
     private static ConnectionStatus decideConnectionStatus() {
