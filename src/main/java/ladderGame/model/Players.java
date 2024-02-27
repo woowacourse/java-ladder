@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 public class Players {
     private static final String EXCEPTION_MESSAGE_DUPLICATION_NAME = "참여자들의 이름은 중복될 수 없습니다.";
     private static final String EXCEPTION_MESSAGE_LESS_THAN_MINIMUM = "참여자의 이름은 두 개 이상이어야 합니다.";
+    private final String EXCEPTION_MESSAGE_NOT_CONTAIN_PLAYERS = "존재하지 않는 참가자 이름입니다.";
     private static final int MINIMUM_NAME_COUNT = 2;
 
     private final List<Player> players;
@@ -28,14 +29,15 @@ public class Players {
         }
     }
 
-    public Integer indexOfByName(String name) {
+    public int indexOfByName(String name) {
         OptionalInt position = IntStream.range(0, players.size())
                 .filter(i -> players.get(i).getName().equals(name))
                 .findFirst();
 
         if (position.isEmpty()) {
-            return null;
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_NOT_CONTAIN_PLAYERS);
         }
+
         return position.getAsInt();
     }
 
