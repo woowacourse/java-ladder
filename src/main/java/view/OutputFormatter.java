@@ -18,9 +18,7 @@ public class OutputFormatter {
     private String getNameUnit(Player player) {
         String name = player.getName();
         if (name.length() < 5) {
-            String leftBlank = SPACE.repeat(4 - name.length());
-            String rightBlank = SPACE;
-            name = leftBlank + name + rightBlank;
+            name = String.format("%4s ", name);
         }
         return name + SPACE;
     }
@@ -48,9 +46,7 @@ public class OutputFormatter {
     private String getTargetUnit(Target target) {
         String name = target.getTarget();
         if (name.length() < 5) {
-            String leftBlank = SPACE.repeat(4 - name.length());
-            String rightBlank = SPACE;
-            name = leftBlank + name + rightBlank;
+            name = String.format("%4s ", name);
         }
         return name + SPACE;
     }
