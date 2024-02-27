@@ -15,6 +15,15 @@ public class PlayerNameTest {
     @DisplayName("참가자 이름 공백 테스트")
     class PlayerNameBlankTest {
 
+        @ParameterizedTest
+        @ValueSource(strings = {"", " "})
+        @DisplayName("공백만 입력되면 예외가 발생한다")
+        void createPlayerNameFailByBlank(String name) {
+            Assertions.assertThatThrownBy(() -> new PlayerName(name))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(PlayerExceptionMessage.PLAYER_NAME_BLANK);
+        }
+
         @Test
         @DisplayName("길이가 1 ~ 5 글자가 아니라면 예외가 발생한다")
         void createPlayerNameFailByLength() {
@@ -23,15 +32,6 @@ public class PlayerNameTest {
             Assertions.assertThatThrownBy(() -> new PlayerName(name))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(PlayerExceptionMessage.PLAYER_NAME_LENGTH);
-        }
-
-        @ParameterizedTest
-        @ValueSource(strings = {"", " "})
-        @DisplayName("공백만 입력되면 예외가 발생한다")
-        void createPlayerNameFailByBlank(String name) {
-            Assertions.assertThatThrownBy(() -> new PlayerName(name))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(PlayerExceptionMessage.PLAYER_NAME_BLANK);
         }
     }
 }
