@@ -4,7 +4,7 @@ import dto.Result;
 import java.util.List;
 import model.Ladder;
 import model.People;
-import model.path.RandomLinesGenerator;
+import model.line.RandomLinesGenerator;
 import view.InputView;
 import view.OutputView;
 

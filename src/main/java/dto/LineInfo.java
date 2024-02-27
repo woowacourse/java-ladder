@@ -1,7 +1,7 @@
 package dto;
 
 import java.util.List;
-import model.Line;
+import model.line.Line;
 
 public record LineInfo(List<Boolean> lineInfo) {
     public static LineInfo from(final Line line) {

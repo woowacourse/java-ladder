@@ -1,7 +1,8 @@
 package model;
 
 import java.util.List;
-import model.path.LinesGenerator;
+import model.line.Line;
+import model.line.LinesGenerator;
 
 public class Ladder {
     private final List<Line> lines;

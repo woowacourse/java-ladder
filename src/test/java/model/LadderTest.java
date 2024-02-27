@@ -1,14 +1,15 @@
 package model;
 
-import static model.path.Path.EXIST;
-import static model.path.Path.NOT_EXIST;
+import static model.Path.EXIST;
+import static model.Path.NOT_EXIST;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import model.path.FixedLinesGenerator;
-import model.path.RandomLinesGenerator;
+import model.line.Line;
+import model.line.FixedLinesGenerator;
+import model.line.RandomLinesGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -1,9 +1,9 @@
-package model.path;
+package model.line;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import model.Line;
+import model.Path;
 
 public class RandomLinesGenerator implements LinesGenerator {
     private final Random random = new Random();

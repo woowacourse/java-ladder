@@ -1,4 +1,4 @@
-package model.path;
+package model;
 
 public enum Path {
     EXIST(true),

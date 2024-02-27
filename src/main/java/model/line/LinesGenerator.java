@@ -1,7 +1,6 @@
-package model.path;
+package model.line;
 
 import java.util.List;
-import model.Line;
 
 public interface LinesGenerator {
     List<Line> generate(final int height, final int pathCount);
