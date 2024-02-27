@@ -2,11 +2,11 @@ package ladder.domain.direction;
 
 import java.util.Random;
 
-public class DirectionGeneratorImpl implements DirectionGenerator {
+public class RandomDirectionGenerator implements DirectionGenerator {
 
     private final Random random;
 
-    public DirectionGeneratorImpl() {
+    public RandomDirectionGenerator() {
         this.random = new Random();
     }
 

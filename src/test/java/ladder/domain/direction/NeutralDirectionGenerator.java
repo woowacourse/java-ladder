@@ -2,17 +2,17 @@ package ladder.domain.direction;
 
 import java.util.Random;
 
-public class DirectionRightGeneratorImpl implements DirectionGenerator {
+public class NeutralDirectionGenerator implements DirectionGenerator {
 
     private final Random random;
 
-    public DirectionRightGeneratorImpl() {
+    public NeutralDirectionGenerator() {
         this.random = new Random();
     }
 
     @Override
     public Direction generateInitialValue() {
-        return Direction.getDirection(true);
+        return Direction.getDirection(false);
     }
 
     @Override

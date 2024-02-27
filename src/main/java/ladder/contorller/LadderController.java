@@ -7,6 +7,8 @@ import ladder.domain.user.Users;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import static java.util.stream.Collectors.*;
+
 public class LadderController {
 
     private final InputView inputView;
@@ -29,11 +31,9 @@ public class LadderController {
     private Users createUsers() {
         try {
             List<String> userNames = inputView.readUserNames();
-            List<User> users = userNames.stream()
+            return userNames.stream()
                     .map(User::new)
-                    .toList();
-
-            return new Users(users);
+                    .collect(collectingAndThen(toList(), Users::new));
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return createUsers();

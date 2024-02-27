@@ -3,7 +3,7 @@ package ladder.domain.ladder;
 import java.util.ArrayList;
 import java.util.List;
 
-import ladder.domain.direction.DirectionGeneratorImpl;
+import ladder.domain.direction.RandomDirectionGenerator;
 import ladder.domain.line.Line;
 import ladder.domain.line.LineGenerator;
 
@@ -15,7 +15,7 @@ public class Ladder {
 
     public Ladder(int ladderHeight, int ladderWidth) {
         validateLinesSize(ladderHeight);
-        LineGenerator lineGenerator = new LineGenerator(new DirectionGeneratorImpl());
+        LineGenerator lineGenerator = new LineGenerator(new RandomDirectionGenerator());
         this.lines = createLines(ladderHeight, ladderWidth, lineGenerator);
     }
 
