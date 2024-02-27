@@ -34,6 +34,18 @@ class LineTest {
         assertThat(sticks.get(playerSize - 2)).isEqualTo(Stick.NOT_FILLED);
     }
 
+    @DisplayName("사용자의 위치는 라인을 거치며 달라진다.")
+    @Test
+    void climb() {
+        int startPosition = 0;
+        int playerSize = 3;
+        Line line = new Line(filledStickGenerator(), playerSize);
+
+        int endPosition = line.climb(startPosition);
+        
+        assertThat(startPosition).isNotEqualTo(endPosition);
+    }
+
     private StickGenerator filledStickGenerator() {
         return () -> Stick.FILLED;
     }
