@@ -52,12 +52,12 @@ public class OutputView {
 
     private void printRewards(Rewards rewards) {
         for (Reward reward : rewards.getRewards()) {
-            printReward(reward);
+            printRewardFormatted(reward);
         }
         System.out.println();
     }
 
-    private void printReward(Reward reward) {
+    private void printRewardFormatted(Reward reward) {
         if (reward.getName().equals("꽝")) {
             System.out.printf("%" + (MAX_NAME_LENGTH - 1) + "s ", reward.getName());
             return;

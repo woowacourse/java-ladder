@@ -1,5 +1,7 @@
 package domain;
 
+import strategy.PointStrategy;
+
 public class Game {
 
     private final Members members;
@@ -12,8 +14,13 @@ public class Game {
         this.rewards = rewards;
     }
 
-    public static Game of(Members members, Lines lines, Rewards rewards) {
-        return new Game(members, lines, rewards);
+    public static Game of(
+        Members members,
+        Height height,
+        Rewards rewards,
+        PointStrategy pointStrategy) {
+
+        return new Game(members, Lines.of(members.getCount(), height, pointStrategy), rewards);
     }
 
     public String findRewardNameByMemberName(String memberName) {

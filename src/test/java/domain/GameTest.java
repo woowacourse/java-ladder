@@ -12,9 +12,9 @@ class GameTest {
     @DisplayName("멤버 이름으로 당첨된 상품 이름 찾기 성공")
     void findRewardNameByMemberName() {
         Members members = Members.from("a,b,c,d");
-        Lines lines = Lines.of(4, Height.from("3"), () -> Point.CONNECTED);
+        Height height = Height.from("3");
         Rewards rewards = Rewards.from(4, "꽝, 100, 200, 300");
-        Game game = Game.of(members, lines, rewards);
+        Game game = Game.of(members, height, rewards, () -> Point.CONNECTED);
         Assertions.assertAll(
             () -> assertThat(game.findRewardNameByMemberName("a")).isEqualTo("100"),
             () -> assertThat(game.findRewardNameByMemberName("b")).isEqualTo("꽝"),

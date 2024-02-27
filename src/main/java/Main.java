@@ -1,6 +1,5 @@
 import domain.Game;
 import domain.Height;
-import domain.Lines;
 import domain.Members;
 import domain.Rewards;
 import error.ErrorHandler;
@@ -17,24 +16,14 @@ public class Main {
     private static final PointStrategy pointStrategy = new RandomPointStrategy();
 
     public static void main(String[] args) {
-        Members members = errorHandler.readUntilNoError(Main::makeMembers);
-        Height height = errorHandler.readUntilNoError(Main::makeHeight);
-        Rewards rewards = errorHandler.readUntilNoError(() -> makeRewards(members.getCount()));
-        Game game = Game.of(members, Lines.of(members.getCount(), height, pointStrategy), rewards);
+        Members members = errorHandler.readUntilNoError(
+            () -> Members.from(inputView.readMembers()));
+        Height height = errorHandler.readUntilNoError(
+            () -> Height.from(inputView.readHeight()));
+        Rewards rewards = errorHandler.readUntilNoError(
+            () -> Rewards.from(members.getCount(), inputView.readRewards()));
 
+        Game game = Game.of(members, height, rewards, pointStrategy);
         outputView.printGame(game);
-    }
-
-    private static Members makeMembers() {
-        return Members.from(inputView.read("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)"));
-    }
-
-    private static Height makeHeight() {
-        return Height.from(inputView.read("최대 사다리 높이는 몇 개인가요?"));
-    }
-
-    private static Rewards makeRewards(int membersCount) {
-        return Rewards.from(
-            membersCount, inputView.read("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"));
     }
 }
