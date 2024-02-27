@@ -94,7 +94,7 @@ jk : 5000
 - [x] LadderController - catch 문에서 예외 메시지 출력
 - getResult 분리 이후 단위 테스트
 - [x] Line - 반복문 추출 - 명시적인 메서드로 분리
-- Name - isEmpty
+- [x] Name - isEmpty
 - CustomGenerator - 테스트 패키지로 이동, 공통 클래스로 만들어 참조
 - LadderController - 컨벤션 지키기
 
