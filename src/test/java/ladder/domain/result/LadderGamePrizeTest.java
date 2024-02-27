@@ -17,10 +17,10 @@ class LadderGamePrizeTest {
         final Participants participants = new Participants(List.of("mia", "pota", "jojo"));
 
         // when
-        final List<PersonalGameResult> personalGameResults = gameResult.determinePersonalResult(participants);
+        final GameResults personalGameResults = gameResult.determinePersonalResult(participants);
 
         // then
-        assertThat(personalGameResults)
+        assertThat(personalGameResults.findAll())
                 .extracting(PersonalGameResult::getPrize)
                 .containsExactly("꽝", "당첨", "꽝");
     }
