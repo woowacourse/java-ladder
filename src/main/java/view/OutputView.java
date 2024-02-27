@@ -11,10 +11,14 @@ import domain.ladder.Row;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static domain.ladder.Bridge.EXIST;
+
 public class OutputView {
     private static final int SINGLE_BRIDGE_LENGTH = 5;
     private static final String BRIDGE_SEPARATOR = "|";
     private static final String BRIDGE_LEFT_MARGIN = "     ";
+    private static final String BRIDGE_EXIST_SYMBOL = "-";
+    private static final String BRIDGE_EMPTY_SYMBOL = " ";
 
 
     public static void printResult(final Names names, final Ladder ladder, final Prizes prizes) {
@@ -52,7 +56,14 @@ public class OutputView {
     }
 
     private static String makeBridgeMessage(final Bridge bridge) {
-        return bridge.getSymbol().repeat(SINGLE_BRIDGE_LENGTH);
+        return getBridgeSymbol(bridge).repeat(SINGLE_BRIDGE_LENGTH);
+    }
+
+    private static String getBridgeSymbol(final Bridge bridge) {
+        if (bridge == EXIST) {
+            return BRIDGE_EXIST_SYMBOL;
+        }
+        return BRIDGE_EMPTY_SYMBOL;
     }
 
     private static void printPrizes(final List<Prize> prizes) {
