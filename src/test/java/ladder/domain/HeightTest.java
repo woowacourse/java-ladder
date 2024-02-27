@@ -1,7 +1,7 @@
 package ladder.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,11 +9,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class HeightTest {
-    @DisplayName("높이를 입력하여 Height을 생성한다.")
+    @DisplayName("입력된 첫번째 인자를 value로 가진다.")
     @Test
     void heightConstructTest() {
-        assertThatCode(() -> new Height(1))
-                .doesNotThrowAnyException();
+        Height height = new Height(1);
+
+        assertThat(height.value()).isEqualTo(1);
     }
 
     @DisplayName("자연수가 아닌 높이를 입력하면 예외가 발생한다.")

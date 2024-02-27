@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -11,11 +10,15 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class PlayerTest {
-    @DisplayName("이름과 위치를 입력하여 Player를 생성한다.")
+    @DisplayName("입력된 첫번째 인자를 이름으로, 두번째 인자를 위치로 가진다.")
     @Test
     void playerConstructTest() {
-        assertThatCode(() -> new Player("명오", 0))
-                .doesNotThrowAnyException();
+        Player player = new Player("명오", 0);
+
+        assertAll(
+                () -> assertThat(player.name()).isEqualTo("명오"),
+                () -> assertThat(player.location()).isEqualTo(0)
+        );
     }
 
     @DisplayName("이름이 1~5글자 범위를 벗어나면 예외를 발생한다.")

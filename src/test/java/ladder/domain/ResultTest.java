@@ -7,6 +7,17 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class ResultTest {
+    @DisplayName("입력된 첫번째 인자를 value로, 두번째 인자를 위치로 가진다.")
+    @Test
+    void resultConstructTest() {
+        Result result = new Result("100", 0);
+
+        assertAll(
+                () -> assertThat(result.value()).isEqualTo("100"),
+                () -> assertThat(result.location()).isEqualTo(0)
+        );
+    }
+
     @DisplayName("같은 위치를 가지면 true를 반환한다.")
     @Test
     void hasSameLocationTest() {
