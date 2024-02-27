@@ -3,13 +3,14 @@ package view;
 import domain.Bridge;
 import domain.Line;
 import domain.Name;
+import domain.Result;
 
 import java.util.List;
 import java.util.StringJoiner;
 
 public class OutputView {
 
-    private static final String NAME_DELIMITER = " ";
+    private static final String DELIMITER = " ";
     private static final String FIRST_COLUMN = "    |";
     private static final String COLUMN = "|";
     private static final String BRIDGE = "-----";
@@ -24,12 +25,12 @@ public class OutputView {
         return instance;
     }
 
-    public void printResultMessage() {
-        System.out.println(System.lineSeparator() + "실행결과");
+    public void printLadderResultMessage() {
+        System.out.println(System.lineSeparator() + "사다리 결과");
     }
 
     public void printNames(List<Name> names) {
-        StringJoiner nameJoiner = new StringJoiner(NAME_DELIMITER);
+        StringJoiner nameJoiner = new StringJoiner(DELIMITER);
         for (final Name name : names) {
             nameJoiner.add(String.format("%5s", name.getValue()));
         }
@@ -42,6 +43,14 @@ public class OutputView {
             lineJoiner.add(makeLineView(line));
         }
         System.out.println(lineJoiner);
+    }
+
+    public void printResults(List<Result> results){
+        StringJoiner nameJoiner = new StringJoiner(DELIMITER);
+        for (final Result result : results) {
+            nameJoiner.add(String.format("%5s", result.getValue()));
+        }
+        System.out.println(nameJoiner);
     }
 
     private String makeLineView(final Line line) {
@@ -57,6 +66,10 @@ public class OutputView {
             return BRIDGE;
         }
         return NO_BRIDGE;
+    }
+
+    public void printPlayerResultMessage() {
+        System.out.println(System.lineSeparator() + "실행 결과");
     }
 
     public void printResult(String result) {
