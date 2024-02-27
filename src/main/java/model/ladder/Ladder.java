@@ -6,12 +6,12 @@ import static java.util.stream.Collectors.toList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
-import model.bridge.RandomBridgeGenerator;
+import model.line.LineGenerator;
 import model.line.Line;
 import model.player.Players;
 
 public class Ladder {
-    private static final int BRIDGE_COUNT_OFFSET = 1;
+    private static final int LINE_WIDTH_OFFSET = 1;
 
     private final List<Line> lines;
 
@@ -19,10 +19,10 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(LadderHeight height, Players players) {
-        int bridgeCount = players.getSize() - BRIDGE_COUNT_OFFSET;
+    public static Ladder of(LadderHeight height, Players players, LineGenerator LineGenerator) {
+        int lineWidth = players.getSize() - LINE_WIDTH_OFFSET;
         return IntStream.range(0, height.value())
-                .mapToObj(i -> new Line(RandomBridgeGenerator.generateBridges(bridgeCount)))
+                .mapToObj(i -> LineGenerator.generateLine(lineWidth))
                 .collect(collectingAndThen(toList(), Ladder::new));
     }
 

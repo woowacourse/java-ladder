@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 import java.util.function.Supplier;
+import model.line.RandomLineGenerator;
 import model.ladder.Ladder;
 import model.ladder.LadderHeight;
 import model.player.Players;
@@ -12,7 +13,10 @@ public class LadderGameController {
     public void run() {
         Players players = preparePlayers();
         LadderHeight ladderHeight = prepareLadderHeight();
-        Ladder ladder = Ladder.of(ladderHeight, players);
+
+        RandomLineGenerator randomLineGenerator = new RandomLineGenerator();
+        Ladder ladder = Ladder.of(ladderHeight, players, randomLineGenerator);
+
         end(players, ladder);
     }
 
