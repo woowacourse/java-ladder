@@ -79,21 +79,17 @@ public class LadderGame {
     private void printGameResult(final GameResults gameResults) {
         boolean retry = true;
         while (retry) {
-            final String gameResultTarget = inputView.readGameResultTarget();
-            outputView.printResultPrefix();
-            retry = printGameResultByCommand(gameResultTarget, gameResults);
+            retry = exceptionHandler.retryOnException(() -> printGameResultByCommand(gameResults));
         }
     }
 
-    private boolean printGameResultByCommand(
-            final String gameResultTarget,
-            final GameResults gameResults) {
+    private boolean printGameResultByCommand(final GameResults gameResults) {
+        final String gameResultTarget = inputView.readGameResultTarget();
         if (Objects.equals(gameResultTarget, FINISH_COMMAND)) {
             outputView.printAllGameResults(gameResults);
             return false;
         }
-        final PersonalGameResult personalGameResult = exceptionHandler.retryOnException(
-                () -> gameResults.findByName(gameResultTarget));
+        final PersonalGameResult personalGameResult = gameResults.findByName(gameResultTarget);
         outputView.printPersonalGameResult(personalGameResult);
         return true;
     }
