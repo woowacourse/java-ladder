@@ -50,7 +50,7 @@ public class OutputView {
 
     private static void printResults(Results results) {
         StringJoiner stringJoiner = new StringJoiner(DELIMITER);
-        results.stream().forEach(result -> stringJoiner.add(RESULT_FORMAT.formatted(result.value())));
+        results.stream().forEach(result -> stringJoiner.add(RESULT_FORMAT.formatted(result.reward())));
         System.out.println(stringJoiner);
     }
 

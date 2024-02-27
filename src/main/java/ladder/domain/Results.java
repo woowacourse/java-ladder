@@ -28,6 +28,6 @@ public class Results {
                 .filter(result -> result.hasSameLocation(location))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 위치입니다."))
-                .value();
+                .reward();
     }
 }
