@@ -16,6 +16,12 @@ public class InputView {
         return List.of(rawNames.split(","));
     }
 
+    public static List<String> readMatchingItems() {
+        System.out.println("\n실행 결과를 입력하세요. (결과 쉼표(,)로 구분하세요)");
+        final String rawNames = scanner.nextLine().trim();
+        return List.of(rawNames.split(","));
+    }
+
     public static int readHeight() {
         System.out.println(System.lineSeparator() + "최대 사다리 높이는 몇 개인가요?");
         try {
