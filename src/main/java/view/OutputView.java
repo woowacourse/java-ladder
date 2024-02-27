@@ -1,5 +1,6 @@
 package view;
 
+import java.util.List;
 import domain.Game;
 import domain.GameResult;
 import domain.Ladder;
@@ -7,7 +8,6 @@ import domain.Line;
 import domain.Player;
 import domain.Players;
 import domain.Stick;
-import java.util.List;
 
 public class OutputView {
 

@@ -1,5 +1,5 @@
-import domain.Game;
 import java.util.List;
+import domain.Game;
 import view.InputView;
 import view.OutputView;
 
