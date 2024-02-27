@@ -2,16 +2,20 @@ package view;
 
 import common.exception.model.IOException;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class InputView {
-    public static final String LADDER_RESULT_FORMAT = String.format("사다리 실행 결과는 %s로 구분하여 입력해야합니다",
+    public static final String LADDER_RESULT_INPUT_FORMAT_ERROR_MESSAGE = String.format("사다리 실행 결과는 %s로 구분하여 입력해야합니다",
             InputView.LADDER_RESULTS_INPUT_DELIMITER);
-    public static final String PLAYER_NAMES_FORMAT = String.format("참가자 이름은 문자(영어 or 한글)이어야 하며 %s로 구분하여 입력해야합니다",
+    public static final String PLAYER_NAMES_INPUT_FORMAT_ERROR_MESSAGE = String.format("참가자 이름은 문자(영어 or 한글)이어야 하며 %s로 구분하여 입력해야합니다",
             InputView.PLAYER_NAMES_INPUT_DELIMITER);
-    public static final String INTEGER_FORMAT = "정수 형태만 입력 가능합니다";
+    public static final String BANNED_PLAYER_NAMES_INPUT_ERROR_MESSAGE = "사용할 수 없는 이름이 포함되어 있습니다";
+    public static final String INTEGER_FORMAT_ERROR_MESSAGE = "정수 형태만 입력 가능합니다";
     public static final String PLAYER_NAMES_INPUT_DELIMITER = ",";
     public static final String LADDER_RESULTS_INPUT_DELIMITER = ",";
+    public static final String COMMAND_ALL = "all";
+    public static final String COMMAND_FINISH = "fin";
 
     private final Scanner scanner;
 
@@ -24,12 +28,24 @@ public class InputView {
         String input = scanner.nextLine();
 
         validatePlayerNamesFormat(input);
-        return splitPlayerNames(input);
+        String[] playerNames = splitPlayerNames(input);
+        validateIsBannedName(playerNames);
+
+        return playerNames;
     }
 
     private void validatePlayerNamesFormat(String playerNamesInput) {
-        if(playerNamesInput.endsWith(PLAYER_NAMES_INPUT_DELIMITER)) {
-            throw new IOException(PLAYER_NAMES_FORMAT);
+        if (playerNamesInput.endsWith(PLAYER_NAMES_INPUT_DELIMITER)) {
+            throw new IOException(PLAYER_NAMES_INPUT_FORMAT_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateIsBannedName(String[] playerNames) {
+        boolean isBannedName = Arrays.stream(playerNames)
+                .anyMatch(name -> name.equals(COMMAND_ALL) || name.equals(COMMAND_FINISH));
+
+        if (isBannedName) {
+            throw new IOException(BANNED_PLAYER_NAMES_INPUT_ERROR_MESSAGE);
         }
     }
 
@@ -53,8 +69,8 @@ public class InputView {
     }
 
     private void validateLadderResultFormat(String playerNamesInput) {
-        if(playerNamesInput.endsWith(LADDER_RESULTS_INPUT_DELIMITER)) {
-            throw new IOException(LADDER_RESULT_FORMAT);
+        if (playerNamesInput.endsWith(LADDER_RESULTS_INPUT_DELIMITER)) {
+            throw new IOException(LADDER_RESULT_INPUT_FORMAT_ERROR_MESSAGE);
         }
     }
 
@@ -70,7 +86,7 @@ public class InputView {
         try {
             Integer.parseInt(value);
         } catch (NumberFormatException exception) {
-            throw new IOException(INTEGER_FORMAT);
+            throw new IOException(INTEGER_FORMAT_ERROR_MESSAGE);
         }
     }
 

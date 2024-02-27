@@ -37,13 +37,13 @@ public class LadderController extends RetryableController {
 
     private void findPlayerResult(Ladder ladder) {
         String playerName;
-        while (!(playerName = inputView.readPlayerNameForGetResult()).equals("종료")) {
+        while (!(playerName = inputView.readPlayerNameForGetResult()).equals(InputView.COMMAND_FINISH)) {
             outputView.printPlayerLadderResult(getPlayerLadderResult(ladder, playerName));
         }
     }
 
     private Map<String, String> getPlayerLadderResult(Ladder ladder, String playerName) {
-        if (playerName.equals("all")) {
+        if (playerName.equals(InputView.COMMAND_ALL)) {
             return ladder.findAllPlayersLadderResultValue();
         }
         return ladder.findSinglePlayerLadderResultValue(playerName);
