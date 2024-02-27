@@ -2,23 +2,24 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import static ladder.domain.PathStatus.EXIST;
 import static ladder.domain.PathStatus.NONE;
 
 public class Paths {
-    private final List<Path> paths;
+    private final List<Optional<Path>> paths;
 
-    private Paths(final List<Path> paths) {
+    public Paths(final List<Optional<Path>> paths) {
         this.paths = paths;
     }
 
     public static Paths init(Supplier<Boolean> randomGenerator, int ladderSpaceCount) {
         List<PathStatus> pathStatuses = generateRandomPathStatuses(randomGenerator, ladderSpaceCount);
-        List<Path> paths = new ArrayList<>();
+        List<Optional<Path>> paths = new ArrayList<>();
         for (int startLineNumber = 1; startLineNumber <= ladderSpaceCount; startLineNumber++) {
-            convertToPaths(paths, pathStatuses.get(startLineNumber - 1), startLineNumber);
+            paths.add(convertToPath(pathStatuses.get(startLineNumber - 1), startLineNumber));
         }
 
         System.out.println(pathStatuses.toString());
@@ -42,9 +43,16 @@ public class Paths {
         pathStatuses.add(PathStatus.getStepStatus(randomGenerator.get()));
     }
 
-    private static void convertToPaths(List<Path> paths, PathStatus pathStatus, int startLineNumber) {
-        if (pathStatus.isExist()) {
-            paths.add(Path.of(startLineNumber, startLineNumber + 1));
+    private static Optional<Path> convertToPath(PathStatus pathStatus, int startLineNumber) {
+        if (!pathStatus.isExist()) {
+            return Optional.empty();
         }
+        return Optional.of(Path.of(startLineNumber, startLineNumber + 1));
+    }
+
+    public List<PathStatus> getPathStatuses() {
+        return paths.stream()
+                .map(optionalPath -> optionalPath.map(path -> EXIST).orElse(NONE))
+                .toList();
     }
 }

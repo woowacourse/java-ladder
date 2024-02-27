@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import ladder.util.RandomBooleanGenerator;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,6 +36,6 @@ public class PathsTest {
         List<PathStatus> pathStatuses = paths.getPathStatuses();
 
         // Then
-        Assertions.assertThat(pathStatuses).hasSize(ladderSpaceCount);
+        assertThat(pathStatuses).hasSize(ladderSpaceCount);
     }
 }
