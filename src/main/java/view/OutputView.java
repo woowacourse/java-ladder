@@ -44,7 +44,7 @@ public class OutputView {
 			.map(this::formatName)
 			.forEach(joiner::add);
 
-		System.out.println(joiner.toString());
+		System.out.println(joiner);
 	}
 
 	public void printLadder(List<HorizontalLineStatus> statuses) {
@@ -66,7 +66,7 @@ public class OutputView {
 				.append(getHorizontalLadderCharacter(connectionStatus))
 		);
 
-		System.out.println(builder.toString());
+		System.out.println(builder);
 	}
 
 	private String getHorizontalLadderCharacter(Bar bar) {
