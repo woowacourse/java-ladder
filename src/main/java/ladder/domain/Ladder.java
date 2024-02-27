@@ -17,7 +17,10 @@ public class Ladder {
             paths.add(Paths.init(randomGenerator, playersCount - 1));
         }
 
-        System.out.println(paths.toString());
         return new Ladder(paths);
+    }
+
+    public List<Paths> getPaths() {
+        return paths;
     }
 }
