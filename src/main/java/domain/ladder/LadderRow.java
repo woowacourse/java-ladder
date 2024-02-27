@@ -11,17 +11,17 @@ public class LadderRow {
     public LadderRow(BooleanGenerator booleanGenerator, int size) {
         rungs = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            DirectionalRung ladderRung = findNextRung(booleanGenerator, getLastRung(), i);
+            DirectionalRung ladderRung = findNextRung(booleanGenerator, getLastRung(), i, size);
             rungs.add(ladderRung);
         }
     }
 
     private DirectionalRung findNextRung(final BooleanGenerator booleanGenerator, final DirectionalRung lastRung,
-                                         final int currentIndex) {
+                                         final int currentIndex, final int size) {
         if (lastRung == DirectionalRung.RIGHT) {
             return DirectionalRung.LEFT;
         }
-        if (currentIndex == rungs.size() - 1) {
+        if (currentIndex == size - 1) {
             return DirectionalRung.MID;
         }
         return DirectionalRung.findRung(booleanGenerator.generate());
