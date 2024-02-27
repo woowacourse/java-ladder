@@ -19,4 +19,12 @@ public class ParticipantsTest {
 
         assertThatThrownBy(() -> new Participants(names)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 참여자_이름에_없는_이름을_입력하면_예외가_발생한다() {
+        List<String> names = List.of("엘라", "릴리");
+        Participants participants = new Participants(names);
+
+        assertThatThrownBy(() -> participants.findByName("애쉬")).isInstanceOf(IllegalArgumentException.class);
+    }
 }

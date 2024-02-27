@@ -31,6 +31,13 @@ public class Participants {
         }
     }
 
+    public ParticipantName findByName(String name) {
+        return participants.stream().filter(m -> m.hasEquivalentName(name))
+                .findAny()
+                .map(ParticipantName::new)
+                .orElseThrow(() -> new IllegalArgumentException("참여한 사람 목록에 일치하는 이름이 있어야한다"));
+    }
+
     public List<ParticipantName> captureParticipantsName() {
         return participants.stream().map(ParticipantName::new).toList();
     }
