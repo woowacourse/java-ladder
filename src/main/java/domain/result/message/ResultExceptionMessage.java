@@ -1,7 +1,6 @@
 package domain.result.message;
 
 import domain.result.LadderResult;
-import view.InputView;
 
 public class ResultExceptionMessage {
 

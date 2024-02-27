@@ -1,6 +1,5 @@
 package view;
 
-import domain.result.message.ResultExceptionMessage;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
