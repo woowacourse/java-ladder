@@ -33,7 +33,7 @@ public class Players {
                 .filter(i -> players.get(i).getName().equals(name))
                 .findFirst();
 
-        if(index.isEmpty()) {
+        if (index.isEmpty()) {
             return null;
         }
         return index.getAsInt();
