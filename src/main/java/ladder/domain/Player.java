@@ -14,4 +14,8 @@ public class Player {
     public static Player of(String userName, int lineNumber, int lineFloor) {
         return new Player(new PlayerName(userName), new LineNumber(lineNumber), new LineFloor(lineFloor));
     }
+
+    public boolean escapeLadder() {
+        return currentLineFloor.isZero();
+    }
 }

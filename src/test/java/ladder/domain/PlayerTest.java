@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,6 +32,6 @@ public class PlayerTest {
         final boolean isEscapeLadder = player.escapeLadder();
 
         // Then
-        Assertions.assertThat(isEscapeLadder).isTrue();
+        assertThat(isEscapeLadder).isTrue();
     }
 }
