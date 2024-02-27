@@ -27,7 +27,7 @@ public class LadderResultTest {
         Players players = Players.from(List.of("a", "b", "c"));
         LadderResult ladderResult = new LadderResult(List.of("0", "1", "2", "3"));
 
-        assertThatThrownBy(() -> ladderResult.isSameLengthWithLadderPlayers(players.getSize()))
+        assertThatThrownBy(() -> ladderResult.checkIfSameLengthWithLadderPlayers(players.getSize()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("실행 결과 개수가 참여할 사람 이름의 수와 일치하지 않습니다.");
     }
