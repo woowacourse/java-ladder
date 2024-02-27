@@ -58,4 +58,15 @@ public class Line {
 
         return new Line(copyOfSticks);
     }
+
+    public int move(int index) {
+        List<Stick> sticks = this.getSticks();
+        if (sticks.get(index + 1).isExist()) {
+            return index + 1;
+        }
+        if (sticks.get(index).isExist()) {
+            return index - 1;
+        }
+        return index;
+    }
 }

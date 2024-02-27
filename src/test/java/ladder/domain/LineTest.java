@@ -53,4 +53,16 @@ class LineTest {
         Assertions.assertThat(sticks.get(sticks.size() - 1).isExist()).isFalse();
         Assertions.assertThat(sticks.size()).isEqualTo(5);
     }
+
+    @Test
+    @DisplayName("stick이 존재하면 이동후 한칸 내려간다")
+    void moveTest() {
+        Line line = new Line(List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE, Stick.EXISTENCE));
+        Line lineAddGap = line.addGap();
+
+        Assertions.assertThat(lineAddGap.move(0)).isEqualTo(1);
+        Assertions.assertThat(lineAddGap.move(1)).isEqualTo(0);
+        Assertions.assertThat(lineAddGap.move(2)).isEqualTo(3);
+        Assertions.assertThat(lineAddGap.move(3)).isEqualTo(2);
+    }
 }
