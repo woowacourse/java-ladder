@@ -42,18 +42,21 @@ public class Line {
 
     public int move(int currentIndex) {
         if (canMoveRight(currentIndex)) {
-            currentIndex++;
+            return ++currentIndex;
         }
 
         if (canMoveLeft(currentIndex)) {
-            currentIndex--;
+            return --currentIndex;
         }
         return currentIndex;
     }
 
     private boolean canMoveRight(int currentIndex) {
-        Path right = paths.get(currentIndex);
-        return right.isExist();
+        if (currentIndex < paths.size()) {
+            Path right = paths.get(currentIndex);
+            return right.isExist();
+        }
+        return false;
     }
 
     private boolean canMoveLeft(int currentIndex) {
@@ -63,5 +66,9 @@ public class Line {
             return left.isExist();
         }
         return false;
+    }
+
+    public int getPathsSize() {
+        return paths.size();
     }
 }

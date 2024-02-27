@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.line.Line;
 import model.line.LinesGenerator;
@@ -37,6 +38,19 @@ public class Ladder {
     }
 
     public List<Integer> climbAll() {
-        return List.of(0, 3, 2, 1);
+        List<Integer> resultIndexes = new ArrayList<>();
+        int index = 0;
+        while (index < getPersonCount()) {
+            int resultIndex = climb(index);
+            resultIndexes.add(resultIndex);
+            index++;
+        }
+        return resultIndexes;
+    }
+
+    // TODO: getter 말고 다른 네이밍..과 다른 좋은 로직 없을까???
+    private int getPersonCount() {
+        Line line = lines.get(0);
+        return line.getPathsSize() + 1;
     }
 }
