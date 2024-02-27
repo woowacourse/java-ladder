@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ResultTest {
 
-    @DisplayName("값은 1~5자 사이여야 한다.")
+    @DisplayName("값은 공백 제외 1~5자 사이여야 한다.")
     @ParameterizedTest
     @ValueSource(strings = {"1", "12345"})
     void checkValueLength(String value) {
@@ -18,7 +18,7 @@ public class ResultTest {
         assertThat(result.getValue()).isEqualTo(value);
     }
 
-    @DisplayName("값이 1~5자 사이가 아니면 에러가 발생한다.")
+    @DisplayName("값이 공백 제외 1~5자 사이가 아니면 에러가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"", "123456"})
     void checkValueLengthWithException(String value) {
