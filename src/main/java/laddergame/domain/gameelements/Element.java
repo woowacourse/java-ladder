@@ -33,6 +33,11 @@ public class Element {
         return Objects.hash(element);
     }
 
+    @Override
+    public String toString() {
+        return element;
+    }
+
     public String getElement() {
         return element;
     }
