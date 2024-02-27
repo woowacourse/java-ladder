@@ -7,6 +7,8 @@ import java.util.Scanner;
 public class InputView {
 
     private static final String DELIMITER_ERROR = "입력된 값: %s, 구분자로 끝날 수 없습니다.";
+    public static final String COMMA = ",";
+    public static final String NUMERIC_PATTERN = "\"-?\\\\d+\"";
 
     private InputView() {
 
@@ -43,18 +45,18 @@ public class InputView {
     private static List<String> delimiterParser(final String userNames) {
         validateDelimiter(userNames);
 
-        return Arrays.stream(userNames.split(","))
+        return Arrays.stream(userNames.split(COMMA))
                 .map(String::trim)
                 .toList();
     }
 
 
     private static void validateDelimiter(final String userNames) {
-        if (userNames.endsWith(",")) {
+        if (userNames.endsWith(COMMA)) {
             throw new IllegalArgumentException(String.format(DELIMITER_ERROR, userNames));
         }
 
-        if (userNames.startsWith(",")) {
+        if (userNames.startsWith(COMMA)) {
             throw new IllegalArgumentException(String.format(DELIMITER_ERROR, userNames));
         }
     }
@@ -66,6 +68,6 @@ public class InputView {
     }
 
     private static boolean isNumeric(String input) {
-        return !input.matches("-?\\d+");
+        return !input.matches(NUMERIC_PATTERN);
     }
 }

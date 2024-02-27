@@ -8,6 +8,8 @@ public class ResultView {
 
     private static final String LINE = "|-----";
     private static final String NONE_LINE = "|     ";
+    public static final String END_LINE = "|";
+    public static final String BLANK = "    ";
 
 
     private ResultView() {
@@ -66,7 +68,7 @@ public class ResultView {
     }
 
     private static String generateSingleLine(final Line line) {
-        return "    " + drawLine(line);
+        return BLANK + drawLine(line);
     }
 
     private static String drawLine(Line line) {
@@ -74,7 +76,7 @@ public class ResultView {
         for (Bridge bridge : line.getBridges()) {
             stringBuilder.append(drawBridge(bridge));
         }
-        stringBuilder.append("|");
+        stringBuilder.append(END_LINE);
         return stringBuilder.toString();
     }
 
