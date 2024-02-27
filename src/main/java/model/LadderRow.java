@@ -30,4 +30,8 @@ public class LadderRow {
     public List<Space> getSpaces() {
         return new ArrayList<>(spaces);
     }
+
+    public int move(int i) {
+        return 0;
+    }
 }

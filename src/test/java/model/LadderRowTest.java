@@ -27,5 +27,12 @@ public class LadderRowTest {
 
     }
 
+//    |-----|     |-----|
+    @DisplayName("라인을 따라 이동할 수 있다.")
+    @Test
+    void move(){
+        LadderRow ladderRow = new LadderRow(List.of(true, false, true));
+        assertThat(ladderRow.move(0)).isEqualTo(1);
+    }
 
 }
