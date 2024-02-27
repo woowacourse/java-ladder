@@ -17,11 +17,11 @@ class LadderGameResultTest {
         final Participants participants = new Participants(List.of("mia", "pota", "jojo"));
 
         // when
-        final List<PersonalResult> personalResults = gameResult.determinePersonalResult(participants);
+        final List<PersonalGameResult> personalGameResults = gameResult.determinePersonalResult(participants);
 
         // then
-        assertThat(personalResults)
-                .extracting(PersonalResult::getResult)
+        assertThat(personalGameResults)
+                .extracting(PersonalGameResult::getResult)
                 .containsExactly("꽝", "당첨", "꽝");
     }
 }

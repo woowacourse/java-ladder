@@ -15,12 +15,12 @@ public class LadderGameResult {
         this.values = unmodifiableList(values);
     }
 
-    public List<PersonalResult> determinePersonalResult(final Participants participants) {
-        final List<PersonalResult> results = new ArrayList<>();
+    public List<PersonalGameResult> determinePersonalResult(final Participants participants) {
+        final List<PersonalGameResult> results = new ArrayList<>();
         for (final Participant participant: participants.getValues()) {
             final int position = participant.getPosition();
             final String result = values.get(position);
-            results.add(new PersonalResult(participant, result));
+            results.add(new PersonalGameResult(participant, result));
         }
         return results;
     }
