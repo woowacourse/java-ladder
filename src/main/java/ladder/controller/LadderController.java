@@ -15,8 +15,7 @@ public class LadderController {
         People people = requestUntilValid(() -> People.from(InputView.readPeopleNames()));
         LadderHeight ladderHeight = requestUntilValid(() -> LadderHeight.from(InputView.readLadderHeight()));
 
-        Ladder ladder = new LadderGenerator(ladderWidth(people), ladderHeight.getValue())
-                .generate();
+        Ladder ladder = new LadderGenerator(ladderWidth(people), ladderHeight.getValue()).generate();
         printResult(people, ladder);
     }
 

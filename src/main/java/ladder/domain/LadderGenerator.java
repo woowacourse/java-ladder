@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class LadderGenerator {
+    // TODO: 테스트 코드 작성
     private static final Random RANDOM = new Random();
     private final int width;
     private final int height;
