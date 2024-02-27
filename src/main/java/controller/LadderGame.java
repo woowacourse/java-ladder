@@ -33,6 +33,8 @@ public class LadderGame {
 
         Ladder ladder = Ladder.of(height, participants.getParticipantsCount(), lineItemGenerator);
         printLadder(ladder, participants, ladderResults);
+
+        printLadderGameResult(ladder, participants, ladderResults);
     }
 
     private Participants prepareParticipants() {
@@ -70,8 +72,17 @@ public class LadderGame {
         createLadder(result, createdLadder);
         createLadderResults(result, ladderResults.getLadderResults());
 
-        outputView.printResultMessage();
+        outputView.printLadderResultMessage();
         outputView.printLadder(result);
+    }
+
+    private void printLadderGameResult(Ladder ladder, Participants participants, LadderResults ladderResults) {
+        String resultName = inputView.inputResultName();
+
+        outputView.printResultMessage();
+        int playerPosition = participants.findIndexOfParticipant(resultName);
+        int resultPosition = ladder.playLadderGame(playerPosition);
+        System.out.println(ladderResults.findLadderResultByPosition(resultPosition));
     }
 
     private void createParticipantsLineUp(List<String> result, List<Participant> participants) {
