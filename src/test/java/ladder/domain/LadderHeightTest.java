@@ -27,6 +27,7 @@ public class LadderHeightTest {
     @Test
     void minHeightExceptionTest() {
         assertThatThrownBy(() -> new LadderHeight(0))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사다리의 높이는 1 이상의 정수이어야 합니다.");
     }
 }

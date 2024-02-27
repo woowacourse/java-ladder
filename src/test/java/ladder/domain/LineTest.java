@@ -30,6 +30,7 @@ public class LineTest {
     @Test
     void continueScaffoldExceptionTest() {
         assertThatThrownBy(() -> new Line(List.of(Connection.RUNG, Connection.RUNG, Connection.EMPTY)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("좌우 연속해서 발판이 존재할 수 없습니다.");
     }
 }
