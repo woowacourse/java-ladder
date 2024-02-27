@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import model.ExecutionResult;
 import model.Ladder;
 import model.Participants;
 import model.dto.LayerSteps;
@@ -23,6 +24,7 @@ public class LadderController {
 
     public void run() {
         Participants participants = repeatUntilSuccess(this::prepareParticipants);
+        ExecutionResult executionResult = repeatUntilSuccess(this::prepareExecutionResult, participants);
         Ladder ladder = repeatUntilSuccess(this::prepareLadder, participants);
         outputView.printParticipantsName(captureParticipantsName(participants));
         outputView.printLadder(captureLayerSteps(ladder));
@@ -31,6 +33,12 @@ public class LadderController {
     private Participants prepareParticipants() {
         List<String> names = inputView.requestParticipantsName();
         return new Participants(names);
+    }
+
+    private ExecutionResult prepareExecutionResult(Participants participants) {
+        List<String> executionResult = inputView.requestExecutionResult();
+        int numberOfParticipants = participants.getParticipantsSize();
+        return new ExecutionResult(executionResult, numberOfParticipants);
     }
 
     private Ladder prepareLadder(Participants participants) {
