@@ -11,14 +11,17 @@ import model.Prizes;
 import model.Results;
 import view.InputView;
 import view.OutputView;
+import view.ResultView;
 
 public class LadderController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final ResultView resultView;
 
-    public LadderController(InputView inputView, OutputView outputView) {
+    public LadderController(InputView inputView, OutputView outputView, ResultView resultView) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.resultView = resultView;
     }
 
     public void run() {
@@ -30,6 +33,8 @@ public class LadderController {
         outputView.printPrizeNames(prizes.capturePrizesName());
 
         Results results = new Results(ladder, participants);
+        ParticipantName participantName = repeatUntilSuccess(this::prepareParticipant, participants);
+        resultView.printResult(results.captureResult(), participantName, prizes.capturePrizesName());
     }
 
     private Participants prepareParticipants() {

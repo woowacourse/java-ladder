@@ -1,15 +1,16 @@
 package model;
 
 import dto.ParticipantName;
+import dto.ResultsDto;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Results {
-    Map<ParticipantName, Integer> resultIndexes;
+    private final Map<ParticipantName, Integer> results;
 
     public Results(Ladder ladder, Participants participants) {
-        this.resultIndexes = climbDown(ladder, participants);
+        this.results = climbDown(ladder, participants);
     }
 
     private Map<ParticipantName, Integer> climbDown(Ladder ladder, Participants participants) {
@@ -21,6 +22,14 @@ public class Results {
     }
 
     public List<Integer> getResultIndexes() {
-        return resultIndexes.values().stream().toList();
+        return results.values().stream().toList();
+    }
+
+    public ResultsDto captureResult() {
+        return new ResultsDto(this);
+    }
+
+    public Map<ParticipantName, Integer> getResults() {
+        return results;
     }
 }
