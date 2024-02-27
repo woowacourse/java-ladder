@@ -10,10 +10,6 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public List<Line> getLines() {
-        return new ArrayList<>(lines);
-    }
-
     public int findLadderResultIndex(int index) {
         int resultIndex = index;
         for (Line line : lines) {
@@ -21,5 +17,9 @@ public class Ladder {
         }
 
         return resultIndex;
+    }
+
+    public List<Line> getLines() {
+        return new ArrayList<>(lines);
     }
 }

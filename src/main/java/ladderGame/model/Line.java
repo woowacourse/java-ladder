@@ -21,8 +21,14 @@ public class Line {
         }
     }
 
-    public List<ConnectionStatus> getConnectionStatuses() {
-        return new ArrayList<>(connectionStatuses);
+    public int checkConnectionAndFindNextIndex(int index) {
+        if (checkLeftConnection(index)) {
+            return index - 1;
+        }
+        if (checkRightConnection(index)) {
+            return index + 1;
+        }
+        return index;
     }
 
     private boolean checkLeftConnection(int index) {
@@ -37,13 +43,7 @@ public class Line {
         return connectionStatuses.get(index).equals(ConnectionStatus.CONNECTION);
     }
 
-    public int checkConnectionAndFindNextIndex(int index) {
-        if (checkLeftConnection(index)) {
-            return index - 1;
-        }
-        if (checkRightConnection(index)) {
-            return index + 1;
-        }
-        return index;
+    public List<ConnectionStatus> getConnectionStatuses() {
+        return new ArrayList<>(connectionStatuses);
     }
 }
