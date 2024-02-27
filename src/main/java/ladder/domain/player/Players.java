@@ -35,4 +35,15 @@ public class Players {
             throw new IllegalArgumentException("플레이어가 중복 되어서는 안됩니다.");
         }
     }
+
+    public Player get(int index) {
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException("요청한 인덱스가 범위를 벗어났습니다.");
+        }
+        return values.get(index);
+    }
+
+    public int size() {
+        return values.size();
+    }
 }
