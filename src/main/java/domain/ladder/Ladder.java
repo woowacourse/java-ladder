@@ -2,12 +2,9 @@ package domain.ladder;
 
 import dto.RowPatternDto;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Map;
 import java.util.function.BooleanSupplier;
-import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -39,24 +36,13 @@ public class Ladder {
         rows.forEach(row -> row.createPattern(patternCreationStrategy));
     }
 
-    public Map<Integer, Integer> getMappedIndices() {
-        calculateResults();
-
-        List<Integer> resultIndex = ladderIndexConverter.getResultIndex();
-
-        return IntStream.range(0, resultIndex.size())
-                .boxed()
-                .collect(LinkedHashMap::new,
-                        (map, playerIndex) -> map.put(playerIndex, resultIndex.get(playerIndex)),
-                        Map::putAll);
-    }
-
-    private void calculateResults() {
+    public List<Integer> getMappedIndices() {
         ListIterator<LadderRow> iterator = rows.listIterator(rows.size());
         while (iterator.hasPrevious()) {
             List<Boolean> rowPattern = iterator.previous().getRowPattern();
             ladderIndexConverter.swapByRowPattern(rowPattern);
         }
+        return ladderIndexConverter.getResultIndex();
     }
 
     public List<RowPatternDto> getLadderPatterns() {

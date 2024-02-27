@@ -2,11 +2,11 @@ package game;
 
 import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
+import domain.player.Name;
 import domain.player.Players;
 import domain.result.Result;
 import domain.result.Results;
 import java.util.List;
-import java.util.Map;
 import java.util.function.BooleanSupplier;
 import view.InputView;
 import view.OutputView;
@@ -69,25 +69,23 @@ public class LadderGame {
 
     private void printLadderResult(Ladder ladder, Players players, Results results, String playerName) {
         outputView.printResultMessage();
-
-        Map<Integer, Integer> ladderResults = ladder.getMappedIndices();
+        List<Integer> mappedIndices = ladder.getMappedIndices();
         if (playerName.equals("all")) {
-            printAllResults(ladderResults, players, results);
+            printAllResults(mappedIndices, players, results);
             return;
         }
-        printSingleResult(ladderResults, players, results, playerName);
+        printSingleResult(mappedIndices, players, results, playerName);
     }
 
-    private void printAllResults(Map<Integer, Integer> ladderResults, Players players, Results results) {
-        ladderResults.forEach((playerIndex, resultIndex) ->
-                outputView.printAllResults(
-                        players.get(playerIndex).rawName(),
-                        results.get(resultIndex).rawResult()
-                )
-        );
+    private void printAllResults(List<Integer> ladderResults, Players players, Results results) {
+        for (int index = 0; index < players.size(); index++) {
+            Name name = players.get(index);
+            Result result = results.get(ladderResults.get(index));
+            outputView.printPlayerResult(name.rawName(), result.rawResult());
+        }
     }
 
-    private void printSingleResult(Map<Integer, Integer> ladderResults,
+    private void printSingleResult(List<Integer> ladderResults,
                                    Players players,
                                    Results results,
                                    String playerName) {

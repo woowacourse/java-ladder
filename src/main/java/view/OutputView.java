@@ -65,7 +65,7 @@ public class OutputView {
         System.out.println(builder.toString());
     }
 
-    public void printAllResults(String name, String result) {
+    public void printPlayerResult(String name, String result) {
         System.out.println(name + " : " + result);
     }
 

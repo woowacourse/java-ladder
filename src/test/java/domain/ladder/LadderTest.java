@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import dto.RowPatternDto;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,16 +23,10 @@ class LadderTest {
         // given
         Ladder ladder = createDummyLadder(5, 3);
         // when
-        Map<Integer, Integer> actual = ladder.getMappedIndices();
-        Map<Integer, Integer> expected = Map.of(
-                0, 0,
-                1, 1,
-                2, 2,
-                3, 3,
-                4, 4
-        );
+        List<Integer> actual = ladder.getMappedIndices();
+        List<Integer> expected = List.of(0, 1, 2, 3, 4);
         // then
-        assertThat(actual).containsExactlyInAnyOrderEntriesOf(expected);
+        assertThat(actual).containsExactlyElementsOf(expected);
     }
 
     @Test
@@ -41,17 +34,12 @@ class LadderTest {
     void validMappingIndicesWhenAlwaysPlacing() {
         // given
         Ladder ladder = createDummyLadder(4, 3);
-        Map<Integer, Integer> expected = Map.of(
-                0, 1,
-                1, 0,
-                2, 3,
-                3, 2
-        );
+        List<Integer> expected = List.of(1, 0, 3, 2);
         // when
         ladder.drawLines(() -> true);
         // then
-        Map<Integer, Integer> actual = ladder.getMappedIndices();
-        assertThat(actual).containsExactlyInAnyOrderEntriesOf(expected);
+        List<Integer> actual = ladder.getMappedIndices();
+        assertThat(actual).containsExactlyElementsOf(expected);
     }
 
     @Test
@@ -74,16 +62,12 @@ class LadderTest {
         // given
         Iterator<Boolean> it = Stream.of(true, false, false, true).iterator();
         Ladder ladder = createDummyLadder(3, 2);
-        Map<Integer, Integer> expected = Map.of(
-                0, 2,
-                1, 0,
-                2, 1
-        );
+        List<Integer> expected = List.of(2, 0, 1);
         // when
         ladder.drawLines(it::next);
-        Map<Integer, Integer> actual = ladder.getMappedIndices();
+        List<Integer> actual = ladder.getMappedIndices();
         // then
-        assertThat(actual).containsExactlyInAnyOrderEntriesOf(expected);
+        assertThat(actual).containsExactlyElementsOf(expected);
     }
 
     @Test
