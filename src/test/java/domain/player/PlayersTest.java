@@ -1,4 +1,4 @@
-package domain.db;
+package domain.player;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,6 +31,6 @@ public class PlayersTest {
 
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("중복된 이름은 허용하지 않습니다");
+                .hasMessage("중복된 이름은 허용하지 않습니다.");
     }
 }
