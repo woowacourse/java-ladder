@@ -19,4 +19,12 @@ public class Results {
             throw new IllegalArgumentException("실행 결과의 개수는 참가자 수와 동일해야 합니다.");
         }
     }
+
+    public List<Result> getResults() {
+        return results;
+    }
+
+    public int size() {
+        return results.size();
+    }
 }

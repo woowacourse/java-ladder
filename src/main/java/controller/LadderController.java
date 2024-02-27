@@ -23,6 +23,6 @@ public class LadderController {
 
         Lines lines = new Lines(height.getValue(), names.size(), new RandomBooleanGenerator());
 
-        ResultView.printResult(names, lines);
+        ResultView.printLadder(names, lines, results);
     }
 }

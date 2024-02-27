@@ -1,6 +1,7 @@
 package view;
 
 import domain.Names;
+import domain.Results;
 import domain.line.Line;
 import domain.lines.Lines;
 
@@ -8,17 +9,11 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printResult(Names names, Lines lines) {
+    public static void printLadder(Names names, Lines lines, Results results) {
         printResultNotice();
         printNames(names);
         printLines(names, lines);
-    }
-
-    private static void printLines(Names names, Lines lines) {
-        for (Line line : lines.getLines()) {
-            System.out.print(ResultMessage.ladderPadding(names));
-            System.out.print(ResultMessage.of(line));
-        }
+        printResults(results);
     }
 
     private static void printNames(Names names) {
@@ -29,6 +24,22 @@ public class ResultView {
             nameLine.append(String.format("%6s", names.nameOf(i)));
         }
         System.out.println(firstName + nameLine);
+    }
+
+    private static void printLines(Names names, Lines lines) {
+        for (Line line : lines.getLines()) {
+            System.out.print(ResultMessage.ladderPadding(names));
+            System.out.print(ResultMessage.of(line));
+        }
+    }
+
+    private static void printResults(Results results) {
+        StringBuilder resultLine = new StringBuilder();
+
+        for (int i = 0; i < results.size(); i++) {
+            resultLine.append(String.format("%-6s", results.getResults().get(i).getResult()));
+        }
+        System.out.println(resultLine);
     }
 
     private static void printResultNotice() {
