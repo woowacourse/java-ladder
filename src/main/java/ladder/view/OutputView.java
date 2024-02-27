@@ -1,26 +1,30 @@
 package ladder.view;
 
 import ladder.domain.ladder.Ladder;
+import ladder.domain.result.GameResults;
 import ladder.domain.result.LadderGamePrize;
 import ladder.domain.ladder.LadderStep;
 import ladder.domain.ladder.Path;
 import ladder.domain.participant.Participant;
 import ladder.domain.participant.Participants;
+import ladder.domain.result.PersonalGameResult;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private static final String RESULT_PREFIX = "실행결과\n";
+    private static final String LADDER_PREFIX = "사다리 결과\n";
     private static final String NAME_FORMAT = "%5s";
     private static final String STEP_DELIMITER = "|";
     private static final String EXCEPTION_PREFIX = "[ERROR] ";
     private static final String STEP_PREFIX = "    ";
     private static final String PATH_EXIST = "-----";
     private static final String PATH_EMPTY = "     ";
+    private static final String RESULT_PREFIX = "실행결과";
+    private static final String RESULT_FORMAT = "%s : %s";
 
-    public void printResultPrefix() {
-        System.out.println(RESULT_PREFIX);
+    public void printLadderPrefix() {
+        System.out.println(LADDER_PREFIX);
     }
 
     public void printParticipants(final Participants participants) {
@@ -65,6 +69,22 @@ public class OutputView {
                 .map(result -> String.format(NAME_FORMAT, result))
                 .collect(Collectors.joining(" "));
         System.out.println(ladderResult);
+    }
+
+    public void printResultPrefix() {
+        System.out.println(RESULT_PREFIX);
+    }
+
+    public void printAllGameResults(final GameResults gameResults) {
+        final List<PersonalGameResult> allGameResults = gameResults.findAll();
+        final String formattedResults = allGameResults.stream()
+                .map(result -> String.format(RESULT_FORMAT, result.getParticipantName(), result.getPrize()))
+                .collect(Collectors.joining("\n"));
+        System.out.println(formattedResults);
+    }
+
+    public void printPersonalGameResult(final PersonalGameResult personalGameResult) {
+        System.out.println(personalGameResult.getPrize());
     }
 
     public void printException(final RuntimeException exception) {

@@ -4,15 +4,20 @@ import ladder.domain.generator.LadderStepGenerator;
 import ladder.domain.generator.RandomLadderStepGenerator;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.result.GameResults;
 import ladder.domain.result.LadderGamePrize;
 import ladder.domain.participant.Participants;
+import ladder.domain.result.PersonalGameResult;
 import ladder.exception.ExceptionHandler;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.List;
+import java.util.Objects;
 
 public class LadderGame {
+    private static final String FINISH_COMMAND = "all";
+
     private final InputView inputView;
     private final OutputView outputView;
     private final ExceptionHandler exceptionHandler;
@@ -32,6 +37,11 @@ public class LadderGame {
         final int width = participants.getNecessaryLadderWidth();
         final Ladder ladder = createLadder(width);
         printLadder(participants, ladder, ladderGamePrize);
+
+        participants.playAll(ladder);
+        final GameResults gameResults = ladderGamePrize.determinePersonalResult(participants);
+        printGameResult(gameResults);
+
         inputView.closeResource();
     }
 
@@ -60,9 +70,31 @@ public class LadderGame {
             final Participants participants,
             final Ladder ladder,
             final LadderGamePrize ladderGamePrize) {
-        outputView.printResultPrefix();
+        outputView.printLadderPrefix();
         outputView.printParticipants(participants);
         outputView.printLadder(ladder);
         outputView.printLadderGamePrize(ladderGamePrize);
+    }
+
+    private void printGameResult(final GameResults gameResults) {
+        boolean retry = true;
+        while (retry) {
+            final String gameResultTarget = inputView.readGameResultTarget();
+            outputView.printResultPrefix();
+            retry = printGameResultByCommand(gameResultTarget, gameResults);
+        }
+    }
+
+    private boolean printGameResultByCommand(
+            final String gameResultTarget,
+            final GameResults gameResults) {
+        if (Objects.equals(gameResultTarget, FINISH_COMMAND)) {
+            outputView.printAllGameResults(gameResults);
+            return false;
+        }
+        final PersonalGameResult personalGameResult = exceptionHandler.retryOnException(
+                () -> gameResults.findByName(gameResultTarget));
+        outputView.printPersonalGameResult(personalGameResult);
+        return true;
     }
 }
