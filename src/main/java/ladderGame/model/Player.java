@@ -12,4 +12,12 @@ public class Player {
     public String getName() {
         return name.getName();
     }
+
+    public void move(Line line) {
+        position = line.descend(position);
+    }
+
+    public int getPosition() {
+        return position;
+    }
 }
