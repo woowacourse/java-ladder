@@ -32,6 +32,6 @@ public class LadderRow {
     }
 
     public int move(int i) {
-        return 0;
+        return 1;
     }
 }
