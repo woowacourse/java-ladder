@@ -53,16 +53,14 @@ public class Ladder {
         return LadderResult.of(players.getNames(), prizeResult);
     }
 
-
-    //TODO: 코드명 수정
     private int findLadderBottomIndex(int index, final int ladderWidthSize) {
         for (Line line : lines) {
-            index = move(index, ladderWidthSize, line);
+            index = find(index, ladderWidthSize, line);
         }
         return index;
     }
 
-    private int move(int index, final int ladderWidthSize, final Line line) {
+    private int find(int index, final int ladderWidthSize, final Line line) {
         if (0 == index && line.isConnected(index)) {
             index++;
         } else if (isMiddle(index, ladderWidthSize) && line.isConnected(index)) {
