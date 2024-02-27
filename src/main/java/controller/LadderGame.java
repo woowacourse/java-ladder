@@ -80,6 +80,16 @@ public class LadderGame {
         String resultName = inputView.inputResultName();
 
         outputView.printResultMessage();
+        if (resultName.equals("all")) {
+            for (Participant participant : participants.getParticipants()) {
+                String name = participant.getName();
+                int playerPosition = participants.findIndexOfParticipant(name);
+                int resultPosition = ladder.playLadderGame(playerPosition);
+                System.out.println(name + " : " + ladderResults.findLadderResultByPosition(resultPosition));
+            }
+            return;
+        }
+
         int playerPosition = participants.findIndexOfParticipant(resultName);
         int resultPosition = ladder.playLadderGame(playerPosition);
         System.out.println(ladderResults.findLadderResultByPosition(resultPosition));
