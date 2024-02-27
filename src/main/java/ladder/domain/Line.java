@@ -24,14 +24,14 @@ public class Line {
     }
 
     private StepStatus generateStepStatus(
-            Supplier<Boolean> generator,
+            Supplier<Boolean> stepGenerator,
             final List<StepStatus> stepStatuses,
             final int currentStep) {
         final int previousStep = currentStep - 1;
         if (currentStep > 0 && stepStatuses.get(previousStep).isExist()) {
             return StepStatus.getStepStatus(false);
         }
-        return StepStatus.getStepStatus(generator.get());
+        return StepStatus.getStepStatus(stepGenerator.get());
     }
 
     public List<Integer> findStepPosition() {
