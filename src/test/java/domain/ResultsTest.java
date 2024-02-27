@@ -6,10 +6,12 @@ import org.junit.jupiter.api.Test;
 
 public class ResultsTest {
 
-    @DisplayName("생성 테스트")
+    @DisplayName("Results에서 result들을 조회할 수 있다.")
     @Test
     void create() {
-        Assertions.assertThatCode(() -> new Results())
+        Results results = new Results();
+
+        Assertions.assertThatCode(() -> results.getResults())
                 .doesNotThrowAnyException();
     }
 }
