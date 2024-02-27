@@ -38,4 +38,14 @@ public class Line {
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
+
+    public int ride(int position) {
+        if (points.get(position) == Point.ON) {
+            return position + 1;
+        }
+        if (position > 0 && points.get(position - 1) == Point.ON) {
+            return position - 1;
+        }
+        return position;
+    }
 }
