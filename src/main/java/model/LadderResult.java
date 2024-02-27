@@ -50,10 +50,6 @@ public final class LadderResult {
         return Objects.equals(playersPrizeResults, ladderResult.playersPrizeResults);
     }
 
-    public Map<String, String> playersPrizeResults() {
-        return playersPrizeResults;
-    }
-
     @Override
     public int hashCode() {
         return Objects.hash(playersPrizeResults);
