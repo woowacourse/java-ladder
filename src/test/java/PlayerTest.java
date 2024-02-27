@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Test;
 
 public class PlayerTest {
     @Test
-        @DisplayName("이름이 1~5자가 아니면 예외를 발생한다.")
-        void invalidName() {
-            assertThatIllegalArgumentException().isThrownBy(() -> new Player("abcdef"));
-        }
+    @DisplayName("이름이 1~5자가 아니면 예외를 발생한다.")
+    void invalidName() {
+        assertThatIllegalArgumentException().isThrownBy(() -> new Player("abcdef"));
+    }
 
-        @Test
-        @DisplayName("이름이 1~5자 이내면 예외를 발생하지 않는다.")
-        void validName() {
-            assertThatCode(() -> new Player("abcde")).doesNotThrowAnyException();
+    @Test
+    @DisplayName("이름이 1~5자 이내면 예외를 발생하지 않는다.")
+    void validName() {
+        assertThatCode(() -> new Player("abcde")).doesNotThrowAnyException();
     }
 }
