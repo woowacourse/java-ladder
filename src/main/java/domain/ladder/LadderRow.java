@@ -29,6 +29,43 @@ public class LadderRow {
         return ladderRungGenerator.generate();
     }
 
+    void crossRungs(List<String> names) {
+        for (int nowVerticalLine = 0; nowVerticalLine < names.size(); nowVerticalLine += 2) {
+            int nextVerticalLine = moveNextVerticalLine(nowVerticalLine);
+            Collections.swap(names, nowVerticalLine, nextVerticalLine);
+        }
+    }
+
+    private int moveNextVerticalLine(int nowVerticalLine) {
+        int nextVerticalLine = crossLeftRung(nowVerticalLine);
+        if (nextVerticalLine != nowVerticalLine) {
+            return nextVerticalLine;
+        }
+        return crossRightRung(nowVerticalLine);
+    }
+
+    private int crossLeftRung(int now) {
+        if (now <= 0) {
+            return now;
+        }
+        LadderRung leftRung = rungs.get(now - 1);
+        if (leftRung.isConnected()) {
+            return now - 1;
+        }
+        return now;
+    }
+
+    private int crossRightRung(int now) {
+        if (now >= rungs.size()) {
+            return now;
+        }
+        LadderRung rightRung = rungs.get(now);
+        if (rightRung.isConnected()) {
+            return now + 1;
+        }
+        return now;
+    }
+
     public List<LadderRung> getRungs() {
         return Collections.unmodifiableList(this.rungs);
     }
