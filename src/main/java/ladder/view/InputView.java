@@ -14,6 +14,7 @@ public class InputView {
     }
 
     public String readPrizes() {
+        System.out.println();
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         final String input = SCANNER.nextLine();
 
@@ -30,6 +31,7 @@ public class InputView {
     }
 
     public String readNameToSeeResult() {
+        System.out.println();
         System.out.println("결과를 보고 싶은 사람은?");
         final String input = SCANNER.nextLine();
 
