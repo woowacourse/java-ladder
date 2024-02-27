@@ -28,6 +28,14 @@ public class LadderGame {
         }
     }
 
+    public Result findPlayerResult(Name playerName) {
+        if (!(playerGameResult.containsKey(playerName))) {
+            throw new IllegalArgumentException("참여하지 않은 플레이어의 이름을 조회했습니다.");
+        }
+
+        return playerGameResult.get(playerName);
+    }
+
     private void validateSameLength(People people, Results results) {
         if (people.getNames().size() != results.getResults().size()) {
             throw new IllegalArgumentException("게임 실행 결과와 게임 참여자의 수가 같지 않습니다");
