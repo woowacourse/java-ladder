@@ -19,4 +19,9 @@ public class GameResults {
                 .mapToObj(i -> GameResult.of(gameResults.get(i), i + 1))
                 .collect(collectingAndThen(toList(), GameResults::new));
     }
+
+    public List<String> getGameResults() {
+        return gameResults.stream().map(GameResult::getGameResultDescriptionValue)
+                .toList();
+    }
 }

@@ -15,4 +15,8 @@ public class GameResult {
                 new LineNumber(lineNumber)
         );
     }
+
+    public String getGameResultDescriptionValue() {
+        return gameResultDescription.value();
+    }
 }

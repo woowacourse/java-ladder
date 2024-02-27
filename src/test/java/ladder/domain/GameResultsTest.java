@@ -30,9 +30,9 @@ public class GameResultsTest {
         final GameResults gameResults = GameResults.of(inputGameResults);
 
         // When
-        List<String> gameResults = gameResults.getGameResults();
+        List<String> gameResultValues = gameResults.getGameResults();
 
         // Then
-        assertThat(gameResults).contains("꽝", "5000", "꽝", "3000");
+        assertThat(gameResultValues).contains("꽝", "5000", "꽝", "3000");
     }
 }
