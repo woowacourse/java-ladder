@@ -2,15 +2,12 @@ package domain.ladder;
 
 import java.util.Random;
 
-import static domain.ladder.Bridge.EMPTY;
-import static domain.ladder.Bridge.EXIST;
-
 public class RandomBridgeMakingStrategy implements BridgeMakingStrategy {
     private static final Random random = new Random();
 
     public Bridge getOne(final Bridge previous) {
         if (doesBridgeExistAtLast(previous)) {
-            return EMPTY;
+            return Bridge.EMPTY;
         }
         return getRandomBridge();
     }
@@ -19,13 +16,10 @@ public class RandomBridgeMakingStrategy implements BridgeMakingStrategy {
         if (previous == null) {
             return false;
         }
-        return EXIST == previous;
+        return previous.isExist();
     }
 
     private Bridge getRandomBridge() {
-        if (random.nextBoolean()) {
-            return EXIST;
-        }
-        return EMPTY;
+        return Bridge.getOne(random.nextBoolean());
     }
 }

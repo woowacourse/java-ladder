@@ -11,8 +11,6 @@ import domain.ladder.Row;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static domain.ladder.Bridge.EXIST;
-
 public class OutputView {
     private static final int SINGLE_BRIDGE_LENGTH = 5;
     private static final String BRIDGE_SEPARATOR = "|";
@@ -60,7 +58,7 @@ public class OutputView {
     }
 
     private static String getBridgeSymbol(final Bridge bridge) {
-        if (bridge == EXIST) {
+        if (bridge.isExist()) {
             return BRIDGE_EXIST_SYMBOL;
         }
         return BRIDGE_EMPTY_SYMBOL;

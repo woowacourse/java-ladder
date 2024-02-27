@@ -3,7 +3,6 @@ package domain.ladder;
 import java.util.ArrayList;
 import java.util.List;
 
-import static domain.ladder.Bridge.EXIST;
 import static java.util.Collections.unmodifiableList;
 
 public class Row {
@@ -31,7 +30,7 @@ public class Row {
     }
 
     private void checkContinuousBridge(final Bridge previous, final Bridge current) {
-        if (previous == EXIST && current == EXIST) {
+        if (previous.isExist() && current.isExist()) {
             throw new IllegalArgumentException("연속된 다리가 존재합니다.");
         }
     }

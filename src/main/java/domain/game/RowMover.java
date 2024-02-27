@@ -6,7 +6,6 @@ import domain.ladder.Row;
 import java.util.ArrayList;
 import java.util.List;
 
-import static domain.ladder.Bridge.EMPTY;
 import static java.util.Collections.swap;
 
 public class RowMover {
@@ -26,7 +25,7 @@ public class RowMover {
     }
 
     private static void swapLastIfBridgeExist(final Bridge bridge, final List<Integer> to) {
-        if (bridge == EMPTY) {
+        if (!bridge.isExist()) {
             return;
         }
 
