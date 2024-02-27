@@ -12,7 +12,14 @@ public enum LineState {
         return NONE;
     }
 
-    public static LineState decideLineStateWithBeforeState(LineState beforeState, boolean decision) {
+    public static LineState decideLineState(LineState beforeState) {
+        if (START.equals(beforeState)) {
+            return END;
+        }
+        return NONE;
+    }
+
+    public static LineState decideLineState(LineState beforeState, boolean decision) {
         if (START.equals(beforeState)) {
             return END;
         }

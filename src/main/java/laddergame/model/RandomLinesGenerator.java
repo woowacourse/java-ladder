@@ -8,10 +8,10 @@ public class RandomLinesGenerator {
     private final Random random = new Random();
 
     public List<Line> getLines(LadderHeight ladderHeight, Participants participants) {
-        List<List<Boolean>> generatedBooleans =
-                generateBooleans(ladderHeight.getHeight(), participants.getSize());
-        return generatedBooleans.stream()
-                .map(Line::new)
+        List<List<Boolean>> booleans = generateBooleans(ladderHeight.getHeight(), participants.getSize());
+        return booleans.stream()
+                .map(LineGenerator::new)
+                .map(LineGenerator::generate)
                 .toList();
     }
 
