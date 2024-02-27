@@ -1,6 +1,10 @@
 package controller;
 
-import domain.*;
+import domain.ladder.Height;
+import domain.ladder.Ladder;
+import domain.ladder.RandomStickGenerator;
+import domain.ladder.StickGenerator;
+import domain.player.Players;
 import view.InputView;
 import view.OutputView;
 

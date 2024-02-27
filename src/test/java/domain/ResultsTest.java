@@ -1,5 +1,7 @@
 package domain;
 
+import domain.result.Result;
+import domain.result.Results;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

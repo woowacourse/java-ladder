@@ -1,6 +1,10 @@
 package view;
 
-import domain.*;
+import domain.ladder.Ladder;
+import domain.ladder.Line;
+import domain.ladder.Stick;
+import domain.player.Player;
+import domain.player.Players;
 
 import java.util.List;
 

@@ -1,5 +1,9 @@
 package domain;
 
+import domain.ladder.Height;
+import domain.ladder.Ladder;
+import domain.ladder.Stick;
+import domain.ladder.StickGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
