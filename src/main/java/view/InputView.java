@@ -28,11 +28,13 @@ public class InputView {
             return scanner.nextInt();
         } catch (InputMismatchException e) {
             throw new IllegalArgumentException("높이는 숫자여야 합니다.");
+        } finally {
+            scanner.nextLine();
         }
     }
 
     public static String selectPlayer() {
         System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
-        return scanner.nextLine().trim();
+        return scanner.nextLine();
     }
 }
