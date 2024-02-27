@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -56,5 +57,47 @@ public class LadderTest {
                 () -> assertThat(ladder.findPlayerReward(players.getPlayerOrderNumber("jk"), rewards))
                         .isEqualTo("꽝")
         );
+    }
+
+    /*
+    pobi  honux crong   jk
+    |-----|     |-----|
+    꽝    5000  꽝    3000
+     */
+    @DisplayName("플레이어들의 전체 보상 결과를 반환합니다.")
+    @Test
+    void findAllPlayerReward() {
+        //given
+        Ladder ladder = Ladder.createLadderWithLines(new RandomLegGenerateStrategy() {
+            @Override
+            public boolean generateLeg() {
+                return true;
+            }
+        }, new Height(1), 3);
+
+        Player pobi = new Player("pobi");
+        Player honux = new Player("honux");
+        Player cron = new Player("cron");
+        Player jk = new Player("jk");
+
+        Reward fail1 = new Reward("꽝");
+        Reward success1 = new Reward("5000");
+        Reward fail2 = new Reward("꽝");
+        Reward success2 = new Reward("3000");
+
+        Players players = new Players(List.of(pobi, honux, cron, jk));
+        Rewards rewards = new Rewards(List.of(fail1, success1, fail2, success2));
+
+        //when
+        Map<Player, String> actualResult = ladder.findAllPlayerReward(players, rewards);
+
+        //then
+        assertAll(
+                () -> assertThat(actualResult.get(pobi)).isEqualTo(success1.getReward()),
+                () -> assertThat(actualResult.get(honux)).isEqualTo(fail1.getReward()),
+                () -> assertThat(actualResult.get(cron)).isEqualTo(success2.getReward()),
+                () -> assertThat(actualResult.get(jk)).isEqualTo(fail2.getReward())
+        );
+
     }
 }

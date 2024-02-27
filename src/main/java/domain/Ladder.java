@@ -1,7 +1,9 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Ladder {
 
@@ -37,5 +39,14 @@ public class Ladder {
 
     public List<Line> getLines() {
         return List.copyOf(lines);
+    }
+
+    public Map<Player, String> findAllPlayerReward(Players players, Rewards rewards) {
+        Map<Player, String> allPlayerResult = new HashMap<>();
+        for (Player player : players.getPlayers()) {
+            int playerIndex = players.getPlayerOrderNumber(player.getName());
+            allPlayerResult.put(player, findPlayerReward(playerIndex, rewards));
+        }
+        return allPlayerResult;
     }
 }
