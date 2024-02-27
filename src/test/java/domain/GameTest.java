@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,6 +36,22 @@ class GameTest {
         GameResult result = game.showResult("atom");
 
         assertThat(result.getName()).isEqualTo("꽝");
+    }
+
+    @DisplayName("모든 사용자의 사다리 게임 결과를 조회할 수 있다.")
+    @Test
+    void showResultAll() {
+        Game game = new Game(
+                List.of("pobi", "atom", "mang", "jay"),
+                List.of("3000", "1000", "2000", "꽝"),
+                createLadder());
+
+        Map<String, GameResult> result = game.showResultAll();
+
+        assertThat(result.get("pobi")).isEqualTo(new GameResult("3000"));
+        assertThat(result.get("atom")).isEqualTo(new GameResult("꽝"));
+        assertThat(result.get("mang")).isEqualTo(new GameResult("1000"));
+        assertThat(result.get("jay")).isEqualTo(new GameResult("2000"));
     }
 
     private Ladder createLadder() {

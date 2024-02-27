@@ -1,6 +1,8 @@
 package domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Game {
 
@@ -34,6 +36,20 @@ public class Game {
         return gameResults.stream()
                 .map(GameResult::new)
                 .toList();
+    }
+
+    public Map<String, GameResult> showResultAll() {
+        List<String> playersNames = players.getPlayers()
+                .stream()
+                .map(Player::getName)
+                .toList();
+
+        Map<String, GameResult> result = new LinkedHashMap<>();
+        for (String playersName : playersNames) {
+            result.put(playersName, showResult(playersName));
+        }
+
+        return result;
     }
 
     public GameResult showResult(String playerName) {
