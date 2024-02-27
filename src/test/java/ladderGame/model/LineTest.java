@@ -8,10 +8,20 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class LineTest {
+
+    @Test
+    @DisplayName("연속으로 이어진 다리가 생성되는 경우 예외처리 된다.")
+    void validateContinuouslyConnected() {
+        assertThatThrownBy(() -> new Line(ConnectionStatus.CONNECTION, ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("유효하지 않은 다리가 생성되었습니다.");
+
+    }
     @Test
     @DisplayName("연속으로 True를 가질 수 없다.")
     void notConsecutiveDraw() {

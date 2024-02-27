@@ -2,6 +2,7 @@ package ladderGame.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Line {
@@ -12,11 +13,21 @@ public class Line {
     }
 
     public Line(List<ConnectionStatus> connectionStatuses) {
+        validate(connectionStatuses);
         this.connectionStatuses = connectionStatuses;
     }
 
-    public List<ConnectionStatus> getConnectionStatuses() {
-        return new ArrayList<>(connectionStatuses);
+    private void validate(List<ConnectionStatus> connectionStatuses) {
+        boolean isContinuous = IntStream.range(0, connectionStatuses.size() - 1)
+                .anyMatch(i -> isContinuouslyConnected(connectionStatuses.get(i), connectionStatuses.get(i + 1)));
+
+        if(isContinuous) {
+            throw new IllegalStateException("유효하지 않은 다리가 생성되었습니다.");
+        }
+    }
+
+    private boolean isContinuouslyConnected(ConnectionStatus left, ConnectionStatus right) {
+        return left.equals(ConnectionStatus.CONNECTION) && left.equals(right);
     }
 
     public int descend(int index) {
@@ -48,5 +59,9 @@ public class Line {
         }
 
         return connectionRight;
+    }
+
+    public List<ConnectionStatus> getConnectionStatuses() {
+        return new ArrayList<>(connectionStatuses);
     }
 }
