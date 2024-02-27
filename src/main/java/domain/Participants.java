@@ -25,9 +25,9 @@ public class Participants {
 
     public Participant findParticipantByName(String name) {
         return participants.stream()
-                .filter(participant -> Objects.equals(participant.getName(), name))
+                .filter(participant -> participant.getName().equals(name))
                 .findAny()
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참가자 이름입니다."));
     }
 
     public Participant findParticipantByInitPosition(int position) {
