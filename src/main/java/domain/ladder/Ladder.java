@@ -22,6 +22,14 @@ public class Ladder {
         return new Ladder(rows);
     }
 
+    public List<String> climb(Players players) {
+        List<String> playerNames = new ArrayList<>(players.getNames());
+        for (LadderRow row : rows) {
+            row.crossRungs(playerNames);
+        }
+        return playerNames;
+    }
+
     public List<LadderRow> getRows() {
         return Collections.unmodifiableList(rows);
     }
