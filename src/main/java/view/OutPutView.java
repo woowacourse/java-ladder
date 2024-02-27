@@ -4,6 +4,7 @@ import static domain.Name.MAX_NAME_LENGTH;
 
 import domain.Bridges;
 import domain.Ladder;
+import domain.LadderGame;
 import domain.LadderGameResult;
 import domain.LadderResult;
 import domain.LadderResults;
@@ -39,10 +40,15 @@ public class OutPutView {
         System.out.println(LADDER_RESULT_INPUT);
     }
 
-    public void printLadderResult(Names names, Ladder ladder, LadderResults ladderResults) {
+    public void printLadderResult(LadderGame ladderGame) {
+        Names names = ladderGame.getNames();
+        Ladder ladder = ladderGame.getLadder();
+        LadderResults ladderResults = ladderGame.getLadderResults();
+
         String namesString = makeNamesString(names);
         String ladderString = makeLadderString(ladder);
         String ladderResultString = makeLadderResultsString(ladderResults);
+        
         System.out.println(String.join("\n", LADDER_PREFIX, namesString, ladderString, ladderResultString, "\n"));
     }
 

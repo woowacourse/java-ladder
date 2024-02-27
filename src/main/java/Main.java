@@ -15,7 +15,7 @@ public class Main {
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
             var inputView = new InputView(bufferedReader);
             LadderGame ladderGame = RetryHelper.retry(() -> createLadderGame(outputView, inputView));
-            outputView.printLadderResult(ladderGame.getNames(), ladderGame.getLadder(), ladderGame.getLadderResults());
+            outputView.printLadderResult(ladderGame);
             RetryHelper.retry(
                     () -> searchLadderResultFromName(outputView, inputView, ladderGame.getNames(),
                             ladderGame.calculateLadderGameResult()));
