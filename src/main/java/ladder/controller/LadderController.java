@@ -13,6 +13,7 @@ public class LadderController {
 
     public static void start() {
         People people = requestUntilValid(() -> People.from(InputView.readPeopleNames()));
+        Prizes prizes = requestUntilValid(() -> Prizes.from(InputView.readPrizeNames(), people.getCount()));
         LadderHeight ladderHeight = requestUntilValid(() -> LadderHeight.from(InputView.readLadderHeight()));
 
         Ladder ladder = new LadderGenerator(ladderWidth(people), ladderHeight.getValue()).generate();
