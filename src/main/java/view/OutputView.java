@@ -14,6 +14,9 @@ public class OutputView {
     private static final int NAME_SPACE_SIZE = 7;
     private static final String NAME_SPACE_UNIT = " ";
 
+    private OutputView() {
+    }
+
     public static <T> void printObjectNames(List<T> names) {
         names.stream()
              .map(Object::toString)
@@ -26,7 +29,7 @@ public class OutputView {
         return NAME_SPACE_UNIT.repeat(NAME_SPACE_SIZE - name.length()) + name;
     }
 
-    private static void printNewLine() {
+    public static void printNewLine() {
         System.out.print(System.lineSeparator());
     }
 
@@ -40,6 +43,10 @@ public class OutputView {
             resultStringBuilder.append(symbol);
         });
         System.out.println(resultStringBuilder);
+    }
+
+    public static void print(String toBePrint) {
+        System.out.println(toBePrint);
     }
 
     private static EnumMap<Direction, String> initializedDirectionSymbol() {

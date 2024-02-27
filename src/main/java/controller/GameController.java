@@ -18,21 +18,19 @@ import static view.UserMessage.*;
 
 public class GameController {
     public void execute() {
-        Names names = new Names(inputNames(PLAYER_INPUT_PROMPT));
-        Players players = new Players(names);
+        Players players = new Players(new Names(inputNames(PLAYER_INPUT_PROMPT)));
         int numberOfPlayers = players.getPlayerCount();
         Prizes prizes = new Prizes(inputNames(PRIZE_INPUT_PROMPT), numberOfPlayers);
-        Height height = new Height(inputHeight());
 
-        Ladder ladder = new Ladder(height, numberOfPlayers, new RandomDirectionGenerator());
+        Ladder ladder = new Ladder(new Height(inputHeight()), numberOfPlayers, new RandomDirectionGenerator());
         GameBoard gameBoard = new GameBoard(players, ladder, prizes);
 
         printGeneratedGameBoard(gameBoard);
     }
 
     private void printGeneratedGameBoard(GameBoard gameBoard) {
-        System.out.println(LADDER_GENERATE_RESULT_HEADER);
-        System.out.println(System.lineSeparator());
+        OutputView.print(LADDER_GENERATE_RESULT_HEADER);
+        OutputView.printNewLine();
         OutputView.printObjectNames(gameBoard.getPlayers()
                                              .getPlayerNames());
         IntStream.range(0, gameBoard.getLadderHeight())
@@ -40,5 +38,6 @@ public class GameController {
                  .forEach(OutputView::printDirections);
         OutputView.printObjectNames(gameBoard.getPrizes()
                                              .getValue());
+        OutputView.printNewLine();
     }
 }
