@@ -1,22 +1,17 @@
 package ladder.domain.resource.direction;
 
-import java.util.Arrays;
+import java.util.Random;
 
 public enum Direction {
-    RIGHT(0),
-    NEUTRAL(1),
-    LEFT(2);
+    RIGHT,
+    LEFT,
+    NEUTRAL;
 
-    private final int id;
+    private static final Random RANDOM = new Random();
+    private static final Direction[] RIGHT_OR_NEUTRAL = {RIGHT, NEUTRAL};
+    private static final int SIZE = RIGHT_OR_NEUTRAL.length;
 
-    Direction(int id) {
-        this.id = id;
-    }
-
-    public static Direction getDirection(int id) {
-        return Arrays.stream(Direction.values())
-                .filter(direction -> direction.id == id)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 방향값이 올바르지 않습니다."));
+    public static Direction getRightOrNeutral() {
+        return RIGHT_OR_NEUTRAL[RANDOM.nextInt(SIZE)];
     }
 }
