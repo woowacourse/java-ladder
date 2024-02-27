@@ -13,10 +13,11 @@ public class LineGenerator {
 
     public Line generate(int width) {
         Line line = new Line();
-        int middleValue = width - 2;
-
         addInitialDirection(line);
-        addMiddleDirection(middleValue, line);
+
+        int middleDirectionCount = width - 2;
+        addMiddleDirection(middleDirectionCount, line);
+
         addLastDirection(line);
 
         return line;
@@ -26,8 +27,8 @@ public class LineGenerator {
         line.addDirection(directionGenerator.generateInitialValue());
     }
 
-    private void addMiddleDirection(int middleValue, Line line) {
-        for (int i = 0; i < middleValue; i++) {
+    private void addMiddleDirection(int count, Line line) {
+        for (int i = 0; i < count; i++) {
             Direction lastDirection = line.getLastDirection();
             line.addDirection(directionGenerator.generateMiddleValue(lastDirection));
         }
