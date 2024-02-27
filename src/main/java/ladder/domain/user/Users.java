@@ -20,8 +20,8 @@ public class Users {
         return users.size();
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<String> getUsersNames() {
+        return this.users.stream().map(User::getUserName).collect(Collectors.toList());
     }
 
     private void validateUsers(List<User> users) {

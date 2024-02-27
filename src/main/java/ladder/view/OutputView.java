@@ -4,7 +4,6 @@ import java.util.List;
 import ladder.domain.direction.Direction;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.line.Line;
-import ladder.domain.user.User;
 import ladder.domain.user.Users;
 
 public class OutputView {
@@ -27,8 +26,7 @@ public class OutputView {
 
     private void printUserNames(Users users) {
         StringBuilder sb = new StringBuilder();
-        for (User user : users.getUsers()) {
-            String userName = user.getUserName();
+        for(String userName : users.getUsersNames()) {
             appendNameFormat(sb, userName);
         }
         System.out.println(sb);
