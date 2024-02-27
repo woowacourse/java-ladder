@@ -1,6 +1,6 @@
 package ladder.dto;
 
-import ladder.domain.player.Players;
+import ladder.domain.game.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

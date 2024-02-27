@@ -4,7 +4,7 @@ import ladder.domain.generator.BooleanGenerator;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderGenerator;
-import ladder.domain.player.Players;
+import ladder.domain.game.Players;
 import ladder.dto.LadderDto;
 import ladder.dto.PlayersDto;
 import ladder.utils.Converter;

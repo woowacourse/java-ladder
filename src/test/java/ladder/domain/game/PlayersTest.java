@@ -1,4 +1,4 @@
-package ladder.domain.player;
+package ladder.domain.game;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

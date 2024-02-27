@@ -1,7 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.generator.BooleanGenerator;
-import ladder.domain.player.Players;
+import ladder.domain.game.Players;
 
 public class LadderGenerator {
     private final BooleanGenerator booleanGenerator;

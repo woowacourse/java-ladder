@@ -1,9 +1,10 @@
-package ladder.domain.player;
+package ladder.domain.game;
 
 import ladder.domain.Direction;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 import ladder.domain.ladder.Rung;
+import ladder.domain.player.Player;
 
 import java.util.Collections;
 import java.util.HashSet;

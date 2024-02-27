@@ -1,9 +1,7 @@
 package ladder.domain.game;
 
 import ladder.domain.ladder.Ladder;
-import ladder.domain.player.Players;
 import ladder.mock.MockBooleanGenerator;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

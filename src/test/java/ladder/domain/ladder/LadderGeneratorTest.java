@@ -1,7 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.generator.BooleanGenerator;
-import ladder.domain.player.Players;
+import ladder.domain.game.Players;
 import ladder.mock.MockBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

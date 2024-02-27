@@ -1,7 +1,6 @@
 package ladder.domain.game;
 
 import ladder.domain.ladder.Ladder;
-import ladder.domain.player.Players;
 
 public class LadderGame {
     private final Ladder ladder;
