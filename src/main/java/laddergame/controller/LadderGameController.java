@@ -36,4 +36,8 @@ public class LadderGameController {
     private static Results getResults(int peopleNumber) {
         return new Results(InputView.readGameResult(), peopleNumber);
     }
+
+    private static void getPlayerResults(LadderGame ladderGame) {
+
+    }
 }

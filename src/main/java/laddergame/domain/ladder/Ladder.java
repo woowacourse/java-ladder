@@ -5,6 +5,7 @@ import laddergame.domain.connectiongenerator.RandomConnectionGenerator;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Ladder {
@@ -20,6 +21,18 @@ public class Ladder {
         this.rowLines = Stream.generate(() -> new RowLine(peopleNumber, connectionGenerator))
                 .limit(this.height.getHeight())
                 .toList();
+    }
+
+    public List<Integer> move(int peopleNumber) {
+        List<Integer> playerPositions = IntStream.range(0, peopleNumber)
+                .boxed()
+                .toList();
+
+        for (RowLine rowLine : rowLines) {
+            playerPositions = rowLine.move(playerPositions);
+        }
+
+        return playerPositions;
     }
 
     public List<RowLine> getRowLines() {
