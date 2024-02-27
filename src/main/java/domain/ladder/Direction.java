@@ -1,13 +1,13 @@
 package domain.ladder;
 
-public enum DirectionalRung {
+public enum Direction {
     LEFT(-1),
     MID(0),
     RIGHT(1);
 
     private final int direction;
 
-    DirectionalRung(final int direction) {
+    Direction(final int direction) {
         this.direction = direction;
     }
 
