@@ -12,7 +12,7 @@ public class Target {
     }
 
     private void validate(String result) {
-        if ((result.isBlank() || result.length() > MAX_NAME_LENGTH)) {
+        if (result.isBlank() || result.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("실행 결과는 1~%d자 이내로 입력해야합니다.".formatted(MAX_NAME_LENGTH));
         }
     }
