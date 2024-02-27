@@ -20,11 +20,15 @@ public class Results {
         }
     }
 
-    public List<Result> getResults() {
-        return results;
-    }
-
     public int size() {
         return results.size();
+    }
+
+    public String findByPosition(int position) {
+        return results.get(position).getResult();
+    }
+
+    public List<Result> getResults() {
+        return results;
     }
 }
