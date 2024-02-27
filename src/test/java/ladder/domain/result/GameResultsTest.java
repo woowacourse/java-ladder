@@ -19,7 +19,7 @@ class GameResultsTest {
         GameResults gameResults = new GameResults(List.of(gameResultOfMia, gameResultOfPota));
 
         // when
-        PersonalGameResult askedGameResult = gameResults.findPrizeByName("mia");
+        PersonalGameResult askedGameResult = gameResults.findByName("mia");
 
         // then
         assertThat(askedGameResult.getPrize()).isEqualTo("꽝");
@@ -35,7 +35,7 @@ class GameResultsTest {
 
         // when & then
         assertThatThrownBy(
-                () -> gameResults.findPrizeByName("jojo")
+                () -> gameResults.findByName("jojo")
         ).isInstanceOf(IllegalArgumentException.class).hasMessage("존재하지 않는 참가자입니다.");
     }
 }

@@ -9,10 +9,14 @@ public class GameResults {
         this.values = values;
     }
 
-    public PersonalGameResult findPrizeByName(final String participantName) {
+    public PersonalGameResult findByName(final String participantName) {
         return values.stream()
                 .filter(result -> result.isResultOf(participantName))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참가자입니다."));
+    }
+
+    public List<PersonalGameResult> findAll() {
+        return values;
     }
 }
