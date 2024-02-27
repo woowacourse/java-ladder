@@ -23,4 +23,12 @@ enum Direction {
 
         return this;
     }
+
+    public boolean isLeft() {
+        return this == LEFT;
+    }
+
+    public boolean isRight() {
+        return this == RIGHT;
+    }
 }
