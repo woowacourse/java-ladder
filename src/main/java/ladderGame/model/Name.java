@@ -24,6 +24,14 @@ public class Name {
         }
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Name otherName = (Name) object;
+        return name.equals(otherName.name);
+    }
+
     public String getName() {
         return name;
     }

@@ -21,5 +21,11 @@ public class LadderGameController {
         Ladder ladder = new Ladder(inputView.inputMaxLadderHeight(), players.getPlayerSize());
 
         resultView.printLadder(players.getPlayers(), ladder.getLines(), results.getResults());
+
+        ladder.descendLadder(players);
+
+        
+
+        resultView.printResult(players.getPlayers(), results.getResults());
     }
 }

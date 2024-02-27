@@ -20,4 +20,8 @@ public class Player {
     public int getPosition() {
         return position;
     }
+
+    public boolean contains(Name name) {
+        return this.name.equals(name);
+    }
 }

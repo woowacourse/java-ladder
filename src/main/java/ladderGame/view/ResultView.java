@@ -5,7 +5,9 @@ import ladderGame.model.Line;
 import ladderGame.model.Player;
 
 import java.util.List;
+import ladderGame.model.Players;
 import ladderGame.model.Result;
+import ladderGame.model.Results;
 
 public class ResultView {
     private static final String LADDER_RESULT_PROMPT = "사다리 결과";
@@ -42,5 +44,14 @@ public class ResultView {
             return CONNECTION_MARK;
         }
         return DISCONNECTION_MARK;
+    }
+
+    public void printResult(List<Player> players, List<Result> results) {
+        System.out.println("실행 결과");
+
+        for(Player player : players) {
+            int index = player.getPosition();
+            System.out.printf("%s : %s" + System.lineSeparator(), player.getName(), results.get(index).getResult());
+        }
     }
 }

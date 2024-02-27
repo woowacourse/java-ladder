@@ -53,4 +53,13 @@ public class Players {
         return positions;
     }
 
+    public boolean contains(Name name) {
+        for(Player player : players) {
+            if(player.contains(name)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
