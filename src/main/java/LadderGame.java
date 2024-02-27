@@ -32,29 +32,26 @@ public class LadderGame {
         OutputView.printLadder(ladder);
         OutputView.printPrizes(prizes);
         OutputView.printNewLine();
-        repeat(() -> printResult(names, ladder));
+        repeat(() -> handleResult(names, ladder));
     }
 
-    private static void printResult(Names names, Ladder ladder) {
+    private static void handleResult(Names names, Ladder ladder) {
         String target = InputView.readResultTarget();
-        if (handleAll(ladder, target)) {
+        if (target.equals("all")) {
+            handleAll(ladder);
             return;
         }
         Name targetName = names.findNameByString(target);
         Result result = ladder.calculateResult(targetName);
         OutputView.printResult(result);
         OutputView.printNewLine();
-        printResult(names, ladder);
+        handleResult(names, ladder);
     }
 
-    private static boolean handleAll(Ladder ladder, String target) {
-        if (target.equals("all")) {
-            Results results = ladder.calculateAllResult();
-            OutputView.printNewLine();
-            OutputView.printResults(results);
-            return true;
-        }
-        return false;
+    private static void handleAll(Ladder ladder) {
+        Results results = ladder.calculateAllResult();
+        OutputView.printNewLine();
+        OutputView.printResults(results);
     }
 
     private static <T> T repeat(Supplier<T> supplier) {
