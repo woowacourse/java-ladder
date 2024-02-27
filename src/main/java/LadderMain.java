@@ -1,10 +1,8 @@
-import domain.GameResult;
 import domain.LadderGame;
 import domain.MatchingItems;
 import domain.Players;
 import domain.ladder.Height;
 import domain.ladder.RandomBridgeGenerator;
-import java.util.List;
 import view.InputView;
 import view.OutputView;
 
@@ -24,5 +22,6 @@ public class LadderMain {
                 ladderGame.getPlayerNames(), ladderGame.getLadder(), matchingItems.getItems());
 
         final String selectedName = InputView.selectPlayer();
+        OutputView.printMatchingResult(ladderGame.matchResult(selectedName, SELECT_ALL));
     }
 }

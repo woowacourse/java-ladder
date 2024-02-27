@@ -1,5 +1,6 @@
 package view;
 
+import domain.GameResult;
 import domain.ladder.Bridge;
 import domain.ladder.Floor;
 import domain.ladder.Ladder;
@@ -11,6 +12,7 @@ public class OutputView {
     private static final String NAME_DELIMITER = " ";
     private static final String FIRST_COLUMN = "    |";
     private static final String COLUMN = "|";
+    private static final String RESULT_SEPARATOR = " : ";
 
     private OutputView(){
     }
@@ -49,5 +51,16 @@ public class OutputView {
             bridgesShapeJoiner.add(BridgeShape.convertForView(bridge));
         }
         return bridgesShapeJoiner.toString();
+    }
+
+    public static void printMatchingResult(List<GameResult> gameResults) {
+        System.out.println(System.lineSeparator() + "실행 결과");
+        if (gameResults.size() == 1) {
+            System.out.println(gameResults.get(0).matchingItem());
+            return;
+        }
+        for (final GameResult gameResult : gameResults) {
+            System.out.println(gameResult.name() + RESULT_SEPARATOR + gameResult.matchingItem());
+        }
     }
 }
