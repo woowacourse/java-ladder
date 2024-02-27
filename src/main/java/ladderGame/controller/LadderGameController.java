@@ -22,27 +22,32 @@ public class LadderGameController {
     }
 
     public void run() {
+        LadderGame ladderGame = makeLadderGame();
+
+        String wantName;
+        while (!(wantName = inputView.inputResultWantPlayerName()).equals(ALL_RESULT_COMMAND)) {
+            resultView.printLadderResult(ladderGame.findLadderGameResult(wantName));
+        }
+
+        resultView.printAllLadderResult(ladderGame.findAllLadderGameResults());
+    }
+
+    private LadderGame makeLadderGame() {
         Players players = new Players(inputView.inputPlayerNames());
         LadderResults ladderResults = new LadderResults(inputView.inputLadderResults());
 
+        Ladder ladder = makeLadder(players.getPlayerSize());
+        resultView.printLadder(players.getPlayers(), ladder.getLines(), ladderResults.getLadderResults());
+
+        return new LadderGame(players, ladderResults, ladder);
+    }
+
+    private Ladder makeLadder(int playerCount) {
         LineGenerator lineGenerator = new LineGenerator(new RandomBooleanGenerator());
-        List<Line> lines = Stream.generate(() -> new Line(lineGenerator.makeLine(players.getPlayerSize())))
+        List<Line> lines = Stream.generate(() -> new Line(lineGenerator.makeLine(playerCount)))
                 .limit(inputView.inputMaxLadderHeight())
                 .toList();
 
-        Ladder ladder = new Ladder(new ArrayList<>(lines));
-        resultView.printLadder(players.getPlayers(), ladder.getLines(), ladderResults.getLadderResults());
-
-        LadderGame ladderGame = new LadderGame(players, ladderResults, ladder);
-
-        while(true) {
-            String inputName = inputView.inputResultWantPlayerName();
-            if(inputName.equals(ALL_RESULT_COMMAND)) {
-                List<LadderResult> results = ladderGame.findAllLadderGameResults();
-                resultView.printAllLadderResult(players.getPlayers(), results);
-                continue;
-            }
-            resultView.printLadderResult(ladderGame.findLadderGameResult(inputName));
-        }
+        return new Ladder(new ArrayList<>(lines));
     }
 }

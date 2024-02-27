@@ -5,8 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -43,6 +45,12 @@ class LadderGameTest {
 
         LadderGame ladderGame = new LadderGame(new Players(List.of("포비", "왼손", "준")), new LadderResults(List.of("꽝", "5000", "3000")), ladder);
 
-        assertEquals(ladderGame.findAllLadderGameResults(),List.of(new LadderResult("꽝"), new LadderResult("5000"), new LadderResult("3000")));
+        Map<Player, LadderResult> results = ladderGame.findAllLadderGameResults();
+        List<String> printResult = List.of("포비 : 꽝", "왼손 : 5000", "준 : 3000");
+
+        for(Player player : results.keySet()) {
+            assertThat(String.format(player.getName() + " : " + results.get(player).getLadderResult()))
+                    .isIn(printResult);
+        }
     }
 }

@@ -1,7 +1,7 @@
 package ladderGame.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LadderGame {
     private final Ladder ladder;
@@ -25,14 +25,13 @@ public class LadderGame {
         return ladderResults.getLadderResults().get(resultIndex);
     }
 
-    public List<LadderResult> findAllLadderGameResults() {
-        List<LadderResult> results = new ArrayList<>();
-        List<LadderResult> originalResults = ladderResults.getLadderResults();
+    public Map<Player, LadderResult> findAllLadderGameResults() {
+        Map<Player, LadderResult> ladderResultToPlayers = new HashMap<>();
         for (int index = 0; index < players.getPlayerSize(); index++) {
             int resultIndex = ladder.findLadderResultIndex(index);
-            results.add(originalResults.get(resultIndex));
+            ladderResultToPlayers.put(players.getPlayer(index), ladderResults.getLadderResult(resultIndex));
         }
 
-        return results;
+        return ladderResultToPlayers;
     }
 }
