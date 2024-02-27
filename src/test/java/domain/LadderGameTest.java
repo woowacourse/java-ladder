@@ -18,11 +18,12 @@ class LadderGameTest {
         //given
         Users users = new Users(List.of("pobi", "honux", "crong", "jk"));
 
-        Results results = new Results(List.of(
+        Results results =  Results.of(List.of(
                 new Result("꽝"),
                 new Result("5000"),
                 new Result("꽝"),
-                new Result("3000")));
+                new Result("3000")),
+                4);
 
 
         Ladder ladder = new Ladder(List.of(

@@ -11,18 +11,6 @@ import static org.assertj.core.api.Assertions.*;
 class ResultsTest {
 
     @Test
-    @DisplayName("Results를 생성한다.")
-    void createResults() {
-        //given
-        //when
-        //then
-        assertThatCode(() -> new Results(List.of(
-                new Result("꽝"), new Result("5000"),
-                new Result("꽝"), new Result("3000"))
-        )).doesNotThrowAnyException();
-    }
-
-    @Test
     @DisplayName("Result 수는 사용자 수와 일치해야 한다.")
     void equalToPersonCount() {
         //given

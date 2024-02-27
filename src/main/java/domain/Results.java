@@ -6,7 +6,7 @@ public class Results {
 
     List<Result> prizes;
 
-    public Results(List<Result> prizes) {
+    private Results(List<Result> prizes) {
         this.prizes = prizes;
     }
 
