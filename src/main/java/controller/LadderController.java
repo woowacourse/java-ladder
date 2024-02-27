@@ -1,12 +1,11 @@
 package controller;
 
-import domain.Height;
-import domain.LadderGame;
-import domain.Players;
-import domain.Winnings;
+import domain.*;
 import util.ConsoleReader;
 import view.InputView;
 import view.OutputView;
+
+import java.util.Objects;
 
 public class LadderController {
 
@@ -19,10 +18,13 @@ public class LadderController {
 
     public void run() {
         Players players = nameInput(MAX_DEPTH);
-        Height height = heightInput(MAX_DEPTH);
         Winnings winnings = winningsInput(MAX_DEPTH, players);
+        Height height = heightInput(MAX_DEPTH);
         LadderGame ladderGame = new LadderGame(players, height, winnings);
         OutputView.printLadder(ladderGame.getLadderShape());
+        Result result = new Result(ladderGame.getResult());
+        ResultName resultName = resultNameInput(MAX_DEPTH, players);
+        findResult(result, resultName, players);
     }
 
     private Players nameInput(int depth) {
@@ -58,5 +60,24 @@ public class LadderController {
         } catch (IllegalArgumentException e) {
             return winningsInput(depth - 1, players);
         }
+    }
+
+    private ResultName resultNameInput(int depth, Players players) {
+        if (depth <= 0) {
+            throw new IllegalArgumentException("입력 허용횟수 5회를 초과했습니다.");
+        }
+        try {
+            return new ResultName(InputView.readResultName(consoleReader), players);
+        } catch (IllegalArgumentException e) {
+            return resultNameInput(depth - 1, players);
+        }
+    }
+
+    private void findResult(Result result, ResultName resultName, Players players) {
+        while (!Objects.equals(resultName.getName(), "all")) {
+            OutputView.printResultByPerson(result.getResultByPerson(resultName));
+            resultName = resultNameInput(MAX_DEPTH, players);
+        }
+        OutputView.printResultByAll(result.getResultByAll());
     }
 }
