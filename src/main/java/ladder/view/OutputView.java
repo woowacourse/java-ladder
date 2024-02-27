@@ -44,14 +44,6 @@ public class OutputView {
         System.out.println(ladderShape);
     }
 
-    public void printLadderGamePrize(final LadderGamePrize ladderGamePrize) {
-        final String ladderResult = ladderGamePrize.getValues()
-                .stream()
-                .map(result -> String.format(NAME_FORMAT, result))
-                .collect(Collectors.joining(" "));
-        System.out.println(ladderResult);
-    }
-
     private String getLadderStepShape(final LadderStep ladderStep) {
         final String ladderStepShape = ladderStep.getLadderPaths()
                 .stream()
@@ -65,6 +57,14 @@ public class OutputView {
             return PATH_EXIST;
         }
         return PATH_EMPTY;
+    }
+
+    public void printLadderGamePrize(final LadderGamePrize ladderGamePrize) {
+        final String ladderResult = ladderGamePrize.getValues()
+                .stream()
+                .map(result -> String.format(NAME_FORMAT, result))
+                .collect(Collectors.joining(" "));
+        System.out.println(ladderResult);
     }
 
     public void printException(final RuntimeException exception) {
