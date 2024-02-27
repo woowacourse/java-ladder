@@ -3,10 +3,10 @@ package domain.ladder;
 import common.exception.model.ValidationException;
 
 public class LadderHeight {
-    public static final String LADDER_HEIGHT_RANGE = String.format("사다리 높이의 범위는 %d 이상, %d 이하여야 합니다",
-            LadderHeight.HEIGHT_MIN_RANGE, LadderHeight.HEIGHT_MAX_RANGE);
-    public static final int HEIGHT_MIN_RANGE = 2;
-    public static final int HEIGHT_MAX_RANGE = 10;
+    public static final String RANGE_ERROR_MESSAGE = String.format("사다리 높이의 범위는 %d 이상, %d 이하여야 합니다",
+            LadderHeight.HEIGHT_MIN, LadderHeight.HEIGHT_MAX);
+    public static final int HEIGHT_MIN = 2;
+    public static final int HEIGHT_MAX = 10;
 
     private final int value;
 
@@ -16,8 +16,8 @@ public class LadderHeight {
     }
 
     private void validateRange(int height) {
-        if (height < HEIGHT_MIN_RANGE || height > HEIGHT_MAX_RANGE) {
-            throw new ValidationException(LADDER_HEIGHT_RANGE);
+        if (height < HEIGHT_MIN || height > HEIGHT_MAX) {
+            throw new ValidationException(RANGE_ERROR_MESSAGE);
         }
     }
 

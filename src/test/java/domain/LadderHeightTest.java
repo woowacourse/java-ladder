@@ -39,7 +39,7 @@ public class LadderHeightTest {
         void createLadderHeightFailByRange(int value) {
             Assertions.assertThatThrownBy(() -> new LadderHeight(value))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(LadderHeight.LADDER_HEIGHT_RANGE);
+                    .hasMessage(LadderHeight.RANGE_ERROR_MESSAGE);
         }
     }
 }

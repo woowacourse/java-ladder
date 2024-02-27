@@ -28,7 +28,7 @@ public class LadderResultTest {
         void createLadderResultFailByLength(String value) {
             Assertions.assertThatThrownBy(() -> new LadderResult(value))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(LadderResult.LADDER_RESULT_LENGTH);
+                    .hasMessage(LadderResult.LENGTH_ERROR_MESSAGE);
         }
     }
 
@@ -41,7 +41,7 @@ public class LadderResultTest {
         void createLadderResultFailByNull() {
             Assertions.assertThatThrownBy(() -> new LadderResult(" "))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(LadderResult.LADDER_RESULT_BLANK);
+                    .hasMessage(LadderResult.BLANK_ERROR_MESSAGE);
         }
 
         @Test
@@ -49,7 +49,7 @@ public class LadderResultTest {
         void createLadderResultFailByBlank() {
             Assertions.assertThatThrownBy(() -> new LadderResult(null))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(LadderResult.LADDER_RESULT_NULL);
+                    .hasMessage(LadderResult.NULL_ERROR_MESSAGE);
         }
     }
 }

@@ -48,7 +48,7 @@ public class LadderResultsTest {
             //when, then
             Assertions.assertThatThrownBy(() -> new LadderResults(ladderResults, playerCount))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(LadderResults.LADDER_RESULTS_SIZE);
+                    .hasMessage(LadderResults.SIZE_ERROR_MESSAGE);
         }
 
         private static Stream<Arguments> createLadderResultsFailBySizeArguments() {

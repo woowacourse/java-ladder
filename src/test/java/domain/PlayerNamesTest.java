@@ -43,7 +43,7 @@ class PlayerNamesTest {
         void createPlayerNamesFailByRange(List<PlayerName> playerNames) {
             Assertions.assertThatThrownBy(() -> new PlayerNames(playerNames))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(PlayerNames.PLAYER_NAMES_RANGE);
+                    .hasMessage(PlayerNames.RANGE_ERROR_MESSAGE);
         }
 
         private static Stream<Arguments> createPlayerNamesFailByRangeArguments() {
@@ -80,7 +80,7 @@ class PlayerNamesTest {
             // then
             Assertions.assertThatThrownBy(() -> new PlayerNames(playerNames))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(PlayerNames.PLAYER_NAMES_DUPLICATION);
+                    .hasMessage(PlayerNames.DUPLICATION_ERROR_MESSAGE);
         }
     }
 }

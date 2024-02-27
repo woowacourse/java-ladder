@@ -26,6 +26,6 @@ public class FloorTest {
         Assertions.assertThatThrownBy(
                         () -> new Floor(bridgeGenerator.generate(bridgeCount)))
                 .isInstanceOf(ValidationException.class)
-                .hasMessage(Floor.SERIAL_LADDER_BRIDGE);
+                .hasMessage(Floor.SEQUENCE_ERROR_MESSAGE);
     }
 }

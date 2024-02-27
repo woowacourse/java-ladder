@@ -66,7 +66,7 @@ public class LadderTest {
             Assertions.assertThatThrownBy(
                             () -> Ladder.create(height, new PlayerNames(playerNames), results, new BridgeGeneratorStub()))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(PlayerNames.PLAYER_NAMES_RANGE);
+                    .hasMessage(PlayerNames.RANGE_ERROR_MESSAGE);
         }
 
         private static Stream<Arguments> createLadderFailByPlayerCountArguments() {

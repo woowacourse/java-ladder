@@ -29,7 +29,7 @@ public class PlayerNameTest {
         void createPlayerNameFailByFormat(String value) {
             Assertions.assertThatThrownBy(() -> new PlayerName(value))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(PlayerName.PLAYER_NAME_FORMAT);
+                    .hasMessage(PlayerName.FORMAT_ERROR_MESSAGE);
         }
     }
 
@@ -42,7 +42,7 @@ public class PlayerNameTest {
         void createPlayerNameFailByBlank() {
             Assertions.assertThatThrownBy(() -> new PlayerName(" "))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(PlayerName.PLAYER_NAME_BLANK);
+                    .hasMessage(PlayerName.BLANK_ERROR_MESSAGE);
         }
     }
 
@@ -64,7 +64,7 @@ public class PlayerNameTest {
         void createPlayerNameFailByLength(String name) {
             Assertions.assertThatThrownBy(() -> new PlayerName(name))
                     .isInstanceOf(ValidationException.class)
-                    .hasMessage(PlayerName.PLAYER_NAME_LENGTH);
+                    .hasMessage(PlayerName.LENGTH_ERROR_MESSAGE);
         }
     }
 }
