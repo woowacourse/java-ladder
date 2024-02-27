@@ -1,10 +1,16 @@
 package domain;
 
 public enum Bridge {
-    EXIST,
-    BLANK;
+    EXIST(true),
+    BLANK(false);
 
-    public static boolean isExist(Bridge bridge) {
-        return EXIST == bridge;
+    private final boolean status;
+
+    Bridge(boolean status) {
+        this.status = status;
+    }
+
+    public boolean isExist() {
+        return status;
     }
 }

@@ -14,7 +14,7 @@ public class OutputView {
     private static final String RESULT_FORMAT = "%-6s";
     private static final int OFFSET_COUNT = 5;
 
-    private static void printLine(Line line) {
+    private void printLine(Line line) {
         System.out.print(SPACE.repeat(OFFSET_COUNT));
         System.out.print(VERTICAL_DELIMITER);
         for (Bridge bridge : line.getBridges()) {
@@ -23,8 +23,8 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void printBridge(Bridge bridge) {
-        if (Bridge.isExist(bridge)) {
+    private void printBridge(Bridge bridge) {
+        if (bridge.isExist()) {
             System.out.print(HORIZON_DELIMITER);
             System.out.print(VERTICAL_DELIMITER);
             return;
@@ -34,7 +34,7 @@ public class OutputView {
     }
 
     public void printLadderGame(Ladder ladder, List<String> names, List<String> results) {
-        System.out.println("실행결과\n");
+        System.out.println("실행 결과");
         printPlayer(names);
         printLadder(ladder);
         printResults(results);
@@ -47,9 +47,7 @@ public class OutputView {
 
     private void printLadder(Ladder ladder) {
         List<Line> lines = ladder.getLines();
-        for (Line line : lines) {
-            printLine(line);
-        }
+        lines.forEach(this::printLine);
     }
 
     private void printResults(List<String> results) {

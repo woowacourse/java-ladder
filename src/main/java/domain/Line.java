@@ -28,7 +28,7 @@ public class Line {
     }
 
     private boolean isPreviousBridgeBlank() {
-        return !Bridge.isExist(bridges.get(getBridgeCount() - 1));
+        return !bridges.get(getBridgeCount() - 1).isExist();
     }
 
     private void addBlankBridge() {
