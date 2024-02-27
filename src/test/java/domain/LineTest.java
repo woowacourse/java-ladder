@@ -43,7 +43,17 @@ public class LineTest {
 
         assertThat(line.canMoveRight(movableIndex)).isTrue();
         assertThat(line.canMoveRight(immovableIndex)).isFalse();
+    }
 
+    @Test
+    @DisplayName("해당 라인에서 이동한 이후의 index를 반환한다.")
+    void getNextPosition() {
+        Line line = new Line(4, new FixedBooleanGenerator(true));
+
+        int startIndex = 2;
+        int expected = 3;
+
+        assertThat(line.getNextPosition(startIndex)).isEqualTo(expected);
     }
 }
 
