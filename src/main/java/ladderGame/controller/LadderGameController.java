@@ -5,10 +5,14 @@ import ladderGame.view.InputView;
 import ladderGame.view.ResultView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class LadderGameController {
+    private final String ALL_RESULT_COMMAND = "all";
+
     private final InputView inputView;
     private final ResultView resultView;
 
@@ -32,8 +36,13 @@ public class LadderGameController {
         LadderGame ladderGame = new LadderGame(players, ladderResults, ladder);
 
         while(true) {
-            LadderResult result = ladderGame.findLadderGameResult(inputView.inputResultWantPlayerName());
-            resultView.printLadderResult(result);
+            String inputName = inputView.inputResultWantPlayerName();
+            if(inputName.equals(ALL_RESULT_COMMAND)) {
+                List<LadderResult> results = ladderGame.findAllLadderGameResults();
+                resultView.printAllLadderResult(players.getPlayers(), results);
+                continue;
+            }
+            resultView.printLadderResult(ladderGame.findLadderGameResult(inputName));
         }
     }
 }

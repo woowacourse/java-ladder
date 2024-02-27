@@ -56,4 +56,11 @@ public class ResultView {
         System.out.println(System.lineSeparator() + LADDER_RESULT_PROMPT);
         System.out.println(result.getLadderResult());
     }
+
+    public void printAllLadderResult(List<Player> players, List<LadderResult> results) {
+        System.out.println(System.lineSeparator() + LADDER_RESULT_PROMPT);
+        for (int index = 0; index < players.size(); index++) {
+            System.out.println(players.get(index).getName() + " : " + results.get(index).getLadderResult());
+        }
+    }
 }
