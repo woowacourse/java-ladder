@@ -1,10 +1,6 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
-import ladder.domain.player.Player;
 
 public class Line {
 
@@ -41,20 +37,40 @@ public class Line {
         }
     }
 
-    public List<Player> progressSwitching(List<Player> players) {
-        // TODO players의 크기와 sticks의 크기 비교
-        List<Player> result = new ArrayList<>(players);
-        IntStream.range(0, sticks.size())
-                .filter(index -> sticks.get(index).isExist())
-                .forEach(index -> Collections.swap(result, index, index + 1));
-        return result;
+    public int findNextPosition(int playerPosition) {
+        validatePlayerPosition(playerPosition);
+        if (isExistLeftStick(playerPosition)) {
+            return playerPosition - 1;
+        }
+        if (isExistRightStick(playerPosition)) {
+            return playerPosition + 1;
+        }
+        return playerPosition;
+    }
+
+    private void validatePlayerPosition(int playerPosition) {
+        if (playerPosition < 0 || playerPosition > getWidth()) {
+            throw new IllegalArgumentException("플레이어의 위치가 사다리를 벗어났습니다.");
+        }
+    }
+
+    private boolean isExistLeftStick(int playerPosition) {
+        return playerPosition != 0 && sticks.get(playerPosition - 1).isExist();
+    }
+
+    private boolean isExistRightStick(int playerPosition) {
+        return playerPosition != getWidth() && sticks.get(playerPosition).isExist();
     }
 
     public boolean isExist(int position) {
+        validateStickPosition(position);
+        return sticks.get(position).isExist();
+    }
+
+    private void validateStickPosition(int position) {
         if (position < 0 || position >= getWidth()) {
             throw new IllegalArgumentException("가로 위치가 범위를 벗어났습니다.");
         }
-        return sticks.get(position).isExist();
     }
 
     public int getWidth() {

@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.Collections;
 import java.util.List;
-import ladder.domain.player.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -44,14 +43,25 @@ class LineTest {
 
     @DisplayName("해당 라인을 지나고 나서 플레이어의 위치 결과를 알 수 있다")
     @Test
-    void progressSwitchingTest() {
-        Line line = new Line(List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE));
-        List<Player> players = List.of(new Player("pobi"), new Player("bri"), new Player("jk"));
-        List<Player> expected = List.of(players.get(1), players.get(0), players.get(2));
+    void findNextPositionTest() {
+        Line line = new Line(List.of(Stick.NON_EXISTENCE, Stick.EXISTENCE));
 
-        List<Player> actual = line.progressSwitching(players);
+        assertAll(
+                () -> assertThat(line.findNextPosition(0)).isEqualTo(0),
+                () -> assertThat(line.findNextPosition(1)).isEqualTo(2),
+                () -> assertThat(line.findNextPosition(2)).isEqualTo(1)
+        );
+    }
 
-        assertThat(actual).isEqualTo(expected);
+    @DisplayName("플레이어의 위치가 사다리 범위에서 벗어날 경우, 예외를 던진다")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 3})
+    void findNextPositionTest_WhenOutOfBounds_ThrowException(int playerPosition) {
+        Line line = new Line(List.of(Stick.NON_EXISTENCE, Stick.EXISTENCE));
+
+        assertThatThrownBy(() -> line.findNextPosition(playerPosition))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("플레이어의 위치가 사다리를 벗어났습니다.");
     }
 
     @DisplayName("해당 위치에 가로 라인이 존재하는 지 테스트")
