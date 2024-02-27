@@ -6,6 +6,7 @@ import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderHeight;
 import laddergame.domain.ladder.LineSize;
 import laddergame.domain.player.Players;
+import laddergame.domain.result.Trace;
 import laddergame.domain.target.Target;
 import laddergame.domain.target.Targets;
 
@@ -31,7 +32,9 @@ public class LadderGame {
         Map<String, String> map = new HashMap<>();
 
         for (int i=0; i< players.getSize(); i++) {
-            Target target = targets.convertToTarget(ladder.move(i));
+            Trace trace = ladder.move(i);
+            Target target = targets.convertToTarget(trace);
+
             map.put(players.getPlayerName(i), target.getTarget());
         }
 

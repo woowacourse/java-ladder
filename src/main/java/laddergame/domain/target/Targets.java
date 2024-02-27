@@ -21,7 +21,7 @@ public class Targets {
         return targets;
     }
 
-    private List<laddergame.domain.target.Target> convertToTargets(final List<String> input) {
+    private List<Target> convertToTargets(final List<String> input) {
         return input.stream()
                 .map(laddergame.domain.target.Target::new)
                 .toList();

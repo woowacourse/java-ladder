@@ -75,6 +75,6 @@ public class LadderController {
     }
 
     private String getDisplayingPlayers() {
-        return inputView.readPlayersToShowResult();
+        return inputView.readDisplayingPlayers();
     }
 }

@@ -15,16 +15,11 @@ public class Players {
         this.players = names;
     }
 
-    private List<Player> convertToPlayers(final List<String> input) {
-        return input.stream()
-                .map(Player::new)
-                .toList();
-    }
-
-    private void validateDuplication(final List<Player> names) {
-        if (names.size() != Set.copyOf(names).size()) {
-            throw new IllegalArgumentException("[ERROR] 이름은 중복 될 수 없습니다.");
-        }
+    public Player findByName(final String name) {
+        return players.stream()
+                .filter(player -> player.getName().equals(name))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 참가자이름입니다."));
     }
 
     public int getSize() {
@@ -39,10 +34,15 @@ public class Players {
         return Collections.unmodifiableList(players);
     }
 
-    public Player findByName(final String name) {
-        return players.stream()
-                .filter(player -> player.getName().equals(name))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 참가자이름입니다."));
+    private List<Player> convertToPlayers(final List<String> input) {
+        return input.stream()
+                .map(Player::new)
+                .toList();
+    }
+
+    private void validateDuplication(final List<Player> names) {
+        if (names.size() != Set.copyOf(names).size()) {
+            throw new IllegalArgumentException("[ERROR] 이름은 중복 될 수 없습니다.");
+        }
     }
 }

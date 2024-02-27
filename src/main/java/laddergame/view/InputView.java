@@ -34,7 +34,7 @@ public class InputView {
         return getParseInt(input);
     }
 
-    public String readPlayersToShowResult() {
+    public String readDisplayingPlayers() {
         System.out.println("결과를 보고 싶은 사람은?");
         return scanner.nextLine();
     }

@@ -16,14 +16,14 @@ public class Player {
         this.name = input;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private void validateLength(final String input) {
         if (input.length() > MAX_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 이름길이는 5글자를 넘을 수 없습니다.");
         }
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override

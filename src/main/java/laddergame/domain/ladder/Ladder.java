@@ -18,8 +18,7 @@ public class Ladder {
     public static Ladder create(
             final LineSize lineSize,
             final LadderHeight height,
-            final PointGenerator pointGenerator)
-    {
+            final PointGenerator pointGenerator) {
         List<Line> lines = Stream.generate(() -> Line.create(lineSize, pointGenerator))
                 .limit(height.getHeight())
                 .toList();
