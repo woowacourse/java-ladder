@@ -5,7 +5,6 @@ import ladder.domain.game.PlayResult;
 import ladder.domain.generator.BooleanGenerator;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderGenerator;
 import ladder.domain.game.Players;
 import ladder.dto.LadderDto;
 import ladder.dto.PlayersDto;
@@ -20,14 +19,14 @@ import java.util.function.Supplier;
 public class LadderController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LadderGenerator ladderGenerator;
+    private final BooleanGenerator booleanGenerator;
 
     public LadderController(final InputView inputView,
                             final OutputView outputView,
                             final BooleanGenerator booleanGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.ladderGenerator = new LadderGenerator(booleanGenerator);
+        this.booleanGenerator = booleanGenerator;
     }
 
     public void run() {
@@ -36,7 +35,7 @@ public class LadderController {
         final List<String> prizes = Converter.stringToList(readPrizes);
         final Height height = retryOnException(this::readLadderHeight);
 
-        final Ladder ladder = ladderGenerator.generate(players, height);
+        final Ladder ladder = new Ladder(players.count(), height.getValue(), booleanGenerator);
         printLadder(players, ladder, prizes);
 
         final LadderGame ladderGame = new LadderGame(ladder, players, prizes);
