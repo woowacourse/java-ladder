@@ -32,6 +32,7 @@ class LineTest {
         for (int i = 0; i < points.size() - 1; i++) {
             if (points.get(i).isConnected() && points.get(i + 1).isConnected()) {
                 isOverlap = true;
+                break;
             }
         }
 
