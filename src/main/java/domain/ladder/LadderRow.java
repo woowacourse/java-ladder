@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import dto.RowPatternDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BooleanSupplier;
@@ -23,15 +22,15 @@ public class LadderRow {
         }
     }
 
+    List<Boolean> getRowPattern() {
+        return rowPattern;
+    }
+
     private boolean isPlaceableWhenTryingToPlace(int index, boolean isPlacing) {
         return isPlacing && isPreviousIndexEmpty(index);
     }
 
     private boolean isPreviousIndexEmpty(int index) {
         return index == 0 || !rowPattern.get(index - 1);
-    }
-
-    public RowPatternDto getRowPattern() {
-        return new RowPatternDto(List.copyOf(rowPattern));
     }
 }

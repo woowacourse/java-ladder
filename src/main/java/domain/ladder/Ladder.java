@@ -29,15 +29,18 @@ public class Ladder {
     }
 
     public void drawLines(BooleanSupplier patternCreationStrategy) {
-        rows.forEach(row -> {
-            row.createPattern(patternCreationStrategy);
-            ladderIndexConverter.swapByRowPattern(row.getRowPattern());
-        });
+        rows.forEach(row -> row.createPattern(patternCreationStrategy));
+
+        for (int i = rows.size() - 1; i >= 0; i--) {
+            List<Boolean> rowPattern = rows.get(i).getRowPattern();
+            ladderIndexConverter.swapByRowPattern(rowPattern);
+        }
     }
+
 
     public Result getResultByName(String name) {
         int index = players.getIndexByName(name);
-        int resultIndex = ladderIndexConverter.getMappedIndexByPlayerIndex(index);
+        int resultIndex = ladderIndexConverter.getResultIndexByPlayerIndex(index);
         return results.get(resultIndex);
     }
 
@@ -57,6 +60,7 @@ public class Ladder {
     public List<RowPatternDto> getLadderPatterns() {
         return rows.stream()
                 .map(LadderRow::getRowPattern)
+                .map(RowPatternDto::new)
                 .toList();
     }
 
