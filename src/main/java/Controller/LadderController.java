@@ -53,7 +53,7 @@ public class LadderController {
         Players searchedPlayer = readWithRetry(this::readSearchingPlayers, players);
 
         if (searchedPlayer.isCountOne()) {
-            Prize prize = playersPrize.searchPrize(searchedPlayer);
+            Prize prize = playersPrize.searchOnePlayerPrize(searchedPlayer);
             outputView.printGameResult(prize);
             showGameResult(playersPrize, players);
         }

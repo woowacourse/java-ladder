@@ -9,7 +9,6 @@ public class LadderGame {
     private final Players players;
     private final Prizes prizes;
 
-
     public LadderGame(Ladder ladder, Players players, Prizes prizes) {
         this.ladder = ladder;
         this.players = players;

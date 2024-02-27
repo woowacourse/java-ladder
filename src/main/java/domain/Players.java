@@ -40,12 +40,20 @@ public class Players {
                 .orElseThrow(() -> new IllegalArgumentException("참여자 중에서만 입력할 수 있습니다."));
     }
 
-    public int getCount() {
-        return players.size();
+    public Player findByIndex(int index) {  // TODO: 이렇게 갖고오는 게 디미터의 법칙 위반은 아닐까?
+        return players.get(index);
+    }
+
+    public boolean isCountMoreThan(int index) {
+        return players.size() > index;
     }
 
     public boolean isCountOne() {
         return players.size() == 1;
+    }
+
+    public int getCount() {  // TODO: 이렇게 갖고오는 게 디미터의 법칙 위반은 아닐까?
+        return players.size();
     }
 
     private void validate(List<Player> players) {
@@ -56,14 +64,6 @@ public class Players {
 
     private boolean hasDuplicate(List<Player> players) {
         return Set.copyOf(players).size() != players.size();
-    }
-
-    public Player findByIndex(int index) {
-        return players.get(index);
-    }
-
-    public boolean isCountMoreThan(int index) {
-        return players.size() > index;
     }
 
     public List<Player> getPlayers() {

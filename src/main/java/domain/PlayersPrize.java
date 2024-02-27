@@ -10,8 +10,8 @@ public class PlayersPrize {
         this.playersPrize = playersPrize;
     }
 
-    public Prize searchPrize(Players searchedPlayer) {  // TODO: 파라미터 타입과 파라미터명의 불일치
-        Player player = searchedPlayer.getPlayers().get(0);
+    public Prize searchOnePlayerPrize(Players players) {  // TODO: 파라미터 타입과 파라미터명의 불일치
+        Player player = players.getPlayers().get(0);
         return playersPrize.get(player);
     }
 
