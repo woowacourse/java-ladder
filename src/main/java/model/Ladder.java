@@ -39,7 +39,11 @@ public class Ladder {
         return lines;
     }
 
-    public int climb(final int i) {
-        return 1;
+    public int climb(final int startIndex) {
+        int currentIndex = startIndex;
+        for (Line line : lines) {
+            currentIndex = line.move(currentIndex);
+        }
+        return currentIndex;
     }
 }

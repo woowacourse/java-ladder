@@ -52,4 +52,32 @@ public class Line {
         Line line = (Line) o;
         return Objects.equals(paths, line.paths);
     }
+
+    public int move(int currentIndex) {
+        currentIndex = moveRight(currentIndex);
+        currentIndex = moveLeft(currentIndex);
+        return currentIndex;
+    }
+    
+    private int moveRight(int currentIndex) {
+        Path right = paths.get(currentIndex);
+        if (right.isExist()) {
+            currentIndex++;
+        }
+        return currentIndex;
+    }
+    
+    private int moveLeft(int currentIndex) {
+        int leftIndex = currentIndex - 1;
+        Path left = paths.get(leftIndex);
+        if (canMove(leftIndex) && left.isExist()) {
+            currentIndex--;
+        }
+        return currentIndex;
+    }
+
+    // TODO: 기똥찬 이름 고민
+    private boolean canMove(final int leftIndex) {
+        return leftIndex > 0;
+    }
 }
