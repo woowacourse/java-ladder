@@ -14,7 +14,7 @@ public class People {
         this.values = new ArrayList<>(copy);
     }
 
-    private static void validateCount(List<Person> values) {
+    private void validateCount(List<Person> values) {
         if (values.size() < MIN_COUNT) {
             throw new IllegalArgumentException("사다리 게임에 참여하는 사람의 수는 2명 이상 이여야 합니다.");
         }

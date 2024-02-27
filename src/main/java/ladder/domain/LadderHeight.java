@@ -10,7 +10,7 @@ public class LadderHeight {
         this.value = value;
     }
 
-    private static void validateMin(int value) {
+    private void validateMin(int value) {
         if (value < MIN_HEIGHT) {
             throw new IllegalArgumentException("사다리의 높이는 1 이상의 정수이어야 합니다.");
         }
