@@ -9,7 +9,6 @@ import domain.player.Players;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import support.TrueGenerator;
-import view.OutputView;
 
 public class LadderTest {
     private final BooleanGenerator trueGenerator = new TrueGenerator();
@@ -44,7 +43,6 @@ public class LadderTest {
          *  |=====|     |=====|
          */
         Ladder ladder = new Ladder(trueGenerator, height, players.getPlayerCount());
-        OutputView.printLadder(ladder, 5);
 
         // when
         ladder.play(players);
