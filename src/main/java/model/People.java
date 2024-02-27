@@ -34,11 +34,16 @@ public class People {
 
     public List<String> getNames() {
         return personGroup.stream()
-                .map(Person::getName)
+                .map(Person::getPersonName)
+                .map(PersonName::name)
                 .toList();
     }
 
     public int getPersonCount() {
         return personGroup.size();
+    }
+
+    public List<Person> getPersonGroup() {
+        return personGroup;
     }
 }

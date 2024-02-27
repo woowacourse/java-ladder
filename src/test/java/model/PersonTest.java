@@ -20,7 +20,7 @@ class PersonTest {
     void createPerson() {
         String name = "moly";
         Person person = Person.from(name, 0);
-        assertThat(person.getName()).isEqualTo(name);
+        assertThat(person.getPersonName()).isEqualTo(new PersonName(name));
         assertThat(person.getDepth()).isZero();
         assertThat(person.getColumn()).isZero();
     }

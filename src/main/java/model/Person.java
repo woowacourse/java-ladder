@@ -36,8 +36,8 @@ public class Person {
         position = position.getBelowPosition();
     }
 
-    public String getName() {
-        return personName.name();
+    public PersonName getPersonName() {
+        return personName;
     }
 
     public int getDepth() {
