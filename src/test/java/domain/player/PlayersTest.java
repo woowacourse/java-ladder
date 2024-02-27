@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -53,5 +54,27 @@ class PlayersTest {
         Assertions.assertThatThrownBy(() -> players.get(2))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("주어진 인덱스가 범위를 벗어납니다.");
+    }
+
+    @Test
+    @DisplayName("이름으로 올바르게 인덱스를 가져온다")
+    void getIndexByNameTest() {
+        // given
+        Players players = new Players(List.of("aru", "pobi"));
+        // when
+        int actual = players.getIndexByName("aru");
+        // then
+        Assertions.assertThat(actual).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("이름이 존재하지 않는 경우, 인덱스를 가져오려고 할 때 예외가 발생한다.")
+    void getIndexByNameDoesNotExistsTest() {
+        // given
+        Players players = new Players(List.of("aru", "pobi"));
+        // when, then
+        assertThatThrownBy(() -> players.getIndexByName("woowa"))
+                .isInstanceOf(NoSuchElementException.class)
+                .hasMessage("존재하지 않는 이름입니다.");
     }
 }
