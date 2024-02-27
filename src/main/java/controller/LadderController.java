@@ -8,6 +8,7 @@ import domain.player.PlayerName;
 import domain.player.PlayerNames;
 import view.InputView;
 import view.OutputView;
+import view.command.Command;
 
 import java.util.Arrays;
 import java.util.List;
@@ -37,13 +38,13 @@ public class LadderController extends RetryableController {
 
     private void findPlayerResult(Ladder ladder) {
         String playerName;
-        while (!(playerName = inputView.readPlayerNameForGetResult()).equals(InputView.COMMAND_FINISH)) {
+        while (!(playerName = inputView.readPlayerNameForGetResult()).equals(Command.FINISH.getText())) {
             outputView.printPlayerLadderResult(getPlayerLadderResult(ladder, playerName));
         }
     }
 
     private Map<String, String> getPlayerLadderResult(Ladder ladder, String playerName) {
-        if (playerName.equals(InputView.COMMAND_ALL)) {
+        if (playerName.equals(Command.ALL.getText())) {
             return ladder.findAllPlayersLadderResultValue();
         }
         return ladder.findSinglePlayerLadderResultValue(playerName);

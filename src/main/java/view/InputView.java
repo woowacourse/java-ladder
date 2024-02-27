@@ -1,6 +1,7 @@
 package view;
 
 import common.exception.model.IOException;
+import view.command.Command;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -14,8 +15,6 @@ public class InputView {
     public static final String INTEGER_FORMAT_ERROR_MESSAGE = "정수 형태만 입력 가능합니다";
     public static final String PLAYER_NAMES_INPUT_DELIMITER = ",";
     public static final String LADDER_RESULTS_INPUT_DELIMITER = ",";
-    public static final String COMMAND_ALL = "all";
-    public static final String COMMAND_FINISH = "fin";
 
     private final Scanner scanner;
 
@@ -29,7 +28,7 @@ public class InputView {
 
         validatePlayerNamesFormat(input);
         String[] playerNames = splitPlayerNames(input);
-        validateIsBannedName(playerNames);
+        validateIsNameDuplicatedWithCommand(playerNames);
 
         return playerNames;
     }
@@ -40,11 +39,11 @@ public class InputView {
         }
     }
 
-    private void validateIsBannedName(String[] playerNames) {
-        boolean isBannedName = Arrays.stream(playerNames)
-                .anyMatch(name -> name.equals(COMMAND_ALL) || name.equals(COMMAND_FINISH));
+    private void validateIsNameDuplicatedWithCommand(String[] playerNames) {
+        boolean isCommand = Arrays.stream(playerNames)
+                .anyMatch(Command::isCommand);
 
-        if (isBannedName) {
+        if (isCommand) {
             throw new IOException(BANNED_PLAYER_NAMES_INPUT_ERROR_MESSAGE);
         }
     }
