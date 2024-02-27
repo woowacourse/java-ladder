@@ -23,6 +23,7 @@ public class User {
         validateNameLength(userName);
         validateNameEngFormat(userName);
         validateBlankInName(userName);
+        validateBannedName(userName);
     }
 
     private void validateNameLength(String name) {
@@ -44,6 +45,8 @@ public class User {
     }
 
     private void validateBannedName(String name) {
-
+        if (name.equals("all")) {
+            throw new IllegalArgumentException("[ERROR] 사용자의 이름으로 'all'은 허용하지 않습니다.");
+        }
     }
 }
