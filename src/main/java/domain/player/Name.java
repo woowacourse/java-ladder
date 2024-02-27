@@ -15,7 +15,7 @@ public record Name(String value) {
 
     private void validateAvailableLength(String inputName) {
         if (inputName.length() > MAXIMUM_NAME_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("입력값은 5자를 초과할 수 없습니다.");
         }
     }
 
