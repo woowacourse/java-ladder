@@ -64,8 +64,8 @@ public class PointTest {
 
     private void assertPoint(Point point, int row, int column) {
         assertAll(() -> {
-            assertEquals(point.getColumn(), column);
-            assertEquals(point.getRow(), row);
+            assertEquals(point.column(), column);
+            assertEquals(point.row(), row);
         });
     }
 }
