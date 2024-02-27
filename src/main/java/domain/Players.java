@@ -26,7 +26,7 @@ public class Players {
         }
     }
 
-    public int findIndexOfPlayer(String name) {
+    public int findPositionOfPlayer(String name) {
         return players.indexOf(findPlayerByName(name));
     }
 

@@ -21,8 +21,9 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public String inputResultName() {
+    public String inputPlayerName() {
         System.out.println("\n결과를 보고 싶은 사람은?");
+        // TODO: validate
         return scanner.nextLine();
     }
 }

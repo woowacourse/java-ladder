@@ -25,7 +25,7 @@ class PlayersTest {
         ));
         String resultName = "crong";
 
-        int index = players.findIndexOfPlayer(resultName);
+        int index = players.findPositionOfPlayer(resultName);
         assertThat(index).isEqualTo(2);
     }
 }
