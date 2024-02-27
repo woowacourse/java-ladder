@@ -2,6 +2,7 @@ package controller;
 
 import domain.*;
 import util.BooleanGenerator;
+import util.RetryUtil;
 import view.InputView;
 import view.LadderShape;
 import view.OutputView;
@@ -25,9 +26,9 @@ public class LadderGame {
     }
 
     public void start() {
-        Participants participants = new Participants(inputName());
-        Results results = new Results(inputView.inputResults(), participants.getParticipantsCount());
-        Ladder ladder = new Ladder(inputView.inputHeight());
+        Participants participants = RetryUtil.retryUntilNoException(this::makeParticipants);
+        Results results = RetryUtil.retryUntilNoException(() -> makeResults(participants));
+        Ladder ladder = RetryUtil.retryUntilNoException(this::makeLadder);
 
         ladder.makeLadder(participants.getParticipantsCount(), booleanGenerator);
         printLadder(ladder, participants, results);
@@ -37,10 +38,22 @@ public class LadderGame {
         printLadderGameResult(participants, results);
     }
 
-    private List<String> inputName() {
+    private Participants makeParticipants() {
         String input = inputView.inputName();
 
-        return List.of(input.split(","));
+        return new Participants(List.of(input.split(",")));
+    }
+
+    private Results makeResults(Participants participants) {
+        String input = inputView.inputResults();
+
+        return new Results(input, participants.getParticipantsCount());
+    }
+
+    private Ladder makeLadder() {
+        String input = inputView.inputHeight();
+
+        return new Ladder(input);
     }
 
     private void printLadder(Ladder ladder, Participants participants, Results results) {

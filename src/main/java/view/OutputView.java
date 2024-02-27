@@ -5,7 +5,7 @@ import java.util.List;
 public class OutputView {
 
     public void printParticipantLineUp(String result) {
-        System.out.println("\n실행 결과\n" + result);
+        System.out.println("\n사다리 결과\n" + result);
     }
 
     public void printLadderOutput(List<String> ladder) {
