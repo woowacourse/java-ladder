@@ -45,6 +45,10 @@ public class Players {
         return players.size();
     }
 
+    public Player getPlayer(int index) {
+        return players.get(index);
+    }
+
     public List<Player> getPlayers() {
         return new ArrayList<>(players);
     }

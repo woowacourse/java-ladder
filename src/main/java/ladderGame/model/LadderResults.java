@@ -13,6 +13,10 @@ public class LadderResults {
         }
     }
 
+    public LadderResult getLadderResult(int index) {
+        return ladderResults.get(index);
+    }
+
     public List<LadderResult> getLadderResults() {
         return new ArrayList<>(ladderResults);
     }
