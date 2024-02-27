@@ -32,14 +32,14 @@ public class RetryableController {
         }
     }
 
-    protected void retryNoneReturn(final Runnable runnable) {
+    protected void retry(final Runnable runnable) {
         validateRetryCountLimit();
         try {
             runnable.run();
             retryCount = 0;
         } catch (Exception exception) {
             outputView.printErrorMessage(exception.getMessage());
-            retryNoneReturn(runnable);
+            retry(runnable);
         }
     }
 

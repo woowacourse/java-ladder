@@ -31,7 +31,7 @@ public class LadderController extends RetryableController {
     }
 
     public void matchPlayerToResult(Ladder ladder) {
-        retryNoneReturn(() -> findPlayerResult(ladder));
+        retry(() -> findPlayerResult(ladder));
         outputView.printEndMessage();
     }
 
