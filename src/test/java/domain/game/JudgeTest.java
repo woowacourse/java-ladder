@@ -17,9 +17,9 @@ class JudgeTest {
     void does_prize_return_correctly_when_sequence_is_same_as_initial() {
         Names names = new Names(new String[]{"mang", "cho", "pobi"});
         Prizes prizes = new Prizes(new String[]{"1000", "500", "30000"});
-        Result result = new Result(List.of(0, 1, 2));
+        PathMapper pathMapper = new PathMapper(List.of(0, 1, 2));
 
-        Judge judge = new Judge(names, prizes, result);
+        Judge judge = new Judge(names, prizes, pathMapper);
 
         assertSoftly(softly -> {
                     softly.assertThat(judge.getPrize("mang")).isEqualTo(new Prize("1000"));
@@ -34,9 +34,9 @@ class JudgeTest {
     void does_prize_return_correctly_when_sequence_reversed() {
         Names names = new Names(new String[]{"mang", "cho", "pobi"});
         Prizes prizes = new Prizes(new String[]{"1000", "500", "30000"});
-        Result result = new Result(List.of(2, 1, 0));
+        PathMapper pathMapper = new PathMapper(List.of(2, 1, 0));
 
-        Judge judge = new Judge(names, prizes, result);
+        Judge judge = new Judge(names, prizes, pathMapper);
 
         assertSoftly(softly -> {
                     softly.assertThat(judge.getPrize("mang")).isEqualTo(new Prize("30000"));

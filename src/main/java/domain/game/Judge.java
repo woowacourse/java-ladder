@@ -7,12 +7,12 @@ import domain.db.Prizes;
 public class Judge {
     private final Names names;
     private final Prizes prizes;
-    private final Result result;
+    private final PathMapper pathMapper;
 
-    public Judge(final Names names, final Prizes prizes, final Result result) {
+    public Judge(final Names names, final Prizes prizes, final PathMapper pathMapper) {
         this.names = names;
         this.prizes = prizes;
-        this.result = result;
+        this.pathMapper = pathMapper;
     }
 
     // TODO: 캐싱 고려
@@ -31,7 +31,7 @@ public class Judge {
 
     private Prize getPrize(final int from) {
         try {
-            final int to = this.result.getOne(from);
+            final int to = this.pathMapper.find(from);
             return this.prizes.prizes().get(to);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new IllegalArgumentException("상품이 존재하지 않습니다.");

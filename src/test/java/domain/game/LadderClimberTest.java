@@ -11,7 +11,7 @@ import static domain.ladder.Bridge.EMPTY;
 import static domain.ladder.Bridge.EXIST;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class RowMoverTest {
+class LadderClimberTest {
 
     @Test
     @DisplayName("한 줄을 정상적으로 이동시키는가")
@@ -22,7 +22,7 @@ class RowMoverTest {
         Row row = new Row(3, strategy);
         List<Integer> players = List.of(0, 1, 2, 3);
 
-        List<Integer> actual = RowMover.move(row, players);
+        List<Integer> actual = LadderClimber.climbDown(row, players);
 
         List<Integer> expected = List.of(1, 0, 3, 2);
         assertThat(actual).containsExactlyElementsOf(expected);
@@ -34,7 +34,7 @@ class RowMoverTest {
         Row row = new Row(3, (ignore) -> EMPTY);
         List<Integer> players = List.of(1, 2, 3, 4);
 
-        List<Integer> actual = RowMover.move(row, players);
+        List<Integer> actual = LadderClimber.climbDown(row, players);
 
         assertThat(actual).containsExactlyElementsOf(players);
     }

@@ -4,7 +4,7 @@ import domain.db.Prize;
 import domain.db.Prizes;
 import domain.game.Judge;
 import domain.game.LadderGame;
-import domain.game.Result;
+import domain.game.PathMapper;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.RandomBridgeMakingStrategy;
@@ -13,7 +13,7 @@ import view.OutputView;
 
 import java.util.function.Supplier;
 
-import static view.OutputView.printResult;
+import static view.OutputView.printLadderGame;
 
 public class LadderController {
 
@@ -23,10 +23,10 @@ public class LadderController {
         final Height height = retryOnException(LadderController::getHeight);
 
         final Ladder ladder = getLadder(names, height);
-        final Result result = LadderGame.play(ladder);
-        final Judge judge = new Judge(names, prizes, result);
+        final PathMapper pathMapper = LadderGame.play(ladder);
+        final Judge judge = new Judge(names, prizes, pathMapper);
 
-        printResult(names, ladder, prizes);
+        printLadderGame(names, ladder, prizes);
         searchGameResult(judge);
     }
 

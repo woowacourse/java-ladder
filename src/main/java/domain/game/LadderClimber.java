@@ -8,14 +8,14 @@ import java.util.List;
 
 import static java.util.Collections.swap;
 
-public class RowMover {
+public class LadderClimber {
 
-    public static List<Integer> move(final Row row, final List<Integer> from) {
+    public static List<Integer> climbDown(final Row row, final List<Integer> from) {
         final List<Integer> to = getModifiableListContainsElement(from.get(0));
         for (final Bridge bridge : row.getBridges()) {
-            final Integer bridgeRightSideIndex = from.get(to.size());
-            to.add(bridgeRightSideIndex);
-            swapLastIfBridgeExist(bridge, to);
+            final Integer rightIdx = from.get(to.size());
+            to.add(rightIdx);
+            swapLastIfBridgeContinuous(bridge, to);
         }
         return to;
     }
@@ -24,7 +24,7 @@ public class RowMover {
         return new ArrayList<>(List.of(elem));
     }
 
-    private static void swapLastIfBridgeExist(final Bridge bridge, final List<Integer> to) {
+    private static void swapLastIfBridgeContinuous(final Bridge bridge, final List<Integer> to) {
         if (!bridge.isExist()) {
             return;
         }
