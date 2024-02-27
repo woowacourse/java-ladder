@@ -1,9 +1,10 @@
 package view;
 
-import common.exception.message.ExceptionMessage;
+import domain.result.message.ResultExceptionMessage;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import view.message.InputExceptionMessage;
 
 public class InputView {
     public static final String INPUT_DELIMITER = ",";
@@ -27,7 +28,7 @@ public class InputView {
 
     private void validatePlayerNamesInput(final String playerNamesInput) {
         if (!playerNamesInput.contains(INPUT_DELIMITER)) {
-            throw new IllegalArgumentException(ExceptionMessage.PLAYER_NAMES_INPUT_FORMAT);
+            throw new IllegalArgumentException(InputExceptionMessage.PLAYER_NAMES_INPUT_FORMAT);
         }
     }
 
@@ -42,7 +43,7 @@ public class InputView {
         try {
             Integer.parseInt(value);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ExceptionMessage.INTEGER_FORMAT);
+            throw new IllegalArgumentException(InputExceptionMessage.INTEGER_FORMAT);
         }
     }
 
@@ -57,7 +58,7 @@ public class InputView {
 
     private void validateLadderResultInput(String ladderResult) {
         if (!ladderResult.contains(INPUT_DELIMITER)) {
-            throw new IllegalArgumentException(ExceptionMessage.LADDER_RESULT_INPUT_FORMAT);
+            throw new IllegalArgumentException(ResultExceptionMessage.LADDER_RESULT_INPUT_FORMAT);
         }
     }
 }

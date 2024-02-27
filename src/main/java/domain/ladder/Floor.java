@@ -1,7 +1,6 @@
 package domain.ladder;
 
-import common.exception.message.ExceptionMessage;
-import java.util.Collections;
+import domain.ladder.message.LadderExceptionMessage;
 import java.util.List;
 
 public class Floor {
@@ -23,11 +22,11 @@ public class Floor {
 
     private void isSerialBridge(LadderBridge beforeBridge, LadderBridge nextBridge) {
         if (beforeBridge.equals(LadderBridge.BRIDGE) && beforeBridge == nextBridge) {
-            throw new IllegalArgumentException(ExceptionMessage.SERIAL_LADDER_BRIDGE);
+            throw new IllegalArgumentException(LadderExceptionMessage.SERIAL_LADDER_BRIDGE);
         }
     }
 
     public List<LadderBridge> getBridges() {
-        return Collections.unmodifiableList(bridges);
+        return bridges;
     }
 }

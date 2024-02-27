@@ -1,12 +1,13 @@
 package controller;
 
-import common.exception.message.ExceptionMessage;
+import domain.ladder.message.LadderExceptionMessage;
 import java.util.Scanner;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import view.InputView;
 import view.OutputView;
+import view.message.InputExceptionMessage;
 
 class RetryHandlerTest {
 
@@ -17,7 +18,7 @@ class RetryHandlerTest {
 
         Assertions.assertThatThrownBy(() -> repeatMethodOverLimitCount(retryHandler))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.READ_LIMIT_OVER);
+                .hasMessage(InputExceptionMessage.READ_LIMIT_OVER);
     }
 
     private void repeatMethodOverLimitCount(RetryHandler retryHandler) {

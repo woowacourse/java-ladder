@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import common.exception.message.ExceptionMessage;
+import domain.ladder.message.LadderExceptionMessage;
 import java.util.EnumSet;
 
 public enum LadderBridge {
@@ -17,7 +17,7 @@ public enum LadderBridge {
         return EnumSet.allOf(LadderBridge.class).stream()
                 .filter(value -> value.exist == exist)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NOT_FOUND_BRIDGE));
+                .orElseThrow(() -> new IllegalArgumentException(LadderExceptionMessage.NOT_FOUND_BRIDGE));
     }
 
     public boolean isExist(LadderBridge ladderBridge) {

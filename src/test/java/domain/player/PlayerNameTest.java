@@ -1,7 +1,7 @@
 package domain.player;
 
-import common.exception.message.ExceptionMessage;
-import domain.player.PlayerName;
+import domain.ladder.message.LadderExceptionMessage;
+import domain.player.message.PlayerExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -20,7 +20,7 @@ public class PlayerNameTest {
         void createPlayerNameFailByBlank(String name) {
             Assertions.assertThatThrownBy(() -> new PlayerName(name))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(ExceptionMessage.PLAYER_NAME_BLANK);
+                    .hasMessage(PlayerExceptionMessage.PLAYER_NAME_BLANK);
         }
     }
 }

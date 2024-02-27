@@ -2,9 +2,9 @@ package controller;
 
 import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
+import domain.ladder.strategy.RandomBridgeGenerator;
 import domain.player.PlayerName;
 import domain.player.PlayerNames;
-import domain.ladder.strategy.RandomBridgeGenerator;
 import java.util.List;
 import view.InputView;
 import view.OutputView;

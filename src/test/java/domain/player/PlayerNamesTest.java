@@ -1,8 +1,7 @@
 package domain.player;
 
-import common.exception.message.ExceptionMessage;
-import domain.player.PlayerName;
-import domain.player.PlayerNames;
+import domain.ladder.message.LadderExceptionMessage;
+import domain.player.message.PlayerExceptionMessage;
 import java.util.List;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
@@ -42,7 +41,7 @@ class PlayerNamesTest {
         void createPlayerNamesFailByRange(List<PlayerName> playerNames) {
             Assertions.assertThatThrownBy(() -> new PlayerNames(playerNames))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(ExceptionMessage.PLAYER_NAMES_RANGE);
+                    .hasMessage(PlayerExceptionMessage.PLAYER_NAMES_RANGE);
         }
 
         private static Stream<Arguments> createPlayerNamesFailByRangeArguments() {
@@ -79,7 +78,7 @@ class PlayerNamesTest {
             // then
             Assertions.assertThatThrownBy(() -> new PlayerNames(playerNames))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(ExceptionMessage.PLAYER_NAMES_DUPLICATION);
+                    .hasMessage(PlayerExceptionMessage.PLAYER_NAMES_DUPLICATION);
         }
     }
 }

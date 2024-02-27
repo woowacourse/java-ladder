@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import common.exception.message.ExceptionMessage;
+import domain.ladder.message.LadderExceptionMessage;
 
 public class LadderHeight {
     public static final int HEIGHT_MIN_RANGE = 2;
@@ -15,7 +15,7 @@ public class LadderHeight {
 
     private void validateRange(final int height) {
         if (height < HEIGHT_MIN_RANGE || height > HEIGHT_MAX_RANGE) {
-            throw new IllegalArgumentException(ExceptionMessage.LADDER_HEIGHT_RANGE);
+            throw new IllegalArgumentException(LadderExceptionMessage.LADDER_HEIGHT_RANGE);
         }
     }
 

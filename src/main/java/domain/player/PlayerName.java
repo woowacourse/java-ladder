@@ -1,10 +1,10 @@
 package domain.player;
 
-import common.exception.message.ExceptionMessage;
+import domain.player.message.PlayerExceptionMessage;
 
 public class PlayerName {
-    private static final int MAX_NAME_LENGTH = 5;
-    private static final int MIN_NAME_LENGTH = 1;
+    public static final int MAX_NAME_LENGTH = 5;
+    public static final int MIN_NAME_LENGTH = 1;
 
     private final String name;
 
@@ -20,14 +20,14 @@ public class PlayerName {
 
     private void validateIsBlank(final String name) {
         if (name.isBlank()) {
-            throw new IllegalArgumentException(ExceptionMessage.PLAYER_NAME_BLANK);
+            throw new IllegalArgumentException(PlayerExceptionMessage.PLAYER_NAME_BLANK);
         }
     }
 
     private void validateNameLength(final String name) {
         int nameLength = name.length();
         if (nameLength > MAX_NAME_LENGTH || nameLength < MIN_NAME_LENGTH) {
-            throw new IllegalArgumentException(ExceptionMessage.PLAYER_NAME_LENGTH);
+            throw new IllegalArgumentException(PlayerExceptionMessage.PLAYER_NAME_LENGTH);
         }
     }
 

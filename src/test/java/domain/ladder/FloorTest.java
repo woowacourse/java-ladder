@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import common.exception.message.ExceptionMessage;
+import domain.ladder.message.LadderExceptionMessage;
 import domain.ladder.strategy.BridgeGeneratorStub;
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -23,6 +23,6 @@ public class FloorTest {
         // then
         Assertions.assertThatThrownBy(() -> new Floor(pointGenerator.generate(bridgeCount)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.SERIAL_LADDER_BRIDGE);
+                .hasMessage(LadderExceptionMessage.SERIAL_LADDER_BRIDGE);
     }
 }
