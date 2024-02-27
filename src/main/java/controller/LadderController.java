@@ -1,8 +1,6 @@
 package controller;
 
-import domain.Ladder;
-import domain.Players;
-import domain.Results;
+import domain.*;
 import util.generator.RandomLineGenerator;
 import view.InputView;
 import view.OutputView;
@@ -19,6 +17,12 @@ public class LadderController {
         Results results = readResults(players.getPlayers().size());
         Ladder ladder = readLadder(players);
         OutputView.printResult(players, ladder, results);
+        LadderGameResult ladderGameResult = new LadderGameResult(ladder, players, results);
+        while(true) {
+            Result result = ladderGameResult.get(players.findByName(InputView.readPlayer()));
+            OutputView.printOnePlayerResult(result);
+        }
+
     }
 
     private Ladder readLadder(Players players) {
@@ -49,5 +53,10 @@ public class LadderController {
             System.out.println(e.getMessage());
             return readPlayers();
         }
+    }
+
+    private void readPlayer() {
+        String player = InputView.readPlayer();
+
     }
 }

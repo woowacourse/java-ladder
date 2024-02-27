@@ -20,6 +20,13 @@ public class Players {
         }
     }
 
+    public Player findByName(String name) {
+        return players.stream()
+                .filter(player -> player.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어 이름입니다."));
+    }
+
     public int getWidth() {
         return players.size() - 1;
     }
