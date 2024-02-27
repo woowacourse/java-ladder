@@ -6,6 +6,8 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Line {
+    private static final String EXCEPTION_MESSAGE_UNAVAILABLE_BRIDGE = "유효하지 않은 다리가 생성되었습니다.";
+
     private final List<ConnectionStatus> connectionStatuses;
 
     public Line(ConnectionStatus... connectionStatuses) {
@@ -22,7 +24,7 @@ public class Line {
                 .anyMatch(i -> isContinuouslyConnected(connectionStatuses.get(i), connectionStatuses.get(i + 1)));
 
         if(isContinuous) {
-            throw new IllegalStateException("유효하지 않은 다리가 생성되었습니다.");
+            throw new IllegalStateException(EXCEPTION_MESSAGE_UNAVAILABLE_BRIDGE);
         }
     }
 

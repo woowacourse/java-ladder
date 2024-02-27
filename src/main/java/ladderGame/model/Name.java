@@ -6,6 +6,7 @@ public class Name {
     private static final Pattern NAME_PATTERN = Pattern.compile("^[a-zA-Z0-9]+$");
     private static final String EXCEPTION_MESSAGE_OVER_THAN_MAXIMUM = "이름은 최대 5글자까지 가능합니다.";
     private static final String EXCEPTION_MESSAGE_UNDEFINED_NAME = "이름은 영문과 숫자로만 입력해야 합니다.";
+    private static final String EXCEPTION_MESSAGE_NON_CONTAIN_NAME = "참여자 목록 중에서 골라야 합니다.";
     private static final int MAXIMUM_NAME_LENGTH = 5;
 
     private final String name;
@@ -34,7 +35,7 @@ public class Name {
 
     private void validate(Name name, Players players) {
         if(!players.contains(name)) {
-            throw new IllegalArgumentException("참여자 목록 중에서 골라야 합니다.");
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_NON_CONTAIN_NAME);
         }
     }
 

@@ -46,14 +46,14 @@ public class ResultView {
     }
 
     public void printResult(Player player, List<Prize> prizes) {
-        System.out.println(System.lineSeparator() + "실행 결과");
+        System.out.println(System.lineSeparator() + RESULT_PROMPT);
 
         int index = player.getPosition();
         System.out.printf("%s" + System.lineSeparator(), prizes.get(index).getPrize());
     }
 
     public void printAllResults(List<Player> players, List<Prize> prizes) {
-        System.out.println(System.lineSeparator() + "실행 결과");
+        System.out.println(System.lineSeparator() + RESULT_PROMPT);
 
         for(Player player : players) {
             int index = player.getPosition();

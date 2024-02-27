@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Prizes {
+    private static final String EXCEPTION_MESSAGE_INCORRECT_PRIZE_COUNT = "실행 결과의 수는 참가자의 수와 일치해야 합니다.";
+
     private final List<Prize> prizes;
 
     public Prizes(List<String> prizes, int playersCount) {
@@ -15,7 +17,7 @@ public class Prizes {
 
     private void validate(int prizesCount, int playersCount) {
         if(prizesCount != playersCount) {
-            throw new IllegalArgumentException("실행 결과의 수는 참가자의 수와 일치해야 합니다.");
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_INCORRECT_PRIZE_COUNT);
         }
     }
 
