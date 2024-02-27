@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -57,10 +58,30 @@ class PeopleTest {
     @DisplayName("이름의 글자 수를 셀 때 앞뒤 공백은 포함하지 않는다.")
     void countByRemovingSpaces() {
         // given
-        String names = "  pobi  , honux";
+        String names = "  pobi  ,honux";
 
         // when & then
+        People people = new People(names);
+
+        int length = people.getNames3().get(0).length();
+        assertThat(length).isEqualTo(4);
+
         assertThatCode(() -> new People(names))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("참여자를 생성한다.")
+    @Test
+    void createPeople() {
+        // when
+        People people = new People(List.of("pobi", "honux", "crong", "jk"));
+
+        // then
+        assertThat(people.getNames()).containsExactly(
+                new Name("pobi"),
+                new Name("honux"),
+                new Name("crong"),
+                new Name("jk")
+        );
     }
 }
