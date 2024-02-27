@@ -10,20 +10,14 @@ public class InputView {
     private InputView() {
     }
 
-    private static String input() {
-        return scanner.next();
+    public static String input() {
+        return scanner.nextLine();
     }
 
-    public static List<String> inputNames(String userPrompt) {
-        System.out.println(userPrompt);
+    public static List<String> inputNames() {
         String initialInput = input();
         return Arrays.stream(initialInput.split(","))
                      .map(String::trim)
                      .toList();
-    }
-
-    public static String inputHeight() {
-        System.out.println(UserMessage.HEIGHT_INPUT_PROMPT);
-        return input();
     }
 }
