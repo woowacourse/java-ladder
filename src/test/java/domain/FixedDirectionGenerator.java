@@ -1,4 +1,4 @@
-package domain.ladder;
+package domain;
 
 import domain.ladder.common.Direction;
 import util.DirectionGenerator;
@@ -9,7 +9,7 @@ public class FixedDirectionGenerator implements DirectionGenerator {
     List<Direction> fixedList;
     Integer index = 0;
 
-    FixedDirectionGenerator(List<Direction> fixedList) {
+    public FixedDirectionGenerator(List<Direction> fixedList) {
         this.fixedList = fixedList;
     }
 
