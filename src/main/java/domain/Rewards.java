@@ -8,4 +8,8 @@ public class Rewards {
     public Rewards(List<Reward> rewards) {
         this.rewards = rewards;
     }
+
+    public String getRewardByIndex(int index) {
+        return rewards.get(index).getReward();
+    }
 }

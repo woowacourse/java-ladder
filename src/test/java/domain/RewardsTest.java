@@ -1,5 +1,6 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.List;
@@ -13,5 +14,12 @@ public class RewardsTest {
     void createRewards() {
         assertThatCode(() -> new Rewards(List.of(new Reward("0"))))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("인덱스로 리워드를 찾습니다.")
+    @Test
+    void findRewardByIndex() {
+        Rewards rewards = new Rewards(List.of(new Reward("0"),new Reward("1000")));
+        assertThat(rewards.getRewardByIndex(1)).isEqualTo("1000");
     }
 }
