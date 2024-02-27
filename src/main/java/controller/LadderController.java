@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.HashSet;
+import java.util.Set;
 import model.Height;
 import model.Ladder;
 import model.LadderResult;
@@ -35,14 +36,18 @@ public class LadderController {
     private void printResult(LadderResult ladderResult, Players players) {
         var playerNames = new HashSet<>(players.getPlayers());
         while (!playerNames.isEmpty()) {
-            //TODO:인덴트 줄이기
-            String name = inputView.readPlayerNameToCheckPrize();
-            if (name.equals("all")) {
-                outputView.printAllPlayerResult(ladderResult.getPlayersPrizeResults());
-                break;
-            }
-            outputView.printOnePlayerPrize(name, ladderResult.getPrize(name));
-            playerNames.remove(new Player(name));
+            readNameAndPrintResult(ladderResult, playerNames);
         }
+    }
+
+    private void readNameAndPrintResult(LadderResult ladderResult, Set<Player> playerNames) {
+        var name = inputView.readPlayerNameToCheckPrize();
+        if (name.equals("all")) {
+            outputView.printAllPlayerResult(ladderResult.getPlayersPrizeResults());
+            playerNames.clear();
+            return;
+        }
+        outputView.printOnePlayerPrize(name, ladderResult.getPrize(name));
+        playerNames.remove(new Player(name));
     }
 }
