@@ -3,6 +3,7 @@ package domain;
 public class Prize {
     private static final int MINIMUM_PRIZE_LENGTH = 1;
     private static final int MAXIMUM_PRIZE_LENGTH = 5;
+
     private final String prize;
 
     public Prize(String prize) {
@@ -20,4 +21,3 @@ public class Prize {
         return prize.length() < MINIMUM_PRIZE_LENGTH || prize.length() > MAXIMUM_PRIZE_LENGTH;
     }
 }
-

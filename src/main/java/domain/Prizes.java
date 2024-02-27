@@ -14,4 +14,8 @@ public class Prizes {
     public int getSize() {
         return prizes.size();
     }
+
+    public Prize get(int index) {
+        return prizes.get(index);
+    }
 }
