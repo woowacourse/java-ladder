@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
+    private static final String PLAYER_PRIZE_COUNT_EXCEPTION_MESSAGE = "[ERROR] 참가자 수: %d, 상품 수: %d - 두 수는 같아야 합니다.";
+
     private final List<LadderRow> rows;
     private final Players players;
     private final Prizes prizes;
@@ -20,6 +22,7 @@ public class Ladder {
 
     public static Ladder create(Height height, Players players, Prizes prizes,
                                 LadderRungGenerator ladderRungGenerator) {
+        validatePlayersAndPrizesCount(players, prizes);
         int width = players.getPlayerCount() - 1;
         List<LadderRow> rows = new ArrayList<>();
         for (int i = 0; i < height.getValue(); i++) {
@@ -27,6 +30,16 @@ public class Ladder {
             rows.add(ladderRow);
         }
         return new Ladder(rows, players, prizes);
+    }
+
+    private static void validatePlayersAndPrizesCount(Players players, Prizes prizes) {
+        int playerCount = players.getPlayerCount();
+        int prizeCount = prizes.count();
+        if (playerCount != prizeCount) {
+            throw new IllegalArgumentException(
+                    String.format(PLAYER_PRIZE_COUNT_EXCEPTION_MESSAGE, playerCount, prizeCount)
+            );
+        }
     }
 
     public List<String> climb() {

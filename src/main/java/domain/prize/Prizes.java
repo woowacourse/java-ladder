@@ -17,4 +17,8 @@ public class Prizes {
                 .map(Prize::new)
                 .collect(collectingAndThen(toList(), Prizes::new));
     }
+
+    public int count() {
+        return prizes.size();
+    }
 }
