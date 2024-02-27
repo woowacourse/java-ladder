@@ -1,5 +1,6 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 import java.util.List;
@@ -26,5 +27,16 @@ class PrizeResultsTest {
                 new Prizes(List.of("꽝", "당첨", "꽝", "당첨"))
         )).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(String.format("실행 결과는 참여자와 같은 갯수를 입력해주세요. 입력 : %d개", 4));
+    }
+
+    @Test
+    @DisplayName("all을 입력하면 false, 그 외의 입력에 대해서는 true을 리턴한다.")
+    void checkOperate() {
+        PrizeResults prizeResults = PrizeResults.of(
+                new Players(List.of("wiib", "pobi", "haha")),
+                new Prizes(List.of("꽝", "당첨", "꽝")));
+
+        assertThat(prizeResults.checkOperate("all")).isFalse();
+        assertThat(prizeResults.checkOperate("wiib")).isTrue();
     }
 }
