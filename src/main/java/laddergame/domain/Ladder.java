@@ -1,22 +1,17 @@
 package laddergame.domain;
 
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import laddergame.domain.strategy.BuildStrategy;
 
 public class Ladder {
-    private final List<Line> lines;
+    private final Lines lines;
     private final Players players;
     private final Height height;
     private final PlayersResults playersResults;
 
     public Ladder(
             final Players players, final Height height, final Results results, final BuildStrategy pointBuildStrategy) {
-        this.lines = IntStream.range(0, height.getHeight())
-                .mapToObj(i -> new Line(players.getPlayersSize(), pointBuildStrategy))
-                .collect(Collectors.toList());
+        this.lines = Lines.from(height, players, pointBuildStrategy);
         this.players = players;
         this.height = height;
         this.playersResults = makeResults(results);
@@ -37,18 +32,18 @@ public class Ladder {
 
     private int findResult(int playerIndex) {
         for (int nowHeight = 0; nowHeight < height.getHeight(); nowHeight++) {
-            Direction direction = lines.get(nowHeight).getDirection(playerIndex);
+            Direction direction = lines.getDirection(nowHeight, playerIndex);
             playerIndex = playerIndex + direction.getMovement();
         }
         return playerIndex;
     }
 
     public int getLadderSize() {
-        return lines.size();
+        return lines.getSize();
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public Line getLine(final int lineIndex) {
+        return lines.getLine(lineIndex);
     }
 
     public PlayersResults getPlayersResults() {

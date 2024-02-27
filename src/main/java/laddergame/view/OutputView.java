@@ -48,7 +48,7 @@ public class OutputView {
 
     private void writeLadder(final Ladder ladder) {
         IntStream.range(0, ladder.getLadderSize())
-                .forEach(i -> writeLine(ladder.getLines().get(i)));
+                .forEach(lineIndex -> writeLine(ladder.getLine(lineIndex)));
     }
 
     private void writeLine(final Line line) {
