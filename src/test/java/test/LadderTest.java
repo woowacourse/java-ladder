@@ -35,6 +35,8 @@ class LadderTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    // |     |     |     |     |
+    // |     |     |     |     |
     @DisplayName("사다리 생성 테스트 : 가로선이 없는 경우")
     @Test
     void makeLadderTest() {
@@ -48,6 +50,8 @@ class LadderTest {
         assertThat(connectionElement).containsExactly(Boolean.FALSE);
     }
 
+    // |     |     |     |     |
+    // |     |     |     |     |
     @DisplayName("사다리 결과 테스트 : 가로선이 없는 경우")
     @ParameterizedTest
     @ValueSource(ints = {0,1,2,3,4})
@@ -56,6 +60,8 @@ class LadderTest {
         assertThat(testLadder.getResultOf(lineNumber)).isEqualTo(lineNumber);
     }
 
+    // |-----|     |-----|     |
+    // |-----|     |-----|     |
     @DisplayName("사다리 결과 테스트 : 가로선이 홀수번째에 있는 경우")
     @ParameterizedTest
     @ValueSource(ints = {0,1,2,3,4})

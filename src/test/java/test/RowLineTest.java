@@ -66,7 +66,8 @@ class RowLineTest {
         assertThat(connection).hasSize(n - 1);
     }
 
-    @DisplayName("RowLine의 상태에 따라 PositionRow 객체를 움직일 수 있다")
+    // |-----|     |-----|     |
+    @DisplayName("RowLine의 상태에 따라 다음 PositionRow 객체를 가져올 수 있다")
     @Test
     void movePositionRowTest() {
         int start = 0;
