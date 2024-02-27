@@ -55,7 +55,7 @@ class LadderGameTest {
                 new RowTestGenerator(List.of(true, false)));
         LadderGameResult ladderGameResult = ladderGame.calculateLadderGameResult();
         Map<Name, LadderResult> ladderGameResultMap = ladderGameResult.getLadderGameResult();
-        String actual = ladderGameResultMap.get(new Name("a")).getValue();
+        String actual = ladderGameResultMap.get(new Name("a")).getLadderResult();
         String expected = "꽝";
         Assertions.assertThat(actual).isEqualTo(expected);
     }

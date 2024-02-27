@@ -3,16 +3,16 @@ package domain;
 public class LadderResult {
     public static final int MAX_LADDER_RESULT_LENGTH = 5;
     private static final int MIN_LADDER_RESULT_LENGTH = 1;
-    private final String value;
+    private final String ladderResult;
 
-    public LadderResult(String value) {
-        validateLadderResultCharacter(value);
-        validateLadderResultLength(value);
-        this.value = value;
+    public LadderResult(String ladderResult) {
+        validateLadderResultCharacter(ladderResult);
+        validateLadderResultLength(ladderResult);
+        this.ladderResult = ladderResult;
     }
 
-    public String getValue() {
-        return value;
+    public String getLadderResult() {
+        return ladderResult;
     }
 
     private void validateLadderResultCharacter(String value) {

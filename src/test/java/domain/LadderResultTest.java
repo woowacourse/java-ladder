@@ -37,7 +37,7 @@ class LadderResultTest {
     @DisplayName("사다리 결과는 저장된 문자열을 반환할 수 있음")
     void testGetResult(String expected) {
         LadderResult ladderResult = new LadderResult(expected);
-        String actual = ladderResult.getValue();
+        String actual = ladderResult.getLadderResult();
         Assertions.assertThat(actual).isEqualTo(expected);
     }
 }
