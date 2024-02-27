@@ -2,6 +2,7 @@ package ladder.controller;
 
 import ladder.domain.Compensation;
 import ladder.domain.Ladder;
+import ladder.domain.LadderGame;
 import ladder.domain.People;
 import ladder.service.LadderGameService;
 import ladder.view.InputView;
@@ -26,18 +27,19 @@ public class LadderGameController {
         Ladder ladder = retryWhileThrowArgumentException(() ->
                 gameService.getLadder(InputView.readHeight(), people));
 
-        printGame(people, ladder, compensation);
-        printResult(people, ladder, compensation);
+        LadderGame ladderGame = new LadderGame(people, ladder, compensation);
+        printGame(ladderGame);
+        printResult(ladderGame);
     }
 
-    private void printGame(People people, Ladder ladder, Compensation compensation) {
-        OutputView.printPeopleName(people);
-        OutputView.printLadder(ladder);
-        OutputView.printCompensation(compensation);
+    private void printGame(LadderGame ladderGame) {
+        OutputView.printPeopleName(ladderGame.getPeople());
+        OutputView.printLadder(ladderGame.getLadder());
+        OutputView.printCompensation(ladderGame.getCompensation());
     }
 
-    private void printResult(People people, Ladder ladder, Compensation compensation) {
-        Result result = Result.of(people, ladder, compensation);
+    private void printResult(LadderGame ladderGame) {
+        Result result = ladderGame.getResult();
 
         while (ResultView.isRetry()) {
             ResultView.print(InputView.readName(), result);
