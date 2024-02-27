@@ -16,21 +16,21 @@ public class LadderGame {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final BooleanSupplier supplier;
+    private final BooleanSupplier patternCreationStrategy;
 
-    public LadderGame(InputView inputView, OutputView outputView, BooleanSupplier supplier) {
+    public LadderGame(InputView inputView, OutputView outputView, BooleanSupplier patternCreationStrategy) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.supplier = supplier;
+        this.patternCreationStrategy = patternCreationStrategy;
     }
 
     public void play() {
-        Players players = this.getNames();
-        LadderHeight height = this.getHeight();
-        Results results = this.getResults();
+        Players players = getNames();
+        LadderHeight height = getHeight();
+        Results results = getResults();
 
         Ladder ladder = new Ladder(players, results, height);
-        ladder.drawLines(supplier);
+        ladder.drawLines(patternCreationStrategy);
 
         printLadder(ladder, players, results);
 
