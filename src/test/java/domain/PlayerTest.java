@@ -12,49 +12,62 @@ import generator.LadderFloorGenerator;
 class PlayerTest {
 
 	@Test
-	@DisplayName("두 막대가 연결되어 있을 때 오른쪽으로 이동한다.")
-	void moveToRightTest() {
-		HorizontalLine horizontalLine = createHorizontalLine(() -> true);
-
-		Player player = new Player("A", 0);
-		player.move(horizontalLine);
-
-		assertThat(player.getPosition()).isEqualTo(1);
-	}
-
-	@Test
-	@DisplayName("두 막대가 연결되어 있을 때 왼쪽으로 이동한다.")
-	void moveToLeftTest() {
-		HorizontalLine horizontalLine = createHorizontalLine(() -> true);
-
-		Player player = new Player("A", 1);
-		player.move(horizontalLine);
-
-		assertThat(player.getPosition()).isEqualTo(0);
-	}
-
-	@Test
-	@DisplayName("두 막대가 연결되어 있지 않으면 이동하지 않는다.")
-	void moveNotTest() {
+	@DisplayName("모든 막대가 연결된 사다리를 타고 내려온다.")
+	void playWithAllConnectedLadder() {
 		// given
-		HorizontalLine horizontalLine = createHorizontalLine(() -> false);
+		Ladder ladder = createAllConnectedLadder();
 		Player playerA = new Player("A", 0);
 		Player playerB = new Player("B", 1);
 
 		// when
-		playerA.move(horizontalLine);
-		playerB.move(horizontalLine);
+		playerA.playLadder(ladder);
+		playerB.playLadder(ladder);
+		int expectedPlayerAPosition = 1;
+		int expectedPlayerBPosition = 0;
 
 		// then
-		assertThat(playerA.getPosition()).isEqualTo(0);
-		assertThat(playerB.getPosition()).isEqualTo(1);
+		assertThat(expectedPlayerAPosition).isEqualTo(playerA.getPosition());
+		assertThat(expectedPlayerBPosition).isEqualTo(playerB.getPosition());
 	}
 
-	private HorizontalLine createHorizontalLine(BooleanSupplier supplier) {
-		LadderFloorGenerator generator = new LadderFloorGenerator(supplier);
-		HorizontalLine horizontalLine = new HorizontalLine(2);
-		horizontalLine.createCrossingLines(generator);
+	@Test
+	@DisplayName("모든 막대가 연결되지 않은 사다리를 타고 내려온다.")
+	void playWithNotConnectedLadder() {
+		// given
+		Ladder ladder = createNotConnectedLadder();
+		Player playerA = new Player("A", 0);
+		Player playerB = new Player("B", 1);
 
-		return horizontalLine;
+		// when
+		playerA.playLadder(ladder);
+		playerB.playLadder(ladder);
+		int expectedPlayerAPosition = 0;
+		int expectedPlayerBPosition = 1;
+
+		// then
+		assertThat(expectedPlayerAPosition).isEqualTo(playerA.getPosition());
+		assertThat(expectedPlayerBPosition).isEqualTo(playerB.getPosition());
+	}
+
+	/**
+	 * @return 두 막대가 모두 연결된 3층 사다리
+	 */
+	private Ladder createAllConnectedLadder() {
+		return createTestLadder(() -> true);
+	}
+
+	/**
+	 * @return 두 막대가 모두 연결되지 않은 3층 사다리
+	 */
+	private Ladder createNotConnectedLadder() {
+		return createTestLadder(() -> false);
+	}
+
+	private Ladder createTestLadder(BooleanSupplier supplier) {
+		Ladder ladder = Ladder.of(2, 3);
+		LadderFloorGenerator generator = new LadderFloorGenerator(supplier);
+		ladder.drawLines(generator);
+
+		return ladder;
 	}
 }
