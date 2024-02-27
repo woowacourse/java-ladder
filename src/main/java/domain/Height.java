@@ -2,20 +2,20 @@ package domain;
 
 public class Height {
 
-    private final int value;
+    private final int height;
 
-    public Height(int value) {
-        validate(value);
-        this.value = value;
+    public Height(int height) {
+        validate(height);
+        this.height = height;
     }
 
-    private void validate(int intValue) {
-        if (intValue <= 0) {
+    private void validate(int height) {
+        if (height <= 0) {
             throw new IllegalArgumentException("높이는 자연수를 입력해주세요.");
         }
     }
 
-    public int getValue() {
-        return value;
+    public int getHeight() {
+        return height;
     }
 }

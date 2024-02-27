@@ -14,7 +14,7 @@ public class Ladder {
     public Ladder(BridgeConstructStrategy bridgeConstructStrategy, Names names, Prizes prizes, Height height) {
         this.names = names;
         this.prizes = prizes;
-        bridges = IntStream.range(0, height.getValue())
+        bridges = IntStream.range(0, height.getHeight())
                 .mapToObj((index) -> bridgeConstructStrategy.generate(names.size() - 1))
                 .toList();
     }
@@ -24,7 +24,7 @@ public class Ladder {
     }
 
     public Result calculateResult(Name name) {
-        int index = names.findIndex(name.getValue());
+        int index = names.findIndex(name.getName());
         for (Bridges bridge : bridges) {
             index = calculateNewIndex(index, bridge);
         }
