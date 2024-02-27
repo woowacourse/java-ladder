@@ -52,6 +52,11 @@ public class GameTest {
     @Test
     @DisplayName("특정 깊이와 위치에서 한 번 내려간 결과를 생성한다.")
     void calculateOneDepthTest() {
+        assertThat(game.calculateOneDepth(0, 0)).isEqualTo(1);
+        assertThat(game.calculateOneDepth(1, 0)).isEqualTo(0);
+        assertThat(game.calculateOneDepth(2, 0)).isEqualTo(3);
+        assertThat(game.calculateOneDepth(3, 0)).isEqualTo(2);
+
         assertThat(game.calculateOneDepth(0, 1)).isEqualTo(0);
         assertThat(game.calculateOneDepth(1, 1)).isEqualTo(2);
         assertThat(game.calculateOneDepth(2, 1)).isEqualTo(1);
