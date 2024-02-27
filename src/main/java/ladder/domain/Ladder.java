@@ -19,6 +19,14 @@ public class Ladder {
         return new Ladder(generateLine);
     }
 
+    public int findResultPosition(int playerPosition) {
+        int resultPosition = playerPosition;
+        for (Line line : lines) {
+            resultPosition = line.findNextPosition(resultPosition);
+        }
+        return resultPosition;
+    }
+
     public boolean isExist(int height, int width) {
         if (height < 0 || height >= getHeight()) {
             throw new IllegalArgumentException("높이 위치가 범위를 벗어났습니다.");
