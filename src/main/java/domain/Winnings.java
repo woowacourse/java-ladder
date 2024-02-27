@@ -20,7 +20,7 @@ public class Winnings implements Iterable<Winning>{
     }
 
     public void isSameNumberWithPlayers(Players players) {
-        if (winnings.size() != players.getPersonCount()) {
+        if (winnings.size() != players.getPlayers().size()) {
             throw new IllegalArgumentException("사람 이름과 같은 개수를 입력하여야 합니다.");
         }
     }

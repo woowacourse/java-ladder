@@ -7,8 +7,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -34,12 +32,10 @@ public class PlayersTest {
     @Test
     void getNameFromIteratorTest() {
         Players players = new Players(List.of("test1", "test2"));
-        Iterator<Name> iterator = players.iterator();
-        List<String> test = new ArrayList<>();
-        while (iterator.hasNext()) {
-            test.add(iterator.next().getName());
-        }
-        Assertions.assertThat(test)
+        List<String> names = players.getPlayers().stream()
+                .map(Name::getName)
+                .toList();
+        Assertions.assertThat(names)
                 .isEqualTo(List.of(new Name("test1").getName(), new Name("test2").getName()));
     }
 }

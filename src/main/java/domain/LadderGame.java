@@ -16,7 +16,7 @@ public class LadderGame {
         this.players = players;
         this.generator = new RandomGenerator();
 
-        this.ladder.init(players.getPersonCount(), this.generator);
+        this.ladder.init(players.getPlayers().size(), this.generator);
     }
 
     LadderGame(List<String> names, Height height, Generator generator) {
