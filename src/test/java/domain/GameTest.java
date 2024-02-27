@@ -17,7 +17,9 @@ public class GameTest {
 
         Lines lines = Lines.of(4, 5, new RandomConnectionStrategy());
 
-        assertThatCode(() -> new Game(members, lines))
+        Results results = Results.of(List.of("a!", "b!", "c!", "d!"), 4);
+
+        assertThatCode(() -> new Game(members, lines, results))
                 .doesNotThrowAnyException();
     }
 
@@ -36,9 +38,9 @@ public class GameTest {
 
         Results results = Results.of(List.of("a!", "b!", "c!", "d!"), 4);
 
-        Game game = new Game(members, lines);
+        Game game = new Game(members, lines, results);
 
-        HashMap<String, Result> actual = game.matchResult(results);
+        HashMap<String, Result> actual = game.matchResult();
 
         assertThat(actual.get("a").getValue()).isEqualTo("a!");
         assertThat(actual.get("b").getValue()).isEqualTo("b!");

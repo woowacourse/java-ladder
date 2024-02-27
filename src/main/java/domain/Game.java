@@ -7,13 +7,15 @@ public class Game {
 
     private final Members members;
     private final Lines lines;
+    private final Results results;
 
-    public Game(Members members, Lines lines) {
+    public Game(Members members, Lines lines, Results results) {
         this.members = members;
         this.lines = lines;
+        this.results = results;
     }
 
-    public HashMap<String, Result> matchResult(Results results) {
+    public HashMap<String, Result> matchResult() {
         HashMap<String, Result> gameResult = new HashMap<>();
 
         for (Member member : members.getMembers()) {
@@ -30,7 +32,7 @@ public class Game {
         }
 
         return gameResult;
-    }
+    } // TODO: GameResult 객체 분리 및 리팩토링
 
     private int tryMoveLeft(List<Connection> connections, int index) {
         if (index <= 0) {
@@ -60,5 +62,9 @@ public class Game {
 
     public Lines getLines() {
         return lines;
+    }
+
+    public Results getResults() {
+        return results;
     }
 }
