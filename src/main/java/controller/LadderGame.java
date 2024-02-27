@@ -35,7 +35,7 @@ public class LadderGame {
 
         ladder.playLadder(results, participants);
 
-        printLadderGameResult(participants, results);
+        printLadderGameResultUntilEmptyName(participants, results);
     }
 
     private Participants makeParticipants() {
@@ -105,18 +105,23 @@ public class LadderGame {
         outputView.printResultsOutput(stringBuilder.toString());
     }
 
-    private void printLadderGameResult(Participants participants, Results results) {
+    private void printLadderGameResultUntilEmptyName(Participants participants, Results results) {
         boolean keepInput = true;
 
         while (keepInput) {
-            String name = inputView.inputResultName();
-
-            keepInput = !name.isEmpty();
-
-            if (keepInput) {
-                outputView.printResultsOutput(getLadderGameResult(name, participants, results));
-            }
+            keepInput = RetryUtil.retryUntilNoException(() -> printLadderGameResult(participants, results));
         }
+    }
+
+    private boolean printLadderGameResult(Participants participants, Results results) {
+        String name = inputView.inputResultName();
+        boolean keepInput = !name.isEmpty();
+
+        if (keepInput) {
+            outputView.printResultsOutput(getLadderGameResult(name, participants, results));
+        }
+
+        return keepInput;
     }
 
     private String getLadderGameResult(String name, Participants participants, Results results) {
