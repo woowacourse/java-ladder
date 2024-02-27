@@ -20,7 +20,7 @@ public class LadderController {
     public void run() {
         Players players = nameInput(MAX_DEPTH);
         Height height = heightInput(MAX_DEPTH);
-        Winnings winnings = winningsInput(MAX_DEPTH);
+        Winnings winnings = winningsInput(MAX_DEPTH, players);
         LadderGame ladderGame = new LadderGame(players, height, winnings);
         OutputView.printResult(ladderGame.getLadderShape());
     }
@@ -47,14 +47,16 @@ public class LadderController {
         }
     }
 
-    private Winnings winningsInput(int depth) {
+    private Winnings winningsInput(int depth, Players players) {
         if (depth <= 0) {
             throw new IllegalArgumentException("입력 허용횟수 5회를 초과했습니다.");
         }
         try {
-            return new Winnings(InputView.readWinnings(consoleReader));
+            Winnings winnings = new Winnings(InputView.readWinnings(consoleReader));
+            winnings.isSameNumberWithPlayers(players);
+            return winnings;
         } catch (IllegalArgumentException e) {
-            return winningsInput(depth - 1);
+            return winningsInput(depth - 1, players);
         }
     }
 }
