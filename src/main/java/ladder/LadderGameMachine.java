@@ -21,43 +21,43 @@ public class LadderGameMachine {
     private static final ConsoleReader CONSOLE = new ConsoleReader();
 
     public void run() {
-        UserNames userNames = initNames();
-        LadderHeight ladderHeight = initLadderHeight();
+        UserNames userNames = registerUserNames();
+        LadderHeight ladderHeight = registerLadderHeight();
         Lines lines = Lines.of(new RandomBooleanGenerator(), ladderHeight.value(), userNames.getUserCount());
-        Destinations destinations = initDestinations(userNames.getUserCount());
+        Destinations destinations = registerDestinations(userNames.getUserCount());
         Ladder ladder = createLadder(userNames, lines, destinations);
         OutputView.printLadder(ladder);
         GameResults gameResults = new GameResults(userNames, lines.findStepPositions(), destinations);
         printGameResult(gameResults, userNames);
     }
 
-    private UserNames initNames() {
+    private UserNames registerUserNames() {
         try {
             List<String> input = InputView.readNames(CONSOLE);
             return UserNames.from(input);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return initNames();
+            return registerUserNames();
         }
     }
 
-    private LadderHeight initLadderHeight() {
+    private LadderHeight registerLadderHeight() {
         try {
             int input = InputView.readLadderHeight(CONSOLE);
             return new LadderHeight(input);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return initLadderHeight();
+            return registerLadderHeight();
         }
     }
 
-    private Destinations initDestinations(final int userCount) {
+    private Destinations registerDestinations(final int userCount) {
         try {
             List<String> input = InputView.readDestinations(CONSOLE);
             return Destinations.of(input, userCount);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return initDestinations(userCount);
+            return registerDestinations(userCount);
         }
     }
 
@@ -69,23 +69,23 @@ public class LadderGameMachine {
     }
 
     private void printGameResult(GameResults gameResults, UserNames userNames) {
-        RequestName requestName = initRequestName(userNames);
+        RequestName requestName = registerRequestNames(userNames);
         while (requestName.isNotAll()) {
             String result = gameResults.findByUserName(requestName.getRequestName());
             OutputView.printOneResult(result);
-            requestName = initRequestName(userNames);
+            requestName = registerRequestNames(userNames);
         }
         List<AllResults> results = generateAllResults(gameResults.findAll());
         OutputView.printAllResults(results);
     }
 
-    private RequestName initRequestName(UserNames userNames) {
+    private RequestName registerRequestNames(UserNames userNames) {
         try {
             String input = InputView.readRequestName(CONSOLE);
             return new RequestName(input, userNames);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return initRequestName(userNames);
+            return registerRequestNames(userNames);
         }
     }
 
