@@ -62,6 +62,6 @@ public class InputView {
 
     public String inputResultWantPlayerName() {
         System.out.println(System.lineSeparator() + INPUT_MESSAGE_WANT_PLAYER_NAME);
-        return scanner.nextLine();
+        return scanner.nextLine().trim();
     }
 }
