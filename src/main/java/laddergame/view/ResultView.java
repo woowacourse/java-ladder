@@ -8,6 +8,7 @@ import laddergame.domain.ladder.Ladder;
 
 public class ResultView {
     private static final String LINE_SEPERATOR = System.lineSeparator();
+    private static final String CALL_ALL_PLAYER_RESULTS_MESSAGE = "all";
 
     private ResultView() {
     }
@@ -20,7 +21,7 @@ public class ResultView {
     }
 
     public static void printPlayerResult(String playerName, LadderGame ladderGame) {
-        if (playerName.equals("all")) {
+        if (playerName.equals(CALL_ALL_PLAYER_RESULTS_MESSAGE)) {
             System.out.println(MessageResolver
                     .resolveAllPlayerResultMessage(ladderGame.getPlayerGameResult()));
             return;
