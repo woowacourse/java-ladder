@@ -33,6 +33,6 @@ class LinesTest {
         assertEquals(lines.getLine(0).getPoints().getPointSize(), 2);
         assertEquals(lines.getDirection(0, 0), Direction.RIGHT);
         assertEquals(lines.getDirection(0, 1), Direction.LEFT);
-        assertEquals(lines.getDirection(0, 2), Direction.DOWN);
+        assertEquals(lines.getDirection(0, 2), Direction.NONE);
     }
 }

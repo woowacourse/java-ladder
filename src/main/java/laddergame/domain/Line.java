@@ -32,14 +32,14 @@ public class Line {
         if (getPoints().isFirstPointBuilt()) {
             return Direction.RIGHT;
         }
-        return Direction.DOWN;
+        return Direction.NONE;
     }
 
     private Direction getLastDirection() {
         if (getPoints().isLastPointBuilt()) {
             return Direction.LEFT;
         }
-        return Direction.DOWN;
+        return Direction.NONE;
     }
 
     private Direction getMiddleDirection(final int position) {
@@ -49,7 +49,7 @@ public class Line {
         if (points.isPositionBuilt(position - 1)) {
             return Direction.LEFT;
         }
-        return Direction.DOWN;
+        return Direction.NONE;
     }
 
     private static int getBuildSize(final int playerCount) {
