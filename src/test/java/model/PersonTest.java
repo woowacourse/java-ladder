@@ -2,6 +2,7 @@ package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import model.path.Path;
@@ -55,10 +56,13 @@ class PersonTest {
         Person person = Person.from("loky", before);
         person.climbDown(ladder);
         int after = person.getColumn();
-        assertThat(after).isEqualTo(expected);
+        assertAll(
+                () -> assertThat(after).isEqualTo(expected),
+                () -> assertThat(person.getDepth()).isEqualTo(4)
+        );
     }
 
-    private class TestPathGenerator implements PathGenerator {
+    private static class TestPathGenerator implements PathGenerator {
         private final List<List<Path>> lines;
         private int lineNumber = 0;
 
