@@ -29,6 +29,14 @@ public class InputView {
         return parseToInt(input);
     }
 
+    public String readNameToSeeResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        final String input = SCANNER.nextLine();
+
+        validateInputBlank(input);
+        return input;
+    }
+
     private void validateInputBlank(final String input) {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException("입력은 비어있을 수 없습니다.");
