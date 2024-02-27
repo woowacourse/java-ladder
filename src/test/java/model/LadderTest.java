@@ -51,7 +51,7 @@ class LadderTest {
         int personCount = 3;
         Ladder ladder = createNothingBuildLadder(height, personCount);
 
-        List<String> names = List.of("레디", "안나", "브라운");
+        List<String> names = List.of("reddy", "anna", "brown");
         Players players = new Players(names);
 
         List<String> prizes = List.of("당첨", "꽝", "꽝");
@@ -60,7 +60,7 @@ class LadderTest {
 
         //when
         Prize expected = new Prize("당첨");
-        Player target = new Player("레디");
+        Player target = new Player("reddy");
 
         LadderResultDto ladderResultDto = ladder.findResult(players, result);
 
@@ -77,7 +77,7 @@ class LadderTest {
         int personCount = 4;
         Ladder ladder = createZigZagBuildLadder(height, personCount);
 
-        List<String> names = List.of("레디", "안나", "브라운", "레나");
+        List<String> names = List.of("reddy", "anna", "brown", "teba");
         Players players = new Players(names);
 
         List<String> prizes = List.of("당첨", "꽝1", "꽝2", "꽝3");
@@ -86,11 +86,6 @@ class LadderTest {
 
         //when
         LadderResultDto target = ladder.findResult(players, result);
-
-        for (String formattedLine : ladder.getFormattedLines()) {
-            System.out.println(formattedLine);
-        }
-
         LadderResultDto expected = LadderResultDto.of(names, List.of("꽝2", "꽝3", "당첨", "꽝1"));
 
         //then
