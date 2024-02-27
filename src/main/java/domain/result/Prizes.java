@@ -10,6 +10,7 @@ public class Prizes {
     public Prizes(List<String> resultNames) {
         validate(resultNames);
         this.prizes = resultNames.stream()
+                .map(String::strip)
                 .map(Prize::new)
                 .toList();
     }

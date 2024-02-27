@@ -11,6 +11,7 @@ public class Names {
     public Names(List<String> names) {
         validate(names);
         this.names = names.stream()
+                .map(String::strip)
                 .map(Name::new)
                 .toList();
     }
