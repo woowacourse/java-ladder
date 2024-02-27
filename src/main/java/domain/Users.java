@@ -19,10 +19,11 @@ public class Users {
     public int gerPersonCount() {
         return userNames.size();
     }
+
     public List<String> getUserNames() {
         return userNames.stream()
-               .map(UserName::toString)
-               .toList();
+                .map(UserName::toString)
+                .toList();
     }
 
     public UserName getFirst() {

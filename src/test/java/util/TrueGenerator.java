@@ -1,4 +1,6 @@
-package utils;
+package util;
+
+import utils.Generator;
 
 public class TrueGenerator implements Generator {
     @Override

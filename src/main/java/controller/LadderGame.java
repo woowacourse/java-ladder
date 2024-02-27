@@ -8,6 +8,7 @@ import java.util.*;
 
 public class LadderGame {
 
+    private static final String ALL = "all";
     private final GameResult gameResult;
 
     public LadderGame() {
@@ -33,11 +34,13 @@ public class LadderGame {
 
         saveToGameResult(ladder, users, ladderResults);
 
-        String findUserName = InputView.inputFindResult();
-        ResultView.findPrize(findResult(findUserName));
+        getFindUserAndPrintPrize();
+        getFindUserAndPrintPrize();
+    }
 
-        String findUserName2 = InputView.inputFindResult();
-        ResultView.findPrize(findResult(findUserName2));
+    private void getFindUserAndPrintPrize() {
+        String findResult = InputView.inputFindResult();
+        printPrize(findResult);
     }
 
     private void saveToGameResult(Ladder ladder, Users users, Results results) {
@@ -50,25 +53,12 @@ public class LadderGame {
         }
     }
 
-    private String findResult(String findUserName) {
-        if (findUserName.equals("all")) {
-            return findAllResult();
+    private void printPrize(String findUserName) {
+        if (findUserName.equals(ALL)) {
+            ResultView.printPrize(gameResult.repository());
+            return;
         }
-
-        return gameResult.findByUserName(findUserName);
+        String prize = gameResult.findByUserName(findUserName);
+        ResultView.printPrize(prize);
     }
-
-    private String findAllResult() {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        Map<String, String> repository = gameResult.getRepository();
-        for (Map.Entry<String, String> entry : repository.entrySet()) {
-            stringBuilder.append(entry.getKey())
-                    .append(" : ")
-                    .append(entry.getValue())
-                    .append("\n");
-        }
-        return stringBuilder.toString();
-    }
-
 }

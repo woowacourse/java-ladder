@@ -26,9 +26,10 @@ class UsersTest {
     void createOnlyUsers() {
         //given
         String userNames = "pobi";
+        List<String> names = List.of(userNames);
         //when
         //then
-        assertThatThrownBy(() -> new Users(List.of(userNames.split(","))))
+        assertThatThrownBy(() -> new Users(names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

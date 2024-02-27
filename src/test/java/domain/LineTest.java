@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.RandomGenerator;
-import utils.TrueGenerator;
+import util.TrueGenerator;
 
 import java.util.List;
 
@@ -48,7 +48,7 @@ class LineTest {
         // when
         int nextBridgeIndex = line.moveFrom(0);
         // then
-        assertThat(nextBridgeIndex).isEqualTo(0);
+        assertThat(nextBridgeIndex).isZero();
     }
 
     @Test

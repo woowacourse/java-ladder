@@ -2,6 +2,8 @@ package view;
 
 import domain.*;
 
+import java.util.Map;
+
 public class ResultView {
 
     private static final String LINE = "|-----";
@@ -30,9 +32,9 @@ public class ResultView {
     public static void printResults(final Results results) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append(String.format("%-6s", results.getFirst()));
-        results.getMiddleResult().forEach(userName -> stringBuilder.append(String.format("%6s", userName)));
-        stringBuilder.append(String.format("%5s", results.getLast()));
+        stringBuilder.append(String.format("%-5s", results.getFirst()));
+        results.getMiddleResult().forEach(result -> stringBuilder.append(String.format("%-6s", result)));
+        stringBuilder.append(String.format("%-5s", results.getLast()));
 
         System.out.println(stringBuilder);
     }
@@ -43,10 +45,24 @@ public class ResultView {
         }
     }
 
-    public static void findPrize(String prize) {
+    public static void printPrize(String prize) {
         System.out.println();
         System.out.println("실행결과");
         System.out.println(prize);
+    }
+
+    public static void printPrize(Map<String, String> prizeResults) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : prizeResults.entrySet()) {
+            stringBuilder.append(entry.getKey())
+                    .append(" : ")
+                    .append(entry.getValue())
+                    .append("\n");
+        }
+        System.out.println();
+        System.out.println("실행결과");
+        System.out.println(stringBuilder);
     }
 
     private static String generateSingleLine(final Line line) {
