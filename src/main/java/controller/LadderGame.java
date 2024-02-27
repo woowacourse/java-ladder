@@ -6,6 +6,7 @@ import domain.Height;
 import domain.Ladder;
 import domain.Players;
 import domain.RandomLegGenerateStrategy;
+import domain.Rewards;
 import view.InputView;
 import view.OutputView;
 
@@ -13,11 +14,21 @@ public class LadderGame {
 
     public void run() {
         Players players = readPlayers();
+        Rewards rewards = readReward();
         Height ladderHeight = readHeight();
         int ladderWidth = players.getPlayers().size() - 1;
         Ladder ladder = Ladder.createLadderWithLines(new RandomLegGenerateStrategy(), ladderHeight, ladderWidth);
 
         OutputView.printLadder(players, ladder);
+
+    }
+
+    private Rewards readReward() {
+        try {
+            return new Rewards(InputView.readRewards());
+        } catch (IllegalArgumentException e){
+            return readReward();
+        }
     }
 
     private Height readHeight() {
