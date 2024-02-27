@@ -59,7 +59,9 @@ class LadderTest {
                 new Line(List.of(BRIDGE, NON_BRIDGE, BRIDGE)))
         );
 
-        /*      |-----|     |-----|
+        /*
+                사다리 모양
+                |-----|     |-----|
                 |     |-----|     |
                 |-----|     |     |
                 |     |-----|     |
