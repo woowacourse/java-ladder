@@ -16,15 +16,7 @@ public class InputView {
 
     public static List<String> inputUserNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return parseUsername(SCANNER.nextLine());
-    }
-
-    private static List<String> parseUsername(final String userNames) {
-        validateDelimiter(userNames);
-
-        return Arrays.stream(userNames.split(","))
-                .map(String::trim)
-                .toList();
+        return delimiterParser(SCANNER.nextLine());
     }
 
     public static int inputHeight() {
@@ -33,6 +25,20 @@ public class InputView {
         validateHeight(rawHeight);
         return Integer.parseInt(rawHeight);
     }
+
+    public static List<String> inputResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)\n");
+        return delimiterParser(SCANNER.nextLine());
+    }
+
+    private static List<String> delimiterParser(final String userNames) {
+        validateDelimiter(userNames);
+
+        return Arrays.stream(userNames.split(","))
+                .map(String::trim)
+                .toList();
+    }
+
 
     private static void validateDelimiter(final String userNames) {
         if (userNames.endsWith(",")) {

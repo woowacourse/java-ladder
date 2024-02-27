@@ -9,4 +9,15 @@ public class Results {
     public Results(List<Result> prizes) {
         this.prizes = prizes;
     }
+
+    public Result getFirst() {
+        return prizes.get(0);
+    }
+
+    public Result getLast() {
+        return prizes.get(prizes.size() - 1);
+    }
+    public List<Result> getMiddleResult() {
+        return prizes.subList(1, prizes.size() - 1);
+    }
 }

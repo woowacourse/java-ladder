@@ -1,9 +1,6 @@
 package view;
 
-import domain.Ladder;
-import domain.Bridge;
-import domain.Line;
-import domain.Users;
+import domain.*;
 
 public class ResultView {
 
@@ -30,7 +27,17 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printResult(final Ladder ladder) {
+    public static void printResults(final Results results) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append(String.format("%-6s", results.getFirst()));
+        results.getMiddleResult().forEach(userName -> stringBuilder.append(String.format("%6s", userName)));
+        stringBuilder.append(String.format("%5s", results.getLast()));
+
+        System.out.println(stringBuilder);
+    }
+
+    public static void printLadder(final Ladder ladder) {
         for (Line line : ladder.getLines()) {
             System.out.println(generateSingleLine(line));
         }

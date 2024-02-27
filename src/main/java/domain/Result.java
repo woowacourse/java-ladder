@@ -8,7 +8,8 @@ public class Result {
         this.prize = prize;
     }
 
-    public String getPrize() {
+    @Override
+    public String toString() {
         return prize;
     }
 }
