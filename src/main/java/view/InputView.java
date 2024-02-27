@@ -33,6 +33,10 @@ public class InputView {
         }
     }
 
+    public String readNameForResult() {
+        return readLine("결과를 보고 싶은 사람은?");
+    }
+
     private String readLine(String message) {
         System.out.println(message);
         return scanner.nextLine().trim();

@@ -1,5 +1,7 @@
 import java.util.List;
+import java.util.Map;
 import domain.Game;
+import domain.GameResult;
 import view.InputView;
 import view.OutputView;
 
@@ -19,6 +21,18 @@ class Controller {
         int height = inputView.readHeight();
         Game game = new Game(playerNames, gameResults, height);
 
-        outputView.printResult(game);
+        outputView.printLadder(game);
+
+        while (true) {
+            String targetPlayer = inputView.readNameForResult();
+
+            if (targetPlayer.equals("all")) {
+                Map<String, GameResult> result = game.showResultAll();
+                outputView.printResultAll(result);
+            } else {
+                GameResult result = game.showResult(targetPlayer);
+                outputView.printResult(result);
+            }
+        }
     }
 }
