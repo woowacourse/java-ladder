@@ -24,13 +24,9 @@ public class Floor {
 	}
 
 	public FloorConnectionStatusDto createStatus() {
+		// 오른쪽으로 연결된 막대만 true로 매핑한뒤, 이를 이용하여 사다리 연결선을 그린다.
 		List<Boolean> connectionStatus = bars.stream()
-			.map(bar -> {
-				if (bar.isConnectedToRight()) {
-					return true;
-				}
-				return false;
-			})
+			.map(Bar::isConnectedToRight)
 			.toList();
 		return new FloorConnectionStatusDto(connectionStatus);
 	}
