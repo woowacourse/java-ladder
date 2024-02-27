@@ -7,7 +7,15 @@ public enum LadderPath {
         return this == RIGHT;
     }
 
+    public boolean isNotRightPath() {
+        return this != RIGHT;
+    }
+
     public boolean isLeftPath() {
         return this == LEFT;
+    }
+
+    public boolean isNotLeftPath() {
+        return this != LEFT;
     }
 }

@@ -7,5 +7,6 @@ public class Application {
         LadderController ladderController = new LadderController();
         ladderController.makeLadder();
         ladderController.showLadder();
+        ladderController.showResultWithQuestion();
     }
 }

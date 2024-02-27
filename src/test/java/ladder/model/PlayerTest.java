@@ -14,7 +14,10 @@ public class PlayerTest {
     @DisplayName("참여자 이름의 길이가 1보다 작거나 5보다 크면 예외가 발생한다.")
     void nameMaxLengthTest(String name) {
         assertThatThrownBy(() -> new Player(name))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("이름의 길이는")
+                .hasMessageContaining("이상")
+                .hasMessageContaining("이하의 숫자여야 합니다.");
     }
 
     @Test
@@ -33,4 +36,6 @@ public class PlayerTest {
         assertThatCode(() -> new Player(name))
                 .doesNotThrowAnyException();
     }
+
+
 }

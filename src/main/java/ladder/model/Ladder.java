@@ -47,6 +47,15 @@ public class Ladder {
         return List.of(LadderPath.STAY);
     }
 
+    public List<Integer> findBars() {
+        List<Integer> bars = new ArrayList<>();
+        for (int i = ladder.size() - 1; i >= 0; i--) {
+            bars.addAll(ladder.get(i).findBars());
+        }
+
+        return bars;
+    }
+
     public LadderSize getSize() {
         return new LadderSize(ladder.size(), ladder.get(0).size());
     }
