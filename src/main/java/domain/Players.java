@@ -27,10 +27,6 @@ public class Players {
 		return players;
 	}
 
-	public void playAll(Ladder ladder) {
-		players.forEach(player -> player.playLadder(ladder));
-	}
-
 	public int getPlayerCount() {
 		return players.size();
 	}

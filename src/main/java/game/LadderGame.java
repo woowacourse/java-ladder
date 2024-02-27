@@ -24,11 +24,9 @@ public class LadderGame {
 
 	public Map<String, String> getAllPlayersPrizeNames(Players players, Prizes prizes) {
 		Map<String, String> results = new LinkedHashMap<>();
-		players.playAll(ladder);
 
 		for (Player player : players.getPlayers()) {
-			Prize prize = prizes.getPlayersPrize(player.getPosition());
-			String prizeName = prize.getName();
+			String prizeName = getOnePlayersPrizeName(player, prizes);
 			results.put(player.getName(), prizeName);
 		}
 
