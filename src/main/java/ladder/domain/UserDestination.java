@@ -1,10 +1,10 @@
 package ladder.domain;
 
-public class GameResult {
+public class UserDestination {
     private final UserName userName;
     private final Destination destination;
 
-    public GameResult(UserName userName, Destination destination) {
+    public UserDestination(UserName userName, Destination destination) {
         this.userName = userName;
         this.destination = destination;
     }

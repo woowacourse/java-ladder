@@ -3,7 +3,7 @@ package ladder;
 import java.util.ArrayList;
 import java.util.List;
 import ladder.domain.Destinations;
-import ladder.domain.GameResult;
+import ladder.domain.UserDestination;
 import ladder.domain.GameResults;
 import ladder.domain.LadderHeight;
 import ladder.domain.Lines;
@@ -89,8 +89,8 @@ public class LadderGameMachine {
         }
     }
 
-    private List<AllResults> generateAllResults(final List<GameResult> gameResults) {
-        List<GameResult> results = new ArrayList<>(gameResults);
+    private List<AllResults> generateAllResults(final List<UserDestination> userDestinations) {
+        List<UserDestination> results = new ArrayList<>(userDestinations);
         return results.stream()
                 .map(result -> new AllResults(result.getUserName().value(), result.getDestination().value()))
                 .toList();
