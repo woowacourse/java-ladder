@@ -25,7 +25,7 @@ public class LadderController {
 
     public void run() {
         final Players players = getPlayers();
-        final Targets targets = getTargets();
+        final Targets targets = getTargets(players.getSize());
         final LadderHeight height = getLadderHeight();
 
         final Ladder ladder = ladderGame.createLadder(players, height);
@@ -43,9 +43,9 @@ public class LadderController {
         return players;
     }
 
-    private Targets getTargets() {
+    private Targets getTargets(final int size) {
         Targets targets = ExceptionHandler.retryUntilInputIsValid(
-                () -> new Targets(inputView.readTargets()), outputView
+                () -> new Targets(inputView.readTargets(), size), outputView
         );
         outputView.printLine();
         return targets;

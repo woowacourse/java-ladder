@@ -49,7 +49,7 @@ public class LadderGameTest {
     void testLadderGame() {
         // given
         Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
-        Targets targets = new Targets(List.of("꽝","5000","꽝","3000"));
+        Targets targets = new Targets(List.of("꽝","5000","꽝","3000"), 4);
         List<Line> lines = List.of(
                 new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST)),
                 new Line(List.of(Point.EMPTY, Point.EXIST, Point.EMPTY)),

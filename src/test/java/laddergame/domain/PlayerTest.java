@@ -40,4 +40,13 @@ public class PlayerTest {
                 .hasMessage("[ERROR] 입력값에 빈값을 입력할 수 없습니다.");
 
     }
+
+    @DisplayName("이름이 all이면 예외를 발생시킨다.")
+    @Test
+    void testNameAll() {
+        Assertions.assertThatThrownBy(() -> new Player("all"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 이름에 all을 입력할 수 없습니다.");
+
+    }
 }

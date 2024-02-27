@@ -13,6 +13,7 @@ public class Player {
     public Player(final String input) {
         InputValidator.validateBlank(input);
         validateLength(input);
+        validateFunctionName(input);
         this.name = input;
     }
 
@@ -23,6 +24,12 @@ public class Player {
     private void validateLength(final String input) {
         if (input.length() > MAX_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 이름길이는 5글자를 넘을 수 없습니다.");
+        }
+    }
+
+    private void validateFunctionName(final String input) {
+        if (input.equals("all")) {
+            throw new IllegalArgumentException("[ERROR] 이름에 all을 입력할 수 없습니다.");
         }
     }
 
