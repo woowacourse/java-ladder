@@ -1,5 +1,6 @@
 package domain;
 
+import domain.player.Position;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +18,10 @@ public class MatchingItems {
         if (itemsCount != playerCount) {
             throw new IllegalArgumentException("실행 결과의 개수는 참가자의 수와 일치해야 합니다.");
         }
+    }
+
+    public String get(final int position) {
+        return items.get(position);
     }
 
     public List<String> getItems() {

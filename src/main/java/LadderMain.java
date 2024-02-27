@@ -10,8 +10,8 @@ public class LadderMain {
         final List<String> playerNames = InputView.readNames();
         final int height = InputView.readHeight();
 
-        final LadderGame ladderGame = new LadderGame(playerNames, height, RandomBridgeGenerator.getInstance());
+//        final LadderGame ladderGame = new LadderGame(playerNames, height, RandomBridgeGenerator.getInstance());
 
-        OutputView.printLadderMakingResult(ladderGame.getPlayerNames(), ladderGame.getLadder());
+//        OutputView.printLadderMakingResult(ladderGame.getPlayerNames(), ladderGame.getLadder());
     }
 }
