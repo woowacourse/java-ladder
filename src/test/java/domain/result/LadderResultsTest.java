@@ -3,6 +3,10 @@ package domain.result;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
+import domain.ladder.Ladder;
+import domain.ladder.LadderBridge;
+import domain.ladder.LadderHeight;
+import domain.ladder.strategy.BridgeGeneratorStub;
 import domain.player.PlayerName;
 import domain.player.PlayerNames;
 import domain.result.message.ResultExceptionMessage;
@@ -10,7 +14,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class TotalResultsTest {
+class LadderResultsTest {
 
     @Test
     @DisplayName("참가자 수와 실행 결과 수가 동일하지 않으면 예외가 발생한다")
@@ -19,14 +23,21 @@ class TotalResultsTest {
         PlayerName player1 = new PlayerName("aa");
         PlayerName player2 = new PlayerName("bb");
         PlayerName player3 = new PlayerName("cc");
-        PlayerNames playerNames = new PlayerNames(List.of(player1, player2, player3));
+
+        BridgeGeneratorStub bridgeGeneratorStub = new BridgeGeneratorStub();
+        LadderHeight ladderHeight = new LadderHeight(2);
 
         LadderResult ladderResult1 = new LadderResult("꽝");
         LadderResult ladderResult2 = new LadderResult("당첨");
+
+        // when
+        PlayerNames playerNames = new PlayerNames(List.of(player1, player2, player3));
+        bridgeGeneratorStub.setBridges(List.of(LadderBridge.BRIDGE, LadderBridge.NONE, LadderBridge.BRIDGE));
+        Ladder ladder = Ladder.of(ladderHeight, playerNames, bridgeGeneratorStub);
         List<LadderResult> ladderResults = List.of(ladderResult1, ladderResult2);
 
         // then
-        assertThatThrownBy(() -> new TotalResults(ladderResults, playerNames))
+        assertThatThrownBy(() -> new LadderResults(playerNames, ladder, ladderResults))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ResultExceptionMessage.TOTAL_RESULTS_SIZE);
     }
@@ -37,14 +48,21 @@ class TotalResultsTest {
         // given
         PlayerName player1 = new PlayerName("aa");
         PlayerName player2 = new PlayerName("bb");
-        PlayerNames playerNames = new PlayerNames(List.of(player1, player2));
+
+        BridgeGeneratorStub bridgeGeneratorStub = new BridgeGeneratorStub();
+        LadderHeight ladderHeight = new LadderHeight(2);
 
         LadderResult ladderResult1 = new LadderResult("꽝");
         LadderResult ladderResult2 = new LadderResult("당첨");
+
+        // when
+        PlayerNames playerNames = new PlayerNames(List.of(player1, player2));
+        bridgeGeneratorStub.setBridges(List.of(LadderBridge.BRIDGE, LadderBridge.NONE, LadderBridge.BRIDGE));
+        Ladder ladder = Ladder.of(ladderHeight, playerNames, bridgeGeneratorStub);
         List<LadderResult> ladderResults = List.of(ladderResult1, ladderResult2);
 
         // then
-        assertThatCode(() -> new TotalResults(ladderResults, playerNames))
+        assertThatCode(() -> new LadderResults(playerNames, ladder, ladderResults))
                 .doesNotThrowAnyException();
     }
 }
