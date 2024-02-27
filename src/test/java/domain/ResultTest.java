@@ -1,5 +1,8 @@
 package domain;
 
+import static domain.Result.MAX_RESULT_LENGTH;
+import static domain.Result.MIN_RESULT_LENGTH;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,16 +24,7 @@ public class ResultTest {
     void test_exception_moreThanFiveLetters() {
         Assertions.assertThatThrownBy(() -> new Result("123456"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("1~5자의 이름만 허용합니다.");
-        // TODO: 1, 5 상수화
-    }
-
-    @Test
-    @DisplayName("결과 객체 생성 실패: null")
-    void test_exception_null() {
-        Assertions.assertThatThrownBy(() -> new Result(null))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("이름에 null을 입력할 수 없습니다.");
+                .hasMessageContaining(MIN_RESULT_LENGTH + "~" + MAX_RESULT_LENGTH + "자의 결과만 허용합니다.");
     }
 
     @Test
@@ -38,6 +32,14 @@ public class ResultTest {
     void test_exception_empty() {
         Assertions.assertThatThrownBy(() -> new Result(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("1~5자의 이름만 허용합니다.");
+                .hasMessageContaining(MIN_RESULT_LENGTH + "~" + MAX_RESULT_LENGTH + "자의 결과만 허용합니다.");
+    }
+
+    @Test
+    @DisplayName("결과 객체 생성 실패: null")
+    void test_exception_null() {
+        Assertions.assertThatThrownBy(() -> new Result(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("결과에 null을 입력할 수 없습니다.");
     }
 }
