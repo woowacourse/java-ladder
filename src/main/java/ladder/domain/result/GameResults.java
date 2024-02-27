@@ -2,11 +2,13 @@ package ladder.domain.result;
 
 import java.util.List;
 
+import static java.util.Collections.unmodifiableList;
+
 public class GameResults {
     private final List<PersonalGameResult> values;
 
     public GameResults(final List<PersonalGameResult> values) {
-        this.values = values;
+        this.values = unmodifiableList(values);
     }
 
     public PersonalGameResult findByName(final String participantName) {
