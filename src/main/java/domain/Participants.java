@@ -31,6 +31,10 @@ public class Participants {
         }
     }
 
+    public boolean isMatchCount(int expectedSize) {
+        return expectedSize == names.size();
+    }
+
     public List<Name> getParticipantsName() {
         return names;
     }
