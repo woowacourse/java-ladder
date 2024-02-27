@@ -1,14 +1,14 @@
 package domain;
 
 public class Leg {
-    private final boolean leg;
+    private final boolean isExistLeg;
 
 
     public Leg(boolean leg) {
-        this.leg = leg;
+        this.isExistLeg = leg;
     }
 
     public boolean isExistLeg() {
-        return leg;
+        return isExistLeg;
     }
 }
