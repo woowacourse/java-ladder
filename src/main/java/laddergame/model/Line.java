@@ -5,19 +5,22 @@ import java.util.List;
 
 public class Line {
     private final List<LineState> lineStates = new ArrayList<>();
+    private LineState beforeState;
 
-    public Line(final int peopleCount, List<Boolean> results) {
-        initializeLineStates(peopleCount, results);
+    public Line(List<Boolean> results) {
+        for (int i = 0; i < results.size(); i++) {
+            boolean result = results.get(i);
+            LineState lineState = generateLineState(i, result);
+            lineStates.add(lineState);
+            beforeState = lineState;
+        }
     }
 
-    private void initializeLineStates(int peopleCount, List<Boolean> results) {
-        int index = 0;
-        lineStates.add(LineState.decideLineState(results.get(index)));
-        index += 1;
-        for (; index < peopleCount; index++) {
-            LineState beforeState = lineStates.get(index - 1);
-            lineStates.add(LineState.decideLineStateWithBeforeState(beforeState, results.get(index)));
+    private LineState generateLineState(int index, boolean result) {
+        if (index == 0) {
+            return LineState.decideLineState(result);
         }
+        return LineState.decideLineStateWithBeforeState(beforeState, result);
     }
 
     public List<LineState> getLineStates() {

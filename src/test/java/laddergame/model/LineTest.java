@@ -13,8 +13,7 @@ public class LineTest {
     @Test
     void initializeLineStateWhenBeforeStateIsStart() {
         LineState expected = LineState.END;
-        int peopleCount = 3;
-        Line line = new Line(peopleCount, List.of(true, true, false));
+        Line line = new Line(List.of(true, true, false));
 
         List<LineState> lineStates = line.getLineStates();
         LineState lineState = lineStates.get(1);
@@ -26,8 +25,7 @@ public class LineTest {
     @ParameterizedTest
     @CsvSource(value = {"true,START", "false,NONE"})
     void initializeLineStateWhenBeforeStateNotStart(boolean given, LineState expected) {
-        int peopleCount = 3;
-        Line line = new Line(peopleCount, List.of(false, given, false));
+        Line line = new Line(List.of(false, given, false));
 
         List<LineState> lineStates = line.getLineStates();
         LineState lineState = lineStates.get(1);
