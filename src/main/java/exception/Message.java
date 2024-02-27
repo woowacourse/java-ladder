@@ -2,8 +2,6 @@ package exception;
 
 public enum Message {
 
-    //TODO: 예외 메시지가 많아지기 시작한다.
-    // 다르게 관리해봐야 하나?
     BLANK_INPUT_ERROR("빈 문자열 입력입니다. 다시 입력해주세요."),
     INVALID_HEIGHT_ERROR("잘못된 사다리 높이 입력입니다. 다시 입력해주세요."),
     INVALID_PLAYER_ERROR("잘못된 참여 인원 이름 입력입니다. 다시 입력해주세요."),
