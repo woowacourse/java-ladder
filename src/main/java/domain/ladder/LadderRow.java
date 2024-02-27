@@ -4,7 +4,6 @@ import dto.RowPatternDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BooleanSupplier;
-import java.util.stream.IntStream;
 
 public class LadderRow {
 
@@ -18,11 +17,10 @@ public class LadderRow {
     }
 
     public void createPattern(BooleanSupplier patternCreationStrategy) {
-        IntStream.range(0, rowPattern.size())
-                .forEach(index -> {
-                    boolean value = patternCreationStrategy.getAsBoolean();
-                    rowPattern.set(index, isPlaceableWhenTryingToPlace(index, value));
-                });
+        for (int index = 0; index < rowPattern.size(); index++) {
+            boolean isExpectingToPlace = patternCreationStrategy.getAsBoolean();
+            rowPattern.set(index, isPlaceableWhenTryingToPlace(index, isExpectingToPlace));
+        }
     }
 
     private boolean isPlaceableWhenTryingToPlace(int index, boolean isPlacing) {
@@ -34,7 +32,6 @@ public class LadderRow {
     }
 
     public RowPatternDto getRowPattern() {
-        List<Boolean> placeStatuses = List.copyOf(rowPattern);
-        return new RowPatternDto(placeStatuses);
+        return new RowPatternDto(List.copyOf(rowPattern));
     }
 }
