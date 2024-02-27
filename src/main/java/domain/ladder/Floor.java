@@ -23,6 +23,7 @@ public class Floor {
 
             bridges.add(createBridge(bridgeCandidate, previousBridge));
         }
+        System.out.println(bridges);
         return new Floor(bridges);
     }
 

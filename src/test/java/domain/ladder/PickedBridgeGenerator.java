@@ -13,7 +13,7 @@ class PickedBridgeGenerator implements BridgeGenerator {
 
     @Override
     public Bridge generate() {
-        final Boolean exist = test.get(index % test.size());
+        final Boolean exist = test.get(index);
         index++;
         return Bridge.getBy(exist);
     }

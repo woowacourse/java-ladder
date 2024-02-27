@@ -19,6 +19,14 @@ public class Ladder {
         return new Ladder(ladder);
     }
 
+    public int calculateResultPosition(final int startPosition) {
+        int resultPosition = startPosition;
+        for (final Floor floor : ladder) {
+            resultPosition = floor.move(resultPosition);
+        }
+        return resultPosition;
+    }
+
     public List<Floor> getLadder() {
         return Collections.unmodifiableList(ladder);
     }
