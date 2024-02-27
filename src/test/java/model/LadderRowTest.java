@@ -12,6 +12,6 @@ public class LadderRowTest {
     void consecutiveTrueThrowException() {
         Assertions.assertThatThrownBy(() -> new LadderRow(List.of(true, true, false, false)))
                 .isInstanceOf(IllegalStateException.class)
-                .hasMessage("연속된 true 값이 존재하지 않습니다.");
+                .hasMessage("연속된 true 값이 존재하면 안됩니다");
     }
 }
