@@ -25,7 +25,7 @@ public enum Step {
     }
 
     public boolean isRight() {
-        return this.equals(RIGHT);
+        return this == RIGHT;
     }
 
     public abstract int move(int index);
