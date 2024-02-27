@@ -37,9 +37,9 @@ public class LadderGameController {
 
     private void printResult(People people, Ladder ladder, Compensation compensation) {
         Result result = Result.of(people, ladder, compensation);
-        boolean retry = true;
-        while (retry) {
-            retry = ResultView.print(InputView.readName(), result);
+
+        while (ResultView.isRetry()) {
+            ResultView.print(InputView.readName(), result);
         }
     }
 }
