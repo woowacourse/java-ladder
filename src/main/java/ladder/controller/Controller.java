@@ -1,5 +1,8 @@
 package ladder.controller;
 
+import static ladder.view.InputView.ALL_RESULT_COMMAND;
+import static ladder.view.InputView.QUIT_RESULT_COMMAND;
+
 import ladder.domain.DirectionGenerator;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
@@ -36,11 +39,11 @@ public class Controller {
     }
 
     private static boolean printRewardOf(RewardsOfPlayers rewardsOfPlayers, String input) {
-        if (input.equals("qqqqqq")) {
+        if (input.equals(QUIT_RESULT_COMMAND)) {
             OutputView.printQuitMessage();
             return false;
         }
-        if (input.equals("all")) {
+        if (input.equals(ALL_RESULT_COMMAND)) {
             OutputView.printAllRewards(rewardsOfPlayers.getAllRewards());
             return true;
         }

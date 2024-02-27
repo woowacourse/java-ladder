@@ -8,6 +8,8 @@ import ladder.domain.Players;
 
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
+    public static final String QUIT_RESULT_COMMAND = "quit";
+    public static final String ALL_RESULT_COMMAND = "all";
 
     public static Players inputNames() {
         System.out.println("\n참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
@@ -26,7 +28,7 @@ public class InputView {
     }
 
     public static String inputNameForResult() {
-        System.out.println("\n결과를 보고 싶은 사람은? (qqqqqq 입력시 종료)");
+        System.out.printf("\n결과를 보고 싶은 사람은? (%s 입력시 종료)%n", QUIT_RESULT_COMMAND);
         return readLine();
     }
 
