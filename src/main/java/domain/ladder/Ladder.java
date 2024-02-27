@@ -1,60 +1,39 @@
 package domain.ladder;
 
-import domain.player.Name;
-import domain.player.Players;
-import domain.result.Result;
-import domain.result.Results;
 import dto.RowPatternDto;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.function.BooleanSupplier;
 import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private final Players players;
-    private final Results results;
     private final List<LadderRow> rows = new ArrayList<>();
     private final LadderIndexConverter ladderIndexConverter;
 
-    public Ladder(Players players, Results results, LadderHeight height) {
-        validateHasSameSize(players, results);
-        this.players = players;
-        this.results = results;
-
-        createLadder(height);
-        ladderIndexConverter = new LadderIndexConverter(players.size());
+    public Ladder(int playerCount, int resultSize, LadderHeight height) {
+        validateHasSameSize(playerCount, resultSize);
+        createLadder(playerCount, height);
+        ladderIndexConverter = new LadderIndexConverter(playerCount);
     }
 
     public void drawLines(BooleanSupplier patternCreationStrategy) {
         rows.forEach(row -> row.createPattern(patternCreationStrategy));
-
-        for (int i = rows.size() - 1; i >= 0; i--) {
-            List<Boolean> rowPattern = rows.get(i).getRowPattern();
-            ladderIndexConverter.swapByRowPattern(rowPattern);
-        }
     }
 
+    public Map<Integer, Integer> getMappedIndices() {
+        calculateResults();
 
-    public Result getResultByName(String name) {
-        int index = players.getIndexByName(name);
-        int resultIndex = ladderIndexConverter.getResultIndexByPlayerIndex(index);
-        return results.get(resultIndex);
-    }
+        List<Integer> resultIndex = ladderIndexConverter.getResultIndex();
 
-    public Map<Name, Result> getAllPlayerResults() {
-        List<Result> mappedResults = players.getRawNames()
-                .stream()
-                .map(this::getResultByName)
-                .toList();
-
-        Map<Name, Result> playerResults = new LinkedHashMap<>();
-        IntStream.range(0, players.size())
-                .forEach(index -> playerResults.put(players.get(index), mappedResults.get(index)));
-
-        return playerResults;
+        return IntStream.range(0, resultIndex.size())
+                .boxed()
+                .collect(LinkedHashMap::new,
+                        (map, playerIndex) -> map.put(playerIndex, resultIndex.get(playerIndex)),
+                        Map::putAll);
     }
 
     public List<RowPatternDto> getLadderPatterns() {
@@ -64,17 +43,25 @@ public class Ladder {
                 .toList();
     }
 
-    private void createLadder(LadderHeight height) {
+    private void calculateResults() {
+        ListIterator<LadderRow> iterator = rows.listIterator(rows.size());
+        while (iterator.hasPrevious()) {
+            List<Boolean> rowPattern = iterator.previous().getRowPattern();
+            ladderIndexConverter.swapByRowPattern(rowPattern);
+        }
+    }
+
+    private void createLadder(int playerCount, LadderHeight height) {
         int createdRowCount = 0;
         while (!height.isSameHeightAs(createdRowCount)) {
-            LadderRow line = new LadderRow(players.size());
+            LadderRow line = new LadderRow(playerCount);
             rows.add(line);
             createdRowCount++;
         }
     }
 
-    private void validateHasSameSize(Players players, Results results) {
-        if (players.size() != results.size()) {
+    private void validateHasSameSize(int playersCount, int resultsCount) {
+        if (playersCount != resultsCount) {
             throw new IllegalArgumentException("사람의 수와 결과의 개수가 일치하지 않습니다.");
         }
     }

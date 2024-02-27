@@ -2,7 +2,6 @@ package game;
 
 import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
-import domain.player.Name;
 import domain.player.Players;
 import domain.result.Result;
 import domain.result.Results;
@@ -29,13 +28,13 @@ public class LadderGame {
         LadderHeight height = getHeight();
         Results results = getResults();
 
-        Ladder ladder = new Ladder(players, results, height);
+        Ladder ladder = new Ladder(players.size(), results.size(), height);
         ladder.drawLines(patternCreationStrategy);
 
         printLadder(ladder, players, results);
 
         String playerName = getPlayerName();
-        printLadderResult(ladder, playerName);
+        printLadderResult(ladder, players, results, playerName);
     }
 
     private Players getNames() {
@@ -68,20 +67,29 @@ public class LadderGame {
         outputView.printTokens(results.getRawResults());
     }
 
-    private void printAllResults(Ladder ladder) {
-        Map<Name, Result> results = ladder.getAllPlayerResults();
-        results.forEach((name, result) -> outputView.printAllResults(name.rawName(), result.rawResult()));
-    }
-
-    private void printLadderResult(Ladder ladder, String playerName) {
+    private void printLadderResult(Ladder ladder, Players players, Results results, String playerName) {
         outputView.printResultMessage();
 
+        Map<Integer, Integer> ladderResults = ladder.getMappedIndices();
         if (playerName.equals("all")) {
-            printAllResults(ladder);
+            printAllResults(ladderResults, players, results);
             return;
         }
+        printSingleResult(ladderResults, players, results, playerName);
+    }
 
-        Result result = ladder.getResultByName(playerName);
+    private void printAllResults(Map<Integer, Integer> ladderResults, Players players, Results results) {
+        ladderResults.forEach((playerIndex, resultIndex) ->
+                outputView.printAllResults(
+                        players.get(playerIndex).rawName(),
+                        results.get(resultIndex).rawResult()
+                )
+        );
+    }
+
+    private void printSingleResult(Map<Integer, Integer> ladderResults, Players players, Results results, String playerName) {
+        int playerIndex = players.getIndexByName(playerName);
+        Result result = results.get(ladderResults.get(playerIndex));
         outputView.printToken(result.rawResult());
     }
 }

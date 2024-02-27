@@ -7,20 +7,12 @@ import java.util.stream.IntStream;
 
 public class LadderIndexConverter {
 
-    private final List<Integer> mappedIndex;
+    private final List<Integer> resultIndex;
 
     public LadderIndexConverter(int playerCount) {
-        this.mappedIndex = IntStream.range(0, playerCount)
+        this.resultIndex = IntStream.range(0, playerCount)
                 .boxed()
                 .collect(Collectors.toList());
-    }
-
-    public int getMappedIndexByPlayerIndex(int playerIndex) {
-        validateIndex(playerIndex);
-        return mappedIndex.stream()
-                .filter(index -> mappedIndex.get(index) == playerIndex)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("매핑 정보를 찾을 수 없습니다."));
     }
 
     public void swapByRowPattern(List<Boolean> rowPattern) {
@@ -30,18 +22,16 @@ public class LadderIndexConverter {
                 .forEach(this::swapWithRightIndex);
     }
 
-    private void swapWithRightIndex(int index) {
-        Collections.swap(mappedIndex, index, index + 1);
+    List<Integer> getResultIndex() {
+        return Collections.unmodifiableList(resultIndex);
     }
 
-    private void validateIndex(int playerIndex) {
-        if (playerIndex < 0 || playerIndex >= mappedIndex.size()) {
-            throw new IndexOutOfBoundsException("주어진 인덱스가 매핑 범위를 벗어납니다.");
-        }
+    private void swapWithRightIndex(int index) {
+        Collections.swap(resultIndex, index, index + 1);
     }
 
     private void validateRowPatternSize(List<Boolean> rowPattern) {
-        if (rowPattern.size() != mappedIndex.size() - 1) {
+        if (rowPattern.size() != resultIndex.size() - 1) {
             throw new IndexOutOfBoundsException("주어진 사다리 패턴의 크기가 올바르지 않습니다.");
         }
     }

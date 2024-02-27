@@ -3,7 +3,6 @@ package domain.ladder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import dto.RowPatternDto;
 import java.util.List;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
@@ -18,23 +17,11 @@ class LadderIndexConverterTest {
     void validCreationTest() {
         // given
         LadderIndexConverter ladderIndexConverter = new LadderIndexConverter(5);
-        // when, then
-        for (int i = 0; i < 5; i++) {
-            int index = ladderIndexConverter.getMappedIndexByPlayerIndex(i);
-            assertThat(index).isEqualTo(i);
-        }
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {-1, 5})
-    @DisplayName("매핑하고자 하는 인덱스가 범위를 넘어가는 경우, 예외를 발생한다.")
-    void mappingIndexOutOfRangeTest(int index) {
-        // given
-        LadderIndexConverter ladderIndexConverter = new LadderIndexConverter(5);
-        // when, then
-        assertThatThrownBy(() -> ladderIndexConverter.getMappedIndexByPlayerIndex(index))
-                .isInstanceOf(IndexOutOfBoundsException.class)
-                .hasMessage("주어진 인덱스가 매핑 범위를 벗어납니다.");
+        // when
+        List<Integer> actual = ladderIndexConverter.getResultIndex();
+        List<Integer> expected = List.of(0, 1, 2, 3, 4);
+        // then
+        assertThat(actual).containsExactlyElementsOf(expected);
     }
 
     @Test
@@ -57,10 +44,7 @@ class LadderIndexConverterTest {
         List<Boolean> rowPattern = List.of(true, false, true, false);
         // when
         ladderIndexConverter.swapByRowPattern(rowPattern);
-        List<Integer> actual = IntStream.range(0, 5)
-                .map(ladderIndexConverter::getMappedIndexByPlayerIndex)
-                .boxed()
-                .toList();
+        List<Integer> actual = ladderIndexConverter.getResultIndex();
         // then
         List<Integer> expected = List.of(1, 0, 3, 2, 4);
         assertThat(actual).containsExactlyElementsOf(expected);
