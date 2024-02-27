@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -25,5 +26,22 @@ class PlayersTest {
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참여자의 이름은 두 개 이상이어야 합니다.");
+    }
+
+    @Test
+    @DisplayName("Player들을 이동시킨다.")
+    void movePlayers() {
+        Line line = new Line(new BooleanGenerator() {
+            @Override
+            public boolean generate() {
+                return true;
+            }
+        }, 4);
+
+        Players players = new Players(List.of("pobi", "crong", "jk", "honux"));
+
+        players.move(line);
+
+        assertThat(players.getPositions()).isEqualTo(List.of(1, 0, 3, 2));
     }
 }

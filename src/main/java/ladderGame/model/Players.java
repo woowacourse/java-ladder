@@ -37,4 +37,20 @@ public class Players {
     public List<Player> getPlayers() {
         return new ArrayList<>(players);
     }
+
+    public void move(Line line) {
+        for(Player player : players) {
+            player.move(line);
+        }
+    }
+
+    public List<Integer> getPositions() {
+        List<Integer> positions = new ArrayList<>();
+        for(Player player : players) {
+            positions.add(player.getPosition());
+        }
+
+        return positions;
+    }
+
 }
