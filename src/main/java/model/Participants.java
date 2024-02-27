@@ -1,15 +1,13 @@
 package model;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Participants {
 
     private static final String DUPLICATED_PARTICIPANT_NAME = "중복된 참가자들은 존재할 수 없습니다.";
     private static final String UNDER_PARTICIPANT_SIZE = "참가자가 1명 이하인 경우는 존재할 수 없습니다.";
     private static final int MINIMUM_PARTICIPANT_SIZE = 2;
-    private final List<Participant> participants;
+    private final Map<Participant, Integer> participants;
 
     public Participants(List<String> participantsName) {
         validateNotDuplicateName(participantsName);
@@ -30,10 +28,12 @@ public class Participants {
         }
     }
 
-    private List<Participant> create(List<String> participantsName) {
-        return participantsName.stream()
-                .map(Participant::new)
-                .toList();
+    private Map<Participant, Integer> create(List<String> participantsName) {
+        Map<Participant, Integer> participants = new LinkedHashMap<>();
+        for (int i = 0; i < participantsName.size(); i++) {
+            participants.put(new Participant(participantsName.get(i)), i);
+        }
+        return participants;
     }
 
     public int size() {
@@ -41,6 +41,10 @@ public class Participants {
     }
 
     public List<Participant> getParticipants() {
-        return List.copyOf(participants);
+        return List.copyOf(participants.keySet());
+    }
+
+    public int getPosition(String name) {
+        return participants.get(new Participant(name));
     }
 }

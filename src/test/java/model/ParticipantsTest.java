@@ -7,6 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class ParticipantsTest {
 
@@ -30,7 +31,12 @@ class ParticipantsTest {
     @Test
     void participantsPosition(){
         Participants participants = new Participants(List.of("pobi", "left", "right"));
-        assertThat(participants.getPosition("pobi")).isEqualTo(0);
+        assertAll(
+                () -> assertThat(participants.getPosition("pobi")).isEqualTo(0),
+                () -> assertThat(participants.getPosition("left")).isEqualTo(1),
+                () -> assertThat(participants.getPosition("right")).isEqualTo(2)
+        );
+
     }
 
 }
