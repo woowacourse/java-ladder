@@ -46,9 +46,9 @@ class LineTest {
         List<Bridge> bridges = List.of(NON_BRIDGE, BRIDGE, NON_BRIDGE);
         Line line = new Line(bridges);
         // when
-        int nextBridgeIndex = line.moveFrom(1);
+        int nextBridgeIndex = line.moveFrom(0);
         // then
-        assertThat(nextBridgeIndex).isEqualTo(1);
+        assertThat(nextBridgeIndex).isEqualTo(0);
     }
 
     @Test
