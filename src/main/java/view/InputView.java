@@ -36,4 +36,12 @@ public class InputView {
         HeightInputValidator.validate(rawHeight);
         return Integer.parseInt(rawHeight);
     }
+
+    public static String inputPlayerNameToFindResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        String playerName = scanner.nextLine();
+        System.out.println();
+        // todo: validate
+        return playerName;
+    }
 }
