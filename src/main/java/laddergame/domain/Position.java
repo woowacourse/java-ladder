@@ -13,13 +13,8 @@ public class Position {
     }
 
     public void move(Direction direction) {
-        if (direction == Direction.RIGHT) {
-            x += 1;
-        }
-        if (direction == Direction.LEFT) {
-            x -= 1;
-        }
-        y += 1;
+        x += direction.getMoveX();
+        y += direction.getMoveY();
     }
 
     public int getX() {

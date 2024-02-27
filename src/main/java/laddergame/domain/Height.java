@@ -19,7 +19,6 @@ public class Height {
 
     private void checkIsNaturalNumber(final String height) {
         if (!NUMBER_REGEX.matcher(height).matches() || height.equals("0")) {
-            System.out.println(height);
             throw new IllegalArgumentException(NATURAL_NUMBER_ERROR);
         }
     }

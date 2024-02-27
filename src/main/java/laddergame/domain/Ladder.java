@@ -19,7 +19,11 @@ public class Ladder {
     }
 
     public Direction move(int startX, int startY) {
-        return lines.get(startY).findDirection(startX);
+        if (startY == lines.size()) {
+            return Direction.END;
+        }
+        Direction nextDirection = lines.get(startY).findDirection(startX);
+        return nextDirection;
     }
 
     public List<Lines> getLines() {
