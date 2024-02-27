@@ -28,11 +28,11 @@ public class Line {
             return false;
         }
 
-        return isExistStep(nowStep + ONE_STEP);
+        return isExistStep(nowStep);
     }
 
     private int lineLastStep() {
-        return stepPoints.size() - 1;
+        return stepPoints.size();
     }
 
     private StepPoint makeOnePoint(int cellIndex, StepGenerator stepGenerator) {
