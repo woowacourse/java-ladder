@@ -6,15 +6,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public record LadderResultDto(Map<String, String> playersPrizeResults) {
+public final class LadderResult {
+    private final Map<String, String> playersPrizeResults;
 
-    public static LadderResultDto of(List<String> playerNames, List<String> prizes) {
+    public LadderResult(Map<String, String> playersPrizeResults) {
+        this.playersPrizeResults = playersPrizeResults;
+    }
+
+    public static LadderResult of(List<String> playerNames, List<String> prizes) {
         validate(playerNames, prizes);
         Map<String, String> result = new LinkedHashMap<>();
         for (int i = 0; i < playerNames.size(); i++) {
             result.put(playerNames.get(i), prizes.get(i));
         }
-        return new LadderResultDto(result);
+        return new LadderResult(result);
     }
 
     private static void validate(final List<String> playerNames, final List<String> prizes) {
@@ -35,9 +40,25 @@ public record LadderResultDto(Map<String, String> playersPrizeResults) {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof LadderResultDto ladderResultDto)) {
+        if (!(obj instanceof LadderResult ladderResult)) {
             return false;
         }
-        return Objects.equals(playersPrizeResults, ladderResultDto.playersPrizeResults);
+        return Objects.equals(playersPrizeResults, ladderResult.playersPrizeResults);
     }
+
+    public Map<String, String> playersPrizeResults() {
+        return playersPrizeResults;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(playersPrizeResults);
+    }
+
+    @Override
+    public String toString() {
+        return "LadderResult[" +
+                "playersPrizeResults=" + playersPrizeResults + ']';
+    }
+
 }

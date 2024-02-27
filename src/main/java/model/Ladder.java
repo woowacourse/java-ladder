@@ -41,7 +41,7 @@ public class Ladder {
         return lineBuilder.toString();
     }
 
-    public LadderResultDto findResult(final Players players, final Result prizes) {
+    public LadderResult findResult(final Players players, final Result prizes) {
 
         final int ladderSize = players.size() - 1;
         List<String> prizeResult = new ArrayList<>();
@@ -50,7 +50,7 @@ public class Ladder {
         for (int index = 0; index < players.size(); index++) {
             prizeResult.add(result.get(findLadderBottomIndex(index, ladderSize)).value());
         }
-        return LadderResultDto.of(players.getNames(), prizeResult);
+        return LadderResult.of(players.getNames(), prizeResult);
     }
 
 
