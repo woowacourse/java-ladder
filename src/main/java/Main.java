@@ -14,17 +14,16 @@ public class Main {
         var outputView = new OutPutView();
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
             var inputView = new InputView(bufferedReader);
-            LadderGame ladderGame = RetryHelper.retry(() -> createLadderGame(outputView, inputView));
+            LadderGame ladderGame = RetryHelper.retryWithReturn(() -> createLadderGame(outputView, inputView));
             outputView.printLadderResult(ladderGame);
-
             LadderGameResult ladderGameResult = ladderGame.calculateLadderGameResult();
-            RetryHelper.retry(
+            RetryHelper.retryWithoutReturn(
                     () -> searchLadderResultFromName(outputView, inputView, ladderGame.getNames(), ladderGameResult));
         }
     }
 
-    private static boolean searchLadderResultFromName(OutPutView outputView, InputView inputView,
-                                                      Names names, LadderGameResult ladderGameResult) {
+    private static void searchLadderResultFromName(OutPutView outputView, InputView inputView,
+                                                   Names names, LadderGameResult ladderGameResult) {
         String searchName = "";
         while (!searchName.equals("all")) {
             outputView.printSearchNameInput();
@@ -32,7 +31,6 @@ public class Main {
             outputView.printSearchNameLadderResult(searchName, ladderGameResult);
         }
         outputView.printAllNameLadderResult(names, ladderGameResult);
-        return true;
     }
 
     private static LadderGame createLadderGame(OutPutView outputView, InputView inputView) {
@@ -51,12 +49,19 @@ public class Main {
 
     static final class RetryHelper {
 
-        public static <E> E retry(Supplier<E> supplier) {
+        public static <E> E retryWithReturn(Supplier<E> supplier) {
             E result = null;
             while (result == null) {
                 result = useSupplier(supplier);
             }
             return result;
+        }
+
+        public static void retryWithoutReturn(Runnable runnable) {
+            boolean isContinue = true;
+            while (isContinue) {
+                isContinue = useRunnable(runnable);
+            }
         }
 
         private static <E> E useSupplier(Supplier<E> supplier) {
@@ -65,6 +70,16 @@ public class Main {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 return null;
+            }
+        }
+
+        private static boolean useRunnable(Runnable runnable) {
+            try {
+                runnable.run();
+                return false;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return true;
             }
         }
     }
