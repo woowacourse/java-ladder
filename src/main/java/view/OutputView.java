@@ -1,7 +1,7 @@
 package view;
 
-import domain.db.Name;
-import domain.db.Names;
+import domain.db.Player;
+import domain.db.Players;
 import domain.db.Prize;
 import domain.db.Prizes;
 import domain.ladder.Bridge;
@@ -19,45 +19,19 @@ public class OutputView {
     private static final String BRIDGE_EXIST_SYMBOL = "-";
     private static final String BRIDGE_EMPTY_SYMBOL = " ";
 
-    public static void printLadderGame(final Names names, final Ladder ladder, final Prizes prizes) {
+    public static void printLadderGame(final Players players, final Ladder ladder, final Prizes prizes) {
         System.out.println(System.lineSeparator() + "실행 결과");
-        printPlayers(names.names());
+        printPlayers(players.players());
         printLadder(ladder);
         printPrizes(prizes.prizes());
     }
 
-    public static void printSearchResult(final Map<Name, Prize> result) {
-        if (result.entrySet().size() == 1) {
-            printResultOne(result);
-            return;
-        }
-        printResultMulti(result);
+    private static void printPlayers(final List<Player> players) {
+        System.out.println(makePlayersNameMessage(players));
     }
 
-    private static void printResultOne(Map<Name, Prize> results) {
-        for (Map.Entry<Name, Prize> result : results.entrySet()) {
-            System.out.println(result.getValue().name());
-        }
-    }
-
-    private static void printResultMulti(Map<Name, Prize> results) {
-        for (Map.Entry<Name, Prize> result : results.entrySet()) {
-            final String name = result.getKey().name();
-            final String prize = result.getValue().name();
-            System.out.println(name + " : " + prize);
-        }
-    }
-
-    public static void printErrorMessage(Exception e) {
-        System.out.println(e.getMessage());
-    }
-
-    private static void printPlayers(final List<Name> names) {
-        System.out.println(makePlayersNameMessage(names));
-    }
-
-    private static String makePlayersNameMessage(final List<Name> names) {
-        return names.stream()
+    private static String makePlayersNameMessage(final List<Player> players) {
+        return players.stream()
                 .map(name -> String.format("%6s", name.name()))
                 .collect(Collectors.joining());
     }
@@ -94,5 +68,31 @@ public class OutputView {
         return prizes.stream()
                 .map(prize -> String.format("%6s", prize.name()))
                 .collect(Collectors.joining());
+    }
+
+    public static void printSearchResult(final Map<Player, Prize> result) {
+        if (result.entrySet().size() == 1) {
+            printResultOne(result);
+            return;
+        }
+        printResultMulti(result);
+    }
+
+    private static void printResultOne(Map<Player, Prize> results) {
+        for (Map.Entry<Player, Prize> result : results.entrySet()) {
+            System.out.println(result.getValue().name());
+        }
+    }
+
+    private static void printResultMulti(Map<Player, Prize> results) {
+        for (Map.Entry<Player, Prize> result : results.entrySet()) {
+            final String name = result.getKey().name();
+            final String prize = result.getValue().name();
+            System.out.println(name + " : " + prize);
+        }
+    }
+
+    public static void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
     }
 }

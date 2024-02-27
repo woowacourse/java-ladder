@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class NamesTest {
+public class PlayersTest {
 
     @Test
     @DisplayName("이름이 정상적으로 생성되는가")
@@ -15,11 +15,11 @@ public class NamesTest {
         String mang = "mang";
         String pobi = "pobi";
 
-        Names names = new Names(new String[]{mang, pobi});
+        Players players = new Players(new String[]{mang, pobi});
 
         assertAll(
-                () -> assertThat(names.getSequence("mang")).isEqualTo(0),
-                () -> assertThat(names.getSequence("pobi")).isEqualTo(1)
+                () -> assertThat(players.getSequence("mang")).isEqualTo(0),
+                () -> assertThat(players.getSequence("pobi")).isEqualTo(1)
         );
     }
 
@@ -29,7 +29,7 @@ public class NamesTest {
         String mang = "mang";
         String[] names = new String[]{mang, mang};
 
-        assertThatThrownBy(() -> new Names(names))
+        assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("중복된 이름은 허용하지 않습니다");
     }

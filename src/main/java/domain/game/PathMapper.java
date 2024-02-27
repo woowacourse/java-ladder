@@ -10,13 +10,13 @@ import static java.util.stream.IntStream.range;
 public class PathMapper {
     private final Map<Integer, Integer> mapper;
 
-    public PathMapper(final List<Integer> to) {
-        this.mapper = range(0, to.size())
+    public PathMapper(final List<Integer> path) {
+        this.mapper = range(0, path.size())
                 .boxed()
-                .collect(toMap(to::get, index -> index, (a, b) -> a, HashMap::new));
+                .collect(toMap(path::get, index -> index, (a, b) -> a, HashMap::new));
     }
 
-    public int find(final int from) {
-        return this.mapper.get(from);
+    public int find(final int departure) {
+        return this.mapper.get(departure);
     }
 }

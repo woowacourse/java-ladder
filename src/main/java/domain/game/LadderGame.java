@@ -9,10 +9,10 @@ import static java.util.stream.IntStream.rangeClosed;
 
 public class LadderGame {
     public static PathMapper play(final Ladder ladder) {
-        List<Integer> from = rangeClosed(0, ladder.getWidth()).boxed().toList();
+        List<Integer> path = rangeClosed(0, ladder.getWidth()).boxed().toList();
         for (final Row row : ladder.getRows()) {
-            from = LadderClimber.climbDown(row, from);
+            path = LadderClimber.climbDown(row, path);
         }
-        return new PathMapper(from);
+        return new PathMapper(path);
     }
 }

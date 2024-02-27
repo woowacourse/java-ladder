@@ -1,5 +1,5 @@
-import domain.db.Name;
-import domain.db.Names;
+import domain.db.Player;
+import domain.db.Players;
 import domain.db.Prize;
 import domain.db.Prizes;
 import domain.game.Judge;
@@ -14,27 +14,25 @@ import view.OutputView;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import static view.OutputView.printLadderGame;
-
 public class LadderController {
 
     public static void main(String[] args) {
-        final Names names = retryOnException(LadderController::getNames);
+        final Players players = retryOnException(LadderController::getNames);
         final Prizes prizes = retryOnException(LadderController::getPrizes);
         final Height height = retryOnException(LadderController::getHeight);
 
-        final Ladder ladder = getLadder(names, height);
+        final Ladder ladder = makeLadder(players, height);
         final PathMapper pathMapper = LadderGame.play(ladder);
-        final Judge judge = new Judge(names, prizes, pathMapper);
+        final Judge judge = new Judge(players, prizes, pathMapper);
 
-        printLadderGame(names, ladder, prizes);
+        OutputView.printLadderGame(players, ladder, prizes);
         searchGameResult(judge);
     }
 
     private static void searchGameResult(final Judge judge) {
         while (true) {
             try {
-                final Map<Name, Prize> result = getPrizeByName(judge);
+                final Map<Player, Prize> result = getPrizeByName(judge);
                 OutputView.printSearchResult(result);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e);
@@ -42,18 +40,13 @@ public class LadderController {
         }
     }
 
-    private static Map<Name, Prize> getPrizeByName(final Judge judge) throws IllegalArgumentException {
-        final Name nameToSearch = getNameToSearch();
-        return judge.search(nameToSearch.name());
+    private static Map<Player, Prize> getPrizeByName(final Judge judge) throws IllegalArgumentException {
+        final Player playerToSearch = getNameToSearch();
+        return judge.search(playerToSearch.name());
     }
 
-    private static Ladder getLadder(final Names names, final Height height) {
-        final int width = names.names().size() - 1;
-        return new Ladder(width, height.height(), new RandomBridgeMakingStrategy());
-    }
-
-    private static Names getNames() {
-        return new Names(InputView.readNames());
+    private static Players getNames() {
+        return new Players(InputView.readNames());
     }
 
     private static Prizes getPrizes() {
@@ -64,8 +57,12 @@ public class LadderController {
         return new Height(InputView.readHeight());
     }
 
-    private static Name getNameToSearch() {
-        return new Name(InputView.readNameToSearch());
+    private static Player getNameToSearch() {
+        return new Player(InputView.readNameToSearch());
+    }
+
+    private static Ladder makeLadder(final Players players, final Height height) {
+        return new Ladder(players.size() - 1, height.value(), new RandomBridgeMakingStrategy());
     }
 
     private static <T> T retryOnException(Supplier<T> supplier) {
