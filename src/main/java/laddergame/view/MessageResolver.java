@@ -29,11 +29,10 @@ public class MessageResolver {
     }
 
     private static String resolveRowLineMessage(RowLine rowLine) {
-        return BLANK.repeat(INTERVAL_WIDTH - 1) + VERTICAL_LINE
-                + rowLine.getConnections().stream()
+        return rowLine.getConnections().stream()
                 .map(MessageResolver::findConnectionMark)
-                .collect(Collectors.joining(VERTICAL_LINE))
-                + VERTICAL_LINE;
+                .collect(Collectors.joining(VERTICAL_LINE,
+                        BLANK.repeat(INTERVAL_WIDTH - 1) + VERTICAL_LINE, VERTICAL_LINE));
     }
 
     private static String findConnectionMark(Connection connection) {
