@@ -30,11 +30,11 @@ public class Participants {
                 .orElseThrow();
     }
 
-    public int getParticipantsCount() {
-        return participants.size();
+    public Participant findParticipantByInitPosition(int position) {
+        return participants.get(position);
     }
 
-    public List<Participant> getParticipants() {
-        return Collections.unmodifiableList(participants);
+    public int getParticipantsCount() {
+        return participants.size();
     }
 }

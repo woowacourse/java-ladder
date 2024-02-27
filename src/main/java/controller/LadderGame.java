@@ -12,6 +12,8 @@ import java.util.Map;
 
 public class LadderGame {
 
+    private static final String OUTPUT_FORMAT = "%5s ";
+
     private final InputView inputView;
     private final OutputView outputView;
     private final BooleanGenerator booleanGenerator;
@@ -50,8 +52,10 @@ public class LadderGame {
     private void printParticipantsLineUp(Participants participants) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (Participant participant : participants.getParticipants()) {
-            stringBuilder.append(String.format("%5s ", participant.getName()));
+        for (int initPosition = 0; initPosition < participants.getParticipantsCount(); initPosition++) {
+            String name = participants.findParticipantByInitPosition(initPosition).getName();
+
+            stringBuilder.append(String.format(OUTPUT_FORMAT, name));
         }
 
         outputView.printParticipantLineUp(stringBuilder.toString());
@@ -82,7 +86,7 @@ public class LadderGame {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (String gameResult : results.getResults()) {
-            stringBuilder.append(String.format("%5s ", gameResult));
+            stringBuilder.append(String.format(OUTPUT_FORMAT, gameResult));
         }
 
         outputView.printResultsOutput(stringBuilder.toString());
