@@ -16,6 +16,12 @@ public class Game {
         return new Game(members, lines, rewards);
     }
 
+    public String findRewardNameByMemberName(String memberName) {
+        int memberIndex = members.findIndexByName(memberName);
+        int rewardIndex = lines.findRewardIndex(memberIndex);
+        return rewards.findRewardNameByIndex(rewardIndex);
+    }
+
     public Members getMembers() {
         return members;
     }
