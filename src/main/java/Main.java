@@ -16,14 +16,25 @@ public class Main {
     private static final PointStrategy pointStrategy = new RandomPointStrategy();
 
     public static void main(String[] args) {
-        Members members = errorHandler.readUntilNoError(
-            () -> Members.from(inputView.readMembers()));
-        Height height = errorHandler.readUntilNoError(
-            () -> Height.from(inputView.readHeight()));
-        Rewards rewards = errorHandler.readUntilNoError(
-            () -> Rewards.from(members.getCount(), inputView.readRewards()));
+        Members members = errorHandler.readUntilNoError(Main::makeMembers);
+        Height height = errorHandler.readUntilNoError(Main::makeHeight);
+        Rewards rewards = errorHandler.readUntilNoError(() -> makeRewards(members));
 
         Game game = Game.of(members, height, rewards, pointStrategy);
         outputView.printGame(game);
+
+
+    }
+
+    private static Members makeMembers() {
+        return Members.from(inputView.readMembers());
+    }
+
+    private static Height makeHeight() {
+        return Height.from(inputView.readHeight());
+    }
+
+    private static Rewards makeRewards(Members members) {
+        return Rewards.from(members.getCount(), inputView.readRewards());
     }
 }
