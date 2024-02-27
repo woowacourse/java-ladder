@@ -27,14 +27,14 @@ public class OutputFormatter {
         String line = rawLine.getSteps().stream()
                 .map(this::getStep)
                 .collect(Collectors.joining());
-        return SPACE.repeat(4) + line;
+        return "    " + line;
     }
 
     private String getStep(Step step) {
         if (step.isRight()) {
             return BAR + BRIDGE;
         }
-        return BAR + SPACE.repeat(5);
+        return BAR + "     ";
     }
 
     public String toTargetUnit(Targets targets) {
