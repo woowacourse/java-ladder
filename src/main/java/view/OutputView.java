@@ -42,6 +42,7 @@ public class OutputView {
     private static String makeLadderRowText(List<DirectionalRung> rungs, int length) {
         return SPACE.repeat(length) +
                 rungs.stream()
+                        .limit(rungs.size() - 1)
                         .map(rung -> makeLadderRungText(rung, length))
                         .collect(Collectors.joining(LADDER_COLUMN, LADDER_COLUMN, LADDER_COLUMN));
     }
