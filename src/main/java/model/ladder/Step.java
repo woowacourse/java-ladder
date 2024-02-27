@@ -3,30 +3,42 @@ package model.ladder;
 import java.util.Objects;
 
 public class Step {
-    private final StepStatus status;
+    private final StepStatus stepStatus;
 
-    private Step(final StepStatus status) {
-        this.status = status;
-    }
-
-    public static Step from(StepStatus status) {
-        return new Step(status);
+    private Step(final StepStatus stepStatus) {
+        this.stepStatus = stepStatus;
     }
 
     public static Step of(Step previous, StepStatusGenerator stepStatusGenerator) {
-        return new Step(stepStatusGenerator.generate(previous));
+        StepStatus stepStatus = createStepStatus(previous, stepStatusGenerator);
+        return new Step(stepStatus);
+    }
+
+    private static StepStatus createStepStatus(final Step previous, final StepStatusGenerator stepStatusGenerator) {
+        if (isNotOverlapped(previous)) {
+            return stepStatusGenerator.generate();
+        }
+        return StepStatus.DISCONNECTED;
+    }
+
+    private static boolean isNotOverlapped(final Step previous) {
+        return previous.isEmpty() || previous.isDisconnected();
+    }
+
+    public static Step from(final StepStatus stepStatus) {
+        return new Step(stepStatus);
     }
 
     public boolean isEmpty() {
-        return status.equals(StepStatus.EMPTY);
+        return stepStatus.equals(StepStatus.EMPTY);
     }
 
     public boolean isConnected() {
-        return status.equals(StepStatus.CONNECTED);
+        return stepStatus.equals(StepStatus.CONNECTED);
     }
 
     public boolean isDisconnected() {
-        return status.equals(StepStatus.DISCONNECTED);
+        return stepStatus.equals(StepStatus.DISCONNECTED);
     }
 
     @Override
@@ -38,11 +50,11 @@ public class Step {
             return false;
         }
         final Step step = (Step) o;
-        return status == step.status;
+        return stepStatus == step.stepStatus;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(status);
+        return Objects.hash(stepStatus);
     }
 }
