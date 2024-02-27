@@ -1,7 +1,6 @@
 package ladder.view;
 
 import java.util.Arrays;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import ladder.dto.ResultRequestDto;
@@ -28,7 +27,6 @@ public class InputView {
 
     private List<String> inputNames() {
         String names = SCANNER.nextLine();
-        SCANNER.reset();
         return Arrays.asList(names.split(NAME_DELIMITER));
     }
 
@@ -42,21 +40,17 @@ public class InputView {
 
     private int inputInt(String exceptionMessage) {
         try {
-            return SCANNER.nextInt();
-        } catch (InputMismatchException exception) {
+            return Integer.parseInt(SCANNER.nextLine());
+        } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(exceptionMessage, exception);
-        } finally {
-            SCANNER.reset();
         }
     }
 
-    private ResultRequestDto inputResultRequest() {
+    public ResultRequestDto inputResultRequest() {
         System.out.println();
         System.out.println("결과를 보고 싶은 사람은?");
 
         String input = SCANNER.nextLine();
-        SCANNER.reset();
-
         if (TOTAL_PLAYER_REQUEST.equals(input)) {
             return ResultRequestDto.ALL;
         }
