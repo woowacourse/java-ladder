@@ -33,8 +33,8 @@ public class PositionRowTest {
         PositionRow positionRow = new PositionRow(1, 5);
 
         assertThatCode(() -> {
-            PositionRow nextPositionRow = positionRow.right();
-            PositionRow prevPositionRow = positionRow.left();
+            PositionRow right = positionRow.right();
+            PositionRow left = positionRow.left();
         }).doesNotThrowAnyException();
     }
 
