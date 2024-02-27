@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class InputView {
 
+    private static final Scanner SCANNER = new Scanner(System.in);
     private static final String DELIMITER_ERROR = "입력된 값: %s, 구분자로 끝날 수 없습니다.";
     public static final String COMMA = ",";
     public static final String NUMERIC_PATTERN = "-?\\d+";
@@ -13,8 +14,6 @@ public class InputView {
     private InputView() {
 
     }
-
-    private static final Scanner SCANNER = new Scanner(System.in);
 
     public static List<String> inputUserNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
