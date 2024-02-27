@@ -15,7 +15,7 @@ public class OutputView {
 
     public void printLadderResultMessage() {
         System.out.println();
-        System.out.println("실행결과");
+        System.out.println("사다리 결과");
     }
 
     public void printPlayerNames(final PlayersDto playersDto) {
