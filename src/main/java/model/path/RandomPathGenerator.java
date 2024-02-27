@@ -9,18 +9,22 @@ public class RandomPathGenerator implements PathGenerator {
     private final Random random = new Random();
 
     @Override
-    public List<Path> generate(final int count) {
+    public List<Line> generate(final int height, final int pathCount) {
+        final List<Line> lines = new ArrayList<>();
+        while (lines.size() <height) {
+            final Line generatedLine = generateLine(pathCount);
+            lines.add(generatedLine);
+        }
+        return lines;
+    }
+
+    private Line generateLine(final int pathCount) {
         final List<Path> paths = new ArrayList<>();
-        while (paths.size() < count) {
+        while (paths.size() < pathCount) {
             Path randomPath = getNextPath(paths);
             paths.add(randomPath);
         }
-        return paths;
-    }
-
-    @Override
-    public List<Line> generate(final int height, final int pathCount) {
-        return null;
+        return new Line(paths);
     }
 
     private Path getNextPath(final List<Path> paths) {
