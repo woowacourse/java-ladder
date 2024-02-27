@@ -4,7 +4,7 @@ public enum Rung {
     EXIST,
     EMPTY;
 
-    public static Rung of(final boolean exist) {
+    public static Rung from(final boolean exist) {
         if (exist) {
             return EXIST;
         }

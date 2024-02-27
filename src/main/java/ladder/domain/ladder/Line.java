@@ -30,7 +30,7 @@ public class Line {
 
     private List<Rung> mapRung(final List<Boolean> rungExist) {
         return rungExist.stream()
-                .map(Rung::of)
+                .map(Rung::from)
                 .toList();
     }
 
