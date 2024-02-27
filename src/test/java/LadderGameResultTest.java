@@ -2,7 +2,6 @@ import domain.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.CustomLineGenerator;
-import util.generator.RandomLineGenerator;
 
 import java.util.List;
 

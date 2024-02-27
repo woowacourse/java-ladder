@@ -1,12 +1,8 @@
 import domain.Ladder;
-import domain.Leg;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.CustomLineGenerator;
-import util.generator.LineGenerator;
 import util.generator.RandomLineGenerator;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
