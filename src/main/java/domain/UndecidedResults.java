@@ -4,22 +4,22 @@ import domain.name.Names;
 
 import java.util.List;
 
-public class NonDecidedResults {
+public class UndecidedResults {
 
-    private final List<String> NonDecidedResults;
+    private final List<String> UndecidedResults;
 
-    public NonDecidedResults(Names names, List<String> results) {
-        validateSameNumbers(names, results);
-        this.NonDecidedResults = results;
+    public UndecidedResults(Names names, List<String> UndecidedResults) {
+        validateSameNumbers(names, UndecidedResults);
+        this.UndecidedResults = UndecidedResults;
     }
 
-    private void validateSameNumbers(Names names, List<String> results) {
-        if (names.getNameCount() != results.size()) {
+    private void validateSameNumbers(Names names, List<String> UndecidedResults) {
+        if (names.getNameCount() != UndecidedResults.size()) {
             throw new IllegalArgumentException("[ERROR] 결과의 수는 참여자 수와 일치해야 합니다.");
         }
     }
 
-    public List<String> getNonDecidedResults() {
-        return List.copyOf(NonDecidedResults);
+    public List<String> getUndecidedResults() {
+        return List.copyOf(UndecidedResults);
     }
 }

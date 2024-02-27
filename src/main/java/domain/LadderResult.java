@@ -4,7 +4,8 @@ import domain.line.RowLine;
 import domain.name.Name;
 import domain.name.Names;
 
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,22 +17,23 @@ public class LadderResult {
         this.gameResult = gameResult;
     }
 
-    public static LadderResult of(Ladder ladder, Names names, NonDecidedResults nonDecidedResults) {
-        Map<Name, String> gameResult = new HashMap<>();
+    public static LadderResult of(Ladder ladder, Names names, UndecidedResults undecidedResults) {
+        Map<Name, String> gameResult = new LinkedHashMap<>();
         List<RowLine> lines = ladder.getLines();
 
         for (int position = 0; position < names.getNameCount(); position++) {
-            moveEachPerson(position, lines);
-            gameResult.put(names.getNames().get(position), nonDecidedResults.getNonDecidedResults().get(position));
+            int endPosition = moveEachPerson(position, lines);
+            gameResult.put(names.getNames().get(position), undecidedResults.getUndecidedResults().get(endPosition));
         }
         return new LadderResult(gameResult);
     }
 
-    private static void moveEachPerson(int position, List<RowLine> lines) {
+    private static int moveEachPerson(int position, List<RowLine> lines) {
         for (int height = 0; height < lines.size(); height++) {
             Direction direction = findDirection(lines, height, position);
             position = movePosition(direction, position);
         }
+        return position;
     }
 
     private static Direction findDirection(List<RowLine> lines, int height, int position) {
@@ -56,6 +58,6 @@ public class LadderResult {
     }
 
     public Map<Name, String> getResult() {
-        return Map.copyOf(gameResult);
+        return Collections.unmodifiableMap(gameResult);
     }
 }

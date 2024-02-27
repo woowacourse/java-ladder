@@ -1,7 +1,7 @@
 package view;
 
 import domain.Height;
-import domain.NonDecidedResults;
+import domain.UndecidedResults;
 import domain.name.Names;
 
 import java.util.Arrays;
@@ -19,10 +19,10 @@ public class InputView {
         return Names.from(names);
     }
 
-    public NonDecidedResults readNonDecidedResults(Names names) {
+    public UndecidedResults readUndecidedResults(Names names) {
         System.out.println(LINE_SEPARATOR + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         List<String> results = Arrays.asList(scanner.nextLine().split(","));
-        return new NonDecidedResults(names, results);
+        return new UndecidedResults(names, results);
     }
 
     public Height readHeight() {
@@ -38,5 +38,10 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자 값이 아닙니다");
         }
+    }
+
+    public String findResultByName() {
+        System.out.println(LINE_SEPARATOR + "결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
     }
 }

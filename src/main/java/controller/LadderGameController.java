@@ -3,7 +3,7 @@ package controller;
 import domain.Height;
 import domain.Ladder;
 import domain.LadderResult;
-import domain.NonDecidedResults;
+import domain.UndecidedResults;
 import domain.line.NonContinuousLineGenerator;
 import domain.name.Names;
 import view.InputView;
@@ -21,12 +21,16 @@ public class LadderGameController {
 
     public void run() {
         Names names = inputView.readNames();
-        NonDecidedResults nonDecidedResults = inputView.readNonDecidedResults(names);
+        UndecidedResults undecidedResults = inputView.readUndecidedResults(names);
         Height height = inputView.readHeight();
 
         Ladder ladder = Ladder.createFrom(new NonContinuousLineGenerator(), names.getNameCount(), height);
-        LadderResult ladderResult = LadderResult.of(ladder, names, nonDecidedResults);
+        resultView.printLadder(ladder, names, undecidedResults);
 
-        resultView.printLadder(ladder, names, nonDecidedResults);
+        LadderResult ladderResult = LadderResult.of(ladder, names, undecidedResults);
+
+        while (true) {
+            resultView.printResult((inputView.findResultByName()), ladderResult.getResult(), names);
+        }
     }
 }
