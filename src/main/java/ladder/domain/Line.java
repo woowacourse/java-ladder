@@ -5,12 +5,25 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Line {
+    private static final int MIN_CONNECTION_COUNT = 1;
+
     private final List<Connection> connections;
 
     public Line(List<Connection> connections) {
         List<Connection> copy = new ArrayList<>(connections);
-        validateConnectionContinuous(copy);
+        validate(copy);
         this.connections = copy;
+    }
+
+    private void validate(List<Connection> connections) {
+        validateMinConnectionCount(connections);
+        validateConnectionContinuous(connections);
+    }
+
+    private void validateMinConnectionCount(List<Connection> connections) {
+        if (connections.size() < MIN_CONNECTION_COUNT) {
+            throw new IllegalArgumentException("라인은 1개 이상의 연결로 이루어져야 합니다.");
+        }
     }
 
     private void validateConnectionContinuous(List<Connection> connections) {
