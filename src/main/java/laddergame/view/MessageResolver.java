@@ -1,6 +1,6 @@
 package laddergame.view;
 
-import laddergame.domain.gameelements.people.People;
+import laddergame.domain.gameelements.Elements;
 import laddergame.domain.ladder.Connection;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.RowLine;
@@ -10,14 +10,14 @@ import java.util.stream.Collectors;
 public class MessageResolver {
     private static final int INTERVAL_WIDTH = 5;
     private static final String BLANK = " ";
-    private static final String NAME_MESSAGE_FORMAT = "%-" + INTERVAL_WIDTH + "s";
+    private static final String ELEMENT_MESSAGE_FORMAT = "%-" + INTERVAL_WIDTH + "s";
     private static final String CONNECT_MESSAGE = "-".repeat(INTERVAL_WIDTH);
     private static final String NOTCONNECT_MESSAGE = " ".repeat(INTERVAL_WIDTH);
     private static final String VERTICAL_LINE = "|";
 
-    public static String resolvePeopleMessage(People people) {
-        return people.getNames().stream()
-                .map(name -> String.format(NAME_MESSAGE_FORMAT, name.getElement()))
+    public static String resolveElementMessage(Elements elements) {
+        return elements.getElements().stream()
+                .map(element -> String.format(ELEMENT_MESSAGE_FORMAT, element.getElement()))
                 .collect(Collectors.joining(BLANK));
     }
 

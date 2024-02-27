@@ -17,7 +17,7 @@ class MessageResolverTest {
         People testPeople = new People(List.of("a", "b", "c"));
         String expectedPeopleMessage = "a     b     c    ";
         assertEquals(expectedPeopleMessage
-                , MessageResolver.resolvePeopleMessage(testPeople));
+                , MessageResolver.resolveElementMessage(testPeople));
     }
 
     @Test
