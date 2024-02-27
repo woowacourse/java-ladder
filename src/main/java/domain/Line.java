@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
+import static util.Connection.CONNECTED;
 import static util.Connection.UNCONNECTED;
 
 public class Line {
@@ -40,6 +42,13 @@ public class Line {
 
     public List<Connection> getLine() {
         return Collections.unmodifiableList(line);
+    }
+
+    public List<Integer> getUnconnectedCoordinate() {
+        return IntStream.range(0, line.size())
+                .filter(value -> line.get(value).equals(CONNECTED))
+                .boxed()
+                .toList();
     }
 
     private void validateRange(int height) {

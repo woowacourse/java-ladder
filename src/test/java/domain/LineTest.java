@@ -45,4 +45,12 @@ public class LineTest {
         Line line = new Line(List.of(1,9,2,8,5,5));
         Assertions.assertThat(line.getLine()).isEqualTo(List.of(UNCONNECTED, CONNECTED, UNCONNECTED, CONNECTED, UNCONNECTED, CONNECTED));
     }
+
+    @DisplayName("한 라인에서 UNCONNECTED 인 좌표를 반환한다.")
+    @Test
+    void getUnconnectedCoordinateTest() {
+        Line line = new Line(List.of(1,9,2,8,4,5));
+        Assertions.assertThat(line.getUnconnectedCoordinate())
+                .isEqualTo(List.of(1,3,5));
+    }
 }
