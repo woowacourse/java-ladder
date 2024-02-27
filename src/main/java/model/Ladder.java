@@ -16,7 +16,7 @@ public class Ladder {
     private List<Layer> generateLayers(Height height, int numberOfParticipants) {
         List<Layer> layers = new ArrayList<>();
         for (int i = 0; i < height.value(); i++) {
-            layers.add(new Layer(numberOfParticipants));
+            layers.add(new Layer(StepExistenceGenerator.generate(numberOfParticipants)));
         }
         return layers;
     }

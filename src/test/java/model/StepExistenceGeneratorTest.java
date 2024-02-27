@@ -9,6 +9,13 @@ public class StepExistenceGeneratorTest {
     void 디딤판이_같은_층에서_연속해서_생성되지_않도록_한다() {
         boolean priorExistence = true;
 
-        assertThat(StepExistenceGenerator.generate(priorExistence)).isFalse();
+        assertThat(StepExistenceGenerator.generateEachExistence(priorExistence)).isFalse();
+    }
+
+    @Test
+    void 각_사다리층의_디딤판을_생성할_수_있는_공간은_참여자_수에따라_결정된다() {
+        int numberOfParticipants = 5;
+
+        assertThat(StepExistenceGenerator.generate(numberOfParticipants)).size().isEqualTo(4);
     }
 }
