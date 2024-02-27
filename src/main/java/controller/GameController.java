@@ -11,18 +11,19 @@ import view.OutputView;
 
 import java.util.stream.IntStream;
 
-import static view.InputView.inputHeight;
+import static util.RetryHelper.retryHelper;
+import static view.InputView.input;
 import static view.InputView.inputNames;
 import static view.UserMessage.*;
 
 
 public class GameController {
     public void execute() {
-        Players players = new Players(new Names(inputNames(PLAYER_INPUT_PROMPT)));
+        Players players = retryHelper(() -> new Players(new Names(inputNames())), PLAYER_INPUT_PROMPT);
         int numberOfPlayers = players.getPlayerCount();
-        Prizes prizes = new Prizes(inputNames(PRIZE_INPUT_PROMPT), numberOfPlayers);
-
-        Ladder ladder = new Ladder(new Height(inputHeight()), numberOfPlayers, new RandomDirectionGenerator());
+        Prizes prizes = retryHelper(() -> new Prizes(inputNames(), numberOfPlayers), PRIZE_INPUT_PROMPT);
+        Height height = retryHelper(() -> new Height(input()), HEIGHT_INPUT_PROMPT);
+        Ladder ladder = new Ladder(height, numberOfPlayers, new RandomDirectionGenerator());
         GameBoard gameBoard = new GameBoard(players, ladder, prizes);
 
         printGeneratedGameBoard(gameBoard);
