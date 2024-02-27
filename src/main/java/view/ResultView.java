@@ -64,7 +64,7 @@ public class ResultView {
         System.out.println(result);
     }
 
-    private static String makeResultForPrint(String userInput, Names names, Map<Name, String> gameResult) {
+    private String makeResultForPrint(String userInput, Names names, Map<Name, String> gameResult) {
         if (userInput.equals("all")) {
             return gameResult.keySet().stream()
                     .map(name -> (name.getName() + " : " + gameResult.get(name)))

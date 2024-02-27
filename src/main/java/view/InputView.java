@@ -40,7 +40,7 @@ public class InputView {
         }
     }
 
-    public String findResultByName() {
+    public String readOneNameOrAll() {
         System.out.println(LINE_SEPARATOR + "결과를 보고 싶은 사람은?");
         return scanner.nextLine();
     }
