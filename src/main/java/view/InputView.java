@@ -8,7 +8,7 @@ public class InputView {
 
     private static final String DELIMITER_ERROR = "입력된 값: %s, 구분자로 끝날 수 없습니다.";
     public static final String COMMA = ",";
-    public static final String NUMERIC_PATTERN = "\"-?\\\\d+\"";
+    public static final String NUMERIC_PATTERN = "-?\\d+";
 
     private InputView() {
 
