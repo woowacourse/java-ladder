@@ -29,7 +29,7 @@ public class InputView {
     }
 
     public List<String> inputPrizes() {
-        System.out.println(INPUT_MESSAGE_PRIZES);
+        System.out.println(System.lineSeparator() + INPUT_MESSAGE_PRIZES);
         return Arrays.stream(scanner.nextLine().split(",", -1))
                 .map(String::trim)
                 .toList();
