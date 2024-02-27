@@ -36,7 +36,7 @@ public class LadderGameController {
 
     private Ladder generateLadders(int userCount) {
         int height = InputView.inputHeight();
-        return new Ladder(height, userCount);
+        return Ladder.of(height, userCount);
     }
 
     private static void printLadderResult(Users users, Ladder ladder, Results ladderResults) {

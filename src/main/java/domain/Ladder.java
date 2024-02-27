@@ -16,13 +16,13 @@ public class Ladder {
         lines = line;
     }
 
-    public Ladder(final int maxHeight, final int personCount) {
+    public static Ladder of(final int maxHeight, final int personCount) {
         validateMaxHeight(maxHeight);
 
         List<Line> randomLines = new ArrayList<>();
         IntStream.range(0, maxHeight)
-                .forEach(iterator -> randomLines.add(new Line(personCount, new RandomGenerator())));
-        lines = randomLines;
+                .forEach(iterator -> randomLines.add(Line.of(personCount, new RandomGenerator())));
+        return new Ladder(randomLines);
     }
 
     public int climb(int position) {

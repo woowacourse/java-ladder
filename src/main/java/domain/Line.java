@@ -8,14 +8,16 @@ import static domain.Bridge.*;
 
 public class Line {
 
-    private final List<Bridge> bridges = new ArrayList<>();
+    private final List<Bridge> bridges;
 
-    public Line(final int personCount, final Generator generator) {
-        generateRandomBridge(personCount, generator);
+    public Line(List<Bridge> bridges) {
+        this.bridges = bridges;
     }
 
-    public Line(final List<Bridge> bridges) {
-        this.bridges.addAll(bridges);
+    public static Line of(final int personCount, final Generator generator) {
+        List<Bridge> bridges = new ArrayList<>();
+        generateRandomBridge(bridges, personCount, generator);
+        return new Line(bridges);
     }
 
     public int moveFrom(final int position) {
@@ -35,18 +37,18 @@ public class Line {
     }
 
 
-    private void generateRandomBridge(final int personCount, Generator generator) {
+    private static void generateRandomBridge(List<Bridge> bridges, final int personCount, Generator generator) {
         boolean randomLine = generator.generate();
         final Bridge firstBridge = findByHasBridge(randomLine);
 
         bridges.add(firstBridge);
 
         for (int i = 1; i < personCount - 1; i++) {
-            addBridge(generator, i);
+            addBridge(bridges, generator, i);
         }
     }
 
-    private void addBridge(final Generator generator, final int index) {
+    private static void addBridge(List<Bridge> bridges, final Generator generator, final int index) {
         final Bridge before = bridges.get(index - 1);
         if (before.getBridge()) {
             bridges.add(NON_BRIDGE);

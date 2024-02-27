@@ -20,7 +20,7 @@ class LadderTest {
         int personCount = 4;
         //when
         //then
-        assertThatCode(() -> new Ladder(maxHeight, personCount)).doesNotThrowAnyException();
+        assertThatCode(() -> Ladder.of(maxHeight, personCount)).doesNotThrowAnyException();
     }
 
     @Test
@@ -30,7 +30,7 @@ class LadderTest {
         int maxHeight = 4;
         int personCount = 4;
         //when
-        Ladder ladder = new Ladder(maxHeight, personCount);
+        Ladder ladder = Ladder.of(maxHeight, personCount);
         //then
         assertThat(maxHeight).isEqualTo(ladder.getHeight());
     }
@@ -43,7 +43,7 @@ class LadderTest {
         int personCount = 4;
         //when
         //then
-        assertThatThrownBy(() -> new Ladder(maxHeight, personCount))
+        assertThatThrownBy(() -> Ladder.of(maxHeight, personCount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

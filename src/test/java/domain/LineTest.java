@@ -21,7 +21,7 @@ class LineTest {
         int personCount = 4;
         //when
         //then
-        assertThatCode(() -> new Line(personCount, new RandomGenerator())).doesNotThrowAnyException();
+        assertThatCode(() -> Line.of(personCount, new RandomGenerator())).doesNotThrowAnyException();
     }
 
     @Test
@@ -31,7 +31,7 @@ class LineTest {
         int personCount = 4;
         List<Boolean> expectedPoint = List.of(true, false, true);
         //when
-        Line line = new Line(personCount, new TrueGenerator());
+        Line line = Line.of(personCount, new TrueGenerator());
         List<Boolean> list = line.getBridges().stream()
                 .map(Bridge::getBridge)
                 .toList();
