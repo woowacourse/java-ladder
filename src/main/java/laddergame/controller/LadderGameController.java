@@ -17,11 +17,11 @@ public class LadderGameController {
         People people = ExceptionHandledReader.readUntilNoError(LadderGameController::getPeople);
         Ladder ladder = ExceptionHandledReader.readUntilNoError(() -> getLadder(people));
         Results results = ExceptionHandledReader.readUntilNoError(() -> getResults(people.getNames().size()));
+
         LadderGame ladderGame = new LadderGame(people, ladder, results);
 
         ResultView.printLadder(people, ladder, results);
-        String playerName = InputView.readPlayerName();
-        ResultView.printPlayerResult(playerName, ladderGame);
+        ExceptionHandledReader.readUntilNoError(() -> getPlayerResults(ladderGame));
     }
 
     private static People getPeople() {
@@ -37,7 +37,8 @@ public class LadderGameController {
         return new Results(InputView.readGameResult(), peopleNumber);
     }
 
-    private static void getPlayerResults(LadderGame ladderGame) {
-
+    private static int getPlayerResults(LadderGame ladderGame) {
+        ResultView.printPlayerResult(InputView.readPlayerName(), ladderGame);
+        return 0;
     }
 }

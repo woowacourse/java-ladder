@@ -41,14 +41,17 @@
 ### 사다리 게임 실행
 
 - [x] 각 player는 초기 Position값을 부여받는다.
+
 ```
 ex)
   List<String> player = [pobi, coli, tre]
   List<Integer> playerPositions = [0, 1, 2]
 ```
+
 - [x] 사다리를 따라 이동한다.
-  - [x] position 왼쪽에 가로선이 연결되어 있다면 왼쪽으로 이동한다
-  - [x] position 오른쪽에 가로선이 연결되어 있다면 오른쪽으로 이동한다
+    - [x] position 왼쪽에 가로선이 연결되어 있다면 왼쪽으로 이동한다
+    - [x] position 오른쪽에 가로선이 연결되어 있다면 오른쪽으로 이동한다
+
 ```
 playerPositions   0    1    2    3    4
 Connection          T    F    T    F
@@ -88,14 +91,14 @@ resultPositions   1    0    3    2    4
     - [x] all을 입력하면 전체 참여자의 실행결과를 출력한다
         - 예시
             - ```
-        실행 결과
-        pobi : 꽝
-        honux : 3000
-        crong : 꽝
-        jk : 5000
+      실행 결과
+      pobi : 꽝
+      honux : 3000
+      crong : 꽝
+      jk : 5000
         ```
     - [x] 참여자 이름을 입력하면 개인별 결과를 출력한다
-        - [ ] 입력한 참여자의 이름이 없다면 재입력을 받는다.
+        - [x] 입력한 참여자의 이름이 없다면 재입력을 받는다.
     -[ ] 재입력 여부를 물어본다
 
 ### 1차 리뷰 개선사항
