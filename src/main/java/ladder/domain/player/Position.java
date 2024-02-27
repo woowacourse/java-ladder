@@ -38,11 +38,17 @@ public class Position {
     }
 
     private boolean canMoveToLeft(final List<Rung> rungs) {
-        return position - 1 >= 0 && rungs.get(position - 1).isExist();
+        final int leftIndex = position - 1;
+        return leftIndex >= 0 && isRungExist(rungs, leftIndex);
     }
 
     private boolean canMoveToRight(final List<Rung> rungs) {
-        return position < rungs.size() && rungs.get(position).isExist();
+        final int rightIndex = position;
+        return rightIndex < rungs.size() && isRungExist(rungs, rightIndex);
+    }
+
+    private boolean isRungExist(final List<Rung> rungs, final int index) {
+        return rungs.get(index).isExist();
     }
 
     public int getValue() {
