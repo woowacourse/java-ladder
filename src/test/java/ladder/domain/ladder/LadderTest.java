@@ -31,7 +31,7 @@ public class LadderTest {
     @DisplayName("매개변수 height와 생성되는 사다리와 사다리의 높이는 일치해야 한다.")
     void ladderHeightTest() {
         Ladder ladder = new Ladder(3, 5, new MockRungGenerator(rungs));
-        LadderResponseDto resultLadders = ladder.getResultLadder();
+        LadderResponseDto resultLadders = ladder.getLadderResult();
         int ladderHeight = resultLadders.ladderResult().size();
 
         assertThat(ladderHeight).isEqualTo(3);
@@ -42,7 +42,7 @@ public class LadderTest {
     @DisplayName("생성되는 사다리의 가로 공간은 사람 수 보다 1적어야 한다.")
     void ladderHorizontalLengthTest(int heightPosition) {
         Ladder ladder = new Ladder(3, 5, new MockRungGenerator(rungs));
-        LadderResponseDto resultLadder = ladder.getResultLadder();
+        LadderResponseDto resultLadder = ladder.getLadderResult();
         FloorResponseDto floorResponseDto = resultLadder.ladderResult().get(heightPosition);
         int maxRungsCount = floorResponseDto.buildStatusList().size();
 
@@ -55,9 +55,9 @@ public class LadderTest {
         Participants participants = new Participants(new ArrayList<>(List.of("aru", "pola", "sang", "horgi", "jazz")));
         Ladder ladder = new Ladder(3, participants.getCount(), new MockRungGenerator(rungs));
 
-        List<Name> participantsResult = ladder.getLadderGameResult(participants);
-
-        assertThat(participantsResult)
+        Participants participantsResult = ladder.getParticipantsResult(participants);
+                
+        assertThat(participantsResult.getNames())
                 .containsExactly(new Name("pola"), new Name("sang"), new Name("horgi"), new Name("aru"),
                         new Name("jazz"));
     }

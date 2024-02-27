@@ -34,7 +34,7 @@ public class Ladder {
                 .toList();
     }
 
-    public LadderResponseDto getResultLadder() {
+    public LadderResponseDto getLadderResult() {
         List<FloorResponseDto> floorResponseDtos = floors.stream()
                 .map(Floor::getRungs)
                 .toList();
@@ -42,7 +42,7 @@ public class Ladder {
         return new LadderResponseDto(floorResponseDtos);
     }
 
-    public List<Name> getLadderGameResult(Participants participants) {
+    public List<Name> getParticipantsResult(Participants participants) {
         List<Name> participantsNames = participants.getNames();
         climbDown(participantsNames);
         return participantsNames;
