@@ -2,6 +2,7 @@ package controller;
 
 import model.ladder.Height;
 import model.ladder.Ladder;
+import model.ladder.RandomStatusGenerator;
 import model.ladder.Width;
 import model.players.Players;
 import view.InputView;
@@ -20,7 +21,7 @@ public class LadderController {
         Players players = new Players(inputView.readPlayersName());
         Height height = new Height(inputView.readHeight());
 
-        Ladder ladder = Ladder.of(height, Width.from(players.size()));
+        Ladder ladder = Ladder.of(height, Width.from(players.size()), new RandomStatusGenerator());
 
         outputView.printResult(players.getNames(), ladder.getLines());
     }

@@ -11,10 +11,10 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(Height height, Width width) {
+    public static Ladder of(Height height, Width width, StepStatusGenerator generator) {
         List<Line> lines = new ArrayList<>();
         for (int index = 0; index < height.size(); index++) {
-            lines.add(Line.from(width));
+            lines.add(Line.from(width, generator));
         }
         return new Ladder(lines);
     }

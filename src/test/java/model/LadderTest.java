@@ -2,6 +2,7 @@ package model;
 
 import model.ladder.Height;
 import model.ladder.Ladder;
+import model.ladder.RandomStatusGenerator;
 import model.ladder.Width;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +17,7 @@ class LadderTest {
         Width width = new Width(7);
 
         // when
-        Ladder ladder = Ladder.of(height, width);
+        Ladder ladder = Ladder.of(height, width, new RandomStatusGenerator());
 
         // when
         Assertions.assertThat(ladder.size()).isEqualTo(height.size());
