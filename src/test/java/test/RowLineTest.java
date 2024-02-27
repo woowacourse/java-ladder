@@ -72,13 +72,10 @@ class RowLineTest {
     void movePositionRowTest() {
         int start = 0;
         int peopleNumber = 5;
-        RowLine rowLine = new RowLine(peopleNumber - 1,
-                new AlternativeLineGenerator());
+        RowLine rowLine = new RowLine(peopleNumber, new AlternativeLineGenerator());
         PositionRow positionRow = new PositionRow(start, peopleNumber);
 
-        rowLine.move(positionRow);
-        assertThat(positionRow.getPosition()).isEqualTo(start + 1);
-        rowLine.move(positionRow);
-        assertThat(positionRow.getPosition()).isEqualTo(start);
+        PositionRow nextPositionRow = rowLine.nextPositionOf(positionRow);
+        assertThat(nextPositionRow.getPosition()).isEqualTo(1);
     }
 }

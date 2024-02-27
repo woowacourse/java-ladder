@@ -28,13 +28,13 @@ public class PositionRowTest {
     }
 
     @Test
-    @DisplayName("PositionRow는 좌우로 움직일 수 있다")
+    @DisplayName("PositionRow는 좌우에 있는 PositionRow를 가져올 수 있다")
     void movePositionRow() {
-        PositionRow positionRow = new PositionRow(0, 5);
+        PositionRow positionRow = new PositionRow(1, 5);
 
         assertThatCode(() -> {
-            positionRow.moveRight();
-            positionRow.moveLeft();
+            PositionRow nextPositionRow = positionRow.right();
+            PositionRow prevPositionRow = positionRow.left();
         }).doesNotThrowAnyException();
     }
 
@@ -42,7 +42,7 @@ public class PositionRowTest {
     @DisplayName("PositionRow의 위치는 음수일 수 없다")
     void PositionRow() {
         PositionRow positionRow = new PositionRow(0, 0);
-        assertThatThrownBy(positionRow::moveLeft)
+        assertThatThrownBy(positionRow::left)
                 .isInstanceOf(IllegalStateException.class);
     }
 
@@ -50,7 +50,7 @@ public class PositionRowTest {
     @DisplayName("PositionRow의 위치는 maxPosition을 초과할 수 없다")
     void cantMovePositionRow() {
         PositionRow positionRow = new PositionRow(0, 0);
-        assertThatThrownBy(positionRow::moveRight)
+        assertThatThrownBy(positionRow::right)
                 .isInstanceOf(IllegalStateException.class);
     }
 }

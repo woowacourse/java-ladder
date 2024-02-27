@@ -21,12 +21,14 @@ public class RowLine {
         return connection;
     }
 
-    public void move(PositionRow positionRow) {
-        if (isConnectedLeft(positionRow)) {
-            positionRow.moveLeft();
-        } else if (isConnectedRight(positionRow)) {
-            positionRow.moveRight();
+    public PositionRow nextPositionOf(PositionRow positionRow) {
+        if (isConnectedOnLeftFrom(positionRow)) {
+            return positionRow.left();
         }
+        if (isConnectedOnRightFrom(positionRow)) {
+            return positionRow.right();
+        }
+        return positionRow;
     }
 
     private void validatePeopleNumber(int peopleNumber) {
@@ -49,14 +51,14 @@ public class RowLine {
         }
     }
 
-    private boolean isConnectedLeft(PositionRow positionRow) {
+    private boolean isConnectedOnLeftFrom(PositionRow positionRow) {
         if (positionRow.getPosition() == 0) {
             return false;
         }
         return connection.get(positionRow.getPosition() - 1);
     }
 
-    private boolean isConnectedRight(PositionRow positionRow) {
+    private boolean isConnectedOnRightFrom(PositionRow positionRow) {
         if (positionRow.getPosition() == connection.size()) {
             return false;
         }

@@ -37,7 +37,7 @@ public class Ladder {
         PositionRow positionRow = new PositionRow(lineNumber, peopleNumber);
 
         for (RowLine rowLine : rowLines) {
-            rowLine.move(positionRow);
+            positionRow = rowLine.nextPositionOf(positionRow);
         }
         return positionRow.getPosition();
     }

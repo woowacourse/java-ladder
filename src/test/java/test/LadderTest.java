@@ -40,7 +40,7 @@ class LadderTest {
     @DisplayName("사다리 생성 테스트 : 가로선이 없는 경우")
     @Test
     void makeLadderTest() {
-        Ladder testLadder = new Ladder(3, 5, new AllFalseLineGenerator());
+        Ladder testLadder = new Ladder(2, 5, new AllFalseLineGenerator());
         Set<Boolean> connectionElement = testLadder.getRowLines()
                 .stream()
                 .map(RowLine::getConnection)

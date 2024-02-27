@@ -2,7 +2,7 @@ package ladder.domain;
 
 public class PositionRow {
     private final int maxPosition;
-    private int position;
+    private final int position;
 
     public PositionRow(int start, int maxPosition) {
         validatePosition(start, maxPosition);
@@ -23,14 +23,14 @@ public class PositionRow {
         }
     }
 
-    public void moveLeft() {
+    public PositionRow left() {
         validatePositionLimit(position - 1, maxPosition);
-        position--;
+        return new PositionRow(position - 1, maxPosition);
     }
 
-    public void moveRight() {
+    public PositionRow right() {
         validatePositionLimit(position + 1, maxPosition);
-        position++;
+        return new PositionRow(position + 1, maxPosition);
     }
 
     public int getPosition() {
