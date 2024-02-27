@@ -22,6 +22,7 @@ public class LadderGame {
 
         StickGenerator stickGenerator = new RandomStickGenerator();
         Ladder ladder = new Ladder(height, players.getPlayerSize(), stickGenerator);
+
         outputView.printLadder(players, ladder);
     }
 
@@ -30,7 +31,7 @@ public class LadderGame {
             int height = inputView.readHeight();
             return new Height(height);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printError(e.getMessage());
             return readHeight();
         }
     }
@@ -40,7 +41,7 @@ public class LadderGame {
             List<String> names = inputView.readNames();
             return new Players(names);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printError(e.getMessage());
             return readPlayers();
         }
     }

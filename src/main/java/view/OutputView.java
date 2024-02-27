@@ -13,6 +13,10 @@ public class OutputView {
         printLadder(ladder);
     }
 
+    public void printError(String message) {
+        System.out.printf("[ERROR] %s%n", message);
+    }
+
     private void printPlayerNames(Players players) {
         players.getPlayers().forEach(this::printEachPlayerName);
 
