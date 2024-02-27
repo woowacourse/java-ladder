@@ -18,7 +18,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("해당 위치에서 왼쪽으로 연결된 길이 있는지 알려준다.")
+    @DisplayName("해당 위치에서 연결된 길 최종 index를 알려준다.")
     void checkConnectionAndFindMoveIndex() {
         Line line = new Line(List.of(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION));
 
