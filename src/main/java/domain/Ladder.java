@@ -23,14 +23,14 @@ public class Ladder implements Iterable<Line> {
         }
     }
 
-    @Override
-    public Iterator<Line> iterator() {
-        return ladder.iterator();
-    }
-
     private void validateHeight(Height height) {
         if (height.getHeight() < 1 || height.getHeight() > 50) {
             throw new IllegalArgumentException("사다리의 높이는 1 이상 50 이하여야 합니다.");
         }
+    }
+
+    @Override
+    public Iterator<Line> iterator() {
+        return ladder.iterator();
     }
 }

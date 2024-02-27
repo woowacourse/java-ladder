@@ -14,11 +14,6 @@ public class Players implements Iterable<Name> {
                 .toList();
     }
 
-    @Override
-    public Iterator<Name> iterator() {
-        return players.iterator();
-    }
-
     public int getPersonCount() {
         return players.size();
     }
@@ -27,5 +22,10 @@ public class Players implements Iterable<Name> {
         if (names.size() < 2 || names.size() > 10){
             throw new IllegalArgumentException("이름의 수는 2이상 10이하여야 합니다.");
         }
+    }
+
+    @Override
+    public Iterator<Name> iterator() {
+        return players.iterator();
     }
 }

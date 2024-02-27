@@ -12,24 +12,6 @@ import static util.Connection.UNCONNECTED;
 public class Line implements Iterable<Connection>{
     private final List<Connection> line;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Line line1 = (Line) o;
-        return Objects.equals(line, line1.line);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(line);
-    }
-
-    @Override
-    public Iterator<Connection> iterator() {
-        return line.iterator();
-    }
-
     public Line (List<Integer> numbers) {
         validateRange(numbers.size());
         List<Connection> line = new ArrayList<>();
@@ -51,5 +33,23 @@ public class Line implements Iterable<Connection>{
 
     private boolean hasConnection(int threshold) {
         return (threshold >= 5);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line1 = (Line) o;
+        return Objects.equals(line, line1.line);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(line);
+    }
+
+    @Override
+    public Iterator<Connection> iterator() {
+        return line.iterator();
     }
 }
