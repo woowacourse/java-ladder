@@ -2,6 +2,7 @@ package ladder.view;
 
 import java.util.List;
 import ladder.dto.LadderDto;
+import ladder.dto.LadderGameResultDto;
 import ladder.dto.LineDto;
 import ladder.dto.PlayersDto;
 import ladder.dto.ProductsDto;
@@ -41,18 +42,37 @@ public class OutputView {
 
     private void printLine(LineDto line) {
         System.out.printf(LINE_PREFIX);
-        for (Boolean isExist : line.sticks()) {
+        for (boolean isExist : line.sticks()) {
             printStick(isExist);
         }
         System.out.println();
     }
 
-    private void printStick(Boolean isExist) {
+    private void printStick(boolean isExist) {
         if (isExist) {
             System.out.print(EXIST_STICK);
             return;
         }
         System.out.print(BLANK_STICK);
+    }
+
+    public void printSingleResult(String productName) {
+        System.out.println();
+        System.out.println("실행 결과");
+
+        System.out.println(productName);
+    }
+
+    public void printTotalResult(LadderGameResultDto results) {
+        System.out.println();
+        System.out.println("실행 결과");
+
+        results.playerToProduct().entrySet().stream()
+                .forEach(entry -> printResult(entry.getKey(), entry.getValue()));
+    }
+
+    private void printResult(String playerName, String productName) {
+        System.out.printf("%s : %s%n", playerName, productName);
     }
 
     public void printErrorMessage(Exception e) {
