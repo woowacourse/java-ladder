@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public enum Step {
     EXIST(true),
-    NONE(false);
+    EMPTY(false);
 
     private final boolean doesExist;
 
