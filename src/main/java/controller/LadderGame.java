@@ -9,7 +9,7 @@ import domain.RandomLegGenerateStrategy;
 import view.InputView;
 import view.OutputView;
 
-public class LadderController {
+public class LadderGame {
 
     public void run() {
         Players players = readPlayers();
