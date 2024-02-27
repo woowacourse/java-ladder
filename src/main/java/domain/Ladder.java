@@ -20,14 +20,15 @@ public class Ladder {
     }
 
     public Result calculateResult(Name name) {
-        int index = names.findIndex(name.getName());
+        int prizeIndex = names.findIndex(name.getName());
         for (Bridges bridge : bridges) {
-            index = calculateNewIndex(index, bridge);
+            prizeIndex = calculateNextIndex(prizeIndex, bridge);
         }
-        return new Result(name, prizes.findByIndex(index));
+        Prize prize = prizes.findByIndex(prizeIndex);
+        return new Result(name, prize);
     }
 
-    private int calculateNewIndex(int index, Bridges bridge) {
+    private int calculateNextIndex(int index, Bridges bridge) {
         if (bridge.canCrossToLeft(index)) {
             return index - 1;
         }
