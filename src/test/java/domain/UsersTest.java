@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.*;
 
 class UsersTest {
     @Test
-    @DisplayName("사용자가 두명 이상 있어야 한다.")
+    @DisplayName("사용자가 두명 미만이면 예외가 발생한다")
     void createOnlyUsers() {
         final String userNames = "pobi";
 
@@ -22,7 +22,7 @@ class UsersTest {
     }
 
     @Test
-    @DisplayName("사용자는 최대 50명이다")
+    @DisplayName("사용자는 최대 50명을 초과하면 예외가 발생한다")
     void maxUsers() {
         final List<String> userNames = new ArrayList<>();
         for (int i = 1; i <= 50; i++) {
@@ -34,7 +34,7 @@ class UsersTest {
     }
 
     @Test
-    @DisplayName("존재하지 않는 이름이 주어지면 예외를 발생시킨다")
+    @DisplayName("존재하지 않는 이름이 주어지면 예외가 발생한다")
     void nameNotExist() {
         final Users users = new Users(List.of("pobi", "rush", "jonge"));
 

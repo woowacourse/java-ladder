@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.*;
 
 class LadderTest {
     @Test
-    @DisplayName("사다리 최대 높이는 100이다.")
+    @DisplayName("사다리 최대 높이가 100을 초과하면 예외가 발생한다")
     void maxHeightTest() {
         final List<Line> lines = new ArrayList<>();
         final Line line = new Line(List.of(Bridge.BRIDGE, Bridge.NON_BRIDGE));
@@ -22,7 +22,7 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("주어진 사다리의 가로 길이가 일정한지 확인한다")
+    @DisplayName("주어진 사다리의 가로 길이가 일정하지 않을시 예외가 발생한다")
     void LadderShapeTest() {
         final Line line1 = new Line(List.of(Bridge.NON_BRIDGE, Bridge.NON_BRIDGE, Bridge.NON_BRIDGE));
         final Line line2 = new Line(List.of(Bridge.NON_BRIDGE, Bridge.NON_BRIDGE));
