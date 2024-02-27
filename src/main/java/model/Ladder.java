@@ -15,6 +15,18 @@ public class Ladder {
         this.layers = layers;
     }
 
+    public int move(List<Step> steps, int startIndex) {
+        int lastIndex = startIndex;
+        if (startIndex != steps.size() && steps.get(startIndex) == Step.EXIST) {
+            lastIndex += 1;
+            return lastIndex;
+        }
+        if (steps.get(startIndex - 1) == Step.EXIST) {
+            lastIndex -= 1;
+        }
+        return lastIndex;
+    }
+
     public void forEachLayer(Consumer<Layer> consumer) {
         layers.forEach(consumer);
     }
