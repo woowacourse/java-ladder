@@ -34,7 +34,7 @@ public class Ladder {
                 .toList();
     }
 
-    public LadderResponseDto getResultLadders() {
+    public LadderResponseDto getResultLadder() {
         List<FloorResponseDto> floorResponseDtos = floors.stream()
                 .map(Floor::getRungs)
                 .toList();
@@ -52,8 +52,7 @@ public class Ladder {
         for (Floor floor : floors) {
             List<Integer> existRungPositions = floor.getExistRungPositions();
             existRungPositions.forEach(
-                    existRungPosition -> Collections.swap(names, existRungPosition,
-                            existRungPosition + 1));
+                    existRungPosition -> Collections.swap(names, existRungPosition, existRungPosition + 1));
         }
     }
 }

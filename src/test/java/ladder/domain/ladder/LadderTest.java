@@ -31,7 +31,7 @@ public class LadderTest {
     @DisplayName("매개변수 height와 생성되는 사다리와 사다리의 높이는 일치해야 한다.")
     void ladderHeightTest() {
         Ladder ladder = new Ladder(3, 5, new MockRungGenerator(rungs));
-        LadderResponseDto resultLadders = ladder.getResultLadders();
+        LadderResponseDto resultLadders = ladder.getResultLadder();
         int ladderHeight = resultLadders.ladderResult().size();
 
         assertThat(ladderHeight).isEqualTo(3);
@@ -42,8 +42,8 @@ public class LadderTest {
     @DisplayName("생성되는 사다리의 가로 공간은 사람 수 보다 1적어야 한다.")
     void ladderHorizontalLengthTest(int heightPosition) {
         Ladder ladder = new Ladder(3, 5, new MockRungGenerator(rungs));
-        LadderResponseDto resultLadders = ladder.getResultLadders();
-        FloorResponseDto floorResponseDto = resultLadders.ladderResult().get(heightPosition);
+        LadderResponseDto resultLadder = ladder.getResultLadder();
+        FloorResponseDto floorResponseDto = resultLadder.ladderResult().get(heightPosition);
         int maxRungsCount = floorResponseDto.buildStatusList().size();
 
         assertThat(maxRungsCount).isEqualTo(4);

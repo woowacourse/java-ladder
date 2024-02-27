@@ -26,7 +26,7 @@ public class LadderController {
         int participantsCount = participants.getCount();
 
         Ladder ladder = repeatUntilValid(() -> getLadder(participantsCount));
-        LadderResponseDto ladderResponseDto = ladder.getResultLadders();
+        LadderResponseDto ladderResponseDto = ladder.getResultLadder();
 
         outputView.printResult(ladderResponseDto, participants.getNames());
     }
