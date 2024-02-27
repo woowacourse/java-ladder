@@ -25,9 +25,17 @@ public class PrizeResults {
     }
 
     public boolean checkOperate(String op) {
+        validateOperate(op);
         if (op.equals(GET_ALL_RESULT_OPERATOR)) {
             return false;
         }
         return true;
     }
+    
+    private void validateOperate(String op) {
+        if (!GET_ALL_RESULT_OPERATOR.equals(op) && !results.keySet().contains(op)) {
+            throw new IllegalArgumentException(String.format("보고 싶은 결과는 all 또는 사용자 이름으로 입력해주세요. 입력 : %s", op));
+        }
+    }
+
 }
