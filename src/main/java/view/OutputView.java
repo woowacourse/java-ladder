@@ -12,7 +12,7 @@ public class OutputView {
     }
 
     public void printResult(Players rawPlayers, Ladder ladder, Targets targets) {
-        System.out.println("실행결과");
+        System.out.println("사다리 결과");
         printNames(rawPlayers);
         printLadder(ladder);
         printTargets(targets);
@@ -37,7 +37,13 @@ public class OutputView {
         System.out.println(targetUnit);
     }
 
-    public void printPrize(List<Player> players, List<Target> targets) {
+    public void printPrize(Target target) {
+        System.out.println("실행 결과");
+        System.out.println(target.getTarget());
+    }
+
+    public void printAllPrize(List<Player> players, List<Target> targets) {
+        System.out.println("실행 결과");
         for (int i = 0; i < players.size(); i++) {
             String result = outputFormatter.toResult(players.get(i), targets.get(i));
             System.out.println(result);

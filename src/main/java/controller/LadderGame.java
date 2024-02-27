@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class LadderGame {
+    public static final String ALL = "all";
+    
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -54,8 +56,13 @@ public class LadderGame {
     }
 
     private void findLadderResult(Players players, LadderResults ladderResults) {
-        List<Player> results = readWithRetry(() -> players.getCheckPlayers(inputView.inputResult()));
-        outputView.printPrize(results, ladderResults.getMatchingTargets(results));
+        String result = inputView.inputResult();
+        if (result.equals(ALL)) {
+            List<Player> results = players.getAllPlayers();
+            outputView.printAllPrize(results, ladderResults.getMatchingTargets(results));
+            return;
+        }
+        outputView.printPrize(ladderResults.getMatchingTarget(players.getCheckPlayer(result)));
     }
 
     private <T> T readWithRetry(Supplier<T> supplier) {

@@ -7,8 +7,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Players {
-    public static final String ALL = "all";
-
     private final List<Player> players;
 
     private Players(final List<Player> players) {
@@ -44,14 +42,11 @@ public class Players {
         return Collections.unmodifiableList(players);
     }
 
-    public List<Player> getCheckPlayers(String result) {
-        if (result.equals(ALL)) {
-            return players;
-        }
-        return List.of(getCheckPlayer(result));
+    public List<Player> getAllPlayers() {
+        return players;
     }
 
-    private Player getCheckPlayer(String result) {
+    public Player getCheckPlayer(String result) {
         Player player = new Player(result);
         if (players.contains(player)) {
             return player;

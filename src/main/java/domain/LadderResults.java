@@ -13,4 +13,8 @@ public class LadderResults {
     public List<Target> getMatchingTargets(List<Player> players) {
         return players.stream().map(results::get).toList();
     }
+
+    public Target getMatchingTarget(Player player) {
+        return results.get(player);
+    }
 }
