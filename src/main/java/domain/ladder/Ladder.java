@@ -1,9 +1,9 @@
 package domain.ladder;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 import static java.util.Collections.unmodifiableList;
+import static java.util.stream.IntStream.range;
 
 
 public class Ladder {
@@ -14,17 +14,15 @@ public class Ladder {
             final int height,
             final BridgeMakingStrategy strategy
     ) {
-        this.rows = generateLadder(width, height, strategy);
+        this.rows = makeLadder(width, height, strategy);
     }
 
-    // TODO: LADDER를 만드는 역할을 누구까지 알아야 하는게 맞나
-
-    private List<Row> generateLadder(
+    private List<Row> makeLadder(
             final int width,
             final int height,
             final BridgeMakingStrategy strategy
     ) {
-        return IntStream.range(0, height)
+        return range(0, height)
                 .mapToObj(ignore -> new Row(width, strategy))
                 .toList();
     }

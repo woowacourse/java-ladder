@@ -22,6 +22,7 @@ public class HeightTest {
     @DisplayName("범위를 벗어나는 높이에 대해 예외가 발생하는가")
     void height_out_of_range_throws_exception(int height) {
         assertThatThrownBy(() -> new Height(height))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContainingAll("높이는", "이상", "이하로 입력해 주세요.");
     }
 }
