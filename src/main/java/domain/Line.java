@@ -31,13 +31,17 @@ public class Line {
         validateRange(numbers.size());
         List<Connection> line = new ArrayList<>();
         line.add(UNCONNECTED);
+        buildLine(numbers, line);
+        this.line = line;
+    }
+
+    private void buildLine(List<Integer> numbers, List<Connection> line) {
         for (int index = 1; index < numbers.size(); index++) {
             line.add(Connection.valueOfBridge(
                     line.get(index - 1).equals(UNCONNECTED)
                     && hasConnection(numbers.get(index))
             ));
         }
-        this.line = line;
     }
 
     public List<Connection> getLine() {
