@@ -39,11 +39,11 @@ public class PlayerNames {
         }
     }
 
-    public int getUserCount() {
+    public int getPlayerCount() {
         return playerNames.size();
     }
 
-    public List<String> getUserNames() {
+    public List<String> getPlayerNames() {
         return playerNames.stream()
                 .map(PlayerName::value)
                 .toList();

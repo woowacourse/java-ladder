@@ -48,7 +48,7 @@ class PlayerNamesTest {
     void getUserCount() {
         final PlayerNames playerNames = PlayerNames.of(List.of("aaa", "bbb"));
 
-        assertThat(playerNames.getUserCount())
+        assertThat(playerNames.getPlayerCount())
                 .isEqualTo(2);
     }
 
@@ -57,7 +57,7 @@ class PlayerNamesTest {
     void getUserNames() {
         final PlayerNames playerNames = PlayerNames.of(List.of("kelly", "liv"));
 
-        assertThat(playerNames.getUserNames())
+        assertThat(playerNames.getPlayerNames())
                 .containsExactly("kelly", "liv");
     }
 }
