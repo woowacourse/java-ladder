@@ -1,5 +1,6 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -24,5 +25,15 @@ public class PlayersTest {
         Player player = new Player("dodo");
         assertThatThrownBy(() -> new Players(List.of(player)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("플레이어가 몇번째 순서인지 반환합니다.(0부터)")
+    @Test
+    void findPlayerOrderNumber(){
+        Player player1 = new Player("dodo");
+        Player player2 = new Player("capy");
+        Players players = new Players(List.of(player1, player2));
+
+        assertThat(players.getPlayerOrderNumber("dodo")).isEqualTo(0);
     }
 }

@@ -21,6 +21,15 @@ public class Players {
         }
     }
 
+    public int getPlayerOrderNumber(String name) {
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).getName().equals(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public List<Player> getPlayers() {
         return players;
     }
