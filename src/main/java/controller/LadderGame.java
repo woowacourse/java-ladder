@@ -8,12 +8,12 @@ import view.InputView;
 import view.OutputView;
 
 
-public class GameManager {
+public class LadderGame {
 
     private final InputView inputView = InputView.getInstance();
     private final OutputView outputView = OutputView.getInstance();
 
-    public void run() {
+    public void start() {
         final Names names = new Names(inputView.readNames());
         final Height height = new Height(inputView.readHeight());
 
