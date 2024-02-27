@@ -25,6 +25,7 @@ public class LadderGame {
 
     public PlayResult play() {
         players.climb(ladder);
-        return new PlayResult(players.getPlayers());
+
+        return new PlayResult(players.getPlayers(), prizes);
     }
 }

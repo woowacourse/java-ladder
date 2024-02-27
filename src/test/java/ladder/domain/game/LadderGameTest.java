@@ -44,8 +44,10 @@ class LadderGameTest {
         LadderGame ladderGame = new LadderGame(ladder, players, prizes);
 
         PlayResult playResult = ladderGame.play();
-        Map<String, Integer> result = playResult.getResult();
+        Map<String, String> result = playResult.getResult();
 
-        assertThat(result).containsExactly(entry("pobi", 1), entry("honux", 0), entry("crong", 3), entry("jk", 2));
+        assertThat(result).containsExactly(
+                entry("pobi", "5000"), entry("honux", "꽝"), entry("crong", "3000"), entry("jk", "꽝")
+        );
     }
 }
