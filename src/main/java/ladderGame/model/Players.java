@@ -14,10 +14,7 @@ public class Players {
     public Players(List<String> names) {
         validate(names);
 
-        players = new ArrayList<>();
-        for (String name : names) {
-            players.add(new Player(name));
-        }
+        players = names.stream().map(Player::new).toList();
     }
 
     private void validate(List<String> names) {
