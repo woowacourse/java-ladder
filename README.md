@@ -91,7 +91,7 @@ jk : 5000
 
 ## 1단계 추가 피드백
 
-- LadderController - catch 문에서 예외 메시지 출력
+- [x] LadderController - catch 문에서 예외 메시지 출력
 - getResult 분리 이후 단위 테스트
 - Line - 반복문 추출 - 명시적인 메서드로 분리
 - Name - isEmpty

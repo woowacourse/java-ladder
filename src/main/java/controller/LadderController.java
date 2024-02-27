@@ -34,6 +34,7 @@ public class LadderController {
         try {
             return new Players(InputView.readNames(consoleReader));
         } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
             return nameInput(depth - 1);
         }
     }
@@ -45,6 +46,7 @@ public class LadderController {
         try {
             return InputView.readHeight(consoleReader);
         } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
             return heightInput(depth - 1);
         }
     }
@@ -58,6 +60,7 @@ public class LadderController {
             winnings.isSameNumberWithPlayers(players);
             return winnings;
         } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
             return winningsInput(depth - 1, players);
         }
     }
@@ -69,6 +72,7 @@ public class LadderController {
         try {
             return new ResultName(InputView.readResultName(consoleReader), players);
         } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
             return resultNameInput(depth - 1, players);
         }
     }
