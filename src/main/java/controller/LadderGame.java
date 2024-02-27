@@ -129,7 +129,8 @@ public class LadderGame {
             return getAllResult(results);
         }
 
-        return results.getResultByParticipant(participants.findParticipantByName(name));
+        Participant participant = participants.findParticipantByName(name);
+        return results.getResultByParticipant(participant);
     }
 
     private String getAllResult(Results results) {

@@ -12,6 +12,10 @@ public class Participant {
     }
 
     private void validateNameLength(String name) {
+        if (name.length() == 0) {
+            throw new IllegalArgumentException("이름은 1글자 이상이어야 합니다.");
+        }
+
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 5글자를 초과할 수 없습니다.");
         }
