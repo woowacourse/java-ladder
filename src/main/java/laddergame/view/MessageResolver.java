@@ -1,10 +1,13 @@
 package laddergame.view;
 
 import laddergame.domain.gameelements.Elements;
+import laddergame.domain.gameelements.people.Name;
+import laddergame.domain.gameelements.results.Result;
 import laddergame.domain.ladder.Connection;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.RowLine;
 
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class MessageResolver {
@@ -14,6 +17,7 @@ public class MessageResolver {
     private static final String CONNECT_MESSAGE = "-".repeat(INTERVAL_WIDTH);
     private static final String NOTCONNECT_MESSAGE = " ".repeat(INTERVAL_WIDTH);
     private static final String VERTICAL_LINE = "|";
+    private static final String LINE_SEPERATOR = System.lineSeparator();
 
     public static String resolveElementMessage(Elements elements) {
         return elements.getElements().stream()
@@ -26,6 +30,16 @@ public class MessageResolver {
                 .stream()
                 .map(MessageResolver::resolveRowLineMessage)
                 .collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    public static String resolvePlayerResultMessage(Result result) {
+        return result.toString();
+    }
+
+    public static String resolveAllPlayerResultMessage(Map<Name, Result> playerGameResult) {
+        return playerGameResult.keySet()
+                .stream().map(key -> key.toString() + " : " + playerGameResult.get(key).toString())
+                .collect(Collectors.joining(LINE_SEPERATOR));
     }
 
     private static String resolveRowLineMessage(RowLine rowLine) {
