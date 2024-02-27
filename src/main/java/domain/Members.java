@@ -40,9 +40,8 @@ public class Members {
         validateNull(rawNames);
         List<String> parsedNames = parse(rawNames);
         validateDuplication(parsedNames);
-
-        return IntStream.range(0, parsedNames.size())
-            .mapToObj(i -> Member.from(i, parsedNames.get(i)))
+        return parsedNames.stream()
+            .map(Member::from)
             .toList();
     }
 

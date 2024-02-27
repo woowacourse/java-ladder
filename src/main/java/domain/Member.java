@@ -2,20 +2,14 @@ package domain;
 
 public class Member {
 
-    private final int id;
     private final Name name;
 
-    private Member(int id, Name name) {
-        this.id = id;
+    private Member(Name name) {
         this.name = name;
     }
 
-    public static Member from(int id, String rawName) {
-        return new Member(id, Name.from(rawName));
-    }
-
-    public int getId() {
-        return id;
+    public static Member from(String rawName) {
+        return new Member(Name.from(rawName));
     }
 
     public String getName() {
