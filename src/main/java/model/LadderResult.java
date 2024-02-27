@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public final class LadderResult {
 
-    private final static String CMD_ALL_RESULT = "all";
+    private static final String CMD_ALL_RESULT = "all";
 
     private final Map<String, String> playersPrizeResults;
 
