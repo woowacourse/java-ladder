@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 import java.util.List;
@@ -15,34 +16,41 @@ class LadderTest {
     @Test
     @DisplayName("사다리 생성 테스트")
     void testConstruct() {
-        int playerCount = 4;
-        LadderHeight ladderHeight = new LadderHeight(5);
         RungGenerator rungGenerator = new RandomRungGenerator();
 
-        assertThatCode(() -> new Ladder(playerCount, ladderHeight, rungGenerator))
+        assertThatCode(() -> Ladder.of(3, 4, rungGenerator))
                 .doesNotThrowAnyException();
     }
 
     @Test
     @DisplayName("사다리를 생성한다.")
     void testGenerateLadder() {
+        int height = 3;
         int playerCount = 4;
-        LadderHeight ladderHeight = new LadderHeight(3);
         List<Rung> rungs = List.of(
                 Rung.EXIST, Rung.EMPTY, Rung.EXIST,
                 Rung.EMPTY, Rung.EXIST, Rung.EMPTY,
                 Rung.EXIST, Rung.EMPTY, Rung.EMPTY);
 
-        Ladder ladder = new Ladder(playerCount, ladderHeight, new MockRungGenerator(rungs));
-        List<Line> lines = ladder.getLines();
+        Ladder ladder = Ladder.of(height, playerCount, new MockRungGenerator(rungs));
+        List<Floor> floors = ladder.getFloors();
 
         assertSoftly(softly -> {
-            softly.assertThat(lines.get(0).getRungs())
+            softly.assertThat(floors.get(0).getRungs())
                     .containsExactly(Rung.EXIST, Rung.EMPTY, Rung.EXIST);
-            softly.assertThat(lines.get(1).getRungs())
+            softly.assertThat(floors.get(1).getRungs())
                     .containsExactly(Rung.EMPTY, Rung.EXIST, Rung.EMPTY);
-            softly.assertThat(lines.get(2).getRungs())
+            softly.assertThat(floors.get(2).getRungs())
                     .containsExactly(Rung.EXIST, Rung.EMPTY, Rung.EMPTY);
         });
+    }
+
+    @Test
+    @DisplayName("사다리의 높이가 범위를 벗어날 경우 예외를 발생한다")
+    void testValidateHeightRange() {
+        int height = 0;
+        RungGenerator rungGenerator = new RandomRungGenerator();
+        assertThatThrownBy(() -> Ladder.of(height, 4, rungGenerator))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

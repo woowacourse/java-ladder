@@ -1,17 +1,26 @@
 package ladder.controller;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
+import ladder.domain.LadderGame;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.generator.RungGenerator;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
-import ladder.dto.response.LadderResponse;
-import ladder.dto.response.PlayersResponse;
+import ladder.domain.prize.Prize;
+import ladder.domain.prize.Prizes;
+import ladder.dto.response.LadderAllResultsResponse;
+import ladder.dto.response.ladder.LadderResponse;
+import ladder.dto.response.player.PlayersResponse;
+import ladder.dto.response.prize.PrizeResponse;
+import ladder.dto.response.prize.PrizesResponse;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class LadderController {
+    public static final String ALL_PLAYERS = "all";
+
     private final InputView inputView;
     private final OutputView outputView;
     private final RungGenerator rungGenerator;
@@ -23,30 +32,80 @@ public class LadderController {
     }
 
     public void run() {
-        Players players = readPlayers();
-        LadderHeight ladderHeight = readLadderHeight();
+        Players players = retryOnException(this::initPlayers);
+        int playerCount = players.size();
 
-        Ladder ladder = new Ladder(players.getSize(), ladderHeight, rungGenerator);
+        Prizes prizes = retryOnException(() -> initPrizes(playerCount));
+        Ladder ladder = retryOnException(() -> initLadder(playerCount));
 
-        printLadder(players, ladder);
+        LadderGame ladderGame = LadderGame.of(players, ladder, prizes);
+
+        printLadderResult(players, ladder, prizes);
+        printResultForSelectedPlayer(ladderGame);
     }
 
-    public Players readPlayers() {
+    private Players initPlayers() {
         List<String> playerNames = inputView.readPlayerNames();
-        List<Player> players = playerNames.stream().map(Player::new).toList();
 
-        return new Players(players);
+        return Players.from(playerNames);
     }
 
-    public LadderHeight readLadderHeight() {
-        int ladderHeight = inputView.readLadderHeight();
+    private Prizes initPrizes(int playerCount) {
+        List<String> prizeNames = inputView.readPrizeNames(playerCount);
 
-        return new LadderHeight(ladderHeight);
+        return Prizes.from(prizeNames);
     }
 
-    private void printLadder(Players players, Ladder ladder) {
-        outputView.printLadderResultMessage();
-        outputView.printPlayerNames(PlayersResponse.from(players));
-        outputView.printLadder(LadderResponse.from(ladder));
+    private Ladder initLadder(int playerCount) {
+        int height = inputView.readLadderHeight();
+
+        return Ladder.of(height, playerCount, rungGenerator);
+    }
+
+    private void printLadderResult(Players players, Ladder ladder, Prizes prizes) {
+        PlayersResponse playersResponse = PlayersResponse.from(players);
+        LadderResponse ladderResponse = LadderResponse.from(ladder);
+        PrizesResponse prizesResponse = PrizesResponse.from(prizes);
+
+        outputView.printLadderResult(playersResponse, ladderResponse, prizesResponse);
+    }
+
+    private void printResultForSelectedPlayer(LadderGame ladderGame) {
+        String selectedPlayerName = inputView.readSelectedPlayerName();
+
+        if (ALL_PLAYERS.equals(selectedPlayerName)) {
+            printAllResults(ladderGame);
+            return;
+        }
+
+        printPrizeForSelectedPlayer(ladderGame, selectedPlayerName);
+        printResultForSelectedPlayer(ladderGame);
+    }
+
+    private void printAllResults(LadderGame ladderGame) {
+        Map<Player, Prize> allResults = ladderGame.getAllResults();
+
+        outputView.printAllResults(LadderAllResultsResponse.from(allResults));
+    }
+
+    private void printPrizeForSelectedPlayer(LadderGame ladderGame, String selectedPlayerName) {
+        try {
+            Prize prize = ladderGame.getResultByPlayerName(selectedPlayerName);
+
+            outputView.printPrizeForSelectedPlayer(PrizeResponse.from(prize));
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+        }
+    }
+
+
+    private <T> T retryOnException(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }

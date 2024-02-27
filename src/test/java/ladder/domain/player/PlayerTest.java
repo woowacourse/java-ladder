@@ -17,7 +17,7 @@ class PlayerTest {
         String pobi = "pobi";
         Player player = new Player(pobi);
 
-        assertThat(pobi).isEqualTo(player.getName());
+        assertThat(pobi).isEqualTo(player.name());
     }
 
     @Nested

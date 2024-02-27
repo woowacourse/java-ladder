@@ -6,20 +6,47 @@ import java.util.stream.Stream;
 import ladder.domain.ladder.generator.RungGenerator;
 
 public class Ladder {
-    private final List<Line> lines;
+    private static final int MINIMUM_HEIGHT = 1;
+    private static final int MAXIMUM_HEIGHT = 30;
 
-    public Ladder(int playerCount, LadderHeight ladderHeight, RungGenerator rungGenerator) {
-        this.lines = generateLines(playerCount, ladderHeight.getHeight(), rungGenerator);
+    private final List<Floor> floors;
 
+    private Ladder(List<Floor> floors) {
+        this.floors = floors;
     }
 
-    private List<Line> generateLines(int playerCount, int height, RungGenerator rungGenerator) {
-        return Stream.generate(() -> new Line(playerCount, rungGenerator))
+    public static Ladder of(int height, int playerCount, RungGenerator rungGenerator) {
+        validateHeightRange(height);
+
+        List<Floor> floors = Stream.generate(() -> new Floor(playerCount, rungGenerator))
                 .limit(height)
                 .toList();
+
+        return new Ladder(floors);
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    private static void validateHeightRange(int height) {
+        if (MINIMUM_HEIGHT > height || height > MAXIMUM_HEIGHT) {
+            throw new IllegalArgumentException(
+                    String.format("사다리의 높이는 %d이상 %d이하여야 합니다.", MINIMUM_HEIGHT, MAXIMUM_HEIGHT));
+        }
+    }
+
+    public int findEndIndex(int index) {
+        int currentIndex = index;
+
+        for (Floor floor : floors) {
+            currentIndex = floor.findConnectedIndex(currentIndex);
+        }
+
+        return currentIndex;
+    }
+
+    public int getColumnSize() {
+        return floors.get(0).getRungs().size();
+    }
+
+    public List<Floor> getFloors() {
+        return Collections.unmodifiableList(floors);
     }
 }
