@@ -1,7 +1,7 @@
-import domain.db.Player;
-import domain.db.Players;
-import domain.db.Prize;
-import domain.db.Prizes;
+import domain.player.Player;
+import domain.player.Players;
+import domain.prize.Prize;
+import domain.prize.Prizes;
 import domain.game.Judge;
 import domain.game.LadderGame;
 import domain.game.PathMapper;

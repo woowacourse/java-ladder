@@ -1,4 +1,4 @@
-package domain.db;
+package domain.prize;
 
 import java.util.Arrays;
 import java.util.List;

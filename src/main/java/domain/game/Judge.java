@@ -1,9 +1,9 @@
 package domain.game;
 
-import domain.db.Player;
-import domain.db.Players;
-import domain.db.Prize;
-import domain.db.Prizes;
+import domain.player.Player;
+import domain.player.Players;
+import domain.prize.Prize;
+import domain.prize.Prizes;
 
 import java.util.LinkedHashMap;
 import java.util.List;

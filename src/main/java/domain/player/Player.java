@@ -1,4 +1,4 @@
-package domain.db;
+package domain.player;
 
 import java.util.regex.Pattern;
 
