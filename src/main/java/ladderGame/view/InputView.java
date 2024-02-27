@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class InputView {
     private static final Pattern NUMERIC_PATTERN = Pattern.compile("^[1-9][0-9]*$");
     private static final String INPUT_MESSAGE_PLAYER_NAMES = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    private static final String INPUT_MESSAGE_RESULTS = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String INPUT_MESSAGE_PRIZES = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String INPUT_MESSAGE_MAX_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
     private static final String EXCEPTION_MESSAGE_NOT_NATURAL_NUMBER = "최대 사다리 높이는 자연수여야 합니다.";
     private static final String EXCEPTION_MESSAGE_OVER_INT_RANGE = "최대 사다리 높이는 int범위를 넘지 않아야 합니다.";
@@ -27,8 +27,8 @@ public class InputView {
                 .toList();
     }
 
-    public List<String> inputResults() {
-        System.out.println(INPUT_MESSAGE_RESULTS);
+    public List<String> inputPrizes() {
+        System.out.println(INPUT_MESSAGE_PRIZES);
         return Arrays.stream(scanner.nextLine().split(",", -1))
                 .map(String::trim)
                 .toList();

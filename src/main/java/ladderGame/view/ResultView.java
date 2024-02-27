@@ -5,9 +5,7 @@ import ladderGame.model.Line;
 import ladderGame.model.Player;
 
 import java.util.List;
-import ladderGame.model.Players;
-import ladderGame.model.Result;
-import ladderGame.model.Results;
+import ladderGame.model.Prize;
 
 public class ResultView {
     private static final String LADDER_RESULT_PROMPT = "사다리 결과";
@@ -17,7 +15,7 @@ public class ResultView {
     private static final String CONNECTION_MARK = "-----";
     private static final String LINE_MARK = "|";
 
-    public void printLadder(List<Player> players, List<Line> lines, List<Result> results) {
+    public void printLadder(List<Player> players, List<Line> lines, List<Prize> prizes) {
         System.out.println(System.lineSeparator() + LADDER_RESULT_PROMPT + System.lineSeparator());
 
         players.forEach(player -> System.out.printf("%6s", player.getName()));
@@ -25,7 +23,8 @@ public class ResultView {
 
         lines.forEach(line -> System.out.println(makeLineToString(line)));
 
-        results.forEach(result -> System.out.printf("%6s", result.getResult()));
+        prizes.forEach(prize -> System.out.printf("%6s", prize.getPrize()));
+        System.out.println();
     }
 
     private String makeLineToString(Line line) {
@@ -46,19 +45,19 @@ public class ResultView {
         return DISCONNECTION_MARK;
     }
 
-    public void printResult(Player player, List<Result> results) {
+    public void printResult(Player player, List<Prize> prizes) {
         System.out.println(System.lineSeparator() + "실행 결과");
 
         int index = player.getPosition();
-        System.out.printf("%s" + System.lineSeparator(), results.get(index).getResult());
+        System.out.printf("%s" + System.lineSeparator(), prizes.get(index).getPrize());
     }
 
-    public void printAllResults(List<Player> players, List<Result> results) {
+    public void printAllResults(List<Player> players, List<Prize> prizes) {
         System.out.println(System.lineSeparator() + "실행 결과");
 
         for(Player player : players) {
             int index = player.getPosition();
-            System.out.printf("%s : %s" + System.lineSeparator(), player.getName(), results.get(index).getResult());
+            System.out.printf("%s : %s" + System.lineSeparator(), player.getName(), prizes.get(index).getPrize());
         }
     }
 }

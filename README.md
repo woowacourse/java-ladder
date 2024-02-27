@@ -48,11 +48,11 @@
   - [x] Line.get(index)가 false, Line.get(index-1)이 true면 index를 1 감소시킨다.
   - [x] Line.get(index)가 false, Line.get(index-1)이 false면 inde를 유지한다.
 
-## 전체 실행 결과(Results)
+## 전체 실행 결과(Prizes)
 - [x] 실행 결과 목록을 통해 전체 실행 결과를 생성한다.
   - [x] 실행 결과의 수는 참가자의 수와 일치해야 한다.
 
-## 실행 결과(Result)
+## 실행 결과(Prize)
 - [x] 결과를 의미하는 문자열을 가지고 있다.
   - [x] 결과는 0 또는 0 이상 99999 이하의 숫자만 입력 가능하다.
 

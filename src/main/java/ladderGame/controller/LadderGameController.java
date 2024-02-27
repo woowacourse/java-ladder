@@ -3,7 +3,7 @@ package ladderGame.controller;
 import ladderGame.model.Ladder;
 import ladderGame.model.Name;
 import ladderGame.model.Players;
-import ladderGame.model.Results;
+import ladderGame.model.Prizes;
 import ladderGame.view.InputView;
 import ladderGame.view.ResultView;
 
@@ -18,23 +18,23 @@ public class LadderGameController {
 
     public void run() {
         Players players = new Players(inputView.inputPlayerNames());
-        Results results = new Results(inputView.inputResults(), players.getPlayerSize());
+        Prizes prizes = new Prizes(inputView.inputPrizes(), players.getPlayerSize());
         Ladder ladder = new Ladder(inputView.inputMaxLadderHeight(), players.getPlayerSize());
 
-        resultView.printLadder(players.getPlayers(), ladder.getLines(), results.getResults());
+        resultView.printLadder(players.getPlayers(), ladder.getLines(), prizes.getPrizes());
 
         ladder.descendLadder(players);
 
-        printResults(players, results);
+        printResults(players, prizes);
     }
 
-    private void printResults(Players players, Results results) {
+    private void printResults(Players players, Prizes prizes) {
         Name name = new Name(inputView.inputWantedName(), players);
         while(!name.isAll()) {
-            resultView.printResult(players.findPlayer(name), results.getResults());
+            resultView.printResult(players.findPlayer(name), prizes.getPrizes());
             name = new Name(inputView.inputWantedName(), players);
         }
 
-        resultView.printAllResults(players.getPlayers(), results.getResults());
+        resultView.printAllResults(players.getPlayers(), prizes.getPrizes());
     }
 }
