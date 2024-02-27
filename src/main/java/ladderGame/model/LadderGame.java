@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LadderGame {
+    private final String EXCEPTION_MESSAGE_NOT_CONTAIN_PLAYERS = "존재하지 않는 참가자 이름입니다.";
+
     private final Ladder ladder;
     private final Players players;
     private final LadderResults ladderResults;
@@ -18,7 +20,7 @@ public class LadderGame {
         Integer startIndex = players.indexOfPlayerByName(name);
 
         if (startIndex == null) {
-            throw new IllegalStateException("존재하지 않는 참가자 이름입니다.");
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_NOT_CONTAIN_PLAYERS);
         }
 
         int resultIndex = ladder.findLadderResultIndex(startIndex);
