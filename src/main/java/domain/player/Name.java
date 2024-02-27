@@ -21,13 +21,13 @@ public record Name(String value) {
 
     private void validateBlank(String initialInput) {
         if (initialInput.isBlank()) {
-            throw new IllegalArgumentException("공백으로 이루어진 이름은 사용할 수 없습니다.");
+            throw new IllegalArgumentException("공백으로 이루어진 이름은 입력할 수 없습니다.");
         }
     }
 
     private void validateContainBlankInName(String inputName) {
         if (inputName.contains(" ")) {
-            throw new IllegalArgumentException("중간에 공백이 포함된 이름은 사용할 수 없습니다.");
+            throw new IllegalArgumentException("중간에 공백이 포함된 이름은 입력할 수 없습니다.");
         }
     }
 
