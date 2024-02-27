@@ -11,11 +11,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ResultsTest {
 
-    @DisplayName("실행 결과 목록에서 실행 결과들을 조회할 수 있다.")
+    @DisplayName("실행 결과의 수는 사용자의 수와 동일하다.")
     @Test
     void create() {
         String value = "1";
-        Results results = new Results(List.of(value));
+        int playerCount = 1;
+        Results results = new Results(List.of(value), playerCount);
 
         List<String> values = results.getResults().stream()
                 .map(Result::getValue)
