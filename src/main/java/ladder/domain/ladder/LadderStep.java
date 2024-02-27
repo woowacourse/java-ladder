@@ -13,7 +13,7 @@ public class LadderStep {
 
     private final List<Path> ladderPaths;
 
-    public LadderStep(List<Path> ladderPaths) {
+    public LadderStep(final List<Path> ladderPaths) {
         final List<Path> discontinuousLadderPaths = correctToDiscontinuousLadderPaths(ladderPaths);
         this.ladderPaths = unmodifiableList(discontinuousLadderPaths);
     }
@@ -29,15 +29,15 @@ public class LadderStep {
         if (pathOrder == ALWAYS_VALID_PATH_ORDER) {
             return;
         }
-        Path currentPath = ladderPaths.get(pathOrder);
-        Path prevPath = ladderPaths.get(pathOrder - 1);
+        final Path currentPath = ladderPaths.get(pathOrder);
+        final Path prevPath = ladderPaths.get(pathOrder - 1);
         if (currentPath.isExist() && prevPath.isExist()) {
             ladderPaths.set(pathOrder, EMPTY);
         }
     }
 
-    public Direction getNextDirection(Position currentPosition) {
-        int position = currentPosition.value();
+    public Direction getNextDirection(final Position currentPosition) {
+        final int position = currentPosition.value();
         if (isLeftPathExistOn(position)) {
             return Direction.LEFT;
         }
@@ -47,16 +47,16 @@ public class LadderStep {
         return Direction.NEUTRAL;
     }
 
-    private boolean isLeftPathExistOn(int position) {
+    private boolean isLeftPathExistOn(final int position) {
         return position > 0 && isPathExistOn(position - 1);
     }
 
-    private boolean isRightPathExistOn(int position) {
+    private boolean isRightPathExistOn(final int position) {
         return position < ladderPaths.size() && isPathExistOn(position);
     }
 
-    private boolean isPathExistOn(int position) {
-        Path path = ladderPaths.get(position);
+    private boolean isPathExistOn(final int position) {
+        final Path path = ladderPaths.get(position);
         return path.isExist();
     }
 
