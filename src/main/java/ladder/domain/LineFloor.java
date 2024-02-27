@@ -1,7 +1,7 @@
 package ladder.domain;
 
 public class LineFloor {
-    private static final int MINIMUM_LINE_FLOOR = 1;
+    private static final int MINIMUM_LINE_FLOOR = 0;
 
     private final int lineFloor;
 
