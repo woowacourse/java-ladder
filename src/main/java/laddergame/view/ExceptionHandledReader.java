@@ -1,13 +1,14 @@
 package laddergame.view;
 
 import java.util.function.Supplier;
-import static java.lang.System.*;
+
+import static java.lang.System.out;
 
 public class ExceptionHandledReader {
     private ExceptionHandledReader() {
     }
 
-    public static <T> T readUntilNoError(Supplier<T> supplier) {
+    public static <T> T retryUntilNoError(Supplier<T> supplier) {
         T readObj = null;
         while (readObj == null) {
             readObj = readOnce(supplier);

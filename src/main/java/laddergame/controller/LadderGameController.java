@@ -4,40 +4,40 @@ import laddergame.domain.LadderGame;
 import laddergame.domain.gameelements.people.People;
 import laddergame.domain.gameelements.results.Results;
 import laddergame.domain.ladder.Ladder;
-import laddergame.view.ExceptionHandledReader;
 import laddergame.view.InputView;
 import laddergame.view.ResultView;
+
+import static laddergame.view.ExceptionHandledReader.retryUntilNoError;
 
 public class LadderGameController {
     private LadderGameController() {
     }
 
-    //TODO inputView 로직이 숨겨져 입력이 잘구분되지 않음
     public static void run() {
-        People people = ExceptionHandledReader.readUntilNoError(LadderGameController::getPeople);
-        Ladder ladder = ExceptionHandledReader.readUntilNoError(() -> getLadder(people));
-        Results results = ExceptionHandledReader.readUntilNoError(() -> getResults(people.getNames().size()));
+        People people = retryUntilNoError(LadderGameController::makePeople);
+        Ladder ladder = retryUntilNoError(() -> makeLadder(people));
+        Results results = retryUntilNoError(() -> makeResults(people.getNames().size()));
 
         LadderGame ladderGame = new LadderGame(people, ladder, results);
 
         ResultView.printLadder(people, ladder, results);
-        ExceptionHandledReader.readUntilNoError(() -> getPlayerResults(ladderGame));
+        retryUntilNoError(() -> printPlayerResults(ladderGame));
     }
 
-    private static People getPeople() {
+    private static People makePeople() {
         return new People(InputView.readNames());
     }
 
-    private static Ladder getLadder(People people) {
+    private static Ladder makeLadder(People people) {
         int peopleNumber = people.getNames().size();
         return new Ladder(InputView.readHeight(), peopleNumber);
     }
 
-    private static Results getResults(int peopleNumber) {
+    private static Results makeResults(int peopleNumber) {
         return new Results(InputView.readGameResult(), peopleNumber);
     }
 
-    private static int getPlayerResults(LadderGame ladderGame) {
+    private static int printPlayerResults(LadderGame ladderGame) {
         ResultView.printPlayerResult(InputView.readPlayerName(), ladderGame);
         return 0;
     }
