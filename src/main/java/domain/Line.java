@@ -46,4 +46,39 @@ public class Line {
     public List<Bridge> getBridges() {
         return Collections.unmodifiableList(bridges);
     }
+
+    public Direction findDirection(final int position) {
+        if (canMoveRight(position)) {
+            return Direction.RIGHT;
+        }
+        if (canMoveLeft(position)) {
+            return Direction.LEFT;
+        }
+
+        return Direction.NONE;
+    }
+
+    private boolean canMoveRight(final int position) {
+        if (isLast(position)) {
+            return false;
+        }
+
+        return bridges.get(position).exists();
+    }
+
+    private boolean isLast(final int position) {
+        return position == bridges.size();
+    }
+
+    private boolean canMoveLeft(final int position) {
+        if (isFirst(position)) {
+            return false;
+        }
+
+        return bridges.get(position - 1).exists();
+    }
+
+    private boolean isFirst(final int position) {
+        return position == 0;
+    }
 }
