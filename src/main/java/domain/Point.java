@@ -10,4 +10,32 @@ public class Point {
         this.row = row;
         this.column = column;
     }
+
+    public static class Builder {
+        private int row;
+        private int column;
+
+
+        public Builder row(final int row) {
+            this.row = row;
+            return this;
+        }
+
+        public Builder column(final int column) {
+            this.column = column;
+            return this;
+        }
+
+        public Point build() {
+            return new Point(row, column);
+        }
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public int getRow() {
+        return row;
+    }
 }

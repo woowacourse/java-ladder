@@ -15,9 +15,29 @@ public class PointTest {
 
         assertThatCode(() -> {
             Point point = new Point(row, column);
-            assertEquals(point.row, row);
-            assertEquals(point.column, column);
+            assertPoint(point, row, column);
         }).doesNotThrowAnyException();
+    }
 
+    @Test
+    @DisplayName("빌더를 통해서도 포인트를 만들수 있다.")
+    public void createPointWithBuilder() {
+        int row = 3;
+        int column = 4;
+
+        assertThatCode(() -> {
+            Point point = new Point.Builder().row(row)
+                                             .column(column)
+                                             .build();
+            assertPoint(point, row, column);
+        });
+
+    }
+
+    private void assertPoint(Point point, int row, int column) {
+        assertAll(() -> {
+            assertEquals(point.getColumn(), column);
+            assertEquals(point.getRow(), row);
+        });
     }
 }
