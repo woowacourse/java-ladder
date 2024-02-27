@@ -11,12 +11,8 @@ class PlayerTest {
     @Test
     @DisplayName("Line의 연결 여부에 따라 위치를 변경한다.")
     void descendLine() {
-        Line line = new Line(new BooleanGenerator() {
-            @Override
-            public boolean generate() {
-                return true;
-            }
-        }, 4);
+        Line line = new Line(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION, ConnectionStatus.CONNECTION);
+
 
         Player player1 = new Player("pobi", 0);
         Player player2 = new Player("crong", 1);

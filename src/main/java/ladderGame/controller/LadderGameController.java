@@ -1,6 +1,7 @@
 package ladderGame.controller;
 
 import ladderGame.model.Ladder;
+import ladderGame.model.LadderGenerator;
 import ladderGame.model.Name;
 import ladderGame.model.Players;
 import ladderGame.model.Prizes;
@@ -19,7 +20,7 @@ public class LadderGameController {
     public void run() {
         Players players = new Players(inputView.inputPlayerNames());
         Prizes prizes = new Prizes(inputView.inputPrizes(), players.getPlayerSize());
-        Ladder ladder = new Ladder(inputView.inputMaxLadderHeight(), players.getPlayerSize());
+        Ladder ladder = LadderGenerator.makeLadder(inputView.inputMaxLadderHeight(), players.getPlayerSize());
 
         resultView.printLadder(players.getPlayers(), ladder.getLines(), prizes.getPrizes());
 
