@@ -1,4 +1,5 @@
 import domain.LadderGame;
+import domain.ladder.RandomBridgeGenerator;
 import java.util.List;
 import view.InputView;
 import view.OutputView;
@@ -9,7 +10,7 @@ public class LadderMain {
         final List<String> playerNames = InputView.readNames();
         final int height = InputView.readHeight();
 
-        final LadderGame ladderGame = new LadderGame(playerNames, height);
+        final LadderGame ladderGame = new LadderGame(playerNames, height, RandomBridgeGenerator.getInstance());
 
         OutputView.printLadderMakingResult(ladderGame.getPlayerNames(), ladderGame.getLadder());
     }
