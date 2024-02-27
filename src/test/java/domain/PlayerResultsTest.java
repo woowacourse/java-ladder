@@ -29,4 +29,31 @@ public class PlayerResultsTest {
         Assertions.assertThatCode(() -> new PlayerResults(playerResults)).doesNotThrowAnyException();
 
     }
+
+    @DisplayName("참가자의 이름으로 실행 결과를 가져온다.")
+    @Test
+    void findPlayerResult() {
+        //given
+        final List<String> names = List.of("pobi", "honux", "crong", "jk");
+        final Names players = new Names(names);
+        int playerCount = players.count();
+
+        List<String> rawResults = List.of("꽝", "2000", "꽝", "5000");
+        Results results = Results.of(rawResults, playerCount);
+
+        HashMap<Name, Result> rawPlayerResults = new HashMap<>();
+        for (int i = 0; i < playerCount; i++) {
+            rawPlayerResults.put(players.getValues().get(i), results.getValues().get(i));
+        }
+        PlayerResults playerResults = new PlayerResults(rawPlayerResults);
+
+        String targetName = "honux";
+        String expectedResult = "2000";
+
+        //when
+        Result result = playerResults.findResult(targetName);
+
+        //then
+        Assertions.assertThat(result.getValue()).isEqualTo(expectedResult);
+    }
 }
