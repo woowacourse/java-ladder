@@ -1,14 +1,14 @@
 package ladderGame.model;
 
-public class WantedName {
-    private final String name;
+public class Command {
+    private final String command;
 
-    public WantedName(String name, Players players) {
+    public Command(String name, Players players) {
         if(!name.equals("all")) {
             validate(new Name(name), players);
         }
 
-        this.name = name;
+        this.command = name;
     }
 
     private void validate(Name name, Players players) {
