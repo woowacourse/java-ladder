@@ -13,8 +13,9 @@ public class Participant {
     }
 
     private void validator(String name) {
-        Objects.requireNonNull(name, "이름은 null일 수 없다.");
-
+        if (name == null) {
+            throw new IllegalArgumentException("이름은 null일 수 없다.");
+        }
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 최대 다섯글자까지 입력 가능하다.");
         }
