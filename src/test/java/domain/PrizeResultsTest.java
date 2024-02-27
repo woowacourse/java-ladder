@@ -39,4 +39,16 @@ class PrizeResultsTest {
         assertThat(prizeResults.checkOperate("all")).isFalse();
         assertThat(prizeResults.checkOperate("wiib")).isTrue();
     }
+
+    @Test
+    @DisplayName("all 또는 사용자 이름과 다를 경우, 예외를 발생한다.")
+    void checkOperateValidation() {
+        PrizeResults prizeResults = PrizeResults.of(
+                new Players(List.of("wiib", "pobi", "haha")),
+                new Prizes(List.of("꽝", "당첨", "꽝")));
+
+        assertThatCode(() -> prizeResults.checkOperate("atom"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(String.format("보고 싶은 결과는 all 또는 사용자 이름으로 입력해주세요. 입력 : %s", "atom"));
+    }
 }
