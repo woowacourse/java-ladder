@@ -1,8 +1,8 @@
 package ladder.view;
 
-import ladder.domain.PathStatus;
-import ladder.dto.LadderResult;
-import ladder.dto.LineResult;
+import ladder.constant.PathStatus;
+import ladder.dto.LadderStatus;
+import ladder.dto.PathStatuses;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,11 +10,11 @@ import java.util.stream.IntStream;
 
 public class OutputView {
 
-    public static void printLadderResult(LadderResult ladderResult) {
+    public static void printLadderResult(LadderStatus ladderStatus) {
         System.out.println("실행결과");
         System.out.println();
-        System.out.println(makeNameMessage(ladderResult.names()));
-        System.out.println(drawRadder(ladderResult.lines()));
+        System.out.println(makeNameMessage(ladderStatus.playerNames()));
+        System.out.println(drawRadder(ladderStatus.pathStatuses()));
     }
 
     private static String makeNameMessage(List<String> userNames) {
@@ -34,15 +34,15 @@ public class OutputView {
                 .collect(Collectors.joining(" "));
     }
 
-    private static String drawRadder(List<LineResult> lineResults) {
-        return lineResults.stream()
+    private static String drawRadder(List<PathStatuses> pathStatuses) {
+        return pathStatuses.stream()
                 .map(OutputView::drawLine)
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    private static String drawLine(LineResult lineResult) {
+    private static String drawLine(PathStatuses pathStatuses) {
         String prefix = "    |";
-        String steps = lineResult.value()
+        String steps = pathStatuses.pathStatuses()
                 .stream()
                 .map(OutputView::drawStep)
                 .collect(Collectors.joining());
