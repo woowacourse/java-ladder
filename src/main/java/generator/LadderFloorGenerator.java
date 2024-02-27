@@ -2,8 +2,6 @@ package generator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.function.BooleanSupplier;
 import java.util.random.RandomGenerator;
 
 import domain.Bar;
