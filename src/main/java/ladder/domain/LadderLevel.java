@@ -7,7 +7,6 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class LadderLevel {
-
     private final LinkedList<Direction> ladderLevel;
 
     private Direction latest;

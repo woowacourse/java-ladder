@@ -6,7 +6,6 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Players {
-
     private static final int MIN_PLAYERS_COUNT = 2;
 
     private final List<Player> players;

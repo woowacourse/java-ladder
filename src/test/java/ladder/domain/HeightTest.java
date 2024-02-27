@@ -9,7 +9,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class HeightTest {
-
     @DisplayName("높이를 입력하여 Height을 생성한다.")
     @Test
     void heightConstructTest() {

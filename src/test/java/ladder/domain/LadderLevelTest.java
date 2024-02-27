@@ -10,7 +10,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LadderLevelTest {
-
     @DisplayName("사다리의 한 층은 입력받은 크기로 생성된다.")
     @Test
     void ladderLevelConstructTest() {

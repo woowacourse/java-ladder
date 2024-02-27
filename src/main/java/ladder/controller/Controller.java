@@ -12,7 +12,6 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class Controller {
-
     public void run() {
         Players players = createPlayers();
         Results results = createResults(players.count());

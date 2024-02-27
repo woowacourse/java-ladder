@@ -11,7 +11,6 @@ import ladder.domain.Players;
 import ladder.domain.Results;
 
 public class OutputView {
-
     private static final String DELIMITER = " ";
     private static final String NAME_FORMAT = "%5s";
     private static final String LINE = "|-----";

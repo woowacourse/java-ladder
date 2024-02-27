@@ -9,7 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class PlayersTest {
-
     @DisplayName("이름을 입력하여 Players을 생성한다.")
     @Test
     void playersConstructTest() {
