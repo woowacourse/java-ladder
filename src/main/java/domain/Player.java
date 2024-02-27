@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.List;
+
 public class Player {
 
 	private final Name name;
@@ -10,14 +12,19 @@ public class Player {
 		this.position = position;
 	}
 
-	public void move(HorizontalLine line) {
+	public void playLadder(Ladder ladder) {
+		List<HorizontalLine> lines = ladder.getLines();
+		lines.forEach(this::move);
+	}
+
+	private void move(HorizontalLine line) {
 		Bar bar = line.getBar(position);
-		if (bar.isConnectedToLeft()) {
-			position--;
-			return;
-		}
 		if (bar.isConnectedToRight()) {
 			position++;
+			return;
+		}
+		if (bar.isConnectedToLeft()) {
+			position--;
 		}
 	}
 

@@ -1,8 +1,6 @@
 package domain;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Players {
 
@@ -25,11 +23,12 @@ public class Players {
 			.toList();
 	}
 
-	public Map<String, String> playGhostLeg(Ladder ladder) {
-		Map<String, String> playerPrizeMap = new LinkedHashMap<>();
-		players.forEach(player -> playerPrizeMap.put(player.getName(), ladder.play(player).getName()));
+	public List<Player> getPlayers() {
+		return players;
+	}
 
-		return playerPrizeMap;
+	public void playAll(Ladder ladder) {
+		players.forEach(player -> player.playLadder(ladder));
 	}
 
 	public int getPlayerCount() {
