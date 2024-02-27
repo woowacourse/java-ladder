@@ -21,6 +21,9 @@ public class Line {
     }
 
     public int findNextIndex(int previousIndex) {
+        if (previousIndex < 0 || previousIndex > points.size()) {
+            throw new IllegalArgumentException("비정상적인 index입니다.");
+        }
         if (previousIndex < points.size() && points.get(previousIndex) == Point.CONNECTED) {
             return previousIndex + 1;
         }
