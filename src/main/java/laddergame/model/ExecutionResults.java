@@ -12,9 +12,13 @@ public class ExecutionResults {
 
     private void validateExecutionResultsSize(List<ExecutionResult> executionResults, Participants participants) {
         if (executionResults.size() != participants.getSize()) {
-            String message = "실행 결과는 참여자수와 동일해야합니다. 참여자수:" + participants.getSize()
-                    + "실행 결과 수:" + executionResults.size();
+            String message = "실행 결과는 참여자수와 동일해야합니다. 참여자수:" + participants.getSize() + ", "
+                    + "입력한 실행 결과 수:" + executionResults.size();
             throw new IllegalArgumentException(message);
         }
+    }
+
+    public List<ExecutionResult> getExecutionResults() {
+        return executionResults;
     }
 }

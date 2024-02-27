@@ -6,6 +6,8 @@ import static java.util.stream.Collectors.toList;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.function.Supplier;
+import laddergame.model.ExecutionResult;
+import laddergame.model.ExecutionResults;
 import laddergame.model.LadderHeight;
 import laddergame.model.Participant;
 import laddergame.model.Participants;
@@ -17,11 +19,22 @@ public class InputView {
         return repeatUntilSuccess(() -> {
             System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
             String input = scanner.nextLine();
-            validateParticipantsNames(input);
+            validateMultipleInputs(input);
             return Arrays.stream(input.split(","))
                     .map(Participant::new)
                     .collect(collectingAndThen(toList(), Participants::new));
+        });
+    }
 
+    public ExecutionResults readExecutionResults(Participants participants) {
+        return repeatUntilSuccess(() -> {
+            System.out.println();
+            System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+            String input = scanner.nextLine();
+            validateMultipleInputs(input);
+            return Arrays.stream(input.split(","))
+                    .map(ExecutionResult::new)
+                    .collect(collectingAndThen(toList(), results -> new ExecutionResults(results, participants)));
         });
     }
 
@@ -35,7 +48,7 @@ public class InputView {
         });
     }
 
-    private void validateParticipantsNames(String input) {
+    private void validateMultipleInputs(String input) {
         if (input == null || input.isBlank() || input.endsWith(",")) {
             throw new IllegalArgumentException("[ERROR] 입력값은 공백이거나 구분자(,)로 끝날 수 없다.");
         }

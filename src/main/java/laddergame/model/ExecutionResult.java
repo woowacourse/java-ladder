@@ -13,4 +13,8 @@ public class ExecutionResult {
             throw new IllegalArgumentException("실행 결과는 공백일 수 없습니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
