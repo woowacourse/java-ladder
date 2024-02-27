@@ -1,9 +1,10 @@
 package controller;
 
-import domain.Height;
-import domain.Ladder;
+import domain.ladder.Height;
+import domain.ladder.Ladder;
 import domain.Players;
-import domain.RandomBridgeGenerator;
+import domain.ladder.RandomBridgeGenerator;
+import domain.ladder.Width;
 import view.InputView;
 import view.OutputView;
 
@@ -18,7 +19,7 @@ public class LadderGame {
         final Ladder ladder = Ladder.createByStrategy(
                 RandomBridgeGenerator.getInstance(),
                 height,
-                players);
+                Width.from(players));
 
         printGameResult(players, ladder);
     }

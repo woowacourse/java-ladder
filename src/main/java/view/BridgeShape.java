@@ -1,6 +1,6 @@
 package view;
 
-import domain.Bridge;
+import domain.ladder.Bridge;
 import java.util.Arrays;
 import java.util.List;
 

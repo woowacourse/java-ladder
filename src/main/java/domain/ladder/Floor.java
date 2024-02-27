@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,11 +12,10 @@ public class Floor {
         this.bridges = bridges;
     }
 
-    public static Floor createByStrategy(final BridgeGenerator bridgeGenerator, final Players players) {
+    public static Floor createByStrategy(final BridgeGenerator bridgeGenerator, final Width width) {
         List<Bridge> bridges = new ArrayList<>();
-        final int bridgesTargetSize = players.count() - 1;
 
-        while (bridges.size() < bridgesTargetSize) {
+        while (bridges.size() < width.value()) {
             final Bridge bridgeCandidate = bridgeGenerator.generate();
             final Bridge previousBridge = findPreviousBridge(bridges);
 

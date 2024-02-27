@@ -1,5 +1,7 @@
-package domain;
+package domain.ladder;
 
+import domain.ladder.Bridge;
+import domain.ladder.BridgeGenerator;
 import java.util.List;
 
 class PickedBridgeGenerator implements BridgeGenerator {

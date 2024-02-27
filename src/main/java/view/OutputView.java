@@ -1,7 +1,7 @@
 package view;
 
-import domain.Bridge;
-import domain.Floor;
+import domain.ladder.Bridge;
+import domain.ladder.Floor;
 import java.util.List;
 import java.util.StringJoiner;
 

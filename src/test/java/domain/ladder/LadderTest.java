@@ -1,5 +1,6 @@
-package domain;
+package domain.ladder;
 
+import domain.Players;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +17,7 @@ class LadderTest {
         BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(List.of(false, true, false));
 
         //when
-        final Ladder ladder = Ladder.createByStrategy(bridgeGenerator, height, players);
+        final Ladder ladder = Ladder.createByStrategy(bridgeGenerator, height, Width.from(players));
 
         //then
         Assertions.assertThat(ladder.getLadder()).hasSize(height.getValue());
