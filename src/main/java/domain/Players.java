@@ -2,6 +2,7 @@ package domain;
 
 import domain.player.Player;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,9 +32,18 @@ public class Players {
         return players.size();
     }
 
+    public void setPosition(final int playerIndex, final int resultPosition) {
+        final Player player = players.get(playerIndex);
+        player.setPosition(resultPosition);
+    }
+
     public List<String> getNames() {
         return players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toList());
+    }
+
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
     }
 }

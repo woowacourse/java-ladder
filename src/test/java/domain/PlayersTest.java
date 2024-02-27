@@ -3,6 +3,7 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.player.Position;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -69,5 +70,19 @@ class PlayersTest {
 
         //then
         assertThat(returnedNames).containsAll(names);
+    }
+
+    @DisplayName("참가자의 위치를 변경한다.")
+    @Test
+    void setPlayerPositon() {
+        //given
+        final List<String> names = List.of("pobi", "honux", "crong", "jk");
+        final Players players = new Players(names);
+
+        //when
+        players.setPosition(0, 1);
+
+        //then
+        assertThat(players.getPlayers().get(0).getPosition()).isEqualTo(new Position(1));
     }
 }

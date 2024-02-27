@@ -20,6 +20,10 @@ public class Player {
         }
     }
 
+    public void setPosition(final int position) {
+        this.position = new Position(position);
+    }
+
     public void moveLeft() {
         position = position.decrease();
     }
