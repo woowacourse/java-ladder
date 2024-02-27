@@ -27,7 +27,7 @@ public class OutputView {
     }
 
     public static void printNewLine() {
-        System.out.println(System.lineSeparator());
+        System.out.println();
     }
 
     public static void printResult(List<String> names, List<List<Boolean>> lines) {
