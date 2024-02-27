@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import domain.booleanGenerator.BooleanGenerator;
+import domain.player.Name;
+import domain.player.Players;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import support.TrueGenerator;
@@ -38,6 +40,31 @@ public class LadderRowTest {
                 () -> assertThat(rungs.get(1)).isEqualTo(DirectionalRung.LEFT),
                 () -> assertThat(rungs.get(2)).isEqualTo(DirectionalRung.RIGHT),
                 () -> assertThat(rungs.get(3)).isEqualTo(DirectionalRung.LEFT)
+        );
+    }
+
+    @Test
+    void 각_플레이어는_가로대를_만나면_이동한다() {
+        // given
+        Players players = new Players(List.of(
+                new Name("name1"),
+                new Name("name2"),
+                new Name("name3"),
+                new Name("name4")
+        ));
+
+        // |=====|     |=====|
+        LadderRow ladderRow = new LadderRow(trueGenerator, players.getPlayerCount());
+
+        // when
+        ladderRow.playRow(players);
+
+        // then
+        assertAll(
+                () -> assertThat(players.findPlayerByIndex(0).getPosition()).isEqualTo(1),
+                () -> assertThat(players.findPlayerByIndex(1).getPosition()).isEqualTo(0),
+                () -> assertThat(players.findPlayerByIndex(2).getPosition()).isEqualTo(3),
+                () -> assertThat(players.findPlayerByIndex(3).getPosition()).isEqualTo(2)
         );
     }
 }

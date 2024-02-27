@@ -1,5 +1,7 @@
 package domain.player;
 
+import domain.ladder.DirectionalRung;
+
 public class Player {
     private final Name name;
     private int position;
@@ -9,8 +11,8 @@ public class Player {
         this.position = position;
     }
 
-    public void move(int direction) {
-        position += direction;
+    public void move(DirectionalRung direction) {
+        position += direction.getDirection();
     }
 
     public Name getName() {
