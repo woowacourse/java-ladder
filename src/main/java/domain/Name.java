@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public record Name(String name) {
 
-    public static final Pattern NAME_PATTERN = Pattern.compile("^[A-Za-z0-9]+");
+    private static final Pattern NAME_PATTERN = Pattern.compile("^[A-Za-z0-9]+");
     private static final int NAME_LENGTH_MIN = 1;
     private static final int NAME_LENGTH_MAX = 5;
 
