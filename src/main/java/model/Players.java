@@ -11,31 +11,31 @@ public class Players {
 
     private final List<Player> playerNames;
 
-    public Players(List<String> playerNames) {
+    public Players(final List<String> playerNames) {
         validate(playerNames);
         this.playerNames = playerNames.stream()
                 .map(Player::new)
                 .toList();
     }
 
-    private void validate(List<String> players) {
+    private void validate(final List<String> players) {
         validateSize(players);
         validateDuplicates(players);
     }
 
-    private void validateSize(List<String> players) {
+    private void validateSize(final List<String> players) {
         if (players.size() < MIN_PLAYERS || players.size() > MAX_PLAYERS) {
             throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getValue());
         }
     }
 
-    private void validateDuplicates(List<String> players) {
+    private void validateDuplicates(final List<String> players) {
         if (isDuplicated(players)) {
             throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getValue());
         }
     }
 
-    private boolean isDuplicated(List<String> players) {
+    private boolean isDuplicated(final List<String> players) {
         return Set.copyOf(players).size() != players.size();
     }
 

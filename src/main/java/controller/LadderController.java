@@ -15,7 +15,7 @@ public class LadderController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public LadderController(InputView inputView, OutputView outputView) {
+    public LadderController(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
@@ -33,14 +33,14 @@ public class LadderController {
         printResult(ladder.findResult(players, result), players);
     }
 
-    private void printResult(LadderResult ladderResult, Players players) {
+    private void printResult(final LadderResult ladderResult, final Players players) {
         var playerNames = new HashSet<>(players.getPlayerNames());
         while (!playerNames.isEmpty()) {
             readNameAndPrintResult(ladderResult, playerNames);
         }
     }
 
-    private void readNameAndPrintResult(LadderResult ladderResult, Set<Player> playerNames) {
+    private void readNameAndPrintResult(final LadderResult ladderResult, final Set<Player> playerNames) {
         var name = inputView.readPlayerNameToCheckPrize();
         if (name.equals("all")) {
             outputView.printAllPlayerResult(ladderResult.getPlayersPrizeResults());

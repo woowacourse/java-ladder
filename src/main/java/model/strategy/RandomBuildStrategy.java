@@ -10,7 +10,7 @@ public class RandomBuildStrategy implements BuildStrategy<LadderStatus> {
     private static final Random random = new Random();
 
     @Override
-    public List<LadderStatus> generate(int size) {
+    public List<LadderStatus> generate(final int size) {
         List<LadderStatus> ladderStatuses = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             ladderStatuses.add(generateStep(ladderStatuses, i));
@@ -18,14 +18,14 @@ public class RandomBuildStrategy implements BuildStrategy<LadderStatus> {
         return ladderStatuses;
     }
 
-    private LadderStatus generateStep(List<LadderStatus> points, int index) {
+    private LadderStatus generateStep(final List<LadderStatus> points, final int index) {
         if (cannotConnect(points, index)) {
             return LadderStatus.UNCONNECTED;
         }
         return LadderStatus.from(random.nextBoolean());
     }
 
-    private boolean cannotConnect(List<LadderStatus> points, int index) {
+    private boolean cannotConnect(final List<LadderStatus> points, final int index) {
         return index >= 1 && points.get(index - 1).isConnected();
     }
 }

@@ -14,7 +14,7 @@ public enum LadderStatus {
         this.ladderForm = ladderForm;
     }
 
-    public static LadderStatus from(boolean isConnected) {
+    public static LadderStatus from(final boolean isConnected) {
         if (isConnected) {
             return CONNECTED;
         }

@@ -27,13 +27,13 @@ public class InputView {
         return names;
     }
 
-    private void validateBlank(String rawNames) {
+    private void validateBlank(final String rawNames) {
         if (rawNames == null || rawNames.trim().isEmpty()) {
             throw new IllegalArgumentException(Message.BLANK_INPUT_ERROR.getValue());
         }
     }
 
-    private void validateSeparators(String rawNames) {
+    private void validateSeparators(final String rawNames) {
         if (rawNames.startsWith(SEPARATOR) || rawNames.endsWith(SEPARATOR) || rawNames.contains(SEPARATOR.repeat(2))) {
             throw new IllegalArgumentException(Message.INVALID_SEPARATOR_ERROR.getValue());
         }
@@ -48,7 +48,7 @@ public class InputView {
         return height;
     }
 
-    private int parseInt(String rawHeight) {
+    private int parseInt(final String rawHeight) {
         try {
             return Integer.parseInt(rawHeight);
         } catch (NumberFormatException exception) {

@@ -9,11 +9,11 @@ import java.util.Objects;
 public final class LadderResult {
     private final Map<String, String> playersPrizeResults;
 
-    public LadderResult(Map<String, String> playersPrizeResults) {
+    public LadderResult(final Map<String, String> playersPrizeResults) {
         this.playersPrizeResults = playersPrizeResults;
     }
 
-    public static LadderResult of(List<String> playerNames, List<String> prizes) {
+    public static LadderResult of(final List<String> playerNames, final List<String> prizes) {
         validate(playerNames, prizes);
         Map<String, String> result = new LinkedHashMap<>();
         for (int i = 0; i < playerNames.size(); i++) {
@@ -28,7 +28,7 @@ public final class LadderResult {
         }
     }
 
-    public String getPrize(String name) {
+    public String getPrize(final String name) {
         if (!playersPrizeResults.containsKey(name)) {
             throw new IllegalArgumentException(Message.INVALID_PLAYER_NAME_ERROR.getValue());
         }

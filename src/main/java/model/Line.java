@@ -7,7 +7,7 @@ public class Line {
 
     private final List<LadderStatus> points;
 
-    public Line(int personCount, BuildStrategy<LadderStatus> buildStrategy) {
+    public Line(final int personCount, final BuildStrategy<LadderStatus> buildStrategy) {
         this.points = buildStrategy.generate(personCount - 1);
     }
 
@@ -15,11 +15,11 @@ public class Line {
         return points.size();
     }
 
-    public boolean isConnected(int index) {
+    public boolean isConnected(final int index) {
         return points.get(index).isConnected();
     }
 
-    public LadderStatus getLadderStatus(int index) {
+    public LadderStatus getLadderStatus(final int index) {
         return points.get(index);
     }
 

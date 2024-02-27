@@ -7,11 +7,11 @@ import model.strategy.RandomBuildStrategy;
 public class Ladder {
     private final List<Line> lines;
 
-    protected Ladder(List<Line> lines) {
+    protected Ladder(final List<Line> lines) {
         this.lines = lines;
     }
 
-    public static Ladder of(Height height, int width) {
+    public static Ladder of(final Height height, final int width) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height.value(); i++) {
             lines.add(new Line(width, new RandomBuildStrategy()));
@@ -31,7 +31,7 @@ public class Ladder {
         return result;
     }
 
-    private String formatLine(Line line) {
+    private String formatLine(final Line line) {
         StringBuilder lineBuilder = new StringBuilder();
         lineBuilder.append("|");
         for (int index = 0; index < line.size(); index++) {

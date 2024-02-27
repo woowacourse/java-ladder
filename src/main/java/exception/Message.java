@@ -12,7 +12,7 @@ public enum Message {
 
     private final String value;
 
-    Message(String value) {
+    Message(final String value) {
         this.value = value;
     }
 
