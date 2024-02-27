@@ -35,4 +35,10 @@ public class InputView {
             throw new IllegalArgumentException("사다리 높이는 숫자이어야한다");
         }
     }
+
+    public List<String> requestResultInterestedPeople() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        String input = scanner.nextLine();
+        return splitName(input);
+    }
 }

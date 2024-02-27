@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 import model.ExecutionResult;
 import model.Ladder;
 import model.Participants;
+import model.ResultInterestedPeople;
 import model.dto.LayerSteps;
 import model.dto.ParticipantName;
 import model.vo.Height;
@@ -28,6 +29,8 @@ public class LadderController {
         Ladder ladder = repeatUntilSuccess(this::prepareLadder, participants);
         outputView.printParticipantsName(captureParticipantsName(participants));
         outputView.printLadder(captureLayerSteps(ladder));
+        ResultInterestedPeople resultInterestedPeople =
+                repeatUntilSuccess(this::prepareResultInterestedPeople, captureParticipantsName(participants));
     }
 
     private Participants prepareParticipants() {
@@ -45,6 +48,14 @@ public class LadderController {
         Height height = new Height(inputView.requestLadderHeight());
         int numberOfParticipants = participants.getParticipantsSize();
         return new Ladder(height.getValue(), numberOfParticipants);
+    }
+
+    private ResultInterestedPeople prepareResultInterestedPeople(List<ParticipantName> participantsNames) {
+        List<String> resultInterestedPeople = inputView.requestResultInterestedPeople();
+        List<String> formattedParticipantsName = participantsNames.stream()
+                .map(ParticipantName::name)
+                .toList();
+        return new ResultInterestedPeople(resultInterestedPeople, formattedParticipantsName);
     }
 
     private <T> T repeatUntilSuccess(Supplier<T> supplier) {
