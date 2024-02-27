@@ -25,14 +25,14 @@ public class Main {
         outputView.printGame(game);
         Map<String, String> rewardMap = game.findRewardMap();
 
-        // TODO: 리팩토링 필요
+        // TODO: 리팩토링 필요, 에러 처리 필요
         while (true) {
             String memberName = inputView.readResult();
             if (memberName.equals("all")) {
-                outputView.printRewardMap(rewardMap);
+                outputView.printAllResult(rewardMap);
                 break;
             }
-            outputView.print(rewardMap.get(memberName));
+            outputView.printOneResult(rewardMap.get(memberName));
         }
     }
 

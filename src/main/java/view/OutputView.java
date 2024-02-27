@@ -20,12 +20,12 @@ public class OutputView {
         printRewards(game.getRewards());
     }
 
-    public void print(String message) {
+    public void printOneResult(String message) {
         System.out.println("실행 결과");
         System.out.println(message);
     }
 
-    public void printRewardMap(Map<String, String> rewardMap) {
+    public void printAllResult(Map<String, String> rewardMap) {
         System.out.println("실행 결과");
         for (String memberName : rewardMap.keySet()) {
             System.out.println(memberName + " : " + rewardMap.get(memberName));
