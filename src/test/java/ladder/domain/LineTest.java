@@ -41,4 +41,16 @@ class LineTest {
 
         Assertions.assertThat(line.getWidth()).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("라인 양 끝에 공백추가 테스트")
+    void addGapTest() {
+        Line line = new Line(List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE, Stick.EXISTENCE));
+        Line lineAddGap = line.addGap();
+        List<Stick> sticks = lineAddGap.getSticks();
+
+        Assertions.assertThat(sticks.get(0).isExist()).isFalse();
+        Assertions.assertThat(sticks.get(sticks.size() - 1).isExist()).isFalse();
+        Assertions.assertThat(sticks.size()).isEqualTo(5);
+    }
 }

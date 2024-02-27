@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -48,5 +49,13 @@ public class Line {
 
     public int getWidth() {
         return sticks.size();
+    }
+
+    public Line addGap() {
+        List<Stick> copyOfSticks = new ArrayList<>(sticks);
+        copyOfSticks.add(0, Stick.NON_EXISTENCE);
+        copyOfSticks.add(copyOfSticks.size(), Stick.NON_EXISTENCE);
+
+        return new Line(copyOfSticks);
     }
 }
