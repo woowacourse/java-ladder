@@ -11,8 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import domain.ladder.LadderGame;
-import domain.ladder.LadderHeight;
 import domain.player.Player;
 import domain.player.Players;
 import domain.prize.Prizes;

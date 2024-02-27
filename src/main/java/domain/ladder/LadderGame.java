@@ -4,13 +4,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import dto.FloorConnectionStatusDto;
-import domain.ladder.Ladder;
-import domain.ladder.LadderHeight;
 import domain.player.Player;
 import domain.player.Players;
 import domain.prize.Prize;
 import domain.prize.Prizes;
+import dto.FloorConnectionStatusDto;
 import generator.LadderFloorGenerator;
 
 public class LadderGame {
