@@ -18,7 +18,7 @@ import static laddergame.domain.ladder.Connection.CONNECTED;
 public class LadderGame {
     private final Map<Name, Result> playerGameResult;
 
-    LadderGame(People people, Ladder ladder, Results results) {
+    public LadderGame(People people, Ladder ladder, Results results) {
         validateSameLength(people, results);
         List<Result> gameResult = initializeGameResult(ladder, results);
 
@@ -49,7 +49,7 @@ public class LadderGame {
                 .toList();
     }
 
-    List<Integer> moveByLadder(Ladder ladder, int peopleNumber) {
+    private List<Integer> moveByLadder(Ladder ladder, int peopleNumber) {
         List<Integer> playerPositions = IntStream.range(0, peopleNumber)
                 .boxed()
                 .toList();
