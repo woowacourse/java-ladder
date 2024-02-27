@@ -1,18 +1,21 @@
 package domain.ladder;
 
-import domain.player.PlayerNames;
 import domain.bridge.BridgeGenerator;
+import domain.player.PlayerNames;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Ladder {
     private final List<Floor> floors;
+    private final PlayerNames playerNames;
     private final LadderResults ladderResults;
 
-    private Ladder(List<Floor> floors, LadderResults ladderResults) {
-
+    private Ladder(List<Floor> floors, PlayerNames playerNames, LadderResults ladderResults) {
         this.floors = List.copyOf(floors);
+        this.playerNames = playerNames;
         this.ladderResults = ladderResults;
     }
 
@@ -23,7 +26,7 @@ public class Ladder {
             floors.add(new Floor(bridges));
         }
 
-        return new Ladder(floors, ladderResults);
+        return new Ladder(floors, playerNames, ladderResults);
     }
 
     private static int calculatePointCount(PlayerNames playerNames) {
@@ -40,5 +43,32 @@ public class Ladder {
 
     public int getResultSize() {
         return ladderResults.size();
+    }
+
+    public Map<String, String> findAllPlayersLadderResultValue() {
+        Map<String, String> playersLadderResult = new HashMap<>();
+        for (int i = 0; i < playerNames.getCount(); i++) {
+            String playerName = playerNames.getNameOfIndex(i);
+            playersLadderResult.put(playerName, findPlayerLadderResultValueByName(playerName));
+        }
+
+        return playersLadderResult;
+    }
+
+    public Map<String, String> findSinglePlayerLadderResultValue(String playerName) {
+        Map<String, String> playersLadderResult = new HashMap<>();
+        playersLadderResult.put(playerName, findPlayerLadderResultValueByName(playerName));
+
+        return playersLadderResult;
+    }
+
+    private String findPlayerLadderResultValueByName(String playerName) {
+        int playerPosition = playerNames.getIndexOfName(playerName);
+
+        for (Floor floor : floors) {
+            BridgeDirection direction = floor.getBridgeAroundAt(playerPosition);
+            playerPosition += direction.getValue();
+        }
+        return ladderResults.getValueByIndex(playerPosition);
     }
 }

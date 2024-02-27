@@ -2,6 +2,7 @@
 package domain.player;
 
 import common.exception.message.ExceptionMessage;
+import common.exception.model.NotFoundException;
 import common.exception.model.ValidationException;
 
 import java.util.List;
@@ -10,11 +11,11 @@ public class PlayerNames {
     public static final int PLAYER_NAMES_MIN_RANGE = 2;
     public static final int PLAYER_NAMES_MAX_RANGE = 10;
 
-    private final List<PlayerName> playerNames;
+    private final List<PlayerName> values;
 
-    public PlayerNames(List<PlayerName> playerNames) {
-        validate(playerNames);
-        this.playerNames = List.copyOf(playerNames);
+    public PlayerNames(List<PlayerName> values) {
+        validate(values);
+        this.values = List.copyOf(values);
     }
 
     private void validate(List<PlayerName> playerNames) {
@@ -38,10 +39,19 @@ public class PlayerNames {
     }
 
     public int getCount() {
-        return playerNames.size();
+        return values.size();
     }
 
     public String getNameOfIndex(int index) {
-        return playerNames.get(index).getName();
+        return values.get(index).getName();
+    }
+
+    public int getIndexOfName(String name) {
+        for (int i = 0; i < values.size(); i++) {
+            if(values.get(i).getName().equals(name)) {
+                return i;
+            }
+        }
+        throw new NotFoundException("존재하지 않는 참가자 이름입니다");
     }
 }

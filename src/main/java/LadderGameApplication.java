@@ -13,5 +13,6 @@ public class LadderGameApplication {
         LadderController ladderController = new LadderController(inputView, outputView);
 
         Ladder ladder = ladderController.createLadder();
+        ladderController.matchPlayerToResult(ladder);
     }
 }

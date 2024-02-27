@@ -5,6 +5,7 @@ import domain.ladder.Ladder;
 import domain.ladder.LadderBridge;
 import domain.player.PlayerNames;
 
+import java.util.Map;
 import java.util.StringJoiner;
 
 public class OutputView {
@@ -58,5 +59,31 @@ public class OutputView {
             ladderResultJoiner.add(playerName);
         }
         System.out.println(ladderResultJoiner);
+    }
+
+    public void printPlayerLadderResult(Map<String, String> playerNameAndResult) {
+        if(playerNameAndResult.size() > 1) {
+            printAllPlayerLadderResult(playerNameAndResult);
+        } else if(playerNameAndResult.size() == 1) {
+            printSinglePlayerLadderResult(playerNameAndResult);
+        }
+    }
+
+    private void printAllPlayerLadderResult(Map<String, String> playerNameAndResults) {
+        System.out.println("\n실행 결과");
+        for (Map.Entry<String, String> nameAndResult : playerNameAndResults.entrySet()) {
+            System.out.println(String.format("%s : %s", nameAndResult.getKey(), nameAndResult.getValue()));
+        }
+    }
+
+    private void printSinglePlayerLadderResult(Map<String, String> playerNameAndResult) {
+        System.out.println("\n실행 결과");
+        for (String playerLadderResult : playerNameAndResult.values()) {
+            System.out.println(playerLadderResult);
+        }
+    }
+
+    public void printEndMessage() {
+        System.out.println("\n게임 종료");
     }
 }

@@ -20,7 +20,7 @@ public class RetryableController {
         this.retryCount = 0;
     }
 
-    public <R> R retry(final Supplier<R> supplier) {
+    protected <R> R retry(final Supplier<R> supplier) {
         validateRetryCountLimit();
         try {
             R value = supplier.get();
@@ -29,6 +29,17 @@ public class RetryableController {
         } catch (Exception exception) {
             outputView.printErrorMessage(exception.getMessage());
             return retry(supplier);
+        }
+    }
+
+    protected void retryNoneReturn(final Runnable runnable) {
+        validateRetryCountLimit();
+        try {
+            runnable.run();
+            retryCount = 0;
+        } catch (Exception exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            retryNoneReturn(runnable);
         }
     }
 
