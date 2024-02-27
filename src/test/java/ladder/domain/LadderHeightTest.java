@@ -23,7 +23,7 @@ public class LadderHeightTest {
                 .isEqualTo(expected);
     }
 
-    @DisplayName("1 이상이 아니라면 예외를 발생시킨다.")
+    @DisplayName("1 미만이라면 예외를 발생시킨다.")
     @Test
     void minHeightExceptionTest() {
         assertThatThrownBy(() -> new LadderHeight(0))

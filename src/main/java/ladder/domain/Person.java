@@ -21,7 +21,7 @@ public class Person {
 
     private void validateLength(String name) {
         if (name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException("사람 이름의 길이는 5자를 넘을 수 없습니다.");
+            throw new IllegalArgumentException("사람 이름의 길이는 5자 이하이어야 합니다.");
         }
     }
 
