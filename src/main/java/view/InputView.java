@@ -49,6 +49,6 @@ public class InputView {
     }
 
     private static void printNameToSearchInputMessage() {
-        System.out.println("결과를 보고 싶은 사람은?");
+        System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
     }
 }

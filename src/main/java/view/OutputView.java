@@ -18,12 +18,15 @@ public class OutputView {
     private static final String BRIDGE_EXIST_SYMBOL = "-";
     private static final String BRIDGE_EMPTY_SYMBOL = " ";
 
-
     public static void printResult(final Names names, final Ladder ladder, final Prizes prizes) {
         System.out.println(System.lineSeparator() + "실행 결과");
         printPlayers(names.names());
         printLadder(ladder);
         printPrizes(prizes.prizes());
+    }
+
+    public static void printPrize(final Prize prize) {
+        System.out.println(prize.name() + "당첨 🎉🎉");
     }
 
     public static void printErrorMessage(Exception e) {

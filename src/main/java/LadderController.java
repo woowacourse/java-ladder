@@ -1,5 +1,6 @@
 import domain.db.Name;
 import domain.db.Names;
+import domain.db.Prize;
 import domain.db.Prizes;
 import domain.game.Judge;
 import domain.game.LadderGame;
@@ -31,10 +32,18 @@ public class LadderController {
 
     private static void searchGameResult(final Judge judge) {
         while (true) {
-            Name nameToSearch = getNameToSearch();
-            System.out.println(judge.getPrize(nameToSearch.name()).name()
-                    + System.lineSeparator());
+            try {
+                final Prize prize = getPrizeByName(judge);
+                OutputView.printPrize(prize);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e);
+            }
         }
+    }
+
+    private static Prize getPrizeByName(final Judge judge) throws IllegalArgumentException {
+        final Name nameToSearch = getNameToSearch();
+        return judge.getPrize(nameToSearch.name());
     }
 
     private static Ladder getLadder(final Names names, final Height height) {
