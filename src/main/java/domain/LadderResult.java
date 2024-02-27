@@ -26,12 +26,10 @@ public class LadderResult {
         for (int i = 0; i < participantsCount; i++) {
             canMove(ladder, floor, i);
         }
-        floor += 1;
-        calculatePosition(floor, ladder, participantsCount);
+        calculatePosition(floor + 1, ladder, participantsCount);
     }
 
     private void canMove(Ladder ladder, int floor, int i) {
-        System.out.println("위에서 층: " + floor + "\n사람: " + i);
         if (ladder.canMoveLeft(floor, firstAndLastPosition.get(i))) {
             firstAndLastPosition.put(i, firstAndLastPosition.get(i) - 1);
             return;

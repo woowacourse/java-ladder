@@ -33,6 +33,10 @@ public class Name {
         }
     }
 
+    public boolean isSameName(String comparisonName) {
+        return name.equals(comparisonName);
+    }
+
     public String getName() {
         return name;
     }

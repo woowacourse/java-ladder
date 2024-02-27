@@ -1,12 +1,14 @@
 package view;
 
 import domain.Ladder;
+import domain.LadderResult;
 import domain.Line;
 import domain.Name;
 import domain.Participants;
 import domain.Prizes;
 import domain.StepPoint;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class OutputView {
 
@@ -20,6 +22,23 @@ public class OutputView {
         printLadder(ladder);
         printPrizes(prizes);
     }
+
+    public void printAllResult(LadderResult ladderResult, Participants participants, Prizes prizes) {
+        System.out.println("\n실행 결과");
+        List<Name> names = participants.getParticipantsName();
+        List<String> prizesValue = prizes.getPrizes();
+
+        IntStream.range(0, participants.getParticipantsCount())
+                .forEach(i -> System.out.printf("%s : %s\n", names.get(i).getName(),
+                        prizesValue.get(ladderResult.getOneResult(i))));
+    }
+
+    public void printOneResult(LadderResult ladderResult, Prizes prizes, int firstPosition) {
+        System.out.println("\n실행 결과");
+        List<String> prizesValue = prizes.getPrizes();
+        System.out.println(prizesValue.get(ladderResult.getOneResult(firstPosition)));
+    }
+
 
     private void printNames(Participants participants) {
         List<Name> participantNames = participants.getParticipantsName();

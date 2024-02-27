@@ -13,7 +13,7 @@ class LadderResultTest {
     void getAllResultTest() {
         Ladder ladder = new Ladder(2, 3, new PresentStepGenerator());
         LadderResult ladderResult = new LadderResult(ladder, 3);
-        Map<Integer, Integer> expectedResult = Map.of(0, 1, 1, 0, 2, 2);
+        Map<Integer, Integer> expectedResult = Map.of(0, 0, 1, 1, 2, 2);
         Assertions.assertThat(ladderResult.getAllResult()).isEqualTo(expectedResult);
     }
 
@@ -22,6 +22,6 @@ class LadderResultTest {
     void getOneResultTest() {
         Ladder ladder = new Ladder(2, 3, new PresentStepGenerator());
         LadderResult ladderResult = new LadderResult(ladder, 3);
-        Assertions.assertThat(ladderResult.getOneResult(0)).isEqualTo(1);
+        Assertions.assertThat(ladderResult.getOneResult(0)).isEqualTo(0);
     }
 }

@@ -6,7 +6,6 @@ import utils.StepGenerator;
 
 public class Ladder {
 
-    public static final int ONE_LINE = 1;
     private final List<Line> lines;
     Height height;
 
@@ -26,7 +25,7 @@ public class Ladder {
         if (isFinish(floor)) {
             return false;
         }
-        Line line = lines.get(floor + ONE_LINE);
+        Line line = lines.get(floor);
         return line.isExistLeftStep(step);
     }
 
@@ -34,10 +33,9 @@ public class Ladder {
         if (isFinish(floor)) {
             return false;
         }
-        Line line = lines.get(floor + ONE_LINE);
+        Line line = lines.get(floor);
         return line.isExistRightStep(step);
     }
-
     public List<Line> getLines() {
         return lines;
     }

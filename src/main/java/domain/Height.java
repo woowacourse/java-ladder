@@ -6,7 +6,6 @@ public class Height {
 
     public static final int MIN_OF_HEIGHT = 1;
     public static final int MAX_OF_HEIGHT = 100;
-    public static final int FLOOR_CALCULATION = 1;
     private final int height;
 
     public Height(int height) {
@@ -15,7 +14,7 @@ public class Height {
     }
 
     public boolean isEnd(int nowFloor) {
-        return this.height <= nowFloor + FLOOR_CALCULATION;
+        return this.height <= nowFloor;
     }
 
     private void validate(int height) {

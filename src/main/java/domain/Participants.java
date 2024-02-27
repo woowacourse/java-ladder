@@ -35,6 +35,11 @@ public class Participants {
         return expectedSize == names.size();
     }
 
+    public boolean hasParticipated(String comparisonName) {
+        return names.stream()
+                .anyMatch(participantsName -> participantsName.isSameName(comparisonName));
+    }
+
     public List<Name> getParticipantsName() {
         return names;
     }

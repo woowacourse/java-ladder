@@ -1,6 +1,6 @@
 package view;
 
-import exception.view.InputException;
+import exception.view.InputExceptionMessage;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -20,7 +20,7 @@ public class InputView {
 
     private void validateNames(String names) {
         if (FINISH_WITH_DELIMITER_REGEX.matcher(names).matches()) {
-            throw new IllegalArgumentException(InputException.NO_LAST_NAME.getExceptionMessage());
+            throw new IllegalArgumentException(InputExceptionMessage.NO_LAST_NAME.getExceptionMessage());
         }
     }
 
@@ -33,7 +33,7 @@ public class InputView {
 
     private void validateResults(String results) {
         if (FINISH_WITH_DELIMITER_REGEX.matcher(results).matches()) {
-            throw new IllegalArgumentException(InputException.NO_LAST_RESULT.getExceptionMessage());
+            throw new IllegalArgumentException(InputExceptionMessage.NO_LAST_RESULT.getExceptionMessage());
         }
     }
 
@@ -43,7 +43,12 @@ public class InputView {
         try {
             return Integer.parseInt(height);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(InputException.NOT_INTEGER.getExceptionMessage());
+            throw new IllegalArgumentException(InputExceptionMessage.NOT_INTEGER.getExceptionMessage());
         }
+    }
+
+    public String readResultName() {
+        System.out.println("\n결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
     }
 }
