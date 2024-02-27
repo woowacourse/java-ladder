@@ -1,9 +1,13 @@
 package domain;
 
 import domain.Ladder;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static domain.Bridge.*;
 import static org.assertj.core.api.Assertions.*;
 
 class LadderTest {
@@ -42,4 +46,35 @@ class LadderTest {
         assertThatThrownBy(() -> new Ladder(maxHeight, personCount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("사다리를 탄다")
+    void methodName() {
+        //given
+        Ladder ladder = new Ladder(List.of(
+                new Line(List.of(BRIDGE, NON_BRIDGE, BRIDGE)),
+                new Line(List.of(NON_BRIDGE, BRIDGE, NON_BRIDGE)),
+                new Line(List.of(BRIDGE, NON_BRIDGE, NON_BRIDGE)),
+                new Line(List.of(NON_BRIDGE, BRIDGE, NON_BRIDGE)),
+                new Line(List.of(BRIDGE, NON_BRIDGE, BRIDGE)))
+        );
+
+        /*      |-----|     |-----|
+                |     |-----|     |
+                |-----|     |     |
+                |     |-----|     |
+                |-----|     |-----|
+         */
+
+        //when
+        //then
+        Assertions.assertAll(
+                () -> assertThat(ladder.climb(0)).isZero(),
+                () -> assertThat(ladder.climb(1)).isEqualTo(3),
+                () -> assertThat(ladder.climb(2)).isEqualTo(2),
+                () -> assertThat(ladder.climb(3)).isEqualTo(1)
+        );
+
+    }
+
 }

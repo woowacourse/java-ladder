@@ -10,13 +10,26 @@ public class Ladder {
 
     private static final int MAX_LADDER_HEIGHT = 100;
 
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
+
+    public Ladder(List<Line> line) {
+        lines = line;
+    }
 
     public Ladder(final int maxHeight, final int personCount) {
         validateMaxHeight(maxHeight);
 
+        List<Line> randomLines = new ArrayList<>();
         IntStream.range(0, maxHeight)
-                .forEach(iterator -> lines.add(new Line(personCount, new RandomGenerator())));
+                .forEach(iterator -> randomLines.add(new Line(personCount, new RandomGenerator())));
+        lines = randomLines;
+    }
+
+    public int climb(int position) {
+        for (Line line : lines) {
+            position = line.moveFrom(position);
+        }
+        return position;
     }
 
     private static void validateMaxHeight(int maxHeight) {
