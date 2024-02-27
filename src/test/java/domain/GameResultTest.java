@@ -15,6 +15,7 @@ import domain.result.Prize;
 import domain.result.Prizes;
 import java.util.List;
 import java.util.Map;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -84,14 +85,16 @@ class GameResultTest {
         @DisplayName("사다리 게임의 각 결과가 정상적으로 조회된다.")
         @Test
         void resultForEachPlayerTest() {
-            assertThat(CUSTOM_GAME_RESULT.getResult(new Name("pobi")))
-                    .isEqualTo(new Prize("꽝"));
-            assertThat(CUSTOM_GAME_RESULT.getResult(new Name("honux")))
-                    .isEqualTo(new Prize("3000"));
-            assertThat(CUSTOM_GAME_RESULT.getResult(new Name("crong")))
-                    .isEqualTo(new Prize("꽝"));
-            assertThat(CUSTOM_GAME_RESULT.getResult(new Name("jk")))
-                    .isEqualTo(new Prize("5000"));
+            Assertions.assertAll(
+                    () -> assertThat(CUSTOM_GAME_RESULT.getResult(new Name("pobi")))
+                            .isEqualTo(new Prize("꽝")),
+                    () -> assertThat(CUSTOM_GAME_RESULT.getResult(new Name("honux")))
+                            .isEqualTo(new Prize("3000")),
+                    () -> assertThat(CUSTOM_GAME_RESULT.getResult(new Name("crong")))
+                            .isEqualTo(new Prize("꽝")),
+                    () -> assertThat(CUSTOM_GAME_RESULT.getResult(new Name("jk")))
+                            .isEqualTo(new Prize("5000"))
+            );
         }
 
         @DisplayName("존재하지 않는 사람의 결과를 조회하면 예외가 발생한다.")
