@@ -33,6 +33,7 @@ public class Prize {
         }
     }
 
+    @Override
     public String toString() {
         return this.prizeName;
     }
