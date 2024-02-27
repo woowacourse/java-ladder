@@ -2,6 +2,7 @@ package domain;
 
 import exception.domain.ParticipantsExceptionMessage;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Participants {
 
@@ -38,6 +39,13 @@ public class Participants {
     public boolean hasParticipated(String comparisonName) {
         return names.stream()
                 .anyMatch(participantsName -> participantsName.isSameName(comparisonName));
+    }
+
+    public int checkParticipantOrder(String name) {
+        return IntStream.range(0, names.size())
+                .filter(i -> names.get(i).getName().equals(name))
+                .findFirst()
+                .getAsInt();
     }
 
     public List<Name> getParticipantsName() {

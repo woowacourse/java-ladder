@@ -97,11 +97,7 @@ public class LadderGame {
     }
 
     private void checkOneResult(String name, LadderResult ladderResult) {
-        int firstPosition = IntStream.range(0, participants.getParticipantsCount())
-                .filter(i -> participants.getParticipantsName().get(i).getName().equals(name))
-                .findFirst()
-                .getAsInt();
-        outputView.printOneResult(ladderResult, prizes, firstPosition);
+        outputView.printOneResult(ladderResult, prizes, participants.checkParticipantOrder(name));
         result();
     }
 

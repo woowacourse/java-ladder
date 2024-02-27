@@ -24,7 +24,9 @@ public class LadderResult {
             return;
         }
         for (int i = 0; i < participantsCount; i++) {
+            System.out.println("floor" + floor + " 사람" + i + " 현재 위치" + firstAndLastPosition.get(i));
             canMove(ladder, floor, i);
+            System.out.println("floor" + floor + " 사람" + i + " 바뀐 위치" + firstAndLastPosition.get(i));
         }
         calculatePosition(floor + 1, ladder, participantsCount);
     }
