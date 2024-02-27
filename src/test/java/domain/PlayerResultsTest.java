@@ -5,33 +5,48 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class PlayerResultsTest {
 
-    private HashMap<Name,Result>rawPlayerResults;
+    private Names names;
+    private Ladder ladder;
+    private Results results;
 
     @BeforeEach
-    void init(){
-        final List<String> names = List.of("pobi", "honux", "crong", "jk");
-        final Names players = new Names(names);
-        int playerCount = players.count();
+    void init() {
+        final List<String> rawNames = List.of("pobi", "honux", "crong", "jk");
+        names = new Names(rawNames);
+        int playerCount = names.count();
+
+        final int height = 3;
+        BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(
+                List.of(false, true, false),
+                List.of(true, false, false),
+                List.of(true, false, true));
+        ladder = Ladder.createByStrategy(bridgeGenerator, height, playerCount);
 
         List<String> rawResults = List.of("꽝", "2000", "꽝", "5000");
-        Results results = Results.of(rawResults, playerCount);
-
-        rawPlayerResults = new HashMap<>();
-        for (int i = 0; i < playerCount; i++) {
-            rawPlayerResults.put(players.getValues().get(i), results.getValues().get(i));
-        }
+        results = Results.of(rawResults, playerCount);
     }
 
-    @DisplayName("각 참가자는 하나의 결과를 가진다.")
+    @DisplayName("참가자의 이름과 사다리를 탄 결과를 저장한다.")
     @Test
     void createPlayerResults() {
-        //when & then
-        Assertions.assertThatCode(() -> new PlayerResults(rawPlayerResults)).doesNotThrowAnyException();
+        //given
+        final List<String> targetNames = List.of("pobi", "honux", "crong", "jk");
+        final List<String> expectedResults = List.of("꽝", "5000", "2000", "꽝");
+
+        //when
+        PlayerResults playerResults = PlayerResults.of(names, ladder, results);
+
+        //then
+        org.junit.jupiter.api.Assertions.assertAll(
+                () -> Assertions.assertThat(playerResults.findResult(targetNames.get(0)).getValue()).isEqualTo(expectedResults.get(0)),
+                () -> Assertions.assertThat(playerResults.findResult(targetNames.get(1)).getValue()).isEqualTo(expectedResults.get(1)),
+                () -> Assertions.assertThat(playerResults.findResult(targetNames.get(2)).getValue()).isEqualTo(expectedResults.get(2)),
+                () -> Assertions.assertThat(playerResults.findResult(targetNames.get(3)).getValue()).isEqualTo(expectedResults.get(3))
+        );
 
     }
 
@@ -39,10 +54,10 @@ public class PlayerResultsTest {
     @Test
     void findPlayerResult() {
         //given
-        PlayerResults playerResults = new PlayerResults(rawPlayerResults);
+        PlayerResults playerResults = PlayerResults.of(names, ladder, results);
 
         String targetName = "honux";
-        String expectedResult = "2000";
+        String expectedResult = "5000";
 
         //when
         Result result = playerResults.findResult(targetName);
@@ -55,7 +70,7 @@ public class PlayerResultsTest {
     @Test
     void findPlayerResultByUnknownName() {
         //given
-        PlayerResults playerResults = new PlayerResults(rawPlayerResults);
+        PlayerResults playerResults = PlayerResults.of(names, ladder, results);
 
         String unknownName = "unknown";
 

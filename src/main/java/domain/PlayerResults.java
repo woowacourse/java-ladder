@@ -8,8 +8,18 @@ public class PlayerResults {
     public static final String UNKNOWN_NAME = "존재하지 않는 참가자 이름입니다.";
     private final HashMap<Name, Result> playerResults;
 
-    public PlayerResults(final HashMap<Name, Result> playerResults) {
-        this.playerResults = new HashMap<>(playerResults);
+    private PlayerResults(final HashMap<Name, Result> playerResults) {
+        this.playerResults = playerResults;
+    }
+
+    public static PlayerResults of(Names names, Ladder ladder, Results results) {
+        HashMap<Name, Result> playerResults = new HashMap<>();
+        for (int from = 0; from < names.count(); from++) {
+            int to = ladder.climb(from);
+            playerResults.put(names.getValues().get(from), results.getValues().get(to));
+        }
+
+        return new PlayerResults(playerResults);
     }
 
     public Result findResult(final String name) {

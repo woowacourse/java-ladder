@@ -16,6 +16,7 @@ public class Ladder {
         final List<Line> lines = Stream.generate(() -> Line.createByStrategy(bridgeGenerator, personCount))
                 .limit(height)
                 .toList();
+
         return new Ladder(lines);
     }
 
