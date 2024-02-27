@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -47,5 +48,26 @@ class PlayersTest {
 
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("주어진 이름을 가진 사용자의 위치를 알아낼 수 있다.")
+    @Test
+    void getPlayerColumn() {
+        List<String> names = List.of("산초", "아톰", "망쵸");
+        Players players = new Players(names);
+
+        int column = players.findPlayerColumn("아톰");
+
+        assertThat(column).isEqualTo(1);
+    }
+
+    @DisplayName("주어진 이름의 사용자가 존재하지 않으면 사용자의 위치를 알아낼 수 없다,.")
+    @Test
+    void notFoundPlayer() {
+        List<String> names = List.of("산초", "아톰", "망쵸");
+        Players players = new Players(names);
+
+        assertThatThrownBy(() -> players.findPlayerColumn("네오"))
+                .isInstanceOf(NoSuchElementException.class);
     }
 }

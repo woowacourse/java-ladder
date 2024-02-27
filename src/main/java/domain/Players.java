@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Players {
 
@@ -35,6 +36,15 @@ public class Players {
         return names.stream()
                 .map(name -> new Player(name.trim()))
                 .toList();
+    }
+
+    public int findPlayerColumn(String name) {
+        Player foundPlayer = players.stream()
+                .filter(player -> player.isSameName(name))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("존재하지 않는 사용자입니다."));
+
+        return players.indexOf(foundPlayer);
     }
 
     public List<Player> getPlayers() {
