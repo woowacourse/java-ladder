@@ -44,7 +44,7 @@ public class Line {
             return position - 1;
         }
 
-        if ((position == 0 || position < columnLength - 1) &&isEqualWithPosition(position, LadderItem.UNCONNECTED)) {
+        if ((position == 0 || position < columnLength - 1) && isEqualWithPosition(position, LadderItem.CONNECTED)) {
             return position + 1;
         }
 
