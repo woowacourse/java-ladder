@@ -1,35 +1,38 @@
 package domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 class LadderTest {
 
-    @Test
-    @DisplayName("사다리가 정상적으로 생성되는가")
-    void valid_ladder_create_test() {
-        // given
+    @RepeatedTest(10)
+    @DisplayName("사다리를 내려간 후 위치는 가로 길이 이내이다")
+    void testValidGetResult() {
         final int width = 3, height = 1;
-        final LadderStrategy ladderStrategy = new TestLadderStrategy();
-        final Ladder ladder = new Ladder(ladderStrategy, width, height);
+        final Ladder ladder = new Ladder(width, height);
 
-        // when
-        final List<Bridge> bridges = ladder.getBridges();
+        int resultIndex = ladder.getResult(0);
 
-        // then
-        final List<Bridge> expected = List.of(new Bridge(0, 0));
-        assertThat(expected).containsExactlyInAnyOrderElementsOf(bridges);
+        assertThat(resultIndex)
+                .isGreaterThanOrEqualTo(0)
+                .isLessThanOrEqualTo(width);
     }
 
-    static class TestLadderStrategy implements LadderStrategy {
-        @Override
-        public boolean creatable() {
-            return true;
-        }
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 3})
+    @DisplayName("시작 인덱스가 벗어나면 예외가 발생한다.")
+    void testInvalidGetResult(int startIndex) {
+        final int width = 3, height = 1;
+        final Ladder ladder = new Ladder(width, height);
+
+        assertThatThrownBy(() -> ladder.getResult(startIndex))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("위치는 0 이상 가로 길이 미만 이어야 한다.");
     }
 }

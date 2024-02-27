@@ -6,45 +6,38 @@ import java.util.List;
 
 public class Ladder {
 
-    private final LadderStrategy ladderStrategy;
-    private final List<Bridge> bridges;
-
-    Ladder(final LadderStrategy ladderStrategy, final int width, final int height) {
-        this.ladderStrategy = ladderStrategy;
-        this.bridges = new ArrayList<>();
-        create(width, height);
-    }
+    private final List<Row> rows;
 
     public Ladder(final int width, final int height) {
-        this(new RandomLadderStrategy(), width, height);
-    }
+        validationHeight(height);
 
-    public List<Bridge> getBridges() {
-        return bridges;
-    }
+        LadderStrategy strategy = new RandomLadderStrategy();
 
-    private void create(final int ladderWidth, final int ladderHeight) {
-        for (int height = 0; height < ladderHeight; height++) {
-            createSingleLine(ladderWidth, height);
+        this.rows = new ArrayList<>();
+        for (int i = 0; i < height; ++i) {
+            rows.add(new Row(width, strategy));
         }
     }
 
-    private void createSingleLine(final int width, final int height) {
-        for (int rail = 0; rail < width - 1; rail++) {
-            createSingleBridge(rail, height);
+    public int getResult(int index) {
+        validationIndex(index);
+
+        int position = index;
+        for (Row row : rows) {
+            position = row.goDown(position);
+        }
+        return position;
+    }
+
+    private void validationHeight(int height) {
+        if (height < 1) {
+            throw new IllegalArgumentException("높이는 1 이상이어야 한다.");
         }
     }
 
-    private void createSingleBridge(final int rail, final int height) {
-        if (!existPreviousBridge(rail, height) && ladderStrategy.creatable()) {
-            bridges.add(new Bridge(rail, height));
+    private void validationIndex(int index) {
+        if (index >= rows.size() || index < 0) {
+            throw new IllegalArgumentException("위치는 0 이상 가로 길이 미만 이어야 한다.");
         }
-    }
-    private boolean existPreviousBridge(final int rail, final int height) {
-        if (bridges.isEmpty()) {
-            return false;
-        }
-        final Bridge lastBridge = bridges.get(bridges.size() - 1);
-        return lastBridge.isAdjacent(new Bridge(rail, height));
     }
 }
