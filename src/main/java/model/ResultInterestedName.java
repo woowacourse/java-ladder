@@ -8,6 +8,9 @@ public class ResultInterestedName {
     private final List<String> resultInterestedName;
 
     public ResultInterestedName(List<String> resultInterestedName, List<String> participantNames) {
+        if (resultInterestedName.equals(List.of("all"))) {
+            resultInterestedName = participantNames;
+        }
         validateNameValue(resultInterestedName);
         validatePersonName(resultInterestedName, participantNames);
         this.resultInterestedName = Objects.requireNonNull(resultInterestedName);
@@ -27,5 +30,9 @@ public class ResultInterestedName {
         if (resultInterestedName.isEmpty() || resultInterestedName.contains("\\s+")) {
             throw new IllegalArgumentException("결과를 보고 싶은 사람은 한 명 이상이어야 한다");
         }
+    }
+
+    public List<String> getResultInterestedName() {
+        return resultInterestedName;
     }
 }
