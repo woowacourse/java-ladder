@@ -5,7 +5,9 @@ import util.LadderBuilder;
 import util.RandomGenerator;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LadderGame {
     private final Ladder ladder;
@@ -41,6 +43,18 @@ public class LadderGame {
         return names.stream()
                 .map(Name::getName)
                 .toList();
+    }
+
+    public Map<String, String> getResult() {
+        Map<String, String> results = new HashMap<>();
+        List<String> names = getClimbedNames();
+        List<String> winning = winnings.getWinnings().stream()
+                .map(Winning::getWinning)
+                .toList();
+        for (int index = 0; index < players.getPlayers().size(); index++) {
+            results.put(names.get(index), winning.get(index));
+        }
+        return results;
     }
 
     private void climb(Line line, List<Name> names) {
