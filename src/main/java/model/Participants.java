@@ -44,11 +44,10 @@ public class Participants {
         return List.copyOf(participants.keySet());
     }
 
-    public int getPosition(String name) {
-        Participant participant = new Participant(name);
+    public int getPosition(Participant participant) {
         if(participants.containsKey(participant)){
             return participants.get(participant);
         }
-        throw new IllegalArgumentException("존재하지 않는 참가자의 이름입니다.");
+        throw new IllegalArgumentException("존재하지 않는 참가자 입니다.");
     }
 }

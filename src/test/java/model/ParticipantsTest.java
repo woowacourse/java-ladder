@@ -32,9 +32,9 @@ class ParticipantsTest {
     void participantsPosition(){
         Participants participants = new Participants(List.of("pobi", "left", "right"));
         assertAll(
-                () -> assertThat(participants.getPosition("pobi")).isEqualTo(0),
-                () -> assertThat(participants.getPosition("left")).isEqualTo(1),
-                () -> assertThat(participants.getPosition("right")).isEqualTo(2)
+                () -> assertThat(participants.getPosition(new Participant("pobi"))).isEqualTo(0),
+                () -> assertThat(participants.getPosition(new Participant("left"))).isEqualTo(1),
+                () -> assertThat(participants.getPosition(new Participant("right"))).isEqualTo(2)
         );
     }
 
@@ -42,8 +42,8 @@ class ParticipantsTest {
     @Test
     void notExistParticipants(){
         Participants participants = new Participants(List.of("pobi", "left", "right"));
-        assertThatThrownBy(() -> participants.getPosition("tobi"))
+        assertThatThrownBy(() -> participants.getPosition(new Participant("tobi")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("존재하지 않는 참가자의 이름입니다.");
+                .hasMessage("존재하지 않는 참가자 입니다.");
     }
 }
