@@ -40,17 +40,17 @@ public class LadderGameController {
     }
 
     private static void printLadderResult(Users users, Ladder ladder, Results ladderResults) {
-        ResultView.printLadderResult();
+        ResultView.printLadderResultMessage();
         ResultView.printNames(users);
         ResultView.printLadder(ladder);
         ResultView.printResults(ladderResults);
     }
 
     private void printPrize(GameResult gameResult) {
-        String findResult = InputView.inputFindResult();
-        while (!ALL.equals(findResult)) {
-            printSinglePrize(gameResult, findResult);
-            findResult = InputView.inputFindResult();
+        String findOption = InputView.inputFindOption();
+        while (!ALL.equals(findOption)) {
+            printSinglePrize(gameResult, findOption);
+            findOption = InputView.inputFindOption();
         }
         printAllPrize(gameResult);
     }

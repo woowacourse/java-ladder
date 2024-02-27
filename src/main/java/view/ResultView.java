@@ -26,7 +26,7 @@ public class ResultView {
         System.out.println(stringBuilder);
     }
 
-    public static void printLadderResult() {
+    public static void printLadderResultMessage() {
         System.out.println("사다리 결과");
         System.out.println();
     }
