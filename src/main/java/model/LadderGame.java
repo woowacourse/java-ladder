@@ -16,6 +16,8 @@ public class LadderGame {
 
 
     public String findParticipantResult(Name name) {
-        return "";
+        int participantPosition = participants.getPositionByName(name);
+        int resultPosition = ladder.moveAll(participantPosition);
+        return resultByPosition.get(resultPosition);
     }
 }
