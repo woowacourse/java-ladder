@@ -1,12 +1,8 @@
 package controller;
 
-import domain.GameBoard;
-import domain.Prize;
-import domain.Prizes;
+import domain.*;
 import domain.ladder.Ladder;
 import domain.ladder.attirbute.Height;
-import domain.player.Name;
-import domain.player.Names;
 import domain.player.Players;
 import util.RandomDirectionGenerator;
 import view.OutputView;

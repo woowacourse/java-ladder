@@ -4,8 +4,6 @@ import domain.ladder.FixedDirectionGenerator;
 import domain.ladder.Ladder;
 import domain.ladder.attirbute.Direction;
 import domain.ladder.attirbute.Height;
-import domain.player.Name;
-import domain.player.Names;
 import domain.player.Players;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;

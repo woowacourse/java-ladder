@@ -2,7 +2,6 @@ package domain;
 
 import domain.ladder.Ladder;
 import domain.ladder.attirbute.Direction;
-import domain.player.Name;
 import domain.player.Players;
 
 import java.util.Collections;

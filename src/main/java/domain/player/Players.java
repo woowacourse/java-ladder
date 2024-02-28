@@ -1,5 +1,8 @@
 package domain.player;
 
+import domain.Name;
+import domain.Names;
+
 import java.util.List;
 
 public class Players {

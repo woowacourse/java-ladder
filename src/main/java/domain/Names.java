@@ -1,4 +1,4 @@
-package domain.player;
+package domain;
 
 import java.util.Collections;
 import java.util.HashSet;

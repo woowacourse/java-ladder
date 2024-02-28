@@ -1,5 +1,6 @@
 package domain.player;
 
+import domain.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +20,7 @@ class NameTest {
         Name name = new Name(value);
 
         //Then
-        assertEquals(name.value(), value);
+        assertEquals(name.getValue(), value);
     }
 
     @Test
