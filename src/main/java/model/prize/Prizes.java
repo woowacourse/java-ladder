@@ -31,4 +31,10 @@ public class Prizes {
     public Prize findPrize(int index) {
         return prizes.get(index);
     }
+
+    public List<String> getNames() {
+        return prizes.stream()
+                .map(Prize::getName)
+                .toList();
+    }
 }
