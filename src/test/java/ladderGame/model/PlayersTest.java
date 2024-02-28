@@ -23,4 +23,14 @@ class PlayersTest {
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("index를 알고 싶은 참가자 이름이 존재하지 않으면 예외처리 된다.")
+    void indexOfByName() {
+        List<String> names = List.of("켬미","배키");
+        Players players = new Players(names);
+
+        assertThatThrownBy(() -> players.indexOfByName("포비"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
