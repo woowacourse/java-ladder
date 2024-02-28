@@ -12,4 +12,8 @@ public class Path {
     public static Path of(int startLineNumber, int endLineNumber) {
         return new Path(new LineNumber(startLineNumber), new LineNumber(endLineNumber));
     }
+
+    public boolean hasPath(LineNumber lineNumber) {
+        return startLineNumber.value() == lineNumber.value() || endLineNumber.value() == lineNumber.value();
+    }
 }
