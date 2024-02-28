@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -47,7 +48,7 @@ public class Participants {
     }
 
     public List<Name> getParticipantsName() {
-        return names;
+        return Collections.unmodifiableList(names);
     }
 
     public int getParticipantsCount() {
