@@ -33,7 +33,6 @@ public class LadderRow {
         return position;
     }
 
-
     public List<Boolean> getIsLines() {
         return isLines;
     }
