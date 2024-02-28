@@ -6,6 +6,7 @@ import domain.player.Name;
 import domain.player.Player;
 import domain.player.Players;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 public class GameBoard {
@@ -45,6 +46,14 @@ public class GameBoard {
         Point endPoint = playGameWithStartPoint(startPoint);
         return new Result(player.getName(), getRewardWithIndex(endPoint.row()));
     }
+
+    public List<Result> playGameAllPlayer() {
+        return players.getPlayers()
+                      .stream()
+                      .map(this::playGameOnePlayer)
+                      .toList();
+    }
+
 
     private Point playGameWithStartPoint(final Point startPoint) {
         return Stream.iterate(startPoint, this::movePoint)

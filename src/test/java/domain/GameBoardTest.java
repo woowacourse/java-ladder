@@ -71,6 +71,21 @@ public class GameBoardTest {
         assertResult("5000", result);
     }
 
+    @Test
+    @DisplayName("모든 플레이어의 게임을 진행한다.")
+    public void gameAllPlayer() {
+        Players players = 플레이어_생성(Names.from(List.of("pobi", "honux", "crong", "jk")));
+        Rewards rewards = 보상_목록_생성(List.of("꽝", "5000", "꽝", "3000"));
+        final var gameBoard = 게임보드_생성(players, rewards);
+        List<String> expectedList = List.of("꽝", "3000", "꽝", "5000");
+
+        List<Result> result = gameBoard.playGameAllPlayer();
+
+        IntStream.range(0, result.size())
+                 .forEach(index -> assertResult(expectedList.get(index), result.get(index)));
+
+    }
+
     private void assertResult(String value, Result result) {
         assertEquals(value, result.reward()
                                   .getValue());
