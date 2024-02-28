@@ -15,10 +15,6 @@ public class Person {
         validate(this.name);
     }
 
-    public static int getMaxLength() {
-        return MAX_LENGTH;
-    }
-
     private void validate(String name) {
         validateLength(name);
         validateBlank(name);
