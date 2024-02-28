@@ -24,7 +24,7 @@ public class LadderTest {
     void ladderInitTest() {
         Ladder ladder = new Ladder(new Height(5));
         ladder.init(5, new CustomGenerator(List.of(false, true, false, true, false)));
-        Assertions.assertThat(ladder.iterator().next())
+        Assertions.assertThat(ladder.getLines().get(0))
                 .isEqualTo(new Line(List.of(4, 5, 4, 5, 4)));
     }
 }
