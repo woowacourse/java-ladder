@@ -24,6 +24,21 @@ public class Ladder {
         return new Ladder(ladder);
     }
 
+    public LadderPosition climbFrom(LadderPosition ladderPosition) {
+        if (ladderPosition.row() == ladder.size()) {
+            return ladderPosition;
+        }
+        LadderDirection direction = getLadderDirection(ladderPosition.row(), ladderPosition.column());
+        LadderPosition nextLadderPosition = new LadderPosition(
+                ladderPosition.row() + 1,
+                ladderPosition.column() + direction.getValue());
+        return climbFrom(nextLadderPosition);
+    }
+
+    private LadderDirection getLadderDirection(int row, int column) {
+        return ladder.get(row).getLadderDirection(column);
+    }
+
     public List<LadderLevel> getLadderLevels() {
         return Collections.unmodifiableList(ladder);
     }

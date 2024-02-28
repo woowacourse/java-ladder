@@ -11,6 +11,10 @@ public class LadderLevel {
         ladderLevel = ladderDirections;
     }
 
+    public LadderDirection getLadderDirection(int index) {
+        return ladderLevel.get(index);
+    }
+
     public List<LadderDirection> getLadderDirections() {
         return Collections.unmodifiableList(ladderLevel);
     }
