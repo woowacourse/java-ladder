@@ -8,6 +8,7 @@ import laddergame.domain.target.Targets;
 import laddergame.dto.DrawnLadderDto;
 import laddergame.exception.ExceptionHandler;
 import laddergame.service.LadderGame;
+import laddergame.util.InputValidator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -75,6 +76,8 @@ public class LadderController {
     }
 
     private String getDisplayingPlayers() {
-        return inputView.readDisplayingPlayers();
+        String input = inputView.readDisplayingPlayers();
+        InputValidator.validateBlank(input);
+        return input;
     }
 }
