@@ -44,7 +44,7 @@ public class LadderGameTest {
                 List.of(false, true, false),
                 List.of(true, false, false)), height, participants);
         LadderGame ladderGame = new LadderGame(ladder, participants, results);
-        assertThat(ladderGame.matchAllResults()).isEqualTo(Map.of(
+        assertThat(ladderGame.matchAllResults().getRewards()).isEqualTo(Map.of(
                 new Participant("pobi"), new Result("꽝"),
                 new Participant("left"), new Result("5000"),
                 new Participant("right"), new Result("3000"),
