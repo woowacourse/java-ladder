@@ -66,9 +66,8 @@ public class InputView {
         }
     }
 
-    private String[] splitLadderResultsInput(String input) {
-        input = removeBlank(input);
-        return input.split(InputView.LADDER_RESULTS_INPUT_DELIMITER);
+    private String[] splitLadderResultsInput(final String input) {
+        return removeBlank(input).split(InputView.LADDER_RESULTS_INPUT_DELIMITER);
     }
 
     private String removeBlank(final String value) {
@@ -83,7 +82,7 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    private void validateIntFormat(String value) {
+    private void validateIntFormat(final String value) {
         try {
             Integer.parseInt(value);
         } catch (NumberFormatException exception) {

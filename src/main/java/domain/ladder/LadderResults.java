@@ -11,7 +11,7 @@ public class LadderResults {
     public static final String SIZE_ERROR_MESSAGE = "사다리 실행 결과의 수는 참가자의 수와 같아야 합니다";
     private final List<LadderResult> values;
 
-    public LadderResults(String[] values, int playerCount) {
+    public LadderResults(final String[] values, final int playerCount) {
         validateSize(values, playerCount);
 
         this.values = Arrays.stream(values)
@@ -19,7 +19,7 @@ public class LadderResults {
                 .toList();
     }
 
-    private void validateSize(String[] ladderResults, int playerCount) {
+    private void validateSize(final String[] ladderResults, final int playerCount) {
         if (ladderResults.length != playerCount) {
             throw new ValidationException(SIZE_ERROR_MESSAGE);
         }
@@ -29,7 +29,7 @@ public class LadderResults {
         return values.size();
     }
 
-    public String getValueByIndex(int index) {
+    public String getValueByIndex(final int index) {
         try {
             return values.get(index).getValue();
         } catch (IndexOutOfBoundsException exception) {

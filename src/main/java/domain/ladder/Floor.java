@@ -8,25 +8,25 @@ public class Floor {
     public static final String SEQUENCE_ERROR_MESSAGE = "한 층 내에서 사디리의 다리는 연속될 수 없습니다";
     private final List<LadderBridge> bridges;
 
-    public Floor(List<LadderBridge> bridges) {
+    public Floor(final List<LadderBridge> bridges) {
         validateBridgesNotExistSerially(bridges);
         this.bridges = List.copyOf(bridges);
     }
 
-    private void validateBridgesNotExistSerially(List<LadderBridge> bridges) {
+    private void validateBridgesNotExistSerially(final List<LadderBridge> bridges) {
         for (int i = 1; i < bridges.size(); i++) {
             LadderBridge before = bridges.get(i - 1);
             compareBridgeStatus(before, bridges.get(i));
         }
     }
 
-    private void compareBridgeStatus(LadderBridge before, LadderBridge now) {
+    private void compareBridgeStatus(final LadderBridge before, final LadderBridge now) {
         if (now.equals(before) && now.equals(LadderBridge.BRIDGE)) {
             throw new ValidationException(SEQUENCE_ERROR_MESSAGE);
         }
     }
 
-    public BridgeDirection getBridgeAroundAt(int playerPosition) {
+    public BridgeDirection getBridgeAroundAt(final int playerPosition) {
         if (hasLeftBridge(playerPosition)) {
             return BridgeDirection.LEFT;
         } else if (hasRightBridge(playerPosition)) {
@@ -35,15 +35,15 @@ public class Floor {
         return BridgeDirection.NONE;
     }
 
-    private boolean hasLeftBridge(int playerPosition) {
+    private boolean hasLeftBridge(final int playerPosition) {
         return !isFirstPosition(playerPosition) && hasBridgeAt(playerPosition - 1);
     }
 
-    private boolean isFirstPosition(int playerPosition) {
+    private boolean isFirstPosition(final int playerPosition) {
         return playerPosition == 0;
     }
 
-    private boolean hasRightBridge(int playerPosition) {
+    private boolean hasRightBridge(final int playerPosition) {
         return !isLastPosition(playerPosition) && hasBridgeAt(playerPosition);
     }
 

@@ -7,7 +7,7 @@ public enum BridgeDirection {
 
     private final int value;
 
-    BridgeDirection(int value) {
+    BridgeDirection(final int value) {
         this.value = value;
     }
 

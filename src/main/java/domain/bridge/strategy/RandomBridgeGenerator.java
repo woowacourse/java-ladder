@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class RandomBridgeGenerator implements BridgeGenerator {
 
     @Override
-    public List<LadderBridge> generate(int bridgeCount) {
+    public List<LadderBridge> generate(final int bridgeCount) {
         List<LadderBridge> bridges = new ArrayList<>(bridgeCount);
         for (int i = 0; i < bridgeCount; i++) {
             addBridge(i, bridges);
@@ -19,7 +19,7 @@ public class RandomBridgeGenerator implements BridgeGenerator {
         return bridges;
     }
 
-    private void addBridge(int index, List<LadderBridge> bridge) {
+    private void addBridge(final int index, final List<LadderBridge> bridge) {
         if (index == 0) {
             bridge.add(getRandomBridge());
             return;
@@ -27,7 +27,7 @@ public class RandomBridgeGenerator implements BridgeGenerator {
         bridge.add(generateBridge(bridge.get(index - 1)));
     }
 
-    private LadderBridge generateBridge(LadderBridge before) {
+    private LadderBridge generateBridge(final LadderBridge before) {
         if(before.equals(LadderBridge.BRIDGE)) {
             return LadderBridge.NONE;
         }

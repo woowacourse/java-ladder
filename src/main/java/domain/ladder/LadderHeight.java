@@ -10,12 +10,12 @@ public class LadderHeight {
 
     private final int value;
 
-    public LadderHeight(int value) {
+    public LadderHeight(final int value) {
         validateRange(value);
         this.value = value;
     }
 
-    private void validateRange(int height) {
+    private void validateRange(final int height) {
         if (height < HEIGHT_MIN || height > HEIGHT_MAX) {
             throw new ValidationException(RANGE_ERROR_MESSAGE);
         }

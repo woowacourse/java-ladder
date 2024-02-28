@@ -13,13 +13,14 @@ public class Ladder {
     private final PlayerNames playerNames;
     private final LadderResults ladderResults;
 
-    private Ladder(List<Floor> floors, PlayerNames playerNames, LadderResults ladderResults) {
+    private Ladder(final List<Floor> floors, final PlayerNames playerNames, final LadderResults ladderResults) {
         this.floors = List.copyOf(floors);
         this.playerNames = playerNames;
         this.ladderResults = ladderResults;
     }
 
-    public static Ladder create(LadderHeight height, PlayerNames playerNames, LadderResults ladderResults, BridgeGenerator bridgeGenerator) {
+    public static Ladder create(final LadderHeight height, final PlayerNames playerNames, final LadderResults ladderResults,
+                                final BridgeGenerator bridgeGenerator) {
         List<Floor> floors = new ArrayList<>();
         for (int i = 0; i < height.getValue(); i++) {
             List<LadderBridge> bridges = bridgeGenerator.generate(calculatePointCount(playerNames));
@@ -43,14 +44,14 @@ public class Ladder {
         return playersLadderResult;
     }
 
-    public Map<String, String> findSinglePlayerLadderResultValue(String playerName) {
+    public Map<String, String> findSinglePlayerLadderResultValue(final String playerName) {
         Map<String, String> playersLadderResult = new HashMap<>();
         playersLadderResult.put(playerName, findPlayerLadderResultValueByName(playerName));
 
         return playersLadderResult;
     }
 
-    private String findPlayerLadderResultValueByName(String playerName) {
+    private String findPlayerLadderResultValueByName(final String playerName) {
         int playerPosition = playerNames.getIndexOfName(playerName);
 
         for (Floor floor : floors) {
@@ -60,7 +61,7 @@ public class Ladder {
         return ladderResults.getValueByIndex(playerPosition);
     }
 
-    public String getLadderResultByIndex(int index) {
+    public String getLadderResultByIndex(final int index) {
         return ladderResults.getValueByIndex(index);
     }
 

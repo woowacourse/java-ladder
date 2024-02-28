@@ -24,18 +24,18 @@ public class OutputView {
         bridgeToMarker.put(LadderBridge.NONE, "     ");
     }
 
-    public void printLadder(PlayerNames playerNames, Ladder ladder) {
+    public void printLadder(final PlayerNames playerNames, final Ladder ladder) {
         System.out.println("\n실행 결과\n");
         printPlayerNames(playerNames);
         printLadder(ladder);
         printLadderResult(ladder);
     }
 
-    public void printErrorMessage(String errorMessage) {
+    public void printErrorMessage(final String errorMessage) {
         System.out.println(String.format(ERROR_MESSAGE_FORMAT, errorMessage));
     }
 
-    private void printPlayerNames(PlayerNames playerNames) {
+    private void printPlayerNames(final PlayerNames playerNames) {
         StringJoiner playerNamesJoiner = new StringJoiner(" ");
 
         for (int i = 0; i < playerNames.getCount(); i++) {
@@ -45,15 +45,13 @@ public class OutputView {
         System.out.println(playerNamesJoiner);
     }
 
-    private void printLadder(Ladder ladder) {
-        StringJoiner ladderJoiner;
+    private void printLadder(final Ladder ladder) {
         for (Floor floor : ladder.getFloors()) {
-            ladderJoiner = new StringJoiner(LADDER_FRAME, LADDER_FRAME, LADDER_FRAME);
-            printLadderFloor(floor, ladderJoiner);
+            printLadderFloor(floor, new StringJoiner(LADDER_FRAME, LADDER_FRAME, LADDER_FRAME));
         }
     }
 
-    private void printLadderFloor(Floor floor, StringJoiner ladderJoiner) {
+    private void printLadderFloor(final Floor floor, final StringJoiner ladderJoiner) {
         System.out.print("\t");
         for (LadderBridge bridge : floor.getBridges()) {
             ladderJoiner.add(bridgeToMarker.get(bridge));
@@ -61,7 +59,7 @@ public class OutputView {
         System.out.println(ladderJoiner);
     }
 
-    private void printLadderResult(Ladder ladder) {
+    private void printLadderResult(final Ladder ladder) {
         StringJoiner ladderResultJoiner = new StringJoiner(LADDER_RESULTS_DELIMITER);
 
         for (int i = 0; i < ladder.getResultSize(); i++) {
@@ -71,7 +69,7 @@ public class OutputView {
         System.out.println(ladderResultJoiner);
     }
 
-    public void printPlayerLadderResult(Map<String, String> playerNameAndResult) {
+    public void printPlayerLadderResult(final Map<String, String> playerNameAndResult) {
         if (playerNameAndResult.size() > 1) {
             printAllPlayerLadderResult(playerNameAndResult);
         } else if (playerNameAndResult.size() == 1) {
@@ -79,14 +77,14 @@ public class OutputView {
         }
     }
 
-    private void printAllPlayerLadderResult(Map<String, String> playerNameAndResults) {
+    private void printAllPlayerLadderResult(final Map<String, String> playerNameAndResults) {
         System.out.println("\n실행 결과");
         for (Map.Entry<String, String> nameAndResult : playerNameAndResults.entrySet()) {
             System.out.println(String.format(PLAYERS_LADDER_RESULT_FORMAT, nameAndResult.getKey(), nameAndResult.getValue()));
         }
     }
 
-    private void printSinglePlayerLadderResult(Map<String, String> playerNameAndResult) {
+    private void printSinglePlayerLadderResult(final Map<String, String> playerNameAndResult) {
         System.out.println("\n실행 결과");
         for (String playerLadderResult : playerNameAndResult.values()) {
             System.out.println(playerLadderResult);

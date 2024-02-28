@@ -12,30 +12,30 @@ public class LadderResult {
 
     private final String value;
 
-    public LadderResult(String value) {
+    public LadderResult(final String value) {
         validate(value);
         this.value = value;
     }
 
-    private void validate(String value) {
+    private void validate(final String value) {
         validateNull(value);
         validateLength(value);
         validateBlank(value);
     }
 
-    private void validateNull(String value) {
+    private void validateNull(final String value) {
         if (value == null) {
             throw new ValidationException(NULL_ERROR_MESSAGE);
         }
     }
 
-    private void validateLength(String value) {
+    private void validateLength(final String value) {
         if (value.length() < LENGTH_MIN || value.length() > LENGTH_MAX) {
             throw new ValidationException(LENGTH_ERROR_MESSAGE);
         }
     }
 
-    private void validateBlank(String value) {
+    private void validateBlank(final String value) {
         if (value.isBlank()) {
             throw new ValidationException(BLANK_ERROR_MESSAGE);
         }
