@@ -6,10 +6,9 @@ public class RetryHelper {
     private RetryHelper() {
     }
 
-    public static <T> T retryHelper(Supplier<T> supplier, String userPrompt) {
+    public static <T> T retryHelper(Supplier<T> supplier) {
         while (true) {
             try {
-                System.out.println(userPrompt);
                 return supplier.get();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
