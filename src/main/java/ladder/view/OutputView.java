@@ -7,7 +7,9 @@ import java.util.StringJoiner;
 import ladder.domain.Direction;
 import ladder.domain.Ladder;
 import ladder.domain.LadderLevel;
+import ladder.domain.Player;
 import ladder.domain.Players;
+import ladder.domain.Result;
 import ladder.domain.Results;
 
 public class OutputView {
@@ -26,7 +28,7 @@ public class OutputView {
 
     private static void printPlayers(Players players) {
         StringJoiner stringJoiner = new StringJoiner(DELIMITER);
-        players.stream().forEach(player -> stringJoiner.add(NAME_FORMAT.formatted(player.name())));
+        players.getSortedPlayers().forEach(player -> stringJoiner.add(NAME_FORMAT.formatted(player.name())));
         System.out.println(stringJoiner);
     }
 
@@ -36,7 +38,7 @@ public class OutputView {
 
     private static void printLadderLevel(LadderLevel ladderLevel) {
         System.out.print("\t");
-        ladderLevel.stream().forEach(OutputView::printLine);
+        ladderLevel.getSortedDirections().forEach(OutputView::printLine);
         System.out.println();
     }
 
@@ -50,18 +52,18 @@ public class OutputView {
 
     private static void printResults(Results results) {
         StringJoiner stringJoiner = new StringJoiner(DELIMITER);
-        results.stream().forEach(result -> stringJoiner.add(RESULT_FORMAT.formatted(result.reward())));
+        results.getSortedResults().forEach(result -> stringJoiner.add(RESULT_FORMAT.formatted(result.value())));
         System.out.println(stringJoiner);
     }
 
-    public static void printRewardIndividual(String resultValue) {
+    public static void printResult(Result result) {
         System.out.println("\n실행 결과");
-        System.out.println(resultValue);
+        System.out.println(result.value());
     }
 
-    public static void printAllRewards(Map<String, String> rewardOfPlayers) {
+    public static void printAllResults(Map<Player, Result> rewardOfPlayers) {
         System.out.println("\n실행 결과");
-        rewardOfPlayers.forEach((player, reward) -> System.out.println(player + " : " + reward));
+        rewardOfPlayers.forEach((player, result) -> System.out.println(player.name() + " : " + result.value()));
     }
 
     public static void printQuitMessage() {

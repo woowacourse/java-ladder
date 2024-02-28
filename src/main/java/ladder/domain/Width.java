@@ -10,4 +10,8 @@ public record Width(int value) {
             );
         }
     }
+
+    public Location getLastLocation() {
+        return new Location(value - 1);
+    }
 }

@@ -3,15 +3,11 @@ package ladder.domain;
 import static ladder.view.InputView.ALL_RESULT_COMMAND;
 import static ladder.view.InputView.QUIT_RESULT_COMMAND;
 
-public record Player(String name, Location location) {
+public record Player(String name) {
     private static final int MAX_NAME_LENGTH = 5;
 
     public Player {
         validate(name);
-    }
-
-    public boolean hasSameLocation(Location location) {
-        return this.location.equals(location);
     }
 
     private void validate(String name) {

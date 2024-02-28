@@ -10,4 +10,8 @@ public record Location(int value) {
             );
         }
     }
+
+    public Location move(Direction direction) {
+        return new Location(value + direction.getMovement());
+    }
 }

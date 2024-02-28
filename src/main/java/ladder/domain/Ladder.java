@@ -11,24 +11,15 @@ public class Ladder {
     public Ladder(Width width, Height height, DirectionGenerator directionGenerator) {
         ladderLevels = new ArrayList<>();
         IntStream.range(0, height.value())
-                .forEach(i -> ladderLevels.add(new LadderLevel(width.value(), directionGenerator)));
+                .forEach(i -> ladderLevels.add(new LadderLevel(width, directionGenerator)));
     }
 
     public Stream<LadderLevel> stream() {
         return ladderLevels.stream();
     }
 
-    public List<Player> findAllResultPlayers(Players players) {
-        List<Player> resultPlayers = new ArrayList<>();
-        players.stream()
-                .forEach(player ->
-                        resultPlayers.add(new Player(player.name(), findResultLocation(player)))
-                );
-        return resultPlayers;
-    }
-
-    private Location findResultLocation(Player player) {
-        Location currentLocation = player.location();
+    public Location findResultLocation(Location location) {
+        Location currentLocation = location;
         for (LadderLevel ladderLevel : ladderLevels) {
             currentLocation = ladderLevel.move(currentLocation);
         }

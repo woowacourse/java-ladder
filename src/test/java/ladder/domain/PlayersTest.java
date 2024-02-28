@@ -16,7 +16,7 @@ class PlayersTest {
                 .hasMessage("중복된 이름은 입력할 수 없습니다: %s".formatted("명오"));
     }
 
-    @DisplayName("입력된 이름이 하나이면 예외가 발생한다.")
+    @DisplayName("입력된 이름이 하나면 예외가 발생한다.")
     @Test
     void OneNameTest() {
         assertThatThrownBy(() -> new Players(List.of("명오")))

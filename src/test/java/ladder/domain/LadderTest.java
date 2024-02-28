@@ -4,7 +4,6 @@ import static ladder.domain.Direction.RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +18,7 @@ class LadderTest {
         LadderLevel anyLadderLevel = ladder.stream().findAny().get();
 
         int actualHeight = (int) ladder.stream().count();
-        int actualPlayersCount = (int) anyLadderLevel.stream().count();
+        int actualPlayersCount = anyLadderLevel.getSortedDirections().size();
 
         // then
         assertAll(
@@ -28,19 +27,12 @@ class LadderTest {
         );
     }
 
-    @DisplayName("Players의 전체 위치를 반환한다.")
+    @DisplayName("입력된 위치의 결과 위치를 반환한다")
     @Test
     void getAllResultLocationTest() {
-        Players players = new Players(List.of("poby", "honux"));
-        Width width = new Width(2);
-        Height height = new Height(3);
-        Ladder ladder = new Ladder(width, height, () -> RIGHT);
+        Ladder ladder = new Ladder(new Width(2), new Height(3), () -> RIGHT);
 
-        List<Player> actual = ladder.findAllResultPlayers(players);
-
-        assertThat(actual).isEqualTo(List.of(
-                new Player("poby", new Location(1)),
-                new Player("honux", new Location(0))
-        ));
+        assertThat(ladder.findResultLocation(new Location(0))).isEqualTo(new Location(1));
+        assertThat(ladder.findResultLocation(new Location(1))).isEqualTo(new Location(0));
     }
 }

@@ -3,13 +3,14 @@ package ladder.controller;
 import static ladder.view.InputView.ALL_RESULT_COMMAND;
 import static ladder.view.InputView.QUIT_RESULT_COMMAND;
 
+import java.util.List;
 import ladder.domain.DirectionGenerator;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.Players;
 import ladder.domain.RandomDirectionGenerator;
 import ladder.domain.Results;
-import ladder.domain.RewardsOfPlayers;
+import ladder.domain.ResultsOfPlayers;
 import ladder.domain.Width;
 import ladder.exception.ExceptionHandler;
 import ladder.view.InputView;
@@ -20,36 +21,38 @@ public class Controller {
         Players players = createPlayers();
         Results results = createResults(players.count());
         Height height = createHeight();
+
         Width width = new Width(players.count());
         DirectionGenerator randomDirectionGenerator = new RandomDirectionGenerator();
         Ladder ladder = new Ladder(width, height, randomDirectionGenerator);
-        RewardsOfPlayers rewardsOfPlayers = new RewardsOfPlayers(ladder.findAllResultPlayers(players), results);
+
+        ResultsOfPlayers resultsOfPlayers = new ResultsOfPlayers(players, ladder, results);
         OutputView.printLadderResult(players, ladder, results);
-        repeatPrintingReward(rewardsOfPlayers);
+        repeatPrintingReward(resultsOfPlayers);
     }
 
-    private static void repeatPrintingReward(RewardsOfPlayers rewardsOfPlayers) {
+    private static void repeatPrintingReward(ResultsOfPlayers resultsOfPlayers) {
         boolean doRepeat = true;
         while (doRepeat) {
-            doRepeat = ExceptionHandler.run(() -> inputNameAndPrintReward(rewardsOfPlayers));
+            doRepeat = ExceptionHandler.run(() -> inputNameAndPrintReward(resultsOfPlayers));
         }
     }
 
-    private static boolean inputNameAndPrintReward(RewardsOfPlayers rewardsOfPlayers) {
+    private static boolean inputNameAndPrintReward(ResultsOfPlayers resultsOfPlayers) {
         String input = InputView.inputNameForResult();
-        return printRewardOf(rewardsOfPlayers, input);
+        return printRewardOf(resultsOfPlayers, input);
     }
 
-    private static boolean printRewardOf(RewardsOfPlayers rewardsOfPlayers, String input) {
+    private static boolean printRewardOf(ResultsOfPlayers resultsOfPlayers, String input) {
         if (input.equals(QUIT_RESULT_COMMAND)) {
             OutputView.printQuitMessage();
             return false;
         }
         if (input.equals(ALL_RESULT_COMMAND)) {
-            OutputView.printAllRewards(rewardsOfPlayers.getAllRewards());
+            OutputView.printAllResults(resultsOfPlayers.getAllResults());
             return true;
         }
-        OutputView.printRewardIndividual(rewardsOfPlayers.getRewardByName(input));
+        OutputView.printResult(resultsOfPlayers.getResultByName(input));
         return true;
     }
 
@@ -58,7 +61,21 @@ public class Controller {
     }
 
     private Results createResults(int playersCount) {
-        return ExceptionHandler.run(() -> new Results(InputView.inputResults(), playersCount));
+        return ExceptionHandler.run(() -> getResults(playersCount));
+    }
+
+    private static Results getResults(int playersCount) {
+        List<String> results = InputView.inputResults();
+        validateResultsSize(results, playersCount);
+        return new Results(results);
+    }
+
+    private static void validateResultsSize(List<String> results, int playersCount) {
+        if (results.size() != playersCount) {
+            throw new IllegalArgumentException(
+                    "실행 결과의 수가 사용자 수와 다릅니다: %d".formatted(results.size())
+            );
+        }
     }
 
     private Height createHeight() {

@@ -1,33 +1,28 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Results {
-    private final List<Result> results;
+    private final Map<Location, Result> results;
 
-    public Results(List<String> results, int playersCount) {
-        if (results.size() != playersCount) {
-            throw new IllegalArgumentException(
-                    "실행 결과의 수가 사용자 수와 다릅니다: %d".formatted(results.size())
-            );
-        }
-        this.results = new ArrayList<>();
-        IntStream.range(0, playersCount)
-                .forEach(index -> this.results.add(new Result(results.get(index), new Location(index))));
+    public Results(List<String> results) {
+        this.results = new HashMap<>();
+        IntStream.range(0, results.size())
+                .forEach(index -> this.results.put(new Location(index), new Result(results.get(index))));
     }
 
-    public Stream<Result> stream() {
-        return results.stream();
+    public Result getResult(Location location) {
+        return results.get(location);
     }
 
-    public String getResultReward(Location location) {
-        return results.stream()
-                .filter(result -> result.hasSameLocation(location))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 위치입니다."))
-                .reward();
+    public List<Result> getSortedResults() {
+        List<Result> orderedResults = new ArrayList<>();
+        results.forEach((location, result) -> orderedResults.add(location.value(), result));
+        return Collections.unmodifiableList(orderedResults);
     }
 }

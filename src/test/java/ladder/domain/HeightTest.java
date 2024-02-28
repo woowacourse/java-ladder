@@ -9,7 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class HeightTest {
-    @DisplayName("입력된 첫번째 인자를 value로 가진다.")
+    @DisplayName("입력된 인자를 value로 가진다.")
     @Test
     void heightConstructTest() {
         Height height = new Height(1);
