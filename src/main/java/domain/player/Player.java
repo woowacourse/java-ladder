@@ -18,12 +18,12 @@ public class Player {
 	}
 
 	public void playLadder(Ladder ladder) {
-		List<Floor> lines = ladder.getLines();
-		lines.forEach(this::move);
+		List<Floor> floors = ladder.getFloors();
+		floors.forEach(this::move);
 	}
 
-	private void move(Floor line) {
-		Bar bar = line.getBar(position);
+	private void move(Floor floor) {
+		Bar bar = floor.getBar(position);
 		if (bar.isConnectedToRight()) {
 			position++;
 			return;

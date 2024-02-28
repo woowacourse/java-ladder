@@ -8,12 +8,12 @@ import generator.LadderFloorGenerator;
 
 public class Ladder {
 
-	private final List<Floor> lines;
+	private final List<Floor> floors;
 
 	private Ladder(int playerCount, int height) {
-		this.lines = new ArrayList<>();
+		this.floors = new ArrayList<>();
 		for (int i = 0; i < height; i++) {
-			lines.add(new Floor(playerCount));
+			floors.add(new Floor(playerCount));
 		}
 	}
 
@@ -22,16 +22,16 @@ public class Ladder {
 	}
 
 	public void drawLines(LadderFloorGenerator generator) {
-		lines.forEach(line -> line.createCrossingLines(generator));
+		floors.forEach(floor -> floor.createCrossingLines(generator));
 	}
 
 	public List<FloorConnectionStatusDto> createStatuses() {
-		return lines.stream()
-			.map(Floor::createStatus)
+		return floors.stream()
+			.map(Floor::createFloorConnectionStatus)
 			.toList();
 	}
 
-	public List<Floor> getLines() {
-		return lines;
+	public List<Floor> getFloors() {
+		return floors;
 	}
 }
