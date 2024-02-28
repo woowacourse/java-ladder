@@ -73,7 +73,7 @@ public class GameController {
         return errorHandler.readUntilNoError(() -> {
             String rawHeight = inputView.readHeight();
             int height = StringParser.stringToInt(rawHeight);
-            return Ladder.of(members.getCount(), height, new RandomConnectionStrategy());
+            return Ladder.of(height, members.getCount(), new RandomConnectionStrategy());
         });
     }
 

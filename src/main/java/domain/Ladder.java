@@ -23,7 +23,7 @@ public class Ladder {
         }
     }
 
-    public static Ladder of(int memberCount, int height, ConnectionStrategy connectionStrategy) {
+    public static Ladder of(int height, int memberCount, ConnectionStrategy connectionStrategy) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             lines.add(Line.from(memberCount, connectionStrategy));

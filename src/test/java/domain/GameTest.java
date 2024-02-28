@@ -14,7 +14,7 @@ public class GameTest {
     void test_ok_createObject() {
         Members members = Members.from(List.of("a", "b", "c", "d"));
 
-        Ladder ladder = Ladder.of(4, 5, new RandomConnectionStrategy());
+        Ladder ladder = Ladder.of(5, 4, new RandomConnectionStrategy());
 
         Results results = Results.of(List.of("a!", "b!", "c!", "d!"), 4);
 
@@ -38,7 +38,7 @@ public class GameTest {
 
         Members members = Members.from(List.of("a", "b", "c", "d"));
 
-        Ladder ladder = Ladder.of(4, 5, new RandomConnectionStrategy() {
+        Ladder ladder = Ladder.of(5, 4, new RandomConnectionStrategy() {
             @Override
             public Connection generateConnection() {
                 return Connection.DISCONNECTED;
@@ -71,7 +71,7 @@ public class GameTest {
 
         Members members = Members.from(List.of("a", "b", "c", "d"));
 
-        Ladder ladder = Ladder.of(4, 3, new RandomConnectionStrategy() {
+        Ladder ladder = Ladder.of(3, 4, new RandomConnectionStrategy() {
             @Override
             public Connection generateConnection() {
                 return Connection.CONNECTED;
