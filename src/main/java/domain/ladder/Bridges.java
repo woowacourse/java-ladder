@@ -28,18 +28,18 @@ public class Bridges {
         }
     }
 
+    public void moveAllMovableIndex(List<Integer> indexes) {
+        IntStream.range(0, bridges.size())
+                .filter(index -> bridges.get(index) == Bridge.BUILT)
+                .forEach((bridgeIndex) -> Collections.swap(indexes, bridgeIndex, bridgeIndex + 1));
+
+    }
+
     public int size() {
         return bridges.size();
     }
 
     public List<Bridge> getBridges() {
         return Collections.unmodifiableList(bridges);
-    }
-
-    public void moveAllMovableIndex(List<Integer> indexes) {
-        IntStream.range(0, bridges.size())
-                .filter(index -> bridges.get(index) == Bridge.BUILT)
-                .forEach((bridgeIndex) -> Collections.swap(indexes, bridgeIndex, bridgeIndex + 1));
-
     }
 }

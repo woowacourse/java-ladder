@@ -40,24 +40,20 @@ public class Names {
                 .anyMatch(name -> name.equalsIgnoreCase("all"));
     }
 
-    public int size() {
-        return names.size();
-    }
-
-    public Name get(int index) {
-        return names.get(index);
-    }
-
-    public List<Name> getNames() {
-        return names.stream()
-                .toList();
-    }
-
     public int getIndexOf(Name name) {
         int findIndex = names.indexOf(name);
         if (findIndex < 0) {
             throw new IllegalArgumentException("존재하지 않는 이름입니다.");
         }
         return findIndex;
+    }
+
+    public int size() {
+        return names.size();
+    }
+
+    public List<Name> getNames() {
+        return names.stream()
+                .toList();
     }
 }

@@ -13,14 +13,6 @@ public class MatchingResult {
         this.prize = prize;
     }
 
-    public String getName() {
-        return name.getName();
-    }
-
-    public String getPrize() {
-        return prize.getPrizeName();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -36,5 +28,13 @@ public class MatchingResult {
     @Override
     public int hashCode() {
         return Objects.hash(name, prize);
+    }
+
+    public String getName() {
+        return name.getName();
+    }
+
+    public String getPrize() {
+        return prize.getPrizeName();
     }
 }

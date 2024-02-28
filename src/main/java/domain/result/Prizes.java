@@ -21,12 +21,12 @@ public class Prizes {
         }
     }
 
-    public int size() {
-        return prizes.size();
-    }
-
     public Prize get(int index) {
         return prizes.get(index);
+    }
+
+    public int size() {
+        return prizes.size();
     }
 
     public List<String> getResults() {

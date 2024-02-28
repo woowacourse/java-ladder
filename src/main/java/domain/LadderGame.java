@@ -3,11 +3,8 @@ package domain;
 import domain.ladder.Ladder;
 import domain.player.Name;
 import domain.player.Names;
-import domain.result.Prize;
 import domain.result.Prizes;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class LadderGame {
     private final Names names;
@@ -35,16 +32,16 @@ public class LadderGame {
         }
     }
 
-    public MatchingResult findEachPrize(Name name) {
-        int nameIndex = names.getIndexOf(name);
-        int prizeIndex = ladder.matchedIndex(nameIndex);
-        return new MatchingResult(name, prizes.get(prizeIndex));
-    }
-
     public List<MatchingResult> findAllResult() {
         return names.getNames().stream()
                 .map(this::findEachPrize)
                 .toList();
+    }
+
+    public MatchingResult findEachPrize(Name name) {
+        int nameIndex = names.getIndexOf(name);
+        int prizeIndex = ladder.getMatchedIndex(nameIndex);
+        return new MatchingResult(name, prizes.get(prizeIndex));
     }
 
     public Names getNames() {
