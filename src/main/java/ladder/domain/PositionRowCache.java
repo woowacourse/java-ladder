@@ -25,11 +25,12 @@ public class PositionRowCache {
     }
 
     public PositionRow get(int position, int maxPosition) {
-        Key key = new Key(position, maxPosition);
-        if (!cache.containsKey(key)) {
-            throw new IllegalArgumentException("캐싱되어 있지 않습니다");
+        for (Key key : cache.keySet()) {
+            if (key.position == position && key.maxPosition == maxPosition) {
+                return cache.get(key);
+            }
         }
-        return cache.get(key);
+        throw new IllegalArgumentException("캐싱되어 있지 않습니다");
     }
 
     private record Key(int position, int maxPosition) {
