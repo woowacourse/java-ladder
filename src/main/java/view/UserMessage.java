@@ -7,5 +7,6 @@ public class UserMessage {
     public static final String LADDER_GENERATE_RESULT_HEADER = "사다리 결과";
     public static final String SEARCH_PLAYER_PROMPT = "결과를 보고 싶은 사람은?";
     public static final String GAME_RESULT_HEADER = "실행 결과";
-    public static final String SHOW_ALL_RESULT_FORMAT = "%s : %s";
+    private UserMessage() {
+    }
 }
