@@ -14,7 +14,14 @@ public class Line {
     }
 
     public int climb(int startPosition) {
-        return startPosition + 1;
+        if (this.getRightStick(startPosition) == Stick.FILLED) {
+            return startPosition + 1;
+        }
+        return startPosition;
+    }
+
+    public List<Stick> getSticks() {
+        return this.sticks;
     }
 
     private Stick getEmptyStickOrNotRepeatedFilledStick(StickGenerator stickGenerator) {
@@ -37,7 +44,10 @@ public class Line {
         return lastStick == stick;
     }
 
-    public List<Stick> getSticks() {
-        return this.sticks;
+    private Stick getRightStick(int position) {
+        if (position == this.sticks.size()) {
+            return Stick.NOT_FILLED;
+        }
+        return sticks.get(position);
     }
 }
