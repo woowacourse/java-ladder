@@ -61,6 +61,6 @@ class GameTest {
                 Stick.FILLED
         );
 
-        return Ladder.createConfigurableLadder(2, 4, new SimpleStickGenerator(sticks));
+        return Ladder.createConfigurableLadder(new Height(2), 4, new SimpleStickGenerator(sticks));
     }
 }

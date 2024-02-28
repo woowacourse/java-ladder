@@ -12,7 +12,7 @@ class LadderTest {
     @DisplayName("생성 테스트")
     @Test
     void create() {
-        assertThatCode(() -> Ladder.createRandomLadder(3, 2))
+        assertThatCode(() -> Ladder.createRandomLadder(new Height(3), 2))
                 .doesNotThrowAnyException();
     }
 
@@ -20,7 +20,7 @@ class LadderTest {
     @Test
     void ladderHasLines() {
         int height = 3;
-        Ladder ladder = Ladder.createRandomLadder(height, 9);
+        Ladder ladder = Ladder.createRandomLadder(new Height(height), 9);
         List<Line> lines = ladder.getLines();
 
         assertThat(lines).hasSize(height);
@@ -51,6 +51,6 @@ class LadderTest {
                 Stick.FILLED
         );
 
-        return Ladder.createConfigurableLadder(2, 4, new SimpleStickGenerator(sticks));
+        return Ladder.createConfigurableLadder(new Height(2), 4, new SimpleStickGenerator(sticks));
     }
 }

@@ -13,12 +13,12 @@ public class Ladder {
         }
     }
 
-    public static Ladder createRandomLadder(int height, int playerSize) {
-        return new Ladder(new Height(height), playerSize, new RandomStickGenerator());
+    public static Ladder createRandomLadder(Height height, int playerSize) {
+        return new Ladder(height, playerSize, new RandomStickGenerator());
     }
 
-    public static Ladder createConfigurableLadder(int height, int playerSize, StickGenerator stickGenerator) {
-        return new Ladder(new Height(height), playerSize, stickGenerator);
+    public static Ladder createConfigurableLadder(Height height, int playerSize, StickGenerator stickGenerator) {
+        return new Ladder(height, playerSize, stickGenerator);
     }
 
     public int climb(int playerColumn) {

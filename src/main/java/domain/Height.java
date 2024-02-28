@@ -1,6 +1,6 @@
 package domain;
 
-class Height {
+public class Height {
 
     private static final int MIN_LADDER_HEIGHT = 1;
 
