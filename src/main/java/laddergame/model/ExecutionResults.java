@@ -18,6 +18,13 @@ public class ExecutionResults {
         }
     }
 
+    public ExecutionResult findByIndex(int index) {
+        if (index < 0 || index >= executionResults.size()) {
+            throw new IllegalStateException("비정상적인 인덱싱 조회입니다.");
+        }
+        return executionResults.get(index);
+    }
+
     public List<ExecutionResult> getExecutionResults() {
         return executionResults;
     }

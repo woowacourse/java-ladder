@@ -49,6 +49,13 @@ public class Participants {
         return participants.indexOf(participant);
     }
 
+    public Participant findByIndex(int index) {
+        if (index < 0 || index >= participants.size()) {
+            throw new IllegalStateException("비정상적인 인덱싱 조회입니다.");
+        }
+        return participants.get(index);
+    }
+
     public List<Participant> getParticipants() {
         return participants;
     }
