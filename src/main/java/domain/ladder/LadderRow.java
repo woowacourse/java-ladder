@@ -1,6 +1,7 @@
 package domain.ladder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 
@@ -23,7 +24,7 @@ public class LadderRow {
     }
 
     List<Boolean> getRowPattern() {
-        return rowPattern;
+        return Collections.unmodifiableList(rowPattern);
     }
 
     private boolean isPlaceableWhenTryingToPlace(int index, boolean isPlacing) {
