@@ -18,6 +18,21 @@ class LadderGameTest {
     @DisplayName("사다리 게임 수행 결과 테스트")
     @Test
     void ladderGameResultTest() {
+
+        /*
+        *    [test case1]                      [test case2]                 [test case 3]
+        *     a    b    c    d    e            a    b    c    d    e        a    b    c    d    e
+        *     |----|    |----|    |            |----|    |----|    |        |    |    |    |    |
+        *     |----|    |----|    |            |----|    |----|    |        |    |    |    |    |
+        *     |----|    |----|    |            |----|    |----|    |        |    |    |    |    |
+        *     1    2    3    4    5            |----|    |----|    |        |    |    |    |    |
+        *                                      1    2    3    4    5        |    |    |    |    |
+        *                                                                   1    2    3    4    5
+        * 예상 결과        a    b    c    d    e
+        * test case 1    2    1    4    3    5
+        * test case 2    1    2    3    4    5
+        * test case 3    1    2    3    4    5
+        * */
         Elements people = new Elements(List.of("a", "b", "c", "d", "e"));
         int peopleNumber = people.getElements().size();
 
