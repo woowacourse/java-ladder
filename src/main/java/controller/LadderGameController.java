@@ -24,14 +24,21 @@ public class LadderGameController {
 
         end(players, ladder, prizes);
 
-        Prize searchedPrize = searchPrize(gameResult);
-        OutputView.printGameResult(searchedPrize);
+        boolean isContinue = true;
+        while(isContinue) {
+            isContinue = searchPrize(gameResult);
+        }
     }
 
-    private Prize searchPrize(GameResult gameResult) {
+    private boolean searchPrize(GameResult gameResult) {
         return retryOnException(() -> {
             String playerName = InputView.askPlayerNameForPrizeSearch();
-            return gameResult.findPrizeByPlayerName(playerName);
+            if (playerName.equals("all")) {
+                return false;
+            }
+            Prize prize = gameResult.findPrizeByPlayerName(playerName);
+            OutputView.printGameResult(prize);
+            return true;
         });
     }
 
