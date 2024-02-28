@@ -1,5 +1,3 @@
-package controller;
-
 import domain.Height;
 import domain.Ladder;
 import domain.Players;
@@ -9,13 +7,13 @@ import java.util.List;
 import view.InputView;
 import view.OutputView;
 
-public class LadderGameController {
+public class LadderGame {
 
     private final InputView inputView;
     private final OutputView outputView;
     private final BooleanGenerator booleanGenerator;
 
-    public LadderGameController(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
+    public LadderGame(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.booleanGenerator = booleanGenerator;
