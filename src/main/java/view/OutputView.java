@@ -9,10 +9,11 @@ public class OutputView {
     private static final String RIGHT_DIRECTION_SYMBOL = "|---";
     private static final String LEFT_DIRECTION_SYMBOL = "---|      ";
     private static final String DOWN_DIRECTION_SYMBOL = "|      ";
-    private static final EnumMap<Direction, String> directionSymbols = initializedDirectionSymbol();
     private static final String BLANK_SPACE = "      ";
     private static final int NAME_SPACE_SIZE = 7;
     private static final String NAME_SPACE_UNIT = " ";
+    private static final String ALL_RESULT_PRINT_FORMAT = "%s : %s";
+    private static final EnumMap<Direction, String> directionSymbols = initializedDirectionSymbol();
 
     private OutputView() {
     }
@@ -43,6 +44,11 @@ public class OutputView {
             resultStringBuilder.append(symbol);
         });
         System.out.println(resultStringBuilder);
+    }
+
+    public static void printAllResults(String name, String prize) {
+        String resultAndPrize = String.format(ALL_RESULT_PRINT_FORMAT, name, prize);
+        print(resultAndPrize);
     }
 
     public static void print(String toBePrint) {
