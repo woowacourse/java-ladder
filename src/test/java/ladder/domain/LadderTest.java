@@ -24,7 +24,7 @@ class LadderTest {
     @DisplayName("특정 참여자의 사다리를 실행한다.")
     @ParameterizedTest
     @CsvSource(value = {"0, 0", "1, 3", "2, 2", "3, 1"})
-    void climb(int index, int actual) {
+    void execute(int index, int actual) {
         // given
         /*
         |-----|     |-----|

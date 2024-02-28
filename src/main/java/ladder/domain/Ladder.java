@@ -1,22 +1,38 @@
 package ladder.domain;
 
-import ladder.util.RandomPointsGenerator;
+import java.util.Arrays;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
 
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
 
-    public Ladder(People people, Height height) {
-        RandomPointsGenerator randomPointsGenerator = new RandomPointsGenerator();
+    public Ladder(Line... lines) {
+        this(Arrays.asList(lines));
+    }
 
-        while (!height.isSame(lines.size())) {
-            Line line = new Line(people.count(), randomPointsGenerator);
-            lines.add(line);
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
+    public int execute(int index) {
+        for (Line line : lines) {
+            index = determineNextIndex(index, line);
         }
+        return index;
+    }
+
+    private int determineNextIndex(int currentIndex, Line line) {
+        int previousIndex = currentIndex - 1;
+        if (line.isPointUsed(currentIndex)) {
+            return currentIndex + 1;
+        }
+        if (previousIndex >= 0 && line.isPointUsed(previousIndex)) {
+            return currentIndex - 1;
+        }
+        return currentIndex;
     }
 
     public List<Line> getLadder() {
