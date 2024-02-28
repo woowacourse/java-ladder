@@ -23,6 +23,10 @@ public class LadderRow {
         }
     }
 
+    public int move(int i) {
+        return 0;
+    }
+
     public List<Boolean> getIsLines() {
         return isLines;
     }
