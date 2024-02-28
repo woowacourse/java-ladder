@@ -1,10 +1,10 @@
-package model.strategy;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.LadderStatus;
+import model.strategy.BuildStrategy;
 
-public class ZigZagStartTrueBuildStrategy implements BuildStrategy<LadderStatus> {
+class ZigZagStartTrueBuildStrategy implements BuildStrategy<LadderStatus> {
 
     @Override
     public List<LadderStatus> generate(final int size) {

@@ -2,9 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.strategy.NothingBuildStrategy;
-import model.strategy.ZigZagStartFalseBuildStrategy;
-import model.strategy.ZigZagStartTrueBuildStrategy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
