@@ -28,12 +28,14 @@ class PlayersTest {
     @DisplayName("결과를 조회할 참여자의 인덱스를 반환한다.")
     @Test
     void returnIndexOfResultName() {
-        Players players = new Players(List.of(
-                "pobi", "honux", "crong", "jk"
-        ));
+        // given
+        Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
         String resultName = "crong";
 
+        // when
         int index = players.findPositionOfPlayer(resultName);
+
+        // then
         assertThat(index).isEqualTo(2);
     }
 }

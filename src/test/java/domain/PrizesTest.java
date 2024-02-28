@@ -26,7 +26,10 @@ class PrizesTest {
     @ParameterizedTest
     @MethodSource("Prizes")
     void occurExceptionIfLadderResultsIsNotLoseOrNaturalNumber(List<String> prizes) {
+        // given
         int columnLength = 3;
+
+        // when & then
         assertThatThrownBy(() -> new Prizes(prizes, columnLength))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Prizes.ERROR_IS_NOT_LOSE_OR_NATURAL_NUMBER);
@@ -35,7 +38,10 @@ class PrizesTest {
     @DisplayName("실행 결과 개수가 참여자 수와 다른 경우 예외가 발생한다.")
     @Test
     void occurExceptionIfPrizesIsInvalidLength() {
+        // given
         int columnLength = 3;
+
+        // when & then
         assertThatThrownBy(() -> new Prizes(List.of("꽝", "2000", "3000", "꽝"), columnLength))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Prizes.ERROR_IS_INVALID_LENGTH);
