@@ -56,7 +56,7 @@ public class LadderTest {
         Participants participants = new Participants(new ArrayList<>(List.of("aru", "pola", "sang", "horgi", "jazz")));
         Prizes prizes = new Prizes(new ArrayList<>(List.of("3000", "꽝", "5000", "꽝", "꽝꽝")), 5);
 
-        Prizes sortedPrizes = ladder.getSortedPrizes(participants, prizes);
+        Prizes sortedPrizes = ladder.getSortedPrizesResult(participants, prizes);
 
         assertThat(sortedPrizes.getNames()).containsExactly("꽝", "3000", "꽝", "5000", "꽝꽝");
     }

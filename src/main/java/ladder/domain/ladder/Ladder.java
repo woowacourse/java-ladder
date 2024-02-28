@@ -44,29 +44,31 @@ public class Ladder {
         return new LadderResponseDto(floorResponseDtos);
     }
 
-    public Prizes getSortedPrizes(Participants participants, Prizes prizes) {
-        List<Name> copiedParticipants = participants.getNames();
-        List<Name> participantsResult = climbDown(copiedParticipants);
+    public Prizes getSortedPrizesResult(Participants participants, Prizes prizes) {
+        List<Name> copiedNames = participants.getNames();
 
-        List<String> sortedPrizeNames = getSortedPrizeNames(participants, participantsResult, prizes);
+        List<Name> ladderResultNames = climbDown(copiedNames);
 
-        return new Prizes(sortedPrizeNames, participants.getCount());
+        List<String> sortedPrizeResult = getSortedPrizeResult(participants, ladderResultNames, prizes);
+
+        return new Prizes(sortedPrizeResult, participants.getCount());
     }
 
-    private List<Name> climbDown(List<Name> names) {
+    private List<Name> climbDown(List<Name> copiedNames) {
         for (Floor floor : floors) {
             List<Integer> existRungPositions = floor.getExistRungPositions();
             existRungPositions.forEach(
-                    existRungPosition -> Collections.swap(names, existRungPosition, existRungPosition + 1));
+                    existRungPosition -> Collections.swap(copiedNames, existRungPosition,
+                            existRungPosition + 1));
         }
-        return names;
+        return copiedNames;
     }
 
-    private List<String> getSortedPrizeNames(Participants participants, List<Name> participantsResult,
-                                             Prizes prizes) {
+    private List<String> getSortedPrizeResult(Participants participants, List<Name> ladderResultNames,
+                                              Prizes prizes) {
         List<String> sortedPrizeNames = new ArrayList<>();
         for (Name participantName : participants.getNames()) {
-            int resultPosition = participantsResult.indexOf(participantName);
+            int resultPosition = ladderResultNames.indexOf(participantName);
             sortedPrizeNames.add(prizes.getNameByIndex(resultPosition));
         }
         return sortedPrizeNames;
