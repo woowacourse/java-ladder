@@ -14,8 +14,24 @@ public class Layer {
             boolean doesExist = StepExistenceGenerator.generate(priorExistence);
             priorExistence = doesExist;
             steps.add(Step.findByExistence(doesExist));
+    public int move(int position) {
+        if (moveRight(position)) {
+            position += 1;
+            return position;
         }
         this.steps = steps;
+        if (moveLeft(position)) {
+            position -= 1;
+        }
+        return position;
+    }
+
+    private boolean moveRight(int position) {
+        return position != steps.size() && steps.get(position) == Step.EXIST;
+    }
+
+    private boolean moveLeft(int position) {
+        return position != 0 && steps.get(position - 1) == Step.EXIST;
     }
 
     public List<Step> getSteps() {
