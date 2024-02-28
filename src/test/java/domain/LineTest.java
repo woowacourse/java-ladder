@@ -15,7 +15,7 @@ public class LineTest {
     @DisplayName("라인 객체를 정상적으로 생성한다.")
     @Test
     void createLine() {
-        assertThatCode(() -> Line.createLineWithLegs(new RandomLegGenerateStrategy(), 1))
+        assertThatCode(() -> new Line(new RandomLegGenerateStrategy(), 1))
                 .doesNotThrowAnyException();
     }
 
@@ -23,7 +23,7 @@ public class LineTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 3})
     void makeLeg(int validLegCount) {
-        Line line = Line.createLineWithLegs(new RandomLegGenerateStrategy(), validLegCount);
+        Line line = new Line(new RandomLegGenerateStrategy(), validLegCount);
 
         int expectedLegCount = line.getLegs().size();
 
@@ -33,7 +33,7 @@ public class LineTest {
     @DisplayName("라인을 이루는 다리는 겹치지 않는다")
     @Test
     void makeLegWithUnOverlap() {
-        Line line = Line.createLineWithLegs(new RandomLegGenerateStrategy() {
+        Line line = new Line(new RandomLegGenerateStrategy() {
             @Override
             public boolean generateLeg() {
                 return true;
@@ -50,7 +50,7 @@ public class LineTest {
     @DisplayName("현재위치(Index)를 받으면 다음 라인의 위치를 반환한다.")
     @Test
     void findNextIndex() {
-        Line line = Line.createLineWithLegs(new RandomLegGenerateStrategy() {
+        Line line = new Line(new RandomLegGenerateStrategy() {
             @Override
             public boolean generateLeg() {
                 return true;

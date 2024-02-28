@@ -10,13 +10,13 @@ public class Ladder {
 
     public Ladder(LegGenerateStrategy legGenerateStrategy, Height height, int width) {
         this.height = height;
-        this.lines = makeLines(legGenerateStrategy,height.getHeight(),width);
+        this.lines = makeLines(legGenerateStrategy, height.getHeight(), width);
     }
 
     private static List<Line> makeLines(LegGenerateStrategy legGenerateStrategy, int height, int width) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            Line line = Line.createLineWithLegs(legGenerateStrategy, width);
+            Line line = new Line(legGenerateStrategy, width);
             lines.add(line);
         }
         return lines;

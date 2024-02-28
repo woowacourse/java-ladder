@@ -7,17 +7,17 @@ public class Line {
 
     private final List<Leg> legs;
 
-    private Line(List<Leg> legs) {
-        this.legs = legs;
+    public Line(LegGenerateStrategy legGenerateStrategy, int legCount) {
+        this.legs = makeLegs(legGenerateStrategy, legCount);
     }
 
-    public static Line createLineWithLegs(LegGenerateStrategy legGenerateStrategy, int legCount) {
+    private List<Leg> makeLegs(LegGenerateStrategy legGenerateStrategy, int legCount) {
         List<Leg> legs = new ArrayList<>();
         legs.add(new Leg(legGenerateStrategy.generateLeg()));
         for (int i = 1; i < legCount; i++) {
             decideLegExist(legGenerateStrategy, legs, i);
         }
-        return new Line(legs);
+        return legs;
     }
 
 
