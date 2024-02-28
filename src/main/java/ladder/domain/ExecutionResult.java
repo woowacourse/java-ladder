@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 
 public class ExecutionResult {
 
@@ -17,5 +18,9 @@ public class ExecutionResult {
 
     public ResultItem get(Name name) {
         return matches.get(name);
+    }
+
+    public List<ResultItem> getAll() {
+        return matches.values().stream().toList();
     }
 }
