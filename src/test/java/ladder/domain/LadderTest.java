@@ -3,6 +3,7 @@ package ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.function.BooleanSupplier;
 import ladder.domain.linegenerator.LinePatternGenerator;
 import ladder.domain.linegenerator.RandomBooleanSupplier;
 import org.junit.jupiter.api.DisplayName;
@@ -37,11 +38,18 @@ class LadderTest {
     @Test
     @DisplayName("특정 좌표에 스틱이 존재하는지 알 수 있다")
     void isExistTest() {
-        LinePatternGenerator lineGenerator = new LinePatternGenerator(new RandomBooleanSupplier());
+        LinePatternGenerator lineGenerator = new LinePatternGenerator(new AlwaysTrueSupplier());
         Ladder ladder = Ladder.makeLadder(new Height(3), 3, lineGenerator);
 
-        boolean actual = ladder.isExist(2, 1);
+        boolean actual = ladder.isExist(1, 0);
 
-        assertThat(actual).isFalse();
+        assertThat(actual).isTrue();
+    }
+
+    class AlwaysTrueSupplier implements BooleanSupplier {
+        @Override
+        public boolean getAsBoolean() {
+            return true;
+        }
     }
 }
