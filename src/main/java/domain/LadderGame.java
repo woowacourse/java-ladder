@@ -22,13 +22,13 @@ public class LadderGame {
         this.ladder.init(players.getPersonCount(), this.generator);
     }
 
-    LadderGame(List<String> names, Winnings winnings, Height height, Generator generator) {
-        this.players = new Players(names);
+    LadderGame(Players players, Winnings winnings, Height height, Generator generator) {
+        this.players = players;
         this.winnings = winnings;
         this.ladder = new Ladder(height);
         this.generator = generator;
 
-        this.ladder.init(names.size(), this.generator);
+        this.ladder.init(players.getPersonCount(), this.generator);
     }
 
     public List<String> getResult() {

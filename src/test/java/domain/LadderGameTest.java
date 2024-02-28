@@ -14,10 +14,10 @@ public class LadderGameTest {
     @DisplayName("입력받은 이름과 사다리 높이에 따른 결과를 String으로 반환한다.")
     @Test
     void getResultTest() {
-        List<String> names = List.of("1", "2");
+        Players players = new Players(List.of("1", "2"));
         Winnings winnings = new Winnings(List.of("1", "2"), 2);
         CustomGenerator customGenerator = new CustomGenerator(List.of(false, true));
-        LadderGame ladderGame = new LadderGame(names, winnings, new Height(1), customGenerator);
+        LadderGame ladderGame = new LadderGame(players, winnings, new Height(1), customGenerator);
         Assertions.assertThat(ladderGame.getResult())
                 .isEqualTo(List.of(
                         "     1     2",
