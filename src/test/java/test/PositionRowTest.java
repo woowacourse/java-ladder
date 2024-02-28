@@ -43,7 +43,7 @@ public class PositionRowTest {
     void PositionRow() {
         PositionRow positionRow = new PositionRow(0, 0);
         assertThatThrownBy(positionRow::left)
-                .isInstanceOf(IllegalStateException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -51,6 +51,6 @@ public class PositionRowTest {
     void cantMovePositionRow() {
         PositionRow positionRow = new PositionRow(0, 0);
         assertThatThrownBy(positionRow::right)
-                .isInstanceOf(IllegalStateException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
