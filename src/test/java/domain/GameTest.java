@@ -23,8 +23,18 @@ public class GameTest {
     }
 
     @Test
-    @DisplayName("이동 성공: 사다리를 타고 참여자와 결과를 매칭한다.")
-    void test_ok_matchResult() {
+    @DisplayName("이동 성공: 사다리를 타고 참여자와 결과를 매칭한다. - 모두 연결되지 않은 경우")
+    void test_ok_matchResult_allDisconnected() {
+
+        /*
+        a     b     c     d
+        |     |     |     |
+        |     |     |     |
+        |     |     |     |
+        |     |     |     |
+        |     |     |     |
+       a!    b!    c!    d!
+         */
 
         Members members = Members.from("a,b,c,d");
 
@@ -45,5 +55,38 @@ public class GameTest {
         assertThat(actual.getResultByMemberName("b").getValue()).isEqualTo("b!");
         assertThat(actual.getResultByMemberName("c").getValue()).isEqualTo("c!");
         assertThat(actual.getResultByMemberName("d").getValue()).isEqualTo("d!");
+    }
+
+    @Test
+    @DisplayName("이동 성공: 사다리를 타고 참여자와 결과를 매칭한다.")
+    void test_ok_matchResult() {
+
+        /*
+        a     b     c     d
+        |-----|     |-----|
+        |-----|     |-----|
+        |-----|     |-----|
+       a!    b!    c!    d!
+         */
+
+        Members members = Members.from("a,b,c,d");
+
+        Lines lines = Lines.of(4, 3, new RandomConnectionStrategy() {
+            @Override
+            public Connection generateConnection() {
+                return Connection.CONNECTED;
+            }
+        });
+
+        Results results = Results.of(List.of("a!", "b!", "c!", "d!"), 4);
+
+        Game game = new Game(members, lines, results);
+
+        GameResult actual = game.matchResult();
+
+        assertThat(actual.getResultByMemberName("a").getValue()).isEqualTo("b!");
+        assertThat(actual.getResultByMemberName("b").getValue()).isEqualTo("a!");
+        assertThat(actual.getResultByMemberName("c").getValue()).isEqualTo("d!");
+        assertThat(actual.getResultByMemberName("d").getValue()).isEqualTo("c!");
     }
 }
