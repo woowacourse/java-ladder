@@ -5,7 +5,9 @@ import domain.TargetPlayer;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.stick.RandomStickGenerator;
+import domain.ladder.stick.StickGenerator;
 import domain.ladder.sticks.NotRepeatedSticksGenerator;
+import domain.ladder.sticks.SticksGenerator;
 import domain.player.Player;
 import domain.player.Players;
 import domain.result.Result;
@@ -26,26 +28,20 @@ public class LadderGameController {
         this.outputView = outputView;
     }
 
-    public void play() {
+    public void run() {
         Players players = readPlayers();
+        LadderGame ladderGame = play(players);
+        printResult(players, ladderGame);
+    }
+
+    private LadderGame play(Players players) {
         Results results = readResultsOfSize(players.getPlayerSize());
         Height height = readHeight();
 
-        NotRepeatedSticksGenerator sticksGenerator = new NotRepeatedSticksGenerator(new RandomStickGenerator());
+        SticksGenerator sticksGenerator = getSticksGenerator();
         Ladder ladder = new Ladder(height, players.getPlayerSize(), sticksGenerator);
         outputView.printLadder(players, ladder, results);
-
-        TargetPlayer targetPlayer = readTargetPlayerIn(players.getPlayerNames());
-        LadderGame ladderGame = new LadderGame(players, ladder, results);
-
-        Map<Player, Result> allPlayerResults = ladderGame.getAllPlayerResults();
-        Result onePlayerResult = ladderGame.getOnePlayerResult(targetPlayer.getName());
-
-        if (targetPlayer.isAll()) {
-            outputView.printAllPlayerResults(allPlayerResults);
-        } else {
-            outputView.printOnePlayerResult(onePlayerResult);
-        }
+        return new LadderGame(players, ladder, results);
     }
 
     private Players readPlayers() {
@@ -78,6 +74,11 @@ public class LadderGameController {
         }
     }
 
+    private void printResult(Players players, LadderGame ladderGame) {
+        TargetPlayer targetPlayer = readTargetPlayerIn(players.getPlayerNames());
+        printPlayerResult(targetPlayer, ladderGame);
+    }
+
     private TargetPlayer readTargetPlayerIn(List<String> players) {
         try {
             String inputTargetPlayer = inputView.readTargetPlayer();
@@ -85,6 +86,21 @@ public class LadderGameController {
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return readTargetPlayerIn(players);
+        }
+    }
+
+    private NotRepeatedSticksGenerator getSticksGenerator() {
+        StickGenerator stickGenerator = new RandomStickGenerator();
+        return new NotRepeatedSticksGenerator(stickGenerator);
+    }
+
+    private void printPlayerResult(TargetPlayer targetPlayer, LadderGame ladderGame) {
+        if (targetPlayer.isAll()) {
+            Map<Player, Result> allPlayerResults = ladderGame.getAllPlayerResults();
+            outputView.printAllPlayerResults(allPlayerResults);
+        } else {
+            Result onePlayerResult = ladderGame.getOnePlayerResult(targetPlayer.getName());
+            outputView.printOnePlayerResult(onePlayerResult);
         }
     }
 }
