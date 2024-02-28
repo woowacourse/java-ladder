@@ -1,8 +1,5 @@
 package domain;
 
-import java.util.List;
-import java.util.stream.IntStream;
-
 public class LadderGame {
     private final Ladder ladder;
     private final Names names;
@@ -32,20 +29,6 @@ public class LadderGame {
     }
 
     public LadderGameResult calculateLadderGameResult() {
-        ladder.getLadder().stream()
-                .map(Bridges::getBridges)
-                .forEach(this::swapNames);
-        return new LadderGameResult(names, ladderResults);
-    }
-
-    private void swapNames(List<Boolean> bridges) {
-        IntStream.range(0, bridges.size())
-                .forEach(index -> swapIfBridgeExist(bridges.get(index), index));
-    }
-
-    private void swapIfBridgeExist(Boolean bridge, int index) {
-        if (bridge) {
-            names.swapNamePosition(index + 1);
-        }
+        return new LadderGameResult(names, ladderResults, ladder);
     }
 }

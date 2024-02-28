@@ -52,17 +52,4 @@ class NamesTest {
 
         Assertions.assertThat(actual).isEqualTo(expected);
     }
-
-    @Test
-    @DisplayName("위치 값이 주어지면 [위치 - 1] 참여자와 [위치] 참여자의 위치를 변경")
-    void testSwapName() {
-        List<Name> givenNames = List.of(new Name("a"), new Name("b"));
-        Names names = new Names(givenNames);
-
-        names.swapNamePosition(1);
-        Name actual = names.getSwappedNames().get(1);
-        Name expected = givenNames.get(0);
-
-        Assertions.assertThat(actual).isEqualTo(expected);
-    }
 }
