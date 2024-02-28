@@ -38,11 +38,7 @@ public class LadderGameController {
         LadderGame ladderGame = createLadderGame();
         printLadderGame(ladderGame);
         GameResult gameResult = new GameResult(ladderGame);
-        while (true) {
-            Menu menu = readMenu();
-            if (menu == Menu.QUIT) {
-                break;
-            }
+        while (readMenu() != Menu.QUIT) {
             showResult(gameResult);
         }
     }
