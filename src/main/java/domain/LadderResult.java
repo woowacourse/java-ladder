@@ -15,13 +15,10 @@ public class LadderResult {
         return ladderResult;
     }
 
-    private void validateLadderResultCharacter(String value) {
-        value.chars()
-                .filter(ch -> ch == ' ')
-                .findAny()
-                .ifPresent(ch -> {
-                    throw new LadderGameException(ExceptionType.INVALID_LADDER_RESULT_CHARACTER);
-                });
+    private void validateLadderResultCharacter(String ladderResult) {
+        if (ladderResult.contains(" ")) {
+            throw new LadderGameException(ExceptionType.INVALID_LADDER_RESULT_CHARACTER);
+        }
     }
 
     private void validateLadderResultLength(String ladderResult) {
