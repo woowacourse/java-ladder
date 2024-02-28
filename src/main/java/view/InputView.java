@@ -34,9 +34,19 @@ public class InputView {
     }
 
     private void validateSeparators(final String rawNames) {
-        if (rawNames.startsWith(SEPARATOR) || rawNames.endsWith(SEPARATOR) || rawNames.contains(SEPARATOR.repeat(2))) {
+        if (isInvalidSeparator(rawNames)) {
             throw new IllegalArgumentException(Message.INVALID_SEPARATOR_ERROR.getValue());
         }
+    }
+
+    private boolean isInvalidSeparator(final String rawNames) {
+        if (rawNames.startsWith(SEPARATOR)) {
+            return true;
+        }
+        if (rawNames.endsWith(SEPARATOR)) {
+            return true;
+        }
+        return rawNames.contains(SEPARATOR.repeat(2));
     }
 
     public int readHeight() {
