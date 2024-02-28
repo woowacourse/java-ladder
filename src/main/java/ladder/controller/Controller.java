@@ -12,9 +12,9 @@ public class Controller {
 
     public void run() {
         Players players = InputView.inputNames();
-        LadderResults results = InputView.inputLadderResults();
+        LadderResults results = InputView.inputLadderResults(players);
         Height height = InputView.inputHeight();
         Ladder ladder = Ladder.of(players, height, new DefaultLadderDirectionSelector());
-        ResultView.printResult(players, ladder);
+        ResultView.printLadder(players, ladder, results);
     }
 }
