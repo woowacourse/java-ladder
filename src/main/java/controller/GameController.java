@@ -14,7 +14,7 @@ import view.OutputView;
 import java.util.Map;
 import java.util.stream.IntStream;
 
-import static util.RetryHelper.retryHelper;
+import static util.InputRetryHelper.inputRetryHelper;
 import static util.UserMessage.*;
 import static view.InputView.input;
 import static view.InputView.inputNames;
@@ -22,10 +22,10 @@ import static view.InputView.inputNames;
 
 public class GameController {
     public void execute() {
-        Players players = retryHelper(() -> new Players(new Names(inputNames(PLAYER_INPUT_PROMPT))));
+        Players players = inputRetryHelper(() -> new Players(new Names(inputNames(PLAYER_INPUT_PROMPT))));
         int numberOfPlayers = players.getPlayerCount();
-        Prizes prizes = retryHelper(() -> new Prizes(inputNames(PRIZE_INPUT_PROMPT), numberOfPlayers));
-        Height height = retryHelper(() -> new Height(input(HEIGHT_INPUT_PROMPT)));
+        Prizes prizes = inputRetryHelper(() -> new Prizes(inputNames(PRIZE_INPUT_PROMPT), numberOfPlayers));
+        Height height = inputRetryHelper(() -> new Height(input(HEIGHT_INPUT_PROMPT)));
         Ladder ladder = new Ladder(height, numberOfPlayers, new RandomDirectionGenerator());
         GameBoard gameBoard = new GameBoard(players, ladder, prizes);
 
@@ -49,7 +49,7 @@ public class GameController {
         boolean repeatFlag = true;
         while (repeatFlag) {
             OutputView.printNewLine();
-            Name targetName = retryHelper(() -> new Name(input(SEARCH_PLAYER_PROMPT)));
+            Name targetName = inputRetryHelper(() -> new Name(input(SEARCH_PLAYER_PROMPT)));
             repeatFlag = showResultAndDetermineRepeat(gameBoard, targetName);
         }
     }
