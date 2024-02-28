@@ -25,13 +25,6 @@ public class Rewards {
         return rewards.get(index).getName();
     }
 
-    public Reward findRewardById(int id) {
-        return rewards.stream()
-            .filter(reward -> reward.getId() == id)
-            .findFirst()
-            .orElseThrow(() -> new RuntimeException("findRewardById 예외 발생"));
-    }
-
     private void validate(int membersCount, List<Reward> rewards) {
         if (membersCount != rewards.size()) {
             throw new IllegalArgumentException("플레이어 수(" + membersCount + ")만큼 입력해주세요.");
@@ -46,8 +39,8 @@ public class Rewards {
 
     private static List<Reward> initialize(String rawNames) {
         List<String> parsedNames = parse(rawNames);
-        return IntStream.range(0, parsedNames.size())
-            .mapToObj(i -> Reward.from(i, parsedNames.get(i)))
+        return parsedNames.stream()
+            .map(Reward::from)
             .toList();
     }
 
