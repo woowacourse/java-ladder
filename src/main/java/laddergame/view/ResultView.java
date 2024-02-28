@@ -22,7 +22,7 @@ public class ResultView {
     }
 
     public static void printPlayerResult(String playerName, LadderGame ladderGame) {
-        System.out.println(LINE_SEPERATOR + "실행 결과" + LINE_SEPERATOR);
+        System.out.println(LINE_SEPERATOR + "실행 결과");
 
         if (playerName.equals(CALL_ALL_PLAYER_RESULTS_MESSAGE)) {
             System.out.println(resolveAllPlayerResultMessage(ladderGame.getPlayerGameResult()));
