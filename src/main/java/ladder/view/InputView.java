@@ -14,19 +14,22 @@ public class InputView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    private InputView() {
+    private final ExceptionHandler exceptionHandler;
+
+    public InputView(final ExceptionHandler exceptionHandler) {
+        this.exceptionHandler = exceptionHandler;
     }
 
-    public static Players inputNames() {
-        return ExceptionHandler.run(() -> {
+    public Players inputNames() {
+        return exceptionHandler.run(() -> {
             System.out.println("\n참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
             List<String> names = Arrays.asList(readLine().split(","));
             return new Players(names);
         });
     }
 
-    public static LadderResults inputLadderResults(Players players) {
-        return ExceptionHandler.run(() -> {
+    public LadderResults inputLadderResults(Players players) {
+        return exceptionHandler.run(() -> {
             System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
             List<LadderResult> results = Arrays.stream(readLine().split(","))
                     .map(LadderResult::new)
@@ -35,14 +38,14 @@ public class InputView {
         });
     }
 
-    public static Height inputHeight() {
-        return ExceptionHandler.run(() -> {
+    public Height inputHeight() {
+        return exceptionHandler.run(() -> {
             System.out.println("\n최대 사다리 높이는 몇 개인가요?");
             return new Height(Integer.parseInt(readLine()));
         });
     }
 
-    private static String readLine() {
+    private String readLine() {
         return SCANNER.nextLine().replace(" ", "");
     }
 }

@@ -10,11 +10,19 @@ import ladder.view.ResultView;
 
 public class Controller {
 
+    private final InputView inputView;
+    private final ResultView resultView;
+
+    public Controller(final InputView inputView, final ResultView resultView) {
+        this.inputView = inputView;
+        this.resultView = resultView;
+    }
+
     public void run() {
-        Players players = InputView.inputNames();
-        LadderResults results = InputView.inputLadderResults(players);
-        Height height = InputView.inputHeight();
+        Players players = inputView.inputNames();
+        LadderResults results = inputView.inputLadderResults(players);
+        Height height = inputView.inputHeight();
         Ladder ladder = Ladder.of(players, height, new DefaultLadderDirectionSelector());
-        ResultView.printLadder(players, ladder, results);
+        resultView.printLadder(players, ladder, results);
     }
 }

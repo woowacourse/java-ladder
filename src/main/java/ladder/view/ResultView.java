@@ -17,39 +17,36 @@ public class ResultView {
     private static final String LINE = "|-----";
     private static final String EMPTY_LINE = "|     ";
 
-    private ResultView() {
-    }
-
-    public static void printLadder(Players players, Ladder ladder, LadderResults results) {
+    public void printLadder(Players players, Ladder ladder, LadderResults results) {
         System.out.println("\n실행 결과\n");
         printPlayers(players);
         printLadder(ladder);
         printResults(results);
     }
 
-    private static void printPlayers(Players players) {
+    private void printPlayers(Players players) {
         StringJoiner stringJoiner = new StringJoiner(NAME_DELIMITER);
         players.getPlayers().forEach(player -> stringJoiner.add(NAME_FORMAT.formatted(player.name())));
         System.out.println(stringJoiner);
     }
 
-    private static void printLadder(Ladder ladder) {
-        ladder.getLadderLevels().forEach(ResultView::printLadderLevel);
+    private void printLadder(Ladder ladder) {
+        ladder.getLadderLevels().forEach(this::printLadderLevel);
     }
 
-    private static void printResults(LadderResults results) {
+    private void printResults(LadderResults results) {
         StringJoiner stringJoiner = new StringJoiner(NAME_DELIMITER);
         results.getLadderResults().forEach(result -> stringJoiner.add(NAME_FORMAT.formatted(result.value())));
         System.out.println(stringJoiner);
     }
 
-    private static void printLadderLevel(LadderLevel ladderLevel) {
+    private void printLadderLevel(LadderLevel ladderLevel) {
         System.out.print("\t");
-        ladderLevel.getLadderDirections().forEach(ResultView::printLine);
+        ladderLevel.getLadderDirections().forEach(this::printLine);
         System.out.println();
     }
 
-    private static void printLine(LadderDirection ladderDirection) {
+    private void printLine(LadderDirection ladderDirection) {
         if (ladderDirection == RIGHT) {
             System.out.print(LINE);
             return;
