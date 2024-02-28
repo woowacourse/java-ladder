@@ -17,10 +17,10 @@ public class PrizesTest {
     @DisplayName("플레이어의 수와 상품들의 수가 다르면 에러가 발생한다")
     @ParameterizedTest
     @MethodSource("createFailByNonMatchedCountArguments")
-    public void createFailByNonMatchedCount(Players players, List<String> inputResults) {
-        assertThatCode(() -> new Prizes(players, inputResults))
+    public void createFailByNonMatchedCount(Players players, List<String> inputPrizes) {
+        assertThatCode(() -> new Prizes(players, inputPrizes))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(String.format("입력한 결과의 수는 플레이어의 수와 일치해야 합니다. 입력한 결과 수: %d", inputResults.size()));
+                .hasMessage(String.format("입력한 결과의 수는 플레이어의 수와 일치해야 합니다. 입력한 결과 수: %d", inputPrizes.size()));
     }
 
     static Stream<Arguments> createFailByNonMatchedCountArguments() {
@@ -33,8 +33,8 @@ public class PrizesTest {
     @DisplayName("플레이어의 수와 상품들의 수가 같으면 에러가 발생하지 않는다")
     @ParameterizedTest
     @MethodSource("createSuccessArguments")
-    public void createSuccess(Players players, List<String> inputResults) {
-        assertThatCode(() -> new Prizes(players, inputResults))
+    public void createSuccess(Players players, List<String> inputPrizes) {
+        assertThatCode(() -> new Prizes(players, inputPrizes))
                 .doesNotThrowAnyException();
     }
 
@@ -48,7 +48,7 @@ public class PrizesTest {
 
     @DisplayName("입력한 상품들을 반환한다")
     @Test
-    public void getResults() {
+    public void getPrizes() {
         Prizes prizes = new Prizes(new Players(List.of("pobi", "tommy")), List.of("꽝", "당첨"));
 
         assertThat(prizes.getPrizes()).isEqualTo(List.of("꽝", "당첨"));
