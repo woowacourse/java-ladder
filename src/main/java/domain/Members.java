@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -45,9 +44,9 @@ public class Members {
     }
 
     private static List<Member> createMembersWithNames(List<String> names) {
-        List<Member> members = new ArrayList<>();
-        names.forEach(name -> members.add(new Member(name)));
-        return members;
+        return names.stream()
+                .map(Member::new)
+                .toList();
     }
 
     public int findIndexOfMember(Member member) {
