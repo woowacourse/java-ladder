@@ -33,20 +33,20 @@ public class Ladder {
     }
 
     private Position movePosition(Position playerPosition, Line line) {
-        if (!isFarLeft(playerPosition) && isLegLeftExist(playerPosition, line)) {
+        if (isNotFarLeft(playerPosition) && isLegLeftExist(playerPosition, line)) {
             return playerPosition.decrease();
         }
-        if (!isFarRight(playerPosition, line) && isLegRightExist(playerPosition, line)) {
+        if (isNotFarRight(playerPosition, line) && isLegRightExist(playerPosition, line)) {
             return playerPosition.increase();
         }
         return playerPosition;
     }
-    private boolean isFarLeft(Position playerPosition) {
-        return playerPosition.getIndex() == 0;
+    private boolean isNotFarLeft(Position playerPosition) {
+        return playerPosition.getIndex() != 0;
     }
 
-    private boolean isFarRight(Position playerPosition, Line line) {
-        return playerPosition.getIndex() == line.getLegs().size();
+    private boolean isNotFarRight(Position playerPosition, Line line) {
+        return playerPosition.getIndex() != line.getLegs().size();
     }
 
     private boolean isLegRightExist(Position playerPosition, Line line) {
