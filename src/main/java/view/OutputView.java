@@ -57,12 +57,13 @@ public class OutputView {
         for (MatchingResult matchingResult : matchingResults) {
             System.out.println(matchingResult.getName() + " : " + matchingResult.getPrize());
         }
+        System.out.println();
     }
 
     public static void printEachResult(MatchingResult prize) {
         System.out.println("실행결과");
         System.out.println(prize.getName() + " : " + prize.getPrize());
-
+        System.out.println();
     }
 
     public static void printException(Exception exception) {
