@@ -1,7 +1,5 @@
 package laddergame.domain;
 
-import laddergame.util.LinesGenerator;
-
 import java.util.Collections;
 import java.util.List;
 

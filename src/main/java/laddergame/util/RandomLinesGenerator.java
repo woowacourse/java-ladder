@@ -1,6 +1,5 @@
 package laddergame.util;
 
-import laddergame.domain.Ladder;
 import laddergame.domain.Line;
 import laddergame.domain.Lines;
 

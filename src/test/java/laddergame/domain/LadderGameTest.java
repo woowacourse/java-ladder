@@ -60,7 +60,6 @@ public class LadderGameTest {
         final LadderGame ladderGame = new LadderGame(players, ladder, List.of("O","X","O","O"));
 
         ladderGame.climb();
-        ladderGame.calculatePlayersItem();
 
         assertEquals(players.getPlayers().get(0).getItem(), ladderGame.getItems().get(0));
         assertEquals(players.getPlayers().get(1).getItem(), ladderGame.getItems().get(2));
