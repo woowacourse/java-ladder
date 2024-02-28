@@ -29,10 +29,10 @@ public class OutputView {
         printRewards(players, rewards.getRewards());
     }
 
-    private static void printRewards(Players players, List<Reward> rewards) {
-        System.out.print(rewards.get(0).getReward() + " ");
-        rewards.stream().skip(1).forEach((reward) -> {
-            System.out.printf(FORMAT_REWARD, reward.getReward());
+    private static void printPlayers(List<Player> players) {
+        System.out.print(players.get(0).getName() + " ");
+        players.stream().skip(1).forEach((player) -> {
+            System.out.printf(FORMAT_NAME, player.getName());
         });
         System.out.println();
     }
@@ -45,20 +45,9 @@ public class OutputView {
         }
     }
 
-    private static void printPlayers(List<Player> players) {
-        System.out.print(players.get(0).getName() + " ");
-        players.stream().skip(1).forEach((player) -> {
-            System.out.printf(FORMAT_NAME, player.getName());
-        });
-        System.out.println();
-    }
-
     private static void printPrefixSpace(List<Player> players) {
-        System.out.print(" ".repeat(getFirstPlayerNameSize(players)));
-    }
-
-    private static int getFirstPlayerNameSize(List<Player> players) {
-        return players.get(0).getName().length();
+        int firstPlayerNameLength = players.get(0).getName().length();
+        System.out.print(" ".repeat(firstPlayerNameLength));
     }
 
     private static void printLine(List<Leg> legs) {
@@ -74,6 +63,14 @@ public class OutputView {
             return LEG_UNIT.repeat(5);
         }
         return " ".repeat(5);
+    }
+
+    private static void printRewards(Players players, List<Reward> rewards) {
+        System.out.print(rewards.get(0).getReward() + " ");
+        rewards.stream().skip(1).forEach((reward) -> {
+            System.out.printf(FORMAT_REWARD, reward.getReward());
+        });
+        System.out.println();
     }
 
     public static void printPlayerResult(String playerReward) {
