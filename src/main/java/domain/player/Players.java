@@ -10,6 +10,7 @@ public class Players {
 
     private static final int MIN_PLAYER_COUNT = 2;
     private static final int MAX_PLAYER_COUNT = 10;
+    private static final int ONLY_ONE_PLAYER_FOUND = 1;
 
     private List<Player> players;
 
@@ -44,9 +45,9 @@ public class Players {
         final List<Position> foundPosition = players.stream()
                 .filter(player -> Objects.equals(player.getName(), name))
                 .map(Player::getPosition)
-                .collect(Collectors.toList());
+                .toList();
 
-        if (foundPosition.size() != 1) {
+        if (foundPosition.size() != ONLY_ONE_PLAYER_FOUND) {
             throw new IllegalArgumentException(name + "은/는 참가자가 아닙니다.");
         }
 
