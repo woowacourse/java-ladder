@@ -4,6 +4,7 @@ import ladder.constant.Command;
 import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
+import ladder.view.ResultView;
 
 import java.util.Map;
 import java.util.Optional;
@@ -47,7 +48,7 @@ public class LadderController {
     }
 
     private static void printLadderResult(People people, Ladder ladder, Prizes prizes) {
-        OutputView.printResult(
+        ResultView.printResult(
                 people.getNames(),
                 ladder.getLines().stream()
                         .map(Line::scaffolds)
@@ -63,13 +64,13 @@ public class LadderController {
         CommandController commandController = new CommandController((viewer) ->
                 printResultIfPersonExist(people, viewer, result));
         commandController.put(Command.ALL, () ->
-                OutputView.printExecutionResultAll(result));
+                ResultView.printExecutionResultAll(result));
         while (commandController.run(InputView.readViewerName())) ;
     }
 
     private static void printResultIfPersonExist(People people, String viewer, Map<String, String> result) {
         if (people.getNames().contains(viewer)) {
-            OutputView.printExecutionResultOnce(result.get(viewer));
+            ResultView.printExecutionResultOnce(result.get(viewer));
             return;
         }
         OutputView.printErrorMessage(NOT_EXIST_PERSON);
