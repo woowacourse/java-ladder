@@ -7,9 +7,11 @@ import utils.StepGenerator;
 public class Line {
 
     public static final int ONE_STEP = 1;
-    private final List<StepPoint> stepPoints = new ArrayList<>();
+    
+    private final List<StepPoint> stepPoints;
 
     public Line(int numberOfCell, StepGenerator stepGenerator) {
+        stepPoints = new ArrayList<>();
         stepPoints.add(stepGenerator.generate());
         for (int cellIndex = 1; cellIndex < numberOfCell; cellIndex++) {
             stepPoints.add(makeOnePoint(cellIndex, stepGenerator));
