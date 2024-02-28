@@ -9,9 +9,11 @@ public class LadderGameResult {
 
     public LadderGameResult(Ladder ladder, Players players, Results results) {
         ladderGameResult = new HashMap<>();
-        for (int i = 0; i < players.getPlayers().size(); i++) {
-            ladderGameResult.put(players.getPlayers().get(i), results.getResults().get(ladder.climb(i)));
-        }
+
+        players.getPlayers().stream()
+                .forEach(
+                        player -> ladderGameResult.put(player, results.getResults().get(players.getPlayers().indexOf(player)))
+                );
     }
 
     public Result get(Player player) {
