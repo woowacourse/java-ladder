@@ -2,6 +2,7 @@ package ladder;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import ladder.domain.Height;
@@ -34,38 +35,73 @@ public class LadderGameApplication {
     }
 
     public static void run() {
+        LadderGameResult result = runLadderGame();
+        while (true) {
+            repeatUntilNoException(() -> requestResult(result));
+        }
+    }
+
+    private static LadderGameResult runLadderGame() {
         Players players = inputPlayers();
-        Products products = inputProducts();
+        Products products = inputProducts(players);
         Height height = inputHeight();
 
         StickListGenerator stickListGenerator = new SticksPatternGenerator(new RandomBooleanSupplier());
         Ladder ladder = Ladder.of(height, players.size(), stickListGenerator);
-
         LadderGame ladderGame = new LadderGame(ladder, players, products);
-        LadderGameResult result = ladderGame.progress();
-        OUTPUT_VIEW.printResult(toDto(ladder), toDto(players), toDto(products));
 
-        while (true) {
-            ResultRequest resultRequest = INPUT_VIEW.inputResultRequest();
-            if (resultRequest.isRequestAll()) {
-                OUTPUT_VIEW.printTotalResult(toDto(result));
-                continue;
-            }
-            Product productResult = result.findResult(new Player(resultRequest.getPlayerName()));
-            OUTPUT_VIEW.printSingleResult(productResult.getName());
+        OUTPUT_VIEW.printResult(toDto(ladder), toDto(players), toDto(products));
+        return ladderGame.progress();
+    }
+
+    private static void requestResult(LadderGameResult result) {
+        ResultRequest resultRequest = INPUT_VIEW.inputResultRequest();
+        if (resultRequest.isRequestAll()) {
+            OUTPUT_VIEW.printTotalResult(toDto(result));
+            return;
         }
+        Product productResult = result.findResult(new Player(resultRequest.getPlayerName()));
+        OUTPUT_VIEW.printSingleResult(productResult.getName());
     }
 
     private static Players inputPlayers() {
-        return Players.from(INPUT_VIEW.inputPlayerNames());
+        return repeatUntilNoException(
+                () -> Players.from(INPUT_VIEW.inputPlayerNames())
+        );
     }
 
-    private static Products inputProducts() {
-        return Products.from(INPUT_VIEW.inputProductNames());
+    private static Products inputProducts(Players players) {
+        Supplier<Products> productsSupplier = () -> {
+            Products products = Products.from(INPUT_VIEW.inputProductNames());
+            LadderGame.validate(players, products);
+            return products;
+        };
+
+        return repeatUntilNoException(productsSupplier);
     }
 
     private static Height inputHeight() {
-        return new Height(INPUT_VIEW.inputHeight());
+        return repeatUntilNoException(
+                () -> new Height(INPUT_VIEW.inputHeight())
+        );
+    }
+
+    private static <T> T repeatUntilNoException(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException exception) {
+            OUTPUT_VIEW.printErrorMessage(exception);
+            return repeatUntilNoException(supplier);
+        }
+    }
+
+    private static void repeatUntilNoException(Runnable runnable) {
+        try {
+            runnable.run();
+        } catch (IllegalArgumentException exception) {
+            OUTPUT_VIEW.printErrorMessage(exception);
+            repeatUntilNoException(runnable);
+        }
     }
 
     private static PlayersDto toDto(Players players) {
