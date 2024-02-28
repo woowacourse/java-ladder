@@ -53,11 +53,8 @@ public class Name {
     }
 
     private void validateNameReservedWord(String name) {
-        RESERVED_WORDS.stream()
-                .filter(word -> word.equals(name))
-                .findAny()
-                .ifPresent(word -> {
-                    throw new LadderGameException(ExceptionType.NOT_ALLOW_RESERVED_WORD);
-                });
+        if (RESERVED_WORDS.contains(name)) {
+            throw new LadderGameException(ExceptionType.NOT_ALLOW_RESERVED_WORD);
+        }
     }
 }
