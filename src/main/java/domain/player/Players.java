@@ -1,7 +1,5 @@
 package domain.player;
 
-import domain.player.Player;
-import domain.player.Position;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,24 +11,29 @@ public class Players {
     private static final int MIN_PLAYER_COUNT = 2;
     private static final int MAX_PLAYER_COUNT = 10;
 
-    private final List<Player> players = new ArrayList<>();
+    private List<Player> players;
 
-    public Players(final List<String> names) {
-        validateNameCount(names.size());
+    public static Players from(final List<String> names) {
+        final List<Player> players = new ArrayList<>();
 
         for (int position = 0; position < names.size(); position++) {
             players.add(new Player(names.get(position), position));
         }
+
+        return new Players(players);
     }
 
-    private void validateNameCount(final int count) {
+    public Players(final List<Player> players) {
+        validateCount(players.size());
+        this.players = players;
+    }
+
+    private void validateCount(final int count) {
         if (count < MIN_PLAYER_COUNT || count > MAX_PLAYER_COUNT) {
             throw new IllegalArgumentException(
                     String.format("참가자 수는 %d명 이상 %d명 이하 이어야 합니다.", MIN_PLAYER_COUNT, MAX_PLAYER_COUNT));
         }
     }
-
-
 
     public void setPosition(final int playerIndex, final int resultPosition) {
         final Player player = players.get(playerIndex);

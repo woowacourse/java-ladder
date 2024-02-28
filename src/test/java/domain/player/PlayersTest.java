@@ -25,7 +25,7 @@ class PlayersTest {
         }
 
         //when
-        final Players players = new Players(names);
+        final Players players = Players.from(names);
 
         //then
         assertThat(players.count()).isEqualTo(playerCount);
@@ -42,7 +42,7 @@ class PlayersTest {
         }
 
         //when & then
-        assertThatThrownBy(() -> new Players(names)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Players.from(names)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("참가자의 이름을 보고 위치를 반환한다.")
@@ -50,7 +50,7 @@ class PlayersTest {
     void getPlayerPositonByName() {
         //given
         final List<String> names = List.of("pobi", "honux", "crong", "jk");
-        final Players players = new Players(names);
+        final Players players = Players.from(names);
 
         players.setPosition(0, 1);
 
@@ -66,7 +66,7 @@ class PlayersTest {
     void getPlayerPositonByNotRegisteredName() {
         //given
         final List<String> names = List.of("pobi", "honux", "crong", "jk");
-        final Players players = new Players(names);
+        final Players players = Players.from(names);
 
         players.setPosition(0, 1);
 
@@ -80,7 +80,7 @@ class PlayersTest {
     void getPlayerNames() {
         //given
         final List<String> names = List.of("pobi", "honux", "crong", "jk");
-        final Players players = new Players(names);
+        final Players players = Players.from(names);
 
         //when
         List<String> returnedNames = players.getNames();
@@ -96,7 +96,7 @@ class PlayersTest {
         final List<String> names = List.of("pobi", "honux", "crong", "jk");
 
         //when
-        final Players players = new Players(names);
+        final Players players = Players.from(names);
         int playersCount = players.count();
 
         //then
@@ -108,7 +108,7 @@ class PlayersTest {
     void setPlayerPositon() {
         //given
         final List<String> names = List.of("pobi", "honux", "crong", "jk");
-        final Players players = new Players(names);
+        final Players players = Players.from(names);
 
         //when
         players.setPosition(0, 1);
