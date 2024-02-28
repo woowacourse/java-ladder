@@ -56,4 +56,17 @@ class GameTest {
         // then
         assertThat(result).isEqualTo("꽝");
     }
+
+    @Test
+    @DisplayName("모든 이름으로 실행 결과를 도출한다")
+    void playOnAllTarget() {
+        // given
+        Game game = new Game(people, results, ladder);
+
+        // when
+        List<String> list = game.playAll();
+
+        // then
+        assertThat(list).containsExactly("꽝", "꽝", "5000", "3000");
+    }
 }

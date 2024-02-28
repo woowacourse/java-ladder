@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.List;
+
 public class Game {
 
     private final People people;
@@ -16,5 +18,12 @@ public class Game {
         int startPosition = people.findPosition(target);
         int resultPosition = ladder.ride(startPosition);
         return results.find(resultPosition);
+    }
+
+    public List<String> playAll() {
+        return people.getNames()
+                .stream()
+                .map(this::play)
+                .toList();
     }
 }
