@@ -1,11 +1,9 @@
 package domain.player;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -26,33 +24,5 @@ class PlayerTest {
     void invalidNameLength(String playerName) {
         //when & then
         assertThatThrownBy(() -> new Player(playerName, 0)).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("참가자의 위치를 왼쪽으로 이동시킨다.")
-    @Test
-    void moveLeft() {
-        //given
-        final Player player = new Player("a", 0);
-        final Position expectedPosition = new Position(-1);
-
-        //when
-        player.moveLeft();
-
-        //then
-        assertThat(player.getPosition()).isEqualTo(expectedPosition);
-    }
-
-    @DisplayName("참가자의 위치를 오른쪽으로 이동시킨다.")
-    @Test
-    void moveRight() {
-        //given
-        final Player player = new Player("a", 0);
-        final Position expectedPosition = new Position(1);
-
-        //when
-        player.moveRight();
-
-        //then
-        assertThat(player.getPosition()).isEqualTo(expectedPosition);
     }
 }

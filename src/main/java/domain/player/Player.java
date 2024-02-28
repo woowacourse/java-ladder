@@ -24,14 +24,6 @@ public class Player {
         this.position = new Position(position);
     }
 
-    public void moveLeft() {
-        position = position.decrease();
-    }
-
-    public void moveRight() {
-        position = position.increase();
-    }
-
     public String getName() {
         return name;
     }
