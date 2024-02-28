@@ -14,11 +14,25 @@ public class Result {
     }
 
     private void validateResultLength(final String value) {
+        validateOverMaxLength(value);
+        validateIsEmpty(value);
+        validateIsBlank(value);
+    }
+
+    private static void validateOverMaxLength(String value) {
         if (value.length() > MAX_RESULT_LENGTH) {
             throw new IllegalArgumentException(INVALID_RESULT_LENGTH);
         }
+    }
 
+    private static void validateIsEmpty(String value) {
         if (value.isEmpty()) {
+            throw new IllegalArgumentException(INVALID_RESULT_LENGTH);
+        }
+    }
+
+    private static void validateIsBlank(String value) {
+        if (value.isBlank()) {
             throw new IllegalArgumentException(INVALID_RESULT_LENGTH);
         }
     }
