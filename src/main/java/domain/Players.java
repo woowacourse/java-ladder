@@ -47,11 +47,13 @@ public class Players {
         return players.indexOf(foundPlayer);
     }
 
-    public List<Player> getPlayers() {
-        return players;
-    }
-
     public int size() {
         return players.size();
+    }
+
+    public List<String> getPlayerNames() {
+        return players.stream()
+                .map(Player::getName)
+                .toList();
     }
 }

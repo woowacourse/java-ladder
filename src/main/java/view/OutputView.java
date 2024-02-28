@@ -6,8 +6,6 @@ import domain.Game;
 import domain.GameResult;
 import domain.Ladder;
 import domain.Line;
-import domain.Player;
-import domain.Players;
 import domain.Stick;
 
 public class OutputView {
@@ -15,19 +13,19 @@ public class OutputView {
     public void printLadder(Game game) {
         System.out.println("실행결과");
 
-        printPlayerNames(game.getPlayers());
+        printPlayerNames(game.getPlayerNames());
         printLadder(game.getLadder());
         printGameResults(game.getGameResults());
     }
 
-    private void printPlayerNames(Players players) {
-        players.getPlayers().forEach(this::printEachPlayerName);
+    private void printPlayerNames(List<String> playerNames) {
+        playerNames.forEach(this::printEachPlayerName);
 
         System.out.println();
     }
 
-    private void printEachPlayerName(Player player) {
-        System.out.printf("%5s ", player.getName());
+    private void printEachPlayerName(String playerName) {
+        System.out.printf("%5s ", playerName);
     }
 
     private void printLadder(Ladder ladder) {

@@ -25,13 +25,9 @@ public class Game {
     }
 
     public Map<String, GameResult> showResultAll() {
-        List<String> playersNames = players.getPlayers()
-                .stream()
-                .map(Player::getName)
-                .toList();
-
         Map<String, GameResult> result = new LinkedHashMap<>();
-        for (String playersName : playersNames) {
+
+        for (String playersName : players.getPlayerNames()) {
             result.put(playersName, showResult(playersName));
         }
 
@@ -45,8 +41,8 @@ public class Game {
         return gameResults.get(resultColumn);
     }
 
-    public Players getPlayers() {
-        return players;
+    public List<String> getPlayerNames() {
+        return players.getPlayerNames();
     }
 
     public Ladder getLadder() {

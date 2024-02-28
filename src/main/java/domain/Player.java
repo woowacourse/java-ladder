@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-public class Player {
+class Player {
 
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
