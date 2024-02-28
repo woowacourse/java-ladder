@@ -33,4 +33,16 @@ public class LadderGame {
         }
         return rewards;
     }
+
+    public Ladder getLadder() {
+        return ladder;
+    }
+
+    public Participants getParticipants() {
+        return participants;
+    }
+
+    public Results getResults() {
+        return results;
+    }
 }

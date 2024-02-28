@@ -20,4 +20,8 @@ public class Results {
     public Result getResult(Position position) {
         return this.results.get(position);
     }
+
+    public List<Result> getResults() {
+        return results.values().stream().toList();
+    }
 }

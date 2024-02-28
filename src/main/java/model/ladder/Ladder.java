@@ -32,6 +32,10 @@ public class Ladder {
         return new ArrayList<>(ladderRows);
     }
 
+    public int getHeight(){
+        return ladderRows.size();
+    }
+
     public Position getEndPositionBy(Position startPosition) {
         Position endPosition = startPosition;
         for (LadderRow ladderRow : ladderRows) {
