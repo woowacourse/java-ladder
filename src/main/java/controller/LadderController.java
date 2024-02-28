@@ -24,21 +24,29 @@ public class LadderController {
         this.resultView = resultView;
     }
 
+    private static Results prepareResults(Ladder ladder, Participants participants) {
+        return new Results(ladder, participants);
+    }
+
     public void run() {
         Participants participants = repeatUntilSuccess(this::prepareParticipants);
         Prizes prizes = repeatUntilSuccess(this::preparePrizes, participants);
         Ladder ladder = repeatUntilSuccess(this::prepareLadder, participants);
+        Results results = prepareResults(ladder, participants);
+
+        printLadder(participants, ladder, prizes);
+        printResult(participants, results, prizes);
+    }
+
+    private void printLadder(Participants participants, Ladder ladder, Prizes prizes) {
         outputView.printParticipantsName(participants.captureParticipantsName());
         outputView.printLadder(ladder.captureLayerSteps());
         outputView.printPrizeNames(prizes.capturePrizesName());
-
-        Results results = new Results(ladder, participants);
-        printResult(participants, results, prizes);
     }
 
     private void printResult(Participants participants, Results results, Prizes prizes) {
         while (true) {
-            ParticipantName participantName = repeatUntilSuccess(this::prepareParticipant, participants);
+            ParticipantName participantName = repeatUntilSuccess(this::prepareParticipantName, participants);
             resultView.printResult(results.captureResult(), participantName, prizes.capturePrizesName());
         }
     }
@@ -60,7 +68,7 @@ public class LadderController {
         return new Prizes(prizes, numberOfParticipants);
     }
 
-    private ParticipantName prepareParticipant(Participants participants) {
+    private ParticipantName prepareParticipantName(Participants participants) {
         String name = inputView.requestFindName();
         return participants.findByName(name);
     }
