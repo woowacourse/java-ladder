@@ -30,15 +30,10 @@ public class Players {
     }
 
     public int indexOfByName(String name) {
-        OptionalInt position = IntStream.range(0, players.size())
+        return IntStream.range(0, players.size())
                 .filter(i -> players.get(i).getName().equals(name))
-                .findFirst();
-
-        if (position.isEmpty()) {
-            throw new IllegalArgumentException(EXCEPTION_MESSAGE_NOT_CONTAIN_PLAYERS);
-        }
-
-        return position.getAsInt();
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(EXCEPTION_MESSAGE_NOT_CONTAIN_PLAYERS));
     }
 
     public int getPlayerSize() {
