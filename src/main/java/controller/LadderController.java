@@ -24,16 +24,15 @@ public class LadderController {
 
     public void play() throws IOException {
         Participants participants = new Participants(inputView.inputParticipantsName());
-        Results results = new Results(inputView.inputResult());
-        Height height = new Height(inputView.inputLadderHeight());
-        Ladder ladder = new Ladder(new LadderGenerateStrategy(), height, participants);
+        Results results = new Results(inputView.inputResults());
+        Ladder ladder = new Ladder(new LadderGenerateStrategy(), new Height(inputView.inputLadderHeight()), participants);
         LadderGame ladderGame = new LadderGame(ladder, participants, results);
-        outputView.printResult(ladderGame);
-        String name = inputView.inputParticipantName();
-        while(!name.equals("all")){
-            outputView.printOneResult(ladderGame.matchResult(new Participant(name)));
-            name = inputView.inputParticipantName();
+        outputView.printLadderResult(ladderGame);
+        String participantName = inputView.inputParticipantName();
+        while(!participantName.equals("all")){
+            outputView.printParticipantResult(ladderGame.matchResult(new Participant(participantName)));
+            participantName = inputView.inputParticipantName();
         }
-        outputView.printAllResult(ladderGame.matchAllResults());
+        outputView.printAllParticipantsResult(ladderGame.matchAllResults());
     }
 }

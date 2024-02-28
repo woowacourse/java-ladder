@@ -5,20 +5,23 @@ import model.participant.Participant;
 import model.participant.Participants;
 import model.result.Result;
 import model.result.Results;
+import model.result.Rewards;
 
 import java.util.List;
 import java.util.Map;
 
 public class OutputView {
 
-    private static final String RESULT_MESSAGE = "실행결과\n";
+    private static final String LADDER_RESULT_MESSAGE = "\n사다리 결과\n";
+    private static final String RESULT_MESSAGE = "실행결과";
     private static final String NAME_FORMAT = "%5s ";
+    private static final String DELIMITER = " : ";
 
-    public void printResult(LadderGame ladderGame) {
-        System.out.println(RESULT_MESSAGE);
+    public void printLadderResult(LadderGame ladderGame) {
+        System.out.println(LADDER_RESULT_MESSAGE);
         printParticipantsName(ladderGame.getParticipants());
         printLadder(ladderGame.getLadder());
-        printDetailResult(ladderGame.getResults());
+        printResults(ladderGame.getResults());
     }
 
     private void printParticipantsName(Participants participants) {
@@ -45,22 +48,22 @@ public class OutputView {
         System.out.print(LadderComponent.DIVISION.getOutput());
     }
 
-    private void printDetailResult(Results results){
+    private void printResults(Results results){
         List<String> result = results.getResults().stream()
                 .map(Result::name)
                 .toList();
-        result.forEach(name -> System.out.printf(NAME_FORMAT, name));
+        result.forEach(resultName -> System.out.printf(NAME_FORMAT, resultName));
         System.out.println();
     }
-    public void printOneResult(Result result){
-        System.out.println("실행 결과");
+    public void printParticipantResult(Result result){
+        System.out.println(System.lineSeparator() + RESULT_MESSAGE);
         System.out.println(result.name());
     }
 
-    public void printAllResult(Map<Participant, Result> results){
-        System.out.println("실행 결과");
-        for (Map.Entry<Participant, Result> result :results.entrySet()) {
-            System.out.println(result.getKey().getName() + " : " + result.getValue().name());
+    public void printAllParticipantsResult(Rewards rewards){
+        System.out.println(System.lineSeparator() + RESULT_MESSAGE);
+        for (Map.Entry<Participant, Result> reward :rewards.getRewards().entrySet()) {
+            System.out.println(reward.getKey().getName() + DELIMITER + reward.getValue().name());
         }
     }
 }

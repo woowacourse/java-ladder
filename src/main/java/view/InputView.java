@@ -40,7 +40,7 @@ public class InputView implements AutoCloseable {
     }
 
     public int inputLadderHeight() throws IOException {
-        System.out.println(INPUT_LADDER_HEIGHT);
+        System.out.println(System.lineSeparator() + INPUT_LADDER_HEIGHT);
         String input = reader.readLine();
         validateNotNullAndBlank(input);
         validateNumeric(input);
@@ -53,8 +53,8 @@ public class InputView implements AutoCloseable {
         }
     }
 
-    public List<String> inputResult() throws IOException {
-        System.out.println(INPUT_RESULT);
+    public List<String> inputResults() throws IOException {
+        System.out.println(System.lineSeparator() + INPUT_RESULT);
         String input = reader.readLine();
         validateNotNullAndBlank(input);
         return Arrays.stream(input.split(DELIMITER))
@@ -63,7 +63,7 @@ public class InputView implements AutoCloseable {
     }
 
     public String inputParticipantName() throws IOException {
-        System.out.println(INPUT_PARTICIPANT_NAME);
+        System.out.println(System.lineSeparator() + INPUT_PARTICIPANT_NAME);
         String input = reader.readLine();
         validateNotNullAndBlank(input);
         return input;
