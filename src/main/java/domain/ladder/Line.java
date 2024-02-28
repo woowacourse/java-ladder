@@ -17,6 +17,10 @@ public class Line {
         if (this.getRightStick(startPosition) == Stick.FILLED) {
             return startPosition + 1;
         }
+        if (this.getLeftStick(startPosition) == Stick.FILLED) {
+            return startPosition - 1;
+        }
+
         return startPosition;
     }
 
@@ -49,5 +53,12 @@ public class Line {
             return Stick.NOT_FILLED;
         }
         return sticks.get(position);
+    }
+
+    private Stick getLeftStick(int position) {
+        if (position == 0) {
+            return Stick.NOT_FILLED;
+        }
+        return sticks.get(position - 1);
     }
 }
