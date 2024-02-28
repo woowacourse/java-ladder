@@ -27,4 +27,8 @@ public class Ladder {
     public int getHeight() {
         return this.height.getHeight();
     }
+
+    public List<Integer> climbLines() {
+        return null;
+    }
 }
