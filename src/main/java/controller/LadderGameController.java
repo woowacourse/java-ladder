@@ -2,16 +2,18 @@ package controller;
 
 import java.util.List;
 import java.util.function.Supplier;
-import model.line.RandomLineGenerator;
 import model.ladder.Ladder;
 import model.ladder.LadderHeight;
+import model.line.RandomLineGenerator;
 import model.player.Players;
+import model.prize.Prizes;
 import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
     public void run() {
         Players players = preparePlayers();
+        Prizes prizes = preparePrizes(players);
         LadderHeight ladderHeight = prepareLadderHeight();
 
         RandomLineGenerator randomLineGenerator = new RandomLineGenerator();
@@ -24,6 +26,13 @@ public class LadderGameController {
         return retryOnException(() -> {
             List<String> playerNames = InputView.askPlayerNames();
             return Players.of(playerNames);
+        });
+    }
+
+    private Prizes preparePrizes(Players players) {
+        return retryOnException(() -> {
+            List<String> prizeNames = InputView.askPrizeNames();
+            return Prizes.from(prizeNames, players);
         });
     }
 
