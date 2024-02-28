@@ -2,6 +2,7 @@ package domain;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -10,7 +11,7 @@ public class GameResult {
     private final HashMap<Member, Result> gameResult;
 
     public GameResult() {
-        this.gameResult = new HashMap<>();
+        this.gameResult = new LinkedHashMap<>();
     }
 
     public void addGameResult(Member member, Result result) {
