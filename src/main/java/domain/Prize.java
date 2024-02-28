@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Prize {
     private static final int MINIMUM_PRIZE_LENGTH = 1;
     private static final int MAXIMUM_PRIZE_LENGTH = 5;
@@ -19,5 +21,22 @@ public class Prize {
 
     private boolean validateRange(String prize) {
         return prize.length() < MINIMUM_PRIZE_LENGTH || prize.length() > MAXIMUM_PRIZE_LENGTH;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Prize prize1 = (Prize) o;
+        return Objects.equals(prize, prize1.prize);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(prize);
     }
 }
