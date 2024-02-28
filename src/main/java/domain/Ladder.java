@@ -37,10 +37,6 @@ public class Ladder {
         return rewards.getRewardByIndex(index);
     }
 
-    public List<Line> getLines() {
-        return List.copyOf(lines);
-    }
-
     public Map<Player, String> findAllPlayerReward(Players players, Rewards rewards) {
         Map<Player, String> allPlayerResult = new HashMap<>();
         for (Player player : players.getPlayers()) {
@@ -48,5 +44,9 @@ public class Ladder {
             allPlayerResult.put(player, findPlayerReward(playerIndex, rewards));
         }
         return allPlayerResult;
+    }
+
+    public List<Line> getLines() {
+        return List.copyOf(lines);
     }
 }
