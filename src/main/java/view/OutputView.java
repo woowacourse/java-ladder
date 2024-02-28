@@ -6,13 +6,12 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private static final String FINAL_RESULT_FORMAT = "%s%n%n";
     private static final String FINAL_RESULT_MESSAGE = "사다리 결과";
     private static final String PRIZE_RESULT_MESSAGE = "실행 결과";
-    private static final String RESULT_FORM = "%s : %s%n";
+    private static final String RESULT_FORM = "%s : %s";
 
     public void printLadderResult(final List<String> names, final List<String> lines, final List<String> prizes) {
-        System.out.printf(FINAL_RESULT_FORMAT, FINAL_RESULT_MESSAGE);
+        System.out.println(FINAL_RESULT_MESSAGE);
         printPlayers(names);
         printLadder(names.get(0).length(), lines);
         printPrizes(prizes);
@@ -22,12 +21,14 @@ public class OutputView {
         System.out.println(PRIZE_RESULT_MESSAGE);
         for (Entry<String, String> result : ladderResult.entrySet()) {
             System.out.printf(RESULT_FORM, result.getKey(), result.getValue());
+            System.out.println();
         }
     }
 
     public void printOnePlayerPrize(final String name, final String prize) {
         System.out.println(PRIZE_RESULT_MESSAGE);
         System.out.printf(RESULT_FORM, name, prize);
+        System.out.println();
         System.out.println();
     }
 
