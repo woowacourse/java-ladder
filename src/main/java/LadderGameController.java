@@ -1,5 +1,5 @@
-import domain.GameResult;
 import domain.LadderGame;
+import domain.MatchingResult;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.bridgeConstructstrategy.RandomBridgeConstructStrategy;
@@ -37,9 +37,8 @@ public class LadderGameController {
     public static void run() {
         LadderGame ladderGame = createLadderGame();
         printLadderGame(ladderGame);
-        GameResult gameResult = new GameResult(ladderGame);
         while (readMenu() != Menu.QUIT) {
-            showResult(gameResult);
+            showResult(ladderGame);
         }
     }
 
@@ -103,15 +102,15 @@ public class LadderGameController {
         }
     }
 
-    private static void showResult(GameResult gameResult) {
+    private static void showResult(LadderGame ladderGame) {
         String input = InputView.readNameForResult();
         if (nameForAllResult(input)) {
-            OutputView.printAllResult(gameResult.getAllResult());
+            OutputView.printAllResult(ladderGame.findAllResult());
             return;
         }
         Name inputName = new Name(input);
-        Prize prize = gameResult.getResult(inputName);
-        OutputView.printEachResult(inputName, prize);
+        MatchingResult prize = ladderGame.findEachPrize(inputName);
+        OutputView.printEachResult(prize);
     }
 
     private static boolean nameForAllResult(String input) {

@@ -1,5 +1,6 @@
 package view;
 
+import domain.MatchingResult;
 import domain.ladder.Bridge;
 import domain.ladder.Bridges;
 import domain.ladder.Ladder;
@@ -8,7 +9,6 @@ import domain.player.Names;
 import domain.result.Prize;
 import domain.result.Prizes;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -17,8 +17,8 @@ public class OutputView {
     }
 
     public static void printNames(Names names) {
-        for (String name : names.getNames()) {
-            System.out.printf("%5s ", name);
+        for (Name name : names.getNames()) {
+            System.out.printf("%5s ", name.getName());
         }
         System.out.println();
     }
@@ -52,18 +52,19 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printAllResult(Map<Name, Prize> ladderGame) {
+    public static void printAllResult(List<MatchingResult> matchingResults) {
         System.out.println("실행결과");
-        for (Name name : ladderGame.keySet()) {
-            System.out.println(name.getName() + " : " + ladderGame.get(name).getPrizeName());
+        for (MatchingResult matchingResult : matchingResults) {
+            System.out.println(matchingResult.getName() + " : " + matchingResult.getPrize());
         }
     }
 
-    public static void printEachResult(Name name, Prize prize) {
+    public static void printEachResult(MatchingResult prize) {
         System.out.println("실행결과");
-        System.out.println(name.getName() + " : " + prize.getPrizeName());
+        System.out.println(prize.getName() + " : " + prize.getPrize());
+
     }
-  
+
     public static void printException(Exception exception) {
         System.out.println(exception.getMessage());
     }

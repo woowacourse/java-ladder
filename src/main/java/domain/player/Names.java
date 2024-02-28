@@ -48,9 +48,16 @@ public class Names {
         return names.get(index);
     }
 
-    public List<String> getNames() {
+    public List<Name> getNames() {
         return names.stream()
-                .map(Name::getName)
                 .toList();
+    }
+
+    public int getIndexOf(Name name) {
+        int findIndex = names.indexOf(name);
+        if (findIndex < 0) {
+            throw new IllegalArgumentException("존재하지 않는 이름입니다.");
+        }
+        return findIndex;
     }
 }

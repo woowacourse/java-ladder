@@ -1,55 +1,46 @@
 package domain.ladder;
 
-import domain.player.Name;
-import domain.player.Names;
 import domain.ladder.bridgeConstructstrategy.BridgeConstructStrategy;
-import domain.result.Prize;
-import domain.result.Prizes;
-import java.util.ArrayList;
-import java.util.Collections;
+import domain.player.Names;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
 
     private final List<Bridges> bridges;
+    private final Map<Integer, Integer> finalResult;
 
     public Ladder(BridgeConstructStrategy bridgeConstructStrategy, Names names, Height height) {
         bridges = IntStream.range(0, height.getIntValue())
                 .mapToObj((index) -> bridgeConstructStrategy.generate(names.size() - 1))
                 .toList();
+        this.finalResult = matchStartIndexToEndIndex();
     }
 
-    public Map<Name, Prize> getMatchResult(Names names, Prizes prizes) {
-        List<Integer> matchIndexes = calculateResult(names);
-        Map<Name, Prize> matchResults = new HashMap<>();
-        for (int index = 0; index < names.size(); index++) {
-            matchResults.put(names.get(index), prizes.get(matchIndexes.get(index)));
-        }
-        return matchResults;
+    private Map<Integer, Integer> matchStartIndexToEndIndex() {
+        List<Integer> indexes = IntStream.range(0, getLegSize())
+                .boxed()
+                .collect(Collectors.toList());
+        bridges.forEach(bridge -> bridge.moveAllMovableIndex(indexes));
+        return IntStream.range(0, getLegSize())
+                .boxed()
+                .collect(Collectors.toMap(indexes::get,Function.identity()));
     }
 
-    private List<Integer> calculateResult(Names names) {
-        // TODO 메서드 이름 직관적이게 변경
-        List<Integer> list = new ArrayList<>();
-        IntStream.range(0, names.size())
-                .forEach(list::add);
-        for (Bridges bridge : bridges) {
-            moveEachFloor(list, bridge);
-        }
-        return list;
+    public int matchedIndex(int startIndex) {
+        return finalResult.get(startIndex);
     }
 
-    private void moveEachFloor(List<Integer> list, Bridges bridges) {
-        IntStream.range(0, bridges.getBridges().size())
-                .filter(index -> bridges.getBridges().get(index) == Bridge.BUILT)
-                .forEach((bridgeIndex) -> Collections.swap(list, bridgeIndex, bridgeIndex + 1));
+    private int getWidth() {
+        return bridges.get(0).size();
     }
 
     public int getLegSize() {
-        return bridges.get(0).size() + 1;
+        return getWidth() + 1;
     }
 
     public List<Bridges> getBridge() {

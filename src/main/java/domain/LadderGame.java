@@ -1,8 +1,13 @@
 package domain;
 
 import domain.ladder.Ladder;
+import domain.player.Name;
 import domain.player.Names;
+import domain.result.Prize;
 import domain.result.Prizes;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LadderGame {
     private final Names names;
@@ -28,6 +33,18 @@ public class LadderGame {
             throw new IllegalArgumentException("이름의 개수와 사다리의 다리 개수는 같아야 합니다.\n"
                     + "이름의 개수 : " + names.size() + ", 다리 개수 : " + ladder.getLegSize());
         }
+    }
+
+    public MatchingResult findEachPrize(Name name) {
+        int nameIndex = names.getIndexOf(name);
+        int prizeIndex = ladder.matchedIndex(nameIndex);
+        return new MatchingResult(name, prizes.get(prizeIndex));
+    }
+
+    public List<MatchingResult> findAllResult() {
+        return names.getNames().stream()
+                .map(this::findEachPrize)
+                .toList();
     }
 
     public Names getNames() {

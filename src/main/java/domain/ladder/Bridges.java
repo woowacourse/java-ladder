@@ -2,6 +2,7 @@ package domain.ladder;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Bridges {
 
@@ -33,5 +34,12 @@ public class Bridges {
 
     public List<Bridge> getBridges() {
         return Collections.unmodifiableList(bridges);
+    }
+
+    public void moveAllMovableIndex(List<Integer> indexes) {
+        IntStream.range(0, bridges.size())
+                .filter(index -> bridges.get(index) == Bridge.BUILT)
+                .forEach((bridgeIndex) -> Collections.swap(indexes, bridgeIndex, bridgeIndex + 1));
+
     }
 }

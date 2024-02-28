@@ -31,7 +31,7 @@ public class Prizes {
 
     public List<String> getResults() {
         return prizes.stream()
-                .map(prize -> prize.getPrizeName())
+                .map(Prize::getPrizeName)
                 .toList();
     }
 }
