@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import ladder.dto.LineDto;
 import ladder.model.Ladder;
 import ladder.model.Players;
 import ladder.view.InputView;
@@ -35,6 +36,10 @@ public class LadderController {
     private void printResult() {
         OutputView.printResultDescription();
         OutputView.printPlayerNames(ladderPlayers.getPlayerNames());
-        OutputView.printLadder(ladder.toLineDtoList());
+
+        List<LineDto> lineDtos = ladder.getLadder().stream()
+                .map(LineDto::from)
+                .toList();
+        OutputView.printLadder(lineDtos);
     }
 }

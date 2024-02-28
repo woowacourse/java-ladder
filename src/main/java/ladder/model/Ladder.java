@@ -1,7 +1,7 @@
 package ladder.model;
 
+import java.util.Collections;
 import java.util.stream.IntStream;
-import ladder.dto.LineDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,9 +64,7 @@ public class Ladder {
         return List.of(LadderPath.STAY);
     }
 
-    public List<LineDto> toLineDtoList() {
-        return ladder.stream()
-                .map(LineDto::from)
-                .toList();
+    public List<Line> getLadder() {
+        return Collections.unmodifiableList(ladder);
     }
 }
