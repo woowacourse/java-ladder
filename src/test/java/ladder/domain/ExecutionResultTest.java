@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -92,4 +93,19 @@ class ExecutionResultTest {
         assertThat(expected).isFalse();
     }
 
+    @DisplayName("특정 참여자의 결과 항목이 null인지 확인한다.")
+    @Test
+    void hasNullValueForKey() {
+        // when
+        boolean beforeUpdate = executionResult.hasNullValueForKey(new Name("pobi"));
+
+        executionResult.put(new Name("pobi"), new ResultItem("꽝"));
+        boolean afterUpdate = executionResult.hasNullValueForKey(new Name("pobi"));
+
+        // then
+        assertAll(
+                () -> assertThat(beforeUpdate).isTrue(),
+                () -> assertThat(afterUpdate).isFalse()
+        );
+    }
 }
