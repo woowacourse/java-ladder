@@ -14,6 +14,10 @@ public enum Stick {
         return this == FILLED;
     }
 
+    public boolean isSameType(Stick target) {
+        return this == target;
+    }
+
     public String getShape() {
         return shape;
     }

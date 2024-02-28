@@ -45,7 +45,7 @@ public class Line {
     private boolean isRepeat(Stick stick) {
         Stick lastStick = this.sticks.get(this.sticks.size() - 1);
 
-        return lastStick == stick;
+        return lastStick.isSameType(stick);
     }
 
     private boolean checkRightStickFilled(int position) {
