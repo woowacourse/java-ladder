@@ -25,37 +25,36 @@ public class Ladder {
         return newlines;
     }
 
-    public int climb(int playerIndex) {
+    public Position climb(Position playerPosition) {
         for (Line line : lines) {
-            playerIndex = movePosition(playerIndex, line);
+            playerPosition = movePosition(playerPosition, line);
         }
-        return playerIndex;
+        return playerPosition;
     }
 
-    private int movePosition(int playerIndex, Line line) {
-        if (!isFarLeft(playerIndex) && isLegLeftExist(playerIndex, line)) {
-            return playerIndex - 1;
+    private Position movePosition(Position playerPosition, Line line) {
+        if (!isFarLeft(playerPosition) && isLegLeftExist(playerPosition, line)) {
+            return playerPosition.decrease();
         }
-        if (!isFarRight(playerIndex, line) && isLegRightExist(playerIndex, line)) {
-            return playerIndex + 1;
+        if (!isFarRight(playerPosition, line) && isLegRightExist(playerPosition, line)) {
+            return playerPosition.increase();
         }
-        return playerIndex;
+        return playerPosition;
+    }
+    private boolean isFarLeft(Position playerPosition) {
+        return playerPosition.getIndex() == 0;
     }
 
-    private boolean isFarLeft(int playerIndex) {
-        return playerIndex == 0;
+    private boolean isFarRight(Position playerPosition, Line line) {
+        return playerPosition.getIndex() == line.getLegs().size();
     }
 
-    private boolean isFarRight(int playerIndex, Line line) {
-        return playerIndex == line.getLegs().size();
+    private boolean isLegRightExist(Position playerPosition, Line line) {
+        return line.getLegs().get(playerPosition.getIndex()).isExist();
     }
 
-    private boolean isLegRightExist(int playerIndex, Line line) {
-        return line.getLegs().get(playerIndex).isExist();
-    }
-
-    private boolean isLegLeftExist(int playerIndex, Line line) {
-        return line.getLegs().get(playerIndex - 1).isExist();
+    private boolean isLegLeftExist(Position playerIndex, Line line) {
+        return line.getLegs().get(playerIndex.getIndex() - 1).isExist();
     }
 
     public List<Line> getLines() {

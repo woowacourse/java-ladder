@@ -1,4 +1,5 @@
 import domain.Ladder;
+import domain.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.CustomLineGenerator;
@@ -32,8 +33,8 @@ public class LadderTest {
     void climb() {
         Ladder ladder = Ladder.from(HEIGHT, WIDTH, new CustomLineGenerator());
 
-        assertThat(ladder.climb(1)).isEqualTo(0);
-        assertThat(ladder.climb(2)).isEqualTo(3);
+        assertThat(ladder.climb(new Position(1)).getIndex()).isEqualTo(0);
+        assertThat(ladder.climb(new Position(2)).getIndex()).isEqualTo(3);
     }
 
     @DisplayName("맨 왼쪽에 위치한 참여자의 사다리 타기 결과를 인덱스로 반환한다.")
@@ -41,7 +42,7 @@ public class LadderTest {
     void climbWithLeftPlayer() {
         Ladder ladder = Ladder.from(HEIGHT, WIDTH, new CustomLineGenerator());
 
-        assertThat(ladder.climb(0)).isEqualTo(1);
+        assertThat(ladder.climb(new Position(0)).getIndex()).isEqualTo(1);
     }
 
     @DisplayName("맨 오른쪽에 위치한 참여자의 사다리 타기 결과를 인덱스로 반환한다.")
@@ -49,6 +50,6 @@ public class LadderTest {
     void climbWithRightPlayer() {
         Ladder ladder = Ladder.from(HEIGHT, WIDTH, new CustomLineGenerator());
 
-        assertThat(ladder.climb(3)).isEqualTo(2);
+        assertThat(ladder.climb(new Position(3)).getIndex()).isEqualTo(2);
     }
 }

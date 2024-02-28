@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LadderGameResult {
@@ -14,12 +15,12 @@ public class LadderGameResult {
 
     private void putLadderGameResult(LadderGameResultBuilder builder) {
         Ladder ladder = builder.ladder;
-        Players players = builder.players;
-        Results results = builder.results;
-        players.getPlayers().stream()
+        List<Player> players = builder.players.getPlayers();
+        List<Result> results = builder.results.getResults();
+        players.stream()
                 .forEach(
                         player -> ladderGameResult.put(player,
-                                results.getResults().get(ladder.climb(players.getPlayers().indexOf(player))))
+                                results.get(ladder.climb(new Position(players.indexOf(player))).getIndex()))
                 );
     }
 
