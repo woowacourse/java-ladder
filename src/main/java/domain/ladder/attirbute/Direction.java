@@ -2,8 +2,8 @@ package domain.ladder.attirbute;
 
 public enum Direction {
 
-    LEFT("|---"),
-    RIGHT("---|      "),
+    LEFT("---|      "),
+    RIGHT("|---"),
     DOWN("|      ");
 
     private final String symbol;
