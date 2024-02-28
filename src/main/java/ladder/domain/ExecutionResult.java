@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class ExecutionResult {
 
@@ -22,5 +23,9 @@ public class ExecutionResult {
 
     public List<ResultItem> getAll() {
         return matches.values().stream().toList();
+    }
+
+    public boolean hasNullValue() {
+        return matches.values().stream().anyMatch(Objects::isNull);
     }
 }
