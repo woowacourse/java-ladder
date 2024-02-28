@@ -21,4 +21,8 @@ public enum Direction {
         }
         return directionGenerator.generate();
     }
+
+    public boolean isInvalidLast() {
+        return this == RIGHT;
+    }
 }

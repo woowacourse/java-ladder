@@ -18,4 +18,14 @@ public class DirectionTest {
                 () -> assertThat(RIGHT.next(() -> NONE)).isEqualTo(LEFT)
         );
     }
+
+    @DisplayName("마지막이 RIGHT이면 invalid이다.")
+    @Test
+    void isInvalidLastTest() {
+        assertAll(
+                () -> assertThat(RIGHT.isInvalidLast()).isTrue(),
+                () -> assertThat(LEFT.isInvalidLast()).isFalse(),
+                () -> assertThat(NONE.isInvalidLast()).isFalse()
+        );
+    }
 }

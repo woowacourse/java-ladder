@@ -23,8 +23,7 @@ class LadderLevelTest {
         LadderLevel ladderLevel = new LadderLevel(new Width(2), () -> RIGHT);
 
         int actual = ladderLevel.move(0);
-        int expected = 1;
 
-        assertThat(actual).isEqualTo(expected);
+        assertThat(actual).isEqualTo(1);
     }
 }

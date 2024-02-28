@@ -10,4 +10,8 @@ public record Width(int value) {
             );
         }
     }
+
+    public boolean isLargerThan(int size) {
+        return size < value;
+    }
 }

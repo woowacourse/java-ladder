@@ -18,4 +18,16 @@ public class ResultsTest {
                 () -> assertThat(results.getResult(new Location(1))).isEqualTo(new Result("5000"))
         );
     }
+
+    @DisplayName("모든 결과를 반환한다.")
+    @Test
+    void getAllResultsTest() {
+        Results results = new Results(List.of("꽝", "5000"));
+        List<Result> allResults = results.getResults();
+
+        assertAll(
+                () -> assertThat(allResults.get(0)).isEqualTo(new Result("꽝")),
+                () -> assertThat(allResults.get(1)).isEqualTo(new Result("5000"))
+        );
+    }
 }

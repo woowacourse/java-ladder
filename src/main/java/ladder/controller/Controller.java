@@ -21,11 +21,12 @@ public class Controller {
         Players players = createPlayers();
         Results results = createResults(players.count());
         Height height = createHeight();
+        Ladder ladder = createLadder(new Width(players.count()), height);
 
-        Width width = new Width(players.count());
-        DirectionGenerator randomDirectionGenerator = new RandomDirectionGenerator();
-        Ladder ladder = new Ladder(width, height, randomDirectionGenerator);
+        printOutput(players, ladder, results);
+    }
 
+    private static void printOutput(Players players, Ladder ladder, Results results) {
         ResultsOfPlayers resultsOfPlayers = new ResultsOfPlayers(players, ladder, results);
         OutputView.printLadderResult(players, ladder, results);
         repeatPrintingReward(resultsOfPlayers);
@@ -49,7 +50,7 @@ public class Controller {
             return false;
         }
         if (input.equals(ALL_RESULT_COMMAND)) {
-            OutputView.printAllResults(resultsOfPlayers.getAllResults());
+            OutputView.printAllResults(resultsOfPlayers.getResultsOfPlayers());
             return true;
         }
         OutputView.printResult(resultsOfPlayers.getResultByName(input));
@@ -64,6 +65,15 @@ public class Controller {
         return ExceptionHandler.run(() -> getResults(playersCount));
     }
 
+    private Height createHeight() {
+        return ExceptionHandler.run(InputView::inputHeight);
+    }
+
+    private static Ladder createLadder(Width width, Height height) {
+        DirectionGenerator randomDirectionGenerator = new RandomDirectionGenerator();
+        return new Ladder(width, height, randomDirectionGenerator);
+    }
+
     private static Results getResults(int playersCount) {
         List<String> results = InputView.inputResults();
         validateResultsSize(results, playersCount);
@@ -76,9 +86,5 @@ public class Controller {
                     "실행 결과의 수가 사용자 수와 다릅니다: %d".formatted(results.size())
             );
         }
-    }
-
-    private Height createHeight() {
-        return ExceptionHandler.run(InputView::inputHeight);
     }
 }

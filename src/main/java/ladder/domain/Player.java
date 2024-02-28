@@ -3,8 +3,10 @@ package ladder.domain;
 import java.util.Objects;
 
 public record Player(Name name, Location location) {
+    private static final Location DEFAULT_LOCATION = new Location(0);
+
     public Player(Name name) {
-        this(name, new Location(0));
+        this(name, DEFAULT_LOCATION);
     }
 
     public Player climb(Ladder ladder) {

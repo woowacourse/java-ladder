@@ -43,13 +43,13 @@ public class ResultsOfPlayersTest {
         Ladder ladder = new Ladder(new Width(2), new Height(3), () -> RIGHT);
         ResultsOfPlayers resultsOfPlayers = new ResultsOfPlayers(players, ladder, results);
 
-        Map<Player, Result> allResults = resultsOfPlayers.getAllResults();
+        Map<Player, Result> allResults = resultsOfPlayers.getResultsOfPlayers();
+        Result actualPobyResult = allResults.get(new Player(new Name("poby")));
+        Result actualHonuxResult = allResults.get(new Player(new Name("honux")));
 
         assertAll(
-                () -> assertThat(allResults.get(new Player(new Name("poby"))))
-                        .isEqualTo(new Result("200")),
-                () -> assertThat(allResults.get(new Player(new Name("honux"))))
-                        .isEqualTo(new Result("100"))
+                () -> assertThat(actualPobyResult).isEqualTo(new Result("200")),
+                () -> assertThat(actualHonuxResult).isEqualTo(new Result("100"))
         );
     }
 }

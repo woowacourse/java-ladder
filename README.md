@@ -96,3 +96,9 @@ pobi  honux crong   jk
         - [X] 테스트명 변경
 - [X] Person 추가
 - [X] Person -> Player, People -> Players 로 변경
+- [X] Width 추가
+- [X] Location 추가
+    - [X] Player, Result에서 위치를 나타낸 int 자료형 삭제
+    - [X] Players, LadderLevel, Results Collection 변경
+- [X] Name 추가
+- [X] Player가 Name, Location을 갖도록 변경

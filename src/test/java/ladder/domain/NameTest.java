@@ -2,7 +2,6 @@ package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,9 +14,7 @@ class NameTest {
     void playerConstructTest() {
         Name player = new Name("명오");
 
-        assertAll(
-                () -> assertThat(player.value()).isEqualTo("명오")
-        );
+        assertThat(player.value()).isEqualTo("명오");
     }
 
     @DisplayName("이름이 1~5글자 범위를 벗어나면 예외를 발생한다.")
