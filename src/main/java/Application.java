@@ -1,4 +1,4 @@
-import Controller.LadderController;
+import controller.LadderController;
 import view.InputView;
 import view.OutputView;
 

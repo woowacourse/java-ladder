@@ -10,8 +10,8 @@ public class PlayersPrize {
         this.playersPrize = playersPrize;
     }
 
-    public Prize search(String command) {
-        return playersPrize.get(new Player(command));
+    public Prize search(String playerName) {
+        return playersPrize.get(new Player(playerName));
     }
 
     public Map<Player, Prize> getPlayersPrize() {

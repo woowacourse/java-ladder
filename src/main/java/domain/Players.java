@@ -3,7 +3,6 @@ package domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Players {
     private final List<Player> players;
@@ -20,26 +19,15 @@ public class Players {
     private static List<Player> convertToPlayer(List<String> players) {
         return players.stream()
                 .map(Player::new)
-                .collect(Collectors.toList());
-    }
-
-    private void validateExist(String name) {
-        players.stream()
-                .filter(player -> player.isSameName(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("참여자 중에서만 입력할 수 있습니다."));
+                .toList();
     }
 
     public Player findByIndex(int index) {
         return players.get(index);
     }
 
-    public boolean isCountMoreThan(int index) {
-        return players.size() > index;
-    }
-
-    public boolean isCountOne() {
-        return players.size() == 1;
+    public boolean isCountMoreThan(int input) {
+        return players.size() > input;
     }
 
     public int getCount() {
@@ -47,10 +35,14 @@ public class Players {
     }
 
     public void validateExistPlayer(String inputName) {
-        players.stream()
-                .filter(player -> player.isSameName(inputName))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("존재하는 참가자 중에 입력해야합니다."));
+        if (!isExistPlayer(inputName)) {
+            throw new IllegalArgumentException("존재하는 참가자 중에 입력해야합니다.");
+        }
+    }
+
+    private boolean isExistPlayer(String inputName) {
+        return players.stream()
+                .anyMatch(player -> player.isSameName(inputName));
     }
 
     private void validate(List<Player> players) {

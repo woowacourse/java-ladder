@@ -2,7 +2,6 @@ package domain;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Prizes {
     private final List<Prize> prizes;
@@ -18,7 +17,7 @@ public class Prizes {
     private static List<Prize> convertToPrizes(List<String> prizes) {
         return prizes.stream().
                 map(Prize::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public Prize findByIndex(int index) {

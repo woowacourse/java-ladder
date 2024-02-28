@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import domain.Height;
 import domain.Ladder;
