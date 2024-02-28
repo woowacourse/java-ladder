@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Person {
 
     private final String name;
@@ -24,5 +26,22 @@ public class Person {
         if (this.name.isBlank()) {
             throw new IllegalArgumentException("공백 이름은 허용하지 않습니다.");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Person person = (Person) o;
+        return Objects.equals(name, person.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

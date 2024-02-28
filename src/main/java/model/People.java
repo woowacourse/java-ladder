@@ -23,6 +23,10 @@ public class People {
         return participants.size();
     }
 
+    public int findInitialIndex(Person person) {
+        return this.participants.indexOf(person);
+    }
+
     private void validate(String inputNames) {
         validateSize(inputNames);
         validateDuplicateNames(inputNames);
