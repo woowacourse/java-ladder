@@ -8,13 +8,13 @@ import domain.player.PlayerNames;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class OutputView {
     private static final String LADDER_FRAME = "|";
     private static final String PLAYER_NAMES_FORMAT = "%5s";
     private static final String LADDER_RESULTS_FORMAT = "%5s";
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] : %s";
+    private static final String PLAYERS_LADDER_RESULT_FORMAT = "%s : %s";
     private static final Map<LadderBridge, String> bridgeToMarker;
 
     static {
@@ -71,9 +71,9 @@ public class OutputView {
     }
 
     public void printPlayerLadderResult(Map<String, String> playerNameAndResult) {
-        if(playerNameAndResult.size() > 1) {
+        if (playerNameAndResult.size() > 1) {
             printAllPlayerLadderResult(playerNameAndResult);
-        } else if(playerNameAndResult.size() == 1) {
+        } else if (playerNameAndResult.size() == 1) {
             printSinglePlayerLadderResult(playerNameAndResult);
         }
     }
@@ -81,7 +81,7 @@ public class OutputView {
     private void printAllPlayerLadderResult(Map<String, String> playerNameAndResults) {
         System.out.println("\n실행 결과");
         for (Map.Entry<String, String> nameAndResult : playerNameAndResults.entrySet()) {
-            System.out.println(String.format("%s : %s", nameAndResult.getKey(), nameAndResult.getValue()));
+            System.out.println(String.format(PLAYERS_LADDER_RESULT_FORMAT, nameAndResult.getKey(), nameAndResult.getValue()));
         }
     }
 
