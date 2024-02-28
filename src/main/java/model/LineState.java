@@ -11,17 +11,24 @@ public enum LineState {
         this.state = state;
     }
 
-    public static LineState decideLineState(boolean decision) {
+    public static LineState decideFirstLineState(boolean decision) {
         if (decision) {
             return START;
         }
         return NONE;
     }
 
-    public static LineState decideLineStateWithBeforeState(LineState beforeState, boolean decision) {
+    public static LineState decideMiddleLineState(LineState beforeState, boolean decision) {
         if (START.equals(beforeState)) {
             return END;
         }
-        return decideLineState(decision);
+        return decideFirstLineState(decision);
+    }
+
+    public static LineState decideLastLineState(LineState beforeState) {
+        if (START.equals(beforeState)) {
+            return END;
+        }
+        return NONE;
     }
 }
