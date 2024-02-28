@@ -15,4 +15,12 @@ public class Prizes {
                 .map(Prize::new)
                 .toList());
     }
+
+    public int getPrizeCount() {
+        return prizes.size();
+    }
+
+    public List<Prize> getPrizes() {
+        return List.copyOf(prizes);
+    }
 }
