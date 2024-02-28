@@ -16,4 +16,11 @@ public class Path {
     public boolean hasPath(LineNumber lineNumber) {
         return startLineNumber.value() == lineNumber.value() || endLineNumber.value() == lineNumber.value();
     }
+
+    public int getOtherPathDistance(LineNumber lineNumber) {
+        if (startLineNumber.value() == lineNumber.value()) {
+            return 1;
+        }
+        return -1;
+    }
 }
