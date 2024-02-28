@@ -14,14 +14,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
 
-    private static LineGenerator lineGenerator;
-    private static BooleanGenerator trueGenerator;
-
-    @BeforeAll
-    static void init() {
-        lineGenerator = new RandomLineGenerator();
-        trueGenerator = new TrueGenerator();
-    }
+    private static LineGenerator lineGenerator = new RandomLineGenerator();
+    private static BooleanGenerator trueGenerator = new TrueGenerator();
 
     @DisplayName("라인 객체를 정상적으로 생성한다.")
     @Test
