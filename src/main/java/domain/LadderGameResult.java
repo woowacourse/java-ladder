@@ -2,6 +2,8 @@ package domain;
 
 import domain.name.Name;
 import domain.name.Names;
+import domain.prize.Prize;
+import domain.prize.Prizes;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;

@@ -1,8 +1,12 @@
 package controller;
 
-import domain.*;
+import domain.Height;
+import domain.Ladder;
+import domain.LadderGameResult;
+import domain.LadderIndexConnection;
 import domain.line.NonContinuousLineGenerator;
 import domain.name.Names;
+import domain.prize.Prizes;
 import view.InputView;
 import view.ResultView;
 

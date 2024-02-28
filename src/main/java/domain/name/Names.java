@@ -41,10 +41,6 @@ public class Names {
         return names.size();
     }
 
-    public List<Name> getNames() {
-        return List.copyOf(names);
-    }
-
     public Name findName(String findingName) {
         return names.stream()
                 .filter(name -> name.getName().equals(findingName))
@@ -59,5 +55,9 @@ public class Names {
             }
         }
         throw new IllegalArgumentException("[ERROR] 찾는 이름이 목록에 없습니다.");
+    }
+
+    public List<Name> getNames() {
+        return List.copyOf(names);
     }
 }

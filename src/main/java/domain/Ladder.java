@@ -3,6 +3,7 @@ package domain;
 import domain.line.RowLine;
 import domain.line.RowLineGenerator;
 import domain.name.Names;
+import domain.prize.Prizes;
 
 import java.util.ArrayList;
 import java.util.List;

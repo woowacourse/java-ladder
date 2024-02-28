@@ -1,8 +1,8 @@
 package view;
 
 import domain.Height;
-import domain.Prizes;
 import domain.name.Names;
+import domain.prize.Prizes;
 
 import java.util.Arrays;
 import java.util.List;

@@ -2,11 +2,11 @@ package view;
 
 import domain.ConnectionStatus;
 import domain.Ladder;
-import domain.Prize;
-import domain.Prizes;
 import domain.line.RowLine;
 import domain.name.Name;
 import domain.name.Names;
+import domain.prize.Prize;
+import domain.prize.Prizes;
 
 import java.util.Map;
 import java.util.stream.Collectors;
