@@ -16,4 +16,13 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public String askPrizes() {
+        System.out.printf("%n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)%n");
+        return scanner.nextLine();
+    }
+
+    public String askGameResult() {
+        System.out.printf("%n결과를 보고싶은 사람은?%n");
+        return scanner.nextLine();
+    }
 }
