@@ -16,6 +16,14 @@ public class NameTest {
         assertThat(name.getName()).isEqualTo("name");
     }
 
+    @Test
+    @DisplayName("이름 객체 생성 실패: all 입력")
+    void test_exception_gameCommandAsName() {
+        assertThatThrownBy(() -> Name.from("all"))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("게임에서 지정한 명령어는 이름으로 지정할 수 없습니다: all");
+    }
+
     @ParameterizedTest
     @ValueSource(strings = {"aaaaaa"})
     @DisplayName("이름 객체 생성 실패: 5글자 초과")

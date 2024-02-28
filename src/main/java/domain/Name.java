@@ -5,6 +5,7 @@ public class Name {
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
     private static final String UPPER_LOWER_DIGIT = "^[A-Za-z0-9]+$";
+    private static final String COMMAND_ALL_RESULT = "all";
 
     private final String name;
 
@@ -19,6 +20,7 @@ public class Name {
     }
 
     private void validate(String name) {
+        validateGameCommandInclusion(name);
         validateLength(name);
         validatePattern(name);
     }
@@ -26,6 +28,12 @@ public class Name {
     private static void validateNull(String name) {
         if (name == null) {
             throw new IllegalArgumentException("이름에 null을 입력할 수 없습니다.");
+        }
+    }
+
+    private void validateGameCommandInclusion(String name) {
+        if (name.equals(COMMAND_ALL_RESULT)) {
+            throw new IllegalArgumentException("게임에서 지정한 명령어는 이름으로 지정할 수 없습니다: " + name);
         }
     }
 
