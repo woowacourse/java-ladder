@@ -18,14 +18,14 @@ public class LadderResultTest {
         @ParameterizedTest
         @ValueSource(strings = {"a", "abcde"})
         @DisplayName("사다리 실행 결과 길이가 1 이상, 5 이하가 아니면 정상적으로 생성된다")
-        void createLadderResultSuccessWithLength(String value) {
+        void createLadderResultSuccessWithLength(final String value) {
             Assertions.assertThatCode(() -> new LadderResult(value));
         }
 
         @ParameterizedTest
         @ValueSource(strings = {"", "abcdef"})
         @DisplayName("사다리 실행 결과 길이가 1 미만, 5 초과이면 예외가 발생한다")
-        void createLadderResultFailByLength(String value) {
+        void createLadderResultFailByLength(final String value) {
             Assertions.assertThatThrownBy(() -> new LadderResult(value))
                     .isInstanceOf(ValidationException.class)
                     .hasMessage(LadderResult.LENGTH_ERROR_MESSAGE);

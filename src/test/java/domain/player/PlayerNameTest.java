@@ -18,7 +18,7 @@ public class PlayerNameTest {
         @ParameterizedTest
         @ValueSource(strings = {"name", "이름"})
         @DisplayName("영어 또는 한글이면 정상적으로 생성된다")
-        void createPlayerNameSuccessWithFormat(String value) {
+        void createPlayerNameSuccessWithFormat(final String value) {
             Assertions.assertThatCode(() -> new PlayerName(value))
                     .doesNotThrowAnyException();
         }
@@ -26,7 +26,7 @@ public class PlayerNameTest {
         @ParameterizedTest
         @ValueSource(strings = {"1", "^%&"})
         @DisplayName("영어 또는 한글이 아니면 예외가 발생한다")
-        void createPlayerNameFailByFormat(String value) {
+        void createPlayerNameFailByFormat(final String value) {
             Assertions.assertThatThrownBy(() -> new PlayerName(value))
                     .isInstanceOf(ValidationException.class)
                     .hasMessage(PlayerName.FORMAT_ERROR_MESSAGE);
@@ -53,7 +53,7 @@ public class PlayerNameTest {
         @ParameterizedTest
         @ValueSource(strings = {"a", "abcde"})
         @DisplayName("길이가 1 이상, 5 이하이면 정상적으로 생성된다")
-        void createPlayerNameSuccessWithLength(String name) {
+        void createPlayerNameSuccessWithLength(final String name) {
             Assertions.assertThatCode(() -> new PlayerName(name))
                     .doesNotThrowAnyException();
         }
@@ -61,7 +61,7 @@ public class PlayerNameTest {
         @ParameterizedTest
         @ValueSource(strings = {"", "abcdef"})
         @DisplayName("길이가 1 미만, 5 초과이면 예외가 발생한다")
-        void createPlayerNameFailByLength(String name) {
+        void createPlayerNameFailByLength(final String name) {
             Assertions.assertThatThrownBy(() -> new PlayerName(name))
                     .isInstanceOf(ValidationException.class)
                     .hasMessage(PlayerName.LENGTH_ERROR_MESSAGE);

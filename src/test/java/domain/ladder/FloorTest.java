@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 public class FloorTest {
+
     @Test
     @DisplayName("가로 라인이 연속되는 다리는 생성되지 않는다")
     void createLineSuccessWithNoneSerialBridges() {

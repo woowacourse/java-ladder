@@ -23,7 +23,7 @@ class PlayerNamesTest {
         @ParameterizedTest
         @MethodSource("createPlayerNamesSuccessWithRangeArguments")
         @DisplayName("참가자 수가 2 이상, 10 이하이면 정상적으로 생성된다")
-        void createPlayerNamesSuccessWithRange(List<PlayerName> playerNames) {
+        void createPlayerNamesSuccessWithRange(final List<PlayerName> playerNames) {
             Assertions.assertThatCode(() -> new PlayerNames(playerNames))
                     .doesNotThrowAnyException();
         }
@@ -40,7 +40,7 @@ class PlayerNamesTest {
         @ParameterizedTest
         @MethodSource("createPlayerNamesFailByRangeArguments")
         @DisplayName("참가자 수가 2 미만, 10 초과이면 예외가 발생한다")
-        void createPlayerNamesFailByRange(List<PlayerName> playerNames) {
+        void createPlayerNamesFailByRange(final List<PlayerName> playerNames) {
             Assertions.assertThatThrownBy(() -> new PlayerNames(playerNames))
                     .isInstanceOf(ValidationException.class)
                     .hasMessage(PlayerNames.RANGE_ERROR_MESSAGE);

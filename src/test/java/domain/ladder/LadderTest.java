@@ -25,7 +25,8 @@ public class LadderTest {
         @ParameterizedTest
         @MethodSource("createLadderSuccessWithHeightAndPointCountArguments")
         @DisplayName("사다리 높이가 2 이상, 10 이하이며 사람의 수가 2 이상, 10 이하이면 정상적으로 생성된다")
-        void createLadderSuccessWithHeightAndPointCount(LadderHeight height, LadderResults results, PlayerNames playerNames, List<LadderBridge> bridges) {
+        void createLadderSuccessWithHeightAndPointCount(final LadderHeight height, final LadderResults results,
+                                                        final PlayerNames playerNames, final List<LadderBridge> bridges) {
             //given
             BridgeGeneratorStub bridgeGeneratorStub = new BridgeGeneratorStub();
             bridgeGeneratorStub.setBridges(bridges);
@@ -58,7 +59,8 @@ public class LadderTest {
         @ParameterizedTest
         @MethodSource("createLadderFailByPlayerCountArguments")
         @DisplayName("사람의 수가 2 미만, 10 초과이면 사다리 높이가 2 이상, 10 이상이어도 예외가 발생한다")
-        void createLadderFailByHeightAndPointCount(LadderHeight height, LadderResults results, List<PlayerName> playerNames) {
+        void createLadderFailByHeightAndPointCount(final LadderHeight height, final LadderResults results,
+                                                   final List<PlayerName> playerNames) {
             Assertions.assertThatThrownBy(
                             () -> Ladder.create(height, new PlayerNames(playerNames), results, new BridgeGeneratorStub()))
                     .isInstanceOf(ValidationException.class)
@@ -83,7 +85,8 @@ public class LadderTest {
         @ParameterizedTest
         @MethodSource("createLadderFailByHeightArguments")
         @DisplayName("사다리 높이가 2 미만, 10 초과이면 사람의 수가 2 이상, 10 이하여도 예외가 발생한다")
-        void createLadderFailByHeightAndPointCount(int height, LadderResults results, PlayerNames playerNames) {
+        void createLadderFailByHeightAndPointCount(final int height, final LadderResults results,
+                                                   final PlayerNames playerNames) {
             Assertions.assertThatThrownBy(
                             () -> Ladder.create(new LadderHeight(height), playerNames, results, new BridgeGeneratorStub()))
                     .isInstanceOf(ValidationException.class);
@@ -110,8 +113,8 @@ public class LadderTest {
         @ParameterizedTest
         @MethodSource("getSinglePlayerLadderResultSuccessArguments")
         @DisplayName("단일 참가자의 결과를 출력한다")
-        void getSinglePlayerLadderResultSuccess(LadderHeight height, LadderResults results, PlayerNames playerNames,
-                                                List<LadderBridge> bridges) {
+        void getSinglePlayerLadderResultSuccess(final LadderHeight height, final LadderResults results,
+                                                final PlayerNames playerNames, final List<LadderBridge> bridges) {
             //given
             BridgeGeneratorStub bridgeGeneratorStub = new BridgeGeneratorStub();
             bridgeGeneratorStub.setBridges(bridges);
@@ -143,7 +146,8 @@ public class LadderTest {
         @ParameterizedTest
         @MethodSource("getAllPlayersLadderResultSuccessByArguments")
         @DisplayName("전체 참가자의 결과를 조회한다")
-        void test(LadderHeight height, LadderResults results, PlayerNames playerNames, List<LadderBridge> bridges) {
+        void test(final LadderHeight height, final LadderResults results, final PlayerNames playerNames,
+                  final List<LadderBridge> bridges) {
             //given
             BridgeGeneratorStub bridgeGeneratorStub = new BridgeGeneratorStub();
             bridgeGeneratorStub.setBridges(bridges);

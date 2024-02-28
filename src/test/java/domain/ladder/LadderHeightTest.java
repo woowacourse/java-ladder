@@ -28,7 +28,7 @@ public class LadderHeightTest {
         @ParameterizedTest
         @ValueSource(ints = {2, 10})
         @DisplayName("높이가 2 이상, 10 이하라면 정상적으로 생성된다")
-        void createLadderHeightSuccessWithRange(int value) {
+        void createLadderHeightSuccessWithRange(final int value) {
             LadderHeight ladderHeight = new LadderHeight(value);
             Assertions.assertThat(ladderHeight.getValue()).isEqualTo(value);
         }
@@ -36,7 +36,7 @@ public class LadderHeightTest {
         @ParameterizedTest
         @ValueSource(ints = {1, 11})
         @DisplayName("높이가 2 미만, 10 초과라면 예외가 발생한다")
-        void createLadderHeightFailByRange(int value) {
+        void createLadderHeightFailByRange(final int value) {
             Assertions.assertThatThrownBy(() -> new LadderHeight(value))
                     .isInstanceOf(ValidationException.class)
                     .hasMessage(LadderHeight.RANGE_ERROR_MESSAGE);

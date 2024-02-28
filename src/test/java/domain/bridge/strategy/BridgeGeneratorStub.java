@@ -9,7 +9,7 @@ import java.util.List;
 public class BridgeGeneratorStub implements BridgeGenerator {
     private List<LadderBridge> bridges;
 
-    public void setBridges(List<LadderBridge> bridges) {
+    public void setBridges(final List<LadderBridge> bridges) {
         this.bridges = bridges;
     }
 
@@ -18,7 +18,7 @@ public class BridgeGeneratorStub implements BridgeGenerator {
     }
 
     @Override
-    public List<LadderBridge> generate(int count) {
+    public List<LadderBridge> generate(final int count) {
         return bridges;
     }
 }

@@ -22,7 +22,7 @@ public class LadderResultsTest {
         @ParameterizedTest
         @MethodSource("createLadderResultsSuccessWithSizeArguments")
         @DisplayName("사다리 실행 결과의 수가 참가자 이름의 수와 다르면 예외가 발생한다")
-        void createLadderResultsSuccessWithSize(String[] ladderResults, List<PlayerName> playerNames) {
+        void createLadderResultsSuccessWithSize(final String[] ladderResults, final List<PlayerName> playerNames) {
             //given
             int playerCount = playerNames.size();
 
@@ -41,7 +41,7 @@ public class LadderResultsTest {
         @ParameterizedTest
         @MethodSource("createLadderResultsFailBySizeArguments")
         @DisplayName("사다리 실행 결과의 수가 참가자 이름의 수와 다르면 예외가 발생한다")
-        void createLadderResultsFailBySize(String[] ladderResults, List<PlayerName> playerNames) {
+        void createLadderResultsFailBySize(final String[] ladderResults, final List<PlayerName> playerNames) {
             //given
             int playerCount = playerNames.size();
 
