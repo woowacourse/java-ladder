@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import domain.LineTest.FixedBooleanGenerator;
+import domain.generator.FixedGenerator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ public class LadderTest {
     @Test
     public void create() {
         Ladder ladder = new Ladder(new Players(List.of("pobi", "tommy")), new Height(5),
-                new FixedBooleanGenerator(true));
+                new FixedGenerator());
 
         assertThat(ladder.getLines().size()).isEqualTo(5);
     }
@@ -24,7 +24,7 @@ public class LadderTest {
     @Test
     public void getLines() {
         Ladder ladder = new Ladder(new Players(List.of("pobi", "tommy")), new Height(5),
-                new FixedBooleanGenerator(true));
+                new FixedGenerator());
 
         assertAll(
                 () -> assertThatCode(

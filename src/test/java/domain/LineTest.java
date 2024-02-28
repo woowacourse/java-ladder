@@ -2,7 +2,7 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import domain.booleangenerator.BooleanGenerator;
+import domain.generator.FixedGenerator;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +16,7 @@ public class LineTest {
     @ParameterizedTest
     @MethodSource("createLineBridgeCountsArguments")
     public void getPointCount(Players players, int expectedLinesCount) {
-        assertThat(new Line(players.getTotalPlayerSize(), new FixedBooleanGenerator(true)).getBridgeCount())
+        assertThat(new Line(players.getTotalPlayerSize(), new FixedGenerator()).getBridgeCount())
                 .isEqualTo(expectedLinesCount);
     }
 
@@ -31,7 +31,7 @@ public class LineTest {
     @ParameterizedTest
     @MethodSource("createLineBridges")
     public void createLineNonContinuous(Players players, List<Bridge> bridges) {
-        Line line = new Line(players.getTotalPlayerSize(), new FixedBooleanGenerator(true));
+        Line line = new Line(players.getTotalPlayerSize(), new FixedGenerator());
 
         assertThat(line.getBridges()).isEqualTo(bridges);
     }
@@ -42,19 +42,5 @@ public class LineTest {
                 Arguments.arguments(new Players(List.of("pobi", "tommy", "woni", "lisa", "brown")),
                         List.of(Bridge.EXIST, Bridge.BLANK, Bridge.EXIST, Bridge.BLANK))
         );
-    }
-
-    static class FixedBooleanGenerator implements BooleanGenerator {
-
-        private final boolean value;
-
-        public FixedBooleanGenerator(boolean value) {
-            this.value = value;
-        }
-
-        @Override
-        public boolean generate() {
-            return value;
-        }
     }
 }

@@ -1,8 +1,8 @@
-package domain.booleangenerator;
+package domain.generator;
 
 import java.util.Random;
 
-public class RandomBooleanGenerator implements BooleanGenerator {
+public class RandomGenerator implements Generator {
 
     private static final Random RANDOM = new Random();
 

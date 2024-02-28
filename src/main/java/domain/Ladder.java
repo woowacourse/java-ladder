@@ -1,6 +1,6 @@
 package domain;
 
-import domain.booleangenerator.BooleanGenerator;
+import domain.generator.Generator;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,9 +10,9 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(Players players, Height height, BooleanGenerator booleanGenerator) {
+    public Ladder(Players players, Height height, Generator generator) {
         this.lines = IntStream.range(0, height.getHeight())
-                .mapToObj(number -> new Line(players.getTotalPlayerSize(), booleanGenerator))
+                .mapToObj(number -> new Line(players.getTotalPlayerSize(), generator))
                 .collect(Collectors.toList());
     }
 

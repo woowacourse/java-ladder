@@ -1,4 +1,4 @@
-import domain.booleangenerator.RandomBooleanGenerator;
+import domain.generator.RandomGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         LadderGame ladderGame = new LadderGame(new InputView(), new OutputView(),
-                new RandomBooleanGenerator());
+                new RandomGenerator());
 
         ladderGame.run();
     }

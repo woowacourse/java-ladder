@@ -1,6 +1,6 @@
 package domain;
 
-import domain.booleangenerator.BooleanGenerator;
+import domain.generator.Generator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,19 +9,19 @@ public class Line {
 
     private final List<Bridge> bridges = new ArrayList<>();
 
-    public Line(int playersCount, BooleanGenerator booleanGenerator) {
-        generate(playersCount, booleanGenerator);
+    public Line(int playersCount, Generator generator) {
+        generate(playersCount, generator);
     }
 
-    private void generate(int playersCount, BooleanGenerator booleanGenerator) {
+    private void generate(int playersCount, Generator generator) {
         for (int position = 0; position < playersCount - 1; position++) {
-            makePoint(booleanGenerator);
+            makePoint(generator);
         }
     }
 
-    private void makePoint(BooleanGenerator booleanGenerator) {
+    private void makePoint(Generator generator) {
         if (bridges.isEmpty() || isPreviousBridgeBlank()) {
-            makeBridge(booleanGenerator);
+            makeBridge(generator);
             return;
         }
         addBlankBridge();
@@ -35,8 +35,8 @@ public class Line {
         bridges.add(Bridge.BLANK);
     }
 
-    private void makeBridge(BooleanGenerator booleanGenerator) {
-        if (booleanGenerator.generate()) {
+    private void makeBridge(Generator generator) {
+        if (generator.generate()) {
             bridges.add(Bridge.EXIST);
             return;
         }
