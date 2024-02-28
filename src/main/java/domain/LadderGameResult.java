@@ -27,6 +27,12 @@ public class LadderGameResult {
         return ladderResult;
     }
 
+    private void validateNamesLadderResultLength(Names names, LadderResults ladderResults) {
+        if (names.count() != ladderResults.count()) {
+            throw new LadderGameException(ExceptionType.NOT_ALLOW_DIFFERENT_NAMES_LADDER_RESULTS_LENGTH);
+        }
+    }
+
     private Map<Name, LadderResult> calculateLadderGameResult(Names names, LadderResults ladderResults, Ladder ladder) {
         Map<Integer, Integer> nameIndexMap = new HashMap<>();
         initNameIndexMap(names, nameIndexMap);
@@ -34,23 +40,15 @@ public class LadderGameResult {
         return setLadderGameResult(names, ladderResults, nameIndexMap);
     }
 
-    private Map<Name, LadderResult> setLadderGameResult(Names names, LadderResults ladderResults,
-                                                        Map<Integer, Integer> nameIndexMap) {
-        return IntStream.range(0, names.getNames().size())
-                .boxed()
-                .collect(Collectors.toMap(index -> names.getNames().get(index),
-                        index -> ladderResults.getLadderResults().get(nameIndexMap.get(index))));
+    private void initNameIndexMap(Names names, Map<Integer, Integer> nameIndexMap) {
+        IntStream.range(0, names.count())
+                .forEach(index -> nameIndexMap.put(index, index));
     }
 
     private void calculateLadder(Ladder ladder, Map<Integer, Integer> nameIndexMap) {
         ladder.getLadder().stream()
                 .map(Bridges::getBridges)
                 .forEach(bridges -> swapNameIndexMap(nameIndexMap, bridges));
-    }
-
-    private void initNameIndexMap(Names names, Map<Integer, Integer> nameIndexMap) {
-        IntStream.range(0, names.count())
-                .forEach(index -> nameIndexMap.put(index, index));
     }
 
     private void swapNameIndexMap(Map<Integer, Integer> nameIndexMap, List<Boolean> bridges) {
@@ -66,10 +64,12 @@ public class LadderGameResult {
             nameIndexMap.put(index, right);
         }
     }
-
-    private void validateNamesLadderResultLength(Names names, LadderResults ladderResults) {
-        if (names.count() != ladderResults.count()) {
-            throw new LadderGameException(ExceptionType.NOT_ALLOW_DIFFERENT_NAMES_LADDER_RESULTS_LENGTH);
-        }
+    
+    private Map<Name, LadderResult> setLadderGameResult(Names names, LadderResults ladderResults,
+                                                        Map<Integer, Integer> nameIndexMap) {
+        return IntStream.range(0, names.getNames().size())
+                .boxed()
+                .collect(Collectors.toMap(index -> names.getNames().get(index),
+                        index -> ladderResults.getLadderResults().get(nameIndexMap.get(index))));
     }
 }
