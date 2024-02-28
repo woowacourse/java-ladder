@@ -1,49 +1,53 @@
 package domain;
 
-import static java.util.function.Function.identity;
-import static java.util.stream.Collectors.toMap;
-
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.stream.IntStream;
 
 public class LadderResult {
 
-    public static final int ONE_STEP = 1;
-
-    private Map<Integer, Integer> firstAndLastPosition;
+    private final Map<Position, Position> firstAndLastPosition;
 
     public LadderResult(Ladder ladder, int participantsCount) {
+        firstAndLastPosition = new LinkedHashMap<>();
         initPosition(ladder, participantsCount);
-        calculatePosition(0, ladder, participantsCount);
+        calculatePosition(ladder);
     }
 
     private void initPosition(Ladder ladder, int participantsCount) {
-        this.firstAndLastPosition = IntStream.range(0, participantsCount)
-                .boxed()
-                .collect(toMap(identity(), identity()));
-    }
-
-    private void calculatePosition(int floor, Ladder ladder, int participantsCount) {
-        if (ladder.isFinish(floor)) {
-            return;
-        }
         for (int i = 0; i < participantsCount; i++) {
-            move(ladder, floor, i);
+            firstAndLastPosition.put(new Position(i), new Position(i));
         }
-        calculatePosition(floor + 1, ladder, participantsCount);
     }
 
-    private void move(Ladder ladder, int floor, int i) {
-        if (ladder.canMoveLeft(floor, firstAndLastPosition.get(i))) {
-            firstAndLastPosition.put(i, firstAndLastPosition.get(i) - ONE_STEP);
+    private void calculatePosition(Ladder ladder) {
+        for (int floor = 0; !ladder.isFinish(floor); floor++) {
+            moveAllPosition(ladder, floor);
+        }
+    }
+
+    private void moveAllPosition(Ladder ladder, int floor) {
+        for (Map.Entry<Position, Position> entry : firstAndLastPosition.entrySet()) {
+            Position firstPosition = entry.getKey();
+            moveEachPosition(ladder, floor, firstPosition);
+        }
+    }
+
+    private void moveEachPosition(Ladder ladder, int floor, Position firstPosition) {
+        if (ladder.canMoveLeft(floor, firstAndLastPosition.get(firstPosition).getPosition())) {
+            firstAndLastPosition.get(firstPosition).movePositionLeft();
             return;
         }
-        if (ladder.canMoveRight(floor, firstAndLastPosition.get(i))) {
-            firstAndLastPosition.put(i, firstAndLastPosition.get(i) + ONE_STEP);
+        if (ladder.canMoveRight(floor, firstAndLastPosition.get(firstPosition).getPosition())) {
+            firstAndLastPosition.get(firstPosition).movePositionRight();
         }
     }
 
-    public int getOneResult(int firstPosition) {
-        return firstAndLastPosition.get(firstPosition);
+    public int getOneResult(int firstPositionValue) {
+        return firstAndLastPosition.entrySet()
+                .stream()
+                .filter(positions -> positions.getKey().getPosition() == firstPositionValue)
+                .mapToInt(positions -> positions.getValue().getPosition())
+                .findFirst()
+                .getAsInt();
     }
 }
