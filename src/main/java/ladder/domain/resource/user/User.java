@@ -15,10 +15,6 @@ public class User {
         this.userName = userName;
     }
 
-    public String getUserName() {
-        return this.userName;
-    }
-
     private void validateUserName(String userName) {
         validateNameLength(userName);
         validateNameEngFormat(userName);
@@ -41,5 +37,9 @@ public class User {
         if (name.contains(BLANK)) {
             throw new IllegalArgumentException("[ERROR] 사용자 이름 내에는 공백을 허용하지 않습니다.");
         }
+    }
+
+    public String getUserName() {
+        return this.userName;
     }
 }

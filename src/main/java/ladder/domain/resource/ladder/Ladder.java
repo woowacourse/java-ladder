@@ -17,18 +17,18 @@ public class Ladder {
     }
 
     public int getWidth() {
-        return lines.get(0).getLineSize();
+        return lines.get(0).getSize();
+    }
+
+    private void validateConsistentLineSize(List<Line> lines) {
+        int expectedLineCount = lines.get(0).getSize();
+
+        if (!lines.stream().allMatch(line -> line.getSize() == expectedLineCount)) {
+            throw new IllegalArgumentException("[ERROR] 사다리의 모든 라인의 너비는 동일해야 합니다.");
+        }
     }
 
     public List<Line> getLines() {
         return lines;
-    }
-
-    private void validateConsistentLineSize(List<Line> lines) {
-        int expectedLineCount = lines.get(0).getLineSize();
-
-        if (!lines.stream().allMatch(line -> line.getLineSize() == expectedLineCount)) {
-            throw new IllegalArgumentException("[ERROR] 사다리의 모든 라인의 너비는 동일해야 합니다.");
-        }
     }
 }

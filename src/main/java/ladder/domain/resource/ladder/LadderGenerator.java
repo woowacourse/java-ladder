@@ -31,6 +31,7 @@ public class LadderGenerator {
         for (int i = 0; i < count; i++) {
             Line line = lineGenerator.generateLine();
             lineGenerator.insertDirectionIntoLine(line, width);
+            lines.add(line);
         }
 
         return lines;

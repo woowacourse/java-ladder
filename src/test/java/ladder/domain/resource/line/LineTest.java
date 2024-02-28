@@ -19,7 +19,7 @@ class LineTest {
         line.addDirection(direction);
 
         //then
-        assertThat(line.getDirectionsInfo()).containsExactly(direction);
+        assertThat(line.getDirections()).containsExactly(direction);
     }
 
     @DisplayName("Line의 마지막 이동 방향을 반환한다.")
@@ -48,7 +48,7 @@ class LineTest {
         line.addDirection(Direction.RIGHT);
 
         //when
-        int lineSize = line.getLineSize();
+        int lineSize = line.getSize();
 
         //then
         assertThat(lineSize).isEqualTo(1);

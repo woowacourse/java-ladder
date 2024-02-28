@@ -16,12 +16,12 @@ public class Users {
         this.users = users;
     }
 
-    public int getNumberOfUsers() {
+    public int getSize() {
         return users.size();
     }
 
-    public List<User> getUsers() {
-        return users;
+    public User getUserByIndex(int index) {
+        return users.get(index);
     }
 
     private void validateUsers(List<User> users) {
@@ -43,5 +43,9 @@ public class Users {
         if (distinctNames.size() != users.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 사용자명이 존재합니다.");
         }
+    }
+
+    public List<User> getUsers() {
+        return users;
     }
 }
