@@ -18,6 +18,13 @@ public enum Stick {
         return this == target;
     }
 
+    public Stick getOpposite() {
+        if (this.isSameType(Stick.FILLED)) {
+            return Stick.NOT_FILLED;
+        }
+        return Stick.FILLED;
+    }
+
     public String getShape() {
         return shape;
     }
