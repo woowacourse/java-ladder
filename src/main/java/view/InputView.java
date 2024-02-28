@@ -11,7 +11,7 @@ public class InputView {
     }
 
     public static String input(String inputRequestMessage) {
-        System.out.print(inputRequestMessage);
+        System.out.println(inputRequestMessage);
         return scanner.nextLine();
     }
 
