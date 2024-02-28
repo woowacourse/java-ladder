@@ -24,8 +24,8 @@ public class LadderLevel {
         return ladderLevel.stream();
     }
 
-    public int move(int location) {
-        return location + getDirectionOf(location).getMovement();
+    public Location move(Location location) {
+        return new Location(location.value() + getDirectionOf(location).getMovement());
     }
 
     private void addDirection(DirectionGenerator directionGenerator) {
@@ -40,7 +40,7 @@ public class LadderLevel {
         }
     }
 
-    private Direction getDirectionOf(int location) {
-        return ladderLevel.get(location);
+    private Direction getDirectionOf(Location location) {
+        return ladderLevel.get(location.value());
     }
 }

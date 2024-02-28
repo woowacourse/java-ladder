@@ -27,8 +27,8 @@ public class Ladder {
         return resultPlayers;
     }
 
-    private int findResultLocation(Player player) {
-        int currentLocation = player.location();
+    private Location findResultLocation(Player player) {
+        Location currentLocation = player.location();
         for (LadderLevel ladderLevel : ladderLevels) {
             currentLocation = ladderLevel.move(currentLocation);
         }

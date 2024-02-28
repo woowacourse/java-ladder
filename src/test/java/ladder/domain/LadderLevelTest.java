@@ -37,8 +37,8 @@ class LadderLevelTest {
     void ladderLevelMoveTest() {
         LadderLevel ladderLevel = new LadderLevel(2, () -> RIGHT);
 
-        int actual = ladderLevel.move(0);
-        int expected = 1;
+        Location actual = ladderLevel.move(new Location(0));
+        Location expected = new Location(1);
 
         assertThat(actual).isEqualTo(expected);
     }

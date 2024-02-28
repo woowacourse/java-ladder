@@ -16,14 +16,14 @@ public class Results {
         }
         this.results = new ArrayList<>();
         IntStream.range(0, playersCount)
-                .forEach(index -> this.results.add(new Result(results.get(index), index)));
+                .forEach(index -> this.results.add(new Result(results.get(index), new Location(index))));
     }
 
     public Stream<Result> stream() {
         return results.stream();
     }
 
-    public String getResultReward(int location) {
+    public String getResultReward(Location location) {
         return results.stream()
                 .filter(result -> result.hasSameLocation(location))
                 .findFirst()

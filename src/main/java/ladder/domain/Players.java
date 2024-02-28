@@ -14,7 +14,7 @@ public class Players {
         validate(names);
         players = new ArrayList<>();
         IntStream.range(0, names.size())
-                .forEach(index -> players.add(new Player(names.get(index), index)));
+                .forEach(index -> players.add(new Player(names.get(index), new Location(index))));
     }
 
     public Stream<Player> stream() {

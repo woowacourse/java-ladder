@@ -14,7 +14,7 @@ public class RewardsOfPlayers {
                 .forEach(location ->
                         rewardsOfPlayers.put(
                                 getNameByLocation(resultPlayers, location),
-                                results.getResultReward(location)
+                                results.getResultReward(new Location(location))
                         )
                 );
     }
@@ -33,7 +33,7 @@ public class RewardsOfPlayers {
 
     private static String getNameByLocation(List<Player> resultPlayers, int location) {
         return resultPlayers.stream()
-                .filter(player -> player.hasSameLocation(location))
+                .filter(player -> player.hasSameLocation(new Location(location)))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("잘못된 사용자 결과 목록이 입력되었습니다."))
                 .name();

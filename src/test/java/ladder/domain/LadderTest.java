@@ -39,8 +39,8 @@ class LadderTest {
         List<Player> actual = ladder.findAllResultPlayers(players);
 
         assertThat(actual).isEqualTo(List.of(
-                new Player("poby", 1),
-                new Player("honux", 0)
+                new Player("poby", new Location(1)),
+                new Player("honux", new Location(0))
         ));
     }
 }
