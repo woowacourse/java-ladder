@@ -136,26 +136,17 @@ class GameBoardTest {
         @DisplayName("특정 플레이어의 Prize를 검색하여 반환한다.")
         void searchSpecificPlayersPrize() {
             // When
-            Prize resultPrize1 = gameBoard.getSpecificPlayerResult(new Name("도비"));
-            Prize resultPrize2 = gameBoard.getSpecificPlayerResult(new Name("조이썬"));
-            Prize resultPrize3 = gameBoard.getSpecificPlayerResult(new Name("포비"));
-            Prize resultPrize4 = gameBoard.getSpecificPlayerResult(new Name("오리"));
-
-            Prize expectedPrize1 = prizes.getValue()
-                                         .get(0);
-            Prize expectedPrize2 = prizes.getValue()
-                                         .get(1);
-            Prize expectedPrize3 = prizes.getValue()
-                                         .get(2);
-            Prize expectedPrize4 = prizes.getValue()
-                                         .get(3);
+            String resultPrize1 = gameBoard.getSpecificPlayerResult(new Name("도비"));
+            String resultPrize2 = gameBoard.getSpecificPlayerResult(new Name("조이썬"));
+            String resultPrize3 = gameBoard.getSpecificPlayerResult(new Name("포비"));
+            String resultPrize4 = gameBoard.getSpecificPlayerResult(new Name("오리"));
 
             // Then
             assertAll(() -> {
-                assertEquals(expectedPrize1, resultPrize1);
-                assertEquals(expectedPrize2, resultPrize2);
-                assertEquals(expectedPrize3, resultPrize3);
-                assertEquals(expectedPrize4, resultPrize4);
+                assertEquals("1", resultPrize1);
+                assertEquals("2", resultPrize2);
+                assertEquals("3", resultPrize3);
+                assertEquals("4", resultPrize4);
             });
 
         }
