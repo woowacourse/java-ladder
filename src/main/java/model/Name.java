@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Name {
 
     private static final String NULL_EMPTY_NAME = "참가자의 이름은 null 이거나 공백일 수 없습니다.";
@@ -24,6 +26,23 @@ public class Name {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(OVER_LENGTH_NAME);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Name name = (Name) o;
+        return Objects.equals(value, name.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 
     @Override
