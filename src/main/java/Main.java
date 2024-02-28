@@ -15,6 +15,7 @@ public class Main {
     private static final OutputView outputView = new OutputView();
     private static final ErrorHandler errorHandler = new ErrorHandler();
     private static final PointStrategy pointStrategy = new RandomPointStrategy();
+    private static final String COMMAND_ALL_RESULT = "all";
 
     public static void main(String[] args) {
         Members members = errorHandler.readUntilNoError(Main::makeMembers);
@@ -48,7 +49,7 @@ public class Main {
     }
 
     private static boolean isAllResultPrinted(String memberName, Map<String, String> rewardMap) {
-        if (memberName.equals("all")) {
+        if (memberName.equals(COMMAND_ALL_RESULT)) {
             outputView.printAllResult(rewardMap);
             return true;
         }
@@ -58,7 +59,7 @@ public class Main {
 
     private static String makeMemberName(Map<String, String> rewardMap) {
         String memberName = inputView.readMemberName();
-        if (memberName.equals("all")) {
+        if (memberName.equals(COMMAND_ALL_RESULT)) {
             return memberName;
         }
         if (!rewardMap.containsKey(memberName)) {
