@@ -13,6 +13,7 @@ public class InputView {
     private static final String INPUT_PARTICIPANT_NAMES = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String INPUT_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
     private static final String INPUT_GAME_RESULT = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String INPUT_PARTICIPANT_NAME_FOR_RESULT = "결과를 보고 싶은 사람은?";
     private static final String NULL_EMPTY_INPUT = "입력이 null이거나 빈 문자열 일 수 없습니다.";
     private static final String NOT_NUMERIC_INPUT = "입력이 숫자로 구성되어 있지 않습니다.";
     private static final String DELIMITER = ",";
@@ -67,5 +68,12 @@ public class InputView {
         if (!NUMERIC_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException(NOT_NUMERIC_INPUT);
         }
+    }
+
+    public String inputParticipantNameForResult() {
+        System.out.println(INPUT_PARTICIPANT_NAME_FOR_RESULT);
+        String input = in.nextLine();
+        validateNotNullAndBlank(input);
+        return input;
     }
 }

@@ -5,6 +5,7 @@ import model.Height;
 import model.Ladder;
 import model.LadderGame;
 import model.LadderRowGenerator;
+import model.Name;
 import model.Participants;
 import model.RandomBooleanGenerator;
 import view.InputView;
@@ -32,5 +33,8 @@ public class LadderController {
         outputView.printParticipantsName(participants);
         outputView.printLadder(ladder);
         outputView.printResults(results);
+        String name = inputView.inputParticipantNameForResult();
+        String participantResult = ladderGame.findParticipantResult(new Name(name));
+
     }
 }
