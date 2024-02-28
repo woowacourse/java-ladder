@@ -14,7 +14,7 @@ class PlayersTest {
     void occurExceptionIfNameIsDuplicated() {
         assertThatThrownBy(() -> new Players(List.of("test1", "test2", "test2")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참가자의 이름은 중복될 수 없습니다.");
+                .hasMessage(Players.ERROR_DUPLICATED_NAME);
     }
 
     @DisplayName("결과를 조회할 참여자의 인덱스를 반환한다.")

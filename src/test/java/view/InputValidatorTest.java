@@ -24,7 +24,7 @@ public class InputValidatorTest {
     void occurExceptionIfPlayerNameIsNullOrBlank(String name) {
         assertThatThrownBy(() -> InputValidator.validatePlayerName(playerNames, name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참여자 이름을 입력해 주세요.");
+                .hasMessage(InputValidator.ERROR_PLAYER_NAME_IS_NULL_OR_BLANK);
     }
 
     @DisplayName("참여자 이름이  참여자 목록에 없는 이름이면 예외가 발생한다.")
@@ -33,6 +33,6 @@ public class InputValidatorTest {
         String name = "name";
         assertThatThrownBy(() -> InputValidator.validatePlayerName(playerNames, name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참여자 목록에 없는 이름입니다.");
+                .hasMessage(InputValidator.ERROR_PLAYER_NAME_IS_NOT_EXISTED);
     }
 }

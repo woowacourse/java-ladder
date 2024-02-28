@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 
 public class Height {
 
+    static final String ERROR_HEIGHT_IS_NOT_NATURAL_NUMBER = "사다리의 높이는 자연수여야 합니다.";
     private static final Pattern NATURAL_NUMBER_FORMAT_REGEX = Pattern.compile("^[1-9][0-9]*$");
 
     private final int height;
@@ -15,7 +16,7 @@ public class Height {
 
     private void validateHeight(String height) {
         if (height == null || !NATURAL_NUMBER_FORMAT_REGEX.matcher(height).matches()) {
-            throw new IllegalArgumentException("사다리의 높이는 자연수여야 합니다.");
+            throw new IllegalArgumentException(ERROR_HEIGHT_IS_NOT_NATURAL_NUMBER);
         }
     }
 

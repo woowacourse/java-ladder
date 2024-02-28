@@ -12,6 +12,6 @@ class PlayerTest {
     void occurExceptionIfNameExceedsMaxLength() {
         assertThatThrownBy(() -> new Player("clover"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 5글자를 초과할 수 없습니다.");
+                .hasMessage(Player.ERROR_MAX_NAME_LENGTH);
     }
 }

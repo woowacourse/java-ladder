@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 public class Players {
 
+    static final String ERROR_DUPLICATED_NAME = "참가자의 이름은 중복될 수 없습니다.";
     private final List<Player> players = new ArrayList<>();
 
     public Players(List<String> names) {
@@ -17,7 +18,7 @@ public class Players {
 
     private void validateDuplicatedNames(List<String> names) {
         if (names.size() != Set.copyOf(names).size()) {
-            throw new IllegalArgumentException("참가자의 이름은 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ERROR_DUPLICATED_NAME);
         }
     }
 

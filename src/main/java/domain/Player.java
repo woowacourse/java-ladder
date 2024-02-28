@@ -2,6 +2,7 @@ package domain;
 
 public class Player {
 
+    static final String ERROR_MAX_NAME_LENGTH = "이름은 5글자를 초과할 수 없습니다.";
     private static final Integer MAX_NAME_LENGTH = 5;
 
     private final String name;
@@ -13,7 +14,7 @@ public class Player {
 
     private void validateNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름은 5글자를 초과할 수 없습니다.");
+            throw new IllegalArgumentException(ERROR_MAX_NAME_LENGTH);
         }
     }
 

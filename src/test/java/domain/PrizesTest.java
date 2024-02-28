@@ -29,7 +29,7 @@ class PrizesTest {
         int columnLength = 3;
         assertThatThrownBy(() -> new Prizes(prizes, columnLength))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("실행 결과는 꽝 또는 자연수만 입력 가능합니다.");
+                .hasMessage(Prizes.ERROR_IS_NOT_LOSE_OR_NATURAL_NUMBER);
     }
 
     @DisplayName("실행 결과 개수가 참여자 수와 다른 경우 예외가 발생한다.")
@@ -38,7 +38,7 @@ class PrizesTest {
         int columnLength = 3;
         assertThatThrownBy(() -> new Prizes(List.of("꽝", "2000", "3000", "꽝"), columnLength))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("실행 결과 개수는 참여자 수와 일치해야 합니다.");
+                .hasMessage(Prizes.ERROR_IS_INVALID_LENGTH);
     }
 
     @DisplayName("현재 위치의 사다리 실행 결과를 반환한다.")
