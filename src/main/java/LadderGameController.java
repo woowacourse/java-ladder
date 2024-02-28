@@ -5,7 +5,6 @@ import domain.ladder.Ladder;
 import domain.ladder.bridgeConstructstrategy.RandomBridgeConstructStrategy;
 import domain.player.Name;
 import domain.player.Names;
-import domain.result.Prize;
 import domain.result.Prizes;
 import java.util.Arrays;
 import view.InputView;
@@ -108,9 +107,17 @@ public class LadderGameController {
             OutputView.printAllResult(ladderGame.findAllResult());
             return;
         }
-        Name inputName = new Name(input);
-        MatchingResult prize = ladderGame.findEachPrize(inputName);
-        OutputView.printEachResult(prize);
+        showEachResult(ladderGame, input);
+    }
+
+    private static void showEachResult(LadderGame ladderGame, String input) {
+        try {
+            MatchingResult prize = ladderGame.findEachPrize(new Name(input));
+            OutputView.printEachResult(prize);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printException(exception);
+            showResult(ladderGame);
+        }
     }
 
     private static boolean nameForAllResult(String input) {
