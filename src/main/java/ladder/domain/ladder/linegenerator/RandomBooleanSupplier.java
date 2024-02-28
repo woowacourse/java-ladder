@@ -1,4 +1,4 @@
-package ladder.domain.linegenerator;
+package ladder.domain.ladder.linegenerator;
 
 import java.util.Random;
 import java.util.function.BooleanSupplier;

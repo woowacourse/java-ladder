@@ -1,14 +1,13 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import ladder.domain.linegenerator.StickListGenerator;
-import ladder.domain.player.Player;
-import ladder.domain.player.Players;
-import ladder.domain.product.Product;
-import ladder.domain.product.Products;
+import ladder.domain.ladder.Height;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Stick;
+import ladder.domain.ladder.linegenerator.StickListGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

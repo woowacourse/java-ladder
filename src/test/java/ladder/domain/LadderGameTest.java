@@ -6,6 +6,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.Map;
+import ladder.domain.ladder.Height;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Stick;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.product.Product;

@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.toMap;
 
 import java.util.Map;
 import java.util.stream.IntStream;
+import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.product.Product;

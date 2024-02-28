@@ -1,9 +1,9 @@
-package ladder.domain.linegenerator;
+package ladder.domain.ladder.linegenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BooleanSupplier;
-import ladder.domain.Stick;
+import ladder.domain.ladder.Stick;
 
 public class SticksPatternGenerator implements StickListGenerator {
 

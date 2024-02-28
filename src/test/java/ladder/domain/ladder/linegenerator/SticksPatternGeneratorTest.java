@@ -1,11 +1,11 @@
-package ladder.domain.linegenerator;
+package ladder.domain.ladder.linegenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.function.BooleanSupplier;
-import ladder.domain.Stick;
+import ladder.domain.ladder.Stick;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

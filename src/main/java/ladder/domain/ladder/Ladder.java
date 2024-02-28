@@ -1,8 +1,8 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import ladder.domain.linegenerator.StickListGenerator;
+import ladder.domain.ladder.linegenerator.StickListGenerator;
 
 public class Ladder {
 
