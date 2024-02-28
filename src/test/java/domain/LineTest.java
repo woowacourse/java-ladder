@@ -60,6 +60,15 @@ class LineTest {
 
             assertThat(endPosition).isEqualTo(startPosition - 1);
         }
+
+        @DisplayName("출발 위치의 왼쪽, 오른쪽 두 곳에 모두 막대가 없으면, 위치를 유지한다.")
+        @Test
+        void climbWhenNoStickExist() {
+            int startPosition = 2;
+            int endPosition = line.climb(startPosition);
+
+            assertThat(endPosition).isEqualTo(startPosition);
+        }
     }
 
     private StickGenerator filledStickGenerator() {
