@@ -26,25 +26,24 @@ public class InputView {
         System.out.println(String.format("참여할 사람 이름을 입력하세요. (%s)로 구분하세요", PLAYER_NAMES_INPUT_DELIMITER));
         String input = scanner.nextLine();
 
-        validatePlayerNamesFormat(input);
-        String[] playerNames = splitPlayerNames(input);
-        validateIsNameDuplicatedWithCommand(playerNames);
+        validatePlayerNamesInputFormat(input);
+        String[] playerNames = splitPlayerNamesInput(removeBlank(input));
+        validateIsPlayerNamesInputDuplicatedWithCommand(playerNames);
 
         return playerNames;
     }
 
-    private void validatePlayerNamesFormat(String playerNamesInput) {
-        if (playerNamesInput.endsWith(PLAYER_NAMES_INPUT_DELIMITER)) {
+    private void validatePlayerNamesInputFormat(final String input) {
+        if (input.endsWith(PLAYER_NAMES_INPUT_DELIMITER)) {
             throw new IOException(PLAYER_NAMES_INPUT_FORMAT_ERROR_MESSAGE);
         }
     }
 
-    private String[] splitPlayerNames(String playerNamesInput) {
-        playerNamesInput = playerNamesInput.replace(" ", "");
-        return playerNamesInput.split(InputView.PLAYER_NAMES_INPUT_DELIMITER);
+    private String[] splitPlayerNamesInput(final String input) {
+        return input.split(InputView.PLAYER_NAMES_INPUT_DELIMITER);
     }
 
-    private void validateIsNameDuplicatedWithCommand(String[] playerNames) {
+    private void validateIsPlayerNamesInputDuplicatedWithCommand(final String[] playerNames) {
         boolean isCommand = Arrays.stream(playerNames)
                 .anyMatch(Command::isCommand);
 
@@ -57,20 +56,23 @@ public class InputView {
         System.out.println(String.format("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)", LADDER_RESULTS_INPUT_DELIMITER));
         String input = scanner.nextLine();
 
-        validateLadderResultFormat(input);
-        return splitLadderResults(input);
+        validateLadderResultInputFormat(input);
+        return splitLadderResultsInput(input);
     }
 
-    private void validateLadderResultFormat(String playerNamesInput) {
-        if (playerNamesInput.endsWith(LADDER_RESULTS_INPUT_DELIMITER)) {
+    private void validateLadderResultInputFormat(final String input) {
+        if (input.endsWith(LADDER_RESULTS_INPUT_DELIMITER)) {
             throw new IOException(LADDER_RESULT_INPUT_FORMAT_ERROR_MESSAGE);
         }
     }
 
-    private String[] splitLadderResults(String playerNamesInput) {
-        validateLadderResultFormat(playerNamesInput);
-        playerNamesInput = playerNamesInput.replace(" ", "");
-        return playerNamesInput.split(InputView.LADDER_RESULTS_INPUT_DELIMITER);
+    private String[] splitLadderResultsInput(String input) {
+        input = removeBlank(input);
+        return input.split(InputView.LADDER_RESULTS_INPUT_DELIMITER);
+    }
+
+    private String removeBlank(final String value) {
+        return value.replace(" ", "");
     }
 
     public int readLadderHeight() {
