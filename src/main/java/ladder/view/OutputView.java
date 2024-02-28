@@ -28,7 +28,7 @@ public class OutputView {
 
     private static void printPlayers(Players players) {
         StringJoiner stringJoiner = new StringJoiner(DELIMITER);
-        players.getSortedPlayers().forEach(player -> stringJoiner.add(NAME_FORMAT.formatted(player.name())));
+        players.stream().forEach(player -> stringJoiner.add(NAME_FORMAT.formatted(player.name().value())));
         System.out.println(stringJoiner);
     }
 
@@ -38,7 +38,7 @@ public class OutputView {
 
     private static void printLadderLevel(LadderLevel ladderLevel) {
         System.out.print("\t");
-        ladderLevel.getSortedDirections().forEach(OutputView::printLine);
+        ladderLevel.getDirections().forEach(OutputView::printLine);
         System.out.println();
     }
 
@@ -52,7 +52,7 @@ public class OutputView {
 
     private static void printResults(Results results) {
         StringJoiner stringJoiner = new StringJoiner(DELIMITER);
-        results.getSortedResults().forEach(result -> stringJoiner.add(RESULT_FORMAT.formatted(result.value())));
+        results.getResults().forEach(result -> stringJoiner.add(RESULT_FORMAT.formatted(result.value())));
         System.out.println(stringJoiner);
     }
 
@@ -63,7 +63,7 @@ public class OutputView {
 
     public static void printAllResults(Map<Player, Result> rewardOfPlayers) {
         System.out.println("\n실행 결과");
-        rewardOfPlayers.forEach((player, result) -> System.out.println(player.name() + " : " + result.value()));
+        rewardOfPlayers.forEach((player, result) -> System.out.println(player.name().value() + " : " + result.value()));
     }
 
     public static void printQuitMessage() {

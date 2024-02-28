@@ -3,37 +3,36 @@ package ladder.domain;
 import static ladder.domain.Direction.NONE;
 import static ladder.domain.Direction.RIGHT;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.IntStream;
 
 public class LadderLevel {
-    private final Map<Location, Direction> ladderLevel;
+    private final LinkedList<Direction> ladderLevel;
     private Direction latest;
 
     public LadderLevel(Width width, DirectionGenerator directionGenerator) {
-        ladderLevel = new HashMap<>();
+        ladderLevel = new LinkedList<>();
         latest = NONE;
         IntStream.range(0, width.value())
-                .forEach((index) -> addDirection(new Location(index), directionGenerator));
-        ladderLevel.replace(width.getLastLocation(), RIGHT, NONE);
+                .forEach((index) -> addDirection(directionGenerator));
+        if (latest == RIGHT) {
+            ladderLevel.removeLast();
+            ladderLevel.add(NONE);
+        }
     }
 
-    public Location move(Location location) {
-        return location.move(ladderLevel.get(location));
+    public int move(int index) {
+        return index + ladderLevel.get(index).getMovement();
     }
 
-    public List<Direction> getSortedDirections() {
-        List<Direction> orderedDirections = new ArrayList<>();
-        ladderLevel.forEach((location, direction) -> orderedDirections.add(location.value(), direction));
-        return Collections.unmodifiableList(orderedDirections);
+    public List<Direction> getDirections() {
+        return Collections.unmodifiableList(ladderLevel);
     }
 
-    private void addDirection(Location location, DirectionGenerator directionGenerator) {
+    private void addDirection(DirectionGenerator directionGenerator) {
         latest = latest.next(directionGenerator);
-        ladderLevel.put(location, latest);
+        ladderLevel.add(latest);
     }
 }

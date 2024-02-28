@@ -1,40 +1,41 @@
 package ladder.domain;
 
+import static ladder.domain.Direction.RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
-class PlayerTest {
-    @DisplayName("입력된 인자를 name으로 가진다.")
+public class PlayerTest {
+    @DisplayName("사다리를 입력하면 그 사다리를 탄 결과를 반환한다.")
     @Test
-    void playerConstructTest() {
-        Player player = new Player("명오");
+    void climbTest() {
+        Player poby = new Player(new Name("poby"), new Location(0));
+        Player honux = new Player(new Name("honux"), new Location(1));
+        Ladder ladder = new Ladder(new Width(2), new Height(3), () -> RIGHT);
+
+        Player expectedPoby = new Player(new Name("poby"), new Location(1));
+        Player expectedHonux = new Player(new Name("honux"), new Location(0));
 
         assertAll(
-                () -> assertThat(player.name()).isEqualTo("명오")
+                () -> assertThat(poby.climb(ladder)).isEqualTo(expectedPoby),
+                () -> assertThat(honux.climb(ladder)).isEqualTo(expectedHonux)
         );
     }
 
-    @DisplayName("이름이 1~5글자 범위를 벗어나면 예외를 발생한다.")
-    @ValueSource(strings = {"", "우아한테크코스"})
-    @ParameterizedTest
-    void nameLengthTest(String name) {
-        assertThatThrownBy(() -> new Player(name))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 1~5글자 사이로 입력해주세요: %s".formatted(name));
-    }
+    @DisplayName("이름만 같으면 equals는 true이다.")
+    @Test
+    void equalsTest() {
+        Player poby0 = new Player(new Name("poby"), new Location(0));
+        Player poby1 = new Player(new Name("poby"), new Location(1));
+        Player honux0 = new Player(new Name("honux"), new Location(0));
+        Player honux1 = new Player(new Name("honux"), new Location(1));
 
-    @DisplayName("이름이 명령어면 예외를 발생한다.")
-    @ValueSource(strings = {"all", "quit"})
-    @ParameterizedTest
-    void invalidNameTest(String name) {
-        assertThatThrownBy(() -> new Player(name))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("명령어를 이름으로 가질 수 없습니다: %s".formatted(name));
+        assertAll(
+                () -> assertThat(poby0).isEqualTo(poby1),
+                () -> assertThat(poby0).isNotEqualTo(honux0),
+                () -> assertThat(poby0).isNotEqualTo(honux1)
+        );
     }
 }

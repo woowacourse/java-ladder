@@ -1,34 +1,35 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ResultsOfPlayers {
-    private final Map<Player, Result> rewardsOfPlayers;
+    private final Map<Player, Result> resultsOfPlayers;
 
     public ResultsOfPlayers(Players players, Ladder ladder, Results results) {
-        rewardsOfPlayers = new HashMap<>();
+        resultsOfPlayers = new HashMap<>();
         initialize(players, ladder, results);
     }
 
     public Result getResultByName(String name) {
-        return rewardsOfPlayers.get(new Player(name));
+        Result result = resultsOfPlayers.get(new Player(new Name(name)));
+        if (result == null) {
+            throw new IllegalArgumentException("존재하지 않는 사용자입니다.");
+        }
+        return result;
     }
 
     public Map<Player, Result> getAllResults() {
-        return Map.copyOf(rewardsOfPlayers);
+        return Map.copyOf(resultsOfPlayers);
     }
 
     private void initialize(Players players, Ladder ladder, Results results) {
-        Map<Player, Location> resultPlayers = new HashMap<>();
-        players.getSortedPlayers()
-                .forEach(player -> resultPlayers.put(
-                        player,
-                        ladder.findResultLocation(players.getPlayerLocation(player))
-                ));
-        resultPlayers.forEach((player, location) -> rewardsOfPlayers.put(
-                player,
-                results.getResult(location)
-        ));
+        List<Player> resultPlayers = new ArrayList<>();
+        players.stream()
+                .forEach(player -> resultPlayers.add(player.climb(ladder)));
+        resultPlayers
+                .forEach(player -> resultsOfPlayers.put(player, results.getResult(player.location())));
     }
 }

@@ -19,10 +19,10 @@ public class Ladder {
     }
 
     public Location findResultLocation(Location location) {
-        Location currentLocation = location;
+        int currentindex = location.value();
         for (LadderLevel ladderLevel : ladderLevels) {
-            currentLocation = ladderLevel.move(currentLocation);
+            currentindex = ladderLevel.move(currentindex);
         }
-        return currentLocation;
+        return new Location(currentindex);
     }
 }

@@ -18,7 +18,7 @@ class LadderTest {
         LadderLevel anyLadderLevel = ladder.stream().findAny().get();
 
         int actualHeight = (int) ladder.stream().count();
-        int actualPlayersCount = anyLadderLevel.getSortedDirections().size();
+        int actualPlayersCount = anyLadderLevel.getDirections().size();
 
         // then
         assertAll(

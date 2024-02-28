@@ -12,7 +12,7 @@ class LadderLevelTest {
     void ladderLevelConstructTest() {
         LadderLevel ladderLevel = new LadderLevel(new Width(2), () -> RIGHT);
 
-        int actualSize = ladderLevel.getSortedDirections().size();
+        int actualSize = ladderLevel.getDirections().size();
 
         assertThat(actualSize).isEqualTo(2);
     }
@@ -22,8 +22,8 @@ class LadderLevelTest {
     void ladderLevelMoveTest() {
         LadderLevel ladderLevel = new LadderLevel(new Width(2), () -> RIGHT);
 
-        Location actual = ladderLevel.move(new Location(0));
-        Location expected = new Location(1);
+        int actual = ladderLevel.move(0);
+        int expected = 1;
 
         assertThat(actual).isEqualTo(expected);
     }

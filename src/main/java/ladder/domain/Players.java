@@ -1,35 +1,27 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Players {
     private static final int MIN_PLAYERS_COUNT = 2;
-    private final Map<Player, Location> playersAndLocations;
+    private final List<Player> players;
 
     public Players(List<String> names) {
         validate(names);
-        playersAndLocations = new HashMap<>();
+        players = new ArrayList<>();
         IntStream.range(0, names.size())
-                .forEach(index -> playersAndLocations.put(new Player(names.get(index)), new Location(index)));
+                .forEach(index -> players.add(new Player(new Name(names.get(index)), new Location(index))));
     }
 
     public int count() {
-        return playersAndLocations.size();
+        return players.size();
     }
 
-    public Location getPlayerLocation(Player player) {
-        return playersAndLocations.get(player);
-    }
-
-    public List<Player> getSortedPlayers() {
-        List<Player> sortedPlayers = new ArrayList<>();
-        playersAndLocations.forEach((player, location) -> sortedPlayers.add(location.value(), player));
-        return Collections.unmodifiableList(sortedPlayers);
+    public Stream<Player> stream() {
+        return players.stream();
     }
 
     private void validate(List<String> names) {
