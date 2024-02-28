@@ -1,6 +1,5 @@
 package domain;
 
-import exception.domain.PrizesExceptionMessage;
 import java.util.List;
 
 public class Prizes {
@@ -21,7 +20,7 @@ public class Prizes {
                 .findFirst()
                 .ifPresent(prize -> {
                     throw new IllegalArgumentException(
-                            PrizesExceptionMessage.OUT_OF_RANGE_PRIZE_LENGTH.getExceptionMessage());
+                            "[ERROR] 실행 결과의 길이는 " + MAX_OF_PRIZE_LENGTH + "글자를 초과할 수 없습니다.");
                 });
     }
 
@@ -30,13 +29,13 @@ public class Prizes {
                 .filter(prize -> prize == null || prize.isBlank())
                 .findFirst()
                 .ifPresent(prize -> {
-                    throw new IllegalArgumentException(PrizesExceptionMessage.NO_PRIZE.getExceptionMessage());
+                    throw new IllegalArgumentException("[ERROR] 실행 결과가 없습니다.");
                 });
     }
 
     private void validatePrizeSize(List<String> prizes, Participants participants) {
         if (!participants.isMatchCount(prizes.size())) {
-            throw new IllegalArgumentException(PrizesExceptionMessage.NOT_MATCH_SIZE.getExceptionMessage());
+            throw new IllegalArgumentException("[ERROR] 실행 결과의 개수는 참가자 수와 일치해야 합니다.");
         }
     }
 

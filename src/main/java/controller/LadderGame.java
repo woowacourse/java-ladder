@@ -4,8 +4,6 @@ import domain.Ladder;
 import domain.LadderResult;
 import domain.Participants;
 import domain.Prizes;
-import exception.controller.LadderGameExceptionMessage;
-import exception.view.InputExceptionMessage;
 import java.util.List;
 import utils.RandomStepGenerator;
 import view.InputView;
@@ -25,7 +23,7 @@ public class LadderGame {
         try {
             run();
         } catch (StackOverflowError e) {
-            System.out.println(LadderGameExceptionMessage.EXIT.getExceptionMessage());
+            System.out.println("[ERROR] 잘못된 입력의 반복으로 프로그램을 종료합니다.");
         }
     }
 
@@ -102,7 +100,7 @@ public class LadderGame {
 
     private void validateResultName(String name) {
         if (!name.equals(EXIT) && !name.equals(ALL) && !participants.hasParticipated(name)) {
-            throw new IllegalArgumentException(InputExceptionMessage.NO_PARTICIPANTS.getExceptionMessage());
+            throw new IllegalArgumentException("[ERROR] 해당하는 참가자가 없습니다.");
         }
     }
 }

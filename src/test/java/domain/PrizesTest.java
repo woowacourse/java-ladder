@@ -1,8 +1,8 @@
 package domain;
 
+import static domain.Prizes.MAX_OF_PRIZE_LENGTH;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import exception.domain.PrizesExceptionMessage;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ public class PrizesTest {
     void longPrizeExceptionTest() {
         assertThatThrownBy(() -> new Prizes(List.of("정상글자", "정상", "테스트용글자"), new Participants(List.of("a", "b", "c"))))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(PrizesExceptionMessage.OUT_OF_RANGE_PRIZE_LENGTH.getExceptionMessage());
+                .hasMessage("[ERROR] 실행 결과의 길이는 " + MAX_OF_PRIZE_LENGTH + "글자를 초과할 수 없습니다.");
     }
 
     @ParameterizedTest
@@ -25,7 +25,7 @@ public class PrizesTest {
     void noPrizeExceptionTest(String name) {
         assertThatThrownBy(() -> new Prizes(List.of(name), new Participants(List.of("a", "b", "c"))))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(PrizesExceptionMessage.NO_PRIZE.getExceptionMessage());
+                .hasMessage("[ERROR] 실행 결과가 없습니다.");
     }
 
     @Test
@@ -33,6 +33,6 @@ public class PrizesTest {
     void notMatchPrizeExceptionTest() {
         assertThatThrownBy(() -> new Prizes(List.of("정상글자", "정상", "정상값"), new Participants(List.of("a", "b", "c", "d"))))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(PrizesExceptionMessage.NOT_MATCH_SIZE.getExceptionMessage());
+                .hasMessage("[ERROR] 실행 결과의 개수는 참가자 수와 일치해야 합니다.");
     }
 }

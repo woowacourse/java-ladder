@@ -1,8 +1,9 @@
 package domain;
 
+import static domain.Height.MAX_OF_HEIGHT;
+import static domain.Height.MIN_OF_HEIGHT;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import exception.domain.HeightExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,8 @@ public class HeightTest {
     void lessThanOneExceptionTest() {
         assertThatThrownBy(() -> new Height(0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(HeightExceptionMessage.OUT_OF_RANGE_HEIGHT.getExceptionMessage());
+                .hasMessage("[ERROR] 높이는 " + MIN_OF_HEIGHT + "개 이상 "
+                        + MAX_OF_HEIGHT + "개 이하여야 합니다.");
     }
 
     @Test
@@ -22,7 +24,8 @@ public class HeightTest {
     void moreThanHundredExceptionTest() {
         assertThatThrownBy(() -> new Height(101))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(HeightExceptionMessage.OUT_OF_RANGE_HEIGHT.getExceptionMessage());
+                .hasMessage("[ERROR] 높이는 " + MIN_OF_HEIGHT + "개 이상 "
+                        + MAX_OF_HEIGHT + "개 이하여야 합니다.");
     }
 
     @Test
