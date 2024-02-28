@@ -1,8 +1,9 @@
 package controller;
 
+import handler.ExceptionHandler;
 import model.Ladder;
 import model.People;
-import handler.ExceptionHandler;
+import utils.ThresholdCheckerImpl;
 import view.InputView;
 import view.ResultView;
 
@@ -19,10 +20,10 @@ public class LadderController {
     }
 
     public void runLadderGame() {
-        People people = handler
-                .handleInputException(() -> new People(inputView.askParticipants()));
-        Ladder ladder = handler
-                .handleInputException(() -> new Ladder(inputView.askLadderHeight(), people.getParticipantsSize()));
+        People people = handler.handleInputException(() -> new People(inputView.askParticipants()));
+        Ladder ladder = handler.handleInputException(
+                () -> new Ladder(new ThresholdCheckerImpl(), inputView.askLadderHeight(),
+                        people.getParticipantsSize()));
 
         resultView.printResult(people, ladder);
     }
