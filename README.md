@@ -82,6 +82,6 @@ pobi  honux crong   jk
 
 ## 리팩토링 목록
 
-- [ ] Players List<String>이 아닌 List<Player>를 받도록 생성 로직 변경
+- [X] Players List<String>이 아닌 List<Player>를 받도록 생성 로직 변경
 - [ ] 사용자가 공백을 의도할 수 있으므로 입력에서 공백을 무시하지 않도록 변경
 - [X] 객체의 관계를 명시하기 위해 ExceptionHandler와 View를 객체로 변경

@@ -26,7 +26,7 @@ public class ResultView {
 
     private void printPlayers(Players players) {
         StringJoiner stringJoiner = new StringJoiner(NAME_DELIMITER);
-        players.getPlayers().forEach(player -> stringJoiner.add(NAME_FORMAT.formatted(player.name())));
+        players.players().forEach(player -> stringJoiner.add(NAME_FORMAT.formatted(player.name())));
         System.out.println(stringJoiner);
     }
 

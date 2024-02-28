@@ -7,6 +7,7 @@ import java.util.Scanner;
 import ladder.domain.Height;
 import ladder.domain.LadderResult;
 import ladder.domain.LadderResults;
+import ladder.domain.Player;
 import ladder.domain.Players;
 import ladder.exception.ExceptionHandler;
 
@@ -23,7 +24,9 @@ public class InputView {
     public Players inputNames() {
         return exceptionHandler.run(() -> {
             System.out.println("\n참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-            List<String> names = Arrays.asList(readLine().split(","));
+            List<Player> names = Arrays.stream(readLine().split(","))
+                    .map(Player::new)
+                    .toList();
             return new Players(names);
         });
     }

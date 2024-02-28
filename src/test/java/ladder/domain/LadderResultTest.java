@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,7 +12,7 @@ class LadderResultTest {
     @ValueSource(strings = {"", "우아한테크코스"})
     @ParameterizedTest
     void constructException(String name) {
-        assertThatCode(() -> new LadderResult(name))
+        assertThatThrownBy(() -> new LadderResult(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("결과는 1~5글자로 입력해주세요");
     }

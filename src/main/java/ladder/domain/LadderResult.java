@@ -7,11 +7,12 @@ public record LadderResult(String value) {
 
     public LadderResult {
         if (value.isBlank() || value.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException("결과 이름은 %d~%d글자로 입력해주세요: %s".formatted(
-                    MIN_LENGTH,
-                    MAX_LENGTH,
-                    value
-            ));
+            throw new IllegalArgumentException(
+                    "결과는 %d~%d글자로 입력해주세요: %s".formatted(
+                            MIN_LENGTH,
+                            MAX_LENGTH,
+                            value
+                    ));
         }
     }
 }

@@ -12,20 +12,30 @@ import org.junit.jupiter.api.Test;
 
 class LadderTest {
 
+    static List<Player> players() {
+        return List.of(
+                new Player("제우스"),
+                new Player("명오"),
+                new Player("호티"),
+                new Player("켬미"),
+                new Player("배키")
+        );
+    }
+
     @DisplayName("사람 수와 높이를 입력받아 사다리를 생성한다.")
     @Test
     void ladderSizeTest() {
         Ladder ladder = Ladder.of(
-                new Players(List.of("poby", "honux", "crong", "jk")),
-                new Height(5),
+                new Players(players()),
+                new Height(4),
                 new DefaultLadderDirectionSelector());
 
         List<LadderLevel> ladderLevels = ladder.getLadderLevels();
         List<LadderDirection> ladderDirections = ladderLevels.get(0).getLadderDirections();
 
         assertAll(
-                () -> assertThat(ladderLevels).hasSize(5),
-                () -> assertThat(ladderDirections).hasSize(4)
+                () -> assertThat(ladderLevels).hasSize(4),
+                () -> assertThat(ladderDirections).hasSize(5)
         );
     }
 
@@ -33,7 +43,7 @@ class LadderTest {
     @Test
     void climbFrom() {
         Ladder ladder = Ladder.of(
-                new Players(List.of("poby", "honux", "crong", "jk")),
+                new Players(players()),
                 new Height(5),
                 () -> RIGHT);
 

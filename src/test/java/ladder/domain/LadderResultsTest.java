@@ -12,7 +12,10 @@ class LadderResultsTest {
     @DisplayName("사다리 결과의 개수가 인원수와 다르면 예외를 발생한다.")
     @Test
     void ladderResultsException() {
-        Players players = new Players(List.of("제우스", "명오", "호티"));
+        Players players = new Players(List.of(
+                new Player("제우스"),
+                new Player("명오"),
+                new Player("호티")));
         List<LadderResult> ladderResultList = List.of(
                 new LadderResult("맥북에어"),
                 new LadderResult("맥북프로")
