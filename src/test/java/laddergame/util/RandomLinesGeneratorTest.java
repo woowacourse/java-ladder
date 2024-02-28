@@ -14,22 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DisplayName("랜덤")
 class RandomLinesGeneratorTest {
     @Test
-    @DisplayName("생성된 다리가 Line.EMPTY나 Line.BRIDGE 중 하나인지 확인한다.")
-    public void testRandomLinesIsEMPTYOrBRIDGE() {
-        //given
-        final RandomLinesGenerator randomLinesGenerator =
-                new RandomLinesGenerator();
-        final int count = 4;
-        final List<Line> lines = List.of(Line.values());
-
-        //when
-        Lines canBuildBridges = randomLinesGenerator.generate(count);
-
-        //then
-        assertThat(canBuildBridges.getLines())
-                .containsOnlyElementsOf(lines);
-    }
-    @Test
     @DisplayName("주어진 횟수만큼 다리가 생성되는지 확인한다.")
     public void testRandomBuildStrategy() {
         //given

@@ -69,8 +69,8 @@ public class LadderTest {
         };
 
         Ladder ladder = new Ladder(expectedLinesGenerator, players.getPlayersCount(), height);
-        players.getPlayers().get(2).moveLine(ladder.move(players.getPlayers().get(2).getPosition().getX(), players.getPlayers().get(2).getPosition().getY()));
-        players.getPlayers().get(2).moveLine(ladder.move(players.getPlayers().get(2).getPosition().getX(), players.getPlayers().get(2).getPosition().getY()));
+        players.getPlayers().get(2).moveLine(ladder.move(players.getPlayers().get(2).getPosition()));
+        players.getPlayers().get(2).moveLine(ladder.move(players.getPlayers().get(2).getPosition()));
 
         assertTrue(players.getPlayers().get(2).getPosition().equals(new Position(2,2)));
     }

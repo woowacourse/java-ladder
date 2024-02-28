@@ -18,11 +18,11 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public Direction move(int startX, int startY) {
-        if (startY == lines.size()) {
+    public Direction move(Position position) {
+        if (position.getY() == lines.size()) {
             return Direction.END;
         }
-        Direction nextDirection = lines.get(startY).findDirection(startX);
+        Direction nextDirection = lines.get(position.getY()).findDirection(position.getX());
         return nextDirection;
     }
 

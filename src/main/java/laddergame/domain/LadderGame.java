@@ -1,6 +1,7 @@
 package laddergame.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class LadderGame {
@@ -24,13 +25,14 @@ public class LadderGame {
 
     public void climb() {
         for (Player player : players.getPlayers()) {
-            while (true) {
-                Direction direction = ladder.move(player.getPosition().getX(), player.getPosition().getY());
-                player.moveLine(direction);
-                if (direction == Direction.END) {
-                    break;
-                }
-            }
+            moveToLadderEnd(ladder.move(player.getPosition()), player);
+        }
+    }
+
+    private void moveToLadderEnd(Direction direction, Player player) {
+        while (direction != Direction.END) {
+            direction = ladder.move(player.getPosition());
+            player.moveLine(direction);
         }
     }
 
@@ -49,6 +51,6 @@ public class LadderGame {
     }
 
     public List<ResultItem> getItems() {
-        return items;
+        return Collections.unmodifiableList(items);
     }
 }
