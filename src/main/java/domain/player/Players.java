@@ -12,7 +12,7 @@ public class Players {
     private static final int MAX_PLAYER_COUNT = 10;
     private static final int ONLY_ONE_PLAYER_FOUND = 1;
 
-    private List<Player> players;
+    private final List<Player> players;
 
     public static Players createInOrderPoisition(final List<String> names) {
         final List<Player> players = new ArrayList<>();
@@ -54,7 +54,7 @@ public class Players {
         return foundPosition.get(0);
     }
 
-    public String getName(final int playerIndex) {
+    public String getNameBy(final int playerIndex) {
         final Player player = players.get(playerIndex);
         return player.getName();
     }
