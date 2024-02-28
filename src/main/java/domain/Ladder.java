@@ -7,6 +7,8 @@ import java.util.List;
 
 public class Ladder {
 
+    private static final int FAR_LEFT_POSITION = 0;
+
     private final List<Line> lines;
 
     private Ladder(int height, int width, LineGenerator lineGenerator) {
@@ -42,7 +44,7 @@ public class Ladder {
         return playerPosition;
     }
     private boolean isNotFarLeft(Position playerPosition) {
-        return playerPosition.getIndex() != 0;
+        return playerPosition.getIndex() != FAR_LEFT_POSITION;
     }
 
     private boolean isNotFarRight(Position playerPosition, Line line) {
