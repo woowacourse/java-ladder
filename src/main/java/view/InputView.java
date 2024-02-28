@@ -18,11 +18,11 @@ public class InputView {
         return parseStringWithDelimiter(input);
     }
 
-    public static int readLadderHeight(Supplier<String> reader) {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+    public static int readNumber(Supplier<String> reader, String message) {
+        System.out.println(message);
         String input = reader.get();
         validateEmpty(input);
-        return parseLadderHeight(input);
+        return parseNumber(input);
     }
 
     private static void validateEmpty(final String input) {
@@ -36,11 +36,11 @@ public class InputView {
                 .toList();
     }
 
-    private static int parseLadderHeight(final String input) {
+    private static int parseNumber(final String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("사다리 높이는 2 ~ 10 사이의 숫자로 입력해야 합니다.");
+            throw new IllegalArgumentException("정수만 입력할 수 있습니다.");
         }
     }
 }

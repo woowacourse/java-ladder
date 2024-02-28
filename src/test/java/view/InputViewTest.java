@@ -36,7 +36,7 @@ public class InputViewTest {
     @ValueSource(strings = {" ", "  ", "\t", "\n"})
     void validateLadderHeightWithNullOrEmpty(final String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> InputView.readLadderHeight(() -> input))
+                .isThrownBy(() -> InputView.readNumber(() -> input, "최대 사다리 높이는 몇 개인가요?"))
                 .withMessage("공백을 넣을 수 없습니다.");
     }
 
@@ -45,7 +45,7 @@ public class InputViewTest {
     @ParameterizedTest
     void readLadderHeightByNotNumber(final String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> InputView.readLadderHeight(() -> input))
-                .withMessage("사다리 높이는 2 ~ 10 사이의 숫자로 입력해야 합니다.");
+                .isThrownBy(() -> InputView.readNumber(() -> input, "최대 사다리 높이는 몇 개인가요?"))
+                .withMessage("정수만 입력할 수 있습니다.");
     }
 }
