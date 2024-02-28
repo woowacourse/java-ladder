@@ -30,10 +30,10 @@ public class Line {
     }
 
     public int moveToNextIndex(int index) {
-        if (index < legs.size() && getLegs().get(index).isExistLeg()) {
+        if (index < legs.size() && legs.get(index).isExistLeg()) {
             return index + 1;
         }
-        if (index > 0 && getLegs().get(index - 1).isExistLeg()) {
+        if (index > 0 && legs.get(index - 1).isExistLeg()) {
             return index - 1;
         }
         return index;
