@@ -11,7 +11,7 @@ import view.InputView;
 import view.ResultView;
 
 public class LadderDrawer {
-    private LadderComponents ladderComponents;
+    private Ladder ladder;
 
     public void generateLadder() {
         Names names = inputNames();
@@ -21,13 +21,13 @@ public class LadderDrawer {
         PointGenerator generator = new RandomPointGenerator();
         Lines lines = new Lines(height.getValue(), names.size(), generator);
 
-        ladderComponents = new LadderComponents()
+        ladder = new Ladder()
                 .lines(lines)
                 .names(names)
                 .results(results)
                 .build();
 
-        ResultView.printLadderDrawResult(ladderComponents);
+        ResultView.printLadderDrawResult(ladder);
     }
 
     private Height inputLadderHeight() {
@@ -45,7 +45,7 @@ public class LadderDrawer {
         return new Names(rawNames);
     }
 
-    public LadderComponents getLadderComponents() {
-        return ladderComponents;
+    public Ladder getLadder() {
+        return ladder;
     }
 }

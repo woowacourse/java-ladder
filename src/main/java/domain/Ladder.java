@@ -4,27 +4,27 @@ import domain.Lines;
 import domain.Names;
 import domain.Results;
 
-public class LadderComponents {
+public class Ladder {
     private Lines lines;
     private Names names;
     private Results results;
 
-    public LadderComponents lines(final Lines lines) {
+    public Ladder lines(final Lines lines) {
         this.lines = lines;
         return this;
     }
 
-    public LadderComponents names(final Names names) {
+    public Ladder names(final Names names) {
         this.names = names;
         return this;
     }
 
-    public LadderComponents results(final Results results) {
+    public Ladder results(final Results results) {
         this.results = results;
         return this;
     }
 
-    public LadderComponents build() {
+    public Ladder build() {
         return this;
     }
 
