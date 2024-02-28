@@ -47,4 +47,28 @@ class ResultsTest {
         // then
         assertThat(result).isEqualTo("꽝");
     }
+
+    @Test
+    @DisplayName("이름을 입력하면 실행결과를 알 수 있다.")
+    void findResultByName() {
+        // given
+        People people = new People(
+                List.of(
+                        new Name("pobi"),
+                        new Name("honux"),
+                        new Name("crong"),
+                        new Name("jk")
+                )
+        );
+        Results results = new Results(List.of("꽝", "5000", "꽝", "3000"));
+
+        int startPosition = people.findPosition(new Name("crong"));
+        int resultPosition = ladder.ride(startPosition);
+
+        // when
+        String result = results.find(resultPosition);
+
+        // then
+        assertThat(result).isEqualTo("3000");
+    }
 }
