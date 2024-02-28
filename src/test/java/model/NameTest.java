@@ -48,5 +48,4 @@ class NameTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(message);
     }
-
 }

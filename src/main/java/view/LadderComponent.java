@@ -3,8 +3,7 @@ package view;
 public enum LadderComponent {
     DIVISION("|"),
     LINE("-----"),
-    EMPTY_LINE("     "),
-    ;
+    EMPTY_LINE("     ");
 
     private final String output;
 
