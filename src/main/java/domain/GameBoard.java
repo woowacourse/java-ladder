@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.stream.IntStream;
 
 public class GameBoard {
+    private static final int HEIGHT_STARTING_INDEX = 0;
     private final Players players;
     private final Ladder ladder;
     private final Prizes prizes;
@@ -41,7 +42,7 @@ public class GameBoard {
 
     private Prize getPrizeAtStartingIndex(int value) {
         return prizes.getValue()
-                     .get(ladder.moveCoordinateToResultPoint(value, 0));
+                     .get(ladder.moveCoordinateToResultPoint(value, HEIGHT_STARTING_INDEX));
     }
 
     public Map<Name, Prize> getAllPlayerResult() {
