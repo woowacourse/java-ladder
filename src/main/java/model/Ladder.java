@@ -16,6 +16,10 @@ public class Ladder {
         this.ladder = rows;
     }
 
+    Ladder(List<LadderRow> ladderRows) {
+        this.ladder = ladderRows;
+    }
+
     private LadderRow createLadderRow(LadderRowGenerator generator, Participants participants) {
         List<Boolean> rows = new ArrayList<>();
         rows.add(generator.generate(false));
@@ -36,5 +40,9 @@ public class Ladder {
 
     public int getLadderRowSize() {
         return ladder.get(0).getLinesSize();
+    }
+
+    public int moveAll(int participantIndex) {
+        return 0;
     }
 }

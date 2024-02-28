@@ -1,8 +1,10 @@
 package model;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,4 +27,36 @@ public class LadderTest {
         Ladder ladder = new Ladder(height, new LadderRowGenerator(() -> true), participants);
         assertThat(ladder.getLadderRowSize()).isEqualTo(participants.getParticipantsSize() - 1);
     }
+
+    @DisplayName("참가자의 전체 이동 결과를 알려준다.")
+    @Test
+    void moveAll() {
+        Ladder ladder = new Ladder(
+                List.of(new LadderRow(List.of(true, false, false, true)),
+                        new LadderRow(List.of(true, false, true, false))));
+
+        assertAll(
+                () -> Assertions.assertThat(ladder.moveAll(0)).isEqualTo(0),
+                () -> Assertions.assertThat(ladder.moveAll(1)).isEqualTo(1),
+                () -> Assertions.assertThat(ladder.moveAll(2)).isEqualTo(3),
+                () -> Assertions.assertThat(ladder.moveAll(3)).isEqualTo(4),
+                () -> Assertions.assertThat(ladder.moveAll(4)).isEqualTo(2)
+        );
+    }
+
+
+
+    /*
+         0     1     2     3     4
+         |-----|     |     |-----|
+         |-----|     |-----|     |
+         0     1     2     3     4
+
+         0 -> 0
+         1 -> 1
+         2 -> 3
+         3 -> 4
+         4 -> 2
+     */
+
 }
