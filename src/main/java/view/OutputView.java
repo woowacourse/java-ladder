@@ -9,6 +9,7 @@ import domain.result.Result;
 import domain.result.Results;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -58,4 +59,15 @@ public class OutputView {
         System.out.printf("%5s ", result.getValue());
     }
 
+    public void printAllPlayerResults(Map<Player, Result> allPlayerResults) {
+        for (Map.Entry<Player, Result> entry : allPlayerResults.entrySet()) {
+            Player player = entry.getKey();
+            Result result = entry.getValue();
+            System.out.printf("%s : %s%n", player.getName(), result.getValue());
+        }
+    }
+
+    public void printOnePlayerResult(Result onePlayerResult) {
+        System.out.println(onePlayerResult.getValue());
+    }
 }

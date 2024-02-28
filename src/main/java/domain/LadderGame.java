@@ -23,7 +23,17 @@ public class LadderGame {
         }
     }
 
-    public Map<Player, Result> getPlayerResult() {
+    public Map<Player, Result> getAllPlayerResults() {
         return playerResult;
+    }
+
+    public Result getOnePlayerResult(String playerName) {
+        Player player = playerResult.keySet()
+                .stream()
+                .filter(e -> e.getName().equals(playerName))
+                .findFirst()
+                .get();
+
+        return playerResult.get(player);
     }
 }

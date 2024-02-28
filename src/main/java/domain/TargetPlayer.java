@@ -13,6 +13,10 @@ public class TargetPlayer {
         this.name = name;
     }
 
+    public boolean isAll() {
+        return name.equals("all");
+    }
+
     public String getName() {
         return this.name;
     }

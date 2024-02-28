@@ -1,17 +1,20 @@
 package controller;
 
+import domain.LadderGame;
 import domain.TargetPlayer;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.stick.RandomStickGenerator;
 import domain.ladder.sticks.NotRepeatedSticksGenerator;
+import domain.player.Player;
 import domain.player.Players;
+import domain.result.Result;
 import domain.result.Results;
 import view.InputView;
 import view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LadderGameController {
 
@@ -30,25 +33,18 @@ public class LadderGameController {
 
         NotRepeatedSticksGenerator sticksGenerator = new NotRepeatedSticksGenerator(new RandomStickGenerator());
         Ladder ladder = new Ladder(height, players.getPlayerSize(), sticksGenerator);
-
-        List<Integer> resultList = new ArrayList<>();
-        for (int i = 0; i < players.getPlayerSize(); i++) {
-            resultList.add(ladder.climb(i));
-        }
+        outputView.printLadder(players, ladder, results);
 
         TargetPlayer targetPlayer = readTargetPlayerIn(players.getPlayerNames());
+        LadderGame ladderGame = new LadderGame(players, ladder, results);
 
-        outputView.printLadder(players, ladder, results);
-        System.out.println();
-        if (targetPlayer.getName().equals("all")) {
-            for (int i = 0; i < players.getPlayerSize(); i++) {
-                System.out.printf("%s : %s%n", players.getPlayers().get(i).getName(),
-                        results.getResults().get(resultList.get(i)).getValue());
-            }
+        Map<Player, Result> allPlayerResults = ladderGame.getAllPlayerResults();
+        Result onePlayerResult = ladderGame.getOnePlayerResult(targetPlayer.getName());
+
+        if (targetPlayer.isAll()) {
+            outputView.printAllPlayerResults(allPlayerResults);
         } else {
-            int idx = players.getPlayerNames().indexOf(targetPlayer.getName());
-            String value = results.getResults().get(idx).getValue();
-            System.out.println(value);
+            outputView.printOnePlayerResult(onePlayerResult);
         }
     }
 
