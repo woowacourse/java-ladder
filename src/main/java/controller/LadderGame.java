@@ -16,6 +16,8 @@ import java.util.function.Supplier;
 
 public class LadderGame {
 
+    private static final String ALL_COMMAND = "all";
+
     private final InputView inputView;
     private final OutputView outputView;
     private final LineItemGenerator lineItemGenerator;
@@ -35,7 +37,7 @@ public class LadderGame {
         printLadder(ladder, players, prizes);
 
         String input = "";
-        while (!input.equals("all")) {
+        while (!input.equals(ALL_COMMAND)) {
             input = retryUntilSuccess(() -> inputView.inputPlayerName(players.getPlayerNames()));
             printLadderGameResult(ladder, players, prizes, input);
         }
@@ -67,7 +69,7 @@ public class LadderGame {
     private void printLadderGameResult(Ladder ladder, Players players, Prizes prizes, String input) {
         outputView.printResultMessage();
 
-        if (input.equals("all")) {
+        if (input.equals(ALL_COMMAND)) {
             printAllPlayerResults(ladder, players, prizes);
             return;
         }
