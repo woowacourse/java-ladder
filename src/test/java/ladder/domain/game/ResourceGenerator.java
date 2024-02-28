@@ -2,9 +2,9 @@ package ladder.domain.game;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.domain.resource.direction.DirectionGeneratorImpl;
 import ladder.domain.resource.ladder.Ladder;
 import ladder.domain.resource.ladder.LadderGenerator;
+import ladder.domain.resource.line.LineGeneratorImpl;
 import ladder.domain.resource.prize.Prize;
 import ladder.domain.resource.prize.Prizes;
 import ladder.domain.resource.user.User;
@@ -22,7 +22,7 @@ public class ResourceGenerator {
     }
 
     public static Ladder generateLadderWithWidth(int width) {
-        LadderGenerator ladderGenerator = new LadderGenerator(new DirectionGeneratorImpl());
+        LadderGenerator ladderGenerator = new LadderGenerator(new LineGeneratorImpl());
         return ladderGenerator.generate(2, width);
     }
 

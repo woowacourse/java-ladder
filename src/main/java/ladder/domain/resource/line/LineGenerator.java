@@ -1,40 +1,11 @@
 package ladder.domain.resource.line;
 
+import java.util.List;
 import ladder.domain.resource.direction.Direction;
-import ladder.domain.resource.direction.DirectionGenerator;
 
-public class LineGenerator {
+public interface LineGenerator {
 
-    private final DirectionGenerator directionGenerator;
+    public Line generateLine();
 
-    public LineGenerator(DirectionGenerator directionGenerator) {
-        this.directionGenerator = directionGenerator;
-    }
-
-    public Line generate(int width) {
-        Line line = new Line();
-        final int middleValue = width - 2;
-
-        addInitialDirection(line);
-        addMiddleDirection(middleValue, line);
-        addLastDirection(line);
-
-        return line;
-    }
-
-    private void addInitialDirection(Line line) {
-        line.addDirection(directionGenerator.generateInitialValue());
-    }
-
-    private void addMiddleDirection(int middleValue, Line line) {
-        for (int i = 0; i < middleValue; i++) {
-            Direction lastDirection = line.getLastDirection();
-            line.addDirection(directionGenerator.generateMiddleValue(lastDirection));
-        }
-    }
-
-    private void addLastDirection(Line line) {
-        Direction lastDirection = line.getLastDirection();
-        line.addDirection(directionGenerator.generateLastValue(lastDirection));
-    }
+    public void insertDirectionIntoLine(Line line, int count);
 }

@@ -3,7 +3,7 @@ package ladder.domain.resource.ladder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import ladder.domain.resource.direction.DirectionGeneratorImpl;
+import ladder.domain.resource.line.LineGeneratorImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class LadderGeneratorTest {
 
-    LadderGenerator ladderGenerator = new LadderGenerator(new DirectionGeneratorImpl());
+    LadderGenerator ladderGenerator = new LadderGenerator(new LineGeneratorImpl());
 
     @DisplayName("원하는 가로와 세로 길이를 가진 사다리를 생성한다.")
     @Test

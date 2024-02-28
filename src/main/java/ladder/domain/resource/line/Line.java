@@ -16,15 +16,23 @@ public class Line {
         directionsInfo.add(direction);
     }
 
+    public Direction getDirectionByIndex(int index) {
+        return directionsInfo.get(index);
+    }
+
     public Direction getLastDirection() {
         return directionsInfo.get(directionsInfo.size() - 1);
     }
 
-    public int getLineSize() {
+    public int getSize() {
         return directionsInfo.size();
     }
 
-    public List<Direction> getDirectionsInfo() {
+    public boolean isEmpty() {
+        return directionsInfo.isEmpty();
+    }
+
+    public List<Direction> getDirections() {
         return directionsInfo;
     }
 }

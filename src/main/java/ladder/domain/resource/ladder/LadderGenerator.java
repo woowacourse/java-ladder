@@ -2,7 +2,6 @@ package ladder.domain.resource.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.domain.resource.direction.DirectionGenerator;
 import ladder.domain.resource.line.Line;
 import ladder.domain.resource.line.LineGenerator;
 
@@ -15,8 +14,8 @@ public class LadderGenerator {
 
     private final LineGenerator lineGenerator;
 
-    public LadderGenerator(DirectionGenerator directionGenerator) {
-        this.lineGenerator = new LineGenerator(directionGenerator);
+    public LadderGenerator(LineGenerator lineGenerator) {
+        this.lineGenerator = lineGenerator;
     }
 
     public Ladder generate(int height, int width) {
@@ -30,7 +29,8 @@ public class LadderGenerator {
     private List<Line> generateLines(int count, int width) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            lines.add(lineGenerator.generate(width));
+            Line line = lineGenerator.generateLine();
+            lineGenerator.insertDirectionIntoLine(line, width);
         }
 
         return lines;
