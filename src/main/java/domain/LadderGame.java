@@ -3,6 +3,7 @@ package domain;
 import domain.ladder.BridgeGenerator;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
+import domain.ladder.LadderFactory;
 import domain.ladder.Width;
 import domain.player.Position;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class LadderGame {
             final BridgeGenerator bridgeGenerator) {
         this.players = players;
         this.matchingItems = matchingItems;
-        this.ladder = Ladder.createByStrategy(
+        this.ladder = LadderFactory.createByStrategy(
                 bridgeGenerator,
                 height,
                 Width.from(players)

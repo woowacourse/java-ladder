@@ -25,7 +25,7 @@ class LadderTest {
         ));
 
         //when
-        final Ladder ladder = Ladder.createByStrategy(bridgeGenerator, height, width);
+        final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, height, width);
 
         //then
         assertThat(ladder.getLadder()).hasSize(height.getValue());
@@ -42,7 +42,7 @@ class LadderTest {
                 false, true, false,
                 true, false, true
         ));
-        final Ladder ladder = Ladder.createByStrategy(bridgeGenerator, new Height(5), new Width(3));
+        final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, new Height(5), new Width(3));
 
         // when & then
         assertAll(
