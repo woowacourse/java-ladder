@@ -24,4 +24,11 @@ public class GameResults {
         return gameResults.stream().map(GameResult::getGameResultDescriptionValue)
                 .toList();
     }
+
+    public GameResult findGameResult(LineNumber lineNumber) {
+        return gameResults.stream()
+                .filter(gameResult -> gameResult.isEqualLineNumber(lineNumber))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("라인 번호에 일치하는 결과가 없습니다."));
+    }
 }
