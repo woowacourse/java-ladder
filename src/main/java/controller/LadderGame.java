@@ -7,7 +7,6 @@ import domain.Prizes;
 import exception.controller.LadderGameExceptionMessage;
 import exception.view.InputExceptionMessage;
 import java.util.List;
-import java.util.stream.IntStream;
 import utils.RandomStepGenerator;
 import view.InputView;
 import view.OutputView;

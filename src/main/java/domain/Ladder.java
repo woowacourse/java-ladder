@@ -7,7 +7,7 @@ import utils.StepGenerator;
 public class Ladder {
 
     private final List<Line> lines;
-    Height height;
+    private final Height height;
 
     public Ladder(int floor, int participantsCount, StepGenerator stepGenerator) {
         int stepPointCount = participantsCount - 1;
