@@ -43,7 +43,7 @@ public class Ladder {
         }
     }
 
-    public int getNextPosition(int initPosition) {
+    private int getNextPosition(int initPosition) {
         int position = initPosition;
 
         for (int i = 0; i < height; i++) {
