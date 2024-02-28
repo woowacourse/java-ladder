@@ -12,9 +12,9 @@ public class LadderController {
     private final InputView inputView;
     private final ExceptionHandler handler;
 
-    public LadderController(ResultView resultView, InputView inputView) {
-        this.resultView = resultView;
-        this.inputView = inputView;
+    public LadderController() {
+        this.resultView = new ResultView();
+        this.inputView = new InputView();
         this.handler = new ExceptionHandler();
     }
 
