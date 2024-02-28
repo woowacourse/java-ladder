@@ -12,12 +12,14 @@ public class LadderGameTest {
     @DisplayName("사다리게임을 만든다")
     void makeLadderGame() {
         //given
-        Ladder ladder = new Ladder("2", 2);
-        People people=new People(List.of("a","b"));
-        ResultCandidate resultCandidate=new ResultCandidate(List.of("꽝","100"),2);
+        // |--|   |
+        // |--|   |
+        Ladder ladder = new Ladder("2", 3,()->true);
+        People people=new People(List.of("a","b","c"));
+        Consequences consequences =new Consequences(List.of("꽝","100","200"),3);
         //when
-        LadderGame ladderGame=new LadderGame(ladder,people,resultCandidate);
+        LadderGame ladderGame=new LadderGame(ladder,people, consequences);
         //then
-        assertThatCode(()->new LadderGame(ladder,people,resultCandidate)).doesNotThrowAnyException();
+        assertThatCode(()->new LadderGame(ladder,people, consequences)).doesNotThrowAnyException();
     }
 }

@@ -3,10 +3,10 @@ package domain.model;
 public class LadderGame {
     private final Ladder ladder;
     private final People people;
-    private final ResultCandidate resultCandidate;
-    public LadderGame(Ladder ladder, People people,ResultCandidate resultCandidate) {
+    private final Consequences consequences;
+    public LadderGame(Ladder ladder, People people, Consequences consequences) {
         this.ladder = ladder;
         this.people = people;
-        this.resultCandidate=resultCandidate;
+        this.consequences = consequences;
     }
 }

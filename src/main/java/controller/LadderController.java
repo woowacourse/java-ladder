@@ -3,6 +3,7 @@ package controller;
 import domain.model.Ladder;
 import domain.model.People;
 import handler.ExceptionHandler;
+import utils.RuleGeneratorImpl;
 import view.InputView;
 import view.ResultView;
 
@@ -30,7 +31,7 @@ public class LadderController {
 
         Supplier<Ladder> ladderSupplier = () -> {
             String ladder=inputView.askLadderHeight();
-            return new Ladder(ladder, people.getNumberOfParticipants());
+            return new Ladder(ladder, people.getNumberOfParticipants(),new RuleGeneratorImpl());
         };
         Ladder ladder = registerWithRetry(ladderSupplier);
 

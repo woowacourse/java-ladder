@@ -1,5 +1,6 @@
 package domain.model;
 
+import utils.RuleGenerator;
 import utils.RuleGeneratorImpl;
 
 import java.util.ArrayList;
@@ -10,11 +11,11 @@ public class Ladder {
     private final List<Line> lines = new ArrayList<>();
     private final Height height;
 
-    public Ladder(String inputHeight, int personCount) {
+    public Ladder(String inputHeight, int personCount, RuleGenerator ruleGenerator) {
         this.height = new Height(inputHeight);
 
         for (int i = 0; i < height.getHeight(); i++) {
-            Line line = new Line(new RuleGeneratorImpl(), personCount);
+            Line line = new Line(ruleGenerator, personCount);
             lines.add(line);
         }
     }
