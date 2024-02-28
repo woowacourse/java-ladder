@@ -1,4 +1,5 @@
 import domain.Ladder;
+import domain.Line;
 import domain.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,9 +24,9 @@ public class LadderTest {
     @Test
     void makeLinesWithWidth() {
         Ladder ladder = Ladder.from(HEIGHT, WIDTH, randomLineGenerator);
+        Line line = ladder.getLines().get(0);
 
-        ladder.getLines().stream()
-                .forEach(line -> assertThat(line.getLegs().size()).isEqualTo(WIDTH));
+        assertThat(line.getWidth()).isEqualTo(WIDTH);
     }
 
     @DisplayName("주어진 참여자의 사다리 타기 결과를 인덱스로 반환한다.")
