@@ -32,18 +32,20 @@ public class InputView {
         return List.of(rawResults.split(DELIMITER));
     }
 
-    public String readTarget() {
-        System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
-
-        return scanner.nextLine().trim();
-    }
-
     public int readHeight() {
         System.out.println(System.lineSeparator() + "최대 사다리 높이는 몇 개인가요?");
         try {
             return scanner.nextInt();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_HEIGHT_FORMAT);
+        } finally {
+            scanner.nextLine();
         }
+    }
+
+    public String readTarget() {
+        System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
+
+        return scanner.nextLine().trim();
     }
 }
