@@ -1,26 +1,20 @@
 package view;
 
+import dto.GameResultsDto;
 import dto.ParticipantName;
-import dto.PrizeName;
-import dto.ResultsDto;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.Set;
 
 public class ResultView {
-    public void printResult(ResultsDto resultsDto, ParticipantName participantName, List<PrizeName> prizeNames) {
+    public void printResult(GameResultsDto gameResultsDto, ParticipantName participantName) {
         System.out.println("실행결과");
         if (participantName.name().equals("all")) {
-            printTotalResultS(resultsDto, prizeNames);
+            printTotalResultS(gameResultsDto);
             return;
         }
-        int index = resultsDto.results().get(participantName);
-        System.out.println(prizeNames.get(index).prizeName());
+        System.out.println(gameResultsDto.gameResults().get(participantName));
     }
 
-    private void printTotalResultS(ResultsDto resultsDto, List<PrizeName> prizeNames) {
-        Set<Entry<ParticipantName, Integer>> set = resultsDto.results().entrySet();
-        set.stream().forEach(
-                e -> System.out.println(e.getKey().name() + " : " + prizeNames.get(e.getValue()).prizeName()));
+    private void printTotalResultS(GameResultsDto gameResultsDto) {
+        gameResultsDto.gameResults().entrySet().forEach(
+                result -> System.out.println(result.getKey().name() + " : " + result.getValue().prizeName()));
     }
 }
