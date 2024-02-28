@@ -29,7 +29,7 @@ public class LadderController {
         LadderGame ladderGame = new LadderGame(ladder, participants, results);
         outputView.printLadderResult(ladderGame);
         String participantName = inputView.inputParticipantName();
-        while(!participantName.equals("all")){
+        while(!participantName.equals(Participants.ENTIRE)){
             outputView.printParticipantResult(ladderGame.matchResult(new Participant(participantName)));
             participantName = inputView.inputParticipantName();
         }
