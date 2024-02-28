@@ -3,20 +3,34 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class PrizeResultsTest {
+
+    /*
+    wiib    pobi    haha
+        |------|      |
+        |------|      |
+        |------|      |
+        꽝     당첨    꽝
+     */
+    private PrizeResults init() {
+        return PrizeResults.of(
+                new Players(List.of("wiib", "pobi", "haha")),
+                new Prizes(List.of("꽝", "당첨", "꽝")),
+                new Ladder(3, new Height(3), new FixedBooleanGenerator(true)));
+    }
+
     @Test
-    @DisplayName("Players, Prizes를 통해 생성한다.")
+    @DisplayName("Players, Prizes, Ladder를 통해 생성한다.")
     void createSuccess() {
-        assertThatCode(() -> PrizeResults.of(
-                        new Players(List.of("wiib", "pobi", "haha")),
-                        new Prizes(List.of("꽝", "당첨", "꽝"))
-                )
-        ).isInstanceOf(PrizeResults.class)
-                .doesNotThrowAnyException();
+        assertThatCode(this::init
+        ).doesNotThrowAnyException();
+
     }
 
     @Test
@@ -24,31 +38,46 @@ class PrizeResultsTest {
     void createFailRange() {
         assertThatCode(() -> PrizeResults.of(
                 new Players(List.of("wiib", "pobi", "haha")),
-                new Prizes(List.of("꽝", "당첨", "꽝", "당첨"))
-        )).isInstanceOf(IllegalArgumentException.class)
+                new Prizes(List.of("꽝", "당첨", "꽝", "5000")),
+                new Ladder(3, new Height(3), new FixedBooleanGenerator(true)))
+        ).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(String.format("실행 결과는 참여자와 같은 갯수를 입력해주세요. 입력 : %d개", 4));
-    }
-
-    @Test
-    @DisplayName("all을 입력하면 false, 그 외의 입력에 대해서는 true을 리턴한다.")
-    void checkOperate() {
-        PrizeResults prizeResults = PrizeResults.of(
-                new Players(List.of("wiib", "pobi", "haha")),
-                new Prizes(List.of("꽝", "당첨", "꽝")));
-
-        assertThat(prizeResults.checkOperate("all")).isFalse();
-        assertThat(prizeResults.checkOperate("wiib")).isTrue();
     }
 
     @Test
     @DisplayName("all 또는 사용자 이름과 다를 경우, 예외를 발생한다.")
     void checkOperateValidation() {
-        PrizeResults prizeResults = PrizeResults.of(
-                new Players(List.of("wiib", "pobi", "haha")),
-                new Prizes(List.of("꽝", "당첨", "꽝")));
+        PrizeResults prizeResults = init();
 
-        assertThatCode(() -> prizeResults.checkOperate("atom"))
+        assertThatCode(() -> prizeResults.getByOperate("atom"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(String.format("보고 싶은 결과는 all 또는 사용자 이름으로 입력해주세요. 입력 : %s", "atom"));
     }
+
+    @Test
+    @DisplayName("all이면 전체 결과를 도출한다.")
+    void getALL() {
+        PrizeResults prizeResults = init();
+
+        Map<Player, Prize> allActual = prizeResults.getByOperate("all");
+        Map<Player, Prize> allExpected = new LinkedHashMap<>();
+        allExpected.put(new Player("wiib"), new Prize("당첨"));
+        allExpected.put(new Player("pobi"), new Prize("꽝"));
+        allExpected.put(new Player("haha"), new Prize("꽝"));
+
+        assertThat(allActual).containsExactlyEntriesOf(allExpected);
+    }
+
+    @Test
+    @DisplayName("사용자 이름을 입력하면 그 사용자의 결과를 도출한다.")
+    void getPlayerResult() {
+        PrizeResults prizeResults = init();
+
+        Map<Player, Prize> wiibResultActual = prizeResults.getByOperate("wiib");
+        Map<Player, Prize> wiibResultExpected = new LinkedHashMap<>();
+        wiibResultExpected.put(new Player("wiib"), new Prize("당첨"));
+
+        assertThat(wiibResultActual).containsExactlyEntriesOf(wiibResultExpected);
+    }
 }
+
