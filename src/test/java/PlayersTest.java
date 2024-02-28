@@ -32,20 +32,15 @@ public class PlayersTest {
     }
 
     @Test
+    @DisplayName("존재하는 사용자인 경우 이름과 일치하는 사용자를 조회해 반환한다.")
     void validSearch() {
         final Players players = Players.from(List.of("pobi", "kirby"));
         assertThat(players.search("pobi").getPlayers()).containsExactly(new Player("pobi"));
     }
     @Test
+    @DisplayName("존재하지 않는 사용자의 경우 조회 시도시 예외를 발생시킨다.")
     void invalidSearch() {
         final Players players = Players.from(List.of("pobi", "kirby"));
         assertThatIllegalArgumentException().isThrownBy(() -> players.search("abc"));
-    }
-
-    @Test
-    void search() {
-        final Players players = Players.from(List.of("pobi", "kirby"));
-        final Players pobi = players.search("pobi");
-        assertThat(pobi.getPlayers()).containsExactly(new Player("pobi"));
     }
 }

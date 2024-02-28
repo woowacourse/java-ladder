@@ -10,6 +10,7 @@ import domain.PlayersPrize;
 import domain.Prizes;
 import java.util.List;
 import mock.ExistStepGenerator;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LadderGameTest {
@@ -21,6 +22,7 @@ public class LadderGameTest {
    A  B  C  D
     */
     @Test
+    @DisplayName("각 참가자에 대한 실행결과를 가져온다.")
     void getPlayersWithPrize() {
         // given
         final Players players = Players.from(List.of("a", "b", "c", "d"));

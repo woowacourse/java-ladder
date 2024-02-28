@@ -22,6 +22,7 @@ public class LadderGame {
             Player player = players.findByIndex(index);
             int resultIndex = playLadder(index);
             Prize prize = prizes.findByIndex(resultIndex);
+
             playersPrize.put(player, prize);
         }
 

@@ -49,7 +49,7 @@ public class LadderController {
         return new Height(height);
     }
 
-    private void showGameResult(PlayersPrize playersPrize, Players players) {
+    private void showGameResult(PlayersPrize playersPrize, Players players) { // TODO: 재입력 로직 개선
         final Players searchedPlayer = readWithRetry(this::readSearchingPlayers, players);
 
         if (searchedPlayer.isCountOne()) {
