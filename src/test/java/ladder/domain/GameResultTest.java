@@ -16,18 +16,18 @@ import org.junit.jupiter.api.Test;
 public class GameResultTest {
 
     private Participants participants;
-    private Prizes prizes;
+    private Prizes sortedPrizes;
 
     @BeforeEach
     void setUp() {
         participants = new Participants(new ArrayList<>(List.of("aru", "pola", "jazz")));
-        prizes = new Prizes(new ArrayList<>(List.of("3000", "꽝", "5000")), 3);
+        sortedPrizes = new Prizes(new ArrayList<>(List.of("3000", "꽝", "5000")), 3);
     }
 
     @DisplayName("사다리 결과와 상품을 매칭해서 게임 결과를 반환한다.")
     @Test
     void generateGameResultTest() {
-        Map<Name, String> gameResult = new GameResult(participants, prizes).getGameResult();
+        Map<Name, String> gameResult = new GameResult(participants, sortedPrizes).getGameResult();
 
         assertAll(
                 () -> assertEquals("3000", gameResult.get(new Name("aru"))),
@@ -39,11 +39,11 @@ public class GameResultTest {
     @DisplayName("조회하려는 사람 이름이 게임 결과에 존재하지 않을 때 에러를 발생한다.")
     @Test
     void notExistNameInGameResultTest() {
-        GameResult gameResult = new GameResult(participants, prizes);
+        GameResult gameResult = new GameResult(participants, sortedPrizes);
         String nameInput = "loki";
 
         assertThatThrownBy(() -> gameResult.containsName(nameInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("조회하려는 사람이 존재하지 않습니다.");
+                .hasMessage("조회하려는 참여자가 게임 결과에 존재하지 않습니다.");
     }
 }
