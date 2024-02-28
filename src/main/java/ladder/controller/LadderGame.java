@@ -1,18 +1,17 @@
 package ladder.controller;
 
-import ladder.domain.Height;
-import ladder.domain.Ladder;
-import ladder.domain.Name;
-import ladder.domain.People;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
 public class LadderGame {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private final RandomPointsGenerator randomPointsGenerator = new RandomPointsGenerator();
 
     public LadderGame() {
     }
@@ -21,7 +20,8 @@ public class LadderGame {
         People people = createNames();
         Height height = createHeight();
 
-        Ladder ladder = new Ladder(people, height);
+        List<Line> lines = createLines(people, height);
+        Ladder ladder = new Ladder(lines);
 
         outputView.printPeople(people);
         outputView.printLadder(ladder, people);
@@ -59,5 +59,15 @@ public class LadderGame {
             outputView.printError(e.getMessage());
             return retryWhileException(callback);
         }
+    }
+
+    private List<Line> createLines(People people, Height height) {
+        List<Line> lines = new ArrayList<>();
+        int size = people.count() - 1;
+        while (!height.equals(lines.size())) {
+            List<Point> points = randomPointsGenerator.generate(size);
+            lines.add(new Line(points));
+        }
+        return lines;
     }
 }
