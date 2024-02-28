@@ -20,4 +20,31 @@ class LadderTest {
         // then
         assertThat(ladder.getLadder()).hasSize(5);
     }
+
+    @DisplayName("특정 참여자의 사다리를 실행한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"0, 0", "1, 3", "2, 2", "3, 1"})
+    void climb(int index, int actual) {
+        // given
+        /*
+        |-----|     |-----|
+        |     |-----|     |
+        |-----|     |     |
+        |     |-----|     |
+        |-----|     |-----|
+         */
+        Ladder ladder = new Ladder(
+                new Line(Point.USED, Point.UNUSED, Point.USED, Point.UNUSED),
+                new Line(Point.UNUSED, Point.USED, Point.UNUSED, Point.UNUSED),
+                new Line(Point.USED, Point.UNUSED, Point.UNUSED, Point.UNUSED),
+                new Line(Point.UNUSED, Point.USED, Point.UNUSED, Point.UNUSED),
+                new Line(Point.USED, Point.UNUSED, Point.USED, Point.UNUSED)
+        );
+
+        // when
+        int expected = ladder.execute(index);
+
+        // then
+        assertThat(expected).isEqualTo(actual);
+    }
 }
