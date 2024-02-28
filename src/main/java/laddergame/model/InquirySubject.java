@@ -29,4 +29,8 @@ public class InquirySubject {
                 .filter(index -> index == participants.indexOf(subject))
                 .toList();
     }
+
+    public Participant getParticipantByIndex(int index) {
+        return participants.findByIndex(index);
+    }
 }
