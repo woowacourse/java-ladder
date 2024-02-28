@@ -25,13 +25,13 @@ public class InputView {
         });
     }
 
-    public static LadderResults inputLadderResults() {
+    public static LadderResults inputLadderResults(Players players) {
         return ExceptionHandler.run(() -> {
-            System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+            System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
             List<LadderResult> results = Arrays.stream(readLine().split(","))
                     .map(LadderResult::new)
                     .toList();
-            return new LadderResults(results);
+            return new LadderResults(results, players);
         });
     }
 
