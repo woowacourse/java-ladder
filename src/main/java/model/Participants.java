@@ -38,6 +38,10 @@ public class Participants {
                 .toList();
     }
 
+    public int getPositionByName(Name findName) {
+        return 0;
+    }
+
     public int getParticipantsSize() {
         return this.participantNames.size();
     }

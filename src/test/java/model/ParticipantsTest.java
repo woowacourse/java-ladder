@@ -1,5 +1,6 @@
 package model;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,5 +24,13 @@ class ParticipantsTest {
         assertThatThrownBy(() -> new Participants(List.of("pobi")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참가자가 2명 미만인 경우는 존재할 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("이름을 통해서 참가자의 처음 위치를 가져온다.")
+    void getParticipantPositionByName() {
+        Participants participants = new Participants(List.of("pobi", "bop"));
+        Assertions.assertThat(participants.getPositionByName(new Name("pobi")))
+                .isEqualTo(0);
     }
 }
