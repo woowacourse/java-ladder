@@ -19,9 +19,15 @@ public class OutputView {
                 .toList()));
     }
 
-    public void writeLadder(final Ladder ladder, final ResultItems items) {
+    public void writeLadder(final Ladder ladder) {
         ladder.getLines().forEach(this::writeLine);
-        System.out.println(String.join(SPACE, items.getElements().stream().toList()));
+    }
+
+    public void writeResultItems(final List<ResultItem> items) {
+        System.out.println(String.join(SPACE, items.stream()
+                .map(ResultItem::getItem)
+                .toList())
+        );
     }
 
     private void writeLine(final Lines lines) {
@@ -36,16 +42,16 @@ public class OutputView {
         System.out.println(LINE_SEPARATOR + "실행결과" + LINE_SEPARATOR);
     }
 
-    public void writeResultItem(String item) {
+    public void writeResultItem(ResultItem item) {
         System.out.println(LINE_SEPARATOR + "실행결과");
-        System.out.println(item);
+        System.out.println(item.getItem());
     }
 
     public void writeAllResultItems(Players players) {
         System.out.println(LINE_SEPARATOR + "실행결과");
         List<String> itemsFormat = new ArrayList<>();
         for (Player player : players.getPlayers()) {
-            itemsFormat.add(String.format(RESULT_FORMAT, player.getName(), player.getItem()));
+            itemsFormat.add(String.format(RESULT_FORMAT, player.getName(), player.getItem().getItem()));
         }
         System.out.println(String.join(LINE_SEPARATOR, itemsFormat));
     }

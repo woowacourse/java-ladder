@@ -7,7 +7,7 @@ public class Player {
 
     private final String name;
     private final Position position;
-    private String item;
+    private ResultItem item;
 
     public Player(final String name, final Position position) {
         validate(name);
@@ -20,7 +20,7 @@ public class Player {
         position.move(direction);
     }
 
-    public void assignItem(String item) {
+    public void assignItem(ResultItem item) {
         this.item = item;
     }
 
@@ -49,7 +49,7 @@ public class Player {
         return position;
     }
 
-    public String getItem() {
+    public ResultItem getItem() {
         return item;
     }
 }

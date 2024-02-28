@@ -19,12 +19,12 @@ public class LadderGameController {
                 players.getPlayersCount(),
                 height);
 
-        ResultItems items = retryUntilValidated(() -> new ResultItems(inputView.readLadderResult(), players.getPlayersCount()));
-        LadderGame ladderGame = new LadderGame(players, ladder, items);
+        LadderGame ladderGame = retryUntilValidated(() ->
+                new LadderGame(players, ladder, inputView.readLadderResult()));
         ladderGame.climb();
         ladderGame.calculatePlayersItem();
 
-        printLadderResult(players, ladder, items);
+        printLadderResult(ladderGame);
 
         while (true) {
             try {
@@ -33,7 +33,7 @@ public class LadderGameController {
                     outputView.writeAllResultItems(players);
                     break;
                 }
-                String item = players.findItemByName(name);
+                ResultItem item = players.findItemByName(name);
                 outputView.writeResultItem(item);
             } catch (IllegalArgumentException e) {
                 OutputView.writeErrorMessage(e.getMessage());
@@ -41,10 +41,11 @@ public class LadderGameController {
         }
     }
 
-    private void printLadderResult(final Players players, final Ladder ladder, final ResultItems items) {
+    private void printLadderResult(final LadderGame ladderGame) {
         outputView.writeResultTitle();
-        outputView.writePlayersName(players);
-        outputView.writeLadder(ladder, items);
+        outputView.writePlayersName(ladderGame.getPlayers());
+        outputView.writeLadder(ladderGame.getLadder());
+        outputView.writeResultItems(ladderGame.getItems());
     }
 
     private <T> T retryUntilValidated(Supplier<T> supplier) {

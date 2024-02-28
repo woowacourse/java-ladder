@@ -21,7 +21,7 @@ public class Players {
                 .toList();
     }
 
-    public String findItemByName(String name) {
+    public ResultItem findItemByName(String name) {
         for (Player player : players) {
             if (player.getName().equals(name)) {
                 return player.getItem();
