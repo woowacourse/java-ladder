@@ -26,4 +26,8 @@ public class LadderGameResult {
             throw new LadderGameException(ExceptionType.NOT_ALLOW_DIFFERENT_NAMES_LADDER_RESULTS_LENGTH);
         }
     }
+
+    public LadderResult getLadderResultFromName(Name name) {
+        return ladderGameResult.get(name);
+    }
 }

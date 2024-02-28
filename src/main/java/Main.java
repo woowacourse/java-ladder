@@ -1,7 +1,6 @@
 import domain.BridgesRandomGenerator;
 import domain.LadderGame;
 import domain.LadderGameResult;
-import domain.Names;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,15 +14,15 @@ public class Main {
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
             var inputView = new InputView(bufferedReader);
             LadderGame ladderGame = RetryHelper.retryWithReturn(() -> createLadderGame(outputView, inputView));
-            outputView.printLadderResult(ladderGame);
             LadderGameResult ladderGameResult = ladderGame.calculateLadderGameResult();
+            outputView.printLadderResult(ladderGame);
             RetryHelper.retryWithoutReturn(
-                    () -> searchLadderResultFromName(outputView, inputView, ladderGame.getNames(), ladderGameResult));
+                    () -> searchLadderResultFromName(outputView, inputView, ladderGameResult));
         }
     }
 
     private static void searchLadderResultFromName(OutputView outputView, InputView inputView,
-                                                   Names names, LadderGameResult ladderGameResult) {
+                                                   LadderGameResult ladderGameResult) {
 
         outputView.printSearchNameInput();
         String searchName = inputView.getInput();
@@ -32,7 +31,7 @@ public class Main {
             outputView.printSearchNameInput();
             searchName = inputView.getInput();
         }
-        outputView.printAllNameLadderResult(names, ladderGameResult);
+        outputView.printAllNameLadderResult(ladderGameResult);
     }
 
     private static LadderGame createLadderGame(OutputView outputView, InputView inputView) {

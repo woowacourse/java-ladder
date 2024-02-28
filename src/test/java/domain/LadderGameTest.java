@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.List;
-import java.util.Map;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -54,8 +53,7 @@ class LadderGameTest {
         LadderGame ladderGame = new LadderGame(VALID_NAMES, VALID_LADDER_RESULTS, VALID_HEIGHT,
                 new BridgesTestGenerator(List.of(true, false)));
         LadderGameResult ladderGameResult = ladderGame.calculateLadderGameResult();
-        Map<Name, LadderResult> ladderGameResultMap = ladderGameResult.getLadderGameResult();
-        String actual = ladderGameResultMap.get(new Name("a")).getLadderResult();
+        String actual = ladderGameResult.getLadderResultFromName(new Name("a")).getLadderResult();
         String expected = "꽝";
         Assertions.assertThat(actual).isEqualTo(expected);
     }

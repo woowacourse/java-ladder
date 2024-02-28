@@ -11,7 +11,6 @@ import domain.LadderResults;
 import domain.Name;
 import domain.Names;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -50,11 +49,12 @@ public class OutputView {
         System.out.println(String.join("\n", LADDER_PREFIX, namesString, ladderString, ladderResultString, "\n"));
     }
 
-    public void printAllNameLadderResult(Names names, LadderGameResult ladderGameResult) {
-        Map<Name, LadderResult> nameLadderResultMap = ladderGameResult.getLadderGameResult();
-        String allNameLadderResult = names.getNames().stream()
+    public void printAllNameLadderResult(LadderGameResult ladderGameResult) {
+        String allNameLadderResult = ladderGameResult.getLadderGameResult()
+                .keySet()
+                .stream()
                 .map(name -> NAME_LADDER_RESULT_FORMAT
-                        .formatted(name.getName(), nameLadderResultMap.get(name).getLadderResult()))
+                        .formatted(name.getName(), ladderGameResult.getLadderResultFromName(name).getLadderResult()))
                 .collect(Collectors.joining("\n"));
         System.out.println(String.join("\n", LADDER_RESULT_PREFIX, allNameLadderResult));
     }
@@ -64,13 +64,10 @@ public class OutputView {
     }
 
     public void printSearchNameLadderResult(String searchName, LadderGameResult ladderGameResult) {
-        Name searchForName = new Name(searchName);
-        Map<Name, LadderResult> nameLadderResultMap = ladderGameResult.getLadderGameResult();
-        if (nameLadderResultMap.containsKey(searchForName)) {
-            System.out.println(
-                    String.join("\n", LADDER_RESULT_PREFIX,
-                            nameLadderResultMap.get(searchForName).getLadderResult() + "\n"));
-        }
+        Name name = new Name(searchName);
+        System.out.println(
+                String.join("\n", LADDER_RESULT_PREFIX,
+                        ladderGameResult.getLadderResultFromName(name).getLadderResult() + "\n"));
     }
 
     private String makeLadderString(Ladder ladder) {
