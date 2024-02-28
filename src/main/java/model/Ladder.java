@@ -10,7 +10,7 @@ public class Ladder {
     public Ladder(int height, int numberOfParticipants) {
         List<Layer> layers = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            layers.add(new Layer(numberOfParticipants));
+            layers.add(StepsGenerator.generate(numberOfParticipants));
         }
         this.layers = layers;
     }

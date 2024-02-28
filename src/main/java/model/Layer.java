@@ -1,25 +1,20 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Layer {
     private final List<Step> steps;
 
-    public Layer(int numberOfParticipants) {
-        List<Step> steps = new ArrayList<>();
-        boolean priorExistence = false;
+    public Layer(List<Step> steps) {
+        this.steps = steps;
+    }
 
-        for (int i = 1; i < numberOfParticipants; i++) {
-            boolean doesExist = StepExistenceGenerator.generate(priorExistence);
-            priorExistence = doesExist;
-            steps.add(Step.findByExistence(doesExist));
     public int move(int position) {
         if (moveRight(position)) {
             position += 1;
             return position;
         }
-        this.steps = steps;
         if (moveLeft(position)) {
             position -= 1;
         }
@@ -35,7 +30,7 @@ public class Layer {
     }
 
     public List<Step> getSteps() {
-        return steps;
+        return Collections.unmodifiableList(steps);
     }
 
     public int getLayerSize() {
