@@ -24,7 +24,7 @@ public class Lines {
         for (Line line : lines) {
             rewardIndex = line.findNextIndex(rewardIndex);
         }
-        return rewardIndex;
+        return rewardIndex; // TODO: reduce, binary operator
     }
 
     public List<Line> getLines() {

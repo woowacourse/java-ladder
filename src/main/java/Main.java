@@ -43,11 +43,11 @@ public class Main {
         boolean isEnd = false;
         while (!isEnd) {
             String memberName = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap));
-            isEnd = printResult(memberName, rewardMap);
+            isEnd = isAllResultPrinted(memberName, rewardMap);
         }
     }
 
-    private static boolean printResult(String memberName, Map<String, String> rewardMap) {
+    private static boolean isAllResultPrinted(String memberName, Map<String, String> rewardMap) {
         if (memberName.equals("all")) {
             outputView.printAllResult(rewardMap);
             return true;
