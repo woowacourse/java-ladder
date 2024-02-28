@@ -31,11 +31,7 @@ public class Ladder {
         return currentIndex;
     }
 
-    public List<LayerSteps> captureLayerSteps() {
+    public List<LayerSteps> convertToLayerSteps() {
         return layers.stream().map(LayerSteps::new).toList();
-    }
-
-    public int getLadderHeight() {
-        return layers.size();
     }
 }

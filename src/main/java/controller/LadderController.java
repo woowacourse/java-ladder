@@ -39,15 +39,15 @@ public class LadderController {
     }
 
     private void printLadder(Participants participants, Ladder ladder, Prizes prizes) {
-        outputView.printParticipantsName(participants.captureParticipantsName());
-        outputView.printLadder(ladder.captureLayerSteps());
-        outputView.printPrizeNames(prizes.capturePrizesName());
+        outputView.printParticipantsName(participants.convertToParticipantsNames());
+        outputView.printLadder(ladder.convertToLayerSteps());
+        outputView.printPrizeNames(prizes.convertToPrizesName());
     }
 
     private void printResult(Participants participants, Results results, Prizes prizes) {
         while (true) {
             ParticipantName participantName = repeatUntilSuccess(this::prepareParticipantName, participants);
-            resultView.printResult(results.captureResult(), participantName, prizes.capturePrizesName());
+            resultView.printResult(results.captureResult(), participantName, prizes.convertToPrizesName());
         }
     }
 

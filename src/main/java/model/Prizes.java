@@ -19,7 +19,7 @@ public class Prizes {
         }
     }
 
-    public List<PrizeName> capturePrizesName() {
+    public List<PrizeName> convertToPrizesName() {
         return prizes.stream().map(PrizeName::new).toList();
     }
 }

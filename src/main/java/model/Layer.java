@@ -30,8 +30,4 @@ public class Layer {
     public List<Step> getSteps() {
         return steps;
     }
-
-    public int getLayerSize() {
-        return steps.size();
-    }
 }
