@@ -50,7 +50,6 @@ public class GameController {
         boolean repeatFlag = true;
         while (repeatFlag) {
             Name targetName = retryHelper(() -> new Name(input(SEARCH_PLAYER_PROMPT)));
-
             repeatFlag = showResultAndDetermineRepeat(gameBoard, targetName);
         }
     }
@@ -58,8 +57,7 @@ public class GameController {
     private boolean showResultAndDetermineRepeat(GameBoard gameBoard, Name targetName) {
         OutputView.printNewLine();
         OutputView.print(GAME_RESULT_HEADER);
-        if (targetName.value()
-                      .equals("all")) {
+        if (targetName.isAll()) {
             Map<Name, Prize> searchResults = gameBoard.searchAllPlayerResult();
             searchResults.forEach((name, prize) -> OutputView.printAllResults(name.toString(), prize.toString()));
             return false;

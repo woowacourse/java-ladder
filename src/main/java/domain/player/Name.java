@@ -31,6 +31,10 @@ public record Name(String value) {
         }
     }
 
+    public boolean isAll() {
+        return value.equals("all");
+    }
+
     @Override
     public String toString() {
         return this.value;
