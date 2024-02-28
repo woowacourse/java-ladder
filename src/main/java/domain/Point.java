@@ -2,6 +2,8 @@ package domain;
 
 import domain.ladder.attribute.Direction;
 
+import java.util.Objects;
+
 public record Point(int row, int column) {
 
     public Point move(Direction direction) {
@@ -10,6 +12,18 @@ public record Point(int row, int column) {
             case RIGHT -> new Point(row + 1, column + 1);
             case DOWN -> new Point(row, column + 1);
         };
+    }
+
+    @Override
+    public boolean equals(final Object object) {
+        if (this == object) return true;
+        if (!(object instanceof final Point point)) return false;
+        return row == point.row && column == point.column;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(row, column);
     }
 
     public static class Builder {
@@ -31,6 +45,4 @@ public record Point(int row, int column) {
             return new Point(row, column);
         }
     }
-
-
 }
