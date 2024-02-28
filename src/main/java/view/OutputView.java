@@ -9,4 +9,8 @@ public class OutputView {
         System.out.println();
         results.forEach(System.out::println);
     }
+
+    public static void printError(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
