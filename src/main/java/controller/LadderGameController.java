@@ -1,11 +1,11 @@
 package controller;
 
+import domain.TargetPlayer;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
-import domain.ladder.RandomStickGenerator;
-import domain.ladder.StickGenerator;
+import domain.ladder.stick.RandomStickGenerator;
+import domain.ladder.sticks.NotRepeatedSticksGenerator;
 import domain.player.Players;
-import domain.TargetPlayer;
 import domain.result.Results;
 import view.InputView;
 import view.OutputView;
@@ -13,12 +13,12 @@ import view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LadderGame {
+public class LadderGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
 
-    public LadderGame(InputView inputView, OutputView outputView) {
+    public LadderGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
@@ -28,8 +28,8 @@ public class LadderGame {
         Results results = readResultsOfSize(players.getPlayerSize());
         Height height = readHeight();
 
-        StickGenerator stickGenerator = new RandomStickGenerator();
-        Ladder ladder = new Ladder(height, players.getPlayerSize(), stickGenerator);
+        NotRepeatedSticksGenerator sticksGenerator = new NotRepeatedSticksGenerator(new RandomStickGenerator());
+        Ladder ladder = new Ladder(height, players.getPlayerSize(), sticksGenerator);
 
         List<Integer> resultList = new ArrayList<>();
         for (int i = 0; i < players.getPlayerSize(); i++) {
