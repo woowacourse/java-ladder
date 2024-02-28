@@ -1,5 +1,6 @@
 package model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.LinkedHashMap;
@@ -23,13 +24,43 @@ public class LadderGameTest {
         String forthResult = ladderGame.findParticipantResult(new Name("4"));
 
         assertAll(
-                ()->Assertions.assertThat(zeroResult).isEqualTo("꽝"),
-                ()->Assertions.assertThat(oneResult).isEqualTo("5000"),
-                ()->Assertions.assertThat(secondResult).isEqualTo("꽝"),
-                ()->Assertions.assertThat(thirdResult).isEqualTo("3000"),
-                ()->Assertions.assertThat(forthResult).isEqualTo("꽝")
+                ()-> assertThat(zeroResult).isEqualTo("꽝"),
+                ()-> assertThat(oneResult).isEqualTo("5000"),
+                ()-> assertThat(secondResult).isEqualTo("꽝"),
+                ()-> assertThat(thirdResult).isEqualTo("3000"),
+                ()-> assertThat(forthResult).isEqualTo("꽝")
         );
     }
+
+    @DisplayName("모든 참가자의 게임 결과를 얻는다.")
+    @Test
+    void findAllResults() {
+        LadderGame ladderGame = createLadderGame();
+        Map<Name, String> results = ladderGame.findAllParticipantsResult();
+        Assertions.assertThat(results)
+                .isEqualTo(Map.of(new Name("0"), "꽝",
+                        new Name("1"), "5000",
+                        new Name("2"), "꽝",
+                        new Name("3"), "3000",
+                        new Name("4"), "꽝")
+                );
+
+
+    }
+
+    /*
+         0     1     2     3     4
+         |-----|     |     |-----|
+         |-----|     |-----|     |
+         0     1     2     3     4
+         꽝   5000   꽝     꽝   3000
+
+         0 -> 0 꽝
+         1 -> 1 5000
+         2 -> 3 꽝
+         3 -> 4 3000
+         4 -> 2 꽝
+     */
 
     private static LadderGame createLadderGame() {
         Ladder ladder = new Ladder(List.of(

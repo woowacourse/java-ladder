@@ -20,4 +20,8 @@ public class LadderGame {
         int resultPosition = ladder.moveAll(participantPosition);
         return resultByPosition.get(resultPosition);
     }
+
+    public Map<Name, String> findAllParticipantsResult() {
+        return null;
+    }
 }
