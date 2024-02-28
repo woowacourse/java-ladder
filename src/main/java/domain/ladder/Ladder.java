@@ -14,7 +14,7 @@ public class Ladder {
     public static Ladder createByStrategy(BridgeGenerator bridgeGenerator, Height height, Width width) {
         final List<Floor> ladder = new ArrayList<>();
         for (int i = 0; i < height.getValue(); i++) {
-            ladder.add(Floor.createByStrategy(bridgeGenerator, width));
+            ladder.add(FloorFactory.createByStrategy(bridgeGenerator, width));
         }
         return new Ladder(ladder);
     }
