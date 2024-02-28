@@ -16,7 +16,12 @@ class LadderGameResultTest {
         Ladder ladder = Ladder.from(5, 3, new CustomLineGenerator());
         List<Player> players = List.of(new Player("pobi"), new Player("honux"), new Player("crong"), new Player("jk"));
         List<Result> results = List.of(new Result("꽝"), new Result("5000"), new Result("꽝"), new Result("3000"));
-        LadderGameResult ladderGameResult = new LadderGameResult(ladder, new Players(players), new Results(results, players.size()));
+        LadderGameResult ladderGameResult = new LadderGameResult.LadderGameResultBuilder()
+                .ladder(ladder)
+                .players(new Players(players))
+                .results(new Results(results, players.size()))
+                .build();
+
 
         assertAll(
                 () -> assertThat(ladderGameResult.get(players.get(0)).getResult()).isEqualTo("5000"),

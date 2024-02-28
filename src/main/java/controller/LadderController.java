@@ -18,7 +18,11 @@ public class LadderController {
         Results results = readResults(players.getPlayers().size());
         Ladder ladder = readLadder(players);
         OutputView.printResult(LadderResultDto.of(players, ladder.getLines(), results));
-        LadderGameResult ladderGameResult = new LadderGameResult(ladder, players, results);
+        LadderGameResult ladderGameResult = new LadderGameResult.LadderGameResultBuilder()
+                .ladder(ladder)
+                .players(players)
+                .results(results)
+                .build();
         showLadderGameResult(players, ladderGameResult);
     }
 
