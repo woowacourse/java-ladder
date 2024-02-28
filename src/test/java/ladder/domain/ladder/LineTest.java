@@ -6,11 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.Collections;
 import java.util.List;
-import ladder.domain.ladder.Line;
-import ladder.domain.ladder.Stick;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LineTest {
@@ -18,8 +17,9 @@ class LineTest {
     @DisplayName("라인이 비어있으면 예외 발생")
     @Test
     void validateTest_WhenLineIsEmpty() {
+        List<Stick> sticks = Collections.emptyList();
 
-        assertThatThrownBy(() -> new Line(Collections.emptyList()))
+        assertThatThrownBy(() -> new Line(sticks))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("적어도 가로 라인이 하나 이상 있어야 한다.");
     }
@@ -44,15 +44,14 @@ class LineTest {
     }
 
     @DisplayName("해당 라인을 지나고 나서 플레이어의 위치 결과를 알 수 있다")
-    @Test
-    void findNextPositionTest() {
+    @ParameterizedTest
+    @CsvSource({"0, 0", "1, 2", "2, 1"})
+    void findNextPositionTest(int playerPosition, int expected) {
         Line line = new Line(List.of(Stick.NON_EXISTENCE, Stick.EXISTENCE));
 
-        assertAll(
-                () -> assertThat(line.findNextPosition(0)).isEqualTo(0),
-                () -> assertThat(line.findNextPosition(1)).isEqualTo(2),
-                () -> assertThat(line.findNextPosition(2)).isEqualTo(1)
-        );
+        int actual = line.findNextPosition(playerPosition);
+
+        assertThat(actual).isEqualTo(expected);
     }
 
     @DisplayName("플레이어의 위치가 사다리 범위에서 벗어날 경우, 예외를 던진다")
