@@ -26,6 +26,18 @@ public class LadderGame {
         showResult(ladder, players, rewards);
     }
 
+    private Players readPlayers() {
+        return new Players(InputView.readPlayerNames());
+    }
+
+    private Rewards readReward() {
+        return new Rewards(InputView.readRewards());
+    }
+
+    private Height readHeight() {
+        return new Height(InputView.readLadderHeight());
+    }
+
     private void showResult(Ladder ladder, Players players, Rewards rewards) {
         String name;
         while (!(name = InputView.getWantedResultName()).equals("all")) {
@@ -34,34 +46,5 @@ public class LadderGame {
         }
         Map<Player, String> result = ladder.findAllPlayerReward(players, rewards);
         OutputView.printAllPlayerResult(result);
-    }
-
-    private Rewards readReward() {
-        try {
-            return new Rewards(InputView.readRewards());
-        } catch (IllegalArgumentException e) {
-            return readReward();
-        }
-    }
-
-    private Height readHeight() {
-        try {
-            return new Height(InputView.readLadderHeight());
-        } catch (NumberFormatException e) {
-            System.out.println(INVALID_LADDER_HEIGHT_LANGUAGE_EXCEPTION.getMessage());
-            return readHeight();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readHeight();
-        }
-    }
-
-    private Players readPlayers() {
-        try {
-            return new Players(InputView.readPlayerNames());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readPlayers();
-        }
     }
 }
