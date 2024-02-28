@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.function.Supplier;
 import view.InputView;
-import view.OutPutView;
+import view.OutputView;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        var outputView = new OutPutView();
+        var outputView = new OutputView();
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
             var inputView = new InputView(bufferedReader);
             LadderGame ladderGame = RetryHelper.retryWithReturn(() -> createLadderGame(outputView, inputView));
@@ -22,7 +22,7 @@ public class Main {
         }
     }
 
-    private static void searchLadderResultFromName(OutPutView outputView, InputView inputView,
+    private static void searchLadderResultFromName(OutputView outputView, InputView inputView,
                                                    Names names, LadderGameResult ladderGameResult) {
 
         outputView.printSearchNameInput();
@@ -35,7 +35,7 @@ public class Main {
         outputView.printAllNameLadderResult(names, ladderGameResult);
     }
 
-    private static LadderGame createLadderGame(OutPutView outputView, InputView inputView) {
+    private static LadderGame createLadderGame(OutputView outputView, InputView inputView) {
 
         outputView.printNamesInput();
         String nameInput = inputView.getInput();
