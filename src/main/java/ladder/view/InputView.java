@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import ladder.domain.Height;
+import ladder.domain.LadderResult;
+import ladder.domain.LadderResults;
 import ladder.domain.Players;
 import ladder.exception.ExceptionHandler;
 
@@ -23,8 +25,14 @@ public class InputView {
         });
     }
 
-    private static String readLine() {
-        return SCANNER.nextLine().replace(" ", "");
+    public static LadderResults inputLadderResults() {
+        return ExceptionHandler.run(() -> {
+            System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+            List<LadderResult> results = Arrays.stream(readLine().split(","))
+                    .map(LadderResult::new)
+                    .toList();
+            return new LadderResults(results);
+        });
     }
 
     public static Height inputHeight() {
@@ -32,5 +40,9 @@ public class InputView {
             System.out.println("\n최대 사다리 높이는 몇 개인가요?");
             return new Height(Integer.parseInt(readLine()));
         });
+    }
+
+    private static String readLine() {
+        return SCANNER.nextLine().replace(" ", "");
     }
 }
