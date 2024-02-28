@@ -22,4 +22,11 @@ public class RewardTest {
         Assertions.assertThatThrownBy(() -> new Reward("당첨당첨당첨"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보상이 빈 문자열일 경우 예외처리")
+    @Test
+    void createRewardWithEmpty() {
+        Assertions.assertThatThrownBy(() -> new Reward(""))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
