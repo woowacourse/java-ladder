@@ -33,4 +33,8 @@ public class Ladder {
     public List<RowLine> getLines() {
         return List.copyOf(lines);
     }
+
+    public int getWidthSize() {
+        return lines.get(0).getSize();
+    }
 }

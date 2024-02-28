@@ -15,4 +15,8 @@ public class RowLine {
     public List<ConnectionStatus> getConnections() {
         return List.copyOf(connections);
     }
+
+    public int getSize() {
+        return connections.size();
+    }
 }

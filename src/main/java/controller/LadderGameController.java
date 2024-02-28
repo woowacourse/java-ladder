@@ -2,7 +2,7 @@ package controller;
 
 import domain.Height;
 import domain.Ladder;
-import domain.LadderResult;
+import domain.LadderIndexConnection;
 import domain.Prizes;
 import domain.line.NonContinuousLineGenerator;
 import domain.name.Names;
@@ -27,15 +27,15 @@ public class LadderGameController {
         Ladder ladder = Ladder.createFrom(new NonContinuousLineGenerator(), names, height, prizes);
         resultView.printLadder(ladder, names, prizes);
 
-        LadderResult ladderResult = LadderResult.of(ladder, names, prizes);
-        printResult(ladderResult, names);
+        LadderIndexConnection ladderIndexConnection = LadderIndexConnection.of(ladder);
+        printResult(ladderIndexConnection, names);
     }
 
-    private void printResult(LadderResult ladderResult, Names names) {
+    private void printResult(LadderIndexConnection ladderIndexConnection, Names names) {
         String oneNameOrAll = "";
         while (!oneNameOrAll.equals("all")) {
             oneNameOrAll = inputView.readOneNameOrAll();
-            resultView.printResult(oneNameOrAll, ladderResult.getResult(), names);
+            resultView.printResult(oneNameOrAll, ladderIndexConnection.getResult(), names);
         }
     }
 }

@@ -60,20 +60,20 @@ public class ResultView {
                 .collect(Collectors.joining(BLANK));
     }
 
-    public void printResult(String userInput, Map<Name, Prize> gameResult, Names names) {
+    public void printResult(String onNameOrAll, Map<Name, Prize> gameResult, Names names) {
         System.out.println(LINE_SEPARATOR + "실행 결과");
-        List<Prize> prizes = findPrizes(userInput, names, gameResult);
+        List<Prize> prizes = findPrizes(onNameOrAll, names, gameResult);
         printNamesAndPrizes(names, prizes);
 
     }
 
-    private List<Prize> findPrizes(String userInput, Names names, Map<Name, Prize> gameResult) {
-        if (userInput.equals("all")) {
+    private List<Prize> findPrizes(String onNameOrAll, Names names, Map<Name, Prize> gameResult) {
+        if (onNameOrAll.equals("all")) {
             return gameResult.keySet().stream()
                     .map(gameResult::get)
                     .toList();
         }
-        return List.of(gameResult.get(names.findName(userInput)));
+        return List.of(gameResult.get(names.findName(onNameOrAll)));
     }
 
     private void printNamesAndPrizes(Names names, List<Prize> prizes) {
