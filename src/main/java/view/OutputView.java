@@ -1,5 +1,6 @@
 package view;
 
+import domain.Result;
 import domain.Reward;
 import domain.ladder.common.Direction;
 import domain.player.Name;
@@ -44,6 +45,24 @@ public class OutputView {
                .map(OutputView::padString)
                .forEach(System.out::print);
         printNewLine();
+    }
+
+    public static final void printResult(List<Result> results) {
+        results.stream()
+               .forEach(result -> {
+                   StringBuilder resultStringBuilder = new StringBuilder();
+                   resultStringBuilder.append(result.name()
+                                                    .getValue())
+                                      .append(" : ")
+                                      .append(result.reward()
+                                                    .getValue());
+                   System.out.println(resultStringBuilder);
+               });
+    }
+
+    public static final void printResult(Result result) {
+        System.out.println(result.reward()
+                                 .getValue());
     }
 
     private static String padString(String name) {
