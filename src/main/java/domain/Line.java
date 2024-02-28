@@ -20,6 +20,10 @@ public class Line {
         return lineGenerator.generate(legCount);
     }
 
+    public int getWidth() {
+        return legs.size();
+    }
+
     public List<Leg> getLegs() {
         return List.copyOf(legs);
     }

@@ -48,7 +48,7 @@ public class Ladder {
     }
 
     private boolean isNotFarRight(Position playerPosition, Line line) {
-        return playerPosition.getIndex() != line.getLegs().size();
+        return playerPosition.getIndex() != line.getWidth();
     }
 
     private boolean isLegRightExist(Position playerPosition, Line line) {
