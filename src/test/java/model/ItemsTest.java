@@ -20,7 +20,8 @@ class ItemsTest {
                 new Item("꽝"),
                 new Item("3000")
         );
-        assertThatCode(() -> new Items(items));
+        int personCount = 4;
+        assertThatCode(() -> Items.of(items, personCount));
     }
 
     @Test
@@ -43,8 +44,9 @@ class ItemsTest {
         Item item1 = new Item("꽝");
         Item item2 = new Item("5000");
         Item item3 = new Item("3000");
-        Items items = new Items(
-                List.of(item1, item2, item1, item3)
+        int personCount = 4;
+        Items items = Items.of(
+                List.of(item1, item2, item1, item3), personCount
         );
 
         assertAll(

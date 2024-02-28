@@ -7,7 +7,7 @@ public class Items {
 
     private final List<Item> items;
 
-    public Items(final List<Item> items) {
+    private Items(final List<Item> items) {
         this.items = Collections.unmodifiableList(items);
     }
 
