@@ -1,9 +1,6 @@
 package model.participant;
 
-import model.participant.Participant;
-import model.participant.Participants;
 import model.position.CachedPosition;
-import model.position.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +30,7 @@ class ParticipantsTest {
 
     @DisplayName("참가자들의 시작 위치를 알 수 있다.")
     @Test
-    void participantsPosition(){
+    void participantsPosition() {
         Participants participants = new Participants(List.of("pobi", "left", "right"));
         assertAll(
                 () -> assertThat(participants.getPosition(new Participant("pobi"))).isEqualTo(CachedPosition.valueOf(0)),
@@ -44,7 +41,7 @@ class ParticipantsTest {
 
     @DisplayName("존재하지 않는 참가자의 시작 순서를 알려고 한다면 예외가 발생한다.")
     @Test
-    void notExistParticipants(){
+    void notExistParticipants() {
         Participants participants = new Participants(List.of("pobi", "left", "right"));
         assertThatThrownBy(() -> participants.getPosition(new Participant("tobi")))
                 .isInstanceOf(IllegalArgumentException.class)

@@ -11,8 +11,8 @@ public class Position {
         this.currentIndex = currentIndex;
     }
 
-    void validateNotNegative(int index){
-        if(index < 0){
+    void validateNotNegative(int index) {
+        if (index < 0) {
             throw new IllegalArgumentException("포지션(위치)은 음수가 될 수 없습니다.");
         }
     }
@@ -26,7 +26,7 @@ public class Position {
     }
 
     public Position prior() {
-        return CachedPosition.valueOf(currentIndex-1);
+        return CachedPosition.valueOf(currentIndex - 1);
     }
 
     public int priorIndex() {
@@ -34,7 +34,7 @@ public class Position {
     }
 
     public Position next() {
-        return CachedPosition.valueOf(currentIndex+1);
+        return CachedPosition.valueOf(currentIndex + 1);
     }
 
     @Override

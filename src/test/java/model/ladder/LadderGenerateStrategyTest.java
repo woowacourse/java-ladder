@@ -1,6 +1,5 @@
 package model.ladder;
 
-import model.ladder.LadderGenerateStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 

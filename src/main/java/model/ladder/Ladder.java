@@ -32,7 +32,7 @@ public class Ladder {
         return new ArrayList<>(ladderRows);
     }
 
-    public int getHeight(){
+    public int getHeight() {
         return ladderRows.size();
     }
 

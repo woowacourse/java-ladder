@@ -1,9 +1,9 @@
 package model.ladder;
 
-import model.result.Result;
-import model.result.Results;
 import model.participant.Participant;
 import model.participant.Participants;
+import model.result.Result;
+import model.result.Results;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

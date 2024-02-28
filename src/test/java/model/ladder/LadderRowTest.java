@@ -1,9 +1,6 @@
 package model.ladder;
 
-import model.ladder.LadderRow;
-import model.ladder.Space;
 import model.position.CachedPosition;
-import model.position.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +31,7 @@ public class LadderRowTest {
 
     @DisplayName("사다리의 행 내에서 라인에 따라 이동할 수 있다.")
     @Test
-    void climb(){
+    void climb() {
         LadderRow ladderRow = new LadderRow(List.of(true, false, true));
         assertAll(
                 () -> assertThat(ladderRow.climb(CachedPosition.valueOf(0))).isEqualTo(CachedPosition.valueOf(1)),

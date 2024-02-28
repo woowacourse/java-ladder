@@ -1,13 +1,8 @@
 package model.ladder;
 
 
-import model.ladder.Height;
-import model.ladder.Ladder;
-import model.ladder.LadderGenerateStrategy;
-import model.ladder.Space;
 import model.participant.Participants;
 import model.position.CachedPosition;
-import model.position.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -47,13 +42,13 @@ public class LadderTest {
     }
 
 
-        //        |-----|     |-----|
+    //        |-----|     |-----|
 //                |     |-----|     |
 //                |-----|     |     |
 
     @DisplayName("사다리의 결과를 알 수 있다.")
     @Test
-    void climbAll(){
+    void climbAll() {
         Height height = new Height(3);
         Participants participants = new Participants(List.of("pobi", "left", "right", "both"));
         Ladder ladder = new Ladder((x, y) -> List.of(

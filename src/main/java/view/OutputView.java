@@ -1,6 +1,9 @@
 package view;
 
-import model.ladder.*;
+import model.ladder.Ladder;
+import model.ladder.LadderGame;
+import model.ladder.LadderRow;
+import model.ladder.Space;
 import model.participant.Participant;
 import model.participant.Participants;
 import model.result.Result;
@@ -48,21 +51,22 @@ public class OutputView {
         System.out.print(LadderComponent.DIVISION.getOutput());
     }
 
-    private void printResults(Results results){
+    private void printResults(Results results) {
         List<String> result = results.getResults().stream()
                 .map(Result::name)
                 .toList();
         result.forEach(resultName -> System.out.printf(NAME_FORMAT, resultName));
         System.out.println();
     }
-    public void printParticipantResult(Result result){
+
+    public void printParticipantResult(Result result) {
         System.out.println(System.lineSeparator() + RESULT_MESSAGE);
         System.out.println(result.name());
     }
 
-    public void printAllParticipantsResult(Rewards rewards){
+    public void printAllParticipantsResult(Rewards rewards) {
         System.out.println(System.lineSeparator() + RESULT_MESSAGE);
-        for (Map.Entry<Participant, Result> reward :rewards.getRewards().entrySet()) {
+        for (Map.Entry<Participant, Result> reward : rewards.getRewards().entrySet()) {
             System.out.println(reward.getKey().getName() + DELIMITER + reward.getValue().name());
         }
     }
