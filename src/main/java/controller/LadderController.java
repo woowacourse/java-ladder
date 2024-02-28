@@ -28,7 +28,7 @@ public class LadderController {
         Participants participants = repeatUntilSuccess(this::prepareParticipants);
         Prizes prizes = repeatUntilSuccess(this::preparePrizes, participants);
         Ladder ladder = repeatUntilSuccess(this::prepareLadder, participants);
-        GameResults results = prepareGameResults(ladder, participants, prizes);
+        GameResults results = prepareGameResults(participants, prizes, ladder);
 
         printLadder(participants, ladder, prizes);
         printResult(participants, results);
@@ -57,8 +57,8 @@ public class LadderController {
         outputView.printPrizeNames(prizes.convertToPrizesName());
     }
 
-    private GameResults prepareGameResults(Ladder ladder, Participants participants, Prizes prizes) {
-        return new GameResults(ladder, participants, prizes);
+    private GameResults prepareGameResults(Participants participants, Prizes prizes, Ladder ladder) {
+        return new GameResults(ladder.climbDownAll(participants, prizes));
     }
 
     private void printResult(Participants participants, GameResults results) {

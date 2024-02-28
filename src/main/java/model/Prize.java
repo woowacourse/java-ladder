@@ -1,5 +1,7 @@
 package model;
 
+import dto.PrizeName;
+
 public class Prize {
     private static final int MAX_PRIZE_LENGTH = 5;
 
@@ -21,5 +23,9 @@ public class Prize {
 
     public String getPrizeName() {
         return prizeName;
+    }
+
+    public PrizeName convertToPrizeName() {
+        return new PrizeName(prizeName);
     }
 }

@@ -19,6 +19,10 @@ public class Prizes {
         }
     }
 
+    public Prize getPrizeByIndex(int index) {
+        return prizes.get(index);
+    }
+
     public List<PrizeName> convertToPrizesName() {
         return prizes.stream().map(PrizeName::new).toList();
     }

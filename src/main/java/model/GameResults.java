@@ -4,32 +4,26 @@ import dto.GameResultsDto;
 import dto.ParticipantName;
 import dto.PrizeName;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class GameResults {
-    private final Map<ParticipantName, PrizeName> gameResults;
+    private final Map<Participant, Prize> gameResults;
 
-    public GameResults(Ladder ladder, Participants participants, Prizes prizes) {
-        this.gameResults = climbDownAll(ladder, participants, prizes);
-    }
-
-    private Map<ParticipantName, PrizeName> climbDownAll(Ladder ladder, Participants participants, Prizes prizes) {
-        Map<ParticipantName, PrizeName> gameResults = new HashMap<>();
-        List<ParticipantName> participantNames = participants.convertToParticipantsNames();
-        List<PrizeName> prizeNames = prizes.convertToPrizesName();
-
-        for (int i = 0; i < participants.size(); i++) {
-            gameResults.put(participantNames.get(i), prizeNames.get(ladder.climbDownEach(i)));
-        }
-        return gameResults;
+    public GameResults(Map<Participant, Prize> gameResults) {
+        this.gameResults = gameResults;
     }
 
     public GameResultsDto convertToResultDto() {
         return new GameResultsDto(this);
     }
 
-    public Map<ParticipantName, PrizeName> getGameResults() {
-        return gameResults;
+    public Map<ParticipantName, PrizeName> convertToGameResultsDto() {
+        Map<ParticipantName, PrizeName> gameResultsDto = new HashMap<>();
+        for (Map.Entry<Participant, Prize> entry : gameResults.entrySet()) {
+            ParticipantName participantName = entry.getKey().convertToParticipantName();
+            PrizeName prizeName = entry.getValue().convertToPrizeName();
+            gameResultsDto.put(participantName, prizeName);
+        }
+        return gameResultsDto;
     }
 }

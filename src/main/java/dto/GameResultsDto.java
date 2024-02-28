@@ -5,7 +5,7 @@ import model.GameResults;
 
 public record GameResultsDto(Map<ParticipantName, PrizeName> gameResults) {
     public GameResultsDto(GameResults gameResults) {
-        this(gameResults.getGameResults());
+        this(gameResults.convertToGameResultsDto());
     }
 
     public PrizeName getPrizeNameByParticipantName(ParticipantName participantName) {

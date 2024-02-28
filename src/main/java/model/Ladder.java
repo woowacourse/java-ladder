@@ -2,7 +2,9 @@ package model;
 
 import dto.LayerSteps;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Ladder {
     private final List<Layer> layers;
@@ -23,7 +25,16 @@ public class Ladder {
         return layers;
     }
 
-    public int climbDownEach(int startIndex) {
+    public Map<Participant, Prize> climbDownAll(Participants participants, Prizes prizes) {
+        Map<Participant, Prize> gameResults = new HashMap<>();
+
+        for (int i = 0; i < participants.size(); i++) {
+            gameResults.put(participants.findParticipantByIndex(i), prizes.getPrizeByIndex(climbDownEach(i)));
+        }
+        return gameResults;
+    }
+
+    private int climbDownEach(int startIndex) {
         int currentIndex = startIndex;
         for (Layer layer : layers) {
             currentIndex = layer.move(currentIndex);

@@ -3,29 +3,41 @@ package model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class LadderTest {
     /*
-        |-----|     |-----|
-        |     |-----|     |
-        |_____|     |     |
+     * 테스트용 사다리 형태
+     * |-----|     |-----|
+     * |     |-----|     |
+     * |_____|     |     |
+     *
+     * 사다리 결과 (인덱스 기준)
+     * 0 -> 2
+     * 1 -> 1
+     * 2 -> 3
+     * 3 -> 0
+     */
 
-        0 -> 2
-        1 -> 1
-        2 -> 3
-        3 -> 0
+    private Ladder ladder;
 
-        */
-    @Test
-    void 사다리_높이만큼_이동하며_현재위치를_업데이트한다() {
-        int startIndex = 0;
+    @BeforeEach
+    void setUp() {
         Layer firstLayer = new Layer(List.of(Step.EXIST, Step.EMPTY, Step.EXIST));
         Layer secondLayer = new Layer(List.of(Step.EMPTY, Step.EXIST, Step.EMPTY));
         Layer thirdLayer = new Layer(List.of(Step.EXIST, Step.EMPTY, Step.EMPTY));
-        Ladder ladder = new Ladder(List.of(firstLayer, secondLayer, thirdLayer));
-        int expectedMovedIndex = 2;
+        ladder = new Ladder(List.of(firstLayer, secondLayer, thirdLayer));
+    }
 
-        assertThat(ladder.climbDownEach(startIndex)).isEqualTo(expectedMovedIndex);
+    @Test
+    void 모든_당첨_결과는_각_참여자에게_중복없이_한개씩_배정된다() {
+        Participants participants = new Participants(List.of("릴리", "엘라", "애쉬", "다온"));
+        Prizes prizes = new Prizes(List.of("당첨1", "당첨2", "당첨3", "당첨4"), 4);
+        Map<Participant, Prize> results = ladder.climbDownAll(participants, prizes);
+
+        assertThat(results.values().stream().map(Prize::getPrizeName))
+                .containsOnly("당첨1", "당첨2", "당첨3", "당첨4");
     }
 }

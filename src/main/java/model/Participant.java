@@ -1,5 +1,6 @@
 package model;
 
+import dto.ParticipantName;
 import java.util.Objects;
 
 public class Participant {
@@ -26,6 +27,10 @@ public class Participant {
 
     public String getName() {
         return name;
+    }
+
+    public ParticipantName convertToParticipantName() {
+        return new ParticipantName(name);
     }
 
     public boolean hasEquivalentName(String name) {
