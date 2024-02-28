@@ -2,7 +2,7 @@ package view;
 
 import dto.LineInfo;
 import dto.LadderInfo;
-import view.formatter.ItemFormatter;
+import view.formatter.ItemsFormatter;
 import view.formatter.LineFormatter;
 import view.formatter.NamesFormatter;
 import java.util.List;
@@ -29,7 +29,7 @@ public class OutputView {
     }
 
     private void printItemNames(final List<String> itemNames) {
-        System.out.println(ItemFormatter.format(itemNames));
+        System.out.println(ItemsFormatter.format(itemNames));
     }
 
     private void printLine(final LineInfo line) {
