@@ -1,20 +1,20 @@
 package view;
 
 import dto.LineInfo;
-import dto.Result;
+import dto.LadderInfo;
 import view.formatter.LineFormatter;
 import view.formatter.NamesFormatter;
 import java.util.List;
 
 public class OutputView {
 
-    public void printResult(final Result result) {
+    public void printLadderInfo(final LadderInfo ladderInfo) {
         System.out.println();
         System.out.println("실행결과");
         System.out.println();
-        final List<String> names = result.peopleNames();
+        final List<String> names = ladderInfo.peopleNames();
         printNames(names);
-        printLines(result.lines());
+        printLines(ladderInfo.lines());
     }
 
     public void printNames(final List<String> names) {

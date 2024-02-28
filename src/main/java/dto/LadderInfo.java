@@ -5,8 +5,8 @@ import model.Items;
 import model.Ladder;
 import model.People;
 
-public record Result(List<String> peopleNames, List<LineInfo> lines, List<String> itemNames) {
-    public static Result from(final People people, final Ladder ladder, final Items items) {
+public record LadderInfo(List<String> peopleNames, List<LineInfo> lines, List<String> itemNames) {
+    public static LadderInfo from(final People people, final Ladder ladder, final Items items) {
         final List<String> peopleNames = people.getNames();
         final List<LineInfo> lines = ladder.getLines()
                 .stream()
@@ -14,6 +14,6 @@ public record Result(List<String> peopleNames, List<LineInfo> lines, List<String
                 .toList();
         final List<String> itemNames = items.getNames();
 
-        return new Result(peopleNames, lines, itemNames);
+        return new LadderInfo(peopleNames, lines, itemNames);
     }
 }
