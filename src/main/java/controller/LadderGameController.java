@@ -1,6 +1,9 @@
 package controller;
 
-import domain.*;
+import domain.Height;
+import domain.Ladder;
+import domain.LadderResult;
+import domain.Prizes;
 import domain.line.NonContinuousLineGenerator;
 import domain.name.Names;
 import view.InputView;
@@ -18,14 +21,13 @@ public class LadderGameController {
 
     public void run() {
         Names names = inputView.readNames();
-        Prizes prizes = inputView.readPrizes(names.getNameCount());
-        UndecidedResults undecidedResults = inputView.readUndecidedResults(names);
+        Prizes prizes = inputView.readPrizes();
         Height height = inputView.readHeight();
 
-        Ladder ladder = Ladder.createFrom(new NonContinuousLineGenerator(), names.getNameCount(), height);
-        resultView.printLadder(ladder, names, undecidedResults);
+        Ladder ladder = Ladder.createFrom(new NonContinuousLineGenerator(), names.getNameCount(), height, prizes);
+        resultView.printLadder(ladder, names, prizes);
 
-        LadderResult ladderResult = LadderResult.of(ladder, names, undecidedResults);
+        LadderResult ladderResult = LadderResult.of(ladder, names, prizes);
         printResult(ladderResult, names);
     }
 

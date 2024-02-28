@@ -11,19 +11,19 @@ import java.util.Map;
 
 public class LadderResult {
 
-    private final Map<Name, String> gameResult;
+    private final Map<Name, Prize> gameResult;
 
-    private LadderResult(Map<Name, String> gameResult) {
+    private LadderResult(Map<Name, Prize> gameResult) {
         this.gameResult = gameResult;
     }
 
-    public static LadderResult of(Ladder ladder, Names names, UndecidedResults undecidedResults) {
-        Map<Name, String> gameResult = new LinkedHashMap<>();
+    public static LadderResult of(Ladder ladder, Names names, Prizes prizes) {
+        Map<Name, Prize> gameResult = new LinkedHashMap<>();
         List<RowLine> lines = ladder.getLines();
 
         for (int position = 0; position < names.getNameCount(); position++) {
             int endPosition = moveEachPerson(position, lines);
-            gameResult.put(names.getNames().get(position), undecidedResults.getUndecidedResults().get(endPosition));
+            gameResult.put(names.getNames().get(position), prizes.getPrizes().get(endPosition));
         }
         return new LadderResult(gameResult);
     }
@@ -57,7 +57,7 @@ public class LadderResult {
         return position;
     }
 
-    public Map<Name, String> getResult() {
+    public Map<Name, Prize> getResult() {
         return Collections.unmodifiableMap(gameResult);
     }
 }

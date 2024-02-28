@@ -2,7 +2,6 @@ package view;
 
 import domain.Height;
 import domain.Prizes;
-import domain.UndecidedResults;
 import domain.name.Names;
 
 import java.util.Arrays;
@@ -20,11 +19,11 @@ public class InputView {
         return Names.from(names);
     }
 
-    public UndecidedResults readUndecidedResults(Names names) {
-        System.out.println(LINE_SEPARATOR + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        List<String> results = Arrays.asList(scanner.nextLine().split(","));
-        return new UndecidedResults(names, results);
-    }
+//    public UndecidedResults readUndecidedResults(Names names) {
+//        System.out.println(LINE_SEPARATOR + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+//        List<String> results = Arrays.asList(scanner.nextLine().split(","));
+//        return new UndecidedResults(names, results);
+//    }
 
     public Height readHeight() {
         System.out.println(LINE_SEPARATOR + "최대 사다리 높이는 몇 개인가요?");
@@ -46,10 +45,10 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public Prizes readPrizes(int nameCount) {
+    public Prizes readPrizes() {
         System.out.println(LINE_SEPARATOR + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         List<String> prizes = Arrays.asList(scanner.nextLine().split(","));
-        validatePrizesSize(nameCount, prizes);
+        //validatePrizesSize(nameCount, prizes);
         return Prizes.from(prizes);
     }
 
