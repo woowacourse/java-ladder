@@ -5,30 +5,20 @@ import java.util.List;
 
 public class Ladder {
 
-    private static final int MIN_LADDER_HEIGHT = 1;
-
     private final List<Line> lines = new ArrayList<>();
 
-    private Ladder(int height, int playerSize, StickGenerator stickGenerator) {
-        validateLadderHeight(height);
-
-        for (int i = 0; i < height; i++) {
+    private Ladder(Height height, int playerSize, StickGenerator stickGenerator) {
+        for (int i = 0; i < height.getValue(); i++) {
             lines.add(new Line(stickGenerator, playerSize));
         }
     }
 
-    private void validateLadderHeight(int height) {
-        if (height < MIN_LADDER_HEIGHT) {
-            throw new IllegalArgumentException(String.format("사다리의 높이는 최소 %d 이어야 합니다.", MIN_LADDER_HEIGHT));
-        }
-    }
-
     public static Ladder createRandomLadder(int height, int playerSize) {
-        return new Ladder(height, playerSize, new RandomStickGenerator());
+        return new Ladder(new Height(height), playerSize, new RandomStickGenerator());
     }
 
     public static Ladder createConfigurableLadder(int height, int playerSize, StickGenerator stickGenerator) {
-        return new Ladder(height, playerSize, stickGenerator);
+        return new Ladder(new Height(height), playerSize, stickGenerator);
     }
 
     public int climb(int playerColumn) {
