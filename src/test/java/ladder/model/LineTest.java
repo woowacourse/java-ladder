@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineTest {
     @Test
-    @DisplayName("연속된 경로가 있다면 가로줄 생성에서 예외가 발생한다.")
+    @DisplayName("STAY 가 아닌 경로가 연속된다면 예외가 발생한다.")
     void throwsExceptionWhenContinuousPathExistTest() {
         List<LadderPath> continuousPath = List.of(RIGHT, LEFT, RIGHT, RIGHT, STAY);
 
@@ -19,7 +19,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("오른쪽 경로 오른쪽에 왼쪽 경로가 없다면 예외가 발생한다.")
+    @DisplayName("RIGHT 오른쪽에 LEFT가 없다면 예외가 발생한다.")
     void throwsExceptionWhenLeftNotExistBeforeRight() {
         List<LadderPath> notRLPath = List.of(STAY, STAY, RIGHT, STAY, STAY);
 
@@ -28,7 +28,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("왼쪽 경로 왼쪽에 오른쪽 경로가 없다면 예외가 발생한다.")
+    @DisplayName("LEFT 왼쪽에 RIGHT가 없다면 예외가 발생한다.")
     void throwsExceptionWhenRightNotExistAfterLeft() {
         List<LadderPath> notLRPath = List.of(STAY, STAY, LEFT, STAY, STAY);
 
