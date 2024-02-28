@@ -3,8 +3,6 @@ package domain.player;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import domain.player.Players;
-import domain.player.Position;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +23,7 @@ class PlayersTest {
         }
 
         //when
-        final Players players = Players.from(names);
+        final Players players = Players.createInOrderPoisition(names);
 
         //then
         assertThat(players.count()).isEqualTo(playerCount);
@@ -42,7 +40,7 @@ class PlayersTest {
         }
 
         //when & then
-        assertThatThrownBy(() -> Players.from(names)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Players.createInOrderPoisition(names)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("참가자의 이름을 보고 위치를 반환한다.")
@@ -50,7 +48,7 @@ class PlayersTest {
     void getPlayerPositonByName() {
         //given
         final List<String> names = List.of("pobi", "honux", "crong", "jk");
-        final Players players = Players.from(names);
+        final Players players = Players.createInOrderPoisition(names);
 
         players.setPosition(0, 1);
 
@@ -66,7 +64,7 @@ class PlayersTest {
     void getPlayerPositonByNotRegisteredName() {
         //given
         final List<String> names = List.of("pobi", "honux", "crong", "jk");
-        final Players players = Players.from(names);
+        final Players players = Players.createInOrderPoisition(names);
 
         players.setPosition(0, 1);
 
@@ -80,7 +78,7 @@ class PlayersTest {
     void getPlayerNames() {
         //given
         final List<String> names = List.of("pobi", "honux", "crong", "jk");
-        final Players players = Players.from(names);
+        final Players players = Players.createInOrderPoisition(names);
 
         //when
         List<String> returnedNames = players.getNames();
@@ -96,7 +94,7 @@ class PlayersTest {
         final List<String> names = List.of("pobi", "honux", "crong", "jk");
 
         //when
-        final Players players = Players.from(names);
+        final Players players = Players.createInOrderPoisition(names);
         int playersCount = players.count();
 
         //then
@@ -108,7 +106,7 @@ class PlayersTest {
     void setPlayerPositon() {
         //given
         final List<String> names = List.of("pobi", "honux", "crong", "jk");
-        final Players players = Players.from(names);
+        final Players players = Players.createInOrderPoisition(names);
 
         //when
         players.setPosition(0, 1);

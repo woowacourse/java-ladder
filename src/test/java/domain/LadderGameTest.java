@@ -27,7 +27,7 @@ class LadderGameTest {
                 false, true, false,
                 true, false, true
         ));
-        final Players players = Players.from(List.of("pobi", "honux", "crong", "jk"));
+        final Players players = Players.createInOrderPoisition(List.of("pobi", "honux", "crong", "jk"));
         final MatchingItems matchingItems = new MatchingItems(List.of("꽝", "5000", "꽝", "3000"), players.count());
         final Height height = new Height(5);
 
@@ -60,7 +60,7 @@ class LadderGameTest {
                 false, true, false,
                 true, false, true
         ));
-        final Players players = Players.from(List.of("pobi", "honux", "crong", "jk"));
+        final Players players = Players.createInOrderPoisition(List.of("pobi", "honux", "crong", "jk"));
         final MatchingItems matchingItems = new MatchingItems(List.of("꽝", "5000", "꽝", "3000"), players.count());
         final Height height = new Height(5);
 

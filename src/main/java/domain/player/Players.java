@@ -13,7 +13,7 @@ public class Players {
 
     private List<Player> players;
 
-    public static Players from(final List<String> names) {
+    public static Players createInOrderPoisition(final List<String> names) {
         final List<Player> players = new ArrayList<>();
 
         for (int position = 0; position < names.size(); position++) {

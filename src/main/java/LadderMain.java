@@ -11,7 +11,7 @@ public class LadderMain {
     private static final String SELECT_ALL = "all";
 
     public static void main(String[] args) {
-        final Players players = Players.from(InputView.readNames());
+        final Players players = Players.createInOrderPoisition(InputView.readNames());
         final MatchingItems matchingItems = new MatchingItems(InputView.readMatchingItems(), players.count());
         final Height height = new Height(InputView.readHeight());
 
