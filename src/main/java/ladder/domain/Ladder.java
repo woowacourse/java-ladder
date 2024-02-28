@@ -14,4 +14,12 @@ public class Ladder {
     public List<Line> getLadder() {
         return Collections.unmodifiableList(lines);
     }
+
+    public int ride(final int position) {
+        int value = position;
+        for (Line line : lines) {
+            value = line.ride(value);
+        }
+        return value;
+    }
 }
