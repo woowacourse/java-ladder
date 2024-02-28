@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class GamePrizes {
@@ -11,8 +12,12 @@ public class GamePrizes {
         this.prizes = gamePrizeInput;
     }
 
-    public String findPrize(int position) {
-        return prizes.get(position);
+    public List<String> getPrizes() {
+        return Collections.unmodifiableList(prizes);
+    }
+
+    public String findPrize(int prizePosition) {
+        return prizes.get(prizePosition);
     }
 
     private void validate(List<String> gamePrizeInput) {
