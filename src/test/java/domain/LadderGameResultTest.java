@@ -44,6 +44,16 @@ class LadderGameResultTest {
     }
 
     @Test
+    @DisplayName("참여자 이름이 존재하지 않을 경우 예외 발생")
+    void validateNameExist() {
+        LadderGameResult ladderGameResult = new LadderGameResult(VALID_NAMES, VALID_LADDER_RESULTS, VALID_LADDER);
+        Name name = new Name("name3");
+        Assertions.assertThatThrownBy(() -> ladderGameResult.getLadderResultFromName(name))
+                .isInstanceOf(LadderGameException.class)
+                .hasMessage(ExceptionType.INVALID_SEARCH_NAME.getMessage());
+    }
+
+    @Test
     @DisplayName("전체 참여자 별 사다리 결과 반환")
     void testGetLadderResultFromName() {
         LadderGameResult ladderGameResult = new LadderGameResult(VALID_NAMES, VALID_LADDER_RESULTS, VALID_LADDER);

@@ -20,7 +20,11 @@ public class LadderGameResult {
     }
 
     public LadderResult getLadderResultFromName(Name name) {
-        return ladderGameResult.get(name);
+        LadderResult ladderResult = ladderGameResult.get(name);
+        if (ladderResult == null) {
+            throw new LadderGameException(ExceptionType.INVALID_SEARCH_NAME);
+        }
+        return ladderResult;
     }
 
     private Map<Name, LadderResult> calculateLadderGameResult(Names names, LadderResults ladderResults, Ladder ladder) {
@@ -62,7 +66,7 @@ public class LadderGameResult {
             nameIndexMap.put(index, right);
         }
     }
-    
+
     private void validateNamesLadderResultLength(Names names, LadderResults ladderResults) {
         if (names.count() != ladderResults.count()) {
             throw new LadderGameException(ExceptionType.NOT_ALLOW_DIFFERENT_NAMES_LADDER_RESULTS_LENGTH);
