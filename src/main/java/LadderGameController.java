@@ -37,7 +37,7 @@ public class LadderGameController {
         LadderGame ladderGame = createLadderGame();
         printLadderGame(ladderGame);
         while (readMenu() != Menu.QUIT) {
-            showResult(ladderGame);
+            findResult(ladderGame);
         }
     }
 
@@ -101,22 +101,17 @@ public class LadderGameController {
         }
     }
 
-    private static void showResult(LadderGame ladderGame) {
-        String input = InputView.readNameForResult();
-        if (nameForAllResult(input)) {
+    private static void findResult(LadderGame ladderGame) {
+        String inputName = InputView.readNameForResult();
+        if (nameForAllResult(inputName)) {
             OutputView.printAllResult(ladderGame.findAllResult());
             return;
         }
-        showEachResult(ladderGame, input);
-    }
-
-    private static void showEachResult(LadderGame ladderGame, String input) {
         try {
-            MatchingResult prize = ladderGame.findEachPrize(new Name(input));
-            OutputView.printEachResult(prize);
+            showEachResult(ladderGame, inputName);
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
-            showResult(ladderGame);
+            findResult(ladderGame);
         }
     }
 
@@ -125,5 +120,10 @@ public class LadderGameController {
             throw new IllegalArgumentException("입력값이 빈 값일 수 없습니다.");
         }
         return "all".equalsIgnoreCase(input);
+    }
+
+    private static void showEachResult(LadderGame ladderGame, String input) {
+        MatchingResult prize = ladderGame.findEachPrize(new Name(input));
+        OutputView.printEachResult(prize);
     }
 }
