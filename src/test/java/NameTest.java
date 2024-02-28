@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static message.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -20,7 +21,8 @@ public class NameTest {
     @Test
     void createNameWithOverNameSize() {
         assertThatThrownBy(() -> new Name("dodododo"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(INVALID_PLAYER_NAME_SIZE_EXCEPTION.getMessage());
 
     }
 
@@ -29,7 +31,8 @@ public class NameTest {
     @ValueSource(strings = {"도도", "c!apy", "123"})
     void createNameWithNotEnglish(String invalidName) {
         assertThatThrownBy(() -> new Name(invalidName))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(INVALID_PLAYER_NAME_LANGUAGE_EXCEPTION.getMessage());
     }
 
     @DisplayName("플레이어의 이름이 Null 또는 빈 문자열인 경우 예외가 발생한다.")
@@ -37,6 +40,7 @@ public class NameTest {
     @NullAndEmptySource
     void createNameWithBlank(String invalidName) {
         assertThatThrownBy(() -> new Name(invalidName))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(NO_PLAYER_NAME_EXCEPTION.getMessage());
     }
 }

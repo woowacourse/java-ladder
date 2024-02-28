@@ -1,10 +1,12 @@
 import domain.Player;
 import domain.Players;
+import message.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static message.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -26,6 +28,7 @@ public class PlayersTest {
     void createPlayersWithInvalidSize() {
         Player player = new Player("dodo");
         assertThatThrownBy(() -> new Players(List.of(player)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(INVALID_PLAYER_COUNT_EXCEPTION.getMessage());
     }
 }
