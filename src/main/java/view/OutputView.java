@@ -5,14 +5,23 @@ import domain.ladder.Ladder;
 import domain.ladder.LadderBridge;
 import domain.player.PlayerNames;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class OutputView {
     private static final String LADDER_FRAME = "|";
     private static final String PLAYER_NAMES_FORMAT = "%5s";
     private static final String LADDER_RESULTS_FORMAT = "%5s";
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] : %s";
+    private static final Map<LadderBridge, String> bridgeToMarker;
+
+    static {
+        bridgeToMarker = new HashMap<>();
+        bridgeToMarker.put(LadderBridge.BRIDGE, "-----");
+        bridgeToMarker.put(LadderBridge.NONE, "     ");
+    }
 
     public void printLadder(PlayerNames playerNames, Ladder ladder) {
         System.out.println("\n실행 결과\n");
@@ -46,7 +55,7 @@ public class OutputView {
     private void printLadderFloor(Floor floor, StringJoiner ladderJoiner) {
         System.out.print("\t");
         for (LadderBridge bridge : floor.getBridges()) {
-            ladderJoiner.add(bridge.getValue());
+            ladderJoiner.add(bridgeToMarker.get(bridge));
         }
         System.out.println(ladderJoiner);
     }

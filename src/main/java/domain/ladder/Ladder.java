@@ -60,15 +60,15 @@ public class Ladder {
         return ladderResults.getValueByIndex(playerPosition);
     }
 
-    public List<Floor> getFloors() {
-        return floors;
-    }
-
     public String getLadderResultByIndex(int index) {
         return ladderResults.getValueByIndex(index);
     }
 
     public int getResultSize() {
         return ladderResults.size();
+    }
+
+    public List<Floor> getFloors() {
+        return floors;
     }
 }
