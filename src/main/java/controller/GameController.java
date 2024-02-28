@@ -38,9 +38,9 @@ public class GameController {
         Game game = new Game(members, lines, results);
         outputView.printLadder(game);
 
-        GameResult gameResult = game.matchResult(); // TODO 결과 이상
+        GameResult gameResult = game.matchResult();
 
-        int count = 10; // TODO: dummy
+        int count = 50;
         while (count-- > 0) {
             String rawTargetName = makeTargetName(members);
             if (rawTargetName.equals("all")) {
