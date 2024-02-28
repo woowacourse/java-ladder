@@ -23,4 +23,8 @@ public class Prizes {
     public List<Prize> getPrizes() {
         return List.copyOf(prizes);
     }
+
+    public Prize getOnePrizeByIndex(int prizeIndex) {
+        return prizes.get(prizeIndex);
+    }
 }

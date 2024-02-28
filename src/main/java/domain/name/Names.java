@@ -51,4 +51,13 @@ public class Names {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 찾는 이름이 없습니다."));
     }
+
+    public int findIndex(String findingName) {
+        for (int i = 0; i < names.size(); i++) {
+            if (names.get(i).getName().equals(findingName)) {
+                return i;
+            }
+        }
+        throw new IllegalArgumentException("[ERROR] 찾는 이름이 목록에 없습니다.");
+    }
 }

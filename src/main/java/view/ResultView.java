@@ -8,7 +8,6 @@ import domain.line.RowLine;
 import domain.name.Name;
 import domain.name.Names;
 
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -60,25 +59,15 @@ public class ResultView {
                 .collect(Collectors.joining(BLANK));
     }
 
-    public void printResult(String onNameOrAll, Map<Name, Prize> gameResult, Names names) {
+    public void printOneResult(Prize prize) {
         System.out.println(LINE_SEPARATOR + "실행 결과");
-        List<Prize> prizes = findPrizes(onNameOrAll, names, gameResult);
-        printNamesAndPrizes(names, prizes);
-
+        System.out.println(prize.getPrizeName());
     }
 
-    private List<Prize> findPrizes(String onNameOrAll, Names names, Map<Name, Prize> gameResult) {
-        if (onNameOrAll.equals("all")) {
-            return gameResult.keySet().stream()
-                    .map(gameResult::get)
-                    .toList();
-        }
-        return List.of(gameResult.get(names.findName(onNameOrAll)));
-    }
-
-    private void printNamesAndPrizes(Names names, List<Prize> prizes) {
-        for (int i = 0; i < prizes.size(); i++) {
-            System.out.println(names.getNames().get(i).getName() + " : " + prizes.get(i).getPrizeName());
+    public void printAllResult(Map<Name, Prize> allResult) {
+        System.out.println(LINE_SEPARATOR + "실행 결과");
+        for (Name name : allResult.keySet()) {
+            System.out.println(name.getName() + " : " + allResult.get(name).getPrizeName());
         }
     }
 }

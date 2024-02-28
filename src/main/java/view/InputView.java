@@ -19,12 +19,6 @@ public class InputView {
         return Names.from(names);
     }
 
-//    public UndecidedResults readUndecidedResults(Names names) {
-//        System.out.println(LINE_SEPARATOR + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-//        List<String> results = Arrays.asList(scanner.nextLine().split(","));
-//        return new UndecidedResults(names, results);
-//    }
-
     public Height readHeight() {
         System.out.println(LINE_SEPARATOR + "최대 사다리 높이는 몇 개인가요?");
         String height = scanner.nextLine();
@@ -32,12 +26,10 @@ public class InputView {
         return new Height(Integer.parseInt(height));
     }
 
-    private void validateInputNumeric(String target) {
-        try {
-            Integer.parseInt(target);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자 값이 아닙니다");
-        }
+    public Prizes readPrizes() {
+        System.out.println(LINE_SEPARATOR + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        List<String> prizes = Arrays.asList(scanner.nextLine().split(","));
+        return Prizes.from(prizes);
     }
 
     public String readOneNameOrAll() {
@@ -45,16 +37,11 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public Prizes readPrizes() {
-        System.out.println(LINE_SEPARATOR + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        List<String> prizes = Arrays.asList(scanner.nextLine().split(","));
-        //validatePrizesSize(nameCount, prizes);
-        return Prizes.from(prizes);
-    }
-
-    private void validatePrizesSize(int nameCount, List<String> prizes) {
-        if (prizes.size() != nameCount) {
-            throw new IllegalArgumentException("[ERROR] 상품의 수는 참여자 수와 일치해야 합니다.");
+    private void validateInputNumeric(String target) {
+        try {
+            Integer.parseInt(target);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자 값이 아닙니다");
         }
     }
 }

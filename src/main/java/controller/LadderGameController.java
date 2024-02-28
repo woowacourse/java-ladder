@@ -1,9 +1,6 @@
 package controller;
 
-import domain.Height;
-import domain.Ladder;
-import domain.LadderIndexConnection;
-import domain.Prizes;
+import domain.*;
 import domain.line.NonContinuousLineGenerator;
 import domain.name.Names;
 import view.InputView;
@@ -28,14 +25,16 @@ public class LadderGameController {
         resultView.printLadder(ladder, names, prizes);
 
         LadderIndexConnection ladderIndexConnection = LadderIndexConnection.of(ladder);
-        printResult(ladderIndexConnection, names);
+        LadderGameResult ladderGameResult = new LadderGameResult(names, prizes, ladderIndexConnection);
+        printResult(ladderGameResult);
     }
 
-    private void printResult(LadderIndexConnection ladderIndexConnection, Names names) {
-        String oneNameOrAll = "";
+    private void printResult(LadderGameResult ladderGameResult) {
+        String oneNameOrAll = inputView.readOneNameOrAll();
         while (!oneNameOrAll.equals("all")) {
+            resultView.printOneResult(ladderGameResult.getOneResult(oneNameOrAll));
             oneNameOrAll = inputView.readOneNameOrAll();
-            resultView.printResult(oneNameOrAll, ladderIndexConnection.getResult(), names);
         }
+        resultView.printAllResult(ladderGameResult.getAllResult());
     }
 }

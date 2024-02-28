@@ -9,9 +9,11 @@ import java.util.List;
 
 public class Ladder {
 
+    private static final int WIDTH_IDX = 1;
+
     private final List<RowLine> lines;
 
-    private Ladder(List<RowLine> lines, Prizes prizes) {
+    private Ladder(List<RowLine> lines) {
         this.lines = lines;
     }
 
@@ -21,7 +23,7 @@ public class Ladder {
         for (int i = 0; i < height.getHeight(); i++) {
             lines.add(rowLineGenerator.generate(names.getNameCount()));
         }
-        return new Ladder(lines, prizes);
+        return new Ladder(lines);
     }
 
     private static void validatePersonPrizesCount(Names names, Prizes prizes) {
@@ -35,6 +37,6 @@ public class Ladder {
     }
 
     public int getWidthSize() {
-        return lines.get(0).getSize();
+        return lines.get(0).getSize() + WIDTH_IDX;
     }
 }
