@@ -28,10 +28,9 @@ class PlayersTest {
 
         players.changePosition(0, 1);
 
-        PlayerName changePlayerName = players.getPlayers().get(1);
-        PlayerName notChangePlayerName = copyPlayers.getPlayers().get(0);
+        String changePlayerName = players.getPlayerNames().get(1);
+        String notChangePlayerName = copyPlayers.getPlayerNames().get(0);
 
-        Assertions.assertThat(changePlayerName.getName())
-                .isEqualTo(notChangePlayerName.getName());
+        Assertions.assertThat(changePlayerName).isEqualTo(notChangePlayerName);
     }
 }
