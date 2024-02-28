@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,7 +15,11 @@ public class Players {
         Collections.swap(players, present, after);
     }
 
-    public List<PlayerName> getPlayers() {
-        return Collections.unmodifiableList(players);
+    public List<String> getPlayerNames() {
+        List<String> playerNames = new ArrayList<>();
+        for (PlayerName player : players) {
+            playerNames.add(player.getName());
+        }
+        return Collections.unmodifiableList(playerNames);
     }
 }
