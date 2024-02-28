@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class LadderTest {
+    private Ladder ladder;
+
     /*
      * 테스트용 사다리 형태
      * |-----|     |-----|
@@ -20,9 +22,6 @@ public class LadderTest {
      * 2 -> 3
      * 3 -> 0
      */
-
-    private Ladder ladder;
-
     @BeforeEach
     void setUp() {
         Layer firstLayer = new Layer(List.of(Step.EXIST, Step.EMPTY, Step.EXIST));

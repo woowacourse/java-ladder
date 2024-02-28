@@ -11,6 +11,16 @@ public class LayerTest {
     List<Step> steps;
     Layer layer;
 
+    /*
+     * 테스트용 사다리층 형태
+     * |     |-----|     |
+     *
+     * 층내 이동 결과 (인덱스 기준)
+     * 0 -> 0
+     * 1 -> 2
+     * 2 -> 1
+     * 3 -> 3
+     */
     @BeforeEach
     void setUp() {
         steps = new ArrayList<>(List.of(Step.EMPTY, Step.EXIST, Step.EMPTY));
