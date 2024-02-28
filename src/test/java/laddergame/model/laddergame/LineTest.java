@@ -16,7 +16,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class LineTest {
     @DisplayName("첫 인덱스가 END이거나 마지막 인덱스가 START이면 예외를 발생한다.")
     @ParameterizedTest
-    @CsvSource(value = {"END,END", "START,START"})
+    @CsvSource(value = {"END,END", "END,START", "START,START"})
     void validateStartWithEndOrEndsWithStart(LineState first, LineState end) {
         //given
         List<LineState> lineStates = List.of(
