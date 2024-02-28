@@ -5,6 +5,7 @@ import domain.ladder.attirbute.Direction;
 import domain.player.Name;
 import domain.player.Players;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,13 +46,18 @@ public class GameBoard {
                      .get(ladder.moveCoordinateToResultPoint(value, HEIGHT_STARTING_INDEX));
     }
 
-    public Map<Name, Prize> getAllPlayerResult() {
-        return gameResults;
+    public Map<Name, Prize> searchAllPlayerResult() {
+        return Collections.unmodifiableMap(gameResults);
     }
 
-    public String getSpecificPlayerResult(Name targetName) {
-        return gameResults.get(targetName)
-                          .toString();
+    public String searchOnePlayerResult(Name targetName) {
+        try {
+            return gameResults.get(players.searchPlayer(targetName)
+                                          .name())
+                              .toString();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
     }
 
     public Players getPlayers() {
