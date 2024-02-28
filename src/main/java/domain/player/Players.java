@@ -20,12 +20,6 @@ public class Players {
                 .toList();
     }
 
-    public List<String> getRawNames() {
-        return names.stream()
-                .map(Name::rawName)
-                .toList();
-    }
-
     public int size() {
         return names.size();
     }
@@ -33,6 +27,12 @@ public class Players {
     public Name get(int index) {
         validateIndex(index);
         return names.get(index);
+    }
+
+    public List<String> getRawNames() {
+        return names.stream()
+                .map(Name::rawName)
+                .toList();
     }
 
     public int getIndexByName(String name) {

@@ -21,15 +21,15 @@ public class Results {
         return results.get(index);
     }
 
-    private void validateIndex(int index) {
-        if (index < 0 || index >= results.size()) {
-            throw new IndexOutOfBoundsException("주어진 인덱스가 범위를 벗어납니다.");
-        }
-    }
-
     public List<String> getRawResults() {
         return results.stream()
                 .map(Result::rawResult)
                 .toList();
+    }
+
+    private void validateIndex(int index) {
+        if (index < 0 || index >= results.size()) {
+            throw new IndexOutOfBoundsException("주어진 인덱스가 범위를 벗어납니다.");
+        }
     }
 }

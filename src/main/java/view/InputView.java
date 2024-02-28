@@ -10,6 +10,10 @@ public class InputView {
 
     private final Scanner scanner = new Scanner(System.in);
 
+    public String readToken() {
+        return scanner.nextLine();
+    }
+
     public List<String> readTokens() {
         String names = scanner.nextLine();
         String[] splitTokens = names.split(SPLIT_DELIMITER);
@@ -21,10 +25,6 @@ public class InputView {
     public int readLadderHeight() {
         String input = scanner.nextLine();
         return convertToInteger(input);
-    }
-
-    public String readToken() {
-        return scanner.nextLine();
     }
 
     private int convertToInteger(String input) {
