@@ -35,11 +35,9 @@ public class InputView {
     public int readHeight() {
         System.out.println(System.lineSeparator() + "최대 사다리 높이는 몇 개인가요?");
         try {
-            return scanner.nextInt();
+            return Integer.parseInt(scanner.nextLine().trim());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_HEIGHT_FORMAT);
-        } finally {
-            scanner.nextLine();
         }
     }
 
