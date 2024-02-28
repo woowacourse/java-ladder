@@ -24,26 +24,15 @@ public class LadderRow {
     }
 
     public int move(int position) {
-        if (position == 0) {
-            if (isLines.get(position)) {
-                return position + 1;
-            }
-        }
-        if (position == isLines.size()) {
-            if (isLines.get(position - 1)) {
-                return position - 1;
-            }
-        }
-        Boolean rightLine = isLines.get(position);
-        Boolean leftLine = isLines.get(position - 1);
-        if (leftLine) {
+        if (position > 0 && isLines.get(position - 1)) {
             return position - 1;
         }
-        if (rightLine) {
+        if (position < isLines.size() && isLines.get(position)) {
             return position + 1;
         }
         return position;
     }
+
 
     public List<Boolean> getIsLines() {
         return isLines;
