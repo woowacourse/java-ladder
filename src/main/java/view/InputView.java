@@ -21,6 +21,17 @@ public class InputView {
         }
     }
 
+    public List<String> readPrizeNames() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        try {
+            String input = bufferedReader.readLine();
+            String removedInput = removeBlank(input);
+            return split(removedInput);
+        } catch (IOException e) {
+            throw new IllegalArgumentException("비정상적인 입력입니다. 다시 입력해주세요.");
+        }
+    }
+
     public int readHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         try {
