@@ -30,4 +30,11 @@ public class ResultInterestedPeopleTest {
                 new ResultInterestedPeople(List.of("all"), participantsNames);
         assertEquals(resultInterestedPeople.getResultInterestedName(), participantsNames);
     }
+
+    @Test
+    void 전체_참여자_리스트에서_결과를_보고_싶은_사람의_인덱스를_찾는다() {
+        ResultInterestedPeople resultInterestedPeople =
+                new ResultInterestedPeople(List.of("애쉬"), participantsNames);
+        assertEquals(resultInterestedPeople.getPosition().get(0), 1);
+    }
 }

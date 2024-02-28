@@ -3,9 +3,11 @@ package model;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
+import java.util.stream.IntStream;
 
 public class ResultInterestedPeople {
     private final List<String> names;
+    private final List<Integer> position;
 
     public ResultInterestedPeople(List<String> names, List<String> participantNames) {
         if (names.equals(List.of("all"))) {
@@ -14,6 +16,7 @@ public class ResultInterestedPeople {
         validateNameValue(names);
         validatePersonName(names, participantNames);
         this.names = Objects.requireNonNull(names);
+        this.position = findPosition(names, participantNames);
     }
 
     private void validatePersonName(List<String> names, List<String> participantNames) {
@@ -32,7 +35,18 @@ public class ResultInterestedPeople {
         }
     }
 
+    private List<Integer> findPosition(List<String> names, List<String> participantNames) {
+        return IntStream.range(0, participantNames.size())
+                .filter(i -> names.contains(participantNames.get(i)))
+                .boxed()
+                .toList();
+    }
+
     public List<String> getResultInterestedName() {
         return names;
+    }
+
+    public List<Integer> getPosition() {
+        return position;
     }
 }
