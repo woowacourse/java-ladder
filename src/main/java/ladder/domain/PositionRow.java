@@ -30,7 +30,7 @@ public class PositionRow {
 
     private void validatePositionLimit(int position, int maxPosition) {
         if (position < 0 || position > maxPosition) {
-            throw new IllegalStateException();
+            throw new IllegalArgumentException();
         }
     }
 
