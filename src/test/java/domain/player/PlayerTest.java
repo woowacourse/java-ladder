@@ -1,9 +1,11 @@
 package domain.player;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -24,5 +26,18 @@ class PlayerTest {
     void invalidNameLength(String playerName) {
         //when & then
         assertThatThrownBy(() -> new Player(playerName, 0)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("참가자 이름이 1글자 미만 5글자 초과이면 예외를 발생시킨다.")
+    @Test
+    void invalidNameLength() {
+        //given
+        final Player player = new Player("pobi", 0);
+
+        //when
+        player.setPosition(3);
+
+        //then
+        assertThat(player.getPosition()).isEqualTo(new Position(3));
     }
 }
