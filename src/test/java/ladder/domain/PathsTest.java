@@ -39,4 +39,18 @@ public class PathsTest {
         // Then
         assertThat(pathStatuses).hasSize(ladderSpaceCount);
     }
+
+    @DisplayName("발판이 존재하는 라인인 경우, 반대쪽 라인 까지의 거리를 반환한다.")
+    @Test
+    void 발판_존재하는_라인이면_반대쪽_라인_까지_거리_반환() {
+        // Given
+        final Paths paths = Paths.init(() -> true, 4);
+        final LineNumber lineNumber = new LineNumber(2);
+
+        // When
+        int otherLineDistance = paths.getOtherLineNumber(lineNumber);
+
+        // Then
+        assertThat(otherLineDistance).isEqualTo(-1);
+    }
 }
