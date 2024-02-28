@@ -17,7 +17,7 @@ public class OutputView {
 
     public void printParticipantsName(Participants participants) {
         List<String> participantsName = participants.getParticipants().stream()
-                .map(Name::toString)
+                .map(Name::getValue)
                 .toList();
         participantsName.forEach(name -> System.out.print(NAME_FORMAT.formatted(name)));
         System.out.println();
