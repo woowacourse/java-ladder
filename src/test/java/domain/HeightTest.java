@@ -13,7 +13,7 @@ public class HeightTest {
     @ValueSource(strings = {"1", "20"})
     @DisplayName("Height 생성 성공: 경계값(1, 20)")
     void test_ok(String height) {
-        assertThat(Height.from(height).getValue())
+        assertThat(Height.from(height).getHeight())
             .isEqualTo(Integer.parseInt(height));
     }
 
