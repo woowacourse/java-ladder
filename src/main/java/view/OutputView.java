@@ -15,6 +15,7 @@ public class OutputView {
     private static final String LADDER_RESULTS_FORMAT = "%5s";
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] : %s";
     private static final String PLAYERS_LADDER_RESULT_FORMAT = "%s : %s";
+    private static final String LADDER_RESULTS_DELIMITER = " ";
     private static final Map<LadderBridge, String> bridgeToMarker;
 
     static {
@@ -61,7 +62,7 @@ public class OutputView {
     }
 
     private void printLadderResult(Ladder ladder) {
-        StringJoiner ladderResultJoiner = new StringJoiner(" ");
+        StringJoiner ladderResultJoiner = new StringJoiner(LADDER_RESULTS_DELIMITER);
 
         for (int i = 0; i < ladder.getResultSize(); i++) {
             String playerName = String.format(LADDER_RESULTS_FORMAT, ladder.getLadderResultByIndex(i));

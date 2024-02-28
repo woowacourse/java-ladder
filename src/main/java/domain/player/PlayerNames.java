@@ -41,10 +41,6 @@ public class PlayerNames {
         }
     }
 
-    public int getCount() {
-        return values.size();
-    }
-
     public String getNameOfIndex(int index) {
         return values.get(index).getValue();
     }
@@ -56,5 +52,9 @@ public class PlayerNames {
             }
         }
         throw new NotFoundException(NOT_FOUND_ERROR_MESSAGE);
+    }
+
+    public int getCount() {
+        return values.size();
     }
 }

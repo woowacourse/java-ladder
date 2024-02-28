@@ -41,9 +41,43 @@ public class LadderController {
         return ladder;
     }
 
+    private PlayerNames readPlayerNames() {
+        return retry(() -> createPlayerNames(inputView.readPlayerNames()));
+    }
+
+    private PlayerNames createPlayerNames(final String[] playerNamesInput) {
+        List<PlayerName> playerNames = Arrays.stream(playerNamesInput)
+                .map(PlayerName::new)
+                .toList();
+
+        return new PlayerNames(playerNames);
+    }
+
+    private LadderHeight readLadderHeight() {
+        return retry(() -> new LadderHeight(inputView.readLadderHeight()));
+    }
+
+    private LadderResults readLadderResults(final int playerCount) {
+        return retry(() -> new LadderResults(inputView.readLadderResults(), playerCount));
+    }
+
     public void matchPlayerToResult(final Ladder ladder) {
         retry(() -> findPlayerResult(ladder));
         outputView.printEndMessage();
+    }
+
+    private void findPlayerResult(final Ladder ladder) {
+        String playerName;
+        while (!(playerName = inputView.readPlayerNameForGetResult()).equals(Command.FINISH.getText())) {
+            outputView.printPlayerLadderResult(getPlayerLadderResult(ladder, playerName));
+        }
+    }
+
+    private Map<String, String> getPlayerLadderResult(final Ladder ladder, final String playerName) {
+        if (playerName.equals(Command.ALL.getText())) {
+            return ladder.findAllPlayersLadderResultValue();
+        }
+        return ladder.findSinglePlayerLadderResultValue(playerName);
     }
 
     <R> R retry(final Supplier<R> supplier) {
@@ -67,40 +101,6 @@ public class LadderController {
             outputView.printErrorMessage(exception.getMessage());
             retry(runnable);
         }
-    }
-
-    private void findPlayerResult(final Ladder ladder) {
-        String playerName;
-        while (!(playerName = inputView.readPlayerNameForGetResult()).equals(Command.FINISH.getText())) {
-            outputView.printPlayerLadderResult(getPlayerLadderResult(ladder, playerName));
-        }
-    }
-
-    private Map<String, String> getPlayerLadderResult(final Ladder ladder, final String playerName) {
-        if (playerName.equals(Command.ALL.getText())) {
-            return ladder.findAllPlayersLadderResultValue();
-        }
-        return ladder.findSinglePlayerLadderResultValue(playerName);
-    }
-
-    private PlayerNames readPlayerNames() {
-        return retry(() -> createPlayerNames(inputView.readPlayerNames()));
-    }
-
-    private PlayerNames createPlayerNames(final String[] playerNamesInput) {
-        List<PlayerName> playerNames = Arrays.stream(playerNamesInput)
-                .map(PlayerName::new)
-                .toList();
-
-        return new PlayerNames(playerNames);
-    }
-
-    private LadderHeight readLadderHeight() {
-        return retry(() -> new LadderHeight(inputView.readLadderHeight()));
-    }
-
-    private LadderResults readLadderResults(final int playerCount) {
-        return retry(() -> new LadderResults(inputView.readLadderResults(), playerCount));
     }
 
     private void validateRetryCountLimit() {

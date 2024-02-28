@@ -23,12 +23,6 @@ public class LadderResult {
         validateBlank(value);
     }
 
-    private void validateBlank(String value) {
-        if (value.isBlank()) {
-            throw new ValidationException(BLANK_ERROR_MESSAGE);
-        }
-    }
-
     private void validateNull(String value) {
         if (value == null) {
             throw new ValidationException(NULL_ERROR_MESSAGE);
@@ -38,6 +32,12 @@ public class LadderResult {
     private void validateLength(String value) {
         if (value.length() < LENGTH_MIN || value.length() > LENGTH_MAX) {
             throw new ValidationException(LENGTH_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateBlank(String value) {
+        if (value.isBlank()) {
+            throw new ValidationException(BLANK_ERROR_MESSAGE);
         }
     }
 

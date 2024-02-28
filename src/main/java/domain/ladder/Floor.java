@@ -13,10 +13,6 @@ public class Floor {
         this.bridges = List.copyOf(bridges);
     }
 
-    public List<LadderBridge> getBridges() {
-        return bridges;
-    }
-
     private void validateBridgesNotExistSerially(List<LadderBridge> bridges) {
         for (int i = 1; i < bridges.size(); i++) {
             LadderBridge before = bridges.get(i - 1);
@@ -39,23 +35,27 @@ public class Floor {
         return BridgeDirection.NONE;
     }
 
-    private boolean hasRightBridge(int playerPosition) {
-        return !isLastPosition(playerPosition) && hasBridgeAt(playerPosition);
-    }
-
     private boolean hasLeftBridge(int playerPosition) {
         return !isFirstPosition(playerPosition) && hasBridgeAt(playerPosition - 1);
     }
 
-    private boolean hasBridgeAt(int bridgeIndex) {
-        return bridges.get(bridgeIndex).equals(LadderBridge.BRIDGE);
+    private boolean isFirstPosition(int playerPosition) {
+        return playerPosition == 0;
+    }
+
+    private boolean hasRightBridge(int playerPosition) {
+        return !isLastPosition(playerPosition) && hasBridgeAt(playerPosition);
     }
 
     private boolean isLastPosition(int playerPosition) {
         return playerPosition == bridges.size();
     }
 
-    private boolean isFirstPosition(int playerPosition) {
-        return playerPosition == 0;
+    private boolean hasBridgeAt(int bridgeIndex) {
+        return bridges.get(bridgeIndex).equals(LadderBridge.BRIDGE);
+    }
+
+    public List<LadderBridge> getBridges() {
+        return bridges;
     }
 }

@@ -25,15 +25,15 @@ public class LadderResults {
         }
     }
 
+    public int size() {
+        return values.size();
+    }
+
     public String getValueByIndex(int index) {
         try {
             return values.get(index).getValue();
         } catch (IndexOutOfBoundsException exception) {
             throw new NotFoundException(NOT_FOUND_ERROR_MESSAGE);
         }
-    }
-
-    public int size() {
-        return values.size();
     }
 }

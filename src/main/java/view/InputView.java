@@ -39,6 +39,11 @@ public class InputView {
         }
     }
 
+    private String[] splitPlayerNames(String playerNamesInput) {
+        playerNamesInput = playerNamesInput.replace(" ", "");
+        return playerNamesInput.split(InputView.PLAYER_NAMES_INPUT_DELIMITER);
+    }
+
     private void validateIsNameDuplicatedWithCommand(String[] playerNames) {
         boolean isCommand = Arrays.stream(playerNames)
                 .anyMatch(Command::isCommand);
@@ -46,11 +51,6 @@ public class InputView {
         if (isCommand) {
             throw new IOException(BANNED_PLAYER_NAMES_INPUT_ERROR_MESSAGE);
         }
-    }
-
-    private String[] splitPlayerNames(String playerNamesInput) {
-        playerNamesInput = playerNamesInput.replace(" ", "");
-        return playerNamesInput.split(InputView.PLAYER_NAMES_INPUT_DELIMITER);
     }
 
     public String[] readLadderResults() {
@@ -61,16 +61,16 @@ public class InputView {
         return splitLadderResults(input);
     }
 
-    private String[] splitLadderResults(String playerNamesInput) {
-        validateLadderResultFormat(playerNamesInput);
-        playerNamesInput = playerNamesInput.replace(" ", "");
-        return playerNamesInput.split(InputView.LADDER_RESULTS_INPUT_DELIMITER);
-    }
-
     private void validateLadderResultFormat(String playerNamesInput) {
         if (playerNamesInput.endsWith(LADDER_RESULTS_INPUT_DELIMITER)) {
             throw new IOException(LADDER_RESULT_INPUT_FORMAT_ERROR_MESSAGE);
         }
+    }
+
+    private String[] splitLadderResults(String playerNamesInput) {
+        validateLadderResultFormat(playerNamesInput);
+        playerNamesInput = playerNamesInput.replace(" ", "");
+        return playerNamesInput.split(InputView.LADDER_RESULTS_INPUT_DELIMITER);
     }
 
     public int readLadderHeight() {
