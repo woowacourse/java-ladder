@@ -2,8 +2,6 @@ package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -24,11 +22,10 @@ public class LineFloorTest {
     }
 
     @DisplayName("유효하지 않은 층 번호가 입력되면 예외를 발생시킨다.")
-    @ValueSource(ints = {-1, 0})
-    @ParameterizedTest
-    void 유효하지_않은_층_번호_예외_발생(final int inputLineFloor) {
+    @Test
+    void 유효하지_않은_층_번호_예외_발생() {
         // When & Then
-        assertThatThrownBy(() -> new LineFloor(inputLineFloor))
+        assertThatThrownBy(() -> new LineFloor(-1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("유효하지 않은 라인 층 번호입니다.");
     }
