@@ -18,7 +18,7 @@ public class InputValidatorTest {
         playerNames = List.of("pobi", "honux", "crong", "jk");
     }
 
-    @DisplayName("참여자 이름이 null이거나 공백이 입력되면 예외가 발생한다.")
+    @DisplayName("참여자 이름이 null이거나 공백이면 예외가 발생한다.")
     @ParameterizedTest
     @NullAndEmptySource
     void occurExceptionIfPlayerNameIsNullOrBlank(String name) {
@@ -27,7 +27,7 @@ public class InputValidatorTest {
                 .hasMessage(InputValidator.ERROR_PLAYER_NAME_IS_NULL_OR_BLANK);
     }
 
-    @DisplayName("참여자 이름이  참여자 목록에 없는 이름이면 예외가 발생한다.")
+    @DisplayName("참여자 이름이 참여자 목록에 없는 이름이면 예외가 발생한다.")
     @Test
     void occurExceptionIfPlayerNameIsNotExisted() {
         String name = "name";
