@@ -21,4 +21,6 @@ public class Result {
     public String getValue() {
         return this.value;
     }
+
+
 }

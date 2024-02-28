@@ -29,11 +29,15 @@ class LadderGameTest {
         Results results = new Results(List.of("꽝", "당첨"), players.getPlayerSize());
         LadderGame ladderGame = new LadderGame(players, ladder, results);
 
-        Map<Player, Result> playerResult = ladderGame.play();
+        Map<Player, Result> playerResult = ladderGame.play(players, ladder, results);
 
+        Player player1 = players.getPlayers().get(0);
+        Player player2 = players.getPlayers().get(1);
+        Result result1 = results.getResults().get(0);
+        Result result2 = results.getResults().get(1);
         assertAll(
-                () -> assertEquals("꽝", playerResult.get("산초").getValue()),
-                () -> assertEquals("당첨", playerResult.get("아톰").getValue())
+                () -> assertEquals(result1, playerResult.get(player1)),
+                () -> assertEquals(result2, playerResult.get(player2))
         );
     }
 
