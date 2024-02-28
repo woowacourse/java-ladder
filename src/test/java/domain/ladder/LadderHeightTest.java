@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 import common.exception.model.ValidationException;
 import domain.ladder.LadderHeight;

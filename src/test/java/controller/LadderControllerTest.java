@@ -10,7 +10,7 @@ import view.OutputView;
 
 import java.util.Scanner;
 
-class RetryableControllerTest {
+class LadderControllerTest {
 
     @Test
     @DisplayName("입력 횟수가 제한 횟수를 초과하면 예외가 발생하고 프로그램이 종료된다")
