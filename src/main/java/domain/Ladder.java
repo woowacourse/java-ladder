@@ -1,8 +1,6 @@
-package controller;
+package domain;
 
-import domain.Lines;
-import domain.Names;
-import domain.Results;
+import controller.LadderDto;
 
 public class Ladder {
     private Lines lines;
@@ -28,15 +26,23 @@ public class Ladder {
         return this;
     }
 
-    public Lines getLines() {
+    public Lines lines() {
         return lines;
     }
 
-    public Names getNames() {
+    public Names names() {
         return names;
     }
 
-    public Results getResults() {
+    public Results results() {
         return results;
+    }
+
+    public LadderDto toDto() {
+        return new LadderDto()
+                .names(names)
+                .lines(lines)
+                .results(results)
+                .build();
     }
 }
