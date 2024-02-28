@@ -2,14 +2,14 @@ package laddergame.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import laddergame.model.ExecutionResult;
-import laddergame.model.ExecutionResults;
-import laddergame.model.GameResult;
-import laddergame.model.LadderGame;
-import laddergame.model.Line;
-import laddergame.model.LineState;
-import laddergame.model.Participant;
-import laddergame.model.Participants;
+import laddergame.model.executionresults.ExecutionResult;
+import laddergame.model.executionresults.ExecutionResults;
+import laddergame.model.laddergame.GameResult;
+import laddergame.model.laddergame.LadderGame;
+import laddergame.model.laddergame.Line;
+import laddergame.model.laddergame.LineState;
+import laddergame.model.participants.Participant;
+import laddergame.model.participants.Participants;
 
 public class OutputView {
     private static final int STANDARD_NAME_LENGTH = 5;

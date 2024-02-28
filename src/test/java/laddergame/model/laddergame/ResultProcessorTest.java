@@ -1,4 +1,4 @@
-package laddergame.model;
+package laddergame.model.laddergame;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
@@ -7,6 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import java.util.stream.Stream;
+import laddergame.model.executionresults.ExecutionResult;
+import laddergame.model.executionresults.ExecutionResults;
+import laddergame.model.participants.InquirySubject;
+import laddergame.model.participants.Participant;
+import laddergame.model.participants.Participants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

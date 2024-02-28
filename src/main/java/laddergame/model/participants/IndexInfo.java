@@ -1,4 +1,6 @@
-package laddergame.model;
+package laddergame.model.participants;
+
+import laddergame.model.laddergame.LadderGame;
 
 public class IndexInfo {
     private final Participant participant;

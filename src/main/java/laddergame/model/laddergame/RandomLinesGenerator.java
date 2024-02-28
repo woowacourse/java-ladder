@@ -1,4 +1,4 @@
-package laddergame.model;
+package laddergame.model.laddergame;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
@@ -6,6 +6,7 @@ import static java.util.stream.Collectors.toList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import laddergame.model.participants.Participants;
 
 public class RandomLinesGenerator {
     private final Random random = new Random();

@@ -1,6 +1,7 @@
-package laddergame.model;
+package laddergame.model.executionresults;
 
 import java.util.List;
+import laddergame.model.participants.Participants;
 
 public class ExecutionResults {
     private final List<ExecutionResult> executionResults;

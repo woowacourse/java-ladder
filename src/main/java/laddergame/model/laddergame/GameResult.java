@@ -1,4 +1,7 @@
-package laddergame.model;
+package laddergame.model.laddergame;
+
+import laddergame.model.executionresults.ExecutionResult;
+import laddergame.model.participants.Participant;
 
 public class GameResult {
     private final Participant participant;

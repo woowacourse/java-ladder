@@ -1,12 +1,12 @@
 package laddergame.controller;
 
-import laddergame.model.ExecutionResults;
-import laddergame.model.InquirySubject;
-import laddergame.model.LadderGame;
-import laddergame.model.LadderHeight;
-import laddergame.model.Participants;
-import laddergame.model.RandomLinesGenerator;
-import laddergame.model.ResultProcessor;
+import laddergame.model.executionresults.ExecutionResults;
+import laddergame.model.laddergame.LadderGame;
+import laddergame.model.laddergame.LadderHeight;
+import laddergame.model.laddergame.RandomLinesGenerator;
+import laddergame.model.laddergame.ResultProcessor;
+import laddergame.model.participants.InquirySubject;
+import laddergame.model.participants.Participants;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 

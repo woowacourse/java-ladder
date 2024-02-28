@@ -6,12 +6,12 @@ import static java.util.stream.Collectors.toList;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.function.Supplier;
-import laddergame.model.ExecutionResult;
-import laddergame.model.ExecutionResults;
-import laddergame.model.InquirySubject;
-import laddergame.model.LadderHeight;
-import laddergame.model.Participant;
-import laddergame.model.Participants;
+import laddergame.model.executionresults.ExecutionResult;
+import laddergame.model.executionresults.ExecutionResults;
+import laddergame.model.laddergame.LadderHeight;
+import laddergame.model.participants.InquirySubject;
+import laddergame.model.participants.Participant;
+import laddergame.model.participants.Participants;
 
 public class InputView {
     private final Scanner scanner = new Scanner(System.in);

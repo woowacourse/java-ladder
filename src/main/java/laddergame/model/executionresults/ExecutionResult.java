@@ -1,4 +1,4 @@
-package laddergame.model;
+package laddergame.model.executionresults;
 
 public class ExecutionResult {
     private final String name;

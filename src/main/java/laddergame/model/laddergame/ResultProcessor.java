@@ -1,6 +1,9 @@
-package laddergame.model;
+package laddergame.model.laddergame;
 
 import java.util.List;
+import laddergame.model.executionresults.ExecutionResults;
+import laddergame.model.participants.IndexInfo;
+import laddergame.model.participants.InquirySubject;
 
 public class ResultProcessor {
     private final InquirySubject inquirySubject;

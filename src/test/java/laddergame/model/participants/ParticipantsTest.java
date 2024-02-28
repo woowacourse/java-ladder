@@ -1,4 +1,4 @@
-package laddergame.model;
+package laddergame.model.participants;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
