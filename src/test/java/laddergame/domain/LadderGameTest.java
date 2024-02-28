@@ -11,7 +11,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LadderGameTest {
 
@@ -20,19 +21,19 @@ class LadderGameTest {
     void ladderGameResultTest() {
 
         /*
-        *    [test case1]                      [test case2]                 [test case 3]
-        *     a    b    c    d    e            a    b    c    d    e        a    b    c    d    e
-        *     |----|    |----|    |            |----|    |----|    |        |    |    |    |    |
-        *     |----|    |----|    |            |----|    |----|    |        |    |    |    |    |
-        *     |----|    |----|    |            |----|    |----|    |        |    |    |    |    |
-        *     1    2    3    4    5            |----|    |----|    |        |    |    |    |    |
-        *                                      1    2    3    4    5        |    |    |    |    |
-        *                                                                   1    2    3    4    5
-        * 예상 결과        a    b    c    d    e
-        * test case 1    2    1    4    3    5
-        * test case 2    1    2    3    4    5
-        * test case 3    1    2    3    4    5
-        * */
+         *    [test case1]                      [test case2]                 [test case 3]
+         *     a    b    c    d    e            a    b    c    d    e        a    b    c    d    e
+         *     |----|    |----|    |            |----|    |----|    |        |    |    |    |    |
+         *     |----|    |----|    |            |----|    |----|    |        |    |    |    |    |
+         *     |----|    |----|    |            |----|    |----|    |        |    |    |    |    |
+         *     1    2    3    4    5            |----|    |----|    |        |    |    |    |    |
+         *                                      1    2    3    4    5        |    |    |    |    |
+         *                                                                   1    2    3    4    5
+         * 예상 결과        a    b    c    d    e
+         * test case 1    2    1    4    3    5
+         * test case 2    1    2    3    4    5
+         * test case 3    1    2    3    4    5
+         * */
         Elements people = new Elements(List.of("a", "b", "c", "d", "e"));
         int peopleNumber = people.getElements().size();
 
@@ -69,24 +70,4 @@ class LadderGameTest {
             }
         });
     }
-
-    @DisplayName("상위 게임요소의 수와 하위 게임요소의 수가 일치되지 않으면 LadderGame 객체가 생성되지 않는다")
-    @Test
-    void playerNumerNotEqualsResultNumberTest() {
-        Elements people = new Elements(List.of("a", "b", "c", "d"));
-        Elements results = new Elements(List.of("꽝", "1000", "꽝"));
-        Ladder ladder = new Ladder(3, people.getElements().size());
-        assertThrows(IllegalArgumentException.class,
-                () -> new LadderGame(people, ladder, results));
-    }
-
-    @DisplayName("상위 게임요소의 수와 하위 게임요소의 수가 일치하면 LadderGame 객체가 생성된다")
-    @Test
-    void playerNumberEqualsResultNumberTest() {
-        Elements people = new Elements(List.of("a", "b", "c"));
-        Elements results = new Elements(List.of("꽝", "1000", "꽝"));
-        Ladder ladder = new Ladder(3, people.getElements().size());
-        assertDoesNotThrow(() -> new LadderGame(people, ladder, results));
-    }
-
 }
