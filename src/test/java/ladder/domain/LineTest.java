@@ -82,8 +82,8 @@ class LineTest {
         Line line = new Line(List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE, Stick.EXISTENCE));
 
         assertThatThrownBy(() -> line.isExist(position))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("가로 위치가 범위를 벗어났습니다.");
+                .isInstanceOf(IndexOutOfBoundsException.class)
+                .hasMessage("길이 위치가 범위를 벗어났습니다 Index : %d, Size : %d".formatted(position, 3));
     }
 
     @DisplayName("라인의 사이즈를 구할 수 있는지 테스트")

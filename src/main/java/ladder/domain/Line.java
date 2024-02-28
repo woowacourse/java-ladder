@@ -69,7 +69,8 @@ public class Line {
 
     private void validateStickPosition(int position) {
         if (position < 0 || position >= getWidth()) {
-            throw new IllegalArgumentException("가로 위치가 범위를 벗어났습니다.");
+            String message = "길이 위치가 범위를 벗어났습니다 Index : %d, Size : %d".formatted(position, getWidth());
+            throw new IndexOutOfBoundsException(message);
         }
     }
 

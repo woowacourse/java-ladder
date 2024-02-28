@@ -29,7 +29,8 @@ public class Ladder {
 
     public boolean isExist(int height, int width) {
         if (height < 0 || height >= getHeight()) {
-            throw new IllegalArgumentException("높이 위치가 범위를 벗어났습니다.");
+            String message = "높이 위치가 범위를 벗어났습니다. Index : %d, Size : %d".formatted(height, getHeight());
+            throw new IndexOutOfBoundsException(message);
         }
         return lines.get(height).isExist(width);
     }

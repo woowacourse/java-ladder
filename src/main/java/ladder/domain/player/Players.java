@@ -38,7 +38,8 @@ public class Players {
 
     public Player get(int index) {
         if (index < 0 || index >= size()) {
-            throw new IndexOutOfBoundsException("요청한 인덱스가 범위를 벗어났습니다.");
+            String message = "요청한 인덱스가 범위를 벗어났습니다 Index : %d, Size : %d".formatted(index, size());
+            throw new IndexOutOfBoundsException(message);
         }
         return values.get(index);
     }

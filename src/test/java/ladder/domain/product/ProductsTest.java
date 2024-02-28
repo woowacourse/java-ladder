@@ -56,7 +56,7 @@ class ProductsTest {
 
         assertThatThrownBy(() -> products.get(index))
                 .isInstanceOf(IndexOutOfBoundsException.class)
-                .hasMessage("요청한 인덱스가 범위를 벗어났습니다.");
+                .hasMessage("요청한 인덱스가 범위를 벗어났습니다 Index : %d, Size : %d".formatted(index, names.size()));
     }
 
     @DisplayName("총 상품 수를 알 수 있다")

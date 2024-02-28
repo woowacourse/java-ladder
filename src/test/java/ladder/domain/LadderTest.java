@@ -82,7 +82,8 @@ class LadderTest {
         Ladder ladder = Ladder.of(height, 2, stickListGenerator);
         int widthValue = 0;
 
-        assertThatThrownBy(() -> ladder.isExist(heightValue, widthValue)).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("높이 위치가 범위를 벗어났습니다.");
+        assertThatThrownBy(() -> ladder.isExist(heightValue, widthValue))
+                .isInstanceOf(IndexOutOfBoundsException.class)
+                .hasMessage("높이 위치가 범위를 벗어났습니다. Index : %d, Size : %d".formatted(heightValue, 3));
     }
 }
