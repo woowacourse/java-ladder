@@ -8,6 +8,7 @@ import java.util.List;
 public class RowLine {
     private static final int MIN_PEOPLE_NUMBER = 1;
     private static final int MAX_PEOPLE_NUMBER = 100;
+
     private final List<Boolean> connection;
 
     public RowLine(int peopleNumber, LineGenerator generator) {
@@ -15,10 +16,6 @@ public class RowLine {
         List<Boolean> generatedConnection = generator.getLine(peopleNumber);
         validateSuccessiveLine(generatedConnection);
         this.connection = Collections.unmodifiableList(generatedConnection);
-    }
-
-    public List<Boolean> getConnection() {
-        return connection;
     }
 
     public PositionRow nextPositionOf(PositionRow positionRow) {
@@ -63,5 +60,9 @@ public class RowLine {
             return false;
         }
         return connection.get(positionRow.getPosition());
+    }
+
+    public List<Boolean> getConnection() {
+        return connection;
     }
 }

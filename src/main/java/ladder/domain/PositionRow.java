@@ -15,7 +15,6 @@ public class PositionRow {
     public PositionRow left() {
         validatePositionLimit(position - 1, maxPosition);
         return getFromCacheOrCreate(position - 1, maxPosition);
-
     }
 
     public PositionRow right() {
