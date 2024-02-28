@@ -12,7 +12,7 @@ public class GameTest {
     @Test
     @DisplayName("게임 객체 생성 성공")
     void test_ok_createObject() {
-        Members members = Members.from("a,b,c,d");
+        Members members = Members.from(List.of("a", "b", "c", "d"));
 
         Ladder ladder = Ladder.of(4, 5, new RandomConnectionStrategy());
 
@@ -36,7 +36,7 @@ public class GameTest {
        a!    b!    c!    d!
          */
 
-        Members members = Members.from("a,b,c,d");
+        Members members = Members.from(List.of("a", "b", "c", "d"));
 
         Ladder ladder = Ladder.of(4, 5, new RandomConnectionStrategy() {
             @Override
@@ -69,7 +69,7 @@ public class GameTest {
        a!    b!    c!    d!
          */
 
-        Members members = Members.from("a,b,c,d");
+        Members members = Members.from(List.of("a", "b", "c", "d"));
 
         Ladder ladder = Ladder.of(4, 3, new RandomConnectionStrategy() {
             @Override

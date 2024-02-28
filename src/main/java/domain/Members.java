@@ -8,7 +8,6 @@ import java.util.Set;
 
 public class Members {
 
-    private static final String DELIMITER = ",";
     private static final int MIN_MEMBER_COUNT = 2;
     private static final int MAX_MEMBER_COUNT = 15;
 
@@ -18,12 +17,18 @@ public class Members {
         this.members = members;
     }
 
-    public static Members from(String rawNames) {
-        List<String> names = StringParser.splitByDelimiter(rawNames, DELIMITER);
+    public static Members from(List<String> names) {
+        validateNull(names);
         validateDuplication(names);
         validateCount(names);
-        List<Member> members = makeMembers(names);
+        List<Member> members = createMembersWithNames(names);
         return new Members(members);
+    }
+
+    private static void validateNull(List<String> names) {
+        if (names == null) {
+            throw new IllegalArgumentException("null을 입력할 수 없습니다.");
+        }
     }
 
     private static void validateDuplication(List<String> names) {
@@ -39,7 +44,7 @@ public class Members {
         }
     }
 
-    private static List<Member> makeMembers(List<String> names) {
+    private static List<Member> createMembersWithNames(List<String> names) {
         List<Member> members = new ArrayList<>();
         names.forEach(name -> members.add(new Member(name)));
         return members;
@@ -47,6 +52,18 @@ public class Members {
 
     public int findIndexOfMember(Member member) {
         return members.indexOf(member);
+    }
+
+    public boolean checkMemberExist(String name) {
+        if (name.equals("all")) {
+            return false;
+        }
+        boolean isExist = members.stream()
+                .anyMatch(member -> member.getName().equals(name));
+        if (!isExist) {
+            throw new IllegalArgumentException("해당 이름을 가진 참여자가 없습니다.");
+        }
+        return true;
     }
 
     public int getCount() {
@@ -61,24 +78,5 @@ public class Members {
 
     public List<Member> getMembers() {
         return Collections.unmodifiableList(members);
-    }
-
-    public Member findByName(String name) {
-        return members.stream()
-                .filter(member -> member.getName().equals(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("해당 이름을 가진 참여자가 없습니다."));
-    }
-
-    public boolean checkMemberExist(String name) {
-        if (name.equals("all")) {
-            return false;
-        }
-        boolean isExist = members.stream()
-                .anyMatch(member -> member.getName().equals(name));
-        if (!isExist) {
-            throw new IllegalArgumentException("해당 이름을 가진 참여자가 없습니다.");
-        }
-        return true;
     }
 }

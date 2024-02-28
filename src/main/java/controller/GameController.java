@@ -56,7 +56,8 @@ public class GameController {
     private Members makeMembers() {
         return errorHandler.readUntilNoError(() -> {
             String rawNames = inputView.readNames();
-            return Members.from(rawNames);
+            List<String> names = StringParser.splitByDelimiter(rawNames, ",");
+            return Members.from(names);
         });
     }
 

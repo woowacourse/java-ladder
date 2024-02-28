@@ -18,7 +18,7 @@ public class ResultsTest {
     @Test
     @DisplayName("결과 객체 생성 실패: 참여자 수와 개수가 같지 않으면 에러를 반환한다.")
     void test_exception_NotEqualCount() {
-        Members members = Members.from("a,b,c,d");
+        Members members = Members.from(List.of("a", "b", "c", "d"));
         assertThatCode(() -> Results.of(List.of("1", "2", "3"), members.getCount()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("결과의 수는 참여자의 수와 같아야 합니다.");
