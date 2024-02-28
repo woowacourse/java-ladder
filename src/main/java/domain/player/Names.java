@@ -23,9 +23,6 @@ public class Names {
         if (hasDuplicatedName(names)) {
             throw new IllegalArgumentException("이름이 중복되어 있습니다.");
         }
-        if (hasNameAll(names)) {
-            throw new IllegalArgumentException("all 이라는 문자열은 이름으로 사용할 수 없습니다.");
-        }
     }
 
     private boolean hasDuplicatedName(List<String> names) {
@@ -33,11 +30,6 @@ public class Names {
                 .distinct()
                 .count();
         return distinctNameSize != names.size();
-    }
-
-    private boolean hasNameAll(List<String> names) {
-        return names.stream()
-                .anyMatch(name -> name.equalsIgnoreCase("all"));
     }
 
     public int getIndexOf(Name name) {

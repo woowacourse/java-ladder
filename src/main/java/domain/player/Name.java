@@ -1,5 +1,6 @@
 package domain.player;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Name {
@@ -20,6 +21,13 @@ public class Name {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 5글자를 넘을 수 없습니다.");
         }
+        if (isNameAll(name)) {
+            throw new IllegalArgumentException("all 이라는 문자열은 이름으로 사용할 수 없습니다.");
+        }
+    }
+
+    private boolean isNameAll(String name) {
+        return name.equalsIgnoreCase("all");
     }
 
     @Override
