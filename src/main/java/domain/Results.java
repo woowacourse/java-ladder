@@ -18,6 +18,24 @@ public class Results {
     }
 
     private void validateResultSize(final List<String> values, final int nameCount) {
+        validateIsValuesNull(values);
+        validateIsValuesEmpty(values);
+        validateIsValuesSameAsNameCounts(values, nameCount);
+    }
+
+    private void validateIsValuesNull(final List<String> values) {
+        if (values == null) {
+            throw new IllegalArgumentException(INVALID_RESULT_COUNT);
+        }
+    }
+
+    private void validateIsValuesEmpty(final List<String> values) {
+        if (values.isEmpty()) {
+            throw new IllegalArgumentException(INVALID_RESULT_COUNT);
+        }
+    }
+
+    private static void validateIsValuesSameAsNameCounts(final List<String> values, final int nameCount) {
         if (values.size() != nameCount) {
             throw new IllegalArgumentException(INVALID_RESULT_COUNT);
         }

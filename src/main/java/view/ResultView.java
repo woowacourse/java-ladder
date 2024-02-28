@@ -1,10 +1,6 @@
 package view;
 
-import controller.LadderComponents;
-import domain.Line;
-import domain.Lines;
-import domain.Names;
-import domain.Results;
+import controller.LadderDto;
 import java.util.List;
 import java.util.Map;
 
@@ -14,43 +10,43 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printLadderDrawResult(final LadderComponents ladderComponents) {
+    public static void printLadderDrawResult(final LadderDto ladderDto) {
         printResultNotice();
-        printNames(ladderComponents.getNames());
-        printLines(ladderComponents.getNames(), ladderComponents.getLines());
-        printResults(ladderComponents.getResults());
-    }
-
-    private static void printResults(final Results results) {
-        String firstResult = results.resultOf(FIRST_NAME_INDEX) + " ";
-        StringBuilder nameLine = new StringBuilder();
-
-        for (int i = 1; i < results.size(); i++) {
-            nameLine.append(String.format("%6s", results.resultOf(i)));
-        }
-        System.out.println(firstResult + nameLine);
-    }
-
-    private static void printLines(final Names names, final Lines lines) {
-        for (Line line : lines.getLines()) {
-            System.out.print(ResultMessage.ladderPadding(names));
-            System.out.print(ResultMessage.of(line));
-        }
-    }
-
-    private static void printNames(final Names names) {
-        String firstName = names.nameOf(FIRST_NAME_INDEX) + " ";
-        StringBuilder nameLine = new StringBuilder();
-
-        for (int i = 1; i < names.size(); i++) {
-            nameLine.append(String.format("%6s", names.nameOf(i)));
-        }
-        System.out.println(firstName + nameLine);
+        printNames(ladderDto.getNames());
+        printLines(ladderDto.getNames(), ladderDto.getLines());
+        printResults(ladderDto.getResults());
     }
 
     private static void printResultNotice() {
         System.out.println();
         System.out.println("사다리 결과\n");
+    }
+
+    private static void printNames(final List<String> names) {
+        String firstName = names.get(FIRST_NAME_INDEX) + " ";
+        StringBuilder nameLine = new StringBuilder();
+
+        for (int i = 1; i < names.size(); i++) {
+            nameLine.append(String.format("%6s", names.get(i)));
+        }
+        System.out.println(firstName + nameLine);
+    }
+
+    private static void printLines(final List<String> names, final List<List<Boolean>> lines) {
+        for (List<Boolean> line : lines) {
+            System.out.print(ResultMessage.ladderPadding(names));
+            System.out.print(ResultMessage.of(line));
+        }
+    }
+
+    private static void printResults(final List<String> results) {
+        String firstResult = results.get(FIRST_NAME_INDEX) + " ";
+        StringBuilder nameLine = new StringBuilder();
+
+        for (int i = 1; i < results.size(); i++) {
+            nameLine.append(String.format("%6s", results.get(i)));
+        }
+        System.out.println(firstResult + nameLine);
     }
 
     public static void printMoveResult(final String result) {

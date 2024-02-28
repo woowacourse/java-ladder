@@ -7,9 +7,6 @@ public class RandomPointGenerator implements PointGenerator {
 
     @Override
     public Point generate() {
-        if (random.nextBoolean()) {
-            return Point.MOVABLE;
-        }
-        return Point.UNMOVABLE;
+        return Point.of(random.nextBoolean());
     }
 }

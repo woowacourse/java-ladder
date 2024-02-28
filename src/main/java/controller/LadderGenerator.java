@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Height;
+import domain.Ladder;
 import domain.Lines;
 import domain.Names;
 import domain.PointGenerator;
@@ -10,7 +11,7 @@ import java.util.List;
 import view.InputView;
 import view.ResultView;
 
-public class LadderDrawer {
+public class LadderGenerator {
     private Ladder ladder;
 
     public void generateLadder() {
@@ -27,7 +28,7 @@ public class LadderDrawer {
                 .results(results)
                 .build();
 
-        ResultView.printLadderDrawResult(ladder);
+        ResultView.printLadderDrawResult(ladder.toDto());
     }
 
     private Height inputLadderHeight() {

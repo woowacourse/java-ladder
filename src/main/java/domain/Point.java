@@ -1,10 +1,27 @@
 package domain;
 
 public enum Point {
-    MOVABLE,
-    UNMOVABLE;
+    MOVABLE(true),
+    UNMOVABLE(false);
 
-    public static boolean isMovable(Point point) {
-        return point == MOVABLE;
+    private final boolean isMovable;
+
+    Point(boolean movable) {
+        this.isMovable = movable;
+    }
+
+    public static boolean isMovable(final Point point) {
+        return point.isMovable;
+    }
+
+    public static Point of(final boolean isMovable) {
+        if (isMovable) {
+            return MOVABLE;
+        }
+        return UNMOVABLE;
+    }
+
+    public static boolean valueOf(final Point point) {
+        return point.isMovable;
     }
 }

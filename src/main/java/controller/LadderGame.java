@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Ladder;
 import domain.Lines;
 import domain.Mover;
 import domain.Names;
@@ -9,20 +10,22 @@ import view.InputView;
 import view.ResultView;
 
 public class LadderGame {
-    public void climbLadder(final LadderComponents ladderComponents) {
-        Lines lines = ladderComponents.getLines();
-        Names names = ladderComponents.getNames();
+    public void climbLadder(final Ladder ladder) {
+        Lines lines = ladder.lines();
+        Names names = ladder.names();
 
         Mover mover = new Mover(lines, names);
         List<String> namesAfterMove = mover.getMoveResult();
 
-        printResult(ladderComponents, names, namesAfterMove);
+        printResult(ladder, namesAfterMove);
     }
 
-    private static void printResult(LadderComponents ladderComponents, Names names, List<String> namesAfterMove) {
+    private void printResult(final Ladder ladder, final List<String> namesAfterMove) {
         String target = InputView.findResult();
-        Results results = ladderComponents.getResults();
+        Results results = ladder.results();
+
         if (target.equals("all")) {
+            Names names = ladder.names();
             ResultView.printMoveResult(names.getAll(), results.matchNamesWithResults(namesAfterMove));
             return;
         }

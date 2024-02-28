@@ -13,8 +13,8 @@ class LineTest {
     void isLineCannotNextToLine() {
         int personCount = 5;
         Line line = new Line(personCount, new RandomPointGenerator());
-        List<Point> points = line.getPoints();
-        int isInvalidLine = Collections.indexOfSubList(points, List.of(Point.MOVABLE, Point.MOVABLE));
+        List<Boolean> points = line.getMovableLinePoints();
+        int isInvalidLine = Collections.indexOfSubList(points, List.of(true, true));
 
         assertEquals(-1, isInvalidLine);
     }

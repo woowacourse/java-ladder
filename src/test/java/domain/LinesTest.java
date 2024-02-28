@@ -22,7 +22,7 @@ class LinesTest {
     @DisplayName("사다리의 전체 라인에서 이동 가능한 가로 라인의 위치만 저장한다.")
     void saveMovablePoint() {
         Lines lines = new Lines(2, 2, new FixedPointGenerator());
-        List<Integer> movablePointIndexes = lines.getAllMovablePointIndexes();
+        List<Integer> movablePointIndexes = lines.getAllMovablePoints();
 
         assertThat(movablePointIndexes).containsExactly(0, 0);
     }
