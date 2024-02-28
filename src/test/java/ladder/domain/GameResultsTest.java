@@ -37,7 +37,7 @@ public class GameResultsTest {
 
     @DisplayName("게임의 최종 결과를 모두 반환한다.")
     @Test
-    void findAll() {
+    void getGameResults() {
         List<UserDestination> actual = gameResults.getGameResults();
 
         assertAll(
