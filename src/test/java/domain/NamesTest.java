@@ -44,6 +44,18 @@ class NamesTest {
                 .hasMessage(Names.INVALID_NAMES_COUNT);
     }
 
+    @DisplayName("중복된 참가자 이름이 존재하면 예외를 던진다.")
+    @Test
+    void duplicatedNames() {
+        //given
+        final List<String> names = List.of("pobi", "honux", "crong", "crong", "jk");
+
+        //when & then
+        Assertions.assertThatThrownBy(() -> new Names(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Names.DUPLICATED_NAMES);
+    }
+
     @DisplayName("참가자의 수를 반환한다.")
     @Test
     void getPlayersCount() {
