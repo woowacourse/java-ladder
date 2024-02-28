@@ -10,12 +10,13 @@ public class InputView {
     private InputView() {
     }
 
-    public static String input() {
+    public static String input(String inputRequestMessage) {
+        System.out.print(inputRequestMessage);
         return scanner.nextLine();
     }
 
-    public static List<String> inputNames() {
-        String initialInput = input();
+    public static List<String> inputNames(String inputRequestMessage) {
+        String initialInput = input(inputRequestMessage);
         return Arrays.stream(initialInput.split(","))
                      .map(String::trim)
                      .toList();
