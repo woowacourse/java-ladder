@@ -1,12 +1,16 @@
 package controller;
 
 import domain.Game;
+import domain.GameResult;
 import domain.Lines;
+import domain.Member;
 import domain.Members;
+import domain.Result;
 import domain.Results;
 import domain.StringParser;
 import error.ErrorHandler;
 import java.util.List;
+import java.util.Map;
 import strategy.RandomConnectionStrategy;
 import view.InputView;
 import view.OutputView;
@@ -34,9 +38,19 @@ public class GameController {
         Game game = new Game(members, lines, results);
         outputView.printLadder(game);
 
-        // 아래 계속 반복 (무한반복 없애기 위해 조건 걸어야할 듯)
-            // 결과를 보고 싶은 사람
-            // 실행 결과
+        GameResult gameResult = game.matchResult(); // TODO 결과 이상
+
+        int count = 10; // TODO: dummy
+        while (count-- > 0) {
+            String rawTargetName = makeTargetName(members);
+            if (rawTargetName.equals("all")) {
+                Map<Member, Result> result = gameResult.getResultOfAllMember();
+                outputView.printResult(result);
+                break;
+            }
+            Result result = gameResult.getResultByMemberName(rawTargetName);
+            outputView.printResult(result);
+        }
     }
 
     private Members makeMembers() {
@@ -59,6 +73,17 @@ public class GameController {
             String rawHeight = inputView.readHeight();
             int height = StringParser.stringToInt(rawHeight);
             return Lines.of(members.getCount(), height, new RandomConnectionStrategy());
+        });
+    }
+
+    private String makeTargetName(Members members) { // TODO: refactoring
+        return errorHandler.readUntilNoError(() -> {
+            String rawTargetName = inputView.readTarget();
+            boolean isExist = members.checkMemberExist(rawTargetName);
+            if (!isExist) {
+                return "all";
+            }
+            return rawTargetName;
         });
     }
 }
