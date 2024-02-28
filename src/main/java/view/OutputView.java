@@ -4,9 +4,13 @@ import domain.Connection;
 import domain.Game;
 import domain.Line;
 import domain.Lines;
+import domain.Member;
 import domain.Members;
+import domain.Result;
 import domain.Results;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class OutputView {
 
@@ -69,5 +73,17 @@ public class OutputView {
 
     private String repeatCharacter(String character, int times) {
         return character.repeat(times);
+    }
+
+    public void printResult(Result result) {
+        System.out.println(result.getValue());
+    }
+
+    public void printResult(Map<Member, Result> results) {
+        for (Entry<Member, Result> memberResult : results.entrySet()) {
+            String memberName = memberResult.getKey().getName();
+            String result = memberResult.getValue().getValue();
+            System.out.println(memberName + " : " + result);
+        }
     }
 }
