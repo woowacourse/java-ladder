@@ -1,8 +1,22 @@
 package model.bridge;
 
 public enum Bridge {
-    CONNECTED,
-    UNCONNECTED;
+    CONNECTED(1),
+    UNCONNECTED(0);
+
+    private final int movement;
+
+    Bridge(int movement) {
+        this.movement = movement;
+    }
+
+    public int moveRight(int position) {
+        return position + movement;
+    }
+
+    public Integer moveLeft(int position) {
+        return position - movement;
+    }
 
     public boolean isConnected() {
         return this == CONNECTED;

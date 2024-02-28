@@ -6,9 +6,11 @@ import static java.util.stream.Collectors.toList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
-import model.line.LineGenerator;
+import model.gameResult.GameResult;
 import model.line.Line;
+import model.line.LineGenerator;
 import model.player.Players;
+import model.prize.Prizes;
 
 public class Ladder {
     private static final int LINE_WIDTH_OFFSET = 1;
@@ -24,6 +26,14 @@ public class Ladder {
         return IntStream.range(0, height.value())
                 .mapToObj(i -> LineGenerator.generateLine(lineWidth))
                 .collect(collectingAndThen(toList(), Ladder::new));
+    }
+
+    public GameResult simulate(Players players, Prizes prizes) {
+        List<Integer> positions = IntStream.range(0, players.getSize())
+                .boxed()
+                .collect(toList());
+        lines.forEach(line -> positions.replaceAll(line::cross));
+        return GameResult.of(Collections.unmodifiableList(positions), players, prizes);
     }
 
     public List<Line> getLines() {

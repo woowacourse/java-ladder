@@ -27,4 +27,8 @@ public class Prizes {
             throw new IllegalArgumentException(INVALID_PRIZES_SIZE);
         }
     }
+
+    public Prize findPrize(int index) {
+        return prizes.get(index);
+    }
 }

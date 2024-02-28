@@ -16,4 +16,8 @@ public class Prize {
             throw new IllegalArgumentException(INVALID_NAME_LENGTH);
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

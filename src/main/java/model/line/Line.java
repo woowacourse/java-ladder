@@ -33,6 +33,31 @@ public final class Line {
         return bridges.get(bridges.size() - 1);
     }
 
+    public Integer cross(int previousPosition) {
+        int nextPostition = crossRightBridge(previousPosition);
+
+        if (previousPosition == nextPostition) {
+            nextPostition = crossLeftBridge(previousPosition);
+        }
+        return nextPostition;
+    }
+
+    private int crossRightBridge(int position) {
+        if (position < bridges.size()) {
+            Bridge rightBridge = bridges.get(position);
+            return rightBridge.moveRight(position);
+        }
+        return position;
+    }
+
+    private int crossLeftBridge(int position) {
+        if (position > 0) {
+            Bridge leftBridge = bridges.get(position - 1);
+            return leftBridge.moveLeft(position);
+        }
+        return position;
+    }
+
     public List<Bridge> getBridges() {
         return bridges;
     }

@@ -49,6 +49,10 @@ public class Players {
                 .toList();
     }
 
+    public Player findPlayer(int index) {
+        return players.get(index);
+    }
+
     public int getSize() {
         return players.size();
     }
