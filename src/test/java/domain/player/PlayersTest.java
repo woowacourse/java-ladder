@@ -1,8 +1,9 @@
-package domain;
+package domain.player;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.player.Players;
 import domain.player.Position;
 import java.util.ArrayList;
 import java.util.List;

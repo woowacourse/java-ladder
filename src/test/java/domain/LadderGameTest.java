@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import domain.ladder.BridgeGenerator;
 import domain.ladder.Height;
 import domain.player.Player;
+import domain.player.Players;
 import domain.player.Position;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

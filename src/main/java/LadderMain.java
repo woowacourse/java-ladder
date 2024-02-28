@@ -1,6 +1,6 @@
 import domain.LadderGame;
 import domain.MatchingItems;
-import domain.Players;
+import domain.player.Players;
 import domain.ladder.Height;
 import domain.ladder.RandomBridgeGenerator;
 import view.InputView;
