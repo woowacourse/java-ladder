@@ -33,7 +33,7 @@ public class LadderGameController {
 
         List<Integer> resultList = new ArrayList<>();
         for (int i = 0; i < players.getPlayerSize(); i++) {
-            resultList.add(ladder.climbLines(i));
+            resultList.add(ladder.climb(i));
         }
 
         TargetPlayer targetPlayer = readTargetPlayerIn(players.getPlayerNames());

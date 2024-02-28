@@ -35,9 +35,9 @@ class LadderTest {
         int playerSize = 3;
 
         Ladder ladder = new Ladder(height, playerSize, mockSticksGenerator());
-        int position0 = ladder.climbLines(0);
-        int position1 = ladder.climbLines(1);
-        int position2 = ladder.climbLines(2);
+        int position0 = ladder.climb(0);
+        int position1 = ladder.climb(1);
+        int position2 = ladder.climb(2);
 
         assertAll(
                 () -> assertEquals(1, position0),

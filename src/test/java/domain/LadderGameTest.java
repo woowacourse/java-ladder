@@ -29,7 +29,7 @@ class LadderGameTest {
         Results results = new Results(List.of("꽝", "당첨"), players.getPlayerSize());
         LadderGame ladderGame = new LadderGame(players, ladder, results);
 
-        Map<Player, Result> playerResult = ladderGame.play(players, ladder, results);
+        Map<Player, Result> playerResult = ladderGame.getPlayerResult();
 
         Player player1 = players.getPlayers().get(0);
         Player player2 = players.getPlayers().get(1);
