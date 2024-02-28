@@ -25,12 +25,12 @@ public class LadderResult {
             return;
         }
         for (int i = 0; i < participantsCount; i++) {
-            canMove(ladder, floor, i);
+            move(ladder, floor, i);
         }
         calculatePosition(floor + 1, ladder, participantsCount);
     }
 
-    private void canMove(Ladder ladder, int floor, int i) {
+    private void move(Ladder ladder, int floor, int i) {
         if (ladder.canMoveLeft(floor, firstAndLastPosition.get(i))) {
             firstAndLastPosition.put(i, firstAndLastPosition.get(i) - ONE_STEP);
             return;
