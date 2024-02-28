@@ -1,6 +1,7 @@
 package view;
 
 import java.util.List;
+import java.util.Map;
 import model.Ladder;
 import model.LadderRow;
 import model.Name;
@@ -8,10 +9,10 @@ import model.Participants;
 
 public class OutputView {
 
-    private static final String RESULT_MESSAGE = "실행결과\n";
+    private static final String RESULT_MESSAGE = "\n사다리 결과\n";
     private static final String NAME_FORMAT = "%5s ";
 
-    public void printResult() {
+    public void printResultMessage() {
         System.out.println(RESULT_MESSAGE);
     }
 
@@ -37,5 +38,12 @@ public class OutputView {
             System.out.print(LadderComponent.match(isLine).toString());
         }
         System.out.print(LadderComponent.DIVISION);
+    }
+
+    public void printResults(Map<Integer, String> results) {
+        for (int i = 0; i < results.size(); i++) {
+            System.out.print(NAME_FORMAT.formatted(results.get(i)));
+        }
+        System.out.println();
     }
 }
