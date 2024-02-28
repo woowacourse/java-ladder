@@ -33,7 +33,6 @@ class GameBoardTest {
         GameBoard gameBoard = new GameBoard(players, ladder, prizes);
 
         assertInstanceOf(GameBoard.class, gameBoard);
-
     }
 
     private Players 플레이어_생성(Names names) {
@@ -148,7 +147,6 @@ class GameBoardTest {
                 assertEquals("3", resultPrize3);
                 assertEquals("4", resultPrize4);
             });
-
         }
 
         @Test

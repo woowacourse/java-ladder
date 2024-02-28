@@ -29,7 +29,6 @@ class HeightTest {
         String value = "five";
 
         assertThrows(IllegalArgumentException.class, () -> new Height(value));
-
     }
 
     @ParameterizedTest
