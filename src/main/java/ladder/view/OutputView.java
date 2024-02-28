@@ -1,14 +1,18 @@
 package ladder.view;
 
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
 import java.util.stream.IntStream;
 
 public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
-    private static final String EXECUTION_RESULT = "사다리 결과" + System.lineSeparator();
+    private static final String LADDER_RESULT = "사다리 결과";
+    private static final String EXECUTION_RESULT = "실행 결과";
     private static final String PEOPLE_NAMES_DELIMITER = " ";
     private static final String PRIZES_DELIMITER = " ";
+    private static final String EXECUTION_RESULT_ONCE_DELIMITER = ", ";
+    private static final String EXECUTION_RESULT_ALL_DELIMITER = " : ";
     private static final String LINE_PILLAR = "|";
     private static final String LADDER_SCAFFOLD = "-";
     private static final String LADDER_BLANK = " ";
@@ -38,7 +42,8 @@ public class OutputView {
     }
 
     private static void printResultTitle() {
-        System.out.println(EXECUTION_RESULT);
+        System.out.println(LADDER_RESULT);
+        printNewLine();
     }
 
     private static void printPeopleNames(List<String> names, List<Integer> sizes) {
@@ -82,5 +87,18 @@ public class OutputView {
             return LADDER_SCAFFOLD;
         }
         return LADDER_BLANK;
+    }
+
+    public static void printExecutionResultOnce(String prize) {
+        System.out.println(EXECUTION_RESULT);
+        printNewLine();
+        System.out.println(String.join(EXECUTION_RESULT_ONCE_DELIMITER, prize));
+    }
+
+    public static void printExecutionResultAll(Map<String, String> result) {
+        System.out.println(EXECUTION_RESULT);
+        printNewLine();
+        result.forEach((name, prize) ->
+                System.out.println(name + EXECUTION_RESULT_ALL_DELIMITER + prize));
     }
 }

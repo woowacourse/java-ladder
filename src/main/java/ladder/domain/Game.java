@@ -1,32 +1,39 @@
 package ladder.domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 public class Game {
+    private final People people;
     private final Ladder ladder;
-    private List<Integer> result = List.of();
+    private final Prizes prizes;
+    private final Map<String, String> result;
 
-    public Game(Ladder ladder) {
+    public Game(People people, Ladder ladder, Prizes prizes) {
+        this.people = people;
         this.ladder = ladder;
+        this.prizes = prizes;
+        this.result = new HashMap<>();
     }
 
-    public List<Integer> calculateResult() {
-        if (result.isEmpty()) {
-            result = IntStream.range(0, ladder.width() + 1)
-                    .map(this::calculateOne)
-                    .boxed()
-                    .toList();
-        }
+    public Map<String, String> run() {
+        List<Integer> pairs = IntStream.range(0, ladder.width() + 1)
+                .map(this::calculateOne)
+                .boxed()
+                .toList();
+        IntStream.range(0, pairs.size())
+                .forEach(i -> result.put(people.getNames().get(i), prizes.getNames().get(i)));
         return result;
     }
 
-    public int calculateOne(int startPosition) {
+    int calculateOne(int startPosition) {
         return IntStream.range(0, ladder.height())
                 .reduce(startPosition, this::calculateOneDepth);
     }
 
-    public int calculateOneDepth(int position, int depth) {
+    int calculateOneDepth(int position, int depth) {
         if (isFirst(position)) {
             return position + rightMovement(position, depth);
         }

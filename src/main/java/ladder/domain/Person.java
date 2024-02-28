@@ -34,7 +34,7 @@ public class Person {
     }
 
     private void validateCommand(String name) {
-        if (Command.exist(name)) {
+        if (Command.from(name).isPresent()) {
             throw new IllegalArgumentException(COMMAND_NOT_USE_AS_NAME);
         }
     }
