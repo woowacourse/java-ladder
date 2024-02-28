@@ -1,6 +1,6 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +25,7 @@ public class LineTest {
     void test_ok_generateRandomPoint() {
         Line line = Line.of(randomPointStrategy, 4);
         line.getPoints()
-                .forEach(point -> assertThat(point).isInstanceOf(Point.class));
+            .forEach(point -> assertThat(point).isInstanceOf(Point.class));
     }
 
     @Test

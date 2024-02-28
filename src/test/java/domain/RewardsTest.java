@@ -32,14 +32,16 @@ public class RewardsTest {
     @DisplayName("Rewards 생성 실패: 비정상 공백 처리")
     void test_exception_namesWithSpace() {
         assertThatCode(() -> Rewards.from(4, "꽝,1000,꽝,10 00"))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("숫자 혹은 '꽝'만 입력 가능합니다.");
     }
 
     @Test
     @DisplayName("Rewards 생성 실패: 사람 수에 맞지 않게 입력")
     void test_exception_doesntMatchMemberCount() {
         assertThatThrownBy(() -> Rewards.from(3, "꽝,1000,꽝,1000"))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("플레이어 수(3)만큼 입력해주세요.");
     }
 
     @ParameterizedTest
@@ -50,13 +52,20 @@ public class RewardsTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest
-    @NullSource
-    @EmptySource
-    @DisplayName("Rewards 생성 실패: null, empty")
-    void test_exception_null_empty(String rawNames) {
-        assertThatThrownBy(() -> Rewards.from(1, rawNames))
-            .isInstanceOf(IllegalArgumentException.class);
+    @Test
+    @DisplayName("Rewards 생성 실패: null")
+    void test_exception_null() {
+        assertThatThrownBy(() -> Rewards.from(1, null))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("null을 입력할 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("Rewards 생성 실패: empty")
+    void test_exception_empty() {
+        assertThatThrownBy(() -> Rewards.from(1, ""))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("빈 문자열을 입력할 수 없습니다.");
     }
 
     @Test
