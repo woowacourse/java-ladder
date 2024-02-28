@@ -43,4 +43,19 @@ public class PeopleTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("이름은 중복될 수 없습니다.");
     }
+
+    @Test
+    @DisplayName("몇명인지 반환한다.")
+    void getCount() {
+        // given
+        List<String> names = List.of("pobi", "nak", "seya", "jay");
+
+        int count = 4;
+
+        // when
+        People people = People.from(names);
+
+        // then
+        assertThat(people.getCount()).isEqualTo(count);
+    }
 }
