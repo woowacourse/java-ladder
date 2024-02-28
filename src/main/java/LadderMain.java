@@ -1,5 +1,8 @@
 import domain.LadderGame;
 import domain.MatchingItems;
+import domain.ladder.Ladder;
+import domain.ladder.LadderFactory;
+import domain.ladder.Width;
 import domain.player.Players;
 import domain.ladder.Height;
 import domain.ladder.RandomBridgeGenerator;
@@ -14,9 +17,10 @@ public class LadderMain {
         final Players players = Players.createInOrderPoisition(InputView.readNames());
         final MatchingItems matchingItems = new MatchingItems(InputView.readMatchingItems(), players.count());
         final Height height = new Height(InputView.readHeight());
+        final Width width = Width.from(players);
 
-        final LadderGame ladderGame = new LadderGame(players, matchingItems, height,
-                RandomBridgeGenerator.getInstance());
+        final Ladder ladder = LadderFactory.createByStrategy(RandomBridgeGenerator.getInstance(), height, width);
+        final LadderGame ladderGame = new LadderGame(players, matchingItems, ladder);
         ladderGame.play();
         OutputView.printLadderMakingResult(
                 ladderGame.getPlayerNames(), ladderGame.getLadder(), matchingItems.getItems());

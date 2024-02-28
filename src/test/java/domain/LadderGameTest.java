@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 import domain.ladder.BridgeGenerator;
 import domain.ladder.Height;
+import domain.ladder.Ladder;
+import domain.ladder.LadderFactory;
+import domain.ladder.Width;
 import domain.player.Player;
 import domain.player.Players;
 import domain.player.Position;
@@ -30,12 +33,9 @@ class LadderGameTest {
         final Players players = Players.createInOrderPoisition(List.of("pobi", "honux", "crong", "jk"));
         final MatchingItems matchingItems = new MatchingItems(List.of("꽝", "5000", "꽝", "3000"), players.count());
         final Height height = new Height(5);
-
-        final LadderGame ladderGame = new LadderGame(
-                players,
-                matchingItems,
-                height,
-                bridgeGenerator);
+        final Width width = Width.from(players);
+        final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, height, width);
+        final LadderGame ladderGame = new LadderGame(players, matchingItems, ladder);
 
         ladderGame.play();
         final List<Player> rawPlayers = players.getPlayers();
@@ -63,12 +63,9 @@ class LadderGameTest {
         final Players players = Players.createInOrderPoisition(List.of("pobi", "honux", "crong", "jk"));
         final MatchingItems matchingItems = new MatchingItems(List.of("꽝", "5000", "꽝", "3000"), players.count());
         final Height height = new Height(5);
-
-        final LadderGame ladderGame = new LadderGame(
-                players,
-                matchingItems,
-                height,
-                bridgeGenerator);
+        final Width width = Width.from(players);
+        final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, height, width);
+        final LadderGame ladderGame = new LadderGame(players, matchingItems, ladder);
 
         ladderGame.play();
         final List<GameResult> gameResults = ladderGame.matchResult("all", "all");

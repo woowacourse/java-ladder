@@ -17,18 +17,10 @@ public class LadderGame {
     private final MatchingItems matchingItems;
     private final Ladder ladder;
 
-    public LadderGame(
-            final Players players,
-            final MatchingItems matchingItems,
-            final Height height,
-            final BridgeGenerator bridgeGenerator) {
+    public LadderGame(final Players players, final MatchingItems matchingItems, final Ladder ladder) {
         this.players = players;
         this.matchingItems = matchingItems;
-        this.ladder = LadderFactory.createByStrategy(
-                bridgeGenerator,
-                height,
-                Width.from(players)
-        );
+        this.ladder = ladder;
     }
 
     public void play() {
