@@ -1,6 +1,7 @@
 package domain;
 
 import static domain.Prizes.MAX_OF_PRIZE_LENGTH;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -34,5 +35,12 @@ public class PrizesTest {
         assertThatThrownBy(() -> new Prizes(List.of("정상글자", "정상", "정상값"), new Participants(List.of("a", "b", "c", "d"))))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 실행 결과의 개수는 참가자 수와 일치해야 합니다.");
+    }
+
+    @Test
+    @DisplayName("각 참가자의 실행 결과를 반환한다.")
+    void getParticipantPrizeTest() {
+        Prizes prizes = new Prizes(List.of("정상글자", "정상", "정상값"), new Participants(List.of("a", "b", "c")));
+        assertThat(prizes.getParticipantPrize(2)).isEqualTo("정상값");
     }
 }
