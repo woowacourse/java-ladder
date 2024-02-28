@@ -31,8 +31,19 @@ public class InputValidatorTest {
     @Test
     void occurExceptionIfPlayerNameIsNotExisted() {
         String name = "name";
+
         assertThatThrownBy(() -> InputValidator.validatePlayerName(playerNames, name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(InputValidator.ERROR_PLAYER_NAME_IS_NOT_EXISTED);
+    }
+
+    @DisplayName("참여자 이름이 게임 커맨드에 사용되는 키워드와 같으면 예외가 발생한다.")
+    @Test
+    void occurExceptionIfPlayerNameIsCommand() {
+        String name = "all";
+
+        assertThatThrownBy(() -> InputValidator.validateIsNotCommand(name))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(name + InputValidator.ERROR_IS_IMPOSSIBLE_NAME);
     }
 }
