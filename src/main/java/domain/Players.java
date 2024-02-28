@@ -46,4 +46,13 @@ public class Players {
     public List<PlayerName> getPlayersNames() {
         return playerNames;
     }
+
+    public boolean isExistPlayer(String name) {
+        for (PlayerName playerName : playerNames) {
+            if (playerName.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

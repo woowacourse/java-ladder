@@ -13,6 +13,7 @@ import view.OutputView;
 public class LadderGame {
 
     private static final String SHOW_RESULT_BREAK_WORD = "all";
+    private static final String NOT_EXIST_PLAYER_NAME_MESSAGE = "존재하지 않는 플레이어 이름입니다.";
 
     public void run() {
         Players players = new Players(InputView.readPlayers());
@@ -30,10 +31,16 @@ public class LadderGame {
     private void showResult(Ladder ladder, Players players, Rewards rewards) {
         String name;
         while (!(name = InputView.getWantedResultName()).equals(SHOW_RESULT_BREAK_WORD)) {
-            String result = ladder.findPlayerReward(players.getPlayerNameOrderNumber(name), rewards);
-            OutputView.printPlayerResult(result);
+            OutputView.printPlayerResult(getResult(ladder, players, rewards, name));
         }
         Map<PlayerName, String> result = ladder.findAllPlayerReward(players, rewards);
         OutputView.printAllPlayerResult(result);
+    }
+
+    private String getResult(Ladder ladder, Players players, Rewards rewards, String name) {
+        if (players.isExistPlayer(name)) {
+            return ladder.findPlayerReward(players.getPlayerNameOrderNumber(name), rewards);
+        }
+        return NOT_EXIST_PLAYER_NAME_MESSAGE;
     }
 }

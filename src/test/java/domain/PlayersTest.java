@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +31,8 @@ public class PlayersTest {
     @DisplayName("플레이어 이름이 중복된 경우 예외를 발생한다.")
     @Test
     void createPlayerNamesWithOverlap() {
-        assertThatThrownBy(() -> new Players(List.of(new PlayerName("dodo"), new PlayerName("dodo"), new PlayerName("capy"))))
+        assertThatThrownBy(
+                () -> new Players(List.of(new PlayerName("dodo"), new PlayerName("dodo"), new PlayerName("capy"))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -42,5 +44,27 @@ public class PlayersTest {
         Players players = new Players(List.of(player1, player2));
 
         assertThat(players.getPlayerNameOrderNumber("dodo")).isEqualTo(0);
+    }
+
+    @DisplayName("플레이어가 존재한다면 true를 반환합니다..")
+    @Test
+    void isExistPlayer() {
+        PlayerName player1 = new PlayerName("dodo");
+        PlayerName player2 = new PlayerName("capy");
+        Players players = new Players(List.of(player1, player2));
+        String checkName = "dodo";
+
+        Assertions.assertTrue(players.isExistPlayer(checkName));
+    }
+
+    @DisplayName("플레이어가 존재한다면 true를 반환합니다..")
+    @Test
+    void isExistPlayerWithNotExist() {
+        PlayerName player1 = new PlayerName("dodo");
+        PlayerName player2 = new PlayerName("capy");
+        Players players = new Players(List.of(player1, player2));
+        String checkName = "pobi";
+
+        Assertions.assertFalse(players.isExistPlayer(checkName));
     }
 }
