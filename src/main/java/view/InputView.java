@@ -1,6 +1,7 @@
 package view;
 
 import domain.Height;
+import domain.Prizes;
 import domain.UndecidedResults;
 import domain.name.Names;
 
@@ -43,5 +44,18 @@ public class InputView {
     public String readOneNameOrAll() {
         System.out.println(LINE_SEPARATOR + "결과를 보고 싶은 사람은?");
         return scanner.nextLine();
+    }
+
+    public Prizes readPrizes(int nameCount) {
+        System.out.println(LINE_SEPARATOR + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        List<String> prizes = Arrays.asList(scanner.nextLine().split(","));
+        validatePrizesSize(nameCount, prizes);
+        return Prizes.from(prizes);
+    }
+
+    private void validatePrizesSize(int nameCount, List<String> prizes) {
+        if (prizes.size() != nameCount) {
+            throw new IllegalArgumentException("[ERROR] 상품의 수는 참여자 수와 일치해야 합니다.");
+        }
     }
 }
