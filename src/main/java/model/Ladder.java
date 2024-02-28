@@ -15,7 +15,16 @@ public class Ladder {
         this.layers = layers;
     }
 
+    public Ladder(List<Layer> layers) {
+        this.layers = layers;
+    }
+
+    public int move(int position) {
+        int currentPosition = position;
+        for (Layer layer : layers) {
+            currentPosition = layer.move(currentPosition);
         }
+        return currentPosition;
     }
 
     public void forEachLayer(Consumer<Layer> consumer) {
