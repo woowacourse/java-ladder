@@ -14,6 +14,10 @@ public class Prizes {
         this.prizes = prizes;
     }
 
+    public String getParticipantPrize(int finalPosition) {
+        return prizes.get(finalPosition);
+    }
+
     private void validatePrizeLength(List<String> prizes) {
         prizes.stream()
                 .filter(prize -> prize.length() > MAX_OF_PRIZE_LENGTH)
