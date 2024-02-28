@@ -1,7 +1,7 @@
 package controller;
 
 import domain.Ladder;
-import domain.LadderResult;
+import domain.LadderGame;
 import domain.Participants;
 import domain.Prizes;
 import java.util.List;
@@ -9,15 +9,13 @@ import utils.RandomStepGenerator;
 import view.InputView;
 import view.OutputView;
 
-public class LadderGame {
+public class LadderGameController {
 
     public static final String EXIT = "종료";
     public static final String ALL = "all";
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private Participants participants;
-    private Prizes prizes;
-    private Ladder ladder;
+    private LadderGame ladderGame;
 
     public void play() {
         try {
@@ -28,11 +26,12 @@ public class LadderGame {
     }
 
     private void run() {
-        participants = recruitParticipants();
-        prizes = decidePrizes();
-        ladder = makeLadder();
-        outputView.printResult(participants, ladder, prizes);
-        result();
+        Participants participants = recruitParticipants();
+        Prizes prizes = decidePrizes(participants);
+        Ladder ladder = makeLadder(participants);
+        outputView.printLadderInformation(participants, ladder, prizes);
+        ladderGame = new LadderGame(participants, prizes, ladder);
+        result(participants);
     }
 
     private Participants recruitParticipants() {
@@ -45,60 +44,59 @@ public class LadderGame {
         }
     }
 
-    private Prizes decidePrizes() {
+    private Prizes decidePrizes(Participants participants) {
         try {
             List<String> prizes = inputView.readResults();
             return new Prizes(prizes, participants);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return decidePrizes();
+            return decidePrizes(participants);
         }
     }
 
-    private Ladder makeLadder() {
+    private Ladder makeLadder(Participants participants) {
         try {
             int height = inputView.readHeight();
             return new Ladder(height, participants.getParticipantsCount(), new RandomStepGenerator());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return makeLadder();
+            return makeLadder(participants);
         }
     }
 
-    private void result() {
+    private void result(Participants participants) {
         try {
             String name = inputView.readResultName();
-            validateResultName(name);
-            checkResult(name);
+            validateResultName(name, participants);
+            checkResult(participants, name);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            result();
+            result(participants);
         }
     }
 
-    private void checkResult(String name) {
-        LadderResult ladderResult = new LadderResult(ladder, participants.getParticipantsCount());
+    private void checkResult(Participants participants, String name) {
         if (name.equals(EXIT)) {
             return;
         }
         if (name.equals(ALL)) {
-            checkAllResult(ladderResult);
+            checkAllResult(participants);
             return;
         }
-        checkOneResult(name, ladderResult);
+        checkOneResult(participants, name);
     }
 
-    private void checkAllResult(LadderResult ladderResult) {
-        outputView.printAllResult(ladderResult, participants, prizes);
-        result();
+    private void checkAllResult(Participants participants) {
+        outputView.printAllResult(ladderGame.allResultOfLadder());
+        result(participants);
     }
 
-    private void checkOneResult(String name, LadderResult ladderResult) {
-        outputView.printOneResult(ladderResult, prizes, participants.checkParticipantOrder(name));
-        result();
+    private void checkOneResult(Participants participants, String name) {
+        outputView.printOneResult(ladderGame.oneResultOfLadder(name));
+        result(participants);
     }
 
-    private void validateResultName(String name) {
+    private void validateResultName(String name, Participants participants) {
         if (!name.equals(EXIT) && !name.equals(ALL) && !participants.hasParticipated(name)) {
             throw new IllegalArgumentException("[ERROR] 해당하는 참가자가 없습니다.");
         }

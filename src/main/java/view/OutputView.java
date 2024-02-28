@@ -1,14 +1,13 @@
 package view;
 
 import domain.Ladder;
-import domain.LadderResult;
 import domain.Line;
 import domain.Name;
 import domain.Participants;
 import domain.Prizes;
 import domain.StepPoint;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Map;
 
 public class OutputView {
 
@@ -16,27 +15,21 @@ public class OutputView {
     public static final String EXIST_POINT = "-----|";
     public static final String EMPTY_POINT = "     |";
 
-    public void printResult(Participants participants, Ladder ladder, Prizes prizes) {
+    public void printLadderInformation(Participants participants, Ladder ladder, Prizes prizes) {
         System.out.println("\n사다리 결과\n");
         printNames(participants);
         printLadder(ladder);
         printPrizes(prizes);
     }
 
-    public void printAllResult(LadderResult ladderResult, Participants participants, Prizes prizes) {
+    public void printAllResult(Map<String, String> allResult) {
         System.out.println("\n실행 결과");
-        List<Name> names = participants.getParticipantsName();
-        List<String> prizesValue = prizes.getPrizes();
-
-        IntStream.range(0, participants.getParticipantsCount())
-                .forEach(i -> System.out.printf("%s : %s\n", names.get(i).getName(),
-                        prizesValue.get(ladderResult.getOneResult(i))));
+        allResult.forEach((name, prize) -> System.out.println(name + " : " + prize));
     }
 
-    public void printOneResult(LadderResult ladderResult, Prizes prizes, int firstPosition) {
+    public void printOneResult(String prize) {
         System.out.println("\n실행 결과");
-        List<String> prizesValue = prizes.getPrizes();
-        System.out.println(prizesValue.get(ladderResult.getOneResult(firstPosition)));
+        System.out.println(prize);
     }
 
 
