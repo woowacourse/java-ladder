@@ -4,6 +4,7 @@ import model.result.Result;
 import model.result.Results;
 import model.participant.Participant;
 import model.participant.Participants;
+import model.result.Rewards;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -23,15 +24,14 @@ public class LadderGame {
         return results.getResult(ladder.getEndPositionBy(participants.getPosition(participant)));
     }
 
-    public Map<Participant, Result> matchAllResults() {
+    public Rewards matchAllResults() {
         Map<Participant, Result> rewards = new LinkedHashMap<>();
         for (Participant participant : participants.getParticipants()) {
             rewards.put(participant, results.getResult(
-                    ladder.getEndPositionBy(
-                            participants.getPosition(participant)))
+                    ladder.getEndPositionBy(participants.getPosition(participant)))
             );
         }
-        return rewards;
+        return new Rewards(rewards);
     }
 
     public Ladder getLadder() {
