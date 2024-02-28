@@ -1,13 +1,10 @@
 package ladder.domain;
 
-public class LineFloor {
+public record LineFloor(int value) {
     private static final int MINIMUM_LINE_FLOOR = 0;
 
-    private final int value;
-
-    public LineFloor(final int value) {
+    public LineFloor {
         validateLineFloor(value);
-        this.value = value;
     }
 
     private static void validateLineFloor(final int lineFloor) {
