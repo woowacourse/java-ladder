@@ -1,7 +1,8 @@
 package ladder.domain;
 
 public class Player {
-    private PlayerName playerName;
+    private final PlayerName playerName;
+
     private LineNumber currentLineNumber;
     private LineFloor currentLineFloor;
 
@@ -17,5 +18,23 @@ public class Player {
 
     public boolean escapeLadder() {
         return currentLineFloor.isZero();
+    }
+
+    public void move(int moveDistance) {
+        currentLineNumber = new LineNumber(currentLineNumber.value() + moveDistance);
+        currentLineFloor = new LineFloor(currentLineFloor.value() - 1);
+    }
+
+    public LineNumber getCurrentLineNumber() {
+        return currentLineNumber;
+    }
+
+    public LineFloor getCurrentLineFloor() {
+        return currentLineFloor;
+    }
+
+    @Override
+    public String toString() {
+        return "name : " + playerName.value() + "  lineNumber : " + currentLineNumber.value() + "  lineFloor: " + currentLineFloor.value();
     }
 }
