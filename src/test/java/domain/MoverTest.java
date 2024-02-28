@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class MoverTest {
     @Test
-    @DisplayName("Lines, Names 객체와 함께 협력하여 사다리 이동 결과를 반환한다.")
+    @DisplayName("사다리 이동 결과를 반환한다.")
     void getMoveResult() {
         Lines lines = new Lines(2, 2, new FixedPointGenerator());
         Names names = new Names(List.of("pobi", "crong"));
