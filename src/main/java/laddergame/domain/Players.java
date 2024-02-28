@@ -10,6 +10,7 @@ import static laddergame.domain.Player.NAME_BLANK_ERROR;
 public class Players {
     private static final String NAME_DUPLICATED_ERROR = "이름의 중복은 허용하지 않습니다.";
     private static final String NAMES_COUNT_ERROR = "이름을 두명 이상 적어주세요.";
+    private static final String INPUT_IS_NOT_IN_NAMES = "존재하지 않는 이름입니다.";
     private static final int MIN_NAMES_COUNT = 2;
 
     private final List<Player> players;
@@ -22,12 +23,11 @@ public class Players {
     }
 
     public ResultItem findItemByName(String name) {
-        for (Player player : players) {
-            if (player.getName().equals(name)) {
-                return player.getItem();
-            }
-        }
-        throw new IllegalArgumentException("이름 없음");
+        return players.stream()
+                .filter(player -> player.getName().equals(name))
+                .map(player -> player.getItem())
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(INPUT_IS_NOT_IN_NAMES));
     }
 
     private void validate(final List<String> playerNames) {

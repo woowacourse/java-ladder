@@ -25,7 +25,7 @@ public class OutputView {
 
     public void writeResultItems(final List<ResultItem> items) {
         System.out.println(String.join(SPACE, items.stream()
-                .map(ResultItem::getItem)
+                .map(ResultItem::item)
                 .toList())
         );
     }
@@ -44,14 +44,14 @@ public class OutputView {
 
     public void writeResultItem(ResultItem item) {
         System.out.println(LINE_SEPARATOR + "실행결과");
-        System.out.println(item.getItem());
+        System.out.println(item.item());
     }
 
     public void writeAllResultItems(Players players) {
         System.out.println(LINE_SEPARATOR + "실행결과");
         List<String> itemsFormat = new ArrayList<>();
         for (Player player : players.getPlayers()) {
-            itemsFormat.add(String.format(RESULT_FORMAT, player.getName(), player.getItem().getItem()));
+            itemsFormat.add(String.format(RESULT_FORMAT, player.getName(), player.getItem().item()));
         }
         System.out.println(String.join(LINE_SEPARATOR, itemsFormat));
     }

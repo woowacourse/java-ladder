@@ -18,21 +18,33 @@ public class Lines {
 
     public Direction findDirection(int index) {
         if (index == 0) {
-            if (lines.get(index).equals(Line.BRIDGE)) {
-                return Direction.RIGHT;
-            }
-            return Direction.DOWN;
+            return checkWhenFirst(index);
         }
         if (index == lines.size()) {
-            if (lines.get(index - 1).equals(Line.BRIDGE)) {
-                return Direction.LEFT;
-            }
-            return Direction.DOWN;
+            return checkWhenLast(index);
         }
+        return checkBeforeAndRight(index);
+    }
+
+    private Direction checkWhenFirst(int index) {
         if (lines.get(index).equals(Line.BRIDGE)) {
             return Direction.RIGHT;
         }
-        if (lines.get(index-1).equals(Line.BRIDGE)) {
+        return Direction.DOWN;
+    }
+
+    private Direction checkWhenLast(int index) {
+        if (lines.get(index - 1).equals(Line.BRIDGE)) {
+            return Direction.LEFT;
+        }
+        return Direction.DOWN;
+    }
+
+    private Direction checkBeforeAndRight(int index) {
+        if (lines.get(index).equals(Line.BRIDGE)) {
+            return Direction.RIGHT;
+        }
+        if (lines.get(index - 1).equals(Line.BRIDGE)) {
             return Direction.LEFT;
         }
         return Direction.DOWN;
