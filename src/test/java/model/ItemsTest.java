@@ -13,20 +13,30 @@ class ItemsTest {
     @Test
     @DisplayName("결과 목록을 생성한다.")
     void createItems() {
-        List<String> items = List.of("꽝", "5000", "꽝", "3000");
+        List<Item> items = List.of(
+                new Item("꽝"),
+                new Item("5000"),
+                new Item("꽝"),
+                new Item("3000")
+        );
         assertThatCode(() -> new Items(items));
     }
 
     @Test
     @DisplayName("사다리 타기를 완료한 후, 해당 결과의 인덱스에 위치한 사람에게 주어진다.")
     void receiveItemByIndex() {
-        Items items = new Items(List.of("꽝", "5000", "꽝", "3000"));
+        Item item1 = new Item("꽝");
+        Item item2 = new Item("5000");
+        Item item3 = new Item("3000");
+        Items items = new Items(
+                List.of(item1, item2, item1, item3)
+        );
 
         assertAll(
-                () -> assertThat(items.get(0)).isEqualTo("꽝"),
-                () -> assertThat(items.get(1)).isEqualTo("5000"),
-                () -> assertThat(items.get(2)).isEqualTo("꽝"),
-                () -> assertThat(items.get(3)).isEqualTo("3000")
+                () -> assertThat(items.get(0)).isEqualTo(item1),
+                () -> assertThat(items.get(1)).isEqualTo(item2),
+                () -> assertThat(items.get(2)).isEqualTo(item1),
+                () -> assertThat(items.get(3)).isEqualTo(item3)
         );
     }
 }
