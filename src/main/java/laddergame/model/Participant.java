@@ -14,11 +14,12 @@ public class Participant {
 
     private void validateNameLength(String name) {
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 참여자 이름은 null이거나 공백일 수 없다.");
+            String message = "[ERROR] 참여자 이름은 null이거나 공백일 수 없습니다. 입력값:" + name;
+            throw new IllegalArgumentException(message);
         }
         if (name.length() > MAXIMUM_NAME_LENGTH) {
-            throw new IllegalArgumentException("[ERROR] 참여자 이름의 길이는 " + MAXIMUM_NAME_LENGTH
-                    + "자를 초과할 수 없다.");
+            String message = "[ERROR] 참여자 이름의 길이는 " + MAXIMUM_NAME_LENGTH + "자를 초과할 수 없습니다. 입력값:" + name;
+            throw new IllegalArgumentException(message);
         }
     }
 

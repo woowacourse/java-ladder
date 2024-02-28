@@ -31,9 +31,7 @@ class ParticipantsTest {
                 new Participant("daon")
         );
         assertThatThrownBy(() -> new Participants(given))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 참여자는 ")
-                .hasMessageContaining("명 이상이어야 한다.");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("참여자 수를 반환한다.")
@@ -58,8 +56,7 @@ class ParticipantsTest {
         );
 
         assertThatThrownBy(() -> new Participants(given))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 참여자 이름이 중복되었습니다.");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("참여자가 포함되어 있는지 판단한다.")

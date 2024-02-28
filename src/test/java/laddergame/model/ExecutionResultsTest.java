@@ -63,7 +63,7 @@ class ExecutionResultsTest {
                     .map(ExecutionResult::new)
                     .collect(collectingAndThen(toList(), results -> new ExecutionResults(results, participants)));
             assertThatThrownBy(() -> executionResults.findByIndex(given))
-                    .isInstanceOf(IllegalStateException.class);
+                    .isInstanceOf(IllegalArgumentException.class);
         }
     }
 }

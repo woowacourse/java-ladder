@@ -25,7 +25,7 @@ class LineTest {
                 end
         );
         assertThatThrownBy(() -> new Line(lineStates))
-                .isInstanceOf(IllegalStateException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("START나 END가 연속되면 예외를 발생한다.")
@@ -33,7 +33,7 @@ class LineTest {
     @MethodSource("generateContinuousState")
     void validateContinuousStartOrEnd(List<LineState> given) {
         assertThatThrownBy(() -> new Line(given))
-                .isInstanceOf(IllegalStateException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("START이면 index는 증가하고 END이면 index는 감소한다.")
@@ -45,7 +45,7 @@ class LineTest {
                 LineState.NONE
         );
         Line line = new Line(lineStates);
-        
+
         assertAll(
                 () -> assertThat(line.move(0)).isEqualTo(1),
                 () -> assertThat(line.move(1)).isEqualTo(0),

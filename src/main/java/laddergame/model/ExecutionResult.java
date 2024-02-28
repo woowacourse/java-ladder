@@ -10,7 +10,8 @@ public class ExecutionResult {
 
     private void validateName(String name) {
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("실행 결과는 공백일 수 없습니다.");
+            String message = "[ERROR] 실행 결과는 공백일 수 없습니다. 입력값: " + name;
+            throw new IllegalArgumentException(message);
         }
     }
 

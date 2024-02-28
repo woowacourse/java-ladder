@@ -21,7 +21,7 @@ public class Line {
             LineState next = lineStates.get(i + 1);
             if (LineState.START.equals(current) && LineState.START.equals(next)
                     || LineState.END.equals(current) && LineState.END.equals(next)) {
-                throw new IllegalStateException("START와 END는 연속될 수 없습니다.");
+                throw new IllegalArgumentException("[ERROR] START와 END는 연속될 수 없습니다.");
             }
         }
     }
@@ -30,7 +30,7 @@ public class Line {
         LineState firstState = lineStates.get(0);
         LineState lastState = lineStates.get(lineStates.size() - 1);
         if (LineState.END.equals(firstState) || LineState.START.equals(lastState)) {
-            throw new IllegalStateException("선은 END로 시작하거나 START로 끝날 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 선은 END로 시작하거나 START로 끝날 수 없습니다.");
         }
     }
 

@@ -16,7 +16,8 @@ public class LineGenerator {
 
     private void validateBooleansSize(List<Boolean> booleans) {
         if (booleans.size() < MINIMUM_BOOLEANS_SIZE) {
-            throw new IllegalArgumentException("크기가 2보다 작은 불린리스트는 들어올 수 없습니다.");
+            String message = "[ERROR] 크기가 " + MINIMUM_BOOLEANS_SIZE + "보다 작은 불린리스트는 들어올 수 없습니다.";
+            throw new IllegalArgumentException(message);
         }
     }
 

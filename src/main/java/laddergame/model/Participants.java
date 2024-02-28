@@ -17,7 +17,8 @@ public class Participants {
 
     private void validateParticipantsSize(List<Participant> participants) {
         if (participants == null || participants.size() < MINIMUM_PARTICIPANTS_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 참여자는 " + MINIMUM_PARTICIPANTS_SIZE + "명 이상이어야 한다.");
+            String message = "[ERROR] 참여자는 " + MINIMUM_PARTICIPANTS_SIZE + "명 이상이어야 합니다.";
+            throw new IllegalArgumentException(message);
         }
     }
 

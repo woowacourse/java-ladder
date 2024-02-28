@@ -16,7 +16,8 @@ public class InquirySubject {
 
     private void validateInquirySubject(Participant subject, Participants participants) {
         if (!(ALL_SUBJECTS.equals(subject) || participants.contains(subject))) {
-            throw new IllegalArgumentException("조회 대상자는 all이거나 참여자들 중 하나여야 합니다.");
+            String message = "[ERROR] 조회 대상자는 all이거나 참여자들 중 하나여야 합니다. 입력값: " + subject.getName();
+            throw new IllegalArgumentException(message);
         }
     }
 
