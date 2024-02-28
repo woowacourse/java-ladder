@@ -43,15 +43,14 @@ public class GameController {
                  .forEach(OutputView::printDirections);
         OutputView.printObjectNames(gameBoard.getPrizes()
                                              .getValue());
-        OutputView.printNewLine();
     }
 
     private void showGeneratedResult(GameBoard gameBoard) {
         boolean repeatFlag = true;
         while (repeatFlag) {
+            OutputView.printNewLine();
             Name targetName = retryHelper(() -> new Name(input(SEARCH_PLAYER_PROMPT)));
             repeatFlag = showResultAndDetermineRepeat(gameBoard, targetName);
-            OutputView.printNewLine();
         }
     }
 
