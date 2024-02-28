@@ -2,6 +2,7 @@ package controller;
 
 import dto.Result;
 import java.util.List;
+import model.Items;
 import model.Ladder;
 import model.People;
 import model.line.RandomLinesGenerator;
@@ -20,9 +21,15 @@ public class LadderGame {
     public void play() {
         final People people = initPeople();
         final Ladder ladder = initLadder(people.getPersonCount());
+        final Items items = initItems();
 
-        final Result result = Result.from(people, ladder);
+        final Result result = Result.from(people, ladder, items);
         outputView.printResult(result);
+    }
+
+    // TODO: 구현
+    private Items initItems() {
+        return null;
     }
 
 

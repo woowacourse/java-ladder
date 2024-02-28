@@ -12,7 +12,7 @@ public class OutputView {
         System.out.println();
         System.out.println("실행결과");
         System.out.println();
-        final List<String> names = result.names();
+        final List<String> names = result.peopleNames();
         printNames(names);
         printLines(result.lines());
     }

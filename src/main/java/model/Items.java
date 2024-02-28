@@ -26,4 +26,10 @@ public class Items {
     public Item get(final int finalPosition) {
         return items.get(finalPosition);
     }
+
+    public List<String> getNames() {
+        return items.stream()
+                .map(Item::getName)
+                .toList();
+    }
 }
