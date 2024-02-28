@@ -45,7 +45,7 @@ public class OutputView {
         System.out.println(lineJoiner);
     }
 
-    public void printResults(List<Result> results){
+    public void printResults(List<Result> results) {
         StringJoiner nameJoiner = new StringJoiner(DELIMITER);
         for (final Result result : results) {
             nameJoiner.add(String.format("%5s", result.getValue()));
