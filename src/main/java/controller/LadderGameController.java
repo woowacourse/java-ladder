@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 import java.util.function.Supplier;
+import model.gameResult.GameResult;
 import model.ladder.Ladder;
 import model.ladder.LadderHeight;
 import model.line.RandomLineGenerator;
@@ -18,8 +19,11 @@ public class LadderGameController {
 
         RandomLineGenerator randomLineGenerator = new RandomLineGenerator();
         Ladder ladder = Ladder.of(ladderHeight, players, randomLineGenerator);
+        GameResult gameResult = ladder.simulate(players, prizes);
 
         end(players, ladder, prizes);
+
+        String playerName = InputView.askPlayerNameForPrizeSearch();
     }
 
     private Players preparePlayers() {
@@ -44,7 +48,7 @@ public class LadderGameController {
     }
 
     private void end(Players players, Ladder ladder, Prizes prizes) {
-        OutputView.printGameResultIntro();
+        OutputView.printLadderResultIntro();
         OutputView.printPlayerNames(players);
         OutputView.printLadder(ladder);
         OutputView.printPrizeNames(prizes);
