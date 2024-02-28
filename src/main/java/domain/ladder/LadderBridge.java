@@ -22,8 +22,4 @@ public enum LadderBridge {
                 .findFirst()
                 .orElseThrow(() -> new NotFoundException(NOT_FOUND_ERROR_MESSAGE));
     }
-
-    public boolean isExist() {
-        return exist;
-    }
 }
