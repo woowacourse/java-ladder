@@ -12,7 +12,7 @@ public class Line {
         this.connections = connections;
     }
 
-    public static Line from(int memberCount, ConnectionStrategy connectionStrategy) {
+    public static Line of(int memberCount, ConnectionStrategy connectionStrategy) {
         List<Connection> connections = new ArrayList<>();
         connections.add(connectionStrategy.generateConnection());
 
