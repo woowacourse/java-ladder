@@ -31,4 +31,16 @@ class NameTest {
                 .hasMessage(Name.INVALID_NAME_LENGTH);
     }
 
+    @DisplayName("게임 명령어와 동일한 이름이 주어지면 예외를 던진다.")
+    @Test
+    void notAllowedName() {
+        //given
+        String name = Commands.TERMINATE.getValue();
+
+        //when & then
+        Assertions.assertThatThrownBy(() -> new Name(name))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Name.UNAVAILABLE_NAME);
+    }
+
 }
