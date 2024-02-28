@@ -50,7 +50,7 @@ public class Line {
 
     public List<Boolean> getConnected() {
         return IntStream.range(0, row.size() - 1)
-                .mapToObj(idx -> row.get(idx).equals(RIGHT))
+                .mapToObj(idx -> LadderPath.isPathExist(row.get(idx), row.get(idx + 1)))
                 .toList();
     }
 }
