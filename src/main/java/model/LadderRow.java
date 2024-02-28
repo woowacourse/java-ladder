@@ -26,4 +26,8 @@ public class LadderRow {
     public List<Boolean> getIsLines() {
         return isLines;
     }
+
+    public int getLinesSize() {
+        return isLines.size();
+    }
 }

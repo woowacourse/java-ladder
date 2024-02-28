@@ -19,7 +19,7 @@ public class Ladder {
     private LadderRow createLadderRow(LadderRowGenerator generator, Participants participants) {
         List<Boolean> rows = new ArrayList<>();
         rows.add(generator.generate(false));
-        for (int i = 0; i < participants.getParticipantsSize() - 1; i++) {
+        for (int i = 0; i < participants.getParticipantsSize() - 2; i++) {
             boolean generated = generator.generate(rows.get(i));
             rows.add(generated);
         }
@@ -32,5 +32,9 @@ public class Ladder {
 
     public LadderRow getRow(int index) {
         return ladder.get(index);
+    }
+
+    public int getLadderRowSize() {
+        return ladder.get(0).getLinesSize();
     }
 }
