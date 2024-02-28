@@ -37,11 +37,11 @@ public class Ladder {
         return rewards.getRewardByIndex(index);
     }
 
-    public Map<Player, String> findAllPlayerReward(Players players, Rewards rewards) {
-        Map<Player, String> allPlayerResult = new HashMap<>();
-        for (Player player : players.getPlayers()) {
-            int playerIndex = players.getPlayerOrderNumber(player.getName());
-            allPlayerResult.put(player, findPlayerReward(playerIndex, rewards));
+    public Map<PlayerName, String> findAllPlayerReward(Players players, Rewards rewards) {
+        Map<PlayerName, String> allPlayerResult = new HashMap<>();
+        for (PlayerName playerName : players.getPlayersNames()) {
+            int playerIndex = players.getPlayerNameOrderNumber(playerName.getName());
+            allPlayerResult.put(playerName, findPlayerReward(playerIndex, rewards));
         }
         return allPlayerResult;
     }

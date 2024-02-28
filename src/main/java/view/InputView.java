@@ -4,7 +4,7 @@ import static java.lang.System.in;
 import static java.lang.System.lineSeparator;
 import static java.lang.System.out;
 
-import domain.Player;
+import domain.PlayerName;
 import domain.Reward;
 import java.util.Arrays;
 import java.util.List;
@@ -23,11 +23,11 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(in);
 
-    public static List<Player> readPlayers() {
+    public static List<PlayerName> readPlayers() {
         out.println(MESSAGE_PARTICIPATED_PLAYERS);
         String input = EMPTY_SPACE_PATTERN.matcher(scanner.nextLine()).replaceAll("");
         return Arrays.stream(input.split(NAMES_SEPARATOR))
-                .map(Player::new)
+                .map(PlayerName::new)
                 .toList();
     }
 

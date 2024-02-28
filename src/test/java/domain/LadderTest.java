@@ -34,10 +34,10 @@ public class LadderTest {
             }
         }, new Height(1), 3);
         Players players = new Players(
-                List.of(new Player("pobi"),
-                        new Player("honux"),
-                        new Player("cron"),
-                        new Player("jk")));
+                List.of(new PlayerName("pobi"),
+                        new PlayerName("honux"),
+                        new PlayerName("cron"),
+                        new PlayerName("jk")));
         Rewards rewards = new Rewards(
                 List.of(new Reward("꽝"),
                         new Reward("5000"),
@@ -48,13 +48,13 @@ public class LadderTest {
 
         //then
         assertAll(
-                () -> assertThat(ladder.findPlayerReward(players.getPlayerOrderNumber("pobi"), rewards))
+                () -> assertThat(ladder.findPlayerReward(players.getPlayerNameOrderNumber("pobi"), rewards))
                         .isEqualTo("5000"),
-                () -> assertThat(ladder.findPlayerReward(players.getPlayerOrderNumber("honux"), rewards))
+                () -> assertThat(ladder.findPlayerReward(players.getPlayerNameOrderNumber("honux"), rewards))
                         .isEqualTo("꽝"),
-                () -> assertThat(ladder.findPlayerReward(players.getPlayerOrderNumber("cron"), rewards))
+                () -> assertThat(ladder.findPlayerReward(players.getPlayerNameOrderNumber("cron"), rewards))
                         .isEqualTo("3000"),
-                () -> assertThat(ladder.findPlayerReward(players.getPlayerOrderNumber("jk"), rewards))
+                () -> assertThat(ladder.findPlayerReward(players.getPlayerNameOrderNumber("jk"), rewards))
                         .isEqualTo("꽝")
         );
     }
@@ -75,10 +75,10 @@ public class LadderTest {
             }
         }, new Height(1), 3);
 
-        Player pobi = new Player("pobi");
-        Player honux = new Player("honux");
-        Player cron = new Player("cron");
-        Player jk = new Player("jk");
+        PlayerName pobi = new PlayerName("pobi");
+        PlayerName honux = new PlayerName("honux");
+        PlayerName cron = new PlayerName("cron");
+        PlayerName jk = new PlayerName("jk");
 
         Reward fail1 = new Reward("꽝");
         Reward success1 = new Reward("5000");
@@ -89,7 +89,7 @@ public class LadderTest {
         Rewards rewards = new Rewards(List.of(fail1, success1, fail2, success2));
 
         //when
-        Map<Player, String> actualResult = ladder.findAllPlayerReward(players, rewards);
+        Map<PlayerName, String> actualResult = ladder.findAllPlayerReward(players, rewards);
 
         //then
         assertAll(

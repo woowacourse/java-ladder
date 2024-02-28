@@ -9,41 +9,41 @@ public class Players {
 
     private static final int MINIMUM_PLAYER_COUNT = 2;
 
-    private final List<Player> players;
+    private final List<PlayerName> playerNames;
 
-    public Players(List<Player> players) {
-        validate(players);
-        this.players = players;
+    public Players(List<PlayerName> playerNames) {
+        validate(playerNames);
+        this.playerNames = playerNames;
     }
 
-    private void validate(List<Player> players) {
-        validatePlayerOverlap(players);
-        validatePlayerSize(players);
+    private void validate(List<PlayerName> playerNames) {
+        validatePlayerOverlap(playerNames);
+        validatePlayerSize(playerNames);
     }
 
-    private void validatePlayerOverlap(List<Player> players) {
-        long distinctSize = players.stream().map(Player::getName).distinct().count();
-        if (players.size() != distinctSize) {
+    private void validatePlayerOverlap(List<PlayerName> playerNames) {
+        long distinctSize = playerNames.stream().map(PlayerName::getName).distinct().count();
+        if (playerNames.size() != distinctSize) {
             throw new IllegalArgumentException(OVERLAP_PAYER_NAME_EXCEPTION.getMessage());
         }
     }
 
-    private void validatePlayerSize(List<Player> players) {
-        if (players.size() < MINIMUM_PLAYER_COUNT) {
+    private void validatePlayerSize(List<PlayerName> playerNames) {
+        if (playerNames.size() < MINIMUM_PLAYER_COUNT) {
             throw new IllegalArgumentException(INVALID_PLAYER_COUNT_EXCEPTION.getMessage());
         }
     }
 
-    public int getPlayerOrderNumber(String name) {
-        for (int i = 0; i < players.size(); i++) {
-            if (players.get(i).getName().equals(name)) {
+    public int getPlayerNameOrderNumber(String name) {
+        for (int i = 0; i < playerNames.size(); i++) {
+            if (playerNames.get(i).getName().equals(name)) {
                 return i;
             }
         }
         return -1;
     }
 
-    public List<Player> getPlayers() {
-        return players;
+    public List<PlayerName> getPlayersNames() {
+        return playerNames;
     }
 }

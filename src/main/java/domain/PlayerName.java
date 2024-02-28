@@ -6,14 +6,14 @@ import static message.ErrorMessage.NO_PLAYER_NAME_EXCEPTION;
 
 import java.util.regex.Pattern;
 
-public class Name {
+public class PlayerName {
 
     private static final Pattern NAME_LANGUAGE_FORMAT_PATTERN = Pattern.compile("^[A-Za-z]*$");
     private static final int MAXIMUM_NAME_SIZE = 5;
 
     private final String name;
 
-    public Name(String name) {
+    public PlayerName(String name) {
         validate(name);
         this.name = name;
     }

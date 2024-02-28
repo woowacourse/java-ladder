@@ -8,19 +8,19 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class NameTest {
+public class PlayerNameTest {
 
     @DisplayName("플레이어의 이름객체를 정상적으로 생성한다.")
     @Test
     void createName() {
-        assertThatCode(() -> new Name("dodo"))
+        assertThatCode(() -> new PlayerName("dodo"))
                 .doesNotThrowAnyException();
     }
 
     @DisplayName("플레이어의 이름이 5자 초과이면 예외가 발생한다.")
     @Test
     void createNameWithOverNameSize() {
-        assertThatThrownBy(() -> new Name("dodododo"))
+        assertThatThrownBy(() -> new PlayerName("dodododo"))
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
@@ -29,14 +29,14 @@ public class NameTest {
     @ParameterizedTest
     @ValueSource(strings = {"도도", "c!apy", "123"})
     void createNameWithNotEnglish(String invalidName) {
-        assertThatThrownBy(() -> new Name(invalidName))
+        assertThatThrownBy(() -> new PlayerName(invalidName))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("플레이어의 이름이 빈 문자열인 경우 예외가 발생한다.")
     @Test
     void createNameWithBlank() {
-        assertThatThrownBy(() -> new Name(""))
+        assertThatThrownBy(() -> new PlayerName(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -5,7 +5,7 @@ import static java.lang.System.lineSeparator;
 import domain.Ladder;
 import domain.Leg;
 import domain.Line;
-import domain.Player;
+import domain.PlayerName;
 import domain.Players;
 import domain.Reward;
 import domain.Rewards;
@@ -24,12 +24,12 @@ public class OutputView {
 
     public static void printLadder(Players players, Ladder ladder, Rewards rewards) {
         System.out.println(LADDER_RESULT);
-        printPlayers(players.getPlayers());
+        printPlayers(players.getPlayersNames());
         printLines(players, ladder);
         printRewards(players, rewards.getRewards());
     }
 
-    private static void printPlayers(List<Player> players) {
+    private static void printPlayers(List<PlayerName> players) {
         System.out.print(players.get(0).getName() + " ");
         players.stream().skip(1).forEach((player) -> {
             System.out.printf(FORMAT_NAME, player.getName());
@@ -40,12 +40,12 @@ public class OutputView {
     private static void printLines(Players players, Ladder ladder) {
         List<Line> lines = ladder.getLines();
         for (Line line : lines) {
-            printPrefixSpace(players.getPlayers());
+            printPrefixSpace(players.getPlayersNames());
             printLine(line.getLegs());
         }
     }
 
-    private static void printPrefixSpace(List<Player> players) {
+    private static void printPrefixSpace(List<PlayerName> players) {
         int firstPlayerNameLength = players.get(0).getName().length();
         System.out.print(" ".repeat(firstPlayerNameLength));
     }
@@ -78,10 +78,10 @@ public class OutputView {
         System.out.println(playerReward);
     }
 
-    public static void printAllPlayerResult(Map<Player, String> allPlayerReward) {
+    public static void printAllPlayerResult(Map<PlayerName, String> allPlayerReward) {
         System.out.println(EXECUTION_RESULT);
-        for (Player player : allPlayerReward.keySet()) {
-            System.out.printf(FORMAT_ALL_PLAYER_RESULT, player.getName(), allPlayerReward.get(player));
+        for (PlayerName playerName : allPlayerReward.keySet()) {
+            System.out.printf(FORMAT_ALL_PLAYER_RESULT, playerName.getName(), allPlayerReward.get(playerName));
         }
     }
 }
