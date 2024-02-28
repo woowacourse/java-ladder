@@ -8,6 +8,7 @@ import static ladder.domain.ladder.Path.EMPTY;
 import static ladder.domain.ladder.Path.EXIST;
 
 public class TestLadderStepGenerator implements LadderStepGenerator {
+    @Override
     public LadderStep generate(final int stepWidth) {
         return new LadderStep(List.of(EXIST, EMPTY, EXIST));
     }

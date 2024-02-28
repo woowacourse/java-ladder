@@ -10,6 +10,7 @@ import java.util.Random;
 public class RandomLadderStepGenerator implements LadderStepGenerator {
     private static final Random random = new Random();
 
+    @Override
     public LadderStep generate(final int stepWidth) {
         final List<Path> ladderPaths = new ArrayList<>();
         while (ladderPaths.size() < stepWidth) {
