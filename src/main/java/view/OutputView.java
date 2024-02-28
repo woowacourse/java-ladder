@@ -3,7 +3,7 @@ package view;
 import domain.Connection;
 import domain.Game;
 import domain.Line;
-import domain.Lines;
+import domain.Ladder;
 import domain.Member;
 import domain.Members;
 import domain.Result;
@@ -42,7 +42,7 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
-    private String resolveLines(Lines ladder) {
+    private String resolveLines(Ladder ladder) {
         StringBuilder stringBuilder = new StringBuilder();
         List<Line> lines = ladder.getLines();
         for (Line line : lines) {

@@ -14,11 +14,11 @@ public class GameTest {
     void test_ok_createObject() {
         Members members = Members.from("a,b,c,d");
 
-        Lines lines = Lines.of(4, 5, new RandomConnectionStrategy());
+        Ladder ladder = Ladder.of(4, 5, new RandomConnectionStrategy());
 
         Results results = Results.of(List.of("a!", "b!", "c!", "d!"), 4);
 
-        assertThatCode(() -> new Game(members, lines, results))
+        assertThatCode(() -> new Game(members, ladder, results))
                 .doesNotThrowAnyException();
     }
 
@@ -38,7 +38,7 @@ public class GameTest {
 
         Members members = Members.from("a,b,c,d");
 
-        Lines lines = Lines.of(4, 5, new RandomConnectionStrategy() {
+        Ladder ladder = Ladder.of(4, 5, new RandomConnectionStrategy() {
             @Override
             public Connection generateConnection() {
                 return Connection.DISCONNECTED;
@@ -47,7 +47,7 @@ public class GameTest {
 
         Results results = Results.of(List.of("a!", "b!", "c!", "d!"), 4);
 
-        Game game = new Game(members, lines, results);
+        Game game = new Game(members, ladder, results);
 
         GameResult actual = game.matchResult();
 
@@ -71,7 +71,7 @@ public class GameTest {
 
         Members members = Members.from("a,b,c,d");
 
-        Lines lines = Lines.of(4, 3, new RandomConnectionStrategy() {
+        Ladder ladder = Ladder.of(4, 3, new RandomConnectionStrategy() {
             @Override
             public Connection generateConnection() {
                 return Connection.CONNECTED;
@@ -80,7 +80,7 @@ public class GameTest {
 
         Results results = Results.of(List.of("a!", "b!", "c!", "d!"), 4);
 
-        Game game = new Game(members, lines, results);
+        Game game = new Game(members, ladder, results);
 
         GameResult actual = game.matchResult();
 

@@ -5,13 +5,13 @@ import java.util.List;
 public class Game {
 
     private final Members members;
-    private final Lines lines;
+    private final Ladder ladder;
     private final Results results;
     private final GameResult gameResult;
 
-    public Game(Members members, Lines lines, Results results) {
+    public Game(Members members, Ladder ladder, Results results) {
         this.members = members;
-        this.lines = lines;
+        this.ladder = ladder;
         this.results = results;
         this.gameResult = new GameResult();
     }
@@ -21,7 +21,7 @@ public class Game {
 
             int index = members.findIndexOfMember(member);
 
-            for (Line line : lines.getLines()) {
+            for (Line line : ladder.getLines()) {
                 List<Connection> connections = line.getConnections();
                 boolean canMoveLeft = canMoveLeft(connections, index);
                 if (canMoveLeft) {
@@ -65,8 +65,8 @@ public class Game {
         return members;
     }
 
-    public Lines getLines() {
-        return lines;
+    public Ladder getLines() {
+        return ladder;
     }
 
     public Results getResults() {

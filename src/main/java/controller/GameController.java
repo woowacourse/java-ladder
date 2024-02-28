@@ -2,7 +2,7 @@ package controller;
 
 import domain.Game;
 import domain.GameResult;
-import domain.Lines;
+import domain.Ladder;
 import domain.Member;
 import domain.Members;
 import domain.Result;
@@ -33,9 +33,9 @@ public class GameController {
 
         Results results = makeResults(members);
 
-        Lines lines = makeLines(members);
+        Ladder ladder = makeLines(members);
 
-        Game game = new Game(members, lines, results);
+        Game game = new Game(members, ladder, results);
         outputView.printLadder(game);
 
         GameResult gameResult = game.matchResult();
@@ -68,11 +68,11 @@ public class GameController {
         });
     }
 
-    private Lines makeLines(Members members) {
+    private Ladder makeLines(Members members) {
         return errorHandler.readUntilNoError(() -> {
             String rawHeight = inputView.readHeight();
             int height = StringParser.stringToInt(rawHeight);
-            return Lines.of(members.getCount(), height, new RandomConnectionStrategy());
+            return Ladder.of(members.getCount(), height, new RandomConnectionStrategy());
         });
     }
 

@@ -5,20 +5,20 @@ import java.util.Collections;
 import java.util.List;
 import strategy.ConnectionStrategy;
 
-public class Lines {
+public class Ladder {
 
     private final List<Line> lines;
 
-    private Lines(List<Line> lines) {
+    private Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
-    public static Lines of(int memberCount, int height, ConnectionStrategy connectionStrategy) {
+    public static Ladder of(int memberCount, int height, ConnectionStrategy connectionStrategy) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             lines.add(Line.from(memberCount, connectionStrategy));
         }
-        return new Lines(lines);
+        return new Ladder(lines);
     }
 
     public List<Line> getLines() {
