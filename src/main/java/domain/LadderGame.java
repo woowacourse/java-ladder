@@ -44,7 +44,7 @@ public class LadderGame {
         }
 
         final Position position = players.getPositionBy(playerName);
-        final String matchingItem = matchingItems.get(position.value());
+        final String matchingItem = matchingItems.getBy(position.value());
         final GameResult gameResult = new GameResult(playerName, matchingItem);
 
         return List.of(gameResult);
@@ -54,7 +54,7 @@ public class LadderGame {
         final List<GameResult> allResults = new ArrayList<>();
         for (int i = 0; i < players.count(); i++) {
             final Position position = players.getPositionBy(players.getName(i));
-            final String matchingItem = matchingItems.get(position.value());
+            final String matchingItem = matchingItems.getBy(position.value());
             final GameResult eachResult = new GameResult(players.getName(i), matchingItem);
 
             allResults.add(eachResult);

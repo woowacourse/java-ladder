@@ -1,6 +1,5 @@
 package domain;
 
-import domain.player.Position;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,7 +19,7 @@ public class MatchingItems {
         }
     }
 
-    public String get(final int position) {
+    public String getBy(final int position) {
         return items.get(position);
     }
 
