@@ -7,8 +7,6 @@ import domain.ladder.StickGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,12 +32,14 @@ class LadderTest {
         int playerSize = 3;
 
         Ladder ladder = new Ladder(height, playerSize, filledStickGenerator());
-        List<Integer> positions = ladder.climbLines();
+        int position0 = ladder.climbLines(0);
+        int position1 = ladder.climbLines(1);
+        int position2 = ladder.climbLines(2);
 
         assertAll(
-                () -> assertEquals(1, positions.get(0)),
-                () -> assertEquals(0, positions.get(1)),
-                () -> assertEquals(2, positions.get(2))
+                () -> assertEquals(1, position0),
+                () -> assertEquals(0, position1),
+                () -> assertEquals(2, position2)
         );
     }
 
