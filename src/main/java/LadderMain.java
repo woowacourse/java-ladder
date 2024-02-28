@@ -6,6 +6,7 @@ import domain.ladder.Width;
 import domain.player.Players;
 import domain.ladder.Height;
 import domain.ladder.RandomBridgeGenerator;
+import java.util.Objects;
 import view.InputView;
 import view.OutputView;
 
@@ -20,8 +21,7 @@ public class LadderMain {
         OutputView.printLadderMakingResult(
                 ladderGame.getPlayerNames(), ladderGame.getLadder(), ladderGame.getMatchingItems());
 
-        final String selectedName = InputView.selectPlayer();
-        OutputView.printMatchingResult(ladderGame.matchResult(selectedName, SELECT_ALL));
+        printResultUtilSelectingAll(ladderGame);
     }
 
     public static LadderGame makeLadderGame() {
@@ -32,5 +32,14 @@ public class LadderMain {
 
         final Ladder ladder = LadderFactory.createByStrategy(RandomBridgeGenerator.getInstance(), height, width);
         return new LadderGame(players, matchingItems, ladder);
+    }
+
+    public static void printResultUtilSelectingAll(LadderGame ladderGame) {
+        String selectedName = InputView.selectPlayer();
+        while (!Objects.equals(selectedName, SELECT_ALL)) {
+            OutputView.printMatchingResult(ladderGame.matchResult(selectedName, SELECT_ALL));
+            selectedName = InputView.selectPlayer();
+        }
+        OutputView.printMatchingResult(ladderGame.matchResult(selectedName, SELECT_ALL));
     }
 }
