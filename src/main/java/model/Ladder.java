@@ -25,10 +25,6 @@ public class Ladder {
         }
     }
 
-    public List<Line> getLines() {
-        return lines;
-    }
-
     public int climb(final int startIndex) {
         int currentIndex = startIndex;
         for (Line line : lines) {
@@ -40,7 +36,7 @@ public class Ladder {
     public List<Integer> climbAll() {
         List<Integer> resultIndexes = new ArrayList<>();
         int index = 0;
-        while (index < getPersonCount()) {
+        while (index < findPersonCount()) {
             int resultIndex = climb(index);
             resultIndexes.add(resultIndex);
             index++;
@@ -48,9 +44,12 @@ public class Ladder {
         return resultIndexes;
     }
 
-    // TODO: getter 말고 다른 네이밍..과 다른 좋은 로직 없을까???
-    private int getPersonCount() {
+    private int findPersonCount() {
         Line line = lines.get(0);
         return line.getPathsSize() + 1;
+    }
+
+    public List<Line> getLines() {
+        return lines;
     }
 }
