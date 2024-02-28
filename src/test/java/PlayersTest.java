@@ -2,7 +2,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import domain.Player;
 import domain.Players;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -32,15 +31,22 @@ public class PlayersTest {
     }
 
     @Test
-    @DisplayName("존재하는 사용자인 경우 이름과 일치하는 사용자를 조회해 반환한다.")
-    void validSearch() {
+    @DisplayName("존재하지 않는 사용자가 입력되면 예외를 발생한다.")
+    void validateNotExistPlayer() {
+        // given
         final Players players = Players.from(List.of("pobi", "kirby"));
-        assertThat(players.search("pobi").getPlayers()).containsExactly(new Player("pobi"));
+
+        // when & then
+        assertThatIllegalArgumentException().isThrownBy(() -> players.validateExistPlayer("hi"));
     }
+
     @Test
-    @DisplayName("존재하지 않는 사용자의 경우 조회 시도시 예외를 발생시킨다.")
-    void invalidSearch() {
+    @DisplayName("존재하는 사용자가 입력되면 예외를 발생하지 않는다.")
+    void validateExistPlayer() {
+        // given
         final Players players = Players.from(List.of("pobi", "kirby"));
-        assertThatIllegalArgumentException().isThrownBy(() -> players.search("abc"));
+
+        // when & then
+        assertThatCode(() -> players.validateExistPlayer("pobi")).doesNotThrowAnyException();
     }
 }

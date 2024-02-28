@@ -49,22 +49,21 @@ public class LadderController {
         return new Height(height);
     }
 
-    private void showGameResult(PlayersPrize playersPrize, Players players) { // TODO: 재입력 로직 개선
-        final Players searchedPlayer = readWithRetry(this::readSearchingPlayers, players);
+    private void showGameResult(PlayersPrize playersPrize, Players players) {
+        String command = readWithRetry(this::readSearchingPlayers, players);
 
-        if (searchedPlayer.isCountOne()) {
-            final Prize prize = playersPrize.searchOnePlayerPrize(searchedPlayer);
+        while (!command.equals("all")){
+            final Prize prize = playersPrize.search(command);
             outputView.printGameResult(prize);
-            showGameResult(playersPrize, players);
+            command = inputView.inputSearchingPlayer();
         }
-        if (!searchedPlayer.isCountOne()) {
-            outputView.printGameResult(playersPrize);
-        }
+        outputView.printGameResult(playersPrize);
     }
 
-    private Players readSearchingPlayers(Players players) {
+    private String readSearchingPlayers(Players players) {
         final String inputName = readWithRetry(inputView::inputSearchingPlayer);
-        return players.search(inputName);
+        players.validateExistPlayer(inputName);
+        return inputName;
     }
 
     private <T, R> R readWithRetry(Function<T, R> function, T input) {

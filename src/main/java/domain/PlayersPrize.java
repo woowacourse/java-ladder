@@ -10,9 +10,8 @@ public class PlayersPrize {
         this.playersPrize = playersPrize;
     }
 
-    public Prize searchOnePlayerPrize(Players players) {  // TODO: 파라미터 타입과 파라미터명의 불일치
-        Player player = players.getPlayers().get(0);
-        return playersPrize.get(player);
+    public Prize search(String command) {
+        return playersPrize.get(new Player(command));
     }
 
     public Map<Player, Prize> getPlayersPrize() {

@@ -23,16 +23,6 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public Players search(String name) {    // TODO: 방식 개선
-        if (name.equals("all")) {
-            return this;
-        }
-        validateExist(name);
-        return players.stream()
-                .filter(player -> player.isSameName(name))
-                .collect(Collectors.collectingAndThen(Collectors.toList(), Players::new));
-    }
-
     private void validateExist(String name) {
         players.stream()
                 .filter(player -> player.isSameName(name))
@@ -40,7 +30,7 @@ public class Players {
                 .orElseThrow(() -> new IllegalArgumentException("참여자 중에서만 입력할 수 있습니다."));
     }
 
-    public Player findByIndex(int index) {  // TODO: 이렇게 갖고오는 게 디미터의 법칙 위반은 아닐까?
+    public Player findByIndex(int index) {
         return players.get(index);
     }
 
@@ -52,8 +42,15 @@ public class Players {
         return players.size() == 1;
     }
 
-    public int getCount() {  // TODO: 이렇게 갖고오는 게 디미터의 법칙 위반은 아닐까?
+    public int getCount() {
         return players.size();
+    }
+
+    public void validateExistPlayer(String inputName) {
+        players.stream()
+                .filter(player -> player.isSameName(inputName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하는 참가자 중에 입력해야합니다."));
     }
 
     private void validate(List<Player> players) {
