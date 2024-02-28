@@ -14,12 +14,6 @@ class PrizesTest {
     @Test
     void newUsersTestByCountUnderSize() {
         //given
-        Prizes prizes = new Prizes(List.of(
-                new Prize("에어팟"),
-                new Prize("맥북"),
-                new Prize("아이폰")
-        ));
-
         Users users = new Users(List.of(
                 new User("pobi"),
                 new User("mason"),
@@ -28,9 +22,14 @@ class PrizesTest {
         ));
 
         int userSize = users.getNumberOfUsers();
+        List<Prize> prizes = List.of(
+                new Prize("에어팟"),
+                new Prize("맥북"),
+                new Prize("아이폰")
+        );
 
         //when, then
-        assertThatThrownBy(() -> prizes.isSameSize(userSize))
+        assertThatThrownBy(() -> new Prizes(prizes, userSize))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 실행 결과의 수가 사용자의 수와 동일하지 않습니다.");
     }
