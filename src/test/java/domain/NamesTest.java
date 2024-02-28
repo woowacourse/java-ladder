@@ -10,6 +10,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class NamesTest {
+    private final List<String> rawNames = List.of("pobi", "crong", "honux");
+
     @Test
     @DisplayName("사람 이름은 중복을 허용하지 않는다.")
     void isNameDuplicate() {
@@ -21,7 +23,6 @@ class NamesTest {
     @Test
     @DisplayName("전체 사람 수를 반환한다.")
     void getTotalPersonCount() {
-        List<String> rawNames = List.of("pobi", "crong", "honux");
         Names names = new Names(rawNames);
 
         assertEquals(3, names.size());
@@ -36,7 +37,6 @@ class NamesTest {
     @Test
     @DisplayName("주어진 인덱스에 해당하는 사람 이름을 반환한다.")
     void findNameByIndex() {
-        List<String> rawNames = List.of("pobi", "crong", "honux");
         Names names = new Names(rawNames);
 
         int testIndex = 2;
