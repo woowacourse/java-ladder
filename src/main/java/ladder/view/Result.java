@@ -11,8 +11,8 @@ import java.util.Map;
 public class Result {
     private final Map<String, String> resultMap;
 
-    public Result(Map<String, String> resultMap) {
-        this.resultMap = resultMap;
+    private Result(Map<String, String> resultMap) {
+        this.resultMap = Collections.unmodifiableMap(resultMap);
     }
 
     public static Result of(People people, Ladder ladder, Compensation compensation) {
@@ -28,6 +28,6 @@ public class Result {
     }
 
     public Map<String, String> getResultMap() {
-        return Collections.unmodifiableMap(resultMap);
+        return resultMap;
     }
 }
