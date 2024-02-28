@@ -62,4 +62,11 @@ public class Members {
     public List<Member> getMembers() {
         return Collections.unmodifiableList(members);
     }
+
+    public Member findByName(String name) {
+        return members.stream()
+                .filter(member -> member.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름을 가진 참여자가 없습니다."));
+    }
 }
