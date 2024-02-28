@@ -20,7 +20,7 @@ class PrizeTest {
 
     @DisplayName("실행 결과의 이름이 한글 또는 영문 대소문자 또는 숫자가 아니면 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"맥북!", "맥.북", "맥~북", "s-24", "갤24~"})
+    @ValueSource(strings = {"맥북!", "맥.북", "맥~북", "s-24", "갤24~", "갤 24."})
     void newPrizeTestByNameFormat(String prizeName) {
         //when, then
         assertThatThrownBy(() -> new Prize(prizeName))
