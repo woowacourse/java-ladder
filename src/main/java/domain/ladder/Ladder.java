@@ -8,16 +8,13 @@ public class Ladder {
     private final Height height;
     private final List<Line> lines = new ArrayList<>();
 
-    public Ladder(Height height, int playerSize, StickGenerator stickGenerator) {
+    public Ladder(Height height, int playerSize, SticksGenerator sticksGenerator) {
         this.height = height;
 
         for (int i = 0; i < height.getHeight(); i++) {
-            addLine(stickGenerator, playerSize);
+            List<Stick> sticks = sticksGenerator.generate(playerSize);
+            this.lines.add(new Line(sticks));
         }
-    }
-
-    private void addLine(StickGenerator stickGenerator, int playerSize) {
-        this.lines.add(new Line(stickGenerator, playerSize));
     }
 
     public List<Line> getLines() {

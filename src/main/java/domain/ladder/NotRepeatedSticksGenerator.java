@@ -5,9 +5,14 @@ import java.util.List;
 public class NotRepeatedSticksGenerator implements SticksGenerator {
 
     private List<Stick> sticks;
+    private StickGenerator stickGenerator;
+
+    NotRepeatedSticksGenerator(StickGenerator stickGenerator) {
+        this.stickGenerator = stickGenerator;
+    }
 
     @Override
-    public List<Stick> generate(int stickCount, StickGenerator stickGenerator) {
+    public List<Stick> generate(int stickCount) {
         for (int i = 0; i < stickCount; i++) {
             this.sticks.add(generateOne(stickGenerator));
         }

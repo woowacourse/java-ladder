@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface SticksGenerator {
 
-    List<Stick> generate(int stickCount, StickGenerator stickGenerator);
+    List<Stick> generate(int stickCount);
 }
