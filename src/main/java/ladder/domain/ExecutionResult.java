@@ -28,4 +28,8 @@ public class ExecutionResult {
     public boolean hasNullValue() {
         return matches.values().stream().anyMatch(Objects::isNull);
     }
+
+    public boolean hasNullValueForKey(Name name) {
+        return matches.get(name) == null;
+    }
 }
