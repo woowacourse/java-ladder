@@ -39,4 +39,25 @@ class ExecutionResultTest {
         // then
         assertThat(expected).isEqualTo(new ResultItem("꽝"));
     }
+
+    @DisplayName("모든 참여자의 결과 항목을 조회한다.")
+    @Test
+    void getAll() {
+        // given
+        executionResult.put(new Name("pobi"), new ResultItem("꽝"));
+        executionResult.put(new Name("honux"), new ResultItem("3000"));
+        executionResult.put(new Name("crong"), new ResultItem("꽝"));
+        executionResult.put(new Name("jk"), new ResultItem("5000"));
+
+        // when
+        List<ResultItem> expected = executionResult.getAll();
+
+        // then
+        assertThat(expected).isEqualTo(List.of(
+                new ResultItem("꽝"),
+                new ResultItem("3000"),
+                new ResultItem("꽝"),
+                new ResultItem("5000")
+        ));
+    }
 }
