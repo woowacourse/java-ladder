@@ -28,7 +28,7 @@ public class InputView {
     }
 
     private void validateBlank(final String rawNames) {
-        if (rawNames == null || rawNames.trim().isEmpty()) {
+        if (rawNames == null || rawNames.isBlank()) {
             throw new IllegalArgumentException(Message.BLANK_INPUT_ERROR.getValue());
         }
     }
