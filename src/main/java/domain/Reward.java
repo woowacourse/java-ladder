@@ -18,9 +18,16 @@ public class Reward {
     }
 
     private void validate(String name) {
+        validateBlank(name);
         if (!name.equals("꽝")) {
             validateNumeric(name);
             validateRange(name);
+        }
+    }
+
+    private void validateBlank(String name) {
+        if (name.isBlank()) {
+            throw new IllegalArgumentException("빈 문자열을 입력할 수 없습니다.");
         }
     }
 
