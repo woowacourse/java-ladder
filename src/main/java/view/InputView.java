@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
+    public static final String END_WITH_DELIMITER = "이름이 누락되었습니다. 입력은 쉼표(,)로 끝날 수 없습니다.";
     public static final String INVALID_HEIGHT_FORMAT = "높이는 숫자여야 합니다.";
     private static final String DELIMITER = ",";
     private static final InputView instance = new InputView();
@@ -23,10 +24,17 @@ public class InputView {
     public List<String> readNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         final String rawNames = scanner.nextLine().trim();
+        validateEndWithDelimiter(rawNames);
 
         return Arrays.stream(rawNames.split(DELIMITER))
                 .map(String::trim)
                 .collect(Collectors.toList());
+    }
+
+    private void validateEndWithDelimiter(final String rawNames) {
+        if (rawNames.endsWith(DELIMITER)) {
+            throw new IllegalArgumentException(END_WITH_DELIMITER);
+        }
     }
 
     public List<String> readResults() {
