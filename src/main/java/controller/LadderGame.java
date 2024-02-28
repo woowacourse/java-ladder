@@ -15,27 +15,16 @@ import view.OutputView;
 public class LadderGame {
 
     public void run() {
-        Players players = readPlayers();
-        Rewards rewards = readReward();
-        Height ladderHeight = readHeight();
+        Players players = new Players(InputView.readPlayers());
+        Rewards rewards = new Rewards(InputView.readRewards());
+        Height ladderHeight = new Height(InputView.readLadderHeight());
+
         int ladderWidth = players.getPlayers().size() - 1;
         Ladder ladder = Ladder.createLadderWithLines(new RandomLegGenerateStrategy(), ladderHeight, ladderWidth);
 
         OutputView.printLadder(players, ladder, rewards);
 
         showResult(ladder, players, rewards);
-    }
-
-    private Players readPlayers() {
-        return new Players(InputView.readPlayers());
-    }
-
-    private Rewards readReward() {
-        return new Rewards(InputView.readRewards());
-    }
-
-    private Height readHeight() {
-        return new Height(InputView.readLadderHeight());
     }
 
     private void showResult(Ladder ladder, Players players, Rewards rewards) {
