@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
 
@@ -53,5 +54,17 @@ public class LineTest {
 
         // then
         assertThat(position).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("사다리가 없는 위치라면 예외가 발생한다.")
+    public void NoneLineExceptionTest() {
+        // given
+        List<Point> points = testPointsGenerator.generate(3);
+        Line line = new Line(points);
+
+        // when & then
+        assertThatThrownBy(() -> line.ride(4))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
