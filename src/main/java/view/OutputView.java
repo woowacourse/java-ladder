@@ -11,7 +11,10 @@ import java.util.Map;
 
 public class OutputView {
 
-    public static final int MAX_NAME_LENGTH = 5;
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final String LADDER_VERTICAL = "|";
+    private static final String LADDER_BLANK = " ";
+    private static final String LADDER_HORIZONTAL = "-";
 
     public void printGame(Game game) {
         System.out.println("사다리 결과");
@@ -46,21 +49,21 @@ public class OutputView {
     }
 
     private void printLine(Line line) {
-        System.out.print(" ".repeat(MAX_NAME_LENGTH - 1));
-        System.out.print("|");
+        System.out.print(LADDER_BLANK.repeat(MAX_NAME_LENGTH - 1));
+        System.out.print(LADDER_VERTICAL);
         for (Point point : line.getPoints()) {
             printPoint(point);
-            System.out.print("|");
+            System.out.print(LADDER_VERTICAL);
         }
         System.out.println();
     }
 
     private void printPoint(Point point) {
         if (point.equals(Point.CONNECTED)) {
-            System.out.print("-".repeat(MAX_NAME_LENGTH));
+            System.out.print(LADDER_HORIZONTAL.repeat(MAX_NAME_LENGTH));
             return;
         }
-        System.out.print(" ".repeat(MAX_NAME_LENGTH));
+        System.out.print(LADDER_BLANK.repeat(MAX_NAME_LENGTH));
     }
 
     private void printRewards(Rewards rewards) {
