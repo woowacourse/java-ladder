@@ -18,7 +18,7 @@ class PlayerTest {
 
         assertThatThrownBy(() -> new Player(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 5글자를 넘을 수 없습니다.");
+                .hasMessage("플레이어 이름은 5글자를 넘을 수 없습니다.");
     }
 
     @DisplayName("이름에 공백 또는 Null 이 오면 안된다.")
@@ -29,7 +29,7 @@ class PlayerTest {
 
         assertThatThrownBy(() -> new Player(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 한글자 이상이어야 합니다.");
+                .hasMessage("플레이어 이름은 한글자 이상이어야 합니다.");
     }
 
     @DisplayName("이름이 1글자 이상 5글자 이하인 경우, 객체가 정상적으로 생성된다")
