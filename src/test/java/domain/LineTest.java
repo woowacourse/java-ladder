@@ -20,7 +20,7 @@ class LineTest {
     @BeforeEach
     void setUp() {
         playerSize = 3;
-        line = new Line(filledStickGenerator(), playerSize); // FILLED, EMPTY
+        line = new Line(List.of(Stick.FILLED, Stick.NOT_FILLED));
     }
 
     @DisplayName("라인은 인원 수 -1 만큼의 막대를 갖는다.")

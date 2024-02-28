@@ -10,7 +10,7 @@ public class NotRepeatedSticksGenerator implements SticksGenerator {
     private List<Stick> sticks;
     private StickGenerator stickGenerator;
 
-    NotRepeatedSticksGenerator(StickGenerator stickGenerator) {
+    public NotRepeatedSticksGenerator(StickGenerator stickGenerator) {
         this.stickGenerator = stickGenerator;
     }
 

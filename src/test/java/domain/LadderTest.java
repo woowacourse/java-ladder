@@ -4,8 +4,11 @@ import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.stick.Stick;
 import domain.ladder.stick.StickGenerator;
+import domain.ladder.sticks.SticksGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -19,7 +22,7 @@ class LadderTest {
         Height height = new Height(3);
         int playerSize = 9;
 
-        Ladder ladder = new Ladder(height, playerSize, filledStickGenerator());
+        Ladder ladder = new Ladder(height, playerSize, mockSticksGenerator());
         int actualHeight = ladder.getHeight();
 
         assertThat(actualHeight).isEqualTo(height.getHeight());
@@ -31,7 +34,7 @@ class LadderTest {
         Height height = new Height(3);
         int playerSize = 3;
 
-        Ladder ladder = new Ladder(height, playerSize, filledStickGenerator());
+        Ladder ladder = new Ladder(height, playerSize, mockSticksGenerator());
         int position0 = ladder.climbLines(0);
         int position1 = ladder.climbLines(1);
         int position2 = ladder.climbLines(2);
@@ -43,7 +46,11 @@ class LadderTest {
         );
     }
 
-    private StickGenerator filledStickGenerator() {
+    private StickGenerator mockStickGenerator() {
         return () -> Stick.FILLED;
+    }
+
+    private SticksGenerator mockSticksGenerator() {
+        return (mockStickGenerator) -> List.of(Stick.FILLED, Stick.NOT_FILLED);
     }
 }
