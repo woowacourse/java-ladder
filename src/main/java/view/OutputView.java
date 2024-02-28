@@ -26,7 +26,7 @@ public class OutputView {
     }
 
     public static void printNewLine() {
-        print(System.lineSeparator());
+        System.out.print(System.lineSeparator());
     }
 
     public static void printDirections(List<Direction> directions) {

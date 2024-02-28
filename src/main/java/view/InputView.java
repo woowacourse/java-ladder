@@ -12,7 +12,9 @@ public class InputView {
 
     public static String input(String inputRequestMessage) {
         System.out.println(inputRequestMessage);
-        return scanner.nextLine();
+        String userInput = scanner.nextLine();
+        System.out.print(System.lineSeparator());
+        return userInput;
     }
 
     public static List<String> inputNames(String inputRequestMessage) {

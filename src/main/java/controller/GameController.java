@@ -51,11 +51,11 @@ public class GameController {
         while (repeatFlag) {
             Name targetName = retryHelper(() -> new Name(input(SEARCH_PLAYER_PROMPT)));
             repeatFlag = showResultAndDetermineRepeat(gameBoard, targetName);
+            OutputView.printNewLine();
         }
     }
 
     private boolean showResultAndDetermineRepeat(GameBoard gameBoard, Name targetName) {
-        OutputView.printNewLine();
         OutputView.print(GAME_RESULT_HEADER);
         if (targetName.isAll()) {
             Map<Name, Prize> searchResults = gameBoard.searchAllPlayerResult();
