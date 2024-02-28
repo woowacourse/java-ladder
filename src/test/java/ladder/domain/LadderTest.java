@@ -24,4 +24,19 @@ public class LadderTest {
         // Then
         assertThat(ladder).isNotNull();
     }
+
+    @DisplayName("플레이어를 입력받으면 사다리를 기반으로 한 층 이동시킨다.")
+    @Test
+    void 플레이어_사다리_이동() {
+        // Given
+        Ladder ladder = Ladder.of(() -> true, new LadderHeight(5), 4);
+        Player player = Player.of("kelly", 1, 5);
+
+        // When
+        ladder.movePlayer(player);
+
+        // Then
+        assertThat(player.getCurrentLineNumber().value()).isEqualTo(2);
+        assertThat(player.getCurrentLineFloor().value()).isEqualTo(4);
+    }
 }
