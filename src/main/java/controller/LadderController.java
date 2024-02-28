@@ -2,6 +2,7 @@ package controller;
 
 import domain.Height;
 import domain.LadderGame;
+import domain.LadderResult;
 import domain.Players;
 import domain.Winnings;
 import util.ConsoleReader;
@@ -21,7 +22,12 @@ public class LadderController {
         Winnings winnings = winningsInput(MAX_TRYCOUNT, players.getPersonCount());
         Height height = heightInput(MAX_TRYCOUNT);
         LadderGame ladderGame = new LadderGame(players, winnings, height);
-        OutputView.printResult(ladderGame.getLadderSequence());
+        OutputView.printLadder(ladderGame.getLadderSequence());
+
+        LadderResult ladderResult = new LadderResult(ladderGame.getResult());
+        String resultPlayer = InputView.readResultPlayer(consoleReader);
+        OutputView.printResult(
+                ladderResult.getWinning(resultPlayer));
     }
 
     private Players nameInput(int tryCount) {

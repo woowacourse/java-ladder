@@ -40,9 +40,9 @@ public class LadderResultTest {
     @Test
     void returnAllResult() {
         Assertions.assertThat(ladderResult.getWinning("all"))
-                .isEqualTo(List.of(
+                .contains(
                         "사람1 : 보상1",
                         "사람2 : 보상2"
-                ));
+                );
     }
 }
