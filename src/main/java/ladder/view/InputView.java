@@ -19,6 +19,14 @@ public class InputView {
                 .toList();
     }
 
+    public List<String> readPrizeNames() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String input = scanner.nextLine();
+        validatePrizeInput(input);
+        return Arrays.stream(input.split(SEPARATOR))
+                .toList();
+    }
+
     public int readLadderHeight() {
         System.out.println("\n최대 사다리 높이는 몇 개인가요?");
         String input = scanner.nextLine();
@@ -28,6 +36,12 @@ public class InputView {
     private void validateInput(String input) {
         if (input.isEmpty() || input.endsWith(SEPARATOR)) {
             throw new IllegalArgumentException("[ERROR] 올바르지 않은 사용자 이름입니다.");
+        }
+    }
+
+    private void validatePrizeInput(String input) {
+        if (input.isEmpty() || input.endsWith(SEPARATOR)) {
+            throw new IllegalArgumentException("[ERROR] 올바르지 않은 실행 결과 이름입니다.");
         }
     }
 
