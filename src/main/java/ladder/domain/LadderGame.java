@@ -16,10 +16,19 @@ public class LadderGame {
     private final Products products;
 
     public LadderGame(Ladder ladder, Players players, Products products) {
-        // TODO 사다리 크기와 플레이어 수, 상품 수 검증
+        validate(ladder, players, products);
         this.ladder = ladder;
         this.players = players;
         this.products = products;
+    }
+
+    private void validate(Ladder ladder, Players players, Products products) {
+        if (ladder.getWidth() + 1 != players.size()) {
+            throw new IllegalArgumentException("플레이어 수와 사다리 길이가 일치하지 않습니다.");
+        }
+        if (ladder.getWidth() + 1 != products.size()) {
+            throw new IllegalArgumentException("상품 수와 사다리 길이가 일치하지 않습니다.");
+        }
     }
 
     public LadderGameResult progress() {
