@@ -45,11 +45,20 @@ class LineTest {
 
         @DisplayName("출발 위치의 오른쪽에 막대가 있으면, 오른쪽으로 이동한다.")
         @Test
-        void climb() {
+        void climbWhenRightStickExist() {
             int startPosition = 0;
             int endPosition = line.climb(startPosition);
 
             assertThat(endPosition).isEqualTo(startPosition + 1);
+        }
+
+        @DisplayName("출발 위치의 왼쪽에 막대가 있으면, 왼쪽으로 이동한다.")
+        @Test
+        void climbWhenLeftStickExist() {
+            int startPosition = 1;
+            int endPosition = line.climb(startPosition);
+
+            assertThat(endPosition).isEqualTo(startPosition - 1);
         }
     }
 
