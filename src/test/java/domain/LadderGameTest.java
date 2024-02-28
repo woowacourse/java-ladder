@@ -15,8 +15,9 @@ public class LadderGameTest {
     @Test
     void getResultTest() {
         List<String> names = List.of("1", "2");
+        Winnings winnings = new Winnings(List.of("1", "2"), 2);
         CustomGenerator customGenerator = new CustomGenerator(List.of(false, true));
-        LadderGame ladderGame = new LadderGame(names, new Height(1), customGenerator);
+        LadderGame ladderGame = new LadderGame(names, winnings, new Height(1), customGenerator);
         Assertions.assertThat(ladderGame.getResult())
                 .isEqualTo(List.of(
                         "     1     2",

@@ -20,7 +20,7 @@ public class LadderController {
         Players players = nameInput(MAX_TRYCOUNT);
         Winnings winnings = winningsInput(MAX_TRYCOUNT, players.getPersonCount());
         Height height = heightInput(MAX_TRYCOUNT);
-        LadderGame ladderGame = new LadderGame(players, height);
+        LadderGame ladderGame = new LadderGame(players, winnings, height);
         OutputView.printResult(ladderGame.getResult());
     }
 

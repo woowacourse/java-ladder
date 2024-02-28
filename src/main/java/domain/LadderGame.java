@@ -10,19 +10,22 @@ import java.util.List;
 public class LadderGame {
     private final Ladder ladder;
     private final Players players;
+    private final Winnings winnings;
     private final Generator generator;
 
-    public LadderGame(Players players, Height height) {
-        this.ladder = new Ladder(height);
+    public LadderGame(Players players, Winnings winnings, Height height) {
         this.players = players;
+        this.winnings = winnings;
+        this.ladder = new Ladder(height);
         this.generator = new RandomGenerator();
 
         this.ladder.init(players.getPersonCount(), this.generator);
     }
 
-    LadderGame(List<String> names, Height height, Generator generator) {
-        this.ladder = new Ladder(height);
+    LadderGame(List<String> names, Winnings winnings, Height height, Generator generator) {
         this.players = new Players(names);
+        this.winnings = winnings;
+        this.ladder = new Ladder(height);
         this.generator = generator;
 
         this.ladder.init(names.size(), this.generator);
