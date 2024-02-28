@@ -33,6 +33,14 @@ public class InputView {
         return Integer.parseInt(inputHeight);
     }
 
+    public String readTargetPlayer() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        String inputTargetPlayer = scanner.nextLine().trim();
+        validateNotBlank(inputTargetPlayer);
+
+        return inputTargetPlayer;
+    }
+
     private void validateNotBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException("빈 값은 입력할 수 없습니다.");

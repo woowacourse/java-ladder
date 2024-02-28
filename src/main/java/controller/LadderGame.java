@@ -5,10 +5,12 @@ import domain.ladder.Ladder;
 import domain.ladder.RandomStickGenerator;
 import domain.ladder.StickGenerator;
 import domain.player.Players;
+import domain.TargetPlayer;
 import domain.result.Results;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
@@ -23,22 +25,30 @@ public class LadderGame {
 
     public void play() {
         Players players = readPlayers();
-        Height height = readHeight();
         Results results = readResultsOfSize(players.getPlayerSize());
+        Height height = readHeight();
 
         StickGenerator stickGenerator = new RandomStickGenerator();
         Ladder ladder = new Ladder(height, players.getPlayerSize(), stickGenerator);
 
-        outputView.printLadder(players, ladder, results);
-    }
+        List<Integer> resultList = new ArrayList<>();
+        for (int i = 0; i < players.getPlayerSize(); i++) {
+            resultList.add(ladder.climbLines(i));
+        }
 
-    private Height readHeight() {
-        try {
-            int height = inputView.readHeight();
-            return new Height(height);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return readHeight();
+        TargetPlayer targetPlayer = readTargetPlayerIn(players.getPlayerNames());
+
+        outputView.printLadder(players, ladder, results);
+        System.out.println();
+        if (targetPlayer.getName().equals("all")) {
+            for (int i = 0; i < players.getPlayerSize(); i++) {
+                System.out.printf("%s : %s%n", players.getPlayers().get(i).getName(),
+                        results.getResults().get(resultList.get(i)).getValue());
+            }
+        } else {
+            int idx = players.getPlayerNames().indexOf(targetPlayer.getName());
+            String value = results.getResults().get(idx).getValue();
+            System.out.println(value);
         }
     }
 
@@ -59,6 +69,26 @@ public class LadderGame {
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return readResultsOfSize(playerSize);
+        }
+    }
+
+    private Height readHeight() {
+        try {
+            int height = inputView.readHeight();
+            return new Height(height);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return readHeight();
+        }
+    }
+
+    private TargetPlayer readTargetPlayerIn(List<String> players) {
+        try {
+            String inputTargetPlayer = inputView.readTargetPlayer();
+            return new TargetPlayer(inputTargetPlayer, players);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return readTargetPlayerIn(players);
         }
     }
 }

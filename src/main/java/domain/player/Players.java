@@ -41,6 +41,12 @@ public class Players {
         return this.players;
     }
 
+    public List<String> getPlayerNames() {
+        return this.players.stream()
+                .map(Player::getName)
+                .toList();
+    }
+
     public int getPlayerSize() {
         return this.players.size();
     }
