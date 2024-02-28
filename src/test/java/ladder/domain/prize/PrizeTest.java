@@ -2,12 +2,10 @@ package ladder.domain.prize;
 
 import ladder.domain.user.User;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PrizeTest {
 
@@ -18,6 +16,6 @@ class PrizeTest {
         //when, then
         assertThatThrownBy(() -> new Prize(prizeName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 사용자 이름의 길이는 1~5글자여야 합니다.");
+                .hasMessage("[ERROR] 실행 결과의 이름의 길이는 1~5글자여야 합니다.");
     }
 }
