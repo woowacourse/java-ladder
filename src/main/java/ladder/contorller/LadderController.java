@@ -27,7 +27,7 @@ public class LadderController {
         Prizes prizes = createPrizes(numberOfUsers);
         Ladder ladder = createLadder(numberOfUsers);
 
-        outputView.printLadderGameResult(users, ladder);
+        outputView.printLadderGameResult(users, ladder, prizes);
     }
 
     private Users createUsers() {

@@ -4,6 +4,7 @@ import java.util.List;
 import ladder.domain.direction.Direction;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.line.Line;
+import ladder.domain.prize.Prizes;
 import ladder.domain.user.Users;
 
 public class OutputView {
@@ -18,10 +19,11 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printLadderGameResult(Users users, Ladder ladder) {
-        System.out.println("\n실행결과\n");
+    public void printLadderGameResult(Users users, Ladder ladder, Prizes prizes) {
+        System.out.println("\n사다리 결과\n");
         printUserNames(users);
         printLadder(ladder);
+        printPrizes(prizes);
     }
 
     private void printUserNames(Users users) {
@@ -50,7 +52,7 @@ public class OutputView {
         for (Line line : lines) {
             printLine(sb, line.getDirectionsInfo());
         }
-        System.out.println(sb);
+        System.out.print(sb);
     }
 
     private void printLine(StringBuilder sb, List<Direction> directionsInfo) {
@@ -67,5 +69,13 @@ public class OutputView {
             return LINE_HORIZONTAL;
         }
         return BLANK.repeat(MAX_NAME_LENGTH);
+    }
+
+    private void printPrizes(Prizes prizes) {
+        StringBuilder sb = new StringBuilder();
+        for(String prizeName : prizes.getPrizesNames()) {
+            appendNameFormat(sb, prizeName);
+        }
+        System.out.println(sb);
     }
 }

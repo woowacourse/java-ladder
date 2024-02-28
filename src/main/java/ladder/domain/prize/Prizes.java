@@ -1,6 +1,7 @@
 package ladder.domain.prize;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Prizes {
 
@@ -12,6 +13,12 @@ public class Prizes {
     public Prizes(List<Prize> prizes, int size) {
         this.prizes = prizes;
         validateSameSize(size);
+    }
+
+    public List<String> getPrizesNames() {
+        return this.prizes.stream()
+                .map(Prize::getPrizeName)
+                .collect(Collectors.toList());
     }
 
     public void validateSameSize(int size) {

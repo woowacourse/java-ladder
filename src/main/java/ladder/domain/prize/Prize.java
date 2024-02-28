@@ -15,6 +15,10 @@ public class Prize {
         this.prizeName = prizeName;
     }
 
+    public String getPrizeName() {
+        return this.prizeName;
+    }
+
     private void validatePrizeName(String name) {
         validatePrizeNameLength(name);
         validateNameEngKorNumFormat(name);
