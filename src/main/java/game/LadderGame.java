@@ -13,6 +13,8 @@ import view.OutputView;
 
 public class LadderGame {
 
+    private static final String PLAYER_ALL_QUERY = "all";
+
     private final InputView inputView;
     private final OutputView outputView;
     private final BooleanSupplier patternCreationStrategy;
@@ -70,7 +72,8 @@ public class LadderGame {
     private void printLadderResult(Ladder ladder, Players players, Results results, String playerName) {
         outputView.printResultMessage();
         List<Integer> mappedIndices = ladder.getMappedIndices();
-        if (playerName.equals("all")) {
+
+        if (PLAYER_ALL_QUERY.equalsIgnoreCase(playerName)) {
             printAllResults(mappedIndices, players, results);
             return;
         }
