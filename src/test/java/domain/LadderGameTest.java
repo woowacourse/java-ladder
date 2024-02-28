@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import util.LadderSequence;
 
 import static util.Connection.CONNECTED;
 import static util.Connection.UNCONNECTED;
