@@ -51,4 +51,18 @@ class PeopleTest {
         // then
         assertThat(maxNameLength).isEqualTo(5);
     }
+
+    @Test
+    @DisplayName("이름으로 사다리 타기 전 위치를 알 수 있다.")
+    void find() {
+        // given
+        People people = new People(names);
+        Name crong = new Name("crong");
+
+        // when
+        int position = people.findPosition(crong);
+
+        // then
+        assertThat(position).isEqualTo(2);
+    }
 }
