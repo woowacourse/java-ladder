@@ -1,8 +1,8 @@
 package domain.player;
 
+import domain.common.Name;
+
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.IntStream;
 
 public class Players {
     private final List<Player> players;

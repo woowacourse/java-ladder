@@ -1,5 +1,6 @@
 package domain.player;
 
+import domain.common.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

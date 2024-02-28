@@ -1,6 +1,6 @@
-package domain;
+package domain.reward;
 
-import domain.player.Name;
+import domain.common.Name;
 
 public record Result(Name name, Reward reward) {
 }

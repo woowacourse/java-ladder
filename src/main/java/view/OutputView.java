@@ -1,9 +1,9 @@
 package view;
 
-import domain.Result;
-import domain.Reward;
+import domain.reward.Result;
+import domain.reward.Reward;
 import domain.ladder.attribute.Direction;
-import domain.player.Name;
+import domain.common.Name;
 
 import java.util.EnumMap;
 import java.util.List;

@@ -3,6 +3,8 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.api.Assertions.*;
 
+import domain.reward.Reward;
+import domain.reward.Rewards;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -3,11 +3,13 @@ package domain;
 import domain.ladder.Ladder;
 import domain.ladder.attribute.Direction;
 import domain.ladder.attribute.Height;
-import domain.player.Name;
+import domain.common.Name;
 import domain.player.Names;
 import domain.player.Player;
 import domain.player.Players;
 
+import domain.reward.Result;
+import domain.reward.Rewards;
 import util.RandomDirectionGenerator;
 
 import org.junit.jupiter.api.DisplayName;

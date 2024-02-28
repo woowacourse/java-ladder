@@ -2,9 +2,12 @@ package domain;
 
 import domain.ladder.Ladder;
 import domain.ladder.attribute.Direction;
-import domain.player.Name;
+import domain.common.Name;
 import domain.player.Player;
 import domain.player.Players;
+import domain.reward.Result;
+import domain.reward.Reward;
+import domain.reward.Rewards;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -63,7 +66,7 @@ public class GameBoard {
     }
 
     private Point movePoint(Point point) {
-        Direction direction = ladder.getDirectionWithPoint(point);
+        Direction direction = ladder.getDirectionWithRowAndColumn(point.row(), point.column());
         return point.move(direction);
     }
 

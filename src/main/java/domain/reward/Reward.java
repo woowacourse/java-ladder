@@ -1,4 +1,4 @@
-package domain;
+package domain.reward;
 
 public class Reward {
     String value;

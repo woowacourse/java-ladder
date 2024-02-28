@@ -1,4 +1,4 @@
-package domain.player;
+package domain.common;
 
 import java.util.Objects;
 
