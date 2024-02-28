@@ -35,14 +35,13 @@ class PlayersTest {
     }
 
     @Test
-    @DisplayName("입력된 이름을 통해 존재하지 않는 플레이어 객체를 검색하여 null를 반환한다.")
+    @DisplayName("입력된 이름을 통해 존재하지 않는 플레이어 객체를 검색할 때는 예외를 던진다.")
     void searchNotExistPlayer() {
         Names names = new Names(List.of("조이썬", "도비"));
         Name targetName = new Name("오리");
 
         Players players = new Players(names);
-        Player searchedPlayer = players.searchPlayer(targetName);
 
-        assertNull(searchedPlayer);
+        assertThrows(IllegalArgumentException.class, () -> players.searchPlayer(targetName));
     }
 }
