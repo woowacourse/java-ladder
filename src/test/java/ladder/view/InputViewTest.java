@@ -19,8 +19,7 @@ public class InputViewTest {
         @Test
         void parseNamesWithDelimiter() {
             List<String> names = InputView.readNames(() -> "a,b,c");
-            assertThat(names)
-                    .containsExactly("a", "b", "c");
+            assertThat(names).containsExactly("a", "b", "c");
         }
 
         @DisplayName("사용자 이름으로 공백이 입력되면 예외를 던진다.")
@@ -30,6 +29,27 @@ public class InputViewTest {
         void validateNamesWithNullOrEmpty(final String input) {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> InputView.readNames(() -> input))
+                    .withMessage("공백을 넣을 수 없습니다.");
+        }
+    }
+
+    @Nested
+    @DisplayName("실행 결과 입력 시")
+    class inputDestinations {
+        @DisplayName(",로 구분하여 실행 결과를 입력하면 List<String>로 반환한다.")
+        @Test
+        void parseNamesWithDelimiter() {
+            List<String> destinations = InputView.readDestinations(() -> "꽝,5000,4000,꽝");
+            assertThat(destinations).containsExactly("꽝", "5000", "4000", "꽝");
+        }
+
+        @DisplayName("공백이 입력되면 예외를 던진다.")
+        @NullAndEmptySource
+        @ValueSource(strings = {" ", "  ", "\t", "\n"})
+        @ParameterizedTest
+        void validateDestinationsWithNullOrEmpty(String input) {
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> InputView.readDestinations(() -> input))
                     .withMessage("공백을 넣을 수 없습니다.");
         }
     }
@@ -54,6 +74,20 @@ public class InputViewTest {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> InputView.readLadderHeight(() -> input))
                     .withMessage("사다리 높이에는 숫자를 입력해야 합니다");
+        }
+    }
+
+    @Nested
+    @DisplayName("결과 보고 싶은 사람 입력 시")
+    class inputRequestResult {
+        @DisplayName("공백이 입력되면 예외를 던진다.")
+        @NullAndEmptySource
+        @ValueSource(strings = {" ", "  ", "\t", "\n"})
+        @ParameterizedTest
+        void validateRequestResultWithNullOrEmpty(final String input) {
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> InputView.readRequestName(() -> input))
+                    .withMessage("공백을 넣을 수 없습니다.");
         }
     }
 }

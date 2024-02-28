@@ -1,9 +1,9 @@
 package ladder.view;
 
+import static java.util.Arrays.stream;
+
 import java.util.List;
 import java.util.function.Supplier;
-
-import static java.util.Arrays.stream;
 
 public class InputView {
 
@@ -16,14 +16,31 @@ public class InputView {
         String input = reader.get();
         validateEmpty(input);
         System.out.println();
-        return parseNames(input);
+        return splitInput(input);
     }
 
     public static int readLadderHeight(Supplier<String> reader) throws IllegalArgumentException {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String input = reader.get();
         validateEmpty(input);
+        System.out.println();
         return parseLadderHeight(input);
+    }
+
+    public static List<String> readDestinations(Supplier<String> reader) throws IllegalArgumentException {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String input = reader.get();
+        validateEmpty(input);
+        System.out.println();
+        return splitInput(input);
+    }
+
+    public static String readRequestName(Supplier<String> reader) throws IllegalArgumentException {
+        System.out.println("결과를 보고 싶은 사람은?");
+        String input = reader.get();
+        validateEmpty(input);
+        System.out.println();
+        return input;
     }
 
     private static void validateEmpty(final String input) throws IllegalArgumentException {
@@ -32,8 +49,8 @@ public class InputView {
         }
     }
 
-    private static List<String> parseNames(String names) {
-        return stream(names.split(","))
+    private static List<String> splitInput(String input) {
+        return stream(input.split(","))
                 .toList();
     }
 

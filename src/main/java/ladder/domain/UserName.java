@@ -1,16 +1,18 @@
 package ladder.domain;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public record UserName(String value) {
-    static final int MAX_LENGTH = 5;
+    private static final int MAX_LENGTH = 5;
     private static final Pattern NAME_PATTERN = Pattern.compile("[^ㄱ-ㅎ가-힣a-zA-Z0-9_\\-&]");
 
     public UserName {
         validateNotEmpty(value);
         validateNameLength(value);
         validateNamePattern(value);
+        validateNotAll(value);
     }
 
     private void validateNotEmpty(final String name) throws IllegalArgumentException {
@@ -32,5 +34,15 @@ public record UserName(String value) {
                     String.format("이름의 길이는 %d 이하여야 합니다.", MAX_LENGTH)
             );
         }
+    }
+
+    private void validateNotAll(final String name) throws IllegalArgumentException {
+        if (Objects.equals(name, "all")) {
+            throw new IllegalArgumentException("'all'은 사용할 수 없는 이름입니다.");
+        }
+    }
+
+    public boolean isSame(final String name) {
+        return Objects.equals(this.value, name);
     }
 }

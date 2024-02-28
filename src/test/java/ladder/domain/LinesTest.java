@@ -12,4 +12,12 @@ public class LinesTest {
         assertThat(Lines.of(() -> true, 3, 4).getLines().size())
                 .isEqualTo(3);
     }
+
+    @DisplayName("사다리가 가진 모든 Line의 Step의 위치를 반환한다.")
+    @Test
+    void findStepPositions() {
+        Lines lines = Lines.of(() -> true, 3, 4);
+
+        assertThat(lines.findStepPositions()).containsExactly(0, 2, 0, 2, 0, 2);
+    }
 }

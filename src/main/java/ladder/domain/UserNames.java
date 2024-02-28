@@ -40,6 +40,18 @@ public class UserNames {
         }
     }
 
+    public boolean isExist(final String name) {
+        return userNames.stream()
+                .anyMatch(userName -> userName.isSame(name));
+    }
+
+    public UserName findByOrder(final int order) {
+        if (order < 0 || order >= userNames.size()) {
+            throw new IndexOutOfBoundsException("유효하지 않은 값입니다.");
+        }
+        return userNames.get(order);
+    }
+
     public int getUserCount() {
         return userNames.size();
     }

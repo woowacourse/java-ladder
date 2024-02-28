@@ -1,12 +1,16 @@
 package ladder.domain;
 
-import static ladder.domain.UserNames.MIN_SIZE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatIndexOutOfBoundsException;
 
 import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class UserNamesTest {
 
@@ -15,9 +19,7 @@ class UserNamesTest {
     void createUserNamesByLowerSize() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> UserNames.from(List.of("a")))
-                .withMessage(String.format(
-                        "참여자는 %d명 이상이어야 합니다.", MIN_SIZE
-                ));
+                .withMessage("참여자는 2명 이상이어야 합니다.");
     }
 
     @DisplayName("중복된 이름이 입력되면 예외가 발생한다.")
@@ -33,8 +35,7 @@ class UserNamesTest {
     void getUserCount() {
         final UserNames userNames = UserNames.from(List.of("aaa", "bbb"));
 
-        assertThat(userNames.getUserCount())
-                .isEqualTo(2);
+        assertThat(userNames.getUserCount()).isEqualTo(2);
     }
 
     @DisplayName("사용자 이름들을 List<String> 형태로 가공하여 반환한다.")
@@ -42,7 +43,34 @@ class UserNamesTest {
     void getUserNames() {
         final UserNames userNames = UserNames.from(List.of("kelly", "liv"));
 
-        assertThat(userNames.getUserNames())
-                .containsExactly("kelly", "liv");
+        assertThat(userNames.getUserNames()).containsExactly("kelly", "liv");
+    }
+
+    @DisplayName("전달 받은 이름과 동일한 이름을 가진 사람이 있는지 확인한다")
+    @CsvSource(value = {"liv:true", "moly:false"}, delimiter = ':')
+    @ParameterizedTest
+    void checkSameName(String name, boolean expected) {
+        UserNames userNames = UserNames.from(List.of("kelly", "liv"));
+
+        assertThat(userNames.isExist(name)).isEqualTo(expected);
+    }
+
+    @DisplayName("해당 위치에 있는 UserName을 반환한다.")
+    @Test
+    void findUserNameByOrder() {
+        UserNames userNames = UserNames.from(List.of("kelly", "liv"));
+
+        assertThat(userNames.findByOrder(1)).isEqualTo(new UserName("liv"));
+    }
+
+    @DisplayName("인덱스 값으로 이름을 찾을 때 0 미만의 값이나 총 이름의 개수를 초과하는 값을 입력하면 예외를 던진다.")
+    @ValueSource(ints = {-1, 2})
+    @ParameterizedTest
+    void findUserNameByOutOfBoundsOrder(int order) {
+        UserNames userNames = UserNames.from(List.of("kelly", "liv"));
+
+        assertThatIndexOutOfBoundsException()
+                .isThrownBy(() -> userNames.findByOrder(order))
+                .withMessage("유효하지 않은 값입니다.");
     }
 }
