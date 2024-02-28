@@ -2,6 +2,7 @@ package controller;
 
 import domain.Height;
 import domain.Ladder;
+import domain.LadderGame;
 import domain.PlayerName;
 import domain.Players;
 import domain.RandomLegGenerateStrategy;
@@ -10,10 +11,8 @@ import java.util.Map;
 import view.InputView;
 import view.OutputView;
 
-public class LadderGame {
-
+public class LadderController {
     private static final String SHOW_RESULT_BREAK_WORD = "all";
-    private static final String NOT_EXIST_PLAYER_NAME_MESSAGE = "존재하지 않는 플레이어 이름입니다.";
 
     public void run() {
         Players players = new Players(InputView.readPlayers());
@@ -22,25 +21,18 @@ public class LadderGame {
 
         int ladderWidth = players.getPlayersNames().size() - 1;
         Ladder ladder = Ladder.createLadderWithLines(new RandomLegGenerateStrategy(), ladderHeight, ladderWidth);
-
         OutputView.printLadder(players, ladder, rewards);
 
-        showResult(ladder, players, rewards);
+        LadderGame ladderGame = new LadderGame(ladder, players, rewards);
+        showResult(ladderGame);
     }
 
-    private void showResult(Ladder ladder, Players players, Rewards rewards) {
+    private void showResult(LadderGame ladderGame) {
         String name;
         while (!(name = InputView.getWantedResultName()).equals(SHOW_RESULT_BREAK_WORD)) {
-            OutputView.printPlayerResult(getResult(ladder, players, rewards, name));
+            OutputView.printPlayerResult(ladderGame.getPlayerResult(name));
         }
-        Map<PlayerName, String> result = ladder.findAllPlayerReward(players, rewards);
+        Map<PlayerName, String> result = ladderGame.getAllPlayerResult();
         OutputView.printAllPlayerResult(result);
-    }
-
-    private String getResult(Ladder ladder, Players players, Rewards rewards, String name) {
-        if (players.isExistPlayer(name)) {
-            return ladder.findPlayerReward(players.getPlayerNameOrderNumber(name), rewards);
-        }
-        return NOT_EXIST_PLAYER_NAME_MESSAGE;
     }
 }

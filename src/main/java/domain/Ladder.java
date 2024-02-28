@@ -1,9 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Ladder {
 
@@ -28,22 +26,13 @@ public class Ladder {
         return lines;
     }
 
-    public String findPlayerReward(int playerOrderNumber, Rewards rewards) {
-        int index = playerOrderNumber;
+    public int getResultIndex(int startTopIndex) {
+        int presentIndex = startTopIndex;
         for (int i = 0; i < height.getHeight(); i++) {
             Line presentLine = lines.get(i);
-            index = presentLine.findNextIndex(index);
+            presentIndex = presentLine.moveToNextIndex(presentIndex);
         }
-        return rewards.getRewardByIndex(index);
-    }
-
-    public Map<PlayerName, String> findAllPlayerReward(Players players, Rewards rewards) {
-        Map<PlayerName, String> allPlayerResult = new HashMap<>();
-        for (PlayerName playerName : players.getPlayersNames()) {
-            int playerIndex = players.getPlayerNameOrderNumber(playerName.getName());
-            allPlayerResult.put(playerName, findPlayerReward(playerIndex, rewards));
-        }
-        return allPlayerResult;
+        return presentIndex;
     }
 
     public List<Line> getLines() {

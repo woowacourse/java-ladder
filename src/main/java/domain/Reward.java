@@ -1,9 +1,6 @@
 package domain;
 
-import static message.ErrorMessage.*;
-import static message.ErrorMessage.NO_PLAYER_NAME_EXCEPTION;
-
-import message.ErrorMessage;
+import static message.ErrorMessage.NO_REWARD_NAME_EXCEPTION;
 
 public class Reward {
     private static final int MAXIMUM_REWARD_LENGTH = 5;
@@ -25,6 +22,7 @@ public class Reward {
             throw new IllegalArgumentException();
         }
     }
+
     private void validateRewardBlank(String reward) {
         if (reward.isBlank()) {
             throw new IllegalArgumentException(NO_REWARD_NAME_EXCEPTION.getMessage());

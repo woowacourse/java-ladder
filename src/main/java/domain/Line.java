@@ -29,7 +29,7 @@ public class Line {
         legs.add(new Leg(legGenerateStrategy.generateLeg()));
     }
 
-    public int findNextIndex(int index) {
+    public int moveToNextIndex(int index) {
         if (index < legs.size() && getLegs().get(index).isExistLeg()) {
             return index + 1;
         }

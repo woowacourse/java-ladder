@@ -57,8 +57,8 @@ public class LineTest {
             }
         }, 3);
         Assertions.assertAll(
-                () -> assertThat(line.findNextIndex(0)).isEqualTo(1),
-                () -> assertThat(line.findNextIndex(3)).isEqualTo(2)
+                () -> assertThat(line.moveToNextIndex(0)).isEqualTo(1),
+                () -> assertThat(line.moveToNextIndex(3)).isEqualTo(2)
         );
 
     }
