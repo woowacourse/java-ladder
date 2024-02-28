@@ -46,10 +46,10 @@ class LadderTest {
 
         // when & then
         assertAll(
-                () -> assertThat(ladder.calculateResultPosition(0)).isEqualTo(0),
-                () -> assertThat(ladder.calculateResultPosition(1)).isEqualTo(3),
-                () -> assertThat(ladder.calculateResultPosition(2)).isEqualTo(2),
-                () -> assertThat(ladder.calculateResultPosition(3)).isEqualTo(1)
+                () -> assertThat(ladder.moveFrom(0)).isEqualTo(0),
+                () -> assertThat(ladder.moveFrom(1)).isEqualTo(3),
+                () -> assertThat(ladder.moveFrom(2)).isEqualTo(2),
+                () -> assertThat(ladder.moveFrom(3)).isEqualTo(1)
         );
     }
 }

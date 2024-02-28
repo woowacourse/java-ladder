@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,10 +10,10 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    public int calculateResultPosition(final int startPosition) {
+    public int moveFrom(final int startPosition) {
         int resultPosition = startPosition;
         for (final Floor floor : ladder) {
-            resultPosition = floor.move(resultPosition);
+            resultPosition = floor.moveFrom(resultPosition);
         }
         return resultPosition;
     }

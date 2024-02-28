@@ -32,7 +32,7 @@ public class LadderGame {
 
     public Players play() {
         for (int playerIndex = 0; playerIndex < players.count(); playerIndex++) {
-            final int resultPosition = ladder.calculateResultPosition(playerIndex);
+            final int resultPosition = ladder.moveFrom(playerIndex);
             players.setPosition(playerIndex, resultPosition);
         }
         return players;

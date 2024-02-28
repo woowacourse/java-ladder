@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,7 +13,7 @@ public class Floor {
         this.bridges = bridges;
     }
 
-    public int move(final int startPosition) {
+    public int moveFrom(final int startPosition) {
         if (startPosition == LEFTMOST) {
             return tryMoveRight(startPosition);
         }
