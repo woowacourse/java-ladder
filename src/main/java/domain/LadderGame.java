@@ -42,14 +42,16 @@ public class LadderGame {
         return LadderSequence.of(players, ladder, winnings);
     }
 
-    public Map<Name, Name> getResult() {
+    public Map<String, String> getResult() {
         List<Name> climbers = new ArrayList<>(this.players.getNames());
         ladder.getLines()
                 .forEach(line -> climb(climbers, line));
-        Map<Name, Name> result = new HashMap<>();
-        for (int i = 0; i < climbers.size(); ++i) {
-            result.put(climbers.get(i), winnings.getWinnings().get(i));
-        }
+        Map<String, String> result = new HashMap<>();
+        IntStream.range(0, climbers.size())
+                .forEach(index -> result.put(
+                        climbers.get(index).getName(),
+                        winnings.getWinnings().get(index).getName()
+                ));
         return result;
     }
 

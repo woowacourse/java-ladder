@@ -39,11 +39,6 @@ public class LadderGameTest {
                 new CustomGenerator(List.of(false, true))
         );
         Assertions.assertThat(ladderGame.getResult())
-                .isEqualTo(Map.of(
-                        new Name("a"),
-                        new Name("2"),
-                        new Name("b"),
-                        new Name("1")
-                ));
+                .isEqualTo(Map.of("a", "2", "b", "1"));
     }
 }
