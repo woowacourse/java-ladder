@@ -17,8 +17,6 @@ import org.junit.jupiter.api.Test;
 
 class LadderGameTest {
 
-    private static final String SELECT_ALL = "all";
-
     @DisplayName("결과에 맞게 참가자의 위치를 변경한다.")
     @Test
     void reflectLadderGamePlay() {
@@ -74,7 +72,7 @@ class LadderGameTest {
         assertAll(
                 () -> assertThat(gameResults.get(0)).isEqualTo(new GameResult("pobi", "꽝")),
                 () -> assertThat(gameResults.get(1)).isEqualTo(new GameResult("honux", "3000")),
-                () -> assertThat(gameResults.get(2)).isEqualTo(new GameResult("crong" ,"꽝")),
+                () -> assertThat(gameResults.get(2)).isEqualTo(new GameResult("crong", "꽝")),
                 () -> assertThat(gameResults.get(3)).isEqualTo(new GameResult("jk", "5000"))
         );
     }

@@ -15,7 +15,7 @@ public class OutputView {
     private static final String COLUMN = "|";
     private static final String RESULT_SEPARATOR = " : ";
 
-    private OutputView(){
+    private OutputView() {
     }
 
     public static void printLadderMakingResult(final List<String> names, final Ladder ladder,

@@ -1,11 +1,11 @@
 import domain.LadderGame;
 import domain.MatchingItems;
+import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.LadderFactory;
+import domain.ladder.RandomBridgeGenerator;
 import domain.ladder.Width;
 import domain.player.Players;
-import domain.ladder.Height;
-import domain.ladder.RandomBridgeGenerator;
 import java.util.Objects;
 import view.InputView;
 import view.OutputView;
