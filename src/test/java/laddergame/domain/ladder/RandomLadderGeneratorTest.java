@@ -19,8 +19,9 @@ class RandomLadderGeneratorTest {
         final LadderGenerator ladderGenerator = new RandomLadderGenerator();
 
         // when & then
-        assertThatCode(() -> ladderGenerator.generate(lineSize, ladderHeight))
-                .doesNotThrowAnyException();
+        assertThatCode(() -> {
+            Ladder ladder = ladderGenerator.generate(lineSize, ladderHeight);
+        }).doesNotThrowAnyException();
     }
 
 }

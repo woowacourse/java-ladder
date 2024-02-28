@@ -43,13 +43,13 @@ public class LadderTest {
     @CsvSource(value = {"0,0", "1,1", "2,3", "3,2"})
     void goDown(int up, int down) {
         // given
-        Position upPosition = new Position(up);
+        final Position upPosition = new Position(up);
 
-        Ladder ladder = new Ladder(List.of(new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST)),
+        final Ladder ladder = new Ladder(List.of(new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST)),
                 new Line(List.of(Point.EXIST, Point.EMPTY, Point.EMPTY))));
 
         // when
-        Position downPosition = ladder.goDown(upPosition);
+        final Position downPosition = ladder.goDown(upPosition);
 
         // then
         assertThat(downPosition).isEqualTo(new Position(down));

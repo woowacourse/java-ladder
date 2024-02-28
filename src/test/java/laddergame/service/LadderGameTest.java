@@ -98,10 +98,10 @@ public class LadderGameTest {
 
         ladderGame.createLadder(names, results, height);
 
-        Name name = new Name("pobi");
+        final Name name = new Name("pobi");
 
         // when
-        Result result = ladderGame.findResultByName(name);
+        final Result result = ladderGame.findResultByName(name);
 
         // then
         assertThat(result).isEqualTo(new Result("3000"));
@@ -125,7 +125,7 @@ public class LadderGameTest {
 
         ladderGame.createLadder(names, results, height);
 
-        Name name = new Name("zeze");
+        final Name name = new Name("zeze");
 
         // when & then
         assertThatThrownBy(() -> ladderGame.findResultByName(name))
@@ -133,7 +133,7 @@ public class LadderGameTest {
                 .hasMessage("[ERROR] 존재하지 않는 이름입니다.");
     }
 
-    @DisplayName("all 입력시 전체 결과를 받을 수 있다.")
+    @DisplayName("전체 결과를 받을 수 있다.")
     @Test
     void findAll() {
         // given
@@ -152,7 +152,7 @@ public class LadderGameTest {
         ladderGame.createLadder(names, results, height);
 
         // when
-        List<MatchingResult> matchingResults = ladderGame.findResultAll();
+        final List<MatchingResult> matchingResults = ladderGame.findResultAll();
 
         // then
         assertThat(matchingResults)

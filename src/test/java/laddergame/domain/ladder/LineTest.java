@@ -41,8 +41,8 @@ public class LineTest {
     @Test
     void outOfRange() {
         // given
-        Position position = new Position(4);
-        Line line = new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST));
+        final Position position = new Position(4);
+        final Line line = new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST));
 
         // when & then
         assertThatThrownBy(() -> line.goHorizontal(position))
@@ -55,12 +55,11 @@ public class LineTest {
     @CsvSource(value = {"0,1", "1,0", "2,3", "3,2"})
     void goHorizontal(int before, int after) {
         // given
-        Position beforePosition = new Position(before);
-
-        Line line = new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST));
+        final Position beforePosition = new Position(before);
+        final Line line = new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST));
 
         // when
-        Position afterPosition = line.goHorizontal(beforePosition);
+        final Position afterPosition = line.goHorizontal(beforePosition);
 
         // then
         assertThat(afterPosition).isEqualTo(new Position(after));

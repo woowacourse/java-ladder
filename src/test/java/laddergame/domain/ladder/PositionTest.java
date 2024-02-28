@@ -25,10 +25,10 @@ class PositionTest {
     @Test
     void increase() {
         // given
-        Position position = new Position(0);
+        final Position position = new Position(0);
 
         // when
-        Position increasePosition = position.increase();
+        final Position increasePosition = position.increase();
 
         // then
         assertThat(increasePosition).isEqualTo(new Position(1));
@@ -38,10 +38,10 @@ class PositionTest {
     @Test
     void decrease() {
         // given
-        Position position = new Position(1);
+        final Position position = new Position(1);
 
         // when
-        Position decreasedPosition = position.decrease();
+        final Position decreasedPosition = position.decrease();
 
         // then
         assertThat(decreasedPosition).isEqualTo(new Position(0));

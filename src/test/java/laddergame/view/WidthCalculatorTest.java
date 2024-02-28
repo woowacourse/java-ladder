@@ -13,7 +13,7 @@ class WidthCalculatorTest {
     @Test
     void create() {
         // given & when
-        int size = WidthCalculator.calculateWidth(List.of("pobi", "crong", "jk"));
+        final int size = WidthCalculator.calculateWidth(List.of("pobi", "crong", "jk"));
 
         // then
         assertThat(size).isEqualTo(5);
@@ -23,7 +23,7 @@ class WidthCalculatorTest {
     @Test
     void lastNameMax() {
         // given & when
-        int size = WidthCalculator.calculateWidth(List.of("pobi", "crong", "jk", "crong"));
+        final int size = WidthCalculator.calculateWidth(List.of("pobi", "crong", "jk", "crong"));
 
         // then
         assertThat(size).isEqualTo(6);

@@ -46,7 +46,7 @@ public class NameTest {
     @DisplayName("이름을 all로 할 수 없다.")
     @Test
     void validateInvalidName() {
-        Assertions.assertThatThrownBy(() -> new Name("all"))
+        assertThatThrownBy(() -> new Name("all"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 이름을 all로 지을 수 없습니다.");
     }
