@@ -19,7 +19,7 @@ public class GameResults {
         List<ParticipantName> participantNames = participants.convertToParticipantsNames();
         List<PrizeName> prizeNames = prizes.convertToPrizesName();
 
-        for (int i = 0; i < participants.getParticipantsSize(); i++) {
+        for (int i = 0; i < participants.size(); i++) {
             gameResults.put(participantNames.get(i), prizeNames.get(ladder.climbDownEach(i)));
         }
         return gameResults;

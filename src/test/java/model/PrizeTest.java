@@ -17,7 +17,6 @@ public class PrizeTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " "})
     void 결과명이_빈값_혹은_공백이면_예외가_발생한다(String prizeName) {
-
         assertThatThrownBy(() -> new Prize(prizeName)).isInstanceOf(IllegalArgumentException.class);
     }
 }

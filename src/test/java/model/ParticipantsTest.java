@@ -21,7 +21,7 @@ public class ParticipantsTest {
     }
 
     @Test
-    void 참여자_이름에_없는_이름을_입력하면_예외가_발생한다() {
+    void 결과를_보고싶은_참여자로_참여자_목록에_없는_이름을_입력하면_예외가_발생한다() {
         List<String> names = List.of("엘라", "릴리");
         Participants participants = new Participants(names);
 

@@ -7,6 +7,7 @@ import java.util.Set;
 
 public class Participants {
     private static final int MIN_PARTICIPANT_COUNT = 2;
+    private static final String SPECIAL_NAME = "all";
 
     private final List<Participant> participants;
 
@@ -32,8 +33,8 @@ public class Participants {
     }
 
     public ParticipantName findByName(String name) {
-        if (name.equals("all")) {
-            return new ParticipantName("all");
+        if (name.equals(SPECIAL_NAME)) {
+            return new ParticipantName(SPECIAL_NAME);
         }
         return participants.stream().filter(m -> m.hasEquivalentName(name))
                 .findAny()
@@ -45,7 +46,7 @@ public class Participants {
         return participants.stream().map(ParticipantName::new).toList();
     }
 
-    public int getParticipantsSize() {
+    public int size() {
         return participants.size();
     }
 }
