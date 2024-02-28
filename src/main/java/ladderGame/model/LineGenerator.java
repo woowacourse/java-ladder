@@ -12,7 +12,7 @@ public class LineGenerator {
 
     public List<ConnectionStatus> makePlayerConnections(int playerCount) {
         List<ConnectionStatus> connectionStatuses = new ArrayList<>();
-        for (int i = 0; i < playerCount-1; i++) {
+        for (int i = 0; i < playerCount - 1; i++) {
             add(connectionStatuses);
         }
         return new ArrayList<>(connectionStatuses);
