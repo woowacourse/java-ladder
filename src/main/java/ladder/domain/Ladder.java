@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import ladder.domain.dto.BuiltLadderDto;
+import ladder.domain.dto.StepStatusDto;
 
 public class Ladder {
 
@@ -18,6 +19,10 @@ public class Ladder {
 
     public BuiltLadderDto getSteps() {
         return BuiltLadderDto.of(steps);
+    }
+
+    public StepStatusDto getSteps2() {
+        return new StepStatusDto(steps);
     }
 
     public void buildSteps(int currentPosition) {

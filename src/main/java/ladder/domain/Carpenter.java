@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import ladder.domain.dto.BuiltLadderDto;
 import ladder.domain.dto.ResultLadderDto;
+import ladder.domain.dto.ResultStepLadderDto;
+import ladder.domain.dto.StepStatusDto;
 
 public class Carpenter {
 
@@ -26,6 +28,14 @@ public class Carpenter {
                 .toList();
 
         return new ResultLadderDto(builtLadderDtos);
+    }
+
+    public ResultStepLadderDto getResultLadders2() {
+        List<StepStatusDto> stepStatusDtos = ladders.stream()
+                .map(Ladder::getSteps2)
+                .toList();
+
+        return new ResultStepLadderDto(stepStatusDtos);
     }
 
     private List<Ladder> makeLadder(Height height, int personCount) {
