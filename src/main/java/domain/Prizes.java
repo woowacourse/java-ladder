@@ -1,41 +1,23 @@
 package domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Prizes {
 
     public static final int MAX_OF_PRIZE_LENGTH = 5;
 
-    List<String> prizes;
+    private final List<Prize> prizes;
 
     public Prizes(List<String> prizes, Participants participants) {
-        validateNoPrize(prizes);
-        validatePrizeLength(prizes);
         validatePrizeSize(prizes, participants);
-        this.prizes = prizes;
+        this.prizes = prizes.stream()
+                .map(Prize::new)
+                .collect(Collectors.toList());
     }
 
     public String getParticipantPrize(int finalPosition) {
-        return prizes.get(finalPosition);
-    }
-
-    private void validatePrizeLength(List<String> prizes) {
-        prizes.stream()
-                .filter(prize -> prize.length() > MAX_OF_PRIZE_LENGTH)
-                .findFirst()
-                .ifPresent(prize -> {
-                    throw new IllegalArgumentException(
-                            "[ERROR] 실행 결과의 길이는 " + MAX_OF_PRIZE_LENGTH + "글자를 초과할 수 없습니다.");
-                });
-    }
-
-    private void validateNoPrize(List<String> prizes) {
-        prizes.stream()
-                .filter(prize -> prize == null || prize.isBlank())
-                .findFirst()
-                .ifPresent(prize -> {
-                    throw new IllegalArgumentException("[ERROR] 실행 결과가 없습니다.");
-                });
+        return prizes.get(finalPosition).toString();
     }
 
     private void validatePrizeSize(List<String> prizes, Participants participants) {
@@ -44,7 +26,7 @@ public class Prizes {
         }
     }
 
-    public List<String> getPrizes() {
+    public List<Prize> getPrizes() {
         return prizes;
     }
 }
