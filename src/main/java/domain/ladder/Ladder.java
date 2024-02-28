@@ -1,9 +1,9 @@
 package domain.ladder;
 
 import domain.Point;
-import domain.ladder.common.Direction;
+import domain.ladder.attribute.Direction;
 import util.DirectionGenerator;
-import domain.ladder.common.Height;
+import domain.ladder.attribute.Height;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -2,8 +2,8 @@ package domain.ladder;
 
 import domain.FixedDirectionGenerator;
 import domain.Point;
-import domain.ladder.common.Direction;
-import domain.ladder.common.Height;
+import domain.ladder.attribute.Direction;
+import domain.ladder.attribute.Height;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -49,7 +49,7 @@ class LadderTest {
     @Test
     @DisplayName("특정 Point 의 방향을 가져온다")
     public void getDirectionWithPoint() {
-        Point point1 = new Point(4,3);
+        Point point1 = new Point(4, 3);
         Point point2 = new Point(1, 2);
 
         Ladder ladder = 오른쪽_왼쪽_오른쪽_왼쪽_아래_사다리_생성();
@@ -68,6 +68,4 @@ class LadderTest {
                                                       .toList();
         return new Ladder(height, playerCount, new FixedDirectionGenerator(fixedDirectionList));
     }
-
-
 }

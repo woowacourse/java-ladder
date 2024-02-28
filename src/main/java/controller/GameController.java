@@ -2,7 +2,7 @@ package controller;
 
 import domain.*;
 import domain.ladder.Ladder;
-import domain.ladder.common.Height;
+import domain.ladder.attribute.Height;
 import domain.player.Name;
 import domain.player.Names;
 import domain.player.Player;

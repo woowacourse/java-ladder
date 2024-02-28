@@ -1,13 +1,13 @@
 package domain;
 
 public class Reward {
-        String value;
+    String value;
 
-        public Reward(final String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
+    public Reward(final String value) {
+        this.value = value;
     }
+
+    public String getValue() {
+        return value;
+    }
+}

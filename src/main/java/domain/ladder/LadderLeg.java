@@ -1,7 +1,6 @@
 package domain.ladder;
 
-import domain.ladder.common.Direction;
-import domain.ladder.common.Height;
+import domain.ladder.attribute.Direction;
 
 import java.util.List;
 import java.util.function.Supplier;

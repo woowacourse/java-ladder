@@ -1,4 +1,4 @@
-package domain.ladder.common;
+package domain.ladder.attribute;
 
 public enum Direction {
 

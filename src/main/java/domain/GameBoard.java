@@ -1,7 +1,7 @@
 package domain;
 
 import domain.ladder.Ladder;
-import domain.ladder.common.Direction;
+import domain.ladder.attribute.Direction;
 import domain.player.Name;
 import domain.player.Player;
 import domain.player.Players;

@@ -2,7 +2,7 @@ package view;
 
 import domain.Result;
 import domain.Reward;
-import domain.ladder.common.Direction;
+import domain.ladder.attribute.Direction;
 import domain.player.Name;
 
 import java.util.EnumMap;

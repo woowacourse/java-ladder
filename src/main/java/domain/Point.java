@@ -1,6 +1,6 @@
 package domain;
 
-import domain.ladder.common.Direction;
+import domain.ladder.attribute.Direction;
 
 public record Point(int row, int column) {
 

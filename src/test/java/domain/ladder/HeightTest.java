@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import domain.ladder.common.Height;
+import domain.ladder.attribute.Height;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

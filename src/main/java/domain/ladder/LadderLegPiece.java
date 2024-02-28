@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import domain.ladder.common.Direction;
+import domain.ladder.attribute.Direction;
 
 public class LadderLegPiece {
     private final Direction direction;
