@@ -39,6 +39,7 @@ public class OutputView {
         printPeopleNames(peopleNames, scaffoldSizes);
         printLadderLines(lines, scaffoldSizes);
         printPrizes(prizeNames, scaffoldSizes);
+        printNewLine();
     }
 
     private static void printResultTitle() {
@@ -91,14 +92,14 @@ public class OutputView {
 
     public static void printExecutionResultOnce(String prize) {
         System.out.println(EXECUTION_RESULT);
-        printNewLine();
         System.out.println(String.join(EXECUTION_RESULT_ONCE_DELIMITER, prize));
+        printNewLine();
     }
 
     public static void printExecutionResultAll(Map<String, String> result) {
         System.out.println(EXECUTION_RESULT);
-        printNewLine();
         result.forEach((name, prize) ->
                 System.out.println(name + EXECUTION_RESULT_ALL_DELIMITER + prize));
+        printNewLine();
     }
 }

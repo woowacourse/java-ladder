@@ -24,7 +24,7 @@ public class Game {
                 .boxed()
                 .toList();
         IntStream.range(0, pairs.size())
-                .forEach(i -> result.put(people.getNames().get(i), prizes.getNames().get(i)));
+                .forEach(i -> result.put(people.getNames().get(i), prizes.getNames().get(pairs.get(i))));
         return result;
     }
 

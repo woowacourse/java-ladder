@@ -4,32 +4,40 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("게임")
 public class GameTest {
+    People people = People.from(List.of("pobi", "nak", "seya", "jay"));
     Ladder ladder = new Ladder(List.of(
             new Line(List.of(true, false, true)),
             new Line(List.of(false, true, false)),
             new Line(List.of(true, false, true))
     ));
+    Prizes prizes = Prizes.from(List.of("10000", "20000", "30000", "40000"), 4);
     Game game;
 
     @BeforeEach
     void createGame() {
-        game = new Game(ladder);
+        game = new Game(people, ladder, prizes);
     }
 
     @Test
     @DisplayName("결과를 생성한다.")
     void generateResultTest() {
         // given
-        List<Integer> expected = List.of(3, 1, 2, 0);
+        Map<String, String> expected = new HashMap<>();
+        expected.put("pobi", "40000");
+        expected.put("nak", "20000");
+        expected.put("seya", "30000");
+        expected.put("jay", "10000");
 
         // when
-        List<Integer> result = game.calculateResult();
+        Map<String, String> result = game.run();
 
         // then
         assertThat(result).isEqualTo(expected);
