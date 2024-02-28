@@ -43,6 +43,10 @@ public class Ladder {
     }
 
     public int moveAll(int participantIndex) {
-        return 0;
+        int currentPosition = ladder.get(0).move(participantIndex);
+        for (int i = 1; i < ladder.size(); i++) {
+            currentPosition = ladder.get(i).move(currentPosition);
+        }
+        return currentPosition;
     }
 }

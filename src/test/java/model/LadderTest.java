@@ -43,20 +43,4 @@ public class LadderTest {
                 () -> Assertions.assertThat(ladder.moveAll(4)).isEqualTo(2)
         );
     }
-
-
-
-    /*
-         0     1     2     3     4
-         |-----|     |     |-----|
-         |-----|     |-----|     |
-         0     1     2     3     4
-
-         0 -> 0
-         1 -> 1
-         2 -> 3
-         3 -> 4
-         4 -> 2
-     */
-
 }
