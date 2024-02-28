@@ -7,8 +7,16 @@ public class Participants {
     private final List<Participant> participants = new ArrayList<>();
 
     public Participants(List<String> names) {
+        validateNamesLength(names);
         validateDuplicatedNames(names);
+
         makeParticipants(names);
+    }
+
+    private void validateNamesLength(List<String> names) {
+        if (names.size() == 0) {
+            throw new IllegalArgumentException("참가자는 한 명 이상 입력해야 합니다.");
+        }
     }
 
     private void validateDuplicatedNames(List<String> names) {
