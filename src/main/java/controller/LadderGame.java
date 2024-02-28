@@ -41,15 +41,8 @@ public class LadderGame {
 
     private Participants makeParticipants() {
         String input = inputView.inputName();
-        validateInputNameIsCommand(input);
 
         return new Participants(List.of(input.split(",")));
-    }
-
-    private void validateInputNameIsCommand(String name) {
-        if (name.contains(PRINT_ALL_COMMAND)) {
-            throw new IllegalArgumentException(PRINT_ALL_COMMAND + "는 사용할 수 없는 이름입니다.");
-        }
     }
 
     private Results makeResults(Participants participants) {
