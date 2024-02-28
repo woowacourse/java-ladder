@@ -1,8 +1,8 @@
 package ladder.domain;
 
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import ladder.util.PointsGenerator;
 
 import java.util.Collections;
 import java.util.List;
@@ -11,8 +11,11 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line(int personCount, PointsGenerator pointsGenerator) {
-        List<Point> points = pointsGenerator.generate(personCount - 1);
+    public Line(Point... points) {
+        this(Arrays.asList(points));
+    }
+
+    public Line(List<Point> points) {
         validate(points);
         this.points = points;
     }
@@ -44,6 +47,10 @@ public class Line {
                 .filter(i -> points.get(i).isUsed())
                 .boxed()
                 .collect(Collectors.toList());
+    }
+
+    public boolean isPointUsed(int index) {
+        return points.get(index).isUsed();
     }
 
     public List<Point> getPoints() {
