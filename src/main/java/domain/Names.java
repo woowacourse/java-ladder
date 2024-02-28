@@ -36,7 +36,7 @@ public class Names {
         swappedNameIndices.put(i - 1, right);
     }
 
-    int getNameCount() {
+    int count() {
         return names.size();
     }
 

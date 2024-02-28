@@ -13,7 +13,7 @@ public class LadderGame {
         LadderResultCreator ladderResultCreator = new LadderResultCreator();
         names = namesCreator.create(userNames);
         ladderResults = ladderResultCreator.create(rawLadderResults);
-        int nameCount = names.getNameCount();
+        int nameCount = names.count();
         Height height = new Height(ladderHeight);
         Width width = new Width(nameCount);
         ladder = new Ladder(height, width, generator);

@@ -22,7 +22,7 @@ public class LadderResults {
         return ladderResults;
     }
 
-    public int getLadderResultCount() {
+    public int count() {
         return ladderResults.size();
     }
 }

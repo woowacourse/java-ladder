@@ -22,7 +22,7 @@ public class LadderGameResult {
     }
 
     private void validateNamesLadderResultLength(Names names, LadderResults ladderResults) {
-        if (names.getNameCount() != ladderResults.getLadderResultCount()) {
+        if (names.count() != ladderResults.count()) {
             throw new LadderGameException(ExceptionType.NOT_ALLOW_DIFFERENT_NAMES_LADDER_RESULTS_LENGTH);
         }
     }
