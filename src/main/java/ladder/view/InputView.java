@@ -55,7 +55,7 @@ public class InputView {
         }
     }
 
-    public String readParticipantNameOfOutcome() {
+    public String readRequiredOutcome() {
         System.out.println(REQUEST_PARTICIPANT_OF_OUTCOME);
         return scanner.nextLine();
     }

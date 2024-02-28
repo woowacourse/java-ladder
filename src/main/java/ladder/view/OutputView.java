@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderStep;
+import ladder.domain.ladder.ParticipantsOutcome;
 import ladder.domain.ladder.Path;
 import ladder.domain.outcome.Outcomes;
 import ladder.domain.participant.Participant;
@@ -22,6 +23,7 @@ public class OutputView {
     private static final String WHITESPACE = " ";
     private static final String OUTCOME_PREFIX = "\n실행 결과";
     private static final String OUTCOME_FORMAT = "%s : %s";
+    private static final String ALL_OUTCOMES = "all";
 
     public void printResultPrefix() {
         System.out.println(RESULT_PREFIX);
@@ -57,7 +59,7 @@ public class OutputView {
     }
 
     public void printOutcomes(final Outcomes outcomes) {
-        StringBuilder outcomesBuilder = new StringBuilder();
+        final StringBuilder outcomesBuilder = new StringBuilder();
         int neededPrevLength = OUTCOME_UNIT_LENGTH - 1;
         for (String outcome : outcomes.getValues()) {
             outcomesBuilder.append(outcome);
@@ -67,15 +69,24 @@ public class OutputView {
         System.out.println(outcomesBuilder);
     }
 
-    private void appendNeededWhitespace(StringBuilder outcomesBuilder, int neededPrevLength) {
-        int neededPrevWhitespaceCount = neededPrevLength - outcomesBuilder.length();
-        String whitespaces = WHITESPACE.repeat(neededPrevWhitespaceCount);
+    private void appendNeededWhitespace(final StringBuilder outcomesBuilder, final int neededPrevLength) {
+        final int neededPrevWhitespaceCount = neededPrevLength - outcomesBuilder.length();
+        final String whitespaces = WHITESPACE.repeat(neededPrevWhitespaceCount);
         outcomesBuilder.append(whitespaces);
     }
 
-    public void printAllParticipantsOutcome(final Map<String, String> participantsOutcome) {
+    public void printParticipantsOutcome(final ParticipantsOutcome participantsOutcome, final String requiredOutcome) {
+        if (ALL_OUTCOMES.equals(requiredOutcome)) {
+            printAllParticipantsOutcome(participantsOutcome.getValues());
+            return;
+        }
+        final String individualOutcome = participantsOutcome.getOutcome(requiredOutcome);
+        printIndividualOutcome(individualOutcome);
+    }
+
+    private void printAllParticipantsOutcome(final Map<String, String> participantsOutcome) {
         System.out.println(OUTCOME_PREFIX);
-        StringJoiner outcomesJoiner = new StringJoiner("\n");
+        final StringJoiner outcomesJoiner = new StringJoiner("\n");
         participantsOutcome.forEach((participantName, outcome) -> {
             String currentOutcome = String.format(OUTCOME_FORMAT, participantName, outcome);
             outcomesJoiner.add(currentOutcome);
@@ -83,7 +94,7 @@ public class OutputView {
         System.out.println(outcomesJoiner);
     }
 
-    public void printIndividualOutcome(final String outcome) {
+    private void printIndividualOutcome(final String outcome) {
         System.out.println(OUTCOME_PREFIX);
         System.out.println(outcome);
     }

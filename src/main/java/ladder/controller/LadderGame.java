@@ -25,7 +25,7 @@ public class LadderGame {
         printLadderGame(participants, ladder, outcomes);
 
         final ParticipantsOutcome participantsOutcome = participants.assignOutcomesByLadder(ladder, outcomes);
-        printParticipantsOutcome(participantsOutcome);
+        runUntilNoException(() -> printParticipantsOutcome(participantsOutcome));
     }
 
     private Participants createParticipants() {
@@ -57,29 +57,24 @@ public class LadderGame {
     }
 
     private void printParticipantsOutcome(final ParticipantsOutcome participantsOutcome) {
-        boolean isAllOutcomesPrinted = false;
-        while (!isAllOutcomesPrinted) {
-            String participantName = inputView.readParticipantNameOfOutcome();
-            isAllOutcomesPrinted = printOutcome(participantsOutcome, participantName);
+        final String requiredOutcome = inputView.readRequiredOutcome();
+        outputView.printParticipantsOutcome(participantsOutcome, requiredOutcome);
+    }
+
+    private void runUntilNoException(final Runnable operation) {
+        boolean isExceptionOccurred = false;
+        while (!isExceptionOccurred) {
+            isExceptionOccurred = runAndCheckExceptionOccurred(operation);
         }
     }
 
-    private boolean printOutcome(final ParticipantsOutcome participantsOutcome, final String participantName) {
-        if (participantsOutcome.allOutcomesRequired(participantName)) {
-            outputView.printAllParticipantsOutcome(participantsOutcome.getValues());
+    private boolean runAndCheckExceptionOccurred(final Runnable operation) {
+        try {
+            operation.run();
+            return false;
+        } catch (IllegalArgumentException e) {
             return true;
         }
-        return printIndividualOutcomeWithExceptionHandling(participantsOutcome, participantName);
-    }
-
-    private boolean printIndividualOutcomeWithExceptionHandling(final ParticipantsOutcome participantsOutcome, final String participantName) {
-        try {
-            final String outcome = participantsOutcome.getOutcome(participantName);
-            outputView.printIndividualOutcome(outcome);
-        } catch (IllegalArgumentException e) {
-            outputView.printException(e);
-        }
-        return false;
     }
 
     private <T> T retryOnException(final Supplier<T> retryOperation) {

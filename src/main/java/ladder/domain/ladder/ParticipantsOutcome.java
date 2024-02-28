@@ -9,16 +9,11 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableMap;
 
 public class ParticipantsOutcome {
-    private static final String ALL = "all";
 
     private final Map<String, String> values;
 
     public ParticipantsOutcome(Map<String, String> values) {
         this.values = unmodifiableMap(new LinkedHashMap<>(values));
-    }
-
-    public boolean allOutcomesRequired(final String input) {
-        return ALL.equals(input);
     }
 
     public String getOutcome(String participantName) {
