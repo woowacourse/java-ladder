@@ -1,4 +1,4 @@
-package model;
+package model.result;
 
 import model.position.CachedPosition;
 import model.position.Position;

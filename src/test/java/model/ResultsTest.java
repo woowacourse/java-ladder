@@ -1,7 +1,8 @@
 package model;
 
 import model.position.CachedPosition;
-import model.position.Position;
+import model.result.Result;
+import model.result.Results;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

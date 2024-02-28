@@ -1,7 +1,7 @@
 package model.ladder;
 
-import model.Result;
-import model.Results;
+import model.result.Result;
+import model.result.Results;
 import model.participant.Participant;
 import model.participant.Participants;
 
