@@ -12,7 +12,6 @@ public class LadderGame {
     private final Map<Element, Element> playerGameResult;
 
     public LadderGame(Elements people, Ladder ladder, Elements results) {
-        validateSameLength(people, results);
         List<Element> gameResults = initializeGameResult(ladder, results);
 
         playerGameResult = new LinkedHashMap<>();
@@ -27,12 +26,6 @@ public class LadderGame {
         }
 
         return playerGameResult.get(playerName);
-    }
-
-    private void validateSameLength(Elements people, Elements results) {
-        if (people.getElements().size() != results.getElements().size()) {
-            throw new IllegalArgumentException("게임 실행 결과와 게임 참여자의 수가 같지 않습니다");
-        }
     }
 
     private List<Element> initializeGameResult(Ladder ladder, Elements results) {

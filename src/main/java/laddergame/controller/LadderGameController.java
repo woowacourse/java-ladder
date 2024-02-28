@@ -16,7 +16,7 @@ public class LadderGameController {
     public static void run() {
         Elements people = retryUntilNoError(() -> new Elements(InputView.readNames()));
         Ladder ladder = retryUntilNoError(() -> makeLadder(people));
-        Elements results = retryUntilNoError(() -> makeResults(people, ladder));
+        Elements results = retryUntilNoError(() -> makeResults(people));
 
         LadderGame ladderGame = new LadderGame(people, ladder, results);
 
@@ -24,9 +24,9 @@ public class LadderGameController {
         retryUntilNoError(() -> printPlayerResults(ladderGame));
     }
 
-    private static Elements makeResults(Elements people, Ladder ladder) {
+    private static Elements makeResults(Elements people) {
         Elements results = retryUntilNoError(() -> new Elements(InputView.readGameResult()));
-        new LadderGame(people, ladder, results);
+        validateElementsSameLength(people, results);
         return results;
     }
 
@@ -38,5 +38,11 @@ public class LadderGameController {
     private static boolean printPlayerResults(LadderGame ladderGame) {
         ResultView.printPlayerResult(InputView.readPlayerName(), ladderGame);
         return true;
+    }
+
+    private static void validateElementsSameLength(Elements upperElements, Elements lowerElements) {
+        if (upperElements.getElements().size() != lowerElements.getElements().size()) {
+            throw new IllegalArgumentException("게임 실행 결과와 게임 참여자의 수가 같지 않습니다");
+        }
     }
 }
