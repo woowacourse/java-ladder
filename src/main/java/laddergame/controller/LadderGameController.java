@@ -6,6 +6,7 @@ import laddergame.model.LadderGame;
 import laddergame.model.LadderHeight;
 import laddergame.model.Participants;
 import laddergame.model.RandomLinesGenerator;
+import laddergame.model.ResultProcessor;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -22,12 +23,12 @@ public class LadderGameController {
         Participants participants = inputView.readParticipantNames();
         ExecutionResults executionResults = inputView.readExecutionResults(participants);
         LadderHeight ladderHeight = inputView.readLadderHeight();
-
-        RandomLinesGenerator randomGenerator = new RandomLinesGenerator();
-        LadderGame ladderGame = randomGenerator.getLadderGame(ladderHeight, participants);
+        LadderGame ladderGame = new RandomLinesGenerator().getLadderGame(ladderHeight, participants);
 
         printResult(participants, ladderGame, executionResults);
         InquirySubject inquirySubject = inputView.readInquirySubject(participants);
+        ResultProcessor resultProcessor = new ResultProcessor(inquirySubject, executionResults, ladderGame);
+        outputView.printGameResults(resultProcessor.getGameResults());
     }
 
     private void printResult(Participants participants, LadderGame ladderGame, ExecutionResults executionResults) {

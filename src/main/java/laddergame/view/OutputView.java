@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import laddergame.model.ExecutionResult;
 import laddergame.model.ExecutionResults;
+import laddergame.model.GameResult;
 import laddergame.model.LadderGame;
 import laddergame.model.Line;
 import laddergame.model.LineState;
@@ -12,6 +13,7 @@ import laddergame.model.Participants;
 
 public class OutputView {
     private static final int STANDARD_NAME_LENGTH = 5;
+    private static final int SINGLE_GAME_RESUlT_COUNT = 1;
 
     public void printResultHeader() {
         System.out.println();
@@ -45,6 +47,12 @@ public class OutputView {
         System.out.println(result);
     }
 
+    public void printGameResults(List<GameResult> gameResults) {
+        System.out.println();
+        System.out.println("실행 결과");
+        System.out.println(convertResultText(gameResults));
+    }
+
     private String alignNameText(String name) {
         if (name.length() < STANDARD_NAME_LENGTH) {
             return String.format("%4s ", name);
@@ -69,5 +77,18 @@ public class OutputView {
             return "-----";
         }
         return "     ";
+    }
+
+    private String convertResultText(List<GameResult> gameResults) {
+        if (gameResults.size() == SINGLE_GAME_RESUlT_COUNT) {
+            return gameResults.stream()
+                    .map(GameResult::getExecutionResult)
+                    .map(ExecutionResult::getName)
+                    .collect(Collectors.joining(""));
+        }
+        return gameResults.stream()
+                .map(result -> String.format("%s : %s", result.getParticipant().getName(),
+                        result.getExecutionResult().getName()))
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 }
