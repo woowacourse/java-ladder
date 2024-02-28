@@ -23,7 +23,6 @@ public class Paths {
         for (int startLineNumber = 1; startLineNumber <= ladderSpaceCount; startLineNumber++) {
             paths.add(convertToPath(pathStatuses.get(startLineNumber - 1), startLineNumber));
         }
-
         return new Paths(paths);
     }
 
@@ -53,6 +52,21 @@ public class Paths {
     public List<PathStatus> getPathStatuses() {
         return paths.stream()
                 .map(optionalPath -> optionalPath.map(path -> EXIST).orElse(NONE))
+                .toList();
+    }
+
+    public int getOtherLineNumber(LineNumber lineNumber) {
+        return parseExistPaths().stream()
+                .filter(path -> path.hasPath(lineNumber))
+                .findAny()
+                .map(path -> path.getOtherLineDistance(lineNumber))
+                .orElse(0);
+    }
+
+    private List<Path> parseExistPaths() {
+        return paths.stream()
+                .filter(Optional::isPresent)
+                .map(Optional::get)
                 .toList();
     }
 }
