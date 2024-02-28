@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -14,14 +15,15 @@ import org.junit.jupiter.api.Test;
 
 class LadderGameTest {
 
+    static Ladder LADDER_SIZE_3 = Ladder.of(new Height(3), 3, size -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE));
+
     @DisplayName("플레이어 수와 사다리 크기가 맞지 않을 경우, 예외를 던진다")
     @Test
     void validateTest_WhenPlayerSizeNotMatched_ThrowException() {
-        Ladder ladder = Ladder.of(new Height(3), 3, size -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE));
         Players players = Players.from(List.of("pobi", "crong"));
         Products products = Products.from(List.of("5000", "꽝", "3000"));
 
-        assertThatThrownBy(() -> new LadderGame(ladder, players, products))
+        assertThatThrownBy(() -> new LadderGame(LADDER_SIZE_3, players, products))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("플레이어 수와 사다리 길이가 일치하지 않습니다.");
     }
@@ -29,13 +31,43 @@ class LadderGameTest {
     @DisplayName("상품 수와 사다리 크기가 맞지 않을 경우, 예외를 던진다")
     @Test
     void validateTest_WhenProductSizeNotMatched_ThrowException() {
-        Ladder ladder = Ladder.of(new Height(3), 3, size -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE));
         Players players = Players.from(List.of("pobi", "crong", "jk"));
         Products products = Products.from(List.of("5000", "꽝", "3000", "꽝"));
 
-        assertThatThrownBy(() -> new LadderGame(ladder, players, products))
+        assertThatThrownBy(() -> new LadderGame(LADDER_SIZE_3, players, products))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("상품 수와 사다리 길이가 일치하지 않습니다.");
+    }
+
+    @DisplayName("상품 수와 사다리 크기가 맞지 않을 경우, 예외를 던진다")
+    @Test
+    void validateTest_WhenPlayerAndProductSizeMatched_createObject() {
+        Players players = Players.from(List.of("pobi", "crong", "jk"));
+        Products products = Products.from(List.of("5000", "꽝", "3000"));
+
+        assertThatCode(() -> new LadderGame(LADDER_SIZE_3, players, products))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("플레이어 수와 상품 수가 일치하지 않을 경우, 예외를 던진다")
+    @Test
+    void validateTest_WhenPlayerAndProductSizeNotMatched_ThrowException() {
+        Players players = Players.from(List.of("pobi", "crong", "jk"));
+        Products products = Products.from(List.of("5000", "꽝", "3000", "꽝"));
+
+        assertThatThrownBy(() -> LadderGame.validate(players, products))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("플레이어 수와 상품 수는 동일해야 합니다.");
+    }
+
+    @DisplayName("플레이어 수와 상품 수가 일치하지 않을 경우, 예외를 던지지 않는다.")
+    @Test
+    void validateTest_WhenPlayerAndProductSizeMatched_doNothing() {
+        Players players = Players.from(List.of("pobi", "crong", "jk"));
+        Products products = Products.from(List.of("5000", "꽝", "3000"));
+
+        assertThatCode(() -> LadderGame.validate(players, products))
+                .doesNotThrowAnyException();
     }
 
     @DisplayName("사다리 게임의 결과를 반환할 수 있다")

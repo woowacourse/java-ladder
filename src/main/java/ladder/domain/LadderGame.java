@@ -31,6 +31,12 @@ public class LadderGame {
         }
     }
 
+    public static void validate(Players players, Products products) {
+        if (players.size() != products.size()) {
+            throw new IllegalArgumentException("플레이어 수와 상품 수는 동일해야 합니다.");
+        }
+    }
+
     public LadderGameResult progress() {
         Map<Player, Product> results = IntStream.range(0, players.size())
                 .boxed()
