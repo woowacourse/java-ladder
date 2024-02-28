@@ -36,14 +36,19 @@ public class LadderGameTest {
                 new LadderRow(List.of(true, false, false, true)),
                 new LadderRow(List.of(true, false, true, false))));
         Participants participants = new Participants(List.of("0", "1", "2", "3", "4"));
+        Map<Integer, String> result = createResults();
+        LadderGame ladderGame = new LadderGame(participants, ladder, result);
+        return ladderGame;
+    }
+
+    private static Map<Integer, String> createResults() {
         Map<Integer, String> result = new LinkedHashMap<>();
         result.put(0, "꽝");
         result.put(1, "5000");
         result.put(2, "꽝");
         result.put(3, "꽝");
         result.put(4, "3000");
-        LadderGame ladderGame = new LadderGame(participants, ladder, result);
-        return ladderGame;
+        return result;
     }
 
     /*
@@ -59,5 +64,4 @@ public class LadderGameTest {
          3 -> 4 3000
          4 -> 2 꽝
      */
-
 }
