@@ -50,4 +50,14 @@ class NameTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 2자 이상, 5자 이하여야 합니다.");
     }
+
+    @Test
+    @DisplayName("이름은 공백을 포함할 수 없다.")
+    void isNameNotContainBlank() {
+        String name = "po bi";
+
+        assertThatThrownBy(() -> new Name(name))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 공백이 포함될 수 없습니다.");
+    }
 }
