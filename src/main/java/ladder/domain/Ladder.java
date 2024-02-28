@@ -3,7 +3,9 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public record Ladder(List<Line> lines) {
+public class Ladder {
+    private final List<Line> lines;
+
     public Ladder(List<Line> lines) {
         this.lines = new ArrayList<>(lines);
     }
@@ -19,8 +21,7 @@ public record Ladder(List<Line> lines) {
         return lines.size();
     }
 
-    @Override
-    public List<Line> lines() {
+    public List<Line> getLines() {
         return List.copyOf(lines);
     }
 }

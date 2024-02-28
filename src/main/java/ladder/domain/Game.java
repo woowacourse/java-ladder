@@ -53,14 +53,14 @@ public class Game {
 
     private int leftMovement(int position, int depth) {
         return ladder
-                .lines().get(depth)
+                .getLines().get(depth)
                 .scaffolds().get(position - 1)
                 .compareTo(false);
     }
 
     private int rightMovement(int position, int depth) {
         return ladder
-                .lines().get(depth)
+                .getLines().get(depth)
                 .scaffolds().get(position)
                 .compareTo(false);
     }

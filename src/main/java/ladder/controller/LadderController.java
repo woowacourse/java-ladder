@@ -49,7 +49,7 @@ public class LadderController {
     private static void printLadderResult(People people, Ladder ladder, Prizes prizes) {
         OutputView.printResult(
                 people.getNames(),
-                ladder.lines().stream()
+                ladder.getLines().stream()
                         .map(Line::scaffolds)
                         .toList(),
                 prizes.getNames()
