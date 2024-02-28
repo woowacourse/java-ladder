@@ -29,10 +29,6 @@ public class Line {
         legs.add(new Leg(legGenerateStrategy.generateLeg()));
     }
 
-    public List<Leg> getLegs() {
-        return List.copyOf(legs);
-    }
-
     public int findNextIndex(int index) {
         if (index < legs.size() && getLegs().get(index).isExistLeg()) {
             return index + 1;
@@ -41,5 +37,9 @@ public class Line {
             return index - 1;
         }
         return index;
+    }
+
+    public List<Leg> getLegs() {
+        return List.copyOf(legs);
     }
 }
