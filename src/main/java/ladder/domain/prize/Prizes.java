@@ -5,9 +5,6 @@ import java.util.stream.Collectors;
 
 public class Prizes {
 
-    private static final int MIN_PRIZE_SIZE = 2;
-    private static final int MAX_PRIZE_SIZE = 10;
-
     private final List<Prize> prizes;
 
     public Prizes(List<Prize> prizes, int size) {
