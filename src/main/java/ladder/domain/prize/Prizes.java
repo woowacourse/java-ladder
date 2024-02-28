@@ -14,6 +14,9 @@ public class Prizes {
     }
 
     public boolean isSameSize(int size) {
+        if (prizes.size() != size) {
+            throw new IllegalArgumentException("[ERROR] 실행 결과의 수가 사용자의 수와 동일하지 않습니다.");
+        }
         return true;
     }
 }
