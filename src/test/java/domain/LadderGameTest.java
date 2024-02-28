@@ -14,10 +14,13 @@ import domain.player.Names;
 import domain.result.Prize;
 import domain.result.Prizes;
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class LadderGameTest {
 
@@ -82,30 +85,19 @@ class LadderGameTest {
         private static final LadderGame LADDER_GAME = new LadderGame(NAMES, PRIZES, CUSTOM_LADDER);
 
         @DisplayName("사다리 게임의 각 결과가 정상적으로 조회된다.")
-        @Test
-        void resultForEachPlayerTest() {
-            //TODO ParameterizedTest 로 변경
-            Assertions.assertAll(
-                    () -> {
-                        Name name = new Name("pobi");
-                        assertThat(LADDER_GAME.findEachPrize(name))
-                                .isEqualTo(new MatchingResult(name, new Prize("꽝")));
-                    },
-                    () -> {
-                        Name name = new Name("honux");
-                        assertThat(LADDER_GAME.findEachPrize(name))
-                                .isEqualTo(new MatchingResult(name, new Prize("3000")));
-                    },
-                    () -> {
-                        Name name = new Name("crong");
-                        assertThat(LADDER_GAME.findEachPrize(name))
-                                .isEqualTo(new MatchingResult(name, new Prize("꽝")));
-                    },
-                    () -> {
-                        Name name = new Name("jk");
-                        assertThat(LADDER_GAME.findEachPrize(name))
-                                .isEqualTo(new MatchingResult(name, new Prize("5000")));
-                    }
+        @ParameterizedTest
+        @MethodSource("getNameAndPrizeForResultTest")
+        void resultForEachPlayerTest(Name name, Prize prize) {
+            assertThat(LADDER_GAME.findEachPrize(name))
+                    .isEqualTo(new MatchingResult(name, prize));
+        }
+
+        static Stream<Arguments> getNameAndPrizeForResultTest() {
+            return Stream.of(
+                    Arguments.of(new Name("pobi"), new Prize("꽝")),
+                    Arguments.of(new Name("honux"), new Prize("3000")),
+                    Arguments.of(new Name("crong"), new Prize("꽝")),
+                    Arguments.of(new Name("jk"), new Prize("5000"))
             );
         }
 
