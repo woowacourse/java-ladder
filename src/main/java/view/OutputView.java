@@ -1,7 +1,5 @@
 package view;
 
-import static domain.Name.MAX_NAME_LENGTH;
-
 import domain.Bridges;
 import domain.Ladder;
 import domain.LadderGame;
@@ -21,6 +19,7 @@ public class OutputView {
     private static final String LADDER_PREFIX = "\n사다리 결과\n";
     private static final String LADDER_RESULT_PREFIX = "\n실행 결과";
     private static final String VERTICAL_BRIDGE = "|";
+    private static final String PADDING_STYLE = "%5s";
     private static final String EXIST_BRIDGE = "-----";
     private static final String NONE_BRIDGE = "     ";
     private static final String NAME_LADDER_RESULT_FORMAT = "%s : %s";
@@ -93,31 +92,15 @@ public class OutputView {
 
     private String makeNamesString(Names names) {
         return names.getNames().stream()
-                .map(this::makeNameString)
+                .map(Name::getName)
+                .map(PADDING_STYLE::formatted)
                 .collect(Collectors.joining(" "));
-    }
-
-    private String makeNameString(Name name) {
-        String nameString = name.getName();
-        if (nameString.length() < Name.MAX_NAME_LENGTH) {
-            nameString = nameString + " ";
-        }
-        int nameStringLength = nameString.length();
-        return " ".repeat(MAX_NAME_LENGTH - nameStringLength) + nameString;
     }
 
     private String makeLadderResultsString(LadderResults ladderResults) {
         return ladderResults.getLadderResults().stream()
-                .map(this::makeLadderResultString)
+                .map(LadderResult::getLadderResult)
+                .map(PADDING_STYLE::formatted)
                 .collect(Collectors.joining(" "));
-    }
-
-    private String makeLadderResultString(LadderResult ladderResult) {
-        String ladderResultString = ladderResult.getLadderResult();
-        if (ladderResultString.length() < LadderResult.MAX_LADDER_RESULT_LENGTH) {
-            ladderResultString = ladderResultString + " ";
-        }
-        int nameStringLength = ladderResultString.length();
-        return " ".repeat(MAX_NAME_LENGTH - nameStringLength) + ladderResultString;
     }
 }
