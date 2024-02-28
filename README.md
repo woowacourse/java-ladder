@@ -184,9 +184,9 @@
     <li>5️⃣ 로 돌아가서 반복 ✔️</li>
 </ul></td>
 <td><ul>
-    <li>보고 싶은 사람이 <code>all</code> 일 경우 모든 사람 이름과 결과를 출력한다.</li>
-    <li>보고 싶은 사람이 <code>all</code> 이 아닐 경우 해당하는 사람의 결과만 출력한다.</li>
-    <li>이름이 같은 사람이 여러명일 경우 보상을 <code>,</code> 로 구분하여 출력한다.</li>
+    <li>보고 싶은 사람이 <code>all</code> 일 경우 모든 사람 이름과 결과를 출력한다. ✔️</li>
+    <li>보고 싶은 사람이 <code>all</code> 이 아닐 경우 해당하는 사람의 결과만 출력한다. ✔️</li>
+    <li>이름이 같은 사람이 여러명일 경우 보상을 <code>,</code> 로 구분하여 출력한다. ✔️</li>
 </ul></td>
 </tr>
 </table>
@@ -220,12 +220,16 @@
         <td>입력을 받아 계산하고 출력 해주는 전체 진행 담당 컨트롤러</td>
     </tr>
     <tr>
-        <td rowspan="6">
+        <td rowspan="8">
             <img src="https://raw.githubusercontent.com/mallowigi/iconGenerator/master/assets/icons/folders/home.svg?sanitize=true"/>
             <b> domain</b>
         </td>
+        <td><b>Game</b></td>
+        <td>참여자 어떤 보상과 연결되는지 사다리를 실행해주는 클래스</td>
+    </tr>
+    <tr>
         <td><b>Ladder</b></td>
-        <td>세로 길이 만큼의 <code>Line</code> 리스트를 가지는 레코드</td>
+        <td>세로 길이 만큼의 <code>Line</code> 리스트를 가지는 클래스</td>
     </tr>
     <tr>
         <td><b>LadderGenerator</b></td>
@@ -246,6 +250,10 @@
     <tr>
         <td><b>Person</b></td>
         <td>사람 이름을 문자열로 가지는 클래스</td>
+    </tr>
+    <tr>
+        <td><b>Prizes</b></td>
+        <td>보상 리스트를 문자열로 가지는 클래스</td>
     </tr>
     <tr>
         <td rowspan="2">
