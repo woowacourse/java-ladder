@@ -9,11 +9,11 @@ public class LadderResult {
 
     public LadderResult(Ladder ladder, int participantsCount) {
         firstAndLastPosition = new LinkedHashMap<>();
-        initPosition(ladder, participantsCount);
+        initPosition(participantsCount);
         calculatePosition(ladder);
     }
 
-    private void initPosition(Ladder ladder, int participantsCount) {
+    private void initPosition(int participantsCount) {
         for (int i = 0; i < participantsCount; i++) {
             firstAndLastPosition.put(new Position(i), new Position(i));
         }
