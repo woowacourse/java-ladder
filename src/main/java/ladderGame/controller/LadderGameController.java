@@ -4,7 +4,6 @@ import ladderGame.model.*;
 import ladderGame.view.InputView;
 import ladderGame.view.ResultView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -50,7 +49,7 @@ public class LadderGameController {
 
     private Ladder makeLadder(int playerCount) {
         LineGenerator lineGenerator = new LineGenerator(new RandomBooleanGenerator());
-        List<Line> lines = Stream.generate(() -> new Line(lineGenerator.makeLine(playerCount)))
+        List<Line> lines = Stream.generate(() -> new Line(lineGenerator.makePlayerConnections(playerCount)))
                 .limit(inputView.inputMaxLadderHeight())
                 .toList();
 

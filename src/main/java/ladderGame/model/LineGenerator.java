@@ -10,9 +10,9 @@ public class LineGenerator {
         this.booleanGenerator = booleanGenerator;
     }
 
-    public List<ConnectionStatus> makeLine(int number) {
+    public List<ConnectionStatus> makePlayerConnections(int playerCount) {
         List<ConnectionStatus> connectionStatuses = new ArrayList<>();
-        for (int i = 1; i < number; i++) {
+        for (int i = 0; i < playerCount-1; i++) {
             add(connectionStatuses);
         }
         return new ArrayList<>(connectionStatuses);
