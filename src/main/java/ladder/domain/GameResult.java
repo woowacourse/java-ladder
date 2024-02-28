@@ -9,8 +9,8 @@ public class GameResult {
 
     private final Map<Name, String> gameResult;
 
-    public GameResult(Participants participants, Prizes prizes) {
-        this.gameResult = makeLadderGameResult(participants, prizes);
+    public GameResult(Participants participants, Prizes sortedPrizes) {
+        this.gameResult = makeLadderGameResult(participants, sortedPrizes);
     }
 
     private Map<Name, String> makeLadderGameResult(Participants participants, Prizes sortedPrizes) {
