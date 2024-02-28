@@ -60,4 +60,36 @@ class ExecutionResultTest {
                 new ResultItem("5000")
         ));
     }
+
+    @DisplayName("null 값이 있는지 확인한다.")
+    @Test
+    void hasNullValue() {
+        // given
+        executionResult.put(new Name("pobi"), new ResultItem("꽝"));
+        executionResult.put(new Name("honux"), new ResultItem("3000"));
+        executionResult.put(new Name("crong"), new ResultItem("꽝"));
+
+        // when
+        boolean expected = executionResult.hasNullValue();
+
+        // then
+        assertThat(expected).isTrue();
+    }
+
+    @DisplayName("null 값이 없는지 확인한다.")
+    @Test
+    void noNullValue() {
+        // given
+        executionResult.put(new Name("pobi"), new ResultItem("꽝"));
+        executionResult.put(new Name("honux"), new ResultItem("3000"));
+        executionResult.put(new Name("crong"), new ResultItem("꽝"));
+        executionResult.put(new Name("jk"), new ResultItem("5000"));
+
+        // when
+        boolean expected = executionResult.hasNullValue();
+
+        // then
+        assertThat(expected).isFalse();
+    }
+
 }
