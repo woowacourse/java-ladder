@@ -4,6 +4,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
@@ -83,5 +84,31 @@ class PeopleTest {
                 new Name("crong"),
                 new Name("jk")
         );
+    }
+
+    @DisplayName("주어진 이름에 해당하는 인덱스를 찾는다.")
+    @ParameterizedTest
+    @CsvSource(value = {"pobi, 0", "honux, 1", "crong, 2", "jk, 3"})
+    void findIndexByName(String name, int actual) {
+        // given
+        People people = new People(List.of("pobi", "honux", "crong", "jk"));
+
+        // when
+        int expected = people.findIndexByName(new Name(name));
+
+        // then
+        assertThat(expected).isEqualTo(actual);
+    }
+
+    @DisplayName("주어진 이름에 해당하는 인덱스가 없다면 예외가 발생한다.")
+    @Test
+    void findIndexByNameDoesNotExist() {
+        // given
+        People people = new People(List.of("pobi", "honux", "crong", "jk"));
+        Name name = new Name("pobi1");
+
+        // when & then
+        assertThatThrownBy(() -> people.findIndexByName(name))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
