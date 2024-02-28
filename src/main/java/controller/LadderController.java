@@ -32,7 +32,6 @@ public class LadderController {
         while (!(name = InputView.getWantedResultName()).equals(SHOW_RESULT_BREAK_WORD)) {
             OutputView.printPlayerResult(ladderGame.getPlayerResult(name));
         }
-        Map<PlayerName, String> result = ladderGame.getAllPlayerResult();
-        OutputView.printAllPlayerResult(result);
+        OutputView.printAllPlayerResult(ladderGame.getAllPlayerResult());
     }
 }
