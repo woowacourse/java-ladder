@@ -20,7 +20,7 @@ public class OutputView {
     }
 
     public void printParticipantsName(List<ParticipantName> participantsNames) {
-        System.out.println("실행 결과\n");
+        System.out.println("사다리 결과\n");
         List<String> formattedParticipantsName = participantsNames.stream()
                 .map(participantName -> String.format(NAME_FORMAT, participantName.name()))
                 .toList();

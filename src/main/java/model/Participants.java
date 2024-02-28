@@ -32,6 +32,9 @@ public class Participants {
     }
 
     public ParticipantName findByName(String name) {
+        if (name.equals("all")) {
+            return new ParticipantName("all");
+        }
         return participants.stream().filter(m -> m.hasEquivalentName(name))
                 .findAny()
                 .map(ParticipantName::new)
