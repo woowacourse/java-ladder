@@ -2,7 +2,6 @@ package domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.HashMap;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,11 +39,11 @@ public class GameTest {
 
         Game game = new Game(members, lines, results);
 
-        HashMap<String, Result> actual = game.matchResult();
+        GameResult actual = game.matchResult();
 
-        assertThat(actual.get("a").getValue()).isEqualTo("a!");
-        assertThat(actual.get("b").getValue()).isEqualTo("b!");
-        assertThat(actual.get("c").getValue()).isEqualTo("c!");
-        assertThat(actual.get("d").getValue()).isEqualTo("d!");
+        assertThat(actual.getResultByMemberName("a").getValue()).isEqualTo("a!");
+        assertThat(actual.getResultByMemberName("b").getValue()).isEqualTo("b!");
+        assertThat(actual.getResultByMemberName("c").getValue()).isEqualTo("c!");
+        assertThat(actual.getResultByMemberName("d").getValue()).isEqualTo("d!");
     }
 }

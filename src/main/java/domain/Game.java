@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class Game {
@@ -8,16 +7,16 @@ public class Game {
     private final Members members;
     private final Lines lines;
     private final Results results;
+    private final GameResult gameResult;
 
     public Game(Members members, Lines lines, Results results) {
         this.members = members;
         this.lines = lines;
         this.results = results;
+        this.gameResult = new GameResult();
     }
 
-    public HashMap<String, Result> matchResult() {
-        HashMap<String, Result> gameResult = new HashMap<>();
-
+    public GameResult matchResult() {
         for (Member member : members.getMembers()) {
 
             int index = members.findIndexOfMember(member);
@@ -28,11 +27,10 @@ public class Game {
                 index = tryMoveRight(connections, index);
             }
             Result result = results.getResultByIndex(index);
-            gameResult.put(member.getName(), result);
+            gameResult.addGameResult(member, result);
         }
-
         return gameResult;
-    } // TODO: GameResult 객체 분리 및 리팩토링
+    }
 
     private int tryMoveLeft(List<Connection> connections, int index) {
         if (index <= 0) {
