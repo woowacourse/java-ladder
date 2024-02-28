@@ -22,12 +22,16 @@ public class LadderController {
         this.outputView = outputView;
     }
 
-    public void play() throws IOException {
+    public void run() throws IOException {
         Participants participants = new Participants(inputView.inputParticipantsName());
         Results results = new Results(inputView.inputResults());
         Ladder ladder = new Ladder(new LadderGenerateStrategy(), new Height(inputView.inputLadderHeight()), participants);
         LadderGame ladderGame = new LadderGame(ladder, participants, results);
         outputView.printLadderResult(ladderGame);
+        play(ladderGame);
+    }
+
+    private void play(LadderGame ladderGame) throws IOException {
         String participantName = inputView.inputParticipantName();
         while (!participantName.equals(Participants.ENTIRE)) {
             outputView.printParticipantResult(ladderGame.matchResult(new Participant(participantName)));
