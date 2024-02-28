@@ -1,4 +1,4 @@
-package ladder.domain.enums;
+package ladder.view.enums;
 
 import java.util.Arrays;
 

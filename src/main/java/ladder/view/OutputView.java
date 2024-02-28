@@ -4,7 +4,7 @@ import ladder.domain.Compensation;
 import ladder.domain.Ladder;
 import ladder.domain.People;
 import ladder.domain.RowLine;
-import ladder.domain.enums.NameFormat;
+import ladder.view.enums.NameFormat;
 
 import java.util.List;
 import java.util.StringJoiner;
