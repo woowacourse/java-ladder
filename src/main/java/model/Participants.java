@@ -39,7 +39,7 @@ public class Participants {
     }
 
     public int getPositionByName(Name findName) {
-        return 0;
+        return participantNames.indexOf(findName);
     }
 
     public int getParticipantsSize() {
