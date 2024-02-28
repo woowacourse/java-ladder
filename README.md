@@ -18,7 +18,7 @@
 
 예외 상황이 생기면 `[ERROR]` 로 시작하는 메세지를 출력한 후 다시 입력을 받습니다.
 
-### 1️⃣ 사다리 게임에 참여할 사람들 이름 입력
+### 1️⃣ 사다리 게임에 참여할 사람들 이름 입력 ✔️
 
 <table>
 <tr>
@@ -43,14 +43,14 @@
         <code>[ERROR] 사람 이름의 길이는 5자를 넘을 수 없습니다.</code>
     </li>
     <li>
-        콤마(,)로 구분된 이름이 비어있거나 공백일 경우 ✔️<br>
+        콤마 <code>,</code> 로 구분된 이름이 비어있거나 공백일 경우 ✔️<br>
         <code>[ERROR] 사람 이름의 비어있거나 공백일 수 없습니다.</code>
     </li>
     <li>
-        지정된 명령어 <code>all</code> <code>exit</code> 등을 이름을 입력할 경우<br>
+        지정된 명령어 <code>all</code> <code>exit</code> 등을 이름을 입력할 경우 ✔️<br>
         <code>[ERROR] 지정된 명령어는 이름으로 사용할 수 없습니다.</code>
     </li>
-</ul></td>~~~~
+</ul></td>
 </tr>
 </table>
 
@@ -202,8 +202,8 @@
             <img src="https://raw.githubusercontent.com/mallowigi/iconGenerator/master/assets/icons/folders/constants.svg?sanitize=true"/>
             <b> constant</b>
         </td>
-        <td><b>ErrorMessage</b></td>
-        <td>예외 상황에 사용 되는 정적 메세지</td>
+        <td><b>Command</b></td>
+        <td>최종 결과 출력에 사용되는 명령어 상수</td>
     </tr>
     <tr>
         <td>
