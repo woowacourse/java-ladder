@@ -2,12 +2,12 @@ package domain;
 
 import java.util.Objects;
 
-public class Name {
+public abstract class Name {
     private static final int MAXIMUM_NAME_LENGTH = 5;
 
     private final String value;
 
-    public Name(String value) {
+    protected Name(String value) {
         validate(value);
         this.value = value;
     }
@@ -36,10 +36,6 @@ public class Name {
         }
     }
 
-    public boolean isAll() {
-        return value.equals("all");
-    }
-
     public String getValue() {
         return value;
     }
@@ -56,10 +52,4 @@ public class Name {
     public int hashCode() {
         return Objects.hash(value);
     }
-
-    @Override
-    public String toString() {
-        return this.value;
-    }
-
 }

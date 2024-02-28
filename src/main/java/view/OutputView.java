@@ -1,5 +1,6 @@
 package view;
 
+import domain.Name;
 import domain.ladder.attirbute.Direction;
 
 import java.util.List;
@@ -13,9 +14,9 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static <T> void printObjectNames(List<T> names) {
+    public static void printObjectNames(List<? extends Name> names) {
         names.stream()
-             .map(Object::toString)
+             .map(Name::getValue)
              .map(OutputView::padString)
              .forEach(System.out::print);
         printNewLine();

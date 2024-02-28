@@ -2,7 +2,10 @@ package domain;
 
 import domain.ladder.Ladder;
 import domain.ladder.attirbute.Direction;
+import domain.player.PlayerName;
 import domain.player.Players;
+import domain.prize.PrizeName;
+import domain.prize.PrizeNames;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -14,13 +17,13 @@ public class GameBoard {
     private static final int HEIGHT_STARTING_INDEX = 0;
     private final Players players;
     private final Ladder ladder;
-    private final Prizes prizes;
-    private final LinkedHashMap<Name, Prize> gameResults;
+    private final PrizeNames prizeNames;
+    private final LinkedHashMap<PlayerName, PrizeName> gameResults;
 
-    public GameBoard(Players players, Ladder ladder, Prizes prizes) {
+    public GameBoard(Players players, Ladder ladder, PrizeNames prizeNames) {
         this.players = players;
         this.ladder = ladder;
-        this.prizes = prizes;
+        this.prizeNames = prizeNames;
         this.gameResults = generateGameResult();
     }
 
@@ -28,32 +31,32 @@ public class GameBoard {
         return ladder.getDirectionsAtHorizontalIndex(index);
     }
 
-    private LinkedHashMap<Name, Prize> generateGameResult() {
-        LinkedHashMap<Name, Prize> results = new LinkedHashMap<>();
+    private LinkedHashMap<PlayerName, PrizeName> generateGameResult() {
+        LinkedHashMap<PlayerName, PrizeName> results = new LinkedHashMap<>();
         IntStream.range(0, players.getPlayerCount())
                  .forEach(value -> results.put(getPlayerNameAtStartingIndex(value), getPrizeAtStartingIndex(value)));
         return results;
     }
 
-    private Name getPlayerNameAtStartingIndex(int value) {
+    private PlayerName getPlayerNameAtStartingIndex(int value) {
         return players.getPlayerNames()
                       .get(value);
     }
 
-    private Prize getPrizeAtStartingIndex(int value) {
-        return prizes.getValue()
-                     .get(ladder.moveCoordinateToResultPoint(value, HEIGHT_STARTING_INDEX));
+    private PrizeName getPrizeAtStartingIndex(int value) {
+        return prizeNames.getValue()
+                         .get(ladder.moveCoordinateToResultPoint(value, HEIGHT_STARTING_INDEX));
     }
 
-    public Map<Name, Prize> searchAllPlayerResult() {
+    public Map<PlayerName, PrizeName> searchAllPlayerResult() {
         return Collections.unmodifiableMap(gameResults);
     }
 
-    public String searchOnePlayerResult(Name targetName) {
+    public String searchOnePlayerResult(PlayerName targetPlayerName) {
         try {
-            return gameResults.get(players.searchPlayer(targetName)
-                                          .name())
-                              .toString();
+            return gameResults.get(players.searchPlayer(targetPlayerName)
+                                          .playerName())
+                              .getValue();
         } catch (Exception e) {
             return e.getMessage();
         }
@@ -71,8 +74,8 @@ public class GameBoard {
         return ladder;
     }
 
-    public Prizes getPrizes() {
-        return prizes;
+    public PrizeNames getPrizes() {
+        return prizeNames;
     }
 
 }

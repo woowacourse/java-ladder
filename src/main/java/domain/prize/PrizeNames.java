@@ -1,19 +1,19 @@
-package domain;
+package domain.prize;
 
 import java.util.Collections;
 import java.util.List;
 
-public class Prizes {
-    private final List<Prize> prizes;
+public class PrizeNames {
+    private final List<PrizeName> prizeNames;
 
-    public Prizes(List<String> prizeNames, int playerCount) {
+    public PrizeNames(List<String> prizeNames, int playerCount) {
         validateSize(prizeNames, playerCount);
-        this.prizes = fromPrizeStrings(prizeNames);
+        this.prizeNames = fromPrizeStrings(prizeNames);
     }
 
-    private List<Prize> fromPrizeStrings(List<String> names) {
+    private List<PrizeName> fromPrizeStrings(List<String> names) {
         return names.stream()
-                    .map(Prize::new)
+                    .map(PrizeName::new)
                     .toList();
     }
 
@@ -23,7 +23,7 @@ public class Prizes {
         }
     }
 
-    public List<Prize> getValue() {
-        return Collections.unmodifiableList(prizes);
+    public List<PrizeName> getValue() {
+        return Collections.unmodifiableList(prizeNames);
     }
 }

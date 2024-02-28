@@ -4,7 +4,11 @@ import domain.ladder.FixedDirectionGenerator;
 import domain.ladder.Ladder;
 import domain.ladder.attirbute.Direction;
 import domain.ladder.attirbute.Height;
+import domain.player.PlayerName;
+import domain.player.PlayerNames;
 import domain.player.Players;
+import domain.prize.PrizeName;
+import domain.prize.PrizeNames;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -23,18 +27,18 @@ class GameBoardTest {
     @Test
     @DisplayName("Player 와 사다리를 통해 게임 보드를 만든다.")
     void createGameBoard() {
-        Players players = 플레이어_생성(new Names(List.of("도비", "조이썬", "포비", "크롱")));
+        Players players = 플레이어_생성(new PlayerNames(List.of("도비", "조이썬", "포비", "크롱")));
 
         Height height = new Height("5");
         Ladder ladder = new Ladder(height, players.getPlayerCount(), new RandomDirectionGenerator());
-        Prizes prizes = new Prizes(List.of("꽝", "꽝", "꽝", "꽝"), 4);
-        GameBoard gameBoard = new GameBoard(players, ladder, prizes);
+        PrizeNames prizeNames = new PrizeNames(List.of("꽝", "꽝", "꽝", "꽝"), 4);
+        GameBoard gameBoard = new GameBoard(players, ladder, prizeNames);
 
         assertInstanceOf(GameBoard.class, gameBoard);
     }
 
-    private Players 플레이어_생성(Names names) {
-        return new Players(names);
+    private Players 플레이어_생성(PlayerNames playerNames) {
+        return new Players(playerNames);
     }
 
     /**
@@ -46,28 +50,28 @@ class GameBoardTest {
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     class GenerateResultTestClass {
 
-        private final Prizes prizes = new Prizes(List.of("1", "2", "3", "4"), 4);
+        private final PrizeNames prizeNames = new PrizeNames(List.of("1", "2", "3", "4"), 4);
         private Players players;
-        private Map<Name, Prize> results;
+        private Map<PlayerName, PrizeName> results;
         private GameBoard gameBoard;
 
         @BeforeEach
         void setUp() {
             // Given
-            players = 플레이어_생성(new Names(List.of("도비", "조이썬", "포비", "오리")));
+            players = 플레이어_생성(new PlayerNames(List.of("도비", "조이썬", "포비", "오리")));
             Height height = new Height("4");
             List<Direction> fixedDirectionList = IntStream.rangeClosed(0, 15)
                                                           .mapToObj((value) -> Direction.DOWN)
                                                           .toList();
             Ladder ladder = new Ladder(height, players.getPlayerCount(), new FixedDirectionGenerator(fixedDirectionList));
-            gameBoard = new GameBoard(players, ladder, prizes);
+            gameBoard = new GameBoard(players, ladder, prizeNames);
 
             // When
             results = gameBoard.searchAllPlayerResult();
         }
 
-        private List<Prize> providePrize() {
-            return prizes.getValue();
+        private List<PrizeName> providePrize() {
+            return prizeNames.getValue();
         }
 
         @Test
@@ -87,45 +91,45 @@ class GameBoardTest {
         @DisplayName("게임 결과에는 입력된 모든 플레이어가 포함된다.")
         void testContainsAllPlayers(String playerName) {
             // Then
-            assertTrue(results.containsKey(new Name(playerName)));
+            assertTrue(results.containsKey(new PlayerName(playerName)));
         }
 
         @ParameterizedTest
         @MethodSource("providePrize")
         @DisplayName("게임 결과에는 모든 실행 결과가 포함된다.")
-        void testContainsAllPrizes(Prize prize) {
+        void testContainsAllPrizes(PrizeName prizeName) {
             // Then
-            assertTrue(results.containsValue(prize));
+            assertTrue(results.containsValue(prizeName));
         }
 
         @Test
         @DisplayName("게임 결과에는 입력된 플레이어의 순서가 유지된 상태로 결과에 저장된다.")
         void testPlayerOrder() {
-            List<Name> playerNames = players.getPlayerNames();
-            List<Name> resultPlayerNames = new ArrayList<>(results.keySet());
+            List<PlayerName> playerPlayerNames = players.getPlayerNames();
+            List<PlayerName> resultPlayerPlayerNames = new ArrayList<>(results.keySet());
 
             // Then
-            assertEquals(playerNames, resultPlayerNames);
+            assertEquals(playerPlayerNames, resultPlayerPlayerNames);
         }
 
         @Test
-        @DisplayName("사다리 게임의 실행 결과는 올바르게 Name : Prize 가 매칭되어 생성된다.")
+        @DisplayName("사다리 게임의 실행 결과는 올바르게 PlayerName : PrizeName 가 매칭되어 생성된다.")
         void testResultIsMatchedCorrectly() {
-            Prize expectedPrize1 = prizes.getValue()
-                                         .get(0);
-            Prize expectedPrize2 = prizes.getValue()
-                                         .get(1);
-            Prize expectedPrize3 = prizes.getValue()
-                                         .get(2);
-            Prize expectedPrize4 = prizes.getValue()
-                                         .get(3);
+            PrizeName expectedPrize1Name = prizeNames.getValue()
+                                                     .get(0);
+            PrizeName expectedPrize2Name = prizeNames.getValue()
+                                                     .get(1);
+            PrizeName expectedPrize3Name = prizeNames.getValue()
+                                                     .get(2);
+            PrizeName expectedPrize4Name = prizeNames.getValue()
+                                                     .get(3);
 
             // Then
             assertAll(() -> {
-                assertEquals(expectedPrize1, results.get(new Name("도비")));
-                assertEquals(expectedPrize2, results.get(new Name("조이썬")));
-                assertEquals(expectedPrize3, results.get(new Name("포비")));
-                assertEquals(expectedPrize4, results.get(new Name("오리")));
+                assertEquals(expectedPrize1Name, results.get(new PlayerName("도비")));
+                assertEquals(expectedPrize2Name, results.get(new PlayerName("조이썬")));
+                assertEquals(expectedPrize3Name, results.get(new PlayerName("포비")));
+                assertEquals(expectedPrize4Name, results.get(new PlayerName("오리")));
             });
         }
 
@@ -133,10 +137,10 @@ class GameBoardTest {
         @DisplayName("특정 플레이어의 Prize를 검색하여 반환한다.")
         void searchSpecificPlayersPrize() {
             // When
-            String resultPrize1 = gameBoard.searchOnePlayerResult(new Name("도비"));
-            String resultPrize2 = gameBoard.searchOnePlayerResult(new Name("조이썬"));
-            String resultPrize3 = gameBoard.searchOnePlayerResult(new Name("포비"));
-            String resultPrize4 = gameBoard.searchOnePlayerResult(new Name("오리"));
+            String resultPrize1 = gameBoard.searchOnePlayerResult(new PlayerName("도비"));
+            String resultPrize2 = gameBoard.searchOnePlayerResult(new PlayerName("조이썬"));
+            String resultPrize3 = gameBoard.searchOnePlayerResult(new PlayerName("포비"));
+            String resultPrize4 = gameBoard.searchOnePlayerResult(new PlayerName("오리"));
 
             // Then
             assertAll(() -> {
@@ -150,7 +154,7 @@ class GameBoardTest {
         @Test
         @DisplayName("존재하지 않은 플레이어의 이름을 검색하면 메세지를 반환한다.")
         void whenSearchNotExistingPlayerThenReturnMessage() {
-            String result = gameBoard.searchOnePlayerResult(new Name("없는사람"));
+            String result = gameBoard.searchOnePlayerResult(new PlayerName("없는사람"));
             assertEquals("존재하지 않는 플레이어입니다.", result);
         }
     }

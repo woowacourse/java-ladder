@@ -1,31 +1,28 @@
 package domain.player;
 
-import domain.Name;
-import domain.Names;
-
 import java.util.List;
 
 public class Players {
     private final List<Player> players;
 
-    public Players(Names names) {
-        this.players = names.getValue()
-                            .stream()
-                            .map(Player::new)
-                            .toList();
+    public Players(PlayerNames playerNames) {
+        this.players = playerNames.getValue()
+                                  .stream()
+                                  .map(Player::new)
+                                  .toList();
     }
 
-    public Player searchPlayer(Name targetPlayerName) {
+    public Player searchPlayer(PlayerName targetPlayerPlayerName) {
         return players.stream()
-                      .filter(player -> player.name()
-                                              .equals(targetPlayerName))
+                      .filter(player -> player.playerName()
+                                              .equals(targetPlayerPlayerName))
                       .findFirst()
                       .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어입니다."));
     }
 
-    public List<Name> getPlayerNames() {
+    public List<PlayerName> getPlayerNames() {
         return players.stream()
-                      .map(Player::name)
+                      .map(Player::playerName)
                       .toList();
     }
 
