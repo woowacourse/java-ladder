@@ -4,15 +4,14 @@ public class LadderGame {
     private final Ladder ladder;
     private final Names names;
     private final LadderResults ladderResults;
+    private final NamesCreator namesCreator = new NamesCreator();
+    private final LadderResultCreator ladderResultCreator = new LadderResultCreator();
 
     public LadderGame(String userNames, String rawLadderResults, int ladderHeight, BridgesGenerator generator) {
-        NamesCreator namesCreator = new NamesCreator();
-        LadderResultCreator ladderResultCreator = new LadderResultCreator();
         names = namesCreator.create(userNames);
         ladderResults = ladderResultCreator.create(rawLadderResults);
-        int nameCount = names.count();
         Height height = new Height(ladderHeight);
-        Width width = new Width(nameCount);
+        Width width = new Width(names.count());
         ladder = new Ladder(height, width, generator);
     }
 
