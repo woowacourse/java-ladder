@@ -1,8 +1,10 @@
 package view;
 
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
 
@@ -22,14 +24,18 @@ public class InputView {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         final String rawNames = scanner.nextLine().trim();
 
-        return List.of(rawNames.split(DELIMITER));
+        return Arrays.stream(rawNames.split(DELIMITER))
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 
     public List<String> readResults() {
         System.out.println(System.lineSeparator() + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         final String rawResults = scanner.nextLine().trim();
 
-        return List.of(rawResults.split(DELIMITER));
+        return Arrays.stream(rawResults.split(DELIMITER))
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 
     public int readHeight() {
