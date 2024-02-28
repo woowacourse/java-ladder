@@ -12,7 +12,15 @@ public class Items {
     }
 
     public static Items of(final List<Item> items, final int personCount) {
-        throw new IllegalArgumentException("참여 인원 수와 결과 목록의 수가 동일하지 않습니다.");
+        int itemsCount = items.size();
+        validateItemsCount(itemsCount, personCount);
+        return new Items(items);
+    }
+
+    private static void validateItemsCount(final int itemsCount, final int personCount) {
+        if (itemsCount != personCount) {
+            throw new IllegalArgumentException("참여 인원 수와 결과 목록의 수가 동일하지 않습니다.");
+        }
     }
 
     public Item get(final int finalPosition) {
