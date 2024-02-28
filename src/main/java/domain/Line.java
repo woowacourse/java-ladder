@@ -16,10 +16,6 @@ public class Line {
         }
     }
 
-    Line(List<Stick> sticks) {
-        this.sticks.addAll(sticks);
-    }
-
     private Stick getStick(StickGenerator stickGenerator) {
         Stick stick = stickGenerator.generateOne();
 

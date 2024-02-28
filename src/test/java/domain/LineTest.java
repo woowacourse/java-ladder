@@ -12,7 +12,7 @@ class LineTest {
 
     @DisplayName("생성 테스트")
     @Test
-    void createLine() {
+    void create() {
         assertThatCode(() -> new Line(filledStickGenerator(), 3))
                 .doesNotThrowAnyException();
     }
@@ -30,7 +30,7 @@ class LineTest {
 
     @DisplayName("라인에 연속된 막대는 있을 수 없다.")
     @Test
-    void opposite() {
+    void connected() {
         int playerSize = 3;
         Line line = new Line(filledStickGenerator(), playerSize);
 
@@ -44,11 +44,12 @@ class LineTest {
     void moveLeft() {
         // 0 1 2 3
         // |-| |-|
-        Line line = new Line(List.of(
+        List<Stick> sticks = List.of(
                 Stick.FILLED,
                 Stick.NOT_FILLED,
                 Stick.FILLED
-        ));
+        );
+        Line line = createLine(sticks, 4);
 
         Direction result = line.move(3);
 
@@ -58,11 +59,12 @@ class LineTest {
     @DisplayName("주어진 컬럼 오른쪽에 이동 가능한 막대가 있는지 체크할 수 있다.")
     @Test
     void moveRight() {
-        Line line = new Line(List.of(
+        List<Stick> sticks = List.of(
                 Stick.FILLED,
                 Stick.NOT_FILLED,
                 Stick.FILLED
-        ));
+        );
+        Line line = createLine(sticks, 4);
 
         Direction result = line.move(0);
 
@@ -72,29 +74,36 @@ class LineTest {
     @DisplayName("주어진 줄에서 왼쪽과 오른쪽에 막대가 없으면 이동 불가능하다.")
     @Test
     void stay() {
-        Line line = new Line(List.of(
+        List<Stick> sticks = List.of(
                 Stick.NOT_FILLED,
                 Stick.NOT_FILLED
-        ));
+        );
+        Line line = createLine(sticks, 3);
 
         Direction result = line.move(0);
 
         assertThat(result).isEqualTo(Direction.STAY);
     }
 
-    @DisplayName("0이상 부터 막대의 총 갯수 사이의 컬럼을 이용해서만 이동 여부를 판단할 수 있다.")
+    @DisplayName("0이상 부터 막대의 총 갯수 사이의 컬럼만을 이용해서 이동 여부를 판단할 수 있다.")
     @Test
     void checkColumnRange() {
         List<Stick> sticks = List.of(
                 Stick.NOT_FILLED,
                 Stick.NOT_FILLED
         );
-        Line line = new Line(sticks);
+        Line line = createLine(sticks, 3);
 
         assertThatThrownBy(() -> line.move(-1))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> line.move(sticks.size() + 1))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    private Line createLine(List<Stick> sticks, int playerSize) {
+        SimpleStickGenerator simpleStickGenerator = new SimpleStickGenerator(sticks);
+
+        return new Line(simpleStickGenerator, playerSize);
     }
 
     private StickGenerator filledStickGenerator() {

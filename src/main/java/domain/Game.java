@@ -10,32 +10,18 @@ public class Game {
     private final Ladder ladder;
     private final List<GameResult> gameResults;
 
-    public Game(List<String> playerNames, List<String> gameResults, int height) {
-        validateSameSize(playerNames, gameResults);
+    public Game(Players players, Ladder ladder, List<GameResult> gameResults) {
+        validateSameSize(players, gameResults);
 
-        this.players = new Players(playerNames);
-        this.ladder = new Ladder(height, playerNames.size());
-        this.gameResults = mapToGameResult(gameResults);
-    }
-
-    Game(List<String> playerNames, List<String> gameResults, Ladder ladder) {
-        validateSameSize(playerNames, gameResults);
-
-        this.players = new Players(playerNames);
+        this.players = players;
         this.ladder = ladder;
-        this.gameResults = mapToGameResult(gameResults);
+        this.gameResults = gameResults;
     }
 
-    private void validateSameSize(List<String> playerNames, List<String> gameResults) {
-        if (playerNames.size() != gameResults.size()) {
+    private void validateSameSize(Players players, List<GameResult> gameResults) {
+        if (players.size() != gameResults.size()) {
             throw new IllegalArgumentException("사용자의 수와 실행 결과의 수가 일치하지 않습니다.");
         }
-    }
-
-    private List<GameResult> mapToGameResult(List<String> gameResults) {
-        return gameResults.stream()
-                .map(GameResult::new)
-                .toList();
     }
 
     public Map<String, GameResult> showResultAll() {

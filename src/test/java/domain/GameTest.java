@@ -1,7 +1,6 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -11,27 +10,19 @@ import org.junit.jupiter.api.Test;
 
 class GameTest {
 
-    @DisplayName("생성 테스트")
-    @Test
-    void create() {
-        assertThatCode(() -> new Game(List.of("pobi", "atom"), List.of("꽝", "3000"), 3))
-                .doesNotThrowAnyException();
-    }
-
     @DisplayName("실행 결과는 사용자의 수와 동일하다.")
     @Test
     void checkGameResultSize() {
-        assertThatThrownBy(() -> new Game(List.of("pobi", "atom"), List.of("3000"), 3))
+        assertThatThrownBy(() -> createGame(List.of("pobi", "atom"), List.of("3000")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("사용자의 위치를 입력하면, 게임 결과를 받아올 수 있다.")
     @Test
     void showResult() {
-        Game game = new Game(
+        Game game = createGame(
                 List.of("pobi", "atom", "mang", "jay"),
-                List.of("3000", "1000", "2000", "꽝"),
-                createLadder());
+                List.of("3000", "1000", "2000", "꽝"));
 
         GameResult result = game.showResult("atom");
 
@@ -41,10 +32,9 @@ class GameTest {
     @DisplayName("모든 사용자의 사다리 게임 결과를 조회할 수 있다.")
     @Test
     void showResultAll() {
-        Game game = new Game(
+        Game game = createGame(
                 List.of("pobi", "atom", "mang", "jay"),
-                List.of("3000", "1000", "2000", "꽝"),
-                createLadder());
+                List.of("3000", "1000", "2000", "꽝"));
 
         Map<String, GameResult> result = game.showResultAll();
 
@@ -54,19 +44,23 @@ class GameTest {
         assertThat(result.get("jay")).isEqualTo(new GameResult("2000"));
     }
 
+    private Game createGame(List<String> playerNames, List<String> gameResults) {
+        Players players = new Players(playerNames);
+        Ladder ladder = createLadder();
+
+        return new Game(players, ladder, gameResults.stream().map(GameResult::new).toList());
+    }
+
     private Ladder createLadder() {
-        List<Stick> line1 = List.of(
+        List<Stick> sticks = List.of(
                 Stick.NOT_FILLED,
                 Stick.FILLED,
-                Stick.NOT_FILLED
-        );
-
-        List<Stick> line2 = List.of(
+                Stick.NOT_FILLED,
                 Stick.NOT_FILLED,
                 Stick.NOT_FILLED,
                 Stick.FILLED
         );
 
-        return new Ladder(List.of(new Line(line1), new Line(line2)));
+        return Ladder.createConfigurableLadder(2, 4, new SimpleStickGenerator(sticks));
     }
 }
