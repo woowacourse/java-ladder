@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class LadderIndexConverter {
+public class LadderResultIndexMapper {
 
     private final List<Integer> resultIndex;
 
-    public LadderIndexConverter(int playerCount) {
+    public LadderResultIndexMapper(int playerCount) {
         this.resultIndex = IntStream.range(0, playerCount)
                 .boxed()
                 .collect(Collectors.toList());

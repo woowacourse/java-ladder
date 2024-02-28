@@ -9,12 +9,12 @@ import java.util.function.BooleanSupplier;
 public class Ladder {
 
     private final List<LadderRow> rows = new ArrayList<>();
-    private final LadderIndexConverter ladderIndexConverter;
+    private final LadderResultIndexMapper indexMapper;
 
     public Ladder(int playerCount, int resultSize, LadderHeight height) {
         validateHasSameSize(playerCount, resultSize);
         createLadder(playerCount, height);
-        ladderIndexConverter = new LadderIndexConverter(playerCount);
+        indexMapper = new LadderResultIndexMapper(playerCount);
     }
 
     private void validateHasSameSize(int playersCount, int resultsCount) {
@@ -40,9 +40,9 @@ public class Ladder {
         ListIterator<LadderRow> iterator = rows.listIterator(rows.size());
         while (iterator.hasPrevious()) {
             List<Boolean> rowPattern = iterator.previous().getRowPattern();
-            ladderIndexConverter.swapByRowPattern(rowPattern);
+            indexMapper.swapByRowPattern(rowPattern);
         }
-        return ladderIndexConverter.getResultIndex();
+        return indexMapper.getResultIndex();
     }
 
     public List<RowPatternDto> getLadderPatterns() {
