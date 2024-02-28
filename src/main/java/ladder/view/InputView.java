@@ -27,7 +27,7 @@ public class InputView {
 
     private List<String> inputNames() {
         String names = SCANNER.nextLine();
-        return Arrays.asList(names.split(NAME_DELIMITER));
+        return Arrays.asList(names.split(NAME_DELIMITER, -1));
     }
 
     public int inputHeight() {
