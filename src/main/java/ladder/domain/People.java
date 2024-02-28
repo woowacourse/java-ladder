@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class People {
 
@@ -54,6 +55,13 @@ public class People {
 
     public int count() {
         return names.size();
+    }
+
+    public int findIndexByName(Name targetName) {
+        return IntStream.range(0, names.size())
+                .filter(i -> names.get(i).equals(targetName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("참여하지 않은 사람 이름입니다."));
     }
 
     public List<String> getNames3() {
