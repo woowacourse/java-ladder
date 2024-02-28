@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Height {
 
     public static final int MIN_OF_HEIGHT = 1;
@@ -12,7 +14,7 @@ public class Height {
         this.height = height;
     }
 
-    public boolean isEnd(int nowFloor) {
+    public boolean isEqualTo(int nowFloor) {
         return this.height <= nowFloor;
     }
 
@@ -21,5 +23,27 @@ public class Height {
             throw new IllegalArgumentException("[ERROR] 높이는 " + MIN_OF_HEIGHT + "개 이상 "
                     + MAX_OF_HEIGHT + "개 이하여야 합니다.");
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Height other = (Height) obj;
+        return Objects.equals(height, other.height);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(height);
+    }
+
+    @Override
+    public String toString() {
+        return Integer.toString(height);
     }
 }

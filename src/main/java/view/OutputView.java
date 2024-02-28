@@ -4,6 +4,7 @@ import domain.Ladder;
 import domain.Line;
 import domain.Name;
 import domain.Participants;
+import domain.Prize;
 import domain.Prizes;
 import domain.StepPoint;
 import java.util.List;
@@ -49,9 +50,9 @@ public class OutputView {
     }
 
     private void printPrizes(Prizes prizes) {
-        List<String> prizeValues = prizes.getPrizes();
-        for (String prizeValue : prizeValues) {
-            System.out.printf("%5s ", prizeValue);
+        List<Prize> prizeValues = prizes.getPrizes();
+        for (Prize prize : prizeValues) {
+            System.out.printf("%5s ", prize.toString());
         }
         System.out.println();
     }

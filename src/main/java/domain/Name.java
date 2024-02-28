@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Name {
 
     public static final int MAX_OF_NAME_LENGTH = 5;
@@ -32,11 +34,29 @@ public class Name {
         }
     }
 
-    public boolean isSameName(String comparisonName) {
-        return name.equals(comparisonName);
+    public String getName() {
+        return name;
     }
 
-    public String getName() {
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Name other = (Name) obj;
+        return Objects.equals(name, other.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
         return name;
     }
 }

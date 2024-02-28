@@ -38,12 +38,12 @@ public class Participants {
 
     public boolean hasParticipated(String comparisonName) {
         return names.stream()
-                .anyMatch(participantsName -> participantsName.isSameName(comparisonName));
+                .anyMatch(participantsName -> participantsName.equals(new Name(comparisonName)));
     }
 
     public int checkParticipantOrder(String name) {
         return IntStream.range(0, names.size())
-                .filter(i -> names.get(i).isSameName(name))
+                .filter(i -> names.get(i).equals(new Name(name)))
                 .findFirst()
                 .getAsInt();
     }

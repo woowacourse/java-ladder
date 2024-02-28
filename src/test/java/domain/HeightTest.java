@@ -32,7 +32,7 @@ public class HeightTest {
     @DisplayName("주어진 값이 높이의 끝인지 확인한다.")
     void isEndTest() {
         Height height = new Height(5);
-        Assertions.assertThat(height.isEnd(5)).isTrue();
+        Assertions.assertThat(height.isEqualTo(5)).isTrue();
     }
 
 }

@@ -18,7 +18,7 @@ public class Ladder {
     }
 
     public boolean isFinish(int floor) {
-        return height.isEnd(floor);
+        return height.isEqualTo(floor);
     }
 
     public boolean canMoveLeft(int floor, int step) {
@@ -30,7 +30,7 @@ public class Ladder {
     }
 
     public boolean canMoveRight(int floor, int step) {
-        if (isFinish(floor)) {
+        if ((isFinish(floor))) {
             return false;
         }
         Line line = lines.get(floor);
