@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,7 +11,7 @@ public class People {
 
     public People(List<Name> names) {
         validate(names);
-        this.names = new ArrayList<>(names);
+        this.names = names;
     }
 
     private void validate(List<Name> names) {
@@ -49,5 +48,9 @@ public class People {
 
     public List<Name> getNames() {
         return Collections.unmodifiableList(names);
+    }
+
+    public int findPosition(Name name) {
+        return names.indexOf(name);
     }
 }
