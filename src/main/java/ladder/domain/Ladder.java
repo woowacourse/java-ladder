@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+import static java.util.Collections.unmodifiableList;
+
 public class Ladder {
     private final List<Paths> paths;
 
@@ -21,6 +23,17 @@ public class Ladder {
     }
 
     public List<Paths> getPaths() {
-        return paths;
+        return unmodifiableList(paths);
+    }
+
+    public void movePlayer(Player player) {
+        LineNumber currentLineNumber = player.getCurrentLineNumber();
+        LineFloor currentLineFloor = player.getCurrentLineFloor();
+        player.move(getMovingIndex(currentLineNumber, currentLineFloor));
+    }
+
+    private int getMovingIndex(LineNumber lineNumber, LineFloor lineFloor) {
+        return paths.get(lineFloor.value() - 1)
+                .getOtherLineNumber(lineNumber);
     }
 }
