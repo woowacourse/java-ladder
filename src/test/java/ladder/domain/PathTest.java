@@ -15,9 +15,23 @@ public class PathTest {
         final int endLineNumber = 2;
 
         // When
-        Path path = Path.of(startLineNumber, endLineNumber);
+        final Path path = Path.of(startLineNumber, endLineNumber);
 
         // Then
         assertThat(path).isNotNull();
+    }
+
+    @DisplayName("입력된 LineNumber가 본인의 번호에 포함되면 true를 반환한다.")
+    @Test
+    void LineNumber_본인_번호인지_포함_체크() {
+        // Given
+        final Path path = Path.of(2, 3);
+        final LineNumber inputLineNumber = new LineNumber(3);
+
+        // When
+        final boolean hasPath = path.hasPath(inputLineNumber);
+
+        // Then
+        assertThat(hasPath).isTrue();
     }
 }
