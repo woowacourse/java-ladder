@@ -14,18 +14,23 @@ public class LadderMain {
     private static final String SELECT_ALL = "all";
 
     public static void main(String[] args) {
+        final LadderGame ladderGame = makeLadderGame();
+
+        ladderGame.play();
+        OutputView.printLadderMakingResult(
+                ladderGame.getPlayerNames(), ladderGame.getLadder(), ladderGame.getMatchingItems());
+
+        final String selectedName = InputView.selectPlayer();
+        OutputView.printMatchingResult(ladderGame.matchResult(selectedName, SELECT_ALL));
+    }
+
+    public static LadderGame makeLadderGame() {
         final Players players = Players.createInOrderPoisition(InputView.readNames());
         final MatchingItems matchingItems = new MatchingItems(InputView.readMatchingItems(), players.count());
         final Height height = new Height(InputView.readHeight());
         final Width width = Width.from(players);
 
         final Ladder ladder = LadderFactory.createByStrategy(RandomBridgeGenerator.getInstance(), height, width);
-        final LadderGame ladderGame = new LadderGame(players, matchingItems, ladder);
-        ladderGame.play();
-        OutputView.printLadderMakingResult(
-                ladderGame.getPlayerNames(), ladderGame.getLadder(), matchingItems.getItems());
-
-        final String selectedName = InputView.selectPlayer();
-        OutputView.printMatchingResult(ladderGame.matchResult(selectedName, SELECT_ALL));
+        return new LadderGame(players, matchingItems, ladder);
     }
 }

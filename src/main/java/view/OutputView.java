@@ -1,6 +1,7 @@
 package view;
 
 import domain.GameResult;
+import domain.MatchingItems;
 import domain.ladder.Bridge;
 import domain.ladder.Floor;
 import domain.ladder.Ladder;
@@ -18,11 +19,11 @@ public class OutputView {
     }
 
     public static void printLadderMakingResult(final List<String> names, final Ladder ladder,
-                                               final List<String> matchingItems) {
+                                               final MatchingItems matchingItems) {
         printResultMessage();
         printWithFormat(names);
         printLadder(ladder);
-        printWithFormat(matchingItems);
+        printWithFormat(matchingItems.getItems());
     }
 
     private static void printResultMessage() {

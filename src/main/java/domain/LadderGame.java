@@ -58,6 +58,10 @@ public class LadderGame {
         return players.getNames();
     }
 
+    public MatchingItems getMatchingItems() {
+        return matchingItems;
+    }
+
     public Ladder getLadder() {
         return ladder;
     }
