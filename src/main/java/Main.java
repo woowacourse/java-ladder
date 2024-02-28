@@ -15,7 +15,7 @@ public class Main {
     private static final OutputView outputView = new OutputView();
     private static final ErrorHandler errorHandler = new ErrorHandler();
     private static final PointStrategy pointStrategy = new RandomPointStrategy();
-    private static final String COMMAND_ALL_RESULT = "all";
+    private static final String COMMAND_PRINT_ALL = "all";
 
     public static void main(String[] args) {
         Members members = errorHandler.readUntilNoError(Main::makeMembers);
@@ -24,7 +24,7 @@ public class Main {
         Game game = Game.of(members, height, rewards, pointStrategy);
 
         outputView.printGame(game);
-        processGameResult(game.findRewardMap());
+        processGameResult(game);
     }
 
     private static Members makeMembers() {
@@ -39,27 +39,20 @@ public class Main {
         return Rewards.from(members.getCount(), inputView.readRewards());
     }
 
-    // TODO: 구조가 너무 복잡함. 구조를 간소화하는 작업 필요
-    private static void processGameResult(Map<String, String> rewardMap) {
-        boolean isEnd = false;
-        while (!isEnd) {
-            String memberName = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap));
-            isEnd = isAllResultPrinted(memberName, rewardMap);
-        }
-    }
+    private static void processGameResult(Game game) {
+        Map<String, String> rewardMap = game.findRewardMap();
 
-    private static boolean isAllResultPrinted(String memberName, Map<String, String> rewardMap) {
-        if (memberName.equals(COMMAND_ALL_RESULT)) {
-            outputView.printAllResult(rewardMap);
-            return true;
+        String memberName = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap));
+        while (!memberName.equals(COMMAND_PRINT_ALL)) {
+            outputView.printRewardName(rewardMap.get(memberName));
+            memberName = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap));
         }
-        outputView.printOneResult(memberName, rewardMap);
-        return false;
+        outputView.printAllResult(rewardMap);
     }
 
     private static String makeMemberName(Map<String, String> rewardMap) {
         String memberName = inputView.readMemberName();
-        if (memberName.equals(COMMAND_ALL_RESULT)) {
+        if (memberName.equals(COMMAND_PRINT_ALL)) {
             return memberName;
         }
         if (!rewardMap.containsKey(memberName)) {

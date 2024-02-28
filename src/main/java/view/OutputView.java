@@ -20,9 +20,9 @@ public class OutputView {
         printRewards(game.getRewards());
     }
 
-    public void printOneResult(String memberName, Map<String, String> rewardMap) {
+    public void printRewardName(String rewardName) {
         System.out.println("실행 결과");
-        System.out.println(rewardMap.get(memberName));
+        System.out.println(rewardName);
     }
 
     public void printAllResult(Map<String, String> rewardMap) {
