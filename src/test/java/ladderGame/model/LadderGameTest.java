@@ -24,7 +24,7 @@ class LadderGameTest {
                 .limit(4)
                 .toList();
 
-        Ladder ladder = new Ladder(new ArrayList<>(lines));
+        Ladder ladder = new Ladder(lines);
 
         ladderGame = new LadderGame(new Players(List.of("포비", "왼손", "준")), new LadderResults(List.of("꽝", "5000", "3000")), ladder);
 
@@ -67,7 +67,7 @@ class LadderGameTest {
                 .limit(4)
                 .toList();
 
-        Ladder ladder = new Ladder(new ArrayList<>(lines));
+        Ladder ladder = new Ladder(lines);
 
         assertThatThrownBy(() -> new LadderGame(new Players(List.of("포비", "왼손", "준")), new LadderResults(List.of("꽝", "5000")), ladder))
                 .isInstanceOf(IllegalArgumentException.class);

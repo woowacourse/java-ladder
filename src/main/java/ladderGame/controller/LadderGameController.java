@@ -54,6 +54,6 @@ public class LadderGameController {
                 .limit(inputView.inputMaxLadderHeight())
                 .toList();
 
-        return new Ladder(new ArrayList<>(lines));
+        return new Ladder(lines);
     }
 }

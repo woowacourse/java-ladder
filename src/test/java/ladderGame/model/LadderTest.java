@@ -19,7 +19,7 @@ class LadderTest {
                 .limit(4)
                 .toList();
 
-        Ladder ladder = new Ladder(new ArrayList<>(lines));
+        Ladder ladder = new Ladder(lines);
 
         /*
            |-----|     |
