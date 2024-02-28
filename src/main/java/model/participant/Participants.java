@@ -1,4 +1,6 @@
-package model;
+package model.participant;
+
+import model.position.Position;
 
 import java.util.*;
 
@@ -7,7 +9,7 @@ public class Participants {
     private static final String DUPLICATED_PARTICIPANT_NAME = "중복된 참가자들은 존재할 수 없습니다.";
     private static final String UNDER_PARTICIPANT_SIZE = "참가자가 1명 이하인 경우는 존재할 수 없습니다.";
     private static final int MINIMUM_PARTICIPANT_SIZE = 2;
-    private final Map<Participant, Integer> participants;
+    private final Map<Participant, Position> participants;
 
     public Participants(List<String> participantsName) {
         validateNotDuplicateName(participantsName);
@@ -28,10 +30,10 @@ public class Participants {
         }
     }
 
-    private Map<Participant, Integer> create(List<String> participantsName) {
-        Map<Participant, Integer> participants = new LinkedHashMap<>();
+    private Map<Participant, Position> create(List<String> participantsName) {
+        Map<Participant, Position> participants = new LinkedHashMap<>();
         for (int i = 0; i < participantsName.size(); i++) {
-            participants.put(new Participant(participantsName.get(i)), i);
+            participants.put(new Participant(participantsName.get(i)), new Position(i));
         }
         return participants;
     }
@@ -41,12 +43,12 @@ public class Participants {
     }
 
     public List<Participant> getParticipants() {
-        return List.copyOf(participants.keySet());
+        return participants.keySet().stream().toList();
     }
 
-    public int getPosition(Participant participant) {
-        if(participants.containsKey(participant)){
-            return participants.get(participant);
+    public Position getPosition(Participant participant) {
+        if (participants.containsKey(participant)) {
+            return new Position(participants.get(participant));
         }
         throw new IllegalArgumentException("존재하지 않는 참가자 입니다.");
     }

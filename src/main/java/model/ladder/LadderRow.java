@@ -1,4 +1,6 @@
-package model;
+package model.ladder;
+
+import model.position.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,42 +32,43 @@ public class LadderRow {
         return new ArrayList<>(spaces);
     }
 
-    public int climb(int position) {
-        if(isEitherEnds(position)){
+    public Position climb(Position position) {
+        if (isEitherEnd(position)) {
             return climbOnEnd(position);
         }
         return climbOnMiddle(position);
     }
 
-    private boolean isEitherEnds(int position){
-        return position == 0 || position == spaces.size();
+    private boolean isEitherEnd(Position position) {
+        return position.same(0) || position.same(spaces.size());
     }
 
-    private int climbOnEnd(int position){
-        if(position == 0){
+    private Position climbOnEnd(Position position) {
+        if (position.same(0)) {
             return climbRight(position);
         }
         return climbLeft(position);
     }
 
-    private int climbRight(int position){
-        if(spaces.get(position) == Space.LINE){
-            return position+1;
-        }
-        return position;
-    }
-
-    private int climbLeft(int position){
-        if(spaces.get(position - 1) == Space.LINE){
-            return position-1;
-        }
-        return position;
-    }
-
-    private int climbOnMiddle(int position){
-        if(climbLeft(position) != position){
-            return climbLeft(position);
+    private Position climbOnMiddle(Position position) {
+        if (!climbLeft(position).equals(position)) {
+            return position.prior();
         }
         return climbRight(position);
     }
+
+    private Position climbRight(Position position) {
+        if (spaces.get(position.currentIndex()) == Space.LINE) {
+            return position.next();
+        }
+        return position.current();
+    }
+
+    private Position climbLeft(Position position) {
+        if (spaces.get(position.priorIndex()) == Space.LINE) {
+            return position.prior();
+        }
+        return position.current();
+    }
+
 }

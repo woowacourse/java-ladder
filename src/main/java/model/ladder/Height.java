@@ -1,4 +1,4 @@
-package model;
+package model.ladder;
 
 
 public class Height {

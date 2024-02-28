@@ -1,6 +1,11 @@
 package view;
 
-import model.*;
+import model.ladder.Height;
+import model.ladder.Ladder;
+import model.ladder.LadderRow;
+import model.ladder.Space;
+import model.participant.Participant;
+import model.participant.Participants;
 
 import java.util.List;
 

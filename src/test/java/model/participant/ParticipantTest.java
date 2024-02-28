@@ -1,5 +1,6 @@
-package model;
+package model.participant;
 
+import model.participant.Participant;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

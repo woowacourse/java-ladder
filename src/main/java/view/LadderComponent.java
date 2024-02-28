@@ -1,6 +1,6 @@
 package view;
 
-import model.Space;
+import model.ladder.Space;
 
 public enum LadderComponent {
     DIVISION("|"),

@@ -1,10 +1,9 @@
-package model;
+package model.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 public class LadderGenerateStrategy implements BiFunction<Integer, Integer, List<List<Boolean>>> {
 
@@ -17,9 +16,9 @@ public class LadderGenerateStrategy implements BiFunction<Integer, Integer, List
         return rows;
     }
 
-    private List<Boolean> createRow(int rowCount){
+    private List<Boolean> createRow(int rowCount) {
         List<Boolean> row = new ArrayList<>();
-        for (int i = 0; i < rowCount ; i++) {
+        for (int i = 0; i < rowCount; i++) {
             row.add(new Random().nextBoolean());
         }
         return row;

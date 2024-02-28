@@ -1,9 +1,10 @@
-package model;
+package model.ladder;
 
+import model.ladder.Height;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static model.Height.NOT_POSITIVE_HEIGHT;
+import static model.ladder.Height.NOT_POSITIVE_HEIGHT;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

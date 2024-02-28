@@ -1,9 +1,11 @@
-package model;
+package model.ladder;
+
+import model.participant.Participants;
+import model.position.Position;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 public class Ladder {
     private final List<LadderRow> ladderRows;
@@ -30,10 +32,11 @@ public class Ladder {
         return new ArrayList<>(ladderRows);
     }
 
-    public int result(int participantsPosition) {
-        for (LadderRow ladderRow : ladderRows){
-            participantsPosition = ladderRow.climb(participantsPosition);
+    public Position getEndPositionBy(Position startPosition) {
+        Position endPosition = startPosition.current();
+        for (LadderRow ladderRow : ladderRows) {
+            endPosition = ladderRow.climb(endPosition);
         }
-        return participantsPosition;
+        return endPosition;
     }
 }

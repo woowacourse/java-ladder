@@ -1,5 +1,8 @@
-package model;
+package model.participant;
 
+import model.participant.Participant;
+import model.participant.Participants;
+import model.position.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,9 +35,9 @@ class ParticipantsTest {
     void participantsPosition(){
         Participants participants = new Participants(List.of("pobi", "left", "right"));
         assertAll(
-                () -> assertThat(participants.getPosition(new Participant("pobi"))).isEqualTo(0),
-                () -> assertThat(participants.getPosition(new Participant("left"))).isEqualTo(1),
-                () -> assertThat(participants.getPosition(new Participant("right"))).isEqualTo(2)
+                () -> assertThat(participants.getPosition(new Participant("pobi"))).isEqualTo(new Position(0)),
+                () -> assertThat(participants.getPosition(new Participant("left"))).isEqualTo(new Position(1)),
+                () -> assertThat(participants.getPosition(new Participant("right"))).isEqualTo(new Position(2))
         );
     }
 

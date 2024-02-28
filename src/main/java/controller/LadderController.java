@@ -1,9 +1,9 @@
 package controller;
 
-import model.Height;
-import model.Ladder;
-import model.LadderGenerateStrategy;
-import model.Participants;
+import model.ladder.Height;
+import model.ladder.Ladder;
+import model.ladder.LadderGenerateStrategy;
+import model.participant.Participants;
 import view.InputView;
 import view.OutputView;
 
