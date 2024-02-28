@@ -12,13 +12,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class ResultsTest {
+public class PrizesTest {
 
-    @DisplayName("플레이어의 수와 결과들의 수가 다르면 에러가 발생한다")
+    @DisplayName("플레이어의 수와 상품들의 수가 다르면 에러가 발생한다")
     @ParameterizedTest
     @MethodSource("createFailByNonMatchedCountArguments")
     public void createFailByNonMatchedCount(Players players, List<String> inputResults) {
-        assertThatCode(() -> new Results(players, inputResults))
+        assertThatCode(() -> new Prizes(players, inputResults))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(String.format("입력한 결과의 수는 플레이어의 수와 일치해야 합니다. 입력한 결과 수: %d", inputResults.size()));
     }
@@ -30,11 +30,11 @@ public class ResultsTest {
         );
     }
 
-    @DisplayName("플레이어의 수와 결과들의 수가 같으면 에러가 발생하지 않는다")
+    @DisplayName("플레이어의 수와 상품들의 수가 같으면 에러가 발생하지 않는다")
     @ParameterizedTest
     @MethodSource("createSuccessArguments")
     public void createSuccess(Players players, List<String> inputResults) {
-        assertThatCode(() -> new Results(players, inputResults))
+        assertThatCode(() -> new Prizes(players, inputResults))
                 .doesNotThrowAnyException();
     }
 
@@ -46,11 +46,11 @@ public class ResultsTest {
         );
     }
 
-    @DisplayName("입력한 결과들을 반환한다")
+    @DisplayName("입력한 상품들을 반환한다")
     @Test
     public void getResults() {
-        Results results = new Results(new Players(List.of("pobi", "tommy")), List.of("꽝", "당첨"));
+        Prizes prizes = new Prizes(new Players(List.of("pobi", "tommy")), List.of("꽝", "당첨"));
 
-        assertThat(results.getResults()).isEqualTo(List.of("꽝", "당첨"));
+        assertThat(prizes.getPrizes()).isEqualTo(List.of("꽝", "당첨"));
     }
 }

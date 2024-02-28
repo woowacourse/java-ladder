@@ -1,29 +1,29 @@
 package domain;
 
-public class Result {
+public class Prize {
 
     private static final int MAXIMUM_LENGTH = 5;
 
-    private final String result;
+    private final String prize;
 
-    public Result(String result) {
-        validate(result);
-        this.result = result;
+    public Prize(String prize) {
+        validate(prize);
+        this.prize = prize;
     }
 
-    private void validate(String inputResult) {
-        if (inputResult == null || inputResult.isEmpty() || MAXIMUM_LENGTH < inputResult.length()) {
+    private void validate(String inputPrize) {
+        if (inputPrize == null || inputPrize.isEmpty() || MAXIMUM_LENGTH < inputPrize.length()) {
             throw new IllegalArgumentException(
-                    String.format("결과의 길이는 최대 %d자만 입력 가능합니다. 입력값: %s", MAXIMUM_LENGTH, inputResult));
+                    String.format("결과의 길이는 최대 %d자만 입력 가능합니다. 입력값: %s", MAXIMUM_LENGTH, inputPrize));
         }
 
-        if (isInvalidCharacter(inputResult)) {
-            throw new IllegalArgumentException(String.format("결과는 영어, 한글, 숫자만 가능합니다. 입력값: %s", inputResult));
+        if (isInvalidCharacter(inputPrize)) {
+            throw new IllegalArgumentException(String.format("결과는 영어, 한글, 숫자만 가능합니다. 입력값: %s", inputPrize));
         }
     }
 
-    private boolean isInvalidCharacter(String inputResult) {
-        return inputResult.chars()
+    private boolean isInvalidCharacter(String inputPrize) {
+        return inputPrize.chars()
                 .anyMatch(character -> !(isAlphabet(character) || isKorean(character) || isNumber(character)));
     }
 
@@ -47,7 +47,7 @@ public class Result {
         return '0' <= character && character <= '9';
     }
 
-    public String getResult() {
-        return result;
+    public String getPrize() {
+        return prize;
     }
 }
