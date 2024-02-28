@@ -34,4 +34,19 @@ public class PlayerTest {
         // Then
         assertThat(isEscapeLadder).isTrue();
     }
+
+    @DisplayName("플레이어가 이동하면 현재 위치한 층과 라인 번호 정보가 갱신된다.")
+    @Test
+    void 플레이어_이동() {
+        // Given
+        final Player player = Player.of("kelly", 2, 5);
+        final int moveLineDistance = 1;
+
+        // When
+        player.move(moveLineDistance);
+
+        // Then
+        assertThat(player.getCurrentLineNumber().value()).isEqualTo(3);
+        assertThat(player.getCurrentLineFloor().value()).isEqualTo(4);
+    }
 }
