@@ -2,6 +2,7 @@ package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,7 +38,13 @@ public class GameResultsTest {
     @DisplayName("게임의 최종 결과를 모두 반환한다.")
     @Test
     void findAll() {
-        assertThat(gameResults.findAll()).extracting("UserName").containsExactly("a", "b");
-        assertThat(gameResults.findAll()).extracting("Destination").containsExactly("3000", "꽝");
+        List<UserDestination> actual = gameResults.getGameResults();
+
+        assertAll(
+                () -> assertThat(actual).extracting("UserName")
+                        .containsExactly("a", "b"),
+                () -> assertThat(actual).extracting("Destination")
+                        .containsExactly("3000", "꽝")
+        );
     }
 }
