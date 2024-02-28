@@ -1,6 +1,9 @@
 package view.dto;
 
-import domain.*;
+import domain.Line;
+import domain.Player;
+import domain.Players;
+import domain.Results;
 
 import java.util.List;
 

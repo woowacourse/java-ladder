@@ -2,7 +2,6 @@ package domain;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static message.ErrorMessage.*;
 
@@ -26,9 +25,9 @@ public class Players {
     private static void validateDuplicated(List<Player> players) {
         HashSet<String> uniquePlayers = new HashSet<>();
         players.stream()
-                .forEach(player ->uniquePlayers.add(player.getName()));
+                .forEach(player -> uniquePlayers.add(player.getName()));
 
-        if(players.size() != uniquePlayers.size()){
+        if (players.size() != uniquePlayers.size()) {
             throw new IllegalArgumentException(DUPLICATED_PLAYER_NAME_EXCEPTION.getMessage());
         }
     }

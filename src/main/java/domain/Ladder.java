@@ -43,6 +43,7 @@ public class Ladder {
         }
         return playerPosition;
     }
+
     private boolean isNotFarLeft(Position playerPosition) {
         return playerPosition.getIndex() != FAR_LEFT_POSITION;
     }
