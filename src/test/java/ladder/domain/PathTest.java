@@ -43,7 +43,7 @@ public class PathTest {
         final LineNumber inputLineNumber = new LineNumber(2);
 
         // When
-        int otherLineNumber = path.getOtherPathDistance(inputLineNumber);
+        int otherLineNumber = path.getOtherLineDistance(inputLineNumber);
 
         // Then
         assertThat(otherLineNumber).isEqualTo(-1);

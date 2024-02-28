@@ -17,7 +17,7 @@ public class Path {
         return startLineNumber.value() == lineNumber.value() || endLineNumber.value() == lineNumber.value();
     }
 
-    public int getOtherPathDistance(LineNumber lineNumber) {
+    public int getOtherLineDistance(LineNumber lineNumber) {
         if (startLineNumber.value() == lineNumber.value()) {
             return 1;
         }
