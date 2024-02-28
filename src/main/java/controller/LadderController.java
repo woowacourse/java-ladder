@@ -1,8 +1,9 @@
 package controller;
 
-import java.util.List;
+import java.util.Map;
 import model.Height;
 import model.Ladder;
+import model.LadderGame;
 import model.LadderRowGenerator;
 import model.Participants;
 import model.RandomBooleanGenerator;
@@ -22,8 +23,10 @@ public class LadderController {
     public void play() {
         Participants participants = new Participants(inputView.inputParticipantsName());
         Height height = new Height(inputView.inputLadderHeight());
-        List<String> results = inputView.inputResults();//TODO: 참여자 수만큼 입력 받는다.
+        Map<Integer, String> results = inputView.inputResults();//TODO: 참여자 수만큼 입력 받는다.
         Ladder ladder = new Ladder(height, new LadderRowGenerator(new RandomBooleanGenerator()), participants);
+        LadderGame ladderGame = new LadderGame(participants, ladder, results);
+
         outputView.printResult();
         outputView.printParticipantsName(participants);
         outputView.printLadder(ladder);

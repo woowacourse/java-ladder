@@ -1,9 +1,12 @@
 package view;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class InputView {
 
@@ -20,18 +23,30 @@ public class InputView {
         System.out.println(INPUT_PARTICIPANT_NAMES);
         String input = in.nextLine();
         validateNotNullAndBlank(input);
-        return Arrays.stream(input.split(DELIMITER))
-                .map(String::trim)
-                .toList();
+        return splitInputByDelimiter(input, DELIMITER);
     }
 
-    public List<String> inputResults() {
+    public Map<Integer, String> inputResults() {
         System.out.println(INPUT_GAME_RESULT);
         String input = in.nextLine();
         validateNotNullAndBlank(input);
-        return Arrays.stream(input.split(DELIMITER))
+        List<String> inputs = splitInputByDelimiter(input, DELIMITER);
+        return mappingResults(inputs);
+    }
+
+    private static Map<Integer, String> mappingResults(List<String> inputs) {
+        Map<Integer, String> results = new LinkedHashMap<>();
+        for (int i = 0; i < inputs.size(); i++) {
+            results.put(i, inputs.get(i));
+        }
+        return results;
+    }
+
+    private static List<String> splitInputByDelimiter(String input, String delimiter) {
+        List<String> inputs = Arrays.stream(input.split(delimiter))
                 .map(String::trim)
                 .toList();
+        return inputs;
     }
 
     private void validateNotNullAndBlank(String input) {
