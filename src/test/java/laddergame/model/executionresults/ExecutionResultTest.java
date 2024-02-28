@@ -13,6 +13,7 @@ class ExecutionResultTest {
     @NullAndEmptySource
     @ValueSource(strings = {"  ", "    "})
     void validateName(String given) {
+        //when //then
         assertThatThrownBy(() -> new ExecutionResult(given))
                 .isInstanceOf(IllegalArgumentException.class);
     }

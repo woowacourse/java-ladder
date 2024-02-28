@@ -15,6 +15,7 @@ class LadderGameTest {
     @ParameterizedTest
     @MethodSource("createLadderGameAndAllIndex")
     void climb(LadderGame ladderGame, List<Integer> changedIndexes) {
+        //when //then
         assertAll(
                 () -> assertThat(ladderGame.climb(0)).isEqualTo(changedIndexes.get(0)),
                 () -> assertThat(ladderGame.climb(1)).isEqualTo(changedIndexes.get(1)),

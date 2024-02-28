@@ -11,7 +11,9 @@ class LineStateTest {
     @ParameterizedTest
     @CsvSource(value = {"true,START", "false,NONE"})
     void decideLineStateWithBoolean(boolean decision, LineState expected) {
+        //when
         LineState actual = LineState.decideLineState(decision);
+        //then
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -19,7 +21,9 @@ class LineStateTest {
     @ParameterizedTest
     @CsvSource(value = {"START,END", "END,NONE", "NONE,NONE"})
     void decideLineStateWithBeforeState(LineState beforeState, LineState expected) {
+        //when
         LineState actual = LineState.decideLineState(beforeState);
+        //then
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -27,7 +31,9 @@ class LineStateTest {
     @ParameterizedTest
     @CsvSource(value = {"START,true,END", "START,false,END", "NONE,true,START", "END,false,NONE"})
     void decideLineStateWithBeforeState(LineState beforeState, boolean given, LineState expected) {
+        //when
         LineState actual = LineState.decideLineState(beforeState, given);
+        //then
         assertThat(actual).isEqualTo(expected);
     }
 }

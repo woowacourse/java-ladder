@@ -20,6 +20,7 @@ class RandomBooleanGeneratorTest {
         @ParameterizedTest
         @ValueSource(ints = {1, 2, 3, 4, 10, 100})
         void getLinesDiffHeight(int height) {
+            //given
             LadderHeight given = new LadderHeight(height);
             Participants participants = new Participants(
                     List.of(
@@ -29,8 +30,9 @@ class RandomBooleanGeneratorTest {
                     ));
             RandomLinesGenerator randomGenerator = new RandomLinesGenerator();
             LadderGame ladderGame = randomGenerator.getLadderGame(given, participants);
+            //when
             List<Line> result = ladderGame.getLines();
-
+            //then
             assertThat(result).hasSize(height);
         }
 
@@ -38,12 +40,14 @@ class RandomBooleanGeneratorTest {
         @ParameterizedTest
         @ValueSource(ints = {3, 5, 10, 12})
         void getLinesDiffCount(int count) {
+            //given
             LadderHeight ladderHeight = new LadderHeight(3);
             Participants participants = generateParticipants(count);
             RandomLinesGenerator randomGenerator = new RandomLinesGenerator();
             LadderGame ladderGame = randomGenerator.getLadderGame(ladderHeight, participants);
+            //when
             List<Line> result = ladderGame.getLines();
-
+            //then
             assertAll(
                     () -> assertThat(result.get(0).getLineStates()).hasSize(count),
                     () -> assertThat(result.get(1).getLineStates()).hasSize(count),

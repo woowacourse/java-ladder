@@ -11,6 +11,7 @@ class LadderHeightTest {
     @ParameterizedTest
     @ValueSource(ints = {-5, -1, 0})
     void validateLadderHeight(int given) {
+        //when //then
         assertThatThrownBy(() -> new LadderHeight(given))
                 .isInstanceOf(IllegalArgumentException.class);
     }

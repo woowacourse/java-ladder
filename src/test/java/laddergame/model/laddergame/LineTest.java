@@ -18,12 +18,14 @@ class LineTest {
     @ParameterizedTest
     @CsvSource(value = {"END,END", "START,START"})
     void validateStartWithEndOrEndsWithStart(LineState first, LineState end) {
+        //given
         List<LineState> lineStates = List.of(
                 first,
                 LineState.START,
                 LineState.END,
                 end
         );
+        //when //then
         assertThatThrownBy(() -> new Line(lineStates))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -32,6 +34,7 @@ class LineTest {
     @ParameterizedTest
     @MethodSource("generateContinuousState")
     void validateContinuousStartOrEnd(List<LineState> given) {
+        //when //then
         assertThatThrownBy(() -> new Line(given))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -39,13 +42,14 @@ class LineTest {
     @DisplayName("START이면 index는 증가하고 END이면 index는 감소한다.")
     @Test
     void move() {
+        //given
         List<LineState> lineStates = List.of(
                 LineState.START,
                 LineState.END,
                 LineState.NONE
         );
         Line line = new Line(lineStates);
-
+        //when //then
         assertAll(
                 () -> assertThat(line.move(0)).isEqualTo(1),
                 () -> assertThat(line.move(1)).isEqualTo(0),

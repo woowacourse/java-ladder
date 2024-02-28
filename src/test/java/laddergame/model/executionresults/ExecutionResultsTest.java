@@ -20,13 +20,14 @@ class ExecutionResultsTest {
     @DisplayName("실행 결과 수가 참가자 수와 동일하지 않는 경우 예외를 발생한다.")
     @Test
     void validateSameCountWithParticipants() {
+        //given
         List<ExecutionResult> executionResults = Stream.of("1", "2", "3", "4")
                 .map(ExecutionResult::new)
                 .toList();
         Participants participants = Stream.of("daon", "ash", "dao", "ted", "12")
                 .map(Participant::new)
                 .collect(collectingAndThen(toList(), Participants::new));
-
+        //when //then
         assertThatThrownBy(() -> new ExecutionResults(executionResults, participants))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -37,14 +38,15 @@ class ExecutionResultsTest {
         @DisplayName("각 인덱스에 해당하는 참가자를 반환한다.")
         @Test
         void find() {
+            //given
             Participants participants = Stream.of("daon", "ash", "dao", "ted")
                     .map(Participant::new)
                     .collect(collectingAndThen(toList(), Participants::new));
-
+            //when
             ExecutionResults executionResults = Stream.of("꽝", "꽝", "당첨", "청소")
                     .map(ExecutionResult::new)
                     .collect(collectingAndThen(toList(), results -> new ExecutionResults(results, participants)));
-
+            //then
             assertAll(
                     () -> assertThat(executionResults.findByIndex(0).getName()).isEqualTo("꽝"),
                     () -> assertThat(executionResults.findByIndex(1).getName()).isEqualTo("꽝"),
@@ -57,13 +59,14 @@ class ExecutionResultsTest {
         @ParameterizedTest
         @ValueSource(ints = {-10, -2, -1, 5, 6, 7, 8})
         void findInvalidIndex(int given) {
+            //given
             Participants participants = Stream.of("daon", "ash", "dao", "ted")
                     .map(Participant::new)
                     .collect(collectingAndThen(toList(), Participants::new));
-
             ExecutionResults executionResults = Stream.of("꽝", "꽝", "당첨", "청소")
                     .map(ExecutionResult::new)
                     .collect(collectingAndThen(toList(), results -> new ExecutionResults(results, participants)));
+            //when //then
             assertThatThrownBy(() -> executionResults.findByIndex(given))
                     .isInstanceOf(IllegalArgumentException.class);
         }

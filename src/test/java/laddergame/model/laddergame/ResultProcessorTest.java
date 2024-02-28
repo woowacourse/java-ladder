@@ -22,12 +22,14 @@ class ResultProcessorTest {
     @ParameterizedTest
     @MethodSource("createLadderGameAndSingleIndex")
     void getGameResult(LadderGame ladderGame, int changedIndex) {
+        //given
         Participants participants = createParticipants();
         ExecutionResults executionResults = createExecutionResults(participants);
         InquirySubject inquirySubject = new InquirySubject(new Participant("daon"), participants);
-
+        //when
         ResultProcessor resultProcessor = new ResultProcessor(inquirySubject, executionResults, ladderGame);
         List<GameResult> gameResults = resultProcessor.getGameResults();
+        //them
         assertThat(gameResults).hasSize(1);
         assertThat(gameResults.get(0).getExecutionResult()).isEqualTo(executionResults.findByIndex(changedIndex));
     }
@@ -36,12 +38,14 @@ class ResultProcessorTest {
     @ParameterizedTest
     @MethodSource("createLadderGameAndAllIndex")
     void getGameResultAll(LadderGame ladderGame, List<Integer> changedIndexes) {
+        //given
         Participants participants = createParticipants();
         ExecutionResults executionResults = createExecutionResults(participants);
         InquirySubject inquirySubject = new InquirySubject(new Participant("all"), participants);
-
+        //when
         ResultProcessor resultProcessor = new ResultProcessor(inquirySubject, executionResults, ladderGame);
         List<GameResult> gameResults = resultProcessor.getGameResults();
+        //then
         assertAll(
                 () -> assertThat(gameResults.get(0).getExecutionResult())
                         .isEqualTo(executionResults.findByIndex(changedIndexes.get(0))),
