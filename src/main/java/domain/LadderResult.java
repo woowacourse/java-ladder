@@ -1,12 +1,15 @@
 package domain;
 
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.toMap;
+
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderResult {
 
     public static final int ONE_STEP = 1;
+
     private Map<Integer, Integer> firstAndLastPosition;
 
     public LadderResult(Ladder ladder, int participantsCount) {
@@ -17,7 +20,7 @@ public class LadderResult {
     private void initPosition(Ladder ladder, int participantsCount) {
         this.firstAndLastPosition = IntStream.range(0, participantsCount)
                 .boxed()
-                .collect(Collectors.toMap(i -> i, i -> i));
+                .collect(toMap(identity(), identity()));
     }
 
     private void calculatePosition(int floor, Ladder ladder, int participantsCount) {
