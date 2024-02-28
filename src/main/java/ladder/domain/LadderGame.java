@@ -22,6 +22,12 @@ public class LadderGame {
         }
     }
 
+    public void playAllGame() {
+        for (int i = 0; i < ladder.getHeight(); i++) {
+            playOneLine(i);
+        }
+    }
+
     public List<String> getPlayerResult() {
         return players.getPlayerNames();
     }

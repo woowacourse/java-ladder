@@ -18,11 +18,10 @@ class LadderGameTest {
         List<PlayerName> playerNames = new ArrayList<>();
         playerNames.add(new PlayerName("hogee"));
         playerNames.add(new PlayerName("jazz"));
+        playerNames.add(new PlayerName("pola"));
         players = new Players(playerNames);
 
-        List<Line> lines = new ArrayList<>();
-        lines.add(new Line(List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE, Stick.EXISTENCE)));
-        ladder = Ladder.makeLadder(new Height(3), 3, new LinePatternGenerator(new AlwaysTrueSupplier()));
+        ladder = Ladder.makeLadder(new Height(4), 3, new LinePatternGenerator(new AlwaysTrueSupplier()));
     }
 
     @Test
@@ -31,7 +30,15 @@ class LadderGameTest {
         LadderGame ladderGame = new LadderGame(players, ladder);
         ladderGame.playOneLine(0);
 
-        Assertions.assertThat(ladderGame.getPlayerResult()).containsExactly("jazz", "hogee");
+        Assertions.assertThat(ladderGame.getPlayerResult()).containsExactly("jazz", "hogee", "pola");
+    }
+
+    @Test
+    @DisplayName("전체 라인에 대한 게임을 진행한다.")
+    void playAllLineGame() {
+        LadderGame ladderGame = new LadderGame(players, ladder);
+        ladderGame.playAllGame();
+        Assertions.assertThat(ladderGame.getPlayerResult()).containsExactly("hogee", "jazz", "pola");
     }
 
     class AlwaysTrueSupplier implements BooleanSupplier {
