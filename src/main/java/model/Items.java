@@ -11,9 +11,13 @@ public class Items {
         this.items = Collections.unmodifiableList(items);
     }
 
-    public static Items of(final List<Item> items, final int personCount) {
-        int itemsCount = items.size();
+    public static Items of(final List<String> itemNames, final int personCount) {
+        int itemsCount = itemNames.size();
         validateItemsCount(itemsCount, personCount);
+
+        List<Item> items = itemNames.stream()
+                .map(Item::new)
+                .toList();
         return new Items(items);
     }
 

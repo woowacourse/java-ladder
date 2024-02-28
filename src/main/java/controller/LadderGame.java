@@ -20,26 +20,25 @@ public class LadderGame {
 
     public void play() {
         final People people = initPeople();
+        final Items items = initItems(people.getPersonCount());
         final Ladder ladder = initLadder(people.getPersonCount());
-        final Items items = initItems();
 
         final Result result = Result.from(people, ladder, items);
         outputView.printResult(result);
     }
 
-    // TODO: 구현
-    private Items initItems() {
-        return null;
-    }
-
-
     private People initPeople() {
-        final List<String> names = inputView.inputNames();
-        return People.from(names);
+        final List<String> peopleNames = inputView.inputPeopleNames();
+        return People.from(peopleNames);
     }
 
     private Ladder initLadder(final int personCount) {
         final int height = inputView.inputHeight();
         return Ladder.from(height, personCount, new RandomLinesGenerator());
+    }
+
+    private Items initItems(final int personCount) {
+        List<String> itemNames = inputView.inputItemsNames();
+        return Items.of(itemNames, personCount);
     }
 }
