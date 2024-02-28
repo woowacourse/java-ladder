@@ -2,6 +2,7 @@ package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
@@ -20,6 +21,20 @@ class ItemsTest {
                 new Item("3000")
         );
         assertThatCode(() -> new Items(items));
+    }
+
+    @Test
+    @DisplayName("참여 인원 수와 결과 목록의 수가 동일해야 한다.")
+    void checkItemCountWithPersonCount() {
+        List<Item> items = List.of(
+                new Item("꽝"),
+                new Item("5000"),
+                new Item("꽝"),
+                new Item("3000"));
+        int personCount = 3;
+        assertThatThrownBy(() -> Items.of(items, personCount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("참여 인원 수와 결과 목록의 수가 동일하지 않습니다.");
     }
 
     @Test
