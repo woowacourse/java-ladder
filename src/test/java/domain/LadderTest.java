@@ -42,7 +42,7 @@ public class LadderTest {
                 List.of(new Reward("꽝"),
                         new Reward("5000"),
                         new Reward("꽝"),
-                        new Reward("3000")));
+                        new Reward("3000")),4);
 
         //when
 
@@ -86,7 +86,7 @@ public class LadderTest {
         Reward success2 = new Reward("3000");
 
         Players players = new Players(List.of(pobi, honux, cron, jk));
-        Rewards rewards = new Rewards(List.of(fail1, success1, fail2, success2));
+        Rewards rewards = new Rewards(List.of(fail1, success1, fail2, success2),4);
 
         //when
         Map<PlayerName, String> actualResult = ladder.findAllPlayerReward(players, rewards);

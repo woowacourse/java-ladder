@@ -16,7 +16,7 @@ public class LadderGame {
 
     public void run() {
         Players players = new Players(InputView.readPlayers());
-        Rewards rewards = new Rewards(InputView.readRewards());
+        Rewards rewards = new Rewards(InputView.readRewards(), players.getPlayersNames().size());
         Height ladderHeight = new Height(InputView.readLadderHeight());
 
         int ladderWidth = players.getPlayersNames().size() - 1;
