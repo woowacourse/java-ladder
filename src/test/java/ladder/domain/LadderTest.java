@@ -1,4 +1,41 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 class LadderTest {
+
+    private final RandomPointsGenerator pointsGenerator1 = new RandomPointsGenerator() {
+        @Override
+        public List<Point> generate(int size) {
+            return List.of(Point.ON, Point.OFF, Point.ON);
+        }
+    };
+
+    private final RandomPointsGenerator pointsGenerator2 = new RandomPointsGenerator() {
+        @Override
+        public List<Point> generate(int size) {
+            return List.of(Point.OFF, Point.ON, Point.OFF);
+        }
+    };
+
+    @Test
+    @DisplayName("사다리를 연속으로 탄다.")
+    void rideLadder() {
+        // given
+        Line line1 = new Line(pointsGenerator1.generate(3));
+        Line line2 = new Line(pointsGenerator2.generate(3));
+
+        Ladder ladder = new Ladder(List.of(line1, line2));
+
+        // when
+        int ride = ladder.ride(1);
+
+        // then
+        assertThat(ride).isEqualTo(0);
+    }
 }
