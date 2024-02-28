@@ -17,10 +17,6 @@ public class Trace {
         return this;
     }
 
-    public boolean isNot(final int i) {
-        return this.position != i;
-    }
-
     public int getPosition() {
         return position;
     }

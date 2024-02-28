@@ -39,11 +39,11 @@ public class Line {
     }
 
     public Trace move(final Trace trace) {
-        if (trace.isNot(0) && canMoveLeft(trace)) {
+        if (canMoveLeft(trace)) {
             return trace.moveLeft();
         }
 
-        if (trace.isNot(points.size()) && canMoveRight(trace)) {
+        if (canMoveRight(trace)) {
             return trace.moveRight();
         }
 
@@ -51,10 +51,16 @@ public class Line {
     }
 
     private boolean canMoveLeft(final Trace trace) {
+        if (trace.getPosition() != 0) {
+            return false;
+        }
         return hasPoint(trace.getPosition() - 1);
     }
 
     private boolean canMoveRight(final Trace trace) {
+        if (trace.getPosition() != this.points.size()) {
+            return false;
+        }
         return hasPoint(trace.getPosition());
     }
 
