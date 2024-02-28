@@ -1,8 +1,10 @@
 package laddergame.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.NullSource;
@@ -27,5 +29,25 @@ class ParticipantTest {
         assertThatThrownBy(() -> new Participant(given))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 참여자 이름은 null이거나 공백일 수 없다.");
+    }
+
+    @DisplayName("이름이 같은 두 참여자가 동일한 객체인지 판별한다.")
+    @Test
+    void equals() {
+        String given = "daon";
+        Participant first = new Participant(given);
+        Participant second = new Participant(given);
+
+        assertThat(first).isEqualTo(second);
+    }
+
+    @DisplayName("이름이 같은 두 참여자가 동일한 해시코드를 갖는지 판별한다.")
+    @Test
+    void hashcode() {
+        String given = "daon";
+        Participant first = new Participant(given);
+        Participant second = new Participant(given);
+
+        assertThat(first.hashCode()).isEqualTo(second.hashCode());
     }
 }

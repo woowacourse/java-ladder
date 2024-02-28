@@ -1,5 +1,7 @@
 package laddergame.model;
 
+import java.util.Objects;
+
 public class Participant {
     private static final int MAXIMUM_NAME_LENGTH = 5;
 
@@ -22,5 +24,22 @@ public class Participant {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Participant participant = (Participant) obj;
+        return this.name.equals(participant.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(name);
     }
 }

@@ -3,6 +3,7 @@ package laddergame.model;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Participants {
     private static final int MINIMUM_PARTICIPANTS_SIZE = 2;
@@ -32,6 +33,20 @@ public class Participants {
 
     public int getSize() {
         return participants.size();
+    }
+
+    public boolean contains(Participant participant) {
+        return participants.contains(participant);
+    }
+
+    public List<Integer> getIndexInfos() {
+        return IntStream.range(0, participants.size())
+                .boxed()
+                .toList();
+    }
+
+    public int indexOf(Participant participant) {
+        return participants.indexOf(participant);
     }
 
     public List<Participant> getParticipants() {

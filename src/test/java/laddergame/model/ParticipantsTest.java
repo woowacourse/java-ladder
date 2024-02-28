@@ -1,12 +1,16 @@
 package laddergame.model;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.NullSource;
 
@@ -56,5 +60,44 @@ class ParticipantsTest {
         assertThatThrownBy(() -> new Participants(given))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 참여자 이름이 중복되었습니다.");
+    }
+
+    @DisplayName("참여자가 포함되어 있는지 판단한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"daon,true", "mason,true", "jk,true", "lilly,false", "any,false"})
+    void contains(String given, boolean expected) {
+        Participant participant = new Participant(given);
+
+        Participants participants = Stream.of("daon", "mason", "ted", "jk")
+                .map(Participant::new)
+                .collect(collectingAndThen(toList(), Participants::new));
+
+        boolean result = participants.contains(participant);
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @DisplayName("참여자의 인덱스를 리스트로 반환한다.")
+    @Test
+    void getIndexInfos() {
+        Participants participants = Stream.of("daon", "mason", "ted", "jk")
+                .map(Participant::new)
+                .collect(collectingAndThen(toList(), Participants::new));
+
+        List<Integer> result = participants.getIndexInfos();
+        assertThat(result).hasSize(participants.getSize());
+    }
+
+    @DisplayName("참여자가 속한 인덱스를 반환한다, 속하지 않을 경우 -1을 반환한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"daon,0", "mason,1", "jk,3", "lilly,-1", "any,-1"})
+    void indexOf(String given, int expected) {
+        Participant participant = new Participant(given);
+
+        Participants participants = Stream.of("daon", "mason", "ted", "jk")
+                .map(Participant::new)
+                .collect(collectingAndThen(toList(), Participants::new));
+
+        int result = participants.indexOf(participant);
+        assertThat(result).isEqualTo(expected);
     }
 }
