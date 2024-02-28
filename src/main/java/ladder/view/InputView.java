@@ -24,7 +24,7 @@ public class InputView {
     public Players inputNames() {
         return exceptionHandler.run(() -> {
             System.out.println("\n참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-            List<Player> names = Arrays.stream(readLine().split(","))
+            List<Player> names = Arrays.stream(readAndSplitByComma())
                     .map(Player::new)
                     .toList();
             return new Players(names);
@@ -34,7 +34,7 @@ public class InputView {
     public LadderResults inputLadderResults(Players players) {
         return exceptionHandler.run(() -> {
             System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-            List<LadderResult> results = Arrays.stream(readLine().split(","))
+            List<LadderResult> results = Arrays.stream(readAndSplitByComma())
                     .map(LadderResult::new)
                     .toList();
             return new LadderResults(results, players);
@@ -49,6 +49,10 @@ public class InputView {
     }
 
     private String readLine() {
-        return SCANNER.nextLine().replace(" ", "");
+        return SCANNER.nextLine();
+    }
+
+    private String[] readAndSplitByComma() {
+        return readLine().split(",");
     }
 }
