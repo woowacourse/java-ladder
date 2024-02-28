@@ -16,8 +16,8 @@ public class LadderGameTest {
         People people=new People(List.of("a","b"));
         ResultCandidate resultCandidate=new ResultCandidate(List.of("꽝","100"));
         //when
-        LadderGame ladderGame=new LadderGame(ladder,people);
+        LadderGame ladderGame=new LadderGame(ladder,people,resultCandidate);
         //then
-        assertThatCode(()->new LadderGame(ladder,people)).doesNotThrowAnyException();
+        assertThatCode(()->new LadderGame(ladder,people,resultCandidate)).doesNotThrowAnyException();
     }
 }
