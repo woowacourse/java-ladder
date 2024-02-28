@@ -1,14 +1,9 @@
-import domain.Leg;
 import domain.Line;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.generator.BooleanGenerator;
 import util.generator.LineGenerator;
 import util.generator.RandomLineGenerator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -35,17 +30,6 @@ public class LineTest {
     @Test
     void makeLegWithUnOverlapStartByTrue() {
         assertThat(Line.of(3, new RandomLineGenerator()).getLegs().size()).isEqualTo(3);
-    }
-
-    static class TestLineGenerator implements LineGenerator {
-        @Override
-        public List<Leg> generate(int legCount) {
-            List<Leg> legs = new ArrayList<>();
-            for (int i = 0; i < legCount; i++) {
-                legs.add(Leg.from(trueGenerator.generate()));
-            }
-            return legs;
-        }
     }
 
     static class TrueGenerator implements BooleanGenerator {
