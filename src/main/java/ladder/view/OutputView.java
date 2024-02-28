@@ -32,10 +32,6 @@ public class OutputView {
         printNames(compensation.getAll());
     }
 
-    public static void printMessage(String message) {
-        System.out.println(message);
-    }
-
     private static void printNames(List<String> names) {
         StringJoiner nameJoiner = new StringJoiner(BLANK);
 
