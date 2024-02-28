@@ -30,12 +30,11 @@ public class LadderGame {
         );
     }
 
-    public Players play() {
+    public void play() {
         for (int playerIndex = 0; playerIndex < players.count(); playerIndex++) {
             final int resultPosition = ladder.moveFrom(playerIndex);
             players.setPosition(playerIndex, resultPosition);
         }
-        return players;
     }
 
     public List<GameResult> matchResult(final String playerName, final String selectAll) {
