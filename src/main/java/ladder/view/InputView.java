@@ -3,7 +3,7 @@ package ladder.view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import ladder.dto.ResultRequestDto;
+import ladder.dto.ResultRequest;
 
 public class InputView {
 
@@ -46,14 +46,14 @@ public class InputView {
         }
     }
 
-    public ResultRequestDto inputResultRequest() {
+    public ResultRequest inputResultRequest() {
         System.out.println();
         System.out.println("결과를 보고 싶은 사람은?");
 
         String input = SCANNER.nextLine();
         if (TOTAL_PLAYER_REQUEST.equals(input)) {
-            return ResultRequestDto.ALL;
+            return ResultRequest.ALL;
         }
-        return new ResultRequestDto(input);
+        return new ResultRequest(input);
     }
 }

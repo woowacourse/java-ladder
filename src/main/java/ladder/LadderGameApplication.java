@@ -20,7 +20,7 @@ import ladder.dto.LadderGameResultDto;
 import ladder.dto.LineDto;
 import ladder.dto.PlayersDto;
 import ladder.dto.ProductsDto;
-import ladder.dto.ResultRequestDto;
+import ladder.dto.ResultRequest;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -46,12 +46,12 @@ public class LadderGameApplication {
         OUTPUT_VIEW.printResult(toDto(ladder), toDto(players), toDto(products));
 
         while (true) {
-            ResultRequestDto resultRequestDto = INPUT_VIEW.inputResultRequest();
-            if (resultRequestDto.isRequestAll()) {
+            ResultRequest resultRequest = INPUT_VIEW.inputResultRequest();
+            if (resultRequest.isRequestAll()) {
                 OUTPUT_VIEW.printTotalResult(toDto(result));
                 continue;
             }
-            Product productResult = result.findResult(new Player(resultRequestDto.getPlayerName()));
+            Product productResult = result.findResult(new Player(resultRequest.getPlayerName()));
             OUTPUT_VIEW.printSingleResult(productResult.getName());
         }
     }

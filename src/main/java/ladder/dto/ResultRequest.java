@@ -1,18 +1,18 @@
 package ladder.dto;
 
-public class ResultRequestDto {
+public class ResultRequest {
 
-    public static final ResultRequestDto ALL = new ResultRequestDto(null, true);
+    public static final ResultRequest ALL = new ResultRequest(null, true);
 
     private final String playerName;
     private final boolean isRequestAll;
 
-    private ResultRequestDto(String playerName, boolean isRequestAll) {
+    private ResultRequest(String playerName, boolean isRequestAll) {
         this.playerName = playerName;
         this.isRequestAll = isRequestAll;
     }
 
-    public ResultRequestDto(String playerName) {
+    public ResultRequest(String playerName) {
         this(playerName, false);
     }
 
