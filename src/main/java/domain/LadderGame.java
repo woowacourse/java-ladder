@@ -32,13 +32,6 @@ public class LadderGame {
     }
 
     public List<String> getResult() {
-        StringBuilder nameResult = new StringBuilder();
-        for (Name player : players.getNames()) {
-            nameResult.append(String.format("%6s", player.getName()));
-        }
-        List<String> results = new ArrayList<>();
-        results.add(nameResult.toString());
-        results.addAll(LadderSequence.from(ladder));
-        return results;
+        return LadderSequence.of(players, ladder, winnings);
     }
 }

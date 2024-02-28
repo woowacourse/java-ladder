@@ -21,7 +21,8 @@ public class LadderGameTest {
         Assertions.assertThat(ladderGame.getResult())
                 .isEqualTo(List.of(
                         "     1     2",
-                        UNCONNECTED.getBridge() + CONNECTED.getBridge()
+                        UNCONNECTED.getBridge() + CONNECTED.getBridge(),
+                        "     1     2"
                 ));
     }
 }
