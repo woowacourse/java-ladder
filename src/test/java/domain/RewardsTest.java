@@ -15,37 +15,37 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class RewardsTest {
 
     @Test
-    @DisplayName("Rewards 객체 생성 성공: 사람 수 만큼 입력")
-    void rewards_ok() {
+    @DisplayName("Rewards 생성 성공: 사람 수 만큼 입력")
+    void test_ok() {
         assertThatCode(() -> Rewards.from(4, "꽝,1000,꽝,1000"))
             .doesNotThrowAnyException();
     }
 
     @Test
-    @DisplayName("Rewards 객체 생성 성공: 쉼표 좌우 공백 정상 처리")
-    void rewards_ok_namesWithSpace() {
+    @DisplayName("Rewards 생성 성공: 쉼표 좌우 공백 정상 처리")
+    void test_ok_namesWithSpace() {
         assertThatCode(() -> Rewards.from(4, "  꽝 , 1000 ,  꽝 , 1000 "))
             .doesNotThrowAnyException();
     }
 
     @Test
-    @DisplayName("Rewards 객체 생성 실패: 비정상 공백 처리")
-    void rewards_exception_namesWithSpace() {
+    @DisplayName("Rewards 생성 실패: 비정상 공백 처리")
+    void test_exception_namesWithSpace() {
         assertThatCode(() -> Rewards.from(4, "꽝,1000,꽝,10 00"))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("Rewards 객체 생성 실패: 사람 수에 맞지 않게 입력")
-    void rewards_exception_doesntMatchMemberCount() {
+    @DisplayName("Rewards 생성 실패: 사람 수에 맞지 않게 입력")
+    void test_exception_doesntMatchMemberCount() {
         assertThatThrownBy(() -> Rewards.from(3, "꽝,1000,꽝,1000"))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {",,꽝,1000", "꽝,1000,,", ",꽝,1000,", ",,,"})
-    @DisplayName("Rewards 객체 생성 실패: 올바르지 않은 쉼표 입력")
-    void rewards_exception_illegalDelimiter(String rawNames) {
+    @DisplayName("Rewards 생성 실패: 올바르지 않은 쉼표 입력")
+    void test_exception_illegalDelimiter(String rawNames) {
         assertThatThrownBy(() -> Rewards.from(4, rawNames))
             .isInstanceOf(IllegalArgumentException.class);
     }
@@ -53,14 +53,14 @@ public class RewardsTest {
     @ParameterizedTest
     @NullSource
     @EmptySource
-    @DisplayName("Rewards 객체 생성 실패: null, empty")
-    void rewards_exception_null_empty(String rawNames) {
+    @DisplayName("Rewards 생성 실패: null, empty")
+    void test_exception_null_empty(String rawNames) {
         assertThatThrownBy(() -> Rewards.from(1, rawNames))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("인덱스로 Reward의 이름 찾기 성공")
+    @DisplayName("성공: 인덱스로 Reward의 이름을 찾을 수 있다.")
     void findRewardNameByIndex() {
         Rewards rewards = Rewards.from(3, "꽝,10,20");
         Assertions.assertAll(
@@ -73,7 +73,7 @@ public class RewardsTest {
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 3})
-    @DisplayName("인덱스로 Reward의 이름 찾기 실패")
+    @DisplayName("실패: 인덱스가 넘어가는 경우 에러 처리한다.")
     void findRewardNameByIndex_exception(int index) {
         Rewards rewards = Rewards.from(3, "꽝,10,20");
         assertThatThrownBy(() -> rewards.findRewardNameByIndex(index))

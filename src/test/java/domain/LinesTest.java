@@ -10,7 +10,7 @@ import strategy.RandomPointStrategy;
 public class LinesTest {
 
     @Test
-    @DisplayName("도메인 생성 성공: 사다리 높이 만큼의 Line 객체 리스트 생성")
+    @DisplayName("Lines 생성 성공: 사다리 높이 만큼의 Line 객체 리스트 생성")
     void test_ok_createLines() {
         Height height = Height.from("5");
         Lines lines = Lines.of(4, height, new RandomPointStrategy());
@@ -18,8 +18,8 @@ public class LinesTest {
     }
 
     @Test
-    @DisplayName("모든 줄 움직이기 성공")
-    void findRewardIndex() {
+    @DisplayName("성공: 전체 라인에 대해 플레이어를 이동시켰을 때 index가 정상 매핑된다.")
+    void test_ok_findRewardIndex() {
         Lines lines = Lines.of(4, Height.from("3"), () -> Point.CONNECTED);
 
         Assertions.assertAll(

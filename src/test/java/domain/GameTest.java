@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 class GameTest {
 
     @Test
-    @DisplayName("멤버 이름 - 상품 이름 일괄 탐색 성공")
-    void findRewardMap() {
+    @DisplayName("멤버 이름 - 상품 이름 일괄 매핑 성공")
+    void test_ok_findRewardMap() {
         Members members = Members.from("a,b,c,d");
         Height height = Height.from("3");
         Rewards rewards = Rewards.from(4, "꽝, 100, 200, 300");

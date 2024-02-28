@@ -10,14 +10,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class NameTest {
 
     @Test
-    @DisplayName("이름 객체 생성 성공")
+    @DisplayName("Name 생성 성공")
     void test_ok_constructor() {
         Name name = Name.from("name");
         assertThat(name.getName()).isEqualTo("name");
     }
 
     @Test
-    @DisplayName("이름 객체 생성 실패: all 입력")
+    @DisplayName("Name 생성 실패: all 입력")
     void test_exception_gameCommandAsName() {
         assertThatThrownBy(() -> Name.from("all"))
             .isInstanceOf(IllegalArgumentException.class)
@@ -26,15 +26,15 @@ public class NameTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"aaaaaa"})
-    @DisplayName("이름 객체 생성 실패: 5글자 초과")
+    @DisplayName("Name 생성 실패: 5글자 초과")
     void test_exception_moreThanFiveLetters(String name) {
         assertThatThrownBy(() -> Name.from(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("자의 이름만 허용합니다.");
+                .hasMessageContaining("1~5자의 이름만 허용합니다.");
     }
 
     @Test
-    @DisplayName("이름 객체 생성 실패: null")
+    @DisplayName("Name 생성 실패: null")
     void test_exception_null() {
         assertThatThrownBy(() -> Name.from(null))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -42,16 +42,16 @@ public class NameTest {
     }
 
     @Test
-    @DisplayName("이름 객체 생성 실패: empty")
+    @DisplayName("Name 생성 실패: empty")
     void test_exception_empty() {
         assertThatThrownBy(() -> Name.from(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("자의 이름만 허용합니다.");
+                .hasMessageContaining("1~5자의 이름만 허용합니다.");
     }
 
     @ParameterizedTest
     @ValueSource(strings = {" ", "abcd!", "이름"})
-    @DisplayName("이름 객체 생성 실패: 알파벳, 숫자 이외 입력")
+    @DisplayName("Name 생성 실패: 알파벳, 숫자 이외 입력")
     void test_exception_containsInvalidLetter(String name) {
         assertThatThrownBy(() -> Name.from(name))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -60,7 +60,7 @@ public class NameTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "a", "B", "cC123"})
-    @DisplayName("이름 객체 생성 성공: 알파벳, 숫자로 구성된 1~5글자의 이름")
+    @DisplayName("Name 생성 성공: 알파벳, 숫자로 구성된 1~5글자의 이름")
     void test_ok_withValidLetterAndLength(String name) {
         assertThatCode(() -> Name.from(name))
                 .doesNotThrowAnyException();
