@@ -25,16 +25,19 @@ public class LadderController {
         Participants participants = new Participants(inputView.inputParticipantsName());
         Map<Integer, String> results = inputView.inputResults();//TODO: 참여자 수만큼 입력 받는다.
         Height height = new Height(inputView.inputLadderHeight());
-
         Ladder ladder = new Ladder(height, new LadderRowGenerator(new RandomBooleanGenerator()), participants);
         LadderGame ladderGame = new LadderGame(participants, ladder, results);
 
-        outputView.printResultMessage();
-        outputView.printParticipantsName(participants);
-        outputView.printLadder(ladder);
+        printRandomLadder(participants, ladder);
         outputView.printResults(results);
         String name = inputView.inputParticipantNameForResult();
         String participantResult = ladderGame.findParticipantResult(new Name(name));
+        outputView.printParticipantResult(participantResult);
+    }
 
+    private void printRandomLadder(Participants participants, Ladder ladder) {
+        outputView.printResultMessage();
+        outputView.printParticipantsName(participants);
+        outputView.printLadder(ladder);
     }
 }
