@@ -7,29 +7,26 @@ import java.util.stream.Stream;
 
 public class Ladder {
     private final List<LadderLevel> ladderLevels;
-    private final List<Player> resultPlayers;
+    private final Players players;
 
     public Ladder(Players players, Height height, DirectionGenerator directionGenerator) {
         ladderLevels = new ArrayList<>();
-        resultPlayers = new ArrayList<>();
+        this.players = players;
         IntStream.range(0, height.value())
                 .forEach(i -> ladderLevels.add(new LadderLevel(players.count(), directionGenerator)));
-        findAllResultLocation(players);
     }
 
     public Stream<LadderLevel> stream() {
         return ladderLevels.stream();
     }
 
-    public List<Player> getResultPlayers() {
-        return List.copyOf(resultPlayers);
-    }
-
-    private void findAllResultLocation(Players players) {
+    public List<Player> findAllResultPlayers() {
+        List<Player> resultPlayers = new ArrayList<>();
         players.stream()
                 .forEach(player ->
                         resultPlayers.add(new Player(player.name(), findResultLocation(player)))
                 );
+        return resultPlayers;
     }
 
     private int findResultLocation(Player player) {
