@@ -21,6 +21,7 @@ public class Line {
     }
 
     public Direction getLastDirection() {
+        validateNotEmpty();
         return directionsInfo.get(directionsInfo.size() - 1);
     }
 
@@ -30,6 +31,12 @@ public class Line {
 
     public boolean isEmpty() {
         return directionsInfo.isEmpty();
+    }
+
+    private void validateNotEmpty() {
+        if (isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 방향 정보가 없습니다.");
+        }
     }
 
     public List<Direction> getDirections() {
