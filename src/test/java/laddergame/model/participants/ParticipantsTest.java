@@ -11,14 +11,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.EmptySource;
-import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 class ParticipantsTest {
     @DisplayName("참여자수가 null이거나 비어있다면 예외가 발생한다")
-    @NullSource
-    @EmptySource
     @ParameterizedTest
+    @NullAndEmptySource
     void validateParticipantsSizeWhenNull(List<Participant> given) {
         //when //then
         assertThatThrownBy(() -> new Participants(given))

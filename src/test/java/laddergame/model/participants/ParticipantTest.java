@@ -6,8 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EmptySource;
-import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class ParticipantTest {
@@ -22,8 +21,7 @@ class ParticipantTest {
 
     @DisplayName("참여할 사람의 이름은 null이거나 공백이면 안된다.")
     @ParameterizedTest
-    @NullSource
-    @EmptySource
+    @NullAndEmptySource
     void validateNameNotNullAndNotBlank(String given) {
         //when //then
         assertThatThrownBy(() -> new Participant(given))
