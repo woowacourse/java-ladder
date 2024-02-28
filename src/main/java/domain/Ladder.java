@@ -8,13 +8,9 @@ public class Ladder {
     private final Height height;
     private final List<Line> lines;
 
-    private Ladder(Height height, List<Line> lines) {
+    public Ladder(LegGenerateStrategy legGenerateStrategy, Height height, int width) {
         this.height = height;
-        this.lines = lines;
-    }
-
-    public static Ladder createLadderWithLines(LegGenerateStrategy legGenerateStrategy, Height height, int width) {
-        return new Ladder(height, makeLines(legGenerateStrategy, height.getHeight(), width));
+        this.lines = makeLines(legGenerateStrategy,height.getHeight(),width);
     }
 
     private static List<Line> makeLines(LegGenerateStrategy legGenerateStrategy, int height, int width) {

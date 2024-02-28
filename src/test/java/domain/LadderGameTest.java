@@ -20,7 +20,7 @@ public class LadderGameTest {
     @Test
     void findPlayerReward() {
         //given
-        Ladder ladder = Ladder.createLadderWithLines(new RandomLegGenerateStrategy() {
+        Ladder ladder = new Ladder(new RandomLegGenerateStrategy() {
             @Override
             public boolean generateLeg() {
                 return true;
@@ -62,7 +62,7 @@ public class LadderGameTest {
     @Test
     void findAllPlayerReward() {
         //given
-        Ladder ladder = Ladder.createLadderWithLines(new RandomLegGenerateStrategy() {
+        Ladder ladder = new Ladder(new RandomLegGenerateStrategy() {
             @Override
             public boolean generateLeg() {
                 return true;
