@@ -22,16 +22,22 @@ public class LadderController {
     }
 
     public void make() {
-        Supplier<People> peopleSupplier = () -> new People(inputView.askParticipants());
-        People people = runWithHandler(peopleSupplier);
+        Supplier<People> peopleSupplier = () -> {
+            List<String> participants = inputView.askParticipants();
+            return new People(participants);
+        };
+        People people = registerWithRetry(peopleSupplier);
 
-        Supplier<Ladder> ladderSupplier = () -> new Ladder(inputView.askLadderHeight(), people.getNumberOfParticipants());
-        Ladder ladder = runWithHandler(ladderSupplier);
+        Supplier<Ladder> ladderSupplier = () -> {
+            String ladder=inputView.askLadderHeight();
+            return new Ladder(ladder, people.getNumberOfParticipants());
+        };
+        Ladder ladder = registerWithRetry(ladderSupplier);
 
         resultView.printResult(people, ladder);
     }
 
-    public <T> T runWithHandler(Supplier<T> callback) {
+    public <T> T registerWithRetry(Supplier<T> callback) {
         return handler.handle(callback);
     }
 }
