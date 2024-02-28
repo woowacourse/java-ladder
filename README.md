@@ -114,3 +114,28 @@ resultPositions   1    0    3    2    4
 - 코드 format을 위반사항 검토 및 가독성 개선
 - 컨벤션에 맞게 메소드 순서 수정
 - 불필요한 static 메소드 인스턴스화
+
+## 2단계 구현사항
+
+### [domain]
+
+- ladder/RowLine - 좌우 Connection에 따라 이동하는 move 구현
+- ladder/Ladder - RowLine 배열 단위로 이동을 수행하는 move 구현
+- gameelements/Element - 사다리의 출발/도착 노드를 Element로 추상화한 객체(이전의 Name)
+- gameelementsElements - Element의 일급 컬렉션 객체
+- LadderGame - 사다리 게임 결과(상위 노드-하위노드 맵핑 결과)를 인스턴스 변수로 가지는 객체
+- LadderGame - 상위 노드의 이름을 조회하여 결과를 반환하는 기능 구현
+
+### [view]
+
+- view/ResultView - 하위노드 출력기능 구현
+- view/ResultView - 플레이어 이름에 따라 결과 출력기능 구현
+
+### [test]
+
+- TrueFalseConnectionGenerator : `연결-비연결`을 반복하여 생성하는 generator
+- LadderGameTest : input 값에 따라 사다리 게임 결과 테스트
+
+## 2단계 개선사안
+- 컨벤션!! 코드 컨벤션 2번 확인하기
+- 
