@@ -8,7 +8,6 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ParticipantsOutcomeTest {
     @Test
@@ -20,16 +19,6 @@ class ParticipantsOutcomeTest {
         // when & then
         assertThatThrownBy(() -> participantsOutcome.getOutcome("a"))
                 .isInstanceOf(NoSuchParticipantException.class);
-    }
-
-    @Test
-    @DisplayName("입력이 all일 경우 allOutcomesRequired()가 참을 반환한다.")
-    void allOutcomesRequiredTest() {
-        // given
-        final ParticipantsOutcome participantsOutcome = new ParticipantsOutcome(Map.of("mia", "꽝"));
-
-        // when & then
-        assertTrue(participantsOutcome.allOutcomesRequired("all"));
     }
 
     @Test

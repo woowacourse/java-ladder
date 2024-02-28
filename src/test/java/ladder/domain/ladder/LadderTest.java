@@ -1,16 +1,12 @@
 package ladder.domain.ladder;
 
 import ladder.domain.Position;
-import ladder.domain.generator.LadderStepsGenerator;
 import ladder.domain.participant.Participants;
-import ladder.testutil.TestLadderStepsGenerator;
+import ladder.testutil.LadderGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-
-import static ladder.domain.ladder.Path.EMPTY;
-import static ladder.domain.ladder.Path.EXIST;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
@@ -32,11 +28,7 @@ class LadderTest {
     }
 
     private static Ladder generateLadder() {
-        final List<LadderStep> ladderSteps = List.of(
-                new LadderStep(List.of(EXIST, EMPTY)),
-                new LadderStep(List.of(EMPTY, EXIST))
-        );
-        final LadderStepsGenerator ladderStepsGenerator = new TestLadderStepsGenerator(ladderSteps);
-        return new Ladder(ladderStepsGenerator);
+        final List<Boolean> pathAvailabilities = List.of(true, false, false, true);
+        return LadderGenerator.generate(pathAvailabilities, 2, 2);
     }
 }

@@ -1,12 +1,10 @@
 package ladder.domain.participant;
 
 import ladder.domain.Position;
-import ladder.domain.generator.LadderStepsGenerator;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderStep;
 import ladder.domain.outcome.Outcomes;
 import ladder.exception.participant.InvalidParticipantsCountException;
-import ladder.testutil.TestLadderStepsGenerator;
+import ladder.testutil.LadderGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,8 +15,6 @@ import java.util.Map;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static ladder.domain.ladder.Path.EMPTY;
-import static ladder.domain.ladder.Path.EXIST;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -81,13 +77,8 @@ public class ParticipantsTest {
     }
 
     private static Ladder generateLadder() {
-        final List<LadderStep> ladderSteps = List.of(
-                new LadderStep(List.of(EMPTY, EXIST)),
-                new LadderStep(List.of(EMPTY, EXIST)),
-                new LadderStep(List.of(EXIST, EMPTY))
-        );
-        final LadderStepsGenerator ladderStepsGenerator = new TestLadderStepsGenerator(ladderSteps);
-        return new Ladder(ladderStepsGenerator);
+        final List<Boolean> pathAvailabilities = List.of(false, true, false, true, true, false);
+        return LadderGenerator.generate(pathAvailabilities, 2, 3);
     }
 
     private static Outcomes generateOutcomes() {

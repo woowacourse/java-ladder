@@ -1,7 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.generator.LadderStepsGenerator;
-import ladder.domain.generator.RandomLadderStepsGenerator;
+import ladder.domain.generator.RandomPathAvailabilityGenerator;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.ParticipantsOutcome;
 import ladder.domain.ladder.size.LadderSize;
@@ -39,9 +39,10 @@ public class LadderGame {
     }
 
     private Ladder createLadder(final int ladderWidth) {
-        LadderSize ladderSize = retryOnException(() -> createLadderSize(ladderWidth));
-        final LadderStepsGenerator ladderStepsGenerator = new RandomLadderStepsGenerator(ladderSize);
-        return new Ladder(ladderStepsGenerator);
+        final LadderSize ladderSize = retryOnException(() -> createLadderSize(ladderWidth));
+        final RandomPathAvailabilityGenerator pathAvailabilityGenerator = RandomPathAvailabilityGenerator.getInstance();
+        final LadderStepsGenerator ladderStepsGenerator = new LadderStepsGenerator(pathAvailabilityGenerator);
+        return new Ladder(ladderSize, ladderStepsGenerator);
     }
 
     private LadderSize createLadderSize(final int ladderWidth) {
