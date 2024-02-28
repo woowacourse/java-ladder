@@ -1,5 +1,6 @@
 package model;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LadderGame {
@@ -21,7 +22,12 @@ public class LadderGame {
         return resultByPosition.get(resultPosition);
     }
 
-    public Map<Name, String> findAllParticipantsResult() {
-        return null;
+    public Map<Name, String> findAllParticipantResults() {
+        Map<Name, String> allParticipantResults = new LinkedHashMap<>();
+        Map<Name, Integer> allNameAndPosition = participants.getAllNameAndPosition();
+        for (Name name : allNameAndPosition.keySet()) {
+            allParticipantResults.put(name, findParticipantResult(name));
+        }
+        return allParticipantResults;
     }
 }

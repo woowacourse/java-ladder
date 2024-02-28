@@ -36,7 +36,7 @@ public class LadderGameTest {
     @Test
     void findAllResults() {
         LadderGame ladderGame = createLadderGame();
-        Map<Name, String> results = ladderGame.findAllParticipantsResult();
+        Map<Name, String> results = ladderGame.findAllParticipantResults();
         Assertions.assertThat(results)
                 .isEqualTo(Map.of(new Name("0"), "꽝",
                         new Name("1"), "5000",
@@ -47,20 +47,6 @@ public class LadderGameTest {
 
 
     }
-
-    /*
-         0     1     2     3     4
-         |-----|     |     |-----|
-         |-----|     |-----|     |
-         0     1     2     3     4
-         꽝   5000   꽝     꽝   3000
-
-         0 -> 0 꽝
-         1 -> 1 5000
-         2 -> 3 꽝
-         3 -> 4 3000
-         4 -> 2 꽝
-     */
 
     private static LadderGame createLadderGame() {
         Ladder ladder = new Ladder(List.of(

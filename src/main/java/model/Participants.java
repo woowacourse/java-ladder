@@ -1,7 +1,9 @@
 package model;
 
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Participants {
@@ -37,6 +39,15 @@ public class Participants {
                 .map(Name::new)
                 .toList();
     }
+
+    public Map<Name, Integer> getAllNameAndPosition() {
+        Map<Name, Integer> nameAndPosition = new LinkedHashMap<>();
+        for (int i = 0; i < participantNames.size(); i++) {
+            nameAndPosition.put(participantNames.get(i), i);
+        }
+        return nameAndPosition;
+    }
+
 
     public int getPositionByName(Name findName) {
         return participantNames.indexOf(findName);
