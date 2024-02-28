@@ -12,6 +12,7 @@ public class OutputView {
     private static final String RESULT_MESSAGE = "\n사다리 결과\n";
     private static final String PARTICIPANT_RESULT = "\n실행결과";
     private static final String NAME_FORMAT = "%5s ";
+    private static final String PARTICIPANTS_RESULT_FORMAT = "%s : %s ";
 
     public void printResultMessage() {
         System.out.println(RESULT_MESSAGE);
@@ -51,5 +52,12 @@ public class OutputView {
     public void printParticipantResult(String result) {
         System.out.println(PARTICIPANT_RESULT);
         System.out.print(result);
+    }
+
+    public void printParticipantResult(Map<Name, String> results) {
+        System.out.println(PARTICIPANT_RESULT);
+        for (Name name : results.keySet()) {
+            System.out.println(PARTICIPANTS_RESULT_FORMAT.formatted(name.getValue(), results.get(name)));
+        }
     }
 }
