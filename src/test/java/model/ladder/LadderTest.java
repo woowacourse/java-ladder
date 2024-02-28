@@ -53,7 +53,7 @@ public class LadderTest {
 
     @DisplayName("사다리의 결과를 알 수 있다.")
     @Test
-    void moveAll(){
+    void climbAll(){
         Height height = new Height(3);
         Participants participants = new Participants(List.of("pobi", "left", "right", "both"));
         Ladder ladder = new Ladder((x, y) -> List.of(

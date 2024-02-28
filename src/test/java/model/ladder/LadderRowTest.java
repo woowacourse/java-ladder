@@ -34,7 +34,7 @@ public class LadderRowTest {
 
     @DisplayName("사다리의 행 내에서 라인에 따라 이동할 수 있다.")
     @Test
-    void move(){
+    void climb(){
         LadderRow ladderRow = new LadderRow(List.of(true, false, true));
         assertAll(
                 () -> assertThat(ladderRow.climb(CachedPosition.valueOf(0))).isEqualTo(CachedPosition.valueOf(1)),

@@ -16,7 +16,7 @@ public class LadderGameTest {
 
     @Test
     @DisplayName("참가자 별로 결과를 알 수 있다.")
-    void participantsReward() {
+    void participantsResult() {
         Height height = new Height(3);
         Participants participants = new Participants(List.of("pobi", "left", "right", "both"));
         Results results = new Results(List.of("꽝", "5000", "꽝", "3000"));
@@ -35,7 +35,7 @@ public class LadderGameTest {
 
     @Test
     @DisplayName("전체 참가자들의 결과를 알 수 있다.")
-    void allParticipantsReward() {
+    void allParticipantsResult() {
         Height height = new Height(3);
         Participants participants = new Participants(List.of("pobi", "left", "right", "both"));
         Results results = new Results(List.of("꽝", "5000", "꽝", "3000"));
