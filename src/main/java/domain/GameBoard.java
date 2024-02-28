@@ -23,23 +23,6 @@ public class GameBoard {
         this.rewards = rewards;
     }
 
-    public Players getPlayers() {
-        return players;
-    }
-
-    public int getLadderHeight() {
-        return ladder.getHeight();
-    }
-
-
-    public Rewards getRewards() {
-        return rewards;
-    }
-
-    public Ladder getLadder() {
-        return ladder;
-    }
-
     public Player findPlayerWithName(Name name) {
         return players.getPlayerWithName(name);
     }
@@ -55,6 +38,23 @@ public class GameBoard {
                       .stream()
                       .map(this::playGameOnePlayer)
                       .toList();
+    }
+
+    public Players getPlayers() {
+        return players;
+    }
+
+    public int getLadderHeight() {
+        return ladder.getHeight();
+    }
+
+
+    public Rewards getRewards() {
+        return rewards;
+    }
+
+    public Ladder getLadder() {
+        return ladder;
     }
 
 

@@ -9,11 +9,11 @@ public class LadderLegPiece {
         this.direction = direction;
     }
 
-    public Direction getDirection() {
-        return direction;
-    }
-
     public boolean isRightDirection() {
         return direction.equals(Direction.RIGHT);
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 }

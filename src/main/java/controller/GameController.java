@@ -30,6 +30,11 @@ public class GameController {
         processGameResults(gameBoard);
     }
 
+    private Players createPlayers() {
+        Names names = Names.from(InputView.inputPlayerNames());
+        return new Players(names);
+    }
+
     private void processGameResults(GameBoard gameBoard) {
         while (true) {
             String playerName = InputView.inputResultPlayer();
@@ -40,11 +45,6 @@ public class GameController {
             processSinglePlayer(gameBoard, playerName);
 
         }
-    }
-
-    private Players createPlayers() {
-        Names names = Names.from(InputView.inputPlayerNames());
-        return new Players(names);
     }
 
     private void processAllPlayers(GameBoard gameBoard) {
