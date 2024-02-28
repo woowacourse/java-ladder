@@ -24,7 +24,7 @@ public class LadderGameController {
         Prizes prizes = inputView.readPrizes();
         Height height = inputView.readHeight();
 
-        Ladder ladder = Ladder.createFrom(new NonContinuousLineGenerator(), names.getNameCount(), height, prizes);
+        Ladder ladder = Ladder.createFrom(new NonContinuousLineGenerator(), names, height, prizes);
         resultView.printLadder(ladder, names, prizes);
 
         LadderResult ladderResult = LadderResult.of(ladder, names, prizes);
