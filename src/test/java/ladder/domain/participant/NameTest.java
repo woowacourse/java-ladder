@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NameTest {
     @Test
@@ -22,7 +22,7 @@ public class NameTest {
         final Name mia = new Name(name);
 
         // then
-        assertEquals("mia", mia.value());
+        assertThat(mia.value()).isEqualTo("mia");
     }
 
     @ParameterizedTest

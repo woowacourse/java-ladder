@@ -29,8 +29,7 @@ class LadderStepTest {
         final List<Path> actualLadderPaths = new LadderStep(continuousLadderPaths).getLadderPaths();
 
         // then
-        assertThat(actualLadderPaths)
-                .containsExactlyElementsOf(expectedLadderPaths);
+        assertThat(actualLadderPaths).containsExactlyElementsOf(expectedLadderPaths);
     }
 
     @ParameterizedTest

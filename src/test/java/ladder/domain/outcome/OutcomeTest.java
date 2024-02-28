@@ -21,8 +21,7 @@ class OutcomeTest {
         final Outcome outcome = new Outcome(value);
 
         // then
-        assertThat(outcome.value())
-                .isEqualTo(expectedValue);
+        assertThat(outcome.value()).isEqualTo(expectedValue);
     }
 
     @ParameterizedTest

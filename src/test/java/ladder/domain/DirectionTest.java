@@ -14,9 +14,9 @@ class DirectionTest {
     @ParameterizedTest
     @MethodSource("providePositionsForTest")
     @DisplayName("특정 방향으로 움직인 Position 값을 올바르게 반환")
-    void determineNextPositionTest(Direction direction, Position initialPosition, Position expectedPosition) {
+    void determineNextPositionTest(final Direction direction, final Position initialPosition, final Position expectedPosition) {
         // when
-        Position actualPosition = direction.determineNextPosition(initialPosition);
+        final Position actualPosition = direction.determineNextPosition(initialPosition);
 
         // then
         assertThat(actualPosition).isEqualTo(expectedPosition);
