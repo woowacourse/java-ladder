@@ -1,5 +1,6 @@
 package model.participant;
 
+import model.position.CachedPosition;
 import model.position.Position;
 
 import java.util.*;
@@ -33,7 +34,7 @@ public class Participants {
     private Map<Participant, Position> create(List<String> participantsName) {
         Map<Participant, Position> participants = new LinkedHashMap<>();
         for (int i = 0; i < participantsName.size(); i++) {
-            participants.put(new Participant(participantsName.get(i)), new Position(i));
+            participants.put(new Participant(participantsName.get(i)), CachedPosition.valueOf(i));
         }
         return participants;
     }
@@ -48,7 +49,7 @@ public class Participants {
 
     public Position getPosition(Participant participant) {
         if (participants.containsKey(participant)) {
-            return new Position(participants.get(participant));
+            return participants.get(participant);
         }
         throw new IllegalArgumentException("존재하지 않는 참가자 입니다.");
     }

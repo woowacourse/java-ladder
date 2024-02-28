@@ -58,17 +58,17 @@ public class LadderRow {
     }
 
     private Position climbRight(Position position) {
-        if (spaces.get(position.currentIndex()) == Space.LINE) {
+        if (spaces.get(position.index()) == Space.LINE) {
             return position.next();
         }
-        return position.current();
+        return position;
     }
 
     private Position climbLeft(Position position) {
         if (spaces.get(position.priorIndex()) == Space.LINE) {
             return position.prior();
         }
-        return position.current();
+        return position;
     }
 
 }

@@ -6,28 +6,20 @@ import java.util.Objects;
 public class Position {
     private final int currentIndex;
 
-    public Position(int currentIndex) {
+    protected Position(int currentIndex) {
         this.currentIndex = currentIndex;
-    }
-
-    public Position(Position position) {
-        this(position.currentIndex);
     }
 
     public boolean same(int other) {
         return currentIndex == other;
     }
 
-    public Position current() {
-        return new Position(currentIndex);
-    }
-
-    public int currentIndex() {
+    public int index() {
         return currentIndex;
     }
 
     public Position prior() {
-        return new Position(currentIndex - 1);
+        return CachedPosition.valueOf(currentIndex-1);
     }
 
     public int priorIndex() {
@@ -35,7 +27,7 @@ public class Position {
     }
 
     public Position next() {
-        return new Position(currentIndex + 1);
+        return CachedPosition.valueOf(currentIndex+1);
     }
 
     @Override

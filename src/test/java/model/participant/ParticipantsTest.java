@@ -2,6 +2,7 @@ package model.participant;
 
 import model.participant.Participant;
 import model.participant.Participants;
+import model.position.CachedPosition;
 import model.position.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,9 +36,9 @@ class ParticipantsTest {
     void participantsPosition(){
         Participants participants = new Participants(List.of("pobi", "left", "right"));
         assertAll(
-                () -> assertThat(participants.getPosition(new Participant("pobi"))).isEqualTo(new Position(0)),
-                () -> assertThat(participants.getPosition(new Participant("left"))).isEqualTo(new Position(1)),
-                () -> assertThat(participants.getPosition(new Participant("right"))).isEqualTo(new Position(2))
+                () -> assertThat(participants.getPosition(new Participant("pobi"))).isEqualTo(CachedPosition.valueOf(0)),
+                () -> assertThat(participants.getPosition(new Participant("left"))).isEqualTo(CachedPosition.valueOf(1)),
+                () -> assertThat(participants.getPosition(new Participant("right"))).isEqualTo(CachedPosition.valueOf(2))
         );
     }
 

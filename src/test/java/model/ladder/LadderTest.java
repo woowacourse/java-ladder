@@ -6,6 +6,7 @@ import model.ladder.Ladder;
 import model.ladder.LadderGenerateStrategy;
 import model.ladder.Space;
 import model.participant.Participants;
+import model.position.CachedPosition;
 import model.position.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -60,10 +61,10 @@ public class LadderTest {
                 List.of(false, true, false),
                 List.of(true, false, false)), height, participants);
         assertAll(
-                () -> assertThat(ladder.getEndPositionBy(new Position(0))).isEqualTo(new Position(2)),
-                () -> assertThat(ladder.getEndPositionBy(new Position(1))).isEqualTo(new Position(1)),
-                () -> assertThat(ladder.getEndPositionBy(new Position(2))).isEqualTo(new Position(3)),
-                () -> assertThat(ladder.getEndPositionBy(new Position(3))).isEqualTo(new Position(0))
+                () -> assertThat(ladder.getEndPositionBy(CachedPosition.valueOf(0))).isEqualTo(CachedPosition.valueOf(2)),
+                () -> assertThat(ladder.getEndPositionBy(CachedPosition.valueOf(1))).isEqualTo(CachedPosition.valueOf(1)),
+                () -> assertThat(ladder.getEndPositionBy(CachedPosition.valueOf(2))).isEqualTo(CachedPosition.valueOf(3)),
+                () -> assertThat(ladder.getEndPositionBy(CachedPosition.valueOf(3))).isEqualTo(CachedPosition.valueOf(0))
         );
 
 

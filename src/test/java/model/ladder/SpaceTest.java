@@ -1,4 +1,4 @@
-package model;
+package model.ladder;
 
 import model.ladder.Space;
 import org.junit.jupiter.api.DisplayName;
