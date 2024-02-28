@@ -14,10 +14,10 @@ public class Line {
     }
 
     public int climb(int startPosition) {
-        if (this.getRightStick(startPosition) == Stick.FILLED) {
+        if (this.checkRightStickFilled(startPosition)) {
             return startPosition + 1;
         }
-        if (this.getLeftStick(startPosition) == Stick.FILLED) {
+        if (this.checkLeftStickFilled(startPosition)) {
             return startPosition - 1;
         }
 
@@ -48,17 +48,17 @@ public class Line {
         return lastStick == stick;
     }
 
-    private Stick getRightStick(int position) {
+    private boolean checkRightStickFilled(int position) {
         if (position == this.sticks.size()) {
-            return Stick.NOT_FILLED;
+            return false;
         }
-        return sticks.get(position);
+        return sticks.get(position) == Stick.FILLED;
     }
 
-    private Stick getLeftStick(int position) {
+    private boolean checkLeftStickFilled(int position) {
         if (position == 0) {
-            return Stick.NOT_FILLED;
+            return false;
         }
-        return sticks.get(position - 1);
+        return sticks.get(position - 1) == Stick.FILLED;
     }
 }
