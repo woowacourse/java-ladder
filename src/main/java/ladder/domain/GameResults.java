@@ -33,7 +33,7 @@ public class GameResults {
         return userDestination.getDestination();
     }
 
-    public List<UserDestination> findAll() {
+    public List<UserDestination> getGameResults() {
         return unmodifiableList(userDestinations);
     }
 }

@@ -75,7 +75,7 @@ public class LadderGameMachine {
             OutputView.printOneResult(result);
             requestName = registerRequestNames(userNames);
         }
-        List<AllResults> results = generateAllResults(gameResults.findAll());
+        List<AllResults> results = generateAllResults(gameResults.getGameResults());
         OutputView.printAllResults(results);
     }
 
