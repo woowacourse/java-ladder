@@ -66,7 +66,7 @@ class GameBoardTest {
             gameBoard = new GameBoard(players, ladder, prizes);
 
             // When
-            results = gameBoard.getAllPlayerResult();
+            results = gameBoard.searchAllPlayerResult();
         }
 
         private List<Prize> providePrize() {
@@ -136,10 +136,10 @@ class GameBoardTest {
         @DisplayName("특정 플레이어의 Prize를 검색하여 반환한다.")
         void searchSpecificPlayersPrize() {
             // When
-            String resultPrize1 = gameBoard.getSpecificPlayerResult(new Name("도비"));
-            String resultPrize2 = gameBoard.getSpecificPlayerResult(new Name("조이썬"));
-            String resultPrize3 = gameBoard.getSpecificPlayerResult(new Name("포비"));
-            String resultPrize4 = gameBoard.getSpecificPlayerResult(new Name("오리"));
+            String resultPrize1 = gameBoard.searchOnePlayerResult(new Name("도비"));
+            String resultPrize2 = gameBoard.searchOnePlayerResult(new Name("조이썬"));
+            String resultPrize3 = gameBoard.searchOnePlayerResult(new Name("포비"));
+            String resultPrize4 = gameBoard.searchOnePlayerResult(new Name("오리"));
 
             // Then
             assertAll(() -> {
@@ -149,6 +149,13 @@ class GameBoardTest {
                 assertEquals("4", resultPrize4);
             });
 
+        }
+
+        @Test
+        @DisplayName("존재하지 않은 플레이어의 이름을 검색하면 메세지를 반환한다.")
+        void whenSearchNotExistingPlayerThenReturnMessage() {
+            String result = gameBoard.searchOnePlayerResult(new Name("없는사람"));
+            assertEquals("존재하지 않는 플레이어입니다.", result);
         }
     }
 
