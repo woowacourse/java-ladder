@@ -1,6 +1,6 @@
 package domain;
 
-public class Name {
+public class MemberName {
 
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
@@ -8,7 +8,7 @@ public class Name {
 
     private final String name;
 
-    public Name(String name) {
+    public MemberName(String name) {
         validate(name);
         this.name = name;
     }
