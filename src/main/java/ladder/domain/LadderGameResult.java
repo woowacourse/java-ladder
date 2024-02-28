@@ -9,7 +9,7 @@ public class LadderGameResult {
     private final Map<Player, Product> results;
 
     public LadderGameResult(Map<Player, Product> results) {
-        this.results = results;
+        this.results = Map.copyOf(results);
     }
 
     public Product findResult(Player player) {
@@ -22,6 +22,6 @@ public class LadderGameResult {
     }
 
     public Map<Player, Product> getResults() {
-        return Map.copyOf(results);
+        return results;
     }
 }
