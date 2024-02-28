@@ -4,18 +4,15 @@ import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.NullSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class ParticipantsTest {
     @DisplayName("참여자수가 null이거나 비어있다면 예외가 발생한다")
@@ -86,7 +83,7 @@ class ParticipantsTest {
                 .map(Participant::new)
                 .collect(collectingAndThen(toList(), Participants::new));
 
-        List<Integer> result = participants.getIndexInfos();
+        List<IndexInfo> result = participants.getIndexInfos();
         assertThat(result).hasSize(participants.getSize());
     }
 
@@ -102,36 +99,5 @@ class ParticipantsTest {
 
         int result = participants.indexOf(participant);
         assertThat(result).isEqualTo(expected);
-    }
-
-    @DisplayName("인덱스에 해당하는 참가자를 찾는다.")
-    @Nested
-    class findByIndex {
-        @DisplayName("각 인덱스에 해당하는 참가자를 반환한다.")
-        @Test
-        void find() {
-            Participants participants = Stream.of("daon", "mason", "ted", "jk")
-                    .map(Participant::new)
-                    .collect(collectingAndThen(toList(), Participants::new));
-
-            assertAll(
-                    () -> assertThat(participants.findByIndex(0).getName()).isEqualTo("daon"),
-                    () -> assertThat(participants.findByIndex(1).getName()).isEqualTo("mason"),
-                    () -> assertThat(participants.findByIndex(2).getName()).isEqualTo("ted"),
-                    () -> assertThat(participants.findByIndex(3).getName()).isEqualTo("jk")
-            );
-        }
-
-        @DisplayName("유효하지 않는 인덱스로 조회하면 예외를 발생한다.")
-        @ParameterizedTest
-        @ValueSource(ints = {-10, -2, -1, 5, 6, 7, 8})
-        void findInvalidIndex(int given) {
-            Participants participants = Stream.of("daon", "mason", "ted", "jk")
-                    .map(Participant::new)
-                    .collect(collectingAndThen(toList(), Participants::new));
-
-            assertThatThrownBy(() -> participants.findByIndex(given))
-                    .isInstanceOf(IllegalStateException.class);
-        }
     }
 }

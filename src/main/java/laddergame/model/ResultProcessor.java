@@ -15,18 +15,14 @@ public class ResultProcessor {
     }
 
     public List<GameResult> getGameResults() {
-        List<Integer> subjectIndex = inquirySubject.getSubjectIndex();
-        List<Integer> changedIndexes = subjectIndex.stream()
-                .map(ladderGame::climb)
-                .toList();
-        return subjectIndex.stream()
-                .map(index -> getGameResult(index, changedIndexes))
+        List<IndexInfo> indexInfos = inquirySubject.getIndexInfos();
+        return indexInfos.stream()
+                .map(indexInfo -> indexInfo.getUpdatedIndexInfo(ladderGame))
+                .map(this::getGameResult)
                 .toList();
     }
 
-    private GameResult getGameResult(Integer index, List<Integer> changedIndexes) {
-        Participant participant = inquirySubject.getParticipantByIndex(index);
-        ExecutionResult executionResult = executionResults.findByIndex(changedIndexes.get(index));
-        return new GameResult(participant, executionResult);
+    private GameResult getGameResult(IndexInfo info) {
+        return new GameResult(info.getParticipant(), executionResults.findByIndex(info.getIndex()));
     }
 }

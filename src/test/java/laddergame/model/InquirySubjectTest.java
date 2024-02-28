@@ -53,11 +53,12 @@ class InquirySubjectTest {
             Participants participants = Stream.of("daon", "mason", "ted", "jk")
                     .map(Participant::new)
                     .collect(collectingAndThen(toList(), Participants::new));
+
             InquirySubject inquirySubject = new InquirySubject(subject, participants);
-            List<Integer> result = inquirySubject.getSubjectIndex();
+            List<IndexInfo> result = inquirySubject.getIndexInfos();
 
             assertThat(result).hasSize(1);
-            assertThat(result.get(0)).isEqualTo(expected);
+            assertThat(result.get(0).getIndex()).isEqualTo(expected);
         }
 
         @DisplayName("조회 대상자가 all이면 모든 참여자들이 위치한 인덱스를 반환한다.")
@@ -67,8 +68,9 @@ class InquirySubjectTest {
             Participants participants = Stream.of("daon", "mason", "ted", "jk")
                     .map(Participant::new)
                     .collect(collectingAndThen(toList(), Participants::new));
+
             InquirySubject inquirySubject = new InquirySubject(subject, participants);
-            List<Integer> result = inquirySubject.getSubjectIndex();
+            List<IndexInfo> result = inquirySubject.getIndexInfos();
 
             assertThat(result).hasSize(participants.getSize());
         }

@@ -20,17 +20,13 @@ public class InquirySubject {
         }
     }
 
-    public List<Integer> getSubjectIndex() {
-        List<Integer> indexInfos = participants.getIndexInfos();
+    public List<IndexInfo> getIndexInfos() {
+        List<IndexInfo> indexInfos = participants.getIndexInfos();
         if (ALL_SUBJECTS.equals(subject)) {
             return indexInfos;
         }
         return indexInfos.stream()
-                .filter(index -> index == participants.indexOf(subject))
+                .filter(indexInfo -> indexInfo.getIndex() == participants.indexOf(subject))
                 .toList();
-    }
-
-    public Participant getParticipantByIndex(int index) {
-        return participants.findByIndex(index);
     }
 }
