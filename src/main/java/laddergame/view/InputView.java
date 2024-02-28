@@ -15,6 +15,8 @@ public class InputView {
     private static final String RESULTS_NAME_INPUT = System.lineSeparator() + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String DESIRED_NAME_INPUT = System.lineSeparator() + "결과를 보고 싶은 사람은?";
     private static final String INVALID_DESIRED_NAME_ERROR = "참여자 또는 all을 입력해주세여. 입력된 이름: %s";
+
+    private static final String RESERVED_WORD_ERROR = "이름은 예약어로 지을 수 없습니다.";
     private static final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
     private static final InputView instance = new InputView();
 
@@ -28,9 +30,11 @@ public class InputView {
     public List<String> readPlayersName() {
         System.out.println(PLAYER_NAME_INPUT);
         try {
-            return Arrays.stream(bufferedReader.readLine().split(NAME_SEPARATOR))
+            final List<String> names = Arrays.stream(bufferedReader.readLine().split(NAME_SEPARATOR))
                     .map(String::trim)
                     .toList();
+            checkDesiredNameInCommand(names);
+            return names;
         } catch (IOException exception) {
             throw new IllegalArgumentException(IOEXCEPTION_ERROR);
         }
@@ -61,6 +65,7 @@ public class InputView {
         try {
             final String input = bufferedReader.readLine().trim();
             checkDesiredPlayerName(input, players);
+            checkPlayerNameInCommand(input);
             return input;
         } catch (IOException exception) {
             throw new IllegalArgumentException(IOEXCEPTION_ERROR);
@@ -75,5 +80,17 @@ public class InputView {
             return;
         }
         throw new IllegalArgumentException(String.format(INVALID_DESIRED_NAME_ERROR, name));
+    }
+
+    private void checkPlayerNameInCommand(final String name) {
+        if (ReservedWords.isIncluded(name)) {
+            throw new IllegalArgumentException(RESERVED_WORD_ERROR);
+        }
+    }
+
+    private void checkDesiredNameInCommand(final List<String> names) {
+        for (String name : names) {
+            checkPlayerNameInCommand(name);
+        }
     }
 }
