@@ -11,7 +11,7 @@ import domain.Stick;
 public class OutputView {
 
     public void printLadder(Game game) {
-        System.out.println("실행결과");
+        System.out.println("사다리 결과");
 
         printPlayerNames(game.getPlayerNames());
         printLadder(game.getLadder());
@@ -45,7 +45,7 @@ public class OutputView {
     }
 
     private void printGameResults(List<GameResult> gameResults) {
-        gameResults.forEach(gameResult -> System.out.printf("%-5s", gameResult.getName()));
+        gameResults.forEach(gameResult -> System.out.printf("%5s ", gameResult.getName()));
         System.out.println();
     }
 
