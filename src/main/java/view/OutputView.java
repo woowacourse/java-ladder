@@ -3,8 +3,10 @@ package view;
 import java.util.List;
 import java.util.stream.Collectors;
 import model.bridge.Bridge;
+import model.gameResult.GameResult;
 import model.ladder.Ladder;
 import model.line.Line;
+import model.player.Player;
 import model.player.Players;
 import model.prize.Prize;
 import model.prize.Prizes;
@@ -19,6 +21,7 @@ public class OutputView {
     private static final String IS_UNCONNECTED_BRIDGE = " ";
     private static final String BRIDGE_DELIMITER = "|";
     private static final String BRIDGE_PREFIX = "    |";
+    private static final String GAME_RESULT_FORMAT = "%s : %s\n";
     private static final String EXCEPTION_PREFIX = "[ERROR] ";
 
     private OutputView() {
@@ -68,6 +71,17 @@ public class OutputView {
     public static void printGameResult(Prize prize) {
         System.out.println(GAME_RESULT_INTRO);
         System.out.println(prize.getName());
+    }
+
+    public static void printGameResultAll(GameResult gameResult) {
+        System.out.println(GAME_RESULT_INTRO);
+        gameResult.getPlayers()
+                .forEach(player -> printPlayerAndPrize(gameResult, player));
+    }
+
+    private static void printPlayerAndPrize(GameResult gameResult, Player player) {
+        Prize prize = gameResult.findPrizeByPlayer(player);
+        System.out.printf(GAME_RESULT_FORMAT, player.name(), prize.getName());
     }
 
     public static void printExceptionMessage(String message) {

@@ -34,6 +34,7 @@ public class LadderGameController {
         return retryOnException(() -> {
             String playerName = InputView.askPlayerNameForPrizeSearch();
             if (playerName.equals("all")) {
+                OutputView.printGameResultAll(gameResult);
                 return false;
             }
             Prize prize = gameResult.findPrizeByPlayerName(playerName);
