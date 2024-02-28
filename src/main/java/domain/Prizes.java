@@ -5,6 +5,7 @@ import java.util.List;
 public class Prizes {
 
     public static final int MAX_OF_PRIZE_LENGTH = 5;
+
     List<String> prizes;
 
     public Prizes(List<String> prizes, Participants participants) {

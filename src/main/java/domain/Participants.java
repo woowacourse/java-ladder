@@ -8,6 +8,7 @@ public class Participants {
 
     public static final int MIN_OF_PARTICIPANTS_COUNT = 2;
     public static final int MAX_OF_PARTICIPANTS_COUNT = 50;
+
     private final List<Name> names;
 
     public Participants(List<String> names) {

@@ -4,6 +4,7 @@ public class Height {
 
     public static final int MIN_OF_HEIGHT = 1;
     public static final int MAX_OF_HEIGHT = 100;
+
     private final int height;
 
     public Height(int height) {

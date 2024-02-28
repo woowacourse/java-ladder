@@ -13,6 +13,7 @@ public class LadderGameController {
 
     public static final String EXIT = "종료";
     public static final String ALL = "all";
+
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private LadderGame ladderGame;

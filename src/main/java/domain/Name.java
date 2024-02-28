@@ -4,6 +4,7 @@ public class Name {
 
     public static final int MAX_OF_NAME_LENGTH = 5;
     public static final String EXIT = "종료";
+
     private final String name;
 
     public Name(String name) {
