@@ -25,9 +25,21 @@ public class LadderController {
         OutputView.printLadder(ladderGame.getLadderSequence());
 
         LadderResult ladderResult = new LadderResult(ladderGame.getResult());
-        String resultPlayer = InputView.readResultPlayer(consoleReader);
-        OutputView.printResult(
-                ladderResult.getWinning(resultPlayer));
+        resultPhase(ladderResult, MAX_TRYCOUNT);
+    }
+
+    private void resultPhase(LadderResult ladderResult, int tryCount) {
+        if (tryCount == 0) {
+            throw new IllegalArgumentException("입력 허용횟수 5회를 초과했습니다.");
+        }
+        try {
+            String resultPlayer = InputView.readResultPlayer(consoleReader);
+            OutputView.printResult(
+                    ladderResult.getWinning(resultPlayer));
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            resultPhase(ladderResult, tryCount - 1);
+        }
     }
 
     private Players nameInput(int tryCount) {
