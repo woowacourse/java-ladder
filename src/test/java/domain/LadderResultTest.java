@@ -3,6 +3,7 @@ package domain;
 import java.util.List;
 import java.util.Map;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,11 +14,21 @@ public class LadderResultTest {
     void returnCorrectWinning() {
         LadderResult ladderResult = new LadderResult(Map.of(
                 "사람1",
-                "보상1",
-                "사람2",
-                "보상2"
+                "보상1"
         ));
         Assertions.assertThat(ladderResult.getWinning("사람1"))
                 .isEqualTo(List.of("보상1"));
+    }
+
+    @DisplayName("저장되지 않은 이름을 입력받을 경우 예외를 발생한다.")
+    @Test
+    void notSavedNameTest() {
+        LadderResult ladderResult = new LadderResult(Map.of(
+                "사람1",
+                "보상1"
+        ));
+        Assertions.assertThatThrownBy(() -> ladderResult.getWinning("사람2"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("입력되지 않은 사용자명입니다.");
     }
 }

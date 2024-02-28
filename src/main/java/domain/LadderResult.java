@@ -12,7 +12,13 @@ public class LadderResult {
     }
 
     public List<String> getWinning(String player) {
-        Name name = new Name(player);
+        validateContains(player);
         return List.of(results.get(player));
+    }
+
+    private void validateContains(String player) {
+        if (!results.containsKey(player)) {
+            throw new IllegalArgumentException("입력되지 않은 사용자명입니다.");
+        }
     }
 }
