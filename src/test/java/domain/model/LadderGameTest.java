@@ -14,7 +14,7 @@ public class LadderGameTest {
         //given
         Ladder ladder = new Ladder("2", 2);
         People people=new People(List.of("a","b"));
-        ResultCandidate resultCandidate=new ResultCandidate(List.of("꽝","100"));
+        ResultCandidate resultCandidate=new ResultCandidate(List.of("꽝","100"),2);
         //when
         LadderGame ladderGame=new LadderGame(ladder,people,resultCandidate);
         //then
