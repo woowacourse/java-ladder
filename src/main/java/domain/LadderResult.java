@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class LadderResult {
 
-    private Map<String, String> results;
+    private final Map<String, String> results;
 
     public LadderResult(Map<String, String> results) {
         this.results = results;
