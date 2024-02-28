@@ -11,23 +11,35 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class NameTest {
     @Test
-    @DisplayName("사람 이름은 5글자를 넘을 수 없다.")
-    void isNameOverMaxLengthLimit() {
-        String invalidName = "pobipo";
-        String validName = "pobi";
+    @DisplayName("사람 이름은 5글자 이하다.")
+    void isNameValidLength() {
+        String name = "pobip";
 
-        assertThrows(IllegalArgumentException.class, () -> new Name(invalidName));
-        assertDoesNotThrow(() -> new Name(validName));
+        assertDoesNotThrow(() -> new Name(name));
     }
 
     @Test
-    @DisplayName("이름은 2글자 이상이어야 한다.")
-    void isValidName() {
-        String invalidName = "p";
-        String validName = "po";
+    @DisplayName("사람 이름이 5글자를 넘을 경우 예외가 발생한다.")
+    void isNameOverMaxLengthLimit() {
+        String name = "pobipo";
 
-        assertThrows(IllegalArgumentException.class, () -> new Name(invalidName));
-        assertDoesNotThrow(() -> new Name(validName));
+        assertThrows(IllegalArgumentException.class, () -> new Name(name));
+    }
+
+    @Test
+    @DisplayName("이름은 2글자 이상이다.")
+    void isValidName() {
+        String name = "po";
+
+        assertDoesNotThrow(() -> new Name(name));
+    }
+
+    @Test
+    @DisplayName("이름이 2글자 미만일 경우 예외가 발생한다.")
+    void isNameUnderMinLengthLimit() {
+        String name = "p";
+
+        assertThrows(IllegalArgumentException.class, () -> new Name(name));
     }
 
     @ParameterizedTest
