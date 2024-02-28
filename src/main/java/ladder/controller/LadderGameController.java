@@ -1,33 +1,23 @@
 package ladder.controller;
 
-import ladder.domain.Compensation;
-import ladder.domain.Ladder;
 import ladder.domain.LadderGame;
-import ladder.domain.People;
-import ladder.service.LadderGameService;
+import ladder.domain.LadderGame.LadderGameBuilder;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 import ladder.view.Result;
 import ladder.view.ResultView;
 
-import static ladder.utils.InputUtility.retryWhileThrowArgumentException;
-
 public class LadderGameController {
-    private final LadderGameService gameService;
-
-    public LadderGameController(LadderGameService gameService) {
-        this.gameService = gameService;
+    public LadderGameController() {
     }
 
     public void run() {
-        People people = retryWhileThrowArgumentException(() ->
-                gameService.getPeople(InputView.readNames()));
-        Compensation compensation = retryWhileThrowArgumentException(() ->
-                gameService.getCompensation(InputView.readCompensation(), people));
-        Ladder ladder = retryWhileThrowArgumentException(() ->
-                gameService.getLadder(InputView.readHeight(), people));
+        LadderGame ladderGame = new LadderGameBuilder()
+                .names(InputView.readNames())
+                .compensations(InputView.readCompensation())
+                .height(InputView.readHeight())
+                .build();
 
-        LadderGame ladderGame = new LadderGame(people, ladder, compensation);
         printGame(ladderGame);
         printResult(ladderGame);
     }

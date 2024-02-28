@@ -25,6 +25,10 @@ public class People {
         return names;
     }
 
+    public int length() {
+        return names.size();
+    }
+
     private void validatePeopleNumber(List<String> names) {
         if (names.size() < MIN_PEOPLE_NUMBERS || names.size() > MAX_PEOPLE_NUMBERS) {
             throw new IllegalArgumentException("참여자 수는 1이상 100이하만 가능합니다.");

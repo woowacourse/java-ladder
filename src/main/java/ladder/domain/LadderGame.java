@@ -2,17 +2,17 @@ package ladder.domain;
 
 import ladder.view.Result;
 
+import java.util.List;
+
 public class LadderGame {
     private final People people;
-    private final Ladder ladder;
     private final Compensation compensation;
-    private final Result result;
+    private final Ladder ladder;
 
-    public LadderGame(People people, Ladder ladder, Compensation compensation) {
+    private LadderGame(People people, Compensation compensation, Ladder ladder) {
         this.people = people;
-        this.ladder = ladder;
         this.compensation = compensation;
-        this.result = Result.of(people, ladder, compensation);
+        this.ladder = ladder;
     }
 
     public People getPeople() {
@@ -28,6 +28,38 @@ public class LadderGame {
     }
 
     public Result getResult() {
-        return result;
+        return Result.of(people, ladder, compensation);
+    }
+
+    public static class LadderGameBuilder {
+        private People people;
+        private Compensation compensation;
+        private Ladder ladder;
+
+        public LadderGameBuilder names(List<String> names) {
+            this.people = new People(names);
+            return this;
+        }
+
+        public LadderGameBuilder compensations(List<String> compensations) {
+            validateSize(compensations);
+            this.compensation = new Compensation(compensations);
+            return this;
+        }
+
+        public LadderGameBuilder height(int height) {
+            this.ladder = new Ladder(height, people.length());
+            return this;
+        }
+
+        public LadderGame build() {
+            return new LadderGame(people, compensation, ladder);
+        }
+
+        private void validateSize(List<String> compensations) {
+            if (people.length() != compensations.size()) {
+                throw new IllegalArgumentException("보상 갯수와 사람 수가 일치하지 않습니다");
+            }
+        }
     }
 }

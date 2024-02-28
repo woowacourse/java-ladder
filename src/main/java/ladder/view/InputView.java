@@ -23,9 +23,14 @@ public class InputView {
                         .split(DELIMITER));
     }
 
-    public static String readHeight() throws NumberFormatException {
-        System.out.println(System.lineSeparator() + "최대 사다리 높이는 몇 개인가요?");
-        return scanner.nextLine();
+    public static int readHeight() {
+        try {
+            System.out.println(System.lineSeparator() + "최대 사다리 높이는 몇 개인가요?");
+            return Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("숫자를 입력해주세요");
+            return readHeight();
+        }
     }
 
     public static List<String> readCompensation() {
