@@ -1,6 +1,7 @@
 package view;
 
 import domain.*;
+import view.dto.LadderResultDto;
 
 import java.util.List;
 
@@ -12,17 +13,17 @@ public class OutputView {
     private static final String LEG_UNIT = "-";
     private static final String FORMAT_NAME = "%6s";
 
-    public static void printResult(Players players, Ladder ladder, Results results) {
+    public static void printResult(LadderResultDto ladderResultDto) {
         System.out.println(LADDER_RESULT);
-        List<Player> gamePlayers = players.getPlayers();
+        List<Player> gamePlayers = ladderResultDto.getPlayers();
         printPlayers(gamePlayers);
 
-        for (Line line : ladder.getLines()) {
+        for (Line line : ladderResultDto.getLines()) {
             printPrefixSpace(gamePlayers);
             printLine(line.getLegs());
         }
 
-        printResults(players, results);
+        printResults(ladderResultDto.getPlayers(), ladderResultDto.getResults());
         System.out.println();
     }
 
@@ -51,8 +52,8 @@ public class OutputView {
         System.out.print(STICK + "\n");
     }
 
-    private static void printResults(Players players, Results results) {
-        System.out.printf("%" + getFirstPlayerNameSize(players.getPlayers()) + "s", results.getResults().get(0).getResult());
+    private static void printResults(List<Player> players, Results results) {
+        System.out.printf("%" + getFirstPlayerNameSize(players) + "s", results.getResults().get(0).getResult());
 
         results.getResults().stream()
                 .skip(1)

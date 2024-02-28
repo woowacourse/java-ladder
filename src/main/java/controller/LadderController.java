@@ -4,6 +4,7 @@ import domain.*;
 import util.generator.RandomLineGenerator;
 import view.InputView;
 import view.OutputView;
+import view.dto.LadderResultDto;
 
 import static message.ErrorMessage.INVALID_LADDER_LANGUAGE_EXCEPTION;
 
@@ -16,7 +17,7 @@ public class LadderController {
         Players players = readPlayers();
         Results results = readResults(players.getPlayers().size());
         Ladder ladder = readLadder(players);
-        OutputView.printResult(players, ladder, results);
+        OutputView.printResult(LadderResultDto.of(players, ladder.getLines(), results));
         LadderGameResult ladderGameResult = new LadderGameResult(ladder, players, results);
         showLadderGameResult(players, ladderGameResult);
     }
