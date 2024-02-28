@@ -18,25 +18,30 @@ public class Game {
 
     public GameResult matchResult() {
         for (Member member : members.getMembers()) {
-
-            int index = members.findIndexOfMember(member);
-
-            for (Line line : ladder.getLines()) {
-                List<Connection> connections = line.getConnections();
-                boolean canMoveLeft = canMoveLeft(connections, index);
-                if (canMoveLeft) {
-                    index--;
-                    continue;
-                }
-                boolean canMoveRight = canMoveRight(connections, index);
-                if (canMoveRight) {
-                    index++;
-                }
-            }
-            Result result = results.getResultByIndex(index);
+            int index = members.findPositionOfMember(member);
+            index = tryMoveAll(index);
+            Result result = results.findResultByPosition(index);
             gameResult.addGameResult(member, result);
         }
         return gameResult;
+    }
+
+    private int tryMoveAll(int index) {
+        for (Line line : ladder.getLines()) {
+            List<Connection> connections = line.getConnections();
+            index = tryMove(connections, index);
+        }
+        return index;
+    }
+
+    private int tryMove(List<Connection> connections, int index) {
+        if (canMoveLeft(connections, index)) {
+            return index - 1;
+        }
+        if (canMoveRight(connections, index)) {
+            return index + 1;
+        }
+        return index;
     }
 
     private boolean canMoveLeft(List<Connection> connections, int index) {
@@ -44,10 +49,7 @@ public class Game {
             return false;
         }
         Connection left = connections.get(index - 1);
-        if (left.equals(Connection.CONNECTED)) {
-            return true;
-        }
-        return false;
+        return left.equals(Connection.CONNECTED);
     }
 
     private boolean canMoveRight(List<Connection> connections, int index) {
@@ -55,10 +57,7 @@ public class Game {
             return false;
         }
         Connection right = connections.get(index);
-        if (right.equals(Connection.CONNECTED)) {
-            return true;
-        }
-        return false;
+        return right.equals(Connection.CONNECTED);
     }
 
     public Members getMembers() {

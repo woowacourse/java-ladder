@@ -23,7 +23,7 @@ public class Results {
         }
     }
 
-    public Result getResultByIndex(int index) {
+    public Result findResultByPosition(int index) {
         return results.get(index);
     }
 

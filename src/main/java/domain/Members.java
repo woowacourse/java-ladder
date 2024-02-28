@@ -49,7 +49,7 @@ public class Members {
                 .toList();
     }
 
-    public int findIndexOfMember(Member member) {
+    public int findPositionOfMember(Member member) {
         return members.indexOf(member);
     }
 
