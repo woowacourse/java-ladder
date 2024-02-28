@@ -1,4 +1,4 @@
-package domain.ladder;
+package domain.ladder.stick;
 
 public enum Stick {
 

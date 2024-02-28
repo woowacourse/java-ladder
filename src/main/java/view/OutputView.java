@@ -2,7 +2,7 @@ package view;
 
 import domain.ladder.Ladder;
 import domain.ladder.Line;
-import domain.ladder.Stick;
+import domain.ladder.stick.Stick;
 import domain.player.Player;
 import domain.player.Players;
 import domain.result.Result;

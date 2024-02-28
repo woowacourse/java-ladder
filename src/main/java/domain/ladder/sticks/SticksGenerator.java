@@ -1,4 +1,6 @@
-package domain.ladder;
+package domain.ladder.sticks;
+
+import domain.ladder.stick.Stick;
 
 import java.util.List;
 

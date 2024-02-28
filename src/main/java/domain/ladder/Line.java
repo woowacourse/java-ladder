@@ -1,5 +1,7 @@
 package domain.ladder;
 
+import domain.ladder.stick.Stick;
+
 import java.util.List;
 
 public class Line {

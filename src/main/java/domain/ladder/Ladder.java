@@ -1,5 +1,8 @@
 package domain.ladder;
 
+import domain.ladder.stick.Stick;
+import domain.ladder.sticks.SticksGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
