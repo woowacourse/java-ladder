@@ -14,10 +14,11 @@ public class RewardsOfPlayersTest {
     @Test
     void getByNameTest() {
         Players players = new Players(List.of("poby", "honux"));
+        Width width = new Width(players.count());
         Height height = new Height(3);
         Results results = new Results(List.of("100", "200"), players.count());
-        Ladder ladder = new Ladder(players, height, () -> RIGHT);
-        RewardsOfPlayers rewardsOfPlayers = new RewardsOfPlayers(ladder.getResultPlayers(), results);
+        Ladder ladder = new Ladder(width, height, () -> RIGHT);
+        RewardsOfPlayers rewardsOfPlayers = new RewardsOfPlayers(ladder.findAllResultPlayers(players), results);
 
         assertThat(rewardsOfPlayers.getRewardByName("poby")).isEqualTo("200");
     }
@@ -26,10 +27,11 @@ public class RewardsOfPlayersTest {
     @Test
     void invalidGetByNameTest() {
         Players players = new Players(List.of("poby", "honux"));
+        Width width = new Width(players.count());
         Height height = new Height(3);
         Results results = new Results(List.of("100", "200"), players.count());
-        Ladder ladder = new Ladder(players, height, () -> RIGHT);
-        RewardsOfPlayers rewardsOfPlayers = new RewardsOfPlayers(ladder.getResultPlayers(), results);
+        Ladder ladder = new Ladder(width, height, () -> RIGHT);
+        RewardsOfPlayers rewardsOfPlayers = new RewardsOfPlayers(ladder.findAllResultPlayers(players), results);
 
         assertThatThrownBy(() -> rewardsOfPlayers.getRewardByName("zeus"))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -40,10 +42,11 @@ public class RewardsOfPlayersTest {
     @Test
     void getAllResults() {
         Players players = new Players(List.of("poby", "honux"));
+        Width width = new Width(players.count());
         Height height = new Height(3);
         Results results = new Results(List.of("100", "200"), players.count());
-        Ladder ladder = new Ladder(players, height, () -> RIGHT);
-        RewardsOfPlayers rewardsOfPlayers = new RewardsOfPlayers(ladder.getResultPlayers(), results);
+        Ladder ladder = new Ladder(width, height, () -> RIGHT);
+        RewardsOfPlayers rewardsOfPlayers = new RewardsOfPlayers(ladder.findAllResultPlayers(players), results);
 
         assertAll(
                 () -> assertThat(rewardsOfPlayers.getAllRewards().get("poby")).isEqualTo("200"),

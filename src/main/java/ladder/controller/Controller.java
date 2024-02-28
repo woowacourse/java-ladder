@@ -10,6 +10,7 @@ import ladder.domain.Players;
 import ladder.domain.RandomDirectionGenerator;
 import ladder.domain.Results;
 import ladder.domain.RewardsOfPlayers;
+import ladder.domain.Width;
 import ladder.exception.ExceptionHandler;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -19,9 +20,10 @@ public class Controller {
         Players players = createPlayers();
         Results results = createResults(players.count());
         Height height = createHeight();
+        Width width = new Width(players.count());
         DirectionGenerator randomDirectionGenerator = new RandomDirectionGenerator();
-        Ladder ladder = new Ladder(players, height, randomDirectionGenerator);
-        RewardsOfPlayers rewardsOfPlayers = new RewardsOfPlayers(ladder.getResultPlayers(), results);
+        Ladder ladder = new Ladder(width, height, randomDirectionGenerator);
+        RewardsOfPlayers rewardsOfPlayers = new RewardsOfPlayers(ladder.findAllResultPlayers(players), results);
         OutputView.printLadderResult(players, ladder, results);
         repeatPrintingReward(rewardsOfPlayers);
     }

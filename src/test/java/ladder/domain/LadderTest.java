@@ -13,9 +13,7 @@ class LadderTest {
     @Test
     void ladderSizeTest() {
         //given
-        Players players = new Players(List.of("poby", "honux", "crong", "jk"));
-        Height height = new Height(5);
-        Ladder ladder = new Ladder(players, height, () -> RIGHT);
+        Ladder ladder = new Ladder(new Width(4), new Height(5), () -> RIGHT);
 
         //when
         LadderLevel anyLadderLevel = ladder.stream().findAny().get();
@@ -25,8 +23,8 @@ class LadderTest {
 
         // then
         assertAll(
-                () -> assertThat(actualHeight).isEqualTo(height.value()),
-                () -> assertThat(actualPlayersCount).isEqualTo(players.count())
+                () -> assertThat(actualHeight).isEqualTo(5),
+                () -> assertThat(actualPlayersCount).isEqualTo(4)
         );
     }
 
@@ -34,10 +32,11 @@ class LadderTest {
     @Test
     void getAllResultLocationTest() {
         Players players = new Players(List.of("poby", "honux"));
+        Width width = new Width(2);
         Height height = new Height(3);
-        Ladder ladder = new Ladder(players, height, () -> RIGHT);
+        Ladder ladder = new Ladder(width, height, () -> RIGHT);
 
-        List<Player> actual = ladder.getResultPlayers();
+        List<Player> actual = ladder.findAllResultPlayers(players);
 
         assertThat(actual).isEqualTo(List.of(
                 new Player("poby", 1),
