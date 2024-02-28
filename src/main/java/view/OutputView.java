@@ -6,7 +6,7 @@ import domain.Ladder;
 import domain.Leg;
 import domain.Line;
 import domain.PlayerName;
-import domain.Players;
+import domain.PlayerNames;
 import domain.Reward;
 import domain.Rewards;
 import java.util.List;
@@ -22,11 +22,11 @@ public class OutputView {
     private static final String FORMAT_REWARD = "%6s";
     private static final String FORMAT_ALL_PLAYER_RESULT = "%s : %s" + lineSeparator();
 
-    public static void printLadder(Players players, Ladder ladder, Rewards rewards) {
+    public static void printLadder(PlayerNames playerNames, Ladder ladder, Rewards rewards) {
         System.out.println(LADDER_RESULT);
-        printPlayers(players.getPlayersNames());
-        printLines(players, ladder);
-        printRewards(players, rewards.getRewards());
+        printPlayers(playerNames.getPlayerNames());
+        printLines(playerNames, ladder);
+        printRewards(playerNames, rewards.getRewards());
     }
 
     private static void printPlayers(List<PlayerName> players) {
@@ -37,10 +37,10 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void printLines(Players players, Ladder ladder) {
+    private static void printLines(PlayerNames playerNames, Ladder ladder) {
         List<Line> lines = ladder.getLines();
         for (Line line : lines) {
-            printPrefixSpace(players.getPlayersNames());
+            printPrefixSpace(playerNames.getPlayerNames());
             printLine(line.getLegs());
         }
     }
@@ -65,7 +65,7 @@ public class OutputView {
         return " ".repeat(5);
     }
 
-    private static void printRewards(Players players, List<Reward> rewards) {
+    private static void printRewards(PlayerNames playerNames, List<Reward> rewards) {
         System.out.print(rewards.get(0).getReward() + " ");
         rewards.stream().skip(1).forEach((reward) -> {
             System.out.printf(FORMAT_REWARD, reward.getReward());

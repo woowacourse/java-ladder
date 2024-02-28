@@ -4,7 +4,7 @@ import domain.Height;
 import domain.Ladder;
 import domain.LadderGame;
 import domain.PlayerName;
-import domain.Players;
+import domain.PlayerNames;
 import domain.RandomLegGenerateStrategy;
 import domain.Rewards;
 import java.util.Map;
@@ -15,15 +15,15 @@ public class LadderController {
     private static final String SHOW_RESULT_BREAK_WORD = "all";
 
     public void run() {
-        Players players = new Players(InputView.readPlayers());
-        Rewards rewards = new Rewards(InputView.readRewards(), players.getPlayersNames().size());
+        PlayerNames playerNames = new PlayerNames(InputView.readPlayerNames());
+        Rewards rewards = new Rewards(InputView.readRewards(), playerNames.getPlayerNames().size());
         Height ladderHeight = new Height(InputView.readLadderHeight());
 
-        int ladderWidth = players.getPlayersNames().size() - 1;
+        int ladderWidth = playerNames.getPlayerNames().size() - 1;
         Ladder ladder = new Ladder(new RandomLegGenerateStrategy(), ladderHeight, ladderWidth);
-        OutputView.printLadder(players, ladder, rewards);
+        OutputView.printLadder(playerNames, ladder, rewards);
 
-        LadderGame ladderGame = new LadderGame(ladder, players, rewards);
+        LadderGame ladderGame = new LadderGame(ladder, playerNames, rewards);
         showResult(ladderGame);
     }
 

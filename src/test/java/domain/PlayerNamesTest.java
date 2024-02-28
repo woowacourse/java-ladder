@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class PlayersTest {
+public class PlayerNamesTest {
 
     @DisplayName("플레이어들 객체가 정상적으로 생성된다.")
     @Test
     void createPlayerNames() {
         PlayerName player1 = new PlayerName("dodo");
         PlayerName player2 = new PlayerName("capy");
-        assertThatCode(() -> new Players(List.of(player1, player2)))
+        assertThatCode(() -> new PlayerNames(List.of(player1, player2)))
                 .doesNotThrowAnyException();
     }
 
@@ -24,7 +24,7 @@ public class PlayersTest {
     @Test
     void createPlayerNamesWithInvalidSize() {
         PlayerName player = new PlayerName("dodo");
-        assertThatThrownBy(() -> new Players(List.of(player)))
+        assertThatThrownBy(() -> new PlayerNames(List.of(player)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -32,7 +32,7 @@ public class PlayersTest {
     @Test
     void createPlayerNamesWithOverlap() {
         assertThatThrownBy(
-                () -> new Players(List.of(new PlayerName("dodo"), new PlayerName("dodo"), new PlayerName("capy"))))
+                () -> new PlayerNames(List.of(new PlayerName("dodo"), new PlayerName("dodo"), new PlayerName("capy"))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -41,9 +41,9 @@ public class PlayersTest {
     void findPlayerNameOrderNumber() {
         PlayerName player1 = new PlayerName("dodo");
         PlayerName player2 = new PlayerName("capy");
-        Players players = new Players(List.of(player1, player2));
+        PlayerNames playerNames = new PlayerNames(List.of(player1, player2));
 
-        assertThat(players.getPlayerNameOrderNumber("dodo")).isEqualTo(0);
+        assertThat(playerNames.getPlayerNameOrderNumber("dodo")).isEqualTo(0);
     }
 
     @DisplayName("플레이어가 존재한다면 true를 반환합니다..")
@@ -51,10 +51,10 @@ public class PlayersTest {
     void isExistPlayer() {
         PlayerName player1 = new PlayerName("dodo");
         PlayerName player2 = new PlayerName("capy");
-        Players players = new Players(List.of(player1, player2));
+        PlayerNames playerNames = new PlayerNames(List.of(player1, player2));
         String checkName = "dodo";
 
-        Assertions.assertTrue(players.isExistPlayer(checkName));
+        Assertions.assertTrue(playerNames.isExistPlayer(checkName));
     }
 
     @DisplayName("플레이어가 존재한다면 true를 반환합니다..")
@@ -62,9 +62,9 @@ public class PlayersTest {
     void isExistPlayerWithNotExist() {
         PlayerName player1 = new PlayerName("dodo");
         PlayerName player2 = new PlayerName("capy");
-        Players players = new Players(List.of(player1, player2));
+        PlayerNames playerNames = new PlayerNames(List.of(player1, player2));
         String checkName = "pobi";
 
-        Assertions.assertFalse(players.isExistPlayer(checkName));
+        Assertions.assertFalse(playerNames.isExistPlayer(checkName));
     }
 }

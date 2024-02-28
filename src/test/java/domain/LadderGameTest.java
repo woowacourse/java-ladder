@@ -26,7 +26,7 @@ public class LadderGameTest {
                 return true;
             }
         }, new Height(1), 3);
-        Players players = new Players(
+        PlayerNames playerNames = new PlayerNames(
                 List.of(new PlayerName("pobi"),
                         new PlayerName("honux"),
                         new PlayerName("cron"),
@@ -36,7 +36,7 @@ public class LadderGameTest {
                         new Reward("5000"),
                         new Reward("꽝"),
                         new Reward("3000")), 4);
-        LadderGame ladderGame = new LadderGame(ladder, players, rewards);
+        LadderGame ladderGame = new LadderGame(ladder, playerNames, rewards);
 
         //when
 
@@ -79,10 +79,10 @@ public class LadderGameTest {
         Reward fail2 = new Reward("꽝");
         Reward success2 = new Reward("3000");
 
-        Players players = new Players(List.of(pobi, honux, cron, jk));
+        PlayerNames playerNames = new PlayerNames(List.of(pobi, honux, cron, jk));
         Rewards rewards = new Rewards(List.of(fail1, success1, fail2, success2), 4);
 
-        LadderGame ladderGame = new LadderGame(ladder, players, rewards);
+        LadderGame ladderGame = new LadderGame(ladder, playerNames, rewards);
 
         //when
         Map<PlayerName, String> actualResult = ladderGame.getAllPlayerResult();

@@ -5,13 +5,13 @@ import static message.ErrorMessage.OVERLAP_PAYER_NAME_EXCEPTION;
 
 import java.util.List;
 
-public class Players {
+public class PlayerNames {
 
     private static final int MINIMUM_PLAYER_COUNT = 2;
 
     private final List<PlayerName> playerNames;
 
-    public Players(List<PlayerName> playerNames) {
+    public PlayerNames(List<PlayerName> playerNames) {
         validate(playerNames);
         this.playerNames = playerNames;
     }
@@ -43,7 +43,7 @@ public class Players {
         return -1;
     }
 
-    public List<PlayerName> getPlayersNames() {
+    public List<PlayerName> getPlayerNames() {
         return playerNames;
     }
 
