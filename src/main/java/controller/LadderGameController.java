@@ -7,6 +7,7 @@ import model.ladder.Ladder;
 import model.ladder.LadderHeight;
 import model.line.RandomLineGenerator;
 import model.player.Players;
+import model.prize.Prize;
 import model.prize.Prizes;
 import view.InputView;
 import view.OutputView;
@@ -23,7 +24,15 @@ public class LadderGameController {
 
         end(players, ladder, prizes);
 
-        String playerName = InputView.askPlayerNameForPrizeSearch();
+        Prize searchedPrize = searchPrize(gameResult);
+        OutputView.printGameResult(searchedPrize);
+    }
+
+    private Prize searchPrize(GameResult gameResult) {
+        return retryOnException(() -> {
+            String playerName = InputView.askPlayerNameForPrizeSearch();
+            return gameResult.findPrizeByPlayerName(playerName);
+        });
     }
 
     private Players preparePlayers() {

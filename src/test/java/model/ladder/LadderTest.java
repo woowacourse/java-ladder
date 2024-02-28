@@ -10,7 +10,6 @@ import model.gameResult.GameResult;
 import model.line.Line;
 import model.line.LineGenerator;
 import model.line.RandomLineGenerator;
-import model.player.Player;
 import model.player.Players;
 import model.prize.Prizes;
 import org.junit.jupiter.api.DisplayName;
@@ -37,10 +36,10 @@ class LadderTest {
         Ladder ladder = Ladder.of(ladderHeight, players, lineGenerator);
         GameResult gameResult = ladder.simulate(players, prizes);
         assertAll(
-                () -> assertEquals(gameResult.findPrizeByPlayer(new Player("pobi")).getName(), "커피"),
-                () -> assertEquals(gameResult.findPrizeByPlayer(new Player("lala")).getName(), "꽝"),
-                () -> assertEquals(gameResult.findPrizeByPlayer(new Player("jojo")).getName(), "식권"),
-                () -> assertEquals(gameResult.findPrizeByPlayer(new Player("gamja")).getName(), "꽝")
+                () -> assertEquals(gameResult.findPrizeByPlayerName("pobi").getName(), "커피"),
+                () -> assertEquals(gameResult.findPrizeByPlayerName("lala").getName(), "꽝"),
+                () -> assertEquals(gameResult.findPrizeByPlayerName("jojo").getName(), "식권"),
+                () -> assertEquals(gameResult.findPrizeByPlayerName("gamja").getName(), "꽝")
         );
     }
 

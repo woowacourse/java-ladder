@@ -8,6 +8,7 @@ import model.prize.Prize;
 import model.prize.Prizes;
 
 public class GameResult {
+    private static final String NOT_EXIST_PLAYER_NAME = "존재하지 않는 참가자입니다.";
     private final ConcurrentHashMap<Player, Prize> result;
 
     public GameResult(ConcurrentHashMap<Player, Prize> result) {
@@ -23,7 +24,16 @@ public class GameResult {
         return new GameResult(result);
     }
 
-    public Prize findPrizeByPlayer(Player player) {
+    public Prize findPrizeByPlayerName(String playerName) {
+        Player player = findPlayerByName(playerName);
         return result.get(player);
+    }
+
+    private Player findPlayerByName(String playerName) {
+        return result.keySet()
+                .stream()
+                .filter(player -> player.isNameEqual(playerName))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_PLAYER_NAME));
     }
 }

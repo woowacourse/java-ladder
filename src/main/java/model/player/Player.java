@@ -13,4 +13,8 @@ public record Player(String name) {
             throw new IllegalArgumentException(INVALID_NAME_LENGTH);
         }
     }
+
+    public Boolean isNameEqual(String name) {
+        return name.equals(this.name);
+    }
 }
