@@ -27,9 +27,16 @@ public class PlayersTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("플레이어 이름이 중복된 경우 예외를 발생한다.")
+    @Test
+    void createPlayersWithOverlap() {
+        assertThatThrownBy(() -> new Players(List.of(new Player("dodo"), new Player("dodo"), new Player("capy"))))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("플레이어가 몇번째 순서인지 반환합니다.(0부터)")
     @Test
-    void findPlayerOrderNumber(){
+    void findPlayerOrderNumber() {
         Player player1 = new Player("dodo");
         Player player2 = new Player("capy");
         Players players = new Players(List.of(player1, player2));

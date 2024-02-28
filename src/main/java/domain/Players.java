@@ -1,6 +1,7 @@
 package domain;
 
 import static message.ErrorMessage.INVALID_PLAYER_COUNT_EXCEPTION;
+import static message.ErrorMessage.OVERLAP_PAYER_NAME_EXCEPTION;
 
 import java.util.List;
 
@@ -11,11 +12,23 @@ public class Players {
     private final List<Player> players;
 
     public Players(List<Player> players) {
-        validatePlayerSize(players);
+        validate(players);
         this.players = players;
     }
 
-    private static void validatePlayerSize(List<Player> players) {
+    private void validate(List<Player> players) {
+        validatePlayerOverlap(players);
+        validatePlayerSize(players);
+    }
+
+    private void validatePlayerOverlap(List<Player> players) {
+        long distinctSize = players.stream().map(Player::getName).distinct().count();
+        if (players.size() != distinctSize) {
+            throw new IllegalArgumentException(OVERLAP_PAYER_NAME_EXCEPTION.getMessage());
+        }
+    }
+
+    private void validatePlayerSize(List<Player> players) {
         if (players.size() < MINIMUM_PLAYER_COUNT) {
             throw new IllegalArgumentException(INVALID_PLAYER_COUNT_EXCEPTION.getMessage());
         }
