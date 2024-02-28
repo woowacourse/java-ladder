@@ -16,6 +16,16 @@ public class Players {
         return new Players(convertToPlayer(players));
     }
 
+    private void validate(List<Player> players) {
+        if (hasDuplicate(players)) {
+            throw new IllegalArgumentException("중복된 참가자를 입력할 수 없습니다.");
+        }
+    }
+
+    private boolean hasDuplicate(List<Player> players) {
+        return Set.copyOf(players).size() != players.size();
+    }
+
     private static List<Player> convertToPlayer(List<String> players) {
         return players.stream()
                 .map(Player::new)
@@ -43,16 +53,6 @@ public class Players {
     private boolean isExistPlayer(String inputName) {
         return players.stream()
                 .anyMatch(player -> player.isSameName(inputName));
-    }
-
-    private void validate(List<Player> players) {
-        if (hasDuplicate(players)) {
-            throw new IllegalArgumentException("중복된 참가자를 입력할 수 없습니다.");
-        }
-    }
-
-    private boolean hasDuplicate(List<Player> players) {
-        return Set.copyOf(players).size() != players.size();
     }
 
     public List<Player> getPlayers() {
