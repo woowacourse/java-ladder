@@ -24,7 +24,7 @@ public class Main {
         Game game = Game.of(members, height, rewards, pointStrategy);
 
         outputView.printGame(game);
-        processGameResult(game);
+        readAndPrintGameResult(game.findRewardMap());
     }
 
     private static Members makeMembers() {
@@ -39,13 +39,11 @@ public class Main {
         return Rewards.from(members.getCount(), inputView.readRewards());
     }
 
-    private static void processGameResult(Game game) {
-        Map<String, String> rewardMap = game.findRewardMap();
-
-        String memberName = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap));
-        while (!memberName.equals(COMMAND_PRINT_ALL)) {
-            outputView.printRewardName(rewardMap.get(memberName));
-            memberName = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap));
+    private static void readAndPrintGameResult(Map<String, String> rewardMap) {
+        String name = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap));
+        while (!name.equals(COMMAND_PRINT_ALL)) {
+            outputView.printRewardName(rewardMap.get(name));
+            name = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap));
         }
         outputView.printAllResult(rewardMap);
     }
