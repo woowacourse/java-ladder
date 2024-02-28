@@ -27,7 +27,7 @@ public class LadderGame {
     }
 
     private Players readPlayers() {
-        return new Players(InputView.readPlayerNames());
+        return new Players(InputView.readPlayers());
     }
 
     private Rewards readReward() {

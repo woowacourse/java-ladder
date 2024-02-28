@@ -23,7 +23,7 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(in);
 
-    public static List<Player> readPlayerNames() {
+    public static List<Player> readPlayers() {
         out.println(MESSAGE_PARTICIPATED_PLAYERS);
         String input = EMPTY_SPACE_PATTERN.matcher(scanner.nextLine()).replaceAll("");
         return Arrays.stream(input.split(NAMES_SEPARATOR))
