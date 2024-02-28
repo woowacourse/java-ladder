@@ -7,7 +7,14 @@ public class Position {
     private final int currentIndex;
 
     protected Position(int currentIndex) {
+        validateNotNegative(currentIndex);
         this.currentIndex = currentIndex;
+    }
+
+    void validateNotNegative(int index){
+        if(index < 0){
+            throw new IllegalArgumentException("포지션(위치)은 음수가 될 수 없습니다.");
+        }
     }
 
     public boolean same(int other) {
