@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.function.Supplier;
 import laddergame.model.ExecutionResult;
 import laddergame.model.ExecutionResults;
+import laddergame.model.InquirySubject;
 import laddergame.model.LadderHeight;
 import laddergame.model.Participant;
 import laddergame.model.Participants;
@@ -43,14 +44,31 @@ public class InputView {
             System.out.println();
             System.out.println("최대 사다리 높이는 몇 개인가요?");
             String input = scanner.nextLine();
+            validateSingleInput(input);
             int height = parseInt(input);
             return new LadderHeight(height);
+        });
+    }
+
+    public InquirySubject readInquirySubject(Participants participants) {
+        return repeatUntilSuccess(() -> {
+            System.out.println();
+            System.out.println("결과를 보고 싶은 사람은?");
+            String input = scanner.nextLine();
+            validateSingleInput(input);
+            return new InquirySubject(new Participant(input), participants);
         });
     }
 
     private void validateMultipleInputs(String input) {
         if (input == null || input.isBlank() || input.endsWith(",")) {
             throw new IllegalArgumentException("[ERROR] 입력값은 공백이거나 구분자(,)로 끝날 수 없다.");
+        }
+    }
+
+    private void validateSingleInput(String input) {
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 입력값은 공백일 수 없습니다.");
         }
     }
 

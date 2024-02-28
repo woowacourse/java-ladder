@@ -1,6 +1,7 @@
 package laddergame.controller;
 
 import laddergame.model.ExecutionResults;
+import laddergame.model.InquirySubject;
 import laddergame.model.LadderGame;
 import laddergame.model.LadderHeight;
 import laddergame.model.Participants;
@@ -26,6 +27,7 @@ public class LadderGameController {
         LadderGame ladderGame = randomGenerator.getLadderGame(ladderHeight, participants);
 
         printResult(participants, ladderGame, executionResults);
+        InquirySubject inquirySubject = inputView.readInquirySubject(participants);
     }
 
     private void printResult(Participants participants, LadderGame ladderGame, ExecutionResults executionResults) {
