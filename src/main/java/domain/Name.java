@@ -5,6 +5,8 @@ public class Name {
     private static final int MIN_NAME_LENGTH = 2;
     private static final String INVALID_NAME_LENGTH =
             "이름은 " + MIN_NAME_LENGTH + "자 이상, " + MAX_NAME_LENGTH + "자 이하여야 합니다.";
+    public static final String NAME_CONTAINS_BLANK = "이름은 공백이 포함될 수 없습니다.";
+    public static final String BLANK = " ";
 
     private final String value;
 
@@ -20,6 +22,10 @@ public class Name {
 
         if (value.length() < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException(INVALID_NAME_LENGTH);
+        }
+
+        if (value.contains(BLANK)) {
+            throw new IllegalArgumentException(NAME_CONTAINS_BLANK);
         }
     }
 
