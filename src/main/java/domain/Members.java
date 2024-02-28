@@ -69,4 +69,16 @@ public class Members {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("해당 이름을 가진 참여자가 없습니다."));
     }
+
+    public boolean checkMemberExist(String name) {
+        if (name.equals("all")) {
+            return false;
+        }
+        boolean isExist = members.stream()
+                .anyMatch(member -> member.getName().equals(name));
+        if (!isExist) {
+            throw new IllegalArgumentException("해당 이름을 가진 참여자가 없습니다.");
+        }
+        return true;
+    }
 }
