@@ -15,9 +15,9 @@ import java.util.Map;
 import java.util.stream.IntStream;
 
 import static util.RetryHelper.retryHelper;
+import static util.UserMessage.*;
 import static view.InputView.input;
 import static view.InputView.inputNames;
-import static view.UserMessage.*;
 
 
 public class GameController {
