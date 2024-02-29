@@ -49,7 +49,7 @@ class PlayersTest {
         assertThat(column).isEqualTo(1);
     }
 
-    @DisplayName("주어진 이름의 사용자가 존재하지 않으면 사용자의 위치를 알아낼 수 없다,.")
+    @DisplayName("주어진 이름의 사용자가 존재하지 않으면 사용자의 위치를 알아낼 수 없다.")
     @Test
     void notFoundPlayer() {
         List<String> names = List.of("산초", "아톰", "망쵸");
