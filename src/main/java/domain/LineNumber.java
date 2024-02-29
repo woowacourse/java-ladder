@@ -12,4 +12,8 @@ public record LineNumber(int value) {
             throw new IllegalArgumentException("유효하지 않은 라인 번호입니다.");
         }
     }
+
+    public boolean isEqual(final int lineNumber) {
+        return value == lineNumber;
+    }
 }
