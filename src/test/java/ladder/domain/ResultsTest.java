@@ -39,14 +39,20 @@ class ResultsTest {
     @DisplayName("사다리가 모두 탔을 때 도착한 곳이 실행 결과이다.")
     void getResult() {
         // given
-        Results results = new Results(List.of("꽝", "5000", "꽝", "3000"), 4);
+        Result result1 = new Result("꽝");
+        Result result2 = new Result("3000");
+        Result result3 = new Result("꽝");
+        Result result4 = new Result("5000");
+        Results results = new Results(List.of(
+                result1, result2, result3, result4
+        ), 4);
         int position = ladder.ride(0);
 
         // when
-        String result = results.find(position);
+        Result result = results.find(position);
 
         // then
-        assertThat(result).isEqualTo("꽝");
+        assertThat(result).isEqualTo(result3);
     }
 
     @Test
@@ -61,16 +67,20 @@ class ResultsTest {
                         new Name("jk")
                 )
         );
-        Results results = new Results(List.of("꽝", "5000", "꽝", "3000"), 4);
+        Result result1 = new Result("꽝");
+        Result result2 = new Result("5000");
+        Result result3 = new Result("꽝");
+        Result result4 = new Result("3000");
+        Results results = new Results(List.of(result1, result2, result3, result4), 4);
 
         int startPosition = people.findPosition(new Name("crong"));
         int resultPosition = ladder.ride(startPosition);
 
         // when
-        String result = results.find(resultPosition);
+        Result result = results.find(resultPosition);
 
         // then
-        assertThat(result).isEqualTo("3000");
+        assertThat(result).isEqualTo(result4);
     }
 
     @Test
@@ -87,7 +97,7 @@ class ResultsTest {
 
         // when & then
         assertThatThrownBy(
-                () -> new Results(List.of("꽝", "5000"), people.count())
+                () -> new Results(List.of(new Result("꽝"), new Result("5000")), people.count())
         ).isInstanceOf(IllegalArgumentException.class);
     }
 }

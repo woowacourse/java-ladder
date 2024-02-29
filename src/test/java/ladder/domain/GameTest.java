@@ -28,6 +28,10 @@ class GameTest {
     private People people;
     private Results results;
     private Ladder ladder;
+    private final Result result1 = new Result("꽝");
+    private final Result result2 = new Result("3000");
+    private final Result result3 = new Result("꽝");
+    private final Result result4 = new Result("5000");
 
     @BeforeEach
     void setUp() {
@@ -37,7 +41,9 @@ class GameTest {
         Name jk = new Name("jk");
         people = new People(List.of(pobi, honux, crong, jk));
 
-        results = new Results(List.of("꽝", "3000", "꽝", "5000"), 4);
+        results = new Results(List.of(
+                result1, result2, result3, result4
+        ), 4);
 
         Line line1 = new Line(pointsGenerator1.generate(3));
         Line line2 = new Line(pointsGenerator2.generate(3));
@@ -52,11 +58,11 @@ class GameTest {
         Name name = new Name("pobi");
 
         // when
-        Map<Name, String> playResults = game.play(name);
+        Map<Name, Result> playResults = game.play(name);
 
         // then
-        Map<Name, String> expected = Map.of(
-                new Name("pobi"), "꽝"
+        Map<Name, Result> expected = Map.of(
+                new Name("pobi"), result3
         );
         assertThat(playResults).containsAllEntriesOf(expected);
     }
@@ -69,14 +75,14 @@ class GameTest {
         Name all = new Name("all");
 
         // when
-        Map<Name, String> playResults = game.play(all);
+        Map<Name, Result> playResults = game.play(all);
 
         // then
-        Map<Name, String> expected = Map.of(
-                new Name("pobi"), "꽝",
-                new Name("honux"), "꽝",
-                new Name("crong"), "5000",
-                new Name("jk"), "3000"
+        Map<Name, Result> expected = Map.of(
+                new Name("pobi"), result3,
+                new Name("honux"), result1,
+                new Name("crong"), result4,
+                new Name("jk"), result2
         );
         assertThat(playResults).containsAllEntriesOf(expected);
     }

@@ -17,24 +17,24 @@ public class Game {
         this.ladder = ladder;
     }
 
-    public Map<Name, String> play(Name target) {
+    public Map<Name, Result> play(Name target) {
         if (ALL.equals(target)) {
             return playAll();
         }
-        String result = playOne(target);
+        Result result = playOne(target);
         return Map.of(target, result);
     }
 
-    private String playOne(Name target) {
+    private Result playOne(Name target) {
         int startPosition = people.findPosition(target);
         int resultPosition = ladder.ride(startPosition);
         return results.find(resultPosition);
     }
 
-    private Map<Name, String> playAll() {
-        Map<Name, String> results = new LinkedHashMap<>();
+    private Map<Name, Result> playAll() {
+        Map<Name, Result> results = new LinkedHashMap<>();
         for (Name name : people.getNames()) {
-            String result = playOne(name);
+            Result result = playOne(name);
             results.put(name, result);
         }
         return results;
