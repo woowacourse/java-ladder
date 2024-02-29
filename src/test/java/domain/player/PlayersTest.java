@@ -1,4 +1,4 @@
-package domain;
+package domain.player;
 
 import domain.player.Player;
 import domain.player.Players;

@@ -1,4 +1,4 @@
-package domain;
+package domain.result;
 
 import domain.result.Result;
 import org.junit.jupiter.api.DisplayName;

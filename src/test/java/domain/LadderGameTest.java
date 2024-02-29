@@ -14,6 +14,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 import java.util.Map;
@@ -31,6 +33,14 @@ class LadderGameTest {
         ladderGame = new LadderGame(players, ladder, results);
     }
 
+    private StickGenerator mockStickGenerator() {
+        return () -> Stick.FILLED;
+    }
+
+    private SticksGenerator mockSticksGenerator() {
+        return (mockStickGenerator) -> List.of(Stick.FILLED, Stick.NOT_FILLED);
+    }
+
     @DisplayName("사다리 타기 실행 결과를 반환한다.")
     @Nested
     class resultTest {
@@ -44,19 +54,12 @@ class LadderGameTest {
         }
 
         @DisplayName("한 사용자의 사다리 타기 결과를 반환한다.")
-        @Test
-        void checkOneResult() {
-            Result result = ladderGame.getOnePlayerResult("산초");
+        @ParameterizedTest
+        @CsvSource(value = {"산초:꽝", "아톰:당첨"}, delimiter = ':')
+        void checkOneResult(String playerName, String resultValue) {
+            Result result = ladderGame.getOnePlayerResult(playerName);
 
-            Assertions.assertThat(result).isEqualTo(new Result("꽝"));
+            Assertions.assertThat(result).isEqualTo(new Result(resultValue));
         }
-    }
-
-    private StickGenerator mockStickGenerator() {
-        return () -> Stick.FILLED;
-    }
-
-    private SticksGenerator mockSticksGenerator() {
-        return (mockStickGenerator) -> List.of(Stick.FILLED, Stick.NOT_FILLED);
     }
 }
