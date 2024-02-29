@@ -24,10 +24,14 @@ public class Result {
     }
 
     public Item findItemByPerson(final Person person) {
+        validatePersonExist(person);
+        return matchedResult.get(person);
+    }
+
+    private void validatePersonExist(final Person person) {
         if (!matchedResult.containsKey(person)) {
             throw new IllegalArgumentException("결과를 보려는 사람이 사다리 참여자에 존재하지 않습니다.");
         }
-        return matchedResult.get(person);
     }
 
     public Map<Person, Item> getMatchedResult() {
