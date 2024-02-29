@@ -17,10 +17,8 @@ import domain.ladder.attirbute.Height;
 import domain.player.PlayerName;
 import domain.player.PlayerNames;
 import domain.player.Players;
-import domain.prize.PrizeName;
 import domain.prize.PrizeNames;
 import java.util.List;
-import java.util.Map;
 import util.RandomDirectionGenerator;
 import view.OutputView;
 
@@ -34,11 +32,11 @@ public class GameController {
         Ladder ladder = new Ladder(height, numberOfPlayers, new RandomDirectionGenerator());
         GameBoard gameBoard = new GameBoard(players, ladder, prizeNames);
 
-        printGeneratedGameBoard(gameBoard);
+        showGeneratedGameBoard(gameBoard);
         showGeneratedResult(gameBoard);
     }
 
-    private void printGeneratedGameBoard(GameBoard gameBoard) {
+    private void showGeneratedGameBoard(GameBoard gameBoard) {
         OutputView.print(LADDER_GENERATE_RESULT_HEADER);
         OutputView.printNewLine();
         OutputView.printObjectNames(gameBoard.getGamePlayerNames());
@@ -61,9 +59,9 @@ public class GameController {
     private boolean showResultAndDetermineRepeat(GameBoard gameBoard, PlayerName targetPlayerName) {
         OutputView.print(GAME_RESULT_HEADER);
         if (targetPlayerName.isAll()) {
-            Map<PlayerName, PrizeName> searchResults = gameBoard.searchAllPlayerResult();
-            searchResults.forEach(
-                    (name, prizeName) -> OutputView.printAllResults(name.getValue(), prizeName.getValue()));
+            gameBoard.searchAllPlayerResult()
+                    .forEach(
+                            (name, prizeName) -> OutputView.printAllResults(name.getValue(), prizeName.getValue()));
             return false;
         }
         OutputView.print(gameBoard.searchOnePlayerResult(targetPlayerName));
