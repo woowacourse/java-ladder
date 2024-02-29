@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
@@ -46,22 +47,14 @@ public class Players {
     }
 
     public List<Integer> getPositions() {
-        List<Integer> positions = new ArrayList<>();
-        for(Player player : players) {
-            positions.add(player.getPosition());
-        }
-
-        return positions;
+        return players.stream()
+                .map(Player::getPosition)
+                .toList();
     }
 
     public boolean contains(Name name) {
-        for(Player player : players) {
-            if(player.hasName(name)) {
-                return true;
-            }
-        }
-
-        return false;
+        return players.stream()
+                .anyMatch(player -> player.hasName(name));
     }
 
     public Player findPlayer(Name name) {
