@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Name {
     private static final String NAME_STYLE = "^[a-zA-Z0-9_-]+$";
+    private static final int MAX_LENGTH = 5;
 
     private final String name;
 
@@ -14,10 +15,10 @@ public class Name {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Name name1 = (Name) o;
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Name name1 = (Name) obj;
         return Objects.equals(name, name1.name);
     }
 
@@ -27,8 +28,8 @@ public class Name {
     }
 
     private void validateLength(String inputName) {
-        if (inputName.isEmpty() || inputName.length() > 5) {
-            throw new IllegalArgumentException("이름의 길이는 1글자 이상 5글자 이하여야 합니다.");
+        if (inputName.isEmpty() || inputName.length() > MAX_LENGTH) {
+            throw new IllegalArgumentException(String.format("이름의 길이는 1글자 이상 %d글자 이하여야 합니다.", MAX_LENGTH));
         }
     }
 

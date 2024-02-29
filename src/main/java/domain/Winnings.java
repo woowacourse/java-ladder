@@ -4,6 +4,9 @@ import java.util.List;
 
 public class Winnings {
 
+    private static final int MIN_WINNING = 2;
+    private static final int MAX_WINNING = 10;
+
     private final List<Winning> winnings;
 
     public Winnings (List<String> winnings) {
@@ -20,8 +23,8 @@ public class Winnings {
     }
 
     private void validateNumber(List<String> winnings) {
-        if (winnings.size() < 2 || winnings.size() > 10) {
-            throw new IllegalArgumentException("실행결과의 수는 2이상 10이하여야 합니다.");
+        if (winnings.size() < MIN_WINNING || winnings.size() > MAX_WINNING) {
+            throw new IllegalArgumentException(String.format("실행결과의 수는 %d이상 %d이하여야 합니다.", MIN_WINNING, MAX_WINNING));
         }
     }
 

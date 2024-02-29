@@ -5,6 +5,7 @@ import java.util.List;
 public class ResultName{
 
     private static final String ALL = "all";
+
     private final Name name;
 
     public ResultName(String inputName, Players players) {

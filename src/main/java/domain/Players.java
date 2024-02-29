@@ -5,6 +5,9 @@ import java.util.List;
 
 public class Players {
 
+    private static final int MIN_PLAYER = 2;
+    private static final int MAX_PLAYER = 10;
+
     private final List<Name> players;
 
     public Players (List<String> names) {
@@ -15,8 +18,8 @@ public class Players {
     }
 
     private void validateNumber(List<String> names) {
-        if (names.size() < 2 || names.size() > 10) {
-            throw new IllegalArgumentException("이름의 수는 2이상 10이하여야 합니다.");
+        if (names.size() < MIN_PLAYER || names.size() > MAX_PLAYER) {
+            throw new IllegalArgumentException(String.format("이름의 수는 %d이상 %d이하여야 합니다.", MIN_PLAYER, MAX_PLAYER));
         }
     }
 

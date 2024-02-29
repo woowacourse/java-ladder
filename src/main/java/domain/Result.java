@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Result {
+
     private final Map<Name, Winning> results;
 
     public Result(Map<Name, Winning> results) {

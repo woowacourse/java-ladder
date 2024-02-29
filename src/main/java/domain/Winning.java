@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Winning {
     private static final String WINNING_STYLE = "^[a-zA-Z가-힣0-9_-]+$";
+    private static final int MAX_LENGTH = 5;
 
     private final String winning;
 
@@ -27,8 +28,8 @@ public class Winning {
     }
 
     private void validateLength(String inputWinning) {
-        if (inputWinning.isEmpty() || inputWinning.length() > 5) {
-            throw new IllegalArgumentException("실행결과의 길이는 1글자 이상 5글자 이하여야 합니다.");
+        if (inputWinning.isEmpty() || inputWinning.length() > MAX_LENGTH) {
+            throw new IllegalArgumentException(String.format("실행결과의 길이는 1글자 이상 %d글자 이하여야 합니다.", MAX_LENGTH));
         }
     }
 

@@ -11,6 +11,11 @@ import java.util.stream.IntStream;
 import util.Connection;
 
 public class Line {
+
+    private static final int THRESHOLD = 5;
+    private static final int MIN_LINE = 2;
+    private static final int MAX_LINE = 10;
+
     private final List<Connection> line;
 
     @Override
@@ -55,13 +60,13 @@ public class Line {
     }
 
     private void validateRange(int height) {
-        if (height < 2 || height > 10) {
-            throw new IllegalArgumentException("숫자는 2 이상 10 이하여야 합니다.");
+        if (height < MIN_LINE || height > MAX_LINE) {
+            throw new IllegalArgumentException(String.format("숫자는 %d 이상 %d 이하여야 합니다.", MIN_LINE, MAX_LINE));
         }
     }
 
     private boolean hasConnection(int threshold) {
-        return (threshold >= 5);
+        return (threshold >= THRESHOLD);
     }
 
     public List<Connection> getLine() {

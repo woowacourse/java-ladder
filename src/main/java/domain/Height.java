@@ -3,6 +3,9 @@ package domain;
 import java.util.Objects;
 
 public class Height {
+
+    private static final int MAX_HEIGHT = 50;
+
     private final int height;
 
     public Height(int height) {
@@ -28,8 +31,8 @@ public class Height {
     }
 
     private void validateRange(int height) {
-        if (height < 1 || height > 50) {
-            throw new IllegalArgumentException("사다리의 높이는 1 이상 50 이하여야 합니다.");
+        if (height < 1 || height > MAX_HEIGHT) {
+            throw new IllegalArgumentException(String.format("사다리의 높이는 1 이상 %d 이하여야 합니다.", MAX_HEIGHT));
         }
     }
 
