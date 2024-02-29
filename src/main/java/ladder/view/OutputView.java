@@ -1,10 +1,9 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Name;
-import ladder.domain.People;
+import ladder.domain.*;
 
+import java.util.Map;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -19,7 +18,7 @@ public class OutputView {
 
     public void printPeople(People people) {
         System.out.println();
-        System.out.println("실행결과");
+        System.out.println("사다리 결과");
         System.out.println();
 
         for (Name name : people.getNames()) {
@@ -40,5 +39,29 @@ public class OutputView {
                 .map(point -> point.repeatSymbol(LADDER_WIDTH))
                 .collect(Collectors.joining(LADDER_SIDE_SYMBOL, prefixLadder, LADDER_SIDE_SYMBOL));
         System.out.println(points);
+    }
+
+    public void printResults(Results results) {
+        for (String result : results.getResults()) {
+            String formattedResult = String.format(FORMAT, result);
+            System.out.print(formattedResult);
+        }
+        System.out.println();
+    }
+
+    public void printPlayResultNotice() {
+        System.out.println();
+        System.out.println("실행결과");
+    }
+
+    public void printPlayResult(Map<Name, String> playResult) {
+        for (Name name : playResult.keySet()) {
+            StringJoiner stringJoiner = new StringJoiner(" : ");
+            if (playResult.size() > 1) {
+                stringJoiner.add(name.toString());
+            }
+            String formattedResult = stringJoiner.add(playResult.get(name)).toString();
+            System.out.println(formattedResult);
+        }
     }
 }
