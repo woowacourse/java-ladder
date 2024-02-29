@@ -6,28 +6,28 @@ import java.util.Map;
 
 public class MatchResult {
 
-    private final Map<String, String> matchResult;
+    private final Map<Name, Prize> matchResult;
 
     public MatchResult(Participants participants, Result result, Ladder ladder) {
         matchResult = new HashMap<>();
         List<Name> names = participants.getNames();
         for (int indexOfName = 0; indexOfName < names.size(); indexOfName++) {
-            Name name = participants.getNameOf(indexOfName);
+            Name name = names.get(indexOfName);
             int lastLocation = ladder.findLastLocation(indexOfName);
             Prize prize = result.getPrizeOf(lastLocation);
-            matchResult.put(name.getName(), prize.getPrize());
+            matchResult.put(name, prize);
         }
     }
 
-    public String getResultByName(String name) {
-        String result = matchResult.get(name);
+    public Prize getResultByName(Name name) {
+        Prize result = matchResult.get(name);
         if (result == null) {
             throw new IllegalArgumentException("[ERROR] 존재하지 않는 사용자입니다.");
         }
         return matchResult.get(name);
     }
 
-    public Map<String, String> getResultAll() {
+    public Map<Name, Prize> getResultAll() {
         return matchResult;
     }
 }

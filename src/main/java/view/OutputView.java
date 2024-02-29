@@ -58,17 +58,17 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printPrizes(Map<String, String> matchResult) {
+    public void printPrizes(Map<Name, Prize> matchResult) {
         System.out.println("\n실행 결과");
-        for (Map.Entry<String, String> entry : matchResult.entrySet()) {
-            String name = entry.getKey();
-            String prize = entry.getValue();
+        for (Map.Entry<Name, Prize> entry : matchResult.entrySet()) {
+            String name = entry.getKey().getName();
+            String prize = entry.getValue().getPrize();
             System.out.println(name + " : " + prize);
         }
     }
 
-    public void printPrize(String prize) {
+    public void printPrize(Prize prize) {
         System.out.println("\n실행 결과");
-        System.out.println(prize);
+        System.out.println(prize.getPrize());
     }
 }

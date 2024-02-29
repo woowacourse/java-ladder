@@ -47,7 +47,8 @@ public class LadderGame {
 
     private void showResultByName(String who) {
         try {
-            String prize = matchResult.getResultByName(who);
+            Name name = new Name(who);
+            Prize prize = matchResult.getResultByName(name);
             outputView.printPrize(prize);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

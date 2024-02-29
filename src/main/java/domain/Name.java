@@ -2,6 +2,8 @@ package domain;
 
 import constant.domain.NameExceptionMessage;
 
+import java.util.Objects;
+
 public class Name {
 
     public static final int MAX_OF_NAME_LENGTH = 5;
@@ -35,5 +37,22 @@ public class Name {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Name name1 = (Name) o;
+        return Objects.equals(name, name1.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
