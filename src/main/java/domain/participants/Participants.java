@@ -45,7 +45,7 @@ public class Participants {
         return IntStream.range(0, names.size())
                 .filter(i -> names.get(i).equals(new Name(name)))
                 .findFirst()
-                .getAsInt();
+                .orElseThrow();
     }
 
     public List<Name> getParticipantsName() {
