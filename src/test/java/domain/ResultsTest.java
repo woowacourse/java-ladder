@@ -53,7 +53,7 @@ class ResultsTest {
     void matchNamesWithResults() {
         List<String> namesAfterMove = Arrays.asList("pobi", "crong", "honux", "jk");
 
-        assertThat(results.matchNamesWithResults(namesAfterMove)).containsExactlyInAnyOrderEntriesOf(
+        assertThat(results.matchNamesAndResults(namesAfterMove)).containsExactlyInAnyOrderEntriesOf(
                 Map.of("pobi", "꽝", "crong", "5000", "honux", "꽝", "jk", "3000"));
     }
 }
