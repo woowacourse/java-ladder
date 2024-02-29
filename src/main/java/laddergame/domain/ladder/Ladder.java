@@ -3,7 +3,6 @@ package laddergame.domain.ladder;
 import laddergame.domain.connectiongenerator.ConnectionGenerator;
 import laddergame.domain.connectiongenerator.RandomConnectionGenerator;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -23,8 +22,7 @@ public class Ladder {
                 .toList();
     }
 
-    //TODO 메소드 이름 다시 생각해보기
-    public List<Integer> move(int peopleNumber) {
+    public List<Integer> getResultIdx(int peopleNumber) {
         List<Integer> playerPositions = IntStream.range(0, peopleNumber)
                 .boxed()
                 .toList();
