@@ -17,9 +17,6 @@ public class Name {
         if (name == null || !name.matches(ELEMENT_NAME_RULE)) {
             throw new IllegalArgumentException("게임 요소의 이름은 5자 이내의 영숫자로 구성되어야 합니다.");
         }
-        if (ReservedElementName.reservedNames.contains(name)) {
-            throw new IllegalArgumentException("예약어 " + name + "은 이름으로 지정할 수 없습니다.");
-        }
     }
 
     @Override
