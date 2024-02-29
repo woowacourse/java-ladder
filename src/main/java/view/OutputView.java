@@ -58,7 +58,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printPrizes(Map<Name, Prize> matchResult) {
+    public void printAllResult(Map<Name, Prize> matchResult) {
         System.out.println("\n실행 결과");
         for (Map.Entry<Name, Prize> entry : matchResult.entrySet()) {
             String name = entry.getKey().getName();
@@ -67,7 +67,7 @@ public class OutputView {
         }
     }
 
-    public void printPrize(Prize prize) {
+    public void printOneResult(Prize prize) {
         System.out.println("\n실행 결과");
         System.out.println(prize.getPrize());
     }
