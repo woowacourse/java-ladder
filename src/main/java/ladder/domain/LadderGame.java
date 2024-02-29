@@ -1,34 +1,43 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LadderGame {
-    private final Players players;
+    private final List<PlayerName> players;
     private final Ladder ladder;
 
-    public LadderGame(Players players, Ladder ladder) {
+    public LadderGame(List<PlayerName> players, Ladder ladder) {
         this.players = players;
         this.ladder = ladder;
     }
 
-    public void playOneLine(int height) {
+    public List<PlayerName> playOneLine(List<PlayerName> playerNames, int height) {
         List<Line> lines = ladder.getLines();
         Line line = lines.get(height);
 
         Line line1 = line.addGap();
-        for (int i = 0; i < line.getSticks().size(); i = i + 2) {
+        for (int i = 0; i < line.getSticks().size(); i++) {
             int movePosition = line1.move(i);
-            players.changePosition(i, movePosition);
+            Collections.swap(playerNames, i, movePosition);
         }
+        return playerNames;
     }
 
-    public void playAllGame() {
+    public List<String> playGame() {
+        List<PlayerName> playerNames = new ArrayList<>(players);
         for (int i = 0; i < ladder.getHeight(); i++) {
-            playOneLine(i);
+            playerNames = playOneLine(playerNames, i);
         }
+        return getResult(playerNames);
     }
 
-    public List<String> getPlayerResult() {
-        return players.getPlayerNames();
+    public static List<String> getResult(List<PlayerName> playerNames) {
+        List<String> playerNames2 = new ArrayList<>();
+        for (PlayerName player : playerNames) {
+            playerNames2.add(player.getName());
+        }
+        return playerNames2;
     }
 }
