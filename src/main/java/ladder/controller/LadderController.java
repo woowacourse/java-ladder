@@ -35,12 +35,7 @@ public class LadderController {
 
         final LadderGame ladderGame = new LadderGame(ladder);
         final PlayResult playResult = ladderGame.play(players, prizes);
-
-        while (playResult.canAskResult()) {
-            final String name = inputView.readNameToSeeResult();
-            final Map<String, String> result = playResult.findByName(name);
-            outputView.printResult(result, name);
-        }
+        showResult(playResult);
     }
 
     public Players readPlayers() {
@@ -68,6 +63,14 @@ public class LadderController {
         outputView.printPlayerNames(PlayersDto.from(players));
         outputView.printLadder(LadderDto.from(ladder));
         outputView.printPrizes(prizes.getPrizes());
+    }
+
+    private void showResult(final PlayResult playResult) {
+        while (playResult.canAskResult()) {
+            final String name = inputView.readNameToSeeResult();
+            final Map<String, String> result = playResult.checkPlayerResultByName(name);
+            outputView.printResult(result, name);
+        }
     }
 
     private <T> T retryOnException(final Supplier<T> supplier) {

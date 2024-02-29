@@ -17,6 +17,8 @@ public class PlayResult {
         }
     }
 
+    private static final String EXPRESSION_OF_ENTIRE_PLAYER = "all";
+
     private final Map<String, String> result;
     private Status status;
 
@@ -36,8 +38,8 @@ public class PlayResult {
         }
     }
 
-    public Map<String, String> findByName(final String name) {
-        if (name.equals("all")) {
+    public Map<String, String> checkPlayerResultByName(final String name) {
+        if (EXPRESSION_OF_ENTIRE_PLAYER.equals(name)) {
             status = Status.NON_EXECUTABLE;
             return result;
         }
