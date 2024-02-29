@@ -9,16 +9,16 @@ public class Row {
     private final List<Direction> row;
 
 
-    public Row(int size, LadderStrategy strategy) {
+    public Row(final int size, final LadderStrategy strategy) {
         validationSize(size);
 
         this.row = new ArrayList<>();
         while (row.size() < size - 1) {
-            addDirection(size, strategy.creatable());
+            addDirection(strategy.creatable());
         }
     }
 
-    public int goDown(int index) {
+    public int goDown(final int index) {
         return index + row.get(index).getDirection();
     }
 
@@ -26,13 +26,13 @@ public class Row {
         return row;
     }
 
-    private void validationSize(int size) {
+    private void validationSize(final int size) {
         if (size < MIN_SIZE) {
             throw new IllegalArgumentException("사람은 2명 이상이어야 한다.");
         }
     }
 
-    private void addDirection(int size, boolean creatable) {
+    private void addDirection(final boolean creatable) {
         if (isPreviousDirectionRight()) {
             this.row.add(Direction.LEFT);
             return;
