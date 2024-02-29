@@ -17,7 +17,9 @@ class LineTest {
     @Test
     @DisplayName("연속으로 이어진 다리가 생성되는 경우 예외처리 된다.")
     void validateContinuouslyConnected() {
-        assertThatThrownBy(() -> new Line(ConnectionStatus.CONNECTION, ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION))
+        assertThatThrownBy(() -> {
+            new Line(ConnectionStatus.CONNECTION, ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION);
+        })
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("유효하지 않은 다리가 생성되었습니다.");
 
@@ -31,7 +33,8 @@ class LineTest {
 
         boolean isConsecutive = false;
         for (int i = 1; i < isConnections.size(); i++) {
-            if (isConnections.get(i).equals(ConnectionStatus.CONNECTION) && isConnections.get(i - 1).equals(ConnectionStatus.CONNECTION)) {
+            if (isConnections.get(i) == ConnectionStatus.CONNECTION
+                    && isConnections.get(i - 1) == ConnectionStatus.CONNECTION) {
                 isConsecutive = true;
                 break;
             }

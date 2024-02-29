@@ -3,7 +3,6 @@ package ladderGame.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Line {
     private static final String EXCEPTION_MESSAGE_UNAVAILABLE_BRIDGE = "유효하지 않은 다리가 생성되었습니다.";
@@ -21,14 +20,16 @@ public class Line {
 
     private void validate(List<ConnectionStatus> connectionStatuses) {
         boolean isContinuous = IntStream.range(0, connectionStatuses.size() - 1)
-                .anyMatch(i -> isContinuouslyConnected(connectionStatuses.get(i), connectionStatuses.get(i + 1)));
+                .anyMatch(i -> {
+                    return isConnectedTwice(connectionStatuses.get(i), connectionStatuses.get(i + 1));
+                });
 
         if(isContinuous) {
             throw new IllegalStateException(EXCEPTION_MESSAGE_UNAVAILABLE_BRIDGE);
         }
     }
 
-    private boolean isContinuouslyConnected(ConnectionStatus left, ConnectionStatus right) {
+    private boolean isConnectedTwice(ConnectionStatus left, ConnectionStatus right) {
         return (left == ConnectionStatus.CONNECTION) && (left == right);
     }
 
