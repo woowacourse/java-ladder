@@ -4,28 +4,22 @@ import java.util.List;
 
 public class Line {
 
-    private final List<Boolean> connections;
+    private final List<Point> points;
 
-    public Line(Boolean... connections) {
-        validateConnections(connections);
-        this.connections = List.of(connections);
+    public Line(Point... points) {
+        validateConnections(points);
+        this.points = List.of(points);
     }
 
-    private void validateConnections(Boolean[] connections) {
-        for (int i = 1; i < connections.length; i++) {
-            if (connections[i] && connections[i-1]) {
+    private void validateConnections(Point[] points) {
+        for (int i = 1; i < points.length; i++) {
+            if (points[i].equals(points[i-1])) {
                 throw new IllegalArgumentException("양 쪽으로 연결될 수 없습니다.");
             }
         }
     }
 
     public int move(int index) {
-        if (connections.get(index)) {
-            return index + 1;
-        }
-        if (index > 0 && connections.get(index - 1)) {
-            return index - 1;
-        }
-        return index;
+        return points.get(index).move(index);
     }
 }
