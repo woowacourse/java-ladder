@@ -12,6 +12,19 @@ import org.junit.jupiter.api.Test;
 
 public class LadderGameTest {
 
+    @DisplayName("참가자와 결과 크기가 다르면 예외가 발생한다.")
+    @Test
+    void differentParticipantsAndResultsSize() {
+        Participants participants = new Participants(List.of("0", "1", "2", "3", "4"));
+        Map<Position, Result> result = new LinkedHashMap<>();
+        result.put(new Position(0), new Result("꽝"));
+        Ladder ladder = new Ladder(List.of(
+                new LadderRow(List.of(true, false, false, true)),
+                new LadderRow(List.of(true, false, true, false))));
+        Assertions.assertThatThrownBy(() -> new LadderGame(participants, ladder, result))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("참가자로부터 게임 결과를 얻는다.")
     @Test
     void findResult() {
