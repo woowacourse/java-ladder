@@ -1,6 +1,6 @@
 package domain;
 
-import static domain.Connection.*;
+import static domain.Connection.CONNECTED;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -25,7 +25,7 @@ public class Line {
 
     public int findNextIndex(int previousIndex) {
         if (previousIndex < 0 || previousIndex > connections.size()) {
-            throw new IllegalArgumentException("비정상적인 index입니다.");
+            throw new IllegalStateException("비정상적인 index입니다.");
         }
         if (previousIndex < connections.size() && connections.get(previousIndex) == CONNECTED) {
             return previousIndex + 1;
