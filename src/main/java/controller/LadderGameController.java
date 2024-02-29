@@ -65,8 +65,7 @@ public class LadderGameController {
 
     private void result(Participants participants) {
         try {
-            String name = inputView.readResultName();
-            validateResultName(name, participants);
+            String name = inputView.readResultName(participants);
             checkResult(participants, name);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -75,10 +74,10 @@ public class LadderGameController {
     }
 
     private void checkResult(Participants participants, String name) {
-        if (name.equals(InputView.EXIT)) {
+        if (InputView.EXIT.equals(name)) {
             return;
         }
-        if (name.equals(InputView.ALL)) {
+        if (InputView.ALL.equals(name)) {
             checkAllResult(participants);
             return;
         }
@@ -93,11 +92,5 @@ public class LadderGameController {
     private void checkOneResult(Participants participants, String name) {
         outputView.printOneResult(ladderGame.oneResultOfLadder(name));
         result(participants);
-    }
-
-    private void validateResultName(String name, Participants participants) {
-        if (!name.equals(InputView.EXIT) && !name.equals(InputView.ALL) && !participants.hasParticipated(name)) {
-            throw new IllegalArgumentException("[ERROR] 해당하는 참가자가 없습니다.");
-        }
     }
 }
