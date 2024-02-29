@@ -86,4 +86,14 @@ class PlayersTest {
         assertThatThrownBy(() -> players.getNameByIndex(3))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("플레이어 이름이 중복되는 경우, 예외가 발생한다.")
+    void duplicatedNameTest() {
+        // given
+        List<String> playerNames = List.of("aru", "pobi", "aru");
+        // when, then
+        assertThatThrownBy(() -> new Players(playerNames))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

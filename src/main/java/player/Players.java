@@ -11,9 +11,21 @@ public class Players {
 
     public Players(List<String> playerNames) {
         validateSize(playerNames);
+        validateUniqueNames(playerNames);
+
         this.players = playerNames.stream()
                 .map(Player::new)
                 .toList();
+    }
+
+    private void validateUniqueNames(List<String> playerNames) {
+        int distinctNameCount = (int) playerNames.stream()
+                .distinct()
+                .count();
+
+        if (distinctNameCount != playerNames.size()) {
+            throw new IllegalArgumentException("중복된 이름이 존재합니다.");
+        }
     }
 
     private void validateSize(List<String> playerNames) {
