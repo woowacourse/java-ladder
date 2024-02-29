@@ -1,7 +1,7 @@
 package domain.ladder;
 
 import domain.ladder.strategy.BridgeGenerator;
-import domain.player.PlayerNames;
+import domain.player.Players;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +12,9 @@ public class Ladder {
         this.floors = List.copyOf(floors);
     }
 
-    public static Ladder of(final LadderHeight height, final PlayerNames playerNames, final BridgeGenerator bridgeGenerator) {
+    public static Ladder of(final LadderHeight height, final Players players, final BridgeGenerator bridgeGenerator) {
         List<Floor> floors = new ArrayList<>();
-        int bridgeCount = calculateBridgeCount(playerNames);
+        int bridgeCount = calculateBridgeCount(players);
         for (int i = 0; i < height.getValue(); i++) {
             List<LadderBridge> bridges = bridgeGenerator.generate(bridgeCount);
             floors.add(new Floor(bridges));
@@ -23,8 +23,8 @@ public class Ladder {
         return new Ladder(floors);
     }
 
-    private static int calculateBridgeCount(PlayerNames playerNames) {
-        return playerNames.getCount() - 1;
+    private static int calculateBridgeCount(Players players) {
+        return players.getPlayerCount() - 1;
     }
 
     public List<Floor> getFloors() {
