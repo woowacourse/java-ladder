@@ -5,10 +5,10 @@ import model.participant.Participant;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class Rewards {
+public class ParticipantsResult {
     private final Map<Participant, Result> rewards;
 
-    public Rewards(Map<Participant, Result> rewards) {
+    public ParticipantsResult(Map<Participant, Result> rewards) {
         this.rewards = new LinkedHashMap<>(rewards);
     }
 

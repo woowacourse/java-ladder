@@ -8,7 +8,7 @@ import model.participant.Participant;
 import model.participant.Participants;
 import model.result.Result;
 import model.result.Results;
-import model.result.Rewards;
+import model.result.ParticipantsResult;
 
 import java.util.List;
 import java.util.Map;
@@ -64,9 +64,9 @@ public class OutputView {
         System.out.println(result.name());
     }
 
-    public void printAllParticipantsResult(Rewards rewards) {
+    public void printAllParticipantsResult(ParticipantsResult participantsResult) {
         System.out.println(System.lineSeparator() + RESULT_MESSAGE);
-        for (Map.Entry<Participant, Result> reward : rewards.getRewards().entrySet()) {
+        for (Map.Entry<Participant, Result> reward : participantsResult.getRewards().entrySet()) {
             System.out.println(reward.getKey().getName() + DELIMITER + reward.getValue().name());
         }
     }
