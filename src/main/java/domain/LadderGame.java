@@ -1,8 +1,8 @@
 package domain;
 
+import domain.ladder.Ladder;
 import domain.participants.Name;
 import domain.participants.Participants;
-import domain.ladder.Ladder;
 import domain.result.LadderResult;
 import domain.result.Position;
 import domain.result.Prizes;

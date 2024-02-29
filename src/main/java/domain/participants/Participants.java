@@ -1,6 +1,5 @@
 package domain.participants;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 

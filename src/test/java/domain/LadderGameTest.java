@@ -2,9 +2,9 @@ package domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import domain.participants.Participants;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
+import domain.participants.Participants;
 import domain.result.Prizes;
 import java.util.List;
 import java.util.Map;

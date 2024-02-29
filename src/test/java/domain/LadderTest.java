@@ -1,7 +1,5 @@
 package domain;
 
-import static domain.ladder.Height.MAX_OF_HEIGHT;
-import static domain.ladder.Height.MIN_OF_HEIGHT;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import domain.ladder.Height;

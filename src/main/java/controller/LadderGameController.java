@@ -1,8 +1,8 @@
 package controller;
 
+import domain.LadderGame;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
-import domain.LadderGame;
 import domain.participants.Participants;
 import domain.result.Prizes;
 import java.util.List;

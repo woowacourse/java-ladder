@@ -2,11 +2,11 @@ package view;
 
 import domain.ladder.Ladder;
 import domain.ladder.Line;
+import domain.ladder.StepPoint;
 import domain.participants.Name;
 import domain.participants.Participants;
 import domain.result.Prize;
 import domain.result.Prizes;
-import domain.ladder.StepPoint;
 import java.util.List;
 import java.util.Map;
 
