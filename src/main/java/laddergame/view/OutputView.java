@@ -1,12 +1,12 @@
-package view;
+package laddergame.view;
 
 import java.util.List;
 import java.util.Map;
-import domain.Game;
-import domain.GameResult;
-import domain.Ladder;
-import domain.Line;
-import domain.Stick;
+import laddergame.domain.Game;
+import laddergame.domain.GameResult;
+import laddergame.domain.Ladder;
+import laddergame.domain.Line;
+import laddergame.domain.Stick;
 
 public class OutputView {
 

@@ -1,4 +1,4 @@
-package domain;
+package laddergame.domain;
 
 import java.util.LinkedHashMap;
 import java.util.List;

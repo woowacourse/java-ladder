@@ -1,5 +1,7 @@
-import view.InputView;
-import view.OutputView;
+package laddergame;
+
+import laddergame.view.InputView;
+import laddergame.view.OutputView;
 
 class Main {
 
