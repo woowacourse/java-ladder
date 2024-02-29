@@ -1,10 +1,6 @@
 package ladder;
 
-import java.util.List;
-import java.util.Map;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import ladder.domain.LadderGame;
 import ladder.domain.LadderGameResult;
 import ladder.domain.ladder.Height;
@@ -18,7 +14,6 @@ import ladder.domain.product.Product;
 import ladder.domain.product.Products;
 import ladder.dto.LadderDto;
 import ladder.dto.LadderGameResultDto;
-import ladder.dto.LineDto;
 import ladder.dto.PlayersDto;
 import ladder.dto.ProductsDto;
 import ladder.dto.ResultRequest;
@@ -50,14 +45,14 @@ public class LadderGameApplication {
         Ladder ladder = Ladder.of(height, players.size(), stickListGenerator);
         LadderGame ladderGame = new LadderGame(ladder, players, products);
 
-        OUTPUT_VIEW.printResult(toDto(ladder), toDto(players), toDto(products));
+        OUTPUT_VIEW.printResult(LadderDto.from(ladder), PlayersDto.from(players), ProductsDto.from(products));
         return ladderGame.progress();
     }
 
     private static void requestResult(LadderGameResult result) {
         ResultRequest resultRequest = INPUT_VIEW.inputResultRequest();
         if (resultRequest.isRequestAll()) {
-            OUTPUT_VIEW.printTotalResult(toDto(result));
+            OUTPUT_VIEW.printTotalResult(LadderGameResultDto.from(result));
             return;
         }
         Product productResult = result.findResult(new Player(resultRequest.getPlayerName()));
@@ -102,36 +97,5 @@ public class LadderGameApplication {
             OUTPUT_VIEW.printErrorMessage(exception);
             repeatUntilNoException(runnable);
         }
-    }
-
-    private static PlayersDto toDto(Players players) {
-        return new PlayersDto(players.getNames());
-    }
-
-    private static ProductsDto toDto(Products products) {
-        return new ProductsDto(products.getNames());
-    }
-
-    private static LadderDto toDto(Ladder ladder) {
-        List<LineDto> lineDtos = IntStream.range(0, ladder.getHeight())
-                .mapToObj(height -> toLineDto(ladder, height))
-                .toList();
-        return new LadderDto(lineDtos);
-    }
-
-    private static LineDto toLineDto(Ladder ladder, int height) {
-        List<Boolean> sticks = IntStream.range(0, ladder.getWidth())
-                .mapToObj(width -> ladder.isExist(height, width))
-                .toList();
-        return new LineDto(sticks);
-    }
-
-    private static LadderGameResultDto toDto(LadderGameResult result) {
-        Map<String, String> playerToProduct = result.getResults().entrySet().stream()
-                .collect(Collectors.toMap(
-                        entry -> entry.getKey().getName(),
-                        entry -> entry.getValue().getName()
-                ));
-        return new LadderGameResultDto(playerToProduct);
     }
 }
