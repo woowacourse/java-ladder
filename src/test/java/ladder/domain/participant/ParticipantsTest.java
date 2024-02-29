@@ -60,8 +60,8 @@ public class ParticipantsTest {
     }
 
     @Test
-    @DisplayName("")
-    void play() {
+    @DisplayName("참가자들이 사다리 게임을 실행한다.")
+    void playLadderTest() {
         // given
         final List<String> names = List.of("mia", "pota", "dora", "jojo");
         final Participants participants = new Participants(names);
