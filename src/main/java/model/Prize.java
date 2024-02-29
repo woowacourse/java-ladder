@@ -1,44 +1,34 @@
 package model;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 
 public class Prize {
-
-    private static final String DELIMITER = ",";
     private static final int MIN_RANGE_LIMIT = 1;
     private static final int MAX_RANGE_LIMIT = 5;
 
-    private final List<String> prizes;
+    private final String prizes;
 
     public Prize(String inputText) {
-        List<String> parsedInput = Arrays.stream(inputText.split(DELIMITER)).toList();
-        validateBlankNames(parsedInput);
-        validateNameLength(parsedInput);
-        prizes = parsedInput;
+        validateBlankNames(inputText);
+        validateNameLength(inputText);
+        prizes = inputText;
     }
 
-    private void validateBlankNames(List<String> prizeNames) {
-        boolean hasBlankName = prizeNames.stream().anyMatch(String::isBlank);
-
-        if (hasBlankName) {
+    private void validateBlankNames(String prizeNames) {
+        if (prizeNames.isBlank()) {
             throw new IllegalArgumentException("상품의 이름은 공백일 수 없습니다.");
         }
     }
 
-    private void validateNameLength(List<String> prizeNames) {
-        List<String> legalRangeNames = prizeNames.stream().filter(name -> isInRange(name.length())).toList();
-
-        if (new HashSet<>(legalRangeNames).size() != prizeNames.size()) {
-            String formattedMessage = "상품은 %d~%d사이의 숫자만 허용합니다.".formatted(MIN_RANGE_LIMIT, MAX_RANGE_LIMIT);
-            throw new IllegalArgumentException(formattedMessage);
+    private void validateNameLength(String prizeNames) {
+        if (isOutOfRange(prizeNames.length())) {
+            String outOfRangeMessage = "상품의 이름은 %d~%d 까지만 허용합니다.".formatted(MIN_RANGE_LIMIT,MAX_RANGE_LIMIT);
+            throw new IllegalArgumentException(outOfRangeMessage);
         }
     }
 
-    private boolean isInRange(int textLength) {
-        return textLength <= MAX_RANGE_LIMIT && textLength >= MIN_RANGE_LIMIT;
+    private boolean isOutOfRange(int textLength) {
+        return textLength < MIN_RANGE_LIMIT || textLength > MAX_RANGE_LIMIT;
     }
 
     @Override
