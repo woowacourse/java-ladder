@@ -35,24 +35,24 @@ public class Controller {
         while (true) {
             Player player = inputView.inputPlayerFrom(players);
             if (ALL.equals(player.name())) {
-                resultView.printAllResult(climbAll(players, results, ladder));
+                Map<Player, LadderResult> result = climbAll(players, results, ladder);
+                resultView.printAllResult(result);
                 break;
             }
-            LadderPosition startPosition = new LadderPosition(0, players.orderOf(player));
-            LadderPosition endPosition = ladder.climbFrom(startPosition);
-            LadderResult result = results.get(endPosition.column());
+            LadderResult result = climb(players, player, results, ladder);
             resultView.printResult(result);
         }
     }
 
     public Map<Player, LadderResult> climbAll(Players players, LadderResults results, Ladder ladder) {
         Map<Player, LadderResult> allResult = new LinkedHashMap<>();
-        players.players().forEach(player -> {
-            LadderPosition startPosition = new LadderPosition(0, players.orderOf(player));
-            LadderPosition endPosition = ladder.climbFrom(startPosition);
-            LadderResult result = results.get(endPosition.column());
-            allResult.put(player, result);
-        });
+        players.players().forEach(player -> allResult.put(player, climb(players, player, results, ladder)));
         return allResult;
+    }
+
+    private LadderResult climb(Players players, Player player, LadderResults results, Ladder ladder) {
+        LadderPosition startPosition = new LadderPosition(0, players.orderOf(player));
+        LadderPosition endPosition = ladder.climbFrom(startPosition);
+        return results.get(endPosition.column());
     }
 }
