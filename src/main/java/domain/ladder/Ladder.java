@@ -1,13 +1,16 @@
 package domain.ladder;
 
-import domain.*;
+import domain.LineFloor;
+import domain.LineNumber;
 import domain.player.Player;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.IntStream;
 
 import static java.util.Collections.unmodifiableList;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class Ladder {
     private final List<Paths> paths;
@@ -16,26 +19,21 @@ public class Ladder {
         this.paths = paths;
     }
 
-    public static Ladder of(Supplier<Boolean> randomGenerator, LadderHeight ladderHeight, int playersCount) {
-        List<Paths> paths = new ArrayList<>();
-        for (int floor = 1; floor <= ladderHeight.ladderHeight(); floor++) {
-            paths.add(Paths.init(randomGenerator, playersCount - 1));
-        }
-
-        return new Ladder(paths);
+    public static Ladder of(final Supplier<Boolean> randomGenerator, final LadderHeight ladderHeight, final int playersCount) {
+        return IntStream.rangeClosed(1, ladderHeight.value())
+                .mapToObj(floor -> Paths.init(randomGenerator, playersCount - 1))
+                .collect(collectingAndThen(toList(), Ladder::new));
     }
 
     public List<Paths> getPaths() {
         return unmodifiableList(paths);
     }
 
-    public void movePlayer(Player player) {
-        LineNumber currentLineNumber = player.getCurrentLineNumber();
-        LineFloor currentLineFloor = player.getCurrentLineFloor();
-        player.move(getMovingIndex(currentLineNumber, currentLineFloor));
+    public void movePlayer(final Player player) {
+        player.move(getMovingIndex(player.getCurrentLineNumber(), player.getCurrentLineFloor()));
     }
 
-    private int getMovingIndex(LineNumber lineNumber, LineFloor lineFloor) {
+    private int getMovingIndex(final LineNumber lineNumber, final LineFloor lineFloor) {
         return paths.get(lineFloor.value() - 1)
                 .getOtherLineNumber(lineNumber);
     }
