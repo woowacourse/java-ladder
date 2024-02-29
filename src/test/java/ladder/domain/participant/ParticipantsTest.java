@@ -19,6 +19,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class ParticipantsTest {
+    private static Ladder generateLadder() {
+        final List<Boolean> pathAvailabilities = List.of(false, true, false, true, true, false);
+        return LadderGenerator.generate(pathAvailabilities, 2, 3);
+    }
+
+    private static Outcomes generateOutcomes() {
+        return new Outcomes(List.of("100", "200", "300"), 3);
+    }
+
+    private static Stream<List<String>> getInvalidParticipantsNames() {
+        return Stream.of(List.of("mia"), List.of());
+    }
+
     @Test
     @DisplayName("참가자들에게 필요한 사다리 너비를 계산한다.")
     void getParticipantsCountTest() {
@@ -52,7 +65,7 @@ public class ParticipantsTest {
                 .toList();
 
         // when
-        final List<Participant>  participants = new Participants(names).getValues();
+        final List<Participant> participants = new Participants(names).getValues();
 
         // then
         assertThat(participants)
@@ -74,18 +87,5 @@ public class ParticipantsTest {
 
         // then
         assertThat(actualParticipantsOutcome).containsAllEntriesOf(expectedParticipantsOutcome);
-    }
-
-    private static Ladder generateLadder() {
-        final List<Boolean> pathAvailabilities = List.of(false, true, false, true, true, false);
-        return LadderGenerator.generate(pathAvailabilities, 2, 3);
-    }
-
-    private static Outcomes generateOutcomes() {
-        return new Outcomes(List.of("100", "200", "300"), 3);
-    }
-
-    private static Stream<List<String>> getInvalidParticipantsNames() {
-        return Stream.of(List.of("mia"), List.of());
     }
 }
