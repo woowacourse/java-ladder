@@ -43,18 +43,18 @@ public class ResultView {
     }
 
     private void printNames(People people) {
-        people.getParticipants()
-                .stream()
-                .map(Person::getName)
-                .forEach(name -> System.out.print(fillInterval(name)));
-
+        for (Person participant : people.getParticipants()) {
+            String name = participant.getName();
+            printNameInterval(name);
+            System.out.print(name);
+        }
         System.out.println();
     }
 
-    private String fillInterval(String name) {
-        StringBuilder filledName = new StringBuilder(name);
-        return filledName.insert(START_POSITION, " ".repeat(MAX_INTERVAL - name.length()))
-                .toString();
+    private void printNameInterval(String name) {
+        for (int i = 0; i < MAX_INTERVAL - name.length(); i++) {
+            System.out.print(" ");
+        }
     }
 
 }
