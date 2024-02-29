@@ -11,14 +11,14 @@ public class LadderGame {
     private final List<ResultItem> items;
 
     public LadderGame(final Players players, final Ladder ladder, final List<String> items) {
+        validate(items, players.getPlayersCount());
         this.players = players;
         this.ladder = ladder;
-        validate(items);
         this.items = items.stream().map(ResultItem::new).toList();
     }
 
-    private void validate(List<String> items) {
-        if (items.size() != players.getPlayersCount()) {
+    private void validate(List<String> items, int playersCount) {
+        if (items.size() != playersCount) {
             throw new IllegalArgumentException(NO_SAME_COUNT_PLAYERS_ITEMS);
         }
     }
