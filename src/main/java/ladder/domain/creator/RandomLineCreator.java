@@ -1,7 +1,7 @@
 package ladder.domain.creator;
 
 import ladder.domain.Connection;
-import ladder.domain.Line;
+import ladder.domain.ladder.Line;
 
 import java.util.ArrayList;
 import java.util.Arrays;
