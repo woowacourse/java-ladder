@@ -58,6 +58,6 @@ class NameTest {
 
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 공백이 포함될 수 없습니다.");
+                .hasMessage("이름은 비어있거나 공백을 포함할 수 없습니다.");
     }
 }
