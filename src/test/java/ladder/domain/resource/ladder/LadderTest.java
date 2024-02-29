@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import ladder.domain.resource.line.Line;
 import ladder.domain.resource.line.LineGenerator;
-import ladder.domain.resource.line.LineGeneratorImpl;
+import ladder.domain.resource.line.RandomLineGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +29,7 @@ class LadderTest {
     @Test
     void newLadderByEmptyLine() {
         //given
-        LineGenerator lineGenerator = new LineGeneratorImpl();
+        LineGenerator lineGenerator = new RandomLineGenerator();
         Line line = lineGenerator.generateLine();
 
         //when
@@ -45,7 +45,7 @@ class LadderTest {
     @Test
     void newLadderByConsistentLineSize() {
         //given
-        LineGenerator lineGenerator = new LineGeneratorImpl();
+        LineGenerator lineGenerator = new RandomLineGenerator();
 
         Line lineA = lineGenerator.generateLine();
         lineGenerator.insertDirectionIntoLine(lineA, 2);
@@ -64,7 +64,7 @@ class LadderTest {
     void getHeight() {
         //given
         int height = 2;
-        LadderGenerator ladderGenerator = new LadderGenerator(new LineGeneratorImpl());
+        LadderGenerator ladderGenerator = new LadderGenerator(new RandomLineGenerator());
         Ladder ladder = ladderGenerator.generate(height, 2);
 
         //when
@@ -79,7 +79,7 @@ class LadderTest {
     void getWidth() {
         //given
         int width = 2;
-        LadderGenerator ladderGenerator = new LadderGenerator(new LineGeneratorImpl());
+        LadderGenerator ladderGenerator = new LadderGenerator(new RandomLineGenerator());
         Ladder ladder = ladderGenerator.generate(2, width);
 
         //when

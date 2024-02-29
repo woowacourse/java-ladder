@@ -6,9 +6,9 @@ import ladder.domain.resource.direction.Direction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LineGeneratorImplTest {
+public class RandomLineGeneratorTest {
 
-    LineGenerator lineGenerator = new LineGeneratorImpl();
+    LineGenerator lineGenerator = new RandomLineGenerator();
 
     @DisplayName("빈 라인을 생성한다.")
     @Test

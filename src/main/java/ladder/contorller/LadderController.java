@@ -7,7 +7,7 @@ import ladder.domain.game.GameResult;
 import ladder.domain.game.LadderGame;
 import ladder.domain.resource.ladder.Ladder;
 import ladder.domain.resource.ladder.LadderGenerator;
-import ladder.domain.resource.line.LineGeneratorImpl;
+import ladder.domain.resource.line.RandomLineGenerator;
 import ladder.domain.resource.prize.Prize;
 import ladder.domain.resource.prize.Prizes;
 import ladder.domain.resource.user.User;
@@ -101,7 +101,7 @@ public class LadderController {
     private Ladder createLadder(int ladderWidth) {
         try {
             int ladderHeight = inputView.readLadderHeight();
-            LadderGenerator ladderGenerator = new LadderGenerator(new LineGeneratorImpl());
+            LadderGenerator ladderGenerator = new LadderGenerator(new RandomLineGenerator());
             return ladderGenerator.generate(ladderHeight, ladderWidth);
 
         } catch (IllegalArgumentException e) {

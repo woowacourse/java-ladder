@@ -2,7 +2,7 @@ package ladder.domain.resource.line;
 
 import ladder.domain.resource.direction.Direction;
 
-public class LineGeneratorImpl implements LineGenerator {
+public class RandomLineGenerator implements LineGenerator {
 
     @Override
     public Line generateLine() {
