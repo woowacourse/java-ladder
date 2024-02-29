@@ -12,10 +12,10 @@ public class Prizes {
     }
 
     public static Prizes of(final List<String> values, final int personCount) {
+        validate(values, personCount);
         List<Prize> prizes = values.stream()
                 .map(Prize::new)
                 .toList();
-        validate(values, personCount);
         return new Prizes(prizes);
     }
 
