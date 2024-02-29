@@ -2,15 +2,13 @@ package ladder.controller;
 
 import java.util.List;
 import java.util.function.Supplier;
-import ladder.domain.Carpenter;
-import ladder.domain.Energy;
-import ladder.domain.GamePrizes;
-import ladder.domain.Height;
-import ladder.domain.LadderGame;
-import ladder.domain.LadderResult;
-import ladder.domain.Participants;
-import ladder.domain.dto.ResultLadderDto;
-import ladder.domain.dto.ResultStepLadderDto;
+import ladder.domain.carpenter.Carpenter;
+import ladder.domain.carpenter.Energy;
+import ladder.domain.dto.MadeLadderDto;
+import ladder.domain.ladder.Height;
+import ladder.domain.ladderGame.LadderGame;
+import ladder.domain.participant.Participants;
+import ladder.domain.prize.GamePrizes;
 import ladder.domain.randomGenerator.NumberGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -29,40 +27,39 @@ public class LadderController {
 
     public LadderResultController run() {
 
-        Height height = repeatUntilValid(this::getHeight);
-        Participants participants = repeatUntilValid(this::getNames);
-        GamePrizes gamePrizes = repeatUntilValid(this::getPrizes);
+        Participants participants = repeatUntilValid(this::readyParticipants);
+        int participantCount = participants.size();
 
-        int participantsCount = participants.getParticipantsCount();
-
-        Energy energy = new Energy(numberGenerator);
-        Carpenter carpenter = new Carpenter(height, participantsCount, energy);
+        Carpenter carpenter = readyCarpenter(participantCount);
+        GamePrizes gamePrizes = repeatUntilValid(this::readyPrizes);
 
         LadderGame ladderGame = new LadderGame(carpenter, participants);
+        MadeLadderDto resultLadder = ladderGame.play(participantCount);
 
-        ResultLadderDto resultLadderDto = ladderGame.play(participantsCount);
+        outputView.printMadeLadder(resultLadder, participants.getNames(), gamePrizes.getPrizes());
 
-        outputView.printResult(resultLadderDto, participants.getNames(), gamePrizes.getPrizes());
-
-        ResultStepLadderDto resultStepLadderDto = carpenter.getResultLadders2();
-        LadderResult ladderResult = ladderGame.mapLadderGame(resultStepLadderDto);
-
-        return new LadderResultController(inputView, outputView, ladderResult, participants, gamePrizes);
+        return new LadderResultController(inputView, outputView, resultLadder, participants, gamePrizes);
     }
 
-    private Participants getNames() {
+    private Participants readyParticipants() {
         List<String> inputNames = inputView.getNames();
         return new Participants(inputNames);
     }
 
-    private Height getHeight() {
-        String inputHeight = inputView.getHeight();
-        return new Height(inputHeight);
+    private Carpenter readyCarpenter(int participantsCount) {
+        Height height = repeatUntilValid(this::initHeight);
+        Energy energy = new Energy(numberGenerator);
+        return new Carpenter(height, participantsCount, energy);
     }
 
-    private GamePrizes getPrizes() {
+    private GamePrizes readyPrizes() {
         List<String> inputPrizes = inputView.getPrizes();
         return new GamePrizes(inputPrizes);
+    }
+
+    private Height initHeight() {
+        String inputHeight = inputView.getHeight();
+        return new Height(inputHeight);
     }
 
     private <T> T repeatUntilValid(Supplier<T> function) {
