@@ -53,6 +53,7 @@ public class OutputView {
 
     private void printResults(Results results) {
         results.getResults().forEach(this::printEachResultValue);
+        System.out.println();
     }
 
     private void printEachResultValue(Result result) {
