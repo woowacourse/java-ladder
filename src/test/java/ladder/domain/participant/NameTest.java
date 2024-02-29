@@ -22,8 +22,8 @@ public class NameTest {
                 .hasMessage("이름의 길이는 최대 " + MAXIMUM_NAME_LENGTH + "글자 까지 가능합니다.");
     }
 
-    @Test
     @DisplayName("이름이 공백일 경우 에러를 발생한다.")
+    @Test
     void isNotBlankNameTest() {
 
         assertThatThrownBy(() -> new Name(" "))

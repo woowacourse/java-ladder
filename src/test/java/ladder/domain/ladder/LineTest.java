@@ -27,8 +27,8 @@ public class LineTest {
     @DisplayName("이전 포지션에 스텝이 존재하는지 검사하는 테스트")
     class CheckDuplicateStepTest {
 
-        @Test
         @DisplayName("이전 포지션에 스텝이 존재하면 True를 반환한다.")
+        @Test
         void hasDuplicatedStep() {
             line.buildSteps(FIRST_STEP_INDEX);
 
@@ -37,8 +37,8 @@ public class LineTest {
             assertThat(hasDuplicateStep).isTrue();
         }
 
-        @Test
         @DisplayName("이전 포지션에 스텝이 존재하지 않으면 False를 반환한다.")
+        @Test
         void hasNotDuplicatedStep() {
             line.buildSteps(FIRST_STEP_INDEX);
 

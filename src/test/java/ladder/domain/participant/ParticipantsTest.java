@@ -10,8 +10,8 @@ public class ParticipantsTest {
 
     private static final int MAXIMUM_RECEPTION_COUNT = 10;
 
-    @Test
     @DisplayName("참여자 최대 인원 테스트")
+    @Test
     void participantsIsMaximumTest() {
         List<String> names = new ArrayList<>(
                 List.of("aru", "pola", "jazz", "hogi", "pobi", "bri", "ato", "zzang", "siso", "takan", "kaki"));
@@ -21,8 +21,8 @@ public class ParticipantsTest {
                 .hasMessage("참여자 인원은 최대 " + MAXIMUM_RECEPTION_COUNT + "명까지 가능합니다.");
     }
 
-    @Test
     @DisplayName("참여자 이름 중복 여부 테스트")
+    @Test
     void participantsNameDuplicatedTest() {
         List<String> names = new ArrayList<>(List.of("aru", "pola", "jazz", "pola"));
 
@@ -31,8 +31,8 @@ public class ParticipantsTest {
                 .hasMessage("참여자 이름은 중복을 허용하지 않습니다");
     }
 
-    @Test
     @DisplayName("이름에 걸맞는 position을 찾을 때 이름이 없는 경우 error")
+    @Test
     void findNotExistNamePosition() {
         List<String> names = new ArrayList<>(List.of("aru", "pola", "jazz"));
         Participants participants = new Participants(names);
