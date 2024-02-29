@@ -15,6 +15,7 @@ public class Line {
         validateIsNotEmpty(sticks);
         validateIsNotOverlapped(sticks);
     }
+
     private void validateIsNotEmpty(List<Stick> sticks) {
         if (sticks == null || sticks.isEmpty()) {
             throw new IllegalArgumentException("적어도 가로 라인이 하나 이상 있어야 한다.");
