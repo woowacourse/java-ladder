@@ -17,14 +17,14 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class CountToPointsTest {
+class LineGeneratorTest {
     @ParameterizedTest
     @MethodSource("provideGenerator")
     @DisplayName("연결된 포인트는 연속으로 존재할 수 없다.")
     void testNoConsecutiveConnectedPoints(BooleanGenerator generator) {
         int personCount = 1000;
-        LineGenerator countToPoints = new LineGenerator(personCount, generator);
-        Line line = new Line(countToPoints.createPoints());
+        LineGenerator lineGenerator = new LineGenerator(personCount, generator);
+        Line line = new Line(lineGenerator.createPoints());
         List<Point> points = line.getPoints();
         int isInvalidLine = Collections.indexOfSubList(points, List.of(Point.CONNECTED, Point.CONNECTED));
 
