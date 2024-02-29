@@ -13,7 +13,7 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public List<PlayerName> playOneLine(List<PlayerName> playerNames, int height) {
+    private List<PlayerName> playOneLine(List<PlayerName> playerNames, int height) {
         List<Line> lines = ladder.getLines();
         Line line = lines.get(height);
 
@@ -33,7 +33,7 @@ public class LadderGame {
         return getResult(playerNames);
     }
 
-    public static List<String> getResult(List<PlayerName> playerNames) {
+    private static List<String> getResult(List<PlayerName> playerNames) {
         List<String> playerNames2 = new ArrayList<>();
         for (PlayerName player : playerNames) {
             playerNames2.add(player.getName());
