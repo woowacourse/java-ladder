@@ -1,4 +1,4 @@
-package model;
+package model.player;
 
 import model.players.Player;
 import org.assertj.core.api.Assertions;
