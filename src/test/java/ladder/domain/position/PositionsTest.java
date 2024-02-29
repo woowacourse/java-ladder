@@ -16,6 +16,8 @@ class PositionsTest {
         CustomLine customLine = new CustomLine();
         customLine.addCustomDirection(Direction.RIGHT);
         customLine.addCustomDirection(Direction.LEFT);
+        customLine.addCustomDirection(Direction.RIGHT);
+        customLine.addCustomDirection(Direction.LEFT);
 
         int width = customLine.getLineLength();
         Positions nowPositions = new Positions(width);
@@ -24,7 +26,7 @@ class PositionsTest {
         Positions nextPositions = nowPositions.calcPosition(customLine.getLine());
 
         //then
-        assertThat(nextPositions.getPositions()).containsExactly(new Position(1), new Position(0));
+        assertThat(nextPositions.getPositions()).containsExactly(new Position(1), new Position(0), new Position(3), new Position(2));
     }
 
     @DisplayName("Ladder 안에 여러 개의 Line을 통해 Position을 계산한다.")
