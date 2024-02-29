@@ -25,12 +25,4 @@ public class GameResult {
     public boolean isEqualLineNumber(LineNumber lineNumber) {
         return this.lineNumber.value() == lineNumber.value();
     }
-
-    @Override
-    public String toString() {
-        return "GameResult{" +
-                "gameResultDescription=" + gameResultDescription +
-                ", lineNumber=" + lineNumber +
-                '}';
-    }
 }
