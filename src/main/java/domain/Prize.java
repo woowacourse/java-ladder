@@ -1,0 +1,20 @@
+package domain;
+
+public class Prize {
+
+    private final PrizeName prizeName;
+    private final ColumnPosition columnPosition;
+
+    public Prize(PrizeName prizeName, ColumnPosition columnPosition) {
+        this.prizeName = prizeName;
+        this.columnPosition = columnPosition;
+    }
+
+    public String getPrizeName() {
+        return prizeName.getPrize();
+    }
+
+    public int getColumnPosition() {
+        return columnPosition.getColumnPosition();
+    }
+}
