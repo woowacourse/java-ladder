@@ -68,7 +68,7 @@ class UsersTest {
         String userName = "gamza";
 
         //when, then
-        assertThatThrownBy(() -> users.isExistUserName(userName))
+        assertThatThrownBy(() -> users.validateExistUserName(userName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 존재하지 않는 사용자의 이름입니다.");
     }
