@@ -12,7 +12,7 @@ import domain.reward.Results;
 import java.util.List;
 
 public class GameBoard {
-    private static final int COLUMN_START_POSITION = 0;
+
     private final Players players;
     private final Ladder ladder;
     private final Results results;
@@ -41,9 +41,7 @@ public class GameBoard {
     }
 
     private Point getPlayerStartPoint(Player player) {
-        return new Point.Builder().column(COLUMN_START_POSITION)
-                                  .row(players.getPlayerIndex(player))
-                                  .build();
+        return Point.startPoint(players.getPlayerIndex(player));
     }
 
     private Result getRewardWithIndex(Integer index) {

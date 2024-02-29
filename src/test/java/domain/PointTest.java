@@ -43,6 +43,17 @@ public class PointTest {
         });
     }
 
+    @Test
+    @DisplayName("시작하는(column을 0을 가지는) 포인트를 생성한다.")
+    public void startPoint() {
+        int row = 3;
+
+        assertThatCode(() -> {
+            Point point = Point.startPoint(row);
+            assertPoint(point, 3, 0);
+        }).doesNotThrowAnyException();
+    }
+
     private static Stream<Arguments> pointMaskingParam() {
         return Stream.of(
                 arguments(3, 4, Direction.DOWN, 3, 5),

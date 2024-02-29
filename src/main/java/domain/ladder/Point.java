@@ -5,6 +5,13 @@ import domain.ladder.attribute.Direction;
 import java.util.Objects;
 
 public record Point(int row, int column) {
+    private static final int POINT_START_POSITION = 0;
+
+    public static Point startPoint(int row) {
+        return new Builder().column(POINT_START_POSITION)
+                            .row(row)
+                            .build();
+    }
 
     public Point move(Direction direction) {
         return switch (direction) {
