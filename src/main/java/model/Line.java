@@ -17,6 +17,10 @@ public class Line {
         lineStates.add(LineState.decideLastLineState(lineStates.get(lastMiddleStateIndex)));
     }
 
+    public int move(int index) {
+        return index + LineState.findDirection(lineStates.get(index));
+    }
+
     public List<LineState> getLineStates() {
         return lineStates;
     }

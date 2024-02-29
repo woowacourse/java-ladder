@@ -1,9 +1,9 @@
 package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,9 +15,8 @@ public class LineTest {
     @Test
     void initializeLineStateWhenBeforeStateIsStart() {
         LineState expected = LineState.END;
-
-        int peopleCount = 3;
-        Line line = new Line(peopleCount, List.of(true, true, false));
+        List<Boolean> makeLadderOrNot = List.of(true, false, false);
+        Line line = new Line(makeLadderOrNot);
 
         List<LineState> lineStates = line.getLineStates();
         LineState lineState = lineStates.get(1);
@@ -29,8 +28,8 @@ public class LineTest {
     @ParameterizedTest
     @CsvSource(value = {"true,START", "false,NONE"})
     void initializeLineStateWhenBeforeStateNotStart(boolean given, LineState expected) {
-        int peopleCount = 3;
-        Line line = new Line(peopleCount, List.of(false, given, false));
+        List<Boolean> makeLadderOrNot = List.of(false, given, false);
+        Line line = new Line(makeLadderOrNot);
 
         List<LineState> lineStates = line.getLineStates();
         LineState lineState = lineStates.get(1);
@@ -38,15 +37,39 @@ public class LineTest {
         assertThat(lineState).isEqualTo(expected);
     }
 
-    @DisplayName("총 참여자 수와 랜덤 생성된 불린 값의 크기가 같지 않을 경우 예외가 발생한다.")
+    @DisplayName("라인의 state가 START이면 위치를 오른쪽으로 1칸 이동한다.")
     @Test
-    void validateIllegalInputException() {
+    void moveRight() {
+        List<Boolean> makeLadderOrNot = List.of(true, false);
+        Line line = new Line(makeLadderOrNot);
 
-        int peopleCount = 3;
-        assertThatThrownBy(() -> new Line(peopleCount, List.of(false, false, false, true)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 랜덤 값 생성 개수가 총 참여자 수와 일치하지 않습니다.");
+        int index = 0;
+        index = line.move(index);
 
+        assertThat(index).isEqualTo(1);
     }
 
+    @DisplayName("라인의 state가 END면 위치를 왼쪽으로 1칸 이동한다.")
+    @Test
+    void moveLeft() {
+        List<Boolean> makeLadderOrNot = List.of(true, false);
+        Line line = new Line(makeLadderOrNot);
+
+        int index = 1;
+        index = line.move(index);
+
+        assertThat(index).isEqualTo(0);
+    }
+
+    @DisplayName("라인의 state가 NONE이면 위치를 변경하지 않는다.")
+    @Test
+    void moveNowhere() {
+        List<Boolean> makeLadderOrNot = List.of(false, false);
+        Line line = new Line(makeLadderOrNot);
+
+        int index = 0;
+        index = line.move(index);
+
+        assertThat(index).isEqualTo(0);
+    }
 }
