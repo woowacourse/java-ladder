@@ -16,17 +16,8 @@ public class Main {
             LadderGame ladderGame = RetryHelper.retryWithReturn(() -> createLadderGame(inputView));
             var outputView = new OutputView(ladderGame);
             outputView.printLadderResult();
-            RetryHelper.retryWithoutReturn(() -> searchLadderResultFromName(outputView, inputView));
+            RetryHelper.retryWithoutReturn(() -> searchLadderResultFromName(inputView, outputView));
         }
-    }
-
-    private static void searchLadderResultFromName(OutputView outputView, InputView inputView) {
-        String searchName = inputView.getSearchNameFromConsole();
-        while (!searchName.equals(SEARCH_ALL)) {
-            outputView.printSearchNameLadderResult(searchName);
-            searchName = inputView.getSearchNameFromConsole();
-        }
-        outputView.printAllNameLadderResult();
     }
 
     private static LadderGame createLadderGame(InputView inputView) {
@@ -35,6 +26,16 @@ public class Main {
         int ladderHeight = inputView.getHeightInputFromConsole();
         return new LadderGame(nameInput, rawLadderResult, ladderHeight, new BridgesRandomGenerator());
     }
+
+    private static void searchLadderResultFromName(InputView inputView, OutputView outputView) {
+        String searchName = inputView.getSearchNameFromConsole();
+        while (!searchName.equals(SEARCH_ALL)) {
+            outputView.printSearchNameLadderResult(searchName);
+            searchName = inputView.getSearchNameFromConsole();
+        }
+        outputView.printAllNameLadderResult();
+    }
+
 
     static final class RetryHelper {
 
