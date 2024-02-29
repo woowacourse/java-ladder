@@ -1,5 +1,7 @@
 package domain;
 
+import static domain.Connection.*;
+
 import java.util.List;
 import java.util.stream.Stream;
 import strategy.ConnectStrategy;
@@ -25,10 +27,10 @@ public class Line {
         if (previousIndex < 0 || previousIndex > connections.size()) {
             throw new IllegalArgumentException("비정상적인 index입니다.");
         }
-        if (previousIndex < connections.size() && connections.get(previousIndex) == Connection.CONNECTED) {
+        if (previousIndex < connections.size() && connections.get(previousIndex) == CONNECTED) {
             return previousIndex + 1;
         }
-        if (previousIndex > 0 && connections.get(previousIndex - 1) == Connection.CONNECTED) {
+        if (previousIndex > 0 && connections.get(previousIndex - 1) == CONNECTED) {
             return previousIndex - 1;
         }
         return previousIndex;
