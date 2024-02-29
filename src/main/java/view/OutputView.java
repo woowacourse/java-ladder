@@ -2,14 +2,13 @@ package view;
 
 import domain.GameBoard;
 import domain.ladder.Ladder;
+import domain.reward.PlayerResult;
 import domain.reward.Result;
-import domain.reward.Reward;
 import domain.ladder.attribute.Direction;
 import domain.common.Name;
 
 import java.util.EnumMap;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class OutputView {
     private static final EnumMap<Direction, String> directionSymbols = initializedDirectionSymbol();
@@ -64,9 +63,9 @@ public class OutputView {
         return directionSymbols;
     }
 
-    private static void printRewards(List<Reward> rewards) {
-        rewards.stream()
-               .map(Reward::getValue)
+    private static void printRewards(List<Result> results) {
+        results.stream()
+               .map(Result::getValue)
                .map(OutputView::padString)
                .forEach(System.out::print);
         printNewLine();
@@ -78,19 +77,19 @@ public class OutputView {
     }
 
 
-    public static final void printResult(List<Result> results) {
-        results.stream()
-               .forEach(result -> {
+    public static final void printResult(List<PlayerResult> playerResults) {
+        playerResults.stream()
+                     .forEach(playerResult -> {
                    StringBuilder resultStringBuilder = new StringBuilder();
-                   resultStringBuilder.append(result.nameToString())
+                   resultStringBuilder.append(playerResult.nameToString())
                                       .append(" : ")
-                                      .append(result.rewardToString());
+                                      .append(playerResult.rewardToString());
                    System.out.println(resultStringBuilder);
                });
     }
 
-    public static final void printResult(Result result) {
-        System.out.println(result.rewardToString());
+    public static final void printResult(PlayerResult playerResult) {
+        System.out.println(playerResult.rewardToString());
     }
 
 

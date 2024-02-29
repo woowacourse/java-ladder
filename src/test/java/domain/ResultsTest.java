@@ -3,20 +3,20 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.api.Assertions.*;
 
-import domain.reward.Reward;
-import domain.reward.Rewards;
+import domain.reward.Result;
+import domain.reward.Results;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class RewardsTest {
+public class ResultsTest {
     @Test
     @DisplayName("보상 목록을 포함한 일급 컬렉션을 만든다.")
     public void createRewards() {
         List<String> value = List.of("꽝", "5000", "꽝", "3000");
 
-        assertThatCode(() -> Rewards.from(value, value.size()))
+        assertThatCode(() -> Results.from(value, value.size()))
                 .doesNotThrowAnyException();
     }
 
@@ -26,18 +26,18 @@ public class RewardsTest {
         List<String> value = List.of("꽝", "5000", "꽝");
         int playerSize = 4;
 
-        assertThrows(IllegalArgumentException.class, () -> Rewards.from(value, playerSize));
+        assertThrows(IllegalArgumentException.class, () -> Results.from(value, playerSize));
     }
 
     @Test
     @DisplayName("특정 인덱스의 보상을 받아온다.")
     public void getRewardAtIndex() {
         List<String> value = List.of("꽝", "5000", "꽝", "3000");
-        Rewards rewards = Rewards.from(value, value.size());
+        Results results = Results.from(value, value.size());
 
-        Reward reward = rewards.getRewardAt(2);
+        Result result = results.getRewardAt(2);
 
-        assertEquals(reward.getValue(), value.get(2));
+        assertEquals(result.getValue(), value.get(2));
     }
 
 }

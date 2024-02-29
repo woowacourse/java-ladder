@@ -1,13 +1,13 @@
 package domain.reward;
 
-import domain.common.Name;
+public class Result {
+    private String value;
 
-public record Result(Name name, Reward reward) {
-    public String nameToString() {
-        return name.getValue();
+    public Result(final String value) {
+        this.value = value;
     }
 
-    public String rewardToString() {
-        return reward.getValue();
+    public String getValue() {
+        return value;
     }
 }

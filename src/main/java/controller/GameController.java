@@ -7,8 +7,8 @@ import domain.common.Name;
 import domain.player.Names;
 import domain.player.Player;
 import domain.player.Players;
-import domain.reward.Result;
-import domain.reward.Rewards;
+import domain.reward.PlayerResult;
+import domain.reward.Results;
 import util.RandomDirectionGenerator;
 import view.InputView;
 import view.LadderCommand;
@@ -20,10 +20,10 @@ public class GameController {
 
     public void execute() {
         Players players = createPlayers();
-        Rewards rewards = Rewards.from(InputView.inputRewards(), players.getPlayerCount());
+        Results results = Results.from(InputView.inputRewards(), players.getPlayerCount());
         Height height = new Height(InputView.inputHeight());
         Ladder ladder = new Ladder(height, players.getPlayerCount(), new RandomDirectionGenerator());
-        GameBoard gameBoard = new GameBoard(players, ladder, rewards);
+        GameBoard gameBoard = new GameBoard(players, ladder, results);
         OutputView.printGameBoard(gameBoard);
         processGame(gameBoard);
     }
@@ -37,21 +37,22 @@ public class GameController {
         final String playerName = InputView.inputResultPlayer();
         if (LadderCommand.isAllCommand(playerName)) {
             processAllPlayers(gameBoard);
+            return;
         }
         processSinglePlayer(gameBoard, playerName);
         processGame(gameBoard);
     }
 
     private void processAllPlayers(GameBoard gameBoard) {
-        List<Result> results = gameBoard.playGameAllPlayer();
-        OutputView.printResult(results);
+        List<PlayerResult> playerResults = gameBoard.playGameAllPlayer();
+        OutputView.printResult(playerResults);
     }
 
     private void processSinglePlayer(GameBoard gameBoard, String playerName) {
         Name name = new Name(playerName);
         Player player = gameBoard.findPlayerWithName(name);
-        Result result = gameBoard.playGameOnePlayer(player);
-        OutputView.printResult(result);
+        PlayerResult playerResult = gameBoard.playGameOnePlayer(player);
+        OutputView.printResult(playerResult);
     }
 
 

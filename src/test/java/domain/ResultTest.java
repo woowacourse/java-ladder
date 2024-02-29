@@ -1,19 +1,19 @@
 package domain;
 
-import domain.reward.Reward;
+import domain.reward.Result;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class RewardTest {
+public class ResultTest {
     @Test
     @DisplayName("문자열을 통해 보상을 생성한다.")
     public void createReward() {
         String value = "꽝";
 
-        Reward reward = new Reward(value);
+        Result result = new Result(value);
 
-        assertEquals(reward.getValue(), value);
+        assertEquals(result.getValue(), value);
     }
 }

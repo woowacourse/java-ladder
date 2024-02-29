@@ -1,40 +1,38 @@
 package domain;
 
 import domain.ladder.Ladder;
-import domain.ladder.attribute.Direction;
 import domain.common.Name;
 import domain.player.Player;
 import domain.player.Players;
+import domain.reward.PlayerResult;
 import domain.reward.Result;
-import domain.reward.Reward;
-import domain.reward.Rewards;
+import domain.reward.Results;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 public class GameBoard {
     private static final int COLUMN_START_POSITION = 0;
     private final Players players;
     private final Ladder ladder;
-    private final Rewards rewards;
+    private final Results results;
 
-    public GameBoard(Players players, Ladder ladder, Rewards rewards) {
+    public GameBoard(Players players, Ladder ladder, Results results) {
         this.players = players;
         this.ladder = ladder;
-        this.rewards = rewards;
+        this.results = results;
     }
 
     public Player findPlayerWithName(Name name) {
         return players.getPlayerWithName(name);
     }
 
-    public Result playGameOnePlayer(Player player) {
+    public PlayerResult playGameOnePlayer(Player player) {
         Point startPoint = getPlayerStartPoint(player);
         Point endPoint = ladder.traverseLadderFromStartToEnd(startPoint);
-        return new Result(player.getName(), getRewardWithIndex(endPoint.row()));
+        return new PlayerResult(player.getName(), getRewardWithIndex(endPoint.row()));
     }
 
-    public List<Result> playGameAllPlayer() {
+    public List<PlayerResult> playGameAllPlayer() {
         return players.getPlayers()
                       .stream()
                       .map(this::playGameOnePlayer)
@@ -47,8 +45,8 @@ public class GameBoard {
                                   .build();
     }
 
-    private Reward getRewardWithIndex(Integer index) {
-        return rewards.getRewardAt(index);
+    private Result getRewardWithIndex(Integer index) {
+        return results.getRewardAt(index);
     }
 
     public Players getPlayers() {
@@ -60,8 +58,8 @@ public class GameBoard {
     }
 
 
-    public Rewards getRewards() {
-        return rewards;
+    public Results getRewards() {
+        return results;
     }
 
     public Ladder getLadder() {
