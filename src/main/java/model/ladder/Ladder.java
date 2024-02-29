@@ -18,12 +18,12 @@ public class Ladder {
     private final List<Line> lines;
 
     private Ladder(List<Line> lines) {
-        this.lines = lines;
+        this.lines = Collections.unmodifiableList(lines);
     }
 
     public static Ladder of(LadderHeight height, Players players, LineGenerator LineGenerator) {
         int lineWidth = players.getSize() - LINE_WIDTH_OFFSET;
-        return IntStream.range(0, height.value())
+        return IntStream.range(0, height.getValue())
                 .mapToObj(i -> LineGenerator.generateLine(lineWidth))
                 .collect(collectingAndThen(toList(), Ladder::new));
     }
@@ -37,6 +37,6 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+        return lines;
     }
 }
