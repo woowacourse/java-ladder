@@ -25,7 +25,7 @@ class PlayersTest {
                 new Player("명오"),
                 new Player("명오"))))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("중복된 이름은 입력할 수 없습니다.");
+                .hasMessageContaining("중복된 이름은 입력할 수 없습니다");
     }
 
     @DisplayName("사람 수를 반환한다.")
