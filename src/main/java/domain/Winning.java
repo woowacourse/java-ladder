@@ -5,7 +5,7 @@ public class Winning {
 
     private final String winning;
 
-    public Winning (String inputWinning) {
+    public Winning(String inputWinning) {
         validateLength(inputWinning);
         validateStyle(inputWinning);
         this.winning = inputWinning;
