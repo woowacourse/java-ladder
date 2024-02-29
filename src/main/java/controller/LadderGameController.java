@@ -58,15 +58,6 @@ public class LadderGameController {
         return repeatUntilValidInput(() -> PrizeResults.of(players, prizes, ladder));
     }
 
-    private <R> R repeatUntilValidInput(Supplier<R> supplier) {
-        try {
-            return supplier.get();
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            return repeatUntilValidInput(supplier);
-        }
-    }
-
     private void viewingUntilGetAll(PrizeResults prizeResults) {
         String operator;
         do {
@@ -79,6 +70,15 @@ public class LadderGameController {
         Map<String, String> results = getResults(prizeResults.getByOperate(operator));
         outputView.printPrizeResult(results);
         return operator;
+    }
+
+    private <R> R repeatUntilValidInput(Supplier<R> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return repeatUntilValidInput(supplier);
+        }
     }
 
     private Map<String, String> getResults(Map<Player, Prize> prizeResults) {
