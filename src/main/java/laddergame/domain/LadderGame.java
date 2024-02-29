@@ -5,9 +5,9 @@ import java.util.List;
 
 public class LadderGame {
     private static final String NO_SAME_COUNT_PLAYERS_ITEMS = "참여자 수와 실행 결과 수가 같아야 합니다.";
+
     private final Players players;
     private final Ladder ladder;
-
     private final List<ResultItem> items;
 
     public LadderGame(final Players players, final Ladder ladder, final List<String> items) {
@@ -26,7 +26,12 @@ public class LadderGame {
     public void climbLadder() {
         for (Player player : players.getPlayers()) {
             moveToLadderEnd(player);
-            player.assignItem(items.get(player.getPosition().getX()));
+        }
+    }
+
+    public void putPlayersResult(PlayersResult playersResult) {
+        for (Player player : players.getPlayers()) {
+            playersResult.addResult(player, items.get(player.getPosition().getX()));
         }
     }
 

@@ -58,12 +58,14 @@ public class LadderGameTest {
         };
         final Ladder ladder = new Ladder(expectedLinesGenerator, players.getPlayersCount(), new Height("3"));
         final LadderGame ladderGame = new LadderGame(players, ladder, List.of("O","X","O","O"));
+        final PlayersResult playersResult = new PlayersResult();
 
         ladderGame.climbLadder();
+        ladderGame.putPlayersResult(playersResult);
 
-        assertEquals(players.getPlayers().get(0).getItem(), ladderGame.getItems().get(0));
-        assertEquals(players.getPlayers().get(1).getItem(), ladderGame.getItems().get(2));
-        assertEquals(players.getPlayers().get(2).getItem(), ladderGame.getItems().get(1));
-        assertEquals(players.getPlayers().get(3).getItem(), ladderGame.getItems().get(3));
+        assertEquals(playersResult.findItemByPlayerName("name1"), ladderGame.getItems().get(0));
+        assertEquals(playersResult.findItemByPlayerName("name2"), ladderGame.getItems().get(2));
+        assertEquals(playersResult.findItemByPlayerName("name3"), ladderGame.getItems().get(1));
+        assertEquals(playersResult.findItemByPlayerName("name4"), ladderGame.getItems().get(3));
     }
 }

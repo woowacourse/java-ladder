@@ -1,6 +1,7 @@
 package laddergame;
 
 import laddergame.domain.*;
+import laddergame.domain.PlayersResult;
 import laddergame.util.RandomLinesGenerator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
@@ -12,6 +13,7 @@ public class LadderGameController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private final PlayersResult playersResult = new PlayersResult();
 
     public void run() {
         Players players = retryUntilValidated(() -> new Players(inputView.readPlayersName()));
@@ -19,10 +21,11 @@ public class LadderGameController {
         Ladder ladder = new Ladder(new RandomLinesGenerator(), players.getPlayersCount(), height);
 
         LadderGame ladderGame = executeLadderGame(players, ladder);
+        ladderGame.putPlayersResult(playersResult);
         outputView.writeLadderResult(ladderGame);
 
         while (true) {
-            retryUntilValidated(() -> showItemByInputName(players));
+            retryUntilValidated(() -> showItemByInputName(playersResult));
         }
     }
 
@@ -33,13 +36,13 @@ public class LadderGameController {
         return ladderGame;
     }
 
-    private void showItemByInputName(Players players) {
+    private void showItemByInputName(PlayersResult playersResult) {
         String name = inputView.readPlayerNameWantToSeeResult();
         if (name.equals(WANT_TO_SEE_ALL_RESULT)) {
-            outputView.writeAllResultItems(players);
+            outputView.writeAllResultItems(playersResult.getAllResult());
             return;
         }
-        ResultItem item = players.findItemByName(name);
+        ResultItem item = playersResult.findItemByPlayerName(name);
         outputView.writeResultItem(item);
     }
 
