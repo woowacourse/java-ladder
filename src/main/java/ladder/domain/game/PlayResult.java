@@ -42,19 +42,19 @@ public class PlayResult {
     }
 
     public boolean hasResultOf(final String name) {
-        return isExpressionOfEntirePlayer(name) || result.containsKey(name);
+        return isExpressionOfAllPlayer(name) || result.containsKey(name);
     }
 
     public Map<String, String> checkPlayerResultByName(final String name) {
-        if (isExpressionOfEntirePlayer(name)) {
+        if (isExpressionOfAllPlayer(name)) {
             status = Status.NON_EXECUTABLE;
             return result;
         }
         return Map.of(name, result.get(name));
     }
 
-    private boolean isExpressionOfEntirePlayer(final String name) {
-        return Command.EXPRESSION_OF_ENTIRE_PLAYER.isMatch(name);
+    private boolean isExpressionOfAllPlayer(final String name) {
+        return Command.EXPRESSION_OF_ALL_PLAYER.isMatch(name);
     }
 
     public Map<String, String> getResult() {

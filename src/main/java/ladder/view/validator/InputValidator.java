@@ -27,7 +27,7 @@ public class InputValidator {
         final List<String> names = Converter.stringToList(input);
 
         return names.stream()
-                .anyMatch(Command.EXPRESSION_OF_ENTIRE_PLAYER::isMatch);
+                .anyMatch(Command.EXPRESSION_OF_ALL_PLAYER::isMatch);
     }
 
     public void validateLadderHeight(final String input) {

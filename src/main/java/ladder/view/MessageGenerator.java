@@ -45,7 +45,7 @@ public class MessageGenerator {
     }
 
     public String generateResultMessage(final Map<String, String> result, final String name) {
-        if (Command.EXPRESSION_OF_ENTIRE_PLAYER.isMatch(name)) {
+        if (Command.EXPRESSION_OF_ALL_PLAYER.isMatch(name)) {
             return generateAllResultMessage(result);
         }
         return result.get(name);

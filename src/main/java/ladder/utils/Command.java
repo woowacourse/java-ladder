@@ -1,7 +1,7 @@
 package ladder.utils;
 
 public enum Command {
-    EXPRESSION_OF_ENTIRE_PLAYER("all");
+    EXPRESSION_OF_ALL_PLAYER("all");
 
     private final String expression;
 
