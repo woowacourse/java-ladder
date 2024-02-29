@@ -1,12 +1,13 @@
 package domain;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import domain.prize.PrizeName;
 import domain.prize.PrizeNames;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class PrizeNamesTest {
 
@@ -19,4 +20,15 @@ class PrizeNamesTest {
         assertDoesNotThrow(() -> new PrizeNames(prizeInputNames, playerCount));
     }
 
+    @Test
+    @DisplayName("특정 index에 존재하는 PrizeName을 반환한다.")
+    void getPrizeNameInSpecificIndex() {
+        List<String> prizeInputNames = List.of("꽝", "꽝", "1등");
+        int playerCount = 3;
+        PrizeNames prizeNames = new PrizeNames(prizeInputNames, playerCount);
+
+        PrizeName expectedPrizeName = new PrizeName("1등");
+
+        assertEquals(expectedPrizeName, prizeNames.getPrizeNameInIndex(2));
+    }
 }
