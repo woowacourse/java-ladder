@@ -1,14 +1,9 @@
 package ladder.domain.result;
 
 import ladder.domain.position.Position;
-import ladder.domain.position.Positions;
-import ladder.domain.prize.Prizes;
-import ladder.domain.user.Users;
-
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.SimpleTimeZone;
 
 public class Result {
 
