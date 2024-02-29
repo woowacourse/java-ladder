@@ -1,7 +1,6 @@
 package ladderGame.model;
 
 public class Command {
-    private static final String EXCEPTION_MESSAGE_NON_CONTAIN_NAME = "참여자 목록 중에서 골라야 합니다.";
     private static final String COMMAND_ALL = "all";
 
     private final String command;
@@ -16,7 +15,7 @@ public class Command {
 
     private void validate(String command, Players players) {
         if(!players.contains(new Name(command))) {
-            throw new IllegalArgumentException(EXCEPTION_MESSAGE_NON_CONTAIN_NAME);
+            throw new IllegalArgumentException("참여자 목록 중에서 골라야 합니다.");
         }
     }
 
