@@ -19,4 +19,15 @@ public class GamePrizesTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("상품 목록엔 빈칸이 포함될 수 없습니다.");
     }
+
+    @DisplayName("참가한 유저와 일치하는 개수의 Prize를 입력하지 않았을 경우 Test")
+    @Test
+    void isCorrespondentToParticipantCount() {
+
+        List<String> gamePrizeInput = new ArrayList<>(List.of("꽝", "0", "5000", "꽝"));
+
+        Assertions.assertThatThrownBy(() -> new GamePrizes(gamePrizeInput, 3))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("참가자와 상품의 개수가 일치하지 않습니다.");
+    }
 }
