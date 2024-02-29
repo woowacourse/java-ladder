@@ -6,20 +6,19 @@ import ladder.domain.carpenter.Carpenter;
 import ladder.domain.carpenter.Energy;
 import ladder.domain.dto.MadeLadderDto;
 import ladder.domain.ladder.Height;
-import ladder.domain.ladderGame.LadderGame;
 import ladder.domain.participant.Participants;
 import ladder.domain.prize.GamePrizes;
 import ladder.domain.randomGenerator.NumberGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-public class LadderController {
+public class LadderGameController {
 
     private final NumberGenerator numberGenerator;
     private final InputView inputView;
     private final OutputView outputView;
 
-    public LadderController(NumberGenerator numberGenerator, InputView inputView, OutputView outputView) {
+    public LadderGameController(NumberGenerator numberGenerator, InputView inputView, OutputView outputView) {
         this.numberGenerator = numberGenerator;
         this.inputView = inputView;
         this.outputView = outputView;
@@ -30,20 +29,23 @@ public class LadderController {
         Participants participants = repeatUntilValid(this::readyParticipants);
         int participantCount = participants.size();
 
-        Carpenter carpenter = readyCarpenter(participantCount);
+        MadeLadderDto madeLadder = buildLadder(participantCount);
         GamePrizes gamePrizes = repeatUntilValid(() -> readyPrizes(participantCount));
 
-        LadderGame ladderGame = new LadderGame(carpenter, participants);
-        MadeLadderDto resultLadder = ladderGame.play(participantCount);
-
-        outputView.printMadeLadder(resultLadder, participants.getNames(), gamePrizes.getPrizes());
-
-        return new LadderResultController(inputView, outputView, resultLadder, participants, gamePrizes);
+        outputView.printMadeLadder(madeLadder, participants.getNames(), gamePrizes.getPrizes());
+        return new LadderResultController(inputView, outputView, madeLadder, participants, gamePrizes);
     }
 
     private Participants readyParticipants() {
         List<String> inputNames = inputView.getNames();
         return new Participants(inputNames);
+    }
+
+    private MadeLadderDto buildLadder(int participantCount) {
+        Carpenter carpenter = readyCarpenter(participantCount);
+
+        carpenter.buildLadders(participantCount);
+        return carpenter.getResultLadders();
     }
 
     private Carpenter readyCarpenter(int participantsCount) {
