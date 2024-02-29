@@ -33,7 +33,7 @@ public record DrawnLadderDto(List<String> names, List<String> targets, List<Line
 
     private static List<LineDto> mapToLadder(final List<Line> lines) {
         return lines.stream()
-                .map(line -> new LineDto(line.getPointsState()))
+                .map(line -> new LineDto(line.getBridgesState()))
                 .toList();
     }
 }

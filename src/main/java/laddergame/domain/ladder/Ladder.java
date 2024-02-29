@@ -1,7 +1,7 @@
 package laddergame.domain.ladder;
 
 import laddergame.domain.result.Trace;
-import laddergame.domain.point.PointGenerator;
+import laddergame.domain.bridge.BridgeGenerator;
 
 import java.util.Collections;
 import java.util.List;
@@ -18,8 +18,8 @@ public class Ladder {
     public static Ladder create(
             final LineSize lineSize,
             final LadderHeight height,
-            final PointGenerator pointGenerator) {
-        List<Line> lines = Stream.generate(() -> Line.create(lineSize, pointGenerator))
+            final BridgeGenerator bridgeGenerator) {
+        List<Line> lines = Stream.generate(() -> Line.create(lineSize, bridgeGenerator))
                 .limit(height.getHeight())
                 .toList();
 

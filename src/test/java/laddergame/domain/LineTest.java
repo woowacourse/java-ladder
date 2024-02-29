@@ -3,7 +3,7 @@ package laddergame.domain;
 import laddergame.domain.ladder.Line;
 import laddergame.domain.ladder.LineSize;
 import laddergame.domain.player.Players;
-import laddergame.domain.point.Point;
+import laddergame.domain.bridge.Bridge;
 import laddergame.domain.result.Trace;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,12 +22,12 @@ public class LineTest {
         final LineSize lineSize = new LineSize(new Players(List.of("pobi", "zeze", "crong", "jk")));
 
         // when
-        final Line line = Line.create(lineSize, () -> Point.EXIST);
+        final Line line = Line.create(lineSize, () -> Bridge.EXIST);
 
         //then
-        final List<Point> expectedLine = List.of(Point.EXIST, Point.EMPTY, Point.EXIST);
+        final List<Bridge> expectedLine = List.of(Bridge.EXIST, Bridge.EMPTY, Bridge.EXIST);
 
-        assertThat(line).extracting("points")
+        assertThat(line).extracting("bridges")
                 .isEqualTo(expectedLine);
     }
 
@@ -35,7 +35,7 @@ public class LineTest {
     @Test
     void testMoveRight() {
         // given
-        final Line line = new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST));
+        final Line line = new Line(List.of(Bridge.EXIST, Bridge.EMPTY, Bridge.EXIST));
         final Trace trace = new Trace(0);
 
         // when
@@ -49,7 +49,7 @@ public class LineTest {
     @Test
     void testMoveLeft() {
         // given
-        final Line line = new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST));
+        final Line line = new Line(List.of(Bridge.EXIST, Bridge.EMPTY, Bridge.EXIST));
         final Trace trace = new Trace(3);
 
         // when
@@ -63,7 +63,7 @@ public class LineTest {
     @Test
     void testNotMove() {
         // given
-        final Line line = new Line(List.of(Point.EMPTY, Point.EMPTY, Point.EMPTY));
+        final Line line = new Line(List.of(Bridge.EMPTY, Bridge.EMPTY, Bridge.EMPTY));
         final Trace trace = new Trace(1);
 
         // when

@@ -1,7 +1,7 @@
 package laddergame.service;
 
 import laddergame.domain.result.Result;
-import laddergame.domain.point.PointGenerator;
+import laddergame.domain.bridge.BridgeGenerator;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderHeight;
 import laddergame.domain.ladder.LineSize;
@@ -15,9 +15,9 @@ import java.util.Map;
 
 public class LadderGame {
 
-    private final PointGenerator pointGenerator;
+    private final BridgeGenerator pointGenerator;
 
-    public LadderGame(final PointGenerator pointGenerator) {
+    public LadderGame(final BridgeGenerator pointGenerator) {
         this.pointGenerator = pointGenerator;
     }
 
