@@ -8,12 +8,12 @@ public class Elements {
     private static final int MIN_ELEMENT_NUMBERS = 1;
     private static final int MAX_ELEMENT_NUMBERS = 100;
 
-    private final List<Element> elements;
+    private final List<Name> names;
 
     public Elements(List<String> elements) {
         validateElementNumber(elements);
-        this.elements = elements.stream()
-                .map(Element::new)
+        this.names = elements.stream()
+                .map(Name::new)
                 .toList();
     }
 
@@ -23,7 +23,7 @@ public class Elements {
         }
     }
     //TODO Stream.java의 toList() 살펴보기
-    public List<Element> getElements() {
-        return Collections.unmodifiableList(elements);
+    public List<Name> getElements() {
+        return Collections.unmodifiableList(names);
     }
 }

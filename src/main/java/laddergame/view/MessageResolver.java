@@ -1,6 +1,6 @@
 package laddergame.view;
 
-import laddergame.domain.gameelements.Element;
+import laddergame.domain.gameelements.Name;
 import laddergame.domain.gameelements.Elements;
 import laddergame.domain.ladder.Connection;
 import laddergame.domain.ladder.Ladder;
@@ -31,11 +31,11 @@ public class MessageResolver {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    public static String resolvePlayerResultMessage(Element result) {
+    public static String resolvePlayerResultMessage(Name result) {
         return result.toString();
     }
 
-    public static String resolveAllPlayerResultMessage(Map<Element, Element> playerGameResult) {
+    public static String resolveAllPlayerResultMessage(Map<Name, Name> playerGameResult) {
         return playerGameResult.keySet()
                 .stream()
                 .map(key -> key.toString() + " : " + playerGameResult.get(key).toString())

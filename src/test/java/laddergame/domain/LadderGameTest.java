@@ -2,7 +2,7 @@ package laddergame.domain;
 
 import laddergame.domain.connectiongenerator.AllFalseConnectionGenerator;
 import laddergame.domain.connectiongenerator.TrueFalseConnectionGenerator;
-import laddergame.domain.gameelements.Element;
+import laddergame.domain.gameelements.Name;
 import laddergame.domain.gameelements.Elements;
 import laddergame.domain.ladder.Ladder;
 import org.junit.jupiter.api.DisplayName;
@@ -42,19 +42,19 @@ class LadderGameTest {
         Ladder testLadder2 = new Ladder(4, peopleNumber, new TrueFalseConnectionGenerator());
         Ladder testLadder3 = new Ladder(5, peopleNumber, new AllFalseConnectionGenerator());
 
-        Map<Element, Element> testGame1 = new LadderGame(people, testLadder1, results).getPlayerGameResult();
-        Map<Element, Element> testGame2 = new LadderGame(people, testLadder2, results).getPlayerGameResult();
-        Map<Element, Element> testGame3 = new LadderGame(people, testLadder3, results).getPlayerGameResult();
+        Map<Name, Name> testGame1 = new LadderGame(people, testLadder1, results).getPlayerGameResult();
+        Map<Name, Name> testGame2 = new LadderGame(people, testLadder2, results).getPlayerGameResult();
+        Map<Name, Name> testGame3 = new LadderGame(people, testLadder3, results).getPlayerGameResult();
 
 
-        List<Element> expected1 = List.of(new Element("2"), new Element("1"), new Element("4"), new Element("3"), new Element("5"));
-        List<Element> expected2 = List.of(new Element("1"), new Element("2"), new Element("3"), new Element("4"), new Element("5"));
-        List<Element> expected3 = List.of(new Element("1"), new Element("2"), new Element("3"), new Element("4"), new Element("5"));
+        List<Name> expected1 = List.of(new Name("2"), new Name("1"), new Name("4"), new Name("3"), new Name("5"));
+        List<Name> expected2 = List.of(new Name("1"), new Name("2"), new Name("3"), new Name("4"), new Name("5"));
+        List<Name> expected3 = List.of(new Name("1"), new Name("2"), new Name("3"), new Name("4"), new Name("5"));
 
 
-        List<Element> gameResult1 = testGame1.keySet().stream().map(testGame1::get).toList();
-        List<Element> gameResult2 = testGame2.keySet().stream().map(testGame2::get).toList();
-        List<Element> gameResult3 = testGame3.keySet().stream().map(testGame3::get).toList();
+        List<Name> gameResult1 = testGame1.keySet().stream().map(testGame1::get).toList();
+        List<Name> gameResult2 = testGame2.keySet().stream().map(testGame2::get).toList();
+        List<Name> gameResult3 = testGame3.keySet().stream().map(testGame3::get).toList();
 
         assertAll(() -> {
             for (int i = 0; i < expected1.size(); i++) {

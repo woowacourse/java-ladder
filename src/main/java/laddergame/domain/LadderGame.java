@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.domain.gameelements.Element;
+import laddergame.domain.gameelements.Name;
 import laddergame.domain.gameelements.Elements;
 import laddergame.domain.ladder.Ladder;
 
@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 public class LadderGame {
-    private final Map<Element, Element> playerGameResult;
+    private final Map<Name, Name> playerGameResult;
 
     public LadderGame(Elements people, Ladder ladder, Elements results) {
-        List<Element> gameResults = initializeGameResult(ladder, results);
+        List<Name> gameResults = initializeGameResult(ladder, results);
 
         playerGameResult = new LinkedHashMap<>();
         for (int i = 0; i < people.getElements().size(); i++) {
@@ -20,7 +20,7 @@ public class LadderGame {
         }
     }
 
-    public Element findPlayerResult(Element playerName) {
+    public Name findPlayerResult(Name playerName) {
         if (!(playerGameResult.containsKey(playerName))) {
             throw new IllegalArgumentException("참여하지 않은 플레이어의 이름을 조회했습니다.");
         }
@@ -28,14 +28,14 @@ public class LadderGame {
         return playerGameResult.get(playerName);
     }
 
-    private List<Element> initializeGameResult(Ladder ladder, Elements results) {
+    private List<Name> initializeGameResult(Ladder ladder, Elements results) {
         List<Integer> resultIdx = ladder.move(results.getElements().size());
         return resultIdx.stream()
                 .map(idx -> results.getElements().get(idx))
                 .toList();
     }
 
-    public Map<Element, Element> getPlayerGameResult() {
+    public Map<Name, Name> getPlayerGameResult() {
         return playerGameResult;
     }
 }

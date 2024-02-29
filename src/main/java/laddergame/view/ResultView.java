@@ -1,7 +1,7 @@
 package laddergame.view;
 
 import laddergame.domain.LadderGame;
-import laddergame.domain.gameelements.Element;
+import laddergame.domain.gameelements.Name;
 import laddergame.domain.gameelements.Elements;
 import laddergame.domain.ladder.Ladder;
 
@@ -30,7 +30,7 @@ public class ResultView {
             return;
         }
 
-        System.out.println(resolvePlayerResultMessage(ladderGame.findPlayerResult(new Element(playerName))));
+        System.out.println(resolvePlayerResultMessage(ladderGame.findPlayerResult(new Name(playerName))));
     }
 
 }

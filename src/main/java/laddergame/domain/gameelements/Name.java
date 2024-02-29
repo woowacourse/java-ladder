@@ -4,11 +4,11 @@ import laddergame.constants.ReservedElementName;
 
 import java.util.Objects;
 
-public class Element {
+public class Name {
     private static final String ELEMENT_NAME_RULE = "[ㄱ-ㅎ가-힣a-zA-Z0-9]{1,5}";
     private final String element;
 
-    public Element(String element) {
+    public Name(String element) {
         validateNameRule(element);
         this.element = element;
     }
@@ -27,8 +27,8 @@ public class Element {
         if (obj == this) {
             return true;
         }
-        if (obj instanceof Element otherElement) {
-            return element.equals(otherElement.element);
+        if (obj instanceof Name otherName) {
+            return element.equals(otherName.element);
         }
         return false;
     }
