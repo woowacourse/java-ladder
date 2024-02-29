@@ -8,7 +8,6 @@ public class Player {
 
     private final String name;
 
-
     public Player(String name) {
         validateLengthOfName(name);
         this.name = name;

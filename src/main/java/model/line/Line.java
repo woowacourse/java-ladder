@@ -6,9 +6,8 @@ import model.bridge.Bridge;
 
 public class Line {
     private static final String INVALID_BRIDGES = "겹치는 다리가 존재합니다.";
-    
-    private final List<Bridge> bridges;
 
+    private final List<Bridge> bridges;
 
     public Line(List<Bridge> bridges) {
         validateBridges(bridges);

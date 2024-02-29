@@ -4,12 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import model.bridge.Bridge;
-import model.ladder.Ladder;
-import model.line.Line;
+import model.line.LineState;
 import model.player.Player;
-import model.player.Players;
 import model.prize.Prize;
-import model.prize.Prizes;
 
 public class OutputView {
     private static final String LADDER_INTRO = "\n사다리 결과\n";
@@ -31,33 +28,28 @@ public class OutputView {
         System.out.println(LADDER_INTRO);
     }
 
-    public static void printPlayerNames(Players players) {
-        List<String> names = players.getPlayerNames()
-                .stream()
-                .map((name) -> String.format(NAMES_FORMAT, name))
-                .toList();
-        String result = String.join(NAMES_DELIMITER, names);
-        System.out.println(result);
+    public static void printPlayerNames(List<String> names) {
+        System.out.println(formatNames(names));
     }
 
-    public static void printLadder(Ladder ladder) {
-        List<Line> lines = ladder.getLines();
-        for (Line line : lines) {
-            List<Bridge> bridges = line.getBridges();
+    public static void printPrizeNames(List<String> names) {
+        System.out.println(formatNames(names));
+    }
+
+    public static String formatNames(List<String> names) {
+        return names.stream()
+                .map(name -> String.format(NAMES_FORMAT, name))
+                .collect(Collectors.joining(NAMES_DELIMITER));
+    }
+
+    public static void printLadderLines(List<LineState> lines) {
+        for (LineState line : lines) {
+            List<Bridge> bridges = line.bridges();
             String result = bridges.stream()
                     .map(OutputView::formatBridge)
                     .collect(Collectors.joining(BRIDGE_DELIMITER));
             System.out.println(BRIDGE_PREFIX + result + BRIDGE_DELIMITER);
         }
-    }
-
-    public static void printPrizeNames(Prizes prizes) {
-        List<String> names = prizes.getPrizeNames()
-                .stream()
-                .map((name) -> String.format(NAMES_FORMAT, name))
-                .toList();
-        String result = String.join(NAMES_DELIMITER, names);
-        System.out.println(result);
     }
 
     private static String formatBridge(Bridge bridge) {

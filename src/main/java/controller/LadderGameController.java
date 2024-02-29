@@ -7,6 +7,7 @@ import model.bridge.RandomBridgesGenerator;
 import model.ladder.Ladder;
 import model.ladder.LadderHeight;
 import model.ladder.LadderPlayOutcome;
+import model.line.LineState;
 import model.player.Player;
 import model.player.Players;
 import model.prize.Prize;
@@ -43,11 +44,21 @@ public class LadderGameController {
 
     private Ladder makeLadder(LadderHeight ladderHeight, Players players, Prizes prizes) {
         Ladder ladder = Ladder.of(ladderHeight, players, new RandomBridgesGenerator());
-        OutputView.printLadderIntro();
-        OutputView.printPlayerNames(players);
-        OutputView.printLadder(ladder);
-        OutputView.printPrizeNames(prizes);
+        showLadder(ladder, players, prizes);
         return ladder;
+    }
+
+    private void showLadder(Ladder ladder, Players players, Prizes prizes) {
+        OutputView.printLadderIntro();
+
+        List<String> playerNames = players.getPlayerNames();
+        OutputView.printPlayerNames(playerNames);
+
+        List<LineState> lines = ladder.captureLadderLines();
+        OutputView.printLadderLines(lines);
+
+        List<String> prizeNames = prizes.getPrizeNames();
+        OutputView.printPrizeNames(prizeNames);
     }
 
     private void provideLadderPlayOutcomeUntilEnd(LadderPlayOutcome ladderPlayOutcome) {

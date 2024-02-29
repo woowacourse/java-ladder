@@ -10,6 +10,7 @@ import java.util.stream.IntStream;
 import model.bridge.Bridge;
 import model.bridge.BridgesGenerator;
 import model.line.Line;
+import model.line.LineState;
 import model.player.Player;
 import model.player.Players;
 import model.prize.Prize;
@@ -62,5 +63,11 @@ public class Ladder {
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public List<LineState> captureLadderLines() {
+        return lines.stream()
+                .map(LineState::create)
+                .toList();
     }
 }
