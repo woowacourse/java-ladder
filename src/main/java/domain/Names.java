@@ -43,6 +43,11 @@ public class Names {
                 .count();
     }
 
+    public List<String> afterMoveOnLines(final Lines lines) {
+        Mover mover = new Mover(lines, this);
+        return mover.getMoveResult();
+    }
+
     public int size() {
         if (names == null || names.isEmpty()) {
             return EMPTY_NAME_COUNT;

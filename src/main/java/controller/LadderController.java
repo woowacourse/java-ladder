@@ -11,8 +11,9 @@ import java.util.Map;
 import view.InputView;
 import view.ResultView;
 
-public class LadderGenerator {
+public class LadderController {
     private Names names;
+    private Lines lines;
     private Results results;
 
     public void drawLadder() {
@@ -21,7 +22,7 @@ public class LadderGenerator {
         Height height = inputLadderHeight();
 
         PointGenerator generator = new RandomPointGenerator();
-        Lines lines = new Lines(height.getValue(), names.size(), generator);
+        lines = new Lines(height.getValue(), names.size(), generator);
 
         LadderDto ladder = new LadderDto()
                 .lines(lines)
@@ -47,16 +48,16 @@ public class LadderGenerator {
         return new Names(rawNames);
     }
 
-    public void printResult(final List<String> namesAfterMove) {
+    public void printResult() {
         String target = InputView.findResult();
+        List<String> namesAfterMove = names.afterMoveOnLines(lines);
+        Map<String, String> resultsWithNames = results.matchNamesAndResults(namesAfterMove);
 
         if ("all".equals(target)) {
-            Map<String, String> matchedNamesAndResults = results.matchNamesWithResults(namesAfterMove);
-            ResultView.printMoveResult(names.getAll(), matchedNamesAndResults);
+            ResultView.printMoveResult(names.getAll(), resultsWithNames);
             return;
         }
-        String result = results.resultOf(namesAfterMove.indexOf(target));
-
+        String result = resultsWithNames.get(target);
         ResultView.printMoveResult(result);
     }
 }

@@ -51,7 +51,7 @@ public class Results {
         return results.get(index).getValue();
     }
 
-    public Map<String, String> matchNamesWithResults(final List<String> namesAfterMove) {
+    public Map<String, String> matchNamesAndResults(final List<String> namesAfterMove) {
         Map<String, String> resultWithName = new HashMap<>();
         for (int i = 0; i < namesAfterMove.size(); i++) {
             Result result = results.get(i);

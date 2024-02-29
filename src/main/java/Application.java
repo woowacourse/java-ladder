@@ -1,12 +1,9 @@
-import controller.LadderGame;
-import controller.LadderGenerator;
+import controller.LadderController;
 
 public class Application {
     public static void main(String[] args) {
-        LadderGenerator ladderDrawer = new LadderGenerator();
-        ladderDrawer.generateLadder();
-
-        LadderGame ladderGame = new LadderGame();
-        ladderGame.climbLadder(ladderDrawer.getLadder());
+        LadderController ladderController = new LadderController();
+        ladderController.drawLadder();
+        ladderController.printResult();
     }
 }

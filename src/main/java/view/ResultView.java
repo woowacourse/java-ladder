@@ -12,9 +12,9 @@ public class ResultView {
 
     public static void printLadderDrawResult(final LadderDto ladderDto) {
         printResultNotice();
-        printNames(ladderDto.getNames());
+        printInputValues(ladderDto.getNames());
         printLines(ladderDto.getNames(), ladderDto.getLines());
-        printResults(ladderDto.getResults());
+        printInputValues(ladderDto.getResults());
     }
 
     private static void printResultNotice() {
@@ -22,7 +22,7 @@ public class ResultView {
         System.out.println("사다리 결과\n");
     }
 
-    private static void printNames(final List<String> names) {
+    private static void printInputValues(final List<String> names) {
         String firstName = names.get(FIRST_NAME_INDEX) + " ";
         StringBuilder nameLine = new StringBuilder();
 
@@ -37,16 +37,6 @@ public class ResultView {
             System.out.print(ResultMessage.ladderPadding(names));
             System.out.print(ResultMessage.of(line));
         }
-    }
-
-    private static void printResults(final List<String> results) {
-        String firstResult = results.get(FIRST_NAME_INDEX) + " ";
-        StringBuilder nameLine = new StringBuilder();
-
-        for (int i = 1; i < results.size(); i++) {
-            nameLine.append(String.format("%6s", results.get(i)));
-        }
-        System.out.println(firstResult + nameLine);
     }
 
     public static void printMoveResult(final String result) {
