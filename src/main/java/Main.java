@@ -40,9 +40,10 @@ public class Main {
     }
 
     private static void readAndPrintGameResult(Map<String, String> rewardMap) {
-        String name;
-        while (!(name = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap))).equals(COMMAND_PRINT_ALL)) {
+        String name = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap));
+        while (!name.equals(COMMAND_PRINT_ALL)) {
             outputView.printRewardName(rewardMap.get(name));
+            name = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap));
         }
         outputView.printAllResult(rewardMap);
     }
