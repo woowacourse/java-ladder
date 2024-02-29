@@ -2,8 +2,11 @@ package ladder.contorller;
 
 import java.util.List;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.line.Line;
+import ladder.domain.position.Positions;
 import ladder.domain.prize.Prize;
 import ladder.domain.prize.Prizes;
+import ladder.domain.result.Result;
 import ladder.domain.user.User;
 import ladder.domain.user.Users;
 import ladder.view.InputView;
@@ -26,8 +29,11 @@ public class LadderController {
         int numberOfUsers = users.getNumberOfUsers();
         Prizes prizes = createPrizes(numberOfUsers);
         Ladder ladder = createLadder(numberOfUsers);
+        Positions positions = createPositions(numberOfUsers, ladder);
+        Result result = createResult(users, prizes, positions);
 
-        outputView.printLadderGameResult(users, ladder, prizes);
+        outputView.printLadderResult(users, ladder, prizes);
+
     }
 
     private Users createUsers() {
@@ -62,5 +68,19 @@ public class LadderController {
             outputView.printError(e.getMessage());
             return createLadder(ladderWidth);
         }
+    }
+
+    private Positions createPositions(int width, Ladder ladder) {
+        Positions defaultPositions = new Positions(width);
+        List<Line> lines = ladder.getLines();
+        Positions nowPositions = defaultPositions;
+        for (Line line : lines) {
+            nowPositions = nowPositions.calcPosition(line);
+        }
+        return nowPositions;
+    }
+
+    private Result createResult(Users users, Prizes prizes, Positions positions) {
+        return new Result(users.getUsersNames(), prizes.getPrizesNames(), positions.getPositions());
     }
 }

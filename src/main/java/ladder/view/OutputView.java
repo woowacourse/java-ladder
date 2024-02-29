@@ -19,7 +19,7 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printLadderGameResult(Users users, Ladder ladder, Prizes prizes) {
+    public void printLadderResult(Users users, Ladder ladder, Prizes prizes) {
         System.out.println("\n사다리 결과\n");
         printUserNames(users);
         printLadder(ladder);
