@@ -1,27 +1,60 @@
 package domain.ladder;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.Test;
+
+import domain.player.Player;
 
 class FloorTest {
 
-	@ParameterizedTest
-	@ValueSource(ints = {2, 10})
-	@DisplayName("올바른 범위의 수가 주어지면, 세로줄을 생성한다.")
-	void validPlayerCountCreationTest(int playerCount) {
-		assertDoesNotThrow(() -> new Floor(playerCount));
+	Floor floor;
+
+	@BeforeEach
+	void setUP() {
+		floor = new Floor(List.of(Bar.CONNECTED_TO_RIGHT, Bar.CONNECTED_TO_LEFT, Bar.NOT_CONNECTED));
 	}
 
-	@ParameterizedTest
-	@ValueSource(ints = {1, 11})
-	@DisplayName("올바르지 않은 범위의 수가 주어지면, 예외를 발생한다.")
-	void invalidPlayerCountCreationTest(int playerCount) {
-		assertThatThrownBy(() -> new Floor(playerCount))
-			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage("플레이어 수 범위는 2 이상 10 이하여야 합니다.");
+	@Test
+	@DisplayName("오른쪽으로 연결된 막대인 경우, 플레이어를 오른쪽으로 이동한다.")
+	void movePlayerToRightTest() {
+		// given
+		Player player = new Player("A", 0);
+
+		// when
+		floor.movePlayer(player);
+
+		// then
+		assertThat(player.getPosition()).isEqualTo(1);
+	}
+
+	@Test
+	@DisplayName("왼쪽으로 연결된 막대인 경우, 플레이어를 왼쪽으로 이동한다.")
+	void movePlayerToLeftTest() {
+		// given
+		Player player = new Player("A", 1);
+
+		// when
+		floor.movePlayer(player);
+
+		// then
+		assertThat(player.getPosition()).isEqualTo(0);
+	}
+
+	@Test
+	@DisplayName("연결되지 않은 막대인 경우, 플레이어를 이동시키지 않는다.")
+	void dontMovePlayerTest() {
+		// given
+		Player player = new Player("A", 2);
+
+		// when
+		floor.movePlayer(player);
+
+		// then
+		assertThat(player.getPosition()).isEqualTo(2);
 	}
 }

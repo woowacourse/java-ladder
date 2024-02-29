@@ -1,27 +1,27 @@
 package domain.ladder;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import domain.player.Player;
 import dto.FloorConnectionStatusDto;
-import generator.LadderFloorGenerator;
 
 public class Floor {
 
-	private static final int MIN_PLAYER_COUNT = 2;
-	private static final int MAX_PLAYER_COUNT = 10;
+	private final List<Bar> bars;
 
-	private final int playerCount;
-	private final List<Bar> bars = new ArrayList<>();
-
-	public Floor(int playerCount) {
-		validatePlayerCount(playerCount);
-		this.playerCount = playerCount;
+	public Floor(List<Bar> bars) {
+		this.bars = bars;
 	}
 
-	public void createCrossingLines(LadderFloorGenerator floorGenerator) {
-		List<Bar> generatedFloor = floorGenerator.generate(playerCount);
-		bars.addAll(generatedFloor);
+	public void movePlayer(Player player) {
+		Bar bar = bars.get(player.getPosition());
+		if (bar.isConnectedToRight()) {
+			player.moveRight();
+			return;
+		}
+		if (bar.isConnectedToLeft()) {
+			player.moveLeft();
+		}
 	}
 
 	public FloorConnectionStatusDto createFloorConnectionStatus() {
@@ -29,16 +29,7 @@ public class Floor {
 		List<Boolean> connectionStatus = bars.stream()
 			.map(Bar::isConnectedToRight)
 			.toList();
+
 		return new FloorConnectionStatusDto(connectionStatus);
-	}
-
-	private void validatePlayerCount(int playerCount) {
-		if (playerCount < MIN_PLAYER_COUNT || playerCount > MAX_PLAYER_COUNT) {
-			throw new IllegalArgumentException("플레이어 수 범위는 2 이상 10 이하여야 합니다.");
-		}
-	}
-
-	public Bar getBar(int playerPosition) {
-		return bars.get(playerPosition);
 	}
 }

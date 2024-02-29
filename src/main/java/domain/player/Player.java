@@ -1,43 +1,40 @@
 package domain.player;
 
-import java.util.List;
-
-import domain.Name;
-import domain.ladder.Bar;
-import domain.ladder.Floor;
-import domain.ladder.Ladder;
+import domain.validator.NameValidator;
 
 public class Player {
 
-	private final Name name;
+	private final String name;
 	private int position;
 
 	public Player(String name, int position) {
-		this.name = new Name(name);
+		validateName(name);
+		this.name = name;
 		this.position = position;
 	}
 
-	public void playLadder(Ladder ladder) {
-		List<Floor> floors = ladder.getFloors();
-		floors.forEach(this::move);
+	public void moveRight() {
+		position++;
 	}
 
-	private void move(Floor floor) {
-		Bar bar = floor.getBar(position);
-		if (bar.isConnectedToRight()) {
-			position++;
-			return;
+	public void moveLeft() {
+		if (position == 0) {
+			throw new IllegalArgumentException("왼쪽으로 이동할 수 없습니다.");
 		}
-		if (bar.isConnectedToLeft()) {
-			position--;
-		}
+
+		position--;
 	}
 
 	public String getName() {
-		return name.value();
+		return name;
 	}
 
 	public int getPosition() {
 		return position;
+	}
+
+	private void validateName(String name) {
+		NameValidator validator = NameValidator.getInstance();
+		validator.validate(name);
 	}
 }
