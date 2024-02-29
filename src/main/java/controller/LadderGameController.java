@@ -15,9 +15,6 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
-
-    private static final String GET_ALL_RESULT_OPERATOR = "all";
-
     private final InputView inputView;
     private final OutputView outputView;
     private final BooleanGenerator booleanGenerator;
@@ -62,7 +59,7 @@ public class LadderGameController {
         String operator;
         do {
             operator = repeatUntilValidInput(() -> viewLadderResult(prizeResults));
-        } while (!operator.equals(GET_ALL_RESULT_OPERATOR));
+        } while (!operator.equals(PrizeResults.GET_ALL_RESULT_OPERATOR));
     }
 
     private String viewLadderResult(PrizeResults prizeResults) {

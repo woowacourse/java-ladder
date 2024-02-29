@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class PrizeResults {
 
-    private static final String GET_ALL_RESULT_OPERATOR = "all";
+    public static final String GET_ALL_RESULT_OPERATOR = "all";
 
     private final Map<Player, Prize> results;
 
