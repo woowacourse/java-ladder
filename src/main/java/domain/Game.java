@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Map;
 import java.util.stream.Collectors;
-import strategy.PointStrategy;
+import strategy.ConnectStrategy;
 
 public class Game {
 
@@ -20,9 +20,9 @@ public class Game {
         Members members,
         Height height,
         Rewards rewards,
-        PointStrategy pointStrategy) {
+        ConnectStrategy connectStrategy) {
 
-        return new Game(members, Lines.of(members.getCount(), height, pointStrategy), rewards);
+        return new Game(members, Lines.of(members.getCount(), height, connectStrategy), rewards);
     }
 
     public Map<String, String> findRewardMap() {

@@ -3,7 +3,7 @@ package domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
-import strategy.PointStrategy;
+import strategy.ConnectStrategy;
 
 public class Lines {
 
@@ -13,9 +13,9 @@ public class Lines {
         this.lines = lines;
     }
 
-    public static Lines of(int playerCount, Height height, PointStrategy pointStrategy) {
+    public static Lines of(int playerCount, Height height, ConnectStrategy connectStrategy) {
         return new Lines(IntStream.range(0, height.getHeight())
-            .mapToObj(i -> Line.of(pointStrategy, playerCount))
+            .mapToObj(i -> Line.of(connectStrategy, playerCount))
             .toList());
     }
 

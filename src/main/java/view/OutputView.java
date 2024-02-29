@@ -4,7 +4,7 @@ import domain.Game;
 import domain.Line;
 import domain.Lines;
 import domain.Members;
-import domain.Point;
+import domain.Connection;
 import domain.Reward;
 import domain.Rewards;
 import java.util.Map;
@@ -51,15 +51,15 @@ public class OutputView {
     private void printLine(Line line) {
         System.out.print(LADDER_BLANK.repeat(MAX_NAME_LENGTH - 1));
         System.out.print(LADDER_VERTICAL);
-        for (Point point : line.getPoints()) {
-            printPoint(point);
+        for (Connection connection : line.getConnections()) {
+            printConnection(connection);
             System.out.print(LADDER_VERTICAL);
         }
         System.out.println();
     }
 
-    private void printPoint(Point point) {
-        if (point.equals(Point.CONNECTED)) {
+    private void printConnection(Connection connection) {
+        if (connection.equals(Connection.CONNECTED)) {
             System.out.print(LADDER_HORIZONTAL.repeat(MAX_NAME_LENGTH));
             return;
         }

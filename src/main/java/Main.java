@@ -4,8 +4,8 @@ import domain.Members;
 import domain.Rewards;
 import error.ErrorHandler;
 import java.util.Map;
-import strategy.PointStrategy;
-import strategy.RandomPointStrategy;
+import strategy.ConnectStrategy;
+import strategy.RandomConnectStrategy;
 import view.InputView;
 import view.OutputView;
 
@@ -14,14 +14,14 @@ public class Main {
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private static final ErrorHandler errorHandler = new ErrorHandler();
-    private static final PointStrategy pointStrategy = new RandomPointStrategy();
+    private static final ConnectStrategy CONNECT_STRATEGY = new RandomConnectStrategy();
     private static final String COMMAND_PRINT_ALL = "all";
 
     public static void main(String[] args) {
         Members members = errorHandler.readUntilNoError(Main::makeMembers);
         Height height = errorHandler.readUntilNoError(Main::makeHeight);
         Rewards rewards = errorHandler.readUntilNoError(() -> makeRewards(members));
-        Game game = Game.of(members, height, rewards, pointStrategy);
+        Game game = Game.of(members, height, rewards, CONNECT_STRATEGY);
 
         outputView.printGame(game);
         readAndPrintGameResult(game.findRewardMap());
@@ -40,10 +40,9 @@ public class Main {
     }
 
     private static void readAndPrintGameResult(Map<String, String> rewardMap) {
-        String name = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap));
-        while (!name.equals(COMMAND_PRINT_ALL)) {
+        String name;
+        while (!(name = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap))).equals(COMMAND_PRINT_ALL)) {
             outputView.printRewardName(rewardMap.get(name));
-            name = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap));
         }
         outputView.printAllResult(rewardMap);
     }

@@ -1,6 +1,6 @@
 package domain;
 
-public enum Point {
+public enum Connection {
 
     CONNECTED, DISCONNECTED
 }

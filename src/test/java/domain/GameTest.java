@@ -14,7 +14,7 @@ class GameTest {
         Members members = Members.from("a,b,c,d");
         Height height = Height.from("3");
         Rewards rewards = Rewards.from(4, "꽝, 100, 200, 300");
-        Game game = Game.of(members, height, rewards, () -> Point.CONNECTED);
+        Game game = Game.of(members, height, rewards, () -> Connection.CONNECTED);
         Assertions.assertAll(
             () -> assertThat(game.findRewardMap().get("a")).isEqualTo("100"),
             () -> assertThat(game.findRewardMap().get("b")).isEqualTo("꽝"),

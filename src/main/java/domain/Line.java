@@ -2,45 +2,46 @@ package domain;
 
 import java.util.List;
 import java.util.stream.Stream;
-import strategy.PointStrategy;
+import strategy.ConnectStrategy;
 
 public class Line {
 
-    private final List<Point> points;
+    private final List<Connection> connections;
 
-    private Line(List<Point> points) {
-        this.points = points;
+    private Line(List<Connection> connections) {
+        this.connections = connections;
     }
 
-    public static Line of(PointStrategy pointStrategy, int playerCount) {
-        List<Point> points = Stream.iterate(
-                pointStrategy.generatePoint(), previous -> findNextPoint(previous, pointStrategy))
+    public static Line of(ConnectStrategy connectStrategy, int playerCount) {
+        List<Connection> connections = Stream.iterate(
+                connectStrategy.generate(), previous -> findNextConnection(previous,
+                    connectStrategy))
             .limit(playerCount - 1)
             .toList();
-        return new Line(points);
+        return new Line(connections);
     }
 
     public int findNextIndex(int previousIndex) {
-        if (previousIndex < 0 || previousIndex > points.size()) {
+        if (previousIndex < 0 || previousIndex > connections.size()) {
             throw new IllegalArgumentException("비정상적인 index입니다.");
         }
-        if (previousIndex < points.size() && points.get(previousIndex) == Point.CONNECTED) {
+        if (previousIndex < connections.size() && connections.get(previousIndex) == Connection.CONNECTED) {
             return previousIndex + 1;
         }
-        if (previousIndex > 0 && points.get(previousIndex - 1) == Point.CONNECTED) {
+        if (previousIndex > 0 && connections.get(previousIndex - 1) == Connection.CONNECTED) {
             return previousIndex - 1;
         }
         return previousIndex;
     }
 
-    private static Point findNextPoint(Point previous, PointStrategy pointStrategy) {
-        if (previous.equals(Point.CONNECTED)) {
-            return Point.DISCONNECTED;
+    private static Connection findNextConnection(Connection previous, ConnectStrategy connectStrategy) {
+        if (previous.equals(Connection.CONNECTED)) {
+            return Connection.DISCONNECTED;
         }
-        return pointStrategy.generatePoint();
+        return connectStrategy.generate();
     }
 
-    public List<Point> getPoints() {
-        return points;
+    public List<Connection> getConnections() {
+        return connections;
     }
 }
