@@ -1,6 +1,7 @@
 package domain;
 
 import domain.LineNumber;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -32,5 +33,18 @@ public class LineNumberTest {
         assertThatThrownBy(() -> new LineNumber(inputLineNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("유효하지 않은 라인 번호입니다.");
+    }
+
+    @DisplayName("입력된 정수와 일치하면 true를 반환한다.")
+    @Test
+    void 정수_일치_체크() {
+        // Given
+        LineNumber lineNumber = new LineNumber(5);
+
+        // When
+        boolean isEqual = lineNumber.isEqual(5);
+
+        // Then
+        assertThat(isEqual).isTrue();
     }
 }
