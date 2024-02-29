@@ -7,6 +7,7 @@ import java.util.StringJoiner;
 import ladder.domain.Ladder;
 import ladder.domain.LadderDirection;
 import ladder.domain.LadderLevel;
+import ladder.domain.LadderResult;
 import ladder.domain.LadderResults;
 import ladder.domain.Players;
 
@@ -22,6 +23,11 @@ public class ResultView {
         printPlayers(players);
         printLadder(ladder);
         printResults(results);
+    }
+
+    public void printResult(LadderResult result) {
+        System.out.println("\n실행 결과");
+        System.out.println(result.value());
     }
 
     private void printPlayers(Players players) {

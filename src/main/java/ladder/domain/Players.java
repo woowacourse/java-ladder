@@ -28,6 +28,10 @@ public record Players(List<Player> players) {
         }
     }
 
+    public int orderOf(Player player) {
+        return players.indexOf(player);
+    }
+
     public int count() {
         return players.size();
     }

@@ -48,6 +48,13 @@ public class InputView {
         });
     }
 
+    public Player inputPlayer() {
+        return exceptionHandler.run(() -> {
+            System.out.println("\n결과를 보고 싶은 사람은?");
+            return new Player(readLine());
+        });
+    }
+
     private String readLine() {
         return SCANNER.nextLine();
     }
