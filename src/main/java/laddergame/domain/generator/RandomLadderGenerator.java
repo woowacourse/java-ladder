@@ -32,10 +32,6 @@ public class RandomLadderGenerator implements LadderGenerator {
     }
 
     private Point generatePoint() {
-        if (random.nextBoolean()) {
-            return Point.EXIST;
-        }
-
-        return Point.EMPTY;
+        return Point.from(random.nextBoolean());
     }
 }

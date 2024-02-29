@@ -3,8 +3,11 @@ package laddergame.domain.ladder;
 public enum Point {
     EMPTY, EXIST;
 
-    public boolean isExist() {
-        return this == EXIST;
+    public static Point from(final boolean input) {
+        if (input) {
+            return Point.EXIST;
+        }
+        return Point.EMPTY;
     }
 
     public Point next(final Point point) {
@@ -12,5 +15,9 @@ public enum Point {
             return Point.EMPTY;
         }
         return point;
+    }
+
+    public boolean isExist() {
+        return this == EXIST;
     }
 }
