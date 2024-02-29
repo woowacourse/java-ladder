@@ -25,15 +25,14 @@ public class LadderGame {
 
     public void climb() {
         for (Player player : players.getPlayers()) {
-            moveToLadderEnd(ladder.move(player.getPosition()), player);
+            moveToLadderEnd(player);
             player.assignItem(items.get(player.getPosition().getX()));
         }
     }
 
-    private void moveToLadderEnd(Direction direction, Player player) {
-        while (direction != Direction.END) {
-            direction = ladder.move(player.getPosition());
-            player.moveLine(direction);
+    private void moveToLadderEnd(Player player) {
+        for(int i = 0; i < ladder.getLines().size(); i++) {
+            player.moveLine(ladder.move(player.getPosition()));
         }
     }
 
