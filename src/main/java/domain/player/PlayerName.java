@@ -9,7 +9,7 @@ public class PlayerName extends Name {
     }
 
     public boolean isAll() {
-        return super.toString()
+        return super.getValue()
                     .equals("all");
     }
 }

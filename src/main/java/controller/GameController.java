@@ -58,7 +58,7 @@ public class GameController {
         OutputView.print(GAME_RESULT_HEADER);
         if (targetPlayerName.isAll()) {
             Map<PlayerName, PrizeName> searchResults = gameBoard.searchAllPlayerResult();
-            searchResults.forEach((name, prizeName) -> OutputView.printAllResults(name.toString(), prizeName.toString()));
+            searchResults.forEach((name, prizeName) -> OutputView.printAllResults(name.getValue(), prizeName.getValue()));
             return false;
         }
         OutputView.print(gameBoard.searchOnePlayerResult(targetPlayerName));
