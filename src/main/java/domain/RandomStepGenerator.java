@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class RandomStepGenerator implements StepGenerator {
@@ -8,9 +9,13 @@ public class RandomStepGenerator implements StepGenerator {
 
     @Override
     public StepPoint generate() {
-        if (random.nextBoolean()) {
-            return StepPoint.PRESENT;
-        }
-        return StepPoint.ABSENT;
+        return from(random.nextBoolean());
+    }
+
+    private static StepPoint from(boolean value) {
+        return Arrays.stream(StepPoint.values())
+                .filter(it -> it.isExist() == value)
+                .findAny()
+                .orElseThrow();
     }
 }
