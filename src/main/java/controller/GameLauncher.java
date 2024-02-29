@@ -58,7 +58,8 @@ public class GameLauncher {
 
     private boolean showResultAndDetermineRepeat(GameBoard gameBoard, PlayerName targetPlayerName) {
         OutputView.print(GAME_RESULT_HEADER);
-        if (targetPlayerName.isAll()) {
+        if (targetPlayerName.getValue()
+                .equals("all")) {
             gameBoard.searchAllPlayerResult()
                     .forEach(
                             (name, prizeName) -> OutputView.printAllResults(name.getValue(), prizeName.getValue()));
