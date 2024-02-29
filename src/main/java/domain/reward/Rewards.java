@@ -15,11 +15,11 @@ public class Rewards {
                                   .toList());
     }
 
-    private static final void validate(List<String> rewards, int playerSize) {
+    private static void validate(List<String> rewards, int playerSize) {
         validateSize(rewards, playerSize);
     }
 
-    private static final void validateSize(List<String> rewards, int playerSize) {
+    private static void validateSize(List<String> rewards, int playerSize) {
         if (rewards.size() != playerSize) {
             throw new IllegalArgumentException("플레이어 수와 보상의 수가 다릅니다.");
         }
