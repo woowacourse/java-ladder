@@ -41,16 +41,36 @@ public class Line {
         return Connection.RUNG.equals(connections.get(order));
     }
 
-    public int climb(int index) {
-        if (index < connections.size() && connections.get(index).equals(Connection.RUNG)) {
-            return index + 1;
+    public int climb(int railOrder) {
+        if (isRightRung(railOrder)) {
+            return railOrder + 1;
         }
 
-        if (index > 0 && connections.get(index - 1).equals(Connection.RUNG)) {
-            return index - 1;
+        if (isLeftRung(railOrder)) {
+            return railOrder - 1;
         }
 
-        return index;
+        return railOrder;
+    }
+
+    private boolean isRightRung(int railOrder) {
+        int rightConnectionOrder = railOrder;
+        if (rightConnectionOrder >= connections.size()) {
+            return false;
+        }
+
+        Connection rightConnection = connections.get(rightConnectionOrder);
+        return Connection.RUNG.equals(rightConnection);
+    }
+
+    private boolean isLeftRung(int railOrder) {
+        int leftConnectionOrder = railOrder - 1;
+        if (leftConnectionOrder < 0) {
+            return false;
+        }
+
+        Connection leftConnection = connections.get(leftConnectionOrder);
+        return Connection.RUNG.equals(leftConnection);
     }
 
     public List<Connection> getConnections() {

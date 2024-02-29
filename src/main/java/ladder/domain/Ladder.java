@@ -20,6 +20,14 @@ public class Ladder {
         }
     }
 
+    public int climb(int railOrder) {
+        for (Line line : lines) {
+            railOrder = line.climb(railOrder);
+        }
+
+        return railOrder;
+    }
+
     public List<List<Connection>> getConnections() {
         return lines.stream()
                 .map(Line::getConnections)
