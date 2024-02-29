@@ -11,15 +11,22 @@ class ApplicationTest extends NsTest {
     void testLadderGameResult() {
         assertRandomNumberInRangeTest(
                 () -> {
-                    run("pobi,honux,crong,jk", "5");
-                    assertThat(output()).contains(
-                            "실행결과",
+                    run("pobi,honux,crong,jk", "꽝,5000,꽝,3000", "5", "pobi", "all");
+                    assertThat(output()).containsSubsequence(
+                            "사다리 결과",
                             " pobi honux crong    jk",
-                            "    |-----|     |-----|\n"
-                                    + "    |     |-----|     |\n"
-                                    + "    |-----|     |     |\n"
-                                    + "    |     |-----|     |\n"
-                                    + "    |-----|     |-----|"
+                            "    |-----|     |-----|",
+                            "    |     |-----|     |",
+                            "    |-----|     |     |",
+                            "    |     |-----|     |",
+                            "    |-----|     |-----|",
+                            "    꽝  5000     꽝  3000",
+                            "실행 결과",
+                            "꽝",
+                            "pobi : 꽝",
+                            "honux : 3000",
+                            "crong : 꽝",
+                            "jk : 5000"
                     );
                 },
                 1, 1, 0, 1, 1, 0, 0, 1, 1, 1
