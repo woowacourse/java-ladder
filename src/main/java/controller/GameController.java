@@ -77,14 +77,10 @@ public class GameController {
         });
     }
 
-    private String makeTargetName(Members members) { // TODO: refactoring
+    private String makeTargetName(Members members) {
         return errorHandler.readUntilNoError(() -> {
             String rawTargetName = inputView.readTarget();
-            boolean isExist = members.checkMemberExist(rawTargetName);
-            if (!isExist) {
-                return "all";
-            }
-            return rawTargetName;
+            return members.checkMemberExistByName(rawTargetName);
         });
     }
 }

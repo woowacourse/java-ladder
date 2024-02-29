@@ -53,16 +53,16 @@ public class Members {
         return members.indexOf(member);
     }
 
-    public boolean checkMemberExist(String name) {
-        if (name.equals("all")) {
-            return false;
-        }
+    public String checkMemberExistByName(String name) {
         boolean isExist = members.stream()
                 .anyMatch(member -> member.getName().equals(name));
         if (!isExist) {
+            if (name.equals("all")) {
+                return "all";
+            }
             throw new IllegalArgumentException("해당 이름을 가진 참여자가 없습니다.");
         }
-        return true;
+        return name;
     }
 
     public int getCount() {
