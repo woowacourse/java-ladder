@@ -2,7 +2,6 @@ package controller;
 
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.function.Supplier;
 import model.bridge.RandomBridgesGenerator;
 import model.ladder.Ladder;
@@ -19,11 +18,12 @@ public class LadderGameController {
     private static final String END_CONDITION = "all";
 
     public void run() {
-        Players players = retryOnException(this::preparePlayers);
-        Prizes prizes = retryOnExceptionWithParameter(this::preparePrizes, players);
-        LadderHeight ladderHeight = retryOnException(this::prepareLadderHeight);
+        Players players = retryWithReturnOnException(this::preparePlayers);
+        Prizes prizes = retryWithReturnOnException(() -> preparePrizes(players));
+        LadderHeight ladderHeight = retryWithReturnOnException(this::prepareLadderHeight);
         Ladder ladder = makeLadder(ladderHeight, players, prizes);
-        playLadder(ladder, players, prizes);
+        LadderPlayOutcome ladderPlayOutcome = ladder.play(players, prizes);
+        retryOnException(() -> playLadderGameUntilEnd(ladderPlayOutcome));
     }
 
     private Players preparePlayers() {
@@ -50,37 +50,50 @@ public class LadderGameController {
         return ladder;
     }
 
-    public void playLadder(Ladder ladder, Players players, Prizes prizes) {
-        LadderPlayOutcome ladderPlayOutcome = ladder.play(players, prizes);
-        while (true) {
-            String target = InputView.askTarget();
-            OutputView.printLadderPlayOutcomeIntro();
-            if (target.equals(END_CONDITION)) {
-                Map<Player, Prize> outcome = ladderPlayOutcome.getOutcome(); // TODO: indent
-                OutputView.printPrizeForAllPlayers(outcome);
-                break;
-            }
-            Player player = new Player(target); // TODO: 예외 처리
-            Prize prize = ladderPlayOutcome.get(player);
-            OutputView.printPrizeForOnePlayer(prize);
+    public void playLadderGameUntilEnd(LadderPlayOutcome ladderPlayOutcome) {
+        boolean isContinue = true;
+        while (isContinue) {
+            isContinue = playLadderGame(ladderPlayOutcome);
         }
     }
 
-    private <T> T retryOnException(Supplier<T> retryOperation) {
+    private boolean playLadderGame(LadderPlayOutcome ladderPlayOutcome) {
+        String target = InputView.askTarget();
+        OutputView.printLadderPlayOutcomeIntro();
+        if (target.equals(END_CONDITION)) {
+            printPrizeForAllPlayers(ladderPlayOutcome);
+            return false;
+        }
+        printPrizeForOnePlayer(ladderPlayOutcome, target);
+        return true;
+    }
+
+    private void printPrizeForAllPlayers(LadderPlayOutcome ladderPlayOutcome) {
+        Map<Player, Prize> outcome = ladderPlayOutcome.getOutcome();
+        OutputView.printPrizeForAllPlayers(outcome);
+    }
+
+    private void printPrizeForOnePlayer(LadderPlayOutcome ladderPlayOutcome, String target) {
+        Player player = new Player(target);
+        Prize prize = ladderPlayOutcome.get(player);
+        OutputView.printPrizeForOnePlayer(prize);
+    }
+
+    private <T> T retryWithReturnOnException(Supplier<T> retryOperation) {
         try {
             return retryOperation.get();
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
-            return retryOnException(retryOperation);
+            return retryWithReturnOnException(retryOperation);
         }
     }
 
-    public static <T, R> R retryOnExceptionWithParameter(Function<T, R> retryOperation, T parameter) {
+    private void retryOnException(Runnable action) {
         try {
-            return retryOperation.apply(parameter);
+            action.run();
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
-            return retryOnExceptionWithParameter(retryOperation, parameter);
+            retryOnException(action);
         }
     }
 }
