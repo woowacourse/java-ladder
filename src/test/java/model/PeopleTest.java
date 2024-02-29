@@ -24,4 +24,13 @@ class PeopleTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사람은 최소 2명 참가해야 합니다.");
     }
+
+    @Test
+    @DisplayName("중복된 사람이름은 존재할 수 없다.")
+    void validateDuplicatedPersonNames() {
+        List<String> names = List.of("loky", "loky", "moly");
+        assertThatThrownBy(() -> People.from(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("중복된 사람이름은 존재할 수 없습니다.");
+    }
 }
