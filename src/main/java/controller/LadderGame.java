@@ -22,7 +22,7 @@ public class LadderGame {
     private final OutputView outputView;
     private final LineItemGenerator lineItemGenerator;
 
-    public LadderGame(InputView inputView, OutputView outputView,  LineItemGenerator lineItemGenerator) {
+    public LadderGame(InputView inputView, OutputView outputView, LineItemGenerator lineItemGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lineItemGenerator = lineItemGenerator;

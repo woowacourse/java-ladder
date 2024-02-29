@@ -15,11 +15,4 @@ class LineItemTest {
     void returnLineItemByBoolean(boolean actual, LineItem expected) {
         assertThat(LineItem.valueOf(actual)).isEqualTo(expected);
     }
-
-    @DisplayName("주어진 LineItem이 UNCONNECTED인지 확인한다.")
-    @ParameterizedTest
-    @CsvSource({"UNCONNECTED, true", "CONNECTED, false"})
-    void checkIsUnconnected(LineItem actual, boolean expected) {
-        assertThat(LineItem.isUnconnected(actual)).isEqualTo(expected);
-    }
 }

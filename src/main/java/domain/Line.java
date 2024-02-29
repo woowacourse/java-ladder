@@ -25,7 +25,7 @@ public class Line {
     }
 
     public LineItem decideLineItem(int position, LineItem lineItem) {
-        if (position == 0 || LineItem.isUnconnected(lineItems.get(position - 1))) {
+        if (position == 0 || !LineItem.isConnected(lineItems.get(position - 1))) {
             return lineItem;
         }
 
