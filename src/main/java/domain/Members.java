@@ -18,8 +18,8 @@ public class Members {
         this.members = members;
     }
 
-    public static Members from(String rawNames) {
-        return new Members(initialize(rawNames));
+    public static Members from(List<String> names) {
+        return new Members(initialize(names));
     }
 
     public int findIndexByName(String name) {
@@ -36,25 +36,18 @@ public class Members {
         }
     }
 
-    private static List<Member> initialize(String rawNames) {
-        validateNull(rawNames);
-        List<String> parsedNames = parse(rawNames);
-        validateDuplication(parsedNames);
-        return parsedNames.stream()
+    private static List<Member> initialize(List<String> names) {
+        validateNull(names);
+        validateDuplication(names);
+        return names.stream()
             .map(Member::from)
             .toList();
     }
 
-    private static void validateNull(String rawNames) {
-        if (rawNames == null) {
+    private static void validateNull(List<String> names) {
+        if (names == null) {
             throw new IllegalArgumentException("null을 입력할 수 없습니다.");
         }
-    }
-
-    private static List<String> parse(String rawNames) {
-        return Arrays.stream(rawNames.split(",", -1))
-            .map(String::trim)
-            .toList();
     }
 
     private static void validateDuplication(List<String> names) {

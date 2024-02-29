@@ -12,9 +12,8 @@ public class Rewards {
         this.rewards = rewards;
     }
 
-    public static Rewards from(int membersCount, String rawNames) {
-        validateNull(rawNames);
-        return new Rewards(membersCount, initialize(rawNames));
+    public static Rewards from(int membersCount, List<String> names) {
+        return new Rewards(membersCount, initialize(names));
     }
 
     public String findRewardNameByIndex(int index) {
@@ -30,22 +29,12 @@ public class Rewards {
         }
     }
 
-    private static void validateNull(String rawNames) {
-        if (rawNames == null) {
+    private static List<Reward> initialize(List<String> names) {
+        if (names == null) {
             throw new IllegalArgumentException("null을 입력할 수 없습니다.");
         }
-    }
-
-    private static List<Reward> initialize(String rawNames) {
-        List<String> parsedNames = parse(rawNames);
-        return parsedNames.stream()
+        return names.stream()
             .map(Reward::from)
-            .toList();
-    }
-
-    private static List<String> parse(String rawNames) {
-        return Arrays.stream(rawNames.split(",", -1))
-            .map(String::trim)
             .toList();
     }
 

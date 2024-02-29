@@ -3,11 +3,13 @@ import domain.Height;
 import domain.Members;
 import domain.Rewards;
 import error.ErrorHandler;
+import java.util.List;
 import java.util.Map;
 import strategy.ConnectStrategy;
 import strategy.RandomConnectStrategy;
 import view.InputView;
 import view.OutputView;
+import view.StringParser;
 
 public class Main {
 
@@ -28,15 +30,18 @@ public class Main {
     }
 
     private static Members makeMembers() {
-        return Members.from(inputView.readMembers());
+        List<String> names = StringParser.parseToStringList(inputView.readMembers());
+        return Members.from(names);
     }
 
     private static Height makeHeight() {
-        return Height.from(inputView.readHeight());
+        int height = StringParser.parseToInt(inputView.readHeight());
+        return Height.from(height);
     }
 
     private static Rewards makeRewards(Members members) {
-        return Rewards.from(members.getCount(), inputView.readRewards());
+        List<String> names = StringParser.parseToStringList(inputView.readRewards());
+        return Rewards.from(members.getCount(), names);
     }
 
     private static void readAndPrintGameResult(Map<String, String> rewardMap) {

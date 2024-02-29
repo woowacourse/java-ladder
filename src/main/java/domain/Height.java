@@ -12,22 +12,14 @@ public class Height {
         this.height = height;
     }
 
-    public static Height from(String rawHeight) {
-        return new Height(initialize(rawHeight));
+    public static Height from(int height) {
+        return new Height(height);
     }
 
     private static void validate(int height) {
         if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
             throw new IllegalArgumentException(
                 MIN_HEIGHT + " 이상 " + MAX_HEIGHT + " 이하의 숫자를 입력해 주세요.");
-        }
-    }
-
-    private static int initialize(String rawHeight) {
-        try {
-            return Integer.parseInt(rawHeight);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
         }
     }
 
