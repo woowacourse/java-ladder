@@ -5,7 +5,6 @@ import domain.RandomBooleanGenerator;
 import domain.line.Line;
 import domain.line.Point;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -16,7 +15,6 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class LineGeneratorTest {
     @ParameterizedTest
     @MethodSource("provideGenerator")
@@ -31,7 +29,7 @@ class LineGeneratorTest {
         assertEquals(-1, isInvalidLine);
     }
 
-    Stream<Arguments> provideGenerator() {
+    static Stream<Arguments> provideGenerator() {
         return Stream.of(
                 Arguments.of(new FixedBooleanGenerator(true)),
                 Arguments.of(new FixedBooleanGenerator(false)),
