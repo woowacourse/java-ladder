@@ -66,10 +66,7 @@ public class Ladder {
     }
 
     private boolean isPointIsEndLine(Point point) {
-        if (point.column() < height.getHeight()) {
-            return false;
-        }
-        return true;
+        return point.column() >= height.getHeight();
     }
 
     public Direction getDirectionWithRowAndColumn(final int row, final int column) {
