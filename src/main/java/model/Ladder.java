@@ -40,10 +40,10 @@ public class Ladder {
         return lineBuilder.toString();
     }
 
-    public LadderResult findResult(final Players players, final Result prizes) {
+    public LadderResult findResult(final Players players, final Prizes prizes) {
         final int ladderSize = players.size() - 1;
         List<String> prizeResult = new ArrayList<>();
-        List<Prize> result = prizes.getPrizes();
+        List<Prize> result = prizes.getPrizeValues();
 
         for (int index = 0; index < players.size(); index++) {
             prizeResult.add(result.get(findLadderBottomIndex(index, ladderSize)).value());

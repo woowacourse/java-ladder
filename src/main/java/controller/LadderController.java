@@ -7,7 +7,7 @@ import model.Ladder;
 import model.LadderResult;
 import model.Player;
 import model.Players;
-import model.Result;
+import model.Prizes;
 import view.InputView;
 import view.OutputView;
 
@@ -22,12 +22,12 @@ public class LadderController {
 
     public void run() {
         Players players = new Players(inputView.readPlayersName());
-        Result result = Result.of(inputView.readResult(), players.size());
+        Prizes prizes = Prizes.of(inputView.readResult(), players.size());
         Height height = new Height(inputView.readHeight());
         Ladder ladder = Ladder.of(height, players.size());
 
-        outputView.printLadderResult(players.getNames(), ladder.getFormattedLines(), result.getPrizeNames());
-        printResult(ladder.findResult(players, result), players);
+        outputView.printLadderResult(players.getNames(), ladder.getFormattedLines(), prizes.getPrizeNames());
+        printResult(ladder.findResult(players, prizes), players);
     }
 
     private void printResult(final LadderResult ladderResult, final Players players) {

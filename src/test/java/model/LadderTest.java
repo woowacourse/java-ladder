@@ -53,7 +53,7 @@ class LadderTest {
 
         List<String> prizes = List.of("당첨", "꽝", "꽝");
 
-        Result result = Result.of(prizes, personCount);
+        Prizes result = Prizes.of(prizes, personCount);
 
         //when
         Prize expected = new Prize("당첨");
@@ -79,7 +79,7 @@ class LadderTest {
 
         List<String> prizes = List.of("당첨", "꽝1", "꽝2", "꽝3");
 
-        Result result = Result.of(prizes, personCount);
+        Prizes result = Prizes.of(prizes, personCount);
 
         //when
         LadderResult target = ladder.findResult(players, result);

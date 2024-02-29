@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LadderResultTest {
+class LadderPrizesTest {
 
     @Test
     @DisplayName("존재하지 않는 참여자의 결과를 요청하면 예외가 발생한다.")

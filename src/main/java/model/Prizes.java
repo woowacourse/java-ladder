@@ -3,20 +3,20 @@ package model;
 import exception.Message;
 import java.util.List;
 
-public class Result {
+public class Prizes {
 
-    private final List<Prize> prizes;
+    private final List<Prize> prizeValues;
 
-    private Result(final List<Prize> prizes) {
-        this.prizes = prizes;
+    private Prizes(final List<Prize> prizeValues) {
+        this.prizeValues = prizeValues;
     }
 
-    public static Result of(final List<String> values, final int personCount) {
+    public static Prizes of(final List<String> values, final int personCount) {
         List<Prize> prizes = values.stream()
                 .map(Prize::new)
                 .toList();
         validate(values, personCount);
-        return new Result(prizes);
+        return new Prizes(prizes);
     }
 
     private static void validate(final List<String> values, final int personCount) {
@@ -25,12 +25,12 @@ public class Result {
         }
     }
 
-    public List<Prize> getPrizes() {
-        return prizes;
+    public List<Prize> getPrizeValues() {
+        return prizeValues;
     }
 
     public List<String> getPrizeNames() {
-        return prizes.stream()
+        return prizeValues.stream()
                 .map(Prize::value)
                 .toList();
     }
