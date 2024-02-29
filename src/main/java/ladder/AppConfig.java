@@ -3,6 +3,7 @@ package ladder;
 import ladder.controller.LadderController;
 import ladder.view.InputView;
 import ladder.view.OutputView;
+import ladder.view.validator.InputValidator;
 
 public class AppConfig {
 
@@ -10,7 +11,11 @@ public class AppConfig {
     }
 
     public static InputView inputView() {
-        return new InputView();
+        return new InputView(inputValidator());
+    }
+
+    private static InputValidator inputValidator() {
+        return new InputValidator();
     }
 
     public static OutputView outputView() {

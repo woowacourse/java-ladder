@@ -1,6 +1,7 @@
 package ladder.domain.game;
 
 import ladder.domain.player.Player;
+import ladder.utils.Command;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -16,8 +17,6 @@ public class PlayResult {
             return this == EXECUTABLE;
         }
     }
-
-    private static final String EXPRESSION_OF_ENTIRE_PLAYER = "all";
 
     private final Map<String, String> result;
     private Status status;
@@ -43,15 +42,19 @@ public class PlayResult {
     }
 
     public boolean hasResultOf(final String name) {
-        return EXPRESSION_OF_ENTIRE_PLAYER.equals(name) || result.containsKey(name);
+        return isExpressionOfEntirePlayer(name) || result.containsKey(name);
     }
 
     public Map<String, String> checkPlayerResultByName(final String name) {
-        if (EXPRESSION_OF_ENTIRE_PLAYER.equals(name)) {
+        if (isExpressionOfEntirePlayer(name)) {
             status = Status.NON_EXECUTABLE;
             return result;
         }
         return Map.of(name, result.get(name));
+    }
+
+    private boolean isExpressionOfEntirePlayer(final String name) {
+        return Command.EXPRESSION_OF_ENTIRE_PLAYER.isMatch(name);
     }
 
     public Map<String, String> getResult() {
