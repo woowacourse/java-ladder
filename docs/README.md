@@ -34,10 +34,9 @@
     - 상품정보는 최소 1글자이상 최대 5글자 이하이다.
 8. Prizes
     - Prize 일급컬렉션.
-
+    - Players, Prizes 의 크기가 다르면 예외를 발생시킨다.
 9. PrizeResults
     - 각 Player의 Prize 정보를 맵형태로 가진다.
-    - Players, Prizes 의 크기가 다르면 예외를 발생시킨다.
     - 입력에 따라 종료 시킬지 아닐지를 분기한다.(all을 입력하면 getAll, 그 외 get)
     - 결과를 보기 위한 입력값이 all, Player이름 중 없을 경우 예외를 발생시킨다.
     - Player(key)을 인자로, Prize(value)를 리턴하는 기능.
