@@ -1,12 +1,14 @@
 package result;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import player.Players;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ResultsTest {
 
@@ -25,5 +27,16 @@ class ResultsTest {
         List<String> actual = results.getNames();
         // then
         assertThat(actual).containsExactly("꽝", "10000", "바나나우유");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"one", "one,two,three,four,five,six,seven,eight,nine,ten,elevn"})
+    @DisplayName("결과 개수가 범위를 벗어나면 예외를 발생한다.")
+    void invalidSizeTest(String names) {
+        // given
+        List<String> resultNames = List.of(names.split(","));
+        // when, then
+        assertThatThrownBy(() -> new Results(resultNames))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
