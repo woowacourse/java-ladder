@@ -40,7 +40,7 @@ public class LadderController {
     private void readNameAndPrintResult(final LadderResult ladderResult, final Set<Player> playerNames) {
         var name = inputView.readPlayerNameToCheckPrize();
         if (ladderResult.isCmdAllResult(name)) {
-            outputView.printAllPlayerResult(ladderResult.getPlayersPrizeResults());
+            outputView.printAllPlayerResult(ladderResult.playersPrizeResults());
             playerNames.clear();
             return;
         }

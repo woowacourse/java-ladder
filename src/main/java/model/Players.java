@@ -41,7 +41,7 @@ public class Players {
 
     public List<String> getNames() {
         return playerNames.stream()
-                .map(Player::getName)
+                .map(Player::name)
                 .toList();
     }
 
@@ -54,19 +54,19 @@ public class Players {
     }
 
     private String formatFirstPlayer() {
-        return String.format("%s ", playerNames.get(0).getName());
+        return String.format("%s ", playerNames.get(0).name());
     }
 
     private String formatMiddlePlayer() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Player player : playerNames.subList(1, playerNames.size() - 1)) {
-            stringBuilder.append(String.format("%6s", player.getName()));
+            stringBuilder.append(String.format("%6s", player.name()));
         }
         return stringBuilder.toString();
     }
 
     private String formatLastPlayer() {
-        return String.format("%5s", playerNames.get(playerNames.size() - 1).getName());
+        return String.format("%5s", playerNames.get(playerNames.size() - 1).name());
     }
 
     public List<Player> getPlayerNames() {

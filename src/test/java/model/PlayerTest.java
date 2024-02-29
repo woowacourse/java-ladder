@@ -39,6 +39,6 @@ class PlayerTest {
         var player = new Player(name);
 
         //when & then
-        Assertions.assertThat(player.getName()).isEqualTo(name.trim());
+        Assertions.assertThat(player.name()).isEqualTo(name.trim());
     }
 }

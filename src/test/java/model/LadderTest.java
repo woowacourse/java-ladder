@@ -62,7 +62,7 @@ class LadderTest {
         LadderResult ladderResult = ladder.findResult(players, result);
 
         //then
-        Assertions.assertThat(ladderResult.getPrize(target.getName())).isEqualTo(expected.value());
+        Assertions.assertThat(ladderResult.getPrize(target.name())).isEqualTo(expected.value());
     }
 
 
