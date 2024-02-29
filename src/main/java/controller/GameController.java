@@ -8,6 +8,7 @@ import domain.Members;
 import domain.Result;
 import domain.Results;
 import domain.StringParser;
+import domain.Target;
 import error.ErrorHandler;
 import java.util.List;
 import java.util.Map;
@@ -42,13 +43,13 @@ public class GameController {
 
         int count = 50;
         while (count-- > 0) {
-            String targetName = makeTargetName(members);
-            if (targetName.equals("all")) {
+            Target target = makeTargetName(members);
+            if (target.isAllMembers()) {
                 Map<Member, Result> result = gameResult.getResultOfAllMember();
                 outputView.printResult(result);
                 break;
             }
-            Result result = gameResult.getResultByMemberName(targetName);
+            Result result = gameResult.getResultByMemberName(target.getName());
             outputView.printResult(result);
         }
     }
@@ -77,10 +78,8 @@ public class GameController {
         });
     }
 
-    private String makeTargetName(Members members) {
-        return errorHandler.readUntilNoError(() -> {
-            String rawTargetName = inputView.readTarget();
-            return members.checkMemberExistByName(rawTargetName);
-        });
+    private Target makeTargetName(Members members) {
+        String rawTargetName = inputView.readTarget();
+        return Target.of(rawTargetName, members.getMembers());
     }
 }
