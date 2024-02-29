@@ -23,7 +23,7 @@ public class LadderGameController {
         LadderHeight ladderHeight = retryWithReturnOnException(this::prepareLadderHeight);
         Ladder ladder = makeLadder(ladderHeight, players, prizes);
         LadderPlayOutcome ladderPlayOutcome = ladder.play(players, prizes);
-        retryOnException(() -> playLadderGameUntilEnd(ladderPlayOutcome));
+        retryOnException(() -> provideLadderPlayOutcomeUntilEnd(ladderPlayOutcome));
     }
 
     private Players preparePlayers() {
@@ -41,7 +41,7 @@ public class LadderGameController {
         return Prizes.of(players, prizeNames);
     }
 
-    public Ladder makeLadder(LadderHeight ladderHeight, Players players, Prizes prizes) {
+    private Ladder makeLadder(LadderHeight ladderHeight, Players players, Prizes prizes) {
         Ladder ladder = Ladder.of(ladderHeight, players, new RandomBridgesGenerator());
         OutputView.printLadderIntro();
         OutputView.printPlayerNames(players);
@@ -50,30 +50,30 @@ public class LadderGameController {
         return ladder;
     }
 
-    public void playLadderGameUntilEnd(LadderPlayOutcome ladderPlayOutcome) {
+    private void provideLadderPlayOutcomeUntilEnd(LadderPlayOutcome ladderPlayOutcome) {
         boolean isContinue = true;
         while (isContinue) {
-            isContinue = playLadderGame(ladderPlayOutcome);
+            isContinue = provideLadderPlayOutcome(ladderPlayOutcome);
         }
     }
 
-    private boolean playLadderGame(LadderPlayOutcome ladderPlayOutcome) {
+    private boolean provideLadderPlayOutcome(LadderPlayOutcome ladderPlayOutcome) {
         String target = InputView.askTarget();
         OutputView.printLadderPlayOutcomeIntro();
         if (target.equals(END_CONDITION)) {
-            printPrizeForAllPlayers(ladderPlayOutcome);
+            showPrizeForAllPlayers(ladderPlayOutcome);
             return false;
         }
-        printPrizeForOnePlayer(ladderPlayOutcome, target);
+        showPrizeForOnePlayer(ladderPlayOutcome, target);
         return true;
     }
 
-    private void printPrizeForAllPlayers(LadderPlayOutcome ladderPlayOutcome) {
+    private void showPrizeForAllPlayers(LadderPlayOutcome ladderPlayOutcome) {
         Map<Player, Prize> outcome = ladderPlayOutcome.getOutcome();
         OutputView.printPrizeForAllPlayers(outcome);
     }
 
-    private void printPrizeForOnePlayer(LadderPlayOutcome ladderPlayOutcome, String target) {
+    private void showPrizeForOnePlayer(LadderPlayOutcome ladderPlayOutcome, String target) {
         Player player = new Player(target);
         Prize prize = ladderPlayOutcome.get(player);
         OutputView.printPrizeForOnePlayer(prize);
