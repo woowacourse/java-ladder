@@ -1,7 +1,5 @@
 package domain.game;
 
-import domain.game.GameResult;
-import domain.game.GameResults;
 import domain.LineNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
