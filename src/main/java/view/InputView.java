@@ -1,11 +1,13 @@
 package view;
 
 import domain.Player;
+import domain.Position;
 import domain.Result;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class InputView {
 
@@ -19,8 +21,10 @@ public class InputView {
     public static List<Player> readPlayerNames() {
         System.out.println(MESSAGE_PARTICIPATED_PLAYERS);
         String input = scanner.nextLine().replaceAll(" ", "");
+
+        AtomicInteger index = new AtomicInteger(0);
         return Arrays.stream(input.split(","))
-                .map(Player::new)
+                .map(name -> new Player(name, new Position(index.getAndIncrement())))
                 .toList();
     }
 

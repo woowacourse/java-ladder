@@ -17,10 +17,11 @@ public class LadderGameResult {
         Ladder ladder = builder.ladder;
         List<Player> players = builder.players.getPlayers();
         List<Result> results = builder.results.getResults();
+
         players.stream()
                 .forEach(
                         player -> ladderGameResult.put(player,
-                                results.get(ladder.climb(new Position(players.indexOf(player))).getIndex()))
+                                results.get(ladder.climb(player.getPosition()).getIndex()))
                 );
     }
 
