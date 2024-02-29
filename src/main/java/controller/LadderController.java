@@ -33,9 +33,7 @@ public class LadderController {
     }
 
     private Players getNameInput(int depth) {
-        if (depth <= 0) {
-            throw new IllegalArgumentException("입력 허용횟수 5회를 초과했습니다.");
-        }
+        checkRetry(depth);
         try {
             return new Players(InputView.readNames(consoleReader));
         } catch (IllegalArgumentException e) {
@@ -45,9 +43,7 @@ public class LadderController {
     }
 
     private Height getHeightInput(int depth) {
-        if (depth <= 0) {
-            throw new IllegalArgumentException("입력 허용횟수 5회를 초과했습니다.");
-        }
+        checkRetry(depth);
         try {
             return InputView.readHeight(consoleReader);
         } catch (IllegalArgumentException e) {
@@ -57,9 +53,7 @@ public class LadderController {
     }
 
     private Winnings getWinningsInput(int depth, Players players) {
-        if (depth <= 0) {
-            throw new IllegalArgumentException("입력 허용횟수 5회를 초과했습니다.");
-        }
+        checkRetry(depth);
         try {
             return getWinnings(players);
         } catch (IllegalArgumentException e) {
@@ -75,9 +69,7 @@ public class LadderController {
     }
 
     private ResultName getResultNameInput(int depth, Players players) {
-        if (depth <= 0) {
-            throw new IllegalArgumentException("입력 허용횟수 5회를 초과했습니다.");
-        }
+        checkRetry(depth);
         try {
             return new ResultName(InputView.readResultName(consoleReader), players);
         } catch (IllegalArgumentException e) {
@@ -92,5 +84,11 @@ public class LadderController {
             resultName = getResultNameInput(MAX_DEPTH, players);
         }
         OutputView.printResultByAll(result.getResultByAll());
+    }
+
+    private void checkRetry(int depth) {
+        if (depth <= 0) {
+            throw new IllegalArgumentException("입력 허용횟수 5회를 초과했습니다.");
+        }
     }
 }
