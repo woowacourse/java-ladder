@@ -38,8 +38,8 @@ public class MessageResolver {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    public static String resolvePlayerResultMessage(Name result) {
-        return result.toString();
+    public static Name resolvePlayerResultMessage(Name result) {
+        return result;
     }
 
     public static String resolveAllPlayerResultMessage(Map<Name, Name> playerGameResult) {
