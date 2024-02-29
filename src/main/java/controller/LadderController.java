@@ -6,11 +6,12 @@ import model.ladder.LadderGame;
 import model.ladder.LadderGenerateStrategy;
 import model.participant.Participant;
 import model.participant.Participants;
+import model.result.ParticipantsResult;
 import model.result.Results;
 import view.InputView;
 import view.OutputView;
 
-import java.io.IOException;
+import java.util.function.Supplier;
 
 public class LadderController {
 
@@ -22,21 +23,35 @@ public class LadderController {
         this.outputView = outputView;
     }
 
-    public void run() throws IOException {
-        Participants participants = new Participants(inputView.inputParticipantsName());
-        Results results = new Results(inputView.inputResults(), participants.size());
-        Ladder ladder = new Ladder(new LadderGenerateStrategy(), new Height(inputView.inputLadderHeight()), participants);
+    public void run() {
+        Participants participants = attempt(() -> new Participants(
+                attempt(() -> inputView.inputParticipantsName()))
+        );
+        Results results = attempt(() -> new Results(
+                attempt(() -> inputView.inputResults()), participants.size())
+        );
+        Ladder ladder = new Ladder(new LadderGenerateStrategy(),
+                attempt(() -> new Height(inputView.inputLadderHeight())), participants);
         LadderGame ladderGame = new LadderGame(ladder, participants, results);
-        outputView.printLadderResult(ladderGame);
-        play(ladderGame);
+        outputView.printLadder(ladderGame);
+        outputView.printLadderGameResult(attempt(() -> play(ladderGame)));
     }
 
-    private void play(LadderGame ladderGame) throws IOException {
+    private ParticipantsResult play(LadderGame ladderGame) {
         String participantName = inputView.inputParticipantName();
         while (!participantName.equals(InputView.ENTIRE_PARTICIPANTS)) {
             outputView.printParticipantResult(ladderGame.matchResult(new Participant(participantName)));
             participantName = inputView.inputParticipantName();
         }
-        outputView.printAllParticipantsResult(ladderGame.matchAllResults());
+        return ladderGame.matchAllResults();
+    }
+
+    private <T> T attempt(Supplier<T> inputSupplier) {
+        try {
+            return inputSupplier.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printException(e.getMessage());
+            return attempt(inputSupplier);
+        }
     }
 }

@@ -20,10 +20,10 @@ public class OutputView {
     private static final String NAME_FORMAT = "%5s ";
     private static final String DELIMITER = " : ";
 
-    public void printLadderResult(LadderGame ladderGame) {
+    public void printLadder(LadderGame ladderGame) {
         System.out.println(LADDER_RESULT_MESSAGE);
         printParticipantsName(ladderGame.getParticipants());
-        printLadder(ladderGame.getLadder());
+        printLadderDetail(ladderGame.getLadder());
         printResults(ladderGame.getResults());
     }
 
@@ -35,7 +35,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printLadder(Ladder ladder) {
+    private void printLadderDetail(Ladder ladder) {
         for (int i = 0; i < ladder.getHeight(); i++) {
             printRow(ladder.getRow(i));
             System.out.println();
@@ -64,10 +64,14 @@ public class OutputView {
         System.out.println(result.name());
     }
 
-    public void printAllParticipantsResult(ParticipantsResult participantsResult) {
+    public void printLadderGameResult(ParticipantsResult participantsResult) {
         System.out.println(System.lineSeparator() + RESULT_MESSAGE);
         for (Map.Entry<Participant, Result> reward : participantsResult.getRewards().entrySet()) {
             System.out.println(reward.getKey().getName() + DELIMITER + reward.getValue().name());
         }
+    }
+
+    public void printException(String message) {
+        System.out.println(message);
     }
 }

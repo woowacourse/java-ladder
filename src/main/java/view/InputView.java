@@ -25,9 +25,17 @@ public class InputView implements AutoCloseable {
         this.reader = new BufferedReader(new InputStreamReader(System.in));
     }
 
-    public List<String> inputParticipantsName() throws IOException {
+    private String readLine(){
+        try {
+            return reader.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<String> inputParticipantsName() {
         System.out.println(INPUT_PARTICIPANT_NAMES);
-        String input = reader.readLine();
+        String input = readLine();
         validateNotNullAndBlank(input);
         return Arrays.stream(input.split(DELIMITER))
                 .map(String::trim)
@@ -40,9 +48,9 @@ public class InputView implements AutoCloseable {
         }
     }
 
-    public int inputLadderHeight() throws IOException {
+    public int inputLadderHeight() {
         System.out.println(System.lineSeparator() + INPUT_LADDER_HEIGHT);
-        String input = reader.readLine();
+        String input = readLine();
         validateNotNullAndBlank(input);
         validateNumeric(input);
         return Integer.parseInt(input);
@@ -54,18 +62,18 @@ public class InputView implements AutoCloseable {
         }
     }
 
-    public List<String> inputResults() throws IOException {
+    public List<String> inputResults() {
         System.out.println(System.lineSeparator() + INPUT_RESULT);
-        String input = reader.readLine();
+        String input = readLine();
         validateNotNullAndBlank(input);
         return Arrays.stream(input.split(DELIMITER))
                 .map(String::trim)
                 .toList();
     }
 
-    public String inputParticipantName() throws IOException {
+    public String inputParticipantName() {
         System.out.println(System.lineSeparator() + INPUT_PARTICIPANT_NAME);
-        String input = reader.readLine();
+        String input = readLine();
         validateNotNullAndBlank(input);
         return input;
     }
@@ -74,4 +82,6 @@ public class InputView implements AutoCloseable {
     public void close() throws Exception {
         reader.close();
     }
+
+
 }
