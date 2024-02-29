@@ -26,7 +26,7 @@ public class LadderMain {
 
     public static LadderGame makeLadderGame() {
         final Players players = Players.createInOrderPoisition(InputView.readNames());
-        final MatchingItems matchingItems = new MatchingItems(InputView.readMatchingItems(), players.count());
+        final MatchingItems matchingItems = new MatchingItems(InputView.readMatchingItems());
         final Height height = new Height(InputView.readHeight());
         final Width width = Width.from(players);
 

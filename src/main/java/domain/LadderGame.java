@@ -13,9 +13,17 @@ public class LadderGame {
     private final Ladder ladder;
 
     public LadderGame(final Players players, final MatchingItems matchingItems, final Ladder ladder) {
+        validateSameCount(players.count(), matchingItems.count());
+
         this.players = players;
         this.matchingItems = matchingItems;
         this.ladder = ladder;
+    }
+
+    private void validateSameCount(final int playersCount, final int matchingItemsCount) {
+        if (playersCount != matchingItemsCount) {
+            throw new IllegalArgumentException("참가자 수와 실행 결과의 수는 같아야 합니다.");
+        }
     }
 
     public void play() {

@@ -8,15 +8,12 @@ public class MatchingItems {
 
     private final List<String> items;
 
-    public MatchingItems(final List<String> items, final int playerCount) {
-        validateCount(items.size(), playerCount);
+    public MatchingItems(final List<String> items) {
         this.items = new ArrayList<>(items);
     }
 
-    private void validateCount(final int itemsCount, final int playerCount) {
-        if (itemsCount != playerCount) {
-            throw new IllegalArgumentException("실행 결과의 개수는 참가자의 수와 일치해야 합니다.");
-        }
+    public int count() {
+        return items.size();
     }
 
     public String getBy(final int position) {
