@@ -1,6 +1,7 @@
 package model.ladder;
 
 import java.util.Objects;
+import model.ladder.generator.StepStatusGenerator;
 
 public class Step {
     private final StepStatus stepStatus;

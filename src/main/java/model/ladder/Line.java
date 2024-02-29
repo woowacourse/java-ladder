@@ -2,6 +2,7 @@ package model.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.ladder.generator.StepStatusGenerator;
 
 public class Line {
     private final List<Step> steps;

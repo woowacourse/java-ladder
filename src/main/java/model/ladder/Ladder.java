@@ -3,6 +3,7 @@ package model.ladder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import model.ladder.generator.StepStatusGenerator;
 
 public class Ladder {
     private final List<Line> lines;

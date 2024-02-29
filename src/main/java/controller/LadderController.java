@@ -2,8 +2,8 @@ package controller;
 
 import model.ladder.Height;
 import model.ladder.Ladder;
-import model.ladder.RandomStatusGenerator;
 import model.ladder.Width;
+import model.ladder.generator.RandomStatusGenerator;
 import model.players.Players;
 import view.InputView;
 import view.OutputView;

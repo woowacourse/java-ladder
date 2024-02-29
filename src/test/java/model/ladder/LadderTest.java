@@ -1,5 +1,6 @@
 package model.ladder;
 
+import model.ladder.generator.RandomStatusGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

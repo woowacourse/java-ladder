@@ -1,5 +1,8 @@
 package model.ladder;
 
+import model.ladder.generator.RandomStatusGenerator;
+import model.ladder.generator.TestStepStatusGenerator.AlwaysConnectStatusGenerator;
+import model.ladder.generator.TestStepStatusGenerator.AlwaysDisconnectStatusGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -81,19 +84,4 @@ class StepTest {
         }
     }
 
-    static class AlwaysConnectStatusGenerator implements StepStatusGenerator {
-
-        @Override
-        public StepStatus generate() {
-            return StepStatus.CONNECTED;
-        }
-    }
-
-    static class AlwaysDisconnectStatusGenerator implements StepStatusGenerator {
-
-        @Override
-        public StepStatus generate() {
-            return StepStatus.DISCONNECTED;
-        }
-    }
 }
