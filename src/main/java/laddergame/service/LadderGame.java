@@ -31,7 +31,7 @@ public class LadderGame {
     public Result start(final Players players, final Ladder ladder, final Targets targets) {
         Map<String, String> map = new HashMap<>();
 
-        for (int i=0; i< players.getSize(); i++) {
+        for (int i = 0; i < players.getSize(); i++) {
             Trace trace = ladder.move(i);
             Target target = targets.convertToTarget(trace);
 

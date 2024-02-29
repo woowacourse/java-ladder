@@ -29,7 +29,7 @@ public class Ladder {
     public Trace move(final int playerIndex) {
         Trace trace = new Trace(playerIndex);
 
-        for(Line line : lines) {
+        for (Line line : lines) {
             trace = line.move(trace);
         }
 
