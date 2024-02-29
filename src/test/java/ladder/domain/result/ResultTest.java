@@ -44,7 +44,7 @@ class ResultTest {
         Positions nowPositions = new Positions(width);
         Positions nextPositions = nowPositions.calcPosition(customLine.getLine());
 
-        Result result = new Result(users, prizes, nextPositions);
+        Result result = new Result(users.getUsersNames(), prizes.getPrizesNames(), nextPositions.getPositions());
         List<String> prizeResult = new ArrayList<>();
         for(String userName : users.getUsersNames()) {
             prizeResult.add(result.getPrizeByUser(userName));
