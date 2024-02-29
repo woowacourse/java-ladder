@@ -1,6 +1,7 @@
-package laddergame.domain;
+package laddergame.domain.name;
 
 import java.util.Objects;
+import laddergame.command.LadderCommand;
 
 public class Name {
 
@@ -11,6 +12,7 @@ public class Name {
     public Name(final String input) {
         validateBlank(input);
         validateLength(input);
+        validateInvalidName(input);
         this.name = input;
     }
 
@@ -23,6 +25,12 @@ public class Name {
     private void validateLength(final String input) {
         if (input.length() > MAX_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 이름길이는 5글자를 넘을 수 없습니다.");
+        }
+    }
+
+    private void validateInvalidName(final String input) {
+        if (LadderCommand.isAllCommand(input)) {
+            throw new IllegalArgumentException("[ERROR] 이름을 커맨드 키로 지을 수 없습니다.");
         }
     }
 

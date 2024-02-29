@@ -2,7 +2,7 @@ package laddergame.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import laddergame.dto.Result;
+import laddergame.dto.LadderResult;
 
 public class LadderFormatter {
 
@@ -13,9 +13,9 @@ public class LadderFormatter {
     private LadderFormatter() {
     }
 
-    public static String formatLadder(final Result result) {
-        final List<String> names = result.names();
-        final List<List<Boolean>> ladder = result.ladder();
+    public static String formatLadder(final LadderResult ladderResult) {
+        final List<String> names = ladderResult.names();
+        final List<List<Boolean>> ladder = ladderResult.ladder();
 
         final int width = WidthCalculator.calculateWidth(names);
         final int firstWidth = WidthCalculator.calculateFirstWidth(names);

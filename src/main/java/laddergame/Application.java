@@ -5,7 +5,7 @@ import laddergame.controller.LadderController;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         final LadderController ladderController = AppConfig.ladderController();
         ladderController.run();
     }

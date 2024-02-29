@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.name;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -16,7 +16,7 @@ public class NameTest {
     @ValueSource(strings = {"a", "ab", "abc", "abcd", "abcde"})
     void create(String value) {
         // given & when
-        Name name = new Name(value);
+        final Name name = new Name(value);
 
         // then
         assertThat(name.getName()).isEqualTo(value);
@@ -41,4 +41,13 @@ public class NameTest {
                 .hasMessage("[ERROR] 이름에 빈값을 입력할 수 없습니다.");
 
     }
+
+    @DisplayName("이름을 커맨드 키로 할 수 없다.")
+    @Test
+    void validateInvalidName() {
+        assertThatThrownBy(() -> new Name("all"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 이름을 커맨드 키로 지을 수 없습니다.");
+    }
 }
+

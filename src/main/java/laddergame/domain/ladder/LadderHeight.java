@@ -1,4 +1,6 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
+
+import java.util.Objects;
 
 public class LadderHeight {
 
@@ -15,11 +17,23 @@ public class LadderHeight {
         }
     }
 
-    public boolean isBiggerThan(final int value) {
-        return height > value;
-    }
-
     public int getHeight() {
         return height;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof final LadderHeight that)) {
+            return false;
+        }
+        return getHeight() == that.getHeight();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getHeight());
     }
 }
