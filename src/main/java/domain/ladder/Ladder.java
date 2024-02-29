@@ -30,7 +30,7 @@ public class Ladder {
     }
 
     public boolean canMoveRight(int floor, int step) {
-        if ((isFinish(floor))) {
+        if (isFinish(floor)) {
             return false;
         }
         Line line = lines.get(floor);
