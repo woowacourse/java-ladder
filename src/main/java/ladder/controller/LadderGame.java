@@ -1,9 +1,12 @@
 package ladder.controller;
 
-import ladder.domain.ladder.Height;
+import ladder.domain.generator.LadderStepsGenerator;
+import ladder.domain.generator.RandomPathAvailabilityGenerator;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.ParticipantsOutcome;
+import ladder.domain.ladder.size.LadderSize;
+import ladder.domain.outcome.Outcomes;
 import ladder.domain.participant.Participants;
-import ladder.domain.generator.RandomLadderStepGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -16,9 +19,13 @@ public class LadderGame {
 
     public void run() {
         final Participants participants = retryOnException(this::createParticipants);
+        final Outcomes outcomes = retryOnException(() -> readOutcomes(participants.getCount()));
         final int width = participants.getNecessaryLadderWidth();
         final Ladder ladder = createLadder(width);
-        printLadder(participants, ladder);
+        printLadderGame(participants, ladder, outcomes);
+
+        final ParticipantsOutcome participantsOutcome = participants.assignOutcomesByLadder(ladder, outcomes);
+        runUntilNoException(() -> printParticipantsOutcome(participantsOutcome));
     }
 
     private Participants createParticipants() {
@@ -26,21 +33,49 @@ public class LadderGame {
         return new Participants(participantsName);
     }
 
-    private Ladder createLadder(final int stepWidth) {
-        final Height height = retryOnException(this::readLadderHeight);
-        final RandomLadderStepGenerator ladderStepGenerator = new RandomLadderStepGenerator(stepWidth);
-        return new Ladder(ladderStepGenerator, height);
+    private Outcomes readOutcomes(final int neededOutcomesCount) {
+        final List<String> outcomes = inputView.readOutcomes();
+        return new Outcomes(outcomes, neededOutcomesCount);
     }
 
-    private Height readLadderHeight() {
+    private Ladder createLadder(final int ladderWidth) {
+        final LadderSize ladderSize = retryOnException(() -> createLadderSize(ladderWidth));
+        final RandomPathAvailabilityGenerator pathAvailabilityGenerator = RandomPathAvailabilityGenerator.getInstance();
+        final LadderStepsGenerator ladderStepsGenerator = new LadderStepsGenerator(pathAvailabilityGenerator);
+        return new Ladder(ladderSize, ladderStepsGenerator);
+    }
+
+    private LadderSize createLadderSize(final int ladderWidth) {
         final int ladderHeight = inputView.readLadderHeight();
-        return new Height(ladderHeight);
+        return new LadderSize(ladderWidth, ladderHeight);
     }
 
-    private void printLadder(final Participants participants, final Ladder ladder) {
+    private void printLadderGame(final Participants participants, final Ladder ladder, final Outcomes outcomes) {
         outputView.printResultPrefix();
         outputView.printParticipants(participants);
         outputView.printLadder(ladder);
+        outputView.printOutcomes(outcomes);
+    }
+
+    private void printParticipantsOutcome(final ParticipantsOutcome participantsOutcome) {
+        final String requiredOutcome = inputView.readRequiredOutcome();
+        outputView.printParticipantsOutcome(participantsOutcome, requiredOutcome);
+    }
+
+    private void runUntilNoException(final Runnable operation) {
+        boolean isExceptionOccurred = false;
+        while (!isExceptionOccurred) {
+            isExceptionOccurred = runAndCheckExceptionOccurred(operation);
+        }
+    }
+
+    private boolean runAndCheckExceptionOccurred(final Runnable operation) {
+        try {
+            operation.run();
+            return false;
+        } catch (IllegalArgumentException e) {
+            return true;
+        }
     }
 
     private <T> T retryOnException(final Supplier<T> retryOperation) {

@@ -1,10 +1,14 @@
 package ladder.domain.participant;
 
+import ladder.domain.Position;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.ParticipantsOutcome;
+import ladder.domain.outcome.Outcomes;
 import ladder.exception.participant.DuplicatedNamesException;
 import ladder.exception.participant.InvalidParticipantsCountException;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.IntStream;
 
 public class Participants {
     private static final int MIN_PARTICIPANTS_COUNT = 2;
@@ -14,9 +18,7 @@ public class Participants {
     public Participants(final List<String> names) {
         validateParticipantsCount(names);
         validateDuplicatedNames(names);
-        this.participants = names.stream()
-                .map(Participant::new)
-                .toList();
+        this.participants = createParticipants(names);
     }
 
     private void validateParticipantsCount(final List<String> names) {
@@ -32,8 +34,28 @@ public class Participants {
         }
     }
 
+    private List<Participant> createParticipants(final List<String> names) {
+        return IntStream.range(0, names.size())
+                .mapToObj(position -> new Participant(names.get(position), position))
+                .toList();
+    }
+
+    public ParticipantsOutcome assignOutcomesByLadder(final Ladder ladder, final Outcomes outcomes) {
+        final Map<String, String> participantsOutcome = new LinkedHashMap<>();
+        for (Participant participant : participants) {
+            final Position endPosition = ladder.determineFinalPositionOf(participant);
+            final String outcome = outcomes.getValueOf(endPosition);
+            participantsOutcome.put(participant.getName(), outcome);
+        }
+        return new ParticipantsOutcome(participantsOutcome);
+    }
+
     public int getNecessaryLadderWidth() {
-        return participants.size() - 1;
+        return getCount() - 1;
+    }
+
+    public int getCount() {
+        return participants.size();
     }
 
     public List<Participant> getValues() {

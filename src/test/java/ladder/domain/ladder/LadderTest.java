@@ -1,25 +1,34 @@
 package ladder.domain.ladder;
 
-import ladder.domain.generator.RandomLadderStepGenerator;
+import ladder.domain.Position;
+import ladder.domain.participant.Participants;
+import ladder.testutil.LadderGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import java.util.List;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderTest {
+class LadderTest {
     @Test
-    @DisplayName("주어진 높이만큼 사다리를 생성한다.")
-    void createLadderTest() {
+    @DisplayName("참가자가 도착한 사다리 마지막 위치를 반환한다.")
+    void determineFinalPositionOfParticipantTest() {
         // given
-        final int stepWidth = 3;
-        final Height height = new Height(4);
-        final RandomLadderStepGenerator ladderStepGenerator = new RandomLadderStepGenerator(stepWidth);
+        final Participants participants = new Participants(List.of("a", "b", "c"));
+        final Ladder ladder = generateLadder();
+        final List<Position> expectedPositions = List.of(new Position(2), new Position(0), new Position(1));
 
         // when
-        Ladder ladder = new Ladder(ladderStepGenerator, height);
-        int ladderHeight = ladder.getLadderSteps().size();
+        final List<Position> actualPositions = participants.getValues().stream()
+                .map(ladder::determineFinalPositionOf)
+                .toList();
 
         // then
-        assertThat(ladderHeight).isEqualTo(4);
+        assertThat(actualPositions).containsExactlyElementsOf(expectedPositions);
+    }
+
+    private static Ladder generateLadder() {
+        final List<Boolean> pathAvailabilities = List.of(true, false, false, true);
+        return LadderGenerator.generate(pathAvailabilities, 2, 2);
     }
 }
