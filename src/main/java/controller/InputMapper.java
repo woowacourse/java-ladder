@@ -1,8 +1,8 @@
 package controller;
 
 import domain.Height;
-import domain.Name;
 import domain.Names;
+import domain.PlayerName;
 import domain.PrizeName;
 import domain.Prizes;
 import java.util.Arrays;
@@ -15,7 +15,7 @@ public class InputMapper {
     public Names mapToNames(String target) {
         List<String> names = Arrays.asList(target.split(NAME_DELIMITER));
         return new Names(names.stream()
-                .map(Name::new)
+                .map(PlayerName::new)
                 .toList());
     }
 

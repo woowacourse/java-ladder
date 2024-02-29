@@ -2,16 +2,16 @@ package domain;
 
 public class Player {
 
-    private final Name name;
+    private final PlayerName playerName;
     private final ColumnPosition columnPosition;
 
-    public Player(Name name, ColumnPosition columnPosition) {
-        this.name = name;
+    public Player(PlayerName playerName, ColumnPosition columnPosition) {
+        this.playerName = playerName;
         this.columnPosition = columnPosition;
     }
 
     public String getName() {
-        return name.getName();
+        return playerName.getName();
     }
 
     public int getColumnPosition() {

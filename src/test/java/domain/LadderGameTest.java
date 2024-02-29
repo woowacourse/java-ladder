@@ -19,7 +19,7 @@ class LadderGameTest {
         RowLine line1 = new RowLine(List.of(CONNECTED));
         RowLine line2 = new RowLine(List.of(CONNECTED));
 
-        Names names = new Names(List.of(new Name("리비"), new Name("잉크")));
+        Names names = new Names(List.of(new PlayerName("리비"), new PlayerName("잉크")));
         Ladder ladder = new Ladder(List.of(line1, line2));
         Prizes prizes = new Prizes(List.of(new PrizeName("123"), new PrizeName("456")));
 
@@ -33,7 +33,7 @@ class LadderGameTest {
         RowLine line1 = new RowLine(List.of(CONNECTED));
         RowLine line2 = new RowLine(List.of(CONNECTED));
 
-        Names names = new Names(List.of(new Name("리비"), new Name("잉크")));
+        Names names = new Names(List.of(new PlayerName("리비"), new PlayerName("잉크")));
         Ladder ladder = new Ladder(List.of(line1, line2));
         Prizes prizes = new Prizes(List.of(new PrizeName("123"), new PrizeName("456")));
 
@@ -49,7 +49,7 @@ class LadderGameTest {
         RowLine line1 = new RowLine(List.of(CONNECTED, DISCONNECTED, CONNECTED));
         RowLine line2 = new RowLine(List.of(CONNECTED, DISCONNECTED, CONNECTED));
 
-        Names names = new Names(List.of(new Name("리비"), new Name("잉크")));
+        Names names = new Names(List.of(new PlayerName("리비"), new PlayerName("잉크")));
         Ladder ladder = new Ladder(List.of(line1, line2));
         Prizes prizes = new Prizes(
                 List.of(new PrizeName("123"), new PrizeName("456"), new PrizeName("789")));
@@ -64,7 +64,7 @@ class LadderGameTest {
         RowLine line1 = new RowLine(List.of(CONNECTED, DISCONNECTED, CONNECTED));
         RowLine line2 = new RowLine(List.of(CONNECTED, DISCONNECTED, CONNECTED));
 
-        Names names = new Names(List.of(new Name("리비"), new Name("잉크")));
+        Names names = new Names(List.of(new PlayerName("리비"), new PlayerName("잉크")));
         Ladder ladder = new Ladder(List.of(line1, line2));
         Prizes prizes = new Prizes(
                 List.of(new PrizeName("123"), new PrizeName("456")));

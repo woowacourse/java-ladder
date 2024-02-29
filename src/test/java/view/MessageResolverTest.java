@@ -7,8 +7,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import domain.Ladder;
 import domain.LadderResult;
 import domain.LadderResults;
-import domain.Name;
 import domain.Names;
+import domain.PlayerName;
 import domain.PrizeName;
 import domain.Prizes;
 import domain.RowLine;
@@ -35,7 +35,7 @@ class MessageResolverTest {
         List<RowLine> rowLines = List.of(line1, line2);
 
         Ladder ladder = new Ladder(rowLines);
-        Names names = new Names(List.of(new Name("리비"), new Name("테니"), new Name("잉크")));
+        Names names = new Names(List.of(new PlayerName("리비"), new PlayerName("테니"), new PlayerName("잉크")));
         Prizes prizes = new Prizes(List.of(new PrizeName("1"), new PrizeName("2"), new PrizeName("3")));
 
         String result = messageResolver.resolveLadderMessage(ladder, names, prizes);
