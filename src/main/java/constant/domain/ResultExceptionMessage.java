@@ -12,5 +12,4 @@ public enum ResultExceptionMessage {
     public String getExceptionMessage() {
         return this.exceptionMessage;
     }
-
 }
