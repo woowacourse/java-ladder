@@ -7,9 +7,9 @@ import java.util.StringJoiner;
 
 import ladder.domain.Ladder;
 import ladder.domain.LadderDirection;
-import ladder.domain.LadderLevel;
 import ladder.domain.LadderResult;
 import ladder.domain.LadderResults;
+import ladder.domain.LadderRow;
 import ladder.domain.Player;
 import ladder.domain.Players;
 
@@ -53,9 +53,9 @@ public class ResultView {
         System.out.println(stringJoiner);
     }
 
-    private void printLadderLevel(LadderLevel ladderLevel) {
+    private void printLadderLevel(LadderRow ladderRow) {
         System.out.print("\t");
-        ladderLevel.getLadderDirections().forEach(this::printLine);
+        ladderRow.getLadderDirections().forEach(this::printLine);
         System.out.println();
     }
 

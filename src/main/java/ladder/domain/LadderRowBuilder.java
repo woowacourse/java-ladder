@@ -8,35 +8,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class LadderLevelBuilder {
+public class LadderRowBuilder {
 
     private final List<LadderDirection> ladderLevel;
 
     private int size;
     private LadderDirectionSelector ladderDirectionSelector;
 
-    private LadderLevelBuilder() {
+    private LadderRowBuilder() {
         this.ladderLevel = new ArrayList<>();
     }
 
-    public static LadderLevelBuilder builder() {
-        return new LadderLevelBuilder();
+    public static LadderRowBuilder builder() {
+        return new LadderRowBuilder();
     }
 
-    public LadderLevelBuilder size(int size) {
+    public LadderRowBuilder size(int size) {
         this.size = size;
         return this;
     }
 
-    public LadderLevelBuilder directionSelector(LadderDirectionSelector ladderDirectionSelector) {
+    public LadderRowBuilder directionSelector(LadderDirectionSelector ladderDirectionSelector) {
         this.ladderDirectionSelector = ladderDirectionSelector;
         return this;
     }
 
-    public LadderLevel build() {
+    public LadderRow build() {
         IntStream.range(0, size).forEach(__ -> ladderLevel.add(LadderDirection.NONE));
         IntStream.range(0, size - 1).forEach(this::selectDirectionIfNotExistsAt);
-        return new LadderLevel(ladderLevel);
+        return new LadderRow(ladderLevel);
     }
 
     private void selectDirectionIfNotExistsAt(int index) {

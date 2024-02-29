@@ -7,16 +7,16 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private final List<LadderLevel> ladder;
+    private final List<LadderRow> ladder;
 
-    public Ladder(List<LadderLevel> ladder) {
+    public Ladder(List<LadderRow> ladder) {
         this.ladder = ladder;
     }
 
     public static Ladder of(Players players, Height height, LadderDirectionSelector ladderDirectionSelector) {
-        List<LadderLevel> ladder = new ArrayList<>();
+        List<LadderRow> ladder = new ArrayList<>();
         IntStream.range(0, height.value()).forEach(
-                __ -> ladder.add(LadderLevelBuilder.builder()
+                __ -> ladder.add(LadderRowBuilder.builder()
                         .size(players.count())
                         .directionSelector(ladderDirectionSelector)
                         .build())
@@ -39,7 +39,7 @@ public class Ladder {
         return ladder.get(row).getLadderDirection(column);
     }
 
-    public List<LadderLevel> getLadderLevels() {
+    public List<LadderRow> getLadderLevels() {
         return Collections.unmodifiableList(ladder);
     }
 }

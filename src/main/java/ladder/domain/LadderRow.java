@@ -3,11 +3,11 @@ package ladder.domain;
 import java.util.Collections;
 import java.util.List;
 
-public class LadderLevel {
+public class LadderRow {
 
     private final List<LadderDirection> ladderLevel;
 
-    public LadderLevel(List<LadderDirection> ladderDirections) {
+    public LadderRow(List<LadderDirection> ladderDirections) {
         ladderLevel = ladderDirections;
     }
 
