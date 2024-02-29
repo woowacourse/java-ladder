@@ -21,13 +21,13 @@ public class MessageResolver {
 
     public static String resolvePlayerMessage(Players players) {
         return players.getPlayerNames().stream()
-                .map(element -> String.format(ELEMENT_MESSAGE_FORMAT, element.getElement()))
+                .map(element -> String.format(ELEMENT_MESSAGE_FORMAT, element.getName()))
                 .collect(Collectors.joining(BLANK));
     }
 
     public static String resolvePrizeMessage(Prizes prizes) {
         return prizes.getPrizeNames().stream()
-                .map(element -> String.format(ELEMENT_MESSAGE_FORMAT, element.getElement()))
+                .map(element -> String.format(ELEMENT_MESSAGE_FORMAT, element.getName()))
                 .collect(Collectors.joining(BLANK));
     }
 

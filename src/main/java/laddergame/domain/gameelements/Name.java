@@ -6,12 +6,11 @@ import java.util.Objects;
 
 public class Name {
     private static final String ELEMENT_NAME_RULE = "[ㄱ-ㅎ가-힣a-zA-Z0-9]{1,5}";
-    // TODO 이름 name으로 바꾸기
-    private final String element;
+    private final String name;
 
-    public Name(String element) {
-        validateNameRule(element);
-        this.element = element;
+    public Name(String name) {
+        validateNameRule(name);
+        this.name = name;
     }
 
     private void validateNameRule(String name) {
@@ -29,22 +28,22 @@ public class Name {
             return true;
         }
         if (obj instanceof Name otherName) {
-            return element.equals(otherName.element);
+            return name.equals(otherName.name);
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(element);
+        return Objects.hash(name);
     }
 
     @Override
     public String toString() {
-        return element;
+        return name;
     }
 
-    public String getElement() {
-        return element;
+    public String getName() {
+        return name;
     }
 }

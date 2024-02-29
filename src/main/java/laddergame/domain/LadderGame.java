@@ -12,12 +12,12 @@ import java.util.Map;
 public class LadderGame {
     private final Map<Name, Name> playerGameResult;
 
-    public LadderGame(Players people, Ladder ladder, Prizes prizes) {
+    public LadderGame(Players players, Ladder ladder, Prizes prizes) {
         List<Name> gameResults = initializeGameResult(ladder, prizes);
 
         playerGameResult = new LinkedHashMap<>();
-        for (int i = 0; i < people.getPlayerNames().size(); i++) {
-            playerGameResult.put(people.getPlayerNames().get(i), gameResults.get(i));
+        for (int i = 0; i < players.getPlayerNames().size(); i++) {
+            playerGameResult.put(players.getPlayerNames().get(i), gameResults.get(i));
         }
     }
 
