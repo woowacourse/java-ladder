@@ -5,6 +5,7 @@ import java.util.List;
 import model.path.PathGenerator;
 
 public class Ladder {
+    private static final int MINIMUM_LADDER_HEIGHT = 1;
     private final List<Line> lines;
 
     private Ladder(final List<Line> lines) {
@@ -22,7 +23,7 @@ public class Ladder {
     }
 
     private static void validateHeight(final int height) {
-        if (height < 1) {
+        if (height < MINIMUM_LADDER_HEIGHT) {
             throw new IllegalArgumentException("사다리의 높이는 1 이상이어야 합니다.");
         }
     }
