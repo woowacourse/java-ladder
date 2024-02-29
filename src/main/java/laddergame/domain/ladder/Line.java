@@ -51,14 +51,14 @@ public class Line {
     }
 
     private boolean canMoveLeft(final Trace trace) {
-        if (trace.getPosition() != 0) {
+        if (trace.getPosition() == 0) {
             return false;
         }
         return hasPoint(trace.getPosition() - 1);
     }
 
     private boolean canMoveRight(final Trace trace) {
-        if (trace.getPosition() != this.points.size()) {
+        if (trace.getPosition() == this.points.size()) {
             return false;
         }
         return hasPoint(trace.getPosition());
