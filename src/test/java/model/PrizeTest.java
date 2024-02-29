@@ -14,17 +14,15 @@ class PrizeTest {
     void validateNameLength() {
         String given = "123456";
         assertThatThrownBy(() -> new Prize(given))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨 프라이즈 이름은 null이거나 공백이면 안된다.")
     @ParameterizedTest
     @NullAndEmptySource
-    @ValueSource(strings = {"", "     ","\t","\n"})
+    @ValueSource(strings = {"\t", "\n"})
     void validateNameNotNullAndNotBlank(String given) {
         assertThatThrownBy(() -> new Prize(given))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

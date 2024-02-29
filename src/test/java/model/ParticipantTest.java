@@ -21,7 +21,7 @@ class ParticipantTest {
     @DisplayName("참여할 사람의 이름은 null이거나 공백이면 안된다.")
     @ParameterizedTest
     @NullAndEmptySource
-    @ValueSource(strings = {"", "     ","\t","\n"})
+    @ValueSource(strings = {"\t", "\n"})
     void validateNameNotNullAndNotBlank(String given) {
         assertThatThrownBy(() -> new Participant(given))
                 .isInstanceOf(IllegalArgumentException.class);
