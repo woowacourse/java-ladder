@@ -13,18 +13,18 @@ public class GamePrizes {
         this.prizes = gamePrizesInput;
     }
 
+    private void validate(List<String> gamePrizesInput, int availablePrizeCount) {
+        validateNotHasBlank(gamePrizesInput);
+        validateCountIsCorrespondent(gamePrizesInput.size(), availablePrizeCount);
+        validateHasOverMaximumLength(gamePrizesInput);
+    }
+
     public List<String> getPrizes() {
         return Collections.unmodifiableList(prizes);
     }
 
     public String findPrize(int prizePosition) {
         return prizes.get(prizePosition);
-    }
-
-    private void validate(List<String> gamePrizesInput, int availablePrizeCount) {
-        validateNotHasBlank(gamePrizesInput);
-        validateCountIsCorrespondent(gamePrizesInput.size(), availablePrizeCount);
-        validateHasOverMaximumLength(gamePrizesInput);
     }
 
     private void validateHasOverMaximumLength(List<String> gamePrizesInput) {
