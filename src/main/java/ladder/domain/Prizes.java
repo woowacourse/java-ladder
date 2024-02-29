@@ -16,7 +16,8 @@ public class Prizes {
 
     private void validatePrizesCount(List<String> names, int personCount) {
         if (names.size() != personCount) {
-            throw new IllegalArgumentException("상품의 개수는 참여자 인원수와 일치해야 합니다.");
+            throw new IllegalArgumentException(
+                    "상품의 개수(" + names.size() + "개)와 참여자 인원수(" + personCount + "명)는 일치해야 합니다.");
         }
     }
 
