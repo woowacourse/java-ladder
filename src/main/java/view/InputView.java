@@ -12,10 +12,7 @@ public class InputView {
         String inputString = input.get();
         validateEmpty(inputString);
         validateEndedWithComma(inputString);
-        return Arrays.stream(inputString.split(","))
-                .peek(InputView::validateEmpty)
-                .map(String::trim)
-                .toList();
+        return getPrepared(inputString);
     }
 
     private static void validateEmpty(String inputString) {
@@ -53,6 +50,10 @@ public class InputView {
         String inputString = input.get();
         validateEmpty(inputString);
         validateEndedWithComma(inputString);
+        return getPrepared(inputString);
+    }
+
+    private static List<String> getPrepared(String inputString) {
         return Arrays.stream(inputString.split(","))
                 .peek(InputView::validateEmpty)
                 .map(String::trim)
