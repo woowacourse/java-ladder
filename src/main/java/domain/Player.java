@@ -10,11 +10,11 @@ public class Player {
         this.columnPosition = columnPosition;
     }
 
-    public String getName() {
-        return playerName.getName();
+    public PlayerName getPlayerName() {
+        return playerName;
     }
 
-    public int getColumnPosition() {
-        return columnPosition.getColumnPosition();
+    public ColumnPosition getColumnPosition() {
+        return columnPosition;
     }
 }
