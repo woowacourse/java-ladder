@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.IntStream;
 
 public class Players {
     private static final String EXCEPTION_MESSAGE_DUPLICATION_NAME = "참여자들의 이름은 중복될 수 없습니다.";
@@ -16,9 +17,8 @@ public class Players {
     public Players(List<String> names) {
         validate(names);
 
-        AtomicInteger position = new AtomicInteger();
-        players = names.stream()
-                .map((String name) -> new Player(name, position.getAndIncrement()))
+        players = IntStream.range(0, names.size())
+                .mapToObj(i -> new Player(names.get(i), i))
                 .toList();
     }
 
