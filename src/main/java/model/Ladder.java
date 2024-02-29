@@ -15,8 +15,17 @@ public class Ladder {
         }
     }
 
+    public Direction findNextHorizontalPath(int horizontalPosition, int verticalPosition) {
+       return lines.get(verticalPosition)
+                .findDirection(horizontalPosition);
+    }
+
     public List<Line> getLines() {
         return lines;
+    }
+
+    public int getHeightValue() {
+        return height.getHeight();
     }
 
 }
