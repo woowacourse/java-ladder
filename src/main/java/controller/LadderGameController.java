@@ -67,7 +67,7 @@ public class LadderGameController {
 
     private String viewLadderResult(PrizeResults prizeResults) {
         String operator = repeatUntilValidInput(inputView::readPlayerForResultViewing);
-        Map<String, String> results = getResults(prizeResults.getByOperate(operator));
+        Map<String, String> results = getResults(prizeResults.getByOperator(operator));
         outputView.printPrizeResult(results);
         return operator;
     }

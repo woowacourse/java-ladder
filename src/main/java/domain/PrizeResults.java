@@ -28,12 +28,12 @@ public class PrizeResults {
         return results;
     }
 
-    public Map<Player, Prize> getByOperate(String op) {
-        validateOperate(op);
-        if (op.equals(GET_ALL_RESULT_OPERATOR)) {
+    public Map<Player, Prize> getByOperator(String operator) {
+        validateOperate(operator);
+        if (operator.equals(GET_ALL_RESULT_OPERATOR)) {
             return results;
         }
-        return getPlayerResult(op);
+        return getPlayerResult(operator);
     }
 
     private void validateOperate(String op) {
