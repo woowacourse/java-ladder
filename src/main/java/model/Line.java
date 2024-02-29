@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import java.util.stream.IntStream;
 import model.path.Path;
 
 public class Line {
@@ -22,13 +23,14 @@ public class Line {
     }
 
     private void validateContinuousPaths(final List<Path> paths) {
-        for (int i = 0; i < paths.size() - 1; i++) {
-            final Path left = paths.get(i);
-            final Path right = paths.get(i + 1);
-            if (left == Path.EXIST && right == Path.EXIST) {
-                throw new IllegalArgumentException("사다리의 경로는 연달아 있을 수 없습니다.");
-            }
-        }
+        IntStream.range(0, paths.size() - 1)
+                .forEach(i -> {
+                    final Path left = paths.get(i);
+                    final Path right = paths.get(i + 1);
+                    if (left == Path.EXIST && right == Path.EXIST) {
+                        throw new IllegalArgumentException("사다리의 경로는 연달아 있을 수 없습니다.");
+                    }
+                });
     }
 
     public List<Boolean> getExistFlags() {
