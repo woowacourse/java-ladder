@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final List<Lines> lines;
+    private final List<Line> lines;
 
     public Ladder(final LinesGenerator linesGenerator,
                   final int playerCount,
@@ -26,7 +26,7 @@ public class Ladder {
         return nextDirection;
     }
 
-    public List<Lines> getLines() {
+    public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
 }

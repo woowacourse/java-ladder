@@ -30,8 +30,8 @@ public class LadderGameTest {
         final Height height = new Height("4");
         LinesGenerator linesGenerator = new LinesGenerator() {
             @Override
-            public Lines generate(int width) {
-                return new Lines(List.of(Line.BRIDGE, Line.EMPTY, Line.BRIDGE));
+            public Line generate(int width) {
+                return new Line(List.of(Rung.BRIDGE, Rung.EMPTY, Rung.BRIDGE));
             }
         };
         final Ladder ladder = new Ladder(linesGenerator, players.getPlayersCount(), height);
@@ -52,8 +52,8 @@ public class LadderGameTest {
         final Players players = new Players(List.of("name1", "name2", "name3", "name4"));
         LinesGenerator expectedLinesGenerator = new LinesGenerator() {
             @Override
-            public Lines generate(int width) {
-                return new Lines(List.of(Line.EMPTY, Line.BRIDGE, Line.EMPTY));
+            public Line generate(int width) {
+                return new Line(List.of(Rung.EMPTY, Rung.BRIDGE, Rung.EMPTY));
             }
         };
         final Ladder ladder = new Ladder(expectedLinesGenerator, players.getPlayersCount(), new Height("3"));

@@ -1,7 +1,7 @@
 package laddergame.util;
 
-import laddergame.domain.Lines;
+import laddergame.domain.Line;
 
 public interface LinesGenerator {
-    Lines generate(int width);
+    Line generate(int width);
 }

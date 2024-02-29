@@ -1,21 +1,21 @@
 package laddergame.view;
 
-import laddergame.domain.Line;
+import laddergame.domain.Rung;
 
 public enum LineSymbol {
-    DASH("-----", Line.BRIDGE),
-    SPACE("     ", Line.EMPTY);
+    DASH("-----", Rung.BRIDGE),
+    SPACE("     ", Rung.EMPTY);
 
     private final String symbol;
-    private final Line line;
+    private final Rung rung;
 
-    LineSymbol(String symbol, Line line) {
+    LineSymbol(String symbol, Rung rung) {
         this.symbol = symbol;
-        this.line = line;
+        this.rung = rung;
     }
 
-    public static String getSymbolByLine(Line line) {
-        if (line.equals(DASH.line)) {
+    public static String getSymbolByLine(Rung rung) {
+        if (rung.equals(DASH.rung)) {
             return DASH.symbol;
         }
         return SPACE.symbol;

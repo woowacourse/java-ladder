@@ -1,18 +1,17 @@
 package laddergame.util;
 
+import laddergame.domain.Rung;
 import laddergame.domain.Line;
-import laddergame.domain.Lines;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("랜덤")
-class RandomLinesGeneratorTest {
+class RandomLineGeneratorTest {
     @Test
     @DisplayName("주어진 횟수만큼 다리가 생성되는지 확인한다.")
     public void testRandomBuildStrategy() {
@@ -22,10 +21,10 @@ class RandomLinesGeneratorTest {
         final int count = 4;
 
         //when
-        Lines canBuildBridges = randomLinesGenerator.generate(count);
+        Line canBuildBridges = randomLinesGenerator.generate(count);
 
         //then
-        assertEquals(canBuildBridges.getLines().size(), count);
+        assertEquals(canBuildBridges.getLine().size(), count);
     }
 
     @Test
@@ -37,11 +36,11 @@ class RandomLinesGeneratorTest {
         final int count = 4;
 
         //when
-        Lines canBuildBridges = randomLinesGenerator.generate(count);
+        Line canBuildBridges = randomLinesGenerator.generate(count);
 
         //then
-        IntStream.range(0, canBuildBridges.getLines().size() - 1)
-                .filter(i -> canBuildBridges.getLines().get(i).equals(Line.BRIDGE))
-                .forEach(i -> assertEquals(canBuildBridges.getLines().get(i + 1), Line.EMPTY));
+        IntStream.range(0, canBuildBridges.getLine().size() - 1)
+                .filter(i -> canBuildBridges.getLine().get(i).equals(Rung.BRIDGE))
+                .forEach(i -> assertEquals(canBuildBridges.getLine().get(i + 1), Rung.EMPTY));
     }
 }

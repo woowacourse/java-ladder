@@ -28,7 +28,7 @@ public class LadderTest {
 
         //then
         assertEquals(ladder.getLines().size(), height.getHeight());
-        assertEquals(ladder.getLines().get(0).getLines().size(), playersName.size() - 1);
+        assertEquals(ladder.getLines().get(0).getLine().size(), playersName.size() - 1);
     }
 
     @Test
@@ -38,12 +38,12 @@ public class LadderTest {
         final Height height = new Height("1");
         final List<String> playersName = List.of("name1", "name2", "name3", "name4");
         final Players players = new Players(playersName);
-        final List<Line> expected = List.of(Line.EMPTY, Line.BRIDGE, Line.EMPTY);
+        final List<Rung> expected = List.of(Rung.EMPTY, Rung.BRIDGE, Rung.EMPTY);
 
         LinesGenerator expectedLinesGenerator = new LinesGenerator() {
             @Override
-            public Lines generate(int width) {
-                return new Lines(expected);
+            public Line generate(int width) {
+                return new Line(expected);
             }
         };
 
@@ -51,7 +51,7 @@ public class LadderTest {
         Ladder ladder = new Ladder(expectedLinesGenerator, players.getPlayersCount(), height);
 
         //then
-        assertEquals(expected, ladder.getLines().get(0).getLines());
+        assertEquals(expected, ladder.getLines().get(0).getLine());
     }
 
     @Test
@@ -60,11 +60,11 @@ public class LadderTest {
         final Height height = new Height("2");
         final List<String> playersName = List.of("name1", "name2", "name3", "name4");
         final Players players = new Players(playersName);
-        final List<Line> expected = List.of(Line.EMPTY, Line.BRIDGE, Line.EMPTY);
+        final List<Rung> expected = List.of(Rung.EMPTY, Rung.BRIDGE, Rung.EMPTY);
         LinesGenerator expectedLinesGenerator = new LinesGenerator() {
             @Override
-            public Lines generate(int width) {
-                return new Lines(expected);
+            public Line generate(int width) {
+                return new Line(expected);
             }
         };
 

@@ -1,7 +1,7 @@
 package laddergame.util;
 
+import laddergame.domain.Rung;
 import laddergame.domain.Line;
-import laddergame.domain.Lines;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,27 +17,27 @@ public class RandomLinesGenerator implements LinesGenerator {
     }
 
     @Override
-    public Lines generate(final int width) {
-        List<Line> lineStatus = new ArrayList<>();
+    public Line generate(final int width) {
+        List<Rung> rungStatuses = new ArrayList<>();
 
-        lineStatus.add(randomSelectLine());
+        rungStatuses.add(randomSelectLine());
         for (int i = 0; i < width - 1; i++) {
-            Line beforeValue = lineStatus.get(lineStatus.size() -1);
-            lineStatus.add(decideNextValue(beforeValue));
+            Rung beforeValue = rungStatuses.get(rungStatuses.size() -1);
+            rungStatuses.add(decideNextValue(beforeValue));
         }
-        return new Lines(lineStatus);
+        return new Line(rungStatuses);
     }
 
-    private Line randomSelectLine() {
-        List<Line> lines = Arrays.stream(Line.values()).toList();
-        int randomIndex = random.nextInt(lines.size());
+    private Rung randomSelectLine() {
+        List<Rung> rungs = Arrays.stream(Rung.values()).toList();
+        int randomIndex = random.nextInt(rungs.size());
 
-        return lines.get(randomIndex);
+        return rungs.get(randomIndex);
     }
 
-    private Line decideNextValue(Line beforeValue) {
-        if (beforeValue.equals(Line.BRIDGE)) {
-            return Line.EMPTY;
+    private Rung decideNextValue(Rung beforeValue) {
+        if (beforeValue.equals(Rung.BRIDGE)) {
+            return Rung.EMPTY;
         }
         return randomSelectLine();
     }
