@@ -17,7 +17,6 @@ public class ResultView {
     private ResultView() {
     }
 
-    //TODO 추후의 MessageResolver와의 통합 생각해보기
     public static void printLadder(Players upperPlayers, Ladder ladder, Prizes prizes) {
         StringJoiner sj = new StringJoiner(System.lineSeparator());
         sj.add(LINE_SEPERATOR + "사다리 결과" + LINE_SEPERATOR);

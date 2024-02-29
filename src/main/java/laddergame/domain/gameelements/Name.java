@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class Name {
     private static final String ELEMENT_NAME_RULE = "[ㄱ-ㅎ가-힣a-zA-Z0-9]{1,5}";
+    // TODO 이름 name으로 바꾸기
     private final String element;
 
     public Name(String element) {

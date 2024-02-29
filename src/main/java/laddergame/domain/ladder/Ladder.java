@@ -22,7 +22,7 @@ public class Ladder {
                 .toList();
     }
 
-    public List<Integer> getResultIdx(int peopleNumber) {
+    public List<Integer> getResultIndex(int peopleNumber) {
         List<Integer> playerPositions = IntStream.range(0, peopleNumber)
                 .boxed()
                 .toList();
