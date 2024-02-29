@@ -8,12 +8,19 @@ public class InputRetryHelper {
     }
 
     public static <T> T inputRetryHelper(Supplier<T> supplier) {
-        while (true) {
-            try {
-                return supplier.get();
-            } catch (Exception e) {
-                System.out.println("[ERROR] " + e.getMessage());
-            }
+        T result = null;
+        while (result == null) {
+            result = tryExecuteSupplier(supplier);
         }
+        return result;
+    }
+
+    private static <T> T tryExecuteSupplier(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (Exception e) {
+            System.out.println("[ERROR] " + e.getMessage());
+        }
+        return null;
     }
 }
