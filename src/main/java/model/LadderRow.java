@@ -23,6 +23,7 @@ public class LadderRow {
         }
     }
 
+    // TODO 더 좋은 방법 있을 것
     public Position move(Position position) {
         if (position.getValue() > 0 && isLines.get(position.getValue() - 1).getConnected()) {
             return position.decrement();
