@@ -19,7 +19,7 @@ public class LadderGameResults {
         this.ladderGameResults = ladderGameResults;
     }
 
-    public static LadderGameResults of(Ladder ladder, Players players, GameResults gameResults) {
+    public static LadderGameResults of(final Ladder ladder, final Players players, final GameResults gameResults) {
         players.getPlayers()
                 .forEach(player -> play(ladder, player));
 
@@ -29,13 +29,13 @@ public class LadderGameResults {
                 .collect(collectingAndThen(toList(), LadderGameResults::new));
     }
 
-    private static void play(Ladder ladder, Player player) {
+    private static void play(final Ladder ladder, final Player player) {
         while (!player.escapeLadder()) {
             ladder.movePlayer(player);
         }
     }
 
-    public List<LadderGameResult> findPlayerGameResults(String playerName) {
+    public List<LadderGameResult> findPlayerGameResults(final String playerName) {
         if (playerName.equals(ALL)) {
             return unmodifiableList(ladderGameResults);
         }
@@ -43,7 +43,7 @@ public class LadderGameResults {
         return parseGameResultsWithPlayerName(playerName);
     }
 
-    private List<LadderGameResult> parseGameResultsWithPlayerName(String playerName) {
+    private List<LadderGameResult> parseGameResultsWithPlayerName(final String playerName) {
         LadderGameResult targetLadderGameResult = ladderGameResults.stream()
                 .filter(ladderGameResult -> ladderGameResult.isPlayerName(playerName))
                 .findAny()
