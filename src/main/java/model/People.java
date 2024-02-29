@@ -10,12 +10,23 @@ public class People {
 
     private People(final List<Person> personGroup) {
         validatePersonCount(personGroup.size());
+        validateDuplicatedPersonNames(personGroup);
         this.personGroup = personGroup;
     }
 
     private void validatePersonCount(final int personCount) {
         if (personCount < MIN_PERSON_COUNT) {
             throw new IllegalArgumentException("사람은 최소 2명 참가해야 합니다.");
+        }
+    }
+
+    private void validateDuplicatedPersonNames(final List<Person> personGroup) {
+        long personCount = personGroup.stream()
+                .map(Person::getPersonName)
+                .distinct()
+                .count();
+        if (personCount != personGroup.size()) {
+            throw new IllegalArgumentException("중복된 사람이름은 존재할 수 없습니다.");
         }
     }
 
