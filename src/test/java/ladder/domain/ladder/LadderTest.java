@@ -4,9 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import ladder.domain.ladder.Height;
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Stick;
 import ladder.domain.ladder.linegenerator.StickListGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -59,6 +56,18 @@ class LadderTest {
         int actual = ladder.getWidth();
 
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @DisplayName("사다리를 통해 참가한 플레이어를 구할 수 있다")
+    @Test
+    void getCountOfPlayersTest() {
+        int countOfPlayers = 3;
+        StickListGenerator stickListGenerator = count -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
+        Ladder ladder = Ladder.of(new Height(3), countOfPlayers, stickListGenerator);
+
+        int actual = ladder.getCountOfPlayers();
+
+        assertThat(actual).isEqualTo(countOfPlayers);
     }
 
     @DisplayName("특정 좌표에 스틱이 존재하는지 알 수 있다")

@@ -24,10 +24,10 @@ public class LadderGame {
     }
 
     private void validate(Ladder ladder, Players players, Products products) {
-        if (ladder.getWidth() + 1 != players.size()) {
+        if (ladder.getCountOfPlayers() != players.size()) {
             throw new IllegalArgumentException("플레이어 수와 사다리 길이가 일치하지 않습니다.");
         }
-        if (ladder.getWidth() + 1 != products.size()) {
+        if (ladder.getCountOfPlayers() != products.size()) {
             throw new IllegalArgumentException("상품 수와 사다리 길이가 일치하지 않습니다.");
         }
     }

@@ -42,4 +42,8 @@ public class Ladder {
     public int getWidth() {
         return lines.get(0).getWidth();
     }
+
+    public int getCountOfPlayers() {
+        return getWidth() + 1;
+    }
 }
