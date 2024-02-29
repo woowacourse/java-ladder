@@ -26,4 +26,32 @@ class PositionsTest {
         //then
         assertThat(nextPositions.getPositions()).containsExactly(new Position(1), new Position(0));
     }
+
+    @DisplayName("Ladder 안에 여러 개의 Line을 통해 Position을 계산한다.")
+    @Test
+    void newPositionsTestByMultipleLineLadder() {
+        //given
+        CustomLine customLine1 = new CustomLine();
+        customLine1.addCustomDirection(Direction.RIGHT);
+        customLine1.addCustomDirection(Direction.LEFT);
+
+        CustomLine customLine2 = new CustomLine();
+        customLine2.addCustomDirection(Direction.NEUTRAL);
+        customLine2.addCustomDirection(Direction.NEUTRAL);
+
+        CustomLine customLine3 = new CustomLine();
+        customLine3.addCustomDirection(Direction.RIGHT);
+        customLine3.addCustomDirection(Direction.LEFT);
+
+        int width = customLine1.getLineLength();
+        Positions nowPositions = new Positions(width);
+
+        //when
+        Positions nextPositions1 = nowPositions.calcPosition(customLine1.getLine());
+        Positions nextPositions2 = nextPositions1.calcPosition(customLine2.getLine());
+        Positions nextPosition3 = nextPositions2.calcPosition(customLine3.getLine());
+
+        //then
+        assertThat(nextPosition3.getPositions()).containsExactly(new Position(0), new Position(1));
+    }
 }

@@ -1,5 +1,7 @@
 package ladder.domain.position;
 
+import java.util.Objects;
+
 public class Position {
 
     private final int position;
@@ -10,5 +12,17 @@ public class Position {
 
     public int getPosition() {
         return this.position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Position position1 = (Position) o;
+        return Objects.equals(position, position1.position);
     }
 }
