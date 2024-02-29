@@ -19,13 +19,22 @@ public class Game {
     }
 
     public Map<String, String> run() {
-        List<Integer> pairs = IntStream.range(0, ladder.width() + 1)
+        List<Integer> pairs = calculateStartToEnd();
+
+        for (int i = 0; i < pairs.size(); i++) {
+            String name = people.getName(i);
+            String prize = prizes.getName(pairs.get(i));
+            result.put(name, prize);
+        }
+
+        return result;
+    }
+
+    List<Integer> calculateStartToEnd() {
+        return IntStream.range(0, ladder.width() + 1)
                 .map(this::calculateOne)
                 .boxed()
                 .toList();
-        IntStream.range(0, pairs.size())
-                .forEach(i -> result.put(people.getNames().get(i), prizes.getNames().get(pairs.get(i))));
-        return result;
     }
 
     int calculateOne(int startPosition) {

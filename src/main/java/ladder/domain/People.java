@@ -39,6 +39,10 @@ public class People {
         return values.size();
     }
 
+    public String getName(int index) {
+        return values.get(index).getName();
+    }
+
     public List<String> getNames() {
         return values.stream()
                 .map(Person::getName)

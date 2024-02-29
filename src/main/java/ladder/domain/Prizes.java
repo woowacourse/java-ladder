@@ -24,6 +24,10 @@ public class Prizes {
         }
     }
 
+    public String getName(int index) {
+        return values.get(index);
+    }
+
     public List<String> getNames() {
         return List.copyOf(values);
     }
