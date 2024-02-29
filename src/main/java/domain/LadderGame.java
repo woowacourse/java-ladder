@@ -53,7 +53,7 @@ public class LadderGame {
     }
 
     private void climb(Line line, List<Name> names) {
-        List<Integer> indices = line.getUnconnectedIndex();
+        List<Integer> indices = line.getConnectedIndex();
         for (int index : indices) {
             Collections.swap(names, index, index - 1);
         }

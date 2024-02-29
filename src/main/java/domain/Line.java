@@ -52,7 +52,7 @@ public class Line {
         }
     }
 
-    public List<Integer> getUnconnectedIndex() {
+    public List<Integer> getConnectedIndex() {
         return IntStream.range(0, line.size())
                 .filter(value -> line.get(value).equals(CONNECTED))
                 .boxed()

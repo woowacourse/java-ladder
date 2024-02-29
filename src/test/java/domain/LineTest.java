@@ -48,7 +48,7 @@ public class LineTest {
     @Test
     void getUnconnectedCoordinateTest() {
         Line line = new Line(List.of(1,9,2,8,4,5));
-        Assertions.assertThat(line.getUnconnectedIndex())
+        Assertions.assertThat(line.getConnectedIndex())
                 .isEqualTo(List.of(1,3,5));
     }
 }
