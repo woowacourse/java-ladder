@@ -1,5 +1,6 @@
 package ladder;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -28,5 +29,9 @@ public class Ladder {
         if (count != 1) {
             throw new IllegalArgumentException("각 줄의 크기가 다릅니다.");
         }
+    }
+
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }

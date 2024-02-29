@@ -40,7 +40,7 @@ public class Line {
         return directions.size();
     }
 
-    List<Direction> getDirections() {
+    public List<Direction> getDirections() {
         return Collections.unmodifiableList(directions);
     }
 
