@@ -20,7 +20,7 @@ public class Players {
     }
 
     public void playGame(Lines lines) {
-        players.forEach(lines::climb);
+        players.forEach(lines::moveDown);
     }
 
     public Player findByName(String name) {

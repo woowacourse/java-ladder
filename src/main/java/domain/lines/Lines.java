@@ -21,7 +21,7 @@ public class Lines {
         this.lines = new ArrayList<>();
     }
 
-    public void climb(Player player) {
+    public void moveDown(Player player) {
         getLines().forEach(line -> {
             int currPosition = player.getPosition();
             player.move(line.nextPosition(currPosition));
