@@ -65,4 +65,12 @@ class LineTest {
         assertThatThrownBy(() -> new Line(invalidRightDirections))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("두 개 미만의 방향이 주어지면 예외를 발생한다.")
+    void invalidCreationOnSmallSize() {
+        List<Direction> directions = List.of(STRAIGHT);
+        assertThatThrownBy(() -> new Line(directions))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

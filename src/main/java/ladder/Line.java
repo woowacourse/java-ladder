@@ -5,16 +5,29 @@ import java.util.stream.IntStream;
 
 public class Line {
 
+    private static final int MIN_DIRECTION_COUNT = 2;
+
     private final List<Direction> directions;
 
     public Line(List<Direction> directions) {
+        validateSize(directions);
         validateDirections(directions);
         this.directions = directions;
     }
 
-    // 어디까지 int를 쓰고, 어디부터 Index를 써야 할까?
     public Index move(Index index) {
         return directions.get(index.toInt()).apply(index);
+    }
+
+    int size() {
+        return directions.size();
+    }
+
+    // 어디까지 int를 쓰고, 어디부터 Index를 써야 할까?
+    private void validateSize(List<Direction> directions) {
+        if (directions == null || directions.size() < MIN_DIRECTION_COUNT) {
+            throw new IllegalArgumentException("올바르지 않은 방향의 개수입니다.");
+        }
     }
 
     private void validateDirections(List<Direction> directions) {
