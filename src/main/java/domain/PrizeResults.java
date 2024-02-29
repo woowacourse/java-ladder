@@ -16,7 +16,6 @@ public class PrizeResults {
     }
 
     public static PrizeResults of(Players players, Prizes prizes, Ladder ladder) {
-        validateRange(players, prizes);
         Map<Player, Prize> generated = generate(players, prizes, ladder);
         return new PrizeResults(generated);
     }
@@ -27,12 +26,6 @@ public class PrizeResults {
             results.put(players.get(i), prizes.get(ladder.getDestinationIndex(i)));
         }
         return results;
-    }
-
-    private static void validateRange(Players players, Prizes prizes) {
-        if (players.getSize() != prizes.getSize()) {
-            throw new IllegalArgumentException(String.format("실행 결과는 참여자와 같은 갯수를 입력해주세요. 입력 : %d개", prizes.getSize()));
-        }
     }
 
     public Map<Player, Prize> getByOperate(String op) {

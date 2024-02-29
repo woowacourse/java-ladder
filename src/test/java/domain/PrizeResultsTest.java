@@ -21,7 +21,7 @@ class PrizeResultsTest {
     private PrizeResults init() {
         return PrizeResults.of(
                 new Players(List.of("wiib", "pobi", "haha")),
-                new Prizes(List.of("꽝", "당첨", "꽝")),
+                Prizes.of(List.of("꽝", "당첨", "꽝"), 3),
                 new Ladder(3, new Height(3), new FixedBooleanGenerator(true)));
     }
 
@@ -31,17 +31,6 @@ class PrizeResultsTest {
         assertThatCode(this::init
         ).doesNotThrowAnyException();
 
-    }
-
-    @Test
-    @DisplayName("Players, Prizes의 Size가 다르면 예외를 발생한다.")
-    void createFailRange() {
-        assertThatCode(() -> PrizeResults.of(
-                new Players(List.of("wiib", "pobi", "haha")),
-                new Prizes(List.of("꽝", "당첨", "꽝", "5000")),
-                new Ladder(3, new Height(3), new FixedBooleanGenerator(true)))
-        ).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(String.format("실행 결과는 참여자와 같은 갯수를 입력해주세요. 입력 : %d개", 4));
     }
 
     @Test
