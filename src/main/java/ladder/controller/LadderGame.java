@@ -24,7 +24,7 @@ public class LadderGame {
         Ladder ladder = new Ladder(lines);
 
         outputView.printPeople(people);
-        outputView.printLadder(ladder, people);
+        outputView.printLadder(ladder);
     }
 
     private People createNames() {
