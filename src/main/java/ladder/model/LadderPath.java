@@ -16,8 +16,4 @@ public enum LadderPath {
     public static boolean isPathExist(LadderPath leftPath, LadderPath rightPath) {
         return leftPath.equals(RIGHT) && rightPath.equals(LEFT);
     }
-
-    public boolean isConnected() {
-        return connected;
-    }
 }
