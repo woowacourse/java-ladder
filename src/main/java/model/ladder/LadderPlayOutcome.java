@@ -13,6 +13,10 @@ public class LadderPlayOutcome {
         this.outcome = outcome;
     }
 
+    public Prize get(Player player) {
+        return outcome.get(player);
+    }
+
     public Map<Player, Prize> getOutcome() {
         return Collections.unmodifiableMap(outcome);
     }
