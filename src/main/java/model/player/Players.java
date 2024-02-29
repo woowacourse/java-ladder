@@ -43,14 +43,14 @@ public class Players {
                 .collect(collectingAndThen(toList(), Players::new));
     }
 
+    public Player findPlayer(int index) {
+        return players.get(index);
+    }
+
     public List<String> getNames() {
         return players.stream()
                 .map(Player::name)
                 .toList();
-    }
-
-    public Player findPlayer(int index) {
-        return players.get(index);
     }
 
     public int getSize() {
