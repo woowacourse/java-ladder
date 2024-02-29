@@ -26,7 +26,7 @@ public class LadderGenerator {
     }
 
     private static ConnectionStatus makeConnectionStatus(ConnectionStatus connectionStatus) {
-        if (connectionStatus.equals(ConnectionStatus.DISCONNECTION)) {
+        if (connectionStatus == ConnectionStatus.DISCONNECTION) {
             return decideConnectionStatus();
         }
         return ConnectionStatus.DISCONNECTION;

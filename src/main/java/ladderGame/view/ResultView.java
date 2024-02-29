@@ -39,7 +39,7 @@ public class ResultView {
     }
 
     private String makeConnectionStatusToString(ConnectionStatus connectionStatus) {
-        if (connectionStatus.equals(ConnectionStatus.CONNECTION)) {
+        if (connectionStatus == ConnectionStatus.CONNECTION) {
             return CONNECTION_MARK;
         }
         return DISCONNECTION_MARK;

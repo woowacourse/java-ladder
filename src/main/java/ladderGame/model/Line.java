@@ -29,17 +29,17 @@ public class Line {
     }
 
     private boolean isContinuouslyConnected(ConnectionStatus left, ConnectionStatus right) {
-        return left.equals(ConnectionStatus.CONNECTION) && left.equals(right);
+        return (left == ConnectionStatus.CONNECTION) && (left == right);
     }
 
     public int descend(int index) {
         ConnectionStatus connectionLeft = decideConnectionLeft(index);
         ConnectionStatus connectionRight = decideConnectionRight(index);
 
-        if(connectionLeft.equals(ConnectionStatus.CONNECTION)) {
+        if(connectionLeft == ConnectionStatus.CONNECTION) {
             return index - 1;
         }
-        if(connectionRight.equals(ConnectionStatus.CONNECTION)) {
+        if(connectionRight == ConnectionStatus.CONNECTION) {
             return index + 1;
         }
         return index;
