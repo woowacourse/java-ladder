@@ -11,18 +11,6 @@ public class Height {
         this.height = Integer.parseInt(inputNumber);
     }
 
-    @Override
-    public boolean equals(final Object object) {
-        if (this == object) return true;
-        if (!(object instanceof final Height height1)) return false;
-        return height == height1.height;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(height);
-    }
-
     private void validate(String inputNumber) {
         validateIsNumeric(inputNumber);
         validateSize(inputNumber);
@@ -38,6 +26,18 @@ public class Height {
         if (Integer.valueOf(inputNumber) <= 0) {
             throw new IllegalArgumentException("높이는 1 이상이여야 합니다.");
         }
+    }
+
+    @Override
+    public boolean equals(final Object object) {
+        if (this == object) return true;
+        if (!(object instanceof final Height height1)) return false;
+        return height == height1.height;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(height);
     }
 
     public int getHeight() {

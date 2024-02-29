@@ -14,18 +14,6 @@ public record Point(int row, int column) {
         };
     }
 
-    @Override
-    public boolean equals(final Object object) {
-        if (this == object) return true;
-        if (!(object instanceof final Point point)) return false;
-        return row == point.row && column == point.column;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(row, column);
-    }
-
     public static class Builder {
         private int row;
         private int column;
@@ -44,5 +32,17 @@ public record Point(int row, int column) {
         public Point build() {
             return new Point(row, column);
         }
+    }
+
+    @Override
+    public boolean equals(final Object object) {
+        if (this == object) return true;
+        if (!(object instanceof final Point point)) return false;
+        return row == point.row && column == point.column;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(row, column);
     }
 }

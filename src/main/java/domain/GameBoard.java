@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class GameBoard {
+    private static final int COLUMN_START_POSITION = 0;
     private final Players players;
     private final Ladder ladder;
     private final Rewards rewards;
@@ -40,24 +41,6 @@ public class GameBoard {
                       .toList();
     }
 
-    public Players getPlayers() {
-        return players;
-    }
-
-    public int getLadderHeight() {
-        return ladder.getHeight();
-    }
-
-
-    public Rewards getRewards() {
-        return rewards;
-    }
-
-    public Ladder getLadder() {
-        return ladder;
-    }
-
-
     private Point playGameWithStartPoint(final Point startPoint) {
         return Stream.iterate(startPoint, this::movePoint)
                      .filter(this::isPointIsEndLine)
@@ -78,12 +61,29 @@ public class GameBoard {
     }
 
     private Point getPlayerStartPoint(Player player) {
-        return new Point.Builder().column(0)
+        return new Point.Builder().column(COLUMN_START_POSITION)
                                   .row(players.getPlayerIndex(player))
                                   .build();
     }
 
     private Reward getRewardWithIndex(Integer index) {
         return rewards.getRewardAt(index);
+    }
+
+    public Players getPlayers() {
+        return players;
+    }
+
+    public int getLadderHeight() {
+        return ladder.getHeight();
+    }
+
+
+    public Rewards getRewards() {
+        return rewards;
+    }
+
+    public Ladder getLadder() {
+        return ladder;
     }
 }

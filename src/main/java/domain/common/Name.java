@@ -15,18 +15,6 @@ public class Name {
         return value;
     }
 
-    @Override
-    public boolean equals(final Object object) {
-        if (this == object) return true;
-        if (!(object instanceof final Name name)) return false;
-        return Objects.equals(value, name.value);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(value);
-    }
-
     private void validate(String inputName) {
         validateAvailableLength(inputName);
         validateBlank(inputName);
@@ -49,5 +37,17 @@ public class Name {
         if (inputName.contains(" ")) {
             throw new IllegalArgumentException("이름에 공백을 포함할 수 없습니다.");
         }
+    }
+
+    @Override
+    public boolean equals(final Object object) {
+        if (this == object) return true;
+        if (!(object instanceof final Name name)) return false;
+        return Objects.equals(value, name.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }
