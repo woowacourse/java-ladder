@@ -27,7 +27,8 @@ class NameTest {
         @DisplayName("참여자들의 이름이 범위가 벗어나면 예외가 발생한다.")
         void testInvalidNameRange(String name) {
             assertThatThrownBy(() -> new Name(name))
-                    .isInstanceOf(IllegalArgumentException.class);
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining("참가자들의 이름은 5글자를 초과할 수 없습니다.");
         }
 
         @ParameterizedTest
@@ -35,7 +36,8 @@ class NameTest {
         @DisplayName("참여자들의 이름은 영어, 숫자가 아니라면 예외가 발생한다.")
         void testInvalidNameFormat(String name) {
             assertThatThrownBy(() -> new Name(name))
-                    .isInstanceOf(IllegalArgumentException.class);
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining("참가자들의 이름은 영어, 숫자여야 합니다.");
         }
     }
 }
