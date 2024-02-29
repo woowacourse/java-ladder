@@ -2,6 +2,7 @@ package domain.result;
 
 import domain.ladder.Floor;
 import domain.ladder.Ladder;
+import domain.player.Player;
 import domain.player.Players;
 import domain.result.message.ResultExceptionMessage;
 import java.util.List;
@@ -44,18 +45,11 @@ public class LadderResults {
         return results.get(index).getResult();
     }
 
-    public int getLadderResultsSize() {
+    public int getLadderHeight() {
         return results.size();
     }
 
-    public boolean isParticipantPlayer(final String playerName) {
-        return players.isParticipate(playerName);
+    public Player getPlayerIndexOf(int index) {
+        return players.getPlayerOfIndex(index);
     }
-
-    // TODO : 위치와 이름을 갖고 있는 Player객체를 만든 뒤 BFS로 좌우만 탐색해 마지막 지점의 위치로 갱신해서 사다리 결과와 동일 index의 결과를 찾아낸다?
-//    public String findResultOf(final String playerName) {
-//        Queue<String> q = new LinkedList<>();
-//        q.add(playerName);
-//
-//    }
 }

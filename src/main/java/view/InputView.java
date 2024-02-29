@@ -60,4 +60,9 @@ public class InputView {
             throw new IllegalArgumentException(InputExceptionMessage.LADDER_RESULT_INPUT_FORMAT);
         }
     }
+
+    public String readPlayerToSeeResult() {
+        System.out.println("\n결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
+    }
 }

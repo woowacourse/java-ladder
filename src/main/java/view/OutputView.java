@@ -3,6 +3,7 @@ package view;
 import domain.ladder.Floor;
 import domain.ladder.LadderBridge;
 import domain.result.LadderResults;
+import java.util.Map;
 import java.util.StringJoiner;
 
 public class OutputView {
@@ -12,15 +13,15 @@ public class OutputView {
     private static final String JOIN_DELIMITER = " ";
     private static final String OUTPUT_FORMAT = "%5s";
 
+    public void printErrorMessage(final String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     public void printLadderResults(final LadderResults ladderResults) {
         System.out.println("\n사다리 결과\n");
         printPlayerNames(ladderResults);
         printLadder(ladderResults);
-        printExecutionResult(ladderResults);
-    }
-
-    public void printErrorMessage(final String errorMessage) {
-        System.out.println(errorMessage);
+        printLadderResult(ladderResults);
     }
 
     private void printPlayerNames(final LadderResults ladderResults) {
@@ -50,19 +51,34 @@ public class OutputView {
     }
 
     private void addBridge(final StringJoiner ladderJoiner, final LadderBridge bridge) {
-        if (bridge.isExist(bridge)) {
+        if (bridge.isExist()) {
             ladderJoiner.add(BRIDGE_EXIST);
             return;
         }
         ladderJoiner.add(BRIDGE_NONE);
     }
 
-    private void printExecutionResult(final LadderResults ladderResults) {
+    private void printLadderResult(final LadderResults ladderResults) {
         StringJoiner resultJoiner = new StringJoiner(JOIN_DELIMITER);
-        for (int i = 0; i < ladderResults.getLadderResultsSize(); i++) {
+        for (int i = 0; i < ladderResults.getLadderHeight(); i++) {
             String formattedResult = String.format(OUTPUT_FORMAT, ladderResults.getLadderResultOfIndex(i));
             resultJoiner.add(formattedResult);
         }
         System.out.println(resultJoiner);
+    }
+
+    public void printSingleClimbingLadderResult(final String result) {
+        System.out.println("\n실행 결과");
+        System.out.println(result);
+    }
+
+    public void printAllClimbingLadderResults(final Map<String, String> results) {
+        System.out.println("\n실행 결과");
+        StringBuilder builder = new StringBuilder();
+        for (Map.Entry<String, String> result : results.entrySet()) {
+            builder.append(String.format("%s : %s", result.getKey(), result.getValue()))
+                    .append("\n");
+        }
+        System.out.println(builder);
     }
 }

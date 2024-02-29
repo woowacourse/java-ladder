@@ -11,8 +11,7 @@ public class LadderGameApplication {
         OutputView outputView = new OutputView();
         RetryHandler retryHandler = initHandler(inputView, outputView);
         LadderController ladderController = new LadderController(inputView, outputView, retryHandler);
-
-        ladderController.createLadder();
+        ladderController.start();
     }
 
     private static RetryHandler initHandler(InputView inputView, OutputView outputView) {

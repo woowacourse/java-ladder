@@ -45,6 +45,10 @@ public class Players {
         return players.size();
     }
 
+    public Player getPlayerOfIndex(int index) {
+        return players.get(index);
+    }
+
     public String getNameOfIndex(final int index) {
         return players.get(index).getName();
     }

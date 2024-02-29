@@ -8,4 +8,5 @@ public class ResultExceptionMessage {
             LadderResult.MIN_RESULT_LENGTH, LadderResult.MAX_RESULT_LENGTH);
     public static final String LADDER_RESULT_BLANK = "실행 결과에 공백을 사용할 수 없습니다";
     public static final String TOTAL_RESULTS_SIZE = "참가자 수와 동일하게 실행 결과를 입력해야 합니다.";
+    public static final String NOT_PARTICIPATION_PLAYER = "참가자가 아닙니다.";
 }
