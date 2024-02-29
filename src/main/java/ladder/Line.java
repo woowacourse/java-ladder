@@ -19,7 +19,9 @@ public class Line {
         }
     }
 
+    // 어디까지 int를 쓰고, 어디부터 Index를 써야 할까?
     public int move(int index) {
-        return points.get(index).move(index);
+        Index currentIndex = Index.of(index);
+        return points.get(index).move(currentIndex).toInt();
     }
 }

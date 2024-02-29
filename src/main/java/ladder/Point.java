@@ -8,12 +8,12 @@ public class Point {
         this.direction = direction;
     }
 
-    public int move(int index) {
+    public Index move(Index index) {
         if (direction == Direction.LEFT) {
-            return index - 1;
+            return index.decrement();
         }
         if (direction == Direction.RIGHT) {
-            return index + 1;
+            return index.increment();
         }
         return index;
     }

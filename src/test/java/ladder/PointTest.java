@@ -21,9 +21,10 @@ class PointTest {
         Point straightPoint = new Point(Direction.STRAIGHT);
         Point leftPoint = new Point(Direction.LEFT);
         Point rightPoint = new Point(Direction.RIGHT);
+        Index index = Index.of(1);
         // when, then
-        assertThat(straightPoint.move(1)).isEqualTo(1);
-        assertThat(leftPoint.move(1)).isEqualTo(0);
-        assertThat(rightPoint.move(1)).isEqualTo(2);
+        assertThat(straightPoint.move(index)).isEqualTo(Index.of(1));
+        assertThat(leftPoint.move(index)).isEqualTo(Index.of(0));
+        assertThat(rightPoint.move(index)).isEqualTo(Index.of(2));
     }
 }
