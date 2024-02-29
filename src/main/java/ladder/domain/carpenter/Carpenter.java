@@ -3,7 +3,7 @@ package ladder.domain.carpenter;
 import java.util.ArrayList;
 import java.util.List;
 import ladder.domain.dto.MadeLadderDto;
-import ladder.domain.dto.StepStatusDto;
+import ladder.domain.dto.MadeLineDto;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Line;
 
@@ -27,7 +27,7 @@ public class Carpenter {
     }
 
     public MadeLadderDto getResultLadders() {
-        List<StepStatusDto> ladderStatus = ladder.stream()
+        List<MadeLineDto> ladderStatus = ladder.stream()
                 .map(Line::getSteps)
                 .toList();
 

@@ -3,7 +3,7 @@ package ladder.domain.ladder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import ladder.domain.dto.StepStatusDto;
+import ladder.domain.dto.MadeLineDto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -68,8 +68,8 @@ public class LineTest {
         void successfullyMakeStepTest(int currentSector) {
             line.buildSteps(currentSector);
 
-            StepStatusDto builtLadderDto = line.getSteps();
-            Assertions.assertThat(builtLadderDto.builtStep().get(currentSector).getBuildStatus()).isEqualTo(true);
+            MadeLineDto madeLine = line.getSteps();
+            Assertions.assertThat(madeLine.line().get(currentSector).getBuildStatus()).isEqualTo(true);
         }
     }
 }

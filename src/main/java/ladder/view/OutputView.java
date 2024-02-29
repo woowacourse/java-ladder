@@ -3,7 +3,7 @@ package ladder.view;
 import java.util.ArrayList;
 import java.util.List;
 import ladder.domain.dto.MadeLadderDto;
-import ladder.domain.dto.StepStatusDto;
+import ladder.domain.dto.MadeLineDto;
 import ladder.domain.ladder.Step;
 import ladder.domain.participant.Name;
 import ladder.view.util.LadderStepSymbol;
@@ -14,10 +14,10 @@ public class OutputView {
     private static final String LADDER_STICK_SYMBOL = "|";
 
     public void printMadeLadder(MadeLadderDto resultLadderDto, List<Name> names, List<String> gamePrizes) {
-        List<StepStatusDto> stepStatusDtos = resultLadderDto.stepStatusDtos();
+        List<MadeLineDto> madeLine = resultLadderDto.madeLine();
 
         printParticipantsNames(names);
-        printBuiltLadders(stepStatusDtos);
+        printBuiltLadders(madeLine);
         printPrizes(gamePrizes);
     }
 
@@ -41,8 +41,8 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printBuiltLadders(List<StepStatusDto> resultStepsDto) {
-        for (StepStatusDto stepStatus : resultStepsDto) {
+    private void printBuiltLadders(List<MadeLineDto> resultStepsDto) {
+        for (MadeLineDto stepStatus : resultStepsDto) {
             System.out.println(LADDERS_PREFIX + String.join(LADDER_STICK_SYMBOL, changeToViewSymbol(stepStatus)));
         }
     }
@@ -58,10 +58,10 @@ public class OutputView {
         System.out.println(e.getMessage());
     }
 
-    public List<String> changeToViewSymbol(StepStatusDto stepStatus) {
+    public List<String> changeToViewSymbol(MadeLineDto madeLines) {
         List<String> builtLadder = new ArrayList<>();
 
-        for (Step step : stepStatus.builtStep()) {
+        for (Step step : madeLines.line()) {
             builtLadder.add(LadderStepSymbol.changeStatusToSymbol(step.getBuildStatus()));
         }
 

@@ -13,8 +13,8 @@ public class Application {
         OutputView outputView = new OutputView();
         LadderGameController ladderGameController = new LadderGameController(new RandomEnergyGenerator(), inputView,
                 outputView);
-        LadderResultController ladderResultController = ladderGameController.run();
 
+        LadderResultController ladderResultController = ladderGameController.run();
         ladderResultController.showResult();
     }
 }

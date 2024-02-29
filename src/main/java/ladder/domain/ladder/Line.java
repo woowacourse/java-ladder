@@ -2,7 +2,7 @@ package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.domain.dto.StepStatusDto;
+import ladder.domain.dto.MadeLineDto;
 
 public class Line {
 
@@ -15,8 +15,8 @@ public class Line {
         this.steps = makeSteps(stepSpaceCount);
     }
 
-    public StepStatusDto getSteps() {
-        return new StepStatusDto(steps);
+    public MadeLineDto getSteps() {
+        return new MadeLineDto(steps);
     }
 
     public void buildSteps(int position) {

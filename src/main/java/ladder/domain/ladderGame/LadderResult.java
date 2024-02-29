@@ -7,42 +7,43 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import ladder.domain.dto.MadeLadderDto;
-import ladder.domain.dto.StepStatusDto;
+import ladder.domain.dto.MadeLineDto;
 
 public class LadderResult {
 
     private final Map<Integer, Integer> ladderStartEndMapping;
 
-    public LadderResult(MadeLadderDto resultStepLadderDto, int participantCount) {
-        this.ladderStartEndMapping = mapLadderPosition(resultStepLadderDto, participantCount,
-                resultStepLadderDto.stepStatusDtos().size());
+    public LadderResult(MadeLadderDto madeLadder, int stepSpaceCount) {
+        this.ladderStartEndMapping = mapLadderPosition(madeLadder, stepSpaceCount,
+                madeLadder.madeLine().size());
     }
 
     public Integer getEndPosition(int participantPosition) {
         return ladderStartEndMapping.get(participantPosition);
     }
 
-    private Map<Integer, Integer> mapLadderPosition(MadeLadderDto resultStepLadderDto,
-                                                    int totalStepAvailableCount,
-                                                    int sero) {
-        List<StepStatusDto> stepStatusDtos = resultStepLadderDto.stepStatusDtos();
-        Map<Integer, Integer> ladderMap = new HashMap<>();
-        List<Integer> initPosition = initPosition(totalStepAvailableCount);
+    private Map<Integer, Integer> mapLadderPosition(MadeLadderDto madeLadder, int stepSpaceCount,
+                                                    int lineCount) {
+        List<MadeLineDto> MadeLineDtos = madeLadder.madeLine();
 
-        for (int i = 0; i < sero; i++) {// 세로 4번 == 사람 수
-            findMapPosition(i, stepStatusDtos, totalStepAvailableCount - 1, initPosition);
+        Map<Integer, Integer> ladderMap = new HashMap<>();
+
+        List<Integer> initPosition = initPosition(stepSpaceCount);
+
+        for (int i = 0; i < lineCount; i++) {// 세로 4번 == 사람 수
+            findMapPosition(i, MadeLineDtos, stepSpaceCount - 1, initPosition);
         }
 
-        for (int k = 0; k < totalStepAvailableCount; k++) { // 가로 수
+        for (int k = 0; k < stepSpaceCount; k++) { // 가로 수
             ladderMap.put(initPosition.get(k), k);
         }
         return Collections.unmodifiableMap(ladderMap);
     }
 
-    private void findMapPosition(int startIdx, List<StepStatusDto> stepStatusDtos, int max,
+    private void findMapPosition(int startIdx, List<MadeLineDto> madeLines, int max,
                                  List<Integer> participantPosition) {
         for (int j = 0; j < max; j++) {
-            if (stepStatusDtos.get(startIdx).builtStep().get(j).getBuildStatus()) {
+            if (madeLines.get(startIdx).line().get(j).getBuildStatus()) {
                 Collections.swap(participantPosition, j, j + 1);
             }
         }
