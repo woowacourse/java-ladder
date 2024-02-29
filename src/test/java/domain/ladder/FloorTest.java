@@ -32,10 +32,10 @@ class FloorTest {
 
         //when & then
         assertAll(
-                () -> assertThat(floor.moveFrom(0)).isEqualTo(1),
-                () -> assertThat(floor.moveFrom(1)).isEqualTo(0),
-                () -> assertThat(floor.moveFrom(2)).isEqualTo(3),
-                () -> assertThat(floor.moveFrom(3)).isEqualTo(2)
+                () -> assertThat(floor.calculateResultPosition(0)).isEqualTo(1),
+                () -> assertThat(floor.calculateResultPosition(1)).isEqualTo(0),
+                () -> assertThat(floor.calculateResultPosition(2)).isEqualTo(3),
+                () -> assertThat(floor.calculateResultPosition(3)).isEqualTo(2)
         );
     }
 }

@@ -13,7 +13,7 @@ public class Ladder {
     public int moveFrom(final int startPosition) {
         int resultPosition = startPosition;
         for (final Floor floor : ladder) {
-            resultPosition = floor.moveFrom(resultPosition);
+            resultPosition = floor.calculateResultPosition(resultPosition);
         }
         return resultPosition;
     }
