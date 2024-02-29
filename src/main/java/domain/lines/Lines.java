@@ -35,7 +35,7 @@ public class Lines {
     }
 
     private List<Point> createPoints() {
-        return lineGenerator.value();
+        return lineGenerator.createPoints();
     }
 
     public List<Line> getLines() {

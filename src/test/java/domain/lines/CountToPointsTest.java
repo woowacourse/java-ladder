@@ -24,7 +24,7 @@ class CountToPointsTest {
     void testNoConsecutiveConnectedPoints(BooleanGenerator generator) {
         int personCount = 1000;
         LineGenerator countToPoints = new LineGenerator(personCount, generator);
-        Line line = new Line(countToPoints.value());
+        Line line = new Line(countToPoints.createPoints());
         List<Point> points = line.getPoints();
         int isInvalidLine = Collections.indexOfSubList(points, List.of(Point.CONNECTED, Point.CONNECTED));
 

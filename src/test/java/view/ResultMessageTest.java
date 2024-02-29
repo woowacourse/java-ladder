@@ -18,7 +18,7 @@ class ResultMessageTest {
         int personCount = 3;
         FixedGenerator generator = new FixedGenerator(true);
         LineGenerator countToPoints = new LineGenerator(personCount, generator);
-        Line line = new Line(countToPoints.value());
+        Line line = new Line(countToPoints.createPoints());
 
         String expected = "-----|     |\n";
         String actual = ResultMessage.of(line);

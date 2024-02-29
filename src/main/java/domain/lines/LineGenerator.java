@@ -15,7 +15,7 @@ public class LineGenerator {
         this.generator = generator;
     }
 
-    public List<Point> value() {
+    public List<Point> createPoints() {
         return Stream.iterate(Point.DISCONNECTED, this::nextPoint)
                 .limit(source)
                 .skip(1)
