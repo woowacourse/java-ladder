@@ -5,7 +5,8 @@ import common.exception.model.ValidationException;
 import java.util.List;
 
 public class Floor {
-    public static final String SEQUENCE_ERROR_MESSAGE = "한 층 내에서 사디리의 다리는 연속될 수 없습니다";
+    public static final String CONTINUOUS_BRIDGE_ERROR_MESSAGE = "한 층 내에서 사다리의 다리는 연속될 수 없습니다";
+
     private final List<LadderBridge> bridges;
 
     public Floor(final List<LadderBridge> bridges) {
@@ -22,7 +23,7 @@ public class Floor {
 
     private void compareBridgeStatus(final LadderBridge before, final LadderBridge now) {
         if (now.equals(before) && now.equals(LadderBridge.BRIDGE)) {
-            throw new ValidationException(SEQUENCE_ERROR_MESSAGE);
+            throw new ValidationException(CONTINUOUS_BRIDGE_ERROR_MESSAGE);
         }
     }
 

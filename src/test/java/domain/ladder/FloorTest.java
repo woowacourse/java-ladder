@@ -2,8 +2,6 @@ package domain.ladder;
 
 import common.exception.model.ValidationException;
 import domain.bridge.strategy.BridgeGeneratorStub;
-import domain.ladder.Floor;
-import domain.ladder.LadderBridge;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,6 +25,6 @@ public class FloorTest {
         Assertions.assertThatThrownBy(
                         () -> new Floor(bridgeGenerator.generate(bridgeCount)))
                 .isInstanceOf(ValidationException.class)
-                .hasMessage(Floor.SEQUENCE_ERROR_MESSAGE);
+                .hasMessage(Floor.CONTINUOUS_BRIDGE_ERROR_MESSAGE);
     }
 }
