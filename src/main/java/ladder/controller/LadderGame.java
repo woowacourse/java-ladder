@@ -18,6 +18,7 @@ public class LadderGame {
 
     public void run() {
         People people = createNames();
+        Results results = createResults();
         Height height = createHeight();
 
         List<Line> lines = createLines(people, height);
@@ -37,6 +38,15 @@ public class LadderGame {
                 .map(Name::new)
                 .toList();
         return new People(names);
+    }
+
+    private Results createResults() {
+        return retryWhileException(this::readResults);
+    }
+
+    private Results readResults() {
+        List<String> rawResults = inputView.readResults();
+        return new Results(rawResults);
     }
 
     private Height createHeight() {
