@@ -1,5 +1,6 @@
 package controller;
 
+import domain.BooleanGenerator;
 import domain.Height;
 import domain.Ladder;
 import domain.Player;
@@ -7,7 +8,6 @@ import domain.Players;
 import domain.Prize;
 import domain.PrizeResults;
 import domain.Prizes;
-import domain.booleangenerator.BooleanGenerator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Supplier;
