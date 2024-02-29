@@ -1,13 +1,16 @@
 package controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import model.bridge.RandomBridgesGenerator;
 import model.ladder.Ladder;
 import model.ladder.LadderHeight;
 import model.ladder.LadderPlayOutcome;
+import model.player.Player;
 import model.player.Players;
+import model.prize.Prize;
 import model.prize.Prizes;
 import view.InputView;
 import view.OutputView;
@@ -40,7 +43,7 @@ public class LadderGameController {
 
     public Ladder makeLadder(LadderHeight ladderHeight, Players players, Prizes prizes) {
         Ladder ladder = Ladder.of(ladderHeight, players, new RandomBridgesGenerator());
-        OutputView.printGameResultIntro();
+        OutputView.printLadderIntro();
         OutputView.printPlayerNames(players);
         OutputView.printLadder(ladder);
         OutputView.printPrizeNames(prizes);
@@ -49,9 +52,17 @@ public class LadderGameController {
 
     public void playLadder(Ladder ladder, Players players, Prizes prizes) {
         LadderPlayOutcome ladderPlayOutcome = ladder.play(players, prizes);
-        String target = InputView.askTarget();
-        while (!target.equals(END_CONDITION)) {
-            target = InputView.askTarget();
+        while (true) {
+            String target = InputView.askTarget();
+            OutputView.printLadderPlayOutcomeIntro();
+            if (target.equals(END_CONDITION)) {
+                Map<Player, Prize> outcome = ladderPlayOutcome.getOutcome(); // TODO: indent
+                OutputView.printPrizeForAllPlayers(outcome);
+                break;
+            }
+            Player player = new Player(target); // TODO: 예외 처리
+            Prize prize = ladderPlayOutcome.get(player);
+            OutputView.printPrizeForOnePlayer(prize);
         }
     }
 
