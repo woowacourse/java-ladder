@@ -8,15 +8,20 @@ import java.util.List;
 
 public class LadderController {
 
+    static final String NAME_SEPARATOR = ",";
+
     public static void main(String[] args) throws IOException {
-        final List<Name> names = makeNames();
-        final List<Name> results = makeResult();
-        validationResultsSize(names.size(), results.size());
+        OutputView.printf("참여할 사람 이름을 입력하세요. (이름은 쉼표(%s)로 구분하세요)%n", NAME_SEPARATOR);
+        final List<Name> playerNames = makeNames();
+        OutputView.printf("실행 결과를 입력하세요. (결과는 쉼표(%s)로 구분하세요)\n", NAME_SEPARATOR);
+        final List<Name> resultNames = makeNames();
+        validationResultsSize(playerNames.size(), resultNames.size());
+        OutputView.printf("최대 사다리 높이는 몇 개인가요?\n");
         final int height = InputView.readHeight();
 
-        final Ladder ladder = new Ladder(names.size(), height);
+        final Ladder ladder = new Ladder(playerNames.size(), height);
 
-        OutputView.printResult(names, ladder);
+        OutputView.printResult(playerNames, resultNames, ladder);
     }
 
     private static void validationResultsSize(final int nameSize, final int resultSize) {
@@ -26,17 +31,9 @@ public class LadderController {
     }
 
     private static List<Name> makeNames() throws IOException {
-        final List<String> names = InputView.readNames();
+        final List<String> names = InputView.readNames(NAME_SEPARATOR);
 
         return names.stream()
-                .map(Name::new)
-                .toList();
-    }
-
-    private static List<Name> makeResult() throws IOException {
-        final List<String> results = InputView.readResults();
-
-        return results.stream()
                 .map(Name::new)
                 .toList();
     }
