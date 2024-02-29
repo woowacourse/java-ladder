@@ -38,5 +38,4 @@ class LineTest {
             assertThat(rungs).containsExactly(Rung.EXIST, Rung.EMPTY, Rung.EMPTY);
         }
     }
-
 }
