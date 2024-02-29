@@ -1,9 +1,9 @@
 package domain;
 
-import static domain.Participants.Name.MAX_OF_NAME_LENGTH;
+import static domain.participants.Name.MAX_OF_NAME_LENGTH;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import domain.Participants.Name;
+import domain.participants.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

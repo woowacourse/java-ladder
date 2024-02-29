@@ -2,8 +2,8 @@ package view;
 
 import domain.ladder.Ladder;
 import domain.ladder.Line;
-import domain.Participants.Name;
-import domain.Participants.Participants;
+import domain.participants.Name;
+import domain.participants.Participants;
 import domain.result.Prize;
 import domain.result.Prizes;
 import domain.ladder.StepPoint;
