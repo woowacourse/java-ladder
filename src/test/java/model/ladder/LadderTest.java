@@ -29,7 +29,7 @@ public class LadderTest {
                 .toList();
     }
 
-    @DisplayName("참여자들에 대한 사다리 실행 결과를 얻는다")
+    @DisplayName("모든 참여자에 대한 사다리 실행 결과를 생성한다")
     @Test
     void testLadderPlayOutcomeIncludesAllParticipants() {
         Players players = Players.from(List.of("pobi", "lala"));
