@@ -15,6 +15,6 @@ public class Application {
                 outputView);
         LadderResultController ladderResultController = ladderGameController.run();
 
-        ladderResultController.checkResult();
+        ladderResultController.showResult();
     }
 }

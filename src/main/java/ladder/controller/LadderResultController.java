@@ -2,7 +2,6 @@ package ladder.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Supplier;
 import ladder.domain.dto.MadeLadderDto;
 import ladder.domain.ladderGame.LadderResult;
@@ -16,6 +15,7 @@ public class LadderResultController {
 
     private static final String KEEP_CHECK = "Y";
     private static final String STOP_CHECK = "N";
+    private static final String SEE_ALL_PARTICIPANT_COMMEND = "all";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -32,19 +32,20 @@ public class LadderResultController {
         this.gamePrizes = gamePrizes;
     }
 
-    public void checkResult() {
+    public void showResult() {
         boolean endOrNotChoice = repeatUntilValid(this::isEndOrNot);
 
         if (endOrNotChoice) {
-            checkParticipant();
+            chooseParticipant();
+            showResult();
         }
     }
 
-    private void checkParticipant() {
+    private void chooseParticipant() {
         String participantChoice = inputView.getSeeResultParticipant();
-        if (Objects.equals(participantChoice, "all")) {
+
+        if (SEE_ALL_PARTICIPANT_COMMEND.equals(participantChoice)) {
             outputView.printAllResult(participants.getNames(), findAllPrizes());
-            checkResult();
             return;
         }
 
@@ -54,16 +55,15 @@ public class LadderResultController {
         } catch (IllegalArgumentException e) {
             outputView.printError(e);
         }
-        checkResult();
     }
 
     private List<String> findAllPrizes() {
-        List<String> prizes = new ArrayList<>();
+        List<String> foundPrize = new ArrayList<>();
 
         for (Name name : participants.getNames()) {
-            prizes.add(findPrize(name));
+            foundPrize.add(findPrize(name));
         }
-        return prizes;
+        return foundPrize;
     }
 
     private String findPrize(Name name) {
@@ -74,6 +74,7 @@ public class LadderResultController {
 
     private boolean isEndOrNot() {
         String inputChoice = inputView.getEndOrNotChoice();
+
         if (inputChoice.equals(KEEP_CHECK)) {
             return true;
         }
