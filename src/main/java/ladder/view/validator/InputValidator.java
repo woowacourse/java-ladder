@@ -19,7 +19,8 @@ public class InputValidator {
         validateInputBlank(input);
 
         if (hasInvalidName(input)) {
-            throw new IllegalArgumentException("참여할 사람의 이름이 'all' 일 수 없습니다.");
+            throw new IllegalArgumentException(
+                    String.format("참여할 사람의 이름이 '%s' 일 수 없습니다.", Command.EXPRESSION_OF_ALL_PLAYER.getExpression()));
         }
     }
 

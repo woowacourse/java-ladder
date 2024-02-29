@@ -12,4 +12,8 @@ public enum Command {
     public boolean isMatch(final String name) {
         return this.expression.equals(name);
     }
+
+    public String getExpression() {
+        return expression;
+    }
 }
