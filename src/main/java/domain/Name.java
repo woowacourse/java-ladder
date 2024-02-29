@@ -31,7 +31,7 @@ public class Name {
 
     private void validateForbidName(String name) {
         if (Command.contains(name)) {
-            throw new IllegalArgumentException("[ERROR] " + Command.getCommandToString() + "는 이름이 될 수 없습니다.");
+            throw new IllegalArgumentException(NameExceptionMessage.DISALLOWED_NAME.getExceptionMessage());
         }
     }
 

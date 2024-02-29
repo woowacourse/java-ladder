@@ -1,5 +1,7 @@
 package domain;
 
+import constant.domain.ResultExceptionMessage;
+
 import java.util.List;
 
 public class Result {
@@ -15,7 +17,7 @@ public class Result {
 
     void validateNumberOfPrize(List<String> prizes, int numberOfPrize) {
         if (prizes.size() != numberOfPrize) {
-            throw new IllegalArgumentException("결과의 개수가 참여자의 인원수와 다릅니다.");
+            throw new IllegalArgumentException(ResultExceptionMessage.NOT_SAME_COUNT.getExceptionMessage());
         }
     }
 

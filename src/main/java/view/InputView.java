@@ -45,7 +45,7 @@ public class InputView {
 
     private void validatePrizes(String prizes) {
         if (FINISH_WITH_DELIMITER_REGEX.matcher(prizes).matches()) {
-            throw new IllegalArgumentException("[ERROR] 마지막 결과가 존재하지 않습니다.");
+            throw new IllegalArgumentException(InputViewExceptionMessage.NO_LAST_PRIZE.getExceptionMessage());
         }
     }
 

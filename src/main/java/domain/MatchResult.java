@@ -1,5 +1,7 @@
 package domain;
 
+import constant.domain.MatchResultExceptionMessage;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +24,7 @@ public class MatchResult {
     public Prize getResultByName(Name name) {
         Prize result = matchResult.get(name);
         if (result == null) {
-            throw new IllegalArgumentException("[ERROR] 존재하지 않는 사용자입니다.");
+            throw new IllegalArgumentException(MatchResultExceptionMessage.NO_MATCHING_NAME.getExceptionMessage());
         }
         return matchResult.get(name);
     }

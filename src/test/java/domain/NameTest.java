@@ -33,7 +33,7 @@ public class NameTest {
     void forbidNameExceptionTest(String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] all 또는 exit는 이름이 될 수 없습니다.");
+                .hasMessage(NameExceptionMessage.DISALLOWED_NAME.getExceptionMessage());
     }
 
 }

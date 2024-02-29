@@ -1,5 +1,6 @@
 package domain;
 
+import constant.domain.ResultExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +19,7 @@ public class ResultTest {
 
         assertThatThrownBy(() -> new Result(prizes, 4))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("결과의 개수가 참여자의 인원수와 다릅니다.");
+                .hasMessage(ResultExceptionMessage.NOT_SAME_COUNT.getExceptionMessage());
     }
 
     @Test
@@ -27,10 +28,10 @@ public class ResultTest {
         List<String> prizes = List.of("1", "10", "100", "1000");
         Result prize = new Result(prizes, 4);
 
-        assertAll(() -> assertEquals(prize.getPrizeOf(0), "1"),
-                () -> assertEquals(prize.getPrizeOf(1), "10"),
-                () -> assertEquals(prize.getPrizeOf(2), "100"),
-                () -> assertEquals(prize.getPrizeOf(3), "1000"));
+        assertAll(() -> assertEquals(prize.getPrizeOf(0), new Prize("1")),
+                () -> assertEquals(prize.getPrizeOf(1), new Prize("10")),
+                () -> assertEquals(prize.getPrizeOf(2), new Prize("100")),
+                () -> assertEquals(prize.getPrizeOf(3), new Prize("1000")));
     }
 
 }

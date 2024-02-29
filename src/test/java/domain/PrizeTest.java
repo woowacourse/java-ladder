@@ -1,5 +1,6 @@
 package domain;
 
+import constant.domain.PrizeExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -14,7 +15,7 @@ public class PrizeTest {
     void noPrizeExceptionTest(String prize) {
         assertThatThrownBy(() -> new Prize(prize))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 결과가 없습니다.");
+                .hasMessage(PrizeExceptionMessage.NO_PRIZE.getExceptionMessage());
     }
 
 }
