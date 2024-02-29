@@ -36,38 +36,6 @@ public class LadderGame {
         }
     }
 
-    private void showResult() {
-        String who = inputView.readWho();
-        if (Command.contains(who)) {
-            showResultByCommand(who);
-            return;
-        }
-        showResultByName(who);
-    }
-
-    private void showResultByName(String who) {
-        try {
-            Name name = new Name(who);
-            Prize prize = matchResult.getResultByName(name);
-            outputView.printOneResult(prize);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    private void showResultByCommand(String who) {
-        if (Objects.equals(who, Command.EXIT.getCommand())) {
-            System.exit(0);
-        }
-        if (Objects.equals(who, Command.ALL.getCommand())) {
-            showResultAll();
-        }
-    }
-
-    private void showResultAll() {
-        outputView.printAllResult(matchResult.getResultAll());
-    }
-
     private Participants recruitParticipants() {
         try {
             List<String> names = inputView.readNames();
@@ -96,5 +64,37 @@ public class LadderGame {
             System.out.println(e.getMessage());
             return makeLadder();
         }
+    }
+
+    private void showResult() {
+        String who = inputView.readWho();
+        if (Command.contains(who)) {
+            showResultByCommand(who);
+            return;
+        }
+        showResultByName(who);
+    }
+
+    private void showResultByCommand(String who) {
+        if (Objects.equals(who, Command.EXIT.getCommand())) {
+            System.exit(0);
+        }
+        if (Objects.equals(who, Command.ALL.getCommand())) {
+            showResultAll();
+        }
+    }
+
+    private void showResultByName(String who) {
+        try {
+            Name name = new Name(who);
+            Prize prize = matchResult.getResultByName(name);
+            outputView.printOneResult(prize);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void showResultAll() {
+        outputView.printAllResult(matchResult.getResultAll());
     }
 }

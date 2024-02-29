@@ -38,8 +38,4 @@ public class Participants {
     public int getParticipantsCount() {
         return names.size();
     }
-
-    public Name getNameOf(int indexOfName) {
-        return names.get(indexOfName);
-    }
 }

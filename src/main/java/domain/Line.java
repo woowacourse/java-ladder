@@ -35,12 +35,20 @@ public class Line {
     }
 
     public int findNextLocation(int presentLocation) {
-        if (presentLocation > 0 && stepPoints.get(presentLocation - 1) == StepPoint.PRESENT) {
+        if (canMoveToLeft(presentLocation)) {
             return presentLocation - 1;
         }
-        if (presentLocation < stepPoints.size() && stepPoints.get(presentLocation) == StepPoint.PRESENT) {
+        if (canMoveToRight(presentLocation)) {
             return presentLocation + 1;
         }
         return presentLocation;
+    }
+
+    private boolean canMoveToLeft(int presentLocation) {
+        return presentLocation > 0 && stepPoints.get(presentLocation - 1) == StepPoint.PRESENT;
+    }
+
+    private boolean canMoveToRight(int presentLocation) {
+        return presentLocation < stepPoints.size() && stepPoints.get(presentLocation) == StepPoint.PRESENT;
     }
 }
