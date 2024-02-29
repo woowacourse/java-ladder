@@ -13,9 +13,10 @@ public class Ladder {
 
     public Ladder(Height height, int playerSize, SticksGenerator sticksGenerator) {
         this.height = height;
+        int stickCount = playerSize - 1;
 
         for (int i = 0; i < height.getHeight(); i++) {
-            List<Stick> sticks = sticksGenerator.generate(playerSize);
+            List<Stick> sticks = sticksGenerator.generate(stickCount);
             this.lines.add(new Line(sticks));
         }
     }
