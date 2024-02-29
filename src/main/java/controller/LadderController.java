@@ -31,14 +31,14 @@ public class LadderController {
     }
 
     private void printResult(final LadderResult ladderResult, final Players players) {
-        var playerNames = new HashSet<>(players.getPlayerNames());
+        Set<Player> playerNames = new HashSet<>(players.getPlayerNames());
         while (!playerNames.isEmpty()) {
             readNameAndPrintResult(ladderResult, playerNames);
         }
     }
 
     private void readNameAndPrintResult(final LadderResult ladderResult, final Set<Player> playerNames) {
-        var name = inputView.readPlayerNameToCheckPrize();
+        String name = inputView.readPlayerNameToCheckPrize();
         if (ladderResult.isCmdAllResult(name)) {
             outputView.printAllPlayerResult(ladderResult.playersPrizeResults());
             playerNames.clear();

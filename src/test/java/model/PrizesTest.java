@@ -15,7 +15,7 @@ class PrizesTest {
     @DisplayName("정상적으로 실행 결과 객체를 생성한다.")
     void createResult() {
         List<String> values = List.of("꽝", "5000", "꽝", "1000");
-        var personCount = 4;
+        int personCount = 4;
         Assertions.assertThatCode(() -> Prizes.of(values, personCount))
                 .doesNotThrowAnyException();
     }

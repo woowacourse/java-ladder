@@ -11,7 +11,7 @@ class LadderPrizesTest {
     @DisplayName("존재하지 않는 참여자의 결과를 요청하면 예외가 발생한다.")
     void createInvalidNameRequest() {
         //given
-        var ladderResult = LadderResult.of(List.of("reddy", "anna"), List.of("당첨", "꽝"));
+        LadderResult ladderResult = LadderResult.of(List.of("reddy", "anna"), List.of("당첨", "꽝"));
 
         //when & then
         Assertions.assertThatThrownBy(() -> ladderResult.getPrize("brown"))

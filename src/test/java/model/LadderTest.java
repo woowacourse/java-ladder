@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.strategy.BuildStrategy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ class LadderTest {
     void createFormattedLadder() {
         //given
         int personCount = 5;
-        var height = new Height(4);
+        Height height = new Height(4);
 
         List<String> expected = List.of("|     |     |     |     |",
                 "|     |     |     |     |",
@@ -91,7 +92,7 @@ class LadderTest {
     }
 
     static Ladder createNothingBuildLadder(Height height, int personCount) {
-        var buildStrategy = new NothingBuildStrategy();
+        BuildStrategy<LadderStatus> buildStrategy = new NothingBuildStrategy();
 
         List<Line> lines = new ArrayList<>();
 
@@ -103,8 +104,8 @@ class LadderTest {
     }
 
     static Ladder createZigZagBuildLadder(Height height, int personCount) {
-        var evenBuildStrategy = new ZigZagStartTrueBuildStrategy();
-        var oddBuildStrategy = new ZigZagStartFalseBuildStrategy();
+        BuildStrategy<LadderStatus> evenBuildStrategy = new ZigZagStartTrueBuildStrategy();
+        BuildStrategy<LadderStatus> oddBuildStrategy = new ZigZagStartFalseBuildStrategy();
 
         List<Line> lines = new ArrayList<>();
 

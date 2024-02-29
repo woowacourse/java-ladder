@@ -17,8 +17,8 @@ class PrizeTest {
     @DisplayName("같은 이름인 경우 같은 상품 객체이다.")
     void createSamePrize() {
         //given
-        var prize1 = new Prize("10000");
-        var prize2 = new Prize("10000");
+        Prize prize1 = new Prize("10000");
+        Prize prize2 = new Prize("10000");
 
         //when & then
         Assertions.assertThat(prize1).isEqualTo(prize2);

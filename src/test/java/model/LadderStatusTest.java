@@ -12,7 +12,7 @@ class LadderStatusTest {
     @ValueSource(booleans = {false, true})
     void createStep(boolean isConnected) {
         //give & when
-        var step = LadderStatus.from(isConnected);
+        LadderStatus step = LadderStatus.from(isConnected);
 
         //then
         Assertions.assertThat(step.isConnected()).isEqualTo(isConnected);

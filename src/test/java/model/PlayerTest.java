@@ -36,7 +36,7 @@ class PlayerTest {
     @ValueSource(strings = {"reddy ", " reddy", " reddy "})
     void createContainsSpaceName(String name) {
         //given
-        var player = new Player(name);
+        Player player = new Player(name);
 
         //when & then
         Assertions.assertThat(player.name()).isEqualTo(name.trim());
