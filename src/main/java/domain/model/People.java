@@ -43,5 +43,8 @@ public class People {
             throw new IllegalStateException("중복된 이름은 허용하지 않습니다.");
         }
     }
-
+    public String getNameByOrder(int order){
+        Person person = participants.get(order);
+        return person.getName();
+    }
 }
