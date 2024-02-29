@@ -55,13 +55,22 @@ public class LadderGameController {
 
     private void showLadder(Ladder ladder, Players players, Prizes prizes) {
         OutputView.printLadderIntro();
+        showPlayerNames(players);
+        showLadderLines(ladder);
+        showPrizeNames(prizes);
+    }
 
+    private void showPlayerNames(Players players) {
         List<String> playerNames = players.getPlayerNames();
         OutputView.printPlayerNames(playerNames);
+    }
 
+    private void showLadderLines(Ladder ladder) {
         List<LineState> lines = ladder.captureLadderLines();
         OutputView.printLadderLines(lines);
+    }
 
+    private void showPrizeNames(Prizes prizes) {
         List<String> prizeNames = prizes.getPrizeNames();
         OutputView.printPrizeNames(prizeNames);
     }
