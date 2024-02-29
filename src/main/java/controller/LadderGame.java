@@ -1,6 +1,7 @@
 package controller;
 
 import dto.LadderInfo;
+import dto.Result;
 import java.util.List;
 import model.Items;
 import model.Ladder;
@@ -25,6 +26,8 @@ public class LadderGame {
 
         final LadderInfo ladderInfo = LadderInfo.from(people, ladder, items);
         outputView.printLadderInfo(ladderInfo);
+
+        final Result result = Result.from(people, ladder, items);
     }
 
     private People initPeople() {

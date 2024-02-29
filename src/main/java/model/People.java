@@ -25,6 +25,11 @@ public class People {
         return new People(personGroup);
     }
 
+    public String findNameBy(int index) {
+        Person person = personGroup.get(index);
+        return person.getName();
+    }
+
     public List<String> getNames() {
         return personGroup.stream()
                 .map(Person::getName)
