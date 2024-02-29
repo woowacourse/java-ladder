@@ -1,6 +1,7 @@
 package ladder.domain;
 
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Game {
 
@@ -20,10 +21,12 @@ public class Game {
         return results.find(resultPosition);
     }
 
-    public List<String> playAll() {
-        return people.getNames()
-                .stream()
-                .map(this::play)
-                .toList();
+    public Map<Name, String> playAll() {
+        Map<Name, String> results = new LinkedHashMap<>();
+        for (Name name : people.getNames()) {
+            String result = play(name);
+            results.put(name, result);
+        }
+        return results;
     }
 }
