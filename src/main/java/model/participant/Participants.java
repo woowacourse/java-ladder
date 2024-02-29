@@ -6,7 +6,6 @@ import model.position.Position;
 import java.util.*;
 
 public class Participants {
-    public static final String ENTIRE = "all";
 
     private static final String DUPLICATED_PARTICIPANT_NAME = "중복된 참가자들은 존재할 수 없습니다.";
     private static final String UNDER_PARTICIPANT_SIZE = "참가자가 1명 이하인 경우는 존재할 수 없습니다.";

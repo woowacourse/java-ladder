@@ -33,7 +33,7 @@ public class LadderController {
 
     private void play(LadderGame ladderGame) throws IOException {
         String participantName = inputView.inputParticipantName();
-        while (!participantName.equals(Participants.ENTIRE)) {
+        while (!participantName.equals(InputView.ENTIRE_PARTICIPANTS)) {
             outputView.printParticipantResult(ladderGame.matchResult(new Participant(participantName)));
             participantName = inputView.inputParticipantName();
         }
