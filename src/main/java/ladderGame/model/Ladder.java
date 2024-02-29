@@ -2,13 +2,21 @@ package ladderGame.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(int maxHeight, int personNumber) {
-        lines = Stream.generate(() -> new Line(new RandomBooleanGenerator(), personNumber)).limit(maxHeight).toList();
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
+    public int findLadderResultPosition(int position) {
+        int resultPosition = position;
+        for (Line line : lines) {
+            resultPosition = line.findNextPosition(resultPosition);
+        }
+
+        return resultPosition;
     }
 
     public List<Line> getLines() {

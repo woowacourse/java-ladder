@@ -1,35 +1,31 @@
 package ladderGame.model;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LineTest {
     @Test
-    @DisplayName("연속으로 True를 가질 수 없다.")
+    @DisplayName("연속으로 줄이 연결되어 있을 시 예외처리 된다.")
     void notConsecutiveDraw() {
-        Line line = new Line(new BooleanGenerator() {
-            @Override
-            public boolean generate() {
-                return true;
-            }
-        }, 5);
+        assertThatThrownBy(() -> new Line(List.of(ConnectionStatus.CONNECTION, ConnectionStatus.CONNECTION)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
-        List<ConnectionStatus> isConnections = line.getConnectionStatuses();
+    @Test
+    @DisplayName("해당 위치에서 연결된 길 최종 위치를 알려준다.")
+    void checkConnectionAndFindMovePosition() {
+        Line line = new Line(List.of(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION));
 
-        boolean isConsecutive = false;
-        for (int i = 1; i < isConnections.size(); i++) {
-            if (isConnections.get(i).equals(ConnectionStatus.CONNECTION) && isConnections.get(i - 1).equals(ConnectionStatus.CONNECTION)) {
-                isConsecutive = true;
-                break;
-            }
-        }
-
-        assertFalse(isConsecutive);
+        assertAll(
+                () -> assertEquals(line.findNextPosition(0), 1),
+                () -> assertEquals(line.findNextPosition(1), 0),
+                () -> assertEquals(line.findNextPosition(2), 2)
+        );
     }
 }

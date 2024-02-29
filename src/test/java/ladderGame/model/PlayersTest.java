@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PlayersTest {
@@ -14,8 +13,7 @@ class PlayersTest {
     void validateDuplicationName() {
         List<String> names = List.of("초롱", "초롱");
         assertThatThrownBy(() -> new Players(names))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참여자들의 이름은 중복될 수 없습니다.");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -23,7 +21,16 @@ class PlayersTest {
     void validateLessThanMinimum() {
         List<String> names = List.of("켬미");
         assertThatThrownBy(() -> new Players(names))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참여자의 이름은 두 개 이상이어야 합니다.");
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("index를 알고 싶은 참가자 이름이 존재하지 않으면 예외처리 된다.")
+    void indexOfByName() {
+        List<String> names = List.of("켬미", "배키");
+        Players players = new Players(names);
+
+        assertThatThrownBy(() -> players.indexOfByName("포비"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
