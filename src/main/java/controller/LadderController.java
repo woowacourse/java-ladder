@@ -22,7 +22,7 @@ public class LadderController {
 
     public void run() {
         Players players = new Players(inputView.readPlayersName());
-        Prizes prizes = Prizes.of(inputView.readResult(), players.size());
+        Prizes prizes = Prizes.of(inputView.readPrizes(), players.size());
         Height height = new Height(inputView.readHeight());
         Ladder ladder = Ladder.of(height, players.size());
 

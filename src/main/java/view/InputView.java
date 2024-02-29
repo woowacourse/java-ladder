@@ -66,14 +66,14 @@ public class InputView {
         }
     }
 
-    public List<String> readResult() {
+    public List<String> readPrizes() {
         System.out.println(RESULT_REQUEST_MESSAGE);
-        String rawResult = scanner.nextLine();
-        validateBlank(rawResult);
-        validateSeparators(rawResult);
-        List<String> result = List.of(rawResult.split(SEPARATOR, -1));
+        String rawPrizes = scanner.nextLine();
+        validateBlank(rawPrizes);
+        validateSeparators(rawPrizes);
+        List<String> prizes = List.of(rawPrizes.split(SEPARATOR, -1));
         System.out.println();
-        return result;
+        return prizes;
     }
 
     public String readPlayerNameToCheckPrize() {

@@ -11,9 +11,9 @@ public class Prizes {
         this.prizeValues = prizeValues;
     }
 
-    public static Prizes of(final List<String> values, final int personCount) {
-        validate(values, personCount);
-        List<Prize> prizes = values.stream()
+    public static Prizes of(final List<String> prizeNames, final int personCount) {
+        validate(prizeNames, personCount);
+        List<Prize> prizes = prizeNames.stream()
                 .map(Prize::new)
                 .toList();
         return new Prizes(prizes);
