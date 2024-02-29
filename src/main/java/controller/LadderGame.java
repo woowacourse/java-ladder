@@ -20,16 +20,10 @@ public class LadderGame {
         final Ladder ladder = Ladder.createByStrategy(randomBridgeGenerator, height.getValue(), names.count());
         final PlayerResults playerResults = PlayerResults.of(names, ladder, results);
 
-        printLadderResult(names, ladder, results);
+        outputView.printLadderResult(names, ladder, results);
         printPlayerResultsUntilTerminate(playerResults);
     }
 
-    private void printLadderResult(final Names names, final Ladder ladder, final Results results) {
-        outputView.printLadderResultMessage();
-        outputView.printNames(names.getValues());
-        outputView.printLadder(ladder.getLines());
-        outputView.printResults(results.getValues());
-    }
 
     private void printPlayerResultsUntilTerminate(final PlayerResults playerResults) {
         String target = inputView.readTarget();
@@ -48,7 +42,7 @@ public class LadderGame {
     private void printAllPlayerResults(final PlayerResults playerResults) {
         outputView.printPlayerResultMessage();
         for (final Map.Entry<Name, Result> entry : playerResults.getPlayerResults().entrySet()) {
-            outputView.printPlayerResult(entry.getKey().getValue(),entry.getValue().getValue());
+            outputView.printPlayerResult(entry.getKey().getValue(), entry.getValue().getValue());
         }
     }
 

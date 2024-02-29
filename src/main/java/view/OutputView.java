@@ -1,9 +1,6 @@
 package view;
 
-import domain.Bridge;
-import domain.Line;
-import domain.Name;
-import domain.Result;
+import domain.*;
 
 import java.util.List;
 import java.util.StringJoiner;
@@ -25,11 +22,18 @@ public class OutputView {
         return instance;
     }
 
-    public void printLadderResultMessage() {
+    public void printLadderResult(final Names names, final Ladder ladder, final Results results) {
+        printLadderResultMessage();
+        printNames(names.getValues());
+        printLadder(ladder.getLines());
+        printResults(results.getValues());
+    }
+
+    private void printLadderResultMessage() {
         System.out.println(System.lineSeparator() + "사다리 결과");
     }
 
-    public void printNames(List<Name> names) {
+    private void printNames(List<Name> names) {
         StringJoiner nameJoiner = new StringJoiner(DELIMITER);
         for (final Name name : names) {
             nameJoiner.add(String.format("%5s", name.getValue()));
@@ -37,7 +41,7 @@ public class OutputView {
         System.out.println(System.lineSeparator() + nameJoiner);
     }
 
-    public void printLadder(List<Line> lines) {
+    private void printLadder(List<Line> lines) {
         StringJoiner lineJoiner = new StringJoiner(System.lineSeparator());
         for (final Line line : lines) {
             lineJoiner.add(makeLineView(line));
@@ -45,7 +49,7 @@ public class OutputView {
         System.out.println(lineJoiner);
     }
 
-    public void printResults(List<Result> results) {
+    private void printResults(List<Result> results) {
         StringJoiner nameJoiner = new StringJoiner(DELIMITER);
         for (final Result result : results) {
             nameJoiner.add(String.format("%5s", result.getValue()));
