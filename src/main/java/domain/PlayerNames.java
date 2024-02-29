@@ -4,6 +4,7 @@ import static message.ErrorMessage.INVALID_PLAYER_COUNT_EXCEPTION;
 import static message.ErrorMessage.OVERLAP_PAYER_NAME_EXCEPTION;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class PlayerNames {
 
@@ -35,12 +36,10 @@ public class PlayerNames {
     }
 
     public int getPlayerNameOrderNumber(String name) {
-        for (int i = 0; i < playerNames.size(); i++) {
-            if (playerNames.get(i).getName().equals(name)) {
-                return i;
-            }
-        }
-        return -1;
+        return IntStream.range(0, playerNames.size())
+                .filter(i -> playerNames.get(i).getName().equals(name))
+                .findFirst()
+                .orElse(-1);
     }
 
     public boolean isExistPlayer(String name) {
