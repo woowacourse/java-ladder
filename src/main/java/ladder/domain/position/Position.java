@@ -23,6 +23,6 @@ public class Position {
             return false;
         }
         Position position1 = (Position) o;
-        return Objects.equals(position, position1.position);
+        return Objects.equals(this.position, position1.position);
     }
 }
