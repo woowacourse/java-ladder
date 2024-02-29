@@ -34,6 +34,17 @@ public class Players {
         }
     }
 
+    public String getNameByIndex(int index) {
+        validateIndex(index);
+        return players.get(index).getName();
+    }
+
+    private void validateIndex(int index) {
+        if (index < 0 || index >= players.size()) {
+            throw new IllegalArgumentException("인덱스를 벗어납니다.");
+        }
+    }
+
     public List<String> getNames() {
         return players.stream()
                 .map(Player::getName)

@@ -67,4 +67,23 @@ class PlayersTest {
         assertThatThrownBy(() -> players.findIndexByName("jazz"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("플레이어의 인덱스에 해당하는 이름을 올바르게 반환한다.")
+    void findByIndexTest() {
+        // given
+        Players players = new Players(List.of("aru", "pobi", "woowa"));
+        // when, then
+        assertThat(players.getNameByIndex(0)).isEqualTo("aru");
+    }
+
+    @Test
+    @DisplayName("플레이어의 인덱스가 범위를 벗어나면 예외를 발생한다.")
+    void findByIndexOutOfRangeTest() {
+        // given
+        Players players = new Players(List.of("aru", "pobi", "woowa"));
+        // when, then
+        assertThatThrownBy(() -> players.getNameByIndex(3))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
