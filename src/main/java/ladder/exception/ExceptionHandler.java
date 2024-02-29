@@ -12,7 +12,7 @@ public class ExceptionHandler {
         this.outputView = outputView;
     }
 
-    public  <T> T retryOnException(final Supplier<T> retryOperation) {
+    public <T> T retryOnException(final Supplier<T> retryOperation) {
         boolean retry = true;
         Optional<T> result = Optional.empty();
         while (retry) {

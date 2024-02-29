@@ -52,7 +52,7 @@ public class OutputView {
     }
 
     private String determinePathShape(final Path path) {
-        if(path.isExist()) {
+        if (path.isExist()) {
             return PATH_EXIST;
         }
         return PATH_EMPTY;

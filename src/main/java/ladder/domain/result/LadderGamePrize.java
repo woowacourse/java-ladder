@@ -19,7 +19,7 @@ public class LadderGamePrize {
     public GameResults calculdateGameResults(final Participants participants) {
         final Map<String, String> results = new HashMap<>();
         final Map<Participant, Integer> participantsWitPosition = participants.getParticipantsWithPosition();
-        for (final var participantWithPosition: participantsWitPosition.entrySet()) {
+        for (final var participantWithPosition : participantsWitPosition.entrySet()) {
             final Participant participant = participantWithPosition.getKey();
             final int position = participantWithPosition.getValue();
             final String prize = values.get(position);

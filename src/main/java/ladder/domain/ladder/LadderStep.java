@@ -18,7 +18,7 @@ public final class LadderStep {
     private List<Path> correctLadderPaths(List<Path> ladderPaths) {
         final List<Path> correctedLadderPaths = new ArrayList<>();
         Path prevPath = EMPTY;
-        for (Path currentPath: ladderPaths) {
+        for (Path currentPath : ladderPaths) {
             final Path correctedPath = correctPath(prevPath, currentPath);
             correctedLadderPaths.add(correctedPath);
             prevPath = correctedPath;
@@ -27,7 +27,7 @@ public final class LadderStep {
     }
 
     private Path correctPath(final Path prevPath, final Path currentPath) {
-        if(prevPath.equals(EMPTY)) {
+        if (prevPath.equals(EMPTY)) {
             return currentPath;
         }
         return EMPTY;

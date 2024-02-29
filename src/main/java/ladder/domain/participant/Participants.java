@@ -41,7 +41,7 @@ public class Participants {
     }
 
     public void playAll(final Ladder ladder) {
-        for (final var entry: participantsWithPosition.entrySet()) {
+        for (final var entry : participantsWithPosition.entrySet()) {
             final Participant participant = entry.getKey();
             final int finalPosition = ladder.playFrom(entry.getValue());
             participantsWithPosition.put(participant, finalPosition);
