@@ -14,7 +14,6 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class GameController {
     private static final String ALL_COMMAND = "all";
@@ -25,8 +24,8 @@ public class GameController {
         Height height = new Height(InputView.inputHeight());
         Ladder ladder = new Ladder(height, players.getPlayerCount(), new RandomDirectionGenerator());
         GameBoard gameBoard = new GameBoard(players, ladder, rewards);
+        OutputView.printGameBoard(gameBoard);
 
-        printGameBoard(gameBoard);
         processGameResults(gameBoard);
     }
 
@@ -43,7 +42,6 @@ public class GameController {
                 break;
             }
             processSinglePlayer(gameBoard, playerName);
-
         }
     }
 
@@ -60,24 +58,4 @@ public class GameController {
     }
 
 
-    private void printGameBoard(GameBoard gameBoard) {
-        printPlayer(gameBoard.getPlayers());
-        printLadder(gameBoard.getLadder(), gameBoard.getLadderHeight());
-        printReward(gameBoard.getRewards());
-
-    }
-
-    private void printPlayer(Players players) {
-        OutputView.printPlayerNames(players.getPlayerNames());
-    }
-
-    private void printLadder(Ladder ladder, int height) {
-        IntStream.range(0, height)
-                 .mapToObj(ladder::getDirectionAtHorizontalIndex)
-                 .forEach(OutputView::printDirections);
-    }
-
-    private void printReward(Rewards rewards) {
-        OutputView.printRewards(rewards.getValue());
-    }
 }

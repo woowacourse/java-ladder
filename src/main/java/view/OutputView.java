@@ -1,5 +1,7 @@
 package view;
 
+import domain.GameBoard;
+import domain.ladder.Ladder;
 import domain.reward.Result;
 import domain.reward.Reward;
 import domain.ladder.attribute.Direction;
@@ -7,6 +9,7 @@ import domain.common.Name;
 
 import java.util.EnumMap;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class OutputView {
     private static final EnumMap<Direction, String> directionSymbols = initializedDirectionSymbol();
@@ -18,7 +21,16 @@ public class OutputView {
     private static final int NAME_SPACE_SIZE = 7;
     private static final String NAME_SPACE_UNIT = " ";
 
-    public static void printPlayerNames(List<Name> playerNames) {
+    public static void printGameBoard(GameBoard gameBoard) {
+        printPlayerNames(gameBoard.getPlayers()
+                                  .getPlayerNames());
+        printLadder(gameBoard.getLadder(), gameBoard.getLadderHeight());
+        printRewards(gameBoard.getRewards()
+                              .getValue());
+    }
+
+
+    private static void printPlayerNames(List<Name> playerNames) {
         playerNames.stream()
                    .map(Name::getValue)
                    .map(OutputView::padString)
@@ -26,8 +38,13 @@ public class OutputView {
         printNewLine();
     }
 
-    public static void printDirections(List<Direction> directions) {
+    private static void printLadder(Ladder ladder, int height) {
+        for (int index = 0; index < height; index++) {
+            OutputView.printDirections(ladder.getDirectionAtHorizontalIndex(index));
+        }
+    }
 
+    private static void printDirections(List<Direction> directions) {
         StringBuilder resultStringBuilder = new StringBuilder();
         resultStringBuilder.append(BLANK_SPACE);
 
@@ -39,13 +56,27 @@ public class OutputView {
         System.out.println(resultStringBuilder);
     }
 
-    public static void printRewards(List<Reward> rewards) {
+    private static EnumMap<Direction, String> initializedDirectionSymbol() {
+        final EnumMap<Direction, String> directionSymbols = new EnumMap<>(Direction.class);
+        directionSymbols.put(Direction.RIGHT, RIGHT_DIRECTION_SYMBOL);
+        directionSymbols.put(Direction.LEFT, LEFT_DIRECTION_SYMBOL);
+        directionSymbols.put(Direction.DOWN, DOWN_DIRECTION_SYMBOL);
+        return directionSymbols;
+    }
+
+    private static void printRewards(List<Reward> rewards) {
         rewards.stream()
                .map(Reward::getValue)
                .map(OutputView::padString)
                .forEach(System.out::print);
         printNewLine();
     }
+
+
+    private static String padString(String name) {
+        return NAME_SPACE_UNIT.repeat(NAME_SPACE_SIZE - name.length()) + name;
+    }
+
 
     public static final void printResult(List<Result> results) {
         results.stream()
@@ -62,20 +93,8 @@ public class OutputView {
         System.out.println(result.rewardToString());
     }
 
-    private static String padString(String name) {
-        return NAME_SPACE_UNIT.repeat(NAME_SPACE_SIZE - name.length()) + name;
-    }
 
     private static void printNewLine() {
         System.out.print(System.lineSeparator());
-    }
-
-
-    private static EnumMap<Direction, String> initializedDirectionSymbol() {
-        final EnumMap<Direction, String> directionSymbols = new EnumMap<>(Direction.class);
-        directionSymbols.put(Direction.RIGHT, RIGHT_DIRECTION_SYMBOL);
-        directionSymbols.put(Direction.LEFT, LEFT_DIRECTION_SYMBOL);
-        directionSymbols.put(Direction.DOWN, DOWN_DIRECTION_SYMBOL);
-        return directionSymbols;
     }
 }
