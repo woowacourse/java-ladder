@@ -28,4 +28,8 @@ public class Prize {
             throw new IllegalArgumentException("[ERROR] 상품 이름 내에는 공백을 허용하지 않습니다.");
         }
     }
+
+    public String getPrizeName() {
+        return prizeName;
+    }
 }

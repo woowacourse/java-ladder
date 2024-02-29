@@ -1,11 +1,15 @@
 package ladder.contorller;
 
-import java.util.ArrayList;
 import java.util.List;
-import ladder.domain.resource.direction.DirectionGeneratorImpl;
+import ladder.domain.game.GameExecutor;
+import ladder.domain.game.GameResource;
+import ladder.domain.game.GameResult;
+import ladder.domain.game.LadderGame;
 import ladder.domain.resource.ladder.Ladder;
-import ladder.domain.resource.line.Line;
-import ladder.domain.resource.line.LineGenerator;
+import ladder.domain.resource.ladder.LadderGenerator;
+import ladder.domain.resource.line.LineGeneratorImpl;
+import ladder.domain.resource.prize.Prize;
+import ladder.domain.resource.prize.Prizes;
 import ladder.domain.resource.user.User;
 import ladder.domain.resource.user.Users;
 import ladder.view.InputView;
@@ -15,20 +19,53 @@ public class LadderController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private LadderGame ladderGame;
 
     public LadderController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
+        initializeGame();
     }
 
     public void run() {
-        Users users = createUsers();
-        int numberOfUsers = users.getNumberOfUsers();
+        registerResource();
+        ladderGame.startGame();
+        showLadder();
+        showGameResult();
 
-        Ladder ladder = createLadder(numberOfUsers);
         inputView.closeScanner();
+    }
 
-        outputView.printLadderGameResult(users, ladder);
+    private void initializeGame() {
+        ladderGame = new LadderGame(new GameResource(), new GameExecutor(), new GameResult());
+    }
+
+    private void registerResource() {
+        Users users = createUsers();
+        Prizes prizes = createPrizes();
+        int numberOfUsers = users.getSize();
+        Ladder ladder = createLadder(numberOfUsers);
+
+        ladderGame.registerResource(users, prizes, ladder);
+    }
+
+    private void showLadder() {
+        GameResource gameResource = ladderGame.getGameResource();
+        outputView.printLadderGame(gameResource);
+    }
+
+    private void showGameResult() {
+        String target = inputView.readGameResultForUser();
+
+        if (target.equals("all")) {
+            outputView.printAllResult(ladderGame.getGameResult());
+        }
+
+        if (!target.equals("all")) {
+            User targetUser = searchTargetUser(target);
+            Prize prize = searchUserResult(targetUser);
+            outputView.printUserResult(prize);
+        }
     }
 
     private Users createUsers() {
@@ -45,26 +82,44 @@ public class LadderController {
         }
     }
 
+    private Prizes createPrizes() {
+        try {
+            List<String> prizeNames = inputView.readPrizeNames();
+            List<Prize> prizes = prizeNames.stream()
+                    .map(Prize::new)
+                    .toList();
+
+            return new Prizes(prizes);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return createPrizes();
+        }
+    }
+
     private Ladder createLadder(int ladderWidth) {
         try {
             int ladderHeight = inputView.readLadderHeight();
-            List<Line> lines = createLines(ladderHeight, ladderWidth);
+            LadderGenerator ladderGenerator = new LadderGenerator(new LineGeneratorImpl());
+            return ladderGenerator.generate(ladderHeight, ladderWidth);
 
-            return new Ladder(lines);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return createLadder(ladderWidth);
         }
     }
 
-    private List<Line> createLines(int ladderHeight, int ladderWidth) {
-        List<Line> lines = new ArrayList<>();
-        LineGenerator lineGenerator = new LineGenerator(new DirectionGeneratorImpl());
+    private User searchTargetUser(String target) {
+        GameResource gameResource = ladderGame.getGameResource();
+        Users users = gameResource.getUsers();
 
-        for (int i = 0; i < ladderHeight; i++) {
-            lines.add(lineGenerator.generate(ladderWidth));
-        }
+        return users.getUsers().stream()
+                .filter(user -> user.getUserName().equals(target))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 사용자를 찾을 수 없습니다."));
+    }
 
-        return lines;
+    private Prize searchUserResult(User targetUser) {
+        GameResult gameResult = ladderGame.getGameResult();
+        return gameResult.getUserResult(targetUser);
     }
 }

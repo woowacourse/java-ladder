@@ -27,4 +27,8 @@ public class Prizes {
             throw new IllegalArgumentException("[ERROR] 당첨품은 2~10개 까지만 등록 가능합니다.");
         }
     }
+
+    public List<Prize> getPrizes() {
+        return prizes;
+    }
 }
