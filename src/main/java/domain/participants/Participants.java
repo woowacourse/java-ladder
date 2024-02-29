@@ -49,7 +49,7 @@ public class Participants {
     }
 
     public List<Name> getParticipantsName() {
-        return Collections.unmodifiableList(names);
+        return names;
     }
 
     public int getParticipantsCount() {
