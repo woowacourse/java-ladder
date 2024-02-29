@@ -1,6 +1,7 @@
 package laddergame.model.laddergame;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Line {
     private final List<LineState> lineStates;
@@ -16,13 +17,14 @@ public class Line {
     }
 
     private void validateContinuousStartOrEnd(List<LineState> lineStates) {
-        for (int i = 0; i < lineStates.size() - 1; i++) {
-            LineState current = lineStates.get(i);
-            LineState next = lineStates.get(i + 1);
-            if (LineState.START.equals(current) && LineState.START.equals(next)
-                    || LineState.END.equals(current) && LineState.END.equals(next)) {
-                throw new IllegalArgumentException("[ERROR] START와 END는 연속될 수 없습니다.");
-            }
+        IntStream.range(0, lineStates.size() - 1)
+                .forEach(i -> validateEachLineState(lineStates.get(i), lineStates.get(i + 1)));
+    }
+
+    private void validateEachLineState(LineState before, LineState current) {
+        if (LineState.START.equals(before) && LineState.START.equals(current)
+                || LineState.END.equals(before) && LineState.END.equals(current)) {
+            throw new IllegalArgumentException("[ERROR] START와 END는 연속될 수 없습니다.");
         }
     }
 
