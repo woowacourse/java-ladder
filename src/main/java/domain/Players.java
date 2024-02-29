@@ -18,7 +18,8 @@ public class Players {
         if (validateRange(playerNames)) {
             throw new IllegalArgumentException(
                     String.format("2명 이상, 10명 이하인 인원만 입력해주세요. 입력한 인원 : %d", playerNames.size()));
-        } else if (hasDuplication(playerNames)) {
+        }
+        if (hasDuplication(playerNames)) {
             throw new IllegalArgumentException(
                     String.format("이름은 중복될 수 없습니다."));
         }
