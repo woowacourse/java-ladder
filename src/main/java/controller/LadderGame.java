@@ -13,6 +13,7 @@ import java.util.Map;
 
 public class LadderGame {
 
+    private static final String INPUT_SPLIT_DELIMITER = ",";
     private static final String OUTPUT_FORMAT = "%5s ";
     private static final String PRINT_ALL_COMMAND = "all";
 
@@ -41,13 +42,21 @@ public class LadderGame {
     private Participants makeParticipants() {
         String input = inputView.inputName();
 
-        return new Participants(List.of(input.split(",")));
+        List<String> prizes = List.of(input.split(INPUT_SPLIT_DELIMITER));
+        return new Participants(prizes);
     }
 
     private Prizes makePrize(Participants participants) {
         String input = inputView.inputResults();
 
-        return new Prizes(input, participants.getParticipantsCount());
+        validateResultsLength(input, participants.getParticipantsCount());
+        return new Prizes(List.of(input.split(INPUT_SPLIT_DELIMITER)));
+    }
+
+    private void validateResultsLength(String results, int participantsCount) {
+        if (results.split(INPUT_SPLIT_DELIMITER).length != participantsCount) {
+            throw new IllegalArgumentException("실행 결과의 수는 참가자 수와 동일해야 합니다.");
+        }
     }
 
     private Ladder makeLadder(int participantsCount, BooleanGenerator booleanGenerator) {
