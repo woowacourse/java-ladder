@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
+
     public static void printLadder(List<String> results) {
         System.out.println();
         System.out.println("사다리 결과");
