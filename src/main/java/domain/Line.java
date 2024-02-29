@@ -46,7 +46,7 @@ public class Line {
     private void buildLine(List<Integer> numbers, List<Connection> line) {
         for (int index = 1; index < numbers.size(); index++) {
             line.add(Connection.valueOfBridge(
-                    line.get(index - 1).equals(UNCONNECTED)
+                    isConnected(line, index - 1, UNCONNECTED)
                     && hasConnection(numbers.get(index))
             ));
         }
@@ -54,9 +54,13 @@ public class Line {
 
     public List<Integer> getConnectedIndex() {
         return IntStream.range(0, line.size())
-                .filter(value -> line.get(value).equals(CONNECTED))
+                .filter(value -> isConnected(line, value, CONNECTED))
                 .boxed()
                 .toList();
+    }
+
+    private boolean isConnected(List<Connection> line, int value, Connection connected) {
+        return line.get(value).equals(connected);
     }
 
     private void validateRange(int height) {

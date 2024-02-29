@@ -6,11 +6,11 @@ public enum Connection {
     CONNECTED(true, "-----|"),
     UNCONNECTED(false, "     |");
 
-    private final Boolean isConnected;
+    private final Boolean connected;
     private final String bridge;
 
-    Connection(Boolean isConnected, String bridge) {
-        this.isConnected = isConnected;
+    Connection(Boolean connected, String bridge) {
+        this.connected = connected;
         this.bridge = bridge;
     }
 
@@ -20,8 +20,12 @@ public enum Connection {
 
     public static Connection valueOfBridge(boolean isConnected) {
         return Arrays.stream(Connection.values())
-                .filter(connection -> connection.isConnected.equals(isConnected))
+                .filter(connection -> isEqualsToConnected(isConnected, connection))
                 .findAny()
                 .orElse(null);
+    }
+
+    private static boolean isEqualsToConnected(boolean isConnected, Connection connection) {
+        return connection.connected.equals(isConnected);
     }
 }
