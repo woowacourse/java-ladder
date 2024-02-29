@@ -3,12 +3,13 @@ package domain.ladder.sticks;
 import domain.ladder.stick.Stick;
 import domain.ladder.stick.StickGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NotRepeatedSticksGenerator implements SticksGenerator {
 
     private List<Stick> sticks;
-    private StickGenerator stickGenerator;
+    private final StickGenerator stickGenerator;
 
     public NotRepeatedSticksGenerator(StickGenerator stickGenerator) {
         this.stickGenerator = stickGenerator;
@@ -16,6 +17,7 @@ public class NotRepeatedSticksGenerator implements SticksGenerator {
 
     @Override
     public List<Stick> generate(int stickCount) {
+        this.sticks = new ArrayList<>();
         for (int i = 0; i < stickCount; i++) {
             this.sticks.add(generateOne(stickGenerator));
         }
