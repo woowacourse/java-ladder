@@ -1,8 +1,8 @@
 package model.ladder;
 
+import model.ladder.generator.AlwaysConnectStatusGenerator;
+import model.ladder.generator.AlwaysDisconnectStatusGenerator;
 import model.ladder.generator.RandomStatusGenerator;
-import model.ladder.generator.TestStepStatusGenerator.AlwaysConnectStatusGenerator;
-import model.ladder.generator.TestStepStatusGenerator.AlwaysDisconnectStatusGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
