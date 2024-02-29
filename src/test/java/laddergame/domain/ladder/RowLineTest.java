@@ -1,18 +1,17 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.connectiongenerator.AllTrueConnectionGenerator;
-import laddergame.domain.connectiongenerator.ConnectionGenerator;
-import laddergame.domain.connectiongenerator.RandomConnectionGenerator;
+import laddergame.domain.connectiongenerator.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class RowLineTest {
 
@@ -39,5 +38,29 @@ class RowLineTest {
     void rowLineConnectionSizeTest(int n) {
         List<Connection> connection = new RowLine(n, new RandomConnectionGenerator()).getConnections();
         assertThat(connection).hasSize(n - 1);
+    }
+
+    @DisplayName("사다리가 연결되어 있지 않으면 position은 이동하지 않는다.")
+    @Test
+    void rowLineNonmovingTest() {
+        RowLine rowLine = new RowLine(5, new AllFalseConnectionGenerator());
+        List<Integer> positions = IntStream.range(0, 5).boxed().toList();
+        List<Integer> expectedPositions = IntStream.range(0, 5).boxed().toList();
+        List<Integer> actualPositions = rowLine.move(positions);
+
+        assertThat(expectedPositions)
+                .containsExactlyElementsOf(actualPositions);
+    }
+
+    @DisplayName("사다리 연결상태에 따라 position이 좌우로 이동한다.")
+    @Test
+    void rowLinemovingTest2() {
+        RowLine rowLine = new RowLine(5, new TrueFalseConnectionGenerator());
+        List<Integer> positions = IntStream.range(0, 5).boxed().toList();
+        List<Integer> expectedPositions = Stream.of(1, 0, 3, 2, 4).toList();
+        List<Integer> actualPositions = rowLine.move(positions);
+
+        assertThat(actualPositions)
+                .containsExactlyElementsOf(expectedPositions);
     }
 }
