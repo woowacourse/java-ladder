@@ -1,7 +1,9 @@
 package domain.player;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class PlayerNames {
     static final int MIN_SIZE = 2;
@@ -9,23 +11,21 @@ public class PlayerNames {
 
     private final List<PlayerName> playerNames;
 
-    private PlayerNames(List<PlayerName> playerNames) {
+    private PlayerNames(final List<PlayerName> playerNames) {
         validateSize(playerNames);
         validateDuplicate(playerNames);
         this.playerNames = playerNames;
     }
 
-    public static PlayerNames of(List<String> names) {
+    public static PlayerNames of(final List<String> names) {
         return names.stream()
                 .map(PlayerName::new)
-                .collect(Collectors.collectingAndThen(Collectors.toList(), PlayerNames::new));
+                .collect(collectingAndThen(toList(), PlayerNames::new));
     }
 
     private void validateSize(final List<PlayerName> playerNames) {
         if (playerNames.size() < MIN_SIZE || playerNames.size() > MAX_SIZE) {
-            throw new IllegalArgumentException(String.format(
-                    "사용자는 %d명 이상 %d명 이하여야 합니다", MIN_SIZE, MAX_SIZE
-            ));
+            throw new IllegalArgumentException(String.format("사용자는 %d명 이상 %d명 이하여야 합니다", MIN_SIZE, MAX_SIZE));
         }
     }
 
