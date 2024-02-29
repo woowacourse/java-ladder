@@ -87,8 +87,8 @@ public class LadderController {
     }
 
     private void findResult(Result result, ResultName resultName, Players players) {
-        while (!Objects.equals(resultName.getName(), "all")) {
-            OutputView.printResultByPerson(result.getResultByPerson(resultName));
+        while (!Objects.equals(resultName.getName().getName(), "all")) {
+            OutputView.printResultByPerson(result.getResultByPerson(resultName.getName()));
             resultName = getResultNameInput(MAX_DEPTH, players);
         }
         OutputView.printResultByAll(result.getResultByAll());

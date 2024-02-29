@@ -2,12 +2,13 @@ package domain;
 
 import java.util.List;
 
-public class ResultName extends Name {
+public class ResultName{
 
     private static final String ALL = "all";
+    private final Name name;
 
     public ResultName(String inputName, Players players) {
-        super(inputName);
+        this.name = new Name(inputName);
         validateName(inputName, players);
     }
 
@@ -22,5 +23,9 @@ public class ResultName extends Name {
 
     private boolean isNotAllowedResultName(String inputName, List<String> names) {
         return !names.contains(inputName) && !inputName.equals(ALL);
+    }
+
+    public Name getName() {
+        return name;
     }
 }

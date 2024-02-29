@@ -22,34 +22,30 @@ public class LadderGame {
         this.ladder.init(players.getPlayersNumber(), this.generator);
     }
 
-    LadderGame(List<String> names, Height height, Winnings winnings, Generator generator) {
+    LadderGame(Players players, Height height, Winnings winnings, Generator generator) {
         this.ladder = new Ladder(height);
-        this.players = new Players(names);
+        this.players = players;
         this.generator = generator;
         this.winnings = winnings;
-        this.ladder.init(names.size(), this.generator);
+        this.ladder.init(players.getPlayersNumber(), this.generator);
     }
 
     public List<String> getLadderShape() {
         return LadderBuilder.getLadder(players, ladder, winnings);
     }
 
-    public List<String> getClimbedNames() {
+    public List<Name> getClimbedNames() {
         List<Name> names = players.getPlayers();
         for (Line line : ladder.getLadder()) {
             climb(line, names);
         }
-        return names.stream()
-                .map(Name::getName)
-                .toList();
+        return names;
     }
 
-    public Map<String, String> getResult() {
-        Map<String, String> results = new HashMap<>();
-        List<String> names = getClimbedNames();
-        List<String> winning = winnings.getWinnings().stream()
-                .map(Winning::getWinning)
-                .toList();
+    public Map<Name, Winning> getResult() {
+        Map<Name, Winning> results = new HashMap<>();
+        List<Name> names = getClimbedNames();
+        List<Winning> winning = winnings.getWinnings();
         for (int index = 0; index < players.getPlayersNumber(); index++) {
             results.put(names.get(index), winning.get(index));
         }

@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Winning {
     private static final String WINNING_STYLE = "^[a-zA-Z가-힣0-9_-]+$";
 
@@ -9,6 +11,19 @@ public class Winning {
         validateLength(inputWinning);
         validateStyle(inputWinning);
         this.winning = inputWinning;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Winning winning1 = (Winning) o;
+        return Objects.equals(winning, winning1.winning);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(winning);
     }
 
     private void validateLength(String inputWinning) {
