@@ -42,10 +42,14 @@ public class GameBoard {
     }
 
     private Point playGameWithStartPoint(final Point startPoint) {
+
         return Stream.iterate(startPoint, this::movePoint)
                      .filter(this::isPointIsEndLine)
                      .findFirst()
-                     .get();
+                     .orElseThrow(() -> new IllegalStateException("""
+                             만족하는 결과가 없는 경우로 , 사다리가 잘못 생성되었습니다.
+                             사다리를 다시 생성해주세요!
+                             """));
     }
 
     private Point movePoint(Point point) {
