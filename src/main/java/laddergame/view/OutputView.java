@@ -13,21 +13,21 @@ public class OutputView {
     private static final String SPACE = "\t";
     private static final String RESULT_FORMAT = "%s : %s";
 
-    public void writePlayersName(final Players players) {
+    public void writeLadderResult(LadderGame ladderGame) {
+        System.out.println(LINE_SEPARATOR + "사다리 결과" + LINE_SEPARATOR);
+        writePlayersName(ladderGame.getPlayers());
+        writeLadder(ladderGame.getLadder());
+        writeResultItems(ladderGame.getItems());
+    }
+
+    private void writePlayersName(final Players players) {
         System.out.println(String.join(SPACE, players.getPlayers().stream()
                 .map(Player::getName)
                 .toList()));
     }
 
-    public void writeLadder(final Ladder ladder) {
+    private void writeLadder(final Ladder ladder) {
         ladder.getLines().forEach(this::writeLine);
-    }
-
-    public void writeResultItems(final List<ResultItem> items) {
-        System.out.println(String.join(SPACE, items.stream()
-                .map(ResultItem::item)
-                .toList())
-        );
     }
 
     private void writeLine(final Lines lines) {
@@ -38,8 +38,11 @@ public class OutputView {
         System.out.println(formatted);
     }
 
-    public void writeResultTitle() {
-        System.out.println(LINE_SEPARATOR + "실행결과" + LINE_SEPARATOR);
+    private void writeResultItems(final List<ResultItem> items) {
+        System.out.println(String.join(SPACE, items.stream()
+                .map(ResultItem::item)
+                .toList())
+        );
     }
 
     public void writeResultItem(ResultItem item) {
