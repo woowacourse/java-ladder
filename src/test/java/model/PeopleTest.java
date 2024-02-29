@@ -18,7 +18,7 @@ class PeopleTest {
 
     @Test
     @DisplayName("사람은 최소 2명 참가해야한다.")
-    void createPersonGroupThrowException() {
+    void createPersonGroupThrowExceptionWhenPeopleSizeUnderTwo() {
         List<String> names = List.of("loky");
         assertThatThrownBy(() -> People.from(names))
                 .isInstanceOf(IllegalArgumentException.class)
