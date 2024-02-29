@@ -7,12 +7,12 @@ import java.util.*;
 public class Participants {
     private static final int MIN_PARTICIPANTS_COUNT = 2;
 
-    private final Map<Participant, Integer> participantsWitPosition;
+    private final Map<Participant, Integer> participantsWithPosition;
 
     public Participants(final List<String> names) {
         validateParticipantsCount(names);
         validateDuplicatedNames(names);
-        this.participantsWitPosition = createParticipantsWitPosition(names);
+        this.participantsWithPosition = createParticipantsWitPosition(names);
     }
 
     private void validateParticipantsCount(final List<String> names) {
@@ -37,25 +37,25 @@ public class Participants {
     }
 
     public int getNecessaryLadderWidth() {
-        return participantsWitPosition.size() - 1;
+        return participantsWithPosition.size() - 1;
     }
 
     public void playAll(final Ladder ladder) {
-        for (final Map.Entry<Participant, Integer> entry: participantsWitPosition.entrySet()) {
+        for (final Map.Entry<Participant, Integer> entry: participantsWithPosition.entrySet()) {
             final Participant participant = entry.getKey();
             final int finalPosition = ladder.playFrom(entry.getValue());
-            participantsWitPosition.put(participant, finalPosition);
+            participantsWithPosition.put(participant, finalPosition);
         }
     }
 
     public List<String> getParticipantsName() {
-        return participantsWitPosition.keySet()
+        return participantsWithPosition.keySet()
                 .stream()
                 .map(Participant::getName)
                 .toList();
     }
 
-    public Map<Participant, Integer> getParticipantsWitPosition() {
-        return participantsWitPosition;
+    public Map<Participant, Integer> getParticipantsWithPosition() {
+        return participantsWithPosition;
     }
 }

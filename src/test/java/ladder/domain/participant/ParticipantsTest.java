@@ -54,7 +54,7 @@ public class ParticipantsTest {
         final Participants participants = new Participants(names);
 
         // then
-        final Map<Participant, Integer> participantsWitPosition = participants.getParticipantsWitPosition();
+        final Map<Participant, Integer> participantsWitPosition = participants.getParticipantsWithPosition();
         assertThat(participantsWitPosition.values())
                 .containsExactly(0, 1, 2, 3);
     }
@@ -75,7 +75,7 @@ public class ParticipantsTest {
         participants.playAll(ladder);
 
         // then
-        final Map<Participant, Integer> participantsWitPosition = participants.getParticipantsWitPosition();
+        final Map<Participant, Integer> participantsWitPosition = participants.getParticipantsWithPosition();
         assertThat(participantsWitPosition.values())
                 .containsExactly(1, 0, 3, 2);
     }
