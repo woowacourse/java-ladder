@@ -42,7 +42,7 @@ public class OutputView {
     }
 
     public void printResults(Results results) {
-        for (String result : results.getResults()) {
+        for (Result result : results.getResults()) {
             String formattedResult = String.format(FORMAT, result);
             System.out.print(formattedResult);
         }
@@ -54,13 +54,14 @@ public class OutputView {
         System.out.println("실행결과");
     }
 
-    public void printPlayResult(Map<Name, String> playResult) {
+    public void printPlayResult(Map<Name, Result> playResult) {
         for (Name name : playResult.keySet()) {
             StringJoiner stringJoiner = new StringJoiner(" : ");
             if (playResult.size() > 1) {
                 stringJoiner.add(name.toString());
             }
-            String formattedResult = stringJoiner.add(playResult.get(name)).toString();
+            String result = playResult.get(name).toString();
+            String formattedResult = stringJoiner.add(result).toString();
             System.out.println(formattedResult);
         }
     }

@@ -35,7 +35,7 @@ public class LadderGame {
 
     private void play(Game game) {
         Name target = createTarget();
-        Map<Name, String> playResult = game.play(target);
+        Map<Name, Result> playResult = game.play(target);
         outputView.printPlayResultNotice();
         outputView.printPlayResult(playResult);
         if (playResult.size() > 1) {
@@ -62,7 +62,10 @@ public class LadderGame {
 
     private Results readResults(int countStandard) {
         List<String> rawResults = inputView.readResults();
-        return new Results(rawResults, countStandard);
+        List<Result> results = rawResults.stream()
+                .map(Result::new)
+                .toList();
+        return new Results(results, countStandard);
     }
 
     private Height createHeight() {

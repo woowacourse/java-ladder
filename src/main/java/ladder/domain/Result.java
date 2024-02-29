@@ -15,4 +15,9 @@ public class Result {
             throw new IllegalArgumentException("결과는 5글자 이내입니다.");
         }
     }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }
