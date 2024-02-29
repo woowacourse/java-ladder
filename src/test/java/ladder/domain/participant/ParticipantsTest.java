@@ -10,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -53,9 +54,8 @@ public class ParticipantsTest {
         final Participants participants = new Participants(names);
 
         // then
-        List<Participant> createdParticipants = participants.getValues();
-        assertThat(createdParticipants)
-                .extracting(Participant::getPosition)
+        final Map<Participant, Integer> participantsWitPosition = participants.getParticipantsWitPosition();
+        assertThat(participantsWitPosition.values())
                 .containsExactly(0, 1, 2, 3);
     }
 
@@ -75,9 +75,8 @@ public class ParticipantsTest {
         participants.playAll(ladder);
 
         // then
-        List<Participant> finishedParticipants = participants.getValues();
-        assertThat(finishedParticipants)
-                .extracting(Participant::getPosition)
+        final Map<Participant, Integer> participantsWitPosition = participants.getParticipantsWitPosition();
+        assertThat(participantsWitPosition.values())
                 .containsExactly(1, 0, 3, 2);
     }
 }

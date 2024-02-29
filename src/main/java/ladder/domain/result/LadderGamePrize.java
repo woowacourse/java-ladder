@@ -18,8 +18,10 @@ public class LadderGamePrize {
 
     public GameResults determinePersonalResult(final Participants participants) {
         final Map<String, String> results = new HashMap<>();
-        for (final Participant participant: participants.getValues()) {
-            final int position = participant.getPosition();
+        final Map<Participant, Integer> participantsWitPosition = participants.getParticipantsWitPosition();
+        for (final Map.Entry<Participant, Integer> participantWithPosition: participantsWitPosition.entrySet()) {
+            final Participant participant = participantWithPosition.getKey();
+            final int position = participantWithPosition.getValue();
             final String prize = values.get(position);
             results.put(participant.getName(), prize);
         }

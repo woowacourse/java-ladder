@@ -2,20 +2,17 @@ package ladder.domain.participant;
 
 import ladder.domain.ladder.Ladder;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.IntStream;
+import java.util.*;
 
 public class Participants {
     private static final int MIN_PARTICIPANTS_COUNT = 2;
 
-    private final List<Participant> participants;
+    private final Map<Participant, Integer> participantsWitPosition;
 
     public Participants(final List<String> names) {
         validateParticipantsCount(names);
         validateDuplicatedNames(names);
-        this.participants = createParticipants(names);
+        this.participantsWitPosition = createParticipantsWitPosition(names);
     }
 
     private void validateParticipantsCount(final List<String> names) {
@@ -31,24 +28,34 @@ public class Participants {
         }
     }
 
-    private List<Participant> createParticipants(final List<String> names) {
-        return IntStream.range(0, names.size())
-                .mapToObj(order -> new Participant(names.get(order), order))
-                .toList();
+    private Map<Participant, Integer> createParticipantsWitPosition(final List<String> names) {
+        Map<Participant, Integer> createdParticipantsWithPosition = new LinkedHashMap<>();
+        for (int order = 0; order < names.size(); order++) {
+            createdParticipantsWithPosition.put(new Participant(names.get(order)), order);
+        }
+        return createdParticipantsWithPosition;
     }
 
     public int getNecessaryLadderWidth() {
-        return participants.size() - 1;
+        return participantsWitPosition.size() - 1;
     }
 
     public void playAll(final Ladder ladder) {
-        for (final Participant participant: participants) {
-            int finalPosition = ladder.playFrom(participant.getPosition());
-            participant.setFinalPosition(finalPosition);
+        for (final Map.Entry<Participant, Integer> entry: participantsWitPosition.entrySet()) {
+            final Participant participant = entry.getKey();
+            final int finalPosition = ladder.playFrom(entry.getValue());
+            participantsWitPosition.put(participant, finalPosition);
         }
     }
 
-    public List<Participant> getValues() {
-        return participants;
+    public List<String> getParticipantsName() {
+        return participantsWitPosition.keySet()
+                .stream()
+                .map(Participant::getName)
+                .toList();
+    }
+
+    public Map<Participant, Integer> getParticipantsWitPosition() {
+        return participantsWitPosition;
     }
 }

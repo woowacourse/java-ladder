@@ -28,16 +28,11 @@ public class OutputView {
     }
 
     public void printParticipants(final Participants participants) {
-        final String participantsName = participants.getValues()
+        final String participantsName = participants.getParticipantsName()
                 .stream()
-                .map(this::getFormattedName)
+                .map(name -> String.format(NAME_FORMAT, name))
                 .collect(Collectors.joining(" "));
         System.out.println(participantsName);
-    }
-
-    private String getFormattedName(final Participant participant) {
-        final String name = participant.getName();
-        return String.format(NAME_FORMAT, name);
     }
 
     public void printLadder(final Ladder ladder) {
