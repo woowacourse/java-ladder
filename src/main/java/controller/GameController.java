@@ -46,8 +46,7 @@ public class GameController {
             List<Direction> directions = gameBoard.getDirectionsAtHorizontalIndex(currentIndex);
             OutputView.printDirections(directions);
         }
-        OutputView.printObjectNames(gameBoard.getPrizes()
-                .getValue());
+        OutputView.printObjectNames(gameBoard.getPrizeNames());
     }
 
     private void showGeneratedResult(GameBoard gameBoard) {

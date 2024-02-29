@@ -71,8 +71,8 @@ public class GameBoard {
         return ladder;
     }
 
-    public PrizeNames getPrizes() {
-        return prizeNames;
+    public List<PrizeName> getPrizeNames() {
+        return prizeNames.getValue();
     }
 
 }
