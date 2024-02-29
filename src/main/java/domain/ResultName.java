@@ -4,15 +4,12 @@ import java.util.List;
 
 public class ResultName extends Name {
 
-    private final Players players;
-
     public ResultName(String inputName, Players players) {
         super(inputName);
-        this.players = players;
-        validateName(inputName);
+        validateName(inputName, players);
     }
 
-    private void validateName(String inputName) {
+    private void validateName(String inputName, Players players) {
         List<String> names = players.getPlayers().stream()
                 .map(Name::getName)
                 .toList();
