@@ -9,11 +9,11 @@ public class Row {
     private final List<Bridge> bridges;
 
     public Row(final int width, final BridgeMakingStrategy strategy) {
-        this.bridges = makeRow(width, strategy);
+        this.bridges = makeBridges(width, strategy);
         validateRow();
     }
 
-    private List<Bridge> makeRow(final int width, final BridgeMakingStrategy strategy) {
+    private List<Bridge> makeBridges(final int width, final BridgeMakingStrategy strategy) {
         final List<Bridge> bridges = new ArrayList<>();
         Bridge current = null;
         for (int i = 0; i < width; i++) {

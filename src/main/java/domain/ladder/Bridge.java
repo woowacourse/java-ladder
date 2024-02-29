@@ -19,4 +19,8 @@ public enum Bridge {
     public boolean isExist() {
         return this.existence;
     }
+
+    public boolean isEmpty() {
+        return !this.existence;
+    }
 }
