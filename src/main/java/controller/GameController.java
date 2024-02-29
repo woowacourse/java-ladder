@@ -42,13 +42,13 @@ public class GameController {
 
         int count = 50;
         while (count-- > 0) {
-            String rawTargetName = makeTargetName(members);
-            if (rawTargetName.equals("all")) {
+            String targetName = makeTargetName(members);
+            if (targetName.equals("all")) {
                 Map<Member, Result> result = gameResult.getResultOfAllMember();
                 outputView.printResult(result);
                 break;
             }
-            Result result = gameResult.getResultByMemberName(rawTargetName);
+            Result result = gameResult.getResultByMemberName(targetName);
             outputView.printResult(result);
         }
     }

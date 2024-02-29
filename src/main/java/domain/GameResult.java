@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class GameResult {
 
@@ -19,12 +18,11 @@ public class GameResult {
     }
 
     public Result getResultByMemberName(String name) {
-        for (Entry<Member, Result> memberResult : gameResult.entrySet()) {
-            if (memberResult.getKey().getName().equals(name)) {
-                return memberResult.getValue();
-            }
-        }
-        throw new IllegalArgumentException("해당 이름을 가진 참여자가 없습니다."); // TODO: 다른 방법?
+        return gameResult.entrySet().stream()
+                .filter(memberResult -> memberResult.getKey().getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름을 가진 참여자가 없습니다."))
+                .getValue();
     }
 
     public Map<Member, Result> getResultOfAllMember() {
