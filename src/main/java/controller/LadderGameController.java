@@ -1,12 +1,12 @@
 package controller;
 
 import java.util.List;
-import java.util.Map;
 import java.util.function.Supplier;
 import model.bridge.RandomBridgesGenerator;
 import model.ladder.Ladder;
 import model.ladder.LadderHeight;
 import model.ladder.LadderPlayOutcome;
+import model.ladder.LadderPlayOutcomeState;
 import model.line.LineState;
 import model.player.Player;
 import model.player.Players;
@@ -80,14 +80,15 @@ public class LadderGameController {
     }
 
     private void showPrizeForAllPlayers(LadderPlayOutcome ladderPlayOutcome) {
-        Map<Player, Prize> outcome = ladderPlayOutcome.getOutcome();
+        List<LadderPlayOutcomeState> outcome = ladderPlayOutcome.getOutcomeStates();
         OutputView.printPrizeForAllPlayers(outcome);
     }
 
     private void showPrizeForOnePlayer(LadderPlayOutcome ladderPlayOutcome, String target) {
         Player player = new Player(target);
         Prize prize = ladderPlayOutcome.get(player);
-        OutputView.printPrizeForOnePlayer(prize);
+        String prizeName = prize.getName();
+        OutputView.printPrizeForOnePlayer(prizeName);
     }
 
     private <T> T retryWithReturnOnException(Supplier<T> retryOperation) {

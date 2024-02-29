@@ -1,12 +1,11 @@
 package view;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import model.bridge.Bridge;
+import model.ladder.LadderPlayOutcomeState;
 import model.line.LineState;
 import model.player.Player;
-import model.prize.Prize;
 
 public class OutputView {
     private static final String LADDER_INTRO = "\n사다리 결과\n";
@@ -63,18 +62,18 @@ public class OutputView {
         System.out.println(LADDER_PLAY_OUTCOME_INTRO);
     }
 
-    public static void printPrizeForAllPlayers(Map<Player, Prize> outcome) {
-        outcome.forEach((player, prize) ->
-                System.out.println(formatLadderPlayOutcome(player, prize))
+    public static void printPrizeForAllPlayers(List<LadderPlayOutcomeState> outcomes) {
+        outcomes.forEach((outcome) ->
+                System.out.println(formatLadderPlayOutcome(outcome.playerName(), outcome.prizeName()))
         );
     }
 
-    private static String formatLadderPlayOutcome(Player player, Prize prize) {
-        return player.getName() + LADDER_PLAY_OUTCOME_DELIMITER + prize.getName();
+    private static String formatLadderPlayOutcome(String playerName, String prizeName) {
+        return playerName + LADDER_PLAY_OUTCOME_DELIMITER + prizeName;
     }
 
-    public static void printPrizeForOnePlayer(Prize prize) {
-        System.out.println(prize.getName());
+    public static void printPrizeForOnePlayer(String prizeName) {
+        System.out.println(prizeName);
     }
 
     public static void printExceptionMessage(String message) {
