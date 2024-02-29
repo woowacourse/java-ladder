@@ -23,9 +23,9 @@ public class Outcomes {
                 .toList();
     }
 
-    public String getValueOf(Position position) {
-        int index = position.value();
-        Outcome outcome = outcomes.get(index);
+    public String getValueOf(final Position position) {
+        final int index = position.value();
+        final Outcome outcome = outcomes.get(index);
         return outcome.value();
     }
 }

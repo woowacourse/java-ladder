@@ -15,25 +15,25 @@ class LadderStepsGeneratorTest {
     @DisplayName("올바른 크기의 LadderSteps를 생성한다.")
     void generateTest() {
         // given
-        int expectedWidth = 2;
-        int expectedHeight = 3;
-        LadderSize ladderSize = new LadderSize(expectedWidth, expectedHeight);
-        LadderStepsGenerator ladderStepsGenerator = getLadderStepsGenerator();
+        final int expectedWidth = 2;
+        final int expectedHeight = 3;
+        final LadderSize ladderSize = new LadderSize(expectedWidth, expectedHeight);
+        final LadderStepsGenerator ladderStepsGenerator = getLadderStepsGenerator();
 
         // when
-        List<LadderStep> ladderSteps = ladderStepsGenerator.generate(ladderSize);
+        final List<LadderStep> ladderSteps = ladderStepsGenerator.generate(ladderSize);
 
         // then
         assertThat(ladderSteps.size()).isEqualTo(expectedHeight);
         for (LadderStep ladderStep : ladderSteps) {
-            int ladderStepWidth = ladderStep.getLadderPaths().size();
+            final int ladderStepWidth = ladderStep.getLadderPaths().size();
             assertThat(ladderStepWidth).isEqualTo(expectedWidth);
         }
     }
 
     private static LadderStepsGenerator getLadderStepsGenerator() {
-        List<Boolean> pathAvailabilities = List.of(true, true, false, false, true, false);
-        PathAvailabilityGenerator pathAvailabilityGenerator = new TestPathAvailabilityGenerator(pathAvailabilities);
+        final List<Boolean> pathAvailabilities = List.of(true, true, false, false, true, false);
+        final PathAvailabilityGenerator pathAvailabilityGenerator = new TestPathAvailabilityGenerator(pathAvailabilities);
         return new LadderStepsGenerator(pathAvailabilityGenerator);
     }
 }

@@ -3,7 +3,7 @@ package ladder.domain.generator;
 import java.util.Random;
 
 public class RandomPathAvailabilityGenerator implements PathAvailabilityGenerator {
-    public static final RandomPathAvailabilityGenerator INSTANCE = new RandomPathAvailabilityGenerator();
+    private static final RandomPathAvailabilityGenerator INSTANCE = new RandomPathAvailabilityGenerator();
     private static final Random RANDOM = new Random();
 
     private RandomPathAvailabilityGenerator() {

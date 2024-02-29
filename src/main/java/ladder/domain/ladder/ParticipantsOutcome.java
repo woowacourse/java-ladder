@@ -12,11 +12,11 @@ public class ParticipantsOutcome {
 
     private final Map<String, String> values;
 
-    public ParticipantsOutcome(Map<String, String> values) {
+    public ParticipantsOutcome(final Map<String, String> values) {
         this.values = unmodifiableMap(new LinkedHashMap<>(values));
     }
 
-    public String getOutcome(String participantName) {
+    public String getOutcome(final String participantName) {
         return Optional.ofNullable(values.get(participantName))
                 .orElseThrow(NoSuchParticipantException::new);
     }

@@ -6,7 +6,7 @@ public class Participant {
     private final Name name;
     private final Position startPosition;
 
-    public Participant(String name, int startPosition) {
+    public Participant(final String name, final int startPosition) {
         this.name = new Name(name);
         this.startPosition = new Position(startPosition);
     }

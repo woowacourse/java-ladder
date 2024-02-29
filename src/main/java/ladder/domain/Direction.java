@@ -7,12 +7,12 @@ public enum Direction {
 
     private final int positionChange;
 
-    Direction(int positionChange) {
+    Direction(final int positionChange) {
         this.positionChange = positionChange;
     }
 
-    public Position determineNextPosition(Position position) {
-        int nextPosition = position.value() + positionChange;
+    public Position determineNextPosition(final Position position) {
+        final int nextPosition = position.value() + positionChange;
         return new Position(nextPosition);
     }
 }

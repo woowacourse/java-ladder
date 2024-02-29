@@ -40,7 +40,7 @@ public class Participants {
                 .toList();
     }
 
-    public ParticipantsOutcome assignOutcomesByLadder(Ladder ladder, Outcomes outcomes) {
+    public ParticipantsOutcome assignOutcomesByLadder(final Ladder ladder, final Outcomes outcomes) {
         final Map<String, String> participantsOutcome = new LinkedHashMap<>();
         for (Participant participant : participants) {
             final Position endPosition = ladder.determineFinalPositionOf(participant);
