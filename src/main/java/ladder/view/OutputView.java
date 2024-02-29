@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 public class OutputView {
 
     private static final String LADDER_SIDE_SYMBOL = "|";
+    private static final int LADDER_WIDTH = 5;
+    private static final String FORMAT = "%6s";
 
     public void printError(String message) {
         System.out.println(message);
@@ -20,29 +22,22 @@ public class OutputView {
         System.out.println("실행결과");
         System.out.println();
 
-        String nameFormat = makeNameFormat(people);
-
         for (Name name : people.getNames()) {
-            String formattedName = String.format(nameFormat, name);
+            String formattedName = String.format(FORMAT, name);
             System.out.print(formattedName);
         }
         System.out.println();
     }
 
-    private String makeNameFormat(People people) {
-        int width = people.findMaxNameLength() + 1;
-        return "%" + width + "s";
-    }
-
-    public void printLadder(Ladder ladder, People people) {
+    public void printLadder(Ladder ladder) {
         ladder.getLadder()
-                .forEach(line -> printLine(line, people.findMaxNameLength()));
+                .forEach(this::printLine);
     }
 
-    private void printLine(Line line, int maxNameLength) {
-        String prefixLadder = " ".repeat(maxNameLength) + LADDER_SIDE_SYMBOL;
+    private void printLine(Line line) {
+        String prefixLadder = " ".repeat(LADDER_WIDTH) + LADDER_SIDE_SYMBOL;
         String points = line.getPoints().stream()
-                .map(point -> point.repeatSymbol(maxNameLength))
+                .map(point -> point.repeatSymbol(LADDER_WIDTH))
                 .collect(Collectors.joining(LADDER_SIDE_SYMBOL, prefixLadder, LADDER_SIDE_SYMBOL));
         System.out.println(points);
     }
