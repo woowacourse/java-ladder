@@ -32,6 +32,14 @@ public class LadderController {
         outputView.printExecutionResultBottomLadder(executionResult);
         ResultInterestedPeople resultInterestedPeople =
                 repeatUntilSuccess(this::prepareResultInterestedPeople, captureParticipantsName(participants));
+    private void gameStart(ResultInterestedPeople resultInterestedPeople, Ladder ladder,
+                           ExecutionResult executionResult) {
+        resultInterestedPeople.forEachPosition(position -> {
+            int positionResult = ladder.move(position);
+            String result = executionResult.getExecutionResult().get(positionResult);
+            resultInterestedPeople.actualExecutionResult(result);
+        });
+        outputView.printExecutionResult(resultInterestedPeople);
     }
 
     private Participants prepareParticipants() {

@@ -2,6 +2,7 @@ package view;
 
 import java.util.List;
 import model.ExecutionResult;
+import model.ResultInterestedPeople;
 import model.dto.LayerSteps;
 import model.dto.ParticipantName;
 
@@ -48,5 +49,23 @@ public class OutputView {
                 .toList();
         String joinedExecutionResult = String.join(" ", formattedExecutionResult);
         System.out.println(joinedExecutionResult);
+    }
+
+    public void printExecutionResult(ResultInterestedPeople resultInterestedPeople) {
+        System.out.println("실행 결과");
+        int peopleCount = resultInterestedPeople.getResultInterestedName().size();
+        if (peopleCount > 1) {
+            printExecutionEachPerson(resultInterestedPeople);
+        }
+        if (peopleCount == 1) {
+            System.out.println(resultInterestedPeople.getExecutionResult().get(0));
+        }
+    }
+
+    private void printExecutionEachPerson(ResultInterestedPeople resultInterestedPeople) {
+        for (int i = 0; i < resultInterestedPeople.getResultInterestedName().size(); i++) {
+            System.out.println(resultInterestedPeople.getResultInterestedName().get(i) + " : "
+                    + resultInterestedPeople.getExecutionResult().get(i));
+        }
     }
 }
