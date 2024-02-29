@@ -2,14 +2,22 @@ package ladder;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.BooleanSupplier;
+import java.util.stream.Stream;
 
 public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(List<Line> lines) {
+    Ladder(List<Line> lines) {
         validateSameSize(lines);
         this.lines = lines;
+    }
+
+    public Ladder(int playerCount, int height, BooleanSupplier connectionAttemptSupplier) {
+        this.lines = Stream.generate(() -> Line.fromConnectionAttemptSupplier(connectionAttemptSupplier, playerCount))
+                .limit(height)
+                .toList();
     }
 
     public int climbDown(int startIndex) {

@@ -8,6 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -61,5 +62,17 @@ class LadderTest {
         // when, then
         assertThatThrownBy(() -> new Ladder(lines))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("항상 다리를 이으려고 할 때, 사다리의 결과를 올바르게 반환한다.")
+    void ladderCreationOnAttemptEveryTimeTest() {
+        // given, when
+        Ladder ladder = new Ladder(3, 3, () -> true);
+        List<Line> lines = ladder.getLines();
+        // then
+        assertThat(lines.get(0).getDirections()).containsExactly(RIGHT, LEFT, STRAIGHT);
+        assertThat(lines.get(1).getDirections()).containsExactly(RIGHT, LEFT, STRAIGHT);
+        assertThat(lines.get(2).getDirections()).containsExactly(RIGHT, LEFT, STRAIGHT);
     }
 }
