@@ -21,8 +21,4 @@ public class Person {
     public String getName() {
         return name;
     }
-
-    public int getFinalPosition() {
-        return 0;
-    }
 }

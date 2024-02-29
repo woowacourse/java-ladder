@@ -1,11 +1,12 @@
 package controller;
 
 import dto.LadderInfo;
-import dto.Result;
+import dto.ResultInfo;
 import java.util.List;
 import model.Items;
 import model.Ladder;
 import model.People;
+import model.Result;
 import model.line.RandomLinesGenerator;
 import view.InputView;
 import view.OutputView;
@@ -27,8 +28,9 @@ public class LadderGame {
         final LadderInfo ladderInfo = LadderInfo.from(people, ladder, items);
         outputView.printLadderInfo(ladderInfo);
 
-        final Result result = Result.from(people, ladder, items);
-        findResult(result);
+        final Result result = findResult(people, ladder, items);
+        final ResultInfo resultInfo = ResultInfo.from(result);
+        searchResult(resultInfo);
     }
 
     private People initPeople() {
@@ -46,15 +48,19 @@ public class LadderGame {
         return Items.of(itemNames, personCount);
     }
 
+    private Result findResult(final People people, final Ladder ladder, final Items items) {
+        List<Integer> resultIndexes = ladder.climbAll();
+        return Result.of(people, resultIndexes, items);
+    }
 
-    private void findResult(final Result result) {
+    private void searchResult(final ResultInfo resultInfo) {
         String personName = inputView.inputPersonName();
         while (!personName.equals("all")) {
-            String itemName = result.getItemNameByPersonName(personName);
+            String itemName = resultInfo.getItemNameByPersonName(personName);
             outputView.printResultByPerson(itemName);
             personName = inputView.inputPersonName();
         }
 
-        outputView.printAllResult(result.personAndItemName());
+        outputView.printAllResult(resultInfo.personAndItemName());
     }
 }

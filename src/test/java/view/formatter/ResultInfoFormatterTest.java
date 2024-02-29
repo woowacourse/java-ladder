@@ -6,7 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
-class ResultFormatterTest {
+class ResultInfoFormatterTest {
     @Test
     void format() {
         Map<String, String> result = new LinkedHashMap<>();

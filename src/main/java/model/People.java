@@ -25,9 +25,8 @@ public class People {
         return new People(personGroup);
     }
 
-    public String findNameBy(int index) {
-        Person person = personGroup.get(index);
-        return person.getName();
+    public Person findBy(int index) {
+        return personGroup.get(index);
     }
 
     public List<String> getNames() {

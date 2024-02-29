@@ -27,9 +27,8 @@ public class Items {
         }
     }
 
-    public String findNameBy(int index) {
-        Item item = items.get(index);
-        return item.getName();
+    public Item findBy(int index) {
+        return items.get(index);
     }
 
     public Item get(final int finalPosition) {

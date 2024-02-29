@@ -1,9 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import model.line.Line;
 import model.line.LinesGenerator;
 
@@ -44,19 +42,6 @@ public class Ladder {
             index++;
         }
         return resultIndexes;
-    }
-
-    public Map<String, String> match(People people, Items items) {
-        List<Integer> resultIndexes = climbAll();
-        Map<String, String> personAndItemName = new LinkedHashMap<>();
-        int personIndex = 0;
-        for (int itemIndex : resultIndexes) {
-            String personName = people.findNameBy(personIndex);
-            String itemName = items.findNameBy(itemIndex);
-            personAndItemName.put(personName, itemName);
-            personIndex++;
-        }
-        return personAndItemName;
     }
 
     private int findPersonCount() {
