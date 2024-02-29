@@ -10,19 +10,31 @@ public class Positions {
 
     private final List<Position> positions;
 
-    public Positions(List<Position> positions, Line line) {
-        this.positions = calcPosition(positions, line);
+    public Positions(int width) {
+        this.positions = createDefaultPositions(width);
     }
 
-    public List<Position> calcPosition(List<Position> nowPositions, Line line) {
+    public Positions(List<Position> positions) {
+        this.positions = positions;
+    }
+
+    public List<Position> createDefaultPositions(int width) {
+        List<Position> positions = new ArrayList<>();
+        for (int i = 0; i < width; i++) {
+            positions.add(new Position(i));
+        }
+        return positions;
+    }
+
+    public Positions calcPosition(Line line) {
         List<Position> nextPositions = new ArrayList<>();
         List<Direction> directions = line.getDirectionsInfo();
-        for(Position position : nowPositions) {
+        for(Position position : this.positions) {
             int nowPosition = position.getPosition();
             Direction nowDirection = directions.get(nowPosition);
             nextPositions.add(new Position(calcDirection(nowPosition, nowDirection)));
         }
-        return nextPositions;
+        return new Positions(nextPositions);
     }
 
     private int calcDirection(int position, Direction direction) {

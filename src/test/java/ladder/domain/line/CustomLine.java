@@ -17,4 +17,8 @@ public class CustomLine {
     public Line getLine() {
         return this.customLine;
     }
+
+    public int getLineLength() {
+        return this.customLine.getDirectionsInfo().size();
+    }
 }

@@ -5,28 +5,25 @@ import ladder.domain.line.CustomLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import static org.assertj.core.api.Assertions.*;
 
 class PositionsTest {
 
     @DisplayName("Ladder 안에 한 개의 Line을 통해 Position을 계산한다.")
     @Test
     void newPositionsTestByOneLineLadder() {
+        //given
         CustomLine customLine = new CustomLine();
         customLine.addCustomDirection(Direction.RIGHT);
         customLine.addCustomDirection(Direction.LEFT);
 
-        List<Position> position = new ArrayList<>();
-        int width = 2;
-        for (int i = 0; i < width; i++) {
-            position.add(new Position(i));
-        }
+        int width = customLine.getLineLength();
+        Positions nowPositions = new Positions(width);
 
-        Positions nextPositions = new Positions(position, customLine.getLine());
+        //when
+        Positions nextPositions = nowPositions.calcPosition(customLine.getLine());
 
-        for(Position position1 : nextPositions.getPositions()) {
-            System.out.print(position1.getPosition());
-        }
+        //then
+        assertThat(nextPositions.getPositions()).containsExactly(new Position(1), new Position(0));
     }
 }
