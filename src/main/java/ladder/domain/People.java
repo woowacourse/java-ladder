@@ -23,16 +23,20 @@ public class People {
                 .toList());
     }
 
-    private static void validateCount(List<Person> values) {
+    private void validateCount(List<Person> values) {
         if (values.size() < MIN_COUNT) {
             throw new IllegalArgumentException(MIN_PEOPLE_COUNT);
         }
     }
 
-    private static void validateDuplicated(List<Person> values) {
-        if (values.size() != new HashSet<>(values.stream().map(Person::getName).toList()).size()) {
+    private void validateDuplicated(List<Person> values) {
+        if (values.size() != getUniqueNamesSize()) {
             throw new IllegalArgumentException(NAMES_NOT_DUPLICATED);
         }
+    }
+
+    private int getUniqueNamesSize() {
+        return new HashSet<>(getNames()).size();
     }
 
     public int getCount() {
