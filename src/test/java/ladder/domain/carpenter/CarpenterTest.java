@@ -51,7 +51,7 @@ public class CarpenterTest {
     }
 
     private MadeLineDto getLadderOfCarpenter(Carpenter carpenter) {
-        List<MadeLineDto> ladders = carpenter.getResultLadders().madeLine();
+        List<MadeLineDto> ladders = carpenter.getResultLadders().madeLines();
         return ladders.get(secondLadderIndex);
     }
 }

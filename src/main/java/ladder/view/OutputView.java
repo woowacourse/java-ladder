@@ -14,7 +14,7 @@ public class OutputView {
     private static final String LADDER_STICK_SYMBOL = "|";
 
     public void printMadeLadder(MadeLadderDto resultLadderDto, List<Name> names, List<String> gamePrizes) {
-        List<MadeLineDto> madeLine = resultLadderDto.madeLine();
+        List<MadeLineDto> madeLine = resultLadderDto.madeLines();
 
         printParticipantsNames(names);
         printBuiltLadders(madeLine);

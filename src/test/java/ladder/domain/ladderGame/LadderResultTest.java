@@ -13,7 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LineResultTest {
+public class LadderResultTest {
 
     private Participants participants;
     private GamePrizes gamePrize;
