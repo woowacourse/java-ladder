@@ -2,10 +2,9 @@ package domain.ladder;
 
 import domain.ladder.attirbute.Direction;
 import domain.ladder.attirbute.Height;
-import util.DirectionGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
+import util.DirectionGenerator;
 
 public class Ladder {
     private final int width;
@@ -34,7 +33,9 @@ public class Ladder {
 
 
     public int moveCoordinateToResultPoint(int x, int y) {
-        if (isReachResultPoint(y)) return x;
+        if (isReachResultPoint(y)) {
+            return x;
+        }
         Direction currentDirection = getDirectionOfLadderLegPieceAtSpecificCoordinate(x, y);
         if (currentDirection.equals(Direction.RIGHT)) {
             x += 1;
@@ -49,7 +50,7 @@ public class Ladder {
     private Direction getDirectionOfLadderLegPieceAtSpecificCoordinate(int x, int y) {
         validateCoordinate(x, y);
         return ladderLegs.get(x)
-                         .getDirectionAtIndex(y);
+                .getDirectionAtIndex(y);
     }
 
     private boolean isReachResultPoint(int y) {
@@ -59,8 +60,8 @@ public class Ladder {
     public List<Direction> getDirectionsAtHorizontalIndex(int index) {
         validateVerticalIndex(index);
         return ladderLegs.stream()
-                         .map(ladderLeg -> ladderLeg.getDirectionAtIndex(index))
-                         .toList();
+                .map(ladderLeg -> ladderLeg.getDirectionAtIndex(index))
+                .toList();
     }
 
     private void validateCoordinate(int x, int y) {

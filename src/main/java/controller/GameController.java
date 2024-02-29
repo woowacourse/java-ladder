@@ -1,5 +1,15 @@
 package controller;
 
+import static util.InputRetryHelper.inputRetryHelper;
+import static util.UserMessage.GAME_RESULT_HEADER;
+import static util.UserMessage.HEIGHT_INPUT_PROMPT;
+import static util.UserMessage.LADDER_GENERATE_RESULT_HEADER;
+import static util.UserMessage.PLAYER_INPUT_PROMPT;
+import static util.UserMessage.PRIZE_INPUT_PROMPT;
+import static util.UserMessage.SEARCH_PLAYER_PROMPT;
+import static view.InputView.input;
+import static view.InputView.inputNames;
+
 import domain.GameBoard;
 import domain.ladder.Ladder;
 import domain.ladder.attirbute.Height;
@@ -8,16 +18,10 @@ import domain.player.PlayerNames;
 import domain.player.Players;
 import domain.prize.PrizeName;
 import domain.prize.PrizeNames;
-import util.RandomDirectionGenerator;
-import view.OutputView;
-
 import java.util.Map;
 import java.util.stream.IntStream;
-
-import static util.InputRetryHelper.inputRetryHelper;
-import static util.UserMessage.*;
-import static view.InputView.input;
-import static view.InputView.inputNames;
+import util.RandomDirectionGenerator;
+import view.OutputView;
 
 
 public class GameController {
@@ -36,13 +40,12 @@ public class GameController {
     private void printGeneratedGameBoard(GameBoard gameBoard) {
         OutputView.print(LADDER_GENERATE_RESULT_HEADER);
         OutputView.printNewLine();
-        OutputView.printObjectNames(gameBoard.getPlayers()
-                                             .getPlayerNames());
+        OutputView.printObjectNames(gameBoard.getGamePlayerNames());
         IntStream.range(0, gameBoard.getLadderHeight())
-                 .mapToObj(gameBoard::getDirectionsAtHorizontalIndex)
-                 .forEach(OutputView::printDirections);
+                .mapToObj(gameBoard::getDirectionsAtHorizontalIndex)
+                .forEach(OutputView::printDirections);
         OutputView.printObjectNames(gameBoard.getPrizes()
-                                             .getValue());
+                .getValue());
     }
 
     private void showGeneratedResult(GameBoard gameBoard) {
@@ -58,7 +61,8 @@ public class GameController {
         OutputView.print(GAME_RESULT_HEADER);
         if (targetPlayerName.isAll()) {
             Map<PlayerName, PrizeName> searchResults = gameBoard.searchAllPlayerResult();
-            searchResults.forEach((name, prizeName) -> OutputView.printAllResults(name.getValue(), prizeName.getValue()));
+            searchResults.forEach(
+                    (name, prizeName) -> OutputView.printAllResults(name.getValue(), prizeName.getValue()));
             return false;
         }
         OutputView.print(gameBoard.searchOnePlayerResult(targetPlayerName));

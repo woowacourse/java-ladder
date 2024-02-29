@@ -2,7 +2,6 @@ package domain.ladder;
 
 import domain.ladder.attirbute.Direction;
 import domain.ladder.attirbute.Height;
-
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
@@ -18,13 +17,13 @@ public class LadderLegGenerator {
 
     public LadderLeg generateDownLadderLeg() {
         return new LadderLeg(convertDirectionToLegPieceList(IntStream.range(0, height.getValue())
-                                                                     .mapToObj(index -> Direction.DOWN)));
+                .mapToObj(index -> Direction.DOWN)));
     }
 
     public LadderLeg generateLadderLeg(LadderLeg previousLadderLeg, Supplier<Direction> directionSupplier) {
         return new LadderLeg(convertDirectionToLegPieceList(IntStream.range(0, height.getValue())
-                                                                     .mapToObj(previousLadderLeg::hasRightDirectionAtIndex)
-                                                                     .map(flag -> determineDirection(flag, directionSupplier))));
+                .mapToObj(previousLadderLeg::hasRightDirectionAtIndex)
+                .map(flag -> determineDirection(flag, directionSupplier))));
     }
 
     private Direction determineDirection(boolean prevRightDirectionFlag, Supplier<Direction> directionSupplier) {
@@ -37,7 +36,7 @@ public class LadderLegGenerator {
 
     private List<LadderLegPiece> convertDirectionToLegPieceList(Stream<Direction> directionStream) {
         return directionStream.map(LadderLegPiece::new)
-                              .toList();
+                .toList();
     }
 
 }

@@ -1,7 +1,6 @@
 package domain.ladder;
 
 import domain.ladder.attirbute.Direction;
-
 import java.util.List;
 
 public class LadderLeg {
@@ -13,11 +12,11 @@ public class LadderLeg {
 
     public boolean hasRightDirectionAtIndex(int index) {
         return ladderLegPieces.get(index)
-                              .isRightDirection();
+                .isRightDirection();
     }
 
     public Direction getDirectionAtIndex(int index) {
         return ladderLegPieces.get(index)
-                              .getDirection();
+                .getDirection();
     }
 }

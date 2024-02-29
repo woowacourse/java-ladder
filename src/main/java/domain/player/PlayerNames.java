@@ -16,8 +16,8 @@ public class PlayerNames {
 
     private List<PlayerName> fromNameStrings(List<String> names) {
         return names.stream()
-                    .map(PlayerName::new)
-                    .toList();
+                .map(PlayerName::new)
+                .toList();
     }
 
     private void validate(List<String> names) {
