@@ -30,7 +30,7 @@ public class LadderGameController {
         PlayerNamesDto playerNamesDto = toDto(playerNames);
         LadderDto ladderDto = toDto(ladder);
         PriceDto priceDto = toPriceDto(prices);
-        outputView.printResult(ladderDto, playerNamesDto);
+        outputView.printResult(ladderDto, playerNamesDto, priceDto);
     }
 
     private List<PlayerName> inputPlayerNames() {

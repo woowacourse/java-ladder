@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.dto.LadderDto;
 import ladder.dto.LineDto;
 import ladder.dto.PlayerNamesDto;
+import ladder.dto.PriceDto;
 
 public class OutputView {
 
@@ -12,10 +13,11 @@ public class OutputView {
     private static final String BLANK_STICK = "     |";
     private static final String ERROR_PREFIX = "[ERROR] ";
 
-    public void printResult(LadderDto ladderDto, PlayerNamesDto playerNamesDto) {
+    public void printResult(LadderDto ladderDto, PlayerNamesDto playerNamesDto, PriceDto priceDto) {
         printResultTitle();
         printPlayerNames(playerNamesDto);
         printLadder(ladderDto);
+        PrintPrice(priceDto);
     }
 
     private void printResultTitle() {
@@ -27,6 +29,13 @@ public class OutputView {
     private void printPlayerNames(PlayerNamesDto playerNames) {
         for (String playerName : playerNames.playerNames()) {
             System.out.printf("%5s ", playerName);
+        }
+        System.out.println();
+    }
+
+    private void PrintPrice(PriceDto priceDto) {
+        for (String priceName : priceDto.priceNames()) {
+            System.out.printf("%5s ", priceName);
         }
         System.out.println();
     }
