@@ -55,5 +55,6 @@ public class LadderController {
         Map<String, String> ladderResult = ladderGame.play();
 
         System.out.println(ladderResult);
+
     }
 }
