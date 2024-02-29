@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class LadderLevel {
-    private final ArrayList<Direction> ladderLevel;
+    private final List<Direction> ladderLevel;
 
     public LadderLevel(Width width, DirectionGenerator directionGenerator) {
         ladderLevel = createLadderLevel(width, directionGenerator);
