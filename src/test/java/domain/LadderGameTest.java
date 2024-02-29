@@ -21,7 +21,7 @@ class LadderGameTest {
 
         Names names = new Names(List.of(new Name("리비"), new Name("잉크")));
         Ladder ladder = new Ladder(List.of(line1, line2));
-        Prizes prizes = new Prizes(List.of(new Prize("123"), new Prize("456")));
+        Prizes prizes = new Prizes(List.of(new PrizeName("123"), new PrizeName("456")));
 
         LadderGame ladderGame = new LadderGame(ladder, names, prizes);
         assertThat(ladderGame.drive("잉크").getResult()).isEqualTo("456");
@@ -35,7 +35,7 @@ class LadderGameTest {
 
         Names names = new Names(List.of(new Name("리비"), new Name("잉크")));
         Ladder ladder = new Ladder(List.of(line1, line2));
-        Prizes prizes = new Prizes(List.of(new Prize("123"), new Prize("456")));
+        Prizes prizes = new Prizes(List.of(new PrizeName("123"), new PrizeName("456")));
 
         LadderGame ladderGame = new LadderGame(ladder, names, prizes);
         assertThat(ladderGame.driveAll().getResults())
@@ -52,7 +52,7 @@ class LadderGameTest {
         Names names = new Names(List.of(new Name("리비"), new Name("잉크")));
         Ladder ladder = new Ladder(List.of(line1, line2));
         Prizes prizes = new Prizes(
-                List.of(new Prize("123"), new Prize("456"), new Prize("789")));
+                List.of(new PrizeName("123"), new PrizeName("456"), new PrizeName("789")));
 
         assertThatThrownBy(() -> new LadderGame(ladder, names, prizes))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -67,7 +67,7 @@ class LadderGameTest {
         Names names = new Names(List.of(new Name("리비"), new Name("잉크")));
         Ladder ladder = new Ladder(List.of(line1, line2));
         Prizes prizes = new Prizes(
-                List.of(new Prize("123"), new Prize("456")));
+                List.of(new PrizeName("123"), new PrizeName("456")));
 
         assertThatCode(() -> new LadderGame(ladder, names, prizes))
                 .doesNotThrowAnyException();

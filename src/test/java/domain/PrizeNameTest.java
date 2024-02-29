@@ -8,13 +8,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("도착 결과 테스트")
-class PrizeTest {
+class PrizeNameTest {
 
     @DisplayName("결과의 길이가 1자에서 5자 사이가 아니면 생성 검증에 실패한다.")
     @ParameterizedTest
     @ValueSource(strings = {"", "123456"})
     void testCreateNameWithInvalidLength(String result) {
-        assertThatThrownBy(() -> new Prize(result))
+        assertThatThrownBy(() -> new PrizeName(result))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 결과의 길이는 1자에서 5자 사이여야 합니다");
     }
@@ -23,7 +23,7 @@ class PrizeTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "12", "123", "1234", "12345"})
     void testCreateWithValidLength(String prize) {
-        assertThatCode(() -> new Prize(prize)).doesNotThrowAnyException();
+        assertThatCode(() -> new PrizeName(prize)).doesNotThrowAnyException();
     }
 
 }

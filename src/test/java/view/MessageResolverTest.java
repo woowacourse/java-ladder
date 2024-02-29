@@ -9,7 +9,7 @@ import domain.LadderResult;
 import domain.LadderResults;
 import domain.Name;
 import domain.Names;
-import domain.Prize;
+import domain.PrizeName;
 import domain.Prizes;
 import domain.RowLine;
 import java.util.List;
@@ -36,7 +36,7 @@ class MessageResolverTest {
 
         Ladder ladder = new Ladder(rowLines);
         Names names = new Names(List.of(new Name("리비"), new Name("테니"), new Name("잉크")));
-        Prizes prizes = new Prizes(List.of(new Prize("1"), new Prize("2"), new Prize("3")));
+        Prizes prizes = new Prizes(List.of(new PrizeName("1"), new PrizeName("2"), new PrizeName("3")));
 
         String result = messageResolver.resolveLadderMessage(ladder, names, prizes);
 

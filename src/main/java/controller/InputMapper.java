@@ -3,7 +3,7 @@ package controller;
 import domain.Height;
 import domain.Name;
 import domain.Names;
-import domain.Prize;
+import domain.PrizeName;
 import domain.Prizes;
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +26,7 @@ public class InputMapper {
 
     public Prizes mapToPrizes(String target) {
         return new Prizes(Arrays.stream(target.split(RESULT_DELIMITER))
-                .map(Prize::new)
+                .map(PrizeName::new)
                 .toList());
     }
 

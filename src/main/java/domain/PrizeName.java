@@ -1,13 +1,13 @@
 package domain;
 
-public class Prize {
+public class PrizeName {
 
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
 
     private final String prize;
 
-    public Prize(String prize) {
+    public PrizeName(String prize) {
         validateLength(prize);
         this.prize = prize;
     }
