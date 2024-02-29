@@ -64,12 +64,12 @@ public class LadderGameResult {
             nameIndexMap.put(index, right);
         }
     }
-    
+
     private Map<Name, LadderResult> setLadderGameResult(Names names, LadderResults ladderResults,
                                                         Map<Integer, Integer> nameIndexMap) {
         return IntStream.range(0, names.getNames().size())
                 .boxed()
-                .collect(Collectors.toMap(index -> names.getNames().get(index),
-                        index -> ladderResults.getLadderResults().get(nameIndexMap.get(index))));
+                .collect(Collectors.toMap(index -> names.getNames().get(nameIndexMap.get(index)),
+                        index -> ladderResults.getLadderResults().get(index)));
     }
 }
