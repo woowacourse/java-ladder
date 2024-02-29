@@ -40,12 +40,12 @@ public class Ladder {
         }
     }
 
-    public void playLadder(Results results, Participants participants) {
+    public void playLadder(GameResult gameResult, Prizes prizes, Participants participants) {
         for (int initPosition = 0; initPosition < participants.getParticipantsCount(); initPosition++) {
             Participant participant = participants.findParticipantByInitPosition(initPosition);
             int position = getNextPosition(initPosition);
 
-            results.recordParticipantsResult(participant, position);
+            gameResult.recordParticipantsResult(participant, prizes, position);
         }
     }
 
