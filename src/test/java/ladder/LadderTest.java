@@ -45,9 +45,9 @@ class LadderTest {
         List<Line> lines = createTemplateLines();
         Ladder ladder = new Ladder(lines);
         // when
-        Index actual = ladder.climbDown(Index.of(startIndex));
+        int actual = ladder.climbDown(startIndex);
         // then
-        assertThat(actual).isEqualTo(Index.of(expected));
+        assertThat(actual).isEqualTo(expected);
     }
 
     @Test

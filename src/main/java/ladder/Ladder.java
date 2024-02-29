@@ -12,12 +12,12 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public Index climbDown(Index startIndex) {
-        Index resultIndex = startIndex;
+    public int climbDown(int startIndex) {
+        Index resultIndex = Index.of(startIndex);
         for (final Line line : lines) {
             resultIndex = line.move(resultIndex);
         }
-        return resultIndex;
+        return resultIndex.toInt();
     }
 
     private void validateSameSize(List<Line> lines) {
