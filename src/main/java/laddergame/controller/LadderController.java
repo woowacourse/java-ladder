@@ -36,21 +36,25 @@ public class LadderController {
 
         outputView.printLadderResult(ladderResult);
 
-        runSelect();
+        printSelectedResult();
     }
 
     private Names receiveInputNames() {
-        return ExceptionHandler.retryUntilInputIsValid(() -> new Names(inputView.readNames()), outputView);
+        return ExceptionHandler.retryBySupplier(() -> new Names(inputView.readNames()), outputView);
     }
 
     private Results receiveInputResults(final Names names) {
-        return ExceptionHandler.retryUntilInputIsValid(() -> new Results(inputView.readResults(), names.size()),
+        return ExceptionHandler.retryBySupplier(() -> new Results(inputView.readResults(), names.size()),
                 outputView);
     }
 
     private LadderHeight receiveInputLadderHeight() {
-        return ExceptionHandler.retryUntilInputIsValid(() -> new LadderHeight(inputView.readLadderHeight()),
+        return ExceptionHandler.retryBySupplier(() -> new LadderHeight(inputView.readLadderHeight()),
                 outputView);
+    }
+
+    private void printSelectedResult() {
+        ExceptionHandler.retryByRunnable(this::runSelect, outputView);
     }
 
     private void runSelect() {

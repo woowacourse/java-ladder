@@ -9,13 +9,13 @@ public class ExceptionHandler {
 
     private static int retryCount = 0;
 
-    public static <T> T retryUntilInputIsValid(final Supplier<T> function, final OutputView outputView) {
+    public static <T> T retryBySupplier(final Supplier<T> function, final OutputView outputView) {
         try {
             return function.get();
         } catch (final IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
             validateRetryCount();
-            return retryUntilInputIsValid(function, outputView);
+            return retryBySupplier(function, outputView);
         }
     }
 
@@ -25,4 +25,13 @@ public class ExceptionHandler {
         }
     }
 
+    public static void retryByRunnable(final Runnable runnable, final OutputView outputView) {
+        try {
+            runnable.run();
+        } catch (final IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception.getMessage());
+            validateRetryCount();
+            retryByRunnable(runnable, outputView);
+        }
+    }
 }
