@@ -25,13 +25,13 @@ public class OutputView {
                                   .getPlayerNames());
         printLadder(gameBoard.getLadder(), gameBoard.getLadderHeight());
         printRewards(gameBoard.getRewards()
-                              .getValue());
+                              .getResults());
     }
 
 
     private static void printPlayerNames(List<Name> playerNames) {
         playerNames.stream()
-                   .map(Name::getValue)
+                   .map(Name::nameToString)
                    .map(OutputView::padString)
                    .forEach(System.out::print);
         printNewLine();
@@ -65,7 +65,7 @@ public class OutputView {
 
     private static void printRewards(List<Result> results) {
         results.stream()
-               .map(Result::getValue)
+               .map(Result::resultToString)
                .map(OutputView::padString)
                .forEach(System.out::print);
         printNewLine();

@@ -14,6 +14,6 @@ public class ResultTest {
 
         Result result = new Result(value);
 
-        assertEquals(result.getValue(), value);
+        assertEquals(result.resultToString(), value);
     }
 }

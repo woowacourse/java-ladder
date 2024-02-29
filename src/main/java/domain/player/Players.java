@@ -12,7 +12,7 @@ public class Players {
     }
 
     public Players(Names names) {
-        this.players = names.getValue()
+        this.players = names.getNames()
                             .stream()
                             .map(Player::new)
                             .toList();
@@ -33,7 +33,7 @@ public class Players {
                       .filter(player -> player.isNameEqual(name))
                       .findFirst()
                       .orElseThrow(() -> new IllegalArgumentException(
-                              String.format("%s는 플레이어 이름에 존재하지 않습니다.", name.getValue())));
+                              String.format("%s는 플레이어 이름에 존재하지 않습니다.", name.nameToString())));
     }
 
     public int getPlayerCount() {

@@ -34,7 +34,7 @@ public class Name {
             throw new IllegalArgumentException("이름에 공백을 포함할 수 없습니다.");
         }
     }
-    public String getValue() {
+    public String nameToString() {
         return value;
     }
 

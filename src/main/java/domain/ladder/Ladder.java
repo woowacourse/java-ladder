@@ -20,7 +20,7 @@ public class Ladder {
     }
 
     private List<LadderLeg> generateLadderLegs(DirectionGenerator directionGenerator) {
-        int heightValue = height.getHeight();
+        int heightValue = height.heightToInt();
 
         List<LadderLeg> ladderLegs = buildBeforeFinalLeg(heightValue, directionGenerator);
         addFinalLeg(heightValue, ladderLegs);
@@ -70,10 +70,10 @@ public class Ladder {
     }
 
     private boolean isPointIsEndLine(Point point) {
-        return point.column() >= height.getHeight();
+        return point.column() >= height.heightToInt();
     }
 
     public int getHeight() {
-        return height.getHeight();
+        return height.heightToInt();
     }
 }

@@ -16,7 +16,7 @@ class PlayersTest {
 
         Players players = new Players(names);
 
-        assertIterableEquals(players.getPlayerNames(), names.getValue());
+        assertIterableEquals(players.getPlayerNames(), names.getNames());
     }
 
     @Test

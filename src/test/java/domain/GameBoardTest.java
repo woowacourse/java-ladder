@@ -90,7 +90,7 @@ public class GameBoardTest {
 
     private void assertResult(String value, PlayerResult playerResult) {
         assertEquals(value, playerResult.result()
-                                        .getValue());
+                                        .resultToString());
     }
 
     /**

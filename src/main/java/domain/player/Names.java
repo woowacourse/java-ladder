@@ -39,7 +39,7 @@ public class Names {
         }
     }
 
-    public List<Name> getValue() {
+    public List<Name> getNames() {
         return names;
     }
 }

@@ -37,7 +37,7 @@ public class ResultsTest {
 
         Result result = results.getRewardAt(2);
 
-        assertEquals(result.getValue(), value.get(2));
+        assertEquals(result.resultToString(), value.get(2));
     }
 
 }

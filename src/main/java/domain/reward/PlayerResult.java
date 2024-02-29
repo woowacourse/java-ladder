@@ -4,10 +4,10 @@ import domain.common.Name;
 
 public record PlayerResult(Name name, Result result) {
     public String nameToString() {
-        return name.getValue();
+        return name.nameToString();
     }
 
     public String rewardToString() {
-        return result.getValue();
+        return result.resultToString();
     }
 }

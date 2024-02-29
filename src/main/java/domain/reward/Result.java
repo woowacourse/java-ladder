@@ -7,7 +7,7 @@ public class Result {
         this.value = value;
     }
 
-    public String getValue() {
+    public String resultToString() {
         return value;
     }
 }

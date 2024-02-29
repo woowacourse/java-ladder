@@ -19,7 +19,7 @@ class HeightTest {
 
         assertThatCode(() -> {
             Height height = new Height(value);
-            assertEquals(height.getHeight(), Integer.valueOf(value));
+            assertEquals(height.heightToInt(), Integer.valueOf(value));
         }).doesNotThrowAnyException();
     }
 
