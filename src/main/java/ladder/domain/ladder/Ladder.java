@@ -58,11 +58,15 @@ public class Ladder {
     private List<Name> climbDown(List<Name> copiedNames) {
         for (Floor floor : floors) {
             List<Integer> existRungPositions = floor.getExistRungPositions();
-            existRungPositions.forEach(
-                    existRungPosition -> Collections.swap(copiedNames, existRungPosition,
-                            existRungPosition + 1));
+            swapPosition(copiedNames, existRungPositions);
         }
         return copiedNames;
+    }
+
+    private void swapPosition(List<Name> copiedNames, List<Integer> existRungPositions) {
+        for (Integer existRungPosition : existRungPositions) {
+            Collections.swap(copiedNames, existRungPosition, existRungPosition + 1);
+        }
     }
 
     private List<Prize> getSortedPrizeResult(Participants participants, List<Name> ladderResultNames,
