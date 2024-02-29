@@ -48,4 +48,8 @@ public class Participants {
         }
         throw new IllegalArgumentException("[ERROR] 존재하지 않는 참가자입니다.");
     }
+
+    public Name getNameOf(int indexOfName) {
+        return names.get(indexOfName);
+    }
 }

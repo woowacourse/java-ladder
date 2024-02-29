@@ -19,8 +19,8 @@ public class Result {
         }
     }
 
-    String getPrizeOf(int indexOfPrize) {
-        return prizes.get(indexOfPrize).getPrize();
+    public Prize getPrizeOf(int indexOfPrize) {
+        return prizes.get(indexOfPrize);
     }
 
     public List<Prize> getPrizes() {

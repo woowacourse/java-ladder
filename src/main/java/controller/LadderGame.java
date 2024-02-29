@@ -1,13 +1,12 @@
 package controller;
 
 import constant.controller.LadderGameExceptionMessage;
-import domain.Ladder;
-import domain.Participants;
-import domain.Result;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
+import java.util.Objects;
 
 public class LadderGame {
 
@@ -16,6 +15,7 @@ public class LadderGame {
     private Participants participants;
     private Result result;
     private Ladder ladder;
+    private MatchResult matchResult;
 
     public void play() {
         try {
@@ -29,7 +29,42 @@ public class LadderGame {
         participants = recruitParticipants();
         result = decideResult(participants.getParticipantsCount());
         ladder = makeLadder();
-        outputView.printResult(participants, ladder, result);
+        matchResult = new MatchResult(participants, result, ladder);
+        outputView.printLadderResult(participants, ladder, result);
+        while (true) {
+            showResult();
+        }
+    }
+
+    private void showResult() {
+        String who = inputView.readWho();
+        if (Command.contains(who)) {
+            showResultByCommand(who);
+            return;
+        }
+        showResultByName(who);
+    }
+
+    private void showResultByName(String who) {
+        try {
+            String prize = matchResult.getResultByName(who);
+            outputView.printPrize(prize);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void showResultByCommand(String who) {
+        if (Objects.equals(who, Command.EXIT.getCommand())) {
+            System.exit(0);
+        }
+        if (Objects.equals(who, Command.ALL.getCommand())) {
+            showResultAll();
+        }
+    }
+
+    private void showResultAll() {
+        outputView.printPrizes(matchResult.getResultAll());
     }
 
     private Participants recruitParticipants() {
