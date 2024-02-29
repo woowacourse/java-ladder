@@ -2,14 +2,15 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.Random;
 import java.util.function.Supplier;
 
-import domain.ladder.LadderGame;
+import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
 import domain.player.Player;
 import domain.player.Players;
 import domain.prize.Prizes;
+import generator.RandomLadderGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -17,34 +18,53 @@ public class LadderGameController {
 
 	private final InputView inputView;
 	private final OutputView outputView;
-	private final LadderGame ladderGame;
 
-	public LadderGameController(InputView inputView, OutputView outputView, LadderGame ladderGame) {
+	public LadderGameController(InputView inputView, OutputView outputView) {
 		this.inputView = inputView;
 		this.outputView = outputView;
-		this.ladderGame = ladderGame;
 	}
 
 	public void run() {
 		Players players = retryOnException(this::getPlayers);
 		int playerCount = players.getPlayerCount();
-
 		Prizes prizes = retryOnException(() -> getPrizes(playerCount));
 		LadderHeight height = retryOnException(this::getHeight);
 
-		ladderGame.createRandomLadder(playerCount, height);
+		RandomLadderGenerator ladderGenerator = new RandomLadderGenerator(new Random());
+		Ladder ladder = ladderGenerator.generate(height.value(), playerCount);
 
-		printCurrentLadder(players, prizes);
-		printPlayerResult(players, prizes);
+		printResult(players, prizes, ladder);
+	}
+
+	private void printResult(Players players, Prizes prizes, Ladder ladder) {
+		printCreatedLadder(players, prizes, ladder);
+
+		String playerNameToGetResult = retryOnException(() -> getPlayerNameToShowResult(players.getNames()));
+
+		if ("all".equals(playerNameToGetResult)) {
+			outputView.printAllPlayerResults(ladder.getAllPlayerResults(players, prizes));
+			return;
+		}
+
+		Player player = players.findPlayerFromName(playerNameToGetResult);
+		outputView.printOnePlayerResult(ladder.getOnePlayerResult(player, prizes));
+	}
+
+	private void printCreatedLadder(Players players, Prizes prizes, Ladder ladder) {
+		outputView.printCurrentLadder(
+			players.getNames(),
+			ladder.createLadderConnectionStatus(),
+			prizes.names()
+		);
 	}
 
 	private Players getPlayers() {
-		outputView.printReadNames();
-		List<String> names = inputView.readNames();
+		outputView.printRequestNamesMessage();
+		List<String> names = inputView.readPlayerNames();
 
 		List<Player> players = new ArrayList<>();
-		for (int order = 0; order < names.size(); order++) {
-			Player player = new Player(names.get(order), order);
+		for (int i = 0; i < names.size(); i++) {
+			Player player = new Player(names.get(i), i);
 			players.add(player);
 		}
 
@@ -52,51 +72,22 @@ public class LadderGameController {
 	}
 
 	private Prizes getPrizes(int playerCount) {
-		outputView.printReadPrizes();
+		outputView.printRequestPrizesMessage();
 		List<String> prizeNames = inputView.readPrizes(playerCount);
 
-		return Prizes.fromNames(prizeNames);
+		return new Prizes(prizeNames);
 	}
 
 	private LadderHeight getHeight() {
-		outputView.printReadLadderHeight();
+		outputView.printRequestLadderHeightMessage();
 		int height = inputView.readLadderHeight();
 
 		return new LadderHeight(height);
 	}
 
-	private void printCurrentLadder(Players players, Prizes prizes) {
-		outputView.printResultMessage();
-		outputView.printNames(players.getPlayerNames());
-		outputView.printLadder(ladderGame.getCurrentLadder());
-		outputView.printNames(prizes.getPrizeNames());
-		outputView.printEmptyLine();
-	}
-
-	private void printPlayerResult(Players players, Prizes prizes) {
-		String playerName = retryOnException(() -> getPlayerNameToShowResult(players.getPlayerNames()));
-
-		if (playerName.equals("all")) {
-			printAllPlayersResult(players, prizes);
-			return;
-		}
-		printOnePlayersResult(players, prizes, playerName);
-	}
-
 	private String getPlayerNameToShowResult(List<String> allPlayerNames) {
-		outputView.printReadPlayer();
+		outputView.printRequestPlayerToGetResultMessage();
 		return inputView.readPlayersToShowResult(allPlayerNames);
-	}
-
-	private void printAllPlayersResult(Players players, Prizes prizes) {
-		Map<String, String> results = ladderGame.getAllPlayersPrizeNames(players, prizes);
-		outputView.printAllPlayersResult(results);
-	}
-
-	private void printOnePlayersResult(Players players, Prizes prizes, String playerName) {
-		Player player = players.findPlayerFromName(playerName);
-		String result = ladderGame.getOnePlayersPrizeName(player, prizes);
-		outputView.printOnePlayerResult(result);
 	}
 
 	private <T> T retryOnException(Supplier<T> function) {

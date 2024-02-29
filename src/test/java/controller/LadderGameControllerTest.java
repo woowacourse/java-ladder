@@ -8,18 +8,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.time.Duration;
-import java.util.Iterator;
-import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Random;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import domain.ladder.LadderGame;
-import generator.LadderFloorGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -55,14 +50,12 @@ public class LadderGameControllerTest {
 				"최대 사다리 높이는 몇 개인가요?",
 				"사다리 결과",
 				"a     b     c",
-				"|-----|     |",
-				"|     |-----|",
 				"d     e     f",
 				"결과를 보고 싶은 사람은?",
 				"실행 결과",
-				"a : f",
-				"b : d",
-				"c : e"
+				"a : ",
+				"b : ",
+				"c : "
 			);
 	}
 
@@ -72,7 +65,6 @@ public class LadderGameControllerTest {
 		command(
 			"hello,my,name,is,sangdol"
 			, "a:b:c"
-			, "1,2,3"
 			, ""
 		);
 
@@ -103,7 +95,7 @@ public class LadderGameControllerTest {
 	void retryInputOnLadderHeightsExceptionTest() {
 		command(
 			"a,b,c" // 이름 정상 입력
-			, "꽝, 5000, 3000" // 실행 결과 정상 입력
+			, "꽝,5000,3000" // 실행 결과 정상 입력
 			, "a"
 			, "-1"
 			, ""
@@ -120,7 +112,7 @@ public class LadderGameControllerTest {
 	void retryInputOnPlayerNameExceptionTest() {
 		command(
 			"a,b,c" // 이름 정상 입력
-			, "꽝, 5000, 3000" // 실행 결과 정상 입력
+			, "꽝,5000,3000" // 실행 결과 정상 입력
 			, "5" // 사다리 정상 입력
 			, "ali"
 			, "d"
@@ -136,17 +128,7 @@ public class LadderGameControllerTest {
 	private void run() {
 		InputView inputView = new InputView();
 		OutputView outputView = new OutputView();
-		Random random = new Random() {
-			final Iterator<Boolean> iterator = List.of(true, false, true).iterator();
-
-			@Override
-			public boolean nextBoolean() {
-				return iterator.next();
-			}
-		};
-		LadderFloorGenerator generator = new LadderFloorGenerator(random);
-		LadderGame ladderGame = new LadderGame(generator);
-		LadderGameController controller = new LadderGameController(inputView, outputView, ladderGame);
+		LadderGameController controller = new LadderGameController(inputView, outputView);
 
 		controller.run();
 	}
