@@ -27,12 +27,12 @@ public class GameResultTest {
     @DisplayName("사다리 결과와 상품을 매칭해서 게임 결과를 반환한다.")
     @Test
     void generateGameResultTest() {
-        Map<Name, String> gameResult = new GameResult(participants, sortedPrizes).getGameResult();
+        Map<Name, Prize> gameResult = new GameResult(participants, sortedPrizes).getGameResult();
 
         assertAll(
-                () -> assertEquals("3000", gameResult.get(new Name("aru"))),
-                () -> assertEquals("꽝", gameResult.get(new Name("pola"))),
-                () -> assertEquals("5000", gameResult.get(new Name("jazz")))
+                () -> assertEquals(new Prize("3000"), gameResult.get(new Name("aru"))),
+                () -> assertEquals(new Prize("꽝"), gameResult.get(new Name("pola"))),
+                () -> assertEquals(new Prize("5000"), gameResult.get(new Name("jazz")))
         );
     }
 

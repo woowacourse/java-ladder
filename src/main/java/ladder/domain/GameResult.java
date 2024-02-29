@@ -7,17 +7,17 @@ import ladder.domain.participant.Participants;
 
 public class GameResult {
 
-    private final Map<Name, String> gameResult;
+    private final Map<Name, Prize> gameResult;
 
     public GameResult(Participants participants, Prizes sortedPrizes) {
         this.gameResult = makeLadderGameResult(participants, sortedPrizes);
     }
 
-    private Map<Name, String> makeLadderGameResult(Participants participants, Prizes sortedPrizes) {
-        Map<Name, String> gameResult = new LinkedHashMap<>();
+    private Map<Name, Prize> makeLadderGameResult(Participants participants, Prizes sortedPrizes) {
+        Map<Name, Prize> gameResult = new LinkedHashMap<>();
 
         for (int index = 0; index < participants.getCount(); index++) {
-            gameResult.put(participants.getNameByIndex(index), sortedPrizes.getNameByIndex(index));
+            gameResult.put(participants.getNameByIndex(index), sortedPrizes.getPrizeByIndex(index));
         }
 
         return gameResult;
@@ -33,7 +33,7 @@ public class GameResult {
         return !gameResult.containsKey(new Name(nameInput));
     }
 
-    public Map<Name, String> getGameResult() {
+    public Map<Name, Prize> getGameResult() {
         return gameResult;
     }
 }

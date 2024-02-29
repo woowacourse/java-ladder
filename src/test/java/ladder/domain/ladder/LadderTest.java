@@ -17,12 +17,11 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class LadderTest {
 
-    private List<Rung> rungs;
     private Ladder ladder;
 
     @BeforeEach
     void setUp() {
-        rungs = new ArrayList<>(List.of(
+        List<Rung> rungs = new ArrayList<>(List.of(
                 Rung.EXIST, Rung.NOT_EXIST, Rung.NOT_EXIST, Rung.EXIST,
                 Rung.NOT_EXIST, Rung.EXIST, Rung.NOT_EXIST, Rung.EXIST,
                 Rung.NOT_EXIST, Rung.NOT_EXIST, Rung.EXIST, Rung.NOT_EXIST));
@@ -58,7 +57,8 @@ public class LadderTest {
 
         Prizes sortedPrizes = ladder.getSortedPrizesResult(participants, prizes);
 
-        assertThat(sortedPrizes.getNames()).containsExactly("꽝", "3000", "꽝", "5000", "꽝꽝");
+        Prizes expectedPrizes = new Prizes(new ArrayList<>(List.of("꽝", "3000", "꽝", "5000", "꽝꽝")), 5);
+        assertThat(sortedPrizes.getPrizes()).isEqualTo(expectedPrizes.getPrizes());
     }
 
 }

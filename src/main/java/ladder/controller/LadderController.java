@@ -65,7 +65,7 @@ public class LadderController {
 
     private void printLadderResult(Participants participants, Prizes prizes, Ladder ladder) {
         LadderResponseDto ladderResponseDto = ladder.getLadderResult();
-        outputView.printLadderResult(ladderResponseDto, participants.getNames(), prizes.getNames());
+        outputView.printLadderResult(ladderResponseDto, participants.getNames(), prizes.getPrizes());
     }
 
     private String getName(GameResult gameResult) {

@@ -3,24 +3,35 @@ package ladder.domain;
 import java.util.List;
 
 public class Prizes {
-    private final List<String> names;
+    private final List<Prize> prizes;
 
-    public Prizes(List<String> name, int personCount) {
-        validatePrizesCount(name, personCount);
-        this.names = name;
+    public Prizes(List<String> names, int personCount) {
+        validatePrizesCount(names, personCount);
+        this.prizes = initializePrizes(names);
     }
 
-    private void validatePrizesCount(List<String> name, int personCount) {
-        if (name.size() != personCount) {
+    public Prizes(List<Prize> prizes) {
+        this.prizes = prizes;
+    }
+
+    private void validatePrizesCount(List<String> names, int personCount) {
+        if (names.size() != personCount) {
             throw new IllegalArgumentException("상품의 개수는 참여자 인원수와 일치해야 합니다.");
         }
     }
 
-    public List<String> getNames() {
-        return names;
+    private List<Prize> initializePrizes(List<String> names) {
+        return names.stream()
+                .map(Prize::new)
+                .toList();
     }
 
-    public String getNameByIndex(int index) {
-        return names.get(index);
+
+    public List<Prize> getPrizes() {
+        return prizes;
+    }
+
+    public Prize getPrizeByIndex(int index) {
+        return prizes.get(index);
     }
 }

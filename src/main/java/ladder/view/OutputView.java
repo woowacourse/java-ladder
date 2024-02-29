@@ -2,6 +2,7 @@ package ladder.view;
 
 import java.util.List;
 import java.util.Map;
+import ladder.domain.Prize;
 import ladder.domain.dto.FloorResponseDto;
 import ladder.domain.dto.LadderResponseDto;
 import ladder.domain.participant.Name;
@@ -12,7 +13,7 @@ public class OutputView {
     private static final String LADDER_STICK_SYMBOL = "|";
 
     public void printLadderResult(LadderResponseDto ladderResponseDto, List<Name> participantNames,
-                                  List<String> prizeNames) {
+                                  List<Prize> prizeNames) {
         List<FloorResponseDto> floorResponseDtos = ladderResponseDto.ladderResult();
 
         printParticipantsNames(participantNames);
@@ -36,22 +37,22 @@ public class OutputView {
         }
     }
 
-    private void printPrizes(List<String> prizes) {
-        for (String prizeName : prizes) {
-            System.out.printf("%-6s", prizeName);
+    private void printPrizes(List<Prize> prizes) {
+        for (Prize prize : prizes) {
+            System.out.printf("%6s", prize.name());
         }
         System.out.println();
     }
 
-    public void printNameMatchResult(Map<Name, String> gameResult, String nameSearch) {
+    public void printNameMatchResult(Map<Name, Prize> gameResult, String nameSearch) {
         System.out.println("\n실행 결과");
-        System.out.println(gameResult.get(new Name(nameSearch)));
+        System.out.println(gameResult.get(new Name(nameSearch)).name());
     }
 
-    public void printAllMatchResult(Map<Name, String> gameResult) {
+    public void printAllMatchResult(Map<Name, Prize> gameResult) {
         System.out.println("\n실행 결과");
         for (Name name : gameResult.keySet()) {
-            System.out.println(name.getName() + " : " + gameResult.get(name));
+            System.out.println(name.getName() + " : " + gameResult.get(name).name());
         }
     }
 
