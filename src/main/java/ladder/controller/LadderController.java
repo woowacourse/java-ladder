@@ -7,6 +7,7 @@ import ladder.domain.Prizes;
 import ladder.domain.dto.LadderResponseDto;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.RungGenerator;
+import ladder.domain.participant.Name;
 import ladder.domain.participant.Participants;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -34,7 +35,7 @@ public class LadderController {
 
         Prizes sortedPrizes = ladder.getSortedPrizesResult(participants, prizes);
         GameResult gameResult = new GameResult(participants, sortedPrizes);
-        String name = repeatUntilValid(() -> getName(gameResult));
+        Name name = repeatUntilValid(() -> getName(gameResult));
         printLadderGameResult(gameResult, name);
     }
 
@@ -68,22 +69,22 @@ public class LadderController {
         outputView.printLadderResult(ladderResponseDto, participants.getNames(), prizes.getPrizes());
     }
 
-    private String getName(GameResult gameResult) {
-        String name = inputView.getName();
+    private Name getName(GameResult gameResult) {
+        Name name = new Name(inputView.getName());
 
-        if (name.equals(ALL_RESULT_INPUT_KEYWORD)) {
+        if (ALL_RESULT_INPUT_KEYWORD.equals(name.getName())) {
             return name;
         }
-        gameResult.containsName(name);
+        gameResult.checkNameContainedResult(name);
         return name;
     }
 
-    private void printLadderGameResult(GameResult gameResult, String nameSearch) {
-        if (nameSearch.equals(ALL_RESULT_INPUT_KEYWORD)) {
+    private void printLadderGameResult(GameResult gameResult, Name nameSearch) {
+        if (ALL_RESULT_INPUT_KEYWORD.equals(nameSearch.getName())) {
             outputView.printAllMatchResult(gameResult.getGameResult());
         }
 
-        if (!nameSearch.equals(ALL_RESULT_INPUT_KEYWORD)) {
+        if (!ALL_RESULT_INPUT_KEYWORD.equals(nameSearch.getName())) {
             outputView.printNameMatchResult(gameResult.getGameResult(), nameSearch);
         }
     }

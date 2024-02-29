@@ -40,9 +40,9 @@ public class GameResultTest {
     @Test
     void notExistNameInGameResultTest() {
         GameResult gameResult = new GameResult(participants, sortedPrizes);
-        String nameInput = "loki";
+        Name nameInput = new Name("loki");
 
-        assertThatThrownBy(() -> gameResult.containsName(nameInput))
+        assertThatThrownBy(() -> gameResult.checkNameContainedResult(nameInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("조회하려는 참여자가 게임 결과에 존재하지 않습니다.");
     }

@@ -23,14 +23,14 @@ public class GameResult {
         return gameResult;
     }
 
-    public void containsName(String nameInput) {
+    public void checkNameContainedResult(Name nameInput) {
         if (isNameNotContained(nameInput)) {
             throw new IllegalArgumentException("조회하려는 참여자가 게임 결과에 존재하지 않습니다.");
         }
     }
 
-    private boolean isNameNotContained(String nameInput) {
-        return !gameResult.containsKey(new Name(nameInput));
+    private boolean isNameNotContained(Name nameInput) {
+        return !gameResult.containsKey(nameInput);
     }
 
     public Map<Name, Prize> getGameResult() {

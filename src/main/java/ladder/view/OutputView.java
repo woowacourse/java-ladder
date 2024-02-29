@@ -44,9 +44,9 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printNameMatchResult(Map<Name, Prize> gameResult, String nameSearch) {
+    public void printNameMatchResult(Map<Name, Prize> gameResult, Name nameSearch) {
         System.out.println("\n실행 결과");
-        System.out.println(gameResult.get(new Name(nameSearch)).name());
+        System.out.println(gameResult.get(nameSearch).name());
     }
 
     public void printAllMatchResult(Map<Name, Prize> gameResult) {
