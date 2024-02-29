@@ -18,8 +18,8 @@ public class LadderGameController {
         Players players = retryUntilNoError(() -> new Players(InputView.readNames()));
         Ladder ladder = retryUntilNoError(() -> makeLadder(players));
 
-        int playerNumber= players.getPlayerNames().size();
-        Prizes prizes = retryUntilNoError(() -> new Prizes(InputView.readNames(), playerNumber));
+        int playerNumber = players.getPlayerNames().size();
+        Prizes prizes = retryUntilNoError(() -> new Prizes(InputView.readPrizes(), playerNumber));
 
         LadderGame ladderGame = new LadderGame(players, ladder, prizes);
 

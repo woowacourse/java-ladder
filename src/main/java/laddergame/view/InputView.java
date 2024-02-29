@@ -16,7 +16,7 @@ public class InputView {
                 .split(DELIMITER));
     }
 
-    public static List<String> readGameResult() {
+    public static List<String> readPrizes() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         return List.of(scanner.nextLine()
                 .split(DELIMITER));
