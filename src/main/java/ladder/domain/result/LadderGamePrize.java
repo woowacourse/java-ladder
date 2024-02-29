@@ -16,7 +16,7 @@ public class LadderGamePrize {
         this.values = unmodifiableList(values);
     }
 
-    public GameResults determinePersonalResult(final Participants participants) {
+    public GameResults calculdateGameResults(final Participants participants) {
         final Map<String, String> results = new HashMap<>();
         final Map<Participant, Integer> participantsWitPosition = participants.getParticipantsWithPosition();
         for (final var participantWithPosition: participantsWitPosition.entrySet()) {

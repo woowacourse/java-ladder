@@ -19,7 +19,7 @@ class LadderGamePrizeTest {
         final Participants participants = new Participants(List.of("mia", "pota", "jojo"));
 
         // when
-        final GameResults gameResults = gameResult.determinePersonalResult(participants);
+        final GameResults gameResults = gameResult.calculdateGameResults(participants);
 
         // then
         final Map<String, String> gameResultsValues = gameResults.getValues();

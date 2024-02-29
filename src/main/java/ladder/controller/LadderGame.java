@@ -27,7 +27,7 @@ public class LadderGame {
         final int width = participants.getNecessaryLadderWidth();
         final Ladder ladder = createLadder(width);
         participants.playAll(ladder);
-        final GameResults gameResults = ladderGamePrize.determinePersonalResult(participants);
+        final GameResults gameResults = ladderGamePrize.calculdateGameResults(participants);
 
         printLadder(participants, ladder, ladderGamePrize);
         printGameResult(gameResults);
