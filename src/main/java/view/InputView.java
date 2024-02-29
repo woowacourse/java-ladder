@@ -47,7 +47,7 @@ public class InputView {
         }
     }
 
-    public static String askPlayerNameForPrizeSearch() {
+    public static String askPlayerNameForSearching() {
         System.out.println(ASK_PLAYER_NAME);
         return Console.readLine().strip();
     }

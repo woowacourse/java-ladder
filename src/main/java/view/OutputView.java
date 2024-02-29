@@ -23,15 +23,19 @@ public class OutputView {
     private static final String BRIDGE_PREFIX = "    |";
     private static final String GAME_RESULT_FORMAT = "%s : %s\n";
     private static final String EXCEPTION_PREFIX = "[ERROR] ";
+    private static final String SEARCH_ALL = "all";
 
     private OutputView() {
     }
 
-    public static void printLadderResultIntro() {
+    public static void printLadderResult(Players players, Ladder ladder, Prizes prizes) {
         System.out.println(LADDER_RESULT_INTRO);
+        printPlayerNames(players);
+        printLadder(ladder);
+        printPrizeNames(prizes);
     }
 
-    public static void printPlayerNames(Players players) {
+    private static void printPlayerNames(Players players) {
         List<String> names = players.getNames()
                 .stream()
                 .map(name -> String.format(NAMES_FORMAT, name))
@@ -40,16 +44,7 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public static void printPrizeNames(Prizes prizes) {
-        List<String> names = prizes.getNames()
-                .stream()
-                .map(name -> String.format(NAMES_FORMAT, name))
-                .toList();
-        String result = String.join(NAMES_DELIMITER, names);
-        System.out.println(result);
-    }
-
-    public static void printLadder(Ladder ladder) {
+    private static void printLadder(Ladder ladder) {
         List<Line> lines = ladder.getLines();
         for (Line line : lines) {
             List<Bridge> bridges = line.getBridges();
@@ -60,7 +55,6 @@ public class OutputView {
         }
     }
 
-
     private static String formatBridge(Bridge bridge) {
         if (bridge.isConnected()) {
             return IS_CONNECTED_BRIDGE.repeat(BRIDGE_LENGTH);
@@ -68,13 +62,25 @@ public class OutputView {
         return IS_UNCONNECTED_BRIDGE.repeat(BRIDGE_LENGTH);
     }
 
-    public static void printGameResult(Prize prize) {
+    private static void printPrizeNames(Prizes prizes) {
+        List<String> names = prizes.getNames()
+                .stream()
+                .map(name -> String.format(NAMES_FORMAT, name))
+                .toList();
+        String result = String.join(NAMES_DELIMITER, names);
+        System.out.println(result);
+    }
+
+    public static void printSearchingResult(String playerName, GameResult gameResult) {
         System.out.println(GAME_RESULT_INTRO);
-        System.out.println(prize.getName());
+        if (playerName.equals(SEARCH_ALL)) {
+            printGameResultAll(gameResult);
+            return;
+        }
+        printGameResult(playerName, gameResult);
     }
 
     public static void printGameResultAll(GameResult gameResult) {
-        System.out.println(GAME_RESULT_INTRO);
         gameResult.getPlayers()
                 .forEach(player -> printPlayerAndPrize(gameResult, player));
     }
@@ -82,6 +88,11 @@ public class OutputView {
     private static void printPlayerAndPrize(GameResult gameResult, Player player) {
         Prize prize = gameResult.findPrizeByPlayer(player);
         System.out.printf(GAME_RESULT_FORMAT, player.name(), prize.getName());
+    }
+
+    private static void printGameResult(String playerName, GameResult gameResult) {
+        Prize prize = gameResult.findPrizeByPlayerName(playerName);
+        System.out.println(prize.getName());
     }
 
     public static void printExceptionMessage(String message) {

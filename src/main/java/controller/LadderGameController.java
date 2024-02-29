@@ -7,12 +7,13 @@ import model.ladder.Ladder;
 import model.ladder.LadderHeight;
 import model.line.RandomLineGenerator;
 import model.player.Players;
-import model.prize.Prize;
 import model.prize.Prizes;
 import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
+    private static final String SEARCHING_END_CONDITION = "all";
+
     public void run() {
         Players players = preparePlayers();
         Prizes prizes = preparePrizes(players);
@@ -20,27 +21,10 @@ public class LadderGameController {
 
         RandomLineGenerator randomLineGenerator = new RandomLineGenerator();
         Ladder ladder = Ladder.of(ladderHeight, players, randomLineGenerator);
+        OutputView.printLadderResult(players, ladder, prizes);
+
         GameResult gameResult = ladder.simulate(players, prizes);
-
-        end(players, ladder, prizes);
-
-        boolean isContinue = true;
-        while(isContinue) {
-            isContinue = searchPrize(gameResult);
-        }
-    }
-
-    private boolean searchPrize(GameResult gameResult) {
-        return retryOnException(() -> {
-            String playerName = InputView.askPlayerNameForPrizeSearch();
-            if (playerName.equals("all")) {
-                OutputView.printGameResultAll(gameResult);
-                return false;
-            }
-            Prize prize = gameResult.findPrizeByPlayerName(playerName);
-            OutputView.printGameResult(prize);
-            return true;
-        });
+        searchGameResult(gameResult);
     }
 
     private Players preparePlayers() {
@@ -64,11 +48,19 @@ public class LadderGameController {
         });
     }
 
-    private void end(Players players, Ladder ladder, Prizes prizes) {
-        OutputView.printLadderResultIntro();
-        OutputView.printPlayerNames(players);
-        OutputView.printLadder(ladder);
-        OutputView.printPrizeNames(prizes);
+    private void searchGameResult(GameResult gameResult) {
+        boolean continueSearching = true;
+        while (continueSearching) {
+            continueSearching = searchPrizeAndPrint(gameResult);
+        }
+    }
+
+    private boolean searchPrizeAndPrint(GameResult gameResult) {
+        return retryOnException(() -> {
+            String playerName = InputView.askPlayerNameForSearching();
+            OutputView.printSearchingResult(playerName, gameResult);
+            return !playerName.equals(SEARCHING_END_CONDITION);
+        });
     }
 
     private <T> T retryOnException(Supplier<T> retryOperation) {
