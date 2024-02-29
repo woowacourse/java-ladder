@@ -7,8 +7,8 @@ import java.util.Set;
 
 public class Members {
 
-    private static final int MIN_MEMBER_COUNT = 2;
-    private static final int MAX_MEMBER_COUNT = 15;
+    public static final int MIN_MEMBER_COUNT = 2;
+    public static final int MAX_MEMBER_COUNT = 15;
 
     private final List<Member> members;
 
