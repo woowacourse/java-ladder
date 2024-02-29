@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -64,9 +65,16 @@ class GameTest {
         Game game = new Game(people, results, ladder);
 
         // when
-        List<String> list = game.playAll();
+        Map<Name, String> results = game.playAll();
 
+        Map<Name, String> nameStringMap = Map.of(
+                new Name("pobi"), "꽝",
+                new Name("honux"), "꽝",
+                new Name("crong"), "5000",
+                new Name("jk"), "3000"
+        );
         // then
-        assertThat(list).containsExactly("꽝", "꽝", "5000", "3000");
+        assertThat(results).containsAllEntriesOf(nameStringMap);
+
     }
 }
