@@ -44,10 +44,6 @@ public class PlayerNames {
         }
     }
 
-    public String getNameOfIndex(int index) {
-        return values.get(index).getValue();
-    }
-
     public int getIndexOfName(String name) {
         return IntStream.range(0, values.size())
                 .filter(idx -> values.get(idx).getValue().equals(name))
@@ -59,6 +55,12 @@ public class PlayerNames {
         return IntStream.range(0, values.size())
                 .boxed()
                 .collect(Collectors.toMap(index -> index, index -> values.get(index).getValue()));
+    }
+
+    public List<String> getPlayerNames() {
+        return values.stream()
+                .map(PlayerName::getValue)
+                .toList();
     }
 
     public int getCount() {

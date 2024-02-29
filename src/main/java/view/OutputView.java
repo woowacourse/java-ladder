@@ -17,6 +17,7 @@ public class OutputView {
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] : %s";
     private static final String PLAYERS_LADDER_RESULT_FORMAT = "%s : %s";
     private static final String LADDER_RESULTS_DELIMITER = " ";
+    private static final String PLAYER_NAMES_DELIMITER = " ";
     private static final Map<LadderBridge, String> bridgeToMarker;
 
     static {
@@ -37,11 +38,10 @@ public class OutputView {
     }
 
     private void printPlayerNames(final PlayerNames playerNames) {
-        StringJoiner playerNamesJoiner = new StringJoiner(" ");
+        StringJoiner playerNamesJoiner = new StringJoiner(PLAYER_NAMES_DELIMITER);
 
-        for (int i = 0; i < playerNames.getCount(); i++) {
-            String playerName = String.format(PLAYER_NAMES_FORMAT, playerNames.getNameOfIndex(i));
-            playerNamesJoiner.add(playerName);
+        for (String playerName : playerNames.getPlayerNames()) {
+            playerNamesJoiner.add(String.format(PLAYER_NAMES_FORMAT, playerName));
         }
         System.out.println(playerNamesJoiner);
     }
