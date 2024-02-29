@@ -10,22 +10,17 @@ import static java.util.Collections.swap;
 
 public class LadderClimber {
 
-    public static List<Integer> climbDown(final Row row, final List<Integer> from) {
-        final List<Integer> to = getModifiableListContainsElement(from.get(0));
+    public static List<Integer> climbDown(final Row row, final List<Integer> departure) {
+        final List<Integer> arrival = new ArrayList<>(departure.get(0));
         for (final Bridge bridge : row.getBridges()) {
-            final Integer rightIdx = from.get(to.size());
-            to.add(rightIdx);
-            swapLastIfBridgeContinuous(bridge, to);
+            arrival.add(departure.get(arrival.size()));
+            swapLastIfBridgeContinuous(bridge, arrival);
         }
-        return to;
-    }
-
-    private static List<Integer> getModifiableListContainsElement(final Integer elem) {
-        return new ArrayList<>(List.of(elem));
+        return arrival;
     }
 
     private static void swapLastIfBridgeContinuous(final Bridge bridge, final List<Integer> to) {
-        if (!bridge.isExist()) {
+        if (!bridge.isEmpty()) {
             return;
         }
 
