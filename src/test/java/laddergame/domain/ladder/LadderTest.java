@@ -1,11 +1,13 @@
 package laddergame.domain.ladder;
 
 import laddergame.domain.connectiongenerator.AllFalseConnectionGenerator;
+import laddergame.domain.connectiongenerator.TrueFalseConnectionGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -43,5 +45,41 @@ class LadderTest {
                 .collect(Collectors.toSet());
 
         assertThat(connectionElement).containsExactly(Connection.NOTCONNECTED);
+    }
+
+    @DisplayName("사다리 결과 반환 테스트 : 가로선이 없는 경우")
+    @Test
+    void getResultIndexTest1() {
+        /*
+             0    1    2
+             |    |    |
+             0    1    2
+         */
+
+        Ladder testLadder = new Ladder(1, 3, new AllFalseConnectionGenerator());
+
+        List<Integer> expectedResultIndex = new ArrayList<>(List.of(0, 1, 2));
+        List<Integer> actualResultIndex = testLadder.getResultIndex(3);
+
+        assertThat(actualResultIndex)
+                .containsExactlyElementsOf(expectedResultIndex);
+    }
+
+    @DisplayName("사다리 결과 반환 테스트 : 연결-비연결이 반복되는 경우")
+    @Test
+    void getResultIndexTest2() {
+        /*
+             0    1    2    3
+             |----|    |----|
+             1    0    3    2
+         */
+
+        Ladder testLadder = new Ladder(1, 4, new TrueFalseConnectionGenerator());
+
+        List<Integer> expectedResultIndex = new ArrayList<>(List.of(1, 0, 3, 2));
+        List<Integer> actualResultIndex = testLadder.getResultIndex(4);
+
+        assertThat(actualResultIndex)
+                .containsExactlyElementsOf(expectedResultIndex);
     }
 }
