@@ -31,6 +31,6 @@ class ParticipantsTest {
     void getParticipantPositionByName() {
         Participants participants = new Participants(List.of("pobi", "bop"));
         Assertions.assertThat(participants.getPositionByName(new Name("pobi")))
-                .isEqualTo(0);
+                .isEqualTo(new Position(0));
     }
 }

@@ -7,6 +7,7 @@ import model.LadderRow;
 import model.Line;
 import model.Name;
 import model.Participants;
+import model.Position;
 
 public class OutputView {
 
@@ -43,9 +44,9 @@ public class OutputView {
         System.out.print(LadderComponent.DIVISION);
     }
 
-    public void printResults(Map<Integer, String> results) {
-        for (int i = 0; i < results.size(); i++) {
-            System.out.print(NAME_FORMAT.formatted(results.get(i)));
+    public void printResults(Map<Position, String> results) {
+        for (Position position : results.keySet()) {
+            System.out.print(NAME_FORMAT.formatted(results.get(position)));
         }
         System.out.println();
     }

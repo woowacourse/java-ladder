@@ -23,12 +23,12 @@ public class LadderRow {
         }
     }
 
-    public int move(int position) {
-        if (position > 0 && isLines.get(position - 1).getConnected()) {
-            return position - 1;
+    public Position move(Position position) {
+        if (position.getValue() > 0 && isLines.get(position.getValue() - 1).getConnected()) {
+            return position.decrement();
         }
-        if (position < isLines.size() && isLines.get(position).getConnected()) {
-            return position + 1;
+        if (position.getValue() < isLines.size() && isLines.get(position.getValue()).getConnected()) {
+            return position.increment();
         }
         return position;
     }

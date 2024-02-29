@@ -49,8 +49,9 @@ public class Participants {
     }
 
 
-    public int getPositionByName(Name findName) {
-        return participantNames.indexOf(findName);
+    public Position getPositionByName(Name findName) {
+        int index = participantNames.indexOf(findName);
+        return new Position(index);
     }
 
     public int getParticipantsSize() {

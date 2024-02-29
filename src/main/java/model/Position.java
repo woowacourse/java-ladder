@@ -5,11 +5,11 @@ import java.util.Objects;
 public class Position {
     private final int value;
 
-    Position() {
+    public Position() {
         this(0);
     }
 
-    Position(int value) {
+    public Position(int value) {
         if (value < 0) {
             throw new IllegalArgumentException("참가자의 위치는 음수가 될 수 없습니다.");
         }

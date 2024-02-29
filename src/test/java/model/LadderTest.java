@@ -36,11 +36,17 @@ public class LadderTest {
                         new LadderRow(List.of(true, false, true, false))));
 
         assertAll(
-                () -> Assertions.assertThat(ladder.moveAll(0)).isEqualTo(0),
-                () -> Assertions.assertThat(ladder.moveAll(1)).isEqualTo(1),
-                () -> Assertions.assertThat(ladder.moveAll(2)).isEqualTo(3),
-                () -> Assertions.assertThat(ladder.moveAll(3)).isEqualTo(4),
-                () -> Assertions.assertThat(ladder.moveAll(4)).isEqualTo(2)
+                () -> Assertions.assertThat(ladder.moveAll(new Position(0))).isEqualTo(new Position(0)),
+                () -> Assertions.assertThat(ladder.moveAll(new Position(1))).isEqualTo(new Position(1)),
+                () -> Assertions.assertThat(ladder.moveAll(new Position(2))).isEqualTo(new Position(3)),
+                () -> Assertions.assertThat(ladder.moveAll(new Position(3))).isEqualTo(new Position(4)),
+                () -> Assertions.assertThat(ladder.moveAll(new Position(4))).isEqualTo(new Position(2))
         );
     }
+
+    /*
+         0     1     2     3     4
+         |-----|     |     |-----|
+         |-----|     |-----|     |
+     */
 }

@@ -53,18 +53,18 @@ public class LadderGameTest {
                 new LadderRow(List.of(true, false, false, true)),
                 new LadderRow(List.of(true, false, true, false))));
         Participants participants = new Participants(List.of("0", "1", "2", "3", "4"));
-        Map<Integer, String> result = createResults();
+        Map<Position, String> result = createResults();
         LadderGame ladderGame = new LadderGame(participants, ladder, result);
         return ladderGame;
     }
 
-    private static Map<Integer, String> createResults() {
-        Map<Integer, String> result = new LinkedHashMap<>();
-        result.put(0, "꽝");
-        result.put(1, "5000");
-        result.put(2, "꽝");
-        result.put(3, "꽝");
-        result.put(4, "3000");
+    private static Map<Position, String> createResults() {
+        Map<Position, String> result = new LinkedHashMap<>();
+        result.put(new Position(0), "꽝");
+        result.put(new Position(1), "5000");
+        result.put(new Position(2), "꽝");
+        result.put(new Position(3), "꽝");
+        result.put(new Position(4), "3000");
         return result;
     }
 

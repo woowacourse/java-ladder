@@ -7,6 +7,7 @@ import model.LadderGame;
 import model.LadderRowGenerator;
 import model.Name;
 import model.Participants;
+import model.Position;
 import model.RandomBooleanGenerator;
 import view.InputView;
 import view.OutputView;
@@ -25,7 +26,7 @@ public class LadderController {
 
     public void play() {
         Participants participants = new Participants(inputView.inputParticipantsName());
-        Map<Integer, String> results= inputView.inputResults();//TODO: 참여자 수만큼 입력 받는다.
+        Map<Position, String> results= inputView.inputResults();//TODO: 참여자 수만큼 입력 받는다.
         Height height = new Height(inputView.inputLadderHeight());
         Ladder ladder = new Ladder(height, new LadderRowGenerator(new RandomBooleanGenerator()), participants);
         ladderGame = new LadderGame(participants, ladder, results);

@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import model.Name;
+import model.Position;
 
 public class InputView {
 
@@ -27,7 +29,7 @@ public class InputView {
         return splitInputByDelimiter(input, DELIMITER);
     }
 
-    public Map<Integer, String> inputResults() {
+    public Map<Position, String> inputResults() {
         System.out.println(INPUT_GAME_RESULT);
         String input = in.nextLine();
         validateNotNullAndBlank(input);
@@ -35,10 +37,10 @@ public class InputView {
         return mappingResults(inputs);
     }
 
-    private static Map<Integer, String> mappingResults(List<String> inputs) {
-        Map<Integer, String> results = new LinkedHashMap<>();
+    private static Map<Position, String> mappingResults(List<String> inputs) {
+        Map<Position, String> results = new LinkedHashMap<>();
         for (int i = 0; i < inputs.size(); i++) {
-            results.put(i, inputs.get(i));
+            results.put(new Position(i), inputs.get(i));
         }
         return results;
     }
