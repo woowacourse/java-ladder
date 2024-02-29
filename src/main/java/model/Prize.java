@@ -3,6 +3,7 @@ package model;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 public class Prize {
 
@@ -38,5 +39,22 @@ public class Prize {
 
     private boolean isInRange(int textLength) {
         return textLength <= MAX_RANGE_LIMIT && textLength >= MIN_RANGE_LIMIT;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Prize prize = (Prize) o;
+        return Objects.equals(prizes, prize.prizes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(prizes);
     }
 }
