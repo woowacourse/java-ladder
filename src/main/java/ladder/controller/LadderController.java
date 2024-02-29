@@ -3,6 +3,7 @@ package ladder.controller;
 import ladder.domain.game.LadderGame;
 import ladder.domain.game.PlayResult;
 import ladder.domain.game.Players;
+import ladder.domain.game.Prizes;
 import ladder.domain.generator.RandomBooleanGenerator;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
@@ -27,12 +28,12 @@ public class LadderController {
 
     public void run() {
         final Players players = retryOnException(this::readPlayers);
-        final List<String> prizes = retryOnException(this::readPrizes);
+        final Prizes prizes = retryOnException(() -> readPrizes(players.count()));
         final Height height = retryOnException(this::readLadderHeight);
         final Ladder ladder = new Ladder(players.count(), height.getValue(), new RandomBooleanGenerator());
         printLadder(players, ladder, prizes);
 
-        final LadderGame ladderGame = new LadderGame(ladder, players, prizes);
+        final LadderGame ladderGame = new LadderGame(ladder, players, prizes.getPrizes());
         final PlayResult playResult = ladderGame.play();
         while (playResult.canAskResult()) {
             final String name = inputView.readNameToSeeResult();
@@ -48,10 +49,11 @@ public class LadderController {
         return new Players(playerNames);
     }
 
-    private List<String> readPrizes() {
+    private Prizes readPrizes(final int playerCount) {
         final String readPrizes = inputView.readPrizes();
+        final List<String> prizes = Converter.stringToList(readPrizes);
 
-        return Converter.stringToList(readPrizes);
+        return new Prizes(prizes, playerCount);
     }
 
     public Height readLadderHeight() {
@@ -60,11 +62,11 @@ public class LadderController {
         return new Height(height);
     }
 
-    private void printLadder(final Players players, final Ladder ladder, final List<String> prizes) {
+    private void printLadder(final Players players, final Ladder ladder, final Prizes prizes) {
         outputView.printLadderResultMessage();
         outputView.printPlayerNames(PlayersDto.from(players));
         outputView.printLadder(LadderDto.from(ladder));
-        outputView.printPrizes(prizes);
+        outputView.printPrizes(prizes.getPrizes());
     }
 
     private <T> T retryOnException(final Supplier<T> supplier) {

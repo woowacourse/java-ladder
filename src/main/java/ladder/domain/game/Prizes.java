@@ -1,6 +1,7 @@
 package ladder.domain.game;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Prizes {
@@ -15,5 +16,9 @@ public class Prizes {
         if (prizes.size() != playerCount) {
             throw new IllegalArgumentException("상품의 수와 게임에 참여하는 참여자의 수가 다를 수 없습니다.");
         }
+    }
+
+    public List<String> getPrizes() {
+        return Collections.unmodifiableList(prizes);
     }
 }
