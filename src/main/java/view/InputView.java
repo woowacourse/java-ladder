@@ -1,8 +1,10 @@
 package view;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class InputView {
 
@@ -10,11 +12,11 @@ public class InputView {
 
 	private final Scanner scanner = new Scanner(System.in);
 
-	public List<String> readNames() {
-		String names = scanner.nextLine();
-		String[] splitNames = names.split(NAME_SPLIT_DELIMITER);
+	public List<String> readPlayerNames() {
+		List<String> playerNames = readNames();
+		validateDuplicateName(playerNames);
 
-		return Arrays.stream(splitNames).toList();
+		return playerNames;
 	}
 
 	public List<String> readPrizes(int playerCount) {
@@ -38,6 +40,21 @@ public class InputView {
 			throw new IllegalArgumentException("존재하지 않은 플레이어입니다.");
 		}
 		return input;
+	}
+
+	private void validateDuplicateName(List<String> playerNames) {
+		Set<String> removedDuplicateNames = new HashSet<>(playerNames);
+		boolean hasDuplicateName = removedDuplicateNames.size() != playerNames.size();
+		if (hasDuplicateName) {
+			throw new IllegalArgumentException("플레이어의 이름은 중복될 수 없습니다.");
+		}
+	}
+
+	private List<String> readNames() {
+		String names = scanner.nextLine();
+		String[] splitNames = names.split(NAME_SPLIT_DELIMITER);
+
+		return Arrays.stream(splitNames).toList();
 	}
 
 	private void validatePrizeCount(List<String> prizeNames, int playerCount) {
