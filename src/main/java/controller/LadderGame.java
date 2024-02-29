@@ -29,9 +29,8 @@ public class LadderGame {
     public void start() {
         Participants participants = RetryUtil.retryUntilNoException(this::makeParticipants);
         Results results = RetryUtil.retryUntilNoException(() -> makeResults(participants));
-        Ladder ladder = RetryUtil.retryUntilNoException(this::makeLadder);
+        Ladder ladder = RetryUtil.retryUntilNoException(() -> makeLadder(participants.getParticipantsCount(), booleanGenerator));
 
-        ladder.makeLadder(participants.getParticipantsCount(), booleanGenerator);
         printLadder(ladder, participants, results);
 
         ladder.playLadder(results, participants);
@@ -51,10 +50,10 @@ public class LadderGame {
         return new Results(input, participants.getParticipantsCount());
     }
 
-    private Ladder makeLadder() {
+    private Ladder makeLadder(int participantsCount, BooleanGenerator booleanGenerator) {
         String input = inputView.inputHeight();
 
-        return new Ladder(input);
+        return Ladder.of(input, participantsCount, booleanGenerator);
     }
 
     private void printLadder(Ladder ladder, Participants participants, Results results) {

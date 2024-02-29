@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+import util.TestBooleanGenerator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -14,7 +15,8 @@ class LadderTest {
     @NullAndEmptySource
     @ValueSource(strings = {"abc", "-1", "0"})
     void validateHeightTest(String height) {
-        assertThatThrownBy(() -> new Ladder(height))
+        TestBooleanGenerator testBooleanGenerator = new TestBooleanGenerator(false);
+        assertThatThrownBy(() -> Ladder.of(height, 5, testBooleanGenerator))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -10,24 +10,30 @@ public class Ladder {
 
     private static final Pattern HEIGHT_FORMAT_REGEX = Pattern.compile("^[1-9][0-9]*$");
 
-    private final int height;
     private final List<Line> ladder;
 
-    public Ladder(String height) {
-        validateHeight(height);
-        this.height = Integer.parseInt(height);
-        this.ladder = new ArrayList<>();
+    private Ladder(List<Line> ladder) {
+        this.ladder = ladder;
     }
 
-    private void validateHeight(String height) {
+    public static Ladder of(String height, int participantsCount, BooleanGenerator booleanGenerator) {
+        List<Line> ladder = new ArrayList<>();
+
+        validateHeight(height);
+        makeLadder(ladder, Integer.parseInt(height), participantsCount, booleanGenerator);
+
+        return new Ladder(ladder);
+    }
+
+    private static void validateHeight(String height) {
         if (height == null || !HEIGHT_FORMAT_REGEX.matcher(height).matches()) {
             throw new IllegalArgumentException("사다리의 최대 높이는 자연수여야 합니다.");
         }
     }
 
-    public void makeLadder(int columnLength, BooleanGenerator booleanGenerator) {
+    private static void makeLadder(List<Line> ladder, int height, int participantsCount, BooleanGenerator booleanGenerator) {
         for (int i = 0; i < height; i++) {
-            Line line = new Line(columnLength);
+            Line line = new Line(participantsCount);
             line.makeLine(booleanGenerator);
 
             ladder.add(line);
@@ -46,8 +52,8 @@ public class Ladder {
     private int getNextPosition(int initPosition) {
         int position = initPosition;
 
-        for (int i = 0; i < height; i++) {
-            position = ladder.get(i).decideNextPosition(position);
+        for (Line line : ladder) {
+            position = line.decideNextPosition(position);
         }
 
         return position;
