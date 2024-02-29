@@ -12,6 +12,8 @@ import model.bridge.BridgesGenerator;
 import model.line.Line;
 import model.player.Player;
 import model.player.Players;
+import model.prize.Prize;
+import model.prize.Prizes;
 
 public class Ladder {
     private static final int CONNECTION_OFFSET = 1;
@@ -29,12 +31,12 @@ public class Ladder {
                 .collect(collectingAndThen(toList(), Ladder::new));
     }
 
-    public LadderPlayOutcome play(Players players, LadderResult ladderResult) {
-        LinkedHashMap<Player, LadderResultContent> outcome = new LinkedHashMap<>();
+    public LadderPlayOutcome play(Players players, Prizes prizes) {
+        LinkedHashMap<Player, Prize> outcome = new LinkedHashMap<>();
         for (int index = 0; index < players.getSize(); index++) {
             Player player = players.get(index);
             int resultIndex = playLadder(index);
-            LadderResultContent content = ladderResult.get(resultIndex);
+            Prize content = prizes.get(resultIndex);
 
             outcome.put(player, content);
         }

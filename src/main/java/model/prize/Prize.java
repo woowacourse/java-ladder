@@ -1,9 +1,9 @@
-package model.ladder;
+package model.prize;
 
-public class LadderResultContent {
+public class Prize {
     private final String content;
 
-    public LadderResultContent(String content) {
+    public Prize(String content) {
         this.content = content;
     }
 
