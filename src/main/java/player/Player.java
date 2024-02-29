@@ -1,5 +1,6 @@
 package player;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class Player {
@@ -34,5 +35,24 @@ public class Player {
         if (!isPatternMatched) {
             throw new IllegalArgumentException("이름은 알파벳 소문자로만 작성해야 합니다.");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Player player = (Player) o;
+
+        return Objects.equals(name, player.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
     }
 }

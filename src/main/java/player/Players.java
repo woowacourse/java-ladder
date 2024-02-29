@@ -22,6 +22,18 @@ public class Players {
         }
     }
 
+    public int findIndexByName(String name) {
+        int index = players.indexOf(new Player(name));
+        validateNameFound(index);
+        return index;
+    }
+
+    private void validateNameFound(int index) {
+        if (index == -1) {
+            throw new IllegalArgumentException("존재하지 않는 이름입니다.");
+        }
+    }
+
     public List<String> getNames() {
         return players.stream()
                 .map(Player::getName)

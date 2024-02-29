@@ -39,4 +39,32 @@ class PlayersTest {
         assertThatThrownBy(() -> new Players(playerNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("플레이어 수를 올바르게 반환한다.")
+    void playersSizeTest() {
+        // given
+        Players players = new Players(List.of("aru", "pobi", "woowa"));
+        // when, then
+        assertThat(players.size()).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("플레이어의 이름이 존재하는 인덱스를 올바르게 반환한다.")
+    void findIndexByNameTest() {
+        // given
+        Players players = new Players(List.of("aru", "pobi", "woowa"));
+        // when, then
+        assertThat(players.findIndexByName("aru")).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("플레이어의 이름을 찾을 때, 존재하지 않는 경우 예외를 발생한다.")
+    void findIndexByNameNotFoundTest() {
+        // given
+        Players players = new Players(List.of("aru", "pobi", "woowa"));
+        // when, then
+        assertThatThrownBy(() -> players.findIndexByName("jazz"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
