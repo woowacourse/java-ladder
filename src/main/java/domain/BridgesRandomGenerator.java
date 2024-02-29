@@ -12,7 +12,8 @@ public class BridgesRandomGenerator implements BridgesGenerator {
         List<Boolean> bridges = new ArrayList<>();
         boolean previousBridge = false;
         for (int i = 0; i < width; i++) {
-            previousBridge = bridges.add(nextBridge(previousBridge));
+            previousBridge = nextBridge(previousBridge);
+            bridges.add(previousBridge);
         }
         return new Bridges(Collections.unmodifiableList(bridges));
     }
