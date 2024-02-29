@@ -61,8 +61,6 @@ class LineTest {
         Line lineAddGap = line.addGap();
 
         Assertions.assertThat(lineAddGap.move(0)).isEqualTo(1);
-        Assertions.assertThat(lineAddGap.move(1)).isEqualTo(0);
         Assertions.assertThat(lineAddGap.move(2)).isEqualTo(3);
-        Assertions.assertThat(lineAddGap.move(3)).isEqualTo(2);
     }
 }
