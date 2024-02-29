@@ -39,6 +39,12 @@ public class Players {
                 .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_PLAYER_NAME_EXCEPTION.getMessageWithCause(name)));
     }
 
+    public List<String> getNames() {
+        return players.stream()
+                .map(player -> player.getName())
+                .toList();
+    }
+
     public int getWidth() {
         return players.size() - 1;
     }

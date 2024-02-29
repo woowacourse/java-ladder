@@ -1,38 +1,33 @@
 package view.dto;
 
-import domain.Line;
-import domain.Player;
-import domain.Players;
-import domain.Results;
-
 import java.util.List;
 
 public class LadderResultDto {
 
-    private final List<Player> players;
-    private final List<Line> lines;
-    private final Results results;
+    private final List<String> playerNames;
+    private final List<List<Boolean>> lines;
+    private final List<String> resultNames;
 
-    private LadderResultDto(List<Player> players, List<Line> lines, Results results) {
-        this.players = players;
+    public LadderResultDto(List<String> playerNames, List<List<Boolean>> lines, List<String> resultNames) {
+        this.playerNames = playerNames;
         this.lines = lines;
-        this.results = results;
+        this.resultNames = resultNames;
     }
 
-    public static LadderResultDto of(Players players, List<Line> lines, Results results) {
-        return new LadderResultDto(players.getPlayers(), lines, results);
+    public static LadderResultDto of(List<String> playerNames, List<List<Boolean>> lines, List<String> results) {
+        return new LadderResultDto(playerNames, lines, results);
     }
 
 
-    public List<Player> getPlayers() {
-        return players;
+    public List<String> getPlayerNames() {
+        return playerNames;
     }
 
-    public List<Line> getLines() {
+    public List<List<Boolean>> getLines() {
         return lines;
     }
 
-    public Results getResults() {
-        return results;
+    public List<String> getResultNames() {
+        return resultNames;
     }
 }

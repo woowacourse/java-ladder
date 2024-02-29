@@ -15,49 +15,49 @@ public class OutputView {
 
     public static void printResult(LadderResultDto ladderResultDto) {
         System.out.println(LADDER_RESULT);
-        List<Player> gamePlayers = ladderResultDto.getPlayers();
-        printPlayers(gamePlayers);
+        List<String> playerNames = ladderResultDto.getPlayerNames();
+        printPlayers(playerNames);
 
-        for (Line line : ladderResultDto.getLines()) {
-            printPrefixSpace(gamePlayers);
-            printLine(line.getLegs());
+        for (List<Boolean> line : ladderResultDto.getLines()) {
+            printPrefixSpace(playerNames);
+            printLine(line);
         }
 
-        printResults(ladderResultDto.getPlayers(), ladderResultDto.getResults());
+        printResults(ladderResultDto.getPlayerNames(), ladderResultDto.getResultNames());
         System.out.println();
     }
 
 
-    private static void printPlayers(List<Player> players) {
-        System.out.print(players.get(0).getName() + " ");
-        players.stream()
+    private static void printPlayers(List<String> playerNames) {
+        System.out.print(playerNames.get(0) + " ");
+        playerNames.stream()
                 .skip(1)
-                .forEach(player -> System.out.printf(FORMAT_NAME, player.getName()));
+                .forEach(name -> System.out.printf(FORMAT_NAME, name));
         System.out.println();
     }
 
-    private static void printPrefixSpace(List<Player> players) {
+    private static void printPrefixSpace(List<String> players) {
         System.out.print(" ".repeat(getFirstPlayerNameSize(players)));
     }
 
-    private static int getFirstPlayerNameSize(List<Player> players) {
-        return players.get(0).getName().length();
+    private static int getFirstPlayerNameSize(List<String> players) {
+        return players.get(0).length();
     }
 
-    private static void printLine(List<Leg> legs) {
-        for (Leg leg : legs) {
+    private static void printLine(List<Boolean> legs) {
+        for (Boolean leg : legs) {
             System.out.print(STICK);
-            System.out.print(extractLeg(leg.isExist()));
+            System.out.print(extractLeg(leg));
         }
         System.out.print(STICK + "\n");
     }
 
-    private static void printResults(List<Player> players, Results results) {
-        System.out.printf("%" + getFirstPlayerNameSize(players) + "s", results.getResults().get(0).getResult());
+    private static void printResults(List<String> playerNames, List<String> results) {
+        System.out.printf("%" + getFirstPlayerNameSize(playerNames) + "s", results.get(0));
 
-        results.getResults().stream()
+        results.stream()
                 .skip(1)
-                .forEach(result -> System.out.printf(FORMAT_NAME, result.getResult()));
+                .forEach(result -> System.out.printf(FORMAT_NAME, result));
     }
 
     private static String extractLeg(boolean isExistLeg) {
