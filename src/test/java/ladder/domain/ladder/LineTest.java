@@ -1,8 +1,10 @@
 package ladder.domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import ladder.domain.dto.StepStatusDto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -32,7 +34,7 @@ public class LineTest {
         void hasDuplicatedStep() {
             line.buildSteps(FIRST_STEP_INDEX);
 
-            Boolean hasDuplicateStep = line.hasStepDuplicated(NEXT_STEP_INDEX);
+            Boolean hasDuplicateStep = line.isStepDuplicatedWithBeforeStep(NEXT_STEP_INDEX);
 
             assertThat(hasDuplicateStep).isTrue();
         }
@@ -42,9 +44,17 @@ public class LineTest {
         void hasNotDuplicatedStep() {
             line.buildSteps(FIRST_STEP_INDEX);
 
-            Boolean hasDuplicateStep = line.hasStepDuplicated(NOT_BUILD_STEP_INDEX);
+            Boolean hasDuplicateStep = line.isStepDuplicatedWithBeforeStep(NOT_BUILD_STEP_INDEX);
 
             assertThat(hasDuplicateStep).isFalse();
+        }
+
+        @DisplayName("build할 발판이 음수이거나 0일 경우 에러를 반환한다.")
+        @Test
+        void hasNotNegativePositionBuildStep() {
+            assertThatThrownBy(() -> line.isStepDuplicatedWithBeforeStep(-1))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("중복 확인 발판의 위치는 음수일 수 없습니다.");
         }
     }
 
@@ -59,7 +69,7 @@ public class LineTest {
             line.buildSteps(currentSector);
 
             StepStatusDto builtLadderDto = line.getSteps();
-            assertThat(builtLadderDto.builtStep().get(currentSector)).isEqualTo("-----");
+            Assertions.assertThat(builtLadderDto.builtStep().get(currentSector).getBuildStatus()).isEqualTo(true);
         }
     }
 }

@@ -6,29 +6,29 @@ import ladder.domain.dto.StepStatusDto;
 
 public class Line {
 
-    private static final int STEP_START_NUMBER = 0;
-
+    private static final int STEP_START_INDEX_NUMBER = 0;
     private static final boolean DEFAULT_NO_DUPLICATED_STEP = false;
 
     private final List<Step> steps;
 
-    public Line(final int personCount) {
-        this.steps = makeSteps(personCount);
+    public Line(final int stepSpaceCount) {
+        this.steps = makeSteps(stepSpaceCount);
     }
 
     public StepStatusDto getSteps() {
         return new StepStatusDto(steps);
     }
 
-    public void buildSteps(int currentPosition) {
-        steps.get(currentPosition).build();
+    public void buildSteps(int position) {
+        validateNotNegativePosition(position);
+        steps.get(position).build();
     }
 
-    public boolean hasStepDuplicated(int currentPosition) {
-        if (currentPosition > STEP_START_NUMBER) {
-            int stepBeforePosition = currentPosition - 1;
+    public boolean isStepDuplicatedWithBeforeStep(int nowPosition) {
+        validateNotNegativePosition(nowPosition);
 
-            Step step = steps.get(stepBeforePosition);
+        if (nowPosition > STEP_START_INDEX_NUMBER) {
+            Step step = steps.get(nowPosition - 1);
             return step.getBuildStatus();
         }
         return DEFAULT_NO_DUPLICATED_STEP;
@@ -37,9 +37,15 @@ public class Line {
     private List<Step> makeSteps(int stepCount) {
         List<Step> steps = new ArrayList<>();
 
-        for (int currentStep = STEP_START_NUMBER; currentStep < stepCount; currentStep++) {
+        for (int currentStep = STEP_START_INDEX_NUMBER; currentStep < stepCount; currentStep++) {
             steps.add(new Step());
         }
         return steps;
+    }
+
+    private void validateNotNegativePosition(int position) {
+        if (position < 0) {
+            throw new IllegalArgumentException("중복 확인 발판의 위치는 음수일 수 없습니다.");
+        }
     }
 }

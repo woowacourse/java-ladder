@@ -44,9 +44,9 @@ public class Carpenter {
         }
     }
 
-    private void checkCanBuildStepPosition(Line line, int position) {
-        if (!line.hasStepDuplicated(position)) {
-            buildStep(line, position);
+    private void checkCanBuildStepPosition(Line line, int nowPosition) {
+        if (!line.isStepDuplicatedWithBeforeStep(nowPosition)) {
+            buildStep(line, nowPosition);
         }
     }
 
