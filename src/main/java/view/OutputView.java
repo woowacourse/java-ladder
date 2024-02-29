@@ -15,11 +15,23 @@ public class OutputView {
     private static final String RUNG_EMPTY = "     ";
     private static final String RUNG_SEPARATOR = "|";
 
-    public static void printResult(final List<Name> names, final Ladder ladder) {
+    public static void printf(String format, Object... args) {
+        System.out.printf(format, args);
+    }
+
+    public static void printResult(final List<Name> names, final List<Name> results, final Ladder ladder) {
         System.out.println("실행 결과\n");
 
-        printPlayers(names);
+        printNames(names);
         printLadder(ladder.getRows());
+        printNames(results);
+    }
+
+    private static void printNames(final List<Name> names) {
+        for (Name name : names) {
+            System.out.printf("%6s", name.name());
+        }
+        System.out.println();
     }
 
     private static void printLadder(List<Row> rows) {
@@ -40,12 +52,5 @@ public class OutputView {
             return RUNG_EXIST;
         }
         return RUNG_EMPTY;
-    }
-
-    private static void printPlayers(final List<Name> names) {
-        for (Name name : names) {
-            System.out.printf("%6s", name.name());
-        }
-        System.out.println();
     }
 }
