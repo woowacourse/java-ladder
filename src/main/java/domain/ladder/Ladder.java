@@ -1,6 +1,7 @@
 package domain.ladder;
 
-    import domain.ladder.attribute.Direction;
+import domain.Point;
+import domain.ladder.attribute.Direction;
 import util.DirectionGenerator;
 import domain.ladder.attribute.Height;
 
@@ -49,12 +50,36 @@ public class Ladder {
                          .toList();
     }
 
-    public int getHeight() {
-        return height.getHeight();
+    public Point traverseLadderFromStartToEnd(final Point startPoint) {
+        return Stream.iterate(startPoint, this::movePoint)
+                     .filter(this::isPointIsEndLine)
+                     .findFirst()
+                     .orElseThrow(() -> new IllegalStateException("""
+                             만족하는 결과가 없는 경우로 , 사다리가 잘못 생성되었습니다.
+                             사다리를 다시 생성해주세요!
+                             """));
+    }
+
+    private Point movePoint(Point point) {
+        Direction direction = getDirectionWithRowAndColumn(point.row(), point.column());
+        return point.move(direction);
+    }
+
+    private boolean isPointIsEndLine(Point point) {
+        if (point.column() < height.getHeight()) {
+            return false;
+        }
+        return true;
     }
 
     public Direction getDirectionWithRowAndColumn(final int row, final int column) {
         return ladderLegs.get(row)
                          .getDirectionAtIndex(column);
     }
+
+    public int getHeight() {
+        return height.getHeight();
+    }
+
+
 }

@@ -30,7 +30,7 @@ public class GameBoard {
 
     public Result playGameOnePlayer(Player player) {
         Point startPoint = getPlayerStartPoint(player);
-        Point endPoint = playGameWithStartPoint(startPoint);
+        Point endPoint = ladder.traverseLadderFromStartToEnd(startPoint);
         return new Result(player.getName(), getRewardWithIndex(endPoint.row()));
     }
 
@@ -39,29 +39,6 @@ public class GameBoard {
                       .stream()
                       .map(this::playGameOnePlayer)
                       .toList();
-    }
-
-    private Point playGameWithStartPoint(final Point startPoint) {
-
-        return Stream.iterate(startPoint, this::movePoint)
-                     .filter(this::isPointIsEndLine)
-                     .findFirst()
-                     .orElseThrow(() -> new IllegalStateException("""
-                             만족하는 결과가 없는 경우로 , 사다리가 잘못 생성되었습니다.
-                             사다리를 다시 생성해주세요!
-                             """));
-    }
-
-    private Point movePoint(Point point) {
-        Direction direction = ladder.getDirectionWithRowAndColumn(point.row(), point.column());
-        return point.move(direction);
-    }
-
-    private boolean isPointIsEndLine(Point point) {
-        if (point.column() < ladder.getHeight()) {
-            return false;
-        }
-        return true;
     }
 
     private Point getPlayerStartPoint(Player player) {

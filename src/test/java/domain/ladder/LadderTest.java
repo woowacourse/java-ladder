@@ -60,6 +60,24 @@ class LadderTest {
         assertEquals(direction2, Direction.LEFT);
     }
 
+    @Test
+    @DisplayName("시작 포인트에서 사다리를 순회해서 끝 포인트까지 순회한다.")
+    public void traverseLadderFromStartToEnd() {
+        Point startPoint = new Point(0, 0);
+        Ladder ladder = 오른쪽_왼쪽_오른쪽_왼쪽_아래_사다리_생성();
+
+        Point endPoint = ladder.traverseLadderFromStartToEnd(startPoint);
+
+        assertEquals(endPoint, new Point(1,5));
+    }
+
+    /**
+     * R    L   R   L   D
+     * R    L   R   L   D
+     * R    L   R   L   D
+     * R    L   R   L   D
+     * R    L   R   L   D
+     */
     private Ladder 오른쪽_왼쪽_오른쪽_왼쪽_아래_사다리_생성() {
         Height height = new Height("5");
         Integer playerCount = 5;
