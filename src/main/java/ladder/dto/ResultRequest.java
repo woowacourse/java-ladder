@@ -2,7 +2,8 @@ package ladder.dto;
 
 public class ResultRequest {
 
-    public static final ResultRequest ALL = new ResultRequest(null, true);
+    private static final String NO_NAME = "";
+    public static final ResultRequest ALL = new ResultRequest(NO_NAME, true);
 
     private final String playerName;
     private final boolean isRequestAll;
