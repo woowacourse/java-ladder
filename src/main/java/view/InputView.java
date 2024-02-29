@@ -48,7 +48,7 @@ public class InputView {
         }
     }
 
-    public static String askTarget() {
+    public static String askTargetName() {
         System.out.println(ASK_TARGET);
         return scanner.nextLine();
     }

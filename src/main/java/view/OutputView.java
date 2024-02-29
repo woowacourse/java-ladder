@@ -3,7 +3,7 @@ package view;
 import java.util.List;
 import java.util.stream.Collectors;
 import model.bridge.Bridge;
-import model.ladder.LadderPlayOutcomeState;
+import model.game.GameResultState;
 import model.line.LineState;
 import model.player.Player;
 
@@ -17,8 +17,8 @@ public class OutputView {
     private static final String BRIDGE_DELIMITER = "|";
     private static final String BRIDGE_PREFIX = "    |";
     private static final String EXCEPTION_PREFIX = "[ERROR] ";
-    private static final String LADDER_PLAY_OUTCOME_INTRO = "\n실행 결과";
-    private static final String LADDER_PLAY_OUTCOME_DELIMITER = " : ";
+    private static final String GAME_RESULT_INTRO = "\n실행 결과";
+    private static final String GAME_RESULT_DELIMITER = " : ";
 
     private OutputView() {
     }
@@ -58,21 +58,21 @@ public class OutputView {
         return IS_UNCONNECTED_BRIDGE.repeat(BRIDGE_LENGTH);
     }
 
-    public static void printLadderPlayOutcomeIntro() {
-        System.out.println(LADDER_PLAY_OUTCOME_INTRO);
+    public static void printGameResultIntro() {
+        System.out.println(GAME_RESULT_INTRO);
     }
 
-    public static void printPrizeForAllPlayers(List<LadderPlayOutcomeState> outcomes) {
-        outcomes.forEach((outcome) ->
-                System.out.println(formatLadderPlayOutcome(outcome.playerName(), outcome.prizeName()))
+    public static void printGameResultForAllPlayers(List<GameResultState> gameResults) {
+        gameResults.forEach((result) ->
+                System.out.println(formatGameResult(result))
         );
     }
 
-    private static String formatLadderPlayOutcome(String playerName, String prizeName) {
-        return playerName + LADDER_PLAY_OUTCOME_DELIMITER + prizeName;
+    private static String formatGameResult(GameResultState gameResult) {
+        return gameResult.playerName() + GAME_RESULT_DELIMITER + gameResult.prizeName();
     }
 
-    public static void printPrizeForOnePlayer(String prizeName) {
+    public static void printGameResultForOnePlayer(String prizeName) {
         System.out.println(prizeName);
     }
 

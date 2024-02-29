@@ -3,10 +3,11 @@ package controller;
 import java.util.List;
 import java.util.function.Supplier;
 import model.bridge.RandomBridgesGenerator;
+import model.game.Game;
+import model.game.GameResult;
+import model.game.GameResultState;
 import model.ladder.Ladder;
 import model.ladder.LadderHeight;
-import model.ladder.LadderPlayOutcome;
-import model.ladder.LadderPlayOutcomeState;
 import model.line.LineState;
 import model.player.Player;
 import model.player.Players;
@@ -19,12 +20,16 @@ public class LadderGameController {
     private static final String END_CONDITION = "all";
 
     public void run() {
+        Game game = prepare();
+        play(game);
+    }
+
+    private Game prepare() {
         Players players = retryWithReturnOnException(this::preparePlayers);
         Prizes prizes = retryWithReturnOnException(() -> preparePrizes(players));
         LadderHeight ladderHeight = retryWithReturnOnException(this::prepareLadderHeight);
         Ladder ladder = makeLadder(ladderHeight, players, prizes);
-        LadderPlayOutcome ladderPlayOutcome = ladder.play(players, prizes);
-        retryOnException(() -> provideLadderPlayOutcomeUntilEnd(ladderPlayOutcome));
+        return new Game(ladder, players, prizes);
     }
 
     private Players preparePlayers() {
@@ -32,14 +37,14 @@ public class LadderGameController {
         return Players.from(playerNames);
     }
 
-    private LadderHeight prepareLadderHeight() {
-        int ladderHeight = InputView.askLadderHeight();
-        return new LadderHeight(ladderHeight);
-    }
-
     private Prizes preparePrizes(Players players) {
         List<String> prizeNames = InputView.askPrizeNames();
         return Prizes.of(players, prizeNames);
+    }
+
+    private LadderHeight prepareLadderHeight() {
+        int ladderHeight = InputView.askLadderHeight();
+        return new LadderHeight(ladderHeight);
     }
 
     private Ladder makeLadder(LadderHeight ladderHeight, Players players, Prizes prizes) {
@@ -61,34 +66,39 @@ public class LadderGameController {
         OutputView.printPrizeNames(prizeNames);
     }
 
-    private void provideLadderPlayOutcomeUntilEnd(LadderPlayOutcome ladderPlayOutcome) {
+    private void play(Game game) {
+        GameResult gameResult = game.play();
+        retryOnException(() -> provideGameResultUntilEnd(gameResult));
+    }
+
+    private void provideGameResultUntilEnd(GameResult gameResult) {
         boolean isContinue = true;
         while (isContinue) {
-            isContinue = provideLadderPlayOutcome(ladderPlayOutcome);
+            isContinue = provideGameResult(gameResult);
         }
     }
 
-    private boolean provideLadderPlayOutcome(LadderPlayOutcome ladderPlayOutcome) {
-        String target = InputView.askTarget();
-        OutputView.printLadderPlayOutcomeIntro();
-        if (target.equals(END_CONDITION)) {
-            showPrizeForAllPlayers(ladderPlayOutcome);
+    private boolean provideGameResult(GameResult gameResult) {
+        String targetName = InputView.askTargetName();
+        OutputView.printGameResultIntro();
+        if (targetName.equals(END_CONDITION)) {
+            showGameResultForAllPlayers(gameResult);
             return false;
         }
-        showPrizeForOnePlayer(ladderPlayOutcome, target);
+        Player player = new Player(targetName);
+        showGameResultForOnePlayer(gameResult, player);
         return true;
     }
 
-    private void showPrizeForAllPlayers(LadderPlayOutcome ladderPlayOutcome) {
-        List<LadderPlayOutcomeState> outcome = ladderPlayOutcome.getOutcomeStates();
-        OutputView.printPrizeForAllPlayers(outcome);
+    private void showGameResultForAllPlayers(GameResult gameResult) {
+        List<GameResultState> result = gameResult.captureResultStates();
+        OutputView.printGameResultForAllPlayers(result);
     }
 
-    private void showPrizeForOnePlayer(LadderPlayOutcome ladderPlayOutcome, String target) {
-        Player player = new Player(target);
-        Prize prize = ladderPlayOutcome.get(player);
+    private void showGameResultForOnePlayer(GameResult gameResult, Player player) {
+        Prize prize = gameResult.get(player);
         String prizeName = prize.getName();
-        OutputView.printPrizeForOnePlayer(prizeName);
+        OutputView.printGameResultForOnePlayer(prizeName);
     }
 
     private <T> T retryWithReturnOnException(Supplier<T> retryOperation) {
