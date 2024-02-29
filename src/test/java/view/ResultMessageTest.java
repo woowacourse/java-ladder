@@ -3,7 +3,7 @@ package view;
 import domain.BooleanGenerator;
 import domain.Names;
 import domain.line.Line;
-import domain.lines.CountToPoints;
+import domain.lines.LineGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ class ResultMessageTest {
     void generateLineResult() {
         int personCount = 3;
         FixedGenerator generator = new FixedGenerator(true);
-        CountToPoints countToPoints = new CountToPoints(personCount, generator);
+        LineGenerator countToPoints = new LineGenerator(personCount, generator);
         Line line = new Line(countToPoints.value());
 
         String expected = "-----|     |\n";

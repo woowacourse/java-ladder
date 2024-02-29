@@ -13,11 +13,11 @@ import java.util.stream.IntStream;
 public class Lines {
     private List<Line> lines;
     private final int height;
-    private final CountToPoints countToPoints;
+    private final LineGenerator lineGenerator;
 
     public Lines(final int height, final int personCount, BooleanGenerator booleanGenerator) {
         this.height = height;
-        this.countToPoints = new CountToPoints(personCount, booleanGenerator);
+        this.lineGenerator = new LineGenerator(personCount, booleanGenerator);
         this.lines = new ArrayList<>();
     }
 
@@ -35,7 +35,7 @@ public class Lines {
     }
 
     private List<Point> createPoints() {
-        return countToPoints.value();
+        return lineGenerator.value();
     }
 
     public List<Line> getLines() {

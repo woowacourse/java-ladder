@@ -6,11 +6,11 @@ import domain.line.Point;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class CountToPoints {
+public class LineGenerator {
     private final int source;
     private final BooleanGenerator generator;
 
-    public CountToPoints(int source, BooleanGenerator generator) {
+    public LineGenerator(int source, BooleanGenerator generator) {
         this.source = source;
         this.generator = generator;
     }
