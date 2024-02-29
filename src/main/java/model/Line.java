@@ -1,10 +1,9 @@
 package model;
 
-import utils.ThresholdChecker;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
+import utils.ThresholdChecker;
 
 public class Line {
 
@@ -36,18 +35,25 @@ public class Line {
         }
     }
 
-    public boolean hasLeftConnectedLine(int position) {
-        if (position == 0) {
+    private boolean hasLeftConnectedLine(int horizontalIndex) {
+        if (horizontalIndex == 0) {
             return false;
         }
-        return points.get(position - 1);
+        return points.get(horizontalIndex - 1);
     }
 
-    public Direction showDirection(int position) {
-        if (points.get(position)) {
+    private boolean hasRightConnectedLine(int horizontalIndex) {
+        if (horizontalIndex == points.size()) {
+            return false;
+        }
+        return points.get(horizontalIndex);
+    }
+
+    public Direction findDirection(int horizontalIndex) {
+        if (hasRightConnectedLine(horizontalIndex)) {
             return Direction.RIGHT;
         }
-        if (position > 0 && points.get(position - 1)) {
+        if (hasLeftConnectedLine(horizontalIndex)) {
             return Direction.LEFT;
         }
         return Direction.NONE;
