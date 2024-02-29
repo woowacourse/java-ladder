@@ -62,7 +62,12 @@ public class LadderGameMachine {
         return Ladder.of(generator, ladderHeight, playerNames.getPlayerCount());
     }
 
-    private void printLadderGameResults(Ladder ladder, LadderHeight ladderHeight, GameResults gameResults, PlayerNames playerNames) {
+    private void printLadderGameResults(
+            final Ladder ladder,
+            final LadderHeight ladderHeight,
+            final GameResults gameResults,
+            final PlayerNames playerNames
+    ) {
         Players players = Players.of(playerNames, ladderHeight);
         LadderGameResults ladderGameResults = LadderGameResults.of(ladder, players, gameResults);
         boolean isContinue = true;
@@ -74,7 +79,7 @@ public class LadderGameMachine {
         }
     }
 
-    private List<LadderGameResultDto> findPlayerLadderGameResults(LadderGameResults ladderGameResults) {
+    private List<LadderGameResultDto> findPlayerLadderGameResults(final LadderGameResults ladderGameResults) {
         try {
             String inputName = InputView.inputString(CONSOLE, "결과를 보고 싶은 사람은?");
             return ladderGameResults.findPlayerGameResults(inputName)
@@ -87,7 +92,7 @@ public class LadderGameMachine {
         }
     }
 
-    private boolean switchLoopStatus(List<LadderGameResultDto> playerLadderGameResults) {
+    private boolean switchLoopStatus(final List<LadderGameResultDto> playerLadderGameResults) {
         return playerLadderGameResults.size() == 1;
     }
 }

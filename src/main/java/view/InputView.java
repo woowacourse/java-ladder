@@ -10,7 +10,7 @@ public class InputView {
     private InputView() {
     }
 
-    public static List<String> readStringsWithDelimiter(Supplier<String> reader, String message) {
+    public static List<String> readStringsWithDelimiter(final Supplier<String> reader, final String message) {
         System.out.println(message);
         String input = reader.get();
         validateEmpty(input);
@@ -18,7 +18,7 @@ public class InputView {
         return parseStringWithDelimiter(input);
     }
 
-    public static int readNumber(Supplier<String> reader, String message) {
+    public static int readNumber(final Supplier<String> reader, final String message) {
         System.out.println(message);
         String input = reader.get();
         validateEmpty(input);
@@ -31,7 +31,7 @@ public class InputView {
         }
     }
 
-    private static List<String> parseStringWithDelimiter(String input) {
+    private static List<String> parseStringWithDelimiter(final String input) {
         return stream(input.split(","))
                 .toList();
     }
@@ -44,7 +44,7 @@ public class InputView {
         }
     }
 
-    public static String inputString(Supplier<String> reader, final String message) {
+    public static String inputString(final Supplier<String> reader, final String message) {
         System.out.println(message);
         String input = reader.get();
         validateEmpty(input);
