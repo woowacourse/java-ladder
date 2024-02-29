@@ -11,10 +11,6 @@ public class Name {
         this.value = value;
     }
 
-    public String getValue() {
-        return value;
-    }
-
     private void validate(String inputName) {
         validateAvailableLength(inputName);
         validateBlank(inputName);
@@ -37,6 +33,9 @@ public class Name {
         if (inputName.contains(" ")) {
             throw new IllegalArgumentException("이름에 공백을 포함할 수 없습니다.");
         }
+    }
+    public String getValue() {
+        return value;
     }
 
     @Override

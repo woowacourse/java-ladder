@@ -49,6 +49,11 @@ public class Ladder {
                          .toList();
     }
 
+    public Direction getDirectionWithPoint(final Point point) {
+        return ladderLegs.get(point.row())
+                         .getDirectionAtIndex(point.column());
+    }
+
     public Point traverseLadderFromStartToEnd(final Point startPoint) {
         return Stream.iterate(startPoint, this::movePoint)
                      .filter(this::isPointIsEndLine)
@@ -68,14 +73,7 @@ public class Ladder {
         return point.column() >= height.getHeight();
     }
 
-    public Direction getDirectionWithPoint(final Point point) {
-        return ladderLegs.get(point.row())
-                         .getDirectionAtIndex(point.column());
-    }
-
     public int getHeight() {
         return height.getHeight();
     }
-
-
 }

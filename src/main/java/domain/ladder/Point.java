@@ -25,7 +25,6 @@ public record Point(int row, int column) {
         private int row;
         private int column;
 
-
         public Builder row(final int row) {
             this.row = row;
             return this;

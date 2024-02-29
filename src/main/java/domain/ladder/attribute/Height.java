@@ -28,6 +28,10 @@ public class Height {
         }
     }
 
+    public int getHeight() {
+        return height;
+    }
+
     @Override
     public boolean equals(final Object object) {
         if (this == object) return true;
@@ -40,7 +44,4 @@ public class Height {
         return Objects.hash(height);
     }
 
-    public int getHeight() {
-        return height;
-    }
 }
