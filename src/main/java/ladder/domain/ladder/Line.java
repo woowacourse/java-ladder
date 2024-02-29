@@ -6,30 +6,30 @@ import java.util.List;
 public class Line {
     private final List<Rung> rungs;
 
-    public Line(final List<Boolean> rungStatuses) {
-        this.rungs = makeUnconnectedLine(rungStatuses);
+    public Line(final List<Boolean> rungsExist) {
+        this.rungs = makeUnconnectedLine(rungsExist);
     }
 
-    private List<Rung> makeUnconnectedLine(final List<Boolean> rungExist) {
-        for (int index = 1; index < rungExist.size(); index++) {
-            removeContinuousRung(index, rungExist);
+    private List<Rung> makeUnconnectedLine(final List<Boolean> rungsExist) {
+        for (int index = 1; index < rungsExist.size(); index++) {
+            removeContinuousRung(index, rungsExist);
         }
 
-        return mapRung(rungExist);
+        return mapRung(rungsExist);
     }
 
-    private void removeContinuousRung(final int index, final List<Boolean> rungExist) {
-        if (isContinuousRung(index, rungExist)) {
-            rungExist.set(index, false);
+    private void removeContinuousRung(final int index, final List<Boolean> rungsExist) {
+        if (isContinuousRung(index, rungsExist)) {
+            rungsExist.set(index, false);
         }
     }
 
-    private boolean isContinuousRung(final int index, final List<Boolean> rungExist) {
-        return rungExist.get(index) && rungExist.get(index - 1);
+    private boolean isContinuousRung(final int index, final List<Boolean> rungsExist) {
+        return rungsExist.get(index) && rungsExist.get(index - 1);
     }
 
-    private List<Rung> mapRung(final List<Boolean> rungExist) {
-        return rungExist.stream()
+    private List<Rung> mapRung(final List<Boolean> rungsExist) {
+        return rungsExist.stream()
                 .map(Rung::from)
                 .toList();
     }
