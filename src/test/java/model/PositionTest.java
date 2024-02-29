@@ -40,10 +40,10 @@ class PositionTest {
     }
 
     @Test
-    @DisplayName("0보다 낮은 위치로 내려가는 시도를 하면 예외를 발생한다.")
+    @DisplayName("-1보다 낮은 위치로 내려가는 시도를 하면 예외를 발생한다.")
     void moveToNegativeStairTest() {
         //given
-        Position position = new Position(1,0);
+        Position position = new Position(1,-1);
 
         //when & then
         assertThatThrownBy(position::moveToDownStair)

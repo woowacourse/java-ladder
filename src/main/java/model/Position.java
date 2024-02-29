@@ -10,16 +10,24 @@ public class Position {
         this.horizontal = horizontal;
         this.vertical = vertical;
     }
-
+    
     public void moveHorizontally(Direction direction) {
         this.horizontal += direction.getValue();
     }
 
     public void moveToDownStair() {
-        if (this.vertical <= 0){
+        if (this.vertical < 0){
             throw new IllegalStateException();
         }
         this.vertical--;
+    }
+
+    public int getHorizontal() {
+        return horizontal;
+    }
+
+    public int getVertical() {
+        return vertical;
     }
 
     @Override
