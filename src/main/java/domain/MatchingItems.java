@@ -6,7 +6,7 @@ import java.util.List;
 
 public class MatchingItems {
 
-    private List<String> items;
+    private final List<String> items;
 
     public MatchingItems(final List<String> items, final int playerCount) {
         validateCount(items.size(), playerCount);
