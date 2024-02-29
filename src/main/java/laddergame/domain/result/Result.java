@@ -7,7 +7,14 @@ public class Result {
     private final String result;
 
     public Result(final String result) {
+        validateEmpty(result);
         this.result = result;
+    }
+
+    private void validateEmpty(final String result) {
+        if (result == null || result.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 빈 결과를 입력할 수 없습니다.");
+        }
     }
 
     public String getResult() {
