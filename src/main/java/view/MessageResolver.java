@@ -45,7 +45,7 @@ public class MessageResolver {
 
     private String resolvePrizesMessage(Prizes prizes) {
         return prizes.getPrizes().stream()
-                .map(prize -> String.format("%-5s", prize.getPrize()))
+                .map(prize -> String.format("%-5s", prize.getPrizeName()))
                 .collect(Collectors.joining(" "));
     }
 

@@ -12,20 +12,21 @@ class PrizesTest {
     @DisplayName("결과가 몇가지인지 알 수 있다")
     @Test
     void testCountPrize() {
-        PrizeName prizeName1 = new PrizeName("1");
-        PrizeName prizeName2 = new PrizeName("2");
+        Prizes prizes = new Prizes(
+                List.of(new Prize(new PrizeName("1"), new ColumnPosition(0)),
+                        new Prize(new PrizeName("2"), new ColumnPosition(1))));
 
-        Prizes prizes = new Prizes(List.of(prizeName1, prizeName2));
         assertThat(prizes.getPrizeCount()).isEqualTo(2);
     }
 
     @DisplayName("인덱스에 해당하는 결과를 가져올 수 있다")
     @Test
     void testGetPrize() {
-        PrizeName prizeName1 = new PrizeName("1");
-        PrizeName prizeName2 = new PrizeName("2");
+        Prizes prizes = new Prizes(
+                List.of(new Prize(new PrizeName("1"), new ColumnPosition(0)),
+                        new Prize(new PrizeName("2"), new ColumnPosition(1))));
 
-        Prizes prizes = new Prizes(List.of(prizeName1, prizeName2));
-        assertThat(prizes.getPrize(0)).isEqualTo("1");
+        Prize prize = prizes.getPrize(new ColumnPosition(0));
+        assertThat(prize.getPrizeName()).isEqualTo("1");
     }
 }

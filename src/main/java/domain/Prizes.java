@@ -4,21 +4,21 @@ import java.util.List;
 
 public class Prizes {
 
-    private final List<PrizeName> prizeNames;
+    private final List<Prize> prizes;
 
-    public Prizes(List<PrizeName> prizeNames) {
-        this.prizeNames = prizeNames;
+    public Prizes(List<Prize> prizes) {
+        this.prizes = prizes;
     }
 
     public int getPrizeCount() {
-        return prizeNames.size();
+        return prizes.size();
     }
 
-    public String getPrize(int index) {
-        return prizeNames.get(index).getPrize();
+    public Prize getPrize(ColumnPosition columnPosition) {
+        return prizes.get(columnPosition.getColumnPosition());
     }
 
-    public List<PrizeName> getPrizes() {
-        return prizeNames;
+    public List<Prize> getPrizes() {
+        return prizes;
     }
 }

@@ -4,11 +4,13 @@ import static domain.ConnectionStatus.CONNECTED;
 import static domain.ConnectionStatus.DISCONNECTED;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import domain.ColumnPosition;
 import domain.Ladder;
 import domain.LadderResult;
 import domain.LadderResults;
 import domain.Names;
 import domain.PlayerName;
+import domain.Prize;
 import domain.PrizeName;
 import domain.Prizes;
 import domain.RowLine;
@@ -36,7 +38,10 @@ class MessageResolverTest {
 
         Ladder ladder = new Ladder(rowLines);
         Names names = new Names(List.of(new PlayerName("리비"), new PlayerName("테니"), new PlayerName("잉크")));
-        Prizes prizes = new Prizes(List.of(new PrizeName("1"), new PrizeName("2"), new PrizeName("3")));
+        Prizes prizes = new Prizes(List.of(
+                new Prize(new PrizeName("1"), new ColumnPosition(0)),
+                new Prize(new PrizeName("2"), new ColumnPosition(1)),
+                new Prize(new PrizeName("3"), new ColumnPosition(2))));
 
         String result = messageResolver.resolveLadderMessage(ladder, names, prizes);
 

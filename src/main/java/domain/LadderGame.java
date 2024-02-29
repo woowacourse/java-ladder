@@ -14,8 +14,9 @@ public class LadderGame {
     }
 
     public LadderResult drive(String name) {
-        String prize = prizes.getPrize(ladder.drive(names.indexOf(name)));
-        return new LadderResult(prize, name);
+        int index = ladder.drive(names.indexOf(name));
+        Prize prize = prizes.getPrize(new ColumnPosition(index));
+        return new LadderResult(prize.getPrizeName(), name);
     }
 
     public LadderResults driveAll() {
