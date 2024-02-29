@@ -21,4 +21,18 @@ public class LadderGameResultTest {
         // Then
         assertThat(ladderGameResult).isNotNull();
     }
+
+    @DisplayName("입력된 사용자 이름과 일치하면 true를 반환한다.")
+    @Test
+    void 사용자_이름_일치_여부_반환() {
+        // Given
+        final LadderGameResult ladderGameResult = new LadderGameResult(new PlayerName("kelly"), GameResult.of("꽝", 1));
+        final String inputPlayerName = "kelly";
+
+        // When
+        final boolean isEqualName = ladderGameResult.isPlayerName(inputPlayerName);
+
+        // Then
+        assertThat(isEqualName).isTrue();
+    }
 }
