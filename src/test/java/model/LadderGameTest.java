@@ -28,7 +28,6 @@ public class LadderGameTest {
     @DisplayName("참가자로부터 게임 결과를 얻는다.")
     @Test
     void findResult() {
-        //TODO: participant를 ladder에 넣지 않는다. size만 넣을 것
         LadderGame ladderGame = createLadderGame();
         Result zeroResult = ladderGame.findParticipantResult(new Name("0"));
         Result oneResult = ladderGame.findParticipantResult(new Name("1"));

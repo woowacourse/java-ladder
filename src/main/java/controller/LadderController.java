@@ -36,9 +36,9 @@ public class LadderController {
     }
 
     private void printResults() {
-        String name = inputView.inputParticipantNameForResult();
-        if (!name.equals("all")) {
-            Result participantResult = ladderGame.findParticipantResult(new Name(name));
+        Name name = inputView.inputParticipantNameForResult();
+        if (!name.equals(new Name("all"))) {
+            Result participantResult = ladderGame.findParticipantResult(name);
             outputView.printParticipantResult(participantResult);
             printResults();
             return;
