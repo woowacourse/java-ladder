@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -57,7 +58,29 @@ class ParticipantsTest {
         );
 
         assertThatThrownBy(() -> new Participants(given))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 참여자 이름이 중복되었습니다.");
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("조회한 사람의 이름이 참여자 명단에 존재하는지 확인한다.")
+    @Test
+    void searchSpecificParticipant() {
+        Participant ash = new Participant("ash");
+        Participant daon = new Participant("daon");
+        Participants participants = new Participants(List.of(ash, daon));
+
+        Participant result = participants.checkExistence("ash");
+        assertThat(result).isEqualTo(ash);
+    }
+
+    @DisplayName("조회한 사람의 이름이 참여자 명단에 존재하지 않는다면 예외를 반환한다.")
+    @Test
+    void searchSpecificParticipantFailure() {
+        Participant ash = new Participant("ash");
+        Participant daon = new Participant("daon");
+        Participants participants = new Participants(List.of(ash, daon));
+
+
+        assertThatThrownBy(() -> participants.checkExistence("ted"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

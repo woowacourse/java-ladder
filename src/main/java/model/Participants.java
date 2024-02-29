@@ -14,6 +14,14 @@ public class Participants {
         this.participants = participants;
     }
 
+    public Participant checkExistence(String target) {
+        Participant find = new Participant(target);
+        if (participants.contains(find)) {
+            return new Participant(target);
+        }
+        throw new IllegalArgumentException("[ERROR] 목록에 없는 참여자입니다.");
+    }
+
     private void validateParticipantsSize(List<Participant> participants) {
         if (participants == null || participants.size() < MIN_LIMIT) {
             throw new IllegalArgumentException("[ERROR] 참여자는 2명 이상이어야 한다.");
