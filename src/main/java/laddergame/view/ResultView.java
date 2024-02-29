@@ -13,7 +13,8 @@ public class ResultView {
 
     private ResultView() {
     }
-
+    //TODO StringBuilder 사용해보기
+    //TODO 추후의 MessageResolver와의 통합 생각해보기
     public static void printLadder(Elements upperElements, Ladder ladder, Elements lowerElements) {
         System.out.println(LINE_SEPERATOR + "사다리 결과" + LINE_SEPERATOR);
         System.out.println(resolveElementMessage(upperElements));

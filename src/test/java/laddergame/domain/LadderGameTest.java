@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LadderGameTest {
-
+    //TODO 테스트 코드 단순화 + 책임 분리
     @DisplayName("사다리 게임 수행 결과 테스트")
     @Test
     void ladderGameResultTest() {

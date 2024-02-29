@@ -46,5 +46,4 @@ public class Element {
     public String getElement() {
         return element;
     }
-
 }

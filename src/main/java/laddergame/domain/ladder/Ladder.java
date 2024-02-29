@@ -23,6 +23,7 @@ public class Ladder {
                 .toList();
     }
 
+    //TODO 메소드 이름 다시 생각해보기
     public List<Integer> move(int peopleNumber) {
         List<Integer> playerPositions = IntStream.range(0, peopleNumber)
                 .boxed()

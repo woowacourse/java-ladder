@@ -2,7 +2,7 @@ package laddergame.domain.gameelements;
 
 import java.util.Collections;
 import java.util.List;
-
+//TODO Players, Prizes 분리하기
 public class Elements {
 
     private static final int MIN_ELEMENT_NUMBERS = 1;
@@ -22,7 +22,7 @@ public class Elements {
             throw new IllegalArgumentException("게임 요소의 수는 1이상 100이하만 가능합니다.");
         }
     }
-
+    //TODO Stream.java의 toList() 살펴보기
     public List<Element> getElements() {
         return Collections.unmodifiableList(elements);
     }

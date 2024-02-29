@@ -20,6 +20,7 @@ public class RowLine {
         this.connections.addAll(generatedConnection);
     }
 
+    //TODO player 위치 원시값 감싸기
     public List<Integer> move(List<Integer> playerPositions) {
         return playerPositions.stream()
                 .map(this::moveByConnection)
@@ -27,7 +28,6 @@ public class RowLine {
     }
 
     private int moveByConnection(int playerPosition) {
-
         if (checkLeftPosition(playerPosition - 1)) {
             return playerPosition - 1;
         }
@@ -38,6 +38,7 @@ public class RowLine {
         return playerPosition;
     }
 
+    //TODO connection.isConnected로 더 객체지향적인 코드로 만들기
     private boolean checkLeftPosition(int leftPosition) {
         return leftPosition >= 0
                 && connections.get(leftPosition) == CONNECTED;
