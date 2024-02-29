@@ -10,4 +10,8 @@ public enum Connection {
     Connection(boolean isConnect) {
         this.isConnect = isConnect;
     }
+
+    public boolean isConnected() {
+        return isConnect;
+    }
 }

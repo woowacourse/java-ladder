@@ -37,16 +37,14 @@ public class RowLine {
 
         return playerPosition;
     }
-
-    //TODO connection.isConnected로 더 객체지향적인 코드로 만들기
     private boolean checkLeftPosition(int leftPosition) {
         return leftPosition >= 0
-                && connections.get(leftPosition) == CONNECTED;
+                && connections.get(leftPosition).isConnected();
     }
 
     private boolean checkRightPosition(int rightPosition) {
         return rightPosition < connections.size()
-                && connections.get(rightPosition) == CONNECTED;
+                && connections.get(rightPosition).isConnected();
     }
 
     private void validateConnection(List<Connection> connections) {
