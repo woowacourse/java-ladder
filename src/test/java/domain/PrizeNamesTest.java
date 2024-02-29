@@ -2,6 +2,7 @@ package domain;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import domain.prize.PrizeName;
 import domain.prize.PrizeNames;
@@ -18,6 +19,15 @@ class PrizeNamesTest {
         int playerCount = 3;
 
         assertDoesNotThrow(() -> new PrizeNames(prizeInputNames, playerCount));
+    }
+
+    @Test
+    @DisplayName("플레이어 수와 다른 개수의 선물이 입력되었을 때에 예외를 던진다")
+    void createWrongPrizes() {
+        List<String> prizeInputNames = List.of("꽝", "꽝", "1등");
+        int playerCount = 0;
+
+        assertThrows(IllegalArgumentException.class, () -> new PrizeNames(prizeInputNames, playerCount));
     }
 
     @Test
