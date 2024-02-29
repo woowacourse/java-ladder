@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ResultsTest {
 
@@ -38,7 +39,7 @@ class ResultsTest {
     @DisplayName("사다리가 모두 탔을 때 도착한 곳이 실행 결과이다.")
     void getResult() {
         // given
-        Results results = new Results(List.of("꽝", "5000", "꽝", "3000"));
+        Results results = new Results(List.of("꽝", "5000", "꽝", "3000"), 4);
         int position = ladder.ride(0);
 
         // when
@@ -60,7 +61,7 @@ class ResultsTest {
                         new Name("jk")
                 )
         );
-        Results results = new Results(List.of("꽝", "5000", "꽝", "3000"));
+        Results results = new Results(List.of("꽝", "5000", "꽝", "3000"), 4);
 
         int startPosition = people.findPosition(new Name("crong"));
         int resultPosition = ladder.ride(startPosition);
@@ -70,5 +71,23 @@ class ResultsTest {
 
         // then
         assertThat(result).isEqualTo("3000");
+    }
+
+    @Test
+    @DisplayName("결과의 수와 사람 수가 다르면 예외가 발생한다.")
+    void resultCountExceptionTest() {
+        // given
+        People people = new People(
+                List.of(
+                        new Name("pobi"),
+                        new Name("honux"),
+                        new Name("crong")
+                )
+        );
+
+        // when & then
+        assertThatThrownBy(
+                () -> new Results(List.of("꽝", "5000"), people.count())
+        ).isInstanceOf(IllegalArgumentException.class);
     }
 }

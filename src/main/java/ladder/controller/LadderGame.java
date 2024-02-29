@@ -19,7 +19,7 @@ public class LadderGame {
 
     public void run() {
         People people = createNames();
-        Results results = createResults();
+        Results results = createResults(people.count());
         Height height = createHeight();
 
         List<Line> lines = createLines(people, height);
@@ -56,13 +56,13 @@ public class LadderGame {
         return new People(names);
     }
 
-    private Results createResults() {
-        return retryWhileException(this::readResults);
+    private Results createResults(int countStandard) {
+        return retryWhileException(() -> readResults(countStandard));
     }
 
-    private Results readResults() {
+    private Results readResults(int countStandard) {
         List<String> rawResults = inputView.readResults();
-        return new Results(rawResults);
+        return new Results(rawResults, countStandard);
     }
 
     private Height createHeight() {
