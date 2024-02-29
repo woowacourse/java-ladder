@@ -1,11 +1,11 @@
 package domain.Participants;
 
 import java.util.Objects;
+import view.InputView;
 
 public class Name {
 
     public static final int MAX_OF_NAME_LENGTH = 5;
-    public static final String EXIT = "종료";
 
     private final String name;
 
@@ -29,7 +29,7 @@ public class Name {
     }
 
     private void validateUnavailableName(String name) {
-        if (name.equals(EXIT)) {
+        if (name.equals(InputView.EXIT)) {
             throw new IllegalArgumentException("[ERROR] 이름에는 종료 키워드를 사용할 수 없습니다.");
         }
     }

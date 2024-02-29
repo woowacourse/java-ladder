@@ -1,5 +1,6 @@
 package controller;
 
+import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.LadderGame;
 import domain.Participants.Participants;
@@ -10,9 +11,6 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
-
-    public static final String EXIT = "종료";
-    public static final String ALL = "all";
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
@@ -58,7 +56,7 @@ public class LadderGameController {
     private Ladder makeLadder(Participants participants) {
         try {
             int height = inputView.readHeight();
-            return new Ladder(height, participants.getParticipantsCount(), new RandomStepGenerator());
+            return new Ladder(new Height(height), participants.getParticipantsCount(), new RandomStepGenerator());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return makeLadder(participants);
@@ -77,10 +75,10 @@ public class LadderGameController {
     }
 
     private void checkResult(Participants participants, String name) {
-        if (name.equals(EXIT)) {
+        if (name.equals(InputView.EXIT)) {
             return;
         }
-        if (name.equals(ALL)) {
+        if (name.equals(InputView.ALL)) {
             checkAllResult(participants);
             return;
         }
@@ -98,7 +96,7 @@ public class LadderGameController {
     }
 
     private void validateResultName(String name, Participants participants) {
-        if (!name.equals(EXIT) && !name.equals(ALL) && !participants.hasParticipated(name)) {
+        if (!name.equals(InputView.EXIT) && !name.equals(InputView.ALL) && !participants.hasParticipated(name)) {
             throw new IllegalArgumentException("[ERROR] 해당하는 참가자가 없습니다.");
         }
     }
