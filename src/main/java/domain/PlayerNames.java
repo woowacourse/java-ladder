@@ -43,16 +43,11 @@ public class PlayerNames {
         return -1;
     }
 
-    public List<PlayerName> getPlayerNames() {
-        return playerNames;
+    public boolean isExistPlayer(String name) {
+        return playerNames.stream().anyMatch(playerName -> playerName.getName().equals(name));
     }
 
-    public boolean isExistPlayer(String name) {
-        for (PlayerName playerName : playerNames) {
-            if (playerName.getName().equals(name)) {
-                return true;
-            }
-        }
-        return false;
+    public List<PlayerName> getPlayerNames() {
+        return playerNames;
     }
 }
