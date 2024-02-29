@@ -28,7 +28,7 @@ public class LadderGameTest {
         final List<String> inputResults = List.of("꽝", "3000", "5000", "2000");
 
         final Names names = new Names(inputNames);
-        final Results results = new Results(inputResults, 3);
+        final Results results = new Results(inputResults, 4);
         final LadderHeight height = new LadderHeight(5);
 
         final LadderGame ladderGame = new LadderGame((i, j) -> new Ladder(List.of(

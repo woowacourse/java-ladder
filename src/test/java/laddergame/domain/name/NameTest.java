@@ -42,12 +42,12 @@ public class NameTest {
 
     }
 
-    @DisplayName("이름을 all로 할 수 없다.")
+    @DisplayName("이름을 커맨드 키로 할 수 없다.")
     @Test
     void validateInvalidName() {
         assertThatThrownBy(() -> new Name("all"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 이름을 all로 지을 수 없습니다.");
+                .hasMessage("[ERROR] 이름을 커맨드 키로 지을 수 없습니다.");
     }
 }
 

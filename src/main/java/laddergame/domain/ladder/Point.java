@@ -6,4 +6,11 @@ public enum Point {
     public boolean isExist() {
         return this == EXIST;
     }
+
+    public Point next(final Point point) {
+        if (isExist()) {
+            return Point.EMPTY;
+        }
+        return point;
+    }
 }
