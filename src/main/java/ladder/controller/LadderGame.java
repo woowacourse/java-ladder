@@ -7,7 +7,6 @@ import ladder.domain.ladder.Ladder;
 import ladder.domain.result.GameResults;
 import ladder.domain.result.LadderGamePrize;
 import ladder.domain.participant.Participants;
-import ladder.domain.result.PersonalGameResult;
 import ladder.exception.ExceptionHandler;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -80,7 +79,7 @@ public class LadderGame {
             outputView.printAllGameResults(gameResults);
             return false;
         }
-        final PersonalGameResult personalGameResult = gameResults.findByName(gameResultTarget);
+        final String personalGameResult = gameResults.findByName(gameResultTarget);
         outputView.printPersonalGameResult(personalGameResult);
         return true;
     }

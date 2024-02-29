@@ -1,24 +1,24 @@
 package ladder.domain.result;
 
-import java.util.List;
+import java.util.Map;
 
-import static java.util.Collections.unmodifiableList;
+import static java.util.Collections.unmodifiableMap;
 
 public class GameResults {
-    private final List<PersonalGameResult> values;
+    private final Map<String, String> values;
 
-    public GameResults(final List<PersonalGameResult> values) {
-        this.values = unmodifiableList(values);
+    public GameResults(final Map<String, String> values) {
+        this.values = unmodifiableMap(values);
     }
 
-    public PersonalGameResult findByName(final String participantName) {
-        return values.stream()
-                .filter(result -> result.isResultOf(participantName))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참가자입니다."));
+    public String findByName(final String participantName) {
+        if (!values.containsKey(participantName)) {
+            throw new IllegalArgumentException("존재하지 않는 참가자입니다.");
+        }
+        return values.get(participantName);
     }
 
-    public List<PersonalGameResult> getValues() {
+    public Map<String, String> getValues() {
         return values;
     }
 }

@@ -3,8 +3,9 @@ package ladder.domain.result;
 import ladder.domain.participant.Participant;
 import ladder.domain.participant.Participants;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static java.util.Collections.unmodifiableList;
 
@@ -16,11 +17,11 @@ public class LadderGamePrize {
     }
 
     public GameResults determinePersonalResult(final Participants participants) {
-        final List<PersonalGameResult> results = new ArrayList<>();
+        final Map<String, String> results = new HashMap<>();
         for (final Participant participant: participants.getValues()) {
             final int position = participant.getPosition();
             final String prize = values.get(position);
-            results.add(new PersonalGameResult(participant, prize));
+            results.put(participant.getName(), prize);
         }
         return new GameResults(results);
     }

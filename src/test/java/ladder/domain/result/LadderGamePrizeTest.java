@@ -5,8 +5,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderGamePrizeTest {
     @Test
@@ -17,11 +19,14 @@ class LadderGamePrizeTest {
         final Participants participants = new Participants(List.of("mia", "pota", "jojo"));
 
         // when
-        final GameResults personalGameResults = gameResult.determinePersonalResult(participants);
+        final GameResults gameResults = gameResult.determinePersonalResult(participants);
 
         // then
-        assertThat(personalGameResults.getValues())
-                .extracting(PersonalGameResult::getPrize)
-                .containsExactly("꽝", "당첨", "꽝");
+        final Map<String, String> gameResultsValues = gameResults.getValues();
+        assertAll(
+                () -> assertThat(gameResultsValues.get("mia")).isEqualTo("꽝"),
+                () -> assertThat(gameResultsValues.get("pota")).isEqualTo("당첨"),
+                () -> assertThat(gameResultsValues.get("jojo")).isEqualTo("꽝")
+        );
     }
 }

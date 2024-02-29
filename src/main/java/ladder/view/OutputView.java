@@ -7,9 +7,9 @@ import ladder.domain.ladder.LadderStep;
 import ladder.domain.ladder.Path;
 import ladder.domain.participant.Participant;
 import ladder.domain.participant.Participants;
-import ladder.domain.result.PersonalGameResult;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -72,17 +72,18 @@ public class OutputView {
     }
 
     public void printAllGameResults(final GameResults gameResults) {
-        final List<PersonalGameResult> allGameResults = gameResults.getValues();
-        final String formattedResults = allGameResults.stream()
-                .map(result -> String.format(RESULT_FORMAT, result.getParticipantName(), result.getPrize()))
+        final Map<String, String> allGameResults = gameResults.getValues();
+        final String formattedResults = allGameResults.entrySet()
+                .stream()
+                .map(entry -> String.format(RESULT_FORMAT, entry.getKey(), entry.getValue()))
                 .collect(Collectors.joining("\n"));
         printResultPrefix();
         System.out.println(formattedResults);
     }
 
-    public void printPersonalGameResult(final PersonalGameResult personalGameResult) {
+    public void printPersonalGameResult(final String result) {
         printResultPrefix();
-        System.out.println(personalGameResult.getPrize());
+        System.out.println(result);
     }
 
     private void printResultPrefix() {
