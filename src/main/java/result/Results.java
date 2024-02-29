@@ -22,6 +22,17 @@ public class Results {
         }
     }
 
+    public String getNameByIndex(int index) {
+        validateIndex(index);
+        return results.get(index).getName();
+    }
+
+    private void validateIndex(int index) {
+        if (index < 0 || index >= results.size()) {
+            throw new IllegalArgumentException("인덱스를 벗어납니다.");
+        }
+    }
+
     public List<String> getNames() {
         return results.stream()
                 .map(Result::getName)
