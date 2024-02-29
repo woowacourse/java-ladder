@@ -26,7 +26,7 @@ public class Player {
 
     private void validateNameLength(String name) {
         if (name == null || isNameLengthOutOfRange(name)) {
-            throw new IllegalArgumentException("이름은 1글자 이상 5글자 이하로 작성해야 합니다.");
+            throw new IllegalArgumentException("이름은 1글자에서 5글자 사이여야 합니다.");
         }
     }
 

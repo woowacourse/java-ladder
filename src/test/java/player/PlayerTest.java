@@ -24,7 +24,7 @@ class PlayerTest {
     void invalidNameLengthTest(String name) {
         assertThatThrownBy(() -> new Player(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 1글자 이상 5글자 이하로 작성해야 합니다.");
+                .hasMessage("이름은 1글자에서 5글자 사이여야 합니다.");
     }
 
     @ParameterizedTest

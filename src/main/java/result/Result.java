@@ -32,7 +32,7 @@ public class Result {
     private void validateNamePattern(String name) {
         boolean isPatternMatched = RESULT_REGEX.matcher(name).matches();
         if (!isPatternMatched) {
-            throw new IllegalArgumentException("결과는 알파벳 대소문자, 숫자나 한글로 이루어져야 합니다.");
+            throw new IllegalArgumentException("결과는 알파벳 대소문자, 숫자나 한글로만 이루어져야 합니다.");
         }
     }
 }

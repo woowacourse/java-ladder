@@ -30,7 +30,7 @@ public class Players {
 
     private void validateSize(List<String> playerNames) {
         if (playerNames.size() < MIN_PLAYER_SIZE || playerNames.size() > MAX_PLAYER_SIZE) {
-            throw new IllegalArgumentException("참여자의 수는 2명 이상 10명 이하로 작성해야 합니다.");
+            throw new IllegalArgumentException("이름 개수는 2개 이상 10개 이하로 작성해야 합니다.");
         }
     }
 

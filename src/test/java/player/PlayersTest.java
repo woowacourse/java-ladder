@@ -38,7 +38,7 @@ class PlayersTest {
         // when, then
         assertThatThrownBy(() -> new Players(playerNames))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참여자의 수는 2명 이상 10명 이하로 작성해야 합니다.");
+                .hasMessage("이름 개수는 2개 이상 10개 이하로 작성해야 합니다.");
     }
 
     @Test

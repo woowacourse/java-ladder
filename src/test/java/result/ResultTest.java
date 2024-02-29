@@ -33,7 +33,7 @@ class ResultTest {
     void invalidResultPatternTest(String name) {
         assertThatThrownBy(() -> new Result(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("결과는 알파벳 대소문자, 숫자나 한글로 이루어져야 합니다.");
+                .hasMessage("결과는 알파벳 대소문자, 숫자나 한글로만 이루어져야 합니다.");
     }
 
 }
