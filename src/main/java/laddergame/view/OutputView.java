@@ -32,7 +32,7 @@ public class OutputView {
 
     private void writeLine(final Lines lines) {
         String formatted = lines.getLines().stream()
-                .map(Line::getSymbol)
+                .map(LineSymbol::getSymbolByLine)
                 .collect(Collectors.joining(LADDER_SEPARATOR, SPACE + LADDER_SEPARATOR, LADDER_SEPARATOR));
 
         System.out.println(formatted);
