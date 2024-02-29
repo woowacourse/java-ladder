@@ -34,6 +34,6 @@ public class OutputView {
     }
 
     public void printLine() {
-        System.lineSeparator();
+        System.out.println();
     }
 }

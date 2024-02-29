@@ -1,16 +1,16 @@
 package laddergame.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import laddergame.domain.ladder.Line;
+import laddergame.domain.ladder.LineSize;
+import laddergame.domain.player.Players;
+import laddergame.domain.point.Point;
+import laddergame.domain.result.Trace;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import laddergame.domain.ladder.Line;
-import laddergame.domain.ladder.LineSize;
-import laddergame.domain.result.Trace;
-import laddergame.domain.player.Players;
-import laddergame.domain.point.Point;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
 
@@ -19,10 +19,10 @@ public class LineTest {
     @Test
     void create() {
         // given
-        LineSize lineSize = new LineSize(new Players(List.of("pobi", "zeze", "crong", "jk")));
+        final LineSize lineSize = new LineSize(new Players(List.of("pobi", "zeze", "crong", "jk")));
 
         // when
-        Line line = Line.create(lineSize, () -> Point.EXIST);
+        final Line line = Line.create(lineSize, () -> Point.EXIST);
 
         //then
         final List<Point> expectedLine = List.of(Point.EXIST, Point.EMPTY, Point.EXIST);
@@ -35,8 +35,8 @@ public class LineTest {
     @Test
     void testMoveRight() {
         // given
-        Line line = new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST));
-        Trace trace = new Trace(0);
+        final Line line = new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST));
+        final Trace trace = new Trace(0);
 
         // when
         Trace next = line.move(trace);
@@ -49,11 +49,11 @@ public class LineTest {
     @Test
     void testMoveLeft() {
         // given
-        Line line = new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST));
-        Trace trace = new Trace(3);
+        final Line line = new Line(List.of(Point.EXIST, Point.EMPTY, Point.EXIST));
+        final Trace trace = new Trace(3);
 
         // when
-        Trace next = line.move(trace);
+        final Trace next = line.move(trace);
 
         // then
         assertThat(next.getPosition()).isEqualTo(2);
@@ -63,11 +63,11 @@ public class LineTest {
     @Test
     void testNotMove() {
         // given
-        Line line = new Line(List.of(Point.EMPTY, Point.EMPTY, Point.EMPTY));
-        Trace trace = new Trace(1);
+        final Line line = new Line(List.of(Point.EMPTY, Point.EMPTY, Point.EMPTY));
+        final Trace trace = new Trace(1);
 
         // when
-        Trace next = line.move(trace);
+        final Trace next = line.move(trace);
 
         // then
         assertThat(next.getPosition()).isEqualTo(1);

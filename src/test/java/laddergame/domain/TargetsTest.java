@@ -14,7 +14,7 @@ public class TargetsTest {
     @Test
     void testCreateTargets() {
         // given
-        List<String> input = List.of("꽝","5000","꽝","3000");
+        final List<String> input = List.of("꽝","5000","꽝","3000");
 
         // when & then
         Assertions.assertThatCode(() -> new Targets(input, 4))
@@ -25,7 +25,7 @@ public class TargetsTest {
     @Test
     void testValidateNumber() {
         // given
-        List<String> input = List.of("꽝");
+        final List<String> input = List.of("꽝");
 
         // when & then
         Assertions.assertThatThrownBy(() -> new Targets(input, 4))
@@ -37,9 +37,9 @@ public class TargetsTest {
     @Test
     void testConvertToTraceBy() {
         // given
-        Trace leftTrace = new Trace(0);
-        Trace rightTrace = new Trace(3);
-        Targets targets = new Targets(List.of("꽝","5000","꽝","3000"), 4);
+        final Trace leftTrace = new Trace(0);
+        final Trace rightTrace = new Trace(3);
+        final Targets targets = new Targets(List.of("꽝","5000","꽝","3000"), 4);
 
         // when
         laddergame.domain.target.Target leftTarget = targets.convertToTarget(leftTrace);

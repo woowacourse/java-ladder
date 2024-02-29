@@ -1,14 +1,13 @@
 package laddergame.controller;
 
-import laddergame.domain.result.Result;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderHeight;
 import laddergame.domain.player.Players;
+import laddergame.domain.result.Result;
 import laddergame.domain.target.Targets;
 import laddergame.dto.DrawnLadderDto;
 import laddergame.exception.ExceptionHandler;
 import laddergame.service.LadderGame;
-import laddergame.util.InputValidator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -37,26 +36,29 @@ public class LadderController {
     }
 
     private Players getPlayers() {
-        Players players = ExceptionHandler.retryUntilInputIsValid(
+        final Players players = ExceptionHandler.retryUntilInputIsValid(
                 () -> new Players(inputView.readNames()), outputView
         );
         outputView.printLine();
+
         return players;
     }
 
     private Targets getTargets(final int size) {
-        Targets targets = ExceptionHandler.retryUntilInputIsValid(
+        final Targets targets = ExceptionHandler.retryUntilInputIsValid(
                 () -> new Targets(inputView.readTargets(), size), outputView
         );
         outputView.printLine();
+
         return targets;
     }
 
     private LadderHeight getLadderHeight() {
-        LadderHeight ladderHeight = ExceptionHandler.retryUntilInputIsValid(
+        final LadderHeight ladderHeight = ExceptionHandler.retryUntilInputIsValid(
                 () -> new LadderHeight(inputView.readLadderHeight()), outputView
         );
         outputView.printLine();
+
         return ladderHeight;
     }
 
@@ -65,7 +67,7 @@ public class LadderController {
     }
 
     private void printResult(final Result result) {
-        String input = getDisplayingPlayers();
+        final String input = getDisplayingPlayers();
 
         if (input.equals("all")) {
             outputView.printResultAll(result);
@@ -76,7 +78,6 @@ public class LadderController {
     }
 
     private String getDisplayingPlayers() {
-        String input = inputView.readDisplayingPlayers();
-        return input;
+        return inputView.readDisplayingPlayers();
     }
 }

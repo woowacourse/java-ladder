@@ -5,7 +5,7 @@ import laddergame.util.InputValidator;
 import java.util.Map;
 
 public class Result {
-    private Map<String, String> result;
+    private final Map<String, String> result;
 
     public Result(final Map<String, String> result) {
         this.result = result;

@@ -16,7 +16,7 @@ public class Line {
     }
 
     public static Line create(final LineSize lineSize, final PointGenerator pointGenerator) {
-        List<Point> points = new ArrayList<>();
+        final List<Point> points = new ArrayList<>();
 
         while (lineSize.isBiggerThan(points.size())) {
             points.add(generatePoint(points, pointGenerator));
@@ -30,7 +30,7 @@ public class Line {
             return pointGenerator.generate();
         }
 
-        Point lastPoint = points.get(points.size() - 1);
+        final Point lastPoint = points.get(points.size() - 1);
         if (lastPoint.isExist()) {
             return Point.EMPTY;
         }
@@ -54,6 +54,7 @@ public class Line {
         if (trace.getPosition() == 0) {
             return false;
         }
+
         return hasPoint(trace.getPosition() - 1);
     }
 
@@ -61,6 +62,7 @@ public class Line {
         if (trace.getPosition() == this.points.size()) {
             return false;
         }
+
         return hasPoint(trace.getPosition());
     }
 

@@ -11,7 +11,7 @@ public class PointTest {
     @Test
     void create() {
         // given&when
-        Point point = Point.from(true);
+        final Point point = Point.from(true);
 
         // then
         Assertions.assertThat(point.name()).isEqualTo(Point.EXIST.name());
@@ -21,10 +21,10 @@ public class PointTest {
     @Test
     void isExist() {
         // given
-        Point point = Point.EXIST;
+        final Point point = Point.EXIST;
 
         // when
-        boolean result = point.isExist();
+        final boolean result = point.isExist();
 
         // then
         Assertions.assertThat(result).isTrue();
@@ -34,10 +34,10 @@ public class PointTest {
     @Test
     void notExist() {
         // given
-        Point point = Point.EMPTY;
+        final Point point = Point.EMPTY;
 
         // when
-        boolean result = point.isExist();
+        final boolean result = point.isExist();
 
         // then
         Assertions.assertThat(result).isFalse();

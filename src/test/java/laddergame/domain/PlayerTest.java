@@ -15,7 +15,7 @@ public class PlayerTest {
     @ValueSource(strings = {"a", "ab", "abc", "abcd", "abcde"})
     void create(String value) {
         // given & when
-        Player name = new Player(value);
+        final Player name = new Player(value);
 
         // then
         Assertions.assertThat(name.getName()).isEqualTo(value);

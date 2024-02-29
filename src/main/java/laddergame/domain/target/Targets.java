@@ -1,13 +1,11 @@
 package laddergame.domain.target;
 
 import laddergame.domain.result.Trace;
-import laddergame.util.InputValidator;
 
-import javax.xml.validation.Validator;
 import java.util.List;
 
 public class Targets {
-    private List<Target> targets;
+    private final List<Target> targets;
 
     public Targets(final List<String> input, final int size) {
         validateSize(input, size);
@@ -15,7 +13,7 @@ public class Targets {
     }
 
     public Target convertToTarget(final Trace trace) {
-        int position = trace.getPosition();
+        final int position = trace.getPosition();
 
         return targets.get(position);
     }
