@@ -31,7 +31,7 @@ public class LadderController {
         int participantCount = participants.size();
 
         Carpenter carpenter = readyCarpenter(participantCount);
-        GamePrizes gamePrizes = repeatUntilValid(this::readyPrizes);
+        GamePrizes gamePrizes = repeatUntilValid(() -> readyPrizes(participantCount));
 
         LadderGame ladderGame = new LadderGame(carpenter, participants);
         MadeLadderDto resultLadder = ladderGame.play(participantCount);
@@ -52,9 +52,9 @@ public class LadderController {
         return new Carpenter(height, participantsCount, energy);
     }
 
-    private GamePrizes readyPrizes() {
+    private GamePrizes readyPrizes(int participantCount) {
         List<String> inputPrizes = inputView.getPrizes();
-        return new GamePrizes(inputPrizes);
+        return new GamePrizes(inputPrizes, participantCount);
     }
 
     private Height initHeight() {
