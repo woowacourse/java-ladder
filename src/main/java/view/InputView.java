@@ -43,4 +43,12 @@ public class InputView {
             throw new IllegalArgumentException("정수만 입력할 수 있습니다.");
         }
     }
+
+    public static String inputString(Supplier<String> reader, final String message) {
+        System.out.println(message);
+        String input = reader.get();
+        validateEmpty(input);
+
+        return input;
+    }
 }
