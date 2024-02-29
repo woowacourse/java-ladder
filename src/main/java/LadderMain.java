@@ -43,6 +43,6 @@ public class LadderMain {
             selectedName = InputView.selectPlayer();
             doesSelectAll = Objects.equals(selectedName, SELECT_ALL);
         }
-        OutputView.printMatchingResultAll(ladderGame.matchResult(selectedName, SELECT_ALL));
+        OutputView.printMatchingResultAll(ladderGame.matchResultAll());
     }
 }

@@ -99,7 +99,7 @@ class LadderGameTest {
         final LadderGame ladderGame = new LadderGame(players, matchingItems, ladder);
 
         ladderGame.play();
-        final List<GameResult> gameResults = ladderGame.matchResult("all", "all");
+        final List<GameResult> gameResults = ladderGame.matchResultAll();
 
         //when & then
         assertAll(
