@@ -2,7 +2,9 @@ package view;
 
 import domain.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
 
 public class OutputView {
@@ -72,15 +74,21 @@ public class OutputView {
         return NO_BRIDGE;
     }
 
-    public void printPlayerResultMessage() {
-        System.out.println(System.lineSeparator() + "실행 결과");
-    }
-
     public void printResult(String result) {
+        System.out.println(System.lineSeparator() + "실행 결과");
         System.out.println(result);
     }
 
-    public void printPlayerResult(String name, String result) {
-        System.out.println(name + " : " + result);
+    public void printPlayerResult(Map<Name, Result> playerResults) {
+        printPlayerResultMessage();
+        for (final Map.Entry<Name, Result> entry : playerResults.entrySet()) {
+            String name = entry.getKey().getValue();
+            String result = entry.getValue().getValue();
+            System.out.println(name + " : " + result);
+        }
+    }
+
+    private void printPlayerResultMessage() {
+        System.out.println(System.lineSeparator() + "실행 결과");
     }
 }

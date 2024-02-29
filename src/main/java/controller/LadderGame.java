@@ -4,8 +4,6 @@ import domain.*;
 import view.InputView;
 import view.OutputView;
 
-import java.util.Map;
-
 
 public class LadderGame {
 
@@ -28,22 +26,11 @@ public class LadderGame {
     private void printPlayerResultsUntilTerminate(final PlayerResults playerResults) {
         String target = inputView.readTarget();
         while (!Commands.isTerminate(target)) {
-            printTargetPlayerResult(playerResults, target);
+            String result = playerResults.findResult(target).getValue();
+            outputView.printResult(result);
             target = inputView.readTarget();
         }
-        printAllPlayerResults(playerResults);
-    }
-
-    private void printTargetPlayerResult(final PlayerResults playerResults, final String target) {
-        outputView.printPlayerResultMessage();
-        outputView.printResult(playerResults.findResult(target).getValue());
-    }
-
-    private void printAllPlayerResults(final PlayerResults playerResults) {
-        outputView.printPlayerResultMessage();
-        for (final Map.Entry<Name, Result> entry : playerResults.getPlayerResults().entrySet()) {
-            outputView.printPlayerResult(entry.getKey().getValue(), entry.getValue().getValue());
-        }
+        outputView.printPlayerResult(playerResults.getPlayerResults());
     }
 
 }
