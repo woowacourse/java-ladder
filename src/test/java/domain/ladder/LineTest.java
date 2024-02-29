@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import domain.ladder.Line;
 import domain.ladder.stick.Stick;
 import domain.ladder.stick.StickGenerator;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,8 +1,5 @@
 package domain.ladder.stick;
 
-import domain.ladder.stick.Stick;
-import domain.ladder.stick.StickGenerator;
-
 import java.util.Random;
 
 public class RandomStickGenerator implements StickGenerator {

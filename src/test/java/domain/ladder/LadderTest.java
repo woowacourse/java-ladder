@@ -1,7 +1,5 @@
 package domain.ladder;
 
-import domain.ladder.Height;
-import domain.ladder.Ladder;
 import domain.ladder.stick.Stick;
 import domain.ladder.stick.StickGenerator;
 import domain.ladder.sticks.SticksGenerator;
