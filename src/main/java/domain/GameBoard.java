@@ -6,12 +6,10 @@ import domain.player.PlayerName;
 import domain.player.Players;
 import domain.prize.PrizeName;
 import domain.prize.PrizeNames;
-
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.IntStream;
 
 public class GameBoard {
     private static final int HEIGHT_STARTING_INDEX = 0;
@@ -33,19 +31,18 @@ public class GameBoard {
 
     private LinkedHashMap<PlayerName, PrizeName> generateGameResult() {
         LinkedHashMap<PlayerName, PrizeName> results = new LinkedHashMap<>();
-        IntStream.range(0, players.getPlayerCount())
-                 .forEach(value -> results.put(getPlayerNameAtStartingIndex(value), getPrizeAtStartingIndex(value)));
+        for (int currentIndex = 0; currentIndex < players.getPlayerCount(); currentIndex++) {
+            results.put(getPlayerNameAtStartingIndex(currentIndex), getPrizeResultFromStartingIndex(currentIndex));
+        }
         return results;
     }
 
-    private PlayerName getPlayerNameAtStartingIndex(int value) {
-        return players.getPlayerNames()
-                      .get(value);
+    private PlayerName getPlayerNameAtStartingIndex(int index) {
+        return players.getPlayerNameAtStartingIndex(index);
     }
 
-    private PrizeName getPrizeAtStartingIndex(int value) {
-        return prizeNames.getValue()
-                         .get(ladder.moveCoordinateToResultPoint(value, HEIGHT_STARTING_INDEX));
+    private PrizeName getPrizeResultFromStartingIndex(int index) {
+        return prizeNames.getPrizeNameInIndex(ladder.moveCoordinateToResultPoint(index, HEIGHT_STARTING_INDEX));
     }
 
     public Map<PlayerName, PrizeName> searchAllPlayerResult() {
@@ -55,15 +52,15 @@ public class GameBoard {
     public String searchOnePlayerResult(PlayerName targetPlayerName) {
         try {
             return gameResults.get(players.searchPlayer(targetPlayerName)
-                                          .playerName())
-                              .getValue();
+                            .playerName())
+                    .getValue();
         } catch (Exception e) {
             return e.getMessage();
         }
     }
 
-    public Players getPlayers() {
-        return players;
+    public List<PlayerName> getGamePlayerNames() {
+        return players.getPlayerNames();
     }
 
     public int getLadderHeight() {
