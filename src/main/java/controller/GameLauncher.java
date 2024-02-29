@@ -23,7 +23,7 @@ import util.RandomDirectionGenerator;
 import view.OutputView;
 
 
-public class GameController {
+public class GameLauncher {
     public void execute() {
         Players players = inputRetryHelper(() -> new Players(new PlayerNames(inputNames(PLAYER_INPUT_PROMPT))));
         int numberOfPlayers = players.getPlayerCount();
