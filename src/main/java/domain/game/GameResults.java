@@ -23,11 +23,12 @@ public class GameResults {
     }
 
     public List<String> getGameResults() {
-        return gameResults.stream().map(GameResult::getGameResultDescriptionValue)
+        return gameResults.stream()
+                .map(gameResult -> gameResult.getGameResultDescription().value())
                 .toList();
     }
 
-    public GameResult findGameResult(LineNumber lineNumber) {
+    public GameResult findGameResult(final LineNumber lineNumber) {
         return gameResults.stream()
                 .filter(gameResult -> gameResult.isEqualLineNumber(lineNumber))
                 .findAny()

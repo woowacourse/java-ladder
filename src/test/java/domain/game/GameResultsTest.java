@@ -48,6 +48,6 @@ public class GameResultsTest {
         final GameResult gameResult = gameResults.findGameResult(inputLineNumber);
 
         // Then
-        assertThat(gameResult.getGameResultDescriptionValue()).isEqualTo("5000");
+        assertThat(gameResult.getGameResultDescription().value()).isEqualTo("5000");
     }
 }

@@ -18,11 +18,11 @@ public class GameResult {
         );
     }
 
-    public String getGameResultDescriptionValue() {
-        return gameResultDescription.value();
+    public GameResultDescription getGameResultDescription() {
+        return gameResultDescription;
     }
 
-    public boolean isEqualLineNumber(LineNumber lineNumber) {
-        return this.lineNumber.value() == lineNumber.value();
+    public boolean isEqualLineNumber(final LineNumber lineNumber) {
+        return this.lineNumber.isEqual(lineNumber.value());
     }
 }
