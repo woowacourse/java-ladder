@@ -32,4 +32,8 @@ public class Prize {
             );
         }
     }
+
+    public String getPrize() {
+        return this.prize;
+    }
 }
