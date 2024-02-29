@@ -1,20 +1,16 @@
 package ladder.view;
 
-import java.util.HashMap;
 import ladder.domain.game.GameResource;
 import ladder.domain.game.GameResult;
 import ladder.domain.resource.ladder.Ladder;
 import ladder.domain.resource.prize.Prize;
 import ladder.domain.resource.prize.Prizes;
-import ladder.domain.resource.user.User;
 import ladder.domain.resource.user.Users;
 
 public class OutputView {
 
-    private static final String BLANK = " ";
-    private static final String LINE_VERTICAL = "|";
-    private static final String LINE_HORIZONTAL = "-----";
-    private static final int MAX_NAME_LENGTH = 5;
+    private static final String RUN_RESULT_MESSAGE = "실행 결과";
+    private static final String NEW_LINE = "\n";
 
     private final Formatter formatter = new Formatter();
 
@@ -23,25 +19,21 @@ public class OutputView {
     }
 
     public void printLadderGame(GameResource gameResource) {
-        System.out.println("\n실행결과\n");
+        System.out.println(NEW_LINE + RUN_RESULT_MESSAGE + NEW_LINE);
         printUsers(gameResource.getUsers());
         printLadder(gameResource.getLadder());
         printPrizes(gameResource.getPrizes());
     }
 
     public void printUserResult(Prize prize) {
-        System.out.println("\n실행 결과");
+        System.out.println(NEW_LINE + RUN_RESULT_MESSAGE);
         System.out.println(prize.getPrizeName());
     }
 
     public void printAllResult(GameResult gameResult) {
-        System.out.println("\n실행 결과");
-
-        HashMap<User, Prize> allResult = gameResult.getAllResult();
-        for (User user : allResult.keySet()) {
-            Prize prize = allResult.get(user);
-            System.out.printf("%s : %s\n", user.getUserName(), prize.getPrizeName());
-        }
+        System.out.println(NEW_LINE + RUN_RESULT_MESSAGE);
+        String formattedAllResult = formatter.formatAllResult(gameResult);
+        System.out.println(formattedAllResult);
     }
 
     private void printUsers(Users users) {

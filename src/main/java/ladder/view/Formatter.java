@@ -1,7 +1,9 @@
 package ladder.view;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import ladder.domain.game.GameResult;
 import ladder.domain.resource.direction.Direction;
 import ladder.domain.resource.ladder.Ladder;
 import ladder.domain.resource.line.Line;
@@ -13,8 +15,14 @@ import ladder.domain.resource.user.Users;
 public class Formatter {
 
     private static final String SPACE = " ";
+    private static final String NEW_LINE = "\n";
+    private static final String RIGHT_ALIGNED_FORMAT = "%5s";
+    private static final String LEFT_ALIGNED_FORMAT = "%-5s";
+    private static final String RESULT_FORMAT = "%s : %s";
+    private static final String LINE = "|";
+    private static final String CONNECTION_NO = "    ";
+    private static final String CONNECTION_YES = "-----";
     private static final int MAX_LENGTH = 5;
-    private static final int SHORT_LENGTH_DEFAULT_SPACE = 1;
 
     public String formatUserNames(Users users) {
         List<String> userNames = users.getUsers().stream()
@@ -48,30 +56,42 @@ public class Formatter {
             ladderFormat.add(formatLine(line));
         }
 
-        return String.join("\n", ladderFormat);
+        return String.join(NEW_LINE, ladderFormat);
+    }
+
+    public String formatAllResult(GameResult gameResult) {
+        List<String> allResultFormat = new ArrayList<>();
+
+        HashMap<User, Prize> allResult = gameResult.getAllResult();
+        for (User user : allResult.keySet()) {
+            Prize prize = allResult.get(user);
+            allResultFormat.add(formatResult(user.getUserName(), prize.getPrizeName()));
+        }
+
+        return String.join(NEW_LINE, allResultFormat);
     }
 
     private String formatUserName(String userName) {
         if (userName.length() < MAX_LENGTH) {
-            return String.format("%5s", userName + SPACE);
+            return String.format(RIGHT_ALIGNED_FORMAT, userName + SPACE);
         }
 
-        return String.format("%5s", userName);
+        return String.format(RIGHT_ALIGNED_FORMAT, userName);
     }
 
     private String formatPrizeName(String prizeName) {
         if (prizeName.length() < MAX_LENGTH) {
-            return String.format("%-5s", prizeName + SPACE);
+            return String.format(LEFT_ALIGNED_FORMAT, prizeName + SPACE);
         }
 
-        return String.format("%-5s", prizeName);
+        return String.format(LEFT_ALIGNED_FORMAT, prizeName);
     }
 
     private String formatLine(Line line) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("    ");
+        stringBuilder.append(CONNECTION_NO);
         for (Direction direction : line.getDirections()) {
-            stringBuilder.append("|").append(formatDirection(direction));
+            stringBuilder.append(LINE).append(formatDirection(direction));
         }
 
         return stringBuilder.toString();
@@ -79,9 +99,13 @@ public class Formatter {
 
     private String formatDirection(Direction direction) {
         if (direction == Direction.RIGHT) {
-            return "-----";
+            return CONNECTION_YES;
         }
 
-        return "     ";
+        return CONNECTION_NO;
+    }
+
+    private String formatResult(String userName, String prizeName) {
+        return String.format(RESULT_FORMAT, userName, prizeName);
     }
 }
