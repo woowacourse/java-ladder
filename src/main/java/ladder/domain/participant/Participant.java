@@ -1,13 +1,30 @@
 package ladder.domain.participant;
 
 public class Participant {
-    private final Name name;
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final String NAME_REGEX = "^[a-zA-Z]*$";
+
+    private final String name;
 
     public Participant(final String name) {
-        this.name = new Name(name);
+        validateNameLength(name);
+        validateAlphabeticName(name);
+        this.name = name;
+    }
+
+    private void validateNameLength(final String name) {
+        if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("이름은 1에서 5자 사이로 입력해 주세요.");
+        }
+    }
+
+    private void validateAlphabeticName(final String name) {
+        if (!name.matches(NAME_REGEX)) {
+            throw new IllegalArgumentException("이름은 영어로 입력해 주세요.");
+        }
     }
 
     public String getName() {
-        return name.getValue();
+        return name;
     }
 }
