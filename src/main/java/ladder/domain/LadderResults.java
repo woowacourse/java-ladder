@@ -17,8 +17,7 @@ public class LadderResults {
             throw new IllegalArgumentException(
                     "인원수와 결과의 개수가 일치하지 않습니다: 인원수 %d개, 결과 %d개".formatted(
                             players.count(),
-                            ladderResults.size()
-                    ));
+                            ladderResults.size()));
         }
     }
 

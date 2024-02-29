@@ -1,6 +1,7 @@
 package ladder.domain;
 
 public record Height(int value) {
+
     private static final int MIN_HEIGHT = 1;
 
     public Height {
