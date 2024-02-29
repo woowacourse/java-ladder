@@ -39,18 +39,6 @@ public class Line {
         }
     }
 
-    public boolean isExist(int position) {
-        return sticks.get(position).isExist();
-    }
-
-    public List<Stick> getSticks() {
-        return Collections.unmodifiableList(sticks);
-    }
-
-    public int getWidth() {
-        return sticks.size();
-    }
-
     public Line addGap() {
         List<Stick> copyOfSticks = new ArrayList<>(sticks);
         copyOfSticks.add(0, Stick.NON_EXISTENCE);
@@ -65,5 +53,17 @@ public class Line {
             return index + 1;
         }
         return index;
+    }
+
+    public boolean isExist(int position) {
+        return sticks.get(position).isExist();
+    }
+
+    public List<Stick> getSticks() {
+        return Collections.unmodifiableList(sticks);
+    }
+
+    public int getWidth() {
+        return sticks.size();
     }
 }
