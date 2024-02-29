@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Arrays;
 import java.util.StringJoiner;
 
 public enum Command {
@@ -13,12 +14,8 @@ public enum Command {
     }
 
     public static boolean contains(String string) {
-        for (Command e : Command.values()) {
-            if (e.command.equals(string)) {
-                return true;
-            }
-        }
-        return false;
+        return Arrays.stream(Command.values())
+                .anyMatch(e -> e.command.equals(string));
     }
 
     public static String getCommandToString() {
