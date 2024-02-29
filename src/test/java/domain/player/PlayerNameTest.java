@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerNameTest {
     @Test
@@ -42,5 +41,23 @@ class PlayerNameTest {
     @ValueSource(strings = {"d obby", "j o y", "도  비"})
     void throwExceptionWhenInputStringContainsBlank(String value) {
         assertThrows(IllegalArgumentException.class, () -> new PlayerName(value));
+    }
+
+    @Test
+    @DisplayName("all 이라는 이름이 입력될 때 true를 반환한다.")
+    void testWhenNameIsAll() {
+
+        String value = "all";
+        PlayerName playerName = new PlayerName(value);
+        assertTrue(playerName.isAll());
+    }
+
+    @Test
+    @DisplayName("all 이라는 이름이 입력되지 않으면 false를 반환한다.")
+    void testWhenNameIsNotAll() {
+
+        String value = "one";
+        PlayerName playerName = new PlayerName(value);
+        assertFalse(playerName.isAll());
     }
 }
