@@ -36,8 +36,7 @@ public class Player {
         return currentLineFloor;
     }
 
-    @Override
-    public String toString() {
-        return "name : " + playerName.value() + "  lineNumber : " + currentLineNumber.value() + "  lineFloor: " + currentLineFloor.value();
+    public PlayerName getPlayerName() {
+        return playerName;
     }
 }
