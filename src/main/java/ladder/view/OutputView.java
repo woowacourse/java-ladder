@@ -23,9 +23,9 @@ public class OutputView {
 
     public void printPlayerNames(final PlayersDto playersDto) {
         final List<String> playerNames = playersDto.playerNames();
-        final String message = messageGenerator.generateRightAlignedMessage(playerNames);
+        final String playerNamesMessage = messageGenerator.generateRightAlignedMessage(playerNames);
 
-        printMessageWithBlankLine(message);
+        printMessageWithBlankLine(playerNamesMessage);
     }
 
     public void printLadder(final LadderDto ladderDto) {
@@ -36,15 +36,15 @@ public class OutputView {
     }
 
     public void printPrizes(final List<String> prizes) {
-        final String message = messageGenerator.generateRightAlignedMessage(prizes);
-        System.out.println(message);
+        final String prizesMessage = messageGenerator.generateRightAlignedMessage(prizes);
+        System.out.println(prizesMessage);
     }
 
     public void printResult(final Map<String, String> result, final String name) {
         printMessageWithBlankLine("실행 결과");
 
-        final String message = messageGenerator.generateResultMessage(result, name);
-        System.out.println(message);
+        final String resultMessage = messageGenerator.generateResultMessage(result, name);
+        System.out.println(resultMessage);
     }
 
     protected void printMessageWithBlankLine(final String message) {
