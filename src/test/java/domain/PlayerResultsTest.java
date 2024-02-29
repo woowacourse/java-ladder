@@ -53,7 +53,7 @@ public class PlayerResultsTest {
 
     }
 
-    @DisplayName("참가자의 이름으로 실행 결과를 가져온다.")
+    @DisplayName("주어진 참가자의 이름에 대한 실행 결과를 찾아온다.")
     @Test
     void findPlayerResult() {
         //given
