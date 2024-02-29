@@ -22,9 +22,9 @@ public class OutputView {
                 .forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
     }
 
-    public void printResult(final Player player, final Result result) {
+    public void printResult(final String result) {
         System.out.println("실행 결과");
-        System.out.println(result.getResult().get(player.getName()));
+        System.out.println(result);
     }
 
     public void printExceptionMessage(final String message) {

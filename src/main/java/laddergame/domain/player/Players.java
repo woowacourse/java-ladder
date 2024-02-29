@@ -15,13 +15,6 @@ public class Players {
         this.players = names;
     }
 
-    public Player findByName(final String name) {
-        return players.stream()
-                .filter(player -> player.getName().equals(name))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 참가자이름입니다."));
-    }
-
     public int getSize() {
         return players.size();
     }

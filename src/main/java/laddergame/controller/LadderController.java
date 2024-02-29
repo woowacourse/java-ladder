@@ -33,7 +33,7 @@ public class LadderController {
         printLadder(players, targets, ladder);
 
         final Result result = ladderGame.start(players, ladder, targets);
-        printResult(players, result);
+        printResult(result);
     }
 
     private Players getPlayers() {
@@ -64,7 +64,7 @@ public class LadderController {
         outputView.printLadder(DrawnLadderDto.of(players, targets, ladder));
     }
 
-    private void printResult(final Players players, final Result result) {
+    private void printResult(final Result result) {
         String input = getDisplayingPlayers();
 
         if (input.equals("all")) {
@@ -72,12 +72,11 @@ public class LadderController {
             return;
         }
 
-        outputView.printResult(players.findByName(input), result);
+        outputView.printResult(result.findByName(input));
     }
 
     private String getDisplayingPlayers() {
         String input = inputView.readDisplayingPlayers();
-        InputValidator.validateBlank(input);
         return input;
     }
 }
