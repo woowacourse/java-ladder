@@ -18,6 +18,6 @@ public class PrizesTest {
     @DisplayName("참여자의 수와 동일하지 않다면, 예외를 발생한다.")
     void createFail() {
         assertThatCode(() -> Prizes.of(List.of("꽝", "꽝", "30000"), 4))
-                .doesNotThrowAnyException();
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
