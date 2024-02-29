@@ -1,6 +1,5 @@
 import domain.BridgesRandomGenerator;
 import domain.LadderGame;
-import domain.LadderGameResult;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,42 +8,31 @@ import view.InputView;
 import view.OutputView;
 
 public class Main {
+    private static final String SEARCH_ALL = "all";
+
     public static void main(String[] args) throws IOException {
-        var outputView = new OutputView();
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
             var inputView = new InputView(bufferedReader);
-            LadderGame ladderGame = RetryHelper.retryWithReturn(() -> createLadderGame(outputView, inputView));
-            LadderGameResult ladderGameResult = ladderGame.calculateLadderGameResult();
-            outputView.printLadderResult(ladderGame);
-            RetryHelper.retryWithoutReturn(
-                    () -> searchLadderResultFromName(outputView, inputView, ladderGameResult));
+            LadderGame ladderGame = RetryHelper.retryWithReturn(() -> createLadderGame(inputView));
+            var outputView = new OutputView(ladderGame);
+            outputView.printLadderResult();
+            RetryHelper.retryWithoutReturn(() -> searchLadderResultFromName(outputView, inputView));
         }
     }
 
-    private static void searchLadderResultFromName(OutputView outputView, InputView inputView,
-                                                   LadderGameResult ladderGameResult) {
-
-        outputView.printSearchNameInput();
-        String searchName = inputView.getInput();
-        while (!searchName.equals("all")) {
-            outputView.printSearchNameLadderResult(searchName, ladderGameResult);
-            outputView.printSearchNameInput();
-            searchName = inputView.getInput();
+    private static void searchLadderResultFromName(OutputView outputView, InputView inputView) {
+        String searchName = inputView.getSearchNameFromConsole();
+        while (!searchName.equals(SEARCH_ALL)) {
+            outputView.printSearchNameLadderResult(searchName);
+            searchName = inputView.getSearchNameFromConsole();
         }
-        outputView.printAllNameLadderResult(ladderGameResult);
+        outputView.printAllNameLadderResult();
     }
 
-    private static LadderGame createLadderGame(OutputView outputView, InputView inputView) {
-
-        outputView.printNamesInput();
-        String nameInput = inputView.getInput();
-
-        outputView.printLadderResultInput();
-        String rawLadderResult = inputView.getInput();
-
-        outputView.printHeightInput();
-        int ladderHeight = Integer.parseInt(inputView.getInput());
-
+    private static LadderGame createLadderGame(InputView inputView) {
+        String nameInput = inputView.getNamesInputFromConsole();
+        String rawLadderResult = inputView.getLadderResultsFromConsole();
+        int ladderHeight = inputView.getHeightInputFromConsole();
         return new LadderGame(nameInput, rawLadderResult, ladderHeight, new BridgesRandomGenerator());
     }
 

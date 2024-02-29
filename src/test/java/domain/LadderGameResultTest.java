@@ -9,16 +9,17 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class LadderGameResultTest {
-    private static final Names VALID_NAMES = new Names(List.of(new Name("name1"), new Name("name2")));
+    private static final Names VALID_NAMES = new Names(
+            List.of(new Name("a"), new Name("b"), new Name("c")));
     private static final LadderResults VALID_LADDER_RESULTS = new LadderResults(
-            List.of(new LadderResult("상품1"), new LadderResult("상품2")));
-    private static final Ladder VALID_LADDER = new Ladder(new Height(6), new Width(2),
-            new BridgesTestGenerator(List.of(true)));
+            List.of(new LadderResult("상품1"), new LadderResult("상품2"), new LadderResult("상품3")));
+    private static final Ladder VALID_LADDER = new Ladder(new Height(5), new Width(3),
+            new BridgesTestGenerator(List.of(true, false)));
 
     @Test
     @DisplayName("이름 개수와 사다리 결과 개수가 같지 않으면 예외 발생")
     void validateLadderResultNamesLength() {
-        Names names = new Names(List.of(new Name("name1"), new Name("name2"), new Name("name3")));
+        Names names = new Names(List.of(new Name("name1"), new Name("name2")));
         Assertions.assertThatThrownBy(() -> new LadderGameResult(names, VALID_LADDER_RESULTS, VALID_LADDER))
                 .isInstanceOf(LadderGameException.class)
                 .hasMessage(ExceptionType.NOT_ALLOW_DIFFERENT_NAMES_LADDER_RESULTS_LENGTH.getMessage());
