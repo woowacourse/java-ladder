@@ -2,6 +2,7 @@ package laddergame.domain;
 
 import laddergame.domain.gameelements.Name;
 import laddergame.domain.gameelements.Players;
+import laddergame.domain.gameelements.Prizes;
 import laddergame.domain.ladder.Ladder;
 
 import java.util.LinkedHashMap;
@@ -11,8 +12,8 @@ import java.util.Map;
 public class LadderGame {
     private final Map<Name, Name> playerGameResult;
 
-    public LadderGame(Players people, Ladder ladder, Players results) {
-        List<Name> gameResults = initializeGameResult(ladder, results);
+    public LadderGame(Players people, Ladder ladder, Prizes prizes) {
+        List<Name> gameResults = initializeGameResult(ladder, prizes);
 
         playerGameResult = new LinkedHashMap<>();
         for (int i = 0; i < people.getPlayerNames().size(); i++) {
@@ -28,10 +29,10 @@ public class LadderGame {
         return playerGameResult.get(playerName);
     }
 
-    private List<Name> initializeGameResult(Ladder ladder, Players results) {
-        List<Integer> resultIdx = ladder.move(results.getPlayerNames().size());
+    private List<Name> initializeGameResult(Ladder ladder, Prizes prizes) {
+        List<Integer> resultIdx = ladder.move(prizes.getPrizeNames().size());
         return resultIdx.stream()
-                .map(idx -> results.getPlayerNames().get(idx))
+                .map(idx -> prizes.getPrizeNames().get(idx))
                 .toList();
     }
 

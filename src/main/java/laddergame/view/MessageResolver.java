@@ -2,6 +2,7 @@ package laddergame.view;
 
 import laddergame.domain.gameelements.Name;
 import laddergame.domain.gameelements.Players;
+import laddergame.domain.gameelements.Prizes;
 import laddergame.domain.ladder.Connection;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.RowLine;
@@ -18,8 +19,14 @@ public class MessageResolver {
     private static final String VERTICAL_LINE = "|";
     private static final String LINE_SEPERATOR = System.lineSeparator();
 
-    public static String resolveElementMessage(Players players) {
+    public static String resolvePlayerMessage(Players players) {
         return players.getPlayerNames().stream()
+                .map(element -> String.format(ELEMENT_MESSAGE_FORMAT, element.getElement()))
+                .collect(Collectors.joining(BLANK));
+    }
+
+    public static String resolvePrizeMessage(Prizes prizes) {
+        return prizes.getPrizeNames().stream()
                 .map(element -> String.format(ELEMENT_MESSAGE_FORMAT, element.getElement()))
                 .collect(Collectors.joining(BLANK));
     }
