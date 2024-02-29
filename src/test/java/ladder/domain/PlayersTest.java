@@ -24,11 +24,18 @@ class PlayersTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("유효하지 않은 참여자가 있으면 예외가 발생한다.")
+    @DisplayName("참여자들을 생성한다.")
     @Test
-    void validateContainsInvalidPlayer() {
-        // when & then
-        assertThatThrownBy(() -> new Players(List.of("pobi", "honux", "all")))
-                .isInstanceOf(IllegalArgumentException.class);
+    void createPlayers() {
+        // when
+        Players players = new Players("pobi", "honux", "crong", "jk");
+
+        // then
+        assertThat(players.getPlayers()).containsExactly(
+                new Player("pobi"),
+                new Player("honux"),
+                new Player("crong"),
+                new Player("jk")
+        );
     }
 }
