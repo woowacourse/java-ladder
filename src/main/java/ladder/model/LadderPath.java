@@ -13,8 +13,8 @@ public enum LadderPath {
         this.direction = direction;
     }
 
-    public static boolean isPathExist(LadderPath p1, LadderPath p2) {
-        return p1.isConnected() && p2.isConnected();
+    public static boolean isPathExist(LadderPath leftPath, LadderPath rightPath) {
+        return leftPath.equals(RIGHT) && rightPath.equals(LEFT);
     }
 
     public boolean isConnected() {
