@@ -51,18 +51,15 @@ public class OutputView {
         results.stream()
                .forEach(result -> {
                    StringBuilder resultStringBuilder = new StringBuilder();
-                   resultStringBuilder.append(result.name()
-                                                    .getValue())
+                   resultStringBuilder.append(result.nameToString())
                                       .append(" : ")
-                                      .append(result.reward()
-                                                    .getValue());
+                                      .append(result.rewardToString());
                    System.out.println(resultStringBuilder);
                });
     }
 
     public static final void printResult(Result result) {
-        System.out.println(result.reward()
-                                 .getValue());
+        System.out.println(result.rewardToString());
     }
 
     private static String padString(String name) {

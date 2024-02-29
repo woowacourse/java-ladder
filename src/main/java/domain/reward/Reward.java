@@ -1,7 +1,7 @@
 package domain.reward;
 
 public class Reward {
-    String value;
+    private String value;
 
     public Reward(final String value) {
         this.value = value;
