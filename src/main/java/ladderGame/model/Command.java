@@ -6,7 +6,7 @@ public class Command {
     private final String command;
 
     public Command(String command, Players players) {
-        if(!command.equals("all")) {
+        if(!COMMAND_ALL.equals(command)) {
             validate(command, players);
         }
 
