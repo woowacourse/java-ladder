@@ -1,8 +1,6 @@
 package domain;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Results {
 
@@ -12,7 +10,7 @@ public class Results {
     private Results(final List<String> values) {
         this.values = values.stream()
                 .map(Result::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public static Results of(final List<String> results, final int playerCount) {
@@ -27,6 +25,6 @@ public class Results {
     }
 
     public List<Result> getValues() {
-        return Collections.unmodifiableList(values);
+        return values;
     }
 }

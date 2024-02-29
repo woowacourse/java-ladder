@@ -23,7 +23,7 @@ public class Name {
 
     private void validateUsableName(final String value) {
         if (Commands.exists(value)) {
-            throw new IllegalArgumentException(Name.UNAVAILABLE_NAME);
+            throw new IllegalArgumentException(UNAVAILABLE_NAME);
         }
     }
 

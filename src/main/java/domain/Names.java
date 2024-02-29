@@ -1,8 +1,6 @@
 package domain;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Names {
 
@@ -18,7 +16,7 @@ public class Names {
         validateDuplicatedNames(values);
         this.values = values.stream()
                 .map(Name::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private void validateNameCount(final int count) {
@@ -38,6 +36,6 @@ public class Names {
     }
 
     public List<Name> getValues() {
-        return Collections.unmodifiableList(values);
+        return values;
     }
 }
