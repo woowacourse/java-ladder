@@ -5,11 +5,12 @@ import java.util.List;
 
 public class GamePrizes {
 
+    private static final int MAXIMUM_PRIZE_LENGTH = 5;
     private final List<String> prizes;
 
-    public GamePrizes(List<String> gamePrizeInput, int availablePrizeCount) {
-        validate(gamePrizeInput, availablePrizeCount);
-        this.prizes = gamePrizeInput;
+    public GamePrizes(List<String> gamePrizesInput, int availablePrizeCount) {
+        validate(gamePrizesInput, availablePrizeCount);
+        this.prizes = gamePrizesInput;
     }
 
     public List<String> getPrizes() {
@@ -20,9 +21,18 @@ public class GamePrizes {
         return prizes.get(prizePosition);
     }
 
-    private void validate(List<String> gamePrizeInput, int availablePrizeCount) {
-        validateNotHasBlank(gamePrizeInput);
-        validateCountIsCorrespondent(gamePrizeInput.size(), availablePrizeCount);
+    private void validate(List<String> gamePrizesInput, int availablePrizeCount) {
+        validateNotHasBlank(gamePrizesInput);
+        validateCountIsCorrespondent(gamePrizesInput.size(), availablePrizeCount);
+        validateHasOverMaximumLength(gamePrizesInput);
+    }
+
+    private void validateHasOverMaximumLength(List<String> gamePrizesInput) {
+        for (String gamePrize : gamePrizesInput) {
+            if (gamePrize.length() > MAXIMUM_PRIZE_LENGTH) {
+                throw new IllegalArgumentException("최대 글자 개수는 " + MAXIMUM_PRIZE_LENGTH + "개 입니다.");
+            }
+        }
     }
 
     private void validateNotHasBlank(List<String> gamePrizeInput) {
