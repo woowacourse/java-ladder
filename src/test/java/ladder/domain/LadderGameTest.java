@@ -53,24 +53,25 @@ public class LadderGameTest {
                 .isEqualTo(FIXED_LADDER);
     }
 
-    @DisplayName("사다리 타기 전체 결과를 구한다.")
+    @DisplayName("사다리 타기 전체 결과를 구한다2.")
     @Test
-    void findTotalResultTest() {
+    void findTotalResultTest2() {
         // given
         LadderGame ladderGame = new LadderGame(FIXED_LADDER_CREATOR);
-        People people = new People(List.of(
-                new Person("pobi"), new Person("neo"), new Person("kaki"), new Person("lisa")));
-        List<String> winningResults = List.of(
-                "1등", "2등", "3등", "4등");
-        Map<String, String> expected = Map.of(
-                "pobi", "3등",
-                "neo", "1등",
-                "kaki", "4등",
-                "lisa", "2등"
+        List<Person> people = List.of(
+                new Person("pobi"), new Person("neo"), new Person("kaki"), new Person("lisa"));
+        List<WinningItem> winningItems = List.of(
+                new WinningItem("1등"), new WinningItem("2등"), new WinningItem("3등"), new WinningItem("4등"));
+        LadderItems ladderItems = new LadderItems(people, winningItems);
+        Map<Person, WinningItem> expected = Map.of(
+                new Person("pobi"), new WinningItem("3등"),
+                new Person("neo"), new WinningItem("1등"),
+                new Person("kaki"), new WinningItem("4등"),
+                new Person("lisa"), new WinningItem("2등")
         );
 
         // when & then
-        assertThat(ladderGame.findResult(FIXED_LADDER, people, winningResults))
+        assertThat(ladderGame.findResult(FIXED_LADDER, ladderItems))
                 .isEqualTo(expected);
     }
 }

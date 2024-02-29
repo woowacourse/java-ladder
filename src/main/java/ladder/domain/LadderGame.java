@@ -3,9 +3,7 @@ package ladder.domain;
 import ladder.domain.creator.LadderCreator;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class LadderGame {
     private final LadderCreator ladderCreator;
@@ -22,21 +20,19 @@ public class LadderGame {
         return people.getCount() - 1;
     }
 
-    public Map<String, String> findResult(Ladder ladder, People people, List<String> winningResults) {
-        List<String> names = people.getNames();
-        Map<Integer, Integer> result = climbAll(ladder, names.size());
+    public Map<Person, WinningItem> findResult(Ladder ladder, LadderItems ladderItems) {
+        Map<Integer, Integer> climbResult = climbAll(ladder, ladderItems.countItems());
 
-        return result.entrySet().stream()
-                .collect(Collectors.toMap(entry -> names.get(entry.getKey()), entry -> winningResults.get(entry.getValue())));
+        return ladderItems.mapResult(climbResult);
     }
 
     private Map<Integer, Integer> climbAll(Ladder ladder, int railCounts) {
-        Map<Integer, Integer> result = new HashMap<>();
+        Map<Integer, Integer> climbResult = new HashMap<>();
 
         for (int railCount = 0; railCount < railCounts; railCount++) {
-            result.put(railCount, ladder.climb(railCount));
+            climbResult.put(railCount, ladder.climb(railCount));
         }
 
-        return result;
+        return climbResult;
     }
 }
