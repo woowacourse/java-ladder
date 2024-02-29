@@ -18,6 +18,8 @@ public class OutputView {
     private static final String PLAYERS_LADDER_RESULT_FORMAT = "%s : %s";
     private static final String LADDER_RESULTS_DELIMITER = " ";
     private static final String PLAYER_NAMES_DELIMITER = " ";
+    private static final String TAB = "    ";
+
     private static final Map<LadderBridge, String> bridgeToMarker;
 
     static {
@@ -27,7 +29,7 @@ public class OutputView {
     }
 
     public void printGeneratedLadder(final Ladder ladder, final PlayerNames playerNames, final LadderResults results) {
-        System.out.println("\n실행 결과\n");
+        System.out.println(System.lineSeparator() + "실행 결과" + System.lineSeparator());
         printPlayerNames(playerNames);
         printLadder(ladder);
         printLadderResult(results);
@@ -53,7 +55,7 @@ public class OutputView {
     }
 
     private void printLadderFloor(final Floor floor, final StringJoiner ladderJoiner) {
-        System.out.print("\t");
+        System.out.print(TAB);
         for (LadderBridge bridge : floor.getBridges()) {
             ladderJoiner.add(bridgeToMarker.get(bridge));
         }
@@ -79,20 +81,20 @@ public class OutputView {
     }
 
     private void printAllPlayerLadderResult(final Map<String, String> playerNameAndResults) {
-        System.out.println("\n실행 결과");
+        System.out.println(System.lineSeparator() + "실행 결과");
         for (Map.Entry<String, String> nameAndResult : playerNameAndResults.entrySet()) {
             System.out.println(String.format(PLAYERS_LADDER_RESULT_FORMAT, nameAndResult.getKey(), nameAndResult.getValue()));
         }
     }
 
     private void printSinglePlayerLadderResult(final Map<String, String> playerNameAndResult) {
-        System.out.println("\n실행 결과");
+        System.out.println(System.lineSeparator() + "실행 결과");
         for (String playerLadderResult : playerNameAndResult.values()) {
             System.out.println(playerLadderResult);
         }
     }
 
     public void printEndMessage() {
-        System.out.println("\n게임 종료");
+        System.out.println(System.lineSeparator() + "게임 종료");
     }
 }
