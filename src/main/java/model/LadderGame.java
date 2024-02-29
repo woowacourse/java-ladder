@@ -1,8 +1,5 @@
 package model;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class LadderGame {
 
     private static final String DELIMITER = ",";
@@ -15,24 +12,18 @@ public class LadderGame {
         this.people = people;
         this.ladder = ladder;
         this.rewardBoard = new RewardBoard();
-        calculatePrizes(parsePrizes(originPrizeInput));
+        calculatePrizes(new Prizes(originPrizeInput));
     }
 
-    private List<Prize> parsePrizes(String originPrizeInput) {
-        return Arrays.stream(originPrizeInput.split(DELIMITER))
-                .map(Prize::new)
-                .toList();
-    }
-
-    private void calculatePrizes(List<Prize> orderedPrize) {
+    private void calculatePrizes(Prizes inputOrderedPrizes) {
         people.getParticipants()
-                .forEach(participant -> calculateIndividualPrize(participant, orderedPrize));
+                .forEach(participant -> calculateIndividualPrize(participant, inputOrderedPrizes));
     }
 
-    private void calculateIndividualPrize(Person person, List<Prize> orderedPrize) {
+    private void calculateIndividualPrize(Person person, Prizes orderedPrizes) {
         Position position = findInitialPosition(person);
         goDownOneself(position);
-        Prize selectedPrize = orderedPrize.get(position.getHorizontal());
+        Prize selectedPrize = orderedPrizes.findPrizeByIndex(position.getHorizontal());
         rewardBoard.addReward(person, selectedPrize);
     }
 
