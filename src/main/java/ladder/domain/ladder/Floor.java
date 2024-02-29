@@ -22,8 +22,9 @@ public class Floor {
     private List<Rung> makeRungs(int personCount) {
         List<Rung> rungs = new ArrayList<>();
 
-        IntStream.range(0, personCount - EXCLUDE_LAST_POSITION)
-                .forEach(currentPosition -> rungs.add(generateRung(currentPosition, rungs)));
+        for (int currentPosition = 0; currentPosition < personCount - EXCLUDE_LAST_POSITION; currentPosition++) {
+            rungs.add(generateRung(currentPosition, rungs));
+        }
 
         return rungs;
     }
