@@ -16,10 +16,7 @@ public class Position {
     }
 
     public void moveToDownStair() {
-        if (this.vertical < 0){
-            throw new IllegalStateException();
-        }
-        this.vertical--;
+        this.vertical++;
     }
 
     public int getHorizontal() {

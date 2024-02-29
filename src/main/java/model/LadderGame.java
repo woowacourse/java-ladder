@@ -1,9 +1,6 @@
 package model;
 
 public class LadderGame {
-
-    private static final String DELIMITER = ",";
-
     private final People people;
     private final Ladder ladder;
     private final RewardBoard rewardBoard;
@@ -12,7 +9,7 @@ public class LadderGame {
         this.people = people;
         this.ladder = ladder;
         this.rewardBoard = new RewardBoard();
-        calculatePrizes(new Prizes(originPrizeInput));
+        calculatePrizes(new Prizes(originPrizeInput,people.getParticipantsSize()));
     }
 
     private void calculatePrizes(Prizes inputOrderedPrizes) {
@@ -28,21 +25,26 @@ public class LadderGame {
     }
 
     private void goDownOneself(Position position) {
-        while(position.getVertical() >= 0) {
+        while(position.getVertical() < ladder.getHeightValue()) {
             Direction nextHorizontalPath = ladder.findNextHorizontalPath(position.getHorizontal(),
                     position.getVertical());
             position.moveHorizontally(nextHorizontalPath);
             position.moveToDownStair();
+            System.out.println();
         }
     }
 
     private Position findInitialPosition(Person person) {
         int initialHorizontalIndex = people.findInitialIndex(person);
-        int initialVerticalIndex = ladder.getHeightValue()-1;
+        int initialVerticalIndex = 0;
         return new Position(initialHorizontalIndex, initialVerticalIndex);
     }
 
     public RewardBoard getRewardBoard() {
         return rewardBoard;
+    }
+
+    public People getPeople() {
+        return people;
     }
 }
