@@ -33,6 +33,11 @@ public class InputView {
         return convertInteger(input);
     }
 
+    public String readUserNameForResult() {
+        System.out.println("\n결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
+    }
+
     private void validateInput(String input) {
         if (input.isEmpty() || input.endsWith(SEPARATOR)) {
             throw new IllegalArgumentException("[ERROR] 올바르지 않은 사용자 이름입니다.");

@@ -5,6 +5,7 @@ import ladder.domain.direction.Direction;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.line.Line;
 import ladder.domain.prize.Prizes;
+import ladder.domain.result.Result;
 import ladder.domain.user.Users;
 
 public class OutputView {
@@ -12,6 +13,7 @@ public class OutputView {
     private static final String BLANK = " ";
     private static final String LINE_VERTICAL = "|";
     private static final String LINE_HORIZONTAL = "-----";
+    private static final String DELIMITER = " : ";
     private static final int MAX_NAME_LENGTH = 5;
     public static final int BLANK_DEFAULT_COUNT = 4;
 
@@ -24,6 +26,18 @@ public class OutputView {
         printUserNames(users);
         printLadder(ladder);
         printPrizes(prizes);
+    }
+
+    public void printUserPrize(String userName, Result result) {
+        System.out.println("\n실행결과");
+        System.out.println(result.getPrizeByUser(userName));
+    }
+
+    public void printAllPrizeResult(List<String> allResult) {
+        System.out.println("\n실행결과");
+        for (int i = 0; i < allResult.size(); i += 2) {
+            System.out.println(allResult.get(i) + DELIMITER + allResult.get(i + 1));
+        }
     }
 
     private void printUserNames(Users users) {

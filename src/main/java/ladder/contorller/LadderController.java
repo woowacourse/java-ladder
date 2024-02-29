@@ -33,7 +33,7 @@ public class LadderController {
         Result result = createResult(users, prizes, positions);
 
         outputView.printLadderResult(users, ladder, prizes);
-
+        showPrizeByUserName(users, result);
     }
 
     private Users createUsers() {
@@ -82,5 +82,30 @@ public class LadderController {
 
     private Result createResult(Users users, Prizes prizes, Positions positions) {
         return new Result(users.getUsersNames(), prizes.getPrizesNames(), positions.getPositions());
+    }
+
+    private void showPrizeByUserName(Users users, Result result) {
+        String userName = inputView.readUserNameForResult();
+        try {
+            showSingleUserPrizeResult(userName, users, result);
+            showAllPrizeResult(userName, users, result);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            showPrizeByUserName(users, result);
+        }
+    }
+
+    private void showSingleUserPrizeResult(String userName, Users users, Result result) {
+        if (!userName.equals("all")) {
+            users.validateExistUserName(userName);
+            outputView.printUserPrize(userName, result);
+            showPrizeByUserName(users, result);
+        }
+    }
+
+    private void showAllPrizeResult(String userName, Users users, Result result) {
+        if (userName.equals("all")) {
+            outputView.printAllPrizeResult(result.getAllResult(users));
+        }
     }
 }

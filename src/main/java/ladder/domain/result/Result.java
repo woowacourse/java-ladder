@@ -1,6 +1,8 @@
 package ladder.domain.result;
 
 import ladder.domain.position.Position;
+import ladder.domain.user.Users;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,5 +27,14 @@ public class Result {
 
     public String getPrizeByUser(String userName) {
         return result.get(userName);
+    }
+
+    public List<String> getAllResult(Users users) {
+        List<String> allResult = new ArrayList<>();
+        for (String userName : users.getUsersNames()) {
+            allResult.add(userName);
+            allResult.add(this.result.get(userName));
+        }
+        return allResult;
     }
 }
