@@ -42,14 +42,6 @@ public class Ladder {
         return ladder.get(0).getLinesSize();
     }
 
-//    public int moveAll(int participantIndex) {
-//        int currentPosition = ladder.get(0).move(participantIndex);
-//        for (int i = 1; i < ladder.size(); i++) {
-//            currentPosition = ladder.get(i).move(currentPosition);
-//        }
-//        return currentPosition;
-//    }
-
     public Position moveAll(Position participantIndex) {
         Position currentPosition = ladder.get(0).move(participantIndex);
         for (int i = 1; i < ladder.size(); i++) {

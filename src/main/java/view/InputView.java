@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import model.Name;
 import model.Position;
+import model.Result;
 
 public class InputView {
 
@@ -29,7 +30,7 @@ public class InputView {
         return splitInputByDelimiter(input, DELIMITER);
     }
 
-    public Map<Position, String> inputResults() {
+    public Map<Position, Result> inputResults() { // TODO name 리스트와 동일해야 한다.
         System.out.println(INPUT_GAME_RESULT);
         String input = in.nextLine();
         validateNotNullAndBlank(input);
@@ -37,10 +38,10 @@ public class InputView {
         return mappingResults(inputs);
     }
 
-    private static Map<Position, String> mappingResults(List<String> inputs) {
-        Map<Position, String> results = new LinkedHashMap<>();
+    private static Map<Position, Result> mappingResults(List<String> inputs) {
+        Map<Position, Result> results = new LinkedHashMap<>();
         for (int i = 0; i < inputs.size(); i++) {
-            results.put(new Position(i), inputs.get(i));
+            results.put(new Position(i), new Result(inputs.get(i)));
         }
         return results;
     }

@@ -8,6 +8,7 @@ import model.Line;
 import model.Name;
 import model.Participants;
 import model.Position;
+import model.Result;
 
 public class OutputView {
 
@@ -44,22 +45,22 @@ public class OutputView {
         System.out.print(LadderComponent.DIVISION);
     }
 
-    public void printResults(Map<Position, String> results) {
+    public void printResults(Map<Position, Result> results) {
         for (Position position : results.keySet()) {
-            System.out.print(NAME_FORMAT.formatted(results.get(position)));
+            System.out.print(NAME_FORMAT.formatted(results.get(position).getValue()));
         }
         System.out.println();
     }
 
-    public void printParticipantResult(String result) {
+    public void printParticipantResult(Result result) {
         System.out.println(PARTICIPANT_RESULT);
-        System.out.println(result);
+        System.out.println(result.getValue());
     }
 
-    public void printParticipantResult(Map<Name, String> results) {
+    public void printParticipantResult(Map<Name, Result> results) {
         System.out.println(PARTICIPANT_RESULT);
         for (Name name : results.keySet()) {
-            System.out.println(PARTICIPANTS_RESULT_FORMAT.formatted(name.getValue(), results.get(name)));
+            System.out.println(PARTICIPANTS_RESULT_FORMAT.formatted(name.getValue(), results.get(name).getValue()));
         }
     }
 }

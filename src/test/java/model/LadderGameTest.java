@@ -17,18 +17,18 @@ public class LadderGameTest {
     void findResult() {
         //TODO: participant를 ladder에 넣지 않는다. size만 넣을 것
         LadderGame ladderGame = createLadderGame();
-        String zeroResult = ladderGame.findParticipantResult(new Name("0"));
-        String oneResult = ladderGame.findParticipantResult(new Name("1"));
-        String secondResult = ladderGame.findParticipantResult(new Name("2"));
-        String thirdResult = ladderGame.findParticipantResult(new Name("3"));
-        String forthResult = ladderGame.findParticipantResult(new Name("4"));
+        Result zeroResult = ladderGame.findParticipantResult(new Name("0"));
+        Result oneResult = ladderGame.findParticipantResult(new Name("1"));
+        Result secondResult = ladderGame.findParticipantResult(new Name("2"));
+        Result thirdResult = ladderGame.findParticipantResult(new Name("3"));
+        Result forthResult = ladderGame.findParticipantResult(new Name("4"));
 
         assertAll(
-                ()-> assertThat(zeroResult).isEqualTo("꽝"),
-                ()-> assertThat(oneResult).isEqualTo("5000"),
-                ()-> assertThat(secondResult).isEqualTo("꽝"),
-                ()-> assertThat(thirdResult).isEqualTo("3000"),
-                ()-> assertThat(forthResult).isEqualTo("꽝")
+                ()-> assertThat(zeroResult).isEqualTo(new Result("꽝")),
+                ()-> assertThat(oneResult).isEqualTo(new Result("5000")),
+                ()-> assertThat(secondResult).isEqualTo(new Result("꽝")),
+                ()-> assertThat(thirdResult).isEqualTo(new Result("3000")),
+                ()-> assertThat(forthResult).isEqualTo(new Result("꽝"))
         );
     }
 
@@ -36,13 +36,13 @@ public class LadderGameTest {
     @Test
     void findAllResults() {
         LadderGame ladderGame = createLadderGame();
-        Map<Name, String> results = ladderGame.findAllParticipantResults();
+        Map<Name, Result> results = ladderGame.findAllParticipantResults();
         Assertions.assertThat(results)
-                .isEqualTo(Map.of(new Name("0"), "꽝",
-                        new Name("1"), "5000",
-                        new Name("2"), "꽝",
-                        new Name("3"), "3000",
-                        new Name("4"), "꽝")
+                .isEqualTo(Map.of(new Name("0"), new Result("꽝"),
+                        new Name("1"), new Result("5000"),
+                        new Name("2"), new Result("꽝"),
+                        new Name("3"), new Result("3000"),
+                        new Name("4"), new Result("꽝"))
                 );
 
 
@@ -53,18 +53,18 @@ public class LadderGameTest {
                 new LadderRow(List.of(true, false, false, true)),
                 new LadderRow(List.of(true, false, true, false))));
         Participants participants = new Participants(List.of("0", "1", "2", "3", "4"));
-        Map<Position, String> result = createResults();
+        Map<Position, Result> result = createResults();
         LadderGame ladderGame = new LadderGame(participants, ladder, result);
         return ladderGame;
     }
 
-    private static Map<Position, String> createResults() {
-        Map<Position, String> result = new LinkedHashMap<>();
-        result.put(new Position(0), "꽝");
-        result.put(new Position(1), "5000");
-        result.put(new Position(2), "꽝");
-        result.put(new Position(3), "꽝");
-        result.put(new Position(4), "3000");
+    private static Map<Position, Result> createResults() {
+        Map<Position, Result> result = new LinkedHashMap<>();
+        result.put(new Position(0), new Result("꽝"));
+        result.put(new Position(1), new Result("5000"));
+        result.put(new Position(2), new Result("꽝"));
+        result.put(new Position(3), new Result("꽝"));
+        result.put(new Position(4), new Result("3000"));
         return result;
     }
 

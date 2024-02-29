@@ -7,22 +7,22 @@ public class LadderGame {
 
     private final Participants participants;
     private final Ladder ladder;
-    private final Map<Position, String> resultByPosition;
+    private final Map<Position, Result> resultByPosition;
 
-    public LadderGame(Participants participants, Ladder ladder, Map<Position, String> resultByPosition) {
+    public LadderGame(Participants participants, Ladder ladder, Map<Position, Result> resultByPosition) {
         this.participants = participants;
         this.ladder = ladder;
         this.resultByPosition = resultByPosition;
     }
 
-    public String findParticipantResult(Name name) {
+    public Result findParticipantResult(Name name) {
         Position participantPosition = participants.getPositionByName(name);
         Position resultPosition = ladder.moveAll(participantPosition);
         return resultByPosition.get(resultPosition);
     }
 
-    public Map<Name, String> findAllParticipantResults() {
-        Map<Name, String> allParticipantResults = new LinkedHashMap<>();
+    public Map<Name, Result> findAllParticipantResults() {
+        Map<Name, Result> allParticipantResults = new LinkedHashMap<>();
         Map<Name, Integer> allNameAndPosition = participants.getAllNameAndPosition();
         for (Name name : allNameAndPosition.keySet()) {
             allParticipantResults.put(name, findParticipantResult(name));
