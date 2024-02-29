@@ -16,11 +16,11 @@ public class Ladder {
     }
 
     public Location findResultLocation(Location location) {
-        int currentindex = location.value();
+        Location resultLocation = location;
         for (LadderLevel ladderLevel : ladderLevels) {
-            currentindex = ladderLevel.move(currentindex);
+            resultLocation = ladderLevel.move(resultLocation);
         }
-        return new Location(currentindex);
+        return resultLocation;
     }
 
     private List<LadderLevel> createLadderLevels(Width width, Height height, DirectionGenerator directionGenerator) {

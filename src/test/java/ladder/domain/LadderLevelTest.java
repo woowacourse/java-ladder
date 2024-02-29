@@ -22,8 +22,8 @@ class LadderLevelTest {
     void ladderLevelMoveTest() {
         LadderLevel ladderLevel = new LadderLevel(new Width(2), () -> RIGHT);
 
-        int actual = ladderLevel.move(0);
+        Location actual = ladderLevel.move(new Location(0));
 
-        assertThat(actual).isEqualTo(1);
+        assertThat(actual).isEqualTo(new Location(1));
     }
 }

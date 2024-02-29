@@ -3,6 +3,7 @@ package ladder.domain;
 import static ladder.domain.Direction.NONE;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,12 +14,16 @@ public class LadderLevel {
         ladderLevel = createLadderLevel(width, directionGenerator);
     }
 
-    public int move(int index) {
-        return index + ladderLevel.get(index).getMovement();
+    public Location move(Location location) {
+        return location.move(getDirection(location));
     }
 
     public List<Direction> getDirections() {
-        return ladderLevel;
+        return Collections.unmodifiableList(ladderLevel);
+    }
+
+    private Direction getDirection(Location location) {
+        return ladderLevel.get(location.value());
     }
 
     private ArrayList<Direction> createLadderLevel(Width width, DirectionGenerator directionGenerator) {
