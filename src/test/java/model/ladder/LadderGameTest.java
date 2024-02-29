@@ -19,7 +19,7 @@ public class LadderGameTest {
     void participantsResult() {
         Height height = new Height(3);
         Participants participants = new Participants(List.of("pobi", "left", "right", "both"));
-        Results results = new Results(List.of("꽝", "5000", "꽝", "3000"));
+        Results results = new Results(List.of("꽝", "5000", "꽝", "3000"), participants.size());
         Ladder ladder = new Ladder((x, y) -> List.of(
                 List.of(true, false, true),
                 List.of(false, true, false),
@@ -38,7 +38,7 @@ public class LadderGameTest {
     void allParticipantsResult() {
         Height height = new Height(3);
         Participants participants = new Participants(List.of("pobi", "left", "right", "both"));
-        Results results = new Results(List.of("꽝", "5000", "꽝", "3000"));
+        Results results = new Results(List.of("꽝", "5000", "꽝", "3000"), participants.size());
         Ladder ladder = new Ladder((x, y) -> List.of(
                 List.of(true, false, true),
                 List.of(false, true, false),

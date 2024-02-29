@@ -24,7 +24,7 @@ public class LadderController {
 
     public void run() throws IOException {
         Participants participants = new Participants(inputView.inputParticipantsName());
-        Results results = new Results(inputView.inputResults());
+        Results results = new Results(inputView.inputResults(), participants.size());
         Ladder ladder = new Ladder(new LadderGenerateStrategy(), new Height(inputView.inputLadderHeight()), participants);
         LadderGame ladderGame = new LadderGame(ladder, participants, results);
         outputView.printLadderResult(ladderGame);
