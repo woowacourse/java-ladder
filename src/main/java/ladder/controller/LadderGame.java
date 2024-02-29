@@ -26,10 +26,10 @@ public class LadderGame {
         final LadderGamePrize ladderGamePrize = exceptionHandler.retryOnException(this::readLadderGameResult);
         final int width = participants.getNecessaryLadderWidth();
         final Ladder ladder = createLadder(width);
-        printLadder(participants, ladder, ladderGamePrize);
-
         participants.playAll(ladder);
         final GameResults gameResults = ladderGamePrize.determinePersonalResult(participants);
+
+        printLadder(participants, ladder, ladderGamePrize);
         printGameResult(gameResults);
 
         inputView.closeResource();
