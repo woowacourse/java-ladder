@@ -6,4 +6,8 @@ public class LadderResultContent {
     public LadderResultContent(String content) {
         this.content = content;
     }
+
+    public String getContent() {
+        return content;
+    }
 }

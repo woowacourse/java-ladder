@@ -3,8 +3,9 @@ package model.ladder;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.Map;
 import model.bridge.Bridge;
-import model.ladder.dto.LadderPlayOutcome;
+import model.player.Player;
 import model.player.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,20 +27,21 @@ public class LadderTest {
                 .toList();
     }
 
-    @DisplayName("모든 참여자에 대한 사다리 실행 결과를 얻는다")
+    @DisplayName("참여자들에 대한 사다리 실행 결과를 얻는다")
     @Test
     void testLadderPlayOutcomeIncludesAllParticipants() {
-        List<String> beforePlayerNames = List.of("pobi", "lala");
-        Players players = Players.from(beforePlayerNames);
+        Players players = Players.from(List.of("pobi", "lala"));
         LadderHeight ladderHeight = new LadderHeight(5);
-        Ladder ladder = Ladder.of(ladderHeight, players, (count) -> createBridges(List.of(1, 0)));
-        List<LadderPlayOutcome> ladderPlayOutcomes = ladder.play();
+        Ladder ladder = Ladder.of(ladderHeight, players, (count) -> createBridges(List.of(1)));
+        LadderResult ladderResult = LadderResult.of(players,
+                List.of(new LadderResultContent("꽝"), new LadderResultContent("3000")));
 
-        List<String> afterPlayerNames = ladderPlayOutcomes.stream()
-                .map(LadderPlayOutcome::getName)
-                .toList();
+        LadderPlayOutcome ladderPlayOutcome = ladder.play(players, ladderResult);
+        Map<Player, LadderResultContent> outcome = ladderPlayOutcome.getOutcome();
 
-        assertThat(afterPlayerNames)
-                .containsAll(beforePlayerNames);
+        assertThat(outcome.get(new Player("pobi")).getContent())
+                .isEqualTo("3000");
+        assertThat(outcome.get(new Player("lala")).getContent())
+                .isEqualTo("꽝");
     }
 }
