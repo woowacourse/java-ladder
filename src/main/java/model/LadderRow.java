@@ -38,7 +38,7 @@ public class LadderRow {
         return isLines;
     }
 
-    public int getLinesSize() {
+    public int size() {
         return isLines.size();
     }
 }

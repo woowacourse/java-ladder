@@ -23,7 +23,7 @@ public class LadderGame {
 
     public Map<Name, Result> findAllParticipantResults() {
         Map<Name, Result> allParticipantResults = new LinkedHashMap<>();
-        Map<Name, Integer> allNameAndPosition = participants.getAllNameAndPosition();
+        Map<Name, Integer> allNameAndPosition = participants.mapAllNameAndPosition();
         for (Name name : allNameAndPosition.keySet()) {
             allParticipantResults.put(name, findParticipantResult(name));
         }

@@ -27,14 +27,11 @@ public class LadderController {
 
     public void play() {
         Participants participants = new Participants(inputView.inputParticipantsName());
-        Map<Position, Result> results= inputView.inputResults();
+        Map<Position, Result> results = inputView.inputResults();
         Height height = new Height(inputView.inputLadderHeight());
-        Ladder ladder = new Ladder(height,
-                new LadderRowGenerator(new RandomBooleanGenerator()),
-                participants.getParticipantsSize());
+        Ladder ladder = new Ladder(height, new LadderRowGenerator(new RandomBooleanGenerator()), participants.size());
         ladderGame = new LadderGame(participants, ladder, results);
-        printRandomLadder(participants, ladder);
-        outputView.printResults(results);
+        printRandomLadder(participants, ladder, results);
         printResults();
     }
 
@@ -50,9 +47,10 @@ public class LadderController {
         outputView.printParticipantResult(allResults);
     }
 
-    private void printRandomLadder(Participants participants, Ladder ladder) {
+    private void printRandomLadder(Participants participants, Ladder ladder, Map<Position, Result> results) {
         outputView.printResultMessage();
         outputView.printParticipantsName(participants);
         outputView.printLadder(ladder);
+        outputView.printResults(results);
     }
 }

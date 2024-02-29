@@ -29,22 +29,14 @@ public class LadderTest {
     @DisplayName("참가자의 전체 이동 결과를 알려준다.")
     @Test
     void moveAll() {
-        Ladder ladder = new Ladder(
-                List.of(new LadderRow(List.of(true, false, false, true)),
-                        new LadderRow(List.of(true, false, true, false))));
+        Ladder ladder = new Ladder(List.of(
+                new LadderRow(List.of(true, false, false, true)),
+                new LadderRow(List.of(true, false, true, false))));
 
-        assertAll(
-                () -> Assertions.assertThat(ladder.moveAll(new Position(0))).isEqualTo(new Position(0)),
+        assertAll(() -> Assertions.assertThat(ladder.moveAll(new Position(0))).isEqualTo(new Position(0)),
                 () -> Assertions.assertThat(ladder.moveAll(new Position(1))).isEqualTo(new Position(1)),
                 () -> Assertions.assertThat(ladder.moveAll(new Position(2))).isEqualTo(new Position(3)),
                 () -> Assertions.assertThat(ladder.moveAll(new Position(3))).isEqualTo(new Position(4)),
-                () -> Assertions.assertThat(ladder.moveAll(new Position(4))).isEqualTo(new Position(2))
-        );
+                () -> Assertions.assertThat(ladder.moveAll(new Position(4))).isEqualTo(new Position(2)));
     }
-
-    /*
-         0     1     2     3     4
-         |-----|     |     |-----|
-         |-----|     |-----|     |
-     */
 }

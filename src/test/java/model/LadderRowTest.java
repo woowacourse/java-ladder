@@ -19,21 +19,13 @@ public class LadderRowTest {
 
     @DisplayName("참가자들의 인덱스 번호를 주면 한 행에 대해서 이동 결과를 알려준다.")
     @Test
-    void moveParticipant() {
-
-    }
-
-    @DisplayName("참가자들의 인덱스 번호를 주면 한 행에 대해서 이동 결과를 알려준다.")
-    @Test
     void moveParticipant1() {
         LadderRow ladderRow = new LadderRow(List.of(true, false, false, true));
 
-        assertAll(
-                () -> assertThat(ladderRow.move(new Position(0))).isEqualTo(new Position(1)),
+        assertAll(() -> assertThat(ladderRow.move(new Position(0))).isEqualTo(new Position(1)),
                 () -> assertThat(ladderRow.move(new Position(1))).isEqualTo(new Position(0)),
                 () -> assertThat(ladderRow.move(new Position(2))).isEqualTo(new Position(2)),
                 () -> assertThat(ladderRow.move(new Position(3))).isEqualTo(new Position(4)),
-                () -> assertThat(ladderRow.move(new Position(4))).isEqualTo(new Position(3))
-        );
+                () -> assertThat(ladderRow.move(new Position(4))).isEqualTo(new Position(3)));
     }
 }

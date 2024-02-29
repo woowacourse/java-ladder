@@ -23,13 +23,11 @@ public class LadderGameTest {
         Result thirdResult = ladderGame.findParticipantResult(new Name("3"));
         Result forthResult = ladderGame.findParticipantResult(new Name("4"));
 
-        assertAll(
-                ()-> assertThat(zeroResult).isEqualTo(new Result("꽝")),
-                ()-> assertThat(oneResult).isEqualTo(new Result("5000")),
-                ()-> assertThat(secondResult).isEqualTo(new Result("꽝")),
-                ()-> assertThat(thirdResult).isEqualTo(new Result("3000")),
-                ()-> assertThat(forthResult).isEqualTo(new Result("꽝"))
-        );
+        assertAll(() -> assertThat(zeroResult).isEqualTo(new Result("꽝")),
+                () -> assertThat(oneResult).isEqualTo(new Result("5000")),
+                () -> assertThat(secondResult).isEqualTo(new Result("꽝")),
+                () -> assertThat(thirdResult).isEqualTo(new Result("3000")),
+                () -> assertThat(forthResult).isEqualTo(new Result("꽝")));
     }
 
     @DisplayName("모든 참가자의 게임 결과를 얻는다.")
@@ -37,15 +35,12 @@ public class LadderGameTest {
     void findAllResults() {
         LadderGame ladderGame = createLadderGame();
         Map<Name, Result> results = ladderGame.findAllParticipantResults();
-        Assertions.assertThat(results)
-                .isEqualTo(Map.of(new Name("0"), new Result("꽝"),
+        Assertions.assertThat(results).isEqualTo(
+                Map.of(new Name("0"), new Result("꽝"),
                         new Name("1"), new Result("5000"),
                         new Name("2"), new Result("꽝"),
                         new Name("3"), new Result("3000"),
-                        new Name("4"), new Result("꽝"))
-                );
-
-
+                        new Name("4"), new Result("꽝")));
     }
 
     private static LadderGame createLadderGame() {
@@ -66,18 +61,4 @@ public class LadderGameTest {
         result.put(new Position(4), new Result("3000"));
         return result;
     }
-
-    /*
-         0     1     2     3     4
-         |-----|     |     |-----|
-         |-----|     |-----|     |
-         0     1     2     3     4
-         꽝   5000   꽝     꽝   3000
-
-         0 -> 0 꽝
-         1 -> 1 5000
-         2 -> 3 꽝
-         3 -> 4 3000
-         4 -> 2 꽝
-     */
 }

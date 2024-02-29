@@ -40,7 +40,11 @@ public class Participants {
                 .toList();
     }
 
-    public Map<Name, Integer> getAllNameAndPosition() {
+    public int size() {
+        return this.participantNames.size();
+    }
+
+    public Map<Name, Integer> mapAllNameAndPosition() {
         Map<Name, Integer> nameAndPosition = new LinkedHashMap<>();
         for (int i = 0; i < participantNames.size(); i++) {
             nameAndPosition.put(participantNames.get(i), i);
@@ -48,14 +52,9 @@ public class Participants {
         return nameAndPosition;
     }
 
-
     public Position getPositionByName(Name findName) {
         int index = participantNames.indexOf(findName);
         return new Position(index);
-    }
-
-    public int getParticipantsSize() {
-        return this.participantNames.size();
     }
 
     public List<Name> getParticipants() {

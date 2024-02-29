@@ -16,7 +16,6 @@ public class Position {
         this.value = value;
     }
 
-
     public Position increment() {
         return new Position(value + 1);
     }

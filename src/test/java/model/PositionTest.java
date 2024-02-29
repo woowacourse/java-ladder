@@ -12,10 +12,8 @@ public class PositionTest {
     @DisplayName("음수가 아니면 예외를 던지지 않는다.")
     @Test
     void notNegativePosition() {
-        assertAll(
-                () -> assertThatCode(Position::new).doesNotThrowAnyException(),
-                () -> assertThatCode(() -> new Position(1)).doesNotThrowAnyException()
-        );
+        assertAll(() -> assertThatCode(Position::new).doesNotThrowAnyException(),
+                () -> assertThatCode(() -> new Position(1)).doesNotThrowAnyException());
     }
 
     @DisplayName("음수면 예외를 던진다.")

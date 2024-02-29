@@ -39,7 +39,7 @@ public class Ladder {
     }
 
     public int getLadderRowSize() {
-        return ladder.get(0).getLinesSize();
+        return ladder.get(0).size();
     }
 
     public Position moveAll(Position participantIndex) {
