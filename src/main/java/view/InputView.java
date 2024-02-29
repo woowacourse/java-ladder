@@ -69,7 +69,7 @@ public class InputView {
         String rawPrizes = scanner.nextLine();
         validateBlank(rawPrizes);
         validateSeparators(rawPrizes);
-        List<String> prizes = List.of(rawPrizes.split(SEPARATOR, -1));
+        List<String> prizes = List.of(rawPrizes.split(SEPARATOR));
         System.out.println();
         return prizes;
     }
