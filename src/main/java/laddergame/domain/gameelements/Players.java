@@ -1,6 +1,5 @@
 package laddergame.domain.gameelements;
 
-import java.util.Collections;
 import java.util.List;
 
 // TODO Players, Prizes 분리하기
@@ -24,8 +23,7 @@ public class Players {
         }
     }
 
-    //TODO Stream.java의 toList() 살펴보기
     public List<Name> getPlayerNames() {
-        return Collections.unmodifiableList(playerNames);
+        return playerNames;
     }
 }
