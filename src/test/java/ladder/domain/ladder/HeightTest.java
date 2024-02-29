@@ -24,7 +24,7 @@ public class HeightTest {
     void isCanTranslateToIntegerTest(String input) {
 
         assertThatThrownBy(() -> new Height(input))
-                .isInstanceOf(NumberFormatException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("숫자로 입력을 변환할 수 없습니다.");
     }
 }
