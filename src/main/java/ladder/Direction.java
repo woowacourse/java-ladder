@@ -31,7 +31,7 @@ public enum Direction {
         return !pairDirections.contains(direction);
     }
 
-    public Direction next(boolean isAttemptingToConnect) {
+    public Direction nextWithAttempt(boolean isAttemptingToConnect) {
         if (this == RIGHT) {
             return LEFT;
         }

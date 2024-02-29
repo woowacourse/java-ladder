@@ -25,7 +25,7 @@ class DirectionTest {
     @DisplayName("이전 방향이 오른쪽이라면, 반드시 왼쪽을 반환한다.")
     void generateLeftAfterRight() {
         // when
-        Direction actual = RIGHT.next(true);
+        Direction actual = RIGHT.nextWithAttempt(true);
         // then
         Assertions.assertThat(actual).isEqualTo(LEFT);
     }
@@ -34,7 +34,7 @@ class DirectionTest {
     @DisplayName("이전 방향이 오른쪽이 아닐 때, 오른쪽으로 잇고자 한다면 오른쪽을 반환한다.")
     void generateRight() {
         // when
-        Direction actual = LEFT.next(true);
+        Direction actual = LEFT.nextWithAttempt(true);
         // then
         Assertions.assertThat(actual).isEqualTo(RIGHT);
     }

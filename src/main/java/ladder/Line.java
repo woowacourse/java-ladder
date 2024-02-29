@@ -24,7 +24,7 @@ public class Line {
 
         while (directions.size() < size - 1) {
             boolean isGoingToPlace = connectionAttemptSupplier.getAsBoolean();
-            direction = direction.next(isGoingToPlace);
+            direction = direction.nextWithAttempt(isGoingToPlace);
             directions.add(direction);
         }
         directions.add(direction.nextAsLast());
