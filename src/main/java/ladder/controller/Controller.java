@@ -1,5 +1,10 @@
 package ladder.controller;
 
+import static ladder.domain.Player.ALL;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import ladder.domain.DefaultLadderDirectionSelector;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
@@ -29,10 +34,25 @@ public class Controller {
         resultView.printLadder(players, ladder, results);
         while (true) {
             Player player = inputView.inputPlayer();
+            if (player.equals(ALL)) {
+                resultView.printAllResult(climbAll(players, results, ladder));
+                break;
+            }
             LadderPosition startPosition = new LadderPosition(0, players.orderOf(player));
             LadderPosition endPosition = ladder.climbFrom(startPosition);
             LadderResult result = results.get(endPosition.column());
             resultView.printResult(result);
         }
+    }
+
+    public Map<Player, LadderResult> climbAll(Players players, LadderResults results, Ladder ladder) {
+        Map<Player, LadderResult> allResult = new LinkedHashMap<>();
+        players.players().forEach(player -> {
+            LadderPosition startPosition = new LadderPosition(0, players.orderOf(player));
+            LadderPosition endPosition = ladder.climbFrom(startPosition);
+            LadderResult result = results.get(endPosition.column());
+            allResult.put(player, result);
+        });
+        return allResult;
     }
 }

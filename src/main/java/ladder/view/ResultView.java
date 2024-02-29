@@ -2,6 +2,7 @@ package ladder.view;
 
 import static ladder.domain.LadderDirection.RIGHT;
 
+import java.util.Map;
 import java.util.StringJoiner;
 
 import ladder.domain.Ladder;
@@ -9,6 +10,7 @@ import ladder.domain.LadderDirection;
 import ladder.domain.LadderLevel;
 import ladder.domain.LadderResult;
 import ladder.domain.LadderResults;
+import ladder.domain.Player;
 import ladder.domain.Players;
 
 public class ResultView {
@@ -28,6 +30,11 @@ public class ResultView {
     public void printResult(LadderResult result) {
         System.out.println("\n실행 결과");
         System.out.println(result.value());
+    }
+
+    public void printAllResult(Map<Player, LadderResult> allResult) {
+        System.out.println("\n실행 결과");
+        allResult.forEach(((player, result) -> System.out.printf("%s : %s%n", player.name(), result.value())));
     }
 
     private void printPlayers(Players players) {
