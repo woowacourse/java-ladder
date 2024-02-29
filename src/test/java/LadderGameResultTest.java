@@ -17,11 +17,7 @@ class LadderGameResultTest {
         List<Player> players = List.of(new Player("pobi", new Position(0)), new Player("honux",
                 new Position(1)), new Player("crong",new Position(2)), new Player("jk",new Position(3)));
         List<Result> results = List.of(new Result("꽝"), new Result("5000"), new Result("꽝"), new Result("3000"));
-        LadderGameResult ladderGameResult = new LadderGameResult.LadderGameResultBuilder()
-                .ladder(ladder)
-                .players(new Players(players))
-                .results(new Results(results, players.size()))
-                .build();
+        LadderGameResult ladderGameResult = new LadderGameResult(ladder, new Players(players), new Results(results, players.size()));
 
 
         assertAll(

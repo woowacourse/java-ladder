@@ -1,6 +1,8 @@
 package view;
 
-import domain.*;
+import domain.LadderGameResult;
+import domain.Players;
+import domain.Result;
 import view.dto.LadderResultDto;
 
 import java.util.List;

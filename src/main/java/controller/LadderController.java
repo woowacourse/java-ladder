@@ -22,11 +22,7 @@ public class LadderController {
 
         OutputView.printResult(LadderResultDto.of(players.getNames(), lineToPrimitive(ladder), resultToPrimitive(results)));
 
-        LadderGameResult ladderGameResult = new LadderGameResult.LadderGameResultBuilder()
-                .ladder(ladder)
-                .players(players)
-                .results(results)
-                .build();
+        LadderGameResult ladderGameResult = new LadderGameResult(ladder, players, results);
         showLadderGameResult(players, ladderGameResult);
     }
 
