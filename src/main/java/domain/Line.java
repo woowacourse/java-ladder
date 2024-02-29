@@ -1,6 +1,5 @@
 package domain;
 
-import domain.booleangenerator.BooleanGenerator;
 import java.util.ArrayList;
 import java.util.List;
 

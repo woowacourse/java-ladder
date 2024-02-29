@@ -1,5 +1,5 @@
 import controller.LadderGameController;
-import domain.booleangenerator.RandomBooleanGenerator;
+import domain.RandomBooleanGenerator;
 import view.InputView;
 import view.OutputView;
 

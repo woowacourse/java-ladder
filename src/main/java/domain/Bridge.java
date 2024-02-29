@@ -1,7 +1,5 @@
 package domain;
 
-import domain.booleangenerator.BooleanGenerator;
-
 public enum Bridge {
     EXIST(true),
     BLANK(false);
