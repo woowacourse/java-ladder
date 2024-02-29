@@ -1,13 +1,13 @@
 package model.prize;
 
 public class Prize {
-    private final String content;
+    private final String name;
 
-    public Prize(String content) {
-        this.content = content;
+    public Prize(String name) {
+        this.name = name;
     }
 
-    public String getContent() {
-        return content;
+    public String getName() {
+        return name;
     }
 }

@@ -36,9 +36,9 @@ public class Ladder {
         for (int index = 0; index < players.getSize(); index++) {
             Player player = players.get(index);
             int resultIndex = playLadder(index);
-            Prize content = prizes.get(resultIndex);
+            Prize prize = prizes.get(resultIndex);
 
-            outcome.put(player, content);
+            outcome.put(player, prize);
         }
         return new LadderPlayOutcome(outcome);
     }

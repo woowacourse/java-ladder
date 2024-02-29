@@ -40,9 +40,9 @@ public class LadderTest {
         LadderPlayOutcome ladderPlayOutcome = ladder.play(players, prizes);
         Map<Player, Prize> outcome = ladderPlayOutcome.getOutcome();
 
-        assertThat(outcome.get(new Player("pobi")).getContent())
+        assertThat(outcome.get(new Player("pobi")).getName())
                 .isEqualTo("3000");
-        assertThat(outcome.get(new Player("lala")).getContent())
+        assertThat(outcome.get(new Player("lala")).getName())
                 .isEqualTo("꽝");
     }
 }
