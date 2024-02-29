@@ -3,11 +3,9 @@ package controller;
 import domain.Height;
 import domain.Ladder;
 import domain.LadderGame;
-import domain.PlayerName;
 import domain.PlayerNames;
 import domain.RandomLegGenerateStrategy;
 import domain.Rewards;
-import java.util.Map;
 import view.InputView;
 import view.OutputView;
 
