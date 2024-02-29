@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ElementsTest {
+class PlayersTest {
 
     @DisplayName("게임 요소 이름에 예외적인 입력값이 들어왔을 때, Elements 객체를 생성할 수 없다.")
     @ParameterizedTest
@@ -20,7 +20,7 @@ class ElementsTest {
     void elementNamesInvalidInput(String invalidElementName) {
         List<String> elementNames = List.of(invalidElementName);
         assertThrows(IllegalArgumentException.class
-                , () -> new Elements(elementNames));
+                , () -> new Players(elementNames));
     }
 
     @DisplayName("Null이 들어왔을 때, Elements 객체를 생성할 수 없다.")
@@ -29,7 +29,7 @@ class ElementsTest {
     void elementsNamesNullInput(String nullName) {
         List<String> elementNames = Collections.singletonList(nullName);
         assertThrows(IllegalArgumentException.class
-                , () -> new Elements(elementNames));
+                , () -> new Players(elementNames));
     }
 
     @DisplayName("게임 요소 이름에 정상적인 입력값이 들어왔을 때, Elements 객체를 생성할 수 있다.")
@@ -37,7 +37,7 @@ class ElementsTest {
     void elementsNamesValidInput() {
         List<String> elementsNames = List.of("abcde", "a1234", "12345", "a");
         assertDoesNotThrow(() -> {
-            new Elements(elementsNames);
+            new Players(elementsNames);
         });
     }
 
@@ -53,9 +53,9 @@ class ElementsTest {
 
         assertAll(
                 () -> assertThrows(IllegalArgumentException.class,
-                        () -> new Elements(zeroNames)),
+                        () -> new Players(zeroNames)),
                 () -> assertThrows(IllegalArgumentException.class,
-                        () -> new Elements(exceedNames))
+                        () -> new Players(exceedNames))
         );
 
     }
@@ -69,7 +69,7 @@ class ElementsTest {
             validNames.add(String.valueOf(i));
         }
         assertDoesNotThrow(() -> {
-            new Elements(validNames);
+            new Players(validNames);
         });
     }
 

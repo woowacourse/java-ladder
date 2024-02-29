@@ -2,7 +2,7 @@ package laddergame.view;
 
 import laddergame.domain.connectiongenerator.AllFalseConnectionGenerator;
 import laddergame.domain.connectiongenerator.TrueFalseConnectionGenerator;
-import laddergame.domain.gameelements.Elements;
+import laddergame.domain.gameelements.Players;
 import laddergame.domain.ladder.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ class MessageResolverTest {
     @Test
     @DisplayName("사람 이름 출력 테스트")
     void makePeopleMessageTest() {
-        Elements testPeople = new Elements(List.of("a", "b", "c"));
+        Players testPeople = new Players(List.of("a", "b", "c"));
         String expectedPeopleMessage = "a     b     c    ";
         assertEquals(expectedPeopleMessage
                 , MessageResolver.resolveElementMessage(testPeople));

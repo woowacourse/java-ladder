@@ -3,7 +3,7 @@ package laddergame.domain;
 import laddergame.domain.connectiongenerator.AllFalseConnectionGenerator;
 import laddergame.domain.connectiongenerator.TrueFalseConnectionGenerator;
 import laddergame.domain.gameelements.Name;
-import laddergame.domain.gameelements.Elements;
+import laddergame.domain.gameelements.Players;
 import laddergame.domain.ladder.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,10 +34,10 @@ class LadderGameTest {
          * test case 2    1    2    3    4    5
          * test case 3    1    2    3    4    5
          * */
-        Elements people = new Elements(List.of("a", "b", "c", "d", "e"));
-        int peopleNumber = people.getElements().size();
+        Players people = new Players(List.of("a", "b", "c", "d", "e"));
+        int peopleNumber = people.getPlayerNames().size();
 
-        Elements results = new Elements(List.of("1", "2", "3", "4", "5"));
+        Players results = new Players(List.of("1", "2", "3", "4", "5"));
         Ladder testLadder1 = new Ladder(3, peopleNumber, new TrueFalseConnectionGenerator());
         Ladder testLadder2 = new Ladder(4, peopleNumber, new TrueFalseConnectionGenerator());
         Ladder testLadder3 = new Ladder(5, peopleNumber, new AllFalseConnectionGenerator());
