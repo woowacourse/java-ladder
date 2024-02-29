@@ -137,5 +137,46 @@ resultPositions   1    0    3    2    4
 - LadderGameTest : input 값에 따라 사다리 게임 결과 테스트
 
 ## 2단계 개선사안
+
 - 컨벤션!! 코드 컨벤션 2번 확인하기
-- 
+
+## 2단계 - 1차 리팩터링 개선사안
+
+- gameelements/Elements : 책임에 따라 Players와 Prizes로 분할
+- gameelements/Players : 예약어 검증 책임 수행 (ReservedElementName 클래스에서 책임 이전)
+- gameelements/Prizes : Players와 동일길이 검증 책임 수행(controller에서 책임 이전)
+- ConnectionGenerator : 메소드명 변경 getConnections > generate
+- ladder/Connection : connection.isConnected()를 통해 연결정보를 메세지로 전달
+- Stream.toList와 중복된 상수화(unmodifiableList) 제거
+- view/ResultView : StringJoiner를 통한 메세지 구성
+- test/LadderGameTest : 테스트 단순화 및 책임 분할
+    - test/RowLineTest : 연결 행(connections) 단위 이동 책임 테스트
+    - test/LadderTest : List<RowLine> 단위 이동 책임 테스트
+    - test/LadderGameTest : Player- Prize 매핑 결과 책임 테스트
+
+## 고민하고 있는 점
+
+1. `인덱스에 의존하는 코드의 한계가 있지 않을까?`
+    - Ladder에서 반환하는 ResutIndex는 [0, playerNumber) 연속 index가 사다리를 타고 내려온 index값들이다.
+    - LadderGame에는 이 index를 기준으로 Player들의 이름과 Prize를 매칭시킨다.
+    - 객체의 고유한 식별자가 아닌 index에 의존한 코드가 좋은 코드일까?
+
+
+2. `index 원시값 포장`
+    - index를 int로 활용함으로써 그 의미가 코드 내에서 잘 드러나지 않는 부분들이 있는 것 같다.
+    - Position을 통해 Position.moveLeft()와 같은 메서드로 더 뚜렷한 의의를 나타낼 수 있지 않을까?
+    - 그러나, Wrapping을 해도 index 이상의 의미를 지니기 힘든데, 장점이 더 많은 리팩터링일까?
+
+
+3. `LadderGame은 멤버변수로 Ladder, Players, Prizes를 지녀야 할까?`
+    - LadderGame은 생성자에서 결과값 Mapping을 초기화한다.
+    - 게임 결과인 Map이외에는 멤버변수를 가지지 않기에 반복되는 매개변수를 지닌 메서드를 선언해주어야 했다.
+    - 그렇다보니 코드가 복잡해지는 듯한 느낌을 받았다.
+    - 그러나, LadderGame에 결과값만을 넣은 이유는 다음과 같다.
+        - LadderGame의 책임은 Player-Prize 매핑의 사다리 게임의 결과산출이다.
+        - Map 안에 Player와 Prize 정보가 이미 내포되어 있다.
+        - 불필요한 멤버변수는 의존관계를 늘릴 우려가 있다.
+
+
+크루들 중에는 LadderGame이 Game이기 위해서는 Players, Ladder, Prizes를 멤버변수로 지니고 메서드를 통해 결과를 반환하는 식의 설계가 더 어울린다는 의견이 있었는데 이에 대한
+썬의 의견이 궁금합니다!
