@@ -11,18 +11,18 @@ public class Path {
         this.endLineNumber = endLineNumber;
     }
 
-    public static Path of(int startLineNumber, int endLineNumber) {
+    public static Path of(final int startLineNumber, final int endLineNumber) {
         return new Path(new LineNumber(startLineNumber), new LineNumber(endLineNumber));
     }
 
-    public boolean hasPath(LineNumber lineNumber) {
+    public boolean hasPath(final LineNumber lineNumber) {
         return startLineNumber.value() == lineNumber.value() || endLineNumber.value() == lineNumber.value();
     }
 
-    public int getOtherLineDistance(LineNumber lineNumber) {
+    public int getOtherLineDistance(final LineNumber lineNumber) {
         if (startLineNumber.value() == lineNumber.value()) {
-            return 1;
+            return endLineNumber.value() - lineNumber.value();
         }
-        return -1;
+        return startLineNumber.value() - lineNumber.value();
     }
 }
