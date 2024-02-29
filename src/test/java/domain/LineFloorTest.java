@@ -1,6 +1,5 @@
 package domain;
 
-import domain.LineFloor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +12,7 @@ public class LineFloorTest {
     @Test
     void 라인_층_번호_인스턴스_생성() {
         // Given
-        final int inputLineFloor = 5;
+        int inputLineFloor = 5;
 
         // When
         LineFloor lineFloor = new LineFloor(inputLineFloor);

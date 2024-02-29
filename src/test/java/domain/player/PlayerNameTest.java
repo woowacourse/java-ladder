@@ -41,8 +41,8 @@ public class PlayerNameTest {
     @Test
     void 이름_일치_true_반환() {
         // Given
-        final PlayerName playerName = new PlayerName("kelly");
-        final String inputName = "kelly";
+        PlayerName playerName = new PlayerName("kelly");
+        String inputName = "kelly";
 
         // When
         boolean isEqual = playerName.isEqualName(inputName);

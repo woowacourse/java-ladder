@@ -1,6 +1,5 @@
 package domain.player;
 
-import domain.player.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,12 +11,12 @@ public class PlayerTest {
     @Test
     void 플레이어_인스턴스_생성() {
         // Given
-        final String userName = "kelly";
-        final int lineNumber = 1;
-        final int lineFloor = 5;
+        String userName = "kelly";
+        int lineNumber = 1;
+        int lineFloor = 5;
 
         // When
-        final Player player = Player.of(userName, lineNumber, lineFloor);
+        Player player = Player.of(userName, lineNumber, lineFloor);
 
         // Then
         assertThat(player).isNotNull();
@@ -27,10 +26,10 @@ public class PlayerTest {
     @Test
     void 플레이어_사다리_내려_오면_true_반환() {
         // Given
-        final Player player = Player.of("kelly", 1, 0);
+        Player player = Player.of("kelly", 1, 0);
 
         // When
-        final boolean isEscapeLadder = player.escapeLadder();
+        boolean isEscapeLadder = player.escapeLadder();
 
         // Then
         assertThat(isEscapeLadder).isTrue();
@@ -40,8 +39,8 @@ public class PlayerTest {
     @Test
     void 플레이어_이동() {
         // Given
-        final Player player = Player.of("kelly", 2, 5);
-        final int moveLineDistance = 1;
+        Player player = Player.of("kelly", 2, 5);
+        int moveLineDistance = 1;
 
         // When
         player.move(moveLineDistance);

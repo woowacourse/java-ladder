@@ -12,11 +12,11 @@ public class LadderGameResultTest {
     @Test
     void LadderGameResult_인스턴스_반환() {
         // Given
-        final PlayerName playerName = new PlayerName("kelly");
-        final GameResult gameResult = GameResult.of("꽝", 1);
+        PlayerName playerName = new PlayerName("kelly");
+        GameResult gameResult = GameResult.of("꽝", 1);
 
         // When
-        final LadderGameResult ladderGameResult = new LadderGameResult(playerName, gameResult);
+        LadderGameResult ladderGameResult = new LadderGameResult(playerName, gameResult);
 
         // Then
         assertThat(ladderGameResult).isNotNull();
@@ -26,11 +26,11 @@ public class LadderGameResultTest {
     @Test
     void 사용자_이름_일치_여부_반환() {
         // Given
-        final LadderGameResult ladderGameResult = new LadderGameResult(new PlayerName("kelly"), GameResult.of("꽝", 1));
-        final String inputPlayerName = "kelly";
+        LadderGameResult ladderGameResult = new LadderGameResult(new PlayerName("kelly"), GameResult.of("꽝", 1));
+        String inputPlayerName = "kelly";
 
         // When
-        final boolean isEqualName = ladderGameResult.isPlayerName(inputPlayerName);
+        boolean isEqualName = ladderGameResult.isPlayerName(inputPlayerName);
 
         // Then
         assertThat(isEqualName).isTrue();

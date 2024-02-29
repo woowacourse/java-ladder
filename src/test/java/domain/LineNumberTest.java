@@ -14,7 +14,7 @@ public class LineNumberTest {
     @Test
     void 라인_번호_인스턴스_생성() {
         // Given
-        final int inputLineNumber = 1;
+        int inputLineNumber = 1;
 
         // When
         LineNumber lineNumber = new LineNumber(inputLineNumber);

@@ -33,12 +33,12 @@ public class LadderGameResultsTest {
     @Test
     void 사용자_게임_결과_반환() {
         // Given
-        final LadderHeight ladderHeight = new LadderHeight(5);
-        final Players players = Players.of(PlayerNames.of(List.of("kelly", "pobi", "ank")), ladderHeight);
-        final Ladder ladder = Ladder.of(() -> true, ladderHeight, 3);
-        final GameResults gameResults = GameResults.of(List.of("꽝", "당첨", "꽝"));
-        final LadderGameResults ladderGameResults = LadderGameResults.of(ladder, players, gameResults);
-        final String findPlayerName = "kelly";
+        LadderHeight ladderHeight = new LadderHeight(5);
+        Players players = Players.of(PlayerNames.of(List.of("kelly", "pobi", "ank")), ladderHeight);
+        Ladder ladder = Ladder.of(() -> true, ladderHeight, 3);
+        GameResults gameResults = GameResults.of(List.of("꽝", "당첨", "꽝"));
+        LadderGameResults ladderGameResults = LadderGameResults.of(ladder, players, gameResults);
+        String findPlayerName = "kelly";
 
         // When
         List<LadderGameResult> playerGameResults = ladderGameResults.findPlayerGameResults(findPlayerName);

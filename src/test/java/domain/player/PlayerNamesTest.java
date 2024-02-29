@@ -1,6 +1,5 @@
 package domain.player;
 
-import domain.player.PlayerNames;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,6 +28,7 @@ class PlayerNamesTest {
         // Given
         List<String> userNames = List.of("a", "b", "c", "d", "e", "f", "g", "h");
 
+        // When & Then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> PlayerNames.of(userNames))
                 .withMessage(String.format(
@@ -47,8 +47,10 @@ class PlayerNamesTest {
     @DisplayName("사용자 수를 반환한다.")
     @Test
     void getUserCount() {
-        final PlayerNames playerNames = PlayerNames.of(List.of("aaa", "bbb"));
+        // Given
+        PlayerNames playerNames = PlayerNames.of(List.of("aaa", "bbb"));
 
+        // When & Then
         assertThat(playerNames.getPlayerCount())
                 .isEqualTo(2);
     }
@@ -56,8 +58,10 @@ class PlayerNamesTest {
     @DisplayName("사용자 이름들을 List<String> 형태로 가공하여 반환한다.")
     @Test
     void getUserNames() {
-        final PlayerNames playerNames = PlayerNames.of(List.of("kelly", "liv"));
+        // Given
+        PlayerNames playerNames = PlayerNames.of(List.of("kelly", "liv"));
 
+        // When & Then
         assertThat(playerNames.getPlayerNames())
                 .containsExactly("kelly", "liv");
     }

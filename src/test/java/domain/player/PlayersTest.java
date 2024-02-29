@@ -1,8 +1,6 @@
 package domain.player;
 
 import domain.ladder.LadderHeight;
-import domain.player.PlayerNames;
-import domain.player.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,8 +14,8 @@ public class PlayersTest {
     @Test
     void Players_인스턴스_생성() {
         // Given
-        final PlayerNames playerNames = PlayerNames.of(List.of("kelly", "pobi", "con", "hi"));
-        final LadderHeight ladderHeight = new LadderHeight(5);
+        PlayerNames playerNames = PlayerNames.of(List.of("kelly", "pobi", "con", "hi"));
+        LadderHeight ladderHeight = new LadderHeight(5);
 
         // When
         Players players = Players.of(playerNames, ladderHeight);

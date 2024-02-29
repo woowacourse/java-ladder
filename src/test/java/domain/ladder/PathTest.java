@@ -1,7 +1,6 @@
 package domain.ladder;
 
 import domain.LineNumber;
-import domain.ladder.Path;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,11 +12,11 @@ public class PathTest {
     @Test
     void Path_인스턴스_생성() {
         // Given
-        final int startLineNumber = 1;
-        final int endLineNumber = 2;
+        int startLineNumber = 1;
+        int endLineNumber = 2;
 
         // When
-        final Path path = Path.of(startLineNumber, endLineNumber);
+        Path path = Path.of(startLineNumber, endLineNumber);
 
         // Then
         assertThat(path).isNotNull();
@@ -27,11 +26,11 @@ public class PathTest {
     @Test
     void LineNumber_본인_번호인지_포함_체크() {
         // Given
-        final Path path = Path.of(2, 3);
-        final LineNumber inputLineNumber = new LineNumber(3);
+        Path path = Path.of(2, 3);
+        LineNumber inputLineNumber = new LineNumber(3);
 
         // When
-        final boolean hasPath = path.hasPath(inputLineNumber);
+        boolean hasPath = path.hasPath(inputLineNumber);
 
         // Then
         assertThat(hasPath).isTrue();
@@ -41,8 +40,8 @@ public class PathTest {
     @Test
     void 반대쪽_라인_번호_거리_반환() {
         // Given
-        final Path path = Path.of(1, 2);
-        final LineNumber inputLineNumber = new LineNumber(2);
+        Path path = Path.of(1, 2);
+        LineNumber inputLineNumber = new LineNumber(2);
 
         // When
         int otherLineNumber = path.getOtherLineDistance(inputLineNumber);

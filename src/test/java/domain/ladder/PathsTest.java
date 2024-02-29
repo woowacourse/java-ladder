@@ -2,10 +2,9 @@ package domain.ladder;
 
 import constant.PathStatus;
 import domain.LineNumber;
-import domain.ladder.Paths;
-import util.RandomBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import util.RandomBooleanGenerator;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -18,8 +17,8 @@ public class PathsTest {
     @Test
     void Paths_인스턴스_생성() {
         // Given
-        final Supplier<Boolean> randomGenerator = new RandomBooleanGenerator();
-        final int ladderSpaceCount = 7;
+        Supplier<Boolean> randomGenerator = new RandomBooleanGenerator();
+        int ladderSpaceCount = 7;
 
         // When
         Paths paths = Paths.init(randomGenerator, ladderSpaceCount);
@@ -32,8 +31,8 @@ public class PathsTest {
     @Test
     void Path들_상태_반환() {
         // Given
-        final int ladderSpaceCount = 7;
-        final Paths paths = Paths.init(new RandomBooleanGenerator(), ladderSpaceCount);
+        int ladderSpaceCount = 7;
+        Paths paths = Paths.init(new RandomBooleanGenerator(), ladderSpaceCount);
 
         // When
         List<PathStatus> pathStatuses = paths.getPathStatuses();
@@ -46,8 +45,8 @@ public class PathsTest {
     @Test
     void 발판_존재하는_라인이면_반대쪽_라인_까지_거리_반환() {
         // Given
-        final Paths paths = Paths.init(() -> true, 4);
-        final LineNumber lineNumber = new LineNumber(2);
+        Paths paths = Paths.init(() -> true, 4);
+        LineNumber lineNumber = new LineNumber(2);
 
         // When
         int otherLineDistance = paths.getOtherLineNumber(lineNumber);

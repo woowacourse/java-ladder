@@ -14,10 +14,10 @@ public class GameResultsTest {
     @Test
     void 게임_결과들_인스턴스_생성() {
         // Given
-        final List<String> inputGameResults = List.of("꽝", "5000", "꽝", "3000");
+        List<String> inputGameResults = List.of("꽝", "5000", "꽝", "3000");
 
         // When
-        final GameResults gameResults = GameResults.of(inputGameResults);
+        GameResults gameResults = GameResults.of(inputGameResults);
 
         // Then
         assertThat(gameResults).isNotNull();
@@ -27,11 +27,11 @@ public class GameResultsTest {
     @Test
     void 게임_결과_문자열_리스트_반환() {
         // Given
-        final List<String> inputGameResults = List.of("꽝", "5000", "꽝", "3000");
-        final GameResults gameResults = GameResults.of(inputGameResults);
+        List<String> inputGameResults = List.of("꽝", "5000", "꽝", "3000");
+        GameResults gameResults = GameResults.of(inputGameResults);
 
         // When
-        final List<String> gameResultValues = gameResults.getGameResults();
+        List<String> gameResultValues = gameResults.getGameResults();
 
         // Then
         assertThat(gameResultValues).contains("꽝", "5000", "꽝", "3000");
@@ -41,11 +41,11 @@ public class GameResultsTest {
     @Test
     void 입력_라인_번호_일치_게임_결과_반환() {
         // Given
-        final GameResults gameResults = GameResults.of(List.of("꽝", "5000", "꽝", "3000"));
-        final LineNumber inputLineNumber = new LineNumber(2);
+        GameResults gameResults = GameResults.of(List.of("꽝", "5000", "꽝", "3000"));
+        LineNumber inputLineNumber = new LineNumber(2);
 
         // When
-        final GameResult gameResult = gameResults.findGameResult(inputLineNumber);
+        GameResult gameResult = gameResults.findGameResult(inputLineNumber);
 
         // Then
         assertThat(gameResult.getGameResultDescription().value()).isEqualTo("5000");

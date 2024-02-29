@@ -1,6 +1,5 @@
 package domain.game;
 
-import domain.game.GameResult;
 import domain.LineNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,8 +12,8 @@ public class GameResultTest {
     @Test
     void 게임_결과_내용_라인_번호_인스턴스_생성() {
         // Given
-        final String gameResultDescription = "1,000원";
-        final int lineNumber = 1;
+        String gameResultDescription = "1,000원";
+        int lineNumber = 1;
 
         // When
         GameResult gameResult = GameResult.of(gameResultDescription, lineNumber);
@@ -27,8 +26,8 @@ public class GameResultTest {
     @Test
     void 결과_라인_번호와_같은지_체크() {
         // Given
-        final GameResult gameResult = GameResult.of("꽝", 3);
-        final LineNumber inputLineNumber = new LineNumber(3);
+        GameResult gameResult = GameResult.of("꽝", 3);
+        LineNumber inputLineNumber = new LineNumber(3);
 
         // When
         boolean isEqual = gameResult.isEqualLineNumber(inputLineNumber);

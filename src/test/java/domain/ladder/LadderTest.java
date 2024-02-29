@@ -1,11 +1,9 @@
 package domain.ladder;
 
-import domain.ladder.Ladder;
-import domain.ladder.LadderHeight;
 import domain.player.Player;
-import util.RandomBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import util.RandomBooleanGenerator;
 
 import java.util.function.Supplier;
 
@@ -17,9 +15,9 @@ public class LadderTest {
     @Test
     void Ladder_인스턴스_생성() {
         // Given
-        final Supplier<Boolean> randomGenerator = new RandomBooleanGenerator();
-        final LadderHeight ladderHeight = new LadderHeight(5);
-        final int playersCount = 4;
+        Supplier<Boolean> randomGenerator = new RandomBooleanGenerator();
+        LadderHeight ladderHeight = new LadderHeight(5);
+        int playersCount = 4;
 
         // When
         Ladder ladder = Ladder.of(randomGenerator, ladderHeight, playersCount);
