@@ -28,12 +28,15 @@ public class LadderController {
             final Height height = generateHeight();
             final Ladder ladder = generateLadder(players, height);
 
+            ladder.play(players);
+
             OutputView.printPlayerNames(players);
             OutputView.printLadder(ladder, players.findMaxNameLength());
             OutputView.printPrizes(prizes);
 
             final String targetName = InputView.inputPrizeTargetName();
-            OutputView.printGamePrize(prizes.findResultByPlayer(players.findPlayerByName(targetName)).getValue());
+            final Prize resultByPlayer = prizes.findResultByPlayer(players.findPlayerByName(targetName));
+            OutputView.printGamePrize(resultByPlayer.getValue());
         } catch (Exception e) {
             OutputView.printErrorMessage(e);
         }
