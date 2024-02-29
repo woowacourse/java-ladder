@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
+import ladder.domain.LadderGame;
 import ladder.domain.PlayerName;
 import ladder.domain.Price;
 import ladder.domain.linegenerator.LinePatternGenerator;
@@ -27,10 +28,29 @@ public class LadderGameController {
         LinePatternGenerator lineGenerator = new LinePatternGenerator(new RandomBooleanSupplier());
         Ladder ladder = Ladder.makeLadder(height, playerNames.size(), lineGenerator);
 
+        LadderGame ladderGame = new LadderGame(playerNames, ladder);
+
         PlayerNamesDto playerNamesDto = toDto(playerNames);
         LadderDto ladderDto = toDto(ladder);
         PriceDto priceDto = toPriceDto(prices);
         outputView.printResult(ladderDto, playerNamesDto, priceDto);
+
+        printResult(ladderGame.playGame(), prices);
+    }
+
+    private void printResult(List<String> result, List<Price> prices) {
+        String selectName = inputView.inputSelectName();
+        if (result.contains(selectName)) {
+            int index = result.indexOf(selectName);
+            outputView.printOneReward(selectName, prices.get(index));
+            printResult(result, prices);
+            return;
+        }
+        if (selectName.equals("all")) {
+            outputView.printReward(result, prices);
+            return;
+        }
+        printResult(result, prices);
     }
 
     private List<PlayerName> inputPlayerNames() {
