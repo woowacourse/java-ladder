@@ -43,6 +43,12 @@ public class People {
         personGroup.forEach(person -> person.climbDown(ladder));
     }
 
+    public boolean contains(PersonName personName) {
+        return personGroup.stream()
+                .map(Person::getPersonName)
+                .anyMatch(name -> name.equals(personName));
+    }
+
     public List<String> getNames() {
         return personGroup.stream()
                 .map(Person::getPersonName)

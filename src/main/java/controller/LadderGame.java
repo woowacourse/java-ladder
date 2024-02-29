@@ -31,23 +31,46 @@ public class LadderGame {
         outputView.printResult(result);
         PresentMatches presentMatches = PresentMatches.from(people, presents);
         while (true) {
-            searchMatches(presentMatches, people);
+            showMatches(presentMatches, people);
         }
     }
 
     private People initPeople() {
-        final List<String> names = inputView.inputNames();
-        return People.from(names);
+        try {
+            final List<String> names = inputView.inputNames();
+            return People.from(names);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return initPeople();
+        }
     }
 
     private Presents initPresent(int personCount) {
-        final List<String> presentNames = inputView.inputPresentNames();
-        return Presents.from(presentNames, personCount);
+        try {
+            final List<String> presentNames = inputView.inputPresentNames();
+            return Presents.from(presentNames, personCount);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return initPresent(personCount);
+        }
     }
 
     private Ladder initLadder(final int personCount) {
-        final int height = inputView.inputHeight();
-        return Ladder.from(height, personCount, new RandomPathGenerator());
+        try {
+            final int height = inputView.inputHeight();
+            return Ladder.from(height, personCount, new RandomPathGenerator());
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return initLadder(personCount);
+        }
+    }
+
+    private void showMatches(PresentMatches presentMatches, People people) {
+        try {
+            searchMatches(presentMatches, people);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+        }
     }
 
     private void searchMatches(PresentMatches presentMatches, People people) {
@@ -57,6 +80,9 @@ public class LadderGame {
             return;
         }
         PersonName personName = new PersonName(finding);
+        if (!people.contains(personName)) {
+            throw new IllegalArgumentException("존재하지 않는 이름입니다.");
+        }
         Present present = presentMatches.findByPersonName(personName);
         outputView.printMatched(present.name());
     }

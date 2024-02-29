@@ -10,6 +10,10 @@ import model.PersonName;
 
 public class OutputView {
 
+    public void printError(final String message) {
+        System.out.println("[error] " + message);
+    }
+
     public void printResult(final Result result) {
         printInitialMessages();
         printNames(result.names());
