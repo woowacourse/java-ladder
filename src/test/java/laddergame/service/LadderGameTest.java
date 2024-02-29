@@ -28,7 +28,7 @@ public class LadderGameTest {
         final List<String> inputResults = List.of("꽝", "3000", "5000", "2000");
 
         final Names names = new Names(inputNames);
-        final Results results = new Results(inputResults);
+        final Results results = new Results(inputResults, 3);
         final LadderHeight height = new LadderHeight(5);
 
         final LadderGame ladderGame = new LadderGame((i, j) -> new Ladder(List.of(
@@ -53,7 +53,7 @@ public class LadderGameTest {
         final List<String> inputResults = List.of("꽝", "3000", "5000");
 
         final Names names = new Names(inputNames);
-        final Results results = new Results(inputResults);
+        final Results results = new Results(inputResults, 3);
         final LadderHeight height = new LadderHeight(5);
 
         final LadderGame ladderGame = new LadderGame((i, j) -> new Ladder(List.of(
@@ -85,7 +85,7 @@ public class LadderGameTest {
     void findResultByName() {
         // given
         final Names names = new Names(List.of("pobi", "honux", "jk"));
-        final Results results = new Results(List.of("꽝", "3000", "5000"));
+        final Results results = new Results(List.of("꽝", "3000", "5000"), 3);
         final LadderHeight height = new LadderHeight(5);
 
         final LadderGame ladderGame = new LadderGame((i, j) -> new Ladder(List.of(
@@ -112,7 +112,7 @@ public class LadderGameTest {
     void isNotExistName() {
         // given
         final Names names = new Names(List.of("pobi", "honux", "jk"));
-        final Results results = new Results(List.of("꽝", "3000", "5000"));
+        final Results results = new Results(List.of("꽝", "3000", "5000"), 3);
         final LadderHeight height = new LadderHeight(5);
 
         final LadderGame ladderGame = new LadderGame((i, j) -> new Ladder(List.of(
@@ -138,7 +138,7 @@ public class LadderGameTest {
     void findAll() {
         // given
         final Names names = new Names(List.of("pobi", "honux", "jk"));
-        final Results results = new Results(List.of("꽝", "3000", "5000"));
+        final Results results = new Results(List.of("꽝", "3000", "5000"), 3);
         final LadderHeight height = new LadderHeight(5);
 
         final LadderGame ladderGame = new LadderGame((i, j) -> new Ladder(List.of(

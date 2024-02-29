@@ -29,7 +29,7 @@ public class LadderController {
 
     public void run() {
         final Names names = receiveInputNames();
-        final Results results = new Results(inputView.readResults());
+        final Results results = receiveInputResults(names);
         final LadderHeight height = receiveInputLadderHeight();
 
         final LadderResult ladderResult = ladderGame.createLadder(names, results, height);
@@ -41,6 +41,11 @@ public class LadderController {
 
     private Names receiveInputNames() {
         return ExceptionHandler.retryUntilInputIsValid(() -> new Names(inputView.readNames()), outputView);
+    }
+
+    private Results receiveInputResults(final Names names) {
+        return ExceptionHandler.retryUntilInputIsValid(() -> new Results(inputView.readResults(), names.size()),
+                outputView);
     }
 
     private LadderHeight receiveInputLadderHeight() {
