@@ -4,7 +4,7 @@ import domain.ladder.DirectionalRung;
 import domain.ladder.Ladder;
 import domain.ladder.LadderRow;
 import domain.player.Players;
-import domain.result.Results;
+import domain.prize.Prizes;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,15 +25,20 @@ public class OutputView {
         System.out.println(stringBuilder);
     }
 
-    public static void printResults(final Results results) {
+    public static void printPrizes(final Prizes prizes) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        results.getResults()
+        prizes.getPrizes()
                 .stream()
-                .map(result -> alignStringCenter(result.getValue()))
+                .map(prize -> alignStringCenter(prize.getValue()))
                 .forEach(stringBuilder::append);
 
         System.out.println(stringBuilder);
+    }
+
+    public static void printGamePrize(final String prize) {
+        System.out.println("실행 결과");
+        System.out.println(prize);
     }
 
     private static String alignStringCenter(String input) {

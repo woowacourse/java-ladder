@@ -8,8 +8,8 @@ import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.player.Name;
 import domain.player.Players;
-import domain.result.Result;
-import domain.result.Results;
+import domain.prize.Prize;
+import domain.prize.Prizes;
 import java.util.List;
 import view.InputView;
 import view.OutputView;
@@ -24,14 +24,16 @@ public class LadderController {
     public void run() {
         try {
             final Players players = generatePlayers();
-            final Results results = generateResults();
+            final Prizes prizes = generatePrizes();
             final Height height = generateHeight();
             final Ladder ladder = generateLadder(players, height);
-            final String targetName = InputView.inputResultTargetName();
 
             OutputView.printPlayerNames(players);
             OutputView.printLadder(ladder, players.findMaxNameLength());
-            OutputView.printResults(results);
+            OutputView.printPrizes(prizes);
+
+            final String targetName = InputView.inputPrizeTargetName();
+            OutputView.printGamePrize(prizes.findResultByPlayer(players.findPlayerByName(targetName)).getValue());
         } catch (Exception e) {
             OutputView.printErrorMessage(e);
         }
@@ -44,11 +46,11 @@ public class LadderController {
                 .collect(collectingAndThen(toList(), Players::new));
     }
 
-    private Results generateResults() {
-        final List<String> results = InputView.inputResults();
-        return results.stream()
-                .map(Result::new)
-                .collect(collectingAndThen(toList(), Results::new));
+    private Prizes generatePrizes() {
+        final List<String> prizes = InputView.inputPrizes();
+        return prizes.stream()
+                .map(Prize::new)
+                .collect(collectingAndThen(toList(), Prizes::new));
     }
 
     private Height generateHeight() {

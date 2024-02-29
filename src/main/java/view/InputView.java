@@ -24,13 +24,13 @@ public class InputView {
         return Arrays.asList(rawNames.split(DEFAULT_DELIMITER, -1));
     }
 
-    public static List<String> inputResults() {
+    public static List<String> inputPrizes() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
 
-        String rawResults = scanner.nextLine();
-        validateStringWithDelimiter(rawResults);
+        String rawPrizes = scanner.nextLine();
+        validateStringWithDelimiter(rawPrizes);
 
-        return Arrays.asList(rawResults.split(DEFAULT_DELIMITER, -1));
+        return Arrays.asList(rawPrizes.split(DEFAULT_DELIMITER, -1));
     }
 
     public static int inputHeight() {
@@ -42,7 +42,7 @@ public class InputView {
         return Integer.parseInt(rawHeight);
     }
 
-    public static String inputResultTargetName() {
+    public static String inputPrizeTargetName() {
         System.out.println("결과를 보고 싶은 사람은?");
 
         String rawTargetName = scanner.nextLine();
