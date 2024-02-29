@@ -29,7 +29,7 @@ public class LadderGameController {
     private LadderGame executeLadderGame(Players players, Ladder ladder) {
         LadderGame ladderGame = retryUntilValidated(() ->
                 new LadderGame(players, ladder, inputView.readLadderResult()));
-        ladderGame.climb();
+        ladderGame.climbLadder();
         return ladderGame;
     }
 

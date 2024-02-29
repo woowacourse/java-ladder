@@ -23,7 +23,7 @@ public class LadderGame {
         }
     }
 
-    public void climb() {
+    public void climbLadder() {
         for (Player player : players.getPlayers()) {
             moveToLadderEnd(player);
             player.assignItem(items.get(player.getPosition().getX()));
