@@ -23,8 +23,7 @@ public class Ladder {
 
     private Line generateLine(final int playerCount, final BooleanGenerator booleanGenerator) {
         return IntStream.range(0, playerCount - 1)
-                .boxed()
-                .map(index -> booleanGenerator.generate())
+                .mapToObj(index -> booleanGenerator.generate())
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Line::new));
     }
 
