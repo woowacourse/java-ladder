@@ -52,10 +52,13 @@ class GameTest {
         Name name = new Name("pobi");
 
         // when
-        String result = game.play(name);
+        Map<Name, String> playResults = game.play(name);
 
         // then
-        assertThat(result).isEqualTo("꽝");
+        Map<Name, String> expected = Map.of(
+                new Name("pobi"), "꽝"
+        );
+        assertThat(playResults).containsAllEntriesOf(expected);
     }
 
     @Test
@@ -63,18 +66,18 @@ class GameTest {
     void playOnAllTarget() {
         // given
         Game game = new Game(people, results, ladder);
+        Name all = new Name("all");
 
         // when
-        Map<Name, String> results = game.playAll();
+        Map<Name, String> playResults = game.play(all);
 
-        Map<Name, String> nameStringMap = Map.of(
+        // then
+        Map<Name, String> expected = Map.of(
                 new Name("pobi"), "꽝",
                 new Name("honux"), "꽝",
                 new Name("crong"), "5000",
                 new Name("jk"), "3000"
         );
-        // then
-        assertThat(results).containsAllEntriesOf(nameStringMap);
-
+        assertThat(playResults).containsAllEntriesOf(expected);
     }
 }
