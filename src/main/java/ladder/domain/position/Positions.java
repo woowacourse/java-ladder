@@ -18,7 +18,7 @@ public class Positions {
         this.positions = positions;
     }
 
-    public List<Position> createDefaultPositions(int width) {
+    private List<Position> createDefaultPositions(int width) {
         List<Position> positions = new ArrayList<>();
         for (int i = 0; i < width; i++) {
             positions.add(new Position(i));
