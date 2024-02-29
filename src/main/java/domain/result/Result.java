@@ -16,7 +16,8 @@ public class Result {
 
     private void validateLength(String value) {
         if (value.length() < MIN_VALUE_LENGTH || MAX_VALUE_LENGTH < value.length()) {
-            throw new IllegalArgumentException("실행 결과는 1~5자 사이여야 합니다.");
+            String message = String.format("실행 결과는 %d~%d자 사이여야 합니다.", MIN_VALUE_LENGTH, MAX_VALUE_LENGTH);
+            throw new IllegalArgumentException(message);
         }
     }
 
