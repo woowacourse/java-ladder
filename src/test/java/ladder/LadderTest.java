@@ -61,7 +61,8 @@ class LadderTest {
         );
         // when, then
         assertThatThrownBy(() -> new Ladder(lines))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("각 줄의 크기가 다릅니다.");
     }
 
     @Test

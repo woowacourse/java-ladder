@@ -23,7 +23,8 @@ class ResultTest {
     @DisplayName("글자 수가 올바르지 않은 경우, 예외를 발생한다.")
     void invalidResultLengthTest(String name) {
         assertThatThrownBy(() -> new Result(name))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("결과는 1글자에서 5글자 사이여야 합니다.");
     }
 
     @ParameterizedTest
@@ -31,7 +32,8 @@ class ResultTest {
     @DisplayName("결과가 한글, 영어 대소문자, 숫자로 이루어지지 않으면 예외를 발생한다.")
     void invalidResultPatternTest(String name) {
         assertThatThrownBy(() -> new Result(name))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("결과는 알파벳 대소문자, 숫자나 한글로 이루어져야 합니다.");
     }
 
 }

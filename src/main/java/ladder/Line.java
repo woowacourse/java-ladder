@@ -33,7 +33,14 @@ public class Line {
     }
 
     public Index move(Index index) {
+        validateIndex(index.toInt());
         return directions.get(index.toInt()).apply(index);
+    }
+
+    private void validateIndex(int index) {
+        if (index < 0 || index >= directions.size()) {
+            throw new IndexOutOfBoundsException("인덱스를 벗어납니다.");
+        }
     }
 
     int size() {

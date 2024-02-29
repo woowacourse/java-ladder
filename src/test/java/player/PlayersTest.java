@@ -37,7 +37,8 @@ class PlayersTest {
         List<String> playerNames = List.of(names.split(","));
         // when, then
         assertThatThrownBy(() -> new Players(playerNames))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("참여자의 수는 2명 이상 10명 이하로 작성해야 합니다.");
     }
 
     @Test
@@ -65,7 +66,8 @@ class PlayersTest {
         Players players = new Players(List.of("aru", "pobi", "woowa"));
         // when, then
         assertThatThrownBy(() -> players.findIndexByName("jazz"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("존재하지 않는 이름입니다.");
     }
 
     @Test
@@ -84,7 +86,8 @@ class PlayersTest {
         Players players = new Players(List.of("aru", "pobi", "woowa"));
         // when, then
         assertThatThrownBy(() -> players.getNameByIndex(3))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("인덱스를 벗어납니다.");
     }
 
     @Test
@@ -94,6 +97,7 @@ class PlayersTest {
         List<String> playerNames = List.of("aru", "pobi", "aru");
         // when, then
         assertThatThrownBy(() -> new Players(playerNames))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("중복된 이름이 존재합니다.");
     }
 }

@@ -42,7 +42,8 @@ class LineTest {
         Index index = Index.of(5);
         // when, then
         assertThatThrownBy(() -> line.move(index))
-                .isInstanceOf(IndexOutOfBoundsException.class);
+                .isInstanceOf(IndexOutOfBoundsException.class)
+                .hasMessage("인덱스를 벗어납니다.");
     }
 
     @Test
@@ -50,7 +51,8 @@ class LineTest {
     void invalidCreationTest() {
         List<Direction> directions = List.of(RIGHT, RIGHT);
         assertThatThrownBy(() -> new Line(directions))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("잘못된 사다리 연결입니다.");
     }
 
     @Test
@@ -60,10 +62,12 @@ class LineTest {
         List<Direction> invalidRightDirections = List.of(STRAIGHT, STRAIGHT, RIGHT);
 
         assertThatThrownBy(() -> new Line(invalidLeftDirections))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("잘못된 사다리 연결입니다.");
 
         assertThatThrownBy(() -> new Line(invalidRightDirections))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("잘못된 사다리 연결입니다.");
     }
 
     @Test
@@ -71,7 +75,8 @@ class LineTest {
     void invalidCreationOnSmallSize() {
         List<Direction> directions = List.of(STRAIGHT);
         assertThatThrownBy(() -> new Line(directions))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("올바르지 않은 방향의 개수입니다.");
     }
 
     @Test

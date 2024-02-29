@@ -23,7 +23,8 @@ class PlayerTest {
     @DisplayName("이름의 길이가 올바르지 않은 경우, 예외를 발생한다.")
     void invalidNameLengthTest(String name) {
         assertThatThrownBy(() -> new Player(name))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 1글자 이상 5글자 이하로 작성해야 합니다.");
     }
 
     @ParameterizedTest
@@ -31,6 +32,7 @@ class PlayerTest {
     @DisplayName("이름이 영어 소문자로 이루어지지 않은 경우, 예외를 발생한다.")
     void invalidNamePatternTest(String name) {
         assertThatThrownBy(() -> new Player(name))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 알파벳 소문자로만 작성해야 합니다.");
     }
 }

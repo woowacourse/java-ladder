@@ -12,7 +12,8 @@ class IndexTest {
     @DisplayName("음수 인덱스를 생성하는 경우, 예외를 발생한다.")
     void negativeIndexTest() {
         assertThatThrownBy(() -> Index.of(-1))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("인덱스는 음수일 수 없습니다.");
     }
 
     @Test

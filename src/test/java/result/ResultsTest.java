@@ -37,7 +37,8 @@ class ResultsTest {
         List<String> resultNames = List.of(names.split(","));
         // when, then
         assertThatThrownBy(() -> new Results(resultNames))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("결과의 개수는 2개 이상 10개 이하로 작성해야 합니다.");
     }
 
     @Test
@@ -66,6 +67,7 @@ class ResultsTest {
         Results results = new Results(List.of("꽝", "10000", "바나나우유"));
         // when, then
         assertThatThrownBy(() -> results.getNameByIndex(index))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("인덱스를 벗어납니다.");
     }
 }
