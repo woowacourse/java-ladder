@@ -12,14 +12,15 @@ import static view.InputView.inputNames;
 
 import domain.GameBoard;
 import domain.ladder.Ladder;
+import domain.ladder.attirbute.Direction;
 import domain.ladder.attirbute.Height;
 import domain.player.PlayerName;
 import domain.player.PlayerNames;
 import domain.player.Players;
 import domain.prize.PrizeName;
 import domain.prize.PrizeNames;
+import java.util.List;
 import java.util.Map;
-import java.util.stream.IntStream;
 import util.RandomDirectionGenerator;
 import view.OutputView;
 
@@ -41,9 +42,10 @@ public class GameController {
         OutputView.print(LADDER_GENERATE_RESULT_HEADER);
         OutputView.printNewLine();
         OutputView.printObjectNames(gameBoard.getGamePlayerNames());
-        IntStream.range(0, gameBoard.getLadderHeight())
-                .mapToObj(gameBoard::getDirectionsAtHorizontalIndex)
-                .forEach(OutputView::printDirections);
+        for (int currentIndex = 0; currentIndex < gameBoard.getLadderHeight(); currentIndex++) {
+            List<Direction> directions = gameBoard.getDirectionsAtHorizontalIndex(currentIndex);
+            OutputView.printDirections(directions);
+        }
         OutputView.printObjectNames(gameBoard.getPrizes()
                 .getValue());
     }
