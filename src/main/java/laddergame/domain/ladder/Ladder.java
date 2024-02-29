@@ -37,6 +37,6 @@ public class Ladder {
     }
 
     public List<RowLine> getRowLines() {
-        return Collections.unmodifiableList(rowLines);
+        return rowLines;
     }
 }
