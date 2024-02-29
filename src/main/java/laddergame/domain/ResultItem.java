@@ -7,7 +7,7 @@ public record ResultItem(String item) {
         validate(item);
     }
 
-    public void validate(String item) {
+    private void validate(String item) {
         checkItemIsBlank(item);
     }
 
