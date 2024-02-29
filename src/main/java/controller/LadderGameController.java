@@ -16,8 +16,8 @@ public class LadderGameController {
         Players players = retryOnException(this::preparePlayers);
         Prizes prizes = retryOnExceptionWithParameter(this::preparePrizes, players);
         LadderHeight ladderHeight = retryOnException(this::prepareLadderHeight);
-        Ladder ladder = makeLadder(players, ladderHeight);
-        end(players, ladder);
+        Ladder ladder = makeLadder(ladderHeight, players, prizes);
+        playLadder(ladder, players, prizes);
     }
 
     private Players preparePlayers() {
@@ -35,14 +35,17 @@ public class LadderGameController {
         return Prizes.of(players, prizeNames);
     }
 
-    public Ladder makeLadder(Players players, LadderHeight ladderHeight) {
-        return Ladder.of(ladderHeight, players, new RandomBridgesGenerator());
-    }
-
-    public void end(Players players, Ladder ladder) {
+    public Ladder makeLadder(LadderHeight ladderHeight, Players players, Prizes prizes) {
+        Ladder ladder = Ladder.of(ladderHeight, players, new RandomBridgesGenerator());
         OutputView.printGameResultIntro();
         OutputView.printPlayerNames(players);
         OutputView.printLadder(ladder);
+        OutputView.printPrizeNames(prizes);
+        return ladder;
+    }
+
+    public void playLadder(Ladder ladder, Players players, Prizes prizes) {
+        
     }
 
     private <T> T retryOnException(Supplier<T> retryOperation) {
