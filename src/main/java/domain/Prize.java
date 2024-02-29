@@ -23,6 +23,10 @@ public class Prize {
         return prize.length() < MINIMUM_PRIZE_LENGTH || prize.length() > MAXIMUM_PRIZE_LENGTH;
     }
 
+    public String getPrizeName(){
+        return prize;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -38,7 +38,7 @@ class PrizeResultsTest {
     void checkOperateValidation() {
         PrizeResults prizeResults = init();
 
-        assertThatCode(() -> prizeResults.getByOperate("atom"))
+        assertThatCode(() -> prizeResults.getByOperator("atom"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(String.format("보고 싶은 결과는 all 또는 사용자 이름으로 입력해주세요. 입력 : %s", "atom"));
     }
@@ -48,7 +48,7 @@ class PrizeResultsTest {
     void getALL() {
         PrizeResults prizeResults = init();
 
-        Map<Player, Prize> allActual = prizeResults.getByOperate("all");
+        Map<Player, Prize> allActual = prizeResults.getByOperator("all");
         Map<Player, Prize> allExpected = new LinkedHashMap<>();
         allExpected.put(new Player("wiib"), new Prize("당첨"));
         allExpected.put(new Player("pobi"), new Prize("꽝"));
@@ -62,7 +62,7 @@ class PrizeResultsTest {
     void getPlayerResult() {
         PrizeResults prizeResults = init();
 
-        Map<Player, Prize> wiibResultActual = prizeResults.getByOperate("wiib");
+        Map<Player, Prize> wiibResultActual = prizeResults.getByOperator("wiib");
         Map<Player, Prize> wiibResultExpected = new LinkedHashMap<>();
         wiibResultExpected.put(new Player("wiib"), new Prize("당첨"));
 
