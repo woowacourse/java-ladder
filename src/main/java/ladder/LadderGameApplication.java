@@ -31,9 +31,11 @@ public class LadderGameApplication {
 
     public static void run() {
         LadderGameResult result = runLadderGame();
-        while (true) {
-            repeatUntilNoException(() -> requestResult(result));
-        }
+
+        ResultRequest resultRequest;
+        do {
+            resultRequest = repeatUntilNoException(() -> requestResult(result));
+        } while (resultRequest.isContinueProgram());
     }
 
     private static LadderGameResult runLadderGame() {
@@ -49,13 +51,24 @@ public class LadderGameApplication {
         return ladderGame.progress();
     }
 
-    private static void requestResult(LadderGameResult result) {
+    private static ResultRequest requestResult(LadderGameResult result) {
         ResultRequest resultRequest = INPUT_VIEW.inputResultRequest();
+
         if (resultRequest.isRequestAll()) {
-            OUTPUT_VIEW.printTotalResult(LadderGameResultDto.from(result));
-            return;
+            printAllResult(result);
         }
-        Product productResult = result.findResult(new Player(resultRequest.getPlayerName()));
+        if (resultRequest.isSingleRequest()) {
+            printSingleResult(result, resultRequest.getPlayerName());
+        }
+        return resultRequest;
+    }
+
+    private static void printAllResult(LadderGameResult result) {
+        OUTPUT_VIEW.printTotalResult(LadderGameResultDto.from(result));
+    }
+
+    private static void printSingleResult(LadderGameResult result, String playerName) {
+        Product productResult = result.findResult(new Player(playerName));
         OUTPUT_VIEW.printSingleResult(productResult.getName());
     }
 
@@ -87,15 +100,6 @@ public class LadderGameApplication {
         } catch (IllegalArgumentException exception) {
             OUTPUT_VIEW.printErrorMessage(exception);
             return repeatUntilNoException(supplier);
-        }
-    }
-
-    private static void repeatUntilNoException(Runnable runnable) {
-        try {
-            runnable.run();
-        } catch (IllegalArgumentException exception) {
-            OUTPUT_VIEW.printErrorMessage(exception);
-            repeatUntilNoException(runnable);
         }
     }
 }

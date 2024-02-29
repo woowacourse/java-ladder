@@ -26,8 +26,12 @@ public class ResultRequest {
         return requestCommand == RequestCommand.ALL_RESULT;
     }
 
-    public boolean isExitProgram() {
-        return requestCommand == RequestCommand.EXIT_PROGRAM;
+    public boolean isSingleRequest() {
+        return requestCommand == RequestCommand.SINGLE_RESULT;
+    }
+
+    public boolean isContinueProgram() {
+        return requestCommand != RequestCommand.EXIT_PROGRAM;
     }
 
     private enum RequestCommand {
