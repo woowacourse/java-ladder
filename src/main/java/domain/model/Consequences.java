@@ -14,4 +14,7 @@ public class Consequences {
             throw new IllegalArgumentException("결과는 사람 수와 일치해야 합니다.");
         }
     }
+    public String getConsequenceByOrder(int order){
+        return consequences.get(order);
+    }
 }
