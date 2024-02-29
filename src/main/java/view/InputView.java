@@ -20,6 +20,15 @@ public class InputView {
                 .toList();
     }
 
+    public static List<String> readResults() throws IOException {
+        System.out.printf("실행 결과를 입력하세요. (결과는 쉼표(%s)로 구분하세요)%n", SEPERATOR);
+
+        String[] splitInput = br.readLine().split(SEPERATOR);
+        return Arrays.stream(splitInput)
+                .map(String::trim)
+                .toList();
+    }
+
     public static int readHeight() throws IOException {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
 
