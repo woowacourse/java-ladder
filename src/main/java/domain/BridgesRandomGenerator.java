@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -13,7 +14,7 @@ public class BridgesRandomGenerator implements BridgesGenerator {
         for (int i = 0; i < width; i++) {
             previousBridge = bridges.add(nextBridge(previousBridge));
         }
-        return new Bridges(bridges);
+        return new Bridges(Collections.unmodifiableList(bridges));
     }
 
     private Boolean nextBridge(boolean previousBridge) {
