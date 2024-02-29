@@ -10,6 +10,10 @@ public class RightDirectionGenerator implements DirectionGenerator {
         this.random = new Random();
     }
 
+    private Direction generateRightOrNeutral() {
+        return Direction.getDirection(random.nextBoolean());
+    }
+
     @Override
     public Direction generateInitialValue() {
         return Direction.getDirection(true);
@@ -29,9 +33,5 @@ public class RightDirectionGenerator implements DirectionGenerator {
             return Direction.LEFT;
         }
         return Direction.NEUTRAL;
-    }
-
-    private Direction generateRightOrNeutral() {
-        return Direction.getDirection(random.nextBoolean());
     }
 }
