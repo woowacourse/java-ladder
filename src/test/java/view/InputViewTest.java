@@ -1,6 +1,7 @@
 package view;
 
 import domain.Height;
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -8,8 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.List;
 
 class InputViewTest {
     @DisplayName("이름에 대한 입력 테스트")
@@ -76,6 +75,41 @@ class InputViewTest {
             Assertions.assertThatThrownBy(() -> InputView.readHeight(() -> "무빈"))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("정수를 입력해야 합니다.");
+        }
+    }
+
+    @DisplayName("실행결과에 대한 입력 테스트")
+    @Nested
+    class winningsTest {
+        @DisplayName("interface Reader로부터 받은 String을 List<String>으로 반환한다.")
+        @Test
+        void stringToListTest() {
+            Assertions.assertThat(InputView.readWinnings(() -> "a,b,c"))
+                    .isEqualTo(List.of("a", "b", "c"));
+        }
+
+        @DisplayName("null 혹은 빈 문자열을 받으면 예외를 발생한다.")
+        @ParameterizedTest
+        @NullAndEmptySource
+        @ValueSource(strings = {" ", "\t", "\n"})
+        void emptyInputTest(String input) {
+            Assertions.assertThatThrownBy(() -> InputView.readWinnings(() -> input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("null 혹은 빈 문자열을 입력할 수 없습니다.");
+        }
+    }
+
+    @DisplayName("결과 이름에 대한 입력 테스트")
+    @Nested
+    class ResultNameTest {
+        @DisplayName("null 혹은 빈 문자열을 받으면 예외를 발생한다.")
+        @ParameterizedTest
+        @NullAndEmptySource
+        @ValueSource(strings = {" ", "\t", "\n"})
+        void emptyInputTest(String input) {
+            Assertions.assertThatThrownBy(() -> InputView.readResultName(() -> input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("null 혹은 빈 문자열을 입력할 수 없습니다.");
         }
     }
 }

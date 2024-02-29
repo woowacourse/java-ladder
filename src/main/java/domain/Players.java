@@ -1,9 +1,12 @@
 package domain;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Players implements Iterable<Name> {
+public class Players {
+
+    private static final int MIN_PLAYER = 2;
+    private static final int MAX_PLAYER = 10;
 
     private final List<Name> players;
 
@@ -14,18 +17,17 @@ public class Players implements Iterable<Name> {
                 .toList();
     }
 
-    @Override
-    public Iterator<Name> iterator() {
-        return players.iterator();
-    }
-
-    public int getPersonCount() {
-        return players.size();
-    }
-
     private void validateNumber(List<String> names) {
-        if (names.size() < 2 || names.size() > 10){
-            throw new IllegalArgumentException("이름의 수는 2이상 10이하여야 합니다.");
+        if (names.size() < MIN_PLAYER || names.size() > MAX_PLAYER) {
+            throw new IllegalArgumentException(String.format("%d는 올바른 이름의 수가 아닙니다. 이름의 수는 %d이상 %d이하여야 합니다.", names.size(), MIN_PLAYER, MAX_PLAYER));
         }
+    }
+
+    public List<Name> getPlayers() {
+        return new ArrayList<>(players);
+    }
+
+    public int getPlayersNumber() {
+        return players.size();
     }
 }

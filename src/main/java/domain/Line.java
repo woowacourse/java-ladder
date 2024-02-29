@@ -1,22 +1,32 @@
 package domain;
 
-import util.Connection;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
-
+import static util.Connection.CONNECTED;
 import static util.Connection.UNCONNECTED;
 
-public class Line implements Iterable<Connection>{
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.IntStream;
+import util.Connection;
+
+public class Line {
+
+    private static final int THRESHOLD = 5;
+    private static final int MIN_LINE = 2;
+    private static final int MAX_LINE = 10;
+
     private final List<Connection> line;
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Line line1 = (Line) o;
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Line line1 = (Line) obj;
         return Objects.equals(line, line1.line);
     }
 
@@ -25,31 +35,45 @@ public class Line implements Iterable<Connection>{
         return Objects.hash(line);
     }
 
-    @Override
-    public Iterator<Connection> iterator() {
-        return line.iterator();
-    }
-
     public Line (List<Integer> numbers) {
         validateRange(numbers.size());
         List<Connection> line = new ArrayList<>();
         line.add(UNCONNECTED);
-        for (int index = 1; index < numbers.size(); index++) {
-            line.add(Connection.valueOfBridge(
-                    line.get(index - 1).equals(UNCONNECTED)
-                    && hasConnection(numbers.get(index))
-            ));
-        }
+        buildLine(numbers, line);
         this.line = line;
     }
 
+    private void buildLine(List<Integer> numbers, List<Connection> line) {
+        for (int index = 1; index < numbers.size(); index++) {
+            line.add(Connection.valueOfBridge(
+                    isConnected(line, index - 1, UNCONNECTED)
+                    && hasConnection(numbers.get(index))
+            ));
+        }
+    }
+
+    public List<Integer> getConnectedIndex() {
+        return IntStream.range(0, line.size())
+                .filter(value -> isConnected(line, value, CONNECTED))
+                .boxed()
+                .toList();
+    }
+
+    private boolean isConnected(List<Connection> line, int value, Connection connected) {
+        return line.get(value).equals(connected);
+    }
+
     private void validateRange(int height) {
-        if (height < 2 || height > 10) {
-            throw new IllegalArgumentException("숫자는 2 이상 10 이하여야 합니다.");
+        if (height < MIN_LINE || height > MAX_LINE) {
+            throw new IllegalArgumentException(String.format("%d는 올바른 숫자가 아닙니다. 숫자는 %d 이상 %d 이하여야 합니다.", height, MIN_LINE, MAX_LINE));
         }
     }
 
     private boolean hasConnection(int threshold) {
-        return (threshold >= 5);
+        return (threshold >= THRESHOLD);
+    }
+
+    public List<Connection> getLine() {
+        return Collections.unmodifiableList(line);
     }
 }

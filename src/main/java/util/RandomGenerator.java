@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomGenerator implements Generator{
+public class RandomGenerator implements Generator {
+
+    private static final int MAX_POSSIBILITY = 10;
+
     public RandomGenerator() {}
 
     @Override
@@ -12,7 +15,7 @@ public class RandomGenerator implements Generator{
         Random random = new Random();
         List<Integer> result = new ArrayList<>();
         for (int i = 0; i < personCount; ++i) {
-            result.add(random.nextInt(10));
+            result.add(random.nextInt(MAX_POSSIBILITY));
         }
         return result;
     }

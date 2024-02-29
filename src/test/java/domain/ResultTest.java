@@ -1,50 +1,46 @@
 package domain;
 
-import static util.Connection.CONNECTED;
-import static util.Connection.UNCONNECTED;
-
 import java.util.List;
 import java.util.Map;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LadderGameTest {
-
-    @DisplayName("입력받은 이름과 사다리 높이에 따른 결과를 String으로 반환한다.")
+public class ResultTest {
+    @DisplayName("입력받은 이름에 맞는 사다리 타기 결과를 반환한다.")
     @Test
-    void getLadderShapeTest() {
+    void getResultByPersonTest() {
         Players players = new Players(List.of("1", "2"));
         CustomGenerator customGenerator = new CustomGenerator(List.of(false, true));
         Winnings winnings = new Winnings(List.of("꽝", "당첨"));
         LadderGame ladderGame = new LadderGame(players, new Height(1), winnings, customGenerator);
-        Assertions.assertThat(ladderGame.getLadderShape())
-                .isEqualTo(List.of(
-                        "     1     2",
-                        UNCONNECTED.getBridge() + CONNECTED.getBridge(),
-                        "     꽝    당첨"
-                ));
+        Result result = new Result(ladderGame.getResult());
+        Assertions.assertThat(result.getResultByPerson(new ResultName("1", players).getName()))
+                .isEqualTo("당첨");
     }
 
-    @DisplayName("사다리 타기 결과의 순서와 상응하는 이름들을 List로 반환한다.")
+    @DisplayName("이름 목록에 없는 이름을 입력한 경우 예외를 발생한다.")
     @Test
-    void getClimbedNamesTest() {
+    void validateNameTest() {
         Players players = new Players(List.of("1", "2"));
         CustomGenerator customGenerator = new CustomGenerator(List.of(false, true));
         Winnings winnings = new Winnings(List.of("꽝", "당첨"));
         LadderGame ladderGame = new LadderGame(players, new Height(1), winnings, customGenerator);
-        Assertions.assertThat(ladderGame.getClimbedNames())
-                .isEqualTo(List.of(new Name("2"), new Name("1")));
+        Result result = new Result(ladderGame.getResult());
+        Assertions.assertThatThrownBy(() -> result.getResultByPerson(new ResultName("3", players).getName()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("이름은 이전에 입력한 이름 중에 하나여야 합니다.");
     }
 
-    @DisplayName("사다리 타기 결과에 맞게 이름과 결과를 Map 으로 반환한다.")
+    @DisplayName("'all' 을 입력한 경우 모든 사다리 타기 결과를 반환한다.")
     @Test
-    void getResultTest() {
+    void getResultByAllTest() {
         Players players = new Players(List.of("1", "2"));
         CustomGenerator customGenerator = new CustomGenerator(List.of(false, true));
         Winnings winnings = new Winnings(List.of("꽝", "당첨"));
         LadderGame ladderGame = new LadderGame(players, new Height(1), winnings, customGenerator);
-        Assertions.assertThat(ladderGame.getResult())
-                .isEqualTo(Map.of(new Name("1"), new Winning("당첨"), new Name("2"), new Winning("꽝")));
+        Result result = new Result(ladderGame.getResult());
+        Assertions.assertThat(result.getResultByAll())
+                .isEqualTo(Map.of("1", "당첨", "2", "꽝"));
     }
 }

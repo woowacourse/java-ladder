@@ -1,7 +1,6 @@
 package view;
 
 import domain.Height;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
@@ -13,10 +12,7 @@ public class InputView {
         String inputString = input.get();
         validateEmpty(inputString);
         validateEndedWithComma(inputString);
-        return Arrays.stream(inputString.split(","))
-                .peek(InputView::validateEmpty)
-                .map(String::trim)
-                .toList();
+        return getPrepared(inputString);
     }
 
     private static void validateEmpty(String inputString) {
@@ -26,12 +22,13 @@ public class InputView {
     }
 
     private static void validateEndedWithComma(String inputString) {
-        if (inputString.endsWith(",")){
+        if (inputString.endsWith(",")) {
             throw new IllegalArgumentException("null 혹은 빈 문자열을 입력할 수 없습니다.");
         }
     }
 
     public static Height readHeight(Supplier<String> input) {
+        System.out.println();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String inputString = input.get();
         validateEmpty(inputString);
@@ -45,5 +42,30 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("정수를 입력해야 합니다.");
         }
+    }
+
+    public static List<String> readWinnings(Supplier<String> input) {
+        System.out.println();
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String inputString = input.get();
+        validateEmpty(inputString);
+        validateEndedWithComma(inputString);
+        return getPrepared(inputString);
+    }
+
+    private static List<String> getPrepared(String inputString) {
+        return Arrays.stream(inputString.split(","))
+                .peek(InputView::validateEmpty)
+                .map(String::trim)
+                .toList();
+    }
+
+    public static String readResultName(Supplier<String> input) {
+        System.out.println();
+        System.out.println("결과를 보고 싶은 사람은?");
+        String inputString = input.get();
+        validateEmpty(inputString);
+        validateEndedWithComma(inputString);
+        return inputString.trim();
     }
 }
