@@ -32,7 +32,8 @@ public class Players {
         return players.stream()
                       .filter(player -> player.isNameEqual(name))
                       .findFirst()
-                      .orElseThrow(() -> new IllegalArgumentException("없는 플레이어입니다."));
+                      .orElseThrow(() -> new IllegalArgumentException(
+                              String.format("%s는 플레이어 이름에 존재하지 않습니다.", name.getValue())));
     }
 
     public int getPlayerCount() {
