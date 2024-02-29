@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import ladder.domain.prize.GamePrizes;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ public class GamePrizesTest {
 
         List<String> gamePrizeInput = new ArrayList<>(List.of("꽝", " ", "5000", "꽝"));
 
-        Assertions.assertThatThrownBy(() -> new GamePrizes(gamePrizeInput))
+        Assertions.assertThatThrownBy(() -> new GamePrizes(gamePrizeInput, 4))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("상품 목록엔 빈칸이 포함될 수 없습니다.");
     }

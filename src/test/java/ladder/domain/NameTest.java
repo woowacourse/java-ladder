@@ -3,6 +3,7 @@ package ladder.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import ladder.domain.participant.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +20,7 @@ public class NameTest {
 
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름의 길이는 최대 "+MAXIMUM_NAME_LENGTH+"글자 까지 가능합니다.");
+                .hasMessage("이름의 길이는 최대 " + MAXIMUM_NAME_LENGTH + "글자 까지 가능합니다.");
     }
 
     @Test
