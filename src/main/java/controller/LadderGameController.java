@@ -4,9 +4,6 @@ import domain.LadderGame;
 import domain.TargetPlayer;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
-import domain.ladder.stick.RandomStickGenerator;
-import domain.ladder.stick.StickGenerator;
-import domain.ladder.sticks.NotRepeatedSticksGenerator;
 import domain.ladder.sticks.SticksGenerator;
 import domain.player.Player;
 import domain.player.Players;
@@ -22,10 +19,12 @@ public class LadderGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final SticksGenerator sticksGenerator;
 
-    public LadderGameController(InputView inputView, OutputView outputView) {
+    public LadderGameController(InputView inputView, OutputView outputView, SticksGenerator sticksGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.sticksGenerator = sticksGenerator;
     }
 
     public void run() {
@@ -38,10 +37,14 @@ public class LadderGameController {
         Results results = readResultsOfSize(players.getPlayerSize());
         Height height = readHeight();
 
-        SticksGenerator sticksGenerator = getSticksGenerator();
         Ladder ladder = new Ladder(height, players.getPlayerSize(), sticksGenerator);
         outputView.printLadder(players, ladder, results);
         return new LadderGame(players, ladder, results);
+    }
+
+    private void printResult(Players players, LadderGame ladderGame) {
+        TargetPlayer targetPlayer = readTargetPlayerIn(players.getPlayerNames());
+        printPlayerResult(targetPlayer, ladderGame);
     }
 
     private Players readPlayers() {
@@ -74,11 +77,6 @@ public class LadderGameController {
         }
     }
 
-    private void printResult(Players players, LadderGame ladderGame) {
-        TargetPlayer targetPlayer = readTargetPlayerIn(players.getPlayerNames());
-        printPlayerResult(targetPlayer, ladderGame);
-    }
-
     private TargetPlayer readTargetPlayerIn(List<String> players) {
         try {
             String inputTargetPlayer = inputView.readTargetPlayer();
@@ -87,11 +85,6 @@ public class LadderGameController {
             outputView.printError(e.getMessage());
             return readTargetPlayerIn(players);
         }
-    }
-
-    private NotRepeatedSticksGenerator getSticksGenerator() {
-        StickGenerator stickGenerator = new RandomStickGenerator();
-        return new NotRepeatedSticksGenerator(stickGenerator);
     }
 
     private void printPlayerResult(TargetPlayer targetPlayer, LadderGame ladderGame) {
