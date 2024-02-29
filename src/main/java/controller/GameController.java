@@ -49,7 +49,6 @@ public class GameController {
         들여쓰기 1로 맞춰야 함 -> break문 없애야 함 -> while의 조건문에서 체크하자 ->
         resultTarget이 null일 수 없으니 초반에 한 번 호출
          */
-
         ResultTarget resultTarget = showResult(members, gameResult);
         int count = 50;
         while (count-- > 0 && !resultTarget.isAllMembers()) {
@@ -58,7 +57,7 @@ public class GameController {
     }
 
     private ResultTarget showResult(Members members, GameResult gameResult) {
-        ResultTarget resultTarget = makeTargetName(members);
+        ResultTarget resultTarget = makeResultTarget(members);
         Map<Member, Result> result = gameResult.getResultByTarget(resultTarget);
         outputView.printResult(result);
         return resultTarget;
@@ -88,7 +87,7 @@ public class GameController {
         });
     }
 
-    private ResultTarget makeTargetName(Members members) {
+    private ResultTarget makeResultTarget(Members members) {
         return errorHandler.readUntilNoError(() -> {
             String rawTargetName = inputView.readTarget();
             return ResultTarget.of(rawTargetName, members.getMembers());
