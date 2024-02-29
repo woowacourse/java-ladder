@@ -30,4 +30,21 @@ public enum Direction {
     public boolean isInvalidPairWith(Direction direction) {
         return !pairDirections.contains(direction);
     }
+
+    public Direction next(boolean isAttemptingToConnect) {
+        if (this == RIGHT) {
+            return LEFT;
+        }
+        if (isAttemptingToConnect) {
+            return RIGHT;
+        }
+        return STRAIGHT;
+    }
+
+    public Direction nextAsLast() {
+        if (this == RIGHT) {
+            return LEFT;
+        }
+        return STRAIGHT;
+    }
 }
