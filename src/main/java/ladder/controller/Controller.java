@@ -33,8 +33,8 @@ public class Controller {
         Ladder ladder = Ladder.of(players, height, new DefaultLadderDirectionSelector());
         resultView.printLadder(players, ladder, results);
         while (true) {
-            Player player = inputView.inputPlayerIn(players);
-            if (player.equals(ALL)) {
+            Player player = inputView.inputPlayerFrom(players);
+            if (ALL.equals(player.name())) {
                 resultView.printAllResult(climbAll(players, results, ladder));
                 break;
             }

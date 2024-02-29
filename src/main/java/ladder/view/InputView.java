@@ -53,11 +53,11 @@ public class InputView {
         });
     }
 
-    public Player inputPlayerIn(Players players) {
+    public Player inputPlayerFrom(Players players) {
         return exceptionHandler.run(() -> {
             System.out.println("\n결과를 보고 싶은 사람은?");
             Player player = new Player(readLine());
-            if (!players.exists(player)) {
+            if (!players.exists(player) && !new Player("all").equals(player)) {
                 throw new IllegalArgumentException("존재하지 않는 이름입니다: %s".formatted(player.name()));
             }
             return player;
