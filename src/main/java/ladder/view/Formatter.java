@@ -20,7 +20,7 @@ public class Formatter {
     private static final String LEFT_ALIGNED_FORMAT = "%-5s";
     private static final String RESULT_FORMAT = "%s : %s";
     private static final String LINE = "|";
-    private static final String CONNECTION_NO = "    ";
+    private static final String CONNECTION_NO = "     ";
     private static final String CONNECTION_YES = "-----";
     private static final int MAX_LENGTH = 5;
 
