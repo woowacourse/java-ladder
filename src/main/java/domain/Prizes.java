@@ -32,6 +32,6 @@ public class Prizes {
     }
 
     public List<String> getPrizeNames() {
-        return prizes.stream().map(Prize::getPrizeName).toList();
+        return prizes.stream().map(Prize::getName).toList();
     }
 }

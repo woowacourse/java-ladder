@@ -81,7 +81,7 @@ public class LadderGameController {
     private Map<String, String> getResults(Map<Player, Prize> prizeResults) {
         Map<String, String> results = new LinkedHashMap<>();
         for (Player key : prizeResults.keySet()) {
-            results.put(key.getName(), prizeResults.get(key).getPrizeName());
+            results.put(key.getName(), prizeResults.get(key).getName());
         }
         return results;
     }
