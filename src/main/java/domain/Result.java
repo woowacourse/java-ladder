@@ -21,10 +21,6 @@ public class Result {
         }
     }
 
-    public Prize getPrizeOf(int indexOfPrize) {
-        return prizes.get(indexOfPrize);
-    }
-
     public List<Prize> getPrizes() {
         return prizes;
     }
