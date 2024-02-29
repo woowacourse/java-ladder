@@ -54,12 +54,13 @@ public class OutputView {
         return bridgesShapeJoiner.toString();
     }
 
-    public static void printMatchingResult(List<GameResult> gameResults) {
+    public static void printMatchingResult(GameResult gameResult) {
         System.out.println(System.lineSeparator() + "실행 결과");
-        if (gameResults.size() == 1) {
-            System.out.println(gameResults.get(0).matchingItem());
-            return;
-        }
+        System.out.println(gameResult.matchingItem());
+    }
+
+    public static void printMatchingResultAll(List<GameResult> gameResults) {
+        System.out.println(System.lineSeparator() + "실행 결과");
         for (final GameResult gameResult : gameResults) {
             System.out.println(gameResult.name() + RESULT_SEPARATOR + gameResult.matchingItem());
         }

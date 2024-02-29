@@ -26,6 +26,13 @@ public class LadderGame {
         }
     }
 
+    public GameResult matchResult(final String playerName) {
+        final Position position = players.getPositionBy(playerName);
+        final String matchingItem = matchingItems.getBy(position.value());
+
+        return new GameResult(playerName, matchingItem);
+    }
+
     public List<GameResult> matchResult(final String playerName, final String selectAll) {
         if (Objects.equals(playerName, selectAll)) {
             return getAllResults();

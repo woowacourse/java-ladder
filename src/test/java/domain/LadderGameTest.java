@@ -49,7 +49,40 @@ class LadderGameTest {
 
     @DisplayName("개인별 이름을 입력하면 개인별 결과를 알려준다.")
     @Test
-    void informPersonalResult() {
+    void matchPersonalResult() {
+        //given
+        BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(List.of(
+                true, false, true,
+                false, true, false,
+                true, false, false,
+                false, true, false,
+                true, false, true
+        ));
+        final Players players = Players.createInOrderPoisition(List.of("pobi", "honux", "crong", "jk"));
+        final MatchingItems matchingItems = new MatchingItems(List.of("꽝", "5000", "꽝", "3000"), players.count());
+        final Height height = new Height(5);
+        final Width width = Width.from(players);
+        final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, height, width);
+        final LadderGame ladderGame = new LadderGame(players, matchingItems, ladder);
+
+        ladderGame.play();
+        final GameResult pobiResult = ladderGame.matchResult("pobi");
+        final GameResult honuxResult = ladderGame.matchResult("honux");
+        final GameResult crongResult = ladderGame.matchResult("crong");
+        final GameResult jkResult = ladderGame.matchResult("jk");
+
+        //when & then
+        assertAll(
+                () -> assertThat(pobiResult).isEqualTo(new GameResult("pobi", "꽝")),
+                () -> assertThat(honuxResult).isEqualTo(new GameResult("honux", "3000")),
+                () -> assertThat(crongResult).isEqualTo(new GameResult("crong", "꽝")),
+                () -> assertThat(jkResult).isEqualTo(new GameResult("jk", "5000"))
+        );
+    }
+
+    @DisplayName("all을 입력하면 전체 결과를 알려준다.")
+    @Test
+    void matchAllResult() {
         //given
         BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(List.of(
                 true, false, true,

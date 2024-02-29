@@ -21,7 +21,7 @@ public class LadderMain {
         OutputView.printLadderMakingResult(
                 ladderGame.getPlayerNames(), ladderGame.getLadder(), ladderGame.getMatchingItems());
 
-        printResultUtilSelectingAll(ladderGame);
+        printResultUtilSelectAll(ladderGame);
     }
 
     public static LadderGame makeLadderGame() {
@@ -34,12 +34,15 @@ public class LadderMain {
         return new LadderGame(players, matchingItems, ladder);
     }
 
-    public static void printResultUtilSelectingAll(LadderGame ladderGame) {
+    public static void printResultUtilSelectAll(final LadderGame ladderGame) {
         String selectedName = InputView.selectPlayer();
-        while (!Objects.equals(selectedName, SELECT_ALL)) {
-            OutputView.printMatchingResult(ladderGame.matchResult(selectedName, SELECT_ALL));
+        boolean doesSelectAll = Objects.equals(selectedName, SELECT_ALL);
+
+        while (!doesSelectAll) {
+            OutputView.printMatchingResult(ladderGame.matchResult(selectedName));
             selectedName = InputView.selectPlayer();
+            doesSelectAll = Objects.equals(selectedName, SELECT_ALL);
         }
-        OutputView.printMatchingResult(ladderGame.matchResult(selectedName, SELECT_ALL));
+        OutputView.printMatchingResultAll(ladderGame.matchResult(selectedName, SELECT_ALL));
     }
 }
