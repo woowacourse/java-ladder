@@ -73,4 +73,15 @@ class LineTest {
         assertThatThrownBy(() -> new Line(directions))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("항상 놓는 전략을 사용하는 경우, 올바르게 한 줄을 생성한다.")
+    void creationOnAlwaysSuppliesTrue() {
+        // given
+        Line line = Line.fromConnectionAttemptSupplier(() -> true, 5);
+        // when
+        List<Direction> expected = List.of(RIGHT, LEFT, RIGHT, LEFT, STRAIGHT);
+        // then
+        assertThat(line.getDirections()).containsExactlyElementsOf(expected);
+    }
 }

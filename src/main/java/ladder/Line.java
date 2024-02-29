@@ -1,7 +1,9 @@
 package ladder;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.BooleanSupplier;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -14,6 +16,20 @@ public class Line {
         validateSize(directions);
         validateDirections(directions);
         this.directions = directions;
+    }
+
+    public static Line fromConnectionAttemptSupplier(BooleanSupplier connectionAttemptSupplier, int size) {
+        List<Direction> directions = new ArrayList<>();
+        Direction direction = Direction.STRAIGHT;
+
+        while (directions.size() < size - 1) {
+            boolean isGoingToPlace = connectionAttemptSupplier.getAsBoolean();
+            direction = direction.next(isGoingToPlace);
+            directions.add(direction);
+        }
+        directions.add(direction.nextAsLast());
+
+        return new Line(directions);
     }
 
     public Index move(Index index) {
