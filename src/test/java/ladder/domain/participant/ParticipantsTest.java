@@ -1,9 +1,7 @@
-package ladder.domain;
+package ladder.domain.participant;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.domain.participant.Name;
-import ladder.domain.participant.Participants;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

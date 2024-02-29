@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.view.util;
 
 import ladder.view.util.LadderStepSymbol;
 import org.assertj.core.api.Assertions;

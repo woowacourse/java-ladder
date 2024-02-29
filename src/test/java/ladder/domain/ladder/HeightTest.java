@@ -1,8 +1,7 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import ladder.domain.ladder.Height;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

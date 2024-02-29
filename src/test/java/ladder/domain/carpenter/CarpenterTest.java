@@ -1,8 +1,6 @@
-package ladder.domain;
+package ladder.domain.carpenter;
 
 import java.util.List;
-import ladder.domain.carpenter.Carpenter;
-import ladder.domain.carpenter.Energy;
 import ladder.domain.dto.StepStatusDto;
 import ladder.domain.ladder.Height;
 import org.assertj.core.api.Assertions;

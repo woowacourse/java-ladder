@@ -1,6 +1,5 @@
-package ladder.domain;
+package ladder.domain.carpenter;
 
-import ladder.domain.carpenter.Energy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
