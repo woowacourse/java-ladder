@@ -6,6 +6,9 @@ import java.util.List;
 import model.bridge.Bridge;
 
 public class Line {
+    private static final int LAST_BRIDGE_OFFSET = 1;
+    private static final int LEFT_OFFSET = 1;
+
     private final List<Bridge> bridges;
 
     public Line(List<Bridge> bridgesSource) {
@@ -30,7 +33,7 @@ public class Line {
     }
 
     private Bridge getLastBridge(List<Bridge> bridges) {
-        return bridges.get(bridges.size() - 1);
+        return bridges.get(bridges.size() - LAST_BRIDGE_OFFSET);
     }
 
     public Integer cross(int previousPosition) {
@@ -55,7 +58,7 @@ public class Line {
 
     private int crossLeftBridge(int position) {
         if (canCrossLeft(position)) {
-            Bridge leftBridge = bridges.get(position - 1);
+            Bridge leftBridge = bridges.get(position - LEFT_OFFSET);
             return leftBridge.moveLeft(position);
         }
         return position;
