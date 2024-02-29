@@ -7,10 +7,10 @@ public class Ladder {
 
     private final List<LadderRow> ladder;
 
-    public Ladder(Height height, LadderRowGenerator generator, Participants participants) {
+    public Ladder(Height height, LadderRowGenerator generator, int participantSize) {
         List<LadderRow> rows = new ArrayList<>();
         for (int i = 0; i < height.value(); i++) {
-            LadderRow ladderRow = createLadderRow(generator, participants);
+            LadderRow ladderRow = createLadderRow(generator, participantSize);
             rows.add(ladderRow);
         }
         this.ladder = rows;
@@ -20,10 +20,10 @@ public class Ladder {
         this.ladder = ladderRows;
     }
 
-    private LadderRow createLadderRow(LadderRowGenerator generator, Participants participants) {
+    private LadderRow createLadderRow(LadderRowGenerator generator, int participantSize) {
         List<Boolean> rows = new ArrayList<>();
         rows.add(generator.generate(false));
-        for (int i = 0; i < participants.getParticipantsSize() - 2; i++) {
+        for (int i = 0; i < participantSize - 2; i++) {
             boolean generated = generator.generate(rows.get(i));
             rows.add(generated);
         }

@@ -14,18 +14,16 @@ public class LadderTest {
     @Test
     void ladderHeight() {
         Height height = new Height(5);
-        Ladder ladder = new Ladder(height, new LadderRowGenerator(() -> true),
-                new Participants(List.of("hello", "hi")));
+        Ladder ladder = new Ladder(height, new LadderRowGenerator(() -> true), 2);
         assertThat(ladder.getHeight()).isEqualTo(height.value());
     }
 
-    @DisplayName("사다리의 열의 크기는 참가자의 수보다 1 작다")
+    @DisplayName("사다리의 열의 크기는 참가자의 수보다 1 작다") //TODO: 사다리 행의 역할?
     @Test
     void ladderColumnOneLessThanParticipantSize() {
         Height height = new Height(5);
-        Participants participants = new Participants(List.of("hello", "hi"));
-        Ladder ladder = new Ladder(height, new LadderRowGenerator(() -> true), participants);
-        assertThat(ladder.getLadderRowSize()).isEqualTo(participants.getParticipantsSize() - 1);
+        Ladder ladder = new Ladder(height, new LadderRowGenerator(() -> true), 2);
+        assertThat(ladder.getLadderRowSize()).isEqualTo(1);
     }
 
     @DisplayName("참가자의 전체 이동 결과를 알려준다.")

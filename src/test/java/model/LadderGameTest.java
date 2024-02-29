@@ -54,8 +54,7 @@ public class LadderGameTest {
                 new LadderRow(List.of(true, false, true, false))));
         Participants participants = new Participants(List.of("0", "1", "2", "3", "4"));
         Map<Position, Result> result = createResults();
-        LadderGame ladderGame = new LadderGame(participants, ladder, result);
-        return ladderGame;
+        return new LadderGame(participants, ladder, result);
     }
 
     private static Map<Position, Result> createResults() {

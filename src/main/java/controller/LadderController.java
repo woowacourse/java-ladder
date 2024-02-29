@@ -27,9 +27,11 @@ public class LadderController {
 
     public void play() {
         Participants participants = new Participants(inputView.inputParticipantsName());
-        Map<Position, Result> results= inputView.inputResults();//TODO: 참여자 수만큼 입력 받는다.
+        Map<Position, Result> results= inputView.inputResults();
         Height height = new Height(inputView.inputLadderHeight());
-        Ladder ladder = new Ladder(height, new LadderRowGenerator(new RandomBooleanGenerator()), participants);
+        Ladder ladder = new Ladder(height,
+                new LadderRowGenerator(new RandomBooleanGenerator()),
+                participants.getParticipantsSize());
         ladderGame = new LadderGame(participants, ladder, results);
         printRandomLadder(participants, ladder);
         outputView.printResults(results);
