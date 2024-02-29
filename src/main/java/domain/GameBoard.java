@@ -51,12 +51,16 @@ public class GameBoard {
 
     public String searchOnePlayerResult(PlayerName targetPlayerName) {
         try {
-            return gameResults.get(players.searchPlayer(targetPlayerName)
-                            .playerName())
-                    .getValue();
+            return searchFromGameResultByPlayerName(targetPlayerName);
         } catch (Exception e) {
             return e.getMessage();
         }
+    }
+
+    private String searchFromGameResultByPlayerName(PlayerName targetPlayerName) {
+        return gameResults.get(players.searchPlayer(targetPlayerName)
+                        .playerName())
+                .getValue();
     }
 
     public List<PlayerName> getGamePlayerNames() {
@@ -65,10 +69,6 @@ public class GameBoard {
 
     public int getLadderHeight() {
         return ladder.getHeight();
-    }
-
-    public Ladder getLadder() {
-        return ladder;
     }
 
     public List<PrizeName> getPrizeNames() {
