@@ -51,7 +51,7 @@ public class OutputView {
 
     public void printParticipantResult(String result) {
         System.out.println(PARTICIPANT_RESULT);
-        System.out.print(result);
+        System.out.println(result);
     }
 
     public void printParticipantResult(Map<Name, String> results) {
