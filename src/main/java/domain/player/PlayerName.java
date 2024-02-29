@@ -43,4 +43,8 @@ public record PlayerName(String value) {
     public int hashCode() {
         return Objects.hash(value);
     }
+
+    public boolean isEqualName(String name) {
+        return value.equals(name);
+    }
 }
