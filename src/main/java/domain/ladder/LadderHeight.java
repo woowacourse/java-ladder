@@ -1,11 +1,11 @@
 package domain.ladder;
 
-public record LadderHeight(int ladderHeight) {
+public record LadderHeight(int value) {
     private static final int MINIMUM_LADDER_HEIGHT_LIMIT = 2;
     private static final int MAXIMUM_LADDER_HEIGHT_LIMIT = 10;
 
     public LadderHeight {
-        validateRange(ladderHeight);
+        validateRange(value);
     }
 
     private void validateRange(final int ladderHeight) {
