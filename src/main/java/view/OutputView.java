@@ -10,6 +10,9 @@ import domain.Stick;
 
 public class OutputView {
 
+    private static final String FILLED_STICK_SHAPE = "-";
+    private static final String NOT_FILLED_STICK_SHAPE = " ";
+
     public void printLadder(Game game) {
         System.out.println("사다리 결과");
 
@@ -36,12 +39,20 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
         List<Stick> sticks = line.getSticks();
         for (Stick stick : sticks) {
-            String shape = stick.getShape();
+            String shape = getStickShape(stick);
             sb.append(shape.repeat(5));
             sb.append("|");
         }
 
         System.out.printf("     |%s%n", sb);
+    }
+
+    private String getStickShape(Stick stick) {
+        if (stick.isFilled()) {
+            return FILLED_STICK_SHAPE;
+        }
+
+        return NOT_FILLED_STICK_SHAPE;
     }
 
     private void printGameResults(List<GameResult> gameResults) {
