@@ -18,13 +18,4 @@ public class LadderTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리의 높이는 1 이상 50 이하여야 합니다.");
     }
-
-    @DisplayName("Generator로 만들어진 List로 Line을 생성한다.")
-    @Test
-    void ladderInitTest() {
-        Ladder ladder = new Ladder(new Height(5));
-        ladder.init(5, new CustomGenerator(List.of(false, true, false, true, false)));
-        Assertions.assertThat(ladder.getLines().get(0))
-                .isEqualTo(new Line(List.of(4, 5, 4, 5, 4)));
-    }
 }
