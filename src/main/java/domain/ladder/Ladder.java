@@ -38,13 +38,12 @@ public class Ladder {
         }
         Direction currentDirection = getDirectionOfLadderLegPieceAtSpecificCoordinate(x, y);
         if (currentDirection.equals(Direction.RIGHT)) {
-            x += 1;
+            return moveCoordinateToResultPoint(x + 1, y + 1);
         }
         if (currentDirection.equals(Direction.LEFT)) {
-            x -= 1;
+            return moveCoordinateToResultPoint(x - 1, y + 1);
         }
-        y += 1;
-        return moveCoordinateToResultPoint(x, y);
+        return moveCoordinateToResultPoint(x, y + 1);
     }
 
     private Direction getDirectionOfLadderLegPieceAtSpecificCoordinate(int x, int y) {
