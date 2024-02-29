@@ -13,6 +13,14 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
+    public List<String> playGame() {
+        List<PlayerName> playerNames = new ArrayList<>(players);
+        for (int i = 0; i < ladder.getHeight(); i++) {
+            playerNames = playOneLine(playerNames, i);
+        }
+        return getResult(playerNames);
+    }
+
     private List<PlayerName> playOneLine(List<PlayerName> playerNames, int height) {
         List<Line> lines = ladder.getLines();
         Line line = lines.get(height);
@@ -25,19 +33,11 @@ public class LadderGame {
         return playerNames;
     }
 
-    public List<String> playGame() {
-        List<PlayerName> playerNames = new ArrayList<>(players);
-        for (int i = 0; i < ladder.getHeight(); i++) {
-            playerNames = playOneLine(playerNames, i);
+    private static List<String> getResult(List<PlayerName> players) {
+        List<String> playerNames = new ArrayList<>();
+        for (PlayerName player : players) {
+            playerNames.add(player.getName());
         }
-        return getResult(playerNames);
-    }
-
-    private static List<String> getResult(List<PlayerName> playerNames) {
-        List<String> playerNames2 = new ArrayList<>();
-        for (PlayerName player : playerNames) {
-            playerNames2.add(player.getName());
-        }
-        return playerNames2;
+        return playerNames;
     }
 }
