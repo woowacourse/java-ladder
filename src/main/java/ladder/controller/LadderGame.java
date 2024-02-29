@@ -6,6 +6,7 @@ import ladder.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class LadderGame {
@@ -26,6 +27,21 @@ public class LadderGame {
 
         outputView.printPeople(people);
         outputView.printLadder(ladder);
+        outputView.printResults(results);
+
+        Game game = new Game(people, results, ladder);
+        play(game);
+    }
+
+    private void play(Game game) {
+        Name target = createTarget();
+        Map<Name, String> playResult = game.play(target);
+        outputView.printPlayResultNotice();
+        outputView.printPlayResult(playResult);
+        if (playResult.size() > 1) {
+            return;
+        }
+        play(game);
     }
 
     private People createNames() {
@@ -60,6 +76,11 @@ public class LadderGame {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("사다리 높이는 숫자입니다.");
         }
+    }
+
+    private Name createTarget() {
+        String target = retryWhileException(inputView::readTarget);
+        return new Name(target);
     }
 
     private <T> T retryWhileException(Supplier<T> callback) {

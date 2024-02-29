@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Results {
@@ -11,5 +12,9 @@ public class Results {
 
     public String find(int position) {
         return results.get(position);
+    }
+
+    public List<String> getResults() {
+        return Collections.unmodifiableList(results);
     }
 }
