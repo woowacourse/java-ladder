@@ -1,6 +1,5 @@
 package ladder.domain.game;
 
-import org.assertj.core.api.InstanceOfAssertFactories;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,8 +15,7 @@ class PrizesTest {
     void createPrizes() {
         Prizes prizes = new Prizes(List.of("5000", "꽝", "3000", "꽝"), 4);
 
-        assertThat(prizes).extracting("prizes", InstanceOfAssertFactories.list(String.class))
-                .containsExactly("5000", "꽝", "3000", "꽝");
+        assertThat(prizes.getPrizes()).containsExactly("5000", "꽝", "3000", "꽝");
     }
 
     @Test
