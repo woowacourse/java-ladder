@@ -1,11 +1,19 @@
 package ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class IndexTest {
+
+    @Test
+    @DisplayName("음수 인덱스를 생성하는 경우, 예외를 발생한다.")
+    void negativeIndexTest() {
+        assertThatThrownBy(() -> Index.of(-1))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @Test
     @DisplayName("인덱스가 올바르게 증가한다.")

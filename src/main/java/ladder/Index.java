@@ -9,7 +9,14 @@ public class Index {
     }
 
     public static Index of(int position) {
+        validateNonNegative(position);
         return new Index(position);
+    }
+
+    private static void validateNonNegative(int position) {
+        if (position < 0) {
+            throw new IllegalArgumentException("인덱스는 음수일 수 없습니다.");
+        }
     }
 
     public Index increment() {
