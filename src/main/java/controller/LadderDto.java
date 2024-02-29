@@ -8,7 +8,7 @@ import java.util.List;
 
 public class LadderDto {
     private List<String> names;
-    private List<List<Boolean>> lines;
+    private List<Line> lines;
     private List<String> results;
 
     public LadderDto names(final Names names) {
@@ -17,9 +17,7 @@ public class LadderDto {
     }
 
     public LadderDto lines(final Lines lines) {
-        this.lines = lines.getLines().stream()
-                .map(Line::getMovableLinePoints)
-                .toList();
+        this.lines = lines.getLines();
         return this;
     }
 
@@ -36,7 +34,7 @@ public class LadderDto {
         return names;
     }
 
-    public List<List<Boolean>> getLines() {
+    public List<Line> getLines() {
         return lines;
     }
 

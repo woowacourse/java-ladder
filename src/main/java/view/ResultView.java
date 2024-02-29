@@ -1,6 +1,7 @@
 package view;
 
 import controller.LadderDto;
+import domain.Line;
 import java.util.List;
 import java.util.Map;
 
@@ -32,10 +33,10 @@ public class ResultView {
         System.out.println(firstName + nameLine);
     }
 
-    private static void printLines(final List<String> names, final List<List<Boolean>> lines) {
-        for (List<Boolean> line : lines) {
+    private static void printLines(final List<String> names, final List<Line> lines) {
+        for (Line line : lines) {
             System.out.print(ResultMessage.ladderPadding(names));
-            System.out.print(ResultMessage.of(line));
+            System.out.print(ResultMessage.of(line.getMovableLinePoints()));
         }
     }
 
