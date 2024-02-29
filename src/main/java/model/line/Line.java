@@ -34,11 +34,11 @@ public class Line {
     }
 
     public Integer cross(int previousPosition) {
-        int nextPostition = crossRightBridge(previousPosition);
-        if (previousPosition == nextPostition) {
-            nextPostition = crossLeftBridge(previousPosition);
+        int nextPosition = crossRightBridge(previousPosition);
+        if (previousPosition == nextPosition) {
+            nextPosition = crossLeftBridge(previousPosition);
         }
-        return nextPostition;
+        return nextPosition;
     }
 
     private int crossRightBridge(int position) {
