@@ -37,7 +37,6 @@ public class Ladder {
             Player player = players.get(index);
             int resultIndex = playLadder(index);
             Prize prize = prizes.get(resultIndex);
-
             outcome.put(player, prize);
         }
         return new LadderPlayOutcome(outcome);
@@ -55,7 +54,7 @@ public class Ladder {
         if (currentIndex > 0 && bridges.get(currentIndex - 1).isConnected()) {
             return currentIndex - 1;
         }
-        if (bridges.get(currentIndex).isConnected()) {
+        if (currentIndex < bridges.size() && bridges.get(currentIndex).isConnected()) {
             return currentIndex + 1;
         }
         return currentIndex;

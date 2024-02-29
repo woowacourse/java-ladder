@@ -6,6 +6,7 @@ import java.util.function.Supplier;
 import model.bridge.RandomBridgesGenerator;
 import model.ladder.Ladder;
 import model.ladder.LadderHeight;
+import model.ladder.LadderPlayOutcome;
 import model.player.Players;
 import model.prize.Prizes;
 import view.InputView;
@@ -45,7 +46,7 @@ public class LadderGameController {
     }
 
     public void playLadder(Ladder ladder, Players players, Prizes prizes) {
-        
+        LadderPlayOutcome ladderPlayOutcome = ladder.play(players, prizes);
     }
 
     private <T> T retryOnException(Supplier<T> retryOperation) {
