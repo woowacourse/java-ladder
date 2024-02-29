@@ -38,16 +38,20 @@ public class PlayResult {
         }
     }
 
+    public boolean canAskResult() {
+        return status.isExecutable();
+    }
+
+    public boolean hasResultOf(final String name) {
+        return result.containsKey(name);
+    }
+
     public Map<String, String> checkPlayerResultByName(final String name) {
         if (EXPRESSION_OF_ENTIRE_PLAYER.equals(name)) {
             status = Status.NON_EXECUTABLE;
             return result;
         }
         return Map.of(name, result.get(name));
-    }
-
-    public boolean canAskResult() {
-        return status.isExecutable();
     }
 
     public Map<String, String> getResult() {

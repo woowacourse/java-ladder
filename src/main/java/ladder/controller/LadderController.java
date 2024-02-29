@@ -67,10 +67,20 @@ public class LadderController {
 
     private void showResult(final PlayResult playResult) {
         while (playResult.canAskResult()) {
-            final String name = inputView.readNameToSeeResult();
+            final String name = retryOnException(() -> readNameToSeeResult(playResult));
             final Map<String, String> result = playResult.checkPlayerResultByName(name);
+
             outputView.printResult(result, name);
         }
+    }
+
+    private String readNameToSeeResult(final PlayResult playResult) {
+        final String name = inputView.readNameToSeeResult();
+
+        if (playResult.hasResultOf(name)) {
+            return name;
+        }
+        throw new IllegalArgumentException("존재하지 않는 참여자의 이름입니다. (입력된 이름 : " + name + ")");
     }
 
     private <T> T retryOnException(final Supplier<T> supplier) {
