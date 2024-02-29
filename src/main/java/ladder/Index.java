@@ -1,6 +1,7 @@
 package ladder;
 
 public class Index {
+
     private final int position;
 
     private Index(int position) {

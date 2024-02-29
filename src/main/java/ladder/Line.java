@@ -13,7 +13,7 @@ public class Line {
 
     private void validateDirections(Direction[] directions) {
         for (int i = 1; i < directions.length; i++) {
-            if (directions[i].equals(directions[i-1])) {
+            if (directions[i].equals(directions[i - 1])) {
                 throw new IllegalArgumentException("양 쪽으로 연결될 수 없습니다.");
             }
         }
