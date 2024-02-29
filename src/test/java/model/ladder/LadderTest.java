@@ -29,20 +29,36 @@ public class LadderTest {
                 .toList();
     }
 
-    @DisplayName("모든 참여자에 대한 사다리 실행 결과를 생성한다")
+    @DisplayName("모든 참여자에 대한 사다리 실행 결과를 얻는다")
     @Test
-    void testLadderPlayOutcomeIncludesAllParticipants() {
+    void testLadderPlayOutcomeIncludesAllPlayers() {
         Players players = Players.from(List.of("pobi", "lala"));
         LadderHeight ladderHeight = new LadderHeight(5);
         Ladder ladder = Ladder.of(ladderHeight, players, (count) -> createBridges(List.of(1)));
         Prizes prizes = Prizes.of(players, List.of("꽝", "3000"));
-
         LadderPlayOutcome ladderPlayOutcome = ladder.play(players, prizes);
+
         Map<Player, Prize> outcome = ladderPlayOutcome.getOutcome();
 
         assertThat(outcome.get(new Player("pobi")).getName())
                 .isEqualTo("3000");
         assertThat(outcome.get(new Player("lala")).getName())
                 .isEqualTo("꽝");
+    }
+
+    @DisplayName("한 참여자에 대한 사다리 실행 결과를 얻는다")
+    @Test
+    void testLadderPlayOutcomeWithOnePlayer() {
+        Players players = Players.from(List.of("pobi", "lala"));
+        LadderHeight ladderHeight = new LadderHeight(5);
+        Ladder ladder = Ladder.of(ladderHeight, players, (count) -> createBridges(List.of(1)));
+        Prizes prizes = Prizes.of(players, List.of("꽝", "3000"));
+        LadderPlayOutcome ladderPlayOutcome = ladder.play(players, prizes);
+
+        Player targetPlayer = new Player("pobi");
+        Prize targetPrize = ladderPlayOutcome.get(targetPlayer);
+
+        assertThat(targetPrize.getName())
+                .isEqualTo("3000");
     }
 }
