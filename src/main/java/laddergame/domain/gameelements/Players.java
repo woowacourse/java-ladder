@@ -18,9 +18,9 @@ public class Players {
                 .toList();
     }
 
-    private void validatePlayerNumber(List<String> elements) {
-        if (elements.size() < MIN_PLAYER_NUMBER || elements.size() > MAX_PLAYER_NUMBER) {
-            throw new IllegalArgumentException("게임 요소의 수는 1이상 100이하만 가능합니다.");
+    private void validatePlayerNumber(List<String> playerNames) {
+        if (playerNames.size() < MIN_PLAYER_NUMBER || playerNames.size() > MAX_PLAYER_NUMBER) {
+            throw new IllegalArgumentException("게임 참여자의 수는 1이상 100이하만 가능합니다.");
         }
     }
 
