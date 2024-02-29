@@ -25,7 +25,12 @@ public class InputView {
         return exceptionHandler.run(() -> {
             System.out.println("\n참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
             List<Player> names = Arrays.stream(readAndSplitByComma())
-                    .map(Player::new)
+                    .map(name -> {
+                        if (name.equals("all")) {
+                            throw new IllegalArgumentException("플레이어 이름으로 all은 입력할 수 없습니다");
+                        }
+                        return new Player(name);
+                    })
                     .toList();
             return new Players(names);
         });
