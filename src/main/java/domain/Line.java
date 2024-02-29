@@ -33,15 +33,23 @@ public class Line {
     }
 
     public int move(int position) {
-        if (position < lineItems.size() && LineItem.isConnected(lineItems.get(position))) {
-            return position + 1;
-        }
-
-        if (position > 0 && LineItem.isConnected(lineItems.get(position - 1))) {
+        if (isMovableToLeft(position)) {
             return position - 1;
         }
 
+        if (isMovableToRight(position)) {
+            return position + 1;
+        }
+
         return position;
+    }
+
+    private boolean isMovableToLeft(int position) {
+        return position > 0 && LineItem.isConnected(lineItems.get(position - 1));
+    }
+
+    private boolean isMovableToRight(int position) {
+        return position < lineItems.size() && LineItem.isConnected(lineItems.get(position));
     }
 
     public List<LineItem> getLineItems() {
