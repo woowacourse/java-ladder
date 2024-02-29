@@ -12,6 +12,6 @@ public class LadderTest {
     @DisplayName("도메인 생성 성공: 사다리 높이 만큼의 Line 객체 리스트 생성")
     void test_ok_createLines() {
         Ladder ladder = Ladder.of(5, 4, new RandomConnectionStrategy());
-        assertThat(ladder.getLines().size()).isEqualTo(5);
+        assertThat(ladder.getLines()).hasSize(5);
     }
 }
