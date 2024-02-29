@@ -16,6 +16,8 @@ import static java.util.stream.Collectors.*;
 
 public class LadderController {
 
+    private static final String USERNAME_FOR_GAME_END = "all";
+
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -96,7 +98,7 @@ public class LadderController {
     }
 
     private void showSingleUserPrizeResult(String userName, Users users, Result result) {
-        if (!userName.equals("all")) {
+        if (!userName.equals(USERNAME_FOR_GAME_END)) {
             users.validateExistUserName(userName);
             outputView.printUserPrize(userName, result);
             showPrizeByUserName(users, result);
@@ -104,7 +106,7 @@ public class LadderController {
     }
 
     private void showAllPrizeResult(String userName, Users users, Result result) {
-        if (userName.equals("all")) {
+        if (userName.equals(USERNAME_FOR_GAME_END)) {
             outputView.printAllPrizeResult(result.getAllResult(users));
         }
     }
