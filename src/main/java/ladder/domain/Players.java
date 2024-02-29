@@ -1,6 +1,8 @@
 package ladder.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public record Players(List<Player> players) {
 
@@ -23,9 +25,17 @@ public record Players(List<Player> players) {
 
 
     private void validateDuplicatedName(List<Player> names) {
-        if (names.size() != names.stream().distinct().count()) {
-            throw new IllegalArgumentException("중복된 이름은 입력할 수 없습니다.");
-        }
+        Set<Player> distinctNames = new HashSet<>();
+        names.forEach(name -> {
+            if (distinctNames.contains(name)) {
+                throw new IllegalArgumentException("중복된 이름은 입력할 수 없습니다: %s".formatted(name));
+            }
+            distinctNames.add(name);
+        });
+    }
+
+    public boolean exists(Player player) {
+        return players.contains(player) || player.equals(Player.ALL);
     }
 
     public int orderOf(Player player) {
