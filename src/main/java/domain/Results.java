@@ -27,4 +27,8 @@ public class Results {
     public List<Result> getValues() {
         return values;
     }
+
+    public Result findResultAtIndex(final int index) {
+        return values.get(index);
+    }
 }

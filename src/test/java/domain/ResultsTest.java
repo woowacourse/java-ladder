@@ -34,4 +34,20 @@ public class ResultsTest {
                 .hasMessage(Results.INVALID_RESULTS_COUNT);
     }
 
+    @DisplayName("주어진 위치의 결과를 반환한다.")
+    @Test
+    void findResultAtIndex(){
+        //given
+        List<String> rawResults = List.of("꽝", "2000", "꽝", "5000");
+        Results results = Results.of(rawResults,rawResults.size());
+        int index = 1;
+        String expectedResult = "2000";
+
+        //when
+        Result result = results.findResultAtIndex(index);
+
+        //then
+        Assertions.assertThat(result.getValue()).isEqualTo(expectedResult);
+    }
+
 }
