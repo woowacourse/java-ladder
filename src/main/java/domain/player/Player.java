@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Player {
     private static final int MAX_NAME_LENGTH = 5;
+    public static final String ALL_PLAYER_COMMAND = "all";
 
     private final String name;
 
@@ -16,7 +17,7 @@ public class Player {
         if ((name.isBlank() || name.length() > MAX_NAME_LENGTH)) {
             throw new IllegalArgumentException("참가자 이름은 1~%d자 이내로 입력해야합니다.".formatted(MAX_NAME_LENGTH));
         }
-        if (name.equals("all")) {
+        if (name.equalsIgnoreCase(ALL_PLAYER_COMMAND)) {
             throw new IllegalArgumentException("참가자 이름에 all을 입력할 수 없습니다.");
         }
     }
