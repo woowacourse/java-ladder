@@ -1,7 +1,8 @@
-package ladder.domain;
+package ladder.domain.ladderGame;
 
-import ladder.domain.dto.ResultLadderDto;
-import ladder.domain.dto.ResultStepLadderDto;
+import ladder.domain.carpenter.Carpenter;
+import ladder.domain.dto.MadeLadderDto;
+import ladder.domain.participant.Participants;
 
 public class LadderGame {
 
@@ -13,12 +14,8 @@ public class LadderGame {
         this.participants = participants;
     }
 
-    public ResultLadderDto play(int totalLadderCount) {
+    public MadeLadderDto play(int totalLadderCount) {
         carpenter.buildLadders(totalLadderCount);
         return carpenter.getResultLadders();
-    }
-
-    public LadderResult mapLadderGame(ResultStepLadderDto resultStepLadderDto) {
-        return new LadderResult(resultStepLadderDto, participants.getParticipantsCount());
     }
 }

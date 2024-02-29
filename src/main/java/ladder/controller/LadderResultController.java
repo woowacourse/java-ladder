@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
-import ladder.domain.GamePrizes;
-import ladder.domain.LadderResult;
-import ladder.domain.Name;
-import ladder.domain.Participants;
+import ladder.domain.dto.MadeLadderDto;
+import ladder.domain.ladderGame.LadderResult;
+import ladder.domain.participant.Name;
+import ladder.domain.participant.Participants;
+import ladder.domain.prize.GamePrizes;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -22,11 +23,11 @@ public class LadderResultController {
     private final Participants participants;
     private final GamePrizes gamePrizes;
 
-    public LadderResultController(InputView inputView, OutputView outputView, LadderResult ladderResult,
+    public LadderResultController(InputView inputView, OutputView outputView, MadeLadderDto ladderResult,
                                   Participants participants, GamePrizes gamePrizes) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.ladderResult = ladderResult;
+        this.ladderResult = new LadderResult(ladderResult, participants.size());
         this.participants = participants;
         this.gamePrizes = gamePrizes;
     }
