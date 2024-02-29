@@ -1,13 +1,14 @@
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
+import domain.LadderGame;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
-import domain.LadderGame;
 import domain.player.Player;
 import domain.player.PlayerCount;
 import domain.player.Players;
-import domain.result.PlayersPrize;
 import domain.prize.Prizes;
+import domain.result.PlayersPrize;
 import java.util.List;
 import mock.ExistStepGenerator;
 import org.junit.jupiter.api.DisplayName;
@@ -34,9 +35,11 @@ public class LadderGameTest {
         final PlayersPrize playersPrize = ladderGame.getPlayersPrize();
 
         // then
-        assertThat(playersPrize.getPlayersPrize().get(new Player("a")).getPrize()).isEqualTo("B");
-        assertThat(playersPrize.getPlayersPrize().get(new Player("b")).getPrize()).isEqualTo("A");
-        assertThat(playersPrize.getPlayersPrize().get(new Player("c")).getPrize()).isEqualTo("D");
-        assertThat(playersPrize.getPlayersPrize().get(new Player("d")).getPrize()).isEqualTo("C");
+        assertAll(
+                () -> assertThat(playersPrize.getPlayersPrize().get(new Player("a")).getPrize()).isEqualTo("B"),
+                () -> assertThat(playersPrize.getPlayersPrize().get(new Player("b")).getPrize()).isEqualTo("A"),
+                () -> assertThat(playersPrize.getPlayersPrize().get(new Player("c")).getPrize()).isEqualTo("D"),
+                () -> assertThat(playersPrize.getPlayersPrize().get(new Player("d")).getPrize()).isEqualTo("C")
+        );
     }
 }

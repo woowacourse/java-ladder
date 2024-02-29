@@ -19,8 +19,6 @@ public class LadderTest {
                 new RandomStepGenerator());
 
         // when & then
-        assertThat(ladder).extracting("lines")
-                .asList()
-                .hasSize(4);
+        assertThat(ladder.getRows()).hasSize(4);
     }
 }
