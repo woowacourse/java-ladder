@@ -14,8 +14,8 @@ public class Line {
 
     public static Line of(ConnectStrategy connectStrategy, int playerCount) {
         List<Connection> connections = Stream.iterate(
-                connectStrategy.generate(), previous -> findNextConnection(previous,
-                    connectStrategy))
+                connectStrategy.generate(),
+                previous -> previous.findNextConnection(connectStrategy))
             .limit(playerCount - 1)
             .toList();
         return new Line(connections);
@@ -32,13 +32,6 @@ public class Line {
             return previousIndex - 1;
         }
         return previousIndex;
-    }
-
-    private static Connection findNextConnection(Connection previous, ConnectStrategy connectStrategy) {
-        if (previous.equals(Connection.CONNECTED)) {
-            return Connection.DISCONNECTED;
-        }
-        return connectStrategy.generate();
     }
 
     public List<Connection> getConnections() {
