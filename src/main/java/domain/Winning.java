@@ -29,13 +29,13 @@ public class Winning {
 
     private void validateLength(String inputWinning) {
         if (inputWinning.isEmpty() || inputWinning.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException(String.format("실행결과의 길이는 1글자 이상 %d글자 이하여야 합니다.", MAX_LENGTH));
+            throw new IllegalArgumentException(String.format("\"%s\"는 올바른 실행결과가 아닙니다. 실행결과의 길이는 1글자 이상 %d글자 이하여야 합니다.", inputWinning, MAX_LENGTH));
         }
     }
 
     private void validateStyle(String inputName) {
         if (!inputName.matches(WINNING_STYLE)) {
-            throw new IllegalArgumentException("실행결과는 영어, 한글, 숫자, '_', '-'로만 이루어져야 합니다.");
+            throw new IllegalArgumentException(String.format("\"%s\"는 올바른 실행결과가 아닙니다. 실행결과는 영어, 한글, 숫자, '_', '-'로만 이루어져야 합니다.", inputName));
         }
     }
 

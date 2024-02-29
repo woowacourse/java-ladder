@@ -13,6 +13,6 @@ public class HeightTest {
     void heightRangeTest(int input) {
         Assertions.assertThatThrownBy(() -> new Height(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사다리의 높이는 1 이상 50 이하여야 합니다.");
+                .hasMessageContaining("사다리의 높이는 1 이상 50 이하여야 합니다.");
     }
 }

@@ -18,7 +18,7 @@ public class ResultName{
                 .map(Name::getName)
                 .toList();
         if (isNotAllowedResultName(inputName, names)) {
-            throw new IllegalArgumentException("이름은 이전에 입력한 이름 중에 하나여야 합니다.");
+            throw new IllegalArgumentException(String.format("\"%s\"는 올바른 이름이 아닙니다. 이름은 이전에 입력한 이름 중에 하나여야 합니다.", inputName));
         }
     }
 

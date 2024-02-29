@@ -16,7 +16,7 @@ public class WinningsTest {
     void winningsNumberTest(List<String> input) {
         Assertions.assertThatThrownBy(() -> new Winnings(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("실행결과의 수는 2이상 10이하여야 합니다.");
+                .hasMessageContaining("실행결과의 수는 2이상 10이하여야 합니다.");
     }
 
     private static Stream<Arguments> winningsNumberTestMethod() {
@@ -44,6 +44,6 @@ public class WinningsTest {
         Winnings winnings = new Winnings(List.of("1", "2"));
         Assertions.assertThatThrownBy(() -> winnings.isSameNumberWithPlayers(players))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사람 이름과 같은 개수를 입력하여야 합니다.");
+                .hasMessageContaining("사람 이름과 같은 개수를 입력하여야 합니다.");
     }
 }

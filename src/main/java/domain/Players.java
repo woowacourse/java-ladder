@@ -19,7 +19,7 @@ public class Players {
 
     private void validateNumber(List<String> names) {
         if (names.size() < MIN_PLAYER || names.size() > MAX_PLAYER) {
-            throw new IllegalArgumentException(String.format("이름의 수는 %d이상 %d이하여야 합니다.", MIN_PLAYER, MAX_PLAYER));
+            throw new IllegalArgumentException(String.format("%d는 올바른 이름의 수가 아닙니다. 이름의 수는 %d이상 %d이하여야 합니다.", names.size(), MIN_PLAYER, MAX_PLAYER));
         }
     }
 

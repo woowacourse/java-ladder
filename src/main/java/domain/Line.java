@@ -65,7 +65,7 @@ public class Line {
 
     private void validateRange(int height) {
         if (height < MIN_LINE || height > MAX_LINE) {
-            throw new IllegalArgumentException(String.format("숫자는 %d 이상 %d 이하여야 합니다.", MIN_LINE, MAX_LINE));
+            throw new IllegalArgumentException(String.format("%d는 올바른 숫자가 아닙니다. 숫자는 %d 이상 %d 이하여야 합니다.", height, MIN_LINE, MAX_LINE));
         }
     }
 

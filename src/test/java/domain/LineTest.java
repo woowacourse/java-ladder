@@ -20,7 +20,7 @@ public class LineTest {
     void heightRangeTest(List<Integer> input) {
         Assertions.assertThatThrownBy(() -> new Line(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("숫자는 2 이상 10 이하여야 합니다.");
+                .hasMessageContaining("숫자는 2 이상 10 이하여야 합니다.");
     }
 
     private static Stream<Arguments> heightRangeTestMethod() {

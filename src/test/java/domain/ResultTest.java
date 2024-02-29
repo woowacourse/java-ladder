@@ -29,7 +29,7 @@ public class ResultTest {
         Result result = new Result(ladderGame.getResult());
         Assertions.assertThatThrownBy(() -> result.getResultByPerson(new ResultName("3", players).getName()))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 이전에 입력한 이름 중에 하나여야 합니다.");
+                .hasMessageContaining("이름은 이전에 입력한 이름 중에 하나여야 합니다.");
     }
 
     @DisplayName("'all' 을 입력한 경우 모든 사다리 타기 결과를 반환한다.")

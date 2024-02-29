@@ -32,7 +32,7 @@ public class Height {
 
     private void validateRange(int height) {
         if (height < 1 || height > MAX_HEIGHT) {
-            throw new IllegalArgumentException(String.format("사다리의 높이는 1 이상 %d 이하여야 합니다.", MAX_HEIGHT));
+            throw new IllegalArgumentException(String.format("%d는 올바른 사다리의 높이가 아닙니다. 사다리의 높이는 1 이상 %d 이하여야 합니다.", height, MAX_HEIGHT));
         }
     }
 

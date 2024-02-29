@@ -29,13 +29,13 @@ public class Name {
 
     private void validateLength(String inputName) {
         if (inputName.isEmpty() || inputName.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException(String.format("이름의 길이는 1글자 이상 %d글자 이하여야 합니다.", MAX_LENGTH));
+            throw new IllegalArgumentException(String.format("\"%s\"는 올바른 이름이 아닙니다. 이름의 길이는 1글자 이상 %d글자 이하여야 합니다.", inputName, MAX_LENGTH));
         }
     }
 
     private void validateStyle(String inputName) {
         if (!inputName.matches(NAME_STYLE)) {
-            throw new IllegalArgumentException("이름은 영어, 숫자, '_', '-'로만 이루어져야 합니다.");
+            throw new IllegalArgumentException(String.format("\"%s\"는 올바른 이름이 아닙니다. 이름은 영어, 숫자, '_', '-'로만 이루어져야 합니다.", inputName));
         }
     }
 

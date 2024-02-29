@@ -17,7 +17,7 @@ public class PlayersTest {
     void playerNumberTest(List<String> input) {
         Assertions.assertThatThrownBy(() -> new Players(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름의 수는 2이상 10이하여야 합니다.");
+                .hasMessageContaining("이름의 수는 2이상 10이하여야 합니다.");
     }
 
     private static Stream<Arguments> playerNumberTestMethod() {
