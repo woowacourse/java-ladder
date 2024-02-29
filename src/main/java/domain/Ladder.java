@@ -1,6 +1,6 @@
 package domain;
 
-import utils.RandomGenerator;
+import utils.Generator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,17 +12,14 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(final List<Line> line) {
+    private Ladder(final List<Line> line) {
         lines = line;
     }
 
-    public static Ladder of(final int maxHeight, final int personCount) {
-        validateMaxHeight(maxHeight);
-
-        List<Line> randomLines = new ArrayList<>();
-        IntStream.range(0, maxHeight)
-                .forEach(iterator -> randomLines.add(Line.of(personCount, new RandomGenerator())));
-        return new Ladder(randomLines);
+    public static Ladder of(final int height, final int personCount, Generator generator) {
+        validateMaxHeight(height);
+        List<Line> lines = generateLines(height, personCount, generator);
+        return new Ladder(lines);
     }
 
     public int climb(int position) {
@@ -30,6 +27,13 @@ public class Ladder {
             position = line.moveFrom(position);
         }
         return position;
+    }
+
+    private static List<Line> generateLines(final int height, final int personCount, final Generator generator) {
+        List<Line> lines = new ArrayList<>();
+        IntStream.range(0, height)
+                .forEach(iterator -> lines.add(Line.of(personCount, generator)));
+        return lines;
     }
 
     private static void validateMaxHeight(final int maxHeight) {

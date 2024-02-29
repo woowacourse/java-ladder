@@ -1,6 +1,7 @@
 package controller;
 
 import domain.*;
+import utils.RandomGenerator;
 import view.InputView;
 import view.ResultView;
 
@@ -36,7 +37,7 @@ public class LadderGameController {
 
     private Ladder generateLadders(final int userCount) {
         int height = InputView.inputHeight();
-        return Ladder.of(height, userCount);
+        return Ladder.of(height, userCount, new RandomGenerator());
     }
 
     private static void printLadderResult(final Users users, final Ladder ladder, final Results ladderResults) {

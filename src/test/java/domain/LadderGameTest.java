@@ -26,21 +26,12 @@ class LadderGameTest {
                 4);
 
 
-        Ladder ladder = new Ladder(List.of(
-                new Line(List.of(BRIDGE, NON_BRIDGE, BRIDGE)),
-                new Line(List.of(NON_BRIDGE, BRIDGE, NON_BRIDGE)),
-                new Line(List.of(BRIDGE, NON_BRIDGE, NON_BRIDGE)),
-                new Line(List.of(NON_BRIDGE, BRIDGE, NON_BRIDGE)),
-                new Line(List.of(BRIDGE, NON_BRIDGE, BRIDGE)))
-        );
-
+        Ladder ladder = Ladder.of(3, 4, () -> true);
         /*
                 사다리 모양
                 pobi  honux crong   jk
                 |-----|     |-----|
-                |     |-----|     |
-                |-----|     |     |
-                |     |-----|     |
+                |-----|     |-----|
                 |-----|     |-----|
                 꽝    5000  꽝    3000
          */
@@ -49,10 +40,10 @@ class LadderGameTest {
         GameResult gameResult = new LadderGame(users, ladder, results).getResult();
         //then
         assertAll(
-                () -> assertThat(gameResult.findByUserName("pobi")).isEqualTo("꽝"),
-                () -> assertThat(gameResult.findByUserName("honux")).isEqualTo("3000"),
-                () -> assertThat(gameResult.findByUserName("crong")).isEqualTo("꽝"),
-                () -> assertThat(gameResult.findByUserName("jk")).isEqualTo("5000")
+                () -> assertThat(gameResult.findByUserName("pobi")).isEqualTo("5000"),
+                () -> assertThat(gameResult.findByUserName("honux")).isEqualTo("꽝"),
+                () -> assertThat(gameResult.findByUserName("crong")).isEqualTo("3000"),
+                () -> assertThat(gameResult.findByUserName("jk")).isEqualTo("꽝")
         );
     }
 }

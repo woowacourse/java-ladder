@@ -10,13 +10,12 @@ public class Line {
 
     private final List<Bridge> bridges;
 
-    public Line(final List<Bridge> bridges) {
+    private Line(final List<Bridge> bridges) {
         this.bridges = bridges;
     }
 
     public static Line of(final int personCount, final Generator generator) {
-        List<Bridge> bridges = new ArrayList<>();
-        generateRandomBridge(bridges, personCount, generator);
+        List<Bridge> bridges = generateRandomBridge(personCount, generator);
         return new Line(bridges);
     }
 
@@ -44,7 +43,9 @@ public class Line {
         return position != 0 && bridges.get(position - 1) == BRIDGE;
     }
 
-    private static void generateRandomBridge(final List<Bridge> bridges, final int personCount, Generator generator) {
+    private static List<Bridge> generateRandomBridge(final int personCount, Generator generator) {
+        List<Bridge> bridges = new ArrayList<>();
+
         boolean randomLine = generator.generate();
         final Bridge firstBridge = findByHasBridge(randomLine);
 
@@ -53,6 +54,7 @@ public class Line {
         for (int i = 1; i < personCount - 1; i++) {
             addBridge(bridges, generator, i);
         }
+        return bridges;
     }
 
     private static void addBridge(final List<Bridge> bridges, final Generator generator, final int index) {
