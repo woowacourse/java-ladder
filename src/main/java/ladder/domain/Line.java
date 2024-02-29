@@ -12,8 +12,12 @@ public record Line(List<Boolean> scaffolds) {
         validateScaffoldNotLinked(this.scaffolds);
     }
 
+    private static IntStream getScaffoldIndexesExceptLast(List<Boolean> scaffolds) {
+        return IntStream.range(0, scaffolds.size() - 1);
+    }
+
     private void validateScaffoldNotLinked(List<Boolean> scaffolds) {
-        if (IntStream.range(0, scaffolds.size() - 1)
+        if (getScaffoldIndexesExceptLast(scaffolds)
                 .anyMatch(i -> isLinkedWithNext(scaffolds, i))) {
             throw new IllegalArgumentException(SCAFFOLD_NOT_LINK);
         }
