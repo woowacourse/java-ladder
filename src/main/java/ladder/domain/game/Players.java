@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Players {
-    private static final int MAXIMUM_PLAYER_SIZE = 10;
     private static final int MINIMUM_PLAYER_SIZE = 2;
+    private static final int MAXIMUM_PLAYER_SIZE = 10;
 
     private final List<Player> players;
 
@@ -24,8 +24,7 @@ public class Players {
 
     private List<Player> mapPlayer(final List<String> playerNames) {
         return IntStream.range(0, playerNames.size())
-                .boxed()
-                .map(index -> generatePlayer(playerNames, index))
+                .mapToObj(index -> generatePlayer(playerNames, index))
                 .toList();
     }
 
