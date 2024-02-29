@@ -18,13 +18,7 @@ public class InputView {
     }
 
     public List<String> readPlayersName() {
-        System.out.println(PLAYERS_REQUEST_MESSAGE);
-        String rawNames = scanner.nextLine();
-        validateBlank(rawNames);
-        validateSeparators(rawNames);
-        List<String> names = List.of(rawNames.split(SEPARATOR, -1));
-        System.out.println();
-        return names;
+        return readSeparateLine(PLAYERS_REQUEST_MESSAGE);
     }
 
     private void validateBlank(final String rawNames) {
@@ -67,7 +61,11 @@ public class InputView {
     }
 
     public List<String> readPrizes() {
-        System.out.println(RESULT_REQUEST_MESSAGE);
+        return readSeparateLine(RESULT_REQUEST_MESSAGE);
+    }
+
+    private List<String> readSeparateLine(final String requestMessage) {
+        System.out.println(requestMessage);
         String rawPrizes = scanner.nextLine();
         validateBlank(rawPrizes);
         validateSeparators(rawPrizes);
