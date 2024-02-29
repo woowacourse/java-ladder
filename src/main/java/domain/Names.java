@@ -35,6 +35,10 @@ public class Names {
         return values.size();
     }
 
+    public Name findNameAtIndex(int index) {
+        return values.get(index);
+    }
+
     public List<Name> getValues() {
         return values;
     }

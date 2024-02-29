@@ -61,6 +61,7 @@ class NamesTest {
     void getPlayersCount() {
         //given
         final List<String> names = List.of("pobi", "honux", "crong", "jk");
+
         //when
         final Names players = new Names(names);
         int playersCount = players.count();
@@ -80,5 +81,21 @@ class NamesTest {
 
         //then
         Assertions.assertThat(returnedNames).hasSize(4);
+    }
+
+    @DisplayName("주어진 위치에 있는 이름을 반환한다.")
+    @Test
+    void findNameAtIndex() {
+        //given
+        final List<String> rawNames = List.of("pobi", "honux", "crong", "jk");
+        final Names names = new Names(rawNames);
+        final int index = 2;
+        final String expectedName = "crong";
+
+        //when
+        Name name = names.findNameAtIndex(index);
+
+        //then
+        Assertions.assertThat(name.getValue()).isEqualTo(expectedName);
     }
 }

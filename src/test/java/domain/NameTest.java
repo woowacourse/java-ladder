@@ -25,6 +25,7 @@ class NameTest {
     void overMaximumNameLength(String name) {
         //given
         final String playerName = name;
+
         //when & then
         Assertions.assertThatThrownBy(() -> new Name(playerName))
                 .isInstanceOf(IllegalArgumentException.class)
