@@ -28,11 +28,12 @@ public class Ladder {
         return this.height.getHeight();
     }
 
-    public int climbLines(int startPosition) {
+    public int climb(int startPosition) {
         int currentPosition = startPosition;
         for (Line line : this.lines) {
             currentPosition = line.climb(currentPosition);
         }
+
         return currentPosition;
     }
 }
