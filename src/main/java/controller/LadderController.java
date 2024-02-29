@@ -27,11 +27,25 @@ public class LadderController {
         Participants participants = repeatUntilSuccess(this::prepareParticipants);
         ExecutionResult executionResult = repeatUntilSuccess(this::prepareExecutionResult, participants);
         Ladder ladder = repeatUntilSuccess(this::prepareLadder, participants);
+
         outputView.printParticipantsName(captureParticipantsName(participants));
         outputView.printLadder(captureLayerSteps(ladder));
         outputView.printExecutionResultBottomLadder(executionResult);
+
+        gamePrepare(participants, ladder, executionResult);
+    }
+
+    private void gamePrepare(Participants participants, Ladder ladder, ExecutionResult executionResult) {
         ResultInterestedPeople resultInterestedPeople =
                 repeatUntilSuccess(this::prepareResultInterestedPeople, captureParticipantsName(participants));
+        if (resultInterestedPeople.getResultInterestedName().size() != participants.getParticipantsSize()) {
+            gameStart(resultInterestedPeople, ladder, executionResult);
+            gamePrepare(participants, ladder, executionResult);
+            return;
+        }
+        gameStart(resultInterestedPeople, ladder, executionResult);
+    }
+
     private void gameStart(ResultInterestedPeople resultInterestedPeople, Ladder ladder,
                            ExecutionResult executionResult) {
         resultInterestedPeople.forEachPosition(position -> {
