@@ -22,7 +22,7 @@ public class InputView {
     }
 
     public String readPrizes() {
-        System.out.println(OutputView.NEWLINE + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        printMessageWithBlankLine("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         final String input = SCANNER.nextLine();
 
         inputValidator.validateInputBlank(input);
@@ -30,7 +30,7 @@ public class InputView {
     }
 
     public int readLadderHeight() {
-        System.out.println(OutputView.NEWLINE + "최대 사다리 높이는 몇 개인가요?");
+        printMessageWithBlankLine("최대 사다리 높이는 몇 개인가요?");
         final String input = SCANNER.nextLine();
 
         inputValidator.validateLadderHeight(input);
@@ -38,10 +38,14 @@ public class InputView {
     }
 
     public String readNameToSeeResult() {
-        System.out.println(OutputView.NEWLINE + "결과를 보고 싶은 사람은?");
+        printMessageWithBlankLine("결과를 보고 싶은 사람은?");
         final String input = SCANNER.nextLine();
 
         inputValidator.validateInputBlank(input);
         return input;
+    }
+
+    private void printMessageWithBlankLine(final String message) {
+        System.out.println(OutputView.NEWLINE + message);
     }
 }
