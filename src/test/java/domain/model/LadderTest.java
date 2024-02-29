@@ -14,14 +14,14 @@ class LadderTest {
     void findConsequenceTest() {
         //given
         Ladder ladder=new Ladder("2",3,()->true);
-        List<Integer> expected= List.of(1,2,3);
+        List<Integer> expected= List.of(0,1,2);
         List<Integer> actual = new ArrayList<>();
         //when
         for(int index = 0; index <3; index++){
-            int indexOfConsequence=ladder.goToConsequence(index);
+            int indexOfConsequence=ladder.goToConsequence(index,0);
             actual.add(indexOfConsequence);
         }
         //then
-        assertThat(expected).isEqualTo(expected);
+        assertThat(expected).isEqualTo(actual);
     }
 }
