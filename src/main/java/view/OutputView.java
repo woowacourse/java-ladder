@@ -15,20 +15,21 @@ public class OutputView {
     private static final String RUNG_EMPTY = "     ";
     private static final String RUNG_SEPARATOR = "|";
 
-    public static void printResult(final List<Name> names, final Ladder ladder, final int height) {
+    public static void printResult(final List<Name> names, final Ladder ladder) {
         System.out.println("실행 결과\n");
 
         printPlayers(names);
+        printLadder(ladder.getRows());
     }
 
-    public static void printLadder(List<Row> rows) {
+    private static void printLadder(List<Row> rows) {
         String ladderMessage = rows.stream()
                 .map(OutputView::rowToMessage)
                 .collect(Collectors.joining(System.lineSeparator()));
         System.out.println(ladderMessage);
     }
 
-    public static String rowToMessage(Row row) {
+    private static String rowToMessage(Row row) {
         return LADDER_LEFT_MARGIN + row.getRow().stream()
                 .map(OutputView::directionToMessage)
                 .collect(Collectors.joining(RUNG_SEPARATOR)).concat(RUNG_SEPARATOR);
