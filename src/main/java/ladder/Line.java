@@ -1,5 +1,6 @@
 package ladder;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -21,6 +22,10 @@ public class Line {
 
     int size() {
         return directions.size();
+    }
+
+    List<Direction> getDirections() {
+        return Collections.unmodifiableList(directions);
     }
 
     private void validateSize(List<Direction> directions) {
