@@ -42,7 +42,8 @@ class LineTest {
                 Arguments.of(Direction.LEFT, 1),
                 Arguments.of(Direction.DOWN, 2),
                 Arguments.of(Direction.RIGHT, 3),
-                Arguments.of(Direction.LEFT, 4));
+                Arguments.of(Direction.LEFT, 4)
+        );
     }
 }
 
