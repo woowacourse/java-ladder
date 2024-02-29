@@ -39,8 +39,6 @@ class PrizesTest {
 	@ValueSource(ints = {-1, 3})
 	@DisplayName("플레이어의 위치가 범위를 초과하면 예외가 발생된다.")
 	void getPlayersPrizeNameWithInvalidPosition(int position) {
-		Player player = new Player("A", position);
-
 		assertThatThrownBy(() -> prizes.getPlayersPrizeName(position))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
