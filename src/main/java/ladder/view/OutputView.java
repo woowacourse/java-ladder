@@ -1,5 +1,7 @@
 package ladder.view;
 
+import java.util.List;
+import ladder.domain.Price;
 import ladder.dto.LadderDto;
 import ladder.dto.LineDto;
 import ladder.dto.PlayerNamesDto;
@@ -20,10 +22,24 @@ public class OutputView {
         PrintPrice(priceDto);
     }
 
-    private void printResultTitle() {
+    public void printReward(List<String> result, List<Price> prices) {
+        System.out.print(System.lineSeparator());
+        for (int i = 0; i < result.size(); i++) {
+            System.out.printf(result.get(i) + " : " + prices.get(i).getPrice() + System.lineSeparator());
+        }
+    }
+
+    public void printOneReward(String playerName, Price price) {
         System.out.println();
         System.out.println("실행결과");
+        System.out.println(price.getPrice());
         System.out.println();
+    }
+
+    private void printResultTitle() {
+        System.out.print(System.lineSeparator());
+        System.out.println("실행결과");
+        System.out.print(System.lineSeparator());
     }
 
     private void printPlayerNames(PlayerNamesDto playerNames) {
