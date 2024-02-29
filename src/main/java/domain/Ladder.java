@@ -20,10 +20,6 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
-    }
-
     public int climb(final int position) {
         int currentPosition = position;
         for (Line line : lines) {
@@ -31,5 +27,9 @@ public class Ladder {
         }
 
         return currentPosition;
+    }
+
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }

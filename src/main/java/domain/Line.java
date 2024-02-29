@@ -36,16 +36,12 @@ public class Line {
     }
 
     private static Bridge createBridge(final Bridge bridgeCandidate, final Bridge previousBridge) {
-        if (previousBridge == Bridge.BRIDGE) {
+        if (previousBridge.exists()) {
             return Bridge.NO_BRIDGE;
         }
         return bridgeCandidate;
     }
 
-
-    public List<Bridge> getBridges() {
-        return Collections.unmodifiableList(bridges);
-    }
 
     public Direction findDirection(final int position) {
         if (canMoveRight(position)) {
@@ -80,5 +76,9 @@ public class Line {
 
     private boolean isFirst(final int position) {
         return position == 0;
+    }
+
+    public List<Bridge> getBridges() {
+        return Collections.unmodifiableList(bridges);
     }
 }
