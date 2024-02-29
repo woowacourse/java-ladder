@@ -6,16 +6,25 @@ import ladder.domain.creator.RandomLineCreator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 @DisplayName("사다리 게임")
 public class LadderGameTest {
+    private static final Ladder FIXED_LADDER = new Ladder(List.of(
+            new Line(List.of(Connection.RUNG, Connection.EMPTY, Connection.RUNG)), // |-----|     |-----|
+            new Line(List.of(Connection.EMPTY, Connection.RUNG, Connection.EMPTY)) // |     |-----|     |
+    ));
+    private static final LadderCreator FIXED_LADDER_CREATOR = new LadderCreator() {
+        @Override
+        public Ladder create(int width, int height) {
+            return FIXED_LADDER;
+        }
+    };
+
     @DisplayName("생성 테스트")
     @Test
     void createTest() {
@@ -29,7 +38,7 @@ public class LadderGameTest {
         // given
         People people = new People(List.of(new Person("pobi"), new Person("nak")));
         LadderHeight ladderHeight = new LadderHeight(2);
-        LadderGame ladderGame = new LadderGame(new FixedLadderCreator());
+        LadderGame ladderGame = new LadderGame(FIXED_LADDER_CREATOR);
 
         Ladder expected = new Ladder(List.of(
                 new Line(List.of(Connection.EMPTY)),
@@ -41,19 +50,27 @@ public class LadderGameTest {
         // then
         assertThat(ladder)
                 .usingRecursiveComparison()
-                .isEqualTo(expected);
+                .isEqualTo(FIXED_LADDER);
     }
 
-    static class FixedLadderCreator implements LadderCreator {
-        @Override
-        public Ladder create(int width, int height) {
-            return new Ladder(IntStream.range(0, height)
-                    .mapToObj(i -> createLine(width))
-                    .toList());
-        }
+    @DisplayName("사다리 타기 전체 결과를 구한다.")
+    @Test
+    void findTotalResultTest() {
+        // given
+        LadderGame ladderGame = new LadderGame(FIXED_LADDER_CREATOR);
+        People people = new People(List.of(
+                new Person("pobi"), new Person("neo"), new Person("kaki"), new Person("lisa")));
+        List<String> winningResults = List.of(
+                "1등", "2등", "3등", "4등");
+        Map<String, String> expected = Map.of(
+                "pobi", "3등",
+                "neo", "1등",
+                "kaki", "4등",
+                "lisa", "2등"
+        );
 
-        private Line createLine(int width) {
-            return new Line(new ArrayList<>(Collections.nCopies(width, Connection.EMPTY)));
-        }
+        // when & then
+        assertThat(ladderGame.findResult(FIXED_LADDER, people, winningResults))
+                .isEqualTo(expected);
     }
 }
