@@ -2,7 +2,7 @@ package ladder.domain.resource.line;
 
 import ladder.domain.resource.direction.Direction;
 
-public class CustomLineGenerator implements LineGenerator{
+public class CustomLineGenerator implements LineGenerator {
 
     @Override
     public Line generateLine() {

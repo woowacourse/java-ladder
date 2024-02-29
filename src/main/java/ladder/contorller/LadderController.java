@@ -74,8 +74,8 @@ public class LadderController {
             List<User> users = userNames.stream()
                     .map(User::new)
                     .toList();
-
             return new Users(users);
+
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return createUsers();

@@ -3,6 +3,7 @@ package ladder.domain.resource.direction;
 import java.util.Random;
 
 public enum Direction {
+
     RIGHT,
     LEFT,
     NEUTRAL;

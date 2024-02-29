@@ -1,12 +1,9 @@
 package ladder.view;
 
 import java.util.HashMap;
-import java.util.List;
 import ladder.domain.game.GameResource;
 import ladder.domain.game.GameResult;
-import ladder.domain.resource.direction.Direction;
 import ladder.domain.resource.ladder.Ladder;
-import ladder.domain.resource.line.Line;
 import ladder.domain.resource.prize.Prize;
 import ladder.domain.resource.prize.Prizes;
 import ladder.domain.resource.user.User;
@@ -61,22 +58,4 @@ public class OutputView {
         String formattedPrizeNames = formatter.formatPrizeNames(prizes);
         System.out.println(formattedPrizeNames);
     }
-
-
-//    private void printLine(StringBuilder sb, List<Direction> directionsInfo) {
-//        sb.append(BLANK.repeat(4));
-//        for (int i = 0; i < directionsInfo.size() - 1; i++) {
-//            sb.append(LINE_VERTICAL)
-//                    .append(printDirections(directionsInfo.get(i)));
-//        }
-//        sb.append(LINE_VERTICAL).append("\n");
-//    }
-//
-//    private String printDirections(Direction direction) {
-//        if (direction == Direction.RIGHT) {
-//            return LINE_HORIZONTAL;
-//        }
-//        return BLANK.repeat(5);
-
-//    }
 }

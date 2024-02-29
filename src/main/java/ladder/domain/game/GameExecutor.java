@@ -79,12 +79,10 @@ public class GameExecutor {
         int numberOfPrizes = prizes.getSize();
 
         if (numberOfUsers != ladderWidth || ladderWidth != numberOfPrizes) {
-            String errorMessage = String.format(
-                    ERROR_NOT_CONSISTENT_SIZE,
+            String errorMessage = String.format(ERROR_NOT_CONSISTENT_SIZE,
                     GameResource.RESOURCE_NAME_USERS,
                     GameResource.RESOURCE_NAME_LADDER,
-                    GameResource.RESOURCE_NAME_PRIZES
-            );
+                    GameResource.RESOURCE_NAME_PRIZES);
             throw new IllegalArgumentException(errorMessage);
         }
     }
