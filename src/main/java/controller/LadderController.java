@@ -3,6 +3,7 @@ package controller;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.LadderGame;
+import domain.player.Player;
 import domain.player.PlayerCount;
 import domain.player.Players;
 import domain.result.PlayersPrize;
@@ -53,7 +54,7 @@ public class LadderController {
         String command = readWithRetry(this::readSearchingPlayers, players);
 
         while (!command.equals("all")){
-            final Prize prize = playersPrize.search(command);
+            final Prize prize = playersPrize.search(new Player(command));
             outputView.printGameResult(prize);
             command = inputView.inputSearchingPlayer();
         }

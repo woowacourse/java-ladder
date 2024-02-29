@@ -18,6 +18,6 @@ public class PlayersPrizeTest {
         final PlayersPrize playersPrize = new PlayersPrize(Map.of(new Player("pobi"), candy, new Player("kirby"), cookie));
 
         // when & then
-        assertThat(playersPrize.search("pobi")).isEqualTo(candy);
+        assertThat(playersPrize.search(new Player("pobi"))).isEqualTo(candy);
     }
 }

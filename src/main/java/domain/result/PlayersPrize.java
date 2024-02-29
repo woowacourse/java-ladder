@@ -12,8 +12,8 @@ public class PlayersPrize {
         this.playersPrize = playersPrize;
     }
 
-    public Prize search(String playerName) {
-        return playersPrize.get(new Player(playerName));
+    public Prize search(Player player) {
+        return playersPrize.get(player);
     }
 
     public Map<Player, Prize> getPlayersPrize() {
