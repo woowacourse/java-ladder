@@ -1,14 +1,14 @@
 package controller;
 
-import domain.Height;
-import domain.Ladder;
+import domain.ladder.Height;
+import domain.ladder.Ladder;
 import domain.LadderGame;
-import domain.PlayerCount;
-import domain.Players;
-import domain.PlayersPrize;
-import domain.Prize;
-import domain.Prizes;
-import domain.RandomStepGenerator;
+import domain.player.PlayerCount;
+import domain.player.Players;
+import domain.result.PlayersPrize;
+import domain.prize.Prize;
+import domain.prize.Prizes;
+import domain.ladder.RandomStepGenerator;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;

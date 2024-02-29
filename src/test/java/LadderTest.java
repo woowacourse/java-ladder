@@ -1,10 +1,10 @@
 import static org.assertj.core.api.Assertions.assertThat;
 
-import domain.Height;
-import domain.Ladder;
-import domain.PlayerCount;
-import domain.Players;
-import domain.RandomStepGenerator;
+import domain.ladder.Height;
+import domain.ladder.Ladder;
+import domain.player.PlayerCount;
+import domain.player.Players;
+import domain.ladder.RandomStepGenerator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

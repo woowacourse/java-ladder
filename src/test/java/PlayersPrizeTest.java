@@ -1,8 +1,8 @@
 import static org.assertj.core.api.Assertions.assertThat;
 
-import domain.Player;
-import domain.PlayersPrize;
-import domain.Prize;
+import domain.player.Player;
+import domain.result.PlayersPrize;
+import domain.prize.Prize;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

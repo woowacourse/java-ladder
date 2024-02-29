@@ -1,11 +1,11 @@
 package view;
 
-import domain.Ladder;
-import domain.Line;
-import domain.Players;
-import domain.PlayersPrize;
-import domain.Prize;
-import domain.Prizes;
+import domain.ladder.Ladder;
+import domain.ladder.Row;
+import domain.player.Players;
+import domain.result.PlayersPrize;
+import domain.prize.Prize;
+import domain.prize.Prizes;
 
 public class OutputView {
     private final OutputFormatter outputFormatter;
@@ -31,7 +31,7 @@ public class OutputView {
     }
 
     private void printLadder(Ladder ladder) {
-        ladder.getLines().forEach(this::printLadderLine);
+        ladder.getRows().forEach(this::printLadderRow);
     }
 
     private void printPrizes(Prizes rawPrizes) {
@@ -39,9 +39,9 @@ public class OutputView {
         printLine(prizes);
     }
 
-    private void printLadderLine(Line rawLine) {
-        String line = outputFormatter.toLine(rawLine);
-        printLine(line);
+    private void printLadderRow(Row rawRow) {
+        String row = outputFormatter.toRow(rawRow);
+        printLine(row);
     }
 
     public void printGameResult(Prize prize) {

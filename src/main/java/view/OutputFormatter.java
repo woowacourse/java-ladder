@@ -1,11 +1,11 @@
 package view;
 
-import domain.Line;
-import domain.Player;
-import domain.Players;
-import domain.Prize;
-import domain.Prizes;
-import domain.Step;
+import domain.ladder.Row;
+import domain.player.Player;
+import domain.player.Players;
+import domain.prize.Prize;
+import domain.prize.Prizes;
+import domain.ladder.Step;
 import java.util.stream.Collectors;
 
 public class OutputFormatter {
@@ -18,11 +18,11 @@ public class OutputFormatter {
                 .collect(Collectors.joining());
     }
 
-    public String toLine(Line rawLine) {
-        String line = rawLine.getSteps().stream()
+    public String toRow(Row rawRow) {
+        String row = rawRow.getSteps().stream()
                 .map(this::getStep)
                 .collect(Collectors.joining());
-        return "    " + line;
+        return "    " + row;
     }
 
     public String toPrize(Prizes rawPrizes) {

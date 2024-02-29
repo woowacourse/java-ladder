@@ -1,4 +1,4 @@
-package domain;
+package domain.prize;
 
 public class Prize {
     private final String prize;

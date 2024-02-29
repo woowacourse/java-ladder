@@ -1,19 +1,20 @@
-package domain;
+package domain.ladder;
 
+import domain.player.PlayerCount;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class Line {
+public class Row {
     private final List<Step> steps;
 
-    private Line(final List<Step> steps) {
+    private Row(final List<Step> steps) {
         this.steps = steps;
     }
 
-    public static Line create(PlayerCount playerCount, StepGenerator stepGenerator) {
-        return new Line(createSteps(playerCount, stepGenerator));
+    public static Row create(PlayerCount playerCount, StepGenerator stepGenerator) {
+        return new Row(createSteps(playerCount, stepGenerator));
     }
 
     private static List<Step> createSteps(PlayerCount playerCount, StepGenerator stepGenerator) {
@@ -53,8 +54,8 @@ public class Line {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Line line = (Line) o;
-        return Objects.equals(steps, line.steps);
+        Row row = (Row) o;
+        return Objects.equals(steps, row.steps);
     }
 
     @Override

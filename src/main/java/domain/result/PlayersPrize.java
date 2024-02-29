@@ -1,5 +1,7 @@
-package domain;
+package domain.result;
 
+import domain.player.Player;
+import domain.prize.Prize;
 import java.util.Collections;
 import java.util.Map;
 

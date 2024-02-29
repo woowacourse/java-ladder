@@ -1,7 +1,7 @@
 package mock;
 
-import domain.Step;
-import domain.StepGenerator;
+import domain.ladder.Step;
+import domain.ladder.StepGenerator;
 
 public class EmptyStepGenerator implements StepGenerator {
     @Override
