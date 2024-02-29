@@ -3,9 +3,6 @@ package ladder.domain;
 import ladder.domain.creator.LadderCreator;
 import ladder.domain.creator.RandomLadderCreator;
 import ladder.domain.creator.RandomLineCreator;
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderHeight;
-import ladder.domain.ladder.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
 package ladder.domain.creator;
 
-import ladder.domain.ladder.Ladder;
+import ladder.domain.Ladder;
 
 import java.util.stream.IntStream;
 

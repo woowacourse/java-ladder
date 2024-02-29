@@ -1,6 +1,4 @@
-package ladder.domain.ladder;
-
-import ladder.domain.Connection;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;

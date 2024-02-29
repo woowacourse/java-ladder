@@ -1,8 +1,6 @@
 package ladder.domain;
 
 import ladder.domain.creator.LadderCreator;
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderHeight;
 
 public class LadderGame {
     private final LadderCreator ladderCreator;

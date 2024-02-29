@@ -1,6 +1,4 @@
-package ladder.domain.ladder;
-
-import ladder.domain.Connection;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +39,18 @@ public class Line {
 
     private boolean isRung(List<Connection> connections, int order) {
         return Connection.RUNG.equals(connections.get(order));
+    }
+
+    public int climb(int index) {
+        if (index < connections.size() && connections.get(index).equals(Connection.RUNG)) {
+            return index + 1;
+        }
+
+        if (index > 0 && connections.get(index - 1).equals(Connection.RUNG)) {
+            return index - 1;
+        }
+
+        return index;
     }
 
     public List<Connection> getConnections() {

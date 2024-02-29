@@ -1,12 +1,8 @@
 package ladder.controller;
 
-import ladder.domain.LadderGame;
-import ladder.domain.People;
-import ladder.domain.Person;
+import ladder.domain.*;
 import ladder.domain.creator.RandomLadderCreator;
 import ladder.domain.creator.RandomLineCreator;
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderHeight;
 import ladder.util.ExceptionRetryHandler;
 import ladder.view.InputView;
 import ladder.view.OutputView;
