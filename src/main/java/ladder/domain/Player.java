@@ -2,8 +2,9 @@ package ladder.domain;
 
 public record Player(String name) {
 
+    public static final String ALL = "all";
+
     private static final int MAX_NAME_LENGTH = 5;
-    public static Player ALL = new Player("all");
 
     public Player {
         if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
