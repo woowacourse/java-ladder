@@ -6,6 +6,7 @@ public class User {
 
     private static final String ALPHABET_FORMAT = "^[a-z A-Z]+$";
     private static final String BLANK = " ";
+    private static final String BANNED_USERNAME = "all";
     private static final int MAX_NAME_LENGTH = 5;
 
     private final String userName;
@@ -41,7 +42,7 @@ public class User {
     }
 
     private void validateBannedName(String name) {
-        if (name.equals("all")) {
+        if (name.equals(BANNED_USERNAME)) {
             throw new IllegalArgumentException("[ERROR] 사용자의 이름으로 'all'은 허용하지 않습니다.");
         }
     }
