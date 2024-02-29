@@ -7,30 +7,30 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class TargetTest {
+public class ResultTargetTest {
 
     @Test
     @DisplayName("대상 객체 생성 성공")
     void test_ok_constructor() {
-        Target target = Target.of("t1",
+        ResultTarget resultTarget = ResultTarget.of("t1",
                 List.of(new Member("t1"), new Member("t2")));
-        assertThat(target.getName()).isEqualTo("t1");
-        assertThat(target.isAllMembers()).isFalse();
+        assertThat(resultTarget.getName()).isEqualTo("t1");
+        assertThat(resultTarget.isAllMembers()).isFalse();
     }
 
     @Test
     @DisplayName("대상 객체 생성 성공 - 전체를 나타내는 객체")
     void test_ok_constructorAll() {
-        Target target = Target.of("all",
+        ResultTarget resultTarget = ResultTarget.of("all",
                 List.of(new Member("m1"), new Member("m2")));
-        assertThat(target.getName()).isEqualTo("all");
-        assertThat(target.isAllMembers()).isTrue();
+        assertThat(resultTarget.getName()).isEqualTo("all");
+        assertThat(resultTarget.isAllMembers()).isTrue();
     }
 
     @Test
     @DisplayName("대상 객체 생성 실패 - 해당 이름을 가진 참여자 없음")
     void test_exception_constructorNotContain() {
-        assertThatThrownBy(() -> Target.of("m3",
+        assertThatThrownBy(() -> ResultTarget.of("m3",
                 List.of(new Member("m1"), new Member("m2"))))
                 .isInstanceOf(IllegalArgumentException.class);
     }

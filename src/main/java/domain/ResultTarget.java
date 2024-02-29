@@ -2,22 +2,22 @@ package domain;
 
 import java.util.List;
 
-public class Target {
+public class ResultTarget {
 
     private final String name;
     private final Boolean isAll;
 
-    private Target(String name, Boolean isAll) {
+    private ResultTarget(String name, Boolean isAll) {
         this.name = name;
         this.isAll = isAll;
     }
 
-    public static Target of(String targetName, List<Member> members) {
+    public static ResultTarget of(String targetName, List<Member> members) {
         validate(targetName, members);
         if (targetName.equals("all")) {
-            return new Target(targetName, true);
+            return new ResultTarget(targetName, true);
         }
-        return new Target(targetName, false);
+        return new ResultTarget(targetName, false);
     }
 
     private static void validate(String targetName, List<Member> members) {
