@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import common.exception.model.ValidationException;
 import domain.bridge.strategy.BridgeGeneratorStub;
 import domain.player.PlayerName;
 import domain.player.PlayerNames;

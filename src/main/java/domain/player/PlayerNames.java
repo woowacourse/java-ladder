@@ -5,7 +5,7 @@ import common.exception.model.NotFoundException;
 import common.exception.model.ValidationException;
 
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -55,10 +55,10 @@ public class PlayerNames {
                 .orElseThrow(() -> new NotFoundException(NOT_FOUND_ERROR_MESSAGE));
     }
 
-    public Set<String> getPlayerNames() {
-        return values.stream()
-                .map(PlayerName::getValue)
-                .collect(Collectors.toUnmodifiableSet());
+    public Map<Integer, String> getPlayerSequenceAndName() {
+        return IntStream.range(0, values.size())
+                .boxed()
+                .collect(Collectors.toMap(index -> index, index -> values.get(index).getValue()));
     }
 
     public int getCount() {

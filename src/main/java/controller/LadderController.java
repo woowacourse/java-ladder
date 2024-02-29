@@ -30,7 +30,6 @@ public class LadderController {
         this.retryCount = 0;
     }
 
-
     public Ladder createLadder(final LadderHeight ladderHeight, final PlayerNames playerNames, final LadderResults results) {
         Ladder ladder = Ladder.create(ladderHeight, playerNames.getCount(), new RandomBridgeGenerator());
         outputView.printGeneratedLadder(ladder, playerNames, results);
@@ -58,26 +57,26 @@ public class LadderController {
         return retry(() -> new LadderResults(inputView.readLadderResults(), playerCount));
     }
 
-    public void matchPlayerToResult(final Ladder ladder, final PlayerNames names, final LadderResults results) {
-        retry(() -> findPlayerResult(ladder, names, results));
+    public void matchPlayerToResult(final Ladder ladder, final PlayerNames playerNames, final LadderResults results) {
+        retry(() -> findPlayerResult(ladder, playerNames, results));
         outputView.printEndMessage();
     }
 
-    private void findPlayerResult(final Ladder ladder, final PlayerNames names, final LadderResults results) {
+    private void findPlayerResult(final Ladder ladder, final PlayerNames playerNames, final LadderResults results) {
         String inputPlayerName = inputView.readPlayerNameForGetResult();
 
         while (!Command.isFinishCommand(inputPlayerName)) {
-            outputView.printPlayerLadderResult(getPlayerLadderResult(inputPlayerName, ladder, names, results));
+            outputView.printPlayerLadderResult(getPlayerLadderResult(inputPlayerName, ladder, playerNames, results));
             inputPlayerName = inputView.readPlayerNameForGetResult();
         }
     }
 
     private Map<String, String> getPlayerLadderResult(final String inputPlayerName, final Ladder ladder,
-                                                      final PlayerNames names, final LadderResults results) {
+                                                      final PlayerNames playerNames, final LadderResults results) {
         if (Command.isAllCommand(inputPlayerName)) {
-            return ladder.findAllPlayersLadderResultValue(names, results);
+            return ladder.findAllPlayersLadderResultValue(playerNames, results);
         }
-        return ladder.findSinglePlayerLadderResultValue(inputPlayerName, names, results);
+        return ladder.findSinglePlayerLadderResultValue(inputPlayerName, playerNames, results);
     }
 
     <R> R retry(final Supplier<R> supplier) {

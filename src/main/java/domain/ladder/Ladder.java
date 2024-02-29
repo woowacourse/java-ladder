@@ -34,11 +34,10 @@ public class Ladder {
                                                                final LadderResults results) {
         Map<String, String> playersLadderResult = new HashMap<>();
 
-        for (String playerName : playerNames.getPlayerNames()) {
-            int indexOfName = playerNames.getIndexOfName(playerName);
-            playersLadderResult.put(playerName, findPlayerLadderResultValueByName(indexOfName, results));
+        Map<Integer, String> playerSequenceToName = playerNames.getPlayerSequenceAndName();
+        for (int sequence : playerSequenceToName.keySet()) {
+            playersLadderResult.put(playerSequenceToName.get(sequence), findPlayerLadderResultValueByName(sequence, results));
         }
-
         return playersLadderResult;
     }
 
