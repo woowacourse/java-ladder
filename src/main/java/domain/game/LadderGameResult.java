@@ -11,4 +11,16 @@ public class LadderGameResult {
         this.playerName = playerName;
         this.gameResult = gameResult;
     }
+
+    public GameResult getGameResult() {
+        return gameResult;
+    }
+
+    public PlayerName getPlayerName() {
+        return playerName;
+    }
+
+    public boolean isPlayerName(String playerName) {
+        return this.playerName.isEqualName(playerName);
+    }
 }
