@@ -2,6 +2,7 @@ package domain;
 
 import domain.ladder.Ladder;
 import domain.common.Name;
+import domain.ladder.Point;
 import domain.player.Player;
 import domain.player.Players;
 import domain.reward.PlayerResult;

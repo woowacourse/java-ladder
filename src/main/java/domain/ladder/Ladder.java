@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import domain.Point;
 import domain.ladder.attribute.Direction;
 import util.DirectionGenerator;
 import domain.ladder.attribute.Height;
@@ -61,7 +60,7 @@ public class Ladder {
     }
 
     private Point movePoint(Point point) {
-        Direction direction = getDirectionWithRowAndColumn(point.row(), point.column());
+        Direction direction = getDirectionWithPoint(point);
         return point.move(direction);
     }
 
@@ -69,9 +68,9 @@ public class Ladder {
         return point.column() >= height.getHeight();
     }
 
-    public Direction getDirectionWithRowAndColumn(final int row, final int column) {
-        return ladderLegs.get(row)
-                         .getDirectionAtIndex(column);
+    public Direction getDirectionWithPoint(final Point point) {
+        return ladderLegs.get(point.row())
+                         .getDirectionAtIndex(point.column());
     }
 
     public int getHeight() {

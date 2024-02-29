@@ -1,5 +1,6 @@
 package domain;
 
+import domain.ladder.Point;
 import domain.ladder.attribute.Direction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

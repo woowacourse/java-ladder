@@ -1,7 +1,6 @@
 package domain.ladder;
 
 import domain.FixedDirectionGenerator;
-import domain.Point;
 import domain.ladder.attribute.Direction;
 import domain.ladder.attribute.Height;
 import org.junit.jupiter.api.DisplayName;
@@ -54,8 +53,8 @@ class LadderTest {
 
         Ladder ladder = 오른쪽_왼쪽_오른쪽_왼쪽_아래_사다리_생성();
 
-        Direction direction1 = ladder.getDirectionWithRowAndColumn(point1.row(), point1.column());
-        Direction direction2 = ladder.getDirectionWithRowAndColumn(point2.row(), point2.column());
+        Direction direction1 = ladder.getDirectionWithPoint(point1);
+        Direction direction2 = ladder.getDirectionWithPoint(point2);
         assertEquals(direction1, Direction.DOWN);
         assertEquals(direction2, Direction.LEFT);
     }
@@ -68,7 +67,7 @@ class LadderTest {
 
         Point endPoint = ladder.traverseLadderFromStartToEnd(startPoint);
 
-        assertEquals(endPoint, new Point(1,5));
+        assertEquals(endPoint, new Point(1, 5));
     }
 
     /**
