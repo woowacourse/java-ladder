@@ -23,4 +23,8 @@ public class Players {
     public List<Name> getPlayers() {
         return new ArrayList<>(players);
     }
+
+    public int getPlayersNumber() {
+        return players.size();
+    }
 }

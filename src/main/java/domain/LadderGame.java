@@ -19,7 +19,7 @@ public class LadderGame {
         this.players = players;
         this.generator = new RandomGenerator();
         this.winnings = winnings;
-        this.ladder.init(players.getPlayers().size(), this.generator);
+        this.ladder.init(players.getPlayersNumber(), this.generator);
     }
 
     LadderGame(List<String> names, Height height, Winnings winnings, Generator generator) {
@@ -50,7 +50,7 @@ public class LadderGame {
         List<String> winning = winnings.getWinnings().stream()
                 .map(Winning::getWinning)
                 .toList();
-        for (int index = 0; index < players.getPlayers().size(); index++) {
+        for (int index = 0; index < players.getPlayersNumber(); index++) {
             results.put(names.get(index), winning.get(index));
         }
         return results;

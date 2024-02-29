@@ -14,7 +14,7 @@ public class Winnings {
     }
 
     public void isSameNumberWithPlayers(Players players) {
-        if (winnings.size() != players.getPlayers().size()) {
+        if (winnings.size() != players.getPlayersNumber()) {
             throw new IllegalArgumentException("사람 이름과 같은 개수를 입력하여야 합니다.");
         }
     }
