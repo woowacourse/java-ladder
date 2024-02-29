@@ -16,13 +16,13 @@ public class CountToPoints {
     }
 
     public List<Point> value() {
-        final Point firstPoint = Point.from(generator.generate());
-        return Stream.iterate(firstPoint, prevPoint ->
-                selectCurrentPoint(generator, prevPoint)
-        ).limit(source - 1).toList();
+        return Stream.iterate(Point.DISCONNECTED, this::nextPoint)
+                .limit(source)
+                .skip(1)
+                .toList();
     }
 
-    private static Point selectCurrentPoint(BooleanGenerator generator, Point prevPoint) {
+    private Point nextPoint(Point prevPoint) {
         if (prevPoint.isConnected()) return Point.DISCONNECTED;
         return Point.from(generator.generate());
     }
