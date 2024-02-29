@@ -8,7 +8,7 @@ import laddergame.view.OutputView;
 import java.util.function.Supplier;
 
 public class LadderGameController {
-    private final static String WANT_TO_SEE_ALL_RESULT = "all";
+    private static final String WANT_TO_SEE_ALL_RESULT = "all";
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
