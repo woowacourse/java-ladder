@@ -1,7 +1,5 @@
 package laddergame.domain.gameelements;
 
-import laddergame.constants.ReservedElementName;
-
 import java.util.Objects;
 
 public class Name {

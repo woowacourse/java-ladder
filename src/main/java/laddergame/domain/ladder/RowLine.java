@@ -37,6 +37,7 @@ public class RowLine {
 
         return playerPosition;
     }
+
     private boolean checkLeftPosition(int leftPosition) {
         return leftPosition >= 0
                 && connections.get(leftPosition).isConnected();

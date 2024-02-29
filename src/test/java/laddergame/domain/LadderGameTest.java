@@ -47,6 +47,7 @@ class LadderGameTest {
                         }).collect(toMap(data -> new Name((String) data[0]), data -> new Name((String) data[1]))))
         );
     }
+
     @DisplayName("LadderGame은 Player와 Prize Name을 매핑한 게임 결과를 반환한다.")
     @ParameterizedTest
     @MethodSource
