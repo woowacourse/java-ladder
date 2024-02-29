@@ -19,19 +19,7 @@ public class PositionTest {
     @Test
     void NotPositivePositionThrowException() {
         Assertions.assertThatThrownBy(() -> new Position(-1))
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참가자의 위치는 음수가 될 수 없습니다.");
-    }
-
-    class Position {
-        private final int value;
-
-        Position() {
-            this(0);
-        }
-
-        Position(int value) {
-            this.value = value;
-        }
     }
 }
