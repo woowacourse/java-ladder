@@ -15,7 +15,7 @@ class ResultsTest {
     void validateResultsSize(){
         assertThatThrownBy(() -> new Results(List.of("꽝", "5000"), 3))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("결과의 개수와 사용자의 수가 다릅니다.");
+                .hasMessage("결과의 개수와 참가자의 수가 다릅니다.");
     }
 
 }
