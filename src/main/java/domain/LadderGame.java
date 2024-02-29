@@ -4,6 +4,7 @@ import domain.Participants.Name;
 import domain.Participants.Participants;
 import domain.ladder.Ladder;
 import domain.result.LadderResult;
+import domain.result.Position;
 import domain.result.Prizes;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -25,16 +26,18 @@ public class LadderGame {
     public Map<String, String> allResultOfLadder() {
         List<Name> names = participants.getParticipantsName();
         Map<String, String> result = new LinkedHashMap<>();
-        for (int i = 0; i < participants.getParticipantsCount(); i++) {
-            result.put(names.get(i).getName(), prizes.getParticipantPrize(ladderResult.getOneResult(i)));
+        Position lastPosition;
+        for (int firstPosition = 0; firstPosition < participants.getParticipantsCount(); firstPosition++) {
+            lastPosition = ladderResult.getOneResult(new Position(firstPosition));
+            result.put(names.get(firstPosition).getName(), prizes.getParticipantPrize(lastPosition.getPosition()));
         }
         return result;
     }
 
     public String oneResultOfLadder(String name) {
-        int firstPosition = participants.checkParticipantOrder(name);
-        return prizes.getParticipantPrize(ladderResult.getOneResult(firstPosition));
+        Position firstPosition = new Position(participants.checkParticipantOrder(name));
+        Position lastPosition = ladderResult.getOneResult(firstPosition);
+        return prizes.getParticipantPrize(lastPosition.getPosition());
     }
-
 
 }

@@ -46,12 +46,7 @@ public class LadderResult {
         }
     }
 
-    public int getOneResult(int firstPositionValue) {
-        return firstAndLastPosition.entrySet()
-                .stream()
-                .filter(positions -> positions.getKey().getPosition() == firstPositionValue)
-                .mapToInt(positions -> positions.getValue().getPosition())
-                .findFirst()
-                .getAsInt();
+    public Position getOneResult(Position first) {
+        return firstAndLastPosition.get(first);
     }
 }
