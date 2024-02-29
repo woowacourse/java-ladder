@@ -8,8 +8,8 @@ import domain.player.Names;
 import domain.player.Player;
 import domain.player.Players;
 
-import domain.reward.PlayerResult;
-import domain.reward.Results;
+import domain.result.PlayerResult;
+import domain.result.Results;
 import util.RandomDirectionGenerator;
 
 import org.junit.jupiter.api.DisplayName;

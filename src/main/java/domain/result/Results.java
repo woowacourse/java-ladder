@@ -1,4 +1,4 @@
-package domain.reward;
+package domain.result;
 
 
 import java.util.List;

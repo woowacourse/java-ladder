@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 import domain.ladder.Point;
 import domain.ladder.attribute.Direction;

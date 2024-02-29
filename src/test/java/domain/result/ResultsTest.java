@@ -1,10 +1,10 @@
-package domain;
+package domain.result;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.api.Assertions.*;
 
-import domain.reward.Result;
-import domain.reward.Results;
+import domain.result.Result;
+import domain.result.Results;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

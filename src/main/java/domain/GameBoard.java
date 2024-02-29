@@ -5,9 +5,9 @@ import domain.common.Name;
 import domain.ladder.Point;
 import domain.player.Player;
 import domain.player.Players;
-import domain.reward.PlayerResult;
-import domain.reward.Result;
-import domain.reward.Results;
+import domain.result.PlayerResult;
+import domain.result.Result;
+import domain.result.Results;
 
 import java.util.List;
 

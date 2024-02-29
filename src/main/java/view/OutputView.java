@@ -2,8 +2,8 @@ package view;
 
 import domain.GameBoard;
 import domain.ladder.Ladder;
-import domain.reward.PlayerResult;
-import domain.reward.Result;
+import domain.result.PlayerResult;
+import domain.result.Result;
 import domain.ladder.attribute.Direction;
 import domain.common.Name;
 
