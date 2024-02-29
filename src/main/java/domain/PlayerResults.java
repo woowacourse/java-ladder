@@ -23,12 +23,12 @@ public class PlayerResults {
         return new PlayerResults(playerResults);
     }
 
-    public Result findResult(final String name) {
-        return playerResults.entrySet().stream()
-                .filter(entry -> entry.getKey().getValue().equals(name))
-                .map(Map.Entry::getValue)
+    public Result findResult(final String target) {
+        Name name = playerResults.keySet().stream()
+                .filter(key -> key.isSame(target))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(UNKNOWN_NAME));
+        return playerResults.get(name);
     }
 
     public Map<Name, Result> getPlayerResults() {
