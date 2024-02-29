@@ -17,6 +17,14 @@ public enum Command {
                 .anyMatch(v -> v.text.equals(text));
     }
 
+    public static boolean isFinishCommand(String value) {
+        return value.equals(FINISH.getText());
+    }
+
+    public static boolean isAllCommand(String value) {
+        return value.equals(ALL.getText());
+    }
+
     public String getText() {
         return text;
     }

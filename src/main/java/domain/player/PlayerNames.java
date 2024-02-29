@@ -5,6 +5,9 @@ import common.exception.model.NotFoundException;
 import common.exception.model.ValidationException;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class PlayerNames {
     public static final String RANGE_ERROR_MESSAGE = String.format("참가자의 수는 %d 이상, %d 이하여야 합니다",
@@ -46,12 +49,16 @@ public class PlayerNames {
     }
 
     public int getIndexOfName(String name) {
-        for (int i = 0; i < values.size(); i++) {
-            if(values.get(i).getValue().equals(name)) {
-                return i;
-            }
-        }
-        throw new NotFoundException(NOT_FOUND_ERROR_MESSAGE);
+        return IntStream.range(0, values.size())
+                .filter(idx -> values.get(idx).getValue().equals(name))
+                .findAny()
+                .orElseThrow(() -> new NotFoundException(NOT_FOUND_ERROR_MESSAGE));
+    }
+
+    public Set<String> getPlayerNames() {
+        return values.stream()
+                .map(PlayerName::getValue)
+                .collect(Collectors.toUnmodifiableSet());
     }
 
     public int getCount() {

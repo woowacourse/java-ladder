@@ -3,6 +3,7 @@ package view;
 import domain.ladder.Floor;
 import domain.ladder.Ladder;
 import domain.ladder.LadderBridge;
+import domain.ladder.LadderResults;
 import domain.player.PlayerNames;
 
 import java.util.HashMap;
@@ -24,11 +25,11 @@ public class OutputView {
         bridgeToMarker.put(LadderBridge.NONE, "     ");
     }
 
-    public void printLadder(final PlayerNames playerNames, final Ladder ladder) {
+    public void printGeneratedLadder(final Ladder ladder, final PlayerNames playerNames, final LadderResults results) {
         System.out.println("\n실행 결과\n");
         printPlayerNames(playerNames);
         printLadder(ladder);
-        printLadderResult(ladder);
+        printLadderResult(results);
     }
 
     public void printErrorMessage(final String errorMessage) {
@@ -59,11 +60,11 @@ public class OutputView {
         System.out.println(ladderJoiner);
     }
 
-    private void printLadderResult(final Ladder ladder) {
+    private void printLadderResult(final LadderResults results) {
         StringJoiner ladderResultJoiner = new StringJoiner(LADDER_RESULTS_DELIMITER);
 
-        for (int i = 0; i < ladder.getResultSize(); i++) {
-            String playerName = String.format(LADDER_RESULTS_FORMAT, ladder.getLadderResultByIndex(i));
+        for (int i = 0; i < results.size(); i++) {
+            String playerName = String.format(LADDER_RESULTS_FORMAT, results.getValueByIndex(i));
             ladderResultJoiner.add(playerName);
         }
         System.out.println(ladderResultJoiner);

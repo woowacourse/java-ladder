@@ -30,18 +30,15 @@ public class LadderController {
         this.retryCount = 0;
     }
 
-    public Ladder createLadder() {
-        PlayerNames playerNames = readPlayerNames();
-        LadderResults ladderResults = readLadderResults(playerNames.getCount());
-        LadderHeight ladderHeight = readLadderHeight();
 
-        Ladder ladder = Ladder.create(ladderHeight, playerNames, ladderResults, new RandomBridgeGenerator());
-        outputView.printLadder(playerNames, ladder);
+    public Ladder createLadder(final LadderHeight ladderHeight, final PlayerNames playerNames, final LadderResults results) {
+        Ladder ladder = Ladder.create(ladderHeight, playerNames.getCount(), new RandomBridgeGenerator());
+        outputView.printGeneratedLadder(ladder, playerNames, results);
 
         return ladder;
     }
 
-    private PlayerNames readPlayerNames() {
+    public PlayerNames readPlayerNames() {
         return retry(() -> createPlayerNames(inputView.readPlayerNames()));
     }
 
@@ -53,31 +50,34 @@ public class LadderController {
         return new PlayerNames(playerNames);
     }
 
-    private LadderHeight readLadderHeight() {
+    public LadderHeight readLadderHeight() {
         return retry(() -> new LadderHeight(inputView.readLadderHeight()));
     }
 
-    private LadderResults readLadderResults(final int playerCount) {
+    public LadderResults readLadderResults(final int playerCount) {
         return retry(() -> new LadderResults(inputView.readLadderResults(), playerCount));
     }
 
-    public void matchPlayerToResult(final Ladder ladder) {
-        retry(() -> findPlayerResult(ladder));
+    public void matchPlayerToResult(final Ladder ladder, final PlayerNames names, final LadderResults results) {
+        retry(() -> findPlayerResult(ladder, names, results));
         outputView.printEndMessage();
     }
 
-    private void findPlayerResult(final Ladder ladder) {
-        String playerName;
-        while (!(playerName = inputView.readPlayerNameForGetResult()).equals(Command.FINISH.getText())) {
-            outputView.printPlayerLadderResult(getPlayerLadderResult(ladder, playerName));
+    private void findPlayerResult(final Ladder ladder, final PlayerNames names, final LadderResults results) {
+        String inputPlayerName = inputView.readPlayerNameForGetResult();
+
+        while (!Command.isFinishCommand(inputPlayerName)) {
+            outputView.printPlayerLadderResult(getPlayerLadderResult(inputPlayerName, ladder, names, results));
+            inputPlayerName = inputView.readPlayerNameForGetResult();
         }
     }
 
-    private Map<String, String> getPlayerLadderResult(final Ladder ladder, final String playerName) {
-        if (playerName.equals(Command.ALL.getText())) {
-            return ladder.findAllPlayersLadderResultValue();
+    private Map<String, String> getPlayerLadderResult(final String inputPlayerName, final Ladder ladder,
+                                                      final PlayerNames names, final LadderResults results) {
+        if (Command.isAllCommand(inputPlayerName)) {
+            return ladder.findAllPlayersLadderResultValue(names, results);
         }
-        return ladder.findSinglePlayerLadderResultValue(playerName);
+        return ladder.findSinglePlayerLadderResultValue(inputPlayerName, names, results);
     }
 
     <R> R retry(final Supplier<R> supplier) {

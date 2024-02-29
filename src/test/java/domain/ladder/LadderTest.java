@@ -25,84 +25,32 @@ public class LadderTest {
         @ParameterizedTest
         @MethodSource("createLadderSuccessWithHeightAndPointCountArguments")
         @DisplayName("사다리 높이가 2 이상, 10 이하이며 사람의 수가 2 이상, 10 이하이면 정상적으로 생성된다")
-        void createLadderSuccessWithHeightAndPointCount(final LadderHeight height, final LadderResults results,
-                                                        final PlayerNames playerNames, final List<LadderBridge> bridges) {
+        void createLadderSuccessWithHeightAndPointCount(final LadderHeight height, final PlayerNames playerNames,
+                                                        final List<LadderBridge> bridges) {
             //given
             BridgeGeneratorStub bridgeGeneratorStub = new BridgeGeneratorStub();
             bridgeGeneratorStub.setBridges(bridges);
 
             //when, then
             Assertions.assertThatCode(
-                            () -> Ladder.create(height, playerNames, results, bridgeGeneratorStub))
+                            () -> Ladder.create(height, playerNames.getCount(), bridgeGeneratorStub))
                     .doesNotThrowAnyException();
         }
 
         private static Stream<Arguments> createLadderSuccessWithHeightAndPointCountArguments() {
             return Stream.of(
                     Arguments.arguments(new LadderHeight(2),
-                            new LadderResults(new String[]{"R", "R"}, 2),
                             new PlayerNames(List.of(new PlayerName("a"), new PlayerName("b"))),
                             List.of(LadderBridge.BRIDGE, LadderBridge.NONE)
                     ),
 
                     Arguments.arguments(new LadderHeight(10),
-                            new LadderResults(new String[]{"R", "R", "R", "R", "R", "R", "R", "R", "R", "R"}, 10),
                             new PlayerNames(List.of(new PlayerName("a"), new PlayerName("b"), new PlayerName("c"),
                                     new PlayerName("d"), new PlayerName("e"), new PlayerName("f"), new PlayerName("g"),
                                     new PlayerName("h"), new PlayerName("i"), new PlayerName("j"))),
                             List.of(LadderBridge.NONE, LadderBridge.BRIDGE, LadderBridge.NONE, LadderBridge.BRIDGE,
                                     LadderBridge.NONE, LadderBridge.BRIDGE, LadderBridge.NONE, LadderBridge.BRIDGE,
                                     LadderBridge.NONE, LadderBridge.BRIDGE))
-            );
-        }
-
-        @ParameterizedTest
-        @MethodSource("createLadderFailByPlayerCountArguments")
-        @DisplayName("사람의 수가 2 미만, 10 초과이면 사다리 높이가 2 이상, 10 이상이어도 예외가 발생한다")
-        void createLadderFailByHeightAndPointCount(final LadderHeight height, final LadderResults results,
-                                                   final List<PlayerName> playerNames) {
-            Assertions.assertThatThrownBy(
-                            () -> Ladder.create(height, new PlayerNames(playerNames), results, new BridgeGeneratorStub()))
-                    .isInstanceOf(ValidationException.class)
-                    .hasMessage(PlayerNames.RANGE_ERROR_MESSAGE);
-        }
-
-        private static Stream<Arguments> createLadderFailByPlayerCountArguments() {
-            return Stream.of(
-                    Arguments.arguments(new LadderHeight(2),
-                            new LadderResults(new String[]{"R"}, 1),
-                            List.of(new PlayerName("a"))),
-
-                    Arguments.arguments(new LadderHeight(10),
-                            new LadderResults(new String[]{"R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R"}, 11),
-                            List.of(new PlayerName("a"), new PlayerName("b"), new PlayerName("c"),
-                                    new PlayerName("d"), new PlayerName("e"), new PlayerName("f"), new PlayerName("g"),
-                                    new PlayerName("h"), new PlayerName("i"), new PlayerName("j"), new PlayerName("k")))
-            );
-        }
-
-
-        @ParameterizedTest
-        @MethodSource("createLadderFailByHeightArguments")
-        @DisplayName("사다리 높이가 2 미만, 10 초과이면 사람의 수가 2 이상, 10 이하여도 예외가 발생한다")
-        void createLadderFailByHeightAndPointCount(final int height, final LadderResults results,
-                                                   final PlayerNames playerNames) {
-            Assertions.assertThatThrownBy(
-                            () -> Ladder.create(new LadderHeight(height), playerNames, results, new BridgeGeneratorStub()))
-                    .isInstanceOf(ValidationException.class);
-        }
-
-        private static Stream<Arguments> createLadderFailByHeightArguments() {
-            return Stream.of(
-                    Arguments.arguments(1,
-                            new LadderResults(new String[]{"R", "R"}, 2),
-                            new PlayerNames(List.of(new PlayerName("a"), new PlayerName("b")))),
-
-                    Arguments.arguments(11,
-                            new LadderResults(new String[]{"R", "R", "R", "R", "R", "R", "R", "R", "R", "R"}, 10),
-                            new PlayerNames(List.of(new PlayerName("a"), new PlayerName("b"), new PlayerName("c"),
-                                    new PlayerName("d"), new PlayerName("e"), new PlayerName("f"), new PlayerName("g"),
-                                    new PlayerName("h"), new PlayerName("i"), new PlayerName("j"))))
             );
         }
     }
@@ -118,12 +66,12 @@ public class LadderTest {
             //given
             BridgeGeneratorStub bridgeGeneratorStub = new BridgeGeneratorStub();
             bridgeGeneratorStub.setBridges(bridges);
-            Ladder ladder = Ladder.create(height, playerNames, results, bridgeGeneratorStub);
+            Ladder ladder = Ladder.create(height, playerNames.getCount(), bridgeGeneratorStub);
 
             //when
-            Map<String, String> player1Result = ladder.findSinglePlayerLadderResultValue("pA");
-            Map<String, String> player2Result = ladder.findSinglePlayerLadderResultValue("pB");
-            Map<String, String> player3Result = ladder.findSinglePlayerLadderResultValue("pC");
+            Map<String, String> player1Result = ladder.findSinglePlayerLadderResultValue("pA", playerNames, results);
+            Map<String, String> player2Result = ladder.findSinglePlayerLadderResultValue("pB", playerNames, results);
+            Map<String, String> player3Result = ladder.findSinglePlayerLadderResultValue("pC", playerNames, results);
 
             //then
             assertAll(
@@ -151,10 +99,10 @@ public class LadderTest {
             //given
             BridgeGeneratorStub bridgeGeneratorStub = new BridgeGeneratorStub();
             bridgeGeneratorStub.setBridges(bridges);
-            Ladder ladder = Ladder.create(height, playerNames, results, bridgeGeneratorStub);
+            Ladder ladder = Ladder.create(height, playerNames.getCount(), bridgeGeneratorStub);
 
             //when
-            Map<String, String> result = ladder.findAllPlayersLadderResultValue();
+            Map<String, String> result = ladder.findAllPlayersLadderResultValue(playerNames, results);
 
             //then
             assertAll(
