@@ -18,15 +18,4 @@ public record Height(int value) {
     private boolean isOutOfRange(final int value) {
         return value <= 0 || value > UPPER_BOUND;
     }
-
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof Height height)) {
-            return false;
-        }
-        return value == height.value;
-    }
 }
