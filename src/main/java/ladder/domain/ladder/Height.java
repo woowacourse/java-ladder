@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 public class Height {
 
@@ -8,13 +8,13 @@ public class Height {
     private final int height;
 
     public Height(String input) {
-        int number = changeInputToInteger(input);
-        validateNumberIsIntRange(number);
-        this.height = number;
+        int heightValue = changeInputToInteger(input);
+        validateNumberIsIntRange(heightValue);
+        this.height = heightValue;
     }
 
-    private void validateNumberIsIntRange(int number) {
-        if (number < MIN_HEIGHT_RANGE || number > MAX_HEIGHT_RANGE) {
+    private void validateNumberIsIntRange(int heightValue) {
+        if (heightValue < MIN_HEIGHT_RANGE || MAX_HEIGHT_RANGE < heightValue) {
             throw new IllegalArgumentException("입력된 높이가 정해진 규칙에 맞지 않습니다.");
         }
     }
@@ -23,11 +23,11 @@ public class Height {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("숫자로 입력을 변환할 수 없습니다.");
+            throw new IllegalArgumentException("숫자로 입력을 변환할 수 없습니다.");
         }
     }
 
-    public int getHeight() {
+    public int getValue() {
         return height;
     }
 }
