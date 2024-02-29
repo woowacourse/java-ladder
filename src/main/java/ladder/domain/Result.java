@@ -1,26 +1,36 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class Result {
 
-    private final List<ResultItem> resultItems;
+    private final LinkedHashMap<Player, ResultItem> matches;
 
-    public Result(List<ResultItem> resultItems) {
-        this.resultItems = new ArrayList<>(resultItems);
+    public Result(Players players) {
+        this.matches = new LinkedHashMap<>();
+        players.getPlayers().forEach(name -> matches.put(name, null));
     }
 
-    public void calculateNext(Line line) {
-        List<Integer> usedPointIndexes = line.findUsedPointIndexes();
-        for (int index : usedPointIndexes) {
-            Collections.swap(resultItems, index, index + 1);
-        }
+    public void put(Player player, ResultItem resultItem) {
+        matches.put(player, resultItem);
     }
 
-    public List<ResultItem> getResultItems() {
-        return Collections.unmodifiableList(resultItems);
+    public Map<Player, ResultItem> get(Player player) {
+        return Map.of(player, matches.get(player));
     }
 
+    public Map<Player, ResultItem> getAll() {
+        return Collections.unmodifiableMap(matches);
+    }
+
+    public boolean hasNullValue() {
+        return matches.values().stream().anyMatch(Objects::isNull);
+    }
+
+    public boolean hasNullValueForKey(Player player) {
+        return matches.get(player) == null;
+    }
 }
