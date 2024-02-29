@@ -5,6 +5,8 @@ import java.util.function.Supplier;
 import ladder.domain.GameResult;
 import ladder.domain.Prizes;
 import ladder.domain.dto.LadderResponseDto;
+import ladder.domain.dto.ParticipantsResponseDto;
+import ladder.domain.dto.PrizesResponseDto;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.RungGenerator;
 import ladder.domain.participant.Name;
@@ -31,7 +33,7 @@ public class LadderController {
         int participantsCount = participants.getCount();
         Prizes prizes = repeatUntilValid(() -> getPrizes(participantsCount));
         Ladder ladder = repeatUntilValid(() -> getLadder(participantsCount));
-        printLadderResult(participants, prizes, ladder);
+        printLadderResult(ladder, participants, prizes);
 
         Prizes sortedPrizes = ladder.getSortedPrizesResult(participants, prizes);
         GameResult gameResult = new GameResult(participants, sortedPrizes);
@@ -64,9 +66,12 @@ public class LadderController {
         return new Prizes(prizeNames, participantsCount);
     }
 
-    private void printLadderResult(Participants participants, Prizes prizes, Ladder ladder) {
+    private void printLadderResult(Ladder ladder, Participants participants, Prizes prizes) {
+        ParticipantsResponseDto participantsResponseDto = participants.getParticipantsResult();
         LadderResponseDto ladderResponseDto = ladder.getLadderResult();
-        outputView.printLadderResult(ladderResponseDto, participants.getNames(), prizes.getPrizes());
+        PrizesResponseDto prizesResponseDto = prizes.getPrizesResult();
+
+        outputView.printLadderResult(participantsResponseDto, ladderResponseDto, prizesResponseDto);
     }
 
     private Name getName(GameResult gameResult) {

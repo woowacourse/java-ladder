@@ -5,6 +5,8 @@ import java.util.Map;
 import ladder.domain.Prize;
 import ladder.domain.dto.FloorResponseDto;
 import ladder.domain.dto.LadderResponseDto;
+import ladder.domain.dto.ParticipantsResponseDto;
+import ladder.domain.dto.PrizesResponseDto;
 import ladder.domain.participant.Name;
 
 public class OutputView {
@@ -12,19 +14,22 @@ public class OutputView {
     private static final String LADDERS_PREFIX = "    |";
     private static final String LADDER_STICK_SYMBOL = "|";
 
-    public void printLadderResult(LadderResponseDto ladderResponseDto, List<Name> participantNames,
-                                  List<Prize> prizeNames) {
+    public void printLadderResult(ParticipantsResponseDto participantsResponseDto,
+                                  LadderResponseDto ladderResponseDto,
+                                  PrizesResponseDto prizesResponseDto) {
+        List<String> participantNames = participantsResponseDto.participantNames();
         List<FloorResponseDto> floorResponseDtos = ladderResponseDto.ladderResult();
+        List<String> prizeNames = prizesResponseDto.prizeNames();
 
         printParticipantsNames(participantNames);
         printBuiltLadders(floorResponseDtos);
         printPrizes(prizeNames);
     }
 
-    private void printParticipantsNames(List<Name> names) {
+    private void printParticipantsNames(List<String> participantsNames) {
         System.out.println("\n사다리 결과\n");
-        for (Name name : names) {
-            System.out.printf("%6s", name.getName());
+        for (String name : participantsNames) {
+            System.out.printf("%6s", name);
         }
         System.out.println();
     }
@@ -37,9 +42,9 @@ public class OutputView {
         }
     }
 
-    private void printPrizes(List<Prize> prizes) {
-        for (Prize prize : prizes) {
-            System.out.printf("%6s", prize.name());
+    private void printPrizes(List<String> prizeNames) {
+        for (String name : prizeNames) {
+            System.out.printf("%6s", name);
         }
         System.out.println();
     }
