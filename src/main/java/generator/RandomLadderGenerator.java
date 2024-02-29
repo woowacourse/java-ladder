@@ -5,30 +5,41 @@ import java.util.List;
 import java.util.random.RandomGenerator;
 
 import domain.ladder.Bar;
+import domain.ladder.Floor;
+import domain.ladder.Ladder;
 
-public class LadderFloorGenerator {
+public class RandomLadderGenerator {
 
 	private final RandomGenerator random;
 
-	public LadderFloorGenerator(RandomGenerator random) {
+	public RandomLadderGenerator(RandomGenerator random) {
 		this.random = random;
 	}
 
-	public List<Bar> generate(int floorWidth) {
+	public Ladder generate(int ladderHeight, int playerCount) {
+		List<Floor> floors = new ArrayList<>();
+		for (int i = 0; i < ladderHeight; i++) {
+			floors.add(generateFloor(playerCount));
+		}
+
+		return new Ladder(floors);
+	}
+
+	private Floor generateFloor(int playerCount) {
 		List<Bar> bars = new ArrayList<>();
 
 		Bar previous = Bar.NOT_CONNECTED;
-		for (int order = 0; order < floorWidth - 1; order++) {
-			Bar current = getConnection(previous);
+		for (int i = 0; i < playerCount - 1; i++) {
+			Bar current = createBar(previous);
 			bars.add(current);
 			previous = current;
 		}
-		bars.add(getLastConnection(previous));
+		bars.add(createLastBar(previous));
 
-		return bars;
+		return new Floor(bars);
 	}
 
-	private Bar getConnection(Bar previous) {
+	private Bar createBar(Bar previous) {
 		if (previous.isConnectedToRight()) {
 			return Bar.CONNECTED_TO_LEFT;
 		}
@@ -41,7 +52,7 @@ public class LadderFloorGenerator {
 		return Bar.NOT_CONNECTED;
 	}
 
-	private Bar getLastConnection(Bar previous) {
+	private Bar createLastBar(Bar previous) {
 		if (previous.isConnectedToRight()) {
 			return Bar.CONNECTED_TO_LEFT;
 		}
