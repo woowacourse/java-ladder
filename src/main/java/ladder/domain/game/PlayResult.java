@@ -9,15 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 public class PlayResult {
-    enum Status {
-        EXECUTABLE,
-        NON_EXECUTABLE;
-
-        public boolean isExecutable() {
-            return this == EXECUTABLE;
-        }
-    }
-
     private final Map<String, String> result;
     private Status status;
 
@@ -59,5 +50,14 @@ public class PlayResult {
 
     public Map<String, String> getResult() {
         return Collections.unmodifiableMap(result);
+    }
+
+    private enum Status {
+        EXECUTABLE,
+        NON_EXECUTABLE;
+
+        public boolean isExecutable() {
+            return this == EXECUTABLE;
+        }
     }
 }
