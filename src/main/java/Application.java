@@ -1,6 +1,4 @@
-package ladder;
-
-import ladder.controller.LadderGameMachine;
+import controller.LadderGameMachine;
 
 public class Application {
     public static void main(String[] args) {
