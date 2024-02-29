@@ -1,26 +1,25 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class BridgesRandomGenerator implements BridgesGenerator {
     private final Random random = new Random();
-    private Boolean previousBridge = false;
 
     public Bridges generate(int width) {
-        return new Bridges(IntStream.range(0, width)
-                .mapToObj(value -> nextBridge())
-                .collect(Collectors.toList()));
+        List<Boolean> bridges = new ArrayList<>();
+        boolean previousBridge = false;
+        for (int i = 0; i < width; i++) {
+            previousBridge = bridges.add(nextBridge(previousBridge));
+        }
+        return new Bridges(bridges);
     }
 
-    private Boolean nextBridge() {
-        Boolean newBridge = random.nextBoolean();
-        if (newBridge && previousBridge) {
-            previousBridge = false;
+    private Boolean nextBridge(boolean previousBridge) {
+        if (previousBridge) {
             return false;
         }
-        previousBridge = newBridge;
-        return newBridge;
+        return random.nextBoolean();
     }
 }
