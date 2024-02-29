@@ -30,7 +30,8 @@ public class Floor {
     public BridgeDirection getBridgeAroundAt(final int playerPosition) {
         if (hasLeftBridge(playerPosition)) {
             return BridgeDirection.LEFT;
-        } else if (hasRightBridge(playerPosition)) {
+        }
+        if (hasRightBridge(playerPosition)) {
             return BridgeDirection.RIGHT;
         }
         return BridgeDirection.NONE;
