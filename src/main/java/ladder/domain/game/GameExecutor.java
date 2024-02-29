@@ -11,6 +11,9 @@ public class GameExecutor {
 
     private static final String ERROR_NO_RESOURCE = "[ERROR] %s 정보가 없습니다.";
     private static final String ERROR_NOT_CONSISTENT_SIZE = "[ERROR] %s 수, %s 너비, %s 수는 모두 일치해야 합니다.";
+    private static final int RIGHT_INDEX = 1;
+    private static final int LEFT_INDEX = -1;
+    private static final int STRAIGHT_INDEX = 0;
 
     public void validateGameEnvironment(GameResource gameResource) {
         Users users = gameResource.getUsers();
@@ -46,14 +49,14 @@ public class GameExecutor {
 
     private int moveInDirection(Direction direction) {
         if (direction == Direction.RIGHT) {
-            return 1;
+            return RIGHT_INDEX;
         }
 
         if (direction == Direction.LEFT) {
-            return -1;
+            return LEFT_INDEX;
         }
 
-        return 0;
+        return STRAIGHT_INDEX;
     }
 
     private void validateResource(Users users, Ladder ladder, Prizes prizes) {

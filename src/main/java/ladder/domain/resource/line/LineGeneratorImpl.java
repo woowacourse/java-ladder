@@ -19,14 +19,15 @@ public class LineGeneratorImpl implements LineGenerator {
     }
 
     private void setDirection(int currentIndex, int lastIndex, Line line) {
-        if (line.isEmpty()) {
+        boolean lineEmpty = line.isEmpty();
+        if (lineEmpty) {
             line.addDirection(getInitialDirection());
         }
-        if (currentIndex < lastIndex) {
+        if (!lineEmpty && currentIndex < lastIndex) {
             Direction priorDirection = line.getLastDirection();
             line.addDirection(getMiddleDirection(priorDirection));
         }
-        if (currentIndex == lastIndex) {
+        if (!lineEmpty && currentIndex == lastIndex) {
             Direction priorDirection = line.getLastDirection();
             line.addDirection(getLastDirection(priorDirection));
         }

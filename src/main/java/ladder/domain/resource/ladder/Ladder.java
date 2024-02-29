@@ -5,6 +5,8 @@ import ladder.domain.resource.line.Line;
 
 public class Ladder {
 
+    private static final int DEFAULT_INDEX = 0;
+
     private final List<Line> lines;
 
     Ladder(List<Line> lines) {
@@ -19,7 +21,7 @@ public class Ladder {
     }
 
     public int getWidth() {
-        return lines.get(0).getSize();
+        return lines.get(DEFAULT_INDEX).getSize();
     }
 
     private void validateNotEmpty(List<Line> lines) {
@@ -41,7 +43,7 @@ public class Ladder {
     }
 
     private void validateConsistentLineSize(List<Line> lines) {
-        int expectedLineCount = lines.get(0).getSize();
+        int expectedLineCount = lines.get(DEFAULT_INDEX).getSize();
 
         if (!lines.stream().allMatch(line -> line.getSize() == expectedLineCount)) {
             throw new IllegalArgumentException("[ERROR] 사다리의 모든 라인의 너비는 동일해야 합니다.");

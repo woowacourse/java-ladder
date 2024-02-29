@@ -17,6 +17,8 @@ import ladder.view.OutputView;
 
 public class LadderController {
 
+    private static final String ALL_RESULT = "all";
+
     private final InputView inputView;
     private final OutputView outputView;
     private LadderGame ladderGame;
@@ -57,11 +59,11 @@ public class LadderController {
     private void showGameResult() {
         String target = inputView.readGameResultForUser();
 
-        if (target.equals("all")) {
+        if (target.equals(ALL_RESULT)) {
             outputView.printAllResult(ladderGame.getGameResult());
         }
 
-        if (!target.equals("all")) {
+        if (!target.equals(ALL_RESULT)) {
             User targetUser = searchTargetUser(target);
             Prize prize = searchUserResult(targetUser);
             outputView.printUserResult(prize);
