@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.controller.LadderController;
 import ladder.view.InputView;
+import ladder.view.MessageGenerator;
 import ladder.view.OutputView;
 import ladder.view.validator.InputValidator;
 
@@ -19,7 +20,11 @@ public class AppConfig {
     }
 
     public static OutputView outputView() {
-        return new OutputView();
+        return new OutputView(messageGenerator());
+    }
+
+    private static MessageGenerator messageGenerator() {
+        return new MessageGenerator();
     }
 
     public static LadderController ladderController() {
