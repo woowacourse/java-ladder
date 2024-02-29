@@ -15,10 +15,6 @@ public class Prize {
         this.prizeName = prizeName;
     }
 
-    public String getPrizeName() {
-        return this.prizeName;
-    }
-
     private void validatePrizeName(String name) {
         validatePrizeNameLength(name);
         validateNameEngKorNumFormat(name);
@@ -41,5 +37,9 @@ public class Prize {
         if (name.contains(BLANK)) {
             throw new IllegalArgumentException("[ERROR] 실행 결과의 이름 내에는 공백을 허용하지 않습니다.");
         }
+    }
+
+    public String getPrizeName() {
+        return this.prizeName;
     }
 }

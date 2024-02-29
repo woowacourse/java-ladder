@@ -16,14 +16,6 @@ public class Users {
         this.users = users;
     }
 
-    public int getNumberOfUsers() {
-        return users.size();
-    }
-
-    public List<String> getUsersNames() {
-        return this.users.stream().map(User::getUserName).collect(Collectors.toList());
-    }
-
     public void validateExistUserName(String name) {
         List<String> userNames = getUsersNames();
         if (!userNames.contains(name)) {
@@ -50,5 +42,13 @@ public class Users {
         if (distinctNames.size() != users.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 사용자명이 존재합니다.");
         }
+    }
+
+    public int getNumberOfUsers() {
+        return users.size();
+    }
+
+    public List<String> getUsersNames() {
+        return this.users.stream().map(User::getUserName).collect(Collectors.toList());
     }
 }

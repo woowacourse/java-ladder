@@ -19,10 +19,6 @@ public class Ladder {
         this.lines = createLines(ladderHeight, ladderWidth, lineGenerator);
     }
 
-    public List<Line> getLines() {
-        return lines;
-    }
-
     private List<Line> createLines(int ladderHeight, int ladderWidth, LineGenerator lineGenerator) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
@@ -35,5 +31,9 @@ public class Ladder {
         if (ladderHeight > MAX_LADDER_HEIGHT) {
             throw new IllegalArgumentException("[ERROR] 사다리의 최대 높이는 50이하만 가능합니다.");
         }
+    }
+
+    public List<Line> getLines() {
+        return lines;
     }
 }

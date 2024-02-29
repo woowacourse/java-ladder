@@ -15,10 +15,6 @@ public class User {
         this.userName = userName;
     }
 
-    public String getUserName() {
-        return this.userName;
-    }
-
     private void validateUserName(String userName) {
         validateNameLength(userName);
         validateNameEngFormat(userName);
@@ -48,5 +44,9 @@ public class User {
         if (name.equals("all")) {
             throw new IllegalArgumentException("[ERROR] 사용자의 이름으로 'all'은 허용하지 않습니다.");
         }
+    }
+
+    public String getUserName() {
+        return this.userName;
     }
 }
