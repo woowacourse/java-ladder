@@ -1,6 +1,10 @@
 package domain;
 
-import java.util.HashMap;
+import domain.Participants.Name;
+import domain.Participants.Participants;
+import domain.ladder.Ladder;
+import domain.result.LadderResult;
+import domain.result.Prizes;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;

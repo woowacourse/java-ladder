@@ -1,12 +1,12 @@
 package view;
 
-import domain.Ladder;
-import domain.Line;
-import domain.Name;
-import domain.Participants;
-import domain.Prize;
-import domain.Prizes;
-import domain.StepPoint;
+import domain.ladder.Ladder;
+import domain.ladder.Line;
+import domain.Participants.Name;
+import domain.Participants.Participants;
+import domain.result.Prize;
+import domain.result.Prizes;
+import domain.ladder.StepPoint;
 import java.util.List;
 import java.util.Map;
 

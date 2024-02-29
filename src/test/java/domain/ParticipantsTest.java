@@ -1,9 +1,10 @@
 package domain;
 
-import static domain.Participants.MAX_OF_PARTICIPANTS_COUNT;
-import static domain.Participants.MIN_OF_PARTICIPANTS_COUNT;
+import static domain.Participants.Participants.MAX_OF_PARTICIPANTS_COUNT;
+import static domain.Participants.Participants.MIN_OF_PARTICIPANTS_COUNT;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.Participants.Participants;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

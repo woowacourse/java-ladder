@@ -1,5 +1,6 @@
-package domain;
+package domain.result;
 
+import domain.Participants.Participants;
 import java.util.List;
 import java.util.stream.Collectors;
 

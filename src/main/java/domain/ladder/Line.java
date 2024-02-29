@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import utils.StepGenerator;
 public class Line {
 
     public static final int ONE_STEP = 1;
-    
+
     private final List<StepPoint> stepPoints;
 
     public Line(int numberOfCell, StepGenerator stepGenerator) {

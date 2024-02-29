@@ -1,11 +1,12 @@
 package domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
+import domain.Participants.Participants;
+import domain.ladder.Ladder;
+import domain.result.Prizes;
 import java.util.List;
 import java.util.Map;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.PresentStepGenerator;
@@ -20,7 +21,7 @@ class LadderGameTest {
         Ladder ladder = new Ladder(2, 3, new PresentStepGenerator());
 
         LadderGame ladderGame = new LadderGame(participants, prizes, ladder);
-        Map<String, String> expectedAllResult = Map.of("a", "1","b", "2", "c", "3");
+        Map<String, String> expectedAllResult = Map.of("a", "1", "b", "2", "c", "3");
 
         assertThat(ladderGame.allResultOfLadder()).isEqualTo(expectedAllResult);
     }

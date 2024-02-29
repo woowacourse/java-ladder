@@ -1,8 +1,10 @@
 package domain;
 
-import static domain.Prizes.MAX_OF_PRIZE_LENGTH;
+import static domain.result.Prizes.MAX_OF_PRIZE_LENGTH;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.Participants.Participants;
+import domain.result.Prizes;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

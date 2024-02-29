@@ -1,5 +1,7 @@
-package domain;
+package domain.result;
 
+import domain.Participants.Position;
+import domain.ladder.Ladder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

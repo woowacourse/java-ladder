@@ -1,9 +1,9 @@
 package controller;
 
-import domain.Ladder;
+import domain.ladder.Ladder;
 import domain.LadderGame;
-import domain.Participants;
-import domain.Prizes;
+import domain.Participants.Participants;
+import domain.result.Prizes;
 import java.util.List;
 import utils.RandomStepGenerator;
 import view.InputView;

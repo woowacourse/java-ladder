@@ -1,6 +1,6 @@
 package utils;
 
-import domain.StepPoint;
+import domain.ladder.StepPoint;
 
 public interface StepGenerator {
 

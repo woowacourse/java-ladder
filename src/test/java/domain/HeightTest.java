@@ -1,9 +1,10 @@
 package domain;
 
-import static domain.Height.MAX_OF_HEIGHT;
-import static domain.Height.MIN_OF_HEIGHT;
+import static domain.ladder.Height.MAX_OF_HEIGHT;
+import static domain.ladder.Height.MIN_OF_HEIGHT;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
+import domain.ladder.Height;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

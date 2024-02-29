@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -36,6 +36,7 @@ public class Ladder {
         Line line = lines.get(floor);
         return line.isExistRightStep(step);
     }
+
     public List<Line> getLines() {
         return lines;
     }
