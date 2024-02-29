@@ -27,7 +27,7 @@ public class Line {
                 .forEach(i -> {
                     final Path left = paths.get(i);
                     final Path right = paths.get(i + 1);
-                    if (left == Path.EXIST && right == Path.EXIST) {
+                    if (left.isExist() && right.isExist()) {
                         throw new IllegalArgumentException("사다리의 경로는 연달아 있을 수 없습니다.");
                     }
                 });
