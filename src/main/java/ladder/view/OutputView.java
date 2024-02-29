@@ -9,21 +9,20 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
+    protected static final String NEWLINE = System.lineSeparator();
     private static final String ERROR_PREFIX = "[ERROR]";
     private static final String LADDER_RUNG_EMPTY = "     ";
     private static final String LADDER_RUNG_EXIST = "-----";
     private static final String LADDER_SIDE_RAIL = "|";
 
     public void printLadderResultMessage() {
-        System.out.println();
-        System.out.println("사다리 결과");
+        System.out.println(NEWLINE + "사다리 결과");
     }
 
     public void printPlayerNames(final PlayersDto playersDto) {
         final List<String> playerNames = playersDto.playerNames();
 
-        System.out.println();
-        System.out.println(generateResultsMessage(playerNames));
+        System.out.println(NEWLINE + generateResultsMessage(playerNames));
     }
 
     private String generateResultsMessage(final List<String> sources) {
@@ -67,8 +66,7 @@ public class OutputView {
     }
 
     public void printResult(final Map<String, String> result, final String name) {
-        System.out.println();
-        System.out.println("실행 결과");
+        System.out.println(NEWLINE + "실행 결과");
 
         final String message = generateMessage(result, name);
         System.out.println(message);
@@ -85,7 +83,7 @@ public class OutputView {
         return result.keySet()
                 .stream()
                 .map(key -> generateMessage(key, result.get(key)))
-                .collect(Collectors.joining(System.lineSeparator()));
+                .collect(Collectors.joining(NEWLINE));
     }
 
     private String generateMessage(final String name, final String prize) {
@@ -93,6 +91,6 @@ public class OutputView {
     }
 
     public void printErrorMessage(String message) {
-        System.out.printf("%s %s%n", ERROR_PREFIX, message);
+        System.out.println(String.format("%s %s", ERROR_PREFIX, message));
     }
 }

@@ -14,8 +14,7 @@ public class InputView {
     }
 
     public String readPrizes() {
-        System.out.println();
-        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        System.out.println(OutputView.NEWLINE + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         final String input = SCANNER.nextLine();
 
         validateInputBlank(input);
@@ -23,16 +22,14 @@ public class InputView {
     }
 
     public int readLadderHeight() {
-        System.out.println();
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        System.out.println(OutputView.NEWLINE + "최대 사다리 높이는 몇 개인가요?");
         final String input = SCANNER.nextLine();
 
         return parseToInt(input);
     }
 
     public String readNameToSeeResult() {
-        System.out.println();
-        System.out.println("결과를 보고 싶은 사람은?");
+        System.out.println(OutputView.NEWLINE + "결과를 보고 싶은 사람은?");
         final String input = SCANNER.nextLine();
 
         validateInputBlank(input);
