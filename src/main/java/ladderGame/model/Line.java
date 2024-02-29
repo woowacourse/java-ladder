@@ -10,7 +10,7 @@ public class Line {
 
     private final List<ConnectionStatus> connectionStatuses;
 
-    public Line(ConnectionStatus... connectionStatuses) {
+    Line(ConnectionStatus... connectionStatuses) {
         this(List.of(connectionStatuses));
     }
 
