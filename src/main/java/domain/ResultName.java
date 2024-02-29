@@ -4,6 +4,8 @@ import java.util.List;
 
 public class ResultName extends Name {
 
+    private static final String ALL = "all";
+
     public ResultName(String inputName, Players players) {
         super(inputName);
         validateName(inputName, players);
@@ -13,8 +15,12 @@ public class ResultName extends Name {
         List<String> names = players.getPlayers().stream()
                 .map(Name::getName)
                 .toList();
-        if (!names.contains(inputName) && !inputName.equals("all")) {
+        if (isNotAllowedResultName(inputName, names)) {
             throw new IllegalArgumentException("이름은 이전에 입력한 이름 중에 하나여야 합니다.");
         }
+    }
+
+    private boolean isNotAllowedResultName(String inputName, List<String> names) {
+        return !names.contains(inputName) && !inputName.equals(ALL);
     }
 }
