@@ -25,4 +25,8 @@ public class InputView {
         final String text = scanner.next();
         return NameParser.parse(text);
     }
+
+    public String inputPersonName() {
+        return scanner.next();
+    }
 }

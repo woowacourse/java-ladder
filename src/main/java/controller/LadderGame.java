@@ -28,6 +28,7 @@ public class LadderGame {
         outputView.printLadderInfo(ladderInfo);
 
         final Result result = Result.from(people, ladder, items);
+        findResult(result);
     }
 
     private People initPeople() {
@@ -43,5 +44,10 @@ public class LadderGame {
     private Items initItems(final int personCount) {
         List<String> itemNames = inputView.inputItemsNames();
         return Items.of(itemNames, personCount);
+    }
+
+
+    private void findResult(final Result result) {
+        String personName = inputView.inputPersonName();
     }
 }
