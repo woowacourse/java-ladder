@@ -40,7 +40,7 @@ public class LadderGameController {
         return true;
     }
 
-    //TODO 해당 검증이 컨트롤러의 책임인지 생각해보기
+    // TODO 해당 검증이 컨트롤러의 책임인지 생각해보기
     private static void validateElementsSameLength(Elements upperElements, Elements lowerElements) {
         if (upperElements.getElements().size() != lowerElements.getElements().size()) {
             throw new IllegalArgumentException("게임 실행 결과와 게임 참여자의 수가 같지 않습니다");

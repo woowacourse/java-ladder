@@ -8,9 +8,9 @@ import java.util.stream.Stream;
 public class AllFalseConnectionGenerator implements ConnectionGenerator {
 
     @Override
-    public List<Connection> generate(int connectionNumber) {
+    public List<Connection> generate(int number) {
         return Stream.iterate(Connection.NOTCONNECTED, connection -> connection)
-                .limit(connectionNumber)
+                .limit(number)
                 .toList();
     }
 }

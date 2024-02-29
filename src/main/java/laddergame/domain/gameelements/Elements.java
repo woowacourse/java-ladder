@@ -2,7 +2,7 @@ package laddergame.domain.gameelements;
 
 import java.util.Collections;
 import java.util.List;
-//TODO Players, Prizes 분리하기
+// TODO Players, Prizes 분리하기
 public class Elements {
 
     private static final int MIN_ELEMENT_NUMBERS = 1;

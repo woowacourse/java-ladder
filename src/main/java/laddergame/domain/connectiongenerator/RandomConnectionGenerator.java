@@ -13,11 +13,11 @@ public class RandomConnectionGenerator implements ConnectionGenerator {
     private static final Random random = new Random();
 
     @Override
-    public List<Connection> generate(int connectionNumber) {
+    public List<Connection> generate(int number) {
         Connection beforeConnection = addRandomConnection();
 
         return Stream.iterate(beforeConnection, this::addConnection)
-                .limit(connectionNumber)
+                .limit(number)
                 .toList();
     }
 

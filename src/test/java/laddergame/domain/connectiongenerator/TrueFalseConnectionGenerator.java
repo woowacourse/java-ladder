@@ -7,9 +7,9 @@ import java.util.stream.Stream;
 
 public class TrueFalseConnectionGenerator implements ConnectionGenerator {
     @Override
-    public List<Connection> generate(int connectionNumber) {
+    public List<Connection> generate(int number) {
         return Stream.iterate(Connection.CONNECTED, this::generateContraryConnection)
-                .limit(connectionNumber)
+                .limit(number)
                 .toList();
     }
 
