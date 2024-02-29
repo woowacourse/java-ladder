@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
+    private static final String SPLIT_DELIMITER = ",";
+
     public InputView() {
     }
 
@@ -14,17 +16,17 @@ public class InputView {
     }
 
     public static List<String> inputPlayerNames() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 구분자(" + SPLIT_DELIMITER + ")로 구분하세요)");
         String initialInput = input();
-        return Arrays.stream(initialInput.split(","))
+        return Arrays.stream(initialInput.split(SPLIT_DELIMITER))
                      .map(String::trim)
                      .toList();
     }
 
     public static List<String> inputRewards() {
-        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        System.out.println("실행 결과를 입력하세요. (결과는 구분자(" + SPLIT_DELIMITER + ")로 구분하세요)");
         String initialInput = input();
-        return Arrays.stream(initialInput.split(","))
+        return Arrays.stream(initialInput.split(SPLIT_DELIMITER))
                      .map(String::trim)
                      .toList();
     }
