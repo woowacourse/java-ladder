@@ -36,4 +36,8 @@ public class OutputView {
         final List<Boolean> paths = line.lineInfo();
         System.out.println(LineFormatter.format(paths));
     }
+
+    public void printResultByPerson(String item) {
+        System.out.println(item);
+    }
 }

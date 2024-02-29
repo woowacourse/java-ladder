@@ -27,6 +27,8 @@ public class InputView {
     }
 
     public String inputPersonName() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        System.out.println();
         return scanner.next();
     }
 }

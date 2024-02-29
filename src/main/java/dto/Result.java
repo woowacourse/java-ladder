@@ -10,4 +10,8 @@ public record Result(Map<String, String> personAndItemName) {
         Map<String, String> matchedPersonAndItemNames = ladder.match(people, items);
         return new Result(matchedPersonAndItemNames);
     }
+
+    public String getItemNameByPersonName(final String personName) {
+        return personAndItemName.get(personName);
+    }
 }

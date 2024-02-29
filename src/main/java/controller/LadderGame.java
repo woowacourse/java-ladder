@@ -50,7 +50,8 @@ public class LadderGame {
     private void findResult(final Result result) {
         String personName = inputView.inputPersonName();
         while (!personName.equals("all")) {
-            // 결과 출력
+            String itemName = result.getItemNameByPersonName(personName);
+            outputView.printResultByPerson(itemName);
             personName = inputView.inputPersonName();
         }
     }
