@@ -1,5 +1,7 @@
 package domain;
 
+import static domain.MemberName.MAX_NAME_LENGTH;
+import static domain.MemberName.MIN_NAME_LENGTH;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
@@ -22,7 +24,7 @@ public class MemberNameTest {
     void test_exception_moreThanFiveLetters(String name) {
         assertThatThrownBy(() -> new MemberName(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("자의 이름만 허용합니다.");
+                .hasMessage(MIN_NAME_LENGTH + "~" + MAX_NAME_LENGTH + "자의 이름만 허용합니다.");
     }
 
     @Test
@@ -30,7 +32,7 @@ public class MemberNameTest {
     void test_exception_null() {
         assertThatThrownBy(() -> new MemberName(null))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("이름에 null을 입력할 수 없습니다.");
+                .hasMessage("이름에 null을 입력할 수 없습니다.");
     }
 
     @Test
@@ -38,7 +40,7 @@ public class MemberNameTest {
     void test_exception_empty() {
         assertThatThrownBy(() -> new MemberName(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("자의 이름만 허용합니다.");
+                .hasMessage(MIN_NAME_LENGTH + "~" + MAX_NAME_LENGTH + "자의 이름만 허용합니다.");
     }
 
     @ParameterizedTest
@@ -47,14 +49,14 @@ public class MemberNameTest {
     void test_exception_containsInvalidLetter(String name) {
         assertThatThrownBy(() -> new MemberName(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("이름은 알파벳과 숫자만 허용합니다.");
+                .hasMessage("이름은 알파벳과 숫자만 허용합니다.");
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "a", "B", "cC123"})
     @DisplayName("이름 객체 생성 성공: 알파벳, 숫자로 구성된 1~5글자의 이름")
     void test_ok_withValidLetterAndLength(String name) {
-        assertThatCode(() -> new MemberName(name))
-                .doesNotThrowAnyException();
+        MemberName memberName = new MemberName(name);
+        assertThat(memberName.getName()).isEqualTo(name);
     }
 }

@@ -2,8 +2,8 @@ package domain;
 
 public class MemberName {
 
-    private static final int MIN_NAME_LENGTH = 1;
-    private static final int MAX_NAME_LENGTH = 5;
+    public static final int MIN_NAME_LENGTH = 1;
+    public static final int MAX_NAME_LENGTH = 5;
     private static final String FORMAT_NAME = "^[A-Za-z0-9]+$";
 
     private final String name;
