@@ -2,9 +2,9 @@ package domain;
 
 public class Result {
 
-    public static final String INVALID_RESULT_LENGTH = "실행 결과는 1글자 이상 5글자 이하이어야 합니다.";
     private static final int MINIMUM_RESULT_LENGTH = 1;
     private static final int MAXIMUM_RESULT_LENGTH = 5;
+    public static final String INVALID_RESULT_LENGTH = "실행 결과는 "+MINIMUM_RESULT_LENGTH+"글자 이상 "+MAXIMUM_RESULT_LENGTH+"글자 이하이어야 합니다.";
     private final String value;
 
     public Result(final String value) {

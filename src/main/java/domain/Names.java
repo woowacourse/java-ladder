@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 
 public class Names {
 
-    public static final String INVALID_NAMES_COUNT = "이름은 2개 이상 10개 이하 이어야 합니다.";
     public static final String DUPLICATED_NAMES = "참가자의 이름은 중복될 수 없습니다.";
     private static final int MINIMUM_PLAYERS_COUNT = 2;
     private static final int MAXIMUM_PLAYERS_COUNT = 10;
+    public static final String INVALID_NAMES_COUNT = "이름은 " + MINIMUM_PLAYERS_COUNT + "개 이상 " + MAXIMUM_PLAYERS_COUNT + "개 이하 이어야 합니다.";
 
     private final List<Name> values;
 
