@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 public class ParticipantsTest {
 
     private static final int MAXIMUM_RECEPTION_COUNT = 10;
+    private static final String SEE_ALL_PARTICIPANT_COMMEND = "all";
 
     @DisplayName("참여자 최대 인원 테스트")
     @Test
@@ -42,5 +43,15 @@ public class ParticipantsTest {
         Assertions.assertThatThrownBy(() -> participants.findNamePosition(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("입력한 이름이 존재하지 않습니다.");
+    }
+
+    @DisplayName("이름에 all을 받지 않는다.")
+    @Test
+    void isParticipantHasNameAll() {
+        List<String> names = new ArrayList<>(List.of(SEE_ALL_PARTICIPANT_COMMEND, "pola", "jazz"));
+
+        Assertions.assertThatThrownBy(() -> new Participants(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(SEE_ALL_PARTICIPANT_COMMEND + " 이라는 이름은 사용할 수 없습니다.");
     }
 }

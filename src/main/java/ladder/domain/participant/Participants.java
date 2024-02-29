@@ -8,6 +8,7 @@ import java.util.Set;
 public class Participants {
 
     private static final int MAXIMUM_RECEPTION_COUNT = 10;
+    private static final String SEE_ALL_PARTICIPANT_COMMEND = "all";
     private final List<Name> names;
 
     public Participants(List<String> inputNames) {
@@ -18,6 +19,7 @@ public class Participants {
     private void validate(List<String> names) {
         validateParticipantIsNotOverMaximumCount(names);
         validateHasNotDuplicatedName(names);
+        validateHasNotNameAllCommend(names);
     }
 
     public List<Name> getNames() {
@@ -54,6 +56,12 @@ public class Participants {
 
         if (names.size() != uniqueNames.size()) {
             throw new IllegalArgumentException("참여자 이름은 중복을 허용하지 않습니다");
+        }
+    }
+
+    private void validateHasNotNameAllCommend(List<String> names) {
+        if (names.contains(SEE_ALL_PARTICIPANT_COMMEND)) {
+            throw new IllegalArgumentException(SEE_ALL_PARTICIPANT_COMMEND + " 이라는 이름은 사용할 수 없습니다.");
         }
     }
 }
