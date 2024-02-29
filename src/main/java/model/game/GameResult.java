@@ -29,7 +29,7 @@ public class GameResult {
 
     public List<GameResultState> captureResultStates() {
         return result.entrySet().stream()
-                .map(entry -> GameResultState.from(entry.getKey(), entry.getValue()))
+                .map(entry -> GameResultState.of(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
     }
 }
