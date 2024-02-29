@@ -75,11 +75,11 @@ public class OutputView {
         return character.repeat(times);
     }
 
-    public void printResult(Result result) {
-        System.out.println(result.getValue());
-    }
-
     public void printResult(Map<Member, Result> results) {
+        if (results.size() == 1) {
+            System.out.println(results.values().stream().map(Result::getValue).toList().get(0));
+            return;
+        }
         for (Entry<Member, Result> memberResult : results.entrySet()) {
             String memberName = memberResult.getKey().getName();
             String result = memberResult.getValue().getValue();
