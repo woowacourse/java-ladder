@@ -5,11 +5,13 @@ import java.util.stream.IntStream;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.PlayerName;
+import ladder.domain.Price;
 import ladder.domain.linegenerator.LinePatternGenerator;
 import ladder.domain.linegenerator.RandomBooleanSupplier;
 import ladder.dto.LadderDto;
 import ladder.dto.LineDto;
 import ladder.dto.PlayerNamesDto;
+import ladder.dto.PriceDto;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -19,6 +21,7 @@ public class LadderGameController {
 
     public void run() {
         List<PlayerName> playerNames = inputPlayerNames();
+        List<Price> prices = inputPriceNames();
         Height height = inputHeight();
 
         LinePatternGenerator lineGenerator = new LinePatternGenerator(new RandomBooleanSupplier());
@@ -26,6 +29,7 @@ public class LadderGameController {
 
         PlayerNamesDto playerNamesDto = toDto(playerNames);
         LadderDto ladderDto = toDto(ladder);
+        PriceDto priceDto = toPriceDto(prices);
         outputView.printResult(ladderDto, playerNamesDto);
     }
 
@@ -37,6 +41,17 @@ public class LadderGameController {
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return inputPlayerNames();
+        }
+    }
+
+    private List<Price> inputPriceNames() {
+        try {
+            return inputView.inputPriceNames().stream()
+                    .map(Price::new)
+                    .toList();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return inputPriceNames();
         }
     }
 
@@ -54,6 +69,13 @@ public class LadderGameController {
                 .map(PlayerName::getName)
                 .toList();
         return new PlayerNamesDto(resultPlayerNames);
+    }
+
+    private PriceDto toPriceDto(List<Price> prices) {
+        List<String> resultPriceNames = prices.stream()
+                .map(Price::getPrice)
+                .toList();
+        return new PriceDto(resultPriceNames);
     }
 
     private LadderDto toDto(Ladder ladder) {
