@@ -64,9 +64,6 @@ public class Line {
         if (sticks.get(index + 1).isExist()) {
             return index + 1;
         }
-        if (sticks.get(index).isExist()) {
-            return index - 1;
-        }
         return index;
     }
 }
