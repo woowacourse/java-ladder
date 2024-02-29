@@ -6,12 +6,12 @@ public class Prize {
     private static final int MIN_RANGE_LIMIT = 1;
     private static final int MAX_RANGE_LIMIT = 5;
 
-    private final String prizes;
+    private final String prizeName;
 
     public Prize(String inputText) {
         validateBlankNames(inputText);
         validateNameLength(inputText);
-        prizes = inputText;
+        prizeName = inputText;
     }
 
     private void validateBlankNames(String prizeNames) {
@@ -31,6 +31,10 @@ public class Prize {
         return textLength < MIN_RANGE_LIMIT || textLength > MAX_RANGE_LIMIT;
     }
 
+    public String getPrizeName() {
+        return prizeName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -40,11 +44,11 @@ public class Prize {
             return false;
         }
         Prize prize = (Prize) o;
-        return Objects.equals(prizes, prize.prizes);
+        return Objects.equals(this.prizeName, prize.prizeName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(prizes);
+        return Objects.hash(prizeName);
     }
 }
