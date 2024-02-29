@@ -1,6 +1,6 @@
 package domain.result;
 
-import domain.Participants.Position;
+import domain.ladder.Height;
 import domain.ladder.Ladder;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -22,24 +22,26 @@ public class LadderResult {
     }
 
     private void calculatePosition(Ladder ladder) {
-        for (int floor = 0; !ladder.isFinish(floor); floor++) {
-            moveAllPosition(ladder, floor);
+        Height currentHeight = new Height(0);
+        while (!ladder.isFinish(currentHeight)) {
+            moveAllPosition(ladder, currentHeight);
+            currentHeight.moveUp();
         }
     }
 
-    private void moveAllPosition(Ladder ladder, int floor) {
+    private void moveAllPosition(Ladder ladder, Height height) {
         for (Map.Entry<Position, Position> entry : firstAndLastPosition.entrySet()) {
             Position firstPosition = entry.getKey();
-            moveEachPosition(ladder, floor, firstPosition);
+            moveEachPosition(ladder, height, firstPosition);
         }
     }
 
-    private void moveEachPosition(Ladder ladder, int floor, Position firstPosition) {
-        if (ladder.canMoveLeft(floor, firstAndLastPosition.get(firstPosition).getPosition())) {
+    private void moveEachPosition(Ladder ladder, Height height, Position firstPosition) {
+        if (ladder.canMoveLeft(height, firstAndLastPosition.get(firstPosition).getPosition())) {
             firstAndLastPosition.get(firstPosition).movePositionLeft();
             return;
         }
-        if (ladder.canMoveRight(floor, firstAndLastPosition.get(firstPosition).getPosition())) {
+        if (ladder.canMoveRight(height, firstAndLastPosition.get(firstPosition).getPosition())) {
             firstAndLastPosition.get(firstPosition).movePositionRight();
         }
     }

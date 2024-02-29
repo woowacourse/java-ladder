@@ -6,34 +6,45 @@ import utils.StepGenerator;
 
 public class Ladder {
 
+    public static final int MIN_OF_HEIGHT = 0;
+    public static final Height ZERO = new Height(MIN_OF_HEIGHT);
+
     private final List<Line> lines;
     private final Height height;
 
-    public Ladder(int floor, int participantsCount, StepGenerator stepGenerator) {
+    public Ladder(Height height, int participantsCount, StepGenerator stepGenerator) {
         int stepPointCount = participantsCount - 1;
-        height = new Height(floor);
-        lines = Stream.generate(() -> new Line(stepPointCount, stepGenerator))
-                .limit(floor)
+        validateHeight(height);
+        this.height = height;
+        this.lines = Stream.generate(() -> new Line(stepPointCount, stepGenerator))
+                .limit(height.getHeight())
                 .toList();
     }
 
-    public boolean isFinish(int floor) {
-        return height.isEqualTo(floor);
+    private static void validateHeight(Height height) {
+        if (ZERO.equals(height)) {
+            throw new IllegalArgumentException("[ERROR] 높이가 0인 사다리는 불가능합니다.");
+
+        }
     }
 
-    public boolean canMoveLeft(int floor, int step) {
-        if (isFinish(floor)) {
+    public boolean isFinish(Height height) {
+        return this.height.equals(height);
+    }
+
+    public boolean canMoveLeft(Height height, int step) {
+        if (isFinish(height)) {
             return false;
         }
-        Line line = lines.get(floor);
+        Line line = lines.get(height.getHeight());
         return line.isExistLeftStep(step);
     }
 
-    public boolean canMoveRight(int floor, int step) {
-        if (isFinish(floor)) {
+    public boolean canMoveRight(Height height, int step) {
+        if (isFinish(height)) {
             return false;
         }
-        Line line = lines.get(floor);
+        Line line = lines.get(height.getHeight());
         return line.isExistRightStep(step);
     }
 

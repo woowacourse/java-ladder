@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 
 public class InputView {
 
+    public static final String EXIT = "종료";
+    public static final String ALL = "all";
     private static final String DELIMITER = ",";
     private static final Pattern FINISH_WITH_DELIMITER_REGEX = Pattern.compile(".*,$");
     private final Scanner scanner = new Scanner(System.in);

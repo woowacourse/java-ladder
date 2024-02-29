@@ -4,14 +4,19 @@ import java.util.Objects;
 
 public class Height {
 
-    public static final int MIN_OF_HEIGHT = 1;
+    public static final int MIN_OF_HEIGHT = 0;
     public static final int MAX_OF_HEIGHT = 100;
 
-    private final int height;
+    private int height;
 
     public Height(int height) {
         validate(height);
         this.height = height;
+    }
+
+    public void moveUp() {
+        validate(height + 1);
+        this.height += 1;
     }
 
     public boolean isEqualTo(int nowFloor) {
@@ -23,6 +28,10 @@ public class Height {
             throw new IllegalArgumentException("[ERROR] 높이는 " + MIN_OF_HEIGHT + "개 이상 "
                     + MAX_OF_HEIGHT + "개 이하여야 합니다.");
         }
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     @Override

@@ -3,6 +3,7 @@ package domain;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import domain.Participants.Participants;
+import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.result.Prizes;
 import java.util.List;
@@ -18,7 +19,7 @@ class LadderGameTest {
     void allResultOfLadderTest() {
         Participants participants = new Participants(List.of("a", "b", "c"));
         Prizes prizes = new Prizes(List.of("1", "2", "3"), participants);
-        Ladder ladder = new Ladder(2, 3, new PresentStepGenerator());
+        Ladder ladder = new Ladder(new Height(2), 3, new PresentStepGenerator());
 
         LadderGame ladderGame = new LadderGame(participants, prizes, ladder);
         Map<String, String> expectedAllResult = Map.of("a", "1", "b", "2", "c", "3");
@@ -31,7 +32,7 @@ class LadderGameTest {
     void oneResultOfLadderTest() {
         Participants participants = new Participants(List.of("a", "b", "c"));
         Prizes prizes = new Prizes(List.of("1", "2", "3"), participants);
-        Ladder ladder = new Ladder(2, 3, new PresentStepGenerator());
+        Ladder ladder = new Ladder(new Height(2), 3, new PresentStepGenerator());
 
         LadderGame ladderGame = new LadderGame(participants, prizes, ladder);
         String expectedOneResult = "1";
