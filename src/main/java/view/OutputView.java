@@ -1,21 +1,44 @@
 package view;
 
-import domain.Bridge;
+import domain.Direction;
 import domain.Ladder;
 import domain.Name;
 
+import domain.Row;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
-    private static final String LADDER_LEFT_SIDE = "     |";
-    private static final String BRIDGE_EXIST = "-----|";
-    private static final String BRIDGE_EMPTY = "     |";
 
-    public static void printResult(final List<Name> names,final Ladder ladder, final int height) {
+    private static final String LADDER_LEFT_MARGIN = "     |";
+    private static final String RUNG_EXIST = "-----";
+    private static final String RUNG_EMPTY = "     ";
+    private static final String RUNG_SEPARATOR = "|";
+
+    public static void printResult(final List<Name> names, final Ladder ladder, final int height) {
         System.out.println("실행 결과\n");
 
         printPlayers(names);
-        printLadder(names, ladder, height);
+    }
+
+    public static void printLadder(List<Row> rows) {
+        String ladderMessage = rows.stream()
+                .map(OutputView::rowToMessage)
+                .collect(Collectors.joining(System.lineSeparator()));
+        System.out.println(ladderMessage);
+    }
+
+    public static String rowToMessage(Row row) {
+        return LADDER_LEFT_MARGIN + row.getRow().stream()
+                .map(OutputView::directionToMessage)
+                .collect(Collectors.joining(RUNG_SEPARATOR)).concat(RUNG_SEPARATOR);
+    }
+
+    private static String directionToMessage(Direction direction) {
+        if (direction == Direction.RIGHT) {
+            return RUNG_EXIST;
+        }
+        return RUNG_EMPTY;
     }
 
     private static void printPlayers(final List<Name> names) {
@@ -23,27 +46,5 @@ public class OutputView {
             System.out.printf("%6s", name.name());
         }
         System.out.println();
-    }
-
-    private static void printLadder(final List<Name> names, final Ladder bridges, final int ladderHeight) {
-        for (int height = 0; height < ladderHeight; height++) {
-            System.out.print(LADDER_LEFT_SIDE);
-            printOneLine(names, bridges, height);
-            System.out.println();
-        }
-    }
-
-    private static void printOneLine(final List<Name> names, final Ladder bridges, final int y) {
-        for (int x = 0; x < names.size() - 1; x++) {
-            Bridge bridge = new Bridge(x, y);
-            System.out.print(getBridgeSymbol(bridges, bridge));
-        }
-    }
-
-    private static String getBridgeSymbol(final Ladder bridges, final Bridge bridge) {
-        if (bridges.getBridges().contains(bridge)) {
-            return BRIDGE_EXIST;
-        }
-        return BRIDGE_EMPTY;
     }
 }

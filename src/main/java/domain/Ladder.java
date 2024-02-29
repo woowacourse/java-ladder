@@ -29,6 +29,10 @@ public class Ladder {
         return position;
     }
 
+    public List<Row> getRows() {
+        return rows;
+    }
+
     private void validationHeight(int height) {
         if (height < 1) {
             throw new IllegalArgumentException("높이는 1 이상이어야 한다.");
