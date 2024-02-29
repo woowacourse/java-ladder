@@ -55,6 +55,8 @@
       - 결과의 개수와 참가자 명수 일치 검증
     - MatchResult
       - 참가자별 결과 확인
+    - Command
+      - 해당 입력이 커멘드 중 하나인지 판단
 2. View
     - InputView
       - 이름 입력
