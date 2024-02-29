@@ -1,12 +1,12 @@
 package domain.player;
 
-import domain.player.PlayerName;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class PlayerNameTest {
@@ -35,5 +35,19 @@ public class PlayerNameTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new PlayerName(name))
                 .withMessage("이름에 공백을 입력할 수 없습니다");
+    }
+
+    @DisplayName("입력된 이름과 일치하면 true를 반환한다.")
+    @Test
+    void 이름_일치_true_반환() {
+        // Given
+        final PlayerName playerName = new PlayerName("kelly");
+        final String inputName = "kelly";
+
+        // When
+        boolean isEqual = playerName.isEqualName(inputName);
+
+        // Then
+        assertThat(isEqual).isTrue();
     }
 }
