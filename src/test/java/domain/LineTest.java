@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import util.TestLineItemGenerator;
 import view.LineItem;
@@ -40,30 +41,30 @@ class LineTest {
     void checkCreatedLineItemCount() {
         // given
         TestLineItemGenerator lineItemGenerator = new TestLineItemGenerator(LineItem.CONNECTED);
-        int columnLength = 4;
-        Line line = new Line(columnLength);
+        int playerCount = 4;
+        Line line = new Line(playerCount);
 
         // when
         int result = line.makeLine(lineItemGenerator).size();
 
         // then
-        assertThat(result).isEqualTo(columnLength-1);
+        assertThat(result).isEqualTo(playerCount-1);
     }
 
     @DisplayName("현재 위치에서 사다리가 옆으로 연결되어 있으면 옆으로 이동한다.")
-    @Test
-    void moveLineIfConnected() {
+    @ParameterizedTest
+    @CsvSource({"1, 0", "3, 2"})
+    void moveLineIfConnected(int position, int expected) {
         // given
         TestLineItemGenerator lineItemGenerator = new TestLineItemGenerator(LineItem.CONNECTED);
-        int columnLength = 4;
-        int position = 0;
-        Line line = new Line(columnLength);
+        int playerCount = 4;
+        Line line = new Line(playerCount);
         line.makeLine(lineItemGenerator);
 
         // when
         position = line.move(position);
 
         // then
-        assertThat(position).isEqualTo(1);
+        assertThat(position).isEqualTo(expected);
     }
 }
