@@ -1,11 +1,14 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import strategy.ConnectStrategy;
 import strategy.RandomConnectStrategy;
 
@@ -45,5 +48,14 @@ public class LineTest {
             () -> assertThat(line.findNextIndex(2)).isEqualTo(3),
             () -> assertThat(line.findNextIndex(3)).isEqualTo(2)
         );
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 4})
+    @DisplayName("실패: index 범위 넘어가는 경우")
+    void test_exception_findNextIndex(int index) {
+        Line line = Line.of(() -> Connection.CONNECTED, 4);
+        assertThatThrownBy(() -> line.findNextIndex(index))
+            .isInstanceOf(IllegalStateException.class);
     }
 }
