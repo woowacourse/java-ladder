@@ -1,5 +1,6 @@
 package view;
 
+import domain.participants.Participants;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -48,8 +49,16 @@ public class InputView {
         }
     }
 
-    public String readResultName() {
+    public String readResultName(Participants participants) {
         System.out.println("\n결과를 보고 싶은 사람은?");
-        return scanner.nextLine();
+        String name = scanner.nextLine();
+        validateResultName(name, participants);
+        return name;
+    }
+
+    private void validateResultName(String name, Participants participants) {
+        if (!name.equals(InputView.EXIT) && !name.equals(InputView.ALL) && !participants.hasParticipated(name)) {
+            throw new IllegalArgumentException("[ERROR] 해당하는 참가자가 없습니다.");
+        }
     }
 }
