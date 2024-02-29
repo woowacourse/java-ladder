@@ -17,6 +17,18 @@ public class GameResult {
         gameResult.put(member, result);
     }
 
+    public Map<Member, Result> getResultByTarget(ResultTarget target) {
+        if (target.isAllMembers()) {
+            return getResultOfAllMember();
+        }
+        Member member = new Member(target.getName());
+        Result result = getResultByMemberName(target.getName());
+        return new HashMap<>() {{
+            put(member, result);
+        }};
+    }
+
+    // TODO: 두 메서드 private 으로 변경 <- test 수정
     public Result getResultByMemberName(String name) {
         return gameResult.entrySet().stream()
                 .filter(memberResult -> memberResult.getKey().getName().equals(name))
