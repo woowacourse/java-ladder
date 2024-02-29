@@ -43,7 +43,7 @@ public class PlayResult {
     }
 
     public boolean hasResultOf(final String name) {
-        return result.containsKey(name);
+        return EXPRESSION_OF_ENTIRE_PLAYER.equals(name) || result.containsKey(name);
     }
 
     public Map<String, String> checkPlayerResultByName(final String name) {

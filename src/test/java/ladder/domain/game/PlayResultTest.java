@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.entry;
 class PlayResultTest {
 
     @ParameterizedTest
-    @CsvSource(value = {"pobi, true", "nono, false"})
+    @CsvSource(value = {"pobi, true", "all, true", "nono, false"})
     @DisplayName("참여자 이름에 해당하는 결과가 존재하는지 판별할 수 있다.")
     void hasResultOf(String name, boolean expected) {
         PlayResult playResult = new PlayResult(Map.of("pobi", "5000"));
