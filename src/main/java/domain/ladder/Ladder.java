@@ -17,16 +17,16 @@ public class Ladder {
 		this.floors = floors;
 	}
 
-	public Map<String, String> getAllPlayerResults(Players players, Prizes prizes) {
+	public Map<String, String> getAllPlayerPrizes(Players players, Prizes prizes) {
 		Map<String, String> results = new LinkedHashMap<>();
 		for (Player player : players.players()) {
-			String result = getOnePlayerResult(player, prizes);
+			String result = getOnePlayerPrize(player, prizes);
 			results.put(player.getName(), result);
 		}
 		return results;
 	}
 
-	public String getOnePlayerResult(Player player, Prizes prizes) {
+	public String getOnePlayerPrize(Player player, Prizes prizes) {
 		playLadder(player);
 		return prizes.getPlayersPrizeName(player.getPosition());
 	}

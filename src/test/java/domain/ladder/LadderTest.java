@@ -46,7 +46,7 @@ public class LadderTest {
 		Prizes prizes = new Prizes(List.of("1등", "2등", "3등"));
 
 		// when
-		Map<String, String> actual = ladder.getAllPlayerResults(players, prizes);
+		Map<String, String> actual = ladder.getAllPlayerPrizes(players, prizes);
 		Map<String, String> expected = Map.of("A", "3등", "B", "2등", "C", "1등");
 
 		// then
@@ -61,7 +61,7 @@ public class LadderTest {
 		Prizes prizes = new Prizes(List.of("1등", "2등", "3등"));
 
 		// when
-		String actual = ladder.getOnePlayerResult(player, prizes);
+		String actual = ladder.getOnePlayerPrize(player, prizes);
 		String expected = "3등";
 
 		// then

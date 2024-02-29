@@ -31,7 +31,7 @@ public class InputView {
 		return convertToInteger(input);
 	}
 
-	public String readPlayersToShowResult(List<String> playerNames) {
+	public String readPlayersToGetPrize(List<String> playerNames) {
 		String input = scanner.nextLine();
 		if ("all".equals(input)) {
 			return input;
