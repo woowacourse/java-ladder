@@ -1,13 +1,15 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NamesTest {
 
@@ -25,7 +27,7 @@ class NamesTest {
         final Names players = new Names(names);
 
         //then
-        Assertions.assertThat(players.count()).isEqualTo(playerCount);
+        assertThat(players.count()).isEqualTo(playerCount);
     }
 
     @DisplayName("참가자 수가 2명 미만, 10명 초과이면 예외를 발생시킨다.")
@@ -39,7 +41,7 @@ class NamesTest {
         }
 
         //when & then
-        Assertions.assertThatThrownBy(() -> new Names(names))
+        assertThatThrownBy(() -> new Names(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Names.INVALID_NAMES_COUNT);
     }
@@ -51,7 +53,7 @@ class NamesTest {
         final List<String> names = List.of("pobi", "honux", "crong", "crong", "jk");
 
         //when & then
-        Assertions.assertThatThrownBy(() -> new Names(names))
+        assertThatThrownBy(() -> new Names(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Names.DUPLICATED_NAMES);
     }
@@ -66,7 +68,7 @@ class NamesTest {
         final Names players = new Names(names);
         int playersCount = players.count();
         //then
-        Assertions.assertThat(playersCount).isEqualTo(names.size());
+        assertThat(playersCount).isEqualTo(names.size());
     }
 
     @DisplayName("참가자들의 이름 목록을 반환한다.")
@@ -80,7 +82,7 @@ class NamesTest {
         List<Name> returnedNames = names.getValues();
 
         //then
-        Assertions.assertThat(returnedNames).hasSize(4);
+        assertThat(returnedNames).hasSize(4);
     }
 
     @DisplayName("주어진 위치에 있는 이름을 반환한다.")
@@ -96,6 +98,6 @@ class NamesTest {
         Name name = names.findNameAtIndex(index);
 
         //then
-        Assertions.assertThat(name.getValue()).isEqualTo(expectedName);
+        assertThat(name.getValue()).isEqualTo(expectedName);
     }
 }

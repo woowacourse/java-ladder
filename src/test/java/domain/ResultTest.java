@@ -1,10 +1,12 @@
 package domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 
 class ResultTest {
@@ -16,7 +18,7 @@ class ResultTest {
         String result = "실행 결과";
 
         //when & then
-        Assertions.assertThatCode(() -> new Result(result)).doesNotThrowAnyException();
+        assertThatCode(() -> new Result(result)).doesNotThrowAnyException();
     }
 
     @DisplayName("실행 결과가 1글자 미만 5글자 초과이면 예외를 던진다.")
@@ -27,7 +29,7 @@ class ResultTest {
         String result = "r".repeat(count);
 
         //when & then
-        Assertions.assertThatThrownBy(() -> new Result(result)).isInstanceOf(IllegalArgumentException.class).hasMessage(Result.INVALID_RESULT_LENGTH);
+        assertThatThrownBy(() -> new Result(result)).isInstanceOf(IllegalArgumentException.class).hasMessage(Result.INVALID_RESULT_LENGTH);
     }
 
 }

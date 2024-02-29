@@ -1,12 +1,13 @@
 package domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
+
+import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 public class ResultsTest {
 
@@ -18,7 +19,7 @@ public class ResultsTest {
         int playerCount = 4;
 
         //when & then
-        Assertions.assertThatCode(() -> Results.of(rawResults, playerCount)).doesNotThrowAnyException();
+        assertThatCode(() -> Results.of(rawResults, playerCount)).doesNotThrowAnyException();
     }
 
     @DisplayName("실행 결과가 참가자 수보다 적거나 많으면 예외를 던진다.")
@@ -29,17 +30,17 @@ public class ResultsTest {
         List<String> rawResults = List.of("꽝", "2000", "꽝", "5000");
 
         //when & then
-        Assertions.assertThatThrownBy(() -> Results.of(rawResults, playerCount))
+        assertThatThrownBy(() -> Results.of(rawResults, playerCount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Results.INVALID_RESULTS_COUNT);
     }
 
     @DisplayName("주어진 위치의 결과를 반환한다.")
     @Test
-    void findResultAtIndex(){
+    void findResultAtIndex() {
         //given
         List<String> rawResults = List.of("꽝", "2000", "꽝", "5000");
-        Results results = Results.of(rawResults,rawResults.size());
+        Results results = Results.of(rawResults, rawResults.size());
         int index = 1;
         String expectedResult = "2000";
 
@@ -47,7 +48,7 @@ public class ResultsTest {
         Result result = results.findResultAtIndex(index);
 
         //then
-        Assertions.assertThat(result.getValue()).isEqualTo(expectedResult);
+        assertThat(result.getValue()).isEqualTo(expectedResult);
     }
 
 }

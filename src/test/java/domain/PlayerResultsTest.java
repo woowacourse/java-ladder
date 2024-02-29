@@ -1,11 +1,14 @@
 package domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class PlayerResultsTest {
 
@@ -41,11 +44,11 @@ public class PlayerResultsTest {
         PlayerResults playerResults = PlayerResults.of(names, ladder, results);
 
         //then
-        org.junit.jupiter.api.Assertions.assertAll(
-                () -> Assertions.assertThat(playerResults.findResult(targetNames.get(0)).getValue()).isEqualTo(expectedResults.get(0)),
-                () -> Assertions.assertThat(playerResults.findResult(targetNames.get(1)).getValue()).isEqualTo(expectedResults.get(1)),
-                () -> Assertions.assertThat(playerResults.findResult(targetNames.get(2)).getValue()).isEqualTo(expectedResults.get(2)),
-                () -> Assertions.assertThat(playerResults.findResult(targetNames.get(3)).getValue()).isEqualTo(expectedResults.get(3))
+        assertAll(
+                () -> assertThat(playerResults.findResult(targetNames.get(0)).getValue()).isEqualTo(expectedResults.get(0)),
+                () -> assertThat(playerResults.findResult(targetNames.get(1)).getValue()).isEqualTo(expectedResults.get(1)),
+                () -> assertThat(playerResults.findResult(targetNames.get(2)).getValue()).isEqualTo(expectedResults.get(2)),
+                () -> assertThat(playerResults.findResult(targetNames.get(3)).getValue()).isEqualTo(expectedResults.get(3))
         );
 
     }
@@ -63,7 +66,7 @@ public class PlayerResultsTest {
         Result result = playerResults.findResult(targetName);
 
         //then
-        Assertions.assertThat(result.getValue()).isEqualTo(expectedResult);
+        assertThat(result.getValue()).isEqualTo(expectedResult);
     }
 
     @DisplayName("존재하지 않는 참가자 이름으로 찾으면 예외를 던진다.")
@@ -75,7 +78,7 @@ public class PlayerResultsTest {
         String unknownName = "unknown";
 
         //then
-        Assertions.assertThatThrownBy(() -> playerResults.findResult(unknownName))
+        assertThatThrownBy(() -> playerResults.findResult(unknownName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PlayerResults.UNKNOWN_NAME);
     }

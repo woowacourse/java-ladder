@@ -1,10 +1,13 @@
 package domain;
 
-import java.util.List;
-
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
+
 
 class LadderTest {
 
@@ -23,7 +26,7 @@ class LadderTest {
         final Ladder ladder = Ladder.createByStrategy(bridgeGenerator, height, personCount);
 
         //then
-        Assertions.assertThat(ladder.getLines()).hasSize(height);
+        assertThat(ladder.getLines()).hasSize(height);
     }
 
     @DisplayName("다리가 있으면 이동한다.")
@@ -40,11 +43,11 @@ class LadderTest {
         final Ladder ladder = Ladder.createByStrategy(bridgeGenerator, height, personCount);
 
         //when & then
-        org.junit.jupiter.api.Assertions.assertAll(
-                () -> Assertions.assertThat(ladder.climb(0)).isEqualTo(expectedDestinations.get(0)),
-                () -> Assertions.assertThat(ladder.climb(1)).isEqualTo(expectedDestinations.get(1)),
-                () -> Assertions.assertThat(ladder.climb(2)).isEqualTo(expectedDestinations.get(2)),
-                () -> Assertions.assertThat(ladder.climb(3)).isEqualTo(expectedDestinations.get(3))
+        assertAll(
+                () -> assertThat(ladder.climb(0)).isEqualTo(expectedDestinations.get(0)),
+                () -> assertThat(ladder.climb(1)).isEqualTo(expectedDestinations.get(1)),
+                () -> assertThat(ladder.climb(2)).isEqualTo(expectedDestinations.get(2)),
+                () -> assertThat(ladder.climb(3)).isEqualTo(expectedDestinations.get(3))
         );
 
     }

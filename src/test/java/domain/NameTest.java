@@ -1,10 +1,12 @@
 package domain;
 
-import org.assertj.core.api.Assertions;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 class NameTest {
 
@@ -15,7 +17,7 @@ class NameTest {
         String name = "crong";
 
         //when & then
-        Assertions.assertThatCode(() -> new Name(name)).doesNotThrowAnyException();
+        assertThatCode(() -> new Name(name)).doesNotThrowAnyException();
     }
 
 
@@ -27,7 +29,7 @@ class NameTest {
         final String playerName = name;
 
         //when & then
-        Assertions.assertThatThrownBy(() -> new Name(playerName))
+        assertThatThrownBy(() -> new Name(playerName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Name.INVALID_NAME_LENGTH);
     }
@@ -39,7 +41,7 @@ class NameTest {
         String name = Commands.TERMINATE.getValue();
 
         //when & then
-        Assertions.assertThatThrownBy(() -> new Name(name))
+        assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Name.UNAVAILABLE_NAME);
     }
@@ -55,7 +57,7 @@ class NameTest {
         boolean result = name.isSame(target);
 
         //then
-        Assertions.assertThat(result).isTrue();
+        assertThat(result).isTrue();
     }
 
     @DisplayName("주어진 이름과 다른 이름이다.")
@@ -69,7 +71,7 @@ class NameTest {
         boolean result = name.isSame(target);
 
         //then
-        Assertions.assertThat(result).isFalse();
+        assertThat(result).isFalse();
     }
 
 }
