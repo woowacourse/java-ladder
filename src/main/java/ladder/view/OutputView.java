@@ -1,20 +1,23 @@
 package ladder.view;
 
+import java.util.ArrayList;
 import java.util.List;
-import ladder.domain.Name;
-import ladder.domain.dto.BuiltLadderDto;
-import ladder.domain.dto.ResultLadderDto;
+import ladder.domain.dto.MadeLadderDto;
+import ladder.domain.dto.StepStatusDto;
+import ladder.domain.ladder.Step;
+import ladder.domain.participant.Name;
+import ladder.view.util.LadderStepSymbol;
 
 public class OutputView {
 
     private static final String LADDERS_PREFIX = "    |";
     private static final String LADDER_STICK_SYMBOL = "|";
 
-    public void printResult(ResultLadderDto resultLadderDto, List<Name> names, List<String> gamePrizes) {
-        List<BuiltLadderDto> builtLadderDtos = resultLadderDto.resultLadder();
+    public void printMadeLadder(MadeLadderDto resultLadderDto, List<Name> names, List<String> gamePrizes) {
+        List<StepStatusDto> stepStatusDtos = resultLadderDto.stepStatusDtos();
 
         printParticipantsNames(names);
-        printBuiltLadders(builtLadderDtos);
+        printBuiltLadders(stepStatusDtos);
         printPrizes(gamePrizes);
     }
 
@@ -38,9 +41,9 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printBuiltLadders(List<BuiltLadderDto> builtLadderDtos) {
-        for (BuiltLadderDto builtLadderDto : builtLadderDtos) {
-            System.out.println(LADDERS_PREFIX + String.join(LADDER_STICK_SYMBOL, builtLadderDto.builtLadder()));
+    private void printBuiltLadders(List<StepStatusDto> resultStepsDto) {
+        for (StepStatusDto stepStatus : resultStepsDto) {
+            System.out.println(LADDERS_PREFIX + String.join(LADDER_STICK_SYMBOL, changeToViewSymbol(stepStatus)));
         }
     }
 
@@ -55,5 +58,13 @@ public class OutputView {
         System.out.println(e.getMessage());
     }
 
+    public List<String> changeToViewSymbol(StepStatusDto stepStatus) {
+        List<String> builtLadder = new ArrayList<>();
 
+        for (Step step : stepStatus.builtStep()) {
+            builtLadder.add(LadderStepSymbol.changeStatusToSymbol(step.getBuildStatus()));
+        }
+
+        return builtLadder;
+    }
 }
