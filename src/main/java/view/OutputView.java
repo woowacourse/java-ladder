@@ -1,6 +1,7 @@
 package view;
 
 import constant.PathStatus;
+import dto.LadderGameResultDto;
 import dto.LadderStatus;
 import dto.PathStatuses;
 
@@ -17,6 +18,7 @@ public class OutputView {
         System.out.println(makeNameMessage(ladderStatus.playerNames()));
         System.out.println(drawRadder(ladderStatus.pathStatuses()));
         System.out.println(makeGameResultMessage(ladderStatus.gameResults()));
+        System.out.println();
     }
 
     private static String makeNameMessage(List<String> userNames) {
@@ -65,5 +67,21 @@ public class OutputView {
     private static String makeGameResultMessage(List<String> gameResults) {
         int gameResultsSize = gameResults.size();
         return makeName(0, gameResultsSize, "%-5s", gameResults);
+    }
+
+    public static void printLadderGameResults(List<LadderGameResultDto> ladderGameResults) {
+        System.out.println();
+        System.out.println("실행 결과");
+        if (ladderGameResults.size() == 1) {
+            System.out.println(ladderGameResults.get(0).gameResult());
+            System.out.println();
+            return;
+        }
+        ladderGameResults.forEach(OutputView::printLadderGameResult);
+        System.out.println();
+    }
+
+    private static void printLadderGameResult(LadderGameResultDto ladderGameResult) {
+        System.out.println(ladderGameResult.playerName() + " : " + ladderGameResult.gameResult());
     }
 }
