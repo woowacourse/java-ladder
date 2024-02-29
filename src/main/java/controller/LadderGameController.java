@@ -42,11 +42,6 @@ public class LadderGameController {
         return new LadderGame(players, ladder, results);
     }
 
-    private void printResult(Players players, LadderGame ladderGame) {
-        TargetPlayer targetPlayer = readTargetPlayerIn(players.getPlayerNames());
-        printPlayerResult(targetPlayer, ladderGame);
-    }
-
     private Players readPlayers() {
         try {
             List<String> names = inputView.readNames();
@@ -87,13 +82,24 @@ public class LadderGameController {
         }
     }
 
-    private void printPlayerResult(TargetPlayer targetPlayer, LadderGame ladderGame) {
+    private void printResult(Players players, LadderGame ladderGame) {
+        TargetPlayer targetPlayer = readTargetPlayerIn(players.getPlayerNames());
+
         if (targetPlayer.isAll()) {
-            Map<Player, Result> allPlayerResults = ladderGame.getAllPlayerResults();
-            outputView.printAllPlayerResults(allPlayerResults);
-        } else {
-            Result onePlayerResult = ladderGame.getOnePlayerResult(targetPlayer.getName());
-            outputView.printOnePlayerResult(onePlayerResult);
+            printAllPlayerResult(ladderGame);
+            return;
         }
+
+        printOnePlayerResult(targetPlayer.getName(), ladderGame);
+    }
+
+    private void printAllPlayerResult(LadderGame ladderGame) {
+        Map<Player, Result> allPlayerResults = ladderGame.getAllPlayerResults();
+        outputView.printAllPlayerResults(allPlayerResults);
+    }
+
+    private void printOnePlayerResult(String targetPlayerName, LadderGame ladderGame) {
+        Result onePlayerResult = ladderGame.getOnePlayerResult(targetPlayerName);
+        outputView.printOnePlayerResult(onePlayerResult);
     }
 }
