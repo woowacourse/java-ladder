@@ -20,7 +20,7 @@ public enum LadderBridge {
                 .orElseThrow(() -> new IllegalArgumentException(LadderExceptionMessage.NOT_FOUND_BRIDGE));
     }
 
-    public boolean isExist(LadderBridge ladderBridge) {
-        return ladderBridge.exist;
+    public boolean isExist() {
+        return exist;
     }
 }
