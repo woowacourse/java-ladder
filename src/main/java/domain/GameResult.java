@@ -2,13 +2,13 @@ package domain;
 
 import java.util.Map;
 
-public record GameResult(Map<String, String> repository) {
+public record GameResult(Map<String, String> userPrizeRepository) {
 
     public void save(String userName, String prize) {
-        repository.put(userName, prize);
+        userPrizeRepository.put(userName, prize);
     }
 
     public String findByUserName(String userName) {
-        return repository.get(userName);
+        return userPrizeRepository.get(userName);
     }
 }
