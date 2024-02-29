@@ -2,7 +2,6 @@ package laddergame.domain.gameelements;
 
 import java.util.List;
 
-// TODO Players, Prizes 분리하기
 public class Players {
 
     private static final int MIN_PLAYER_NUMBER = 1;
