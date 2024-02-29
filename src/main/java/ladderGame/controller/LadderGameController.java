@@ -1,5 +1,6 @@
 package ladderGame.controller;
 
+import ladderGame.model.Command;
 import ladderGame.model.Ladder;
 import ladderGame.model.LadderGenerator;
 import ladderGame.model.Name;
@@ -30,10 +31,10 @@ public class LadderGameController {
     }
 
     private void printResults(Players players, Prizes prizes) {
-        Name name = new Name(inputView.inputWantedName(), players);
-        while(!name.isAll()) {
-            resultView.printResult(players.findPlayer(name), prizes.getPrizes());
-            name = new Name(inputView.inputWantedName(), players);
+        Command command = new Command(inputView.inputWantedName(), players);
+        while(!command.isAll()) {
+            resultView.printResult(players.findPlayer(command.toName()), prizes.getPrizes());
+            command = new Command(inputView.inputWantedName(), players);
         }
 
         resultView.printAllResults(players.getPlayers(), prizes.getPrizes());

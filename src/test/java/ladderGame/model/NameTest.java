@@ -37,21 +37,4 @@ class NameTest {
             new Name(name);
         }).doesNotThrowAnyException();
     }
-
-    @Test
-    @DisplayName("참여자 목록에 있지 않은 사람을 입력할 경우 예외처리 된다")
-    void inputCommand() {
-        Players players = new Players(List.of("pobi", "crong", "honux", "jk"));
-
-        assertAll(
-                () -> assertThatThrownBy(() -> new Name("popo", players))
-                        .isInstanceOf(IllegalArgumentException.class)
-                        .hasMessage("참여자 목록 중에서 골라야 합니다."),
-                () -> assertThatCode(() -> new Name("pobi", players))
-                        .doesNotThrowAnyException(),
-                () -> assertThatCode(() -> new Name("all", players))
-                        .doesNotThrowAnyException()
-        );
-
-    }
 }
