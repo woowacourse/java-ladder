@@ -24,35 +24,38 @@ public class LadderResult {
 
     private Map<Integer, Integer> mapLadderPosition(MadeLadderDto madeLadder, int stepSpaceCount,
                                                     int lineCount) {
-        List<MadeLineDto> MadeLineDtos = madeLadder.madeLine();
+        List<MadeLineDto> madeLine = madeLadder.madeLine();
 
         Map<Integer, Integer> ladderMap = new HashMap<>();
+        List<Integer> initPosition = initStartPosition(stepSpaceCount);
 
-        List<Integer> initPosition = initPosition(stepSpaceCount);
-
-        for (int i = 0; i < lineCount; i++) {// 세로 4번 == 사람 수
-            findMapPosition(i, MadeLineDtos, stepSpaceCount - 1, initPosition);
+        for (int position = 0; position < lineCount; position++) {
+            findMapPosition(position, madeLine, stepSpaceCount - 1, initPosition);
         }
 
-        for (int k = 0; k < stepSpaceCount; k++) { // 가로 수
-            ladderMap.put(initPosition.get(k), k);
+        for (int stepPosition = 0; stepPosition < stepSpaceCount; stepPosition++) {
+            ladderMap.put(initPosition.get(stepPosition), stepPosition);
         }
         return Collections.unmodifiableMap(ladderMap);
     }
 
-    private void findMapPosition(int startIdx, List<MadeLineDto> madeLines, int max,
-                                 List<Integer> participantPosition) {
-        for (int j = 0; j < max; j++) {
-            if (madeLines.get(startIdx).line().get(j).getBuildStatus()) {
-                Collections.swap(participantPosition, j, j + 1);
-            }
-        }
-    }
-
-    private List<Integer> initPosition(int participantCount) {
+    private List<Integer> initStartPosition(int participantCount) {
         return IntStream.range(0, participantCount)
                 .boxed()
                 .collect(Collectors.toList());
     }
 
+    private void findMapPosition(int startIdx, List<MadeLineDto> madeLines, int maxPosition,
+                                 List<Integer> startPosition) {
+        for (int position = 0; position < maxPosition; position++) {
+            swapStartPositions(startIdx, madeLines, startPosition, position, position + 1);
+        }
+    }
+
+    private void swapStartPositions(int startIdx, List<MadeLineDto> madeLines, List<Integer> startPositionMock,
+                                    int position, int nextPosition) {
+        if (madeLines.get(startIdx).line().get(position).getBuildStatus()) {
+            Collections.swap(startPositionMock, position, nextPosition + 1);
+        }
+    }
 }
