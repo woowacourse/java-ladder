@@ -11,9 +11,11 @@ public class ResultsTest {
     @Test
     @DisplayName("결과 객체 생성 성공: 성공적으로 도메인이 생성된다.")
     void test_ok_createObject() {
-        assertThatCode(() -> Results.of(List.of("1", "2"), 2))
-                .doesNotThrowAnyException();
-    } // TODO: 보완
+        Results results = Results.of(List.of("1", "2"), 2);
+        assertThat(results.getValues())
+                .hasSize(2)
+                .containsExactly("1", "2");
+    }
 
     @Test
     @DisplayName("결과 객체 생성 실패: 참여자 수와 개수가 같지 않으면 에러를 반환한다.")
