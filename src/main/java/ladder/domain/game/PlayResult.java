@@ -8,26 +8,32 @@ import java.util.List;
 import java.util.Map;
 
 public class PlayResult {
+    enum Status {
+        EXECUTABLE,
+        NON_EXECUTABLE;
+
+        public boolean isExecutable() {
+            return this == EXECUTABLE;
+        }
+    }
+
     private final Map<String, String> result;
-    private Status status = Status.EXECUTABLE;
+    private Status status;
 
     PlayResult(final Map<String, String> result) {
         this.result = new LinkedHashMap<>(result);
+        this.status = Status.EXECUTABLE;
     }
 
-    public PlayResult(final List<Player> players, final List<String> prizes) {
-        this.result = recordResult(players, prizes);
+    public PlayResult() {
+        this(Collections.emptyMap());
     }
 
-    private Map<String, String> recordResult(final List<Player> players, final List<String> prizes) {
-        final Map<String, String> result = new LinkedHashMap<>();
-
+    public void recordResult(final List<Player> players, final List<String> prizes) {
         for (final Player player : players) {
             final int position = player.getPosition();
             result.put(player.getName(), prizes.get(position));
         }
-
-        return result;
     }
 
     public Map<String, String> findByName(final String name) {

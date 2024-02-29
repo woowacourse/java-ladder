@@ -33,8 +33,9 @@ public class LadderController {
         final Ladder ladder = new Ladder(players.count(), height.getValue(), new RandomBooleanGenerator());
         printLadder(players, ladder, prizes);
 
-        final LadderGame ladderGame = new LadderGame(ladder, players, prizes.getPrizes());
-        final PlayResult playResult = ladderGame.play();
+        final LadderGame ladderGame = new LadderGame(ladder);
+        final PlayResult playResult = ladderGame.play(players, prizes);
+
         while (playResult.canAskResult()) {
             final String name = inputView.readNameToSeeResult();
             final Map<String, String> result = playResult.findByName(name);
