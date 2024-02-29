@@ -11,6 +11,7 @@ public class InputView {
     private static final String ASK_PRIZE_NAMES = "\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String ASK_LADDER_HEIGHT = "\n최대 사다리 높이는 몇 개인가요?";
     private static final String LADDER_HEIGHT_NOT_INTEGER = "최대 사다리 높이는 숫자로 입력 해야 합니다";
+    private static final String ASK_TARGET = "\n결과를 보고 싶은 사람은?";
 
     private InputView() {
     }
@@ -45,5 +46,10 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(LADDER_HEIGHT_NOT_INTEGER);
         }
+    }
+
+    public static String askTarget() {
+        System.out.println(ASK_TARGET);
+        return scanner.nextLine();
     }
 }

@@ -13,6 +13,8 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
+    private static final String END_CONDITION = "all";
+
     public void run() {
         Players players = retryOnException(this::preparePlayers);
         Prizes prizes = retryOnExceptionWithParameter(this::preparePrizes, players);
@@ -47,6 +49,10 @@ public class LadderGameController {
 
     public void playLadder(Ladder ladder, Players players, Prizes prizes) {
         LadderPlayOutcome ladderPlayOutcome = ladder.play(players, prizes);
+        String target = InputView.askTarget();
+        while (!target.equals(END_CONDITION)) {
+            target = InputView.askTarget();
+        }
     }
 
     private <T> T retryOnException(Supplier<T> retryOperation) {
