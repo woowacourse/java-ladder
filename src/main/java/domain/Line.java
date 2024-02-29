@@ -12,25 +12,25 @@ public class Line {
         this.steps = steps;
     }
 
-    public static Line create(PlayerCount playerCount, StepGenerator randomBooleanGenerator) {
-        return new Line(createSteps(playerCount, randomBooleanGenerator));
+    public static Line create(PlayerCount playerCount, StepGenerator stepGenerator) {
+        return new Line(createSteps(playerCount, stepGenerator));
     }
 
-    private static List<Step> createSteps(PlayerCount playerCount, StepGenerator randomBooleanGenerator) {
+    private static List<Step> createSteps(PlayerCount playerCount, StepGenerator stepGenerator) {
         List<Step> steps = new ArrayList<>();
 
         for (int buildCount = 0; playerCount.isBiggerThan(buildCount); buildCount++) {
-            steps.add(createStep(steps, randomBooleanGenerator, playerCount));
+            steps.add(createStep(steps, stepGenerator, playerCount));
         }
         return steps;
     }
 
-    private static Step createStep(List<Step> steps, StepGenerator randomStepGenerator,
+    private static Step createStep(List<Step> steps, StepGenerator stepGenerator,
                                    PlayerCount playerCount) {
         if (hasBeforeStep(steps) || isLastStep(steps, playerCount)) {
             return Step.EMPTY;
         }
-        return randomStepGenerator.generate();
+        return stepGenerator.generate();
     }
 
     private static boolean hasBeforeStep(List<Step> steps) {

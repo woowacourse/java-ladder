@@ -36,6 +36,8 @@ public class LadderGame {
         return currentIndex;
     }
 
+    // TODO : 이부분의 객체분리 장,단점 점검
+    // toInt로 하네? 이건 괜찮나?
     private int playLine(int currentIndex, Line line) {
         List<Step> steps = line.getSteps();
         if (steps.get(currentIndex).isExist()) {
