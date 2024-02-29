@@ -33,7 +33,7 @@ public class Ladder {
     public int playFrom(int startPosition) {
         int nextPosition = -1;
         for (LadderStep step : ladderSteps) {
-            nextPosition = step.findNextParticipantPosition(startPosition);
+            nextPosition = step.findNextPosition(startPosition);
             startPosition = nextPosition;
         }
         return nextPosition;

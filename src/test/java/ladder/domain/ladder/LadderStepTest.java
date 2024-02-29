@@ -55,7 +55,7 @@ public class LadderStepTest {
         final LadderStep ladderStep = new LadderStep(ladderStepPaths);
 
         // when
-        int nextPosition = ladderStep.findNextParticipantPosition(currentPosition);
+        int nextPosition = ladderStep.findNextPosition(currentPosition);
 
         // then
         assertThat(nextPosition).isEqualTo(expectedResult);

@@ -2,7 +2,6 @@ package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static java.util.Collections.unmodifiableList;
 import static ladder.domain.ladder.Path.EMPTY;
@@ -33,27 +32,13 @@ public final class LadderStep {
         return EMPTY;
     }
 
-    public int findNextParticipantPosition(final int participantPosition) {
-        Optional<Integer> leftPathPosition = getLeftPosition(participantPosition);
-        if (leftPathPosition.isPresent()) {
-            return leftPathPosition.get();
-        }
-        Optional<Integer> rightPathPosition = getRightPosition(participantPosition);
-        return rightPathPosition.orElse(participantPosition);
-    }
-
-    private Optional<Integer> getLeftPosition(final int position) {
+    public int findNextPosition(final int position) {
         if (position > 0 && isExistIn(position - 1)) {
-            return Optional.of(position - 1);
+            return position - 1;
+        } else if (position < ladderPaths.size() && isExistIn(position)) {
+            return position + 1;
         }
-        return Optional.empty();
-    }
-
-    private Optional<Integer> getRightPosition(final int position) {
-        if (position < ladderPaths.size() && isExistIn(position)) {
-            return Optional.of(position + 1);
-        }
-        return Optional.empty();
+        return position;
     }
 
     private boolean isExistIn(final int position) {
