@@ -19,6 +19,10 @@ public class Players {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어입니다."));
     }
 
+    public PlayerName getPlayerNameAtStartingIndex(int value) {
+        return getPlayerNames().get(value);
+    }
+
     public List<PlayerName> getPlayerNames() {
         return players.stream()
                 .map(Player::playerName)

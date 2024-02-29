@@ -1,11 +1,15 @@
 package domain.player;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class PlayersTest {
     @Test
@@ -43,5 +47,22 @@ class PlayersTest {
         Players players = new Players(playerNames);
 
         assertThrows(IllegalArgumentException.class, () -> players.searchPlayer(targetPlayerName));
+    }
+
+    @Test
+    @DisplayName("특정 index에 존재하는 플레이어 객체를 반환한다.")
+    void testGetPlayerInSpecificIndex() {
+        Players players = new Players(new PlayerNames(List.of("조이썬", "도비")));
+
+        PlayerName expectedPlayerName1 = new PlayerName("도비");
+        PlayerName expectedPlayerName2 = new PlayerName("조이썬");
+
+        PlayerName actualPlayerName1 = players.getPlayerNameAtStartingIndex(1);
+        PlayerName actualPlayerName2 = players.getPlayerNameAtStartingIndex(0);
+
+        assertAll(() -> {
+            assertEquals(expectedPlayerName1, actualPlayerName1);
+            assertEquals(expectedPlayerName2, actualPlayerName2);
+        });
     }
 }
