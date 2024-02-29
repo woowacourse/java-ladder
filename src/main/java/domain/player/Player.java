@@ -15,7 +15,7 @@ public class Player {
         this.currentLineFloor = currentLineFloor;
     }
 
-    public static Player of(String userName, int lineNumber, int lineFloor) {
+    public static Player of(final String userName, final int lineNumber, final int lineFloor) {
         return new Player(new PlayerName(userName), new LineNumber(lineNumber), new LineFloor(lineFloor));
     }
 
@@ -23,7 +23,7 @@ public class Player {
         return currentLineFloor.isZero();
     }
 
-    public void move(int moveDistance) {
+    public void move(final int moveDistance) {
         currentLineNumber = new LineNumber(currentLineNumber.value() + moveDistance);
         currentLineFloor = new LineFloor(currentLineFloor.value() - 1);
     }

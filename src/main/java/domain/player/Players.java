@@ -19,16 +19,11 @@ public class Players {
     public static Players of(final PlayerNames playerNames, final LadderHeight ladderHeight) {
         List<String> playerNameValues = playerNames.getPlayerNames();
         return range(0, playerNameValues.size())
-                .mapToObj(userNameIndex -> Player.of(playerNameValues.get(userNameIndex), userNameIndex + 1, ladderHeight.ladderHeight()))
+                .mapToObj(userNameIndex -> Player.of(playerNameValues.get(userNameIndex), userNameIndex + 1, ladderHeight.value()))
                 .collect(collectingAndThen(toList(), Players::new));
     }
 
     public List<Player> getPlayers() {
         return unmodifiableList(players);
-    }
-
-    @Override
-    public String toString() {
-        return players.toString();
     }
 }
