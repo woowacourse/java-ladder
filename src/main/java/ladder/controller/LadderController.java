@@ -69,10 +69,10 @@ public class LadderController {
     }
 
     private static void printResultIfPersonExist(People people, String viewer, Map<String, String> result) {
-        if (people.getNames().contains(viewer)) {
-            ResultView.printExecutionResultOnce(result.get(viewer));
+        if (!people.getNames().contains(viewer)) {
+            OutputView.printErrorMessage(NOT_EXIST_PERSON);
             return;
         }
-        OutputView.printErrorMessage(NOT_EXIST_PERSON);
+        ResultView.printExecutionResultOnce(result.get(viewer));
     }
 }
