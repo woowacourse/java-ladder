@@ -1,7 +1,7 @@
 package laddergame.domain.name;
 
 import java.util.Objects;
-import laddergame.controller.LadderController;
+import laddergame.command.LadderCommand;
 
 public class Name {
 
@@ -29,8 +29,8 @@ public class Name {
     }
 
     private void validateInvalidName(final String input) {
-        if (LadderController.FIND_ALL_KEY.equals(input)) {
-            throw new IllegalArgumentException("[ERROR] 이름을 " + LadderController.FIND_ALL_KEY + "로 지을 수 없습니다.");
+        if (LadderCommand.isAllCommand(input)) {
+            throw new IllegalArgumentException("[ERROR] 이름을 커맨드 키로 지을 수 없습니다.");
         }
     }
 

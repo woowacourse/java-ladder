@@ -1,6 +1,7 @@
 package laddergame.controller;
 
 import java.util.List;
+import laddergame.command.LadderCommand;
 import laddergame.domain.ladder.LadderHeight;
 import laddergame.domain.name.Name;
 import laddergame.domain.name.Names;
@@ -15,7 +16,6 @@ import laddergame.view.OutputView;
 
 public class LadderController {
 
-    public static final String FIND_ALL_KEY = "all";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -55,7 +55,7 @@ public class LadderController {
 
     private void runSelect() {
         final String inputName = inputView.readName();
-        if (inputName.equals(FIND_ALL_KEY)) {
+        if (LadderCommand.isAllCommand(inputName)) {
             printAllResult();
             return;
         }
