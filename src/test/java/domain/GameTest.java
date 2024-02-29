@@ -51,10 +51,17 @@ public class GameTest {
 
         GameResult actual = game.matchResult();
 
-        assertThat(actual.getResultByMemberName("a").getValue()).isEqualTo("a!");
-        assertThat(actual.getResultByMemberName("b").getValue()).isEqualTo("b!");
-        assertThat(actual.getResultByMemberName("c").getValue()).isEqualTo("c!");
-        assertThat(actual.getResultByMemberName("d").getValue()).isEqualTo("d!");
+        ResultTarget targetA = ResultTarget.of("a", members.getMembers());
+        assertThat(actual.getResultByTarget(targetA).get("a").getValue()).isEqualTo("a!");
+
+        ResultTarget targetB = ResultTarget.of("b", members.getMembers());
+        assertThat(actual.getResultByTarget(targetB).get("b").getValue()).isEqualTo("b!");
+
+        ResultTarget targetC = ResultTarget.of("c", members.getMembers());
+        assertThat(actual.getResultByTarget(targetC).get("c").getValue()).isEqualTo("c!");
+
+        ResultTarget targetD = ResultTarget.of("d", members.getMembers());
+        assertThat(actual.getResultByTarget(targetD).get("d").getValue()).isEqualTo("d!");
     }
 
     @Test
@@ -84,9 +91,16 @@ public class GameTest {
 
         GameResult actual = game.matchResult();
 
-        assertThat(actual.getResultByMemberName("a").getValue()).isEqualTo("b!");
-        assertThat(actual.getResultByMemberName("b").getValue()).isEqualTo("a!");
-        assertThat(actual.getResultByMemberName("c").getValue()).isEqualTo("d!");
-        assertThat(actual.getResultByMemberName("d").getValue()).isEqualTo("c!");
+        ResultTarget targetA = ResultTarget.of("a", members.getMembers());
+        assertThat(actual.getResultByTarget(targetA).get("a").getValue()).isEqualTo("b!");
+
+        ResultTarget targetB = ResultTarget.of("b", members.getMembers());
+        assertThat(actual.getResultByTarget(targetB).get("b").getValue()).isEqualTo("a!");
+
+        ResultTarget targetC = ResultTarget.of("c", members.getMembers());
+        assertThat(actual.getResultByTarget(targetC).get("c").getValue()).isEqualTo("d!");
+
+        ResultTarget targetD = ResultTarget.of("d", members.getMembers());
+        assertThat(actual.getResultByTarget(targetD).get("d").getValue()).isEqualTo("c!");
     }
 }

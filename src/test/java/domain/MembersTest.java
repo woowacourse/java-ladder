@@ -3,7 +3,6 @@ package domain;
 import static domain.Members.MAX_MEMBER_COUNT;
 import static domain.Members.MIN_MEMBER_COUNT;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;

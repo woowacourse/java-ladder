@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class GameResult {
 
@@ -17,19 +18,18 @@ public class GameResult {
         gameResult.put(member, result);
     }
 
-    public Map<Member, Result> getResultByTarget(ResultTarget target) {
+    public Map<String, Result> getResultByTarget(ResultTarget target) {
         if (target.isAllMembers()) {
             return getResultOfAllMember();
         }
-        Member member = new Member(target.getName());
+        String memberName = target.getName();
         Result result = getResultByMemberName(target.getName());
-        return new HashMap<>() {{
-            put(member, result);
+        return new LinkedHashMap<>() {{
+            put(memberName, result);
         }};
     }
 
-    // TODO: 두 메서드 private 으로 변경 <- test 수정
-    public Result getResultByMemberName(String name) {
+    private Result getResultByMemberName(String name) {
         return gameResult.entrySet().stream()
                 .filter(memberResult -> memberResult.getKey().getName().equals(name))
                 .findFirst()
@@ -37,7 +37,13 @@ public class GameResult {
                 .getValue();
     }
 
-    public Map<Member, Result> getResultOfAllMember() {
-        return Collections.unmodifiableMap(gameResult);
+    private Map<String, Result> getResultOfAllMember() {
+        Map<String, Result> resolvedResult = new LinkedHashMap<>();
+        for (Entry<Member, Result> memberResult : gameResult.entrySet()) {
+            String memberName = memberResult.getKey().getName();
+            Result result = memberResult.getValue();
+            resolvedResult.put(memberName, result);
+        }
+        return resolvedResult;
     }
 }
