@@ -53,7 +53,7 @@ public class Line {
         int columnThreshold = sticks.size();
 
         if (column < 0 || column > columnThreshold) {
-            throw new IllegalArgumentException("주어진 컬럼이 범위를 초과합니다.");
+            throw new IllegalArgumentException("주어진 컬럼이 범위를 벗어납니다.");
         }
     }
 
