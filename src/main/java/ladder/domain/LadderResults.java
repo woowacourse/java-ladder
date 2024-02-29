@@ -22,6 +22,13 @@ public class LadderResults {
         }
     }
 
+    public LadderResult get(int index) {
+        if (index < 0 || index >= ladderResults.size()) {
+            throw new IllegalStateException("잘못된 위치입니다: %d".formatted(index));
+        }
+        return ladderResults.get(index);
+    }
+
     public List<LadderResult> getLadderResults() {
         return Collections.unmodifiableList(ladderResults);
     }
