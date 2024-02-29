@@ -6,6 +6,7 @@ import ladder.domain.ladder.Line;
 import java.util.List;
 
 public record LadderDto(List<LineDto> lineDtos) {
+
     public static LadderDto from(final Ladder ladder) {
         final List<Line> lines = ladder.getLines();
         final List<LineDto> lineDtos = lines.stream()
