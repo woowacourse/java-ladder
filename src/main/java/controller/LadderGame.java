@@ -27,7 +27,7 @@ public class LadderGame {
 
     private void printPlayerResultsUntilTerminate(final PlayerResults playerResults) {
         String target = inputView.readTarget();
-        while (!Commands.terminate(target)) {
+        while (!Commands.isTerminate(target)) {
             printTargetPlayerResult(playerResults, target);
             target = inputView.readTarget();
         }

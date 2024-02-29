@@ -13,7 +13,7 @@ public enum Commands {
         this.value = value;
     }
 
-    public static boolean terminate(String command) {
+    public static boolean isTerminate(String command) {
         return TERMINATE.value.equals(command);
     }
 
