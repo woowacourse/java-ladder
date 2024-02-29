@@ -1,6 +1,6 @@
 package model;
 
-import model.position.CachedPosition;
+import model.position.Position;
 import model.result.Result;
 import model.result.Results;
 import org.junit.jupiter.api.DisplayName;
@@ -18,10 +18,10 @@ public class ParticipantsResult {
     void getResult() {
         Results results = new Results(List.of("꽝", "5000", "꽝", "3000"));
         assertAll(
-                () -> assertThat(results.getResult(CachedPosition.valueOf(0))).isEqualTo(new Result("꽝")),
-                () -> assertThat(results.getResult(CachedPosition.valueOf(1))).isEqualTo(new Result("5000")),
-                () -> assertThat(results.getResult(CachedPosition.valueOf(2))).isEqualTo(new Result("꽝")),
-                () -> assertThat(results.getResult(CachedPosition.valueOf(3))).isEqualTo(new Result("3000"))
+                () -> assertThat(results.getResult(Position.valueOf(0))).isEqualTo(new Result("꽝")),
+                () -> assertThat(results.getResult(Position.valueOf(1))).isEqualTo(new Result("5000")),
+                () -> assertThat(results.getResult(Position.valueOf(2))).isEqualTo(new Result("꽝")),
+                () -> assertThat(results.getResult(Position.valueOf(3))).isEqualTo(new Result("3000"))
         );
     }
 }

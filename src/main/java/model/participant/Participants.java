@@ -1,6 +1,5 @@
 package model.participant;
 
-import model.position.CachedPosition;
 import model.position.Position;
 
 import java.util.*;
@@ -34,7 +33,7 @@ public class Participants {
     private Map<Participant, Position> create(List<String> participantsName) {
         Map<Participant, Position> participants = new LinkedHashMap<>();
         for (int i = 0; i < participantsName.size(); i++) {
-            participants.put(new Participant(participantsName.get(i)), CachedPosition.valueOf(i));
+            participants.put(new Participant(participantsName.get(i)), Position.valueOf(i));
         }
         return participants;
     }

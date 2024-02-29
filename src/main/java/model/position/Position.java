@@ -1,12 +1,17 @@
 package model.position;
 
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.IntStream;
 
 
 public class Position {
-    private final int currentIndex;
 
-    protected Position(int currentIndex) {
+    public static final int MIN_CACHED_POSITION = 0;
+    public static final int MAX_CACHED_POSITION = 20;
+    private final int currentIndex;
+    private static final Map<Integer, Position> positions = new HashMap<>();
+
+    private Position(int currentIndex) {
         validateNotNegative(currentIndex);
         this.currentIndex = currentIndex;
     }
@@ -15,6 +20,20 @@ public class Position {
         if (index < 0) {
             throw new IllegalArgumentException("포지션(위치)은 음수가 될 수 없습니다.");
         }
+    }
+
+    static {
+        IntStream.range(MIN_CACHED_POSITION, MAX_CACHED_POSITION)
+                .forEach(position -> positions.put(position, new Position(position)));
+    }
+
+    public static Position valueOf(int index) {
+        if (positions.containsKey(index)) {
+            return positions.get(index);
+        }
+        Position position = new Position(index);
+        positions.put(index, position);
+        return position;
     }
 
     public boolean same(int other) {
@@ -26,7 +45,7 @@ public class Position {
     }
 
     public Position prior() {
-        return CachedPosition.valueOf(currentIndex - 1);
+        return valueOf(currentIndex - 1);
     }
 
     public int priorIndex() {
@@ -34,7 +53,7 @@ public class Position {
     }
 
     public Position next() {
-        return CachedPosition.valueOf(currentIndex + 1);
+        return valueOf(currentIndex + 1);
     }
 
     @Override

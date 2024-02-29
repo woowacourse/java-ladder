@@ -1,6 +1,5 @@
 package model.result;
 
-import model.position.CachedPosition;
 import model.position.Position;
 
 import java.util.LinkedHashMap;
@@ -13,7 +12,7 @@ public class Results {
     public Results(List<String> results) {
         this.results = new LinkedHashMap<>();
         for (int i = 0; i < results.size(); i++) {
-            this.results.put(CachedPosition.valueOf(i), new Result(results.get(i)));
+            this.results.put(Position.valueOf(i), new Result(results.get(i)));
         }
     }
 

@@ -1,6 +1,6 @@
 package model.ladder;
 
-import model.position.CachedPosition;
+import model.position.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -34,10 +34,10 @@ public class LadderRowTest {
     void climb() {
         LadderRow ladderRow = new LadderRow(List.of(true, false, true));
         assertAll(
-                () -> assertThat(ladderRow.climb(CachedPosition.valueOf(0))).isEqualTo(CachedPosition.valueOf(1)),
-                () -> assertThat(ladderRow.climb(CachedPosition.valueOf(1))).isEqualTo(CachedPosition.valueOf(0)),
-                () -> assertThat(ladderRow.climb(CachedPosition.valueOf(2))).isEqualTo(CachedPosition.valueOf(3)),
-                () -> assertThat(ladderRow.climb(CachedPosition.valueOf(3))).isEqualTo(CachedPosition.valueOf(2))
+                () -> assertThat(ladderRow.climb(Position.valueOf(0))).isEqualTo(Position.valueOf(1)),
+                () -> assertThat(ladderRow.climb(Position.valueOf(1))).isEqualTo(Position.valueOf(0)),
+                () -> assertThat(ladderRow.climb(Position.valueOf(2))).isEqualTo(Position.valueOf(3)),
+                () -> assertThat(ladderRow.climb(Position.valueOf(3))).isEqualTo(Position.valueOf(2))
         );
     }
 

@@ -9,14 +9,14 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 class PositionTest {
 
-    private final Position initPosition = new Position(1);
+    private final Position initPosition = Position.valueOf(1);
 
     @DisplayName("포지션을 이동할 수 있다")
     @Test
     void move() {
         assertAll(
-                () -> assertThat(initPosition.prior()).isEqualTo(new Position(0)),
-                () -> assertThat(initPosition.next()).isEqualTo(new Position(2))
+                () -> assertThat(initPosition.prior()).isEqualTo(Position.valueOf(0)),
+                () -> assertThat(initPosition.next()).isEqualTo(Position.valueOf(2))
         );
     }
 
@@ -32,9 +32,25 @@ class PositionTest {
     @DisplayName("포지션이 음수인 경우 예외가 발생한다.")
     @Test
     void validateNotNegative() {
-        assertThatThrownBy(() -> new Position(-1))
+        assertThatThrownBy(() -> Position.valueOf(-1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("포지션(위치)은 음수가 될 수 없습니다.");
+    }
+
+    @DisplayName("캐싱된 값을 가져올 수 있다")
+    @Test
+    void cachedPosition() {
+        assertAll(
+                () -> assertThat(Position.valueOf(0).index()).isEqualTo(Position.MIN_CACHED_POSITION),
+                () -> assertThat(Position.valueOf(20).index()).isEqualTo(Position.MAX_CACHED_POSITION)
+        );
+    }
+
+
+    @DisplayName("초기에 캐싱되지 않은 값이 들어올 경우 값을 추가하고 가져올 수 있다")
+    @Test
+    void nonCachedPosition() {
+        assertThat(Position.valueOf(21).index()).isEqualTo(Position.MAX_CACHED_POSITION + 1);
     }
 
 }
