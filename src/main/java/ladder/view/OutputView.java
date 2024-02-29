@@ -46,7 +46,7 @@ public class OutputView {
         final List<LadderStep> ladderSteps = ladder.getLadderSteps();
         final String ladderShape = ladderSteps.stream()
                 .map(this::getLadderStepShape)
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(System.lineSeparator()));
         System.out.println(ladderShape);
     }
 
@@ -86,7 +86,7 @@ public class OutputView {
 
     private void printAllParticipantsOutcome(final Map<String, String> participantsOutcome) {
         System.out.println(OUTCOME_PREFIX);
-        final StringJoiner outcomesJoiner = new StringJoiner("\n");
+        final StringJoiner outcomesJoiner = new StringJoiner(System.lineSeparator());
         participantsOutcome.forEach((participantName, outcome) -> {
             String currentOutcome = String.format(OUTCOME_FORMAT, participantName, outcome);
             outcomesJoiner.add(currentOutcome);
