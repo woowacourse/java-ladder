@@ -69,7 +69,7 @@ public class LineTest {
             line.buildSteps(currentSector);
 
             MadeLineDto madeLine = line.getSteps();
-            Assertions.assertThat(madeLine.line().get(currentSector).getBuildStatus()).isEqualTo(true);
+            Assertions.assertThat(madeLine.findPositionStepStatus(currentSector)).isEqualTo(true);
         }
     }
 }

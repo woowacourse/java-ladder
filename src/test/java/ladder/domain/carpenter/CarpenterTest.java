@@ -35,7 +35,7 @@ public class CarpenterTest {
         carpenter.buildLadders(personCount);
 
         MadeLineDto madeLine = getLadderOfCarpenter(carpenter);
-        Assertions.assertThat(madeLine.line().get(firstLadderIndex).getBuildStatus()).isTrue();
+        Assertions.assertThat(madeLine.findPositionStepStatus(firstLadderIndex)).isTrue();
     }
 
     @ParameterizedTest
@@ -47,7 +47,7 @@ public class CarpenterTest {
         carpenter.buildLadders(personCount);
 
         MadeLineDto madeLine = getLadderOfCarpenter(carpenter);
-        Assertions.assertThat(madeLine.line().get(stepPosition).getBuildStatus()).isFalse();
+        Assertions.assertThat(madeLine.findPositionStepStatus(stepPosition)).isFalse();
     }
 
     private MadeLineDto getLadderOfCarpenter(Carpenter carpenter) {
