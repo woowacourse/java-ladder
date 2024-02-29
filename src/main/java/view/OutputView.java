@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import model.Ladder;
 import model.LadderRow;
+import model.Line;
 import model.Name;
 import model.Participants;
 
@@ -35,9 +36,9 @@ public class OutputView {
 
     private void printRow(LadderRow ladderRow) {
         System.out.print(LadderComponent.EMPTY_LINE);
-        for (boolean isLine : ladderRow.getIsLines()) {
+        for (Line isLine : ladderRow.getIsLines()) {
             System.out.print(LadderComponent.DIVISION);
-            System.out.print(LadderComponent.match(isLine).toString());
+            System.out.print(LadderComponent.match(isLine.getConnected()).toString());
         }
         System.out.print(LadderComponent.DIVISION);
     }

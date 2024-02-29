@@ -1,15 +1,14 @@
 package model;
 
 import java.util.List;
-import java.util.Map;
 
 public class LadderRow {
 
-    private final List<Boolean> isLines;
+    private final List<Line> isLines;
 
     public LadderRow(List<Boolean> isLines) {
         validateLadderRow(isLines);
-        this.isLines = isLines;
+        this.isLines = isLines.stream().map(Line::valueOf).toList();
     }
 
     private void validateLadderRow(List<Boolean> isLines) {
@@ -18,23 +17,23 @@ public class LadderRow {
         }
     }
 
-    private static void isConsecutiveTrue(List<Boolean> isLines, int index) {
+    private void isConsecutiveTrue(List<Boolean> isLines, int index) {
         if (isLines.get(index - 1) && isLines.get(index)) {
             throw new IllegalStateException("연속된 true 값이 존재하면 안됩니다");
         }
     }
 
     public int move(int position) {
-        if (position > 0 && isLines.get(position - 1)) {
+        if (position > 0 && isLines.get(position - 1).getConnected()) {
             return position - 1;
         }
-        if (position < isLines.size() && isLines.get(position)) {
+        if (position < isLines.size() && isLines.get(position).getConnected()) {
             return position + 1;
         }
         return position;
     }
 
-    public List<Boolean> getIsLines() {
+    public List<Line> getIsLines() {
         return isLines;
     }
 
