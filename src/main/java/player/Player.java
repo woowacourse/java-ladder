@@ -15,6 +15,10 @@ public class Player {
         this.name = name;
     }
 
+    String getName() {
+        return name;
+    }
+
     private static boolean isNameLengthOutOfRange(String name) {
         return name.isEmpty() || name.length() > MAX_NAME_LENGTH;
     }

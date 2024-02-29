@@ -15,6 +15,10 @@ public class Result {
         this.name = name;
     }
 
+    String getName() {
+        return name;
+    }
+
     private void validateNameLength(String name) {
         if (name == null || isNameLengthOutOfRange(name)) {
             throw new IllegalArgumentException("결과는 1글자에서 5글자 사이여야 합니다.");
