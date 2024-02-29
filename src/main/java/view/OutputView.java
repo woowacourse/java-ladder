@@ -2,16 +2,18 @@ package view;
 
 import dto.LineInfo;
 import dto.LadderInfo;
+import java.util.Map;
 import view.formatter.ItemsFormatter;
 import view.formatter.LineFormatter;
 import view.formatter.NamesFormatter;
 import java.util.List;
+import view.formatter.ResultFormatter;
 
 public class OutputView {
 
     public void printLadderInfo(final LadderInfo ladderInfo) {
         System.out.println();
-        System.out.println("실행결과");
+        System.out.println("사다리 결과");
         System.out.println();
         final List<String> peopleNames = ladderInfo.peopleNames();
         final List<String> itemNames = ladderInfo.itemNames();
@@ -38,6 +40,14 @@ public class OutputView {
     }
 
     public void printResultByPerson(String item) {
+        System.out.println();
+        System.out.println("실행 결과");
         System.out.println(item);
+    }
+
+    public void printAllResult(final Map<String, String> personAndItemName) {
+        System.out.println();
+        System.out.println("실행 결과");
+        System.out.println(ResultFormatter.format(personAndItemName));
     }
 }

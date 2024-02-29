@@ -54,5 +54,7 @@ public class LadderGame {
             outputView.printResultByPerson(itemName);
             personName = inputView.inputPersonName();
         }
+
+        outputView.printAllResult(result.personAndItemName());
     }
 }
