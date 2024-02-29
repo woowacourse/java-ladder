@@ -1,37 +1,43 @@
 package domain.ladder;
 
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
+import domain.player.Player;
+import domain.player.Players;
+import domain.prize.Prizes;
 import dto.FloorConnectionStatusDto;
-import generator.LadderFloorGenerator;
 
 public class Ladder {
 
 	private final List<Floor> floors;
 
-	private Ladder(int playerCount, int height) {
-		this.floors = new ArrayList<>();
-		for (int i = 0; i < height; i++) {
-			floors.add(new Floor(playerCount));
+	public Ladder(List<Floor> floors) {
+		this.floors = floors;
+	}
+
+	public Map<String, String> getAllPlayerResults(Players players, Prizes prizes) {
+		Map<String, String> results = new LinkedHashMap<>();
+		for (Player player : players.players()) {
+			String result = getOnePlayerResult(player, prizes);
+			results.put(player.getName(), result);
 		}
+		return results;
 	}
 
-	public static Ladder of(int playerCount, int height) {
-		return new Ladder(playerCount, height);
+	public String getOnePlayerResult(Player player, Prizes prizes) {
+		playLadder(player);
+		return prizes.getPlayersPrizeName(player.getPosition());
 	}
 
-	public void drawLines(LadderFloorGenerator generator) {
-		floors.forEach(floor -> floor.createCrossingLines(generator));
-	}
-
-	public List<FloorConnectionStatusDto> createStatuses() {
+	public List<FloorConnectionStatusDto> createLadderConnectionStatus() {
 		return floors.stream()
 			.map(Floor::createFloorConnectionStatus)
 			.toList();
 	}
 
-	public List<Floor> getFloors() {
-		return floors;
+	private void playLadder(Player player) {
+		floors.forEach(floor -> floor.movePlayer(player));
 	}
 }
