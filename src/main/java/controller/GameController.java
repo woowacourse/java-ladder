@@ -11,12 +11,12 @@ import domain.reward.Result;
 import domain.reward.Rewards;
 import util.RandomDirectionGenerator;
 import view.InputView;
+import view.LadderCommand;
 import view.OutputView;
 
 import java.util.List;
 
 public class GameController {
-    private static final String ALL_COMMAND = "all";
 
     public void execute() {
         Players players = createPlayers();
@@ -25,8 +25,7 @@ public class GameController {
         Ladder ladder = new Ladder(height, players.getPlayerCount(), new RandomDirectionGenerator());
         GameBoard gameBoard = new GameBoard(players, ladder, rewards);
         OutputView.printGameBoard(gameBoard);
-
-        processGameResults(gameBoard);
+        processGame(gameBoard);
     }
 
     private Players createPlayers() {
@@ -34,15 +33,13 @@ public class GameController {
         return new Players(names);
     }
 
-    private void processGameResults(GameBoard gameBoard) {
-        while (true) {
-            String playerName = InputView.inputResultPlayer();
-            if (playerName.equals(ALL_COMMAND)) {
-                processAllPlayers(gameBoard);
-                break;
-            }
-            processSinglePlayer(gameBoard, playerName);
+    private void processGame(GameBoard gameBoard) {
+        final String playerName = InputView.inputResultPlayer();
+        if (LadderCommand.isAllCommand(playerName)) {
+            processAllPlayers(gameBoard);
         }
+        processSinglePlayer(gameBoard, playerName);
+        processGame(gameBoard);
     }
 
     private void processAllPlayers(GameBoard gameBoard) {
