@@ -26,7 +26,8 @@ public class Names {
     }
 
     private void validateDuplicatedNames(final List<String> values) {
-        if (values.size() != values.stream().distinct().toList().size()) {
+        int uniqueNameCount = values.stream().distinct().toList().size();
+        if (values.size() != uniqueNameCount) {
             throw new IllegalArgumentException(DUPLICATED_NAMES);
         }
     }
