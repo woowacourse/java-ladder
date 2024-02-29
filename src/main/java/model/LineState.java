@@ -1,14 +1,17 @@
 package model;
 
+import java.util.Arrays;
+
 public enum LineState {
-    START("start"),
-    END("end"),
-    NONE("none");
+    START(1),
+    END(-1),
+    NONE(0),
+    NOTHING(0);
 
-    private final String state;
+    private final int direction;
 
-    LineState(String state) {
-        this.state = state;
+    LineState(int direction) {
+        this.direction = direction;
     }
 
     public static LineState decideFirstLineState(boolean decision) {
@@ -30,5 +33,13 @@ public enum LineState {
             return END;
         }
         return NONE;
+    }
+
+    public static int findDirection(LineState target) {
+        LineState result = Arrays.stream(LineState.values())
+                .filter(l -> l.equals(target))
+                .findAny()
+                .orElse(NOTHING);
+        return result.direction;
     }
 }

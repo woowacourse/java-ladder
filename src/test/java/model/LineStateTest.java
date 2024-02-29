@@ -31,5 +31,12 @@ class LineStateTest {
         LineState actual = LineState.decideLastLineState(beforeState);
         assertThat(actual).isEqualTo(expected);
     }
+
+    @DisplayName("조회한 State에 해당하는 방향 int 값을 반환한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"START,1", "END,-1", "NONE,0"})
+    void findStateDirection(LineState state, int directionIndex) {
+        assertThat(LineState.findDirection(state)).isEqualTo(directionIndex);
+    }
 }
 
