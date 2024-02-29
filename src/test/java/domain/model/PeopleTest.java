@@ -2,9 +2,12 @@ package domain.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PeopleTest {
@@ -23,4 +26,18 @@ public class PeopleTest {
                 .isInstanceOf(IllegalStateException.class);
     }
 
+    @ParameterizedTest
+    @CsvSource({
+            "0,a",
+            "1,b"
+    })
+    @DisplayName("순서에 알맞는 참가자 이름을 반환한다")
+    void getPersonNameByOrderTest(int order,String expected) {
+        //given
+        People people = new People(List.of("a", "b"));
+        //when
+        String actual=people.getNameByOrder(order);
+        //then
+        assertThat(expected).isEqualTo(actual);
+    }
 }
