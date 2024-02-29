@@ -23,7 +23,6 @@ public class Line {
         return directions.size();
     }
 
-    // 어디까지 int를 쓰고, 어디부터 Index를 써야 할까?
     private void validateSize(List<Direction> directions) {
         if (directions == null || directions.size() < MIN_DIRECTION_COUNT) {
             throw new IllegalArgumentException("올바르지 않은 방향의 개수입니다.");
