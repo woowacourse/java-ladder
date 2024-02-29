@@ -47,7 +47,7 @@ public class OutputView {
         System.out.println(resultMessage);
     }
 
-    protected void printMessageWithBlankLine(final String message) {
+    private void printMessageWithBlankLine(final String message) {
         System.out.println(NEWLINE + message);
     }
 
