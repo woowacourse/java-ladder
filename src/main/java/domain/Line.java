@@ -20,8 +20,8 @@ public class Line {
         return lineGenerator.generate(legCount);
     }
 
-    public int getWidth() {
-        return legs.size();
+    public Position getFarRightPosition() {
+        return new Position(legs.size());
     }
 
     public List<Leg> getLegs() {

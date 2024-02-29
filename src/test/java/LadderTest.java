@@ -24,7 +24,7 @@ public class LadderTest {
         Ladder ladder = Ladder.from(5, 4, randomLineGenerator);
         Line line = ladder.getLines().get(0);
 
-        assertThat(line.getWidth()).isEqualTo(4);
+        assertThat(line.getFarRightPosition().getIndex()).isEqualTo(4);
     }
 
     @DisplayName("주어진 참여자의 사다리 타기 결과를 인덱스로 반환한다.")
