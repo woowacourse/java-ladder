@@ -9,13 +9,9 @@ public class ResultRequest {
     private final String playerName;
     private final RequestCommand requestCommand;
 
-    public ResultRequest(String playerName, RequestCommand requestCommand) {
+    private ResultRequest(String playerName, RequestCommand requestCommand) {
         this.playerName = playerName;
         this.requestCommand = requestCommand;
-    }
-
-    public ResultRequest(String playerName) {
-        this(playerName, RequestCommand.SINGLE_RESULT);
     }
 
     public static ResultRequest from(String playerName) {

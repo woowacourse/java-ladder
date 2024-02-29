@@ -10,6 +10,7 @@ public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final String NAME_DELIMITER = ",";
     private static final String TOTAL_PLAYER_REQUEST = "all";
+    private static final String EXIT_PROGRAM_REQUEST = "exit program";
 
     public List<String> inputPlayerNames() {
         System.out.println();
@@ -50,10 +51,18 @@ public class InputView {
         System.out.println();
         System.out.println("결과를 보고 싶은 사람은?");
 
+        return inputRequest();
+    }
+
+    private ResultRequest inputRequest() {
         String input = SCANNER.nextLine();
+
         if (TOTAL_PLAYER_REQUEST.equals(input)) {
             return ResultRequest.ALL;
         }
-        return new ResultRequest(input);
+        if (EXIT_PROGRAM_REQUEST.equals(input)) {
+            return ResultRequest.EXIT_PROGRAM;
+        }
+        return ResultRequest.from(input);
     }
 }
