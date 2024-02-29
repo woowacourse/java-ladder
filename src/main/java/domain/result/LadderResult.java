@@ -23,7 +23,7 @@ public class LadderResult {
 
     private void calculatePosition(Ladder ladder) {
         Height currentHeight = new Height(0);
-        while (!ladder.isFinish(currentHeight)) {
+        while (ladder.isNotFinish(currentHeight)) {
             moveAllPosition(ladder, currentHeight);
             currentHeight.moveUp();
         }

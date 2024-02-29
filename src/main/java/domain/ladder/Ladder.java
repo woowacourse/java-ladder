@@ -28,6 +28,10 @@ public class Ladder {
         }
     }
 
+    public boolean isNotFinish(Height height) {
+        return !isFinish(height);
+    }
+
     public boolean isFinish(Height height) {
         return this.height.equals(height);
     }
