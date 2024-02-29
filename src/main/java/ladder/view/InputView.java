@@ -34,7 +34,7 @@ public class InputView {
     }
 
     public String readUserNameForResult() {
-        System.out.println("\n결과를 보고 싶은 사람은?");
+        System.out.println("\n결과를 보고 싶은 사람은? ('all' 입력 시 종료)");
         return scanner.nextLine();
     }
 
