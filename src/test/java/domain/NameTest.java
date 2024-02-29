@@ -43,4 +43,32 @@ class NameTest {
                 .hasMessage(Name.UNAVAILABLE_NAME);
     }
 
+    @DisplayName("주어진 이름과 같은 이름이다.")
+    @Test
+    void sameName() {
+        //given
+        Name name = new Name("crong");
+        String target = "crong";
+
+        //when
+        boolean result = name.isSame(target);
+
+        //then
+        Assertions.assertThat(result).isTrue();
+    }
+
+    @DisplayName("주어진 이름과 다른 이름이다.")
+    @Test
+    void notSameName() {
+        //given
+        Name name = new Name("crong");
+        String target = "pobi";
+
+        //when
+        boolean result = name.isSame(target);
+
+        //then
+        Assertions.assertThat(result).isFalse();
+    }
+
 }

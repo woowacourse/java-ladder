@@ -30,4 +30,8 @@ public class Name {
     public String getValue() {
         return value;
     }
+
+    public boolean isSame(final String target) {
+        return value.equals(target);
+    }
 }
