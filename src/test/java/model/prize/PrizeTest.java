@@ -15,7 +15,7 @@ public class PrizeTest {
     @DisplayName("사다리 실행 결과 보상 수는 참여자 수와 같다")
     @ParameterizedTest
     @MethodSource("provideValidSizeOfPrizes")
-    void testValidSizeOfPrizes(List<String> names, List<Prize> contents) {
+    void testValidSizeOfPrizes(List<String> names, List<String> contents) {
         Players players = Players.from(names);
         Assertions.assertDoesNotThrow(() -> Prizes.of(players, contents));
     }
@@ -30,7 +30,7 @@ public class PrizeTest {
     @DisplayName("사다리 실행 결과 보상 수가 참여자 수와 다르면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource("provideInvalidSizeOfPrizes")
-    void testInvalidSizeOfPrizes(List<String> names, List<Prize> contents) {
+    void testInvalidSizeOfPrizes(List<String> names, List<String> contents) {
         Players players = Players.from(names);
         assertThatThrownBy(() -> Prizes.of(players, contents))
                 .isInstanceOf(IllegalArgumentException.class);

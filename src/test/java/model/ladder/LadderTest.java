@@ -35,8 +35,7 @@ public class LadderTest {
         Players players = Players.from(List.of("pobi", "lala"));
         LadderHeight ladderHeight = new LadderHeight(5);
         Ladder ladder = Ladder.of(ladderHeight, players, (count) -> createBridges(List.of(1)));
-        Prizes prizes = Prizes.of(players,
-                List.of(new Prize("꽝"), new Prize("3000")));
+        Prizes prizes = Prizes.of(players, List.of("꽝", "3000"));
 
         LadderPlayOutcome ladderPlayOutcome = ladder.play(players, prizes);
         Map<Player, Prize> outcome = ladderPlayOutcome.getOutcome();
