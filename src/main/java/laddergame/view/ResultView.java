@@ -6,6 +6,8 @@ import laddergame.domain.gameelements.Players;
 import laddergame.domain.gameelements.Prizes;
 import laddergame.domain.ladder.Ladder;
 
+import java.util.StringJoiner;
+
 import static laddergame.view.MessageResolver.*;
 
 public class ResultView {
@@ -15,13 +17,14 @@ public class ResultView {
     private ResultView() {
     }
 
-    //TODO StringBuilder 사용해보기
     //TODO 추후의 MessageResolver와의 통합 생각해보기
     public static void printLadder(Players upperPlayers, Ladder ladder, Prizes prizes) {
-        System.out.println(LINE_SEPERATOR + "사다리 결과" + LINE_SEPERATOR);
-        System.out.println(resolvePlayerMessage(upperPlayers));
-        System.out.println(resolveLadderMessage(ladder));
-        System.out.println(resolvePrizeMessage(prizes));
+        StringJoiner sj = new StringJoiner(System.lineSeparator());
+        sj.add(LINE_SEPERATOR + "사다리 결과" + LINE_SEPERATOR);
+        sj.add(resolvePlayerMessage(upperPlayers));
+        sj.add(resolveLadderMessage(ladder));
+        sj.add(resolvePrizeMessage(prizes));
+        System.out.println(sj);
     }
 
     public static void printPlayerResult(String playerName, LadderGame ladderGame) {
