@@ -87,4 +87,5 @@ pobi  honux crong   jk
 - [X] 사용자가 공백을 의도할 수 있으므로 입력에서 공백을 무시하지 않도록 변경
 - [X] 객체의 관계를 명시하기 위해 ExceptionHandler와 View를 객체로 변경
 - [X] LadderLevel -> LadderRow 이름 변경(readme 또한)
-- [ ] Players 검증 로직 병합
+- [X] Players 검증 로직 병합
+- [ ] InputView 로직 개선(들여쓰기, 메서드 줄 길이)

@@ -9,10 +9,6 @@ public record Players(List<Player> players) {
     private static final int MIN_PLAYER_COUNT = 2;
 
     public Players {
-        validate(players);
-    }
-
-    private void validate(List<Player> players) {
         validatePlayersCount(players);
         validateDuplicatedName(players);
     }
@@ -22,7 +18,6 @@ public record Players(List<Player> players) {
             throw new IllegalArgumentException("참여자는 최소 %d명입니다.".formatted(MIN_PLAYER_COUNT));
         }
     }
-
 
     private void validateDuplicatedName(List<Player> names) {
         Set<Player> distinctNames = new HashSet<>();
@@ -35,7 +30,7 @@ public record Players(List<Player> players) {
     }
 
     public boolean exists(Player player) {
-        return players.contains(player) || player.equals(Player.ALL);
+        return players.contains(player);
     }
 
     public int orderOf(Player player) {
