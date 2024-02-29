@@ -17,22 +17,11 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public int execute(int index) {
+    public Index climb(Index index) {
         for (Line line : lines) {
-            index = determineNextIndex(index, line);
+            index = line.move(index);
         }
         return index;
-    }
-
-    private int determineNextIndex(int currentIndex, Line line) {
-        int previousIndex = currentIndex - 1;
-        if (line.isPointUsed(currentIndex)) {
-            return currentIndex + 1;
-        }
-        if (previousIndex >= 0 && line.isPointUsed(previousIndex)) {
-            return currentIndex - 1;
-        }
-        return currentIndex;
     }
 
     public List<Line> getLadder() {
