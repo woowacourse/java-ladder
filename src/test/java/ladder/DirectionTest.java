@@ -4,7 +4,6 @@ import static ladder.Direction.LEFT;
 import static ladder.Direction.RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +26,7 @@ class DirectionTest {
         // when
         Direction actual = RIGHT.nextWithAttempt(true);
         // then
-        Assertions.assertThat(actual).isEqualTo(LEFT);
+        assertThat(actual).isEqualTo(LEFT);
     }
 
     @Test
@@ -36,7 +35,7 @@ class DirectionTest {
         // when
         Direction actual = LEFT.nextWithAttempt(true);
         // then
-        Assertions.assertThat(actual).isEqualTo(RIGHT);
+        assertThat(actual).isEqualTo(RIGHT);
     }
 
     @Test
@@ -45,6 +44,6 @@ class DirectionTest {
         // when
         Direction actual = RIGHT.nextAsLast();
         // then
-        Assertions.assertThat(actual).isEqualTo(LEFT);
+        assertThat(actual).isEqualTo(LEFT);
     }
 }
