@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import model.bridge.Bridge;
 
-public final class Line {
+public class Line {
     private final List<Bridge> bridges;
 
     public Line(List<Bridge> bridgesSource) {
@@ -35,7 +35,6 @@ public final class Line {
 
     public Integer cross(int previousPosition) {
         int nextPostition = crossRightBridge(previousPosition);
-
         if (previousPosition == nextPostition) {
             nextPostition = crossLeftBridge(previousPosition);
         }
@@ -43,19 +42,27 @@ public final class Line {
     }
 
     private int crossRightBridge(int position) {
-        if (position < bridges.size()) {
+        if (canCrossRight(position)) {
             Bridge rightBridge = bridges.get(position);
             return rightBridge.moveRight(position);
         }
         return position;
     }
 
+    private boolean canCrossRight(int position) {
+        return position < bridges.size();
+    }
+
     private int crossLeftBridge(int position) {
-        if (position > 0) {
+        if (canCrossLeft(position)) {
             Bridge leftBridge = bridges.get(position - 1);
             return leftBridge.moveLeft(position);
         }
         return position;
+    }
+
+    private boolean canCrossLeft(int position) {
+        return position > 0;
     }
 
     public List<Bridge> getBridges() {
