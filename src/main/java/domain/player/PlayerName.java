@@ -3,6 +3,7 @@ package domain.player;
 import domain.Name;
 
 public class PlayerName extends Name {
+    private static final String NAME_ALL = "all";
 
     public PlayerName(String playerName) {
         super(playerName);
@@ -10,6 +11,6 @@ public class PlayerName extends Name {
 
     public boolean isAll() {
         return super.getValue()
-                    .equals("all");
+                .equals(NAME_ALL);
     }
 }
