@@ -17,7 +17,7 @@ class LadderTest {
         final int width = 3, height = 1;
         final Ladder ladder = new Ladder(width, height);
 
-        int resultIndex = ladder.getResult(0);
+        int resultIndex = ladder.match(0);
 
         assertThat(resultIndex)
                 .isGreaterThanOrEqualTo(0)
@@ -31,7 +31,7 @@ class LadderTest {
         final int width = 3, height = 1;
         final Ladder ladder = new Ladder(width, height);
 
-        assertThatThrownBy(() -> ladder.getResult(startIndex))
+        assertThatThrownBy(() -> ladder.match(startIndex))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("위치는 0 이상 가로 길이 미만 이어야 한다.");
     }

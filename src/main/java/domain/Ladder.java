@@ -1,7 +1,7 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 
 public class Ladder {
@@ -12,14 +12,12 @@ public class Ladder {
         validationHeight(height);
 
         LadderStrategy strategy = new RandomLadderStrategy();
-
-        this.rows = new ArrayList<>();
-        for (int i = 0; i < height; ++i) {
-            rows.add(new Row(width, strategy));
-        }
+        this.rows = IntStream.range(0, height)
+                .mapToObj(i -> new Row(width, strategy))
+                .toList();
     }
 
-    public int getResult(int index) {
+    public int match(int index) {
         validationIndex(index);
 
         int position = index;
