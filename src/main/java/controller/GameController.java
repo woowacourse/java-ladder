@@ -89,7 +89,9 @@ public class GameController {
     }
 
     private ResultTarget makeTargetName(Members members) {
-        String rawTargetName = inputView.readTarget();
-        return ResultTarget.of(rawTargetName, members.getMembers());
+        return errorHandler.readUntilNoError(() -> {
+            String rawTargetName = inputView.readTarget();
+            return ResultTarget.of(rawTargetName, members.getMembers());
+        });
     }
 }
