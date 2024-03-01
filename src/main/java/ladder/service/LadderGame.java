@@ -21,7 +21,26 @@ public class LadderGame {
     }
 
     public static LadderGame from(Players ladderPlayers, List<String> rewards, Ladder ladder) {
+        validate(ladderPlayers, rewards, ladder);
         return new LadderGame(ladderPlayers, rewards, ladder);
+    }
+
+    private static void validate(Players players, List<String> rewards, Ladder ladder) {
+        if (playerAndLadderDoesNotMatch(players, ladder)) {
+            throw new IllegalArgumentException("참여자의 수와 사다리의 폭이 일치하지 않습니다.");
+        }
+        if (playerAndRewardDoesNotMatch(players, rewards)) {
+            throw new IllegalArgumentException("참여자의 수와 실행 결과의 수가 일치하지 않습니다.");
+        }
+    }
+
+    private static boolean playerAndLadderDoesNotMatch(Players players, Ladder ladder) {
+        // TODO: 게터 깊이 줄이기
+        return players.getSize() != ladder.getLadder().get(0).size();
+    }
+
+    private static boolean playerAndRewardDoesNotMatch(Players players, List<String> rewards) {
+        return players.getSize() != rewards.size();
     }
 
     public Map<String, String> play() {
