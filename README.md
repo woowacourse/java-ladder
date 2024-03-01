@@ -95,6 +95,8 @@ Point가 서로 연결되어 있고
 Direction에 Index를 넘겨주면 그 다음 인덱스를 준다
 
 
+사용자 이름이 중복되면 예외가 발생한다"
+
 (boolean , boolean) 에서 Direction으로 넘어가니까 (ture, true)가 자연스럽게 없어짐
 
 사다리 게임은 각 라인들에게 역할을 넘겨주는 형태가 될 거고, 

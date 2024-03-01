@@ -49,4 +49,10 @@ class UsersTest {
 
         assertThat(users.findPositionByName(name)).isEqualTo(position);
     }
+
+    @Test
+    @DisplayName("사용자 이름이 중복되면 예외가 발생한다")
+    void nameDuplicate() {
+        assertThatCode(() -> Users.of("pobi", "pobi")).isInstanceOf(IllegalArgumentException.class);
+    }
 }

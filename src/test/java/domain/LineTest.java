@@ -5,6 +5,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import domain.mock.ConnectNextPointGenerator;
+import domain.mock.EmptyGenerator;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -63,9 +65,9 @@ class LineTest {
 
     public static Stream<Arguments> ProvideArgumentsOfGenerateLine() {
         return Stream.of(
-                Arguments.of(new FalseGenerator(),
+                Arguments.of(new EmptyGenerator(),
                         Line.ofDirections(STRAIGHT, STRAIGHT, STRAIGHT, STRAIGHT, STRAIGHT, STRAIGHT)),
-                Arguments.of(new TrueGenerator(),
+                Arguments.of(new ConnectNextPointGenerator(),
                         Line.ofDirections(RIGHT, LEFT, RIGHT, LEFT, RIGHT, LEFT))
         );
     }

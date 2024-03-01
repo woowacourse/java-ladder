@@ -4,6 +4,7 @@ import domain.Ladder;
 import domain.LadderFactory;
 import domain.UserName;
 import domain.Users;
+import java.util.Arrays;
 import view.InputView;
 import view.ResultView;
 
@@ -41,7 +42,7 @@ public class LadderGame {
     }
 
     private static void printAllResult(final Users users, final Ladder ladder, final List<String> results) {
-        final List<String> names = users.getUsers().stream().map(UserName::toString).toList();
+        final List<String> names = Arrays.stream(users.toString().split(",")).toList();
         ResultView.printTargetResult(names,
                 names.stream()
                         .map(users::findPositionByName)
@@ -49,4 +50,5 @@ public class LadderGame {
                         .map(results::get)
                         .toList());
     }
+
 }

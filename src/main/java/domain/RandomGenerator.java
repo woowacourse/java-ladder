@@ -1,5 +1,5 @@
 package domain;
 
 public interface RandomGenerator {
-    boolean next();
+    PointState next();
 }

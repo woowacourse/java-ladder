@@ -17,15 +17,15 @@ public enum Direction {
         return converter;
     }
 
-    public static Direction generate(final Direction beforeDirection, final boolean condition) {
+    public static Direction generate(final Direction beforeDirection, final PointState state) {
         if (beforeDirection == Direction.RIGHT) {
             return Direction.LEFT;
         }
-        return Direction.next(condition);
+        return Direction.next(state);
     }
 
-    public static Direction generateFirst(final boolean condition) {
-        return Direction.next(condition);
+    public static Direction generateFirst(final PointState state) {
+        return Direction.next(state);
     }
 
     public static Direction generateLast(final Direction beforeDirection) {
@@ -35,8 +35,8 @@ public enum Direction {
         return Direction.STRAIGHT;
     }
 
-    public static Direction next(final boolean condition) {
-        if (condition) {
+    public static Direction next(final PointState state) {
+        if (state == PointState.CONNECT_NEXT_POINT) {
             return RIGHT;
         }
         return STRAIGHT;
