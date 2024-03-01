@@ -36,7 +36,9 @@ public class LadderGameTest {
     @Test
     void createLadderTest() {
         // given
-        People people = new People(List.of(new Person("pobi"), new Person("nak")));
+        LadderItems ladderItems = LadderItems.of(
+                List.of("pobi", "nak"),
+                List.of("1등", "2등"));
         LadderHeight ladderHeight = new LadderHeight(2);
         LadderGame ladderGame = new LadderGame(FIXED_LADDER_CREATOR);
 
@@ -45,7 +47,7 @@ public class LadderGameTest {
                 new Line(List.of(Connection.EMPTY))));
 
         // when
-        Ladder ladder = ladderGame.processGame(people, ladderHeight);
+        Ladder ladder = ladderGame.createLadder(ladderItems, ladderHeight);
 
         // then
         assertThat(ladder)
@@ -53,9 +55,9 @@ public class LadderGameTest {
                 .isEqualTo(FIXED_LADDER);
     }
 
-    @DisplayName("사다리 타기 전체 결과를 구한다2.")
+    @DisplayName("사다리 타기 전체 결과를 구한다.")
     @Test
-    void findTotalResultTest2() {
+    void findTotalResultTest() {
         // given
         LadderGame ladderGame = new LadderGame(FIXED_LADDER_CREATOR);
         List<String> peopleNames = List.of("pobi", "neo", "kaki", "lisa");

@@ -2,7 +2,7 @@ package ladder.view;
 
 import ladder.domain.Connection;
 import ladder.domain.Ladder;
-import ladder.domain.People;
+import ladder.domain.LadderItems;
 import ladder.domain.Person;
 
 import java.util.EnumMap;
@@ -29,9 +29,9 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printResult(People people, Ladder ladder) {
+    public void printResult(LadderItems ladderItems, Ladder ladder) {
         printResultTitle();
-        printPeopleNames(people);
+        printPeopleNames(ladderItems.getPeopleNames());
         printLadder(ladder);
     }
 
@@ -39,9 +39,9 @@ public class OutputView {
         System.out.println(EXECUTION_RESULT);
     }
 
-    private void printPeopleNames(People people) {
+    private void printPeopleNames(List<String> peopleNames) {
         StringJoiner joiner = new StringJoiner(PEOPLE_NAMES_DELIMITER);
-        for (String name : people.getNames()) {
+        for (String name : peopleNames) {
             joiner.add(String.format(LADDER_FORMAT, name));
         }
 

@@ -1,6 +1,9 @@
 package ladder.controller;
 
-import ladder.domain.*;
+import ladder.domain.Ladder;
+import ladder.domain.LadderGame;
+import ladder.domain.LadderHeight;
+import ladder.domain.LadderItems;
 import ladder.domain.creator.RandomLadderCreator;
 import ladder.domain.creator.RandomLineCreator;
 import ladder.util.ExceptionRetryHandler;
@@ -19,37 +22,24 @@ public class LadderController {
     }
 
     public void start() {
-        People people = requestPeopleUntilValid();
-        List<WinningItem> winningItems = requestWinningItemsUntilValid();
-
+        LadderItems ladderItems = requestLadderItemsUntilValid();
         LadderHeight ladderHeight = requestLadderHeightUntilValid();
 
         LadderGame ladderGame = new LadderGame(new RandomLadderCreator(new RandomLineCreator()));
-        Ladder ladder = ladderGame.processGame(people, ladderHeight);
+        Ladder ladder = ladderGame.createLadder(ladderItems, ladderHeight);
 
-        outputView.printResult(people, ladder);
+        outputView.printResult(ladderItems, ladder);
     }
 
-    private People requestPeopleUntilValid() {
-        return ExceptionRetryHandler.handle(this::requestPeople);
+    private LadderItems requestLadderItemsUntilValid() {
+        return ExceptionRetryHandler.handle(this::requestLadderItems);
     }
 
-    private People requestPeople() {
+    private LadderItems requestLadderItems() {
         List<String> peopleNames = inputView.readPeopleNames();
-        return new People(peopleNames.stream()
-                .map(Person::new)
-                .toList());
-    }
-
-    private List<WinningItem> requestWinningItemsUntilValid() {
-        return ExceptionRetryHandler.handle(this::requestWinningItems);
-    }
-
-    private List<WinningItem> requestWinningItems() {
         List<String> winningItems = inputView.readWinningItems();
-        return winningItems.stream()
-                .map(WinningItem::new)
-                .toList();
+
+        return LadderItems.of(peopleNames, winningItems);
     }
 
     private LadderHeight requestLadderHeightUntilValid() {

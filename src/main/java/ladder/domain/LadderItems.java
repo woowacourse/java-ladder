@@ -46,4 +46,10 @@ public class LadderItems {
     public int countItems() {
         return people.size();
     }
+
+    public List<String> getPeopleNames() {
+        return people.stream()
+                .map(Person::getName)
+                .toList();
+    }
 }

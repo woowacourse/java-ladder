@@ -12,12 +12,12 @@ public class LadderGame {
         this.ladderCreator = ladderCreator;
     }
 
-    public Ladder processGame(People people, LadderHeight ladderHeight) {
-        return ladderCreator.create(calculateLadderWidth(people), ladderHeight.getValue());
+    public Ladder createLadder(LadderItems ladderItems, LadderHeight ladderHeight) {
+        return ladderCreator.create(calculateLadderWidth(ladderItems), ladderHeight.getValue());
     }
 
-    private int calculateLadderWidth(People people) {
-        return people.getCount() - 1;
+    private int calculateLadderWidth(LadderItems ladderItems) {
+        return ladderItems.countItems() - 1;
     }
 
     public Map<Person, WinningItem> findResult(Ladder ladder, LadderItems ladderItems) {
