@@ -14,6 +14,6 @@ public class RandomBridgeMakingStrategy extends BridgeMakingStrategy {
 
     @Override
     public Bridge makeBridge() {
-        return Bridge.getOne(RANDOM_GENERATOR.nextBoolean());
+        return Bridge.of(RANDOM_GENERATOR.nextBoolean());
     }
 }
