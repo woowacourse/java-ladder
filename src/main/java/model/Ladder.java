@@ -2,18 +2,17 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
     private final List<LadderRow> ladder;
 
     public Ladder(Height height, LadderRowGenerator generator, int participantSize) {
-        List<LadderRow> rows = new ArrayList<>();
-        for (int i = 0; i < height.value(); i++) {
-            LadderRow ladderRow = createLadderRow(generator, participantSize);
-            rows.add(ladderRow);
-        }
-        this.ladder = rows;
+        //TODO: height.repeat()
+        this.ladder = IntStream.range(0, height.value())
+                .mapToObj(index -> createLadderRow(generator, participantSize))
+                .toList();
     }
 
     Ladder(List<LadderRow> ladderRows) {
