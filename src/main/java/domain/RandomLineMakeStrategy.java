@@ -5,10 +5,10 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class RandomLadderMakeStrategy {
+public class RandomLineMakeStrategy {
     private final int lineSize;
 
-    public RandomLadderMakeStrategy(int lineSize) {
+    public RandomLineMakeStrategy(int lineSize) {
         this.lineSize = lineSize;
     }
 

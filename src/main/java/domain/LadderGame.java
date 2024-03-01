@@ -11,12 +11,12 @@ public class LadderGame {
     private final Gifts gifts;
     private final Ladder ladder;
 
-    private LadderGame(Players players, Gifts gifts, Supplier<Boolean[]> ladderMakeStrategy, int ladderHeight) {
-        validateRequiredValues(players, gifts, ladderMakeStrategy, ladderHeight);
+    private LadderGame(Players players, Gifts gifts, Supplier<Boolean[]> lineMakeStrategy, int ladderHeight) {
+        validateRequiredValues(players, gifts, lineMakeStrategy, ladderHeight);
         this.players = players;
         this.gifts = gifts;
         List<Line> lines = IntStream.range(0, ladderHeight)
-                .mapToObj(value -> new Line(ladderMakeStrategy.get()))
+                .mapToObj(value -> new Line(lineMakeStrategy.get()))
                 .toList();
         this.ladder = new Ladder(lines);
     }
