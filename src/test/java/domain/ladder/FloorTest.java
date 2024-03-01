@@ -1,6 +1,5 @@
-package domain;
+package domain.ladder;
 
-import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidationException;
 import domain.bridge.strategy.BridgeGeneratorStub;
 import org.assertj.core.api.Assertions;
@@ -10,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 public class FloorTest {
+
     @Test
     @DisplayName("가로 라인이 연속되는 다리는 생성되지 않는다")
     void createLineSuccessWithNoneSerialBridges() {
@@ -25,6 +25,6 @@ public class FloorTest {
         Assertions.assertThatThrownBy(
                         () -> new Floor(bridgeGenerator.generate(bridgeCount)))
                 .isInstanceOf(ValidationException.class)
-                .hasMessage(ExceptionMessage.SERIAL_LADDER_BRIDGE);
+                .hasMessage(Floor.CONTINUOUS_BRIDGE_ERROR_MESSAGE);
     }
 }

@@ -1,44 +1,30 @@
 package controller;
 
-import domain.PlayerNames;
+import common.exception.model.IOException;
+import common.exception.model.ValidationException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import view.InputView;
 import view.OutputView;
 
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-
 class LadderControllerTest {
 
-    @Nested
-    @DisplayName("플레이어 이름 구분자 테스트")
-    class PlayerNameDelimiterTest {
+    @Test
+    @DisplayName("입력 횟수가 제한 횟수를 초과하면 예외가 발생하고 프로그램이 종료된다")
+    void exitApplicationByOverReadLimitCount() {
+        LadderController controller = new LadderController(new InputView(new Scanner(System.in)), new OutputView());
 
-        @Test
-        @DisplayName("플레이어 이름은 구분자 단위로 나뉘어진다")
-        void splitPlayerNameByDelimiter() {
-            //given
-            String[] playerNameInfos = {"aa", "bb", "cc"};
-            InputView inputView = new InputView(new Scanner(System.in));
-            OutputView outputView = new OutputView();
-            LadderController ladderController = new LadderController(inputView, outputView);
+        Assertions.assertThatThrownBy(() -> repeatMethodOverLimitCount(controller))
+                .isInstanceOf(IOException.class)
+                .hasMessage(LadderController.READ_LIMIT_OVER);
+    }
 
-            //when
-            PlayerNames playerNames = ladderController.createPlayerNames(playerNameInfos);
-
-            //then
-            assertAll(
-                    () -> Assertions.assertThat(playerNames.getCount()).isEqualTo(3),
-                    () -> Assertions.assertThat(playerNames.getNameOfIndex(0)).isEqualTo("aa"),
-                    () -> Assertions.assertThat(playerNames.getNameOfIndex(1)).isEqualTo("bb"),
-                    () -> Assertions.assertThat(playerNames.getNameOfIndex(2)).isEqualTo("cc")
-            );
-        }
-
-
+    private void repeatMethodOverLimitCount(LadderController controller) {
+        controller.retry(() -> {
+            throw new ValidationException("");
+        });
     }
 }

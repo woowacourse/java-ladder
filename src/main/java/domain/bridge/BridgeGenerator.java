@@ -1,6 +1,6 @@
 package domain.bridge;
 
-import domain.LadderBridge;
+import domain.ladder.LadderBridge;
 
 import java.util.List;
 
