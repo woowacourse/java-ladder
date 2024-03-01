@@ -7,7 +7,8 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String PEOPLE_NAMES_INPUT_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    private static final String PEOPLE_NAMES_DELIMITER = ",";
+    private static final String WINNING_NAMES_INPUT_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String ITEMS_DELIMITER = ",";
     private static final String LADDER_HEIGHT_INPUT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
 
     public List<String> readPeopleNames() {
@@ -19,15 +20,24 @@ public class InputView {
         return splitByDelimiter(peopleNames);
     }
 
-    private List<String> splitByDelimiter(String peopleNames) {
-        return Arrays.stream(peopleNames.split(PEOPLE_NAMES_DELIMITER))
+    public List<String> readWinningItems() {
+        System.out.println(WINNING_NAMES_INPUT_MESSAGE);
+        String winningResults = scanner.nextLine().strip();
+        validateStartsOrEndsWithDelimiter(winningResults);
+
+        System.out.println();
+        return splitByDelimiter(winningResults);
+    }
+
+    private List<String> splitByDelimiter(String input) {
+        return Arrays.stream(input.split(ITEMS_DELIMITER))
                 .map(String::strip)
                 .toList();
     }
 
-    private void validateStartsOrEndsWithDelimiter(String peopleNames) {
-        if (peopleNames.startsWith(PEOPLE_NAMES_DELIMITER) || peopleNames.endsWith(PEOPLE_NAMES_DELIMITER)) {
-            throw new IllegalArgumentException("사람들의 이름은 콤마(,)로 시작하거나 끝날 수 없습니다.");
+    private void validateStartsOrEndsWithDelimiter(String input) {
+        if (input.startsWith(ITEMS_DELIMITER) || input.endsWith(ITEMS_DELIMITER)) {
+            throw new IllegalArgumentException("입력은 콤마(,)로 시작하거나 끝날 수 없습니다.");
         }
     }
 

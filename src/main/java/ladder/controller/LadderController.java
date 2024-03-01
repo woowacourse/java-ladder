@@ -20,6 +20,8 @@ public class LadderController {
 
     public void start() {
         People people = requestPeopleUntilValid();
+        List<WinningItem> winningItems = requestWinningItemsUntilValid();
+
         LadderHeight ladderHeight = requestLadderHeightUntilValid();
 
         LadderGame ladderGame = new LadderGame(new RandomLadderCreator(new RandomLineCreator()));
@@ -37,6 +39,17 @@ public class LadderController {
         return new People(peopleNames.stream()
                 .map(Person::new)
                 .toList());
+    }
+
+    private List<WinningItem> requestWinningItemsUntilValid() {
+        return ExceptionRetryHandler.handle(this::requestWinningItems);
+    }
+
+    private List<WinningItem> requestWinningItems() {
+        List<String> winningItems = inputView.readWinningItems();
+        return winningItems.stream()
+                .map(WinningItem::new)
+                .toList();
     }
 
     private LadderHeight requestLadderHeightUntilValid() {
