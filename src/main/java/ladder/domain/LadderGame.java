@@ -43,7 +43,7 @@ public class LadderGame {
 
         public LadderGameBuilder compensations(List<String> compensations) {
             validateSize(compensations);
-            this.compensation = new Compensation(compensations);
+            this.compensation = new Compensation(compensations, people.length());
             return this;
         }
 
