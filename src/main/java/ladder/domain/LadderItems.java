@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -11,14 +10,21 @@ public class LadderItems {
     private final List<Person> people;
     private final List<WinningItem> winningItems;
 
-    public LadderItems(List<Person> people, List<WinningItem> winningItems) {
-        List<Person> peopleCopy = new ArrayList<>(people);
-        List<WinningItem> winningItemsCopy = new ArrayList<>(winningItems);
+    private LadderItems(List<Person> people, List<WinningItem> winningItems) {
+        validate(people, winningItems);
+        this.people = people;
+        this.winningItems = winningItems;
+    }
 
-        validate(peopleCopy, winningItemsCopy);
+    public static LadderItems of(List<String> peopleNames, List<String> winningItemNames) {
+        List<Person> people = peopleNames.stream()
+                .map(Person::new)
+                .toList();
+        List<WinningItem> winningItems = winningItemNames.stream()
+                .map(WinningItem::new)
+                .toList();
 
-        this.people = peopleCopy;
-        this.winningItems = winningItemsCopy;
+        return new LadderItems(people, winningItems);
     }
 
     private void validate(List<Person> people, List<WinningItem> winningItems) {

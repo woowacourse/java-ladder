@@ -58,11 +58,10 @@ public class LadderGameTest {
     void findTotalResultTest2() {
         // given
         LadderGame ladderGame = new LadderGame(FIXED_LADDER_CREATOR);
-        List<Person> people = List.of(
-                new Person("pobi"), new Person("neo"), new Person("kaki"), new Person("lisa"));
-        List<WinningItem> winningItems = List.of(
-                new WinningItem("1등"), new WinningItem("2등"), new WinningItem("3등"), new WinningItem("4등"));
-        LadderItems ladderItems = new LadderItems(people, winningItems);
+        List<String> peopleNames = List.of("pobi", "neo", "kaki", "lisa");
+        List<String> winningItemNames = List.of("1등", "2등", "3등", "4등");
+
+        LadderItems ladderItems = LadderItems.of(peopleNames, winningItemNames);
         Map<Person, WinningItem> expected = Map.of(
                 new Person("pobi"), new WinningItem("3등"),
                 new Person("neo"), new WinningItem("1등"),

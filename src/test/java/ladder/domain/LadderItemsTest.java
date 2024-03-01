@@ -18,12 +18,12 @@ public class LadderItemsTest {
     static Stream<Arguments> provideItemsWithException() {
         return Stream.of(
                 Arguments.of(
-                        List.of(new Person("pobi")),
-                        List.of(new WinningItem("1등"), new WinningItem("2등"))
+                        List.of("pobi"),
+                        List.of("1등", "2등")
                 ),
                 Arguments.of(
-                        List.of(new Person("pobi"), new Person("neo")),
-                        List.of(new WinningItem("1등"))
+                        List.of("pobi", "neo"),
+                        List.of("1등")
                 ),
                 Arguments.of(
                         Collections.emptyList(),
@@ -36,21 +36,19 @@ public class LadderItemsTest {
     @Test
     void createTest() {
         // given
-        List<Person> people = List.of(
-                new Person("pobi"), new Person("nak"), new Person("neo"));
-        List<WinningItem> winningItems = List.of(
-                new WinningItem("1등"), new WinningItem("2등"), new WinningItem("3등"));
+        List<String> peopleNames = List.of("pobi", "nak", "neo");
+        List<String> winningItemNames = List.of("1등", "2등", "3등");
 
         // when & then
-        assertThatCode(() -> new LadderItems(people, winningItems))
+        assertThatCode(() -> LadderItems.of(peopleNames, winningItemNames))
                 .doesNotThrowAnyException();
     }
 
     @DisplayName("각 아이템의 개수가 2개 미만이라면 예외를 발생시킨다.")
     @ParameterizedTest
     @MethodSource("provideItemsWithException")
-    void minItemsTest(List<Person> people, List<WinningItem> winningItems) {
-        assertThatThrownBy(() -> new LadderItems(people, winningItems))
+    void minItemsTest(List<String> peopleNames, List<String> winningItemNames) {
+        assertThatThrownBy(() -> LadderItems.of(peopleNames, winningItemNames))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리 게임의 아이템들의 개수는 각각 2개 이상이어야 합니다.");
     }
