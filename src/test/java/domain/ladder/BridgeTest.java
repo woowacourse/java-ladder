@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class BridgeTest {
 
     @Test
-    @DisplayName("boolean 값으로 Brdige 찾아오기")
+    @DisplayName("boolean 값으로 Bridge 찾아오기")
     void findBridge() {
         //given
         //when
