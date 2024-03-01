@@ -9,12 +9,23 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(Line... lines) {
-        this(Arrays.asList(lines));
+    public Ladder(int heightValue, Line... lines) {
+        this(heightValue, Arrays.asList(lines));
     }
 
-    public Ladder(List<Line> lines) {
+    public Ladder(int heightValue, List<Line> lines) {
+        validate(heightValue, lines);
         this.lines = lines;
+    }
+
+    private void validate(int heightValue, List<Line> lines) {
+        validateHeight(heightValue, lines);
+    }
+
+    private void validateHeight(int height, List<Line> lines) {
+        if (height != lines.size()) {
+            throw new IllegalArgumentException("사다리 높이가 최대 사다리 높이와 같아야 합니다.");
+        }
     }
 
     public Index climb(Index index) {
