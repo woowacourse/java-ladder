@@ -11,7 +11,7 @@ public class Items {
         this.items = Collections.unmodifiableList(items);
     }
 
-    public static Items of(final List<String> itemNames, final int personCount) {
+    public static Items of(final List<String> itemNames, final PersonCount personCount) {
         int itemsCount = itemNames.size();
         validateItemsCount(itemsCount, personCount);
 
@@ -21,8 +21,8 @@ public class Items {
         return new Items(items);
     }
 
-    private static void validateItemsCount(final int itemsCount, final int personCount) {
-        if (itemsCount != personCount) {
+    private static void validateItemsCount(final int itemsCount, final PersonCount personCount) {
+        if (personCount.isNotEqual(itemsCount)) {
             throw new IllegalArgumentException("참여 인원 수와 결과 목록의 수가 동일하지 않습니다.");
         }
     }

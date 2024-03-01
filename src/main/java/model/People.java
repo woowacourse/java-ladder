@@ -3,26 +3,20 @@ package model;
 import java.util.List;
 
 public class People {
-    private static final int MIN_PERSON_COUNT = 2;
-
     private final List<Person> personGroup;
+    private final PersonCount personCount;
 
-    private People(final List<Person> personGroup) {
-        validatePersonCount(personGroup.size());
+    private People(final List<Person> personGroup, final PersonCount personCount) {
+        this.personCount = personCount;
         this.personGroup = personGroup;
-    }
-
-    private void validatePersonCount(final int personCount) {
-        if (personCount < MIN_PERSON_COUNT) {
-            throw new IllegalArgumentException("사람은 최소 2명 참가해야 합니다.");
-        }
     }
 
     public static People from(final List<String> names) {
         final List<Person> personGroup = names.stream()
                 .map(Person::new)
                 .toList();
-        return new People(personGroup);
+        final PersonCount personCount = new PersonCount(names.size());
+        return new People(personGroup, personCount);
     }
 
     public Person findBy(int index) {
@@ -35,7 +29,7 @@ public class People {
                 .toList();
     }
 
-    public int getPersonCount() {
-        return personGroup.size();
+    public PersonCount getPersonCount() {
+        return personCount;
     }
 }

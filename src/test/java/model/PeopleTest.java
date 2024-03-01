@@ -22,6 +22,6 @@ class PeopleTest {
         List<String> names = List.of("loky");
         assertThatThrownBy(() -> People.from(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사람은 최소 2명 참가해야 합니다.");
+                .hasMessage("참여 인원은 최소 2여야 합니다.");
     }
 }

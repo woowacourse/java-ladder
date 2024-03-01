@@ -19,7 +19,7 @@ class LadderTest {
         List<Line> expectedLines = List.of(line);
         FixedLinesGenerator pathGenerator = new FixedLinesGenerator(expectedLines);
         Height height = new Height(1);
-        int personCount = 2;
+        PersonCount personCount = new PersonCount(2);
 
         Ladder ladder = Ladder.from(height, personCount, pathGenerator);
         assertThat(ladder.getLines()).isEqualTo(expectedLines);
@@ -29,7 +29,7 @@ class LadderTest {
     @DisplayName("사다리의 개인별 결과를 확인한다.")
     void climbLadderPersonResult() {
         Height height = new Height(5);
-        int personCount = 4;
+        PersonCount personCount = new PersonCount(4);
         FixedLinesGenerator pathGenerator = new FixedLinesGenerator(
                 List.of(new Line(List.of(EXIST, NOT_EXIST, EXIST)),
                         new Line(List.of(NOT_EXIST, EXIST, NOT_EXIST)),
@@ -45,7 +45,7 @@ class LadderTest {
     @DisplayName("사다리의 전체 결과를 확인한다.")
     void climbLadderAllResult() {
         Height height = new Height(5);
-        int personCount = 4;
+        PersonCount personCount = new PersonCount(4);
         FixedLinesGenerator pathGenerator = new FixedLinesGenerator(
                 List.of(new Line(List.of(EXIST, NOT_EXIST, EXIST)),
                         new Line(List.of(NOT_EXIST, EXIST, NOT_EXIST)),

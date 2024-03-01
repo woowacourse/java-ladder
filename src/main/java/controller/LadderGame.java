@@ -7,6 +7,7 @@ import model.Height;
 import model.Items;
 import model.Ladder;
 import model.People;
+import model.PersonCount;
 import model.Result;
 import model.line.RandomLinesGenerator;
 import view.InputView;
@@ -40,12 +41,12 @@ public class LadderGame {
         return People.from(peopleNames);
     }
 
-    private Ladder initLadder(final int personCount) {
+    private Ladder initLadder(final PersonCount personCount) {
         final Height height = new Height(inputView.inputHeight());
         return Ladder.from(height, personCount, new RandomLinesGenerator());
     }
 
-    private Items initItems(final int personCount) {
+    private Items initItems(final PersonCount personCount) {
         List<String> itemNames = inputView.inputItemsNames();
         return Items.of(itemNames, personCount);
     }
