@@ -6,8 +6,8 @@ import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
 import domain.player.PlayerNames;
 import domain.player.Players;
-import dto.LadderGameResultDto;
 import dto.LadderDto;
+import dto.LadderGameResultDto;
 import util.ConsoleReader;
 import util.RandomBooleanGenerator;
 import view.InputView;
@@ -25,7 +25,11 @@ public class LadderGameMachine {
         LadderHeight ladderHeight = initLadderHeight();
         Ladder ladder = initLadder(new RandomBooleanGenerator(), ladderHeight, playerNames);
         OutputView.printLadder(LadderDto.of(playerNames, ladder, ladderDestinations));
-        printLadderGameResults(ladder, ladderHeight, ladderDestinations, playerNames);
+
+        Players players = Players.of(playerNames, ladderHeight);
+        LadderGameResults ladderGameResults = LadderGameResults.of(ladder, players, ladderDestinations);
+
+        printLadderGameResults(ladderGameResults);
     }
 
     private PlayerNames initPlayerNames() {
@@ -62,14 +66,7 @@ public class LadderGameMachine {
         return Ladder.of(generator, ladderHeight, playerNames.getPlayerCount());
     }
 
-    private void printLadderGameResults(
-            final Ladder ladder,
-            final LadderHeight ladderHeight,
-            final LadderDestinations ladderDestinations,
-            final PlayerNames playerNames
-    ) {
-        Players players = Players.of(playerNames, ladderHeight);
-        LadderGameResults ladderGameResults = LadderGameResults.of(ladder, players, ladderDestinations);
+    private void printLadderGameResults(LadderGameResults ladderGameResults) {
         boolean isContinue = true;
 
         while (isContinue) {
