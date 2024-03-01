@@ -14,14 +14,14 @@ public class Player {
     }
 
     public void move(Line line) {
-        position = line.descend(position);
+        this.position = line.descend(position);
     }
 
     public int getPosition() {
         return position;
     }
 
-    public boolean hasName(Name name) {
+    public boolean equalsName(Name name) {
         return this.name.equals(name);
     }
 }

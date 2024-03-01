@@ -3,8 +3,6 @@ package ladderGame.model;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
@@ -15,7 +13,7 @@ public class Players {
     public Players(List<String> names) {
         validate(names);
 
-        players = IntStream.range(0, names.size())
+        this.players = IntStream.range(0, names.size())
                 .mapToObj(i -> new Player(names.get(i), i))
                 .toList();
     }
@@ -51,12 +49,12 @@ public class Players {
 
     public boolean contains(Name name) {
         return players.stream()
-                .anyMatch(player -> player.hasName(name));
+                .anyMatch(player -> player.equalsName(name));
     }
 
     public Player findPlayer(Name name) {
         return players.stream()
-                .filter(player -> player.hasName(name))
+                .filter(player -> player.equalsName(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("일치하는 정보가 없습니다."));
     }
