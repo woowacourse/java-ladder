@@ -11,6 +11,8 @@ import model.prize.Prize;
 import model.prize.Prizes;
 
 public class Game {
+    private static final int moveIndex = 1;
+
     private final Ladder ladder;
     private final Players players;
     private final Prizes prizes;
@@ -41,11 +43,11 @@ public class Game {
 
     private int playLine(int currentIndex, Line line) {
         List<Bridge> bridges = line.getBridges();
-        if (currentIndex > 0 && bridges.get(currentIndex - 1).isConnected()) {
-            return currentIndex - 1;
+        if (currentIndex > 0 && bridges.get(currentIndex - moveIndex).isConnected()) {
+            return currentIndex - moveIndex;
         }
         if (currentIndex < bridges.size() && bridges.get(currentIndex).isConnected()) {
-            return currentIndex + 1;
+            return currentIndex + moveIndex;
         }
         return currentIndex;
     }
