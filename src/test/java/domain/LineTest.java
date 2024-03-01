@@ -15,7 +15,7 @@ class LineTest {
                 .isEqualTo(5);
         // |     |     |     |-----|
         Line line2 = new Line(false, false, false, true, false);
-        int length2 = line.length();
+        int length2 = line2.length();
         Assertions.assertThat(length2)
                 .isEqualTo(5);
     }
