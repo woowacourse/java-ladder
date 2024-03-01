@@ -1,37 +1,29 @@
-//package domain;
-//
-//import java.util.*;
-//import java.util.stream.IntStream;
-//
-//public class Line {
-//    private final List<Bridge> bridges;
-//
-//    public Line(final List<Bridge> bridges) {
-//        validate(bridges);
-//        this.bridges = bridges;
-//    }
-//
-//    private void validate(final List<Bridge> bridges) {
-//        IntStream.range(1, bridges.size()).forEach(index -> {
-//                    Bridge previousBridge = bridges.get(index - 1);
-//                    Bridge currentBridge = bridges.get(index);
-//                    validateOverlappingBridge(previousBridge, currentBridge);
-//                }
-//        );
-//    }
-//
-//    private static void validateOverlappingBridge(final Bridge previousBridge, final Bridge currentBridge) {
-//        if (previousBridge.isConnected() && currentBridge.isConnected()) {
-//            throw new IllegalArgumentException("사다리 라인은 겹칠 수 없습니다.");
-//        }
-//    }
-//
-//    public List<Bridge> getBridges() {
-//        return bridges;
-//    }
-//
-//    public int getWidth() {
-//        return bridges.size();
-//    }
-//
-//}
+package domain;
+
+import java.util.*;
+
+public class Line {
+    private final List<Point> points;
+
+    public Line(final Point... point) {
+        final List<Point> points = List.of(point);
+        validate(points);
+        this.points = points;
+    }
+
+    private void validate(final List<Point> points) {
+//        validateEmptiness(points);
+        validateFirstPoint(points);
+    }
+
+    private void validateFirstPoint(final List<Point> points) {
+        Point firstPoint = points.get(0);
+        if (firstPoint.equals(new Point(true, false))) {
+            throw new IllegalArgumentException("첫번째 위치에서 왼쪽으로 연결 될 수 없습니다.");
+        }
+    }
+
+    private void validateEmptiness(final List<Point> points) {
+    }
+
+}

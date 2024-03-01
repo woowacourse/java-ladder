@@ -1,18 +1,14 @@
-//package domain;
-//
-//import org.junit.jupiter.api.DisplayName;
-//import org.junit.jupiter.api.Test;
-//
-//import java.util.List;
-//
-//import static org.assertj.core.api.Assertions.*;
-//
-//class LineTest {
-//    @Test
-//    @DisplayName("앞 뒤 브릿지가 겹치는 경우 예외가 발생한다")
-//    void createRandomLine() {
-//        final List<Bridge> bridges = List.of(Bridge.BRIDGE, Bridge.BRIDGE, Bridge.BRIDGE);
-//
-//        assertThatThrownBy(() -> new Line(bridges)).isInstanceOf(IllegalArgumentException.class);
-//    }
-//}
+package domain;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+class LineTest {
+    @Test
+    @DisplayName("첫번째 지점에서 왼쪽으로 연결 됐을 때 예외가 발생한다")
+    void firstPoint() {
+        assertThatCode(() -> new Line(new Point(true, false))).isInstanceOf(IllegalArgumentException.class);
+    }
+}
