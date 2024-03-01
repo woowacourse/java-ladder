@@ -35,7 +35,7 @@ class PlayerTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"robin", "12345", "abc12", "12Abc"})
-    @DisplayName("참가자 이름 구성 문자 검증")
+    @DisplayName("정상적인 이름의 참여자 생성")
     void normalName(String name) {
         Assertions.assertThatNoException()
                 .isThrownBy(() -> new Player(name));
