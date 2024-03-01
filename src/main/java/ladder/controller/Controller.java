@@ -10,6 +10,7 @@ import ladder.domain.Ladder;
 import ladder.domain.LadderGame;
 import ladder.domain.LadderResult;
 import ladder.domain.LadderResults;
+import ladder.domain.LadderRow;
 import ladder.domain.Player;
 import ladder.domain.Players;
 import ladder.view.InputView;
@@ -28,7 +29,7 @@ public class Controller {
     public void run() {
         Players players = inputView.inputNames();
         LadderResults ladderResults = inputView.inputLadderResults(players);
-        Height height = inputView.inputHeight();
+        Height<LadderRow> height = inputView.inputHeight();
         Ladder ladder = Ladder.of(players, height, new DefaultLadderDirectionSelector());
         LadderGame ladderGame = new LadderGame(players, ladderResults, ladder);
         resultView.printLadder(players, ladder, ladderResults);

@@ -9,6 +9,7 @@ import java.util.Scanner;
 import ladder.domain.Height;
 import ladder.domain.LadderResult;
 import ladder.domain.LadderResults;
+import ladder.domain.LadderRow;
 import ladder.domain.Player;
 import ladder.domain.Players;
 import ladder.exception.ExceptionHandler;
@@ -50,10 +51,10 @@ public class InputView {
         });
     }
 
-    public Height inputHeight() {
+    public Height<LadderRow> inputHeight() {
         return exceptionHandler.run(() -> {
             System.out.println("\n최대 사다리 높이는 몇 개인가요?");
-            return new Height(Integer.parseInt(readLine()));
+            return new Height<>(Integer.parseInt(readLine()));
         });
     }
 

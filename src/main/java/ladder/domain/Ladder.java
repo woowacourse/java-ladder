@@ -1,9 +1,7 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -13,14 +11,12 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    public static Ladder of(Players players, Height height, LadderDirectionSelector ladderDirectionSelector) {
-        List<LadderRow> ladder = new ArrayList<>();
-        IntStream.range(0, height.value()).forEach(
-                __ -> ladder.add(LadderRowBuilder.builder()
-                        .size(players.count())
-                        .directionSelector(ladderDirectionSelector)
-                        .build())
-        );
+    public static Ladder of(Players players, Height<LadderRow> height,
+                            LadderDirectionSelector ladderDirectionSelector) {
+        List<LadderRow> ladder = height.repeat(() -> LadderRowBuilder.builder()
+                .size(players.count())
+                .directionSelector(ladderDirectionSelector)
+                .build());
         return new Ladder(ladder);
     }
 
