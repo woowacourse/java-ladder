@@ -29,7 +29,6 @@ public class Prizes {
         }
     }
 
-    // TODO test
     public Prize findPrizeByPosition(int position) {
         return prizes.get(position);
     }

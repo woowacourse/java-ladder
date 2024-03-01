@@ -32,7 +32,6 @@ public class PlayerResults {
         return playerResults.get(player);
     }
 
-    // TODO test
     public boolean hasResult(String name) {
         return Command.isAllCommand(name) || playerResults.keySet().stream()
                 .anyMatch(key -> key.getName().equals(name));

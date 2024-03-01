@@ -9,7 +9,6 @@ public enum Command {
         this.command = command;
     }
 
-    //TODO
     public static boolean isAllCommand(String command) {
         return command.equals(ALL.command);
     }
