@@ -10,6 +10,7 @@ import model.prize.Prize;
 
 public class GameResult {
     private static final String NOT_EXIST_PLAYER = "게임에 등록되지 않은 참여자입니다.";
+    
     private final LinkedHashMap<Player, Prize> result;
 
     public GameResult(final LinkedHashMap<Player, Prize> result) {
