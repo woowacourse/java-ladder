@@ -20,7 +20,6 @@ public class ResultView {
     private static final String VERTICAL_LINE = "|";
     private static final String HORIZONTAL_LINE = "-----";
     private static final String INTERVAL = "     ";
-    private static final String REQUEST_TOTAL = "all";
 
     public void printLadderGame(People people, Ladder ladder, Consequences consequences) {
         System.out.println("\n사다리 결과\n");
@@ -46,9 +45,8 @@ public class ResultView {
     }
 
     private String printLine(Line line, int personCount) {
-        int points = personCount;
         StringBuilder result = new StringBuilder(INTERVAL);
-        IntStream.range(0, points)
+        IntStream.range(0, personCount)
                 .forEach(index -> result
                         .append(VERTICAL_LINE)
                         .append(drawHorizontalLine(line.showDirection(index))));
