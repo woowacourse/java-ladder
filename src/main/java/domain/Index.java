@@ -13,6 +13,10 @@ public class Index {
         return new Index(index + 1);
     }
 
+    public Index decrease() {
+        return new Index(index - 1);
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {

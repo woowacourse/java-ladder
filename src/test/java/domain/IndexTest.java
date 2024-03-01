@@ -12,10 +12,18 @@ class IndexTest {
     
     @Test
     @DisplayName("인덱스가 1만큼 증가한다")
-    void increment() {
+    void increase() {
         Index index = new Index(3);
 
         Assertions.assertThat(index.increase()).isEqualTo(new Index(4));
+    }
+
+    @Test
+    @DisplayName("인덱스가 1만큼 감소한다")
+    void decrease() {
+        Index index = new Index(3);
+
+        Assertions.assertThat(index.decrease()).isEqualTo(new Index(2));
     }
 
 }
