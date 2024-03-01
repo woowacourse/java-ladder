@@ -10,13 +10,13 @@ import java.util.stream.IntStream;
 
 public class LadderRowBuilder {
 
-    private final List<LadderDirection> ladderLevel;
+    private final List<LadderDirection> ladderRow;
 
     private int size;
     private LadderDirectionSelector ladderDirectionSelector;
 
     private LadderRowBuilder() {
-        this.ladderLevel = new ArrayList<>();
+        this.ladderRow = new ArrayList<>();
     }
 
     public static LadderRowBuilder builder() {
@@ -34,13 +34,13 @@ public class LadderRowBuilder {
     }
 
     public LadderRow build() {
-        IntStream.range(0, size).forEach(__ -> ladderLevel.add(LadderDirection.NONE));
+        IntStream.range(0, size).forEach(__ -> ladderRow.add(LadderDirection.NONE));
         IntStream.range(0, size - 1).forEach(this::selectDirectionIfNotExistsAt);
-        return new LadderRow(ladderLevel);
+        return new LadderRow(ladderRow);
     }
 
     private void selectDirectionIfNotExistsAt(int index) {
-        if (ladderLevel.get(index) == NONE) {
+        if (ladderRow.get(index) == NONE) {
             selectDirectionAt(index);
         }
     }
@@ -48,8 +48,8 @@ public class LadderRowBuilder {
     private void selectDirectionAt(int index) {
         LadderDirection ladderDirection = ladderDirectionSelector.select();
         if (ladderDirection == RIGHT) {
-            ladderLevel.set(index, RIGHT);
-            ladderLevel.set(index + 1, LEFT);
+            ladderRow.set(index, RIGHT);
+            ladderRow.set(index + 1, LEFT);
         }
     }
 }

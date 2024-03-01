@@ -5,17 +5,17 @@ import java.util.List;
 
 public class LadderRow {
 
-    private final List<LadderDirection> ladderLevel;
+    private final List<LadderDirection> ladderRow;
 
     public LadderRow(List<LadderDirection> ladderDirections) {
-        ladderLevel = ladderDirections;
+        ladderRow = ladderDirections;
     }
 
     public LadderDirection getLadderDirection(int index) {
-        return ladderLevel.get(index);
+        return ladderRow.get(index);
     }
 
     public List<LadderDirection> getLadderDirections() {
-        return Collections.unmodifiableList(ladderLevel);
+        return Collections.unmodifiableList(ladderRow);
     }
 }
