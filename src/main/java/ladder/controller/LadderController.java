@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import java.util.Map;
 import ladder.dto.LineDto;
 import ladder.model.Ladder;
 import ladder.model.Players;
@@ -15,7 +16,8 @@ public class LadderController {
 
     public void start() {
         init();
-        printResult();
+        showLadder();
+        showReward(readLookupTarget());
     }
 
     private void init() {
@@ -25,7 +27,6 @@ public class LadderController {
         int width = ladderPlayers.getSize();
 
         List<String> rewards = readRewards();
-
         ladder = Ladder.of(height, width);
         ladderGame = LadderGame.from(ladderPlayers, rewards, ladder);
     }
@@ -46,7 +47,7 @@ public class LadderController {
         return InputView.inputLookupTarget();
     }
 
-    private void printResult() {
+    private void showLadder() {
         OutputView.printResultDescription();
         OutputView.printPlayerNames(ladderGame.getPlayerNames());
 
@@ -55,8 +56,15 @@ public class LadderController {
                 .toList();
         OutputView.printLadder(lineDtos);
         OutputView.printRewards(ladderGame.getRewards());
+    }
 
-        OutputView.printGameResult(ladderGame.play());
+    private void showReward(String target) {
+        Map<String, String> result = ladderGame.play();
 
+        if (target.equals("all")) {
+            OutputView.printRewardForAll(result);
+            return;
+        }
+        OutputView.printRewardForTarget(result.get(target));
     }
 }
