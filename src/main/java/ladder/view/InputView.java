@@ -9,10 +9,10 @@ import java.util.Scanner;
 
 import ladder.domain.attribute.Height;
 import ladder.domain.attribute.Width;
-import ladder.domain.ladder.LadderResult;
-import ladder.domain.ladder.LadderResults;
 import ladder.domain.ladder.LadderRow;
 import ladder.domain.ladder.direction.LadderDirection;
+import ladder.domain.ladder.reward.Reward;
+import ladder.domain.ladder.reward.Rewards;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.exception.ExceptionHandler;
@@ -44,13 +44,13 @@ public class InputView {
         return input;
     }
 
-    public LadderResults inputLadderResults(final Width<LadderDirection> width) {
+    public Rewards inputRewards(final Width<LadderDirection> width) {
         return exceptionHandler.run(() -> {
             System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-            List<LadderResult> results = Arrays.stream(readAndSplitByComma())
-                    .map(LadderResult::new)
+            List<Reward> rewards = Arrays.stream(readAndSplitByComma())
+                    .map(Reward::new)
                     .toList();
-            return new LadderResults(results, width);
+            return new Rewards(rewards, width);
         });
     }
 
@@ -61,7 +61,7 @@ public class InputView {
         });
     }
 
-    public Player inputPlayerFrom(final Map<Player, LadderResult> ladderGameResults) {
+    public Player inputPlayerFrom(final Map<Player, Reward> ladderGameResults) {
         return exceptionHandler.run(() -> {
             System.out.println("\n결과를 보고 싶은 사람은?");
             Player player = new Player(readLine());
@@ -69,7 +69,7 @@ public class InputView {
         });
     }
 
-    private Player selectPlayer(final Map<Player, LadderResult> ladderGameResults, final Player player) {
+    private Player selectPlayer(final Map<Player, Reward> ladderGameResults, final Player player) {
         if (player.equals(ALL)) {
             return ALL;
         }

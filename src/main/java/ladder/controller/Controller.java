@@ -9,11 +9,11 @@ import ladder.domain.attribute.Width;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderBuilder;
 import ladder.domain.ladder.LadderGame;
-import ladder.domain.ladder.LadderResult;
-import ladder.domain.ladder.LadderResults;
 import ladder.domain.ladder.LadderRow;
 import ladder.domain.ladder.direction.DefaultLadderDirectionSelector;
 import ladder.domain.ladder.direction.LadderDirection;
+import ladder.domain.ladder.reward.Reward;
+import ladder.domain.ladder.reward.Rewards;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.view.InputView;
@@ -32,11 +32,11 @@ public class Controller {
     public void run() {
         Players players = inputView.inputNames();
         Width<LadderDirection> width = new Width<>(players.count());
-        LadderResults ladderResults = inputView.inputLadderResults(width);
+        Rewards rewards = inputView.inputRewards(width);
         Height<LadderRow> height = inputView.inputHeight();
         Ladder ladder = createLadder(width, height);
-        LadderGame ladderGame = LadderGame.of(players, ladderResults, ladder);
-        Map<Player, LadderResult> ladderGameResult = play(ladderGame);
+        LadderGame ladderGame = LadderGame.of(players, rewards, ladder);
+        Map<Player, Reward> ladderGameResult = play(ladderGame);
         printLadderGameResults(ladderGameResult);
     }
 
@@ -48,19 +48,19 @@ public class Controller {
                 .build();
     }
 
-    private Map<Player, LadderResult> play(final LadderGame ladderGame) {
+    private Map<Player, Reward> play(final LadderGame ladderGame) {
         resultView.printLadderGame(ladderGame);
         return ladderGame.play();
     }
 
-    private void printLadderGameResults(final Map<Player, LadderResult> ladderGameResults) {
+    private void printLadderGameResults(final Map<Player, Reward> ladderGameResults) {
         while (true) {
             Player player = inputView.inputPlayerFrom(ladderGameResults);
             if (player.equals(ALL)) {
                 resultView.printAllResult(ladderGameResults);
                 break;
             }
-            resultView.printResult(ladderGameResults.get(player));
+            resultView.printReward(ladderGameResults.get(player));
         }
     }
 }

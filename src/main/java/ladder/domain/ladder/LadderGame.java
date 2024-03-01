@@ -3,31 +3,33 @@ package ladder.domain.ladder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import ladder.domain.ladder.reward.Reward;
+import ladder.domain.ladder.reward.Rewards;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 
 public class LadderGame {
 
-    private final Ladder ladder;
     private final Players players;
-    private final LadderResults ladderResults;
+    private final Rewards rewards;
+    private final Ladder ladder;
 
-    private LadderGame(final Players players, final LadderResults ladderResults, final Ladder ladder) {
+    private LadderGame(final Players players, final Rewards rewards, final Ladder ladder) {
         this.ladder = ladder;
         this.players = players;
-        this.ladderResults = ladderResults;
+        this.rewards = rewards;
     }
 
-    public static LadderGame of(final Players players, final LadderResults ladderResults, final Ladder ladder) {
-        return new LadderGame(players, ladderResults, ladder);
+    public static LadderGame of(final Players players, final Rewards rewards, final Ladder ladder) {
+        return new LadderGame(players, rewards, ladder);
     }
 
-    public Map<Player, LadderResult> play() {
-        Map<Player, LadderResult> results = new LinkedHashMap<>();
+    public Map<Player, Reward> play() {
+        Map<Player, Reward> results = new LinkedHashMap<>();
         players.players().forEach(player -> {
             LadderPosition start = new LadderPosition(0, players.orderOf(player));
             LadderPosition end = ladder.climbDownFrom(start);
-            results.put(player, ladderResults.get(end.column()));
+            results.put(player, rewards.get(end.column()));
         });
         return results;
     }
@@ -40,7 +42,7 @@ public class LadderGame {
         return players;
     }
 
-    public LadderResults ladderResults() {
-        return ladderResults;
+    public Rewards rewards() {
+        return rewards;
     }
 }

@@ -7,10 +7,10 @@ import java.util.StringJoiner;
 
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderGame;
-import ladder.domain.ladder.LadderResult;
-import ladder.domain.ladder.LadderResults;
 import ladder.domain.ladder.LadderRow;
 import ladder.domain.ladder.direction.LadderDirection;
+import ladder.domain.ladder.reward.Reward;
+import ladder.domain.ladder.reward.Rewards;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 
@@ -25,7 +25,7 @@ public class ResultView {
         System.out.println("\n실행 결과\n");
         printPlayers(ladderGame.players());
         printLadder(ladderGame.ladder());
-        printResults(ladderGame.ladderResults());
+        printRewards(ladderGame.rewards());
     }
 
     private void printPlayers(final Players players) {
@@ -38,18 +38,18 @@ public class ResultView {
         ladder.getLadderRows().forEach(this::printLadderRow);
     }
 
-    private void printResults(final LadderResults results) {
+    private void printRewards(final Rewards rewards) {
         StringJoiner stringJoiner = new StringJoiner(NAME_DELIMITER);
-        results.getLadderResults().forEach(result -> stringJoiner.add(NAME_FORMAT.formatted(result.value())));
+        rewards.getRewards().forEach(reward -> stringJoiner.add(NAME_FORMAT.formatted(reward.value())));
         System.out.println(stringJoiner);
     }
 
-    public void printResult(final LadderResult result) {
+    public void printReward(final Reward reward) {
         System.out.println("\n실행 결과");
-        System.out.println(result.value());
+        System.out.println(reward.value());
     }
 
-    public void printAllResult(final Map<Player, LadderResult> allResult) {
+    public void printAllResult(final Map<Player, Reward> allResult) {
         System.out.println("\n실행 결과");
         allResult.forEach(((player, result) -> System.out.printf("%s : %s%n", player.name(), result.value())));
     }
