@@ -17,4 +17,8 @@ public class RandomElementSelector {
         Collections.shuffle(collection);
         return collection.get(0);
     }
+
+    public static <T extends Enum<T>> T selectRandomFrom(T... constants) {
+        return selectRandomElement(Arrays.asList(constants));
+    }
 }
