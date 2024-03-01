@@ -28,7 +28,7 @@ public class Results {
         return values;
     }
 
-    public Result findResultAtIndex(final int index) {
+    public Result findAtIndex(final int index) {
         return values.get(index);
     }
 }

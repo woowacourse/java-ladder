@@ -36,7 +36,7 @@ public class Names {
         return values.size();
     }
 
-    public Name findNameAtIndex(int index) {
+    public Name findAtIndex(int index) {
         return values.get(index);
     }
 

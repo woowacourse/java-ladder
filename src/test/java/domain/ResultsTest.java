@@ -45,7 +45,7 @@ public class ResultsTest {
         String expectedResult = "2000";
 
         //when
-        Result result = results.findResultAtIndex(index);
+        Result result = results.findAtIndex(index);
 
         //then
         assertThat(result.getValue()).isEqualTo(expectedResult);

@@ -17,7 +17,7 @@ public class PlayerResults {
         Map<Name, Result> playerResults = new LinkedHashMap<>();
         for (int from = 0; from < names.count(); from++) {
             int to = ladder.climb(from);
-            playerResults.put(names.findNameAtIndex(from), results.findResultAtIndex(to));
+            playerResults.put(names.findAtIndex(from), results.findAtIndex(to));
         }
 
         return new PlayerResults(playerResults);

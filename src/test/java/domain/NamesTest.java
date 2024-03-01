@@ -95,7 +95,7 @@ class NamesTest {
         final String expectedName = "crong";
 
         //when
-        Name name = names.findNameAtIndex(index);
+        Name name = names.findAtIndex(index);
 
         //then
         assertThat(name.getValue()).isEqualTo(expectedName);
