@@ -15,9 +15,9 @@ public class NameTest {
     }
 
     @Test
-    void 이름으로_all을_입력하면_예외가_발생한다() {
-        String invalidName = "all";
-        assertThatThrownBy(() -> new Name(invalidName))
+    void 예약된_키워드를_이름으로_입력하면_예외가_발생한다() {
+        String reserved = "all";
+        assertThatThrownBy(() -> new Name(reserved))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 import domain.booleanGenerator.BooleanGenerator;
 import domain.player.Name;
+import domain.player.Player;
 import domain.player.Players;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -31,10 +32,10 @@ public class LadderTest {
         // given
         Height height = new Height(3);
         Players players = new Players(List.of(
-                new Name("name1"),
-                new Name("name2"),
-                new Name("name3"),
-                new Name("name4")
+                new Player(new Name("name1"), 0),
+                new Player(new Name("name2"), 1),
+                new Player(new Name("name3"), 2),
+                new Player(new Name("name4"), 3)
         ));
 
         /*

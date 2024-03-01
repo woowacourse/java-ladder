@@ -19,7 +19,7 @@ public class OutputView {
 
         players.getNames()
                 .stream()
-                .map(name -> alignStringCenter(name.getValue()))
+                .map(OutputView::alignStringCenter)
                 .forEach(stringBuilder::append);
 
         System.out.println(stringBuilder);

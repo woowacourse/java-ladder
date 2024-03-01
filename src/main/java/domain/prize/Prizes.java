@@ -8,6 +8,7 @@ public class Prizes {
 
     private final List<Prize> prizes;
 
+    // TODO: 플레이어 수 만큼 Prize가 입력 되어야 한다.
     public Prizes(final List<Prize> prizes) {
         this.prizes = prizes;
     }
@@ -19,7 +20,6 @@ public class Prizes {
         return prizes.get(index);
     }
 
-    // TODO: 결과가 이상하게 나와요 ㅜ ㅅ ㅜ
     public Prize findResultByPlayer(final Player player) {
         return findPrizeByIndex(player.getPosition());
     }

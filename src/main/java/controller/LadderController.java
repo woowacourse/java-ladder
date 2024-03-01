@@ -7,10 +7,12 @@ import domain.booleanGenerator.BooleanGenerator;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.player.Name;
+import domain.player.Player;
 import domain.player.Players;
 import domain.prize.Prize;
 import domain.prize.Prizes;
 import java.util.List;
+import java.util.stream.IntStream;
 import view.InputView;
 import view.OutputView;
 
@@ -44,9 +46,12 @@ public class LadderController {
 
     private Players generatePlayers() {
         final List<String> names = InputView.inputPlayerNames();
-        return names.stream()
-                .map(Name::new)
-                .collect(collectingAndThen(toList(), Players::new));
+
+        final List<Player> players = IntStream.range(0, names.size())
+                .mapToObj(index -> new Player(new Name(names.get(index)), index))
+                .toList();
+
+        return new Players(players);
     }
 
     private Prizes generatePrizes() {

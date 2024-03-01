@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import domain.player.Name;
-import domain.player.Players;
+import domain.player.Player;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -23,17 +23,17 @@ public class PrizesTest {
     @Test
     void 각_플레이어의_현재_위치에_대한_결과를_출력할_수_있다() {
         // given
-        Players players = new Players(List.of(
-                new Name("name1"),
-                new Name("name2")
-        ));
+        final List<Player> players = List.of(
+                new Player(new Name("name1"), 0),
+                new Player(new Name("name2"), 1)
+        );
 
         Prizes prizes = new Prizes(List.of(
                 new Prize("꽝1"),
                 new Prize("꽝2")));
 
-        final Prize prize1 = prizes.findResultByPlayer(players.findPlayerByIndex(0));
-        final Prize prize2 = prizes.findResultByPlayer(players.findPlayerByIndex(1));
+        final Prize prize1 = prizes.findResultByPlayer(players.get(0));
+        final Prize prize2 = prizes.findResultByPlayer(players.get(1));
 
         assertThat(prize1.getValue()).isEqualTo("꽝1");
         assertThat(prize2.getValue()).isEqualTo("꽝2");

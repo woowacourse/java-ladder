@@ -31,24 +31,4 @@ public class Name {
     public String getValue() {
         return name;
     }
-
-    public int getLength() {
-        return name.length();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof Name name) {
-            return this.name.equals(name.name);
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return this.name.hashCode();
-    }
 }

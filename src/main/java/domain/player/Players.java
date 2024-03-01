@@ -1,6 +1,5 @@
 package domain.player;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Players {
@@ -10,25 +9,19 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(final List<Name> names) {
-        players = new ArrayList<>();
-
-        validateDuplicateName(names);
-        names.forEach(this::addPlayer);
+    public Players(final List<Player> players) {
+        validateDuplicate(players);
+        this.players = players;
     }
 
-    private void addPlayer(final Name name) {
-        players.add(new Player(name, players.size()));
-    }
-
-    private void validateDuplicateName(List<Name> names) {
-        if (getUniqueNamesSize(names) != names.size()) {
+    private void validateDuplicate(List<Player> players) {
+        if (getUniquePlayerSize(players) != players.size()) {
             throw new IllegalArgumentException(DUPLICATE_EXCEPTION_MESSAGE);
         }
     }
 
-    private long getUniqueNamesSize(final List<Name> names) {
-        return names.stream()
+    private long getUniquePlayerSize(final List<Player> players) {
+        return players.stream()
                 .distinct()
                 .count();
     }
@@ -43,16 +36,14 @@ public class Players {
 
     public Player findPlayerByName(final String name) {
         return players.stream()
-                .filter(player -> player.getName()
-                        .getValue()
-                        .equals(name)
-                ).findAny()
+                .filter(player -> name.equals(player.getName()))
+                .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(NO_RESULT_FOUND_EXCEPTION_MESSAGE));
     }
 
     public int findMaxNameLength() {
         return getNames().stream()
-                .mapToInt(Name::getLength)
+                .mapToInt(String::length)
                 .max()
                 .orElse(0);
     }
@@ -61,7 +52,7 @@ public class Players {
         return players.size();
     }
 
-    public List<Name> getNames() {
+    public List<String> getNames() {
         return players.stream()
                 .map(Player::getName)
                 .toList();
