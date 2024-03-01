@@ -13,21 +13,21 @@ class UserNameTest {
     @ParameterizedTest
     @ValueSource(strings = {"rushrush", "paperp", "pobipobipo"})
     @DisplayName("사용자 이름이 5글자 이하면 예외가 발생한다")
-    void userNameLengthTest(String userName) {
+    void userNameLengthTest(final String userName) {
         assertThatThrownBy(() -> new UserName(userName)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"", " "})
     @DisplayName("사용자 이름은 비어 있으면 예외가 발생한다")
-    void userNameEmptyTest(String userName) {
+    void userNameEmptyTest(final String userName) {
         assertThatThrownBy(() -> new UserName(userName)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"종이러쉬", "!!#", "\uD83D\uDE03\uD83D"})
     @DisplayName("사용자 이름에 영문이 아닌 문자가 포함되면 예외가 발생한다")
-    void userNameSpecialCharacter(String userName) {
+    void userNameSpecialCharacter(final String userName) {
         assertThatThrownBy(() -> new UserName(userName)).isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.*;
 
 class UsersTest {
     @Test
-    @DisplayName("사용자가 두명 미만이면 예외가 발생한다")
+    @DisplayName("사용자가 한 명 이하이면 예외가 발생한다")
     void createOnlyUsers() {
         final String userNames = "pobi";
 
@@ -22,7 +22,7 @@ class UsersTest {
     }
 
     @Test
-    @DisplayName("사용자는 최대 50명을 초과하면 예외가 발생한다")
+    @DisplayName("사용자가 50명을 초과하면 예외가 발생한다")
     void maxUsers() {
         final List<String> userNames = new ArrayList<>();
         for (int i = 1; i <= 50; i++) {

@@ -41,34 +41,11 @@ public class Ladder {
     }
 
     public int playByPosition(final int horizontalPosition) {
-        final Position position = new Position(horizontalPosition, 0);
+        final Position position = new Position(horizontalPosition);
 
-        while (position.getVerticalLocation() < getHeight()) {
-            moveHorizontally(position);
-            position.moveDown();
-        }
+        ladder.forEach(position::moveHorizontally);
 
-        return position.getHorizontalLocation();
-    }
-
-    private void moveHorizontally(final Position position) {
-        final int beforeHorizontalLocation = position.getHorizontalLocation() - 1;
-        final boolean beforeConnectivity = inRange(beforeHorizontalLocation) &&
-                hasBridge(beforeHorizontalLocation, position.getVerticalLocation());
-        final boolean currentConnectivity = inRange(position.getHorizontalLocation()) &&
-                hasBridge(position.getHorizontalLocation(), position.getVerticalLocation());
-
-        position.moveLeft(beforeConnectivity);
-        position.moveRight(currentConnectivity);
-    }
-
-    private boolean hasBridge(final int horizontalLocation, final int verticalLocation) {
-        final Line currentLine = ladder.get(verticalLocation);
-        return currentLine.checkConnectivity(horizontalLocation);
-    }
-
-    private boolean inRange(final int horizontalPosition) {
-        return horizontalPosition >= 0 && horizontalPosition < getWidth();
+        return position.getValue();
     }
 
     public List<Line> getLadder() {

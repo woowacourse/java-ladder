@@ -1,37 +1,54 @@
 package domain;
 
+import java.util.List;
+
 public class Position {
-    private int verticalLocation;
-    private int horizontalLocation;
+
+    private int value;
 
 
-    public Position(final int horizontalLocation, final int verticalLocation) {
-        this.horizontalLocation = horizontalLocation;
-        this.verticalLocation = verticalLocation;
+    public Position(final int value) {
+        this.value = value;
     }
 
-    public int moveDown() {
-        verticalLocation = verticalLocation + 1;
-        return verticalLocation;
+    public void moveHorizontally(final Line line) {
+        final List<Bridge> bridges = line.getBridges();
+
+        if (handleRight(bridges)) {
+            return;
+        }
+
+        handleLeft(bridges);
     }
 
-    public void moveLeft(final boolean condition) {
-        if (condition) {
-            horizontalLocation = horizontalLocation - 1;
+    private void handleLeft(final List<Bridge> bridges) {
+        final boolean isNotFirstBridge = value > 0;
+
+        if (isNotFirstBridge && bridges.get(value - 1).isConnected()) {
+            moveLeft();
         }
     }
 
-    public void moveRight(final boolean condition) {
-        if (condition) {
-            horizontalLocation = horizontalLocation + 1;
+    private boolean handleRight(final List<Bridge> bridges) {
+        final boolean isNotEndBridge = value < bridges.size();
+
+        if (isNotEndBridge && bridges.get(value).isConnected()) {
+            moveRight();
+            return true;
         }
+
+        return false;
     }
 
-    public int getVerticalLocation() {
-        return verticalLocation;
+    private void moveLeft() {
+        value = value - 1;
     }
 
-    public int getHorizontalLocation() {
-        return horizontalLocation;
+    private void moveRight() {
+        value = value + 1;
+    }
+
+    public int getValue() {
+        return value;
     }
 }

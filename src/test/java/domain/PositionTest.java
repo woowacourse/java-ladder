@@ -2,41 +2,21 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 class PositionTest {
+
     @Test
-    @DisplayName("Position의 아래 이동을 확인한다.")
-    void moveDown() {
-        final Position position = new Position(0, 0);
+    @DisplayName("올바르게 움직이는지 확인한다")
+    void moveHorizontally() {
+        final Line line = new Line(List.of(Bridge.BRIDGE));
+        final Position position = new Position(0);
 
-        final int newPosition = position.moveDown();
+        position.moveHorizontally(line);
 
-        assertThat(newPosition).isEqualTo(1);
+        assertThat(position.getValue()).isEqualTo(1);
     }
 
-    @ParameterizedTest
-    @CsvSource(value = {"true, -1", "false, 0"})
-    @DisplayName("Position은 주어진 조건에 따라 왼쪽 이동을 한다.")
-    void moveLeft(boolean condition, int expectedPosition) {
-        final Position position = new Position(0, 0);
-
-        position.moveLeft(condition);
-
-        assertThat(position.getHorizontalLocation()).isEqualTo(expectedPosition);
-    }
-
-    @ParameterizedTest
-    @CsvSource(value = {"true, 1", "false, 0"})
-    @DisplayName("Position은 주어진 조건에 따라 오른쪽 이동을 한다.")
-    void moveRight(boolean condition, int expectedPosition) {
-        final Position position = new Position(0, 0);
-
-        position.moveRight(condition);
-
-        assertThat(position.getHorizontalLocation()).isEqualTo(expectedPosition);
-    }
 }

@@ -33,9 +33,5 @@ public class Line {
     public int getWidth() {
         return bridges.size();
     }
-
-    public boolean checkConnectivity(final int position) {
-        final Bridge targetBridge = bridges.get(position);
-        return targetBridge.isConnected();
-    }
+    
 }

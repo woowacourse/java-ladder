@@ -1,7 +1,6 @@
 package view;
 
 import domain.Ladder;
-import domain.Bridge;
 import domain.Line;
 import java.util.List;
 
@@ -51,8 +50,8 @@ public class ResultView {
         return "    " + drawLine(line);
     }
 
-    private static String drawLine(Line line) {
-        StringBuilder stringBuilder = new StringBuilder();
+    private static String drawLine(final Line line) {
+        final StringBuilder stringBuilder = new StringBuilder();
         for (Bridge bridge : line.getBridges()) {
             stringBuilder.append(drawBridge(bridge));
         }

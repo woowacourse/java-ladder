@@ -34,6 +34,7 @@ public class LadderGame {
             printAllResult(users, ladder, results);
             return;
         }
+
         final int endPosition = ladder.playByPosition(users.findPositionByName(target));
         ResultView.printTargetResultMessage();
         ResultView.printTargetResult(results.get(endPosition));
