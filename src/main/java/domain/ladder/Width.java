@@ -1,9 +1,9 @@
 package domain.ladder;
 
-import domain.player.Names;
+import domain.player.PlayerNames;
 
 public record Width(int value) {
-    public static Width from(final Names names) {
-        return new Width(names.count() - 1);
+    public static Width from(final PlayerNames playerNames) {
+        return new Width(playerNames.count() - 1);
     }
 }

@@ -1,10 +1,10 @@
 package domain.player;
 
-public record Name(String value) {
+public record PlayerName(String value) {
 
     private static final int MAX_NAME_LENGTH = 5;
 
-    public Name {
+    public PlayerName {
         validateLength(value);
     }
 

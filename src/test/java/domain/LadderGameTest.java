@@ -10,7 +10,7 @@ import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.LadderFactory;
 import domain.ladder.Width;
-import domain.player.Names;
+import domain.player.PlayerNames;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,14 +28,14 @@ class LadderGameTest {
                 false, true, false,
                 true, false, true
         ));
-        final Names names = Names.of(List.of("pobi", "honux"));
+        final PlayerNames playerNames = PlayerNames.from(List.of("pobi", "honux"));
         final Results results = new Results(List.of(new Result("꽝"), new Result("3000")));
         final Height height = new Height(5);
-        final Width width = Width.from(names);
+        final Width width = Width.from(playerNames);
         final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, height, width);
 
         //when & then
-        assertThatCode(() -> new LadderGame(names, results, ladder))
+        assertThatCode(() -> new LadderGame(playerNames, results, ladder))
                 .doesNotThrowAnyException();
     }
 
@@ -50,14 +50,14 @@ class LadderGameTest {
                 false, true, false,
                 true, false, true
         ));
-        final Names names = Names.of(List.of("pobi", "honux"));
+        final PlayerNames playerNames = PlayerNames.from(List.of("pobi", "honux"));
         final Results results = new Results(List.of(new Result("꽝")));
         final Height height = new Height(5);
-        final Width width = Width.from(names);
+        final Width width = Width.from(playerNames);
         final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, height, width);
 
         //when & then
-        assertThatThrownBy(() -> new LadderGame(names, results, ladder))
+        assertThatThrownBy(() -> new LadderGame(playerNames, results, ladder))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -72,23 +72,23 @@ class LadderGameTest {
                 false, true, false,
                 true, false, true
         ));
-        final Names names = Names.of(List.of("pobi", "honux", "crong", "jk"));
+        final PlayerNames playerNames = PlayerNames.from(List.of("pobi", "honux", "crong", "jk"));
         final Results results = new Results(List.of(
                 new Result("꽝"), new Result("5000"), new Result("꽝"), new Result("3000"))
         );
         final Height height = new Height(5);
-        final Width width = Width.from(names);
+        final Width width = Width.from(playerNames);
         final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, height, width);
-        final LadderGame ladderGame = new LadderGame(names, results, ladder);
+        final LadderGame ladderGame = new LadderGame(playerNames, results, ladder);
 
         final GameResults gameResults = ladderGame.calculateGameResults();
 
         //when & then
         assertAll(
-                () -> assertThat(gameResults.findByName("pobi")).isEqualTo(new GameResult("pobi", "꽝")),
-                () -> assertThat(gameResults.findByName("honux")).isEqualTo(new GameResult("honux", "3000")),
-                () -> assertThat(gameResults.findByName("crong")).isEqualTo(new GameResult("crong", "꽝")),
-                () -> assertThat(gameResults.findByName("jk")).isEqualTo(new GameResult("jk", "5000"))
+                () -> assertThat(gameResults.findBy("pobi")).isEqualTo(new GameResult("pobi", "꽝")),
+                () -> assertThat(gameResults.findBy("honux")).isEqualTo(new GameResult("honux", "3000")),
+                () -> assertThat(gameResults.findBy("crong")).isEqualTo(new GameResult("crong", "꽝")),
+                () -> assertThat(gameResults.findBy("jk")).isEqualTo(new GameResult("jk", "5000"))
         );
     }
 
@@ -103,23 +103,23 @@ class LadderGameTest {
                 false, true, false,
                 true, false, true
         ));
-        final Names names = Names.of(List.of("pobi", "honux", "crong", "jk"));
+        final PlayerNames playerNames = PlayerNames.from(List.of("pobi", "honux", "crong", "jk"));
         final Results results = new Results(List.of(
                 new Result("꽝"), new Result("5000"), new Result("꽝"), new Result("3000"))
         );
         final Height height = new Height(5);
-        final Width width = Width.from(names);
+        final Width width = Width.from(playerNames);
         final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, height, width);
-        final LadderGame ladderGame = new LadderGame(names, results, ladder);
+        final LadderGame ladderGame = new LadderGame(playerNames, results, ladder);
 
         final GameResults gameResults = ladderGame.calculateGameResults();
 
         //when & then
         assertAll(
-                () -> assertThat(gameResults.findByIndex(0)).isEqualTo(new GameResult("pobi", "꽝")),
-                () -> assertThat(gameResults.findByIndex(1)).isEqualTo(new GameResult("honux", "3000")),
-                () -> assertThat(gameResults.findByIndex(2)).isEqualTo(new GameResult("crong", "꽝")),
-                () -> assertThat(gameResults.findByIndex(3)).isEqualTo(new GameResult("jk", "5000"))
+                () -> assertThat(gameResults.findBy(0)).isEqualTo(new GameResult("pobi", "꽝")),
+                () -> assertThat(gameResults.findBy(1)).isEqualTo(new GameResult("honux", "3000")),
+                () -> assertThat(gameResults.findBy(2)).isEqualTo(new GameResult("crong", "꽝")),
+                () -> assertThat(gameResults.findBy(3)).isEqualTo(new GameResult("jk", "5000"))
         );
     }
 }

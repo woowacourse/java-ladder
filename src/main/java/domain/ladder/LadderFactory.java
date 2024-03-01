@@ -7,7 +7,7 @@ public class LadderFactory {
 
     public static Ladder createByStrategy(BridgeGenerator bridgeGenerator, Height height, Width width) {
         final List<Floor> ladder = new ArrayList<>();
-        for (int i = 0; i < height.getValue(); i++) {
+        for (int i = 0; i < height.value(); i++) {
             ladder.add(FloorFactory.createByStrategy(bridgeGenerator, width));
         }
         return new Ladder(ladder);

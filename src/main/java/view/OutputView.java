@@ -6,7 +6,7 @@ import domain.Results;
 import domain.ladder.Bridge;
 import domain.ladder.Floor;
 import domain.ladder.Ladder;
-import domain.player.Names;
+import domain.player.PlayerNames;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -20,9 +20,9 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printGameBoard(final Names names, final Ladder ladder, final Results results) {
+    public static void printGameBoard(final PlayerNames playerNames, final Ladder ladder, final Results results) {
         printResultMessage();
-        printWithFormat(names.getValues());
+        printWithFormat(playerNames.getValues());
         printLadder(ladder);
         printWithFormat(results.getValues());
     }
@@ -63,8 +63,8 @@ public class OutputView {
     public static void printResults(GameResults gameResults) {
         System.out.println(System.lineSeparator() + "실행 결과");
         for (int index = 0; index < gameResults.count(); index++) {
-            final GameResult gameResult = gameResults.findByIndex(index);
-            System.out.println(gameResult.name() + RESULT_SEPARATOR + gameResult.result());
+            final GameResult gameResult = gameResults.findBy(index);
+            System.out.println(gameResult.playerName() + RESULT_SEPARATOR + gameResult.result());
         }
     }
 }

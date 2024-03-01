@@ -1,15 +1,12 @@
 package domain.ladder;
 
-public class Height {
+public record Height(int value) {
 
     private static final int MIN_HEIGHT = 1;
     private static final int MAX_HEIGHT = 10;
 
-    private final int value;
-
-    public Height(final int value) {
+    public Height {
         validateRange(value);
-        this.value = value;
     }
 
     private void validateRange(final int value) {
@@ -17,9 +14,5 @@ public class Height {
             throw new IllegalArgumentException(
                     String.format("사다리의 높이는 %d이상 %d이하 이어야 합니다.", MIN_HEIGHT, MAX_HEIGHT));
         }
-    }
-
-    public int getValue() {
-        return value;
     }
 }

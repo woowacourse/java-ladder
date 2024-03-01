@@ -28,7 +28,7 @@ class LadderTest {
         final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, height, width);
 
         //then
-        assertThat(ladder.getLadder()).hasSize(height.getValue());
+        assertThat(ladder.getLadder()).hasSize(height.value());
     }
 
     @DisplayName("위치를 받으면 사다리를 따라 이동한 결과 위치를 반환한다.")
@@ -46,10 +46,10 @@ class LadderTest {
 
         // when & then
         assertAll(
-                () -> assertThat(ladder.moveFrom(0)).isEqualTo(0),
-                () -> assertThat(ladder.moveFrom(1)).isEqualTo(3),
-                () -> assertThat(ladder.moveFrom(2)).isEqualTo(2),
-                () -> assertThat(ladder.moveFrom(3)).isEqualTo(1)
+                () -> assertThat(ladder.calculateResultPosition(0)).isEqualTo(0),
+                () -> assertThat(ladder.calculateResultPosition(1)).isEqualTo(3),
+                () -> assertThat(ladder.calculateResultPosition(2)).isEqualTo(2),
+                () -> assertThat(ladder.calculateResultPosition(3)).isEqualTo(1)
         );
     }
 }

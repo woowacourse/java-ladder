@@ -10,7 +10,7 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    public int moveFrom(final int startPosition) {
+    public int calculateResultPosition(final int startPosition) {
         int resultPosition = startPosition;
         for (final Floor floor : ladder) {
             resultPosition = floor.calculateResultPosition(resultPosition);
