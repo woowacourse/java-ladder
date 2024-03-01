@@ -33,11 +33,12 @@ public class LadderController {
 
     // TODO: 이름을 기반으로 Player를 조회하는 역할이 LadderGame인지, Controller인지 고민하기
     private void checkPrize(LadderGame ladderGame) {
-        String playerToCheck = "";
-        while (playerToCheck != "all") {
-            playerToCheck = inputView.readPlayersToCheck();
+        String playerToCheck = inputView.readPlayersToCheck();
+        while (!playerToCheck.equals("all")) {
             Prize prize = ladderGame.move(playerToCheck);
-            outputView.printPrize(prize.getName());
+            outputView.printPrizeResult(prize.getName());
+            playerToCheck = inputView.readPlayersToCheck();
         }
+        outputView.printPrizesResult(ladderGame.moveAll());
     }
 }

@@ -1,5 +1,9 @@
 package model.ladderGame;
 
+import controller.dto.PrizeResult;
+import controller.dto.PrizesResult;
+import java.util.ArrayList;
+import java.util.List;
 import model.ladder.Ladder;
 import model.players.Players;
 import model.players.Position;
@@ -20,6 +24,15 @@ public class LadderGame {
     public Prize move(String name) {
         Position position = players.findPositionByName(name);
         return prizes.getPrizeByIndex(ladder.move(position));
+    }
+
+    public PrizesResult moveAll() {
+        List<PrizeResult> results = new ArrayList<>();
+        for (String name : players.getNames()) {
+            Prize prize = move(name);
+            results.add(new PrizeResult(name, prize.getName()));
+        }
+        return new PrizesResult(results);
     }
 }
 
