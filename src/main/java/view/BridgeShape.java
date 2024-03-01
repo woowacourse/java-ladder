@@ -9,7 +9,7 @@ public enum BridgeShape {
     BRIDGE("-----", Bridge.EXIST),
     NO_BRIDGE("     ", Bridge.NOT_EXIST);
 
-    private static final int MATCHED_BRIDGE_SHAPE_COUNT = 1;
+    private static final int ONLY_ONE_FOUND = 1;
 
     private final String shape;
     private final Bridge bridge;
@@ -24,7 +24,7 @@ public enum BridgeShape {
                 .filter(bridgeShape -> bridgeShape.bridge == bridge)
                 .toList();
 
-        if (matchedBridgeShape.size() != MATCHED_BRIDGE_SHAPE_COUNT) {
+        if (matchedBridgeShape.size() != ONLY_ONE_FOUND) {
             throw new IllegalStateException("BridgeShape을 찾을 수 없거나 중복되는 값이 존재합니다.");
         }
 
