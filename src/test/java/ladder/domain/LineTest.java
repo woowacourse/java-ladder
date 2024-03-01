@@ -13,7 +13,7 @@ public class LineTest {
     private final RandomPointsGenerator testPointsGenerator = new RandomPointsGenerator() {
         @Override
         public List<Point> generate(int size) {
-            return List.of(Point.ON, Point.OFF, Point.ON);
+            return List.of(Point.ON, Point.OFF, Point.ON, Point.OFF);
         }
     };
 
@@ -21,18 +21,18 @@ public class LineTest {
     @DisplayName("입력 받은 만큼 좌표를 생성한다.")
     void createLine() {
         // when
-        List<Point> points = new RandomPointsGenerator().generate(3);
+        List<Point> points = new RandomPointsGenerator().generate(4);
         Line line = new Line(points);
 
         // then
-        assertThat(line.getPoints()).hasSize(3);
+        assertThat(line.getPoints()).hasSize(4);
     }
 
     @Test
     @DisplayName("사다리가 오른쪽으로 연결되어 있다면 오른쪽으로 내려온다.")
     public void rideRight() {
         // given
-        List<Point> points = testPointsGenerator.generate(3);
+        List<Point> points = testPointsGenerator.generate(4);
         Line line = new Line(points);
 
         // when
@@ -46,7 +46,7 @@ public class LineTest {
     @DisplayName("사다리가 왼쪽으로 연결되어 있다면 왼쪽으로 내려온다.")
     public void rideLeft() {
         // given
-        List<Point> points = testPointsGenerator.generate(3);
+        List<Point> points = testPointsGenerator.generate(4);
         Line line = new Line(points);
 
         // when
@@ -60,11 +60,11 @@ public class LineTest {
     @DisplayName("사다리가 없는 위치라면 예외가 발생한다.")
     public void NoneLineExceptionTest() {
         // given
-        List<Point> points = testPointsGenerator.generate(3);
+        List<Point> points = testPointsGenerator.generate(4);
         Line line = new Line(points);
 
         // when & then
-        assertThatThrownBy(() -> line.ride(4))
+        assertThatThrownBy(() -> line.ride(5))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
