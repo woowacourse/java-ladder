@@ -1,9 +1,11 @@
-package model;
+package model.people;
+
+import model.Count;
 
 public class PersonCount extends Count {
     private static final int MIN_PERSON_COUNT = 2;
 
-    PersonCount(final int count) {
+    public PersonCount(final int count) {
         super(count);
     }
 

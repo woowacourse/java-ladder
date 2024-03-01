@@ -1,4 +1,6 @@
-package model;
+package model.people;
+
+import model.Name;
 
 public class PersonName extends Name {
     private static final int MIN_NAME_LENGTH = 1;

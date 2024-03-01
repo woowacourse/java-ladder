@@ -1,21 +1,24 @@
-package model;
+package model.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
 import model.line.Line;
 import model.line.LinesGenerator;
+import model.people.PersonCount;
 
 public class Ladder {
     private final List<Line> lines;
+    private final Height height;
 
-    private Ladder(final List<Line> lines) {
+    private Ladder(final List<Line> lines, final Height height) {
         this.lines = lines;
+        this.height = height;
     }
 
     public static Ladder from(final Height height, final PersonCount personCount, final LinesGenerator linesGenerator) {
         int pathCount = personCount.getCount() - 1;
         final List<Line> lines = linesGenerator.generate(height, pathCount);
-        return new Ladder(lines);
+        return new Ladder(lines, height);
     }
 
     public int climb(final int startIndex) {

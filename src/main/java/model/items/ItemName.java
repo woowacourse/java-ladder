@@ -1,4 +1,6 @@
-package model;
+package model.items;
+
+import model.Name;
 
 public class ItemName extends Name {
     public ItemName(final String name) {

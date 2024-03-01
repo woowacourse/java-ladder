@@ -1,4 +1,6 @@
-package model;
+package model.people;
+
+import model.Name;
 
 public class Person {
     private final Name name;

@@ -3,8 +3,7 @@ package model.line;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import model.Height;
-import model.Path;
+import model.ladder.Height;
 
 public class RandomLinesGenerator implements LinesGenerator {
     private final Random random = new Random();

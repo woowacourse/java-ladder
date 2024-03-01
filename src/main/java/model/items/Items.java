@@ -1,7 +1,8 @@
-package model;
+package model.items;
 
 import java.util.Collections;
 import java.util.List;
+import model.people.PersonCount;
 
 public class Items {
 

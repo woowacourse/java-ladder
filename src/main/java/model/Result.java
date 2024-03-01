@@ -3,6 +3,10 @@ package model;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import model.items.Item;
+import model.items.Items;
+import model.people.People;
+import model.people.Person;
 
 public class Result {
     private final Map<Person, Item> matchedResult;

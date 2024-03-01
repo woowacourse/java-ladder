@@ -2,8 +2,8 @@ package dto;
 
 import java.util.HashMap;
 import java.util.Map;
-import model.Item;
-import model.Person;
+import model.items.Item;
+import model.people.Person;
 import model.Result;
 
 public record ResultInfo(Map<String, String> personAndItemName) {

@@ -1,7 +1,6 @@
 package model.line;
 
 import java.util.List;
-import model.Path;
 
 public class Line {
     private static final int MIN_PATH_SIZE = 1;

@@ -1,4 +1,4 @@
-package model;
+package model.line;
 
 public enum Path {
     EXIST(true),
