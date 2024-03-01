@@ -12,18 +12,26 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class LadderGameTest {
+    private Players generatePlayersOf(int count) {
+        return Players.from(
+                IntStream.range(0, count)
+                        .mapToObj(i -> "P" + i)
+                        .toList()
+        );
+    }
+
+    private List<String> generateRewardsOf(int count) {
+        return IntStream.range(0, count)
+                .mapToObj(i -> "Reward_" + i)
+                .toList();
+    }
+
     @ParameterizedTest
     @DisplayName("사다리의 폭이 참여자 수와 다르다면 예외가 발생한다.")
     @CsvSource(value = {"3,3,2", "2,2,3"})
     void throwsExceptionIfPlayerCountAndLadderWidthDoesNotMatch(int playerCount, int rewardCount, int ladderWidth) {
-        Players players = Players.from(
-                IntStream.range(0, playerCount)
-                        .mapToObj(i -> "P" + i)
-                        .toList()
-        );
-        List<String> rewards = IntStream.range(0, rewardCount)
-                .mapToObj(i -> "Reward_" + i)
-                .toList();
+        Players players = generatePlayersOf(playerCount);
+        List<String> rewards = generateRewardsOf(rewardCount);
         int ladderHeight = 5;
         Ladder ladder = Ladder.of(ladderHeight, ladderWidth);
 
@@ -35,14 +43,8 @@ class LadderGameTest {
     @DisplayName("실행 결과(Reward)의 총 개수가 참여자 수와 다르다면 예외가 발생한다.")
     @CsvSource(value = {"3,2,3", "2,3,2"})
     void throwsExceptionIfPlayerCountAndRewardCountDoesNotMatch(int playerCount, int rewardCount, int ladderWidth) {
-        Players players = Players.from(
-                IntStream.range(0, playerCount)
-                        .mapToObj(i -> "P" + i)
-                        .toList()
-        );
-        List<String> rewards = IntStream.range(0, rewardCount)
-                .mapToObj(i -> "Reward_" + i)
-                .toList();
+        Players players = generatePlayersOf(playerCount);
+        List<String> rewards = generateRewardsOf(rewardCount);
         int ladderHeight = 5;
         Ladder ladder = Ladder.of(ladderHeight, ladderWidth);
 
@@ -54,14 +56,8 @@ class LadderGameTest {
     @DisplayName("사다리 폭, 실행 결과, 참여자 수가 모두 일치하면 LadderGame을 생성할 수 있다.")
     @CsvSource(value = {"3,3,3", "2,2,2"})
     void ladderGameCreationTest(int playerCount, int rewardCount, int ladderWidth) {
-        Players players = Players.from(
-                IntStream.range(0, playerCount)
-                        .mapToObj(i -> "P" + i)
-                        .toList()
-        );
-        List<String> rewards = IntStream.range(0, rewardCount)
-                .mapToObj(i -> "Reward_" + i)
-                .toList();
+        Players players = generatePlayersOf(playerCount);
+        List<String> rewards = generateRewardsOf(rewardCount);
         int ladderHeight = 5;
         Ladder ladder = Ladder.of(ladderHeight, ladderWidth);
 
