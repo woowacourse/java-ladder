@@ -16,7 +16,7 @@ public class Name {
     }
 
     private void validateNameLength(final String name) {
-        if (name.length() < MINIMUM_NAME || name.length() > MAXIMUM_NAME) {
+        if (name.isBlank() || name.length() > MAXIMUM_NAME) {
             throw new IllegalArgumentException(INVALID_NAME_LENGTH);
         }
     }

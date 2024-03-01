@@ -13,7 +13,7 @@ public class Result {
     }
 
     private void validateResultLength(final String value) {
-        if (value.length() < MINIMUM_RESULT_LENGTH || value.length() > MAXIMUM_RESULT_LENGTH) {
+        if (value.isBlank() || value.length() > MAXIMUM_RESULT_LENGTH) {
             throw new IllegalArgumentException(INVALID_RESULT_LENGTH);
         }
     }
