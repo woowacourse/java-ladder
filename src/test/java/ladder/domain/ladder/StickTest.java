@@ -1,6 +1,7 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,13 +11,13 @@ class StickTest {
     @Test
     void isExistTest() {
 
-        Assertions.assertThat(Stick.EXISTENCE.isExist()).isTrue();
+        assertThat(Stick.EXISTENCE.isExist()).isTrue();
     }
 
     @DisplayName("막대가 해당자리에 없는지 테스트")
     @Test
     void isNonExistTest() {
 
-        Assertions.assertThat(Stick.NON_EXISTENCE.isExist()).isFalse();
+        assertThat(Stick.NON_EXISTENCE.isExist()).isFalse();
     }
 }

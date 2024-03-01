@@ -1,8 +1,8 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import ladder.domain.linegenerator.StickListGenerator;
+import ladder.domain.ladder.linegenerator.StickListGenerator;
 
 public class Ladder {
 
@@ -19,9 +19,18 @@ public class Ladder {
         return new Ladder(generateLine);
     }
 
+    public int findResultPosition(int playerPosition) {
+        int resultPosition = playerPosition;
+        for (Line line : lines) {
+            resultPosition = line.findNextPosition(resultPosition);
+        }
+        return resultPosition;
+    }
+
     public boolean isExist(int height, int width) {
         if (height < 0 || height >= getHeight()) {
-            throw new IllegalArgumentException("높이 위치가 범위를 벗어났습니다.");
+            String message = "높이 위치가 범위를 벗어났습니다. Index : %d, Size : %d".formatted(height, getHeight());
+            throw new IndexOutOfBoundsException(message);
         }
         return lines.get(height).isExist(width);
     }
@@ -32,5 +41,9 @@ public class Ladder {
 
     public int getWidth() {
         return lines.get(0).getWidth();
+    }
+
+    public int getCountOfPlayers() {
+        return getWidth() + 1;
     }
 }

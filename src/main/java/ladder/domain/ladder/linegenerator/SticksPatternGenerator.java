@@ -1,9 +1,9 @@
-package ladder.domain.linegenerator;
+package ladder.domain.ladder.linegenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BooleanSupplier;
-import ladder.domain.Stick;
+import ladder.domain.ladder.Stick;
 
 public class SticksPatternGenerator implements StickListGenerator {
 
@@ -20,7 +20,7 @@ public class SticksPatternGenerator implements StickListGenerator {
         validate(countOfPlayers);
         int width = countOfPlayers - 1;
         List<Stick> sticks = new ArrayList<>();
-        while (sticks.size() < width) {
+        for (int i = 0; i < width; i++) {
             addStick(sticks);
         }
         return sticks;

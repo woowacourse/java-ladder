@@ -1,16 +1,36 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import ladder.domain.linegenerator.StickListGenerator;
+import ladder.domain.ladder.linegenerator.StickListGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LadderTest {
+
+    /*  0     1     2
+     *  |-----|     |
+     *  |-----|     |
+     *  |-----|     |
+     *  0     1     2
+     */
+    @DisplayName("플레이어의 위치에와 사다리에 따라 최종 플레이어의 결과 위치를 찾을 수 있다")
+    @ParameterizedTest(name = "초기 위치 : {0}, 최종 위치 : {1}")
+    @CsvSource({"0, 1", "1, 0", "2, 2"})
+    void progressGameTest(int playerPosition, int expected) {
+        Height height = new Height(3);
+        StickListGenerator stickListGenerator = countOfPlayers -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
+        Ladder ladder = Ladder.of(height, 3, stickListGenerator);
+
+        int actual = ladder.findResultPosition(playerPosition);
+
+        assertThat(actual).isEqualTo(expected);
+    }
 
     @DisplayName("사다리의 높이를 알 수 있다")
     @Test
@@ -38,6 +58,18 @@ class LadderTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+    @DisplayName("사다리를 통해 참가한 플레이어를 구할 수 있다")
+    @Test
+    void getCountOfPlayersTest() {
+        int countOfPlayers = 3;
+        StickListGenerator stickListGenerator = count -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
+        Ladder ladder = Ladder.of(new Height(3), countOfPlayers, stickListGenerator);
+
+        int actual = ladder.getCountOfPlayers();
+
+        assertThat(actual).isEqualTo(countOfPlayers);
+    }
+
     @DisplayName("특정 좌표에 스틱이 존재하는지 알 수 있다")
     @Test
     void isExistTest() {
@@ -58,7 +90,8 @@ class LadderTest {
         Ladder ladder = Ladder.of(height, 2, stickListGenerator);
         int widthValue = 0;
 
-        assertThatThrownBy(() -> ladder.isExist(heightValue, widthValue)).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("높이 위치가 범위를 벗어났습니다.");
+        assertThatThrownBy(() -> ladder.isExist(heightValue, widthValue))
+                .isInstanceOf(IndexOutOfBoundsException.class)
+                .hasMessage("높이 위치가 범위를 벗어났습니다. Index : %d, Size : %d".formatted(heightValue, 3));
     }
 }
