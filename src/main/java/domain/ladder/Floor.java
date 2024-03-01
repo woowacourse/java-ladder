@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Floor {
 
+    private static final int MIN_BRIDGE_INDEX = 0;
+
     private final List<Bridge> bridges;
 
     public Floor(List<Bridge> bridges) {
@@ -13,7 +15,7 @@ public class Floor {
 
     public int calculateResultPosition(final int startPosition) {
         final int leftBridgeIndex = startPosition - 1;
-        if (leftBridgeIndex >= 0 && bridges.get(leftBridgeIndex) == Bridge.BRIDGE) {
+        if (leftBridgeIndex >= MIN_BRIDGE_INDEX && bridges.get(leftBridgeIndex) == Bridge.BRIDGE) {
             return startPosition - 1;
         }
 
