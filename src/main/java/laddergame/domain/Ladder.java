@@ -19,7 +19,7 @@ public class Ladder {
     }
 
     public Direction move(Position position) {
-        if (position.getY() == lines.size()) {
+        if (position.isSamePositionY(lines.size())) {
             return Direction.END;
         }
         Direction nextDirection = lines.get(position.getY()).findDirection(position.getX());

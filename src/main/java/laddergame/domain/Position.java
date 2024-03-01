@@ -16,6 +16,13 @@ public class Position {
         y += direction.getMoveY();
     }
 
+    public boolean isSamePositionY(int value) {
+        if (value == y) {
+            return true;
+        }
+        return false;
+    }
+
     public int getX() {
         return x;
     }
