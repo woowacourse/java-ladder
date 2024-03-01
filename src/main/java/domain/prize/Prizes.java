@@ -18,11 +18,24 @@ public class Prizes {
                 .collect(collectingAndThen(toList(), Prizes::new));
     }
 
+    public int findMaxPrizeNameLength() {
+        return prizes.stream()
+                .mapToInt(Prize::getNameLength)
+                .max()
+                .orElse(0);
+    }
+
     public int count() {
         return prizes.size();
     }
 
     public Prize get(int index) {
         return prizes.get(index);
+    }
+
+    public List<String> getPrizes() {
+        return prizes.stream()
+                .map(Prize::getName)
+                .toList();
     }
 }
