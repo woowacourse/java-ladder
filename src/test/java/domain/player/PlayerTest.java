@@ -22,4 +22,20 @@ public class PlayerTest {
         assertThatCode(() -> new Player(name))
                 .doesNotThrowAnyException();
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"프린1", "@프린", "프린."})
+    void 이름에_한글_영문자만_포함하고_있지_않으면_객체를_생성할_때_예외가_발생한다(String name) {
+        // when & then
+        assertThatThrownBy(() -> new Player(name))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"프린", "prin", "프린p"})
+    void 이름에_한글_영문자만_포함하고_있으면_객체를_생성할_때_예외가_발생하지_않는다(String name) {
+        // when & then
+        assertThatCode(() -> new Player(name))
+                .doesNotThrowAnyException();
+    }
 }
