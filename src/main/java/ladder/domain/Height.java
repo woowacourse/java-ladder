@@ -14,7 +14,7 @@ public record Height<L>(int value) {
         }
     }
 
-    public List<L> repeat(Supplier<L> supplier) {
+    public List<L> repeat(final Supplier<L> supplier) {
         return IntStream.range(0, value)
                 .mapToObj(__ -> supplier.get())
                 .toList();

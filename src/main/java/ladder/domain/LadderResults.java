@@ -21,7 +21,7 @@ public class LadderResults {
         }
     }
 
-    public LadderResult get(int index) {
+    public LadderResult get(final int index) {
         if (index < 0 || index >= ladderResults.size()) {
             throw new IllegalStateException("잘못된 위치입니다: %d".formatted(index));
         }

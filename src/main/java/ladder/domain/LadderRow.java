@@ -7,15 +7,15 @@ public class LadderRow {
 
     private final List<LadderDirection> ladderRow;
 
-    private LadderRow(List<LadderDirection> ladderDirections) {
+    private LadderRow(final List<LadderDirection> ladderDirections) {
         ladderRow = ladderDirections;
     }
 
-    public static LadderRow from(List<LadderDirection> ladderDirections) {
+    public static LadderRow from(final List<LadderDirection> ladderDirections) {
         return new LadderRow(ladderDirections);
     }
 
-    public LadderDirection getLadderDirection(int index) {
+    public LadderDirection getLadderDirection(final int index) {
         return ladderRow.get(index);
     }
 

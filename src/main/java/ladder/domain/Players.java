@@ -13,13 +13,13 @@ public record Players(List<Player> players) {
         validateDuplicatedName(players);
     }
 
-    private void validatePlayersCount(List<Player> names) {
+    private void validatePlayersCount(final List<Player> names) {
         if (names.size() < MIN_PLAYER_COUNT) {
             throw new IllegalArgumentException("참여자는 최소 %d명입니다.".formatted(MIN_PLAYER_COUNT));
         }
     }
 
-    private void validateDuplicatedName(List<Player> names) {
+    private void validateDuplicatedName(final List<Player> names) {
         Set<Player> distinctNames = new HashSet<>();
         names.forEach(name -> {
             if (distinctNames.contains(name)) {
@@ -29,11 +29,7 @@ public record Players(List<Player> players) {
         });
     }
 
-    public boolean exists(Player player) {
-        return players.contains(player);
-    }
-
-    public int orderOf(Player player) {
+    public int orderOf(final Player player) {
         return players.indexOf(player);
     }
 

@@ -20,12 +20,12 @@ public class LadderRowBuilder {
         return new LadderRowBuilder();
     }
 
-    public LadderRowBuilder width(Width<LadderDirection> width) {
+    public LadderRowBuilder width(final Width<LadderDirection> width) {
         this.width = width;
         return this;
     }
 
-    public LadderRowBuilder directionSelector(LadderDirectionSelector ladderDirectionSelector) {
+    public LadderRowBuilder directionSelector(final LadderDirectionSelector ladderDirectionSelector) {
         this.ladderDirectionSelector = ladderDirectionSelector;
         return this;
     }
@@ -36,17 +36,17 @@ public class LadderRowBuilder {
         return LadderRow.from(ladderRow);
     }
 
-    private void selectDirectionIfNotExistsAt(int index) {
+    private void selectDirectionIfNotExistsAt(final int index) {
         if (!isLastIndex(index) && ladderRow.get(index) == NONE) {
             selectDirectionAt(index);
         }
     }
 
-    private boolean isLastIndex(int index) {
+    private boolean isLastIndex(final int index) {
         return index == ladderRow.size() - 1;
     }
 
-    private void selectDirectionAt(int index) {
+    private void selectDirectionAt(final int index) {
         LadderDirection ladderDirection = ladderDirectionSelector.select();
         if (ladderDirection == RIGHT) {
             ladderRow.set(index, RIGHT);
