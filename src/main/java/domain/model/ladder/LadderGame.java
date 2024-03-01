@@ -6,13 +6,11 @@ import domain.model.participant.People;
 public class LadderGame {
     private final Ladder ladder;
     private final People people;
-    private final Consequences consequences;
     private final Result result;
 
     public LadderGame(Ladder ladder, People people, Consequences consequences) {
         this.ladder = ladder;
         this.people = people;
-        this.consequences = consequences;
 
         result = new Result(people, consequences);
     }
