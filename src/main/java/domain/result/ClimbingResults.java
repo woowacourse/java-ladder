@@ -15,7 +15,7 @@ public class ClimbingResults {
     private final Map<String, String> playerResults;
 
     private ClimbingResults(final Map<String, String> playerResults) {
-        this.playerResults = playerResults;
+        this.playerResults = Map.copyOf(playerResults);
     }
 
     public static ClimbingResults of(final Players players, final Ladder ladder, final LadderResults ladderResults) {

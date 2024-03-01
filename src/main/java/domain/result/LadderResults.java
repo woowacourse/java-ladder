@@ -7,7 +7,7 @@ public class LadderResults {
     private final List<LadderResult> results;
 
     private LadderResults(final List<LadderResult> results) {
-        this.results = results;
+        this.results = List.copyOf(results);
     }
 
     public static LadderResults createMatchesCountOf(final int count, final List<LadderResult> results) {
