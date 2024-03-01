@@ -2,6 +2,7 @@ package controller;
 
 import domain.height.Height;
 import domain.ladder.Ladder;
+import domain.ladder.LadderResult;
 import domain.ladder.LadderRungGenerator;
 import domain.player.Players;
 import domain.prize.Prizes;
@@ -23,6 +24,13 @@ public class LadderGame {
             Height height = generateHeight();
             Ladder ladder = Ladder.create(height, players, prizes, ladderRungGenerator);
             OutputView.printLadder(ladder, players, prizes);
+            LadderResult result = ladder.climb();
+            String name = InputView.inputPlayerNameToFindResult();
+            while (!"all".equals(name)) {
+                OutputView.printSinglePlayerResult(result.findPrizeByName(name));
+                name = InputView.inputPlayerNameToFindResult();
+            }
+            OutputView.printAllPlayerResult(result.getAllResults());
         } catch (Exception e) {
             OutputView.printErrorMessage(e);
         }

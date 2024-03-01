@@ -6,6 +6,7 @@ import domain.ladder.LadderRung;
 import domain.player.Players;
 import domain.prize.Prizes;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -66,10 +67,21 @@ public class OutputView {
         prizes.getPrizes().stream()
                 .map(prize -> alignCenter(prize, maxLength + EMPTY_COUNT))
                 .forEach(System.out::print);
-        System.out.println();
+        System.out.println(System.lineSeparator());
     }
 
     public static void printErrorMessage(Exception e) {
         System.out.println(e.getMessage());
+    }
+
+    public static void printSinglePlayerResult(String prize) {
+        System.out.println("실행 결과");
+        System.out.println(prize);
+        System.out.println();
+    }
+
+    public static void printAllPlayerResult(Map<String, String> results) {
+        System.out.println("실행 결과");
+        results.forEach((name, prize) -> System.out.println(name + " : " + prize));
     }
 }
