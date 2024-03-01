@@ -23,4 +23,9 @@ public class InputView {
         String[] consequences= Console.readLine().split(DELIMITER,-1);
         return List.of(consequences);
     }
+
+    public String askChosen(){
+        System.out.println("\n결과를 보고 싶은 사람은?");
+        return Console.readLine();
+    }
 }

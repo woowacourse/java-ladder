@@ -48,8 +48,11 @@ public class People {
         return person.getName();
     }
 
-    public boolean isProper(String name){
-        return participants.contains(new Person(name));
+    public String findProperParticipant(String name){
+        if(name.equals("all")||!participants.contains(new Person(name))){
+            throw new IllegalArgumentException("존재하지 않는 참가자 입니다.");
+        }
+        return name;
     }
 
 }
