@@ -4,6 +4,7 @@ import model.ladder.Height;
 import model.ladder.Ladder;
 import model.ladder.Width;
 import model.ladder.generator.RandomStatusGenerator;
+import model.players.Player;
 import model.players.Players;
 import model.prize.Prizes;
 import view.InputView;
@@ -25,6 +26,11 @@ public class LadderController {
 
         Ladder ladder = Ladder.of(height, Width.from(players.size()), new RandomStatusGenerator());
 
-        outputView.printResult(players.getNames(), ladder.getLines(), prizes.getPrizes());
+        outputView.printLadderResult(players.getNames(), ladder.getLines(), prizes.getPrizes());
+
+    }
+
+    private void checkPrize(Players players) {
+        Player player = players.findByName(inputView.readPlayerNameToCheck());
     }
 }

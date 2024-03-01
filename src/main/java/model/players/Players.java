@@ -60,4 +60,13 @@ public class Players {
         }
         throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
     }
+
+    public Player findByName(final String name) {
+        for (Player player : players) {
+            if (player.getName().equals(name)) {
+                return player;
+            }
+        }
+        throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
+    }
 }

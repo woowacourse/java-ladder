@@ -1,6 +1,7 @@
 package model.player;
 
 import java.util.List;
+import model.players.Player;
 import model.players.Players;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -29,5 +30,14 @@ class PlayersTest {
         List<String> players = List.of("pobi", "pobi", "anna");
         Assertions.assertThatThrownBy(() -> new Players(players))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
+    @Test
+    @DisplayName("이름을 통해 Player 객체를 조회한다.")
+    void findByName() {
+        Players players = new Players(List.of("pobi", "anna", "ready"));
+        Player player = players.findByName("pobi");
+        Assertions.assertThat(player).isEqualTo(new Player("pobi"));
     }
 }

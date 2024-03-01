@@ -7,7 +7,7 @@ public class OutputView {
     private static final String LADDER_RESULT_FORMAT = "%s%n%n";
     private static final String LADDER_RESULT_MESSAGE = "사다리 결과";
 
-    public void printResult(List<String> names, List<Line> lines, List<String> prizes) {
+    public void printLadderResult(List<String> names, List<Line> lines, List<String> prizes) {
         System.out.printf(LADDER_RESULT_FORMAT, LADDER_RESULT_MESSAGE);
         printPlayers(names);
         printLadder(names.get(0).length(), lines);
