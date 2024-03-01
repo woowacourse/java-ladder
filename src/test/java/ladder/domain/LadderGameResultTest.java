@@ -11,11 +11,12 @@ import org.junit.jupiter.api.Test;
 
 class LadderGameResultTest {
 
-    static final Player PLAYER1 = new Player("pobi");
-    static final Player PLAYER2 = new Player("jin");
-    static final Player NOT_PARTICIPANT = new Player("jk");
-    static final Product PRODUCT1 = new Product("꽝");
-    static final Product PRODUCT2 = new Product("3000");
+    private static final Player PLAYER1 = new Player("pobi");
+    private static final Player PLAYER2 = new Player("jin");
+    private static final Player NOT_PARTICIPANT = new Player("jk");
+
+    private static final Product PRODUCT1 = new Product("꽝");
+    private static final Product PRODUCT2 = new Product("3000");
 
     @DisplayName("플레이어에 따른 상품 결과를 줄 수 있다")
     @Test
