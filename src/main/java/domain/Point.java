@@ -14,13 +14,7 @@ class Point {
     }
 
     Point next() {
-        if (direction == Direction.LEFT) {
-            return new Point(Direction.RIGHT, index - 1);
-        }
-        if (direction == Direction.RIGHT) {
-            return new Point(Direction.LEFT, index + 1);
-        }
-        return new Point(Direction.STRAIGHT, index);
+        return direction.nextPoint(index);
     }
 
     @Override
