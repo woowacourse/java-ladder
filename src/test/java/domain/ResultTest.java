@@ -53,4 +53,12 @@ public class ResultTest {
                 "crong", "3000",
                 "jk", "꽝"));
     }
+
+    @DisplayName("이름을 받아 결과에 존재하는 이름인지 반환")
+    @Test
+    public void isContain() {
+        Result result = new Result(Map.of("pobi", 1, "honux", 0, "crong", 3, "jk", 2));
+
+        assertThat(result.isContain("pobi")).isTrue();
+    }
 }

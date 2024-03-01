@@ -20,4 +20,9 @@ public class Result {
         return result.entrySet().stream()
                 .collect(Collectors.toMap(Entry::getKey, entry -> prizes.getPrizeNameOf(entry.getValue())));
     }
+
+    public boolean isContain(String nameForResult) {
+        return result.keySet().stream()
+                .anyMatch(name -> name.equals(nameForResult));
+    }
 }
