@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 public class PresentMatches {
     private final Map<PersonName, Present> matches;
 
-    private PresentMatches(Map<PersonName, Present> matches) {
+    private PresentMatches(final Map<PersonName, Present> matches) {
         this.matches = matches;
     }
 
-    public static PresentMatches from(People people, Presents presents) {
+    public static PresentMatches from(final People people, final Presents presents) {
         List<Person> personGroup = people.getPersonGroup();
         Map<PersonName, Present> personNamePresent = personGroup.stream()
                 .collect(Collectors.toMap(
@@ -20,7 +20,7 @@ public class PresentMatches {
         return new PresentMatches(personNamePresent);
     }
 
-    public Present findByPersonName(PersonName personName) {
+    public Present findByPersonName(final PersonName personName) {
         return matches.get(personName);
     }
 }

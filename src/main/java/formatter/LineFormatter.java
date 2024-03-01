@@ -10,7 +10,7 @@ public class LineFormatter {
     private static final String EXIST_PATH = "-".repeat(5);
 
     public static String format(final List<Boolean> line) {
-        StringBuilder formattedLine = new StringBuilder(INITIAL_BLANKS + VERTICAL_LINE);
+        final StringBuilder formattedLine = new StringBuilder(INITIAL_BLANKS + VERTICAL_LINE);
         for (Boolean isExist : line) {
             formattedLine.append(getPathFormat(isExist));
             formattedLine.append(VERTICAL_LINE);

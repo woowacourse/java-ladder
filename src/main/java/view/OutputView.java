@@ -43,11 +43,11 @@ public class OutputView {
         System.out.println(PresentNamesFormatter.format(presentNames));
     }
 
-    public void printMatched(String name) {
+    public void printMatched(final String name) {
         System.out.println(name);
     }
 
-    public void printMatched(String personName, String presentName) {
+    public void printMatched(final String personName, final String presentName) {
         System.out.println(personName + " : " + presentName);
     }
 }

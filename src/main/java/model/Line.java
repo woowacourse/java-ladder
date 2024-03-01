@@ -39,19 +39,19 @@ public class Line {
                 .toList();
     }
 
-    public boolean hasLeftPath(int column) {
+    public boolean hasLeftPath(final int column) {
         if (column <= 0) {
             return false;
         }
-        Path leftPath = paths.get(column - 1);
+        final Path leftPath = paths.get(column - 1);
         return leftPath.isExist();
     }
 
-    public boolean hasRightPath(int column) {
+    public boolean hasRightPath(final int column) {
         if (column >= paths.size()) {
             return false;
         }
-        Path rightPath = paths.get(column);
+        final Path rightPath = paths.get(column);
         return rightPath.isExist();
     }
 

@@ -21,7 +21,7 @@ public class People {
     }
 
     private void validateDuplicatedPersonNames(final List<Person> personGroup) {
-        long personCount = personGroup.stream()
+        final long personCount = personGroup.stream()
                 .map(Person::getPersonName)
                 .distinct()
                 .count();
@@ -39,11 +39,11 @@ public class People {
         return new People(personGroup);
     }
 
-    public void climbDown(Ladder ladder) {
+    public void climbDown(final Ladder ladder) {
         personGroup.forEach(person -> person.climbDown(ladder));
     }
 
-    public boolean contains(PersonName personName) {
+    public boolean contains(final PersonName personName) {
         return personGroup.stream()
                 .map(Person::getPersonName)
                 .anyMatch(name -> name.equals(personName));
