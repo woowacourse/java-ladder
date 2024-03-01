@@ -1,22 +1,18 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class PositionTest {
+class PointTest {
+
 
     @Test
-    @DisplayName("올바르게 움직이는지 확인한다")
-    void moveHorizontally() {
-        final Line line = new Line(List.of(Bridge.BRIDGE));
-        final Position position = new Position(0);
-
-        position.moveHorizontally(line);
-
-        assertThat(position.getValue()).isEqualTo(1);
+    @DisplayName("Point가 양쪽으로 연결 되어 있으면 예외가 발생한다")
+    void biDirectionConnectivity() {
+        assertThatCode(() -> new Point(true, true)).isInstanceOf(IllegalArgumentException.class);
     }
-
 }

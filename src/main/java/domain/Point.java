@@ -2,53 +2,18 @@ package domain;
 
 import java.util.List;
 
-public class Position {
+public class Point {
 
-    private int value;
+    private final boolean left;
+    private final boolean right;
 
-
-    public Position(final int value) {
-        this.value = value;
-    }
-
-    public void moveHorizontally(final Line line) {
-        final List<Bridge> bridges = line.getBridges();
-
-        if (handleRight(bridges)) {
-            return;
+    public Point(final boolean left, final boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException("사다리는 양쪽으로 연결될 수 없습니다.");
         }
-
-        handleLeft(bridges);
+        this.left = left;
+        this.right = right;
     }
 
-    private void handleLeft(final List<Bridge> bridges) {
-        final boolean isNotFirstBridge = value > 0;
 
-        if (isNotFirstBridge && bridges.get(value - 1).isConnected()) {
-            moveLeft();
-        }
-    }
-
-    private boolean handleRight(final List<Bridge> bridges) {
-        final boolean isNotEndBridge = value < bridges.size();
-
-        if (isNotEndBridge && bridges.get(value).isConnected()) {
-            moveRight();
-            return true;
-        }
-
-        return false;
-    }
-
-    private void moveLeft() {
-        value = value - 1;
-    }
-
-    private void moveRight() {
-        value = value + 1;
-    }
-
-    public int getValue() {
-        return value;
-    }
 }
