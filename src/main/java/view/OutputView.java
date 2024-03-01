@@ -1,9 +1,12 @@
 package view;
 
 import domain.GameResult;
+import domain.GameResults;
+import domain.Results;
 import domain.ladder.Bridge;
 import domain.ladder.Floor;
 import domain.ladder.Ladder;
+import domain.player.Names;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -17,12 +20,11 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printGameBoard(final List<String> names, final Ladder ladder,
-                                      final List<String> results) {
+    public static void printGameBoard(final Names names, final Ladder ladder, final Results results) {
         printResultMessage();
-        printWithFormat(names);
+        printWithFormat(names.getValues());
         printLadder(ladder);
-        printWithFormat(results);
+        printWithFormat(results.getValues());
     }
 
     private static void printResultMessage() {
@@ -58,9 +60,10 @@ public class OutputView {
         System.out.println(gameResult.result());
     }
 
-    public static void printResults(List<GameResult> gameResults) {
+    public static void printResults(GameResults gameResults) {
         System.out.println(System.lineSeparator() + "실행 결과");
-        for (final GameResult gameResult : gameResults) {
+        for (int index = 0; index < gameResults.count(); index++) {
+            final GameResult gameResult = gameResults.findByIndex(index);
             System.out.println(gameResult.name() + RESULT_SEPARATOR + gameResult.result());
         }
     }

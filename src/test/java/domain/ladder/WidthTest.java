@@ -2,7 +2,7 @@ package domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import domain.player.Players;
+import domain.player.Names;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,11 +13,11 @@ class WidthTest {
     @Test
     void calculateLadderWidth() {
         //given
-        final Players players = Players.createInOrderPoisition(List.of("a", "b", "c", "d"));
+        final Names names = Names.of(List.of("a", "b", "c", "d"));
         final int expectedWidth = 3;
 
         //when
-        final Width width = Width.from(players);
+        final Width width = Width.from(names);
 
         //then
         assertThat(width).isEqualTo(new Width(expectedWidth));

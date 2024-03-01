@@ -22,8 +22,8 @@ public class Results {
         return results.size();
     }
 
-    public Result getBy(final int position) {
-        return results.get(position);
+    public Result getBy(final int index) {
+        return results.get(index);
     }
 
     public List<String> getValues() {
