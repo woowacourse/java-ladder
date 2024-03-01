@@ -5,6 +5,7 @@ import model.ladder.Ladder;
 import model.ladder.Width;
 import model.ladder.generator.RandomStatusGenerator;
 import model.players.Players;
+import model.prize.Prizes;
 import view.InputView;
 import view.OutputView;
 
@@ -19,6 +20,7 @@ public class LadderController {
 
     public void run() {
         Players players = new Players(inputView.readPlayersName());
+        Prizes prizes = Prizes.of(inputView.readPrizes(), players.size());
         Height height = new Height(inputView.readHeight());
 
         Ladder ladder = Ladder.of(height, Width.from(players.size()), new RandomStatusGenerator());
