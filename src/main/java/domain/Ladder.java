@@ -32,4 +32,10 @@ public class Ladder {
         }
         return endIndex;
     }
+
+    List<List<Boolean>> getRawLadder() {
+        return lines.stream()
+                .map(Line::getRawLine)
+                .toList();
+    }
 }

@@ -2,7 +2,7 @@ package util;
 
 import java.util.function.Supplier;
 
-class RetryHelper {
+public class RetryHelper {
 
     private final int maxRetryCount;
     private int retryCount = -1;
@@ -16,6 +16,7 @@ class RetryHelper {
         while (result == null && retryCount < maxRetryCount) {
             result = useSupplier(supplier);
         }
+        retryCount = -1;
         return result;
     }
 

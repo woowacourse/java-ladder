@@ -6,6 +6,7 @@ import java.util.List;
 
 class Line {
     private final List<Point> points;
+    private final Boolean[] canGoRights;
 
     Line(Boolean... canGoRights) {
         validateLineSize(canGoRights);
@@ -14,6 +15,7 @@ class Line {
         addFirstPoint(points, canGoRights);
         addRemainPoints(points, canGoRights);
         this.points = Collections.unmodifiableList(points);
+        this.canGoRights = canGoRights;
     }
 
     private void validateLineSize(Boolean[] canGoRights) {
@@ -79,5 +81,9 @@ class Line {
         Point start = points.get(startIndex);
         Point next = start.next();
         return next.index();
+    }
+
+    List<Boolean> getRawLine() {
+        return List.of(canGoRights);
     }
 }

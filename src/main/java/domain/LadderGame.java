@@ -84,4 +84,8 @@ public class LadderGame {
             return new LadderGame(players, gifts, ladderMakeStrategy, ladderHeight);
         }
     }
+
+    public List<List<Boolean>> rawLadder() {
+        return ladder.getRawLadder();
+    }
 }
