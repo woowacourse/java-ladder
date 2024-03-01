@@ -16,4 +16,12 @@ public class NonContinousConnectionGenerator1 implements ConnectionGenerator1 {
         }
         return RandomElementSelector.selectRandomFrom(RIGHT_CONNECTED, DISCONNECTED);
     }
+
+    @Override
+    public Connection generateLastConnection(Connection previous) {
+        if (previous.getDirection() == RIGHT) {
+            return LEFT_CONNECTED;
+        }
+        return DISCONNECTED;
+    }
 }
