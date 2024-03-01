@@ -3,6 +3,9 @@ package ladder.view;
 import java.util.Map.Entry;
 
 public class ResultView {
+    private ResultView() {
+    }
+
     public static void printAll(Result result) {
         System.out.println(System.lineSeparator() + "실행 결과");
         for (Entry<String, String> entry : result.getResultMap().entrySet()) {
