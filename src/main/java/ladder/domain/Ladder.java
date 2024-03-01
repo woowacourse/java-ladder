@@ -12,7 +12,6 @@ public class Ladder {
     private static final int MAX_LADDER_HEIGHT = 100;
 
     private final List<RowLine> rowLines;
-    private final int peopleNumber;
 
     public Ladder(int height, int peopleNumber) {
         this(height, peopleNumber, new RandomLineGenerator());
@@ -20,7 +19,6 @@ public class Ladder {
 
     public Ladder(int height, int peopleNumber, LineGenerator lineGenerator) {
         validateLadderHeight(height);
-        this.peopleNumber = peopleNumber;
 
         List<RowLine> rowLines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
