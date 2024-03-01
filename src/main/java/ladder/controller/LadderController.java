@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import ladder.domain.Command;
 import ladder.domain.LadderGame;
 import ladder.domain.LadderResult;
 import ladder.domain.creator.RandomLadderCreator;
@@ -29,13 +30,10 @@ public class LadderController {
 
         LadderGame ladderGame = new LadderGame(new RandomLadderCreator(new RandomLineCreator()));
         Ladder ladder = ladderGame.createLadder(ladderItems, ladderHeight);
-
         outputView.printLadder(ladderItems, ladder);
 
         LadderResult ladderResult = ladderGame.findResult(ladder, ladderItems);
-        String personName = inputView.readPersonNameForResult();
-        WinningItem winningItem = ladderResult.findWinningItemByPersonName(personName);
-        outputView.printResultOfPerson(winningItem);
+        responseResult(ladderResult);
     }
 
     private LadderItems requestLadderItemsUntilValid() {
@@ -55,5 +53,17 @@ public class LadderController {
 
     private LadderHeight requestLadderHeight() {
         return new LadderHeight(inputView.readLadderHeight());
+    }
+
+    private void responseResult(LadderResult ladderResult) {
+        String personName = inputView.readPersonNameForResult();
+
+        while (!Command.ALL_RESULT.isCommand(personName)) {
+            WinningItem winningItem = ladderResult.findWinningItemByPersonName(personName);
+            outputView.printResultOfPerson(winningItem);
+            personName = inputView.readPersonNameForResult();
+        }
+
+        outputView.printTotalResult(ladderResult);
     }
 }

@@ -5,6 +5,7 @@ import ladder.domain.item.WinningItem;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LadderResult {
     private final Map<Person, WinningItem> result;
@@ -15,5 +16,10 @@ public class LadderResult {
 
     public WinningItem findWinningItemByPersonName(String personName) {
         return result.get(new Person(personName));
+    }
+
+    public Map<String, String> getTotalResult() {
+        return result.entrySet().stream()
+                .collect(Collectors.toMap(entry -> entry.getKey().getName(), entry -> entry.getValue().getName()));
     }
 }

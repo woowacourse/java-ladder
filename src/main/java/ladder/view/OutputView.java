@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.LadderResult;
 import ladder.domain.item.LadderItems;
 import ladder.domain.item.Person;
 import ladder.domain.item.WinningItem;
@@ -20,6 +21,7 @@ public class OutputView {
     private static final String LADDER_RANG = "-".repeat(Person.getMaxLength());
     private static final String LADDER_EMPTY = " ".repeat(Person.getMaxLength());
     private static final String EXECUTION_RESULT = "실행 결과";
+    private static final String TOTAL_RESULT_FORMAT = "%s : %s";
     private static final Map<Connection, String> CONNECTION_FORMAT = new EnumMap<>(Connection.class);
 
     static {
@@ -65,5 +67,11 @@ public class OutputView {
         System.out.println(EXECUTION_RESULT);
         System.out.println(winningItem.getName());
         System.out.println();
+    }
+
+    public void printTotalResult(LadderResult ladderResult) {
+        System.out.println(EXECUTION_RESULT);
+        ladderResult.getTotalResult().entrySet().forEach(entry ->
+                System.out.println(String.format(TOTAL_RESULT_FORMAT, entry.getKey(), entry.getValue())));
     }
 }
