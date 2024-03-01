@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-interface StickGenerator {
+public interface StickGenerator {
 
     Stick generateOne();
 }

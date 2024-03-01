@@ -6,6 +6,7 @@ import laddergame.domain.GameResult;
 import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.Players;
+import laddergame.domain.RandomStickGenerator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -31,7 +32,8 @@ class Controller {
         Players players = createPlayers();
         Height height = createHeight();
         List<GameResult> gameResults = createGameResult();
-        Ladder ladder = Ladder.createRandomLadder(height, players.size());
+        int playerSize = players.size();
+        Ladder ladder = new Ladder(height, playerSize, new RandomStickGenerator());
 
         return new Game(players, ladder, gameResults);
     }
