@@ -22,15 +22,15 @@ public class ClimbingResults {
         Map<String, String> results = new HashMap<>();
         List<Floor> floors = ladder.getFloors();
         for (Floor floor : floors) {
-            climbLadder(players, ladderResults, floor, results);
+            climbLadder(players, floor, ladderResults, results);
         }
         return new ClimbingResults(results);
     }
 
     private static void climbLadder(
             final Players players,
-            final LadderResults ladderResults,
             final Floor floor,
+            final LadderResults ladderResults,
             final Map<String, String> results) {
         for (int i = 0; i < players.getPlayerCount(); i++) {
             Player player = players.getPlayerOfIndex(i);
