@@ -2,7 +2,6 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 import domain.generator.FixedBridgeGenerator;
 import java.util.List;
@@ -33,10 +32,11 @@ public class LadderTest {
         assertThat(lines.size()).isEqualTo(5);
     }
 
-    @DisplayName("플레이어들의 위치를 사다리 높이만큼 계산한다")
+    @DisplayName("사다리에 플레이어들을 태워 위치를 계산한다")
     @Test
     public void calculate() {
-        Ladder ladder = new Ladder(new Players(List.of("pobi", "honux", "crong", "jk")), new Height(5),
+        Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
+        Ladder ladder = new Ladder(players, new Height(5),
                 new FixedBridgeGenerator());
         /*
          0     1     2     3
@@ -47,11 +47,14 @@ public class LadderTest {
          |-----|     |-----|
          1     0     3     2
          */
-        assertAll(
-                () -> assertThat(ladder.calculate(0)).isEqualTo(1),
-                () -> assertThat(ladder.calculate(1)).isEqualTo(0),
-                () -> assertThat(ladder.calculate(2)).isEqualTo(3),
-                () -> assertThat(ladder.calculate(3)).isEqualTo(2)
+        Map<String, Integer> calculatedPosition = ladder.calculate(players);
+
+        assertThat(calculatedPosition).isEqualTo(
+                Map.of(
+                        "pobi", 1,
+                        "honux", 0,
+                        "crong", 3,
+                        "jk", 2)
         );
     }
 }
