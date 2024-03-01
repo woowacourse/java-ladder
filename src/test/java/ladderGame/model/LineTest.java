@@ -23,7 +23,8 @@ class LineTest {
                         ConnectionStatus.CONNECTION,
                         ConnectionStatus.CONNECTION,
                         ConnectionStatus.CONNECTION,
-                        ConnectionStatus.DISCONNECTION));
+                        ConnectionStatus.DISCONNECTION
+                ));
 
         assertAll(
                 () -> assertThat(line.getConnectionStatuses().get(0)).isEqualTo(ConnectionStatus.CONNECTION),
@@ -37,7 +38,12 @@ class LineTest {
     @Test
     @DisplayName("연속으로 True를 가질 수 없다.")
     void notConsecutiveDraw() {
-        Line line = new Line(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION, ConnectionStatus.CONNECTION);
+        Line line = new Line(
+                List.of(
+                        ConnectionStatus.CONNECTION,
+                        ConnectionStatus.DISCONNECTION,
+                        ConnectionStatus.CONNECTION
+                ));
 
         List<ConnectionStatus> isConnections = line.getConnectionStatuses();
 
@@ -56,7 +62,12 @@ class LineTest {
     @Test
     @DisplayName("사다리를 내려갈 때 왼쪽은 true, 오른쪽은 false면 왼쪽으로 이동한다.")
     void moveLeft() {
-        Line line = new Line(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION, ConnectionStatus.CONNECTION);
+        Line line = new Line(
+                List.of(
+                        ConnectionStatus.CONNECTION,
+                        ConnectionStatus.DISCONNECTION,
+                        ConnectionStatus.CONNECTION
+                ));
 
         assertAll(
                 () -> assertThat(line.descend(0)).isEqualTo(1),
@@ -67,7 +78,12 @@ class LineTest {
     @Test
     @DisplayName("사다리를 내려갈 때 왼쪽은 false, 오른쪽은 true면 오른쪽으로 이동한다.")
     void moveRight() {
-        Line line = new Line(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION, ConnectionStatus.CONNECTION);
+        Line line = new Line(
+                List.of(
+                        ConnectionStatus.CONNECTION,
+                        ConnectionStatus.DISCONNECTION,
+                        ConnectionStatus.CONNECTION
+                ));
 
         assertAll(
                 () -> assertThat(line.descend(1)).isEqualTo(0),

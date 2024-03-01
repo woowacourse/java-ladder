@@ -7,10 +7,6 @@ import java.util.stream.Stream;
 public class Ladder {
     private final List<Line> lines;
 
-    Ladder(Line... lines) {
-        this(List.of(lines));
-    }
-
     public Ladder(List<Line> lines) {
         this.lines = lines;
     }

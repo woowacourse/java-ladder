@@ -7,10 +7,6 @@ import java.util.stream.IntStream;
 public class Line {
     private final List<ConnectionStatus> connectionStatuses;
 
-    Line(ConnectionStatus... connectionStatuses) {
-        this(List.of(connectionStatuses));
-    }
-
     public Line(List<ConnectionStatus> connections) {
         List<ConnectionStatus> statuses = new ArrayList<>();
 

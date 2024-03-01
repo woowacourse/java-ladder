@@ -31,7 +31,12 @@ class PlayersTest {
     @Test
     @DisplayName("Player들을 이동시킨다.")
     void movePlayers() {
-        Line line = new Line(ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION, ConnectionStatus.CONNECTION);
+        Line line = new Line(
+                List.of(
+                        ConnectionStatus.CONNECTION,
+                        ConnectionStatus.DISCONNECTION,
+                        ConnectionStatus.CONNECTION
+                ));
 
         Players players = new Players(List.of("pobi", "crong", "jk", "honux"));
 
