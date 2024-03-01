@@ -1,11 +1,43 @@
 package domain;
 
-public class RandomLadderMakeStrategy {
-    public RandomLadderMakeStrategy(int lineSize) {
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
+public class RandomLadderMakeStrategy {
+    private final int lineSize;
+
+    public RandomLadderMakeStrategy(int lineSize) {
+        this.lineSize = lineSize;
     }
 
     public Boolean[] makeLine() {
-        return new Boolean[]{};
+        return generateBridges(new Random());
+    }
+
+    private Boolean[] generateBridges(Random random) {
+        List<Boolean> randomBooleans = IntStream.range(0, lineSize - 1)
+                .mapToObj(value -> random.nextBoolean())
+                .collect(Collectors.toList());
+        fixInvalidBridges(randomBooleans);
+        randomBooleans.add(false);
+        return randomBooleans.toArray(Boolean[]::new);
+    }
+
+    private void fixInvalidBridges(List<Boolean> rawBridges) {
+        for (int index = 1; index < lineSize - 1; index++) {
+            fixIfNeed(rawBridges, index);
+        }
+    }
+
+    private void fixIfNeed(List<Boolean> rawBridges, int index) {
+        if (isBridgeInARow(rawBridges, index)) {
+            rawBridges.set(index, false);
+        }
+    }
+
+    private boolean isBridgeInARow(List<Boolean> rawBridges, int index) {
+        return rawBridges.get(index) && rawBridges.get(index - 1);
     }
 }
