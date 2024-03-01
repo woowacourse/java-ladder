@@ -42,7 +42,7 @@ public class GameResultTest {
         GameResult gameResult = new GameResult(participants, sortedPrizes);
         Name nameInput = new Name("loki");
 
-        assertThatThrownBy(() -> gameResult.checkNameContainedResult(nameInput))
+        assertThatThrownBy(() -> gameResult.checkResultContainName(nameInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("조회하려는 참여자가 게임 결과에 존재하지 않습니다.");
     }

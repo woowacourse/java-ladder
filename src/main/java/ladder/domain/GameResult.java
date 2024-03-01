@@ -23,7 +23,7 @@ public class GameResult {
         return gameResult;
     }
 
-    public void checkNameContainedResult(Name nameInput) {
+    public void checkResultContainName(Name nameInput) {
         if (isNameNotContained(nameInput)) {
             throw new IllegalArgumentException("조회하려는 참여자가 게임 결과에 존재하지 않습니다.");
         }

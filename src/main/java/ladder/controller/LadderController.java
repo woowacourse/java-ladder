@@ -80,7 +80,7 @@ public class LadderController {
         if (isAllResultInputKeyword(name)) {
             return name;
         }
-        gameResult.checkNameContainedResult(name);
+        gameResult.checkResultContainName(name);
         return name;
     }
 
