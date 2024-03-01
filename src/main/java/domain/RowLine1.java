@@ -12,7 +12,7 @@ public class RowLine1 {
 
     public ColumnPosition nextPosition(ColumnPosition columnPosition) {
         Point point = getPointByColumnPosition(columnPosition);
-        return columnPosition.nextPosition(point.getConnection().getDirection());
+        return columnPosition.nextPosition(point.getConnection().getMoveWeight());
     }
 
     public Point getPointByColumnPosition(ColumnPosition columnPosition) {

@@ -1,23 +1,17 @@
 package domain;
 
 public enum Connection {
-    LEFT_CONNECTED(Boolean.TRUE, Direction.LEFT),
-    RIGHT_CONNECTED(Boolean.TRUE, Direction.RIGHT),
-    DISCONNECTED(Boolean.FALSE, Direction.STAY);
+    LEFT_CONNECTION(-1),
+    RIGHT_CONNECTION(1),
+    DISCONNECTION(0);
 
-    private final boolean connect;
-    private final Direction direction;
+    private final int moveWeight;
 
-    Connection(boolean connect, Direction direction) {
-        this.connect = connect;
-        this.direction = direction;
+    Connection(int moveWeight) {
+        this.moveWeight = moveWeight;
     }
 
-    public boolean isConnect() {
-        return connect;
-    }
-
-    public Direction getDirection() {
-        return direction;
+    public int getMoveWeight() {
+        return moveWeight;
     }
 }

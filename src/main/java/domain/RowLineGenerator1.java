@@ -1,6 +1,6 @@
 package domain;
 
-import static domain.Connection.DISCONNECTED;
+import static domain.Connection.DISCONNECTION;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class RowLineGenerator1 {
     }
 
     public RowLine1 generate(int personCount) {
-        Connection previous = DISCONNECTED;
+        Connection previous = DISCONNECTION;
         List<Point> points = new ArrayList<>();
 
         for (int i = 0; i < personCount - 1; i++) {

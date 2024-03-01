@@ -16,8 +16,8 @@ public class ColumnPosition {
         }
     }
 
-    public ColumnPosition nextPosition(Direction direction) {
-        return new ColumnPosition(columnPosition + direction.getMoveWeight());
+    public ColumnPosition nextPosition(int moveWeight) {
+        return new ColumnPosition(columnPosition + moveWeight);
     }
 
     public int getColumnPosition() {

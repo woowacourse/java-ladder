@@ -11,7 +11,7 @@ public class Point {
     }
 
     public ColumnPosition navigateNextPosition() {
-        return columnPosition.nextPosition(connection.getDirection());
+        return columnPosition.nextPosition(connection.getMoveWeight());
     }
 
     public ColumnPosition getColumnPosition() {
