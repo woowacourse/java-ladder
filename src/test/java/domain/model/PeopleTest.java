@@ -39,5 +39,15 @@ public class PeopleTest {
         String actual=people.getNameByOrder(order);
         //then
         assertThat(expected).isEqualTo(actual);
+
+    }
+
+    @Test
+    @DisplayName("참가자들 목록에 포함된 사람인지 확인한다.")
+    void checkRightParticipant () {
+        People people = new People(List.of("a", "b", "c"));
+
+        assertThat(people.isProper("d")).isFalse();
+        assertThat(people.isProper("a")).isTrue();
     }
 }
