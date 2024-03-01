@@ -15,7 +15,7 @@ public class Game {
         this.ladder = ladder;
     }
 
-    public PlayResults play(Name target) {
+    public PlayResults play(Target target) {
         if (target.isAll()) {
             return playAll();
         }
@@ -23,17 +23,17 @@ public class Game {
         return new PlayResults(Map.of(target, result));
     }
 
-    private Result playOne(Name target) {
+    private Result playOne(Target target) {
         int startPosition = people.findPosition(target);
         int resultPosition = ladder.ride(startPosition);
         return results.find(resultPosition);
     }
 
     private PlayResults playAll() {
-        Map<Name, Result> results = new LinkedHashMap<>();
-        for (Name name : people.getNames()) {
-            Result result = playOne(name);
-            results.put(name, result);
+        Map<Target, Result> results = new LinkedHashMap<>();
+        for (Target target : people.getNames()) {
+            Result result = playOne(target);
+            results.put(target, result);
         }
         return new PlayResults(results);
     }
