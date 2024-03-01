@@ -21,13 +21,15 @@
 6. Bridge
     - 사다리가 존재하는지 여부를 표현한다.
 
-7. Line
-    - Bridge를 가지는 일급 컬렉션.
-    - 각 Bridge의 존재 여부를 지정하며 생성한다.
-    - 쳣번째 Bridge면, 1/2 확률로 다리를 연결한다.
-    - 이전 Bridge가 존재하면 아니면 1/2 확률로 다리를 연결한다.
+7. BridgeGenerator
+    - 이전 Bridge가 존재하면 다리를 연결하지 않는다.
+    - 이전 Bridge가 존재하지 않으면 50% 확률로 다리를 연결한다.
 
-8. Ladder
+8. Line
+    - Bridge를 가지는 일급 컬렉션.
+    - 이전 Bridge를 BridgeGenerator에게 넘겨 다음 Bridge를 생성한다.
+
+9. Ladder
     - Line들을 가지는 일급 컬렉션.
     - 생성자에서 참가자, 최대 높이, 랜덤 구현체를 바탕으로 사다리를 만든다.
 
