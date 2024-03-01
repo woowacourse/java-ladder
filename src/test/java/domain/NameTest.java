@@ -73,5 +73,4 @@ class NameTest {
         //then
         assertThat(result).isFalse();
     }
-
 }

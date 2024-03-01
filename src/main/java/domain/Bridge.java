@@ -25,5 +25,4 @@ public enum Bridge {
     public boolean exists() {
         return this.exist;
     }
-
 }

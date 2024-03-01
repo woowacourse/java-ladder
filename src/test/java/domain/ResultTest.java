@@ -31,5 +31,4 @@ class ResultTest {
         //when & then
         assertThatThrownBy(() -> new Result(result)).isInstanceOf(IllegalArgumentException.class).hasMessage(Result.INVALID_RESULT_LENGTH);
     }
-
 }

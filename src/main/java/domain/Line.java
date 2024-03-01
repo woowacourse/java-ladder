@@ -42,7 +42,6 @@ public class Line {
         return bridgeCandidate;
     }
 
-
     public Direction findDirection(final int position) {
         if (canMoveRight(position)) {
             return Direction.RIGHT;

@@ -50,5 +50,4 @@ public class ResultsTest {
         //then
         assertThat(result.getValue()).isEqualTo(expectedResult);
     }
-
 }
