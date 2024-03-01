@@ -11,7 +11,9 @@ import model.ladder.Ladder;
 import model.ladder.Line;
 import model.ladder.Step;
 import model.ladder.StepStatus;
-import model.players.Position;
+import model.players.Players;
+import model.prize.Prize;
+import model.prize.Prizes;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,6 +31,7 @@ public class LadderGameTest {
     @DisplayName("지그재그 모양의 사다리를 타서 참여자가 실행 결과와 일치하는 지 확인한다.")
     @Test
     void moveTest() {
+        // given
         Ladder ladder = new Ladder(List.of(
                 createLine(CONNECTED, DISCONNECTED, CONNECTED),
                 createLine(DISCONNECTED, CONNECTED, DISCONNECTED),
@@ -36,10 +39,15 @@ public class LadderGameTest {
                 createLine(DISCONNECTED, CONNECTED, DISCONNECTED),
                 createLine(CONNECTED, DISCONNECTED, CONNECTED)
         ));
-        LadderGame ladderGame = new LadderGame(ladder);
-        Position position = new Position(3);
-        int prizeIndex = ladderGame.move(position);
-        Assertions.assertThat(prizeIndex).isEqualTo(1);
+        Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
+        Prizes prizes = Prizes.of(List.of("꽝", "5000", "꽝", "3000"), 4);
+        LadderGame ladderGame = new LadderGame(players, ladder, prizes);
+
+        // when
+        Prize prize = ladderGame.move("jk");
+
+        // then
+        Assertions.assertThat(prize).isEqualTo(new Prize("5000"));
     }
 
     private Line createLine(StepStatus... stepStatuses) {

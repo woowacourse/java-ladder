@@ -3,7 +3,6 @@ package model.players;
 import exception.Message;
 import java.util.List;
 import java.util.Set;
-import model.ladder.Width;
 
 public class Players {
 
@@ -43,10 +42,6 @@ public class Players {
                 .toList();
     }
 
-    public Width getWidth() {
-        return new Width(size());
-    }
-
     public List<String> getNames() {
         return players.stream()
                 .map(Player::getName)
@@ -55,5 +50,14 @@ public class Players {
 
     public int size() {
         return players.size();
+    }
+
+    public Position findPositionByName(final String name) {
+        for (int index = 0; index < players.size(); index++) {
+            if (players.get(index).getName().equals(name)) {
+                return new Position(index);
+            }
+        }
+        throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
     }
 }
