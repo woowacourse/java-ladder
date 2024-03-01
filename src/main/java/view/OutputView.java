@@ -1,7 +1,10 @@
 package view;
 
 import domain.ladder.Floor;
+import domain.ladder.Ladder;
 import domain.ladder.LadderBridge;
+import domain.player.Players;
+import domain.result.LadderResult;
 import domain.result.LadderResults;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -17,26 +20,25 @@ public class OutputView {
         System.out.println(errorMessage);
     }
 
-    public void printLadderResults(final LadderResults ladderResults) {
+    public void printInputtedResultsOf(final Players players, final Ladder ladder, final LadderResults ladderResults) {
         System.out.println("\n사다리 결과\n");
-        printPlayerNames(ladderResults);
-        printLadder(ladderResults);
+        printPlayerNames(players);
+        printLadder(ladder);
         printLadderResult(ladderResults);
     }
 
-    private void printPlayerNames(final LadderResults ladderResults) {
+    private void printPlayerNames(final Players players) {
         StringJoiner playerNamesJoiner = new StringJoiner(JOIN_DELIMITER);
-
-        for (int i = 0; i < ladderResults.getPlayerCount(); i++) {
-            String playerName = String.format(OUTPUT_FORMAT, ladderResults.getPlayerNameOfIndex(i));
+        for (int i = 0; i < players.getPlayerCount(); i++) {
+            String playerName = String.format(OUTPUT_FORMAT, players.getNameOfIndex(i));
             playerNamesJoiner.add(playerName);
         }
         System.out.println(playerNamesJoiner);
     }
 
-    private void printLadder(final LadderResults ladderResults) {
+    private void printLadder(final Ladder ladder) {
         StringJoiner ladderJoiner;
-        for (Floor floor : ladderResults.getFloors()) {
+        for (Floor floor : ladder.getFloors()) {
             ladderJoiner = new StringJoiner(LADDER_FRAME, LADDER_FRAME, LADDER_FRAME);
             printLadderLine(floor, ladderJoiner);
         }

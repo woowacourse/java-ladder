@@ -8,37 +8,21 @@ import domain.result.message.ResultExceptionMessage;
 import java.util.List;
 
 public class LadderResults {
-    private final Players players;
-    private final Ladder ladder;
     private final List<LadderResult> results;
 
-    public LadderResults(final Players players, final Ladder ladder, final List<LadderResult> results) {
-        validateTotalResults(players, results);
-        this.players = players;
-        this.ladder = ladder;
-        this.results = List.copyOf(results);
+    private LadderResults(final List<LadderResult> results) {
+        this.results = results;
     }
 
-    private void validateTotalResults(final Players players, final List<LadderResult> results) {
-        if (results.size() != players.getPlayerCount()) {
+    public static LadderResults createMatchesCountOf(final int count, final List<LadderResult> results) {
+        validateTotalResults(count, results);
+        return new LadderResults(results);
+    }
+
+    private static void validateTotalResults(final int count, final List<LadderResult> results) {
+        if (results.size() != count) {
             throw new IllegalArgumentException(ResultExceptionMessage.TOTAL_RESULTS_SIZE);
         }
-    }
-
-    public String getPlayerNameOfIndex(final int index) {
-        return players.getNameOfIndex(index);
-    }
-
-    public int getPlayerCount() {
-        return players.getPlayerCount();
-    }
-
-    public List<Floor> getFloors() {
-        return ladder.getFloors();
-    }
-
-    public Ladder getLadder() {
-        return ladder;
     }
 
     public String getLadderResultOfIndex(final int index) {
@@ -47,9 +31,5 @@ public class LadderResults {
 
     public int getLadderHeight() {
         return results.size();
-    }
-
-    public Player getPlayerIndexOf(final int index) {
-        return players.getPlayerOfIndex(index);
     }
 }

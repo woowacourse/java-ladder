@@ -25,20 +25,15 @@ class LadderResultsTest {
         Player player2 = new Player(new PlayerName("bb"), 0);
         Player player3 = new Player(new PlayerName("cc"), 0);
 
-        BridgeGeneratorStub bridgeGeneratorStub = new BridgeGeneratorStub();
-        LadderHeight ladderHeight = new LadderHeight(2);
-
         LadderResult ladderResult1 = new LadderResult("꽝");
         LadderResult ladderResult2 = new LadderResult("당첨");
 
         // when
         Players players = new Players(List.of(player1, player2, player3));
-        bridgeGeneratorStub.setBridges(List.of(LadderBridge.BRIDGE, LadderBridge.NONE, LadderBridge.BRIDGE));
-        Ladder ladder = Ladder.of(ladderHeight, players, bridgeGeneratorStub);
         List<LadderResult> ladderResults = List.of(ladderResult1, ladderResult2);
 
         // then
-        assertThatThrownBy(() -> new LadderResults(players, ladder, ladderResults))
+        assertThatThrownBy(() -> LadderResults.createMatchesCountOf(players.getPlayerCount(), ladderResults))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ResultExceptionMessage.TOTAL_RESULTS_SIZE);
     }
@@ -50,20 +45,15 @@ class LadderResultsTest {
         Player player1 = new Player(new PlayerName("aa"), 0);
         Player player2 = new Player(new PlayerName("bb"), 0);
 
-        BridgeGeneratorStub bridgeGeneratorStub = new BridgeGeneratorStub();
-        LadderHeight ladderHeight = new LadderHeight(2);
-
         LadderResult ladderResult1 = new LadderResult("꽝");
         LadderResult ladderResult2 = new LadderResult("당첨");
 
         // when
         Players players = new Players(List.of(player1, player2));
-        bridgeGeneratorStub.setBridges(List.of(LadderBridge.BRIDGE, LadderBridge.NONE, LadderBridge.BRIDGE));
-        Ladder ladder = Ladder.of(ladderHeight, players, bridgeGeneratorStub);
         List<LadderResult> ladderResults = List.of(ladderResult1, ladderResult2);
 
         // then
-        assertThatCode(() -> new LadderResults(players, ladder, ladderResults))
+        assertThatCode(() -> LadderResults.createMatchesCountOf(players.getPlayerCount(), ladderResults))
                 .doesNotThrowAnyException();
     }
 }

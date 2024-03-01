@@ -30,9 +30,9 @@ public class LadderController {
         List<LadderResult> ladderResultsOfEntered = createLadderResults();
         LadderHeight ladderHeight = readLadderHeight();
         Ladder ladder = Ladder.of(ladderHeight, players, new RandomBridgeGenerator());
-        LadderResults ladderResults = new LadderResults(players, ladder, ladderResultsOfEntered);
-        outputView.printLadderResults(ladderResults);
-        ClimbingResults climbingResults = ClimbingResults.of(ladderResults);
+        LadderResults ladderResults = LadderResults.createMatchesCountOf(players.getPlayerCount(), ladderResultsOfEntered);
+        outputView.printInputtedResultsOf(players, ladder, ladderResults);
+        ClimbingResults climbingResults = ClimbingResults.of(players, ladder, ladderResults);
         startClimbingLadder(climbingResults);
     }
 

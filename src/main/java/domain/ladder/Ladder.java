@@ -19,7 +19,6 @@ public class Ladder {
             List<LadderBridge> bridges = bridgeGenerator.generate(bridgeCount);
             floors.add(new Floor(bridges));
         }
-
         return new Ladder(floors);
     }
 
