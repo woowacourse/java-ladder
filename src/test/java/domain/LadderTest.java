@@ -47,21 +47,22 @@ class LadderTest {
 
         assertThat(endPosition).isEqualTo(expected);
     }
-//
-//    @ParameterizedTest
-//    @CsvSource(value = {"0,3", "1,0", "2,1", "3,2"})
-//    @DisplayName("사다리 게임을 실행 했을 때 올바른 결과를 반환한다")
-//    void gameResultTest(final int startPosition, final int expected) {
-//        final Line line1 = new Line(List.of(Bridge.BRIDGE, Bridge.NON_BRIDGE, Bridge.NON_BRIDGE));
-//        final Line line2 = new Line(List.of(Bridge.NON_BRIDGE, Bridge.BRIDGE, Bridge.NON_BRIDGE));
-//        final Line line3 = new Line(List.of(Bridge.NON_BRIDGE, Bridge.NON_BRIDGE, Bridge.BRIDGE));
-//        final List<Line> lines = List.of(line1, line2, line3);
-//        final Ladder ladder = LadderFactory.createLadder(lines);
-//
-//        final int endPosition = ladder.playByPosition(startPosition);
-//
-//        assertThat(endPosition).isEqualTo(expected);
-//    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0,3", "1,0", "2,1", "3,2"})
+    @DisplayName("사다리 게임을 실행 했을 때 올바른 결과를 반환한다")
+    void gameResultTest(final int startPosition, final int expected) {
+        final Ladder ladder = new Ladder(
+                new Line(new Point(false,true), new Point(true,false), new Point(false,false), new Point(false,false)),
+                new Line(new Point(false,false), new Point(false,true), new Point(true,false), new Point(false,false)),
+                new Line(new Point(false,false), new Point(false,false), new Point(false,true), new Point(true,false)),
+                new Line(new Point(false,false), new Point(false,false), new Point(false,false), new Point(false,false))
+        );
+
+        final int endPosition = ladder.playByPosition(startPosition);
+
+        assertThat(endPosition).isEqualTo(expected);
+    }
 //
 //    @Test
 //    @DisplayName("빈 리스트가 주어졌을 때 사다리를 생성하면 예외를 발생시킨다")
