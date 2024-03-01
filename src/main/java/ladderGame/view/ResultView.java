@@ -5,28 +5,26 @@ import ladderGame.model.Line;
 import ladderGame.model.Player;
 
 import java.util.List;
+import ladderGame.model.Prize;
 
 public class ResultView {
+    private static final String LADDER_RESULT_PROMPT = "사다리 결과";
     private static final String RESULT_PROMPT = "실행 결과";
     private static final String BLANK_MARK = "     ";
     private static final String DISCONNECTION_MARK = "     ";
     private static final String CONNECTION_MARK = "-----";
     private static final String LINE_MARK = "|";
 
-    public void printLadder(List<Player> players, List<Line> lines) {
-        System.out.println(System.lineSeparator() + RESULT_PROMPT + System.lineSeparator());
+    public void printLadder(List<Player> players, List<Line> lines, List<Prize> prizes) {
+        System.out.println(System.lineSeparator() + LADDER_RESULT_PROMPT + System.lineSeparator());
 
-        printPlayerNames(players);
-        printLines(lines);
-    }
-
-    private void printPlayerNames(List<Player> players) {
         players.forEach(player -> System.out.printf("%6s", player.getName()));
         System.out.println();
-    }
 
-    private void printLines(List<Line> lines) {
         lines.forEach(line -> System.out.println(makeLineToString(line)));
+
+        prizes.forEach(prize -> System.out.printf("%6s", prize.getPrize()));
+        System.out.println();
     }
 
     private String makeLineToString(Line line) {
@@ -41,9 +39,25 @@ public class ResultView {
     }
 
     private String makeConnectionStatusToString(ConnectionStatus connectionStatus) {
-        if (connectionStatus.equals(ConnectionStatus.CONNECTION)) {
+        if (connectionStatus == ConnectionStatus.CONNECTION) {
             return CONNECTION_MARK;
         }
         return DISCONNECTION_MARK;
+    }
+
+    public void printResult(Player player, List<Prize> prizes) {
+        System.out.println(System.lineSeparator() + RESULT_PROMPT);
+
+        int index = player.getPosition();
+        System.out.printf("%s" + System.lineSeparator(), prizes.get(index).getPrize());
+    }
+
+    public void printAllResults(List<Player> players, List<Prize> prizes) {
+        System.out.println(System.lineSeparator() + RESULT_PROMPT);
+
+        for(Player player : players) {
+            int index = player.getPosition();
+            System.out.printf("%s : %s" + System.lineSeparator(), player.getName(), prizes.get(index).getPrize());
+        }
     }
 }
