@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 class PeopleTest {
 
@@ -64,5 +63,16 @@ class PeopleTest {
 
         // then
         assertThat(position).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 참여자의 위치를 찾으면 예외가 발생한다")
+    void TargetNotFoundExceptionTest() {
+        // given
+        People people = new People(names);
+
+        // when && then
+        assertThatThrownBy(() -> people.findPosition(new Target("any")))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
