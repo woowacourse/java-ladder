@@ -15,6 +15,10 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
+    public Result getResult() {
+        return Result.of(people, ladder, compensation);
+    }
+
     public People getPeople() {
         return people;
     }
@@ -25,10 +29,6 @@ public class LadderGame {
 
     public Compensation getCompensation() {
         return compensation;
-    }
-
-    public Result getResult() {
-        return Result.of(people, ladder, compensation);
     }
 
     public static class LadderGameBuilder {
