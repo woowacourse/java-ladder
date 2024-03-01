@@ -46,7 +46,7 @@ public class Players {
                 .count();
     }
 
-    public int findMaxNameLength() {
+    public int findMaxPlayerNameLength() {
         return players.stream()
                 .mapToInt(Player::getNameLength)
                 .max()
@@ -59,11 +59,11 @@ public class Players {
                 .toList();
     }
 
-    public int count() {
-        return players.size();
-    }
-
     public Player get(int index) { // todo 메서드명, index validation
         return players.get(index);
+    }
+
+    public int count() {
+        return players.size();
     }
 }

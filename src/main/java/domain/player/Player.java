@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class Player {
     private static final int MINIMUM_NAME_LENGTH = 2;
     private static final int MAXIMUM_NAME_LENGTH = 5;
-    private static final Pattern PLAYER_NAME_PATTERN = Pattern.compile("^[a-zA-Z가-힣]*$");
+    private static final Pattern PLAYER_NAME_PATTERN = Pattern.compile("^[a-zA-Z가-힣\\d]+$");
     private static final String NAME_LENGTH_EXCEPTION_MESSAGE = "[ERROR] 잘못된 이름: %s - 이름의 길이는 %d ~ %d 글자여야 합니다.";
     private static final String NAME_PATTERN_EXCEPTION_MESSAGE = "[ERROR] 잘못된 이름: %s - 이름은 한글, 영문자만 가능합니다.";
 
@@ -33,12 +33,12 @@ public class Player {
         }
     }
 
-    public String getName() {
-        return this.name;
-    }
-
     public int getNameLength() {
         return this.name.length();
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     @Override
