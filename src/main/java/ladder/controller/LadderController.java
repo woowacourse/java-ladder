@@ -1,9 +1,11 @@
 package ladder.controller;
 
 import ladder.domain.LadderGame;
+import ladder.domain.LadderResult;
 import ladder.domain.creator.RandomLadderCreator;
 import ladder.domain.creator.RandomLineCreator;
 import ladder.domain.item.LadderItems;
+import ladder.domain.item.WinningItem;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderHeight;
 import ladder.util.ExceptionRetryHandler;
@@ -29,6 +31,11 @@ public class LadderController {
         Ladder ladder = ladderGame.createLadder(ladderItems, ladderHeight);
 
         outputView.printLadder(ladderItems, ladder);
+
+        LadderResult ladderResult = ladderGame.findResult(ladder, ladderItems);
+        String personName = inputView.readPersonNameForResult();
+        WinningItem winningItem = ladderResult.findWinningItemByPersonName(personName);
+        outputView.printResultOfPerson(winningItem);
     }
 
     private LadderItems requestLadderItemsUntilValid() {

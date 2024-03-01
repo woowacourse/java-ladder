@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.item.LadderItems;
 import ladder.domain.item.Person;
+import ladder.domain.item.WinningItem;
 import ladder.domain.ladder.Connection;
 import ladder.domain.ladder.Ladder;
 
@@ -11,13 +12,14 @@ import java.util.Map;
 import java.util.StringJoiner;
 
 public class OutputView {
-    private static final String EXECUTION_RESULT = "사다리 결과" + System.lineSeparator();
+    private static final String LADDER_RESULT = "사다리 결과" + System.lineSeparator();
     private static final String ITEM_NAMES_DELIMITER = " ";
     private static final String LADDER_FORMAT = String.format("%%%ds", Person.getMaxLength());
     private static final String LINE_PILLAR = "|";
     private static final String LINE_PREFIX = String.format(LADDER_FORMAT, LINE_PILLAR);
     private static final String LADDER_RANG = "-".repeat(Person.getMaxLength());
     private static final String LADDER_EMPTY = " ".repeat(Person.getMaxLength());
+    private static final String EXECUTION_RESULT = "실행 결과";
     private static final Map<Connection, String> CONNECTION_FORMAT = new EnumMap<>(Connection.class);
 
     static {
@@ -33,7 +35,7 @@ public class OutputView {
     }
 
     private void printResultTitle() {
-        System.out.println(EXECUTION_RESULT);
+        System.out.println(LADDER_RESULT);
     }
 
     private void printItemNames(List<String> itemNames) {
@@ -56,5 +58,10 @@ public class OutputView {
         }
 
         System.out.println(joiner);
+    }
+
+    public void printResultOfPerson(WinningItem winningItem) {
+        System.out.println(EXECUTION_RESULT);
+        System.out.println(winningItem.getName());
     }
 }

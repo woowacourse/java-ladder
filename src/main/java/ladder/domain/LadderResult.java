@@ -12,4 +12,8 @@ public class LadderResult {
     public LadderResult(Map<Person, WinningItem> result) {
         this.result = new HashMap<>(result);
     }
+
+    public WinningItem findWinningItemByPersonName(String personName) {
+        return result.get(new Person(personName));
+    }
 }
