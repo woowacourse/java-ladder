@@ -53,7 +53,7 @@ public class Controller {
 
     private void printLadderGameResult(final LadderGameResult result) {
         Player player = inputView.inputPlayerFrom(result);
-        if (player.equals(ALL)) {
+        if (player == ALL) {
             resultView.printResult(result);
             return;
         }
