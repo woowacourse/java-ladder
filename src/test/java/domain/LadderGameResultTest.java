@@ -18,20 +18,19 @@ class LadderGameResultTest {
     //      |     |-----|     |
     //   상품1  상품2  상품3   상품4
     private static final Height VALID_HEIGHT = new Height(5);
-    private static final Width VALID_WIDTH = new Width(3);
+    private static final Width VALID_WIDTH = new Width(4);
     private static final Names VALID_NAMES = new Names(
             List.of(new Name("a"), new Name("b"), new Name("c"), new Name("d")));
     private static final LadderResults VALID_LADDER_RESULTS = new LadderResults(
             List.of(new LadderResult("상품1"), new LadderResult("상품2"), new LadderResult("상품3"),
                     new LadderResult("상품4")));
     private static final Ladder VALID_LADDER = new Ladder(VALID_HEIGHT, VALID_WIDTH,
-            new LadderTestGenerator(List.of(
-                    new Bridges(List.of(true, false, false)),
-                    new Bridges(List.of(false, true, false)),
-                    new Bridges(List.of(false, false, true)),
-                    new Bridges(List.of(true, false, false)),
-                    new Bridges(List.of(false, true, false))),
-                    VALID_HEIGHT, VALID_WIDTH));
+            new BridgesGenerator(new TestBridgeGenerator(List.of(
+                    true, false, false,
+                    false, true, false,
+                    false, false, true,
+                    true, false, false,
+                    false, true, false))));
 
     @Test
     @DisplayName("이름 개수와 사다리 결과 개수가 같지 않으면 예외 발생")
@@ -79,24 +78,20 @@ class LadderGameResultTest {
     }
 
 
-    static class LadderTestGenerator implements BridgesGenerator {
-        private final List<Bridges> ladder;
-        private int currentLadderPosition = 0;
+    static class TestBridgeGenerator implements BridgeGenerator {
+        private final List<Boolean> bridges;
+        private int currentPosition = 0;
 
-        LadderTestGenerator(List<Bridges> ladder, Height height, Width width) {
-            if (ladder.size() != height.getLength()) {
-                throw new IllegalArgumentException("사다리 행 개수는 높이와 일치해야 합니다.");
-            }
-            if (ladder.get(0).getBridges().size() != width.getLength()) {
-                throw new IllegalArgumentException("사다리 폭 개수는 폭과 일치해야 합니다.");
-            }
-
-            this.ladder = ladder;
+        TestBridgeGenerator(List<Boolean> bridges) {
+            this.bridges = bridges;
         }
 
         @Override
-        public Bridges generate(int width) {
-            return ladder.get(currentLadderPosition++);
+        public Boolean generate() {
+            if (currentPosition >= bridges.size()) {
+                currentPosition = 0;
+            }
+            return bridges.get(currentPosition++);
         }
     }
 }
