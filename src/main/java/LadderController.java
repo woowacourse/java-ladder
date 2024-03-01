@@ -16,7 +16,7 @@ public class LadderController {
     private static final OutputView outputView = new OutputView();
 
     public static void main(String[] args) {
-        final Players players = retryOnException(LadderController::getNames);
+        final Players players = retryOnException(LadderController::getPlayers);
         final Prizes prizes = retryOnException(LadderController::getPrizes);
         final Height height = retryOnException(LadderController::getHeight);
 
@@ -30,7 +30,7 @@ public class LadderController {
 
     private static void searchGameResult(final Judge judge) {
         do {
-            final String name = inputView.readNameToSearch();
+            final String name = inputView.readName();
             if ("END".equals(name)) {
                 return;
             }
@@ -42,7 +42,7 @@ public class LadderController {
         } while (true);
     }
 
-    private static Players getNames() {
+    private static Players getPlayers() {
         return new Players(inputView.readNames());
     }
 

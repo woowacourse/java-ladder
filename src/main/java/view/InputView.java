@@ -45,12 +45,12 @@ public class InputView {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
     }
 
-    public String readNameToSearch() {
+    public String readName() {
         printNameToSearchInputMessage();
         return removeBlank(reader.nextLine());
     }
 
     private void printNameToSearchInputMessage() {
-        System.out.println(lineSeparator() + "결과를 보고 싶은 사람은?");
+        System.out.println(lineSeparator() + "결과를 보고 싶은 사람은? 종료를 원하면 \"END\"를 입력해 주세요.");
     }
 }
