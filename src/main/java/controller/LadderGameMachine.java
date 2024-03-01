@@ -20,21 +20,21 @@ public class LadderGameMachine {
     private static final ConsoleReader CONSOLE = new ConsoleReader();
 
     public void run() {
-        PlayerNames playerNames = initNames();
+        PlayerNames playerNames = initPlayerNames();
         LadderDestinations ladderDestinations = initLadderDestinations();
         LadderHeight ladderHeight = initLadderHeight();
         Ladder ladder = initLadder(new RandomBooleanGenerator(), ladderHeight, playerNames);
-        OutputView.printLadderResult(LadderStatus.of(playerNames, ladder, ladderDestinations));
+        OutputView.printLadder(LadderStatus.of(playerNames, ladder, ladderDestinations));
         printLadderGameResults(ladder, ladderHeight, ladderDestinations, playerNames);
     }
 
-    private PlayerNames initNames() {
+    private PlayerNames initPlayerNames() {
         try {
             List<String> input = InputView.readStringsWithDelimiter(CONSOLE, "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
             return PlayerNames.of(input);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return initNames();
+            return initPlayerNames();
         }
     }
 

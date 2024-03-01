@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 
 public class OutputView {
 
-    public static void printLadderResult(final LadderStatus ladderStatus) {
+    public static void printLadder(final LadderStatus ladderStatus) {
         System.out.println();
         System.out.println("사다리 결과");
         System.out.println();
