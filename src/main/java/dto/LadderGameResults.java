@@ -1,14 +1,9 @@
-package domain;
+package dto;
 
 import java.util.HashSet;
 import java.util.List;
 
-public class LadderGameResults {
-    private final List<LadderGameResult> ladderGameResults;
-
-    public LadderGameResults(List<LadderGameResult> ladderGameResults) {
-        this.ladderGameResults = ladderGameResults;
-    }
+public record LadderGameResults(List<LadderGameResult> ladderGameResults) {
 
     public static LadderGameResults of(LadderGameResult... ladderGameResults) {
         return new LadderGameResults(List.of(ladderGameResults));
@@ -29,8 +24,4 @@ public class LadderGameResults {
         return thatContainsThis && thisContainsThat;
     }
 
-    @Override
-    public int hashCode() {
-        return ladderGameResults != null ? ladderGameResults.hashCode() : 0;
-    }
 }

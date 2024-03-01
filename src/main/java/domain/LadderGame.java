@@ -1,5 +1,7 @@
 package domain;
 
+import dto.LadderGameResult;
+import dto.LadderGameResults;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;

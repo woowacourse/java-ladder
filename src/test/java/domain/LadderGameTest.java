@@ -1,6 +1,8 @@
 package domain;
 
 import domain.LadderGame.LadderGameBuilder;
+import dto.LadderGameResult;
+import dto.LadderGameResults;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
