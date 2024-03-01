@@ -1,5 +1,6 @@
 package view;
 
+import domain.Player;
 import domain.Prize;
 import java.util.List;
 import java.util.Map;
@@ -42,13 +43,13 @@ public class OutputView {
         System.out.print("\n실행결과\n");
     }
 
-    public void printPlayerResult(String prize) {
-        System.out.println(prize);
+    public void printAllPlayerResults(Map<Player, Prize> playerResults) {
+        for (Player player : playerResults.keySet()) {
+            System.out.println(player.getName() + " : " + playerResults.get(player).getPrize());
+        }
     }
 
-    public void printAllPlayerResults(Map<String, String> results) {
-        for (String name : results.keySet()) {
-            System.out.println(name + " : " + results.get(name));
-        }
+    public void printPlayerResult(String prize) {
+        System.out.println(prize);
     }
 }

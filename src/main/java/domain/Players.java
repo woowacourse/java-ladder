@@ -45,7 +45,7 @@ public class Players {
         return players.stream()
                 .filter(player -> player.getName().equals(name))
                 .findAny()
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException("참여자 목록에 없는 이름입니다."));
     }
 
     public List<String> getPlayerNames() {

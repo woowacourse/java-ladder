@@ -1,6 +1,5 @@
 package view;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -24,10 +23,10 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public String inputPlayerName(List<String> playerNames) {
+    public String inputPlayerName() {
         System.out.println("\n결과를 보고 싶은 사람은?");
         String input = scanner.nextLine();
-        InputValidator.validatePlayerName(playerNames, input);
+        InputValidator.validatePlayerName(input);
         return input;
     }
 }

@@ -1,22 +1,21 @@
 package controller;
 
+import domain.Command;
 import domain.Height;
 import domain.Ladder;
-import domain.Player;
+import domain.PlayerResults;
 import domain.Players;
 import domain.Prizes;
 import view.LadderView;
 import util.LineItemGenerator;
 import view.InputView;
 import view.OutputView;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Supplier;
 
 public class LadderGame {
 
-    private static final String ALL_COMMAND = "all";
+    private static final String ERROR_PLAYER_NAME_IS_NOT_EXISTED = "참여자 목록에 없는 이름입니다.";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -36,10 +35,12 @@ public class LadderGame {
         Ladder ladder = Ladder.of(height, players.getPlayerCount(), lineItemGenerator);
         printLadder(players, ladder, prizes);
 
+        PlayerResults playerResults = PlayerResults.of(players, ladder, prizes);
+
         String input = "";
-        while (!input.equals(ALL_COMMAND)) {
-            input = retryUntilSuccess(() -> inputView.inputPlayerName(players.getPlayerNames()));
-            printLadderGameResult(ladder, players, prizes, input);
+        while (!Command.isAllCommand(input)) {
+            input = retryUntilSuccess(() -> inputPlayerName(playerResults));
+            printPlayerResult(playerResults, input);
         }
     }
 
@@ -65,30 +66,25 @@ public class LadderGame {
                 LadderView.createLadder(ladder.getLadder()), prizes.getPrizes());
     }
 
-    private void printLadderGameResult(Ladder ladder, Players players, Prizes prizes, String input) {
+    private String inputPlayerName(PlayerResults playerResults) {
+        String input = inputView.inputPlayerName();
+
+        if (playerResults.hasResult(input)) {
+            return input;
+
+        }
+        throw new IllegalArgumentException(ERROR_PLAYER_NAME_IS_NOT_EXISTED);
+    }
+
+    private void printPlayerResult(PlayerResults playerResults, String input) {
         outputView.printResultMessage();
 
-        if (input.equals(ALL_COMMAND)) {
-            printAllPlayerResults(ladder, players, prizes);
+        if (Command.isAllCommand(input)) {
+            outputView.printAllPlayerResults(playerResults.getPlayerResults());
             return;
         }
 
-        printPlayerResult(ladder, players, prizes, input);
-    }
-
-    private void printAllPlayerResults(Ladder ladder, Players players, Prizes prizes) {
-        Map<String, String> results = new HashMap<>();
-        for (Player player : players.getPlayers()) {
-            String name = player.getName();
-            int resultPosition = ladder.playLadderGame(players.findPositionOfPlayer(name));
-            results.put(name, prizes.findPrizeByPosition(resultPosition));
-        }
-        outputView.printAllPlayerResults(results);
-    }
-
-    private void printPlayerResult(Ladder ladder, Players players, Prizes prizes, String name) {
-        int resultPosition = ladder.playLadderGame(players.findPositionOfPlayer(name));
-        outputView.printPlayerResult(prizes.findPrizeByPosition(resultPosition));
+        outputView.printPlayerResult(playerResults.findPlayerResultByPlayer(input).getPrize());
     }
 
     private <T> T retryUntilSuccess(Supplier<T> supplier) {
