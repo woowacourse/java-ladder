@@ -17,8 +17,8 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printLadderMakingResult(final List<String> names, final Ladder ladder,
-                                               final List<String> results) {
+    public static void printGameBoard(final List<String> names, final Ladder ladder,
+                                      final List<String> results) {
         printResultMessage();
         printWithFormat(names);
         printLadder(ladder);
@@ -53,12 +53,12 @@ public class OutputView {
         return bridgesShapeJoiner.toString();
     }
 
-    public static void printMatchingResult(GameResult gameResult) {
+    public static void printResult(GameResult gameResult) {
         System.out.println(System.lineSeparator() + "실행 결과");
         System.out.println(gameResult.result());
     }
 
-    public static void printMatchingResultAll(List<GameResult> gameResults) {
+    public static void printResults(List<GameResult> gameResults) {
         System.out.println(System.lineSeparator() + "실행 결과");
         for (final GameResult gameResult : gameResults) {
             System.out.println(gameResult.name() + RESULT_SEPARATOR + gameResult.result());

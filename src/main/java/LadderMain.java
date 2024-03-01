@@ -18,7 +18,7 @@ public class LadderMain {
         final LadderGame ladderGame = makeLadderGame();
 
         ladderGame.play();
-        OutputView.printLadderMakingResult(
+        OutputView.printGameBoard(
                 ladderGame.getPlayerNames(), ladderGame.getLadder(), ladderGame.getResults().getValues());
 
         printResultUtilSelectAll(ladderGame);
@@ -26,7 +26,7 @@ public class LadderMain {
 
     public static LadderGame makeLadderGame() {
         final Players players = Players.createInOrderPoisition(InputView.readNames());
-        final Results results = Results.from(InputView.readMatchingItems());
+        final Results results = Results.from(InputView.readResults());
         final Height height = new Height(InputView.readHeight());
         final Width width = Width.from(players);
 
@@ -39,10 +39,10 @@ public class LadderMain {
         boolean doesSelectAll = Objects.equals(selectedName, SELECT_ALL);
 
         while (!doesSelectAll) {
-            OutputView.printMatchingResult(ladderGame.matchResult(selectedName));
+            OutputView.printResult(ladderGame.matchResult(selectedName));
             selectedName = InputView.selectPlayer();
             doesSelectAll = Objects.equals(selectedName, SELECT_ALL);
         }
-        OutputView.printMatchingResultAll(ladderGame.matchResultAll());
+        OutputView.printResults(ladderGame.matchResultAll());
     }
 }
