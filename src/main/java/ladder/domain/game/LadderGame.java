@@ -26,14 +26,14 @@ public class LadderGame {
         return new LadderGame(players, rewards, ladder);
     }
 
-    public Map<Player, Reward> play() {
-        Map<Player, Reward> results = new LinkedHashMap<>();
+    public LadderGameResult play() {
+        Map<Player, Reward> result = new LinkedHashMap<>();
         players.players().forEach(player -> {
             LadderPosition start = new LadderPosition(0, players.orderOf(player));
             LadderPosition end = ladder.climbDownFrom(start);
-            results.put(player, rewards.get(end.column()));
+            result.put(player, rewards.get(end.column()));
         });
-        return results;
+        return new LadderGameResult(result);
     }
 
     public Ladder ladder() {

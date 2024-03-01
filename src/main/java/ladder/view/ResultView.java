@@ -2,14 +2,13 @@ package ladder.view;
 
 import static ladder.domain.ladder.direction.LadderDirection.RIGHT;
 
-import java.util.Map;
 import java.util.StringJoiner;
 
 import ladder.domain.game.LadderGame;
+import ladder.domain.game.LadderGameResult;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderRow;
 import ladder.domain.ladder.direction.LadderDirection;
-import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.reward.Reward;
 import ladder.domain.reward.Rewards;
@@ -49,9 +48,9 @@ public class ResultView {
         System.out.println(reward.value());
     }
 
-    public void printAllResult(final Map<Player, Reward> allResult) {
+    public void printResult(final LadderGameResult result) {
         System.out.println("\n실행 결과");
-        allResult.forEach(((player, result) -> System.out.printf("%s : %s%n", player.name(), result.value())));
+        result.forEach(((player, reward) -> System.out.printf("%s : %s%n", player.name(), reward.value())));
     }
 
     private void printLadderRow(final LadderRow ladderRow) {

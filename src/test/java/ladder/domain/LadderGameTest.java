@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
-import java.util.Map;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import ladder.domain.attribute.Height;
 import ladder.domain.attribute.Width;
 import ladder.domain.game.LadderGame;
+import ladder.domain.game.LadderGameResult;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderBuilder;
 import ladder.domain.ladder.direction.LadderDirection;
@@ -57,16 +57,14 @@ class LadderGameTest {
     @Test
     void play() {
         LadderGame ladderGame = LadderGame.of(players(), rewards(), ladder());
-        Map<Player, Reward> results = ladderGame.play();
+        LadderGameResult results = ladderGame.play();
 
         assertAll(
-                () -> assertThat(results.keySet()).containsAll(players().players()),
-                () -> assertThat(results.values()).containsAll(rewards().getRewards()),
-                () -> assertThat(results.get(new Player("zeus"))).isEqualTo(new Reward("아이폰14")),
-                () -> assertThat(results.get(new Player("myung"))).isEqualTo(new Reward("아이폰15")),
-                () -> assertThat(results.get(new Player("hotea"))).isEqualTo(new Reward("아이폰12")),
-                () -> assertThat(results.get(new Player("baekk"))).isEqualTo(new Reward("아이폰13")),
-                () -> assertThat(results.get(new Player("kyumm"))).isEqualTo(new Reward("아이폰11"))
+                () -> assertThat(results.rewardOf(new Player("zeus"))).isEqualTo(new Reward("아이폰14")),
+                () -> assertThat(results.rewardOf(new Player("myung"))).isEqualTo(new Reward("아이폰15")),
+                () -> assertThat(results.rewardOf(new Player("hotea"))).isEqualTo(new Reward("아이폰12")),
+                () -> assertThat(results.rewardOf(new Player("baekk"))).isEqualTo(new Reward("아이폰13")),
+                () -> assertThat(results.rewardOf(new Player("kyumm"))).isEqualTo(new Reward("아이폰11"))
         );
     }
 }

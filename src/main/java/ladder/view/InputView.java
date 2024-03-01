@@ -4,11 +4,11 @@ import static ladder.domain.player.Player.ALL;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 import ladder.domain.attribute.Height;
 import ladder.domain.attribute.Width;
+import ladder.domain.game.LadderGameResult;
 import ladder.domain.ladder.LadderRow;
 import ladder.domain.ladder.direction.LadderDirection;
 import ladder.domain.player.Player;
@@ -61,7 +61,7 @@ public class InputView {
         });
     }
 
-    public Player inputPlayerFrom(final Map<Player, Reward> ladderGameResults) {
+    public Player inputPlayerFrom(final LadderGameResult ladderGameResults) {
         return exceptionHandler.run(() -> {
             System.out.println("\n결과를 보고 싶은 사람은?");
             Player player = new Player(readLine());
@@ -69,11 +69,11 @@ public class InputView {
         });
     }
 
-    private Player selectPlayer(final Map<Player, Reward> ladderGameResults, final Player player) {
+    private Player selectPlayer(final LadderGameResult result, final Player player) {
         if (player.equals(ALL)) {
             return ALL;
         }
-        if (!ladderGameResults.containsKey(player)) {
+        if (!result.contains(player)) {
             throw new IllegalArgumentException("존재하지 않는 이름입니다: %s".formatted(player.name()));
         }
         return player;

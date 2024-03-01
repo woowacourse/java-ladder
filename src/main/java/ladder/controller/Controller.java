@@ -2,11 +2,10 @@ package ladder.controller;
 
 import static ladder.domain.player.Player.ALL;
 
-import java.util.Map;
-
 import ladder.domain.attribute.Height;
 import ladder.domain.attribute.Width;
 import ladder.domain.game.LadderGame;
+import ladder.domain.game.LadderGameResult;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderBuilder;
 import ladder.domain.ladder.LadderRow;
@@ -14,7 +13,6 @@ import ladder.domain.ladder.direction.DefaultLadderDirectionSelector;
 import ladder.domain.ladder.direction.LadderDirection;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
-import ladder.domain.reward.Reward;
 import ladder.domain.reward.Rewards;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -36,8 +34,8 @@ public class Controller {
         Height<LadderRow> height = inputView.inputHeight();
         Ladder ladder = createLadder(width, height);
         LadderGame ladderGame = LadderGame.of(players, rewards, ladder);
-        Map<Player, Reward> ladderGameResult = play(ladderGame);
-        printLadderGameResults(ladderGameResult);
+        LadderGameResult result = play(ladderGame);
+        printLadderGameResults(result);
     }
 
     private Ladder createLadder(final Width<LadderDirection> width, final Height<LadderRow> height) {
@@ -48,19 +46,19 @@ public class Controller {
                 .build();
     }
 
-    private Map<Player, Reward> play(final LadderGame ladderGame) {
+    private LadderGameResult play(final LadderGame ladderGame) {
         resultView.printLadderGame(ladderGame);
         return ladderGame.play();
     }
 
-    private void printLadderGameResults(final Map<Player, Reward> ladderGameResults) {
+    private void printLadderGameResults(final LadderGameResult result) {
         while (true) {
-            Player player = inputView.inputPlayerFrom(ladderGameResults);
+            Player player = inputView.inputPlayerFrom(result);
             if (player.equals(ALL)) {
-                resultView.printAllResult(ladderGameResults);
+                resultView.printResult(result);
                 break;
             }
-            resultView.printReward(ladderGameResults.get(player));
+            resultView.printReward(result.rewardOf(player));
         }
     }
 }
