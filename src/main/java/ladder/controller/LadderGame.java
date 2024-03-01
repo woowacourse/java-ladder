@@ -6,7 +6,6 @@ import ladder.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Supplier;
 
 public class LadderGame {
@@ -35,10 +34,10 @@ public class LadderGame {
 
     private void play(Game game) {
         Name target = createTarget();
-        Map<Name, Result> playResult = game.play(target);
+        PlayResults playResult = game.play(target);
         outputView.printPlayResultNotice();
         outputView.printPlayResult(playResult);
-        if (playResult.size() > 1) {
+        if (target.isAll()) {
             return;
         }
         play(game);
