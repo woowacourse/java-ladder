@@ -1,11 +1,13 @@
 package ladder.model;
 
+import java.util.ArrayList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static ladder.model.LadderPath.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineTest {
@@ -52,5 +54,17 @@ class LineTest {
 
         assertThatThrownBy(() -> new Line(rightLastPath))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("사다리의 가로줄 한 줄(Line)을 내려온 결과는 연결된 두 지점의 자리를 바꾼 것과 같다.")
+    void climbDownTest() {
+        ArrayList<Integer> initialPosition = new ArrayList<>(List.of(0, 1, 2, 3, 4, 5, 6));
+        List<Integer> expectedPosition = List.of(1, 0, 3, 2, 4, 6, 5);
+        List<LadderPath> validPath = List.of(RIGHT, LEFT, RIGHT, LEFT, STAY, RIGHT, LEFT);
+        Line line = new Line(validPath);
+
+        assertThat(line.climbDown(initialPosition))
+                .isEqualTo(expectedPosition);
     }
 }
