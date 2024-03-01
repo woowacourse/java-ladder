@@ -21,13 +21,6 @@ public class Members {
         return new Members(initialize(names));
     }
 
-    public int findIndexByName(String name) {
-        return IntStream.range(0, members.size())
-            .filter(i -> members.get(i).getName().equals(name))
-            .findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어입니다."));
-    }
-
     private void validate(List<Member> members) {
         if (members.size() < MIN_MEMBER_COUNT || members.size() > MAX_MEMBER_COUNT) {
             throw new IllegalArgumentException(
@@ -54,6 +47,13 @@ public class Members {
         if (names.size() != nonDuplicated.size()) {
             throw new IllegalArgumentException("이름은 서로 중복될 수 없습니다.");
         }
+    }
+
+    public int findIndexByName(String name) {
+        return IntStream.range(0, members.size())
+            .filter(i -> members.get(i).getName().equals(name))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어입니다."));
     }
 
     public int getCount() {
