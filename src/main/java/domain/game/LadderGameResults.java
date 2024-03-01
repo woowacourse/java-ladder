@@ -19,13 +19,13 @@ public class LadderGameResults {
         this.ladderGameResults = ladderGameResults;
     }
 
-    public static LadderGameResults of(final Ladder ladder, final Players players, final GameResults gameResults) {
+    public static LadderGameResults of(final Ladder ladder, final Players players, final LadderDestinations ladderDestinations) {
         players.getPlayers()
                 .forEach(player -> play(ladder, player));
 
         return players.getPlayers()
                 .stream()
-                .map(player -> new LadderGameResult(player.getPlayerName(), gameResults.findGameResult(player.getCurrentLineNumber())))
+                .map(player -> new LadderGameResult(player.getPlayerName(), ladderDestinations.findGameResult(player.getCurrentLineNumber())))
                 .collect(collectingAndThen(toList(), LadderGameResults::new));
     }
 

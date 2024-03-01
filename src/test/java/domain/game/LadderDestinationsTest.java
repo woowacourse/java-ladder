@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GameResultsTest {
+public class LadderDestinationsTest {
 
     @DisplayName("게임 결과들을 입력하면 인스턴스를 생성한다.")
     @Test
@@ -17,10 +17,10 @@ public class GameResultsTest {
         List<String> inputGameResults = List.of("꽝", "5000", "꽝", "3000");
 
         // When
-        GameResults gameResults = GameResults.of(inputGameResults);
+        LadderDestinations ladderDestinations = LadderDestinations.of(inputGameResults);
 
         // Then
-        assertThat(gameResults).isNotNull();
+        assertThat(ladderDestinations).isNotNull();
     }
 
     @DisplayName("게임 결과 문자열 리스트를 반환한다.")
@@ -28,10 +28,10 @@ public class GameResultsTest {
     void 게임_결과_문자열_리스트_반환() {
         // Given
         List<String> inputGameResults = List.of("꽝", "5000", "꽝", "3000");
-        GameResults gameResults = GameResults.of(inputGameResults);
+        LadderDestinations ladderDestinations = LadderDestinations.of(inputGameResults);
 
         // When
-        List<String> gameResultValues = gameResults.getGameResults();
+        List<String> gameResultValues = ladderDestinations.getGameResults();
 
         // Then
         assertThat(gameResultValues).contains("꽝", "5000", "꽝", "3000");
@@ -41,13 +41,13 @@ public class GameResultsTest {
     @Test
     void 입력_라인_번호_일치_게임_결과_반환() {
         // Given
-        GameResults gameResults = GameResults.of(List.of("꽝", "5000", "꽝", "3000"));
+        LadderDestinations ladderDestinations = LadderDestinations.of(List.of("꽝", "5000", "꽝", "3000"));
         LineNumber inputLineNumber = new LineNumber(2);
 
         // When
-        GameResult gameResult = gameResults.findGameResult(inputLineNumber);
+        LadderDestination ladderDestination = ladderDestinations.findGameResult(inputLineNumber);
 
         // Then
-        assertThat(gameResult.getDescription()).isEqualTo("5000");
+        assertThat(ladderDestination.getDescription()).isEqualTo("5000");
     }
 }

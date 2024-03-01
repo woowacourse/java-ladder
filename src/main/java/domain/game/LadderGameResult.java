@@ -4,15 +4,15 @@ import domain.player.PlayerName;
 
 public class LadderGameResult {
     private final PlayerName playerName;
-    private final GameResult gameResult;
+    private final LadderDestination ladderDestination;
 
-    public LadderGameResult(final PlayerName playerName, final GameResult gameResult) {
+    public LadderGameResult(final PlayerName playerName, final LadderDestination ladderDestination) {
         this.playerName = playerName;
-        this.gameResult = gameResult;
+        this.ladderDestination = ladderDestination;
     }
 
-    public GameResult getGameResult() {
-        return gameResult;
+    public LadderDestination getGameResult() {
+        return ladderDestination;
     }
 
     public PlayerName getPlayerName() {

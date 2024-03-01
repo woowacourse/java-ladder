@@ -6,17 +6,17 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderGameResultTest {
+public class LadderLadderDestinationTest {
 
     @DisplayName("사용자 이름과 게임 결과를 입력하면 LadderGameResult 인스턴스를 반환한다.")
     @Test
     void LadderGameResult_인스턴스_반환() {
         // Given
         PlayerName playerName = new PlayerName("kelly");
-        GameResult gameResult = GameResult.of("꽝", 1);
+        LadderDestination ladderDestination = LadderDestination.of("꽝", 1);
 
         // When
-        LadderGameResult ladderGameResult = new LadderGameResult(playerName, gameResult);
+        LadderGameResult ladderGameResult = new LadderGameResult(playerName, ladderDestination);
 
         // Then
         assertThat(ladderGameResult).isNotNull();
@@ -26,7 +26,7 @@ public class LadderGameResultTest {
     @Test
     void 사용자_이름_일치_여부_반환() {
         // Given
-        LadderGameResult ladderGameResult = new LadderGameResult(new PlayerName("kelly"), GameResult.of("꽝", 1));
+        LadderGameResult ladderGameResult = new LadderGameResult(new PlayerName("kelly"), LadderDestination.of("꽝", 1));
         String inputPlayerName = "kelly";
 
         // When

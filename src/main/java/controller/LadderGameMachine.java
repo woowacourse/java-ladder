@@ -1,6 +1,6 @@
 package controller;
 
-import domain.game.GameResults;
+import domain.game.LadderDestinations;
 import domain.game.LadderGameResults;
 import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
@@ -21,11 +21,11 @@ public class LadderGameMachine {
 
     public void run() {
         PlayerNames playerNames = initNames();
-        GameResults gameResults = initGameResults();
+        LadderDestinations ladderDestinations = initLadderDestinations();
         LadderHeight ladderHeight = initLadderHeight();
         Ladder ladder = initLadder(new RandomBooleanGenerator(), ladderHeight, playerNames);
-        OutputView.printLadderResult(LadderStatus.of(playerNames, ladder, gameResults));
-        printLadderGameResults(ladder, ladderHeight, gameResults, playerNames);
+        OutputView.printLadderResult(LadderStatus.of(playerNames, ladder, ladderDestinations));
+        printLadderGameResults(ladder, ladderHeight, ladderDestinations, playerNames);
     }
 
     private PlayerNames initNames() {
@@ -38,13 +38,13 @@ public class LadderGameMachine {
         }
     }
 
-    private GameResults initGameResults() {
+    private LadderDestinations initLadderDestinations() {
         try {
             List<String> input = InputView.readStringsWithDelimiter(CONSOLE, "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-            return GameResults.of(input);
+            return LadderDestinations.of(input);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return initGameResults();
+            return initLadderDestinations();
         }
     }
 
@@ -65,11 +65,11 @@ public class LadderGameMachine {
     private void printLadderGameResults(
             final Ladder ladder,
             final LadderHeight ladderHeight,
-            final GameResults gameResults,
+            final LadderDestinations ladderDestinations,
             final PlayerNames playerNames
     ) {
         Players players = Players.of(playerNames, ladderHeight);
-        LadderGameResults ladderGameResults = LadderGameResults.of(ladder, players, gameResults);
+        LadderGameResults ladderGameResults = LadderGameResults.of(ladder, players, ladderDestinations);
         boolean isContinue = true;
 
         while (isContinue) {

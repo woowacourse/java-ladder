@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderGameResultsTest {
+public class LadderLadderDestinationsTest {
 
     @DisplayName("사다리 타기 결과를 생성한다.")
     @Test
@@ -20,10 +20,10 @@ public class LadderGameResultsTest {
         LadderHeight ladderHeight = new LadderHeight(5);
         Ladder ladder = Ladder.of(() -> true, ladderHeight, 4);
         Players players = Players.of(PlayerNames.of(List.of("pobi", "honux", "crong", "jk")), ladderHeight);
-        GameResults gameResults = GameResults.of(List.of("꽝", "5000", "꽝", "3000"));
+        LadderDestinations ladderDestinations = LadderDestinations.of(List.of("꽝", "5000", "꽝", "3000"));
 
         // When
-        LadderGameResults ladderGameResults = LadderGameResults.of(ladder, players, gameResults);
+        LadderGameResults ladderGameResults = LadderGameResults.of(ladder, players, ladderDestinations);
 
         // Then
         assertThat(ladderGameResults).isNotNull();
@@ -36,8 +36,8 @@ public class LadderGameResultsTest {
         LadderHeight ladderHeight = new LadderHeight(5);
         Players players = Players.of(PlayerNames.of(List.of("kelly", "pobi", "ank")), ladderHeight);
         Ladder ladder = Ladder.of(() -> true, ladderHeight, 3);
-        GameResults gameResults = GameResults.of(List.of("꽝", "당첨", "꽝"));
-        LadderGameResults ladderGameResults = LadderGameResults.of(ladder, players, gameResults);
+        LadderDestinations ladderDestinations = LadderDestinations.of(List.of("꽝", "당첨", "꽝"));
+        LadderGameResults ladderGameResults = LadderGameResults.of(ladder, players, ladderDestinations);
         String findPlayerName = "kelly";
 
         // When

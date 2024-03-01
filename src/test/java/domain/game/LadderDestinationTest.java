@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GameResultTest {
+public class LadderDestinationTest {
 
     @DisplayName("게임 결과 내용과 라인 번호를 입력하면 인스턴스를 생성한다.")
     @Test
@@ -16,21 +16,21 @@ public class GameResultTest {
         int lineNumber = 1;
 
         // When
-        GameResult gameResult = GameResult.of(gameResultDescription, lineNumber);
+        LadderDestination ladderDestination = LadderDestination.of(gameResultDescription, lineNumber);
 
         // Then
-        assertThat(gameResult).isNotNull();
+        assertThat(ladderDestination).isNotNull();
     }
 
     @DisplayName("입력된 라인 번호와 결과가 존재하는 라인 번호가 같으면 true를 반환한다.")
     @Test
     void 결과_라인_번호와_같은지_체크() {
         // Given
-        GameResult gameResult = GameResult.of("꽝", 3);
+        LadderDestination ladderDestination = LadderDestination.of("꽝", 3);
         LineNumber inputLineNumber = new LineNumber(3);
 
         // When
-        boolean isEqual = gameResult.isEqualLineNumber(inputLineNumber);
+        boolean isEqual = ladderDestination.isEqualLineNumber(inputLineNumber);
 
         // Then
         assertThat(isEqual).isTrue();
