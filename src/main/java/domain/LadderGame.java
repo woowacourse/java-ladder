@@ -21,7 +21,8 @@ public class LadderGame {
 
     public LadderResults driveAll() {
         return new LadderResults(players.getPlayers().stream()
-                .map(player -> this.drive(player.getPlayerName()))
+                .map(Player::getPlayerName)
+                .map(this::drive)
                 .toList());
     }
 
