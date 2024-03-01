@@ -17,6 +17,11 @@ class Gifts {
         }
     }
 
+    String getGiftName(int index) {
+        Gift gift = gifts.get(index);
+        return gift.name();
+    }
+
     static Gifts of(String... giftsName) {
         List<Gift> gifts = Arrays.stream(giftsName).map(Gift::new).toList();
         return new Gifts(gifts);

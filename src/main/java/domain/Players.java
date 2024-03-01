@@ -27,6 +27,16 @@ class Players {
             throw new IllegalStateException("참가자는 2명 이상 10명 이하여야 합니다.");
         }
     }
+    
+    boolean notContains(String playerName) {
+        return players.stream()
+                .noneMatch(player -> player.name().equals(playerName));
+    }
+
+    int indexOf(String playerName) {
+        List<String> playerNames = players.stream().map(Player::name).toList();
+        return playerNames.indexOf(playerName);
+    }
 
     static Players of(String... playerNames) {
         List<Player> players = Arrays.stream(playerNames).map(Player::new).toList();
