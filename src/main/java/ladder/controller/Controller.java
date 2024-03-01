@@ -9,6 +9,7 @@ import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.Players;
 import ladder.domain.RandomDirectionGenerator;
+import ladder.domain.Result;
 import ladder.domain.Results;
 import ladder.domain.ResultsOfPlayers;
 import ladder.domain.Width;
@@ -27,7 +28,7 @@ public class Controller {
     }
 
     private static void printOutput(Players players, Ladder ladder, Results results) {
-        ResultsOfPlayers resultsOfPlayers = new ResultsOfPlayers(players, ladder, results);
+        ResultsOfPlayers resultsOfPlayers = new ResultsOfPlayers(players.climbAllPlayers(ladder), results);
         OutputView.printLadderResult(players, ladder, results);
         repeatPrintingReward(resultsOfPlayers);
     }
@@ -75,12 +76,12 @@ public class Controller {
     }
 
     private static Results getResults(int playersCount) {
-        List<String> results = InputView.inputResults();
+        List<Result> results = InputView.inputResults();
         validateResultsSize(results, playersCount);
         return new Results(results);
     }
 
-    private static void validateResultsSize(List<String> results, int playersCount) {
+    private static void validateResultsSize(List<Result> results, int playersCount) {
         if (results.size() != playersCount) {
             throw new IllegalArgumentException(
                     "실행 결과의 수가 사용자 수와 다릅니다: %d".formatted(results.size())

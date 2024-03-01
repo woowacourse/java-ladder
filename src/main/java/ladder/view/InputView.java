@@ -1,10 +1,16 @@
 package ladder.view;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 import ladder.domain.Height;
+import ladder.domain.Location;
+import ladder.domain.Name;
+import ladder.domain.Player;
 import ladder.domain.Players;
+import ladder.domain.Result;
 
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -14,12 +20,18 @@ public class InputView {
     public static Players inputNames() {
         System.out.println("\n참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         List<String> names = Arrays.asList(readLine().split(","));
-        return new Players(names);
+        List<Player> players = new ArrayList<>();
+        IntStream.range(0, names.size())
+                .forEach(index -> players.add(new Player(new Name(names.get(index)), new Location(index))));
+        return new Players(players);
     }
 
-    public static List<String> inputResults() {
+    public static List<Result> inputResults() {
         System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        return Arrays.asList(readLine().split(","));
+        List<String> resultValues = Arrays.asList(readLine().split(","));
+        List<Result> results = new ArrayList<>();
+        resultValues.forEach(resultValue -> results.add(new Result(resultValue)));
+        return results;
     }
 
     public static Height inputHeight() {

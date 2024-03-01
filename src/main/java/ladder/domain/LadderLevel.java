@@ -18,12 +18,12 @@ public class LadderLevel {
         return location.move(getDirection(location));
     }
 
-    public List<Direction> getDirections() {
-        return Collections.unmodifiableList(ladderLevel);
-    }
-
     private Direction getDirection(Location location) {
         return ladderLevel.get(location.value());
+    }
+
+    public List<Direction> getDirections() {
+        return Collections.unmodifiableList(ladderLevel);
     }
 
     private ArrayList<Direction> createLadderLevel(Width width, DirectionGenerator directionGenerator) {

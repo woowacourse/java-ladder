@@ -2,18 +2,21 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Players {
     private static final int MIN_PLAYERS_COUNT = 2;
     private final List<Player> players;
 
-    public Players(List<String> names) {
-        validate(names);
-        players = new ArrayList<>();
-        IntStream.range(0, names.size())
-                .forEach(index -> players.add(new Player(new Name(names.get(index)), new Location(index))));
+    public Players(List<Player> players) {
+        validate(players);
+        this.players = players;
+    }
+
+    public Players climbAllPlayers(Ladder ladder) {
+        List<Player> climbAllPlayers = new ArrayList<>();
+        players.forEach(player -> climbAllPlayers.add(player.climb(ladder)));
+        return new Players(climbAllPlayers);
     }
 
     public int count() {
@@ -24,31 +27,31 @@ public class Players {
         return players.stream();
     }
 
-    private void validate(List<String> names) {
-        validatePlayersCount(names);
-        validateDuplicatedName(names);
+    private void validate(List<Player> players) {
+        validatePlayersCount(players);
+        validateDuplicatedName(players);
     }
 
-    private void validatePlayersCount(List<String> names) {
-        if (names.size() < MIN_PLAYERS_COUNT) {
+    private void validatePlayersCount(List<Player> players) {
+        if (players.size() < MIN_PLAYERS_COUNT) {
             throw new IllegalArgumentException(
                     "참여자는 최소 %d명입니다.".formatted(MIN_PLAYERS_COUNT)
             );
         }
     }
 
-    private void validateDuplicatedName(List<String> names) {
-        List<String> distinctNames = new ArrayList<>();
-        names.forEach(name -> {
-            throwExceptionIfContains(distinctNames, name);
-            distinctNames.add(name);
+    private void validateDuplicatedName(List<Player> players) {
+        List<Player> distinctPlayers = new ArrayList<>();
+        players.forEach(player -> {
+            throwExceptionIfContains(distinctPlayers, player);
+            distinctPlayers.add(player);
         });
     }
 
-    private static void throwExceptionIfContains(List<String> distinctNames, String name) {
-        if (distinctNames.contains(name)) {
+    private static void throwExceptionIfContains(List<Player> distinctPlayers, Player player) {
+        if (distinctPlayers.contains(player)) {
             throw new IllegalArgumentException(
-                    "중복된 이름은 입력할 수 없습니다: %s".formatted(name)
+                    "중복된 이름은 입력할 수 없습니다: %s".formatted(player.name().value())
             );
         }
     }

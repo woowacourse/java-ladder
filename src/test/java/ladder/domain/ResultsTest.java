@@ -11,7 +11,7 @@ public class ResultsTest {
     @DisplayName("위치를 입력하여 그 위치의 결과를 반환한다.")
     @Test
     void getResultTest() {
-        Results results = new Results(List.of("꽝", "5000"));
+        Results results = new Results(List.of(new Result("꽝"), new Result("5000")));
 
         assertAll(
                 () -> assertThat(results.getResult(new Location(0))).isEqualTo(new Result("꽝")),
@@ -22,7 +22,7 @@ public class ResultsTest {
     @DisplayName("모든 결과를 반환한다.")
     @Test
     void getAllResultsTest() {
-        Results results = new Results(List.of("꽝", "5000"));
+        Results results = new Results(List.of(new Result("꽝"), new Result("5000")));
         List<Result> allResults = results.getResults();
 
         assertAll(
