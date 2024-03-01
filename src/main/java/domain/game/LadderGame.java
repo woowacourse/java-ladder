@@ -1,6 +1,7 @@
 package domain.game;
 
 import domain.ladder.Ladder;
+import domain.result.Results;
 import domain.user.Users;
 
 import java.util.LinkedHashMap;

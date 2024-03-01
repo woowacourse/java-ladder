@@ -2,8 +2,8 @@ package controller;
 
 import domain.game.GameResult;
 import domain.game.LadderGame;
-import domain.game.Result;
-import domain.game.Results;
+import domain.result.Result;
+import domain.result.Results;
 import domain.ladder.Ladder;
 import domain.user.Users;
 import utils.RandomGenerator;

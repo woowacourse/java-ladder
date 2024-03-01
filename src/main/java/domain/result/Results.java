@@ -1,4 +1,4 @@
-package domain.game;
+package domain.result;
 
 import domain.user.Users;
 
