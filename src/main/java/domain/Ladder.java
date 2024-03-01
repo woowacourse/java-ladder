@@ -2,7 +2,7 @@ package domain;
 
 import domain.generator.BridgeGenerator;
 import java.util.Collections;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -21,26 +21,23 @@ public class Ladder {
                 .boxed()
                 .collect(Collectors.toMap(
                         index -> index,
-                        index -> new Line(players.getTotalPlayerSize(), bridgeGenerator)
+                        index -> new Line(players.getTotalPlayerSize(), bridgeGenerator),
+                        (line, line2) -> line2,
+                        LinkedHashMap::new
                 ));
     }
 
     public Map<String, Integer> calculate(Players players) {
-        List<String> names = players.getNames();
-        return calculateTotalPosition(players, names);
-    }
-
-    private Map<String, Integer> calculateTotalPosition(Players players, List<String> names) {
         return players.getNames().stream()
-                .collect(Collectors.toMap(Function.identity(),
-                        name -> calculatePlayerIndexOf(names.indexOf(name))));
+                .collect(Collectors.toMap(Function.identity(), name -> calculatePlayerPosition(name, players)));
     }
 
-    private int calculatePlayerIndexOf(int playerIndex) {
+    private int calculatePlayerPosition(String name, Players players) {
+        int position = players.getPositionOf(name);
         for (Line line : lines.values()) {
-            playerIndex = line.calculatePosition(playerIndex);
+            position = line.calculatePosition(position);
         }
-        return playerIndex;
+        return position;
     }
 
     public Map<Integer, Line> getLines() {
