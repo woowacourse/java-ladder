@@ -18,49 +18,57 @@ public class Participants {
     private static final String UNDER_PARTICIPANT_SIZE
             = "참가자가 %d명 미만인 경우는 존재할 수 없습니다.".formatted(MINIMUM_PARTICIPANT_SIZE);
 
-    private final List<Name> participantNames;
+    private List<Participant> participants;
 
-    public Participants(List<String> participantsName) {
-        validateNotDuplicateName(participantsName);
-        validateParticipantSize(participantsName);
-        this.participantNames = createNames(participantsName);
+    public Participants(List<Participant> participants) {
+        validateNotDuplicateName(participants);
+        validateParticipantSize(participants);
+        this.participants = participants;
     }
 
-    private void validateNotDuplicateName(List<String> participantsName) {
-        Set<String> distinctNames = new HashSet<>(participantsName);
-        if (distinctNames.size() != participantsName.size()) {
+    private void validateNotDuplicateName(List<Participant> participants) {
+        Set<Name> distinctNames = participants.stream()
+                .map(Participant::getName)
+                .collect(Collectors.toSet());
+        if (distinctNames.size() != participants.size()) {
             throw new IllegalArgumentException(DUPLICATED_PARTICIPANT_NAME);
         }
     }
 
-    private void validateParticipantSize(List<String> participantsName) {
-        if (participantsName.size() < MINIMUM_PARTICIPANT_SIZE) {
+    private void validateParticipantSize(List<Participant> participants) {
+        if (participants.size() < MINIMUM_PARTICIPANT_SIZE) {
             throw new IllegalArgumentException(UNDER_PARTICIPANT_SIZE);
         }
     }
 
-    private List<Name> createNames(List<String> participantsName) {
-        return participantsName.stream()
-                .map(Name::new)
-                .toList();
-    }
-
     public int size() {
-        return this.participantNames.size();
+        return this.participants.size();
     }
 
-    public Map<Name, Integer> mapAllNameAndPosition() {
-        return IntStream.range(0, participantNames.size())
-                .boxed()
-                .collect(Collectors.toMap(participantNames::get, index -> index));
+
+    public Position findPosition(Participant participant) {
+        Participant foundParticipant = participants.stream()
+                .filter(p -> p.equals(participant))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참가자 입니다."));
+        return foundParticipant.getPosition();
     }
 
-    public Position getPositionByName(Name findName) {
-        int index = participantNames.indexOf(findName);
-        return new Position(index);
+    public Participant findParticipantByName(Name name) {
+        return participants.stream()
+                .filter(participant -> participant.isSameName(name))
+                .findAny()
+                .orElseThrow(()-> new IllegalArgumentException("존재하지 않는 참가자 이름입니다."));
+    }
+    public Position findPositionByName(String participantName) {
+        Participant foundParticipant = participants.stream()
+                .filter(participant -> participant.isSameName(new Name(participantName)))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참가자 입니다."));
+        return foundParticipant.getPosition();
     }
 
-    public List<Name> getParticipants() {
-        return List.copyOf(participantNames);
+    public List<Participant> getParticipants() {
+        return List.copyOf(participants);
     }
 }

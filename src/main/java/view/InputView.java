@@ -8,9 +8,12 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import model.Height;
 import model.Name;
+import model.Participant;
 import model.Position;
 import model.Result;
+import model.Results;
 
 public class InputView {
 
@@ -24,28 +27,26 @@ public class InputView {
     private static final Pattern NUMERIC_PATTERN = Pattern.compile("^[0-9]*$");
     private static final Scanner in = new Scanner(System.in);
 
-    public List<String> inputParticipantsName() {
+    public List<Participant> inputParticipantsName() {
         System.out.println(INPUT_PARTICIPANT_NAMES);
         String input = in.nextLine();
         validateNotNullAndBlank(input);
-        return splitInputByDelimiter(input, DELIMITER);
+        List<String> names = splitInputByDelimiter(input, DELIMITER);
+        return IntStream.range(0, names.size())
+                .mapToObj(position -> new Participant(new Name(names.get(position)), new Position(position)))
+                .toList();
     }
 
-    public Map<Position, Result> inputResults() {
+    public List<Result> inputResults() {
         System.out.println(INPUT_GAME_RESULT);
         String input = in.nextLine();
         validateNotNullAndBlank(input);
-        List<String> inputs = splitInputByDelimiter(input, DELIMITER);
-        return mappingResults(inputs);
+        List<String> results = splitInputByDelimiter(input, DELIMITER);
+        return IntStream.range(0, results.size())
+                .mapToObj(index -> new Result(new Position(index), results.get(index)))
+                .toList();
     }
-
-    private static Map<Position, Result> mappingResults(List<String> inputs) {
-        return IntStream.range(0, inputs.size())
-                .boxed()
-                .collect(Collectors.toMap(Position::new, index -> new Result(inputs.get(index))));
-    }
-
-    private static List<String> splitInputByDelimiter(String input, String delimiter) {
+    private List<String> splitInputByDelimiter(String input, String delimiter) {
         return Arrays.stream(input.split(delimiter))
                 .map(String::trim)
                 .toList();

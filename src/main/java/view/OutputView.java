@@ -9,9 +9,11 @@ import model.Ladder;
 import model.LadderRow;
 import model.Line;
 import model.Name;
+import model.Participant;
 import model.Participants;
 import model.Position;
 import model.Result;
+import model.Results;
 
 public class OutputView {
 
@@ -20,7 +22,7 @@ public class OutputView {
     private static final String NAME_FORMAT = "%5s ";
     private static final String PARTICIPANTS_RESULT_FORMAT = "%s : %s ";
 
-    public void printRandomLadderResult(Participants participants, Ladder ladder, Map<Position, Result> results) {
+    public void printRandomLadderResult(Participants participants, Ladder ladder, Results results) {
         System.out.println(RESULT_MESSAGE);
         printParticipantsName(participants);
         printLadder(ladder);
@@ -29,9 +31,9 @@ public class OutputView {
 
     private void printParticipantsName(Participants participants) {
         participants.getParticipants().stream()
-                .map(Name::value)
+                .map(Participant::getName)
                 .toList()
-                .forEach(name -> System.out.print(NAME_FORMAT.formatted(name)));
+                .forEach(name -> System.out.print(NAME_FORMAT.formatted(name.value())));
         System.out.println();
     }
 
@@ -49,21 +51,21 @@ public class OutputView {
         System.out.print(LadderComponent.DIVISION + "\n");
     }
 
-    public void printResults(Map<Position, Result> results) {
-        results.keySet().forEach(position -> System.out.print(NAME_FORMAT.formatted(results.get(position).value())));
+    public void printResults(Results results) {
+        results.getResults().forEach(result -> System.out.print(NAME_FORMAT.formatted(result.getValue())));
         System.out.println();
     }
 
     public void printParticipantResult(Result result) {
         System.out.println(PARTICIPANT_RESULT);
-        System.out.println(result.value());
+        System.out.println(result.getValue());
     }
 
-    public void printParticipantResult(Map<Name, Result> results) {
+    public void printParticipantResults(Map<Participant, Result> results) {
         System.out.println(PARTICIPANT_RESULT);
-        results.keySet().forEach(
-                name -> System.out.println(
-                        PARTICIPANTS_RESULT_FORMAT.formatted(name.value(), results.get(name).value())));
-
+        results.keySet()
+                .forEach(participant -> System.out.println(PARTICIPANTS_RESULT_FORMAT
+                        .formatted(participant.getName().value(), results.get(participant).getValue())));
     }
+
 }

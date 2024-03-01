@@ -9,14 +9,14 @@ class ResultTest {
     @DisplayName("공백이나 비어있지 않은 문자열은 예외가 발생하지 않는다.")
     @Test
     void validateResult() {
-        Assertions.assertThatCode(() -> new Result("꽝"))
+        Assertions.assertThatCode(() -> new Result(new Position(0), "꽝"))
                 .doesNotThrowAnyException();
     }
 
     @DisplayName("공백이나 빈 문자열이 들어가면 예외가 발생한다.")
     @Test
     void EmptyAndBlankResult() {
-        Assertions.assertThatThrownBy(() -> new Result(""))
+        Assertions.assertThatThrownBy(() -> new Result(new Position(), ""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

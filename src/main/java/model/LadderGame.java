@@ -1,6 +1,6 @@
 package model;
 
-import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -8,26 +8,33 @@ public class LadderGame {
 
     private final Participants participants;
     private final Ladder ladder;
-    private final Map<Position, Result> resultByPosition;
+    private final Results results;
 
-    public LadderGame(Participants participants, Ladder ladder, Map<Position, Result> resultByPosition) {
-        if (resultByPosition.size() != participants.size()) {
+    public LadderGame(Participants participants, Ladder ladder, Results results) {
+        if (results.size() != participants.size()) {
             throw new IllegalArgumentException("입력한 참가자와 결과의 개수가 동일하지 않습니다.");
         }
         this.participants = participants;
         this.ladder = ladder;
-        this.resultByPosition = resultByPosition;
+        this.results = results;
     }
 
-    public Result findParticipantResult(Name name) {
-        Position participantPosition = participants.getPositionByName(name);
-        Position resultPosition = ladder.moveAll(participantPosition);
-        return resultByPosition.get(resultPosition);
+    public Result findParticipantResult(Participant participant) {
+        Position participantsPosition = participants.findPosition(participant);
+        Position resultPosition = ladder.moveAll(participantsPosition);
+        return results.findResult(resultPosition);
     }
 
-    public Map<Name, Result> findAllParticipantResults() {
-        Map<Name, Integer> allNameAndPosition = participants.mapAllNameAndPosition();
-        return allNameAndPosition.keySet().stream()
-                .collect(Collectors.toMap(name -> name, this::findParticipantResult));
+    public Participant findParticipant(Name name) {
+        return participants.findParticipantByName(name);
+    }
+
+    public Map<Participant, Result> findAllParticipantResults() {
+        return participants.getParticipants()//TODO participants 안에 있는 방법 생각
+                .stream()
+                .collect(Collectors.toMap(
+                        participant -> participant,
+                        this::findParticipantResult
+                ));
     }
 }
