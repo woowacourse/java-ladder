@@ -3,37 +3,41 @@ package domain.prize;
 import java.util.regex.Pattern;
 
 public class Prize {
-    private static final int MAX_PRIZE_LENGTH = 10;
-    private static final int MIN_PRIZE_LENGTH = 1;
-    private static final Pattern PRIZE_PATTERN = Pattern.compile("^[a-zA-Z가-힣0-9]*$");
+    private static final int MAX_PRIZE_NAME_LENGTH = 10;
+    private static final int MIN_PRIZE_NAME_LENGTH = 1;
+    private static final Pattern PRIZE_NAME_PATTERN = Pattern.compile("^[a-zA-Z가-힣0-9]*$"); // todo name name
     private static final String PRIZE_LENGTH_EXCEPTION_MESSAGE = "[ERROR] 잘못된 상품명: %s - 상품명의 길이는 %d ~ %d 글자여야 합니다.";
     private static final String PRIZE_PATTERN_EXCEPTION_MESSAGE = "[ERROR] 잘못된 상품명: %s - 상품명은 한글, 영문자, 숫자만 가능합니다.";
 
-    private final String prize;
+    private final String name;
 
-    public Prize(String prize) {
-        validateLength(prize);
-        validatePattern(prize);
-        this.prize = prize;
+    public Prize(String name) {
+        validateLength(name);
+        validateNamePattern(name);
+        this.name = name;
     }
 
-    private void validateLength(String prize) {
-        if (prize.length() < MIN_PRIZE_LENGTH || MAX_PRIZE_LENGTH < prize.length()) {
+    private void validateLength(String name) {
+        if (name.length() < MIN_PRIZE_NAME_LENGTH || MAX_PRIZE_NAME_LENGTH < name.length()) {
             throw new IllegalArgumentException(
-                    String.format(PRIZE_LENGTH_EXCEPTION_MESSAGE, prize, MIN_PRIZE_LENGTH, MAX_PRIZE_LENGTH)
+                    String.format(PRIZE_LENGTH_EXCEPTION_MESSAGE, name, MIN_PRIZE_NAME_LENGTH, MAX_PRIZE_NAME_LENGTH)
             );
         }
     }
 
-    private void validatePattern(String prize) {
-        if (!PRIZE_PATTERN.matcher(prize).matches()) {
+    private void validateNamePattern(String name) {
+        if (!PRIZE_NAME_PATTERN.matcher(name).matches()) {
             throw new IllegalArgumentException(
-                    String.format(PRIZE_PATTERN_EXCEPTION_MESSAGE, prize)
+                    String.format(PRIZE_PATTERN_EXCEPTION_MESSAGE, name)
             );
         }
     }
 
-    public String getPrize() {
-        return this.prize;
+    public int getNameLength() {
+        return this.name.length();
+    }
+
+    public String getName() {
+        return this.name;
     }
 }
