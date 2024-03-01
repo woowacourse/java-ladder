@@ -18,4 +18,9 @@ public class InputView {
         return Console.readLine();
     }
 
+    public List<String> askConsequences(){
+        System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String[] consequences= Console.readLine().split(DELIMITER,-1);
+        return List.of(consequences);
+    }
 }
