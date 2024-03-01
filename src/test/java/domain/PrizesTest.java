@@ -15,10 +15,10 @@ class PrizesTest {
     @Test
     void occurExceptionIfPrizesIsInvalidLength() {
         // given
-        int columnLength = 3;
+        int playerCount = 3;
 
         // when & then
-        assertThatThrownBy(() -> new Prizes(List.of("꽝", "2000", "3000", "꽝"), columnLength))
+        assertThatThrownBy(() -> new Prizes(List.of("꽝", "2000", "3000", "꽝"), playerCount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Prizes.ERROR_IS_INVALID_LENGTH);
     }
@@ -27,17 +27,17 @@ class PrizesTest {
     @Test
     void returnPrizeByCurrentPosition() {
         // given
-        int columnLength = 4;
+        int playerCount = 4;
         int position = 0;
         TestLineItemGenerator lineItemGenerator = new TestLineItemGenerator(LineItem.CONNECTED);
-        Ladder ladder = Ladder.of(new Height("5"), columnLength, lineItemGenerator);
+        Ladder ladder = Ladder.of(new Height("5"), playerCount, lineItemGenerator);
         ladder.playLadderGame(position);
-        Prizes prizes = new Prizes(List.of("꽝", "5000", "꽝", "3000"), columnLength);
+        Prizes prizes = new Prizes(List.of("꽝", "5000", "꽝", "3000"), playerCount);
 
         // when
-        String result = prizes.findPrizeByPosition(position);
+        Prize result = prizes.findPrizeByPosition(position);
 
         // then
-        assertThat(result).isEqualTo(prizes.findPrizeByPosition(2));
+        assertThat(result.getPrize()).isEqualTo(prizes.findPrizeByPosition(2).getPrize());
     }
 }

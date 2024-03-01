@@ -29,8 +29,9 @@ public class Prizes {
         }
     }
 
-    public String findPrizeByPosition(int position) {
-        return prizes.get(position).getPrize();
+    // TODO test
+    public Prize findPrizeByPosition(int position) {
+        return prizes.get(position);
     }
 
     public List<Prize> getPrizes() {
