@@ -6,7 +6,7 @@ import static domain.Connection.RIGHT_CONNECTION;
 
 import util.RandomElementSelector;
 
-public class NonContinousConnectionGenerator1 implements ConnectionGenerator1 {
+public class NonContinousConnectionGenerator implements ConnectionGenerator {
 
     @Override
     public Connection generate(Connection previous) {

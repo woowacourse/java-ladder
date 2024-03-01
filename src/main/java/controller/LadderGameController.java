@@ -5,7 +5,7 @@ import domain.Ladder;
 import domain.LadderCreator;
 import domain.LadderGame;
 import domain.LadderResult;
-import domain.NonContinuousConnectionGenerator;
+import domain.NonContinousConnectionGenerator;
 import domain.Players;
 import domain.Prizes;
 import domain.RowLineGenerator;
@@ -29,7 +29,7 @@ public class LadderGameController {
         Height height = inputMapper.mapToHeight(inputView.readHeight());
         Prizes prizes = inputMapper.mapToPrizes(inputView.readResults());
 
-        RowLineGenerator rowLineGenerator = new RowLineGenerator(new NonContinuousConnectionGenerator());
+        RowLineGenerator rowLineGenerator = new RowLineGenerator(new NonContinousConnectionGenerator());
         Ladder ladder = new LadderCreator().createLadder(rowLineGenerator, players.getPlayerCount(), height);
 
         resultView.printLadder(ladder, players, prizes);

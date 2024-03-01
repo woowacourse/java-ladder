@@ -5,25 +5,19 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("열 위치 도메인 테스트")
 class ColumnPositionTest {
 
-    @DisplayName("움직이는 방향을 받아 다음 열 위치를 계산할 수 있다")
-    @Test
-    void testMovePositionByDirection() {
-        ColumnPosition columnPosition = new ColumnPosition(1);
-
-        ColumnPosition leftMoved = columnPosition.nextPosition(-1);
-        ColumnPosition rightMoved = columnPosition.nextPosition(1);
-        ColumnPosition stayed = columnPosition.nextPosition(0);
-
-        assertThat(leftMoved.getColumnPosition()).isEqualTo(0);
-        assertThat(rightMoved.getColumnPosition()).isEqualTo(2);
-        assertThat(stayed.getColumnPosition()).isEqualTo(1);
+    @DisplayName("가중치를 기반으로 다음 위치를 반환할 수 있다")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 0, 1})
+    void testMovePositionByDirection(int weight) {
+        int start = 1;
+        ColumnPosition columnPosition = new ColumnPosition(start);
+        assertThat(columnPosition.nextPosition(weight).getColumnPosition()).isEqualTo(start + weight);
     }
 
     @DisplayName("범위에 벗어나는 위치는 생성에 실패한다")

@@ -2,5 +2,7 @@ package domain;
 
 public interface ConnectionGenerator {
 
-    ConnectionStatus generateByPreviousStatus(ConnectionStatus previous);
+    Connection generate(Connection previous);
+
+    Connection generateLastConnection(Connection previous);
 }

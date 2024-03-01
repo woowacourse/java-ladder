@@ -1,8 +1,8 @@
 package domain;
 
-import static domain.ConnectionStatus.CONNECTED;
-import static domain.ConnectionStatus.DISCONNECTED;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static domain.Connection.LEFT_CONNECTION;
+import static domain.Connection.RIGHT_CONNECTION;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -14,55 +14,43 @@ class RowLineTest {
     @DisplayName("현재 열의 위치에서 연결 정보를 기반으로 다음 열의 위치를 계산할 수 있다")
     @Test
     void testNavigateNextColumn() {
-        List<ConnectionStatus> connections = List.of(CONNECTED, DISCONNECTED, CONNECTED);
-        RowLine rowLine = new RowLine(connections);
-        assertThat(rowLine.navigateNextColumn(0)).isEqualTo(1);
-        assertThat(rowLine.navigateNextColumn(1)).isEqualTo(0);
-        assertThat(rowLine.navigateNextColumn(2)).isEqualTo(3);
-        assertThat(rowLine.navigateNextColumn(3)).isEqualTo(2);
+        RowLine rowLine = new RowLine(List.of(
+                new Point(new ColumnPosition(0), RIGHT_CONNECTION),
+                new Point(new ColumnPosition(1), LEFT_CONNECTION),
+                new Point(new ColumnPosition(2), RIGHT_CONNECTION),
+                new Point(new ColumnPosition(3), LEFT_CONNECTION)
+        ));
+
+        assertThat(rowLine.nextPosition(new ColumnPosition(0))).isEqualTo(new ColumnPosition(1));
+        assertThat(rowLine.nextPosition(new ColumnPosition(1))).isEqualTo(new ColumnPosition(0));
+        assertThat(rowLine.nextPosition(new ColumnPosition(2))).isEqualTo(new ColumnPosition(3));
+        assertThat(rowLine.nextPosition(new ColumnPosition(3))).isEqualTo(new ColumnPosition(2));
     }
 
-    @DisplayName("특정 위치의 오른쪽이 연결이 있는지 확인할 수 있다.")
+    @DisplayName("특정 위치의 연결을 조회할 수 있다")
     @Test
     void testCheckRightConnection() {
-        List<ConnectionStatus> connections = List.of(CONNECTED, DISCONNECTED, CONNECTED);
-        RowLine rowLine = new RowLine(connections);
-        assertThat(rowLine.getRightConnection(0)).isEqualTo(CONNECTED);
-        assertThat(rowLine.getRightConnection(1)).isEqualTo(DISCONNECTED);
-        assertThat(rowLine.getRightConnection(2)).isEqualTo(CONNECTED);
+        RowLine rowLine = new RowLine(List.of(
+                new Point(new ColumnPosition(0), RIGHT_CONNECTION),
+                new Point(new ColumnPosition(1), LEFT_CONNECTION),
+                new Point(new ColumnPosition(2), RIGHT_CONNECTION),
+                new Point(new ColumnPosition(3), LEFT_CONNECTION)
+        ));
+        assertThat(rowLine.getConnectionAt(new ColumnPosition(0))).isEqualTo(RIGHT_CONNECTION);
+        assertThat(rowLine.getConnectionAt(new ColumnPosition(1))).isEqualTo(LEFT_CONNECTION);
+        assertThat(rowLine.getConnectionAt(new ColumnPosition(2))).isEqualTo(RIGHT_CONNECTION);
+        assertThat(rowLine.getConnectionAt(new ColumnPosition(3))).isEqualTo(LEFT_CONNECTION);
     }
-
-    @DisplayName("특정 위치의 왼쪽이 연결이 있는지 확인할 수 있다.")
-    @Test
-    void testCheckLeftConnection() {
-        List<ConnectionStatus> connections = List.of(CONNECTED, DISCONNECTED, CONNECTED);
-        RowLine rowLine = new RowLine(connections);
-        assertThat(rowLine.getLeftConnection(1)).isEqualTo(CONNECTED);
-        assertThat(rowLine.getLeftConnection(3)).isEqualTo(CONNECTED);
-        assertThat(rowLine.getLeftConnection(2)).isEqualTo(DISCONNECTED);
-    }
-
-    @DisplayName("오른쪽 연결을 물을 때 인덱스를 벗어난다면 DISCONNECT를 반환한다.")
-    @Test
-    void testCheckRightConnectionAtEnd() {
-        List<ConnectionStatus> connections = List.of(CONNECTED, DISCONNECTED, CONNECTED);
-        RowLine rowLine = new RowLine(connections);
-        assertThat(rowLine.getRightConnection(3)).isEqualTo(DISCONNECTED);
-    }
-
-    @DisplayName("왼쪽 연결을 물을 때 인덱스를 벗어난다면 DISCONNECT를 반환한다.")
-    @Test
-    void testCheckLeftConnectionAtStart() {
-        List<ConnectionStatus> connections = List.of(CONNECTED, DISCONNECTED, CONNECTED);
-        RowLine rowLine = new RowLine(connections);
-        assertThat(rowLine.getLeftConnection(0)).isEqualTo(DISCONNECTED);
-    }
-
-    @DisplayName("연결 개수를 확인할 수 있다")
+    
+    @DisplayName("Point 개수를 확인할 수 있다")
     @Test
     void testCalculateConnectionCount() {
-        List<ConnectionStatus> connections = List.of(CONNECTED, DISCONNECTED, CONNECTED);
-        RowLine rowLine = new RowLine(connections);
-        assertThat(rowLine.getConnectionCount()).isEqualTo(3);
+        RowLine rowLine = new RowLine(List.of(
+                new Point(new ColumnPosition(0), RIGHT_CONNECTION),
+                new Point(new ColumnPosition(1), LEFT_CONNECTION),
+                new Point(new ColumnPosition(2), RIGHT_CONNECTION),
+                new Point(new ColumnPosition(3), LEFT_CONNECTION)
+        ));
+        assertThat(rowLine.getPointCount()).isEqualTo(4);
     }
 }

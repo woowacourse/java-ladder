@@ -1,56 +1,29 @@
 package domain;
 
-import static domain.ConnectionStatus.DISCONNECTED;
-
 import java.util.List;
 
 public class RowLine {
 
-    private final List<ConnectionStatus> connections;
+    private final List<Point> points;
 
-    public RowLine(List<ConnectionStatus> connections) {
-        this.connections = connections;
+    public RowLine(List<Point> points) {
+        this.points = points;
     }
 
-    public int navigateNextColumn(int index) {
-        if (getRightConnection(index).isConnect()) {
-            return index + 1;
-        }
-        if (getLeftConnection(index).isConnect()) {
-            return index - 1;
-        }
-        return index;
+    public ColumnPosition nextPosition(ColumnPosition columnPosition) {
+        Connection connection = getConnectionAt(columnPosition);
+        return columnPosition.nextPosition(connection.getMoveWeight());
     }
 
-    public ConnectionStatus getRightConnection(int index) {
-        if (isRightIndexOutOfRange(index)) {
-            return DISCONNECTED;
-        }
-        return connections.get(index);
+    public Connection getConnectionAt(ColumnPosition columnPosition) {
+        return points.stream()
+                .filter(point -> point.getColumnPosition().equals(columnPosition))
+                .map(Point::getConnection)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 위치를 가지는 지점을 찾을 수 없습니다"));
     }
 
-    public ConnectionStatus getLeftConnection(int index) {
-        if (isLeftIndexOutOfRange(index)) {
-            return DISCONNECTED;
-        }
-        return connections.get(index - 1);
-    }
-
-    public int getConnectionCount() {
-        return connections.size();
-    }
-
-    private boolean isRightIndexOutOfRange(int index) {
-        if (index >= getConnectionCount()) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isLeftIndexOutOfRange(int index) {
-        if (index <= 0) {
-            return true;
-        }
-        return false;
+    public int getPointCount() {
+        return points.size();
     }
 }

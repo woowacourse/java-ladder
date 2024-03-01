@@ -1,7 +1,8 @@
 package view;
 
-import static domain.ConnectionStatus.CONNECTED;
-import static domain.ConnectionStatus.DISCONNECTED;
+import static domain.Connection.DISCONNECTION;
+import static domain.Connection.LEFT_CONNECTION;
+import static domain.Connection.RIGHT_CONNECTION;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import domain.ColumnPosition;
@@ -11,6 +12,7 @@ import domain.LadderResults;
 import domain.Player;
 import domain.PlayerName;
 import domain.Players;
+import domain.Point;
 import domain.Prize;
 import domain.PrizeName;
 import domain.Prizes;
@@ -33,8 +35,18 @@ class MessageResolverTest {
     @DisplayName("사다리 정보 메시지 테스트")
     @Test
     void testResolveLadderMessage() {
-        RowLine line1 = new RowLine(List.of(CONNECTED, DISCONNECTED));
-        RowLine line2 = new RowLine(List.of(DISCONNECTED, DISCONNECTED));
+        RowLine line1 = new RowLine(List.of(
+                new Point(new ColumnPosition(0), RIGHT_CONNECTION),
+                new Point(new ColumnPosition(1), LEFT_CONNECTION),
+                new Point(new ColumnPosition(1), DISCONNECTION)
+        ));
+
+        RowLine line2 = new RowLine(List.of(
+                new Point(new ColumnPosition(0), DISCONNECTION),
+                new Point(new ColumnPosition(1), DISCONNECTION),
+                new Point(new ColumnPosition(1), DISCONNECTION)
+        ));
+
         List<RowLine> rowLines = List.of(line1, line2);
 
         Ladder ladder = new Ladder(rowLines);

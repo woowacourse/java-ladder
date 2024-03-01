@@ -9,16 +9,12 @@ public class RandomElementSelector {
     private RandomElementSelector() {
     }
 
-    public static <T extends Enum<?>> T selectRandomConstant(Class<T> enumClass) {
-        return selectRandomElement(Arrays.asList(enumClass.getEnumConstants()));
+    public static <T extends Enum<T>> T selectRandomFrom(T... constants) {
+        return selectRandomElement(Arrays.asList(constants));
     }
 
     private static <T> T selectRandomElement(List<T> collection) {
         Collections.shuffle(collection);
         return collection.get(0);
-    }
-
-    public static <T extends Enum<T>> T selectRandomFrom(T... constants) {
-        return selectRandomElement(Arrays.asList(constants));
     }
 }

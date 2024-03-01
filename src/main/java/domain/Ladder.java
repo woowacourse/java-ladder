@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -13,9 +12,10 @@ public class Ladder {
     }
 
     public int drive(ColumnPosition columnPosition) {
-        return IntStream.range(0, getRowLineCount())
-                .reduce(columnPosition.getColumnPosition(),
-                        (currentColumn, i) -> lines.get(i).navigateNextColumn(currentColumn));
+        return lines.stream()
+                .reduce(columnPosition, (currentPosition, rowLine) -> rowLine.nextPosition(currentPosition),
+                        (a, b) -> b)
+                .getColumnPosition();
     }
 
     public RowLine getLineByIndex(int index) {
@@ -27,7 +27,7 @@ public class Ladder {
     }
 
     public int getColumnCount() {
-        return lines.get(0).getConnectionCount() + 1;
+        return lines.get(0).getPointCount();
     }
 
     private void validateLinesSizeEqual(List<RowLine> lines) {
@@ -37,7 +37,8 @@ public class Ladder {
     }
 
     private boolean isAllLineSameSize(List<RowLine> lines) {
+        int pointCount = lines.get(0).getPointCount();
         return lines.stream()
-                .allMatch(rowLine -> rowLine.getConnectionCount() == lines.get(0).getConnectionCount());
+                .allMatch(rowLine -> rowLine.getPointCount() == pointCount);
     }
 }

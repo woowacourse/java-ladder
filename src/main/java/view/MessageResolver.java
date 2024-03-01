@@ -1,6 +1,9 @@
 package view;
 
-import domain.ConnectionStatus;
+import static domain.Connection.RIGHT_CONNECTION;
+
+import domain.ColumnPosition;
+import domain.Connection;
 import domain.Ladder;
 import domain.LadderResult;
 import domain.LadderResults;
@@ -57,14 +60,14 @@ public class MessageResolver {
     }
 
     private String resolveLineMessage(RowLine rowLine) {
-        return LINE_MESSAGE_PREFIX + COLUMN_LINE + IntStream.range(0, rowLine.getConnectionCount())
-                .mapToObj(rowLine::getRightConnection)
+        return LINE_MESSAGE_PREFIX + COLUMN_LINE + IntStream.range(0, rowLine.getPointCount() - 1)
+                .mapToObj(i -> rowLine.getConnectionAt(new ColumnPosition(i)))
                 .map(this::resolveConnectionMessage)
                 .collect(Collectors.joining(COLUMN_LINE)) + COLUMN_LINE;
     }
 
-    private String resolveConnectionMessage(ConnectionStatus connectionStatus) {
-        if (connectionStatus.isConnect()) {
+    private String resolveConnectionMessage(Connection connection) {
+        if (connection.equals(RIGHT_CONNECTION)) {
             return CONNECT_STATUS_MESSAGE;
         }
         return DISCONNECT_STATUS_MESSAGE;

@@ -7,8 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-@DisplayName("도착 결과 테스트")
-class PrizePlayerNameTest {
+@DisplayName("결과 이름 테스트")
+class PrizeNameTest {
 
     @DisplayName("결과의 길이가 1자에서 5자 사이가 아니면 생성 검증에 실패한다.")
     @ParameterizedTest
@@ -25,5 +25,4 @@ class PrizePlayerNameTest {
     void testCreateWithValidLength(String prize) {
         assertThatCode(() -> new PrizeName(prize)).doesNotThrowAnyException();
     }
-
 }
