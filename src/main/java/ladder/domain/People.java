@@ -51,6 +51,9 @@ public class People {
     }
 
     public int findPosition(Target target) {
-        return names.indexOf(target);
+        if (names.contains(target)) {
+            return names.indexOf(target);
+        }
+        throw new IllegalArgumentException("존재하지 않는 참여자입니다.");
     }
 }
