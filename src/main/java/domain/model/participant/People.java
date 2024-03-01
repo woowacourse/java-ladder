@@ -4,6 +4,7 @@ import java.util.List;
 
 public class People {
     private static final int SIZE_LIMIT = 2;
+    private static final String EXCEPTION_NAME = "all";
     private final List<Person> participants;
 
     public People(List<String> names) {
@@ -49,7 +50,7 @@ public class People {
     }
 
     public String findProperParticipant(String name) {
-        if (name.equals("all") || participants.contains(new Person(name))) {
+        if (name.equals(EXCEPTION_NAME) || participants.contains(new Person(name))) {
             return name;
         }
         throw new IllegalArgumentException("존재하지 않는 참가자 입니다.");
