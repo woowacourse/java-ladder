@@ -96,7 +96,7 @@ public class LadderGame {
 
     private List<Line> createLines(People people, Height height) {
         List<Line> lines = new ArrayList<>();
-        int size = people.count() - 1;
+        int size = people.count();
         while (!height.equals(lines.size())) {
             List<Point> points = randomPointsGenerator.generate(size);
             lines.add(new Line(points));
