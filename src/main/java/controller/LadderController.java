@@ -1,5 +1,6 @@
 package controller;
 
+import common.Command;
 import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
 import domain.ladder.strategy.RandomBridgeGenerator;
@@ -60,7 +61,7 @@ public class LadderController {
 
     private void startClimbingLadder(final ClimbingResults climbingResults) {
         String playerName = inputView.readPlayerToSeeResult();
-        while (!playerName.equals(InputView.FINISH_COMMAND)) {
+        while (!playerName.equals(Command.FINISH.getValue())) {
             findResultByPlayerName(playerName, climbingResults);
             playerName = inputView.readPlayerToSeeResult();
         }

@@ -1,5 +1,6 @@
 package domain.result;
 
+import common.Command;
 import domain.ladder.Direction;
 import domain.ladder.Floor;
 import domain.ladder.Ladder;
@@ -9,7 +10,6 @@ import domain.result.message.ResultExceptionMessage;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import view.InputView;
 
 public class ClimbingResults {
     private final Map<String, String> playerResults;
@@ -46,7 +46,7 @@ public class ClimbingResults {
     }
 
     private void validateIsParticipant(final String playerName) {
-        if (!playerName.equals(InputView.FINISH_COMMAND) && !playerResults.containsKey(playerName)) {
+        if (!playerName.equals(Command.FINISH.getValue()) && !playerResults.containsKey(playerName)) {
             throw new IllegalArgumentException(ResultExceptionMessage.NOT_PARTICIPATION_PLAYER);
         }
     }

@@ -6,8 +6,6 @@ import util.StringConvertor;
 import view.message.InputExceptionMessage;
 
 public class InputView {
-    public static final String FINISH_COMMAND = "all";
-
     private final Scanner scanner;
 
     public InputView(Scanner scanner) {
