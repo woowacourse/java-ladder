@@ -17,4 +17,16 @@ public enum Direction {
     public Index move(Index index) {
         return movement.apply(index);
     }
+
+    public boolean isLeft() {
+        return this == LEFT;
+    }
+
+    public boolean isRight() {
+        return this == RIGHT;
+    }
+
+    public boolean isDown() {
+        return this == DOWN;
+    }
 }
