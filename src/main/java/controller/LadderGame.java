@@ -12,6 +12,7 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGame {
+    private static final String ALL = "all";
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -55,7 +56,7 @@ public class LadderGame {
 
     private void searchResult(final ResultInfo resultInfo) {
         String personName = inputView.inputPersonName();
-        while (!personName.equals("all")) {
+        while (!personName.equals(ALL)) {
             String itemName = resultInfo.getItemNameByPersonName(personName);
             outputView.printResultByPerson(itemName);
             personName = inputView.inputPersonName();

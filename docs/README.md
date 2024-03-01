@@ -39,12 +39,7 @@
 - [x] 사다리의 높이가 1 이하인 경우
 - [x] 참여할 사람의 이름이 쉼표로 구분되어 있지 않은 경우
 - [x] 참여한 인원의 수가 1명 이하인 경우
-- [ ] 실행 결과 목록이 쉼표로 구분되어 있지 않은 경우
+~~- [ ] 실행 결과 목록이 쉼표로 구분되어 있지 않은 경우~~
+  - 쉼표 자체가 포함된 이름이 있을 수 있으므로 유효한 입력으로 취급한다.
 - [x] 참여 인원 수와 결과 목록의 수가 동일하지 않은 경우
 - [x] 결과를 보려는 사람이 사다리 참여자에 없는 경우
-
-  private void validatePersonName(final String personName) {
-  if (!personAndItemName.containsKey(personName)) {
-  throw new IllegalArgumentException("결과를 보려는 사람이 존재하지 않습니다.");
-  }
-  }
