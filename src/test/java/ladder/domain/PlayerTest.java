@@ -35,7 +35,7 @@ class PlayerTest {
     @DisplayName("참여자를 생성한다.")
     @Test
     void createPlayer() {
-         // when
+        // when
         Player player = new Player("pobi");
 
         // then
