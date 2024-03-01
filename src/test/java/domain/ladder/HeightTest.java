@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import domain.ladder.common.Height;
+import domain.ladder.attribute.Height;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +19,7 @@ class HeightTest {
 
         assertThatCode(() -> {
             Height height = new Height(value);
-            assertEquals(height.getHeight(), Integer.valueOf(value));
+            assertEquals(height.heightToInt(), Integer.valueOf(value));
         }).doesNotThrowAnyException();
     }
 

@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import domain.ladder.common.Direction;
+import domain.ladder.attribute.Direction;
 
 public class LadderLegPiece {
     private final Direction direction;
@@ -9,11 +9,11 @@ public class LadderLegPiece {
         this.direction = direction;
     }
 
-    public Direction getDirection() {
-        return direction;
-    }
-
     public boolean isRightDirection() {
         return direction.equals(Direction.RIGHT);
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 }

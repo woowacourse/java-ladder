@@ -1,8 +1,8 @@
 package domain.ladder;
 
-import domain.ladder.common.Direction;
+import domain.ladder.attribute.Direction;
 import util.DirectionGenerator;
-import domain.ladder.common.Height;
+import domain.ladder.attribute.Height;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +20,7 @@ public class Ladder {
     }
 
     private List<LadderLeg> generateLadderLegs(DirectionGenerator directionGenerator) {
-        int heightValue = height.getHeight();
+        int heightValue = height.heightToInt();
 
         List<LadderLeg> ladderLegs = buildBeforeFinalLeg(heightValue, directionGenerator);
         addFinalLeg(heightValue, ladderLegs);
@@ -49,8 +49,31 @@ public class Ladder {
                          .toList();
     }
 
-    public int getHeight() {
-        return height.getHeight();
+    public Direction getDirectionWithPoint(final Point point) {
+        return ladderLegs.get(point.row())
+                         .getDirectionAtIndex(point.column());
     }
 
+    public Point traverseLadderFromStartToEnd(final Point startPoint) {
+        return Stream.iterate(startPoint, this::movePoint)
+                     .filter(this::isPointIsEndLine)
+                     .findFirst()
+                     .orElseThrow(() -> new IllegalStateException("""
+                             만족하는 결과가 없는 경우로 , 사다리가 잘못 생성되었습니다.
+                             사다리를 다시 생성해주세요!
+                             """));
+    }
+
+    private Point movePoint(Point point) {
+        Direction direction = getDirectionWithPoint(point);
+        return point.move(direction);
+    }
+
+    private boolean isPointIsEndLine(Point point) {
+        return point.column() >= height.heightToInt();
+    }
+
+    public int getHeight() {
+        return height.heightToInt();
+    }
 }

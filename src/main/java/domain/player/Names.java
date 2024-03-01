@@ -1,5 +1,7 @@
 package domain.player;
 
+import domain.common.Name;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -33,11 +35,11 @@ public class Names {
 
     private static void validateSize(List<String> names) {
         if (names.size() < MINIMUM_SIZE) {
-            throw new IllegalArgumentException("최소 2 명 이상의 이름을 입력해주세요.");
+            throw new IllegalArgumentException(String.format("최소 %d명 이상의 이름을 입력해주세요.", MINIMUM_SIZE));
         }
     }
 
-    public List<Name> getValue() {
+    public List<Name> getNames() {
         return names;
     }
 }

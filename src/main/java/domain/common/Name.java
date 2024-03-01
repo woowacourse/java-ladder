@@ -1,4 +1,6 @@
-package domain.player;
+package domain.common;
+
+import java.util.Objects;
 
 public class Name {
     private static final Integer NAME_MAX_SIZE = 5;
@@ -7,10 +9,6 @@ public class Name {
     public Name(String value) {
         validate(value);
         this.value = value;
-    }
-
-    public String getValue() {
-        return value;
     }
 
     private void validate(String inputName) {
@@ -33,8 +31,22 @@ public class Name {
 
     private void validateContainBlankInName(String inputName) {
         if (inputName.contains(" ")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름에 공백을 포함할 수 없습니다.");
         }
     }
+    public String nameToString() {
+        return value;
+    }
 
+    @Override
+    public boolean equals(final Object object) {
+        if (this == object) return true;
+        if (!(object instanceof final Name name)) return false;
+        return Objects.equals(value, name.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
 }

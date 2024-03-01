@@ -1,7 +1,6 @@
 package domain.ladder;
 
-import domain.ladder.common.Direction;
-import domain.ladder.common.Height;
+import domain.ladder.attribute.Direction;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -24,18 +23,18 @@ public class LadderLeg {
     public static LadderLeg fromPreviousWithDynamicDirection(LadderLeg previousLadderLeg, int height, Supplier<Direction> directionSupplier) {
         return new LadderLeg(convertDirectionToLegPieceList(IntStream.range(0, height)
                                                                      .mapToObj(previousLadderLeg::hasRightDirectionAtIndex)
-                                                                     .map(flag -> determineDirection(flag, directionSupplier))));
+                                                                     .map(flag -> determineDirection(flag, directionSupplier.get()))));
     }
 
     public static LadderLeg fromPreviousWithDownDirection(LadderLeg previousLadderLeg, int height) {
         return fromPreviousWithDynamicDirection(previousLadderLeg, height, downDirectionSupplier);
     }
 
-    private static Direction determineDirection(boolean prevRightDirectionFlag, Supplier<Direction> directionSupplier) {
+    private static Direction determineDirection(boolean prevRightDirectionFlag, Direction direction) {
         if (prevRightDirectionFlag) {
             return Direction.LEFT;
         }
-        return directionSupplier.get();
+        return direction;
     }
 
     private static List<LadderLegPiece> convertDirectionToLegPieceList(Stream<Direction> directionStream) {
