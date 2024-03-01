@@ -1,12 +1,9 @@
-package domain;
+package domain.ladder;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-import static domain.Bridge.*;
 import static org.assertj.core.api.Assertions.*;
 
 class LadderTest {

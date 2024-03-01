@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 import utils.Generator;
 
@@ -23,10 +23,11 @@ public class Ladder {
     }
 
     public int climb(int position) {
+        int destination = position;
         for (Line line : lines) {
-            position = line.moveFrom(position);
+            destination = line.moveFrom(position);
         }
-        return position;
+        return destination;
     }
 
     private static List<Line> generateLines(final int height, final int personCount, final Generator generator) {

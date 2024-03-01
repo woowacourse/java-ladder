@@ -1,4 +1,6 @@
-package domain;
+package domain.game;
+
+import domain.user.Users;
 
 import java.util.List;
 
@@ -10,8 +12,8 @@ public class Results {
         this.prizes = prizes;
     }
 
-    public static Results of(final List<Result> prizes, final int personCount) {
-        validate(prizes.size(), personCount);
+    public static Results of(final List<Result> prizes, final Users users) {
+        validate(prizes.size(), users.gerPersonCount());
         return new Results(prizes);
     }
 

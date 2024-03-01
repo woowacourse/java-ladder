@@ -1,14 +1,14 @@
-package domain;
+package domain.game;
 
+import domain.ladder.Ladder;
+import domain.user.Users;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static domain.Bridge.BRIDGE;
-import static domain.Bridge.NON_BRIDGE;
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderGameTest {
 
@@ -18,12 +18,12 @@ class LadderGameTest {
         //given
         Users users = new Users(List.of("pobi", "honux", "crong", "jk"));
 
-        Results results =  Results.of(List.of(
-                new Result("꽝"),
-                new Result("5000"),
-                new Result("꽝"),
-                new Result("3000")),
-                4);
+        Results results = Results.of(List.of(
+                        new Result("꽝"),
+                        new Result("5000"),
+                        new Result("꽝"),
+                        new Result("3000")),
+                users);
 
 
         Ladder ladder = Ladder.of(3, 4, () -> true);

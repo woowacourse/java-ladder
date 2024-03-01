@@ -1,22 +1,25 @@
-package domain;
+package domain.game;
 
-import java.util.*;
+import domain.ladder.Ladder;
+import domain.user.Users;
+
+import java.util.LinkedHashMap;
+import java.util.List;
 
 public class LadderGame {
 
     private final Users users;
     private final Ladder ladder;
     private final Results results;
-    private final GameResult gameResult;
 
     public LadderGame(final Users users, final Ladder ladder, final Results results) {
         this.users = users;
         this.ladder = ladder;
         this.results = results;
-        this.gameResult = new GameResult(new LinkedHashMap<>());
     }
 
     public GameResult getResult() {
+        GameResult gameResult = new GameResult(new LinkedHashMap<>());
         List<String> prizeNames = results.getPrizeNames();
         List<String> userNames = users.getUserNames();
 

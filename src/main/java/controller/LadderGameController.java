@@ -1,6 +1,11 @@
 package controller;
 
-import domain.*;
+import domain.game.GameResult;
+import domain.game.LadderGame;
+import domain.game.Result;
+import domain.game.Results;
+import domain.ladder.Ladder;
+import domain.user.Users;
 import utils.RandomGenerator;
 import view.InputView;
 import view.ResultView;
@@ -14,7 +19,7 @@ public class LadderGameController {
 
     public void run() {
         Users users = generateUsers();
-        Results results = generateResults(users.gerPersonCount());
+        Results results = generateResults(users);
         Ladder ladder = generateLadders(users.gerPersonCount());
 
         LadderGame ladderGame = new LadderGame(users, ladder, results);
@@ -29,10 +34,10 @@ public class LadderGameController {
         return new Users(names);
     }
 
-    private Results generateResults(final int personCount) {
+    private Results generateResults(final Users users) {
         List<String> prizes = InputView.inputResults();
         List<Result> results = prizes.stream().map(Result::new).toList();
-        return Results.of(results, personCount);
+        return Results.of(results, users);
     }
 
     private Ladder generateLadders(final int userCount) {
@@ -62,7 +67,7 @@ public class LadderGameController {
     }
 
     private void printAllPrize(final GameResult gameResult) {
-        Map<String, String> repository = gameResult.repository();
+        Map<String, String> repository = gameResult.userPrizeRepository();
         ResultView.printPrize(repository);
     }
 }

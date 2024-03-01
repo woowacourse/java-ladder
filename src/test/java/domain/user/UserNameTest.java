@@ -1,4 +1,4 @@
-package domain;
+package domain.user;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class UserNameTest {
+
     @Test
     @DisplayName("이름을 갖는 사용자를 생성한다.")
     void userNameTest() {

@@ -1,10 +1,10 @@
-package domain;
+package domain.game;
 
 import java.util.Map;
 
 public record GameResult(Map<String, String> userPrizeRepository) {
 
-    public void save(String userName, String prize) {
+    void save(String userName, String prize) {
         userPrizeRepository.put(userName, prize);
     }
 

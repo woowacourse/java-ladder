@@ -1,10 +1,11 @@
-package domain;
+package domain.ladder;
 
 import utils.Generator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import static domain.Bridge.*;
+import static domain.ladder.Bridge.*;
 
 public class Line {
 

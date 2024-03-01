@@ -1,6 +1,10 @@
 package view;
 
-import domain.*;
+import domain.game.Results;
+import domain.ladder.Bridge;
+import domain.ladder.Ladder;
+import domain.ladder.Line;
+import domain.user.Users;
 
 import java.util.Map;
 

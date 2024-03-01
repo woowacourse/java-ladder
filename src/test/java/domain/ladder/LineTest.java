@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -7,10 +7,10 @@ import utils.RandomGenerator;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 class LineTest {
-
 
     @Test
     @DisplayName("가로 길이는 사용자 수 -1 이다.")
