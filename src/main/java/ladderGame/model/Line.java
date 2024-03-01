@@ -12,13 +12,16 @@ public class Line {
 
         statuses.add(connections.get(0));
         for (int i = 1; i < connections.size(); i++) {
-            if(statuses.get(i - 1) == ConnectionStatus.DISCONNECTION) {
-                statuses.add(connections.get(i));
-                continue;
-            }
-            statuses.add(ConnectionStatus.DISCONNECTION);
+            statuses.add(decideConnectionStatus(statuses.get(i - 1), connections.get(i)));
         }
         this.connectionStatuses = statuses;
+    }
+
+    private ConnectionStatus decideConnectionStatus(ConnectionStatus previous, ConnectionStatus current) {
+        if(previous == ConnectionStatus.DISCONNECTION) {
+            return current;
+        }
+        return ConnectionStatus.DISCONNECTION;
     }
 
     public int descend(int index) {
