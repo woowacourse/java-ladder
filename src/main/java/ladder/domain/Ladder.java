@@ -7,20 +7,15 @@ public class Ladder {
 
     private final List<LadderRow> ladder;
 
-    public Ladder(List<LadderRow> ladder) {
+    private Ladder(final List<LadderRow> ladder) {
         this.ladder = ladder;
     }
 
-    public static Ladder of(Players players, Height<LadderRow> height,
-                            LadderDirectionSelector ladderDirectionSelector) {
-        List<LadderRow> ladder = height.repeat(() -> LadderRowBuilder.builder()
-                .size(players.count())
-                .directionSelector(ladderDirectionSelector)
-                .build());
+    public static Ladder from(final List<LadderRow> ladder) {
         return new Ladder(ladder);
     }
 
-    public LadderPosition climbFrom(LadderPosition ladderPosition) {
+    public LadderPosition climbDownFrom(final LadderPosition ladderPosition) {
         if (ladderPosition.row() == ladder.size()) {
             return ladderPosition;
         }
@@ -28,14 +23,14 @@ public class Ladder {
         LadderPosition nextLadderPosition = new LadderPosition(
                 ladderPosition.row() + 1,
                 ladderPosition.column() + direction.getValue());
-        return climbFrom(nextLadderPosition);
+        return climbDownFrom(nextLadderPosition);
     }
 
-    private LadderDirection getLadderDirection(int row, int column) {
+    private LadderDirection getLadderDirection(final int row, final int column) {
         return ladder.get(row).getLadderDirection(column);
     }
 
-    public List<LadderRow> getLadderLevels() {
+    public List<LadderRow> getLadderRows() {
         return Collections.unmodifiableList(ladder);
     }
 }
