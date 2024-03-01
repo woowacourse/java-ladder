@@ -20,7 +20,6 @@ public class HeightTest {
     void heightNegativeInputTest() {
         Assertions.assertThatThrownBy(() -> new Height("0"))
                 .isInstanceOf(IllegalArgumentException.class);
-
     }
 
 }

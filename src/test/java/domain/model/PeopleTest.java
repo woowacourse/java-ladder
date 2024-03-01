@@ -32,11 +32,11 @@ public class PeopleTest {
             "1,b"
     })
     @DisplayName("순서에 알맞는 참가자 이름을 반환한다")
-    void getPersonNameByOrderTest(int order,String expected) {
+    void getPersonNameByOrderTest(int order, String expected) {
         //given
         People people = new People(List.of("a", "b"));
         //when
-        String actual=people.getNameByOrder(order).getName();
+        String actual = people.getNameByOrder(order).getName();
         //then
         assertThat(expected).isEqualTo(actual);
 
@@ -44,10 +44,10 @@ public class PeopleTest {
 
     @Test
     @DisplayName("참가자들 목록에 포함된 사람인지 확인한다.")
-    void checkRightParticipant () {
+    void checkRightParticipant() {
         People people = new People(List.of("a", "b", "c"));
 
-        assertThatThrownBy(()->people.findProperParticipant("d"))
+        assertThatThrownBy(() -> people.findProperParticipant("d"))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThat(people.findProperParticipant("a")).isEqualTo("a");
     }
