@@ -12,6 +12,6 @@ public class LadderRowGenerator {
         if (isTrue) {
             return false;
         }
-        return generator.generator();
+        return generator.generate();
     }
 }
