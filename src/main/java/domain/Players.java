@@ -37,4 +37,8 @@ public class Players {
                 .map(Player::getName)
                 .collect(Collectors.toList());
     }
+
+    public int getPositionOf(String name) {
+        return getNames().indexOf(name);
+    }
 }
