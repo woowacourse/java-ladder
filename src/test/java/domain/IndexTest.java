@@ -5,8 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class IndexTest {
-
-
     @Test
     @DisplayName("인덱스가 1만큼 증가한다")
     void increase() {

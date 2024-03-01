@@ -16,8 +16,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class PointTest {
-
-
     @ParameterizedTest
     @MethodSource("ProvideArgumentsOfMoveByDirection")
     @DisplayName("인덱스가 주어졌을 때 방향에 맞게 움직인 인덱스를 반환한다")
@@ -37,6 +35,4 @@ class PointTest {
                 Arguments.of(RIGHT, 6)
         );
     }
-
-
 }

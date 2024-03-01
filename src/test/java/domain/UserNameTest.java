@@ -9,7 +9,6 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class UserNameTest {
-
     @ParameterizedTest
     @ValueSource(strings = {"rushrush", "paperp", "pobipobipo"})
     @DisplayName("사용자 이름이 5글자 이하면 예외가 발생한다")

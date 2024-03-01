@@ -57,11 +57,14 @@ public class Line {
 
     public static Line generate(final int width, final RandomGenerator randomGenerator) {
         final List<Direction> directions = new ArrayList<>();
-        directions.add(Direction.generate(null, randomGenerator.next()));
-        IntStream.range(1, width)
+
+        directions.add(Direction.generateFirst(randomGenerator.next()));
+        IntStream.range(1, width - 1)
                 .mapToObj(i -> directions.get(i - 1))
                 .forEach(beforeDirection -> directions.add(
                         Direction.generate(beforeDirection, randomGenerator.next())));
+        directions.add(Direction.generateLast(directions.get(directions.size() - 1)));
+
         return Line.ofDirections(directions.toArray(Direction[]::new));
     }
 

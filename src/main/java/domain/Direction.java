@@ -17,17 +17,28 @@ public enum Direction {
         return converter;
     }
 
+    public static Direction generate(final Direction beforeDirection, final boolean condition) {
+        if (beforeDirection == Direction.RIGHT) {
+            return Direction.LEFT;
+        }
+        return Direction.next(condition);
+    }
+
+    public static Direction generateFirst(final boolean condition) {
+        return Direction.next(condition);
+    }
+
+    public static Direction generateLast(final Direction beforeDirection) {
+        if (beforeDirection == Direction.RIGHT) {
+            return Direction.LEFT;
+        }
+        return Direction.STRAIGHT;
+    }
+
     public static Direction next(final boolean condition) {
         if (condition) {
             return RIGHT;
         }
         return STRAIGHT;
-    }
-
-    static Direction generate(Direction beforeDirection, boolean condition) {
-        if (beforeDirection == Direction.RIGHT) {
-            return Direction.LEFT;
-        }
-        return Direction.next(condition);
     }
 }

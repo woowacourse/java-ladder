@@ -25,6 +25,7 @@ public class Ladder {
     }
 
     private void validateLadderShape(final List<Line> ladder) {
+        validateEmptiness(ladder);
         final int firstLineWidth = ladder.get(0).size();
 
         if (ladder.stream().anyMatch(line -> line.size() != firstLineWidth)) {
@@ -50,16 +51,16 @@ public class Ladder {
         return index.toInt();
     }
 
-//    public List<Line> getLadder() {
-//        return ladder;
-//    }
-//
-//    public int getHeight() {
-//        return ladder.size();
-//    }
+    public int height() {
+        return lines.size();
+    }
 
-//    public int getWidth() {
-//        final Line firstLine = ladder.get(0);
-//        return firstLine.getWidth();
-//    }
+    public int width() {
+        final Line firstLine = lines.get(0);
+        return firstLine.size();
+    }
+
+    public List<Line> getLadder() {
+        return lines;
+    }
 }

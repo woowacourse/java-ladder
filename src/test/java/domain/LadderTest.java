@@ -12,8 +12,6 @@ import static domain.Direction.*;
 import static org.assertj.core.api.Assertions.*;
 
 class LadderTest {
-
-
     @Test
     @DisplayName("사다리 최대 높이가 100을 초과하면 예외가 발생한다")
     void maxHeightTest() {

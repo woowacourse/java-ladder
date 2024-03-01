@@ -13,14 +13,14 @@ public class LadderFactory {
 
     }
 
-    public static Ladder createLadder(final Line... lines) {
-        return new Ladder(lines);
+    public static Ladder createLadder(final List<Line> lines) {
+        return new Ladder(lines.toArray(Line[]::new));
     }
 
     public static Ladder createRandomLadder(final int height, final int width) {
         final List<Line> lines = IntStream.range(0, height)
-                .mapToObj(index -> Line.generate(width,()->false))
+                .mapToObj(index -> Line.generate(width, new BooleanGenerator()))
                 .toList();
-        return createLadder(lines.toArray(Line[]::new));
+        return createLadder(lines);
     }
 }

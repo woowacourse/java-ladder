@@ -14,8 +14,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LineTest {
-
-
     @Test
     @DisplayName("첫번째 지점에서 왼쪽으로 연결 됐을 때 예외가 발생한다")
     void firstPoint() {
@@ -72,17 +70,4 @@ class LineTest {
         );
     }
 
-    static class TrueGenerator implements RandomGenerator {
-        @Override
-        public boolean next() {
-            return true;
-        }
-    }
-
-    static class FalseGenerator implements RandomGenerator {
-        @Override
-        public boolean next() {
-            return false;
-        }
-    }
 }

@@ -37,4 +37,8 @@ public class Point {
     public int hashCode() {
         return Objects.hash(direction);
     }
+
+    public Direction getDirection() {
+        return direction;
+    }
 }
