@@ -17,6 +17,10 @@ public class Index {
         return new Index(index - 1);
     }
 
+    public int toInt() {
+        return index;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
