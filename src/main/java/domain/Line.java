@@ -25,7 +25,7 @@ public class Line {
     }
 
     public LineItem decideLineItem(int position, LineItem lineItem) {
-        if (position == 0 || !LineItem.isConnected(lineItems.get(position - 1))) {
+        if (position == 0 || !getLineItemByPosition(position - 1).isConnected()) {
             return lineItem;
         }
 
@@ -45,11 +45,15 @@ public class Line {
     }
 
     private boolean isMovableToLeft(int position) {
-        return position > 0 && LineItem.isConnected(lineItems.get(position - 1));
+        return position > 0 && getLineItemByPosition(position - 1).isConnected();
     }
 
     private boolean isMovableToRight(int position) {
-        return position < lineItems.size() && LineItem.isConnected(lineItems.get(position));
+        return position < lineItems.size() && getLineItemByPosition(position).isConnected();
+    }
+
+    private LineItem getLineItemByPosition(int position) {
+        return lineItems.get(position);
     }
 
     public List<LineItem> getLineItems() {
