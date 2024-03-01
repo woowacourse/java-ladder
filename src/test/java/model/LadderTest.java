@@ -29,5 +29,4 @@ class LadderTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리의 높이는 1 이상이어야 합니다.");
     }
-
 }

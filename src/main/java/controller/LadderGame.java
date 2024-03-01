@@ -95,5 +95,6 @@ public class LadderGame {
             final Present present = presentMatches.findByPersonName(personName);
             outputView.printMatched(personName.name(), present.name());
         });
+
     }
 }

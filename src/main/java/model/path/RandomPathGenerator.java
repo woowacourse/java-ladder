@@ -34,8 +34,8 @@ public class RandomPathGenerator implements PathGenerator {
         return getLastPath(paths).isExist();
     }
 
+
     private Path getLastPath(final List<Path> paths) {
         return paths.get(paths.size() - 1);
     }
-
 }
