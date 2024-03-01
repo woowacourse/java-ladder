@@ -22,7 +22,7 @@ public class RowLineGenerator1 {
             previous = generated;
         }
 
-        Connection generated = connectionGenerator1.generate(previous);
+        Connection generated = connectionGenerator1.generateLastConnection(previous);
         points.add(new Point(new ColumnPosition(personCount - 1), generated));
 
         return new RowLine1(points);
