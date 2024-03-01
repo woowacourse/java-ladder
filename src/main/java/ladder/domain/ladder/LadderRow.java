@@ -1,27 +1,21 @@
 package ladder.domain.ladder;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 import ladder.domain.ladder.direction.LadderDirection;
 
-public class LadderRow {
-
-    private final List<LadderDirection> ladderRow;
-
-    private LadderRow(final List<LadderDirection> ladderDirections) {
-        ladderRow = ladderDirections;
-    }
+public record LadderRow(List<LadderDirection> ladderRow) {
 
     public static LadderRow from(final List<LadderDirection> ladderDirections) {
         return new LadderRow(ladderDirections);
     }
 
-    public LadderDirection getLadderDirection(final int index) {
-        return ladderRow.get(index);
+    public void forEach(final Consumer<LadderDirection> consumer) {
+        ladderRow.forEach(consumer);
     }
 
-    public List<LadderDirection> getLadderDirections() {
-        return Collections.unmodifiableList(ladderRow);
+    public LadderDirection getLadderDirection(final int index) {
+        return ladderRow.get(index);
     }
 }

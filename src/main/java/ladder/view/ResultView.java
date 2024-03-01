@@ -2,6 +2,7 @@ package ladder.view;
 
 import static ladder.domain.ladder.direction.LadderDirection.RIGHT;
 
+import java.util.List;
 import java.util.StringJoiner;
 
 import ladder.domain.game.LadderGame;
@@ -29,17 +30,18 @@ public class ResultView {
 
     private void printPlayers(final Players players) {
         StringJoiner stringJoiner = new StringJoiner(NAME_DELIMITER);
-        players.players().forEach(player -> stringJoiner.add(NAME_FORMAT.formatted(player.name())));
+        players.forEach(player -> stringJoiner.add(NAME_FORMAT.formatted(player.name())));
         System.out.println(stringJoiner);
     }
 
     private void printLadder(final Ladder ladder) {
-        ladder.getLadderRows().forEach(this::printLadderRow);
+        List<LadderRow> ladderRows = ladder.getLadderRows();
+        ladderRows.forEach(this::printLadderRow);
     }
 
     private void printRewards(final Rewards rewards) {
         StringJoiner stringJoiner = new StringJoiner(NAME_DELIMITER);
-        rewards.getRewards().forEach(reward -> stringJoiner.add(NAME_FORMAT.formatted(reward.value())));
+        rewards.forEach(reward -> stringJoiner.add(NAME_FORMAT.formatted(reward.value())));
         System.out.println(stringJoiner);
     }
 
@@ -55,7 +57,7 @@ public class ResultView {
 
     private void printLadderRow(final LadderRow ladderRow) {
         System.out.print("\t");
-        ladderRow.getLadderDirections().forEach(this::printLine);
+        ladderRow.forEach(this::printLine);
         System.out.println();
     }
 

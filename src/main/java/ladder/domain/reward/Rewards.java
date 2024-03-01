@@ -1,7 +1,7 @@
 package ladder.domain.reward;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 import ladder.domain.attribute.Width;
 import ladder.domain.ladder.direction.LadderDirection;
@@ -24,14 +24,14 @@ public class Rewards {
         }
     }
 
+    public void forEach(final Consumer<Reward> consumer) {
+        rewards.forEach(consumer);
+    }
+
     public Reward get(final int index) {
         if (index < 0 || index >= rewards.size()) {
             throw new IllegalStateException("잘못된 위치입니다: %d".formatted(index));
         }
         return rewards.get(index);
-    }
-
-    public List<Reward> getRewards() {
-        return Collections.unmodifiableList(rewards);
     }
 }

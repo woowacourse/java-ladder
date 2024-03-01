@@ -26,7 +26,7 @@ class LadderRowTest {
                 .directionSelector(() -> NONE)
                 .build();
 
-        List<LadderDirection> ladderDirections = ladderRow.getLadderDirections();
+        List<LadderDirection> ladderDirections = ladderRow.ladderRow();
 
         assertThat(ladderDirections.size()).isEqualTo(5);
         assertThat(ladderDirections).doesNotContain(RIGHT, LEFT);
@@ -40,7 +40,7 @@ class LadderRowTest {
                 .directionSelector(() -> RIGHT)
                 .build();
 
-        List<LadderDirection> ladderDirections = ladderRow.getLadderDirections();
+        List<LadderDirection> ladderDirections = ladderRow.ladderRow();
 
         assertThat(ladderDirections).doesNotContain(NONE);
         assertThat(ladderDirections).contains(RIGHT, LEFT);

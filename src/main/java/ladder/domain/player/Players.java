@@ -3,6 +3,7 @@ package ladder.domain.player;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Consumer;
 
 public record Players(List<Player> players) {
 
@@ -27,6 +28,10 @@ public record Players(List<Player> players) {
             }
             distinctNames.add(name);
         });
+    }
+
+    public void forEach(Consumer<Player> consumer) {
+        players.forEach(consumer);
     }
 
     public int orderOf(final Player player) {

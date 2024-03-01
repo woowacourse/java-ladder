@@ -31,7 +31,7 @@ class LadderTest {
                 .build();
 
         List<LadderRow> ladderRows = ladder.getLadderRows();
-        List<LadderDirection> ladderDirections = ladderRows.get(0).getLadderDirections();
+        List<LadderDirection> ladderDirections = ladderRows.get(0).ladderRow();
 
         assertAll(
                 () -> assertThat(ladderRows).hasSize(4),
