@@ -16,6 +16,6 @@ class PathMapperTest {
 
         PathMapper pathMapper = new PathMapper(to);
 
-        assertThat(pathMapper.find(3)).isEqualTo(0);
+        assertThat(pathMapper.findArrival(3)).isEqualTo(0);
     }
 }

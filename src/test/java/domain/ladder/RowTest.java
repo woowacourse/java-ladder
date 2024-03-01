@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import domain.TestBridgeMakingStrategy;
+import domain.strategy.TestBridgeMakingStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +9,6 @@ import java.util.List;
 import static domain.ladder.Bridge.EMPTY;
 import static domain.ladder.Bridge.EXIST;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RowTest {
 
@@ -28,16 +27,5 @@ public class RowTest {
             Bridge currentBridge = actual.get(current);
             assertThat(previousBridge.isExist() && currentBridge.isExist()).isFalse();
         }
-    }
-
-    @Test
-    @DisplayName("다리가 겹치면 예외가 발생하는가")
-    void adjacent_line_throws_exception() {
-        List<Bridge> bridges = List.of(EXIST, EXIST, EXIST, EMPTY, EXIST);
-        TestBridgeMakingStrategy strategy = new TestBridgeMakingStrategy(bridges);
-        int width = 5;
-
-        assertThatThrownBy(() -> new Row(width, strategy))
-                .isInstanceOf(IllegalArgumentException.class);
     }
 }

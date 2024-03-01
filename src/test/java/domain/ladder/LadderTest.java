@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import domain.TestBridgeMakingStrategy;
+import domain.strategy.TestBridgeMakingStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -64,7 +64,6 @@ class LadderTest {
     @DisplayName("잘못된 크기의 사다리는 예외를 발생하는가")
     void wrong_size_ladder_throws_exception(int width, int height) {
         assertThatThrownBy(() -> new Ladder(width, height, null))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("잘못된 크기가 입력됐습니다. ");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

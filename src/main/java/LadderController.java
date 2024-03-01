@@ -3,18 +3,17 @@ import domain.game.LadderGame;
 import domain.game.PathMapper;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
-import domain.player.Player;
 import domain.player.Players;
-import domain.prize.Prize;
 import domain.prize.Prizes;
 import domain.strategy.RandomBridgeMakingStrategy;
 import view.InputView;
 import view.OutputView;
 
-import java.util.Map;
 import java.util.function.Supplier;
 
 public class LadderController {
+    private static final InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
 
     public static void main(String[] args) {
         final Players players = retryOnException(LadderController::getNames);
@@ -25,32 +24,34 @@ public class LadderController {
         final PathMapper pathMapper = LadderGame.play(ladder);
         final Judge judge = new Judge(players, prizes, pathMapper);
 
-        OutputView.printLadderGame(players, ladder, prizes);
+        outputView.printLadderGame(players, ladder, prizes);
         searchGameResult(judge);
     }
 
     private static void searchGameResult(final Judge judge) {
-        while (true) {
-            try {
-                final String name = InputView.readNameToSearch();
-                final Map<Player, Prize> result = judge.search(name);
-                OutputView.printSearchResult(result);
-            } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e);
+        do {
+            final String name = inputView.readNameToSearch();
+            if ("END".equals(name)) {
+                return;
             }
-        }
+            try {
+                outputView.printSearchResult(judge.search(name));
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
+        } while (true);
     }
 
     private static Players getNames() {
-        return new Players(InputView.readNames());
+        return new Players(inputView.readNames());
     }
 
     private static Prizes getPrizes() {
-        return new Prizes(InputView.readPrizes());
+        return new Prizes(inputView.readPrizes());
     }
 
     private static Height getHeight() {
-        return new Height(InputView.readHeight());
+        return new Height(inputView.readHeight());
     }
 
     private static Ladder makeLadder(final Players players, final Height height) {
@@ -61,7 +62,7 @@ public class LadderController {
         try {
             return supplier.get();
         } catch (Exception e) {
-            OutputView.printErrorMessage(e);
+            outputView.printErrorMessage(e);
             return retryOnException(supplier);
         }
     }

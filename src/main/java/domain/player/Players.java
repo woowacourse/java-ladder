@@ -8,24 +8,24 @@ public record Players(List<Player> players) {
     private static final int PLAYER_LENGTH_MIN = 2;
     private static final int PLAYER_LENGTH_MAX = 10;
 
-    public Players(List<Player> players) {
+    public Players(final List<Player> players) {
         this.players = players;
-        validatePlayerLength();
-        validateDuplicateNames();
+        validatePlayerNumber();
+        validateNamesUniqueness();
     }
 
-    public Players(String[] names) {
+    public Players(final String[] names) {
         this(Arrays.stream(names).map(Player::new).toList());
     }
 
-    private void validatePlayerLength() {
+    private void validatePlayerNumber() {
         if (PLAYER_LENGTH_MIN > this.players.size() || this.players.size() > PLAYER_LENGTH_MAX) {
-            String errorMessage = String.format("%d명 이상 %d명 이하의 플레이어를 입력해 주세요.", PLAYER_LENGTH_MIN, PLAYER_LENGTH_MAX);
+            final String errorMessage = String.format("%d명 이상 %d명 이하의 플레이어를 입력해 주세요.", PLAYER_LENGTH_MIN, PLAYER_LENGTH_MAX);
             throw new IllegalArgumentException(errorMessage);
         }
     }
 
-    private void validateDuplicateNames() {
+    private void validateNamesUniqueness() {
         if (this.players.size() != this.players.stream().distinct().count()) {
             throw new IllegalArgumentException("중복된 이름은 허용하지 않습니다.");
         }

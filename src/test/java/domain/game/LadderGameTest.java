@@ -1,6 +1,6 @@
 package domain.game;
 
-import domain.TestBridgeMakingStrategy;
+import domain.strategy.TestBridgeMakingStrategy;
 import domain.ladder.Bridge;
 import domain.ladder.Ladder;
 import org.junit.jupiter.api.DisplayName;
@@ -33,7 +33,7 @@ class LadderGameTest {
         List<Integer> arrival = List.of(1, 2, 0);
         // TODO: 반복문 지우기
         for (int i = 0; i < 2; i++) {
-            assertThat(pathMapper.find(i)).isEqualTo(arrival.get(i));
+            assertThat(pathMapper.findArrival(i)).isEqualTo(arrival.get(i));
         }
     }
 

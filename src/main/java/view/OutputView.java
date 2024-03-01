@@ -21,58 +21,58 @@ public class OutputView {
     private static final String BRIDGE_EXIST_SYMBOL = "-";
     private static final String BRIDGE_EMPTY_SYMBOL = " ";
 
-    public static void printLadderGame(final Players players, final Ladder ladder, final Prizes prizes) {
+    public void printLadderGame(final Players players, final Ladder ladder, final Prizes prizes) {
         System.out.println(lineSeparator() + "실행 결과");
         printPlayers(players.players());
         printLadder(ladder);
         printPrizes(prizes.prizes());
     }
 
-    private static void printPlayers(final List<Player> players) {
+    private void printPlayers(final List<Player> players) {
         System.out.println(makePlayersNameMessage(players));
     }
 
-    private static String makePlayersNameMessage(final List<Player> players) {
+    private String makePlayersNameMessage(final List<Player> players) {
         return players.stream()
-                .map(name -> String.format("%6s", name.name()))
+                .map(player -> String.format("%6s", player.name()))
                 .collect(Collectors.joining());
     }
 
-    private static void printLadder(final Ladder ladder) {
+    private void printLadder(final Ladder ladder) {
         ladder.getRows().stream()
-                .map(OutputView::makeLineMessage)
+                .map(this::makeLineMessage)
                 .forEach(System.out::println);
     }
 
-    private static String makeLineMessage(final Row row) {
+    private String makeLineMessage(final Row row) {
         return BRIDGE_LEFT_MARGIN +
                 row.getBridges().stream()
-                        .map(OutputView::makeBridgeMessage)
+                        .map(this::makeBridgeMessage)
                         .collect(Collectors.joining(BRIDGE_SEPARATOR, BRIDGE_SEPARATOR, BRIDGE_SEPARATOR));
     }
 
-    private static String makeBridgeMessage(final Bridge bridge) {
+    private String makeBridgeMessage(final Bridge bridge) {
         return getBridgeSymbol(bridge).repeat(SINGLE_BRIDGE_LENGTH);
     }
 
-    private static String getBridgeSymbol(final Bridge bridge) {
+    private String getBridgeSymbol(final Bridge bridge) {
         if (bridge.isExist()) {
             return BRIDGE_EXIST_SYMBOL;
         }
         return BRIDGE_EMPTY_SYMBOL;
     }
 
-    private static void printPrizes(final List<Prize> prizes) {
+    private void printPrizes(final List<Prize> prizes) {
         System.out.println(makePrizesNameMessage(prizes));
     }
 
-    private static String makePrizesNameMessage(final List<Prize> prizes) {
+    private String makePrizesNameMessage(final List<Prize> prizes) {
         return prizes.stream()
                 .map(prize -> String.format("%6s", prize.name()))
                 .collect(Collectors.joining());
     }
 
-    public static void printSearchResult(final Map<Player, Prize> result) {
+    public void printSearchResult(final Map<Player, Prize> result) {
         System.out.println(lineSeparator() + "실행 결과");
         if (result.entrySet().size() == 1) {
             printResultOne(result);
@@ -81,13 +81,13 @@ public class OutputView {
         printResultMulti(result);
     }
 
-    private static void printResultOne(Map<Player, Prize> results) {
+    private void printResultOne(final Map<Player, Prize> results) {
         for (Map.Entry<Player, Prize> result : results.entrySet()) {
             System.out.println(result.getValue().name());
         }
     }
 
-    private static void printResultMulti(Map<Player, Prize> results) {
+    private void printResultMulti(final Map<Player, Prize> results) {
         for (Map.Entry<Player, Prize> result : results.entrySet()) {
             final String name = result.getKey().name();
             final String prize = result.getValue().name();
@@ -95,7 +95,7 @@ public class OutputView {
         }
     }
 
-    public static void printErrorMessage(Exception e) {
+    public void printErrorMessage(final Exception e) {
         System.out.println(e.getMessage() + lineSeparator());
     }
 }

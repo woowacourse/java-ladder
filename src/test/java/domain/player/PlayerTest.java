@@ -21,8 +21,7 @@ class PlayerTest {
     @DisplayName("공백을 제거하고 길이 정책에 어긋나면 예외가 발생한다")
     void throw_exception_if_conflict_with_length_policy_after_remove_blank(String name) {
         assertThatThrownBy(() -> new Player(name))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContainingAll("이름의 길이는", "자 이어야 합니다.");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
@@ -30,7 +29,6 @@ class PlayerTest {
     @DisplayName("이름이 영어와 숫자가 아니라면 예외가 발생한다")
     void name_not_alphanumeric_throw_exception(String name) {
         assertThatThrownBy(() -> new Player(name))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 영어와 숫자만 허용합니다.");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

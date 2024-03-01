@@ -4,12 +4,11 @@ import domain.ladder.Ladder;
 import domain.ladder.Row;
 
 import java.util.List;
-
-import static java.util.stream.IntStream.rangeClosed;
+import java.util.stream.IntStream;
 
 public class LadderGame {
     public static PathMapper play(final Ladder ladder) {
-        List<Integer> path = rangeClosed(0, ladder.getWidth()).boxed().toList();
+        List<Integer> path = IntStream.rangeClosed(0, ladder.getWidth()).boxed().toList();
         for (final Row row : ladder.getRows()) {
             path = LadderClimber.climbDownRow(path, row);
         }

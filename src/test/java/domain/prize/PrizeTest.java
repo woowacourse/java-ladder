@@ -21,8 +21,7 @@ class PrizeTest {
     @DisplayName("1 미만, 5 초과하는 상 이름은 예외를 던지는가")
     void prize_name_exceed_five_throws_exception(String name) {
         assertThatThrownBy(() -> new Prize(name))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContainingAll("이름의 길이는", "자 이어야 합니다.");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public record Prizes(List<Prize> prizes) {
-    public Prizes(String[] names) {
+    public Prizes(final String[] names) {
         this(Arrays.stream(names).map(Prize::new).toList());
     }
 

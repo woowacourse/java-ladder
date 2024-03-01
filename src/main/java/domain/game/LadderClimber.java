@@ -8,16 +8,15 @@ import java.util.Collections;
 import java.util.List;
 
 public class LadderClimber {
-
     public static List<Integer> climbDownRow(final List<Integer> departure, final Row row) {
         final List<Integer> arrival = new ArrayList<>(List.of(departure.get(0)));
         for (final Bridge bridge : row.getBridges()) {
-            addBridge(departure, arrival, bridge);
+            climbDownBridge(departure, arrival, bridge);
         }
         return arrival;
     }
 
-    private static void addBridge(final List<Integer> departure, final List<Integer> arrival, final Bridge bridge) {
+    private static void climbDownBridge(final List<Integer> departure, final List<Integer> arrival, final Bridge bridge) {
         arrival.add(departure.get(arrival.size()));
         swapLastIfBridgeContinuous(bridge, arrival);
     }

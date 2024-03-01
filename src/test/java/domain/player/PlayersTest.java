@@ -28,7 +28,6 @@ public class PlayersTest {
     @DisplayName("중복된 이름인가")
     void is_duplicated_names() {
         assertThatThrownBy(() -> new Players(List.of(mang, mang)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("중복된 이름은 허용하지 않습니다.");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

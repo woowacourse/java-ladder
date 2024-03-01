@@ -19,11 +19,13 @@ public class Ladder {
     }
 
     private void validateSize(final int width, final int height) {
+        final String errorMessage = String.format("사다리 크기는 너비(%d~%d), 높이(%d~%d) 여야 합니다.",
+                WIDTH_MIN, WIDTH_MAX, HEIGHT_MIN, HEIGHT_MAX);
         if (WIDTH_MIN > width || width > WIDTH_MAX) {
-            throw new IllegalArgumentException("잘못된 크기가 입력됐습니다. ");
+            throw new IllegalArgumentException(errorMessage);
         }
         if (HEIGHT_MIN > height || height > HEIGHT_MAX) {
-            throw new IllegalArgumentException("잘못된 크기가 입력됐습니다. ");
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 

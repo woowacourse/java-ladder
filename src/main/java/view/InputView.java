@@ -10,29 +10,29 @@ public class InputView {
     private static final String PRIZE_NAME_DELIMITER = ",";
 
 
-    public static String[] readNames() {
+    public String[] readNames() {
         printNamesInputMessage();
         return removeBlank(reader.nextLine()).split(USER_NAME_DELIMITER);
     }
 
-    private static void printNamesInputMessage() {
+    private void printNamesInputMessage() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
     }
 
-    private static String removeBlank(final String text) {
+    private String removeBlank(final String text) {
         return text.replace(" ", "");
     }
 
-    public static String[] readPrizes() {
+    public String[] readPrizes() {
         printPrizesInputMessage();
         return removeBlank(reader.nextLine()).split(PRIZE_NAME_DELIMITER);
     }
 
-    private static void printPrizesInputMessage() {
+    private void printPrizesInputMessage() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
     }
 
-    public static int readHeight() {
+    public int readHeight() {
         printLadderHeightInputMessage();
         try {
             return Integer.parseInt(reader.nextLine());
@@ -41,16 +41,16 @@ public class InputView {
         }
     }
 
-    private static void printLadderHeightInputMessage() {
+    private void printLadderHeightInputMessage() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
     }
 
-    public static String readNameToSearch() {
+    public String readNameToSearch() {
         printNameToSearchInputMessage();
         return removeBlank(reader.nextLine());
     }
 
-    private static void printNameToSearchInputMessage() {
+    private void printNameToSearchInputMessage() {
         System.out.println(lineSeparator() + "결과를 보고 싶은 사람은?");
     }
 }

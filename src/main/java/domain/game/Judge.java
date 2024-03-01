@@ -32,13 +32,12 @@ public class Judge {
     }
 
     private Map<Player, Prize> makeResultAll() {
-        return this.players.players().stream()
-                .collect(Collectors.toMap(
-                        player -> player,
-                        this::mapPrizeByPath,
-                        (a, b) -> a,
-                        LinkedHashMap::new
-                ));
+        return this.players.players().stream().collect(Collectors.toMap(
+                player -> player,
+                this::getPrizeMappedByLadder,
+                (a, b) -> a,
+                LinkedHashMap::new
+        ));
     }
 
     private Player getTarget(final String name) {
@@ -47,13 +46,13 @@ public class Judge {
     }
 
     private Map<Player, Prize> makeResult(final Player player) {
-        return Collections.singletonMap(player, mapPrizeByPath(player));
+        return Collections.singletonMap(player, getPrizeMappedByLadder(player));
     }
 
-    private Prize mapPrizeByPath(final Player player) {
+    private Prize getPrizeMappedByLadder(final Player player) {
         try {
             final int departure = this.players.getSequence(player);
-            final int arrival = this.pathMapper.find(departure);
+            final int arrival = this.pathMapper.findArrival(departure);
             return this.prizes.getByIndex(arrival);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new IllegalArgumentException("상품이 존재하지 않습니다.");

@@ -1,6 +1,6 @@
 package domain.game;
 
-import domain.TestBridgeMakingStrategy;
+import domain.strategy.TestBridgeMakingStrategy;
 import domain.ladder.Bridge;
 import domain.ladder.Row;
 import org.junit.jupiter.api.DisplayName;
