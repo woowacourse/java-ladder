@@ -36,6 +36,14 @@ class PlayerNamesTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("중복된 이름의 참가자가 존재하면 예외가 발생한다.")
+    @Test
+    void duplicatedNames() {
+        //given & when & then
+        assertThatThrownBy(() -> PlayerNames.from(List.of("a", "a")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("모든 참가자의 이름을 반환한다.")
     @Test
     void returnPlayerNamesAll() {

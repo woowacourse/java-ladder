@@ -10,6 +10,7 @@ public class PlayerNames {
     private final List<PlayerName> playerNames;
 
     public PlayerNames(final List<PlayerName> playerNames) {
+        validateDuplication(playerNames);
         validateCount(playerNames.size());
         this.playerNames = playerNames;
     }
@@ -19,6 +20,15 @@ public class PlayerNames {
                 .map(PlayerName::new)
                 .toList();
         return new PlayerNames(playerNames);
+    }
+
+    private void validateDuplication(final List<PlayerName> playerNames) {
+        final long uniqueNamesCount = playerNames.stream()
+                .distinct()
+                .count();
+        if (playerNames.size() != uniqueNamesCount) {
+            throw new IllegalArgumentException("참가자 이름은 중복될 수 없습니다.");
+        }
     }
 
     private void validateCount(final int count) {
