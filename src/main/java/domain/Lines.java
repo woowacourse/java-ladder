@@ -14,7 +14,7 @@ public class Lines {
     }
 
     public static Lines of(int playerCount, Height height, ConnectStrategy connectStrategy) {
-        return new Lines(IntStream.range(0, height.getHeight())
+        return new Lines(IntStream.range(0, height.getValue())
             .mapToObj(i -> Line.of(connectStrategy, playerCount))
             .toList());
     }

@@ -5,11 +5,11 @@ public class Height {
     private static final int MIN_HEIGHT = 1;
     private static final int MAX_HEIGHT = 20;
 
-    private final int height;
+    private final int value;
 
-    private Height(int height) {
-        validate(height);
-        this.height = height;
+    private Height(int value) {
+        validate(value);
+        this.value = value;
     }
 
     public static Height from(int height) {
@@ -23,7 +23,7 @@ public class Height {
         }
     }
 
-    public int getHeight() {
-        return height;
+    public int getValue() {
+        return value;
     }
 }
