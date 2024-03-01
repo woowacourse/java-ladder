@@ -21,9 +21,7 @@ public class LadderRow {
     }
 
     private void validateLadderRow(List<Boolean> isLines) {//TODO reduce(), atomicInteger
-        for (int i = 1; i < isLines.size(); i++) {
-            isConsecutiveTrue(isLines, i);
-        }
+        IntStream.range(1, isLines.size()).forEach(index -> isConsecutiveTrue(isLines, index));
     }
 
     private void isConsecutiveTrue(List<Boolean> isLines, int index) {
