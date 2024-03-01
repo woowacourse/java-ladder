@@ -4,6 +4,7 @@ import static model.Line.CONNECTED;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 import model.Ladder;
 import model.LadderRow;
 import model.Line;
@@ -27,33 +28,29 @@ public class OutputView {
     }
 
     private void printParticipantsName(Participants participants) {
-        List<String> participantsName = participants.getParticipants().stream()
+        participants.getParticipants().stream()
                 .map(Name::value)
-                .toList();
-        participantsName.forEach(name -> System.out.print(NAME_FORMAT.formatted(name)));
+                .toList()
+                .forEach(name -> System.out.print(NAME_FORMAT.formatted(name)));
         System.out.println();
     }
 
     private void printLadder(Ladder ladder) {
-        for (int i = 0; i < ladder.getHeight(); i++) {
-            printRow(ladder.getRow(i));
-            System.out.println();
-        }
+        IntStream.range(0, ladder.getHeight()).forEach(index -> printRow(ladder.getRow(index)));
     }
 
     private void printRow(LadderRow ladderRow) {
         System.out.print(LadderComponent.EMPTY_LINE);
-        for (Line isLine : ladderRow.getIsLines()) {
-            System.out.print(LadderComponent.DIVISION);
-            System.out.print(LadderComponent.match(isLine == CONNECTED).toString());
-        }
-        System.out.print(LadderComponent.DIVISION);
+        ladderRow.getIsLines()
+                .forEach(isLine -> {
+                    System.out.print(LadderComponent.DIVISION);
+                    System.out.print(LadderComponent.match(isLine == CONNECTED).toString());
+                });
+        System.out.print(LadderComponent.DIVISION + "\n");
     }
 
     public void printResults(Map<Position, Result> results) {
-        for (Position position : results.keySet()) {
-            System.out.print(NAME_FORMAT.formatted(results.get(position).value()));
-        }
+        results.keySet().forEach(position -> System.out.print(NAME_FORMAT.formatted(results.get(position).value())));
         System.out.println();
     }
 
@@ -64,8 +61,9 @@ public class OutputView {
 
     public void printParticipantResult(Map<Name, Result> results) {
         System.out.println(PARTICIPANT_RESULT);
-        for (Name name : results.keySet()) {
-            System.out.println(PARTICIPANTS_RESULT_FORMAT.formatted(name.value(), results.get(name).value()));
-        }
+        results.keySet().forEach(
+                name -> System.out.println(
+                        PARTICIPANTS_RESULT_FORMAT.formatted(name.value(), results.get(name).value())));
+
     }
 }

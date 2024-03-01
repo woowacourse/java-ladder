@@ -11,7 +11,7 @@ public class Ladder {
     public Ladder(Height height, LadderRowGenerator generator, int participantSize) {
         //TODO: height.repeat()
         this.ladder = IntStream.range(0, height.value())
-                .mapToObj(index -> new LadderRow(generator, participantSize - 2))
+                .mapToObj(index -> new LadderRow(generator, participantSize - 1))
                 .toList();
     }
 

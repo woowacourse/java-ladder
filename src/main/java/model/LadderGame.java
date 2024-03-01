@@ -2,6 +2,7 @@ package model;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LadderGame {
 
@@ -25,11 +26,8 @@ public class LadderGame {
     }
 
     public Map<Name, Result> findAllParticipantResults() {
-        Map<Name, Result> allParticipantResults = new LinkedHashMap<>();
         Map<Name, Integer> allNameAndPosition = participants.mapAllNameAndPosition();
-        for (Name name : allNameAndPosition.keySet()) {
-            allParticipantResults.put(name, findParticipantResult(name));
-        }
-        return allParticipantResults;
+        return allNameAndPosition.keySet().stream()
+                .collect(Collectors.toMap(name -> name, this::findParticipantResult));
     }
 }

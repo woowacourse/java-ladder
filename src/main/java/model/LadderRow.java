@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class LadderRow {
 
@@ -12,8 +11,7 @@ public class LadderRow {
     public LadderRow(LadderRowGenerator generator, int size) {
         List<Boolean> row = new ArrayList<>(); //TODO 더 좋은 방법
         row.add(generator.generate(false));
-        IntStream.range(1, size).forEach(index -> row.add(generator.generate(row.get(index))));
-        validateLadderRow(row);
+        IntStream.range(1, size).forEach(index -> row.add(generator.generate(row.get(index - 1))));
         this.isLines = row.stream().map(Line::valueOf).toList();
     }
 

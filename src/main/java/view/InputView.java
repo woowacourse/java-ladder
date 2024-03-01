@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import model.Name;
 import model.Position;
 import model.Result;
@@ -39,18 +40,15 @@ public class InputView {
     }
 
     private static Map<Position, Result> mappingResults(List<String> inputs) {
-        Map<Position, Result> results = new LinkedHashMap<>();
-        for (int i = 0; i < inputs.size(); i++) {
-            results.put(new Position(i), new Result(inputs.get(i)));
-        }
-        return results;
+        return IntStream.range(0, inputs.size())
+                .boxed()
+                .collect(Collectors.toMap(Position::new, index -> new Result(inputs.get(index))));
     }
 
     private static List<String> splitInputByDelimiter(String input, String delimiter) {
-        List<String> inputs = Arrays.stream(input.split(delimiter))
+        return Arrays.stream(input.split(delimiter))
                 .map(String::trim)
                 .toList();
-        return inputs;
     }
 
     private void validateNotNullAndBlank(String input) {

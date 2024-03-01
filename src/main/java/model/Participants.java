@@ -1,10 +1,15 @@
 package model;
 
+import java.io.InputStream;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Participants {
 
@@ -45,11 +50,9 @@ public class Participants {
     }
 
     public Map<Name, Integer> mapAllNameAndPosition() {
-        Map<Name, Integer> nameAndPosition = new LinkedHashMap<>();
-        for (int i = 0; i < participantNames.size(); i++) {
-            nameAndPosition.put(participantNames.get(i), i);
-        }
-        return nameAndPosition;
+        return IntStream.range(0, participantNames.size())
+                .boxed()
+                .collect(Collectors.toMap(participantNames::get, index -> index));
     }
 
     public Position getPositionByName(Name findName) {
