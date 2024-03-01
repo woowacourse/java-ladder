@@ -1,5 +1,10 @@
 package ladder.domain.result;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
 import ladder.domain.direction.Direction;
 import ladder.domain.line.CustomLine;
 import ladder.domain.position.Positions;
@@ -10,11 +15,6 @@ import ladder.domain.user.Users;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
-
-import static org.assertj.core.api.Assertions.*;
 
 class ResultTest {
 
@@ -48,8 +48,8 @@ class ResultTest {
         //given
         Users users = new Users(
                 List.of(new User("ted"),
-                new User("mason"),
-                new User("pobi"))
+                        new User("mason"),
+                        new User("pobi"))
         );
 
         int width = users.getNumberOfUsers();
@@ -67,7 +67,7 @@ class ResultTest {
         Result result = new Result(users.getUsersNames(), prizes.getPrizesNames(), nextPositions.getPositions());
 
         List<String> prizeResult = new ArrayList<>();
-        for(String userName : users.getUsersNames()) {
+        for (String userName : users.getUsersNames()) {
             prizeResult.add(result.getPrizeByUser(userName));
         }
 
@@ -103,7 +103,7 @@ class ResultTest {
         Result result = new Result(users.getUsersNames(), prizes.getPrizesNames(), nowPositions.getPositions());
 
         List<String> prizeResult = new ArrayList<>();
-        for(String userName : users.getUsersNames()) {
+        for (String userName : users.getUsersNames()) {
             prizeResult.add(result.getPrizeByUser(userName));
         }
 

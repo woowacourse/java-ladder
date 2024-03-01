@@ -2,7 +2,6 @@ package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import ladder.domain.direction.RandomDirectionGenerator;
 import ladder.domain.line.Line;
 import ladder.domain.line.LineGenerator;

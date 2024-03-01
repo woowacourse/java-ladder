@@ -42,7 +42,7 @@ public class OutputView {
 
     private void printUserNames(Users users) {
         StringBuilder sb = new StringBuilder();
-        for(String userName : users.getUsersNames()) {
+        for (String userName : users.getUsersNames()) {
             appendNameFormat(sb, userName);
         }
         System.out.println(sb);
@@ -87,7 +87,7 @@ public class OutputView {
 
     private void printPrizes(Prizes prizes) {
         StringBuilder sb = new StringBuilder();
-        for(String prizeName : prizes.getPrizesNames()) {
+        for (String prizeName : prizes.getPrizesNames()) {
             appendNameFormat(sb, prizeName);
         }
         System.out.println(sb);

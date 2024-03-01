@@ -1,10 +1,9 @@
 package ladder.domain.position;
 
-import ladder.domain.direction.Direction;
-import ladder.domain.line.Line;
-
 import java.util.ArrayList;
 import java.util.List;
+import ladder.domain.direction.Direction;
+import ladder.domain.line.Line;
 
 public class Positions {
 
@@ -29,7 +28,7 @@ public class Positions {
     public Positions calcPosition(Line line) {
         List<Position> nextPositions = new ArrayList<>();
         List<Direction> directions = line.getDirectionsInfo();
-        for(Position position : this.positions) {
+        for (Position position : this.positions) {
             int nowPosition = position.getPosition();
             Direction nowDirection = directions.get(nowPosition);
             nextPositions.add(new Position(calcDirection(nowPosition, nowDirection)));

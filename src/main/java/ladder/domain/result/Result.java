@@ -1,11 +1,11 @@
 package ladder.domain.result;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import ladder.domain.position.Position;
 import ladder.domain.user.Users;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Result {
 
@@ -15,7 +15,8 @@ public class Result {
         this.result = createResult(userNames, prizeNames, endPositions);
     }
 
-    private Map<String, String> createResult(List<String> userNames, List<String> prizeNames, List<Position> endPositions) {
+    private Map<String, String> createResult(List<String> userNames, List<String> prizeNames,
+                                             List<Position> endPositions) {
         Map<String, String> result = new HashMap<>();
         for (int i = 0; i < userNames.size(); i++) {
             Position endPosition = endPositions.get(i);

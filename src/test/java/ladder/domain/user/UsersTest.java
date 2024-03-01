@@ -62,8 +62,8 @@ class UsersTest {
         //given
         Users users = new Users(
                 List.of(new User("mason"),
-                new User("ted"),
-                new User("pobi"))
+                        new User("ted"),
+                        new User("pobi"))
         );
         String userName = "gamza";
 

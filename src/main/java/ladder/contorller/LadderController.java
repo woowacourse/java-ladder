@@ -1,5 +1,8 @@
 package ladder.contorller;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
 import java.util.List;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.line.Line;
@@ -11,8 +14,6 @@ import ladder.domain.user.User;
 import ladder.domain.user.Users;
 import ladder.view.InputView;
 import ladder.view.OutputView;
-
-import static java.util.stream.Collectors.*;
 
 public class LadderController {
 

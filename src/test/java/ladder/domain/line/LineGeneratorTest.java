@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import ladder.domain.direction.Direction;
-import ladder.domain.direction.RandomDirectionGenerator;
 import ladder.domain.direction.NeutralDirectionGenerator;
+import ladder.domain.direction.RandomDirectionGenerator;
 import ladder.domain.direction.RightDirectionGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
