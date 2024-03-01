@@ -56,10 +56,10 @@ class GameTest {
     void playOnTarget() {
         // given
         Game game = new Game(people, results, ladder);
-        Name name = new Name("pobi");
+        Target target = new Target("pobi");
 
         // when
-        PlayResults playResults = game.play(name);
+        PlayResults playResults = game.play(target);
 
         // then
         assertThat(playResults)
@@ -73,7 +73,7 @@ class GameTest {
     void playOnAllTarget() {
         // given
         Game game = new Game(people, results, ladder);
-        Name all = new Name("all");
+        Target all = new Target("all");
 
         // when
         PlayResults playResults = game.play(all);

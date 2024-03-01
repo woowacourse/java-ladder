@@ -2,8 +2,8 @@ package ladder.view;
 
 import ladder.domain.*;
 
+import java.util.List;
 import java.util.StringJoiner;
-import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -20,7 +20,7 @@ public class OutputView {
         System.out.println("사다리 결과");
         System.out.println();
 
-        for (Name name : people.getNames()) {
+        for (Target name : people.getNames()) {
             String formattedName = String.format(FORMAT, name);
             System.out.print(formattedName);
         }
@@ -34,10 +34,13 @@ public class OutputView {
 
     private void printLine(Line line) {
         String prefixLadder = " ".repeat(LADDER_WIDTH) + LADDER_SIDE_SYMBOL;
-        String points = line.getPoints().stream()
-                .map(point -> point.repeatSymbol(LADDER_WIDTH))
-                .collect(Collectors.joining(LADDER_SIDE_SYMBOL, prefixLadder, LADDER_SIDE_SYMBOL));
-        System.out.println(points);
+        List<Point> points = line.getPoints();
+        StringJoiner formattedLadder = new StringJoiner(LADDER_SIDE_SYMBOL, prefixLadder, LADDER_SIDE_SYMBOL);
+        for (int i = 0; i < points.size() - 1; i++) {
+            String ladder = points.get(i).repeatSymbol(LADDER_WIDTH);
+            formattedLadder.add(ladder);
+        }
+        System.out.println(formattedLadder);
     }
 
     public void printResults(Results results) {
@@ -54,18 +57,18 @@ public class OutputView {
     }
 
     public void printPlayResult(PlayResults playResults) {
-        for (Name name : playResults.getNames()) {
+        for (Target name : playResults.getNames()) {
             String formattedResult = getFormattedResult(playResults, name);
             System.out.println(formattedResult);
         }
     }
 
-    private String getFormattedResult(PlayResults playResults, Name name) {
+    private String getFormattedResult(PlayResults playResults, Target target) {
         StringJoiner stringJoiner = new StringJoiner(" : ");
         if (playResults.size() > 1) {
-            stringJoiner.add(name.toString());
+            stringJoiner.add(target.toString());
         }
-        Result result = playResults.find(name);
+        Result result = playResults.find(target);
         return stringJoiner.add(result.toString()).toString();
     }
 }

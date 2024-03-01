@@ -33,7 +33,7 @@ public class LadderGame {
     }
 
     private void play(Game game) {
-        Name target = createTarget();
+        Target target = createTarget();
         PlayResults playResult = game.play(target);
         outputView.printPlayResultNotice();
         outputView.printPlayResult(playResult);
@@ -80,9 +80,9 @@ public class LadderGame {
         }
     }
 
-    private Name createTarget() {
+    private Target createTarget() {
         String target = retryWhileException(inputView::readTarget);
-        return new Name(target);
+        return new Target(target);
     }
 
     private <T> T retryWhileException(Supplier<T> callback) {
