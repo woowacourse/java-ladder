@@ -5,10 +5,14 @@ import java.util.*;
 public class Line {
     private final List<Point> points;
 
-    public Line(final Point... point) {
-        final List<Point> points = List.of(point);
+    public Line(final Point... argument) {
+        final List<Point> points = List.of(argument);
         validate(points);
         this.points = points;
+    }
+
+    public static Line ofDirections(final Direction... directions) {
+        return new Line(Arrays.stream(directions).map(Point::new).toArray(Point[]::new));
     }
 
     private void validate(final List<Point> points) {

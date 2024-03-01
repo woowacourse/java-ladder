@@ -1,5 +1,6 @@
 package domain;
 
+import static domain.Direction.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
@@ -31,9 +32,9 @@ class PointTest {
 
     public static Stream<Arguments> ProvideArgumentsOfMoveByDirection() {
         return Stream.of(
-                Arguments.of(Direction.STRAIGHT, 5),
-                Arguments.of(Direction.LEFT, 4),
-                Arguments.of(Direction.RIGHT, 6)
+                Arguments.of(STRAIGHT, 5),
+                Arguments.of(LEFT, 4),
+                Arguments.of(RIGHT, 6)
         );
     }
 
