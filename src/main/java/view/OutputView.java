@@ -2,7 +2,7 @@ package view;
 
 import domain.ladder.PathStatus;
 import dto.LadderGameResultDto;
-import dto.LadderStatus;
+import dto.LadderDto;
 import dto.PathStatuses;
 
 import java.util.List;
@@ -11,13 +11,13 @@ import java.util.stream.IntStream;
 
 public class OutputView {
 
-    public static void printLadder(final LadderStatus ladderStatus) {
+    public static void printLadder(final LadderDto ladderDto) {
         System.out.println();
         System.out.println("사다리 결과");
         System.out.println();
-        System.out.println(makeNameMessage(ladderStatus.playerNames()));
-        System.out.println(drawRadder(ladderStatus.pathStatuses()));
-        System.out.println(makeGameResultMessage(ladderStatus.gameResults()));
+        System.out.println(makeNameMessage(ladderDto.playerNames()));
+        System.out.println(drawRadder(ladderDto.pathStatuses()));
+        System.out.println(makeGameResultMessage(ladderDto.ladderDestinations()));
         System.out.println();
     }
 

@@ -8,15 +8,15 @@ import domain.player.PlayerNames;
 import java.util.ArrayList;
 import java.util.List;
 
-public record LadderStatus(List<String> playerNames, List<PathStatuses> pathStatuses, List<String> gameResults) {
+public record LadderDto(List<String> playerNames, List<PathStatuses> pathStatuses, List<String> ladderDestinations) {
 
-    public static LadderStatus of(PlayerNames playerNames, Ladder ladder, LadderDestinations ladderDestinations) {
+    public static LadderDto of(PlayerNames playerNames, Ladder ladder, LadderDestinations ladderDestinations) {
         List<Paths> paths = ladder.getPaths();
         List<PathStatuses> pathStatuses = new ArrayList<>();
         for (int i = paths.size() - 1; i >= 0; i--) {
             pathStatuses.add(PathStatuses.of(paths.get(i)));
         }
 
-        return new LadderStatus(playerNames.getPlayerNames(), pathStatuses, ladderDestinations.getGameResults());
+        return new LadderDto(playerNames.getPlayerNames(), pathStatuses, ladderDestinations.getGameResults());
     }
 }

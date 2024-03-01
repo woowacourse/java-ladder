@@ -7,7 +7,7 @@ import domain.ladder.LadderHeight;
 import domain.player.PlayerNames;
 import domain.player.Players;
 import dto.LadderGameResultDto;
-import dto.LadderStatus;
+import dto.LadderDto;
 import util.ConsoleReader;
 import util.RandomBooleanGenerator;
 import view.InputView;
@@ -24,7 +24,7 @@ public class LadderGameMachine {
         LadderDestinations ladderDestinations = initLadderDestinations();
         LadderHeight ladderHeight = initLadderHeight();
         Ladder ladder = initLadder(new RandomBooleanGenerator(), ladderHeight, playerNames);
-        OutputView.printLadder(LadderStatus.of(playerNames, ladder, ladderDestinations));
+        OutputView.printLadder(LadderDto.of(playerNames, ladder, ladderDestinations));
         printLadderGameResults(ladder, ladderHeight, ladderDestinations, playerNames);
     }
 
