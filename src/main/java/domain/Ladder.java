@@ -7,9 +7,13 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(Line... line) {
-        validate(List.of(line));
-        lines = List.of(line);
+    public Ladder(final List<Line> lines) {
+        validate(lines);
+        this.lines = lines;
+    }
+
+    public static Ladder of(final Line... lines) {
+        return new Ladder(List.of(lines));
     }
 
     private void validate(final List<Line> ladder) {
@@ -25,7 +29,6 @@ public class Ladder {
     }
 
     private void validateLadderShape(final List<Line> ladder) {
-        validateEmptiness(ladder);
         final int firstLineWidth = ladder.get(0).size();
 
         if (ladder.stream().anyMatch(line -> line.size() != firstLineWidth)) {

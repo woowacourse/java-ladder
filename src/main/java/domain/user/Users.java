@@ -1,16 +1,16 @@
-package domain;
+package domain.user;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Users {
-    private final List<UserName> users;
+    private final List<User> users;
 
     public Users(final List<String> userNames) {
         validate(userNames);
         users = userNames.stream()
-                .map(UserName::new)
+                .map(User::new)
                 .toList();
     }
 
@@ -39,12 +39,8 @@ public class Users {
         }
     }
 
-    public int getPersonCount() {
+    public int size() {
         return users.size();
-    }
-
-    public List<UserName> getUsers() {
-        return users;
     }
 
     public int findPositionByName(final String name) {

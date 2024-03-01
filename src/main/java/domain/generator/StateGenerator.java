@@ -1,5 +1,7 @@
-package domain;
+package domain.generator;
 
+import domain.PointState;
+import domain.generator.RandomGenerator;
 import java.util.Random;
 
 public class StateGenerator implements RandomGenerator {

@@ -1,14 +1,14 @@
-package domain;
+package domain.user;
 
 import java.util.regex.Pattern;
 
-public class UserName {
+public class User {
     private static final Pattern ALPHABET = Pattern.compile("^[a-zA-Z]*$");
     private static final int MAX_LENGTH = 5;
 
     private final String userName;
 
-    public UserName(final String userName) {
+    public User(final String userName) {
         validate(userName);
         this.userName = userName;
     }

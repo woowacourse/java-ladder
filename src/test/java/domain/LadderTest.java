@@ -19,7 +19,7 @@ class LadderTest {
         final Line line = Line.ofDirections(STRAIGHT);
         IntStream.range(0, 101).forEach(number -> lines.add(line));
 
-        assertThatThrownBy(() -> new Ladder(lines.toArray(Line[]::new))).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Ladder(lines)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -29,14 +29,14 @@ class LadderTest {
         final Line line2 = Line.ofDirections(STRAIGHT);
         List<Line> lines = List.of(line1, line2);
 
-        assertThatThrownBy(() -> new Ladder(lines.toArray(Line[]::new))).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Ladder(lines)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @CsvSource(value = {"0,0", "1,1", "2,2", "3,3"})
     @DisplayName("가로 선이 없는 사다리 게임을 실행 했을 때 같은 위치의 값을 반환한다")
     void nonHorizontalLine(final int startPosition, final int expected) {
-        final Ladder ladder = new Ladder(
+        final Ladder ladder = Ladder.of(
                 Line.ofDirections(STRAIGHT, STRAIGHT, STRAIGHT, STRAIGHT),
                 Line.ofDirections(STRAIGHT, STRAIGHT, STRAIGHT, STRAIGHT),
                 Line.ofDirections(STRAIGHT, STRAIGHT, STRAIGHT, STRAIGHT)
@@ -51,7 +51,7 @@ class LadderTest {
     @CsvSource(value = {"0,3", "1,0", "2,1", "3,2"})
     @DisplayName("사다리 게임을 실행 했을 때 올바른 결과를 반환한다")
     void gameResultTest(final int startPosition, final int expected) {
-        final Ladder ladder = new Ladder(
+        final Ladder ladder = Ladder.of(
                 Line.ofDirections(RIGHT, LEFT, STRAIGHT, STRAIGHT),
                 Line.ofDirections(STRAIGHT, RIGHT, LEFT, STRAIGHT),
                 Line.ofDirections(STRAIGHT, STRAIGHT, RIGHT, LEFT)

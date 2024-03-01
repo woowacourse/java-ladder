@@ -1,5 +1,6 @@
 package domain;
 
+import domain.generator.RandomGenerator;
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -9,10 +10,6 @@ public class Line {
     public Line(final List<Point> points) {
         validate(points);
         this.points = points;
-    }
-
-    public static Line of(final Point... points) {
-        return new Line(List.of(points));
     }
 
     public static Line ofDirections(final Direction... directions) {
@@ -41,7 +38,7 @@ public class Line {
         }
     }
 
-    private void validateFirstPointDirection(Point firstPoint) {
+    private void validateFirstPointDirection(final Point firstPoint) {
         if (firstPoint.equals(new Point(Direction.LEFT))) {
             throw new IllegalArgumentException("첫번째 위치에서 왼쪽으로 연결 될 수 없습니다.");
         }
@@ -60,7 +57,7 @@ public class Line {
     }
 
     public Index move(final Index index) {
-        Point target = points.get(index.toInt());
+        final Point target = points.get(index.toInt());
         return target.move(index);
     }
 

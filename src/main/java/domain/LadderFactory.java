@@ -1,19 +1,16 @@
 package domain;
 
+import domain.generator.StateGenerator;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.IntStream;
 
 public class LadderFactory {
-
-    private static final Random RANDOM_GENERATOR = new Random();
-
     private LadderFactory() {
 
     }
 
     public static Ladder createLadder(final List<Line> lines) {
-        return new Ladder(lines.toArray(Line[]::new));
+        return new Ladder(lines);
     }
 
     public static Ladder createRandomLadder(final int height, final int width) {

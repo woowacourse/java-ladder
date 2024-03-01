@@ -6,16 +6,16 @@ import java.util.function.UnaryOperator;
 public class Point {
     private final Direction direction;
 
-    public Point(Direction direction) {
+    public Point(final Direction direction) {
         this.direction = direction;
     }
 
-    public Index move(Index index) {
+    public Index move(final Index index) {
         UnaryOperator<Index> converter = direction.getConverter();
         return converter.apply(index);
     }
 
-    public boolean invalidConnection(Point other) {
+    public boolean invalidConnection(final Point other) {
         boolean case1 = direction == Direction.RIGHT && other.direction != Direction.LEFT;
         boolean case2 = direction != Direction.RIGHT && other.direction == Direction.LEFT;
         return case1 || case2;

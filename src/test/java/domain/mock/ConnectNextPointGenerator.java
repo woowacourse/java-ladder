@@ -1,7 +1,7 @@
 package domain.mock;
 
 import domain.PointState;
-import domain.RandomGenerator;
+import domain.generator.RandomGenerator;
 
 public class ConnectNextPointGenerator implements RandomGenerator {
     @Override

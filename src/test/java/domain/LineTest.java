@@ -5,6 +5,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import domain.generator.RandomGenerator;
 import domain.mock.ConnectNextPointGenerator;
 import domain.mock.EmptyGenerator;
 import java.util.stream.Stream;
