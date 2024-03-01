@@ -11,19 +11,25 @@ import model.player.Player;
 import model.player.Players;
 import model.prize.Prize;
 import model.prize.Prizes;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class GameTest {
-    @DisplayName("모든 참여자에 대한 사다리 실행 결과를 얻는다")
-    @Test
-    void testGameResultIncludesAllPlayers() {
+    private Game game;
+
+    @BeforeEach
+    void setUp() {
         Players players = Players.from(List.of("pobi", "lala"));
         LadderHeight ladderHeight = new LadderHeight(5);
         Ladder ladder = Ladder.of(ladderHeight, players, (count) -> createBridges(List.of(1)));
         Prizes prizes = Prizes.of(players, List.of("꽝", "3000"));
-        Game game = new Game(ladder, players, prizes);
+        game = new Game(ladder, players, prizes);
+    }
 
+    @DisplayName("모든 참여자에 대한 사다리 실행 결과를 얻는다")
+    @Test
+    void testGameResultIncludesAllPlayers() {
         GameResult gameResult = game.play();
         Map<Player, Prize> result = gameResult.getResult();
 
@@ -36,12 +42,6 @@ public class GameTest {
     @DisplayName("한 참여자에 대한 사다리 실행 결과를 얻는다")
     @Test
     void testGameResultWithOnePlayer() {
-        Players players = Players.from(List.of("pobi", "lala"));
-        LadderHeight ladderHeight = new LadderHeight(5);
-        Ladder ladder = Ladder.of(ladderHeight, players, (count) -> createBridges(List.of(1)));
-        Prizes prizes = Prizes.of(players, List.of("꽝", "3000"));
-        Game game = new Game(ladder, players, prizes);
-
         GameResult gameResult = game.play();
         Player targetPlayer = new Player("pobi");
         Prize targetPrize = gameResult.get(targetPlayer);
