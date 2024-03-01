@@ -9,7 +9,7 @@ public class RandomConnectionGenerator {
     public static List<ConnectionStatus> makeConnections(int playerCount) {
         Random random = new Random();
         List<ConnectionStatus> statuses = new ArrayList<>();
-        for(int i = 0; i < playerCount; i++) {
+        for(int i = 0; i < playerCount - 1; i++) {
             statuses.add(ConnectionStatus.of(random.nextBoolean()));
         }
         return statuses;
