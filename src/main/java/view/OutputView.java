@@ -21,14 +21,10 @@ public class OutputView {
     }
 
     public static void printGameBoard(final PlayerNames playerNames, final Ladder ladder, final Results results) {
-        printResultMessage();
+        System.out.println(System.lineSeparator() + "실행결과");
         printWithFormat(playerNames.getValues());
         printLadder(ladder);
         printWithFormat(results.getValues());
-    }
-
-    private static void printResultMessage() {
-        System.out.println(System.lineSeparator() + "실행결과");
     }
 
     private static void printWithFormat(List<String> values) {
