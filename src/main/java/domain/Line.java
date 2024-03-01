@@ -15,6 +15,9 @@ public class Line {
         if (canGoRights[0]) {
             points.add(new Point(Direction.RIGHT, 0));
         }
+        if (canGoRights[canGoRights.length - 1]) {
+            throw new IllegalArgumentException("오른쪽 끝에선 오른쪽으로 갈 수 없습니다.");
+        }
         for (int index = 1; index < canGoRights.length; index++) {
             if (canGoRights[index]) {
                 points.add(new Point(Direction.RIGHT, index));

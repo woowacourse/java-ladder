@@ -14,7 +14,6 @@ class PointTest {
     @DisplayName("각 지점에서 이동 시 적절한 지점으로 이동하는지 확인")
     void next() {
         // |-----|     |-----|     |
-        //Todo 생성시에 올바를 Point 들인지 확인할 수 있어야 함
         List<Point> points = List.of(new Point(RIGHT), new Point(LEFT, 1), new Point(RIGHT, 2), new Point(LEFT, 3),
                 new Point(STRAIGHT, 4));
         Assertions.assertThat(points.get(0).next()).isEqualTo(points.get(1));
