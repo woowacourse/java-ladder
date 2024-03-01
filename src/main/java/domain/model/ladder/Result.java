@@ -1,4 +1,9 @@
-package domain.model;
+package domain.model.ladder;
+
+import domain.model.consequence.Consequence;
+import domain.model.consequence.Consequences;
+import domain.model.participant.People;
+import domain.model.participant.Person;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;

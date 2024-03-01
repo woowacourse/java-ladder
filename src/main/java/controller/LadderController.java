@@ -1,13 +1,17 @@
 package controller;
 
-import domain.model.*;
+import domain.model.consequence.Consequences;
+import domain.model.ladder.Ladder;
+import domain.model.ladder.LadderGame;
+import domain.model.ladder.Result;
+import domain.model.participant.People;
+import domain.model.participant.Person;
 import handler.ExceptionHandler;
 import utils.RuleGeneratorImpl;
 import view.InputView;
 import view.ResultView;
 
 import java.util.List;
-import java.util.Map;
 import java.util.function.Supplier;
 
 public class LadderController {

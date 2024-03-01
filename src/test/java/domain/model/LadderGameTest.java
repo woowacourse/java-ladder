@@ -1,5 +1,11 @@
 package domain.model;
 
+import domain.model.consequence.Consequences;
+import domain.model.ladder.Ladder;
+import domain.model.ladder.LadderGame;
+import domain.model.ladder.Result;
+import domain.model.participant.People;
+import domain.model.participant.Person;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

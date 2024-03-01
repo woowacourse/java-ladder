@@ -1,4 +1,4 @@
-package domain.model;
+package domain.model.participant;
 
 import java.util.Objects;
 

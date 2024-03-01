@@ -1,5 +1,7 @@
 package domain.model;
 
+import domain.model.consequence.Consequence;
+import domain.model.consequence.Consequences;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

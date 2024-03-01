@@ -1,6 +1,5 @@
-package domain.model;
+package domain.model.consequence;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Consequences {

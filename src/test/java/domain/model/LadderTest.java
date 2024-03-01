@@ -1,5 +1,6 @@
 package domain.model;
 
+import domain.model.ladder.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

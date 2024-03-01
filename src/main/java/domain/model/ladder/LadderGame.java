@@ -1,7 +1,7 @@
-package domain.model;
+package domain.model.ladder;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import domain.model.consequence.Consequences;
+import domain.model.participant.People;
 
 public class LadderGame {
     private final Ladder ladder;
