@@ -14,7 +14,7 @@ public record LadderStatus(List<String> playerNames, List<PathStatuses> pathStat
         List<Paths> paths = ladder.getPaths();
         List<PathStatuses> pathStatuses = new ArrayList<>();
         for (int i = paths.size() - 1; i >= 0; i--) {
-            pathStatuses.add(new PathStatuses(paths.get(i).getPathStatuses()));
+            pathStatuses.add(PathStatuses.of(paths.get(i)));
         }
 
         return new LadderStatus(playerNames.getPlayerNames(), pathStatuses, ladderDestinations.getGameResults());
