@@ -7,7 +7,7 @@ import java.util.Map;
 public class Result {
     private final Map<Person, Item> matchedResult;
 
-    public Result(final Map<Person, Item> matchedResult) {
+    protected Result(final Map<Person, Item> matchedResult) {
         this.matchedResult = matchedResult;
     }
 
