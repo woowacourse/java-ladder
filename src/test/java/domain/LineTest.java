@@ -33,8 +33,8 @@ class LineTest {
     @CsvSource(value = {"0,0", "1,2", "2,1"})
     @DisplayName("선택된 점은 연결된 가로선에 따라 움직인다")
     void move(final int startPosition, final int expected) {
-        Index startIndex = new Index(startPosition);
-        Index expectedIndex = new Index(expected);
+        final Index startIndex = new Index(startPosition);
+        final Index expectedIndex = new Index(expected);
         final Line line = Line.ofDirections(STRAIGHT, RIGHT, LEFT);
 
         final Index actual = line.move(startIndex);
@@ -58,8 +58,8 @@ class LineTest {
     @ParameterizedTest
     @MethodSource("ProvideArgumentsOfGenerateLine")
     @DisplayName("길이와 생성기가 주어졌을 때 그에 맞는 라인을 생성한다")
-    void generateLine(RandomGenerator generator, Line expected) {
-        Line actual = Line.generate(expected.size(), generator);
+    void generateLine(final RandomGenerator generator, final Line expected) {
+        final Line actual = Line.generate(expected.size(), generator);
 
         assertThat(actual).isEqualTo(expected);
     }

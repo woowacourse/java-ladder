@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 public class ResultView {
-
+    private static final int NAME_PADDING_LENGTH = 5;
     private static final Pattern KOREAN = Pattern.compile("^[ㄱ-ㅎ,가-힣]$");
     private static final String LINE = "-----";
     private static final String NONE_LINE = "     ";
@@ -33,7 +33,7 @@ public class ResultView {
         if (KOREAN.matcher(name).find()) {
             size++;
         }
-        return name + " ".repeat(Math.max(0, 5 - size));
+        return name + " ".repeat(Math.max(0, NAME_PADDING_LENGTH - size));
     }
 
     private static String formatName(final String name) {
@@ -42,7 +42,7 @@ public class ResultView {
             size++;
         }
         StringBuilder sb = new StringBuilder(name);
-        IntStream.range(0, 6 - size).forEach(i -> sb.insert(0, ' '));
+        IntStream.range(0, NAME_PADDING_LENGTH + 1 - size).forEach(i -> sb.insert(0, ' '));
         return sb.toString();
     }
 
@@ -77,12 +77,12 @@ public class ResultView {
         final StringBuilder stringBuilder = new StringBuilder();
         for (Point point : line.getPoints()) {
             stringBuilder.append("|");
-            stringBuilder.append(drawPoint(point));
+            stringBuilder.append(drawConnection(point));
         }
         return stringBuilder.toString();
     }
 
-    private static String drawPoint(final Point point) {
+    private static String drawConnection(final Point point) {
         if (point.getDirection() == Direction.RIGHT) {
             return LINE;
         }

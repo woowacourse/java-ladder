@@ -11,8 +11,6 @@ class ResultTest {
     @ValueSource(strings = {"", " ", "    "})
     @DisplayName("결과의 이름이 비어 있으면 예외가 발생한다")
     void emptyName(final String name) {
-        System.out.printf("%5s\n","가나");
-        System.out.printf("%5s","ab");
         assertThatCode(() -> new Result(name)).isInstanceOf(IllegalArgumentException.class);
     }
 

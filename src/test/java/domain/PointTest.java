@@ -23,7 +23,7 @@ class PointTest {
         final Point point = new Point(direction);
         final Index index = new Index(5);
 
-        Index actual = point.move(index);
+        final Index actual = point.move(index);
 
         assertThat(actual).isEqualTo(new Index(expected));
     }

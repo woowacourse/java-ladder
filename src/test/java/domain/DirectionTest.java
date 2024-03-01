@@ -28,16 +28,20 @@ class DirectionTest {
     @DisplayName("이전 방향에 따라 현재 방향이 결정 된다")
     void generate() {
         assertAll(
-                () -> assertThat(Direction.generate(Direction.RIGHT, PointState.CONNECT_NEXT_POINT)).isEqualTo(
-                        Direction.LEFT),
+                () -> assertThat(Direction.generate(Direction.RIGHT, PointState.CONNECT_NEXT_POINT))
+                        .isEqualTo(Direction.LEFT),
                 () -> assertThat(Direction.generate(Direction.RIGHT, PointState.EMPTY))
                         .isEqualTo(Direction.LEFT),
+
                 () -> assertThat(Direction.generate(Direction.LEFT, PointState.CONNECT_NEXT_POINT))
                         .isEqualTo(Direction.RIGHT),
-                () -> assertThat(Direction.generate(Direction.LEFT, PointState.EMPTY)).isEqualTo(Direction.STRAIGHT),
-                () -> assertThat(Direction.generate(Direction.STRAIGHT, PointState.CONNECT_NEXT_POINT)).isEqualTo(
-                        Direction.RIGHT),
-                () -> assertThat(Direction.generate(Direction.STRAIGHT, PointState.EMPTY)).isEqualTo(Direction.STRAIGHT)
+                () -> assertThat(Direction.generate(Direction.LEFT, PointState.EMPTY))
+                        .isEqualTo(Direction.STRAIGHT),
+
+                () -> assertThat(Direction.generate(Direction.STRAIGHT, PointState.CONNECT_NEXT_POINT))
+                        .isEqualTo(Direction.RIGHT),
+                () -> assertThat(Direction.generate(Direction.STRAIGHT, PointState.EMPTY))
+                        .isEqualTo(Direction.STRAIGHT)
         );
     }
 }
