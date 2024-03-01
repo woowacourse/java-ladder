@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class LinePrinter {
     static String from(List<Boolean> canGoRights) {
-        String rawRowString = canGoRights.stream().map(LinePrinter::makeBridge)
+        String rawRowString = canGoRights.stream().limit(canGoRights.size() - 1).map(LinePrinter::makeBridge)
                 .collect(Collectors.joining("|"));
         return "    |%s|".formatted(rawRowString);
     }
