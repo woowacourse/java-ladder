@@ -73,7 +73,6 @@ class LineTest {
     }
 
     static class TrueGenerator implements RandomGenerator {
-
         @Override
         public boolean next() {
             return true;
@@ -81,7 +80,6 @@ class LineTest {
     }
 
     static class FalseGenerator implements RandomGenerator {
-
         @Override
         public boolean next() {
             return false;

@@ -16,7 +16,9 @@ public class Point {
     }
 
     public boolean invalidConnection(Point other) {
-        return direction == Direction.RIGHT && other.direction != Direction.LEFT;
+        boolean case1 = direction == Direction.RIGHT && other.direction != Direction.LEFT;
+        boolean case2 = direction != Direction.RIGHT && other.direction == Direction.LEFT;
+        return case1 || case2;
     }
 
     @Override
