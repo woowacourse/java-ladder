@@ -15,23 +15,23 @@ class LadderRowTest {
 
     @DisplayName("가로줄이 없는 사다리 층이 생성된다.")
     @Test
-    void ladderLevelConstructTest() {
+    void ladderRowConstructTest() {
         LadderRow ladderRow = LadderRowBuilder.builder()
-                .size(100)
+                .width(new Width<>(5))
                 .directionSelector(() -> NONE)
                 .build();
 
         List<LadderDirection> ladderDirections = ladderRow.getLadderDirections();
 
-        assertThat(ladderDirections.size()).isEqualTo(100);
+        assertThat(ladderDirections.size()).isEqualTo(5);
         assertThat(ladderDirections).doesNotContain(RIGHT, LEFT);
     }
 
     @DisplayName("가로줄로 가득 찬 사다리 층이 생성된다.")
     @Test
-    void ladderLevelIntegrityTest() {
+    void ladderRowIntegrityTest() {
         LadderRow ladderRow = LadderRowBuilder.builder()
-                .size(100)
+                .width(new Width<>(6))
                 .directionSelector(() -> RIGHT)
                 .build();
 

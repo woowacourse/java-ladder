@@ -6,25 +6,22 @@ import static ladder.domain.LadderDirection.RIGHT;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class LadderRowBuilder {
 
-    private final List<LadderDirection> ladderRow;
-
-    private int size;
+    private List<LadderDirection> ladderRow;
+    private Width<LadderDirection> width;
     private LadderDirectionSelector ladderDirectionSelector;
 
     private LadderRowBuilder() {
-        this.ladderRow = new ArrayList<>();
     }
 
     public static LadderRowBuilder builder() {
         return new LadderRowBuilder();
     }
 
-    public LadderRowBuilder size(int size) {
-        this.size = size;
+    public LadderRowBuilder width(Width<LadderDirection> width) {
+        this.width = width;
         return this;
     }
 
@@ -34,15 +31,19 @@ public class LadderRowBuilder {
     }
 
     public LadderRow build() {
-        IntStream.range(0, size).forEach(__ -> ladderRow.add(LadderDirection.NONE));
-        IntStream.range(0, size - 1).forEach(this::selectDirectionIfNotExistsAt);
-        return new LadderRow(ladderRow);
+        ladderRow = new ArrayList<>(width.repeat(() -> LadderDirection.NONE));
+        width.repeat(this::selectDirectionIfNotExistsAt);
+        return LadderRow.from(ladderRow);
     }
 
     private void selectDirectionIfNotExistsAt(int index) {
-        if (ladderRow.get(index) == NONE) {
+        if (!isLastIndex(index) && ladderRow.get(index) == NONE) {
             selectDirectionAt(index);
         }
+    }
+
+    private boolean isLastIndex(int index) {
+        return index == ladderRow.size() - 1;
     }
 
     private void selectDirectionAt(int index) {
