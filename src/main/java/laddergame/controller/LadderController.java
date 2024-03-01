@@ -1,8 +1,11 @@
 package laddergame.controller;
 
-import laddergame.domain.LadderHeight;
-import laddergame.domain.Names;
-import laddergame.dto.GameResultDto;
+import laddergame.domain.ladder.Ladder;
+import laddergame.domain.ladder.LadderHeight;
+import laddergame.domain.player.Players;
+import laddergame.domain.result.Result;
+import laddergame.domain.target.Targets;
+import laddergame.dto.DrawnLadderDto;
 import laddergame.exception.ExceptionHandler;
 import laddergame.service.LadderGame;
 import laddergame.view.InputView;
@@ -21,21 +24,60 @@ public class LadderController {
     }
 
     public void run() {
-        final Names names = getNames();
+        final Players players = getPlayers();
+        final Targets targets = getTargets(players.getSize());
         final LadderHeight height = getLadderHeight();
 
-        final GameResultDto result = ladderGame.createLadder(names, height);
+        final Ladder ladder = ladderGame.createLadder(players, height);
+        printLadder(players, targets, ladder);
 
-        outputView.printResult(result);
+        final Result result = ladderGame.start(players, ladder, targets);
+        printResult(result);
     }
 
-    private Names getNames() {
-        return ExceptionHandler.retryUntilInputIsValid(() -> new Names(inputView.readNames()), outputView);
+    private Players getPlayers() {
+        final Players players = ExceptionHandler.retryUntilInputIsValid(
+                () -> new Players(inputView.readNames()), outputView
+        );
+        outputView.printLine();
+
+        return players;
+    }
+
+    private Targets getTargets(final int size) {
+        final Targets targets = ExceptionHandler.retryUntilInputIsValid(
+                () -> new Targets(inputView.readTargets(), size), outputView
+        );
+        outputView.printLine();
+
+        return targets;
     }
 
     private LadderHeight getLadderHeight() {
-        return ExceptionHandler.retryUntilInputIsValid(() -> new LadderHeight(inputView.readLadderHeight()),
-                outputView);
+        final LadderHeight ladderHeight = ExceptionHandler.retryUntilInputIsValid(
+                () -> new LadderHeight(inputView.readLadderHeight()), outputView
+        );
+        outputView.printLine();
+
+        return ladderHeight;
     }
 
+    private void printLadder(final Players players, final Targets targets, final Ladder ladder) {
+        outputView.printLadder(DrawnLadderDto.of(players, targets, ladder));
+    }
+
+    private void printResult(final Result result) {
+        final String input = getDisplayingPlayers();
+
+        if (input.equals("all")) {
+            outputView.printResultAll(result);
+            return;
+        }
+
+        outputView.printResult(result.findByName(input));
+    }
+
+    private String getDisplayingPlayers() {
+        return inputView.readDisplayingPlayers();
+    }
 }

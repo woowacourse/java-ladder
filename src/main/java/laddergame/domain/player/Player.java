@@ -1,23 +1,24 @@
-package laddergame.domain;
+package laddergame.domain.player;
+
+import laddergame.util.InputValidator;
 
 import java.util.Objects;
 
-public class Name {
+public class Player {
 
     private static final int MAX_LENGTH = 5;
 
     private final String name;
 
-    public Name(final String input) {
-        validateBlank(input);
+    public Player(final String input) {
+        InputValidator.validateBlank(input);
         validateLength(input);
+        validateFunctionName(input);
         this.name = input;
     }
 
-    private void validateBlank(final String input) {
-        if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 이름에 빈값을 입력할 수 없습니다.");
-        }
+    public String getName() {
+        return name;
     }
 
     private void validateLength(final String input) {
@@ -26,8 +27,10 @@ public class Name {
         }
     }
 
-    public String getName() {
-        return name;
+    private void validateFunctionName(final String input) {
+        if (input.equals("all")) {
+            throw new IllegalArgumentException("[ERROR] 이름에 all을 입력할 수 없습니다.");
+        }
     }
 
     @Override
@@ -35,7 +38,7 @@ public class Name {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof final Name other)) {
+        if (!(o instanceof final Player other)) {
             return false;
         }
         return Objects.equals(getName(), other.getName());

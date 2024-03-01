@@ -1,24 +1,43 @@
 package laddergame.service;
 
-import laddergame.domain.PointGenerator;
-import laddergame.domain.Ladder;
-import laddergame.domain.LadderHeight;
-import laddergame.domain.LineSize;
-import laddergame.domain.Names;
-import laddergame.dto.GameResultDto;
+import laddergame.domain.result.Result;
+import laddergame.domain.bridge.BridgeGenerator;
+import laddergame.domain.ladder.Ladder;
+import laddergame.domain.ladder.LadderHeight;
+import laddergame.domain.ladder.LineSize;
+import laddergame.domain.player.Players;
+import laddergame.domain.result.Trace;
+import laddergame.domain.target.Target;
+import laddergame.domain.target.Targets;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LadderGame {
 
-    private final PointGenerator pointGenerator;
+    private final BridgeGenerator pointGenerator;
 
-    public LadderGame(final PointGenerator pointGenerator) {
+    public LadderGame(final BridgeGenerator pointGenerator) {
         this.pointGenerator = pointGenerator;
     }
 
-    public GameResultDto createLadder(final Names names, final LadderHeight height) {
-        final LineSize lineSize = new LineSize(names);
+    public Ladder createLadder(final Players players, final LadderHeight height) {
+        final LineSize lineSize = new LineSize(players);
         final Ladder ladder = Ladder.create(lineSize, height, pointGenerator);
 
-        return GameResultDto.of(names, ladder);
+        return ladder;
+    }
+
+    public Result start(final Players players, final Ladder ladder, final Targets targets) {
+        Map<String, String> map = new HashMap<>();
+
+        for (int i = 0; i < players.getSize(); i++) {
+            Trace trace = ladder.move(i);
+            Target target = targets.convertToTarget(trace);
+
+            map.put(players.getPlayerName(i), target.getTarget());
+        }
+
+        return new Result(map);
     }
 }

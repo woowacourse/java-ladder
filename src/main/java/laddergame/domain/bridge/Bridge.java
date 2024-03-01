@@ -1,9 +1,9 @@
-package laddergame.domain;
+package laddergame.domain.bridge;
 
-public enum Point {
+public enum Bridge {
     EMPTY, EXIST;
 
-    public static Point from(final boolean value) {
+    public static Bridge from(final boolean value) {
         if (value) {
             return EXIST;
         }
