@@ -1,16 +1,35 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderItems {
+    private static final int MIN_ITEMS_SIZE = 2;
+
     private final List<Person> people;
     private final List<WinningItem> winningItems;
 
     public LadderItems(List<Person> people, List<WinningItem> winningItems) {
-        this.people = people;
-        this.winningItems = winningItems;
+        List<Person> peopleCopy = new ArrayList<>(people);
+        List<WinningItem> winningItemsCopy = new ArrayList<>(winningItems);
+
+        validate(peopleCopy, winningItemsCopy);
+
+        this.people = peopleCopy;
+        this.winningItems = winningItemsCopy;
+    }
+
+    private void validate(List<Person> people, List<WinningItem> winningItems) {
+        validateMinSize(people);
+        validateMinSize(winningItems);
+    }
+
+    private void validateMinSize(List<?> items) {
+        if (items.size() < MIN_ITEMS_SIZE) {
+            throw new IllegalArgumentException("사다리 게임의 아이템들의 개수는 각각 2개 이상이어야 합니다.");
+        }
     }
 
     public Map<Person, WinningItem> mapResult(Map<Integer, Integer> result) {
