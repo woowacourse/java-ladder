@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.Arrays;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -35,7 +34,9 @@ public class Ladder {
         return index;
     }
 
-    public List<Line> getLadder() {
-        return Collections.unmodifiableList(lines);
+    public List<List<Direction>> getRawLadder() {
+        return lines.stream()
+                .map(Line::getRawLine)
+                .toList();
     }
 }

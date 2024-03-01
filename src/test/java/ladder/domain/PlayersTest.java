@@ -33,12 +33,7 @@ class PlayersTest {
         Players players = new Players("pobi", "honux", "crong", "jk");
 
         // then
-        assertThat(players.getPlayers()).containsExactly(
-                new Player("pobi"),
-                new Player("honux"),
-                new Player("crong"),
-                new Player("jk")
-        );
+        assertThat(players.getRawPlayers()).containsExactly("pobi", "honux", "crong", "jk");
     }
 
     @DisplayName("참여자의 인덱스를 찾는다.")

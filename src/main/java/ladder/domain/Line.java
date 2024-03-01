@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.Arrays;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -81,7 +80,9 @@ public class Line {
         return points.get(index.getValue()).move(index);
     }
 
-    public List<Point> getPoints() {
-        return Collections.unmodifiableList(points);
+    List<Direction> getRawLine() {
+        return points.stream()
+                .map(Point::getDirection)
+                .toList();
     }
 }

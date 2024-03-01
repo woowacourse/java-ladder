@@ -60,7 +60,13 @@ public class Players {
                 .orElseThrow(() -> new IllegalArgumentException("참여자가 아닙니다."));
     }
 
-    public List<Player> getPlayers() {
+    List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
+    }
+
+    public List<String> getRawPlayers() {
+        return players.stream()
+                .map(Player::getName)
+                .toList();
     }
 }

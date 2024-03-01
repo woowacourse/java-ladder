@@ -9,28 +9,28 @@ public class Result {
 
     private final LinkedHashMap<Player, ResultItem> matches;
 
-    public Result(Players players) {
+    Result(Players players) {
         this.matches = new LinkedHashMap<>();
         players.getPlayers().forEach(name -> matches.put(name, null));
     }
 
-    public void put(Player player, ResultItem resultItem) {
+    void put(Player player, ResultItem resultItem) {
         matches.put(player, resultItem);
     }
 
-    public Map<Player, ResultItem> get(Player player) {
+    Map<Player, ResultItem> get(Player player) {
         return Map.of(player, matches.get(player));
     }
 
-    public Map<Player, ResultItem> getAll() {
+    Map<Player, ResultItem> getAll() {
         return Collections.unmodifiableMap(matches);
     }
 
-    public boolean hasNullValue() {
+    boolean hasNullValue() {
         return matches.values().stream().anyMatch(Objects::isNull);
     }
 
-    public boolean hasNullValueForKey(Player player) {
+    boolean hasNullValueForKey(Player player) {
         return matches.get(player) == null;
     }
 }

@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class ResultItems {
@@ -39,7 +38,9 @@ public class ResultItems {
         return resultItems.get(index.getValue());
     }
 
-    public List<ResultItem> getResultItems() {
-        return Collections.unmodifiableList(resultItems);
+    public List<String> getRawResultItems() {
+        return resultItems.stream()
+                .map(ResultItem::getValue)
+                .toList();
     }
 }

@@ -18,12 +18,7 @@ class ResultItemsTest {
         ResultItems resultItems = new ResultItems(4, "꽝", "5000", "꽝", "3000");
 
         // then
-        assertThat(resultItems.getResultItems()).containsExactly(
-                new ResultItem("꽝"),
-                new ResultItem("5000"),
-                new ResultItem("꽝"),
-                new ResultItem("3000")
-        );
+        assertThat(resultItems.getRawResultItems()).containsExactly("꽝", "5000", "꽝", "3000");
     }
 
     @DisplayName("결과 항목들을 생성한다.")
@@ -36,12 +31,7 @@ class ResultItemsTest {
         ResultItems resultItems = new ResultItems(4, rawResultItems);
 
         // then
-        assertThat(resultItems.getResultItems()).containsExactly(
-                new ResultItem("꽝"),
-                new ResultItem("5000"),
-                new ResultItem("꽝"),
-                new ResultItem("3000")
-        );
+        assertThat(resultItems.getRawResultItems()).containsExactly("꽝", "5000", "꽝", "3000");
     }
 
     @DisplayName("결과 항목 수가 참여자 수와 같지 않으면 예외가 발생한다.")
