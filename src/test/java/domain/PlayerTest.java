@@ -25,6 +25,15 @@ class PlayerTest {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = {"all"})
+    @DisplayName("참가자 이름 구성 문자 검증")
+    void validateNameBlackList(String name) {
+        Assertions.assertThatThrownBy(() -> new Player(name))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("참가자 이름은 all이 될 수 없습니다.");
+    }
+
+    @ParameterizedTest
     @ValueSource(strings = {"robin", "12345", "abc12", "12Abc"})
     @DisplayName("참가자 이름 구성 문자 검증")
     void normalName(String name) {
