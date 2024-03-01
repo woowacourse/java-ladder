@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class LadderRow {
 
@@ -11,8 +12,7 @@ public class LadderRow {
     public LadderRow(LadderRowGenerator generator, int size) {
         List<Boolean> row = new ArrayList<>(); //TODO 더 좋은 방법
         row.add(generator.generate(false));
-        IntStream.range(1, size)
-                .forEach(index -> row.add(generator.generate(row.get(index))));
+        IntStream.range(1, size).forEach(index -> row.add(generator.generate(row.get(index))));
         validateLadderRow(row);
         this.isLines = row.stream().map(Line::valueOf).toList();
     }
@@ -22,7 +22,7 @@ public class LadderRow {
         this.isLines = row.stream().map(Line::valueOf).toList();
     }
 
-    private void validateLadderRow(List<Boolean> isLines) {
+    private void validateLadderRow(List<Boolean> isLines) {//TODO reduce(), atomicInteger
         for (int i = 1; i < isLines.size(); i++) {
             isConsecutiveTrue(isLines, i);
         }
@@ -35,10 +35,10 @@ public class LadderRow {
     }
 
     public Position move(Position position) {
-        if (position.getValue() > 0 && isLines.get(position.getValue() - 1).isConnected()) {
+        if (position.value() > 0 && isLines.get(position.value() - 1).isConnected()) {
             return position.decrement();
         }
-        if (position.getValue() < isLines.size() && isLines.get(position.getValue()).isConnected()) {
+        if (position.value() < isLines.size() && isLines.get(position.value()).isConnected()) {
             return position.increment();
         }
         return position;

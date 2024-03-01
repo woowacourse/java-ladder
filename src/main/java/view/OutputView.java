@@ -28,7 +28,7 @@ public class OutputView {
 
     private void printParticipantsName(Participants participants) {
         List<String> participantsName = participants.getParticipants().stream()
-                .map(Name::getValue)
+                .map(Name::value)
                 .toList();
         participantsName.forEach(name -> System.out.print(NAME_FORMAT.formatted(name)));
         System.out.println();
@@ -52,20 +52,20 @@ public class OutputView {
 
     public void printResults(Map<Position, Result> results) {
         for (Position position : results.keySet()) {
-            System.out.print(NAME_FORMAT.formatted(results.get(position).getValue()));
+            System.out.print(NAME_FORMAT.formatted(results.get(position).value()));
         }
         System.out.println();
     }
 
     public void printParticipantResult(Result result) {
         System.out.println(PARTICIPANT_RESULT);
-        System.out.println(result.getValue());
+        System.out.println(result.value());
     }
 
     public void printParticipantResult(Map<Name, Result> results) {
         System.out.println(PARTICIPANT_RESULT);
         for (Name name : results.keySet()) {
-            System.out.println(PARTICIPANTS_RESULT_FORMAT.formatted(name.getValue(), results.get(name).getValue()));
+            System.out.println(PARTICIPANTS_RESULT_FORMAT.formatted(name.value(), results.get(name).value()));
         }
     }
 }
