@@ -8,14 +8,14 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(Line... line) {
-//        validate(ladder);
+        validate(List.of(line));
         lines = List.of(line);
     }
 
     private void validate(final List<Line> ladder) {
         validateEmptiness(ladder);
         validateMaxHeight(ladder);
-//        validateLadderShape(ladder);
+        validateLadderShape(ladder);
     }
 
     private void validateEmptiness(final List<Line> ladder) {
@@ -24,13 +24,13 @@ public class Ladder {
         }
     }
 
-//    private void validateLadderShape(final List<Line> ladder) {
-//        final int firstLineWidth = ladder.get(0).getWidth();
-//
-//        if (ladder.stream().anyMatch(line -> line.getWidth() != firstLineWidth)) {
-//            throw new IllegalArgumentException("사다리의 가로 길이는 일정해야 합니다.");
-//        }
-//    }
+    private void validateLadderShape(final List<Line> ladder) {
+        final int firstLineWidth = ladder.get(0).size();
+
+        if (ladder.stream().anyMatch(line -> line.size() != firstLineWidth)) {
+            throw new IllegalArgumentException("사다리의 가로 길이는 일정해야 합니다.");
+        }
+    }
 
     private void validateMaxHeight(final List<Line> ladder) {
         final int height = ladder.size();

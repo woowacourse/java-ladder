@@ -5,12 +5,17 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class LineTest {
+
+
     @Test
     @DisplayName("첫번째 지점에서 왼쪽으로 연결 됐을 때 예외가 발생한다")
     void firstPoint() {
@@ -47,5 +52,39 @@ class LineTest {
                 () -> assertThatCode(() -> Line.ofDirections(STRAIGHT, LEFT, RIGHT, STRAIGHT))
                         .isInstanceOf(IllegalArgumentException.class)
         );
+    }
+
+    @ParameterizedTest
+    @MethodSource("ProvideArgumentsOfGenerateLine")
+    @DisplayName("길이와 생성기가 주어졌을 때 그에 맞는 라인을 생성한다")
+    void generateLine(RandomGenerator generator, Line expected) {
+        Line actual = Line.generate(expected.size(), generator);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    public static Stream<Arguments> ProvideArgumentsOfGenerateLine() {
+        return Stream.of(
+                Arguments.of(new FalseGenerator(),
+                        Line.ofDirections(STRAIGHT, STRAIGHT, STRAIGHT, STRAIGHT, STRAIGHT, STRAIGHT)),
+                Arguments.of(new TrueGenerator(),
+                        Line.ofDirections(RIGHT, LEFT, RIGHT, LEFT, RIGHT, LEFT))
+        );
+    }
+
+    static class TrueGenerator implements RandomGenerator {
+
+        @Override
+        public boolean next() {
+            return true;
+        }
+    }
+
+    static class FalseGenerator implements RandomGenerator {
+
+        @Override
+        public boolean next() {
+            return false;
+        }
     }
 }

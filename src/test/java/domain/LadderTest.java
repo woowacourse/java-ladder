@@ -12,27 +12,27 @@ import static domain.Direction.*;
 import static org.assertj.core.api.Assertions.*;
 
 class LadderTest {
-//
-//
-//        @Test
-//    @DisplayName("사다리 최대 높이가 100을 초과하면 예외가 발생한다")
-//    void maxHeightTest() {
-//        final List<Line> lines = new ArrayList<>();
-//        final Line line = new Line(List.of(Bridge.BRIDGE, Bridge.NON_BRIDGE));
-//        IntStream.range(0, 101).forEach(number -> lines.add(line));
-//
-//        assertThatThrownBy(() -> new Ladder(lines)).isInstanceOf(IllegalArgumentException.class);
-//    }
-//
-//    @Test
-//    @DisplayName("주어진 사다리의 가로 길이가 일정하지 않을시 예외가 발생한다")
-//    void LadderShapeTest() {
-//        final Line line1 = new Line(List.of(Bridge.NON_BRIDGE, Bridge.NON_BRIDGE, Bridge.NON_BRIDGE));
-//        final Line line2 = new Line(List.of(Bridge.NON_BRIDGE, Bridge.NON_BRIDGE));
-//        List<Line> lines = List.of(line1, line2, line1);
-//
-//        assertThatThrownBy(() -> LadderFactory.createLadder(lines)).isInstanceOf(IllegalArgumentException.class);
-//    }
+
+
+    @Test
+    @DisplayName("사다리 최대 높이가 100을 초과하면 예외가 발생한다")
+    void maxHeightTest() {
+        final List<Line> lines = new ArrayList<>();
+        final Line line = Line.ofDirections(STRAIGHT);
+        IntStream.range(0, 101).forEach(number -> lines.add(line));
+
+        assertThatThrownBy(() -> new Ladder(lines.toArray(Line[]::new))).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("주어진 사다리의 가로 길이가 일정하지 않을시 예외가 발생한다")
+    void LadderShapeTest() {
+        final Line line1 = Line.ofDirections(STRAIGHT, STRAIGHT, STRAIGHT);
+        final Line line2 = Line.ofDirections(STRAIGHT);
+        List<Line> lines = List.of(line1, line2);
+
+        assertThatThrownBy(() -> new Ladder(lines.toArray(Line[]::new))).isInstanceOf(IllegalArgumentException.class);
+    }
 
     @ParameterizedTest
     @CsvSource(value = {"0,0", "1,1", "2,2", "3,3"})

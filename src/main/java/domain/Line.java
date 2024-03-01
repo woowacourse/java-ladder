@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class Line {
     private final List<Point> points;
@@ -26,7 +27,7 @@ public class Line {
         for (int i = 1; i < points.size(); i++) {
             Point beforePoint = points.get(i - 1);
             Point currentPoint = points.get(i);
-            if (!beforePoint.isConnected(currentPoint)) {
+            if (beforePoint.invalidConnection(currentPoint)) {
                 throw new IllegalArgumentException("유효한 가로선이 되려면 서로 방향이 달라야합니다");
             }
         }
@@ -49,12 +50,43 @@ public class Line {
     private void validateEmptiness(final List<Point> points) {
     }
 
+    public Index move(final Index index) {
+        Point target = points.get(index.toInt());
+        return target.move(index);
+    }
+
+    public static Line generate(final int width, final RandomGenerator randomGenerator) {
+        final List<Direction> directions = new ArrayList<>();
+        directions.add(Direction.generate(null, randomGenerator.next()));
+        IntStream.range(1, width)
+                .mapToObj(i -> directions.get(i - 1))
+                .forEach(beforeDirection -> directions.add(
+                        Direction.generate(beforeDirection, randomGenerator.next())));
+        return Line.ofDirections(directions.toArray(Direction[]::new));
+    }
+
     public List<Point> getPoints() {
         return points;
     }
 
-    public Index move(final Index index) {
-        Point target = points.get(index.toInt());
-        return target.move(index);
+    public int size() {
+        return points.size();
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Line other = (Line) o;
+        return points.equals(other.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
     }
 }

@@ -16,4 +16,18 @@ public enum Direction {
     public UnaryOperator<Index> getConverter() {
         return converter;
     }
+
+    public static Direction next(final boolean condition) {
+        if (condition) {
+            return RIGHT;
+        }
+        return STRAIGHT;
+    }
+
+    static Direction generate(Direction beforeDirection, boolean condition) {
+        if (beforeDirection == Direction.RIGHT) {
+            return Direction.LEFT;
+        }
+        return Direction.next(condition);
+    }
 }
