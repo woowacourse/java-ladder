@@ -56,7 +56,7 @@ class ResultsTest {
         // given
         Results results = new Results(List.of("꽝", "10000", "바나나우유"));
         // when, then
-        assertThat(results.getNameByIndex(0)).isEqualTo("꽝");
+        assertThat(results.findNameByIndex(0)).isEqualTo("꽝");
     }
 
     @ParameterizedTest
@@ -66,7 +66,7 @@ class ResultsTest {
         // given
         Results results = new Results(List.of("꽝", "10000", "바나나우유"));
         // when, then
-        assertThatThrownBy(() -> results.getNameByIndex(index))
+        assertThatThrownBy(() -> results.findNameByIndex(index))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("인덱스를 벗어납니다.");
     }

@@ -76,7 +76,7 @@ class PlayersTest {
         // given
         Players players = new Players(List.of("aru", "pobi", "woowa"));
         // when, then
-        assertThat(players.getNameByIndex(0)).isEqualTo("aru");
+        assertThat(players.findNameByIndex(0)).isEqualTo("aru");
     }
 
     @Test
@@ -85,7 +85,7 @@ class PlayersTest {
         // given
         Players players = new Players(List.of("aru", "pobi", "woowa"));
         // when, then
-        assertThatThrownBy(() -> players.getNameByIndex(3))
+        assertThatThrownBy(() -> players.findNameByIndex(3))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("인덱스를 벗어납니다.");
     }

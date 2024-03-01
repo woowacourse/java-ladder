@@ -66,15 +66,15 @@ public class LadderGame {
     private void printSingleResult(Ladder ladder, Players players, Results results, String command) {
         int index = players.findIndexByName(command);
         int resultIndex = ladder.climbDown(index);
-        String result = results.getNameByIndex(resultIndex);
+        String result = results.findNameByIndex(resultIndex);
         outputView.printToken(result);
     }
 
     private void printAllResults(Ladder ladder, Players players, Results results) {
         for (int index = 0; index < players.size(); index++) {
-            String name = players.getNameByIndex(index);
+            String name = players.findNameByIndex(index);
             int resultIndex = ladder.climbDown(index);
-            outputView.printPlayerResult(name, results.getNameByIndex(resultIndex));
+            outputView.printPlayerResult(name, results.findNameByIndex(resultIndex));
         }
     }
 

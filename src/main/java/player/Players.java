@@ -46,7 +46,7 @@ public class Players {
         }
     }
 
-    public String getNameByIndex(int index) {
+    public String findNameByIndex(int index) {
         validateIndex(index);
         return players.get(index).getName();
     }

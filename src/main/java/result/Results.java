@@ -22,7 +22,7 @@ public class Results {
         }
     }
 
-    public String getNameByIndex(int index) {
+    public String findNameByIndex(int index) {
         validateIndex(index);
         return results.get(index).getName();
     }
