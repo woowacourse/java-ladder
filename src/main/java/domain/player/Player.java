@@ -19,7 +19,7 @@ public class Player {
         return new Player(new PlayerName(userName), new LineNumber(lineNumber), new LineFloor(lineFloor));
     }
 
-    public boolean escapeLadder() {
+    public boolean isEscapeLadder() {
         return currentLineFloor.isZero();
     }
 

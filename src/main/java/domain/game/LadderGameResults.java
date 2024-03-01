@@ -30,7 +30,7 @@ public class LadderGameResults {
     }
 
     private static void play(final Ladder ladder, final Player player) {
-        while (!player.escapeLadder()) {
+        while (!player.isEscapeLadder()) {
             ladder.movePlayer(player);
         }
     }

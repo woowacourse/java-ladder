@@ -29,7 +29,7 @@ public class PlayerTest {
         Player player = Player.of("kelly", 1, 0);
 
         // When
-        boolean isEscapeLadder = player.escapeLadder();
+        boolean isEscapeLadder = player.isEscapeLadder();
 
         // Then
         assertThat(isEscapeLadder).isTrue();
