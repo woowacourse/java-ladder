@@ -61,7 +61,7 @@ public class LadderController {
 
     private void startClimbingLadder(ClimbingResults climbingResults) {
         String playerName = inputView.readPlayerToSeeResult();
-        while (!playerName.equals("all")) {
+        while (!playerName.equals(InputView.FINISH_COMMAND)) {
             findResultByPlayerName(playerName, climbingResults);
             playerName = inputView.readPlayerToSeeResult();
         }

@@ -6,6 +6,7 @@ import java.util.Scanner;
 import view.message.InputExceptionMessage;
 
 public class InputView {
+    public static final String FINISH_COMMAND = "all";
     public static final String INPUT_DELIMITER = ",";
     private static final String BLANK_SPACE = " ";
     private static final String BLANK_EMPTY = "";
