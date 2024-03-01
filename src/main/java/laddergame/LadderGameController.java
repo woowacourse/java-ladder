@@ -13,27 +13,25 @@ public class LadderGameController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final PlayersResult playersResult = new PlayersResult();
 
     public void run() {
         Players players = retryUntilValidated(() -> new Players(inputView.readPlayersName()));
         Height height = retryUntilValidated(() -> new Height(inputView.readLadderHeight()));
         Ladder ladder = new Ladder(new RandomLinesGenerator(), players.getPlayersCount(), height);
 
-        LadderGame ladderGame = executeLadderGame(players, ladder);
-        ladderGame.putPlayersResult(playersResult);
-        outputView.writeLadderResult(ladderGame);
+        PlayersResult playersResult = executeLadderGame(players, ladder);
 
         while (true) {
             retryUntilValidated(() -> showItemByInputName(playersResult));
         }
     }
 
-    private LadderGame executeLadderGame(Players players, Ladder ladder) {
+    private PlayersResult executeLadderGame(Players players, Ladder ladder) {
         LadderGame ladderGame = retryUntilValidated(() ->
                 new LadderGame(players, ladder, inputView.readLadderResult()));
-        ladderGame.climbLadder();
-        return ladderGame;
+
+        outputView.writeLadderResult(ladderGame);
+        return ladderGame.climbLadder();
     }
 
     private void showItemByInputName(PlayersResult playersResult) {

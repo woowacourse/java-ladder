@@ -21,6 +21,24 @@ public class OutputView {
         writeResultItems(ladderGame.getItems());
     }
 
+    public void writeResultItem(ResultItem item) {
+        System.out.println(LINE_SEPARATOR + "실행결과");
+        System.out.println(item.item());
+    }
+
+    public void writeAllResultItems(Map<Player, ResultItem> result) {
+        System.out.println(LINE_SEPARATOR + "실행결과");
+        List<String> itemsFormat = new ArrayList<>();
+        for (Player player : result.keySet()) {
+            itemsFormat.add(String.format(RESULT_FORMAT, player.getName(), result.get(player).item()));
+        }
+        System.out.println(String.join(LINE_SEPARATOR, itemsFormat));
+    }
+
+    public static void writeErrorMessage(final String message) {
+        System.out.println(ERROR_PREFIX + message);
+    }
+
     private void writePlayersName(final Players players) {
         System.out.println(String.join(SPACE, players.getPlayers().stream()
                 .map(Player::getName)
@@ -44,23 +62,5 @@ public class OutputView {
                 .map(ResultItem::item)
                 .toList())
         );
-    }
-
-    public void writeResultItem(ResultItem item) {
-        System.out.println(LINE_SEPARATOR + "실행결과");
-        System.out.println(item.item());
-    }
-
-    public void writeAllResultItems(Map<Player, ResultItem> result) {
-        System.out.println(LINE_SEPARATOR + "실행결과");
-        List<String> itemsFormat = new ArrayList<>();
-        for (Player player : result.keySet()) {
-            itemsFormat.add(String.format(RESULT_FORMAT, player.getName(), result.get(player).item()));
-        }
-        System.out.println(String.join(LINE_SEPARATOR, itemsFormat));
-    }
-
-    public static void writeErrorMessage(final String message) {
-        System.out.println(ERROR_PREFIX + message);
     }
 }

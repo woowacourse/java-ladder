@@ -9,6 +9,7 @@ public class LadderGame {
     private final Players players;
     private final Ladder ladder;
     private final List<ResultItem> items;
+    private final PlayersResult playersResult = new PlayersResult();
 
     public LadderGame(final Players players, final Ladder ladder, final List<String> items) {
         validate(items, players.getPlayersCount());
@@ -23,16 +24,12 @@ public class LadderGame {
         }
     }
 
-    public void climbLadder() {
+    public PlayersResult climbLadder() {
         for (Player player : players.getPlayers()) {
             moveToLadderEnd(player);
-        }
-    }
-
-    public void putPlayersResult(PlayersResult playersResult) {
-        for (Player player : players.getPlayers()) {
             playersResult.addResult(player, items.get(player.getPosition().getX()));
         }
+        return playersResult;
     }
 
     private void moveToLadderEnd(Player player) {
