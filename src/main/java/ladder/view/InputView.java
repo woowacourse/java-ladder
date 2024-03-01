@@ -15,7 +15,7 @@ import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.reward.Reward;
 import ladder.domain.reward.Rewards;
-import ladder.exception.ExceptionHandler;
+import ladder.view.exception.ExceptionHandler;
 
 public class InputView {
 

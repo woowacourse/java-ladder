@@ -1,9 +1,9 @@
 package ladder;
 
 import ladder.controller.Controller;
-import ladder.exception.ExceptionHandler;
 import ladder.view.InputView;
 import ladder.view.ResultView;
+import ladder.view.exception.ExceptionHandler;
 
 public class Application {
     public static void main(String[] args) {

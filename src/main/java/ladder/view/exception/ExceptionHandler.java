@@ -1,4 +1,4 @@
-package ladder.exception;
+package ladder.view.exception;
 
 import java.util.function.Supplier;
 
