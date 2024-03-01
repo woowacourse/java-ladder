@@ -15,7 +15,7 @@ public class NameTest {
     @DisplayName("Name 생성 성공: 객체 생성 시 이름을 잘 받아온다.")
     void test_ok_constructor() {
         Name name = Name.from("name");
-        assertThat(name.getName()).isEqualTo("name");
+        assertThat(name.getValue()).isEqualTo("name");
     }
 
     @ParameterizedTest

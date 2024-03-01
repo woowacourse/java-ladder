@@ -13,6 +13,6 @@ public class Member {
     }
 
     public String getName() {
-        return name.getName();
+        return name.getValue();
     }
 }

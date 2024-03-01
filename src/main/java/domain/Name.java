@@ -7,11 +7,11 @@ public class Name {
     private static final String ALPHABETS_NUMBERS = "^[A-Za-z0-9]+$";
     private static final String COMMAND_ALL_RESULT = "all";
 
-    private final String name;
+    private final String value;
 
-    private Name(String name) {
-        validate(name);
-        this.name = name;
+    private Name(String value) {
+        validate(value);
+        this.value = value;
     }
 
     public static Name from(String name) {
@@ -51,7 +51,7 @@ public class Name {
         throw new IllegalArgumentException("이름은 알파벳과 숫자만 허용합니다.");
     }
 
-    public String getName() {
-        return name;
+    public String getValue() {
+        return value;
     }
 }
