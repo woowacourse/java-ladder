@@ -30,7 +30,7 @@ public class InputView {
         return splitInputByDelimiter(input, DELIMITER);
     }
 
-    public Map<Position, Result> inputResults() { // TODO name 리스트와 동일해야 한다.
+    public Map<Position, Result> inputResults() {
         System.out.println(INPUT_GAME_RESULT);
         String input = in.nextLine();
         validateNotNullAndBlank(input);

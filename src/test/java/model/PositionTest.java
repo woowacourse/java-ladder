@@ -30,7 +30,6 @@ public class PositionTest {
         Assertions.assertThat(new Position(1)).isEqualTo(new Position(1));
     }
 
-    //TODO: 예외처리: position이 0보다 작다면? List<Line>의 크기보다 크다면?
     @DisplayName("값을 1 증가시킨다.")
     @Test
     void increment() {
