@@ -1,7 +1,6 @@
 package ladder.service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -11,54 +10,32 @@ import ladder.model.Line;
 import ladder.model.Players;
 
 public class LadderGame {
-    Players players;
-    List<String> rewards;
-    Ladder ladder;
+    private final Players players;
+    private final List<String> rewards;
+    private final Ladder ladder;
 
-    private LadderGame(Players players, List<String> rewards, Ladder ladder) {
-        this.players = players;
+    private LadderGame(Players ladderPlayers, List<String> rewards, Ladder ladder) {
+        this.players = ladderPlayers;
         this.rewards = rewards;
         this.ladder = ladder;
     }
 
-    public static LadderGame from(Players players, List<String> rewards, Ladder ladder) {
-        return new LadderGame(players, rewards, ladder);
+    public static LadderGame from(Players ladderPlayers, List<String> rewards, Ladder ladder) {
+        return new LadderGame(ladderPlayers, rewards, ladder);
     }
 
     public Map<String, String> play() {
-        List<Integer> position = new ArrayList<>(
-                IntStream.range(0, players.getSize())
-                        .boxed()
-                        .toList()
-        );
+        List<String> position = new ArrayList<>(players.getPlayerNames());
 
         for (Line line : ladder.getLadder()) {
-            position = clacIndexAfterClimbDownOneLine(position, line);
+            position = line.climbDown(position);
         }
-
-        List<String> playerNames = players.getPlayerNames();
-        List<String> resName = position.stream()
-                .map(playerNames::get)
-                .toList();
-        return IntStream.range(0, players.getSize())
-                .boxed()
-                .collect(Collectors.toMap(
-                        resName::get,
-                        rewards::get
-                ));
+        return createGameResult(position);
     }
 
-    public List<Integer> clacIndexAfterClimbDownOneLine(List<Integer> initialPosition, Line line) {
-        List<Boolean> isConnected = line.getConnected();
-        List<Integer> connectedIndices = IntStream.range(0, isConnected.size())
-                .filter(isConnected::get)
+    private Map<String, String> createGameResult(List<String> finalPosition) {
+        return IntStream.range(0, finalPosition.size())
                 .boxed()
-                .toList();
-
-        for (int connectedIndex : connectedIndices) {
-            Collections.swap(initialPosition, connectedIndex, connectedIndex+1);
-        }
-
-        return initialPosition;
+                .collect(Collectors.toMap(finalPosition::get, rewards::get));
     }
 }

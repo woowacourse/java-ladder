@@ -45,6 +45,8 @@ public class Line {
                 .allMatch(idx -> row.get(idx).equals(RIGHT));
     }
 
+    // TODO: 메서드 시그니처로 mutable 리스트만을 받는다는 사실을 전달할 수 없나?
+    // 또는 적어도 immutable List가 전달되었을 때 컴파일타임에 감지할 수 있게는?
     public <T> List<T> climbDown(List<T> initialPosition) {
         List<Boolean> isConnected = this.getConnected();
         List<Integer> connectdIndices = IntStream.range(0, isConnected.size())
@@ -63,6 +65,7 @@ public class Line {
         return row.size();
     }
 
+    // TODO: 매 번 새로 계산해서 반환해야 하는가?
     public List<Boolean> getConnected() {
         return IntStream.range(0, row.size() - 1)
                 .mapToObj(idx -> LadderPath.isPathExist(row.get(idx), row.get(idx + 1)))
