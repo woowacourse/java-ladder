@@ -1,6 +1,5 @@
-package domain;
+package domain.user;
 
-import domain.user.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

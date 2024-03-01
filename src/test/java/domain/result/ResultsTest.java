@@ -12,8 +12,14 @@ class ResultsTest {
     @Test
     @DisplayName("유저수와 결과수가 다르면 예외가 발생한다")
     void sameSize() {
-        Users users = new Users(List.of("pobi","brown"));
-        Results results = new Results(List.of("꽝","5000","300"));
+        Users users = Users.fromNames(List.of("pobi", "brown"));
+        Results results = Results.fromNames(List.of("꽝", "5000", "300"));
         assertThatCode(() -> results.validateSameSizeWithUsers(users)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("결과가 비어 있으면 예외가 발생한다")
+    void empty() {
+        assertThatCode(() -> Results.fromNames(List.of())).isInstanceOf(IllegalArgumentException.class);
     }
 }

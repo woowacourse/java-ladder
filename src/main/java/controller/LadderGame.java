@@ -13,8 +13,8 @@ import java.util.List;
 
 public class LadderGame {
     public void run() {
-        final Users users = new Users(InputView.inputUserNames());
-        final Results results = new Results(InputView.inputResult());
+        final Users users = Users.fromNames(InputView.inputUserNames());
+        final Results results = Results.fromNames(InputView.inputResult());
         results.validateSameSizeWithUsers(users);
         final Ladder ladder = LadderFactory.createRandomLadder(InputView.inputHeight(), users.size());
 
@@ -43,14 +43,14 @@ public class LadderGame {
     }
 
     private static void printAllResult(final Users users, final Ladder ladder, final Results results) {
-        final List<String> names = Arrays.stream(users.toString().split(",")).toList();
-        ResultView.printTargetResult(names,
-                names.stream()
-                        .map(users::findPositionByName)
-                        .map(ladder::play)
-                        .map(results::get)
-                        .map(Result::toString)
-                        .toList());
+        final List<String> userNames = Arrays.stream(users.toString().split(",")).toList();
+        final List<String> resultNames = userNames.stream()
+                .map(users::findPositionByName)
+                .map(ladder::play)
+                .map(results::get)
+                .map(Result::toString)
+                .toList();
+        ResultView.printTargetResult(userNames, resultNames);
     }
 
 }
