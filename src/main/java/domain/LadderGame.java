@@ -42,10 +42,10 @@ public class LadderGame {
 
     public List<GameResult> matchResultAll() {
         final List<GameResult> allResults = new ArrayList<>();
-        for (int i = 0; i < players.count(); i++) {
-            final Position position = players.getPositionBy(players.getNameBy(i));
+        for (int index = 0; index < players.count(); index++) {
+            final Position position = players.getPositionBy(index);
             final Result result = results.getBy(position.value());
-            final GameResult eachResult = new GameResult(players.getNameBy(i), result.value());
+            final GameResult eachResult = new GameResult(players.getNameBy(index), result.value());
 
             allResults.add(eachResult);
         }

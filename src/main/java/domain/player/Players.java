@@ -54,6 +54,10 @@ public class Players {
         return foundPosition.get(0);
     }
 
+    public Position getPositionBy(final int index) {
+        return players.get(index).getPosition();
+    }
+
     public String getNameBy(final int playerIndex) {
         final Player player = players.get(playerIndex);
         return player.getName();
